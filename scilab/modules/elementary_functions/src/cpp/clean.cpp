@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -13,6 +13,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <cmath>
 #include "clean.hxx"
 
 extern "C"
@@ -34,7 +36,7 @@ void clean(double* pdblReal, double* pdblImg, int iSize, double dEpsA, double dE
                 pdblImg[i] = 0;
             }
 
-            if (dabss(pdblReal[i]) <= dEps)
+            if (std::abs(pdblReal[i]) <= dEps)
             {
                 pdblReal[i] = 0;
             }
@@ -47,7 +49,7 @@ void clean(double* pdblReal, double* pdblImg, int iSize, double dEpsA, double dE
         double dEps = Max(dEpsA, dEpsR * dNorm);
         for (int i = 0 ; i < iSize ; i++)
         {
-            if (dabss(pdblReal[i]) <= dEps)
+            if (std::abs(pdblReal[i]) <= dEps)
             {
                 pdblReal[i] = 0;
             }
