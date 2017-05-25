@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -150,7 +150,7 @@ double lnp1m1(double _dblVar)
     static double sdblC5	= 2.0 / 5.0;
 
     double dblS2 = _dblVar * _dblVar;
-    if ( dabss(_dblVar) <= sdblE)
+    if ( fabs(_dblVar) <= sdblE)
     {
         return _dblVar * (2 + dblS2 * (sdblC3 + sdblC5 * dblS2));
     }
