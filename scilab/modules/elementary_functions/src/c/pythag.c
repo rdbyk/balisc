@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -60,8 +60,8 @@ ELEMENTARY_FUNCTIONS_IMPEXP double dpythags(double _dblVal1, double _dblVal2)
         return _dblVal1;
     }
 
-    dblAbs1 = dabss(_dblVal1);
-    dblAbs2 = dabss(_dblVal2);
+    dblAbs1 = fabs(_dblVal1);
+    dblAbs2 = fabs(_dblVal2);
 
     //Order x and y such that 0 <= y <= x
     if (dblAbs1 < dblAbs2)
