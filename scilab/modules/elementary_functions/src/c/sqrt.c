@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -31,28 +31,28 @@ void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_
     if (_dblRealIn == 0)
     {
         //pure imaginary case
-        if (dabss(_dblImgIn >= dblBRMin))
+        if (fabs(_dblImgIn >= dblBRMin))
         {
-            *_pdblRealOut = dsqrts(0.5 * dabss(_dblImgIn));
+            *_pdblRealOut = dsqrts(0.5 * fabs(_dblImgIn));
         }
         else
         {
-            *_pdblRealOut = dsqrts(dabss(_dblImgIn)) * dsqrts(0.5);
+            *_pdblRealOut = dsqrts(fabs(_dblImgIn)) * dsqrts(0.5);
         }
 
         *_pdblImgOut = dsigns(1, _dblImgIn) * *_pdblRealOut;
     }
-    else if ( dabss(_dblRealIn) <= dblRMax && dabss(_dblImgIn) <= dblRMax)
+    else if ( fabs(_dblRealIn) <= dblRMax && fabs(_dblImgIn) <= dblRMax)
     {
         //standard case : a (not zero) and b are finite
-        double dblTemp = dsqrts(2 * (dabss(_dblRealIn) + dpythags(_dblRealIn, _dblImgIn)));
+        double dblTemp = dsqrts(2 * (fabs(_dblRealIn) + dpythags(_dblRealIn, _dblImgIn)));
         //overflow test
         if (dblTemp > dblRMax)
         {
             //*     handle (spurious) overflow by scaling a and b
             double dblRealTemp = _dblRealIn / 16;
             double dblImgTemp = _dblImgIn / 16;
-            dblTemp = dsqrts(2 * (dabss(_dblRealIn) + dpythags(_dblRealIn, dblImgTemp)));
+            dblTemp = dsqrts(2 * (fabs(_dblRealIn) + dpythags(_dblRealIn, dblImgTemp)));
             if (dblRealTemp >= 0)
             {
                 *_pdblRealOut	= 2 * dblTemp;
@@ -60,7 +60,7 @@ void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_
             }
             else
             {
-                *_pdblRealOut	= 4 * dabss(dblImgTemp) / dblTemp;
+                *_pdblRealOut	= 4 * fabs(dblImgTemp) / dblTemp;
                 *_pdblImgOut	= dsigns(2, dblImgTemp) * dblTemp;
             }
         }
@@ -71,7 +71,7 @@ void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_
         }
         else
         {
-            *_pdblRealOut	= dabss(_dblImgIn) / dblTemp;
+            *_pdblRealOut	= fabs(_dblImgIn) / dblTemp;
             *_pdblImgOut	= dsigns(0.5, _dblImgIn) * dblTemp;
         }
     }
@@ -89,17 +89,17 @@ void zsqrts(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double *_
             *_pdblRealOut	= _dblRealIn + _dblImgIn;
             *_pdblImgOut	= *_pdblRealOut;
         }
-        else if ( dabss(_dblImgIn) > dblRMax)
+        else if ( fabs(_dblImgIn) > dblRMax)
         {
             //case a +- i oo -> result must be +oo +- i oo  for all a (finite or not)
-            *_pdblRealOut	= dabss(_dblImgIn);
+            *_pdblRealOut	= fabs(_dblImgIn);
             *_pdblImgOut	= _dblImgIn;
         }
         else if (_dblRealIn < -dblRMax)
         {
             //here a is -Inf and b is finite
             *_pdblRealOut	= 0;
-            *_pdblImgOut	= dsigns(1, _dblImgIn) * dabss(_dblRealIn);
+            *_pdblImgOut	= dsigns(1, _dblImgIn) * fabs(_dblRealIn);
         }
         else
         {
