@@ -2,9 +2,9 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - DIGITEO - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -22,7 +22,6 @@
 
 extern "C"
 {
-#include "abs.h" // complex case
 #include "matrix_division.h"
 }
 
@@ -248,7 +247,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                 for (int j = 0; j < iItem; j++)
                 {
                     iPos = i * iOffset2 + j * iOffset1;
-                    V.push_back(std::pair<std::pair<int, int>, double>(std::pair<int, int>(iPos, j), dabsz(pdblInR[iPos], pdblInI[iPos])));
+                    V.push_back(std::pair<std::pair<int, int>, double>(std::pair<int, int>(iPos, j), std::hypot(pdblInR[iPos], pdblInI[iPos])));
                 }
 
                 std::sort(V.begin(), V.end(), (*pFuncWay));
@@ -287,7 +286,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
 
             for (int i = 0; i < pTemp->getSize(); i++)
             {
-                pdblTemp[i] = dabsz(pdblInR[i], pdblInI[i]);
+                pdblTemp[i] = std::hypot(pdblInR[i], pdblInI[i]);
             }
 
             for (int i = 0; i < iTimes; i++)

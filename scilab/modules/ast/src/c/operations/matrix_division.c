@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - INRIA - Antoine ELIAS <antoine.elias@scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -31,7 +31,7 @@ int iRightDivisionComplexMatrixByComplexMatrix(
 
     if (_iInc2 == 0)
     {
-        if ((getieee() == 0) && (dabss(_pdblReal2[iIndex2]) + dabss(_pdblImg2[iIndex2]) == 0))
+        if ((getieee() == 0) && (fabs(_pdblReal2[iIndex2]) + fabs(_pdblImg2[iIndex2]) == 0))
         {
             return 3;
         }
@@ -79,7 +79,7 @@ int iRightDivisionComplexByComplex(
     {
         //Generic division algorithm
 
-        if (dabss(_dblReal2) >= dabss(_dblImg2))
+        if (fabs(_dblReal2) >= fabs(_dblImg2))
         {
             double dblRatio2    = _dblImg2 / _dblReal2;
             double dblSum       = _dblReal2 + dblRatio2 * _dblImg2;
@@ -111,7 +111,7 @@ int iRightDivisionRealMatrixByComplexMatrix(
 
     if (_iInc2 == 0)
     {
-        if ((getieee() == 0) && (dabss(_pdblReal2[iIndex2]) + dabss(_pdblImg2[iIndex2]) == 0))
+        if ((getieee() == 0) && (fabs(_pdblReal2[iIndex2]) + fabs(_pdblImg2[iIndex2]) == 0))
         {
             return 3;
         }
@@ -147,7 +147,7 @@ int iRightDivisionRealByComplex(
     }
     else
     {
-        double dblAbsSum = dabss(_dblReal2) + dabss(_dblImg2);
+        double dblAbsSum = fabs(_dblReal2) + fabs(_dblImg2);
 
         if (dblAbsSum == 0)
         {

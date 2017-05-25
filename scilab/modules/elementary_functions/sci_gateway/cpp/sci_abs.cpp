@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,7 +28,6 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "abs.h"
 }
 
 template <class T>
@@ -80,32 +79,14 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
             {
                 for (int i = 0; i < size; i++)
                 {
-                    if (ISNAN(pdblInR[i]))
-                    {
-                        pdblOut[i] = pdblInR[i];
-                    }
-                    else if (ISNAN(pdblInI[i]))
-                    {
-                        pdblOut[i] = pdblInI[i];
-                    }
-                    else
-                    {
-                        pdblOut[i] = dabsz(pdblInR[i], pdblInI[i]);
-                    }
+                    pdblOut[i] = hypot(pdblInR[i], pdblInI[i]);
                 }
             }
             else
             {
                 for (int i = 0; i < size; i++)
                 {
-                    if (ISNAN(pdblInR[i]))
-                    {
-                        pdblOut[i] = pdblInR[i];
-                    }
-                    else
-                    {
-                        pdblOut[i] = std::fabs(pdblInR[i]);
-                    }
+                    pdblOut[i] = std::fabs(pdblInR[i]);
                 }
             }
 
@@ -127,7 +108,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
 
                     for (int j = 0; j < rank + 1; j++)
                     {
-                        data[j] = dabsz(pPolyIn->get(i)->get()[j], pPolyIn->get(i)->getImg()[j]);
+                        data[j] = hypot(pPolyIn->get(i)->get()[j], pPolyIn->get(i)->getImg()[j]);
                     }
 
                     pPolyOut->set(i, pSP);
@@ -144,7 +125,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
 
                     for (int j = 0; j < rank + 1; j++)
                     {
-                        data[j] = dabss(pPolyIn->get(i)->get()[j]);
+                        data[j] = std::fabs(pPolyIn->get(i)->get()[j]);
                     }
 
                     pPolyOut->set(i, pSP);

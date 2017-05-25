@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -95,7 +95,7 @@ void ztans(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double* _p
 
     dblTemp			= pow(dcoss(_dblRealIn), 2) + pow(dsinhs(_dblImgIn), 2);
     *_pdblRealOut	= 0.5 * dsins(2 * _dblRealIn) / dblTemp;
-    if (dabss(_dblImgIn) < dblLim)
+    if (fabs(_dblImgIn) < dblLim)
     {
         *_pdblImgOut = 0.5 * dsinhs(2 * _dblImgIn) / dblTemp;
     }

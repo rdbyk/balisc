@@ -216,7 +216,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="..\cpp\min.cpp" />
     <ClCompile Include="..\cpp\prod.cpp" />
     <ClCompile Include="..\cpp\sum.cpp" />
-    <ClCompile Include="abs.c" />
     <ClCompile Include="add_vector.c" />
     <ClCompile Include="atan.c" />
     <ClCompile Include="basic_functions.c" />
@@ -270,7 +269,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="xerhlt.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\abs.h" />
     <ClInclude Include="..\..\includes\basic_functions.h" />
     <ClInclude Include="..\..\includes\cos.h" />
     <ClInclude Include="..\..\includes\dynlib_elementary_functions.h" />

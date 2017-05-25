@@ -1,9 +1,9 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2009 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -239,7 +239,7 @@ int iPowerComplexScalarByRealScalar(
         else if (_dblReal2 < 0)
         {
             //C ^ Z*-
-            if (dabss(_dblReal1) + dabss(_dblImg1) != 0) //_dblReal1 != 0 || _dblImg1 != 0 ?
+            if (fabs(_dblReal1) + fabs(_dblImg1) != 0) //_dblReal1 != 0 || _dblImg1 != 0 ?
             {
                 int i = 0;
                 double dblOne				= 1;
@@ -252,7 +252,7 @@ int iPowerComplexScalarByRealScalar(
                 dblRealTemp					= *_pdblRealOut;
                 dblImgTemp					= *_pdblImgOut;
 
-                for (i = 2 ; i <= dabss(_dblReal2) ; i++)
+                for (i = 2 ; i <= fabs(_dblReal2) ; i++)
                 {
                     C2F(wmul)(&dblRealTemp, &dblImgTemp, _pdblRealOut, _pdblImgOut, _pdblRealOut, _pdblImgOut);
                 }
@@ -278,7 +278,7 @@ int iPowerComplexScalarByRealScalar(
             dblRealTemp				= *_pdblRealOut;
             dblImgTemp				= *_pdblImgOut;
 
-            for (i = 2 ; i <= dabss(_dblReal2) ; i++)
+            for (i = 2 ; i <= fabs(_dblReal2) ; i++)
             {
                 C2F(wmul)(&dblRealTemp, &dblImgTemp, _pdblRealOut, _pdblImgOut, _pdblRealOut, _pdblImgOut);
             }
@@ -286,7 +286,7 @@ int iPowerComplexScalarByRealScalar(
     }
     else
     {
-        if (dabss(_dblReal1) + dabss(_dblImg1) != 0)
+        if (fabs(_dblReal1) + fabs(_dblImg1) != 0)
         {
             //C ^ R
             double dblRealTemp	= 0;
@@ -343,7 +343,7 @@ int iPowerComplexScalarByComplexScalar(
     else
     {
         //C ^ C
-        if (dabss(_dblReal1) + dabss(_dblImg1) != 0)
+        if (fabs(_dblReal1) + fabs(_dblImg1) != 0)
         {
             // ! 0 ^ C
             double dblRealTemp = 0;

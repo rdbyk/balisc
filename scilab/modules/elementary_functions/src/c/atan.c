@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -188,7 +188,7 @@ void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
         dblR2 = _dblReal * _dblReal + _dblImg * _dblImg; // Oo
         if (dblR2 > dblRMax)
         {
-            if ( dabss(_dblImg) > dblRMax)
+            if ( fabs(_dblImg) > dblRMax)
             {
                 dblS = 0;
             }
@@ -202,7 +202,7 @@ void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
             dblS = (2 * _dblImg) / (1 + dblR2);
         }
 
-        if (dabss(dblS) < sdblSlim)
+        if (fabs(dblS) < sdblSlim)
         {
             /*
             s is small: |s| < SLIM  <=>  |z| outside the following disks:
@@ -214,10 +214,10 @@ void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
         }
         else
         {
-            if (dabss(dblS) == 1 && dabss(_dblReal) <= sdblAlim)
+            if (fabs(dblS) == 1 && fabs(_dblReal) <= sdblAlim)
             {
                 //|s| >= SLIM  => |z| is inside D+ or D-
-                *_pdblImg = dsigns(0.5, _dblImg) * ( sdblLn2 - log(dabss(_dblReal)));
+                *_pdblImg = dsigns(0.5, _dblImg) * ( sdblLn2 - log(fabs(_dblReal)));
             }
             else
             {
@@ -227,12 +227,12 @@ void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
         if (_dblReal == 0)
         {
             //z is purely imaginary
-            if ( dabss(_dblImg) > 1)
+            if ( fabs(_dblImg) > 1)
             {
                 //got sign(b) * pi/2
                 *_pdblReal = dsigns(1, _dblImg) * dblPi_2;
             }
-            else if ( dabss(_dblImg) == 1)
+            else if ( fabs(_dblImg) == 1)
             {
                 //got a Nan with 0/0
                 *_pdblReal = (_dblReal - _dblReal) / (_dblReal - _dblReal); // Oo
@@ -247,7 +247,7 @@ void watan(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg)
             //_pdblImg is necessarily very near sign(a)* pi/2
             *_pdblReal = dsigns(1, _dblReal) * dblPi_2;
         }
-        else if (dabss(1 - dblR2) + dabss(_dblReal) <= sdblTol)
+        else if (fabs(1 - dblR2) + fabs(_dblReal) <= sdblTol)
         {
             //|b| is very near 1 (and a is near 0)  some cancellation occur in the (next) generic formula
             *_pdblReal = 0.5 * atan2(2 * _dblReal, (1 - _dblImg) * (1 + _dblImg) - pow(_dblReal, 2));

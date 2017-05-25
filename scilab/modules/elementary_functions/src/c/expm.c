@@ -2,9 +2,9 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - Digiteo - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -76,7 +76,7 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
         double dblAlpha	= 0;
         for (iIndex2 = 0 ; iIndex2 < _iSize ; iIndex2++)
         {
-            dblAlpha += dabss(_pdblVal[iIndex2 + _iSize * iIndex1]);
+            dblAlpha += fabs(_pdblVal[iIndex2 + _iSize * iIndex1]);
         }
         if (dblAlpha > dblANorm)
         {
@@ -308,7 +308,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
         double dblTemp	= 0;
         for (iIndex2 = 0 ; iIndex2 < _iSize ; iIndex2++)
         {
-            dblTemp += dabss(_pdblVal[iIndex2 + _iSize * iIndex1]);
+            dblTemp += fabs(_pdblVal[iIndex2 + _iSize * iIndex1]);
         }
 
         dblEps = Max(dblEps, dblTemp);
@@ -369,7 +369,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
             {
                 iSize11		= 1;
                 if (iLoop11 != (_iSize - 1))
-                    if (dabss(_pdblVal[iLoop11 + (iLoop11 - 1) * _iSize]) > dblEps)
+                    if (fabs(_pdblVal[iLoop11 + (iLoop11 - 1) * _iSize]) > dblEps)
                     {
                         iSize11 = 2;
                     }
@@ -386,7 +386,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
                 for (iIndex1 = iLoop11 - 1 ; iIndex1 < iLoop22m1 - 1 ; iIndex1++)
                 {
                     dblAvgReal	+= _pdblEigenReal[iIndex1];
-                    dblAvgImg	+= dabss(_pdblEigenImg[iIndex1]);
+                    dblAvgImg	+= fabs(_pdblEigenImg[iIndex1]);
                 }
                 dblAvgReal	/= iSize11;
                 dblAvgImg	/= iSize11;
@@ -397,7 +397,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
                 iL			= iK + 1;
 
                 if (iLoop22 != (_iSize - 1))
-                    if (dabss(_pdblVal[(iLoop22 + 1) + iLoop22 * _iSize]) > dblEps)
+                    if (fabs(_pdblVal[(iLoop22 + 1) + iLoop22 * _iSize]) > dblEps)
                     {
                         iL	= iLoop22 + 2;
                     }
@@ -415,20 +415,20 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
                     }
                     iL++;
                     if (iL <= _iSize)
-                        if (dabss(_pdblVal[iL + (iL * - 1) * _iSize]) > dblEps)
+                        if (fabs(_pdblVal[iL + (iL * - 1) * _iSize]) > dblEps)
                         {
                             iL++;
                         }
                 }
                 //loop to move the eigenvalue just located
                 //into first position of block a22.
-                if (iK != (_iSize - 1) && dabss(_pdblVal[(iK + 1) + iK * _iSize] > dblEps))
+                if (iK != (_iSize - 1) && fabs(_pdblVal[(iK + 1) + iK * _iSize] > dblEps))
                 {
                     inK	= 1;
                     while (iK > iLoop22)
                     {
                         iKm1 = iK - 1;
-                        if (dabss(_pdblVal[iKm1 + (iK - 2) * _iSize]) >= dblEps)
+                        if (fabs(_pdblVal[iKm1 + (iK - 2) * _iSize]) >= dblEps)
                         {
                             double dblE1 = 0, dblE2 = 0;
                             //we're swapping the closest block with a 2 x 2
@@ -835,8 +835,8 @@ int dbalancs(int _iRows, int _iSize, double *_pdblVal, int *_piLow, int *_piHigh
 
             for (iIndex2 = iLoop2 - 1 ; iIndex2 < iLoop1 ; iIndex2++)
             {
-                dblColSum += dabss(_pdblVal[iIndex2 + iIndex1 * _iSize]);
-                dblRowSum += dabss(_pdblVal[iIndex1 + iIndex2 * _iSize]);
+                dblColSum += fabs(_pdblVal[iIndex2 + iIndex1 * _iSize]);
+                dblRowSum += fabs(_pdblVal[iIndex1 + iIndex2 * _iSize]);
             }
 
             //:::::::::: guard against zero c or r due to underflow ::::::::::
@@ -995,7 +995,7 @@ int dorthess(int _iLead, int _iSize, int _iLow, int _iHigh, double *_pdblVal, do
         //:::::::::: scale column (algol tol then not needed) ::::::::::
         for (iIndex2 = iIndex1 ; iIndex2 < _iHigh; iIndex2++)
         {
-            dblScale += dabss(_pdblVal[iIndex2 + (iIndex1 - 1) * _iSize]);
+            dblScale += fabs(_pdblVal[iIndex2 + (iIndex1 - 1) * _iSize]);
         }
 
         if (dblScale == 0)
@@ -1326,7 +1326,7 @@ int dhqror2s(int _iLead, int _iSize, int _iLow, int _iHigh,
     {
         for (iIndex2 = iLoop ; iIndex2 < _iSize ; iIndex2++)
         {
-            dblNorm += dabss(_pdblHessUp[iIndex1 + iIndex2 * _iSize]);
+            dblNorm += fabs(_pdblHessUp[iIndex1 + iIndex2 * _iSize]);
         }
 
         iLoop = iIndex1;
@@ -1371,8 +1371,8 @@ L70:
             break;
         }
 
-        dblS	= dabss(_pdblHessUp[(iIndex4 - 1) + (iIndex4 - 1) * _iSize]) +
-                  dabss(_pdblHessUp[iIndex4 + iIndex4 * _iSize]);
+        dblS	= fabs(_pdblHessUp[(iIndex4 - 1) + (iIndex4 - 1) * _iSize]) +
+                  fabs(_pdblHessUp[iIndex4 + iIndex4 * _iSize]);
 
         if (dblS == 0)
         {
@@ -1380,7 +1380,7 @@ L70:
         }
 
         dblTemp1	= dblS;
-        dblTemp2	= dblTemp1 + dabss(_pdblHessUp[iIndex4 + (iIndex4 - 1) * _iSize]);
+        dblTemp2	= dblTemp1 + fabs(_pdblHessUp[iIndex4 + (iIndex4 - 1) * _iSize]);
         if (dblTemp1 == dblTemp2)
         {
             break;
@@ -1416,7 +1416,7 @@ L70:
             _pdblHessUp[iIndex5 + iIndex5 * _iSize]	-= dblX;
         }
 
-        dblS	= dabss(_pdblHessUp[iOffset + iCoord1 * _iSize]) + dabss(_pdblHessUp[iCoord1 + iCoord2 * _iSize]);
+        dblS	= fabs(_pdblHessUp[iOffset + iCoord1 * _iSize]) + fabs(_pdblHessUp[iCoord1 + iCoord2 * _iSize]);
         dblX	= 0.75 * dblS;
         dblY	= dblX;
         dblW	= -0.4375 * dblS * dblS;
@@ -1440,7 +1440,7 @@ L70:
         dblP	= (dblR * dblS - dblW) / _pdblHessUp[(iIndex7 + 1) + iIndex7 * _iSize] + _pdblHessUp[iIndex7 + (iIndex7 + 1) * _iSize];
         dblQ	= _pdblHessUp[(iIndex7 + 1) + (iIndex7 + 1) * _iSize] - dblZZ - dblR - dblS;
         dblR	= _pdblHessUp[(iIndex7 + 2) + (iIndex7 + 1) * _iSize];
-        dblS	= dabss(dblP) + dabss(dblQ) + dabss(dblR);
+        dblS	= fabs(dblP) + fabs(dblQ) + fabs(dblR);
         dblP	/= dblS;
         dblQ	/= dblS;
         dblR	/= dblS;
@@ -1450,12 +1450,12 @@ L70:
             break;
         }
 
-        dblTemp1 =	dabss(dblP) *
-                    (dabss(_pdblHessUp[(iIndex7 - 1) + (iIndex7 - 1) * _iSize]) + dabss(dblZZ)) +
-                    dabss(_pdblHessUp[(iIndex7 + 1) + (iIndex7 + 1) * _iSize]);
+        dblTemp1 =	fabs(dblP) *
+                    (fabs(_pdblHessUp[(iIndex7 - 1) + (iIndex7 - 1) * _iSize]) + fabs(dblZZ)) +
+                    fabs(_pdblHessUp[(iIndex7 + 1) + (iIndex7 + 1) * _iSize]);
 
         dblTemp2 =	dblTemp1 +
-                    dabss(_pdblHessUp[iIndex7 + (iIndex7 - 1) * _iSize]) * (dabss(dblQ) + dabss(dblR));
+                    fabs(_pdblHessUp[iIndex7 + (iIndex7 - 1) * _iSize]) * (fabs(dblQ) + fabs(dblR));
         if (dblTemp1 == dblTemp2)
         {
             break;
@@ -1486,7 +1486,7 @@ L70:
             {
                 dblR	= _pdblHessUp[(iIndex9 + 2) + (iIndex9 - 1) * _iSize];
             }
-            dblX		= dabss(dblP) + dabss(dblQ) + dabss(dblR);
+            dblX		= fabs(dblP) + fabs(dblQ) + fabs(dblR);
             if (dblX == 0)
             {
                 continue;
@@ -1622,7 +1622,7 @@ L270:
 L280:
     dblP									= (dblY - dblX) / 2.0;
     dblQ									= dblP * dblP + dblW;
-    dblZZ									= dsqrts(dabss(dblQ));
+    dblZZ									= dsqrts(fabs(dblQ));
     _pdblHessUp[iOffset + iOffset * _iSize] = dblX + dblT;
     dblX									= _pdblHessUp[iOffset + iOffset * _iSize];
     _pdblHessUp[iCoord1 + iCoord1 * _iSize]	= dblY + dblT;
@@ -1650,7 +1650,7 @@ L280:
     }
 
     dblX	= _pdblHessUp[iOffset + iCoord1 * _iSize];
-    dblS	= dabss(dblX) + dabss(dblZZ);
+    dblS	= fabs(dblX) + fabs(dblZZ);
     dblP	= dblX / dblS;
     dblQ	= dblZZ / dblS;
     dblR	= dsqrts(dblP * dblP + dblQ * dblQ);
@@ -1795,7 +1795,7 @@ L640:
             dblT	= (dblX * dblS - dblZZ * dblR) / dblQ;
             _pdblHessUp[iIndex24 + iOffset * _iSize]	= dblT;
 
-            if (dabss(dblX) > dabss(dblZZ))
+            if (fabs(dblX) > fabs(dblZZ))
             {
                 _pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = (-dblR - dblT * dblW) / dblX;
             }
@@ -1811,7 +1811,7 @@ L710:
         iIndex22	= iCoord1;
         //::::::::::	last vector component chosen imaginary so that
         //				eigenvector matrix is triangular ::::::::::
-        if (dabss(_pdblHessUp[iOffset + iCoord1 * _iSize]) > dabss(_pdblHessUp[iCoord1 + iOffset * _iSize]))
+        if (fabs(_pdblHessUp[iOffset + iCoord1 * _iSize]) > fabs(_pdblHessUp[iCoord1 + iOffset * _iSize]))
         {
             _pdblHessUp[iCoord1 + iCoord1 * _iSize]	=	dblQ / _pdblHessUp[iOffset + iCoord1 * _iSize];
             _pdblHessUp[iCoord1 + iOffset * _iSize]	=	-(_pdblHessUp[iOffset + iOffset * _iSize] - dblP) /
@@ -1887,7 +1887,7 @@ L710:
 
                         if (dblVectReal == 0 && dblVectImg == 0)
                             dblVectReal		=	dblEps * dblNorm *
-                                                (dabss(dblW) + dabss(dblQ) + dabss(dblX) + dabss(dblY) + dabss(dblZZ));
+                                                (fabs(dblW) + fabs(dblQ) + fabs(dblX) + fabs(dblY) + fabs(dblZZ));
 
                         dblReal				= dblX * dblR - dblZZ * dblTemp12 + dblQ * dblTemp22;
                         dblImg				= dblX * dblS - dblZZ * dblTemp22 - dblQ * dblTemp12;
@@ -1896,7 +1896,7 @@ L710:
                         _pdblHessUp[iIndex24 + iCoord1 * _iSize]	= (dblReal * dblVectReal + dblImg * dblVectImg) / dblCoef;
                         _pdblHessUp[iIndex24 + iOffset * _iSize]	= (-dblReal * dblVectImg + dblImg * dblVectReal) / dblCoef;
 
-                        if (dabss(dblX) > dabss(dblZZ) + dabss(dblQ))
+                        if (fabs(dblX) > fabs(dblZZ) + fabs(dblQ))
                         {
                             _pdblHessUp[iIndex24 + 1 + iCoord1 * _iSize] =
                                 (-dblTemp12 - dblW * _pdblHessUp[iIndex24 + iCoord1 * _iSize] + dblQ * _pdblHessUp[iIndex24 + iOffset * _iSize]) / dblX;
@@ -2040,7 +2040,7 @@ L90:
         *_pdblAlpha = dblZero;
         for (iLoop2 = 0 ; iLoop2 < _iSize ; iLoop2++)
         {
-            *_pdblAlpha += dabss(_pdblVal[iLoop1 + iLoop2 * _iSize]);
+            *_pdblAlpha += fabs(_pdblVal[iLoop1 + iLoop2 * _iSize]);
         }
         if (*_pdblAlpha > dblNorm)
         {
@@ -2202,7 +2202,7 @@ int dexchs(int _iMax, int _iLeadDim, double *_pdblIn, double *_pdblOut,
         //transformation       a:=z'*a*z ,
         //where z is givens rotation
 
-        dblF	= Max(dabss(_pdblIn[(iIndex1 - 1) + (iIndex1 - 1) * _iLeadDim]), 1);
+        dblF	= Max(fabs(_pdblIn[(iIndex1 - 1) + (iIndex1 - 1) * _iLeadDim]), 1);
         dblSa	= _pdblIn[(iIndex1 - 1) + (iIndex1 - 1) * _iLeadDim] / dblF;
         dblSb	= 1.0 / dblF;
         dblF	= dblSa - dblSb * _pdblIn[_iPos + _iPos * _iLeadDim];
@@ -2229,7 +2229,7 @@ int dexchs(int _iMax, int _iLeadDim, double *_pdblIn, double *_pdblOut,
 
     if (_iSize1 != 2)
     {
-        dblG	= Max(dabss(_pdblIn[_iPos + _iPos * _iLeadDim]), 1);
+        dblG	= Max(fabs(_pdblIn[_iPos + _iPos * _iLeadDim]), 1);
         //evaluate the pencil at the eigenvalue corresponding
         //to the 1x1 block
         dblSa	= _pdblIn[_iPos + _iPos * _iLeadDim] / dblG;
@@ -2276,7 +2276,7 @@ int dexchs(int _iMax, int _iLeadDim, double *_pdblIn, double *_pdblOut,
     //where each zi is a givens rotation
     if (_iSize2 != 2)
     {
-        dblG	= Max(dabss(_pdblIn[(iIndex2 - 1) + (iIndex2 - 1) * _iLeadDim]), 1);
+        dblG	= Max(fabs(_pdblIn[(iIndex2 - 1) + (iIndex2 - 1) * _iLeadDim]), 1);
         //evaluate the pencil at the eigenvalue corresponding
         //to the 1x1 block
         dblSa	= _pdblIn[(iIndex2 - 1) + (iIndex2 - 1) * _iLeadDim] / dblG;
@@ -2416,7 +2416,7 @@ int dgivs(double _dblA, double _dblB, double *_pdblSC, double *_pdblSS)
     double dblU = 0;
     double dblR = 0;
     double dblV	= 0;
-    if (dabss(_dblA) > dabss(_dblB))
+    if (fabs(_dblA) > fabs(_dblB))
     {
         dblU		= _dblA + _dblA;
         dblV		= _dblB / dblU;
@@ -2529,7 +2529,7 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
         dblR	= -dblW / dblZ;
     }
 
-    if (dabss(dblX + dblZ) >= dabss(dblX + dblR))
+    if (fabs(dblX + dblZ) >= fabs(dblX + dblR))
     {
         dblZ	= dblR;
     }
@@ -2539,7 +2539,7 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
     dblT	= _pdblVal[_iPos + (iIndex - 1) * _iLeadDimVal];
     dblU	= _pdblVal[(iIndex - 1) + _iPos * _iLeadDimVal];
 
-    if (dabss(dblY) + dabss(dblU) <= dabss(dblT) + dabss(dblX))
+    if (fabs(dblY) + fabs(dblU) <= fabs(dblT) + fabs(dblX))
     {
         dblQ	= dblX;
         dblP	= dblT;

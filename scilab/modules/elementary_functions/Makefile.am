@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -21,7 +22,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/qsort-short.c \
     src/c/qsort-string.c \
     src/c/basic_functions.c \
-    src/c/abs.c \
     src/c/atan.c \
     src/c/cos.c \
     src/c/cosh.c \
