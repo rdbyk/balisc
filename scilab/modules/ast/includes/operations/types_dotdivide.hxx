@@ -1,10 +1,10 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *  Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+ * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -21,11 +21,6 @@
 #include "double.hxx"
 #include "polynom.hxx"
 #include "sparse.hxx"
-
-extern"C"
-{
-#include "abs.h"
-}
 
 void fillDotDivFunction();
 
@@ -126,11 +121,11 @@ template<> inline void dotdiv<double, double, double>(double l, size_t size, dou
     }
     else
     {
-        double dblAbsSum    = dabss(r) + dabss(rc);
+        double dblAbsSum    = std::fabs(r) + std::fabs(rc);
         double dblReal1Sum  = l  / dblAbsSum;
         double dblReal2Sum  = r  / dblAbsSum;
         double dblImg2Sum   = rc / dblAbsSum;
-        double dblSum       = pow(dblReal2Sum, 2) + pow(dblImg2Sum, 2);
+        double dblSum       = std::pow(dblReal2Sum, 2) + std::pow(dblImg2Sum, 2);
         *o                  = (dblReal1Sum * dblReal2Sum) / dblSum;
         *oc                 = (-dblReal1Sum * dblImg2Sum) / dblSum;
     }
@@ -179,7 +174,7 @@ template<> inline void dotdiv<double, double, double>(double l, double lc, size_
     }
     else
     {
-        if (dabss(r) >= dabss(rc))
+        if (std::fabs(r) >= std::fabs(rc))
         {
             double oRatio = rc / r;
             double oSum = r + oRatio * rc;
