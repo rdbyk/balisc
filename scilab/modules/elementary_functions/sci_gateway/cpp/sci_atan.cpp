@@ -28,7 +28,6 @@ extern "C"
 #include "sciprint.h"
 #include "localization.h"
 #include "tan.h"
-#include "abs.h"
     int C2F(watan)(double*, double*, double*, double*);
 }
 

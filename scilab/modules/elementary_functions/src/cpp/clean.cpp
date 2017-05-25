@@ -31,7 +31,7 @@ void clean(double* pdblReal, double* pdblImg, int iSize, double dEpsA, double dE
         double dEps = Max(dEpsA, dEpsR * dNorm);
         for (int i = 0 ; i < iSize ; i++)
         {
-            if (dabss(pdblImg[i]) <= dEps)
+            if (std::abs(pdblImg[i]) <= dEps)
             {
                 pdblImg[i] = 0;
             }

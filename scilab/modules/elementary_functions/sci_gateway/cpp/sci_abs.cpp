@@ -28,7 +28,6 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "abs.h"
 }
 
 template <class T>
