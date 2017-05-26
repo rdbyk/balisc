@@ -158,7 +158,7 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
                 for (iIndex5 = iIndex2 ; iIndex5 < iIndex4 ; iIndex5++)
                 {
                     double dblTemp1 = pow(pdblWS[iEigenReal - 1 + iIndex5], 2) + pow(pdblWS[iEigenImg - 1 + iIndex5], 2);
-                    dblTemp1		= dsqrts(dblTemp1);
+                    dblTemp1		= sqrt(dblTemp1);
                     if (dblTemp1 > dblAlpha)
                     {
                         dblAlpha = dblTemp1;
@@ -1013,7 +1013,7 @@ int dorthess(int _iLead, int _iSize, int _iLow, int _iHigh, double *_pdblVal, do
             dblH				+= _pdblOrt[iIndex3] * _pdblOrt[iIndex3];
         }
 
-        dblG				= -dsigns(dsqrts(dblH), _pdblOrt[iIndex1]);
+        dblG				= -dsigns(sqrt(dblH), _pdblOrt[iIndex1]);
         dblH				-= _pdblOrt[iIndex1] * dblG;
         _pdblOrt[iIndex1]	-= dblG;
 
@@ -1497,7 +1497,7 @@ L70:
             dblR	/= dblX;
         }
 
-        dblS = dsigns(dsqrts(dblP * dblP + dblQ * dblQ + dblR * dblR), dblP);
+        dblS = dsigns(sqrt(dblP * dblP + dblQ * dblQ + dblR * dblR), dblP);
 
         if (iIndex9 != iIndex7)
         {
@@ -1622,7 +1622,7 @@ L270:
 L280:
     dblP									= (dblY - dblX) / 2.0;
     dblQ									= dblP * dblP + dblW;
-    dblZZ									= dsqrts(fabs(dblQ));
+    dblZZ									= sqrt(fabs(dblQ));
     _pdblHessUp[iOffset + iOffset * _iSize] = dblX + dblT;
     dblX									= _pdblHessUp[iOffset + iOffset * _iSize];
     _pdblHessUp[iCoord1 + iCoord1 * _iSize]	= dblY + dblT;
@@ -1653,7 +1653,7 @@ L280:
     dblS	= fabs(dblX) + fabs(dblZZ);
     dblP	= dblX / dblS;
     dblQ	= dblZZ / dblS;
-    dblR	= dsqrts(dblP * dblP + dblQ * dblQ);
+    dblR	= sqrt(dblP * dblP + dblQ * dblQ);
     dblP	= dblP / dblR;
     dblQ	= dblQ / dblR;
 
@@ -2420,7 +2420,7 @@ int dgivs(double _dblA, double _dblB, double *_pdblSC, double *_pdblSS)
     {
         dblU		= _dblA + _dblA;
         dblV		= _dblB / dblU;
-        dblR		= dsqrts(0.25 + dblV * dblV) * dblU;
+        dblR		= sqrt(0.25 + dblV * dblV) * dblU;
         *_pdblSC	= _dblA / dblR;
         *_pdblSS	= dblV * (*_pdblSC + *_pdblSC);
     }
@@ -2428,7 +2428,7 @@ int dgivs(double _dblA, double _dblB, double *_pdblSC, double *_pdblSS)
     {
         dblU		= _dblB + _dblB;
         dblV		= _dblA / dblU;
-        dblR		= dsqrts(0.25 + dblV * dblV) * dblU;
+        dblR		= sqrt(0.25 + dblV * dblV) * dblU;
         *_pdblSS	= _dblB / dblR;
         *_pdblSC	= dblV * (*_pdblSS + *_pdblSS);
     }
@@ -2504,13 +2504,13 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
     {
         //complex eigenvalue.
         *_pdblE1	= dblP + dblX;
-        *_pdblE2	= dsqrts(-dblQ);
+        *_pdblE2	= sqrt(-dblQ);
         return 0;
     }
 
     //L10
     //two real eigenvalues. set up transformation
-    dblZ	= dsqrts(dblQ);
+    dblZ	= sqrt(dblQ);
     if (dblP < dblZero)
     {
         dblZ	= dblP + dblZ;
@@ -2550,7 +2550,7 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
         dblP	= dblY;
     }
 
-    dblR	= dsqrts(dblP * dblP + dblQ * dblQ);
+    dblR	= sqrt(dblP * dblP + dblQ * dblQ);
     if (dblR <= dblZero)
     {
         *_pdblE1	= _pdblVal[_iPos + _iPos * _iLeadDimVal];

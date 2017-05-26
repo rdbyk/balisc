@@ -85,13 +85,13 @@ ELEMENTARY_FUNCTIONS_IMPEXP double dpythags(double _dblVal1, double _dblVal2)
         if (dblTemp > dblAbs2)
         {
             dblS = dblAbs1 / dblAbs2;
-            dblS += dsqrts(1 + dblS * dblS);
+            dblS += sqrt(1 + dblS * dblS);
         }
         else
         {
             dblS	= dblTemp / dblAbs2;
             dblTemp = (2 + dblS) * dblS;
-            dblS	= ((dblEsp + dblTemp / (dblSqrt2 + dsqrts(2 + dblTemp))) + dblS) + dblSqrt2p1;
+            dblS	= ((dblEsp + dblTemp / (dblSqrt2 + sqrt(2 + dblTemp))) + dblS) + dblSqrt2p1;
         }
         return dblAbs1 + dblAbs2 / dblS;
     }
