@@ -108,13 +108,13 @@ int iPowerRealScalarByRealScalar(
         {
             //R*- ^ R
             double dblRealTemp	= 0;
-            double dblImgTemp		= 0;
-
+            double dblImgTemp	= 0;
+            
             wlog(_dblReal1, 0, &dblRealTemp, &dblImgTemp);
-            dblRealTemp					= dexps(dblRealTemp * _dblReal2);
+            dblRealTemp					= exp(dblRealTemp * _dblReal2);
             dblImgTemp					= dblImgTemp * _dblReal2;
-            *_pdblRealOut				= dblRealTemp * dcoss(dblImgTemp);
-            *_pdblImgOut				= dblRealTemp * dsins(dblImgTemp);
+            *_pdblRealOut				= dblRealTemp * cos(dblImgTemp);
+            *_pdblImgOut				= dblRealTemp * sin(dblImgTemp);
             *_piComplex					= 1;
         }
         else if (_dblReal1 == 0)
@@ -188,9 +188,9 @@ int iPowerRealScalarByComplexScalar(
 
             wlog(_dblReal1, 0, &dblRealTemp, &dblImgTemp);
             C2F(wmul)(&dblRealTemp, &dblImgTemp, &_dblReal2, &_dblImg2, &dblRealTemp, &dblImgTemp);
-            dblRealTemp					= dexps(dblRealTemp);
-            *_pdblRealOut				= dblRealTemp * dcoss(dblImgTemp);
-            *_pdblImgOut				= dblRealTemp * dsins(dblImgTemp);
+            dblRealTemp					= exp(dblRealTemp);
+            *_pdblRealOut				= dblRealTemp * cos(dblImgTemp);
+            *_pdblImgOut				= dblRealTemp * sin(dblImgTemp);
         }
         else
         {
@@ -293,10 +293,10 @@ int iPowerComplexScalarByRealScalar(
             double dblImgTemp		= 0;
 
             wlog(_dblReal1, _dblImg1, &dblRealTemp, &dblImgTemp);
-            dblRealTemp					= dexps(dblRealTemp * _dblReal2);
+            dblRealTemp					= exp(dblRealTemp * _dblReal2);
             dblImgTemp					= dblImgTemp * _dblReal2;
-            *_pdblRealOut				= dblRealTemp * dcoss(dblImgTemp);
-            *_pdblImgOut				= dblRealTemp * dsins(dblImgTemp);
+            *_pdblRealOut				= dblRealTemp * cos(dblImgTemp);
+            *_pdblImgOut				= dblRealTemp * sin(dblImgTemp);
         }
         else
         {
@@ -351,9 +351,9 @@ int iPowerComplexScalarByComplexScalar(
 
             wlog(_dblReal1, _dblImg1, &dblRealTemp, &dblImgTemp);
             C2F(wmul)(&dblRealTemp, &dblImgTemp, &_dblReal2, &_dblImg2, &dblRealTemp, &dblImgTemp);
-            dblRealTemp   = dexps(dblRealTemp);
-            *_pdblRealOut = dblRealTemp * dcoss(dblImgTemp);
-            *_pdblImgOut  = dblRealTemp * dsins(dblImgTemp);
+            dblRealTemp   = exp(dblRealTemp);
+            *_pdblRealOut = dblRealTemp * cos(dblImgTemp);
+            *_pdblImgOut  = dblRealTemp * sin(dblImgTemp);
         }
         else
         {

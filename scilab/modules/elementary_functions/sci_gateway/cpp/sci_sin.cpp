@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -26,7 +26,6 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "sin.h"
 #include "dynlib_elementary_functions_gw.h"
 }
 
@@ -76,18 +75,15 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
         {
             for (int i = 0 ; i < nonZeros ; i++)
             {
-                std::complex<double> complex;
-                double dblReal = complex.real();
-                double dblImg = complex.imag();
-                zsins(pNonZeroR[i], pNonZeroI[i], &dblReal, &dblImg);
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, complex, false);
+                std::complex<double> z(pNonZeroR[i], pNonZeroI[i]);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, std::sin(z), false);
             }
         }
         else
         {
             for (int i = 0 ; i < nonZeros ; i++)
             {
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, dsins(pNonZeroR[i]), false);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, std::sin(pNonZeroR[i]), false);
             }
         }
 

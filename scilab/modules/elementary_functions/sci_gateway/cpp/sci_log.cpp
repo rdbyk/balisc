@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -13,6 +13,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -28,6 +29,10 @@ extern "C"
 #include "log.h"
     int C2F(wlog)(double*, double*, double*, double*);
 }
+
+#include <complex>
+#include <cmath>
+
 /*
 clear a;nb = 2500;a = rand(nb, nb);tic();log(a);toc
 clear a;nb = 2500;a = -rand(nb, nb);tic();log(a);toc
@@ -67,10 +72,16 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
     {
         double* pInI = pDblIn->getImg();
         double* pOutI = pDblOut->getImg();
+        
+        double InR, InI;
+        
         for (int i = 0; i < size; i++)
         {
+            InR = pInR[i];
+            InI = pInI[i];
+            
             //If the value is less than precision (eps).
-            if (iAlert && pInR[i] == 0 && pInI[i] == 0)
+            if (iAlert && InR == 0 && InI == 0)
             {
                 if (ConfigVariable::getIeee() == 0)
                 {
@@ -87,8 +98,10 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
 
                 iAlert = 0;
             }
-
-            C2F(wlog)(pInR + i, pInI + i, pOutR + i, pOutI + i);
+            
+            std::complex<double> lz(std::log(std::complex<double>(InR, InI)));
+            pOutR[i] = lz.real();
+            pOutI[i] = lz.imag();
         }
     }
     else
@@ -121,12 +134,16 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
         if (bIsLessZero)
         {
             pDblOut->setComplex(true);
-            double zero = 0;
             double* pOutI = pDblOut->getImg();
 
+            std::complex<double> z;
+            
             for (int i = 0; i < size; i++)
             {
-                C2F(wlog)(pInR + i, &zero, pOutR + i, pOutI + i);
+                z.real(pInR[i]);
+                std::complex<double> lz(std::log(z));
+                pOutR[i] = lz.real();
+                pOutI[i] = lz.imag();
             }
         }
         else

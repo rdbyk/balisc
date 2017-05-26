@@ -23,11 +23,8 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/qsort-string.c \
     src/c/basic_functions.c \
     src/c/atan.c \
-    src/c/cos.c \
     src/c/cosh.c \
-    src/c/sin.c \
     src/c/sinh.c \
-    src/c/exp.c \
     src/c/expm.c \
     src/c/log.c \
     src/c/sqrt.c \

@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -25,7 +25,6 @@ extern "C"
 #include "sciprint.h"
 #include "localization.h"
 #include "elem_common.h"
-#include "log.h"
 }
 
 /*
@@ -89,7 +88,7 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
 
     for (int i = 0; i < size; i++)
     {
-        pOutR[i] = dlog1ps(pInR[i]);
+        pOutR[i] = std::log1p(pInR[i]);
     }
 
     out.push_back(pDblOut);

@@ -23,10 +23,7 @@
 #include "BOOL.h"
 #include "elem_common.h"
 
-#include "cos.h"
-#include "sin.h"
 #include "log.h"
-#include "exp.h"
 #include "pythag.h"
 #include "sqrt.h"
 #include "sign.h"

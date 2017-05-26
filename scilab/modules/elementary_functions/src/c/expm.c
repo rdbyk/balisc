@@ -180,7 +180,7 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
                 }
 
                 //remove the effect of origin shift on the block.
-                dblTemp = dexps(dblTemp);
+                dblTemp = exp(dblTemp);
                 for (iIndex5 = iIndex2 ; iIndex5 < iIndex4 ; iIndex5++)
                     for (iIndex6 = iIndex2 ; iIndex6 < iIndex4 ; iIndex6++)
                     {
@@ -190,7 +190,7 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
             else
             {
                 _pdblReturn[(iIndex2 - 1) + (iIndex2 - 1) * _iSize] =
-                    dexps(_pdblVal[(iIndex2 - 1) + (iIndex2 - 1) * _iSize]);
+                    exp(_pdblVal[(iIndex2 - 1) + (iIndex2 - 1) * _iSize]);
             }
         }
     }
