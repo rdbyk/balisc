@@ -95,16 +95,7 @@
     <ClCompile Include="unsfdcopy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vceil.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="vfinite.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vfloor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vfrexp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vmul.c">
@@ -242,15 +233,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="qsort-string.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vceil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vfloor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vfrexp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="convertbase.h">

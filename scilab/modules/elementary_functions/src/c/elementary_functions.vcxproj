@@ -255,10 +255,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Disabled</Optimization>
       <FavorSizeOrSpeed Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Size</FavorSizeOrSpeed>
     </ClCompile>
-    <ClCompile Include="vceil.c" />
     <ClCompile Include="vfinite.c" />
-    <ClCompile Include="vfloor.c" />
-    <ClCompile Include="vfrexp.c" />
     <ClCompile Include="vmul.c" />
     <ClCompile Include="xerhlt.c" />
   </ItemGroup>
@@ -303,9 +300,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="qsort-short.h" />
     <ClInclude Include="qsort-string.h" />
     <ClInclude Include="qsort.h" />
-    <ClInclude Include="vceil.h" />
-    <ClInclude Include="vfloor.h" />
-    <ClInclude Include="vfrexp.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\elementary_functions.pot" />
