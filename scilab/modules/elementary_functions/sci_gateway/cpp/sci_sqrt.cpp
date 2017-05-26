@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -13,6 +13,9 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <complex>
+
 #include "elem_func_gw.hxx"
 #include "double.hxx"
 #include "overload.hxx"
@@ -75,14 +78,18 @@ types::Function::ReturnValue sci_sqrt(types::typed_list &in, int _iRetCount, typ
             double* pI = input->getImg();
             for (int i = 0; i < size; ++i)
             {
-                zsqrts(pR[i], pI[i], &pOR[i], &pOI[i]);
+                std::complex<double> z(std::exp(std::complex<double>(pR[i], pI[i])));
+                pOR[i] = z.real();
+                pOI[i] = z.imag();
             }
         }
         else
         {
             for (int i = 0; i < size; ++i)
             {
-                zsqrts(pR[i], 0, &pOR[i], &pOI[i]);
+                std::complex<double> z(std::exp(std::complex<double>(pR[i], 0)));
+                pOR[i] = z.real();
+                pOI[i] = z.imag();
             }
         }
     }

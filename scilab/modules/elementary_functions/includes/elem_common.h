@@ -20,7 +20,6 @@
 
 #include "log.h"
 #include "pythag.h"
-#include "sqrt.h"
 #include "sign.h"
 
 /*

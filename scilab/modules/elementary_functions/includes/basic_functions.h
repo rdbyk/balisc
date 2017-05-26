@@ -25,7 +25,6 @@
 
 #include "log.h"
 #include "pythag.h"
-#include "sqrt.h"
 #include "sign.h"
 
 #define BY_ROWS			1
