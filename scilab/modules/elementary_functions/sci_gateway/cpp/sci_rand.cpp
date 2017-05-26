@@ -2,9 +2,9 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2014 - Scilab Enterprises - Anais Aubert
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -14,6 +14,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
@@ -27,14 +28,14 @@ extern "C"
 #include "basic_functions.h"
 }
 
-const wchar_t g_pwstConfigInfo[] = {L"info"};
-const wchar_t g_pwstConfigSeed[] = {L"seed"};
+static const wchar_t g_pwstConfigInfo[] = {L"info"};
+static const wchar_t g_pwstConfigSeed[] = {L"seed"};
 
-const wchar_t g_pwstTypeUniform[] = {L"uniform"};
-const wchar_t g_pwstTypeNormal[] = {L"normal"};
+static const wchar_t g_pwstTypeUniform[] = {L"uniform"};
+static const wchar_t g_pwstTypeNormal[] = {L"normal"};
 
-int setRandType(wchar_t _wcType);
-double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
+static int setRandType(wchar_t _wcType);
+static double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
 /*
 clear a;nb = 2500;a = rand(nb, nb);tic();rand(a);toc
@@ -197,7 +198,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
+static double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
 {
     static int siInit = TRUE;
     static double sdblImg = 0;
@@ -225,7 +226,7 @@ double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
                 sdblImg = 2 * durands(_piRandSave) - 1;
                 dblTemp = dblReal * dblReal + sdblImg * sdblImg;
             }
-            sdblR = dsqrts(-2 * dlogs(dblTemp) / dblTemp);
+            sdblR = std::sqrt(-2 * std::log(dblTemp) / dblTemp);
             dblVal = dblReal * sdblR;
         }
         else
@@ -237,7 +238,7 @@ double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
     return dblVal;
 }
 
-int setRandType(wchar_t _wcType)
+static int setRandType(wchar_t _wcType)
 {
     if (_wcType == L'g' || _wcType == L'n')
     {
