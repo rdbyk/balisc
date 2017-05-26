@@ -107,9 +107,6 @@
     <ClCompile Include="abs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="atan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="convertbase.c">
       <Filter>Source Files</Filter>
     </ClCompile>

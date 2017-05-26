@@ -57,7 +57,7 @@ void wlog(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double* _pd
     double dblAbsReal	= fabs(_dblRealIn);
     double dblAbsImg	= fabs(_dblImgIn);
 
-    *_pdblImgOut = datan2s(_dblImgIn, _dblRealIn);
+    *_pdblImgOut = atan2(_dblImgIn, _dblRealIn);
 
     if (_dblImgIn > _dblRealIn)
     {

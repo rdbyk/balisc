@@ -14,6 +14,7 @@
  */
 /*--------------------------------------------------------------------------*/
 
+#include <complex>
 #include <cmath>
 
 #include "elem_func_gw.hxx"
@@ -27,7 +28,6 @@ extern "C"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-int C2F(watan)(double*, double*, double*, double*);
 }
 
 /*
@@ -94,8 +94,9 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
                         msg = false;
                     }
                 }
-
-                C2F(watan)(pXR + i, pXI + i, pOR + i, pOI + i);
+                std::complex<double> z(std::atan(std::complex<double>(pXR[i], pXI[i])));
+                pOR[i] = z.real();
+                pOI[i] = z.imag();
             }
         }
         else
