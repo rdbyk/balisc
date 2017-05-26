@@ -161,9 +161,6 @@
     <ClCompile Include="sqrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\cumprod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -299,9 +296,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\sqrt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\tan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getmode.hxx">

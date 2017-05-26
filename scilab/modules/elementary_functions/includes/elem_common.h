@@ -23,7 +23,6 @@
 #include "log.h"
 #include "pythag.h"
 #include "sin.h"
-#include "tan.h"
 #include "sqrt.h"
 #include "sign.h"
 

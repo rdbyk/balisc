@@ -254,7 +254,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="sinh.c" />
     <ClCompile Include="sqrt.c" />
     <ClCompile Include="sub_vector.c" />
-    <ClCompile Include="tan.c" />
     <ClCompile Include="unsfdcopy.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
       <FavorSizeOrSpeed Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Size</FavorSizeOrSpeed>
@@ -290,7 +289,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\..\includes\sign.h" />
     <ClInclude Include="..\..\includes\sin.h" />
     <ClInclude Include="..\..\includes\sqrt.h" />
-    <ClInclude Include="..\..\includes\tan.h" />
     <ClInclude Include="..\..\includes\unsfdcopy.h" />
     <ClInclude Include="..\..\includes\vfinite.h" />
     <ClInclude Include="..\..\includes\xerhlt.h" />
