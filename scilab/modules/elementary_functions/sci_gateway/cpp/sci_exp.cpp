@@ -26,7 +26,6 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "exp.h"
 }
 
 /*

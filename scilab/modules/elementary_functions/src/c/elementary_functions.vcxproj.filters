@@ -128,13 +128,7 @@
     <ClCompile Include="convertbase.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cosh.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="exp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="expm.c">
@@ -150,9 +144,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sign.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sinh.c">
@@ -274,13 +265,7 @@
     <ClInclude Include="..\..\includes\abs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\cos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\elem_common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\exp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\log.h">
@@ -290,9 +275,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\sign.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\sin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\sqrt.h">

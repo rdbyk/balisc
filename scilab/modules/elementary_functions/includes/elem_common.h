@@ -18,11 +18,8 @@
 
 #include "core_math.h"
 
-#include "cos.h"
-#include "exp.h"
 #include "log.h"
 #include "pythag.h"
-#include "sin.h"
 #include "sqrt.h"
 #include "sign.h"
 

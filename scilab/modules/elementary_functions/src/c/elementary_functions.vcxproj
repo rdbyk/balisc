@@ -222,13 +222,11 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="ceil.c" />
     <ClCompile Include="cmp.c" />
     <ClCompile Include="convertbase.c" />
-    <ClCompile Include="cos.c" />
     <ClCompile Include="cosh.c" />
     <ClCompile Include="cupro.c" />
     <ClCompile Include="DllmainElementary_functions.c" />
     <ClCompile Include="dmsum.c" />
     <ClCompile Include="dsearch.c" />
-    <ClCompile Include="exp.c" />
     <ClCompile Include="expm.c" />
     <ClCompile Include="eye.c" />
     <ClCompile Include="f2c_workaround.c" />
@@ -250,7 +248,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="rea2db.c" />
     <ClCompile Include="scidcopy.c" />
     <ClCompile Include="sign.c" />
-    <ClCompile Include="sin.c" />
     <ClCompile Include="sinh.c" />
     <ClCompile Include="sqrt.c" />
     <ClCompile Include="sub_vector.c" />
@@ -269,11 +266,9 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\basic_functions.h" />
-    <ClInclude Include="..\..\includes\cos.h" />
     <ClInclude Include="..\..\includes\dynlib_elementary_functions.h" />
     <ClInclude Include="..\..\includes\elementary_functions.h" />
     <ClInclude Include="..\..\includes\elem_common.h" />
-    <ClInclude Include="..\..\includes\exp.h" />
     <ClInclude Include="..\..\includes\finite.h" />
     <ClInclude Include="..\..\includes\getmode.hxx" />
     <ClInclude Include="..\..\includes\gsort.hxx" />
@@ -287,7 +282,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\..\includes\rea2db.h" />
     <ClInclude Include="..\..\includes\scidcopy.h" />
     <ClInclude Include="..\..\includes\sign.h" />
-    <ClInclude Include="..\..\includes\sin.h" />
     <ClInclude Include="..\..\includes\sqrt.h" />
     <ClInclude Include="..\..\includes\unsfdcopy.h" />
     <ClInclude Include="..\..\includes\vfinite.h" />
