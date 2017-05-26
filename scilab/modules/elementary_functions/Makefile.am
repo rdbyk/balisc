@@ -27,7 +27,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/cosh.c \
     src/c/sin.c \
     src/c/sinh.c \
-    src/c/tan.c \
     src/c/exp.c \
     src/c/expm.c \
     src/c/log.c \

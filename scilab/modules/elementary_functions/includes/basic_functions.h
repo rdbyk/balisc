@@ -26,7 +26,6 @@
 #include "cos.h"
 #include "sin.h"
 #include "log.h"
-#include "tan.h"
 #include "exp.h"
 #include "pythag.h"
 #include "sqrt.h"

@@ -257,7 +257,6 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-cosh.lo \
 	src/c/libscielementary_functions_algo_la-sin.lo \
 	src/c/libscielementary_functions_algo_la-sinh.lo \
-	src/c/libscielementary_functions_algo_la-tan.lo \
 	src/c/libscielementary_functions_algo_la-exp.lo \
 	src/c/libscielementary_functions_algo_la-expm.lo \
 	src/c/libscielementary_functions_algo_la-log.lo \
@@ -827,7 +826,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/cosh.c \
     src/c/sin.c \
     src/c/sinh.c \
-    src/c/tan.c \
     src/c/exp.c \
     src/c/expm.c \
     src/c/log.c \
@@ -1656,8 +1654,6 @@ src/c/libscielementary_functions_algo_la-sin.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-sinh.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscielementary_functions_algo_la-tan.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-exp.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-expm.lo:  \
@@ -2250,7 +2246,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-sinh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-sqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-sub_vector.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-tan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-vceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-vfinite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-vfloor.Plo@am__quote@
@@ -2452,13 +2447,6 @@ src/c/libscielementary_functions_algo_la-sinh.lo: src/c/sinh.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sinh.c' object='src/c/libscielementary_functions_algo_la-sinh.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-sinh.lo `test -f 'src/c/sinh.c' || echo '$(srcdir)/'`src/c/sinh.c
-
-src/c/libscielementary_functions_algo_la-tan.lo: src/c/tan.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-tan.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-tan.Tpo -c -o src/c/libscielementary_functions_algo_la-tan.lo `test -f 'src/c/tan.c' || echo '$(srcdir)/'`src/c/tan.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-tan.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-tan.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/tan.c' object='src/c/libscielementary_functions_algo_la-tan.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-tan.lo `test -f 'src/c/tan.c' || echo '$(srcdir)/'`src/c/tan.c
 
 src/c/libscielementary_functions_algo_la-exp.lo: src/c/exp.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-exp.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-exp.Tpo -c -o src/c/libscielementary_functions_algo_la-exp.lo `test -f 'src/c/exp.c' || echo '$(srcdir)/'`src/c/exp.c
