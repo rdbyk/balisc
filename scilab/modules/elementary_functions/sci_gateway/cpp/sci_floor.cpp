@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -24,7 +24,6 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "basic_functions.h"
 }
 /*
 clear a; nb = 2500; a = rand(nb, nb); tic(); floor(a); toc
@@ -92,7 +91,7 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0; i < nonZeros; i++)
             {
-                std::complex<double> cplx(dfloors(pNonZeroR[i]), dfloors(pNonZeroI[i]));
+                std::complex<double> cplx(std::floor(pNonZeroR[i]), std::floor(pNonZeroI[i]));
                 pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx, false);
             }
         }
@@ -100,7 +99,7 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0; i < nonZeros; i++)
             {
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, dfloors(pNonZeroR[i]), false);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, std::floor(pNonZeroR[i]), false);
             }
         }
 
@@ -129,8 +128,8 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
 
                 for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = dfloors(pPolyIn->get(i)->get()[j]);
-                    dataImg[j]  = dfloors(pPolyIn->get(i)->getImg()[j]);
+                    dataReal[j] = std::floor(pPolyIn->get(i)->get()[j]);
+                    dataImg[j]  = std::floor(pPolyIn->get(i)->getImg()[j]);
                 }
 
                 pPolyOut->set(i, pSP);
@@ -147,7 +146,7 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
 
                 for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = dfloors(pPolyIn->get(i)->get()[j]);
+                    dataReal[j] = std::floor(pPolyIn->get(i)->get()[j]);
                 }
 
                 pPolyOut->set(i, pSP);
