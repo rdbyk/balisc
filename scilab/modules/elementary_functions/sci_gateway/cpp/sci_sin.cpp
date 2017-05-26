@@ -26,7 +26,6 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "sin.h"
 #include "dynlib_elementary_functions_gw.h"
 }
 
@@ -76,18 +75,15 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
         {
             for (int i = 0 ; i < nonZeros ; i++)
             {
-                std::complex<double> complex;
-                double dblReal = complex.real();
-                double dblImg = complex.imag();
-                zsins(pNonZeroR[i], pNonZeroI[i], &dblReal, &dblImg);
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, complex, false);
+                std::complex<double> z(pNonZeroR[i], pNonZeroI[i]);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, std::sin(z), false);
             }
         }
         else
         {
             for (int i = 0 ; i < nonZeros ; i++)
             {
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, dsins(pNonZeroR[i]), false);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, std::sin(pNonZeroR[i]), false);
             }
         }
 
