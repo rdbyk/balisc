@@ -29,9 +29,6 @@
     <ClCompile Include="basic_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ceil.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cmp.c">
       <Filter>Source Files</Filter>
     </ClCompile>

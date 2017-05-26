@@ -33,8 +33,6 @@
 #define BY_ALL			0
 #define	BY_MTLB			-1
 
-ELEMENTARY_FUNCTIONS_IMPEXP double dceilsEx(double _dblVal, int _iPrecision);
-ELEMENTARY_FUNCTIONS_IMPEXP double dceils(double _dblVal);
 ELEMENTARY_FUNCTIONS_IMPEXP double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
 
 ELEMENTARY_FUNCTIONS_IMPEXP void vCupro(int _iNbElem, double* _piIn, double* _piOut);

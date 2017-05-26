@@ -30,7 +30,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/sqrt.c \
     src/c/cupro.c \
     src/c/sign.c \
-    src/c/ceil.c \
     src/c/eye.c \
     src/c/dmsum.c \
     src/c/dsearch.c \
