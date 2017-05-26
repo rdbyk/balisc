@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -63,7 +63,9 @@ types::Function::ReturnValue sci_exp(types::typed_list &in, int _iRetCount, type
             double* pOutI = pDblOut->getImg();
             for (int i = 0; i < size; i++)
             {
-                zexps(pInR[i], pInI[i], pOutR + i, pOutI + i);
+                std::complex<double> z(std::exp(std::complex<double>(pInR[i], pInI[i])));
+                pOutR[i] = z.real();
+                pOutI[i] = z.imag();
             }
         }
         else
@@ -94,18 +96,15 @@ types::Function::ReturnValue sci_exp(types::typed_list &in, int _iRetCount, type
         {
             for (int i = 0; i < nonZeros; i++)
             {
-                std::complex<double> complex;
-                double dblReal = complex.real();
-                double dblImg = complex.imag();
-                zexps(pNonZeroR[i], pNonZeroI[i], &dblReal, &dblImg);
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, complex, false);
+                std::complex<double> z(pNonZeroR[i], pNonZeroI[i]);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, std::exp(z), false);
             }
         }
         else
         {
             for (int i = 0; i < nonZeros; i++)
             {
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, dexps(pNonZeroR[i]), false);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, std::exp(pNonZeroR[i]), false);
             }
         }
 
