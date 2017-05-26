@@ -90,7 +90,7 @@ double durands(int* _iVal)
         }
         halfm = m2;
 
-        ia = 8 * nint(halfm * datans(1) / 8) + 5;
+        ia = 8 * nint(halfm * atan(1) / 8) + 5;
         ic = 2 * nint(halfm * (0.5 - sqrt(3) / 6)) + 1;
         mic = (m2 - ic) + m2;
 
