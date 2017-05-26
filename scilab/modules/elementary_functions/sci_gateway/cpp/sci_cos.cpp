@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, type
     else if (in[0]->isSparse())
     {
         types::Sparse* pSparseIn = in[0]->getAs<types::Sparse>();
-        types::Double* pDblOut = new types::Double(pSparseIn->getRows(), pSparseIn->getCols(), pSparseIn->isComplex());
+        types::Sparse* pSparseOut = new types::Sparse(pSparseIn->getRows(), pSparseIn->getCols(), pSparseIn->isComplex());
 
         int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
         int* pRows = new int[nonZeros * 2];
@@ -70,18 +70,9 @@ types::Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, type
         double* pNonZeroR = new double[nonZeros];
         double* pNonZeroI = new double[nonZeros];
         pSparseIn->outputValues(pNonZeroR, pNonZeroI);
-
-        int iSize       = pSparseIn->getSize();
-        int iOne        = 1;
-        double dOne     = 1;
-        double dZero    = 0;
-        int iZero       = 0;
-
-        C2F(dcopy)(&iSize, &dOne, &iZero, pDblOut->get(), &iOne);
-
+        
         if (pSparseIn->isComplex())
         {
-            C2F(dcopy)(&iSize, &dZero, &iZero, pDblOut->getImg(), &iOne);
             for (int i = 0; i < nonZeros; i++)
             {
                 std::complex<double> z(pNonZeroR[i], pNonZeroI[i]);
