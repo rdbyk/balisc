@@ -1013,7 +1013,7 @@ int dorthess(int _iLead, int _iSize, int _iLow, int _iHigh, double *_pdblVal, do
             dblH				+= _pdblOrt[iIndex3] * _pdblOrt[iIndex3];
         }
 
-        dblG				= -dsigns(sqrt(dblH), _pdblOrt[iIndex1]);
+        dblG				= -copysign(sqrt(dblH), _pdblOrt[iIndex1]);
         dblH				-= _pdblOrt[iIndex1] * dblG;
         _pdblOrt[iIndex1]	-= dblG;
 
@@ -1497,7 +1497,7 @@ L70:
             dblR	/= dblX;
         }
 
-        dblS = dsigns(sqrt(dblP * dblP + dblQ * dblQ + dblR * dblR), dblP);
+        dblS = copysign(sqrt(dblP * dblP + dblQ * dblQ + dblR * dblR), dblP);
 
         if (iIndex9 != iIndex7)
         {
@@ -1634,7 +1634,7 @@ L280:
     }
 
     //.......... real pair ..........
-    dblZZ	= dblP + dsigns(dblZZ, dblP);
+    dblZZ	= dblP + copysign(dblZZ, dblP);
     if (iPow10 != 1)
     {
         _pdblEigenReal[iCoord1]		= dblX + dblZZ;

@@ -92,7 +92,9 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
 
             for (int i = 0; i < size; i++)
             {
-                dOutR[i] = dsignsEx(dInR[i]);
+/* https://stackoverflow.com/questions/1903954/is-there-a-standard-sign-function-signum-sgn-in-c-c */
+                double val = dInR[i];
+                dOutR[i] = (double(0) < val) - (val < double(0));
             }
 
             out.push_back(pOut);
