@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -81,7 +81,7 @@ void wlog(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double* _pd
     }
     else
     {
-        double dblTemp = dpythags(dblAbsReal, dblAbsImg);
+        double dblTemp = hypot(dblAbsReal, dblAbsImg);
         if (dblTemp <= dblRMax)
         {
             *_pdblRealOut = dlogs(dblTemp);

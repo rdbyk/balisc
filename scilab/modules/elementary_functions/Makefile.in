@@ -255,7 +255,6 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-dmsum.lo \
 	src/c/libscielementary_functions_algo_la-dsearch.lo \
 	src/c/libscielementary_functions_algo_la-mprod.lo \
-	src/c/libscielementary_functions_algo_la-pythag.lo \
 	src/c/libscielementary_functions_algo_la-matrix_generation.lo \
 	src/c/libscielementary_functions_algo_la-vmul.lo \
 	src/c/libscielementary_functions_algo_la-add_vector.lo \
@@ -810,7 +809,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/dmsum.c \
     src/c/dsearch.c \
     src/c/mprod.c \
-    src/c/pythag.c \
     src/c/matrix_generation.c \
     src/c/vmul.c \
     src/c/add_vector.c \
@@ -1622,8 +1620,6 @@ src/c/libscielementary_functions_algo_la-dsearch.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-mprod.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscielementary_functions_algo_la-pythag.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-matrix_generation.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-vmul.lo:  \
@@ -2168,7 +2164,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-log.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-matrix_generation.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-mprod.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-pythag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-qsort-char.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-qsort-double.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-qsort-int.Plo@am__quote@
@@ -2363,13 +2358,6 @@ src/c/libscielementary_functions_algo_la-mprod.lo: src/c/mprod.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mprod.c' object='src/c/libscielementary_functions_algo_la-mprod.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-mprod.lo `test -f 'src/c/mprod.c' || echo '$(srcdir)/'`src/c/mprod.c
-
-src/c/libscielementary_functions_algo_la-pythag.lo: src/c/pythag.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-pythag.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-pythag.Tpo -c -o src/c/libscielementary_functions_algo_la-pythag.lo `test -f 'src/c/pythag.c' || echo '$(srcdir)/'`src/c/pythag.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-pythag.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-pythag.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/pythag.c' object='src/c/libscielementary_functions_algo_la-pythag.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-pythag.lo `test -f 'src/c/pythag.c' || echo '$(srcdir)/'`src/c/pythag.c
 
 src/c/libscielementary_functions_algo_la-matrix_generation.lo: src/c/matrix_generation.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-matrix_generation.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-matrix_generation.Tpo -c -o src/c/libscielementary_functions_algo_la-matrix_generation.lo `test -f 'src/c/matrix_generation.c' || echo '$(srcdir)/'`src/c/matrix_generation.c

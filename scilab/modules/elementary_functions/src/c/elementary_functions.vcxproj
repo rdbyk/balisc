@@ -232,7 +232,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="log.c" />
     <ClCompile Include="matrix_generation.c" />
     <ClCompile Include="mprod.c" />
-    <ClCompile Include="pythag.c" />
     <ClCompile Include="qsort-char.c" />
     <ClCompile Include="qsort-double.c" />
     <ClCompile Include="qsort-int.c" />
@@ -266,7 +265,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\..\includes\idmin.h" />
     <ClInclude Include="..\..\includes\int2db.h" />
     <ClInclude Include="..\..\includes\log.h" />
-    <ClInclude Include="..\..\includes\pythag.h" />
     <ClInclude Include="..\..\includes\rea2b.h" />
     <ClInclude Include="..\..\includes\rea2db.h" />
     <ClInclude Include="..\..\includes\scidcopy.h" />

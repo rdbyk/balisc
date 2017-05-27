@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -13,6 +13,9 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+
+#include <cmath>
+
 #include "configvariable.hxx"
 #include "callable.hxx"
 #include "double.hxx"
@@ -28,13 +31,15 @@ extern "C"
 
 int schur_sb02mw(double* _real, double* _img)
 {
-    return dpythags(*_real, *_img) < 1 ? 1 : 0;
+    return std::hypot(*_real, *_img) < 1 ? 1 : 0;
 }
+
 int schur_sb02mv(double* _real, double* /*_img*/)
 {
     /* original Fortran code does not use _img aka IEIG (SB02MV = REIG.LT.ZERO) */
     return *_real < 0 ? 1 : 0;
 }
+
 int schur_dgees(double* _real, double* _img)
 {
     types::Callable* pCall = ConfigVariable::getSchurFunction();
@@ -102,14 +107,16 @@ int schur_dgees(double* _real, double* _img)
 
 int schur_sb02ox(double* _real, double* _img, double* _beta) // discrete
 {
-    return dpythags(*_real, *_img) < fabs(*_beta) ? 1 : 0;
+    return std::hypot(*_real, *_img) < fabs(*_beta) ? 1 : 0;
 }
+
 int schur_sb02ow(double* _real, double* /*_img*/, double* _beta) // continu
 {
     return  (*_real < 0 && *_beta > 0) ||
             ((*_real > 0 && *_beta < 0) &&
              (fabs(*_beta) > fabs(*_real) * nc_eps_machine())) ? 1 : 0;
 }
+
 int schur_dgges(double* _real, double* _img, double* _beta)
 {
     types::Callable* pCall = ConfigVariable::getSchurFunction();
@@ -186,7 +193,7 @@ int schur_dgges(double* _real, double* _img, double* _beta)
 
 int schur_zb02mw(doublecomplex* _complex)
 {
-    return dpythags(_complex->r, _complex->i) < 1 ? 1 : 0;
+    return std::hypot(_complex->r, _complex->i) < 1 ? 1 : 0;
 }
 int schur_zb02mv(doublecomplex* _complex)
 {
@@ -259,11 +266,12 @@ int schur_zgees(doublecomplex* _complex)
 
 int schur_zb02ox(doublecomplex* _alpha, doublecomplex* _beta) // discrete
 {
-    return dpythags(_alpha->r, _alpha->i) < dpythags(_beta->r, _beta->i) ? 1 : 0;
+    return std::hypot(_alpha->r, _alpha->i) < std::hypot(_beta->r, _beta->i) ? 1 : 0;
 }
+
 int schur_zb02ow(doublecomplex* _alpha, doublecomplex* _beta) // continu
 {
-    double absolute = dpythags(_beta->r, _beta->i);
+    double absolute = std::hypot(_beta->r, _beta->i);
     int res = 0;
 
     if (absolute)
@@ -273,6 +281,7 @@ int schur_zb02ow(doublecomplex* _alpha, doublecomplex* _beta) // continu
 
     return res;
 }
+
 int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
 {
     types::Callable* pCall = ConfigVariable::getSchurFunction();
