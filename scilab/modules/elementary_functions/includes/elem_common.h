@@ -19,7 +19,6 @@
 #include "core_math.h"
 
 #include "log.h"
-#include "sign.h"
 
 /*
 'E' or 'e',   DLAMCH := eps ( relative machine precision )

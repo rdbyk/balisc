@@ -24,7 +24,6 @@
 #include "elem_common.h"
 
 #include "log.h"
-#include "sign.h"
 
 #define BY_ROWS			1
 #define BY_COLS			2
