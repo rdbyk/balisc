@@ -110,9 +110,6 @@
     <ClCompile Include="convertbase.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cosh.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="expm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -126,9 +123,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sign.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sinh.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\cumprod.cpp">

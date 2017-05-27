@@ -220,7 +220,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="basic_functions.c" />
     <ClCompile Include="cmp.c" />
     <ClCompile Include="convertbase.c" />
-    <ClCompile Include="cosh.c" />
     <ClCompile Include="cupro.c" />
     <ClCompile Include="DllmainElementary_functions.c" />
     <ClCompile Include="dmsum.c" />
@@ -245,7 +244,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="rea2db.c" />
     <ClCompile Include="scidcopy.c" />
     <ClCompile Include="sign.c" />
-    <ClCompile Include="sinh.c" />
     <ClCompile Include="sub_vector.c" />
     <ClCompile Include="unsfdcopy.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
