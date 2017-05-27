@@ -29,12 +29,6 @@
     <ClCompile Include="basic_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cmp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cupro.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DllmainElementary_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -110,9 +104,6 @@
     <ClCompile Include="convertbase.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cosh.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="expm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -126,9 +117,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sign.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sinh.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\cumprod.cpp">
@@ -203,9 +191,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\basic_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cmp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IsEqualVar.h">

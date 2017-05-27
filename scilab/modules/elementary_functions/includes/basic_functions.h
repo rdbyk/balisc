@@ -34,8 +34,6 @@
 
 ELEMENTARY_FUNCTIONS_IMPEXP double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
 
-ELEMENTARY_FUNCTIONS_IMPEXP void vCupro(int _iNbElem, double* _piIn, double* _piOut);
-ELEMENTARY_FUNCTIONS_IMPEXP void vCuproi(int _iNbElem, double* _piRealIn, double* _piImgIn, double* _piRealOut, double* _piImgOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDvmul(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIncIn2, double* _piOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void vWvmul(int _iNbElem, double* _piRealIn1, double* _piImgIn1, double* _piRealIn2, double* _piImgIn2, int _iIncIn1, int _iIncIn2, double* _piRealOut, double* _piImgOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void vCusum(int _iNbElem, double *_dblIn, double *_dblOut);

@@ -7,7 +7,6 @@
 ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/finite.c \
     src/c/vfinite.c \
-    src/c/cmp.c \
     src/c/xerhlt.c \
     src/c/scidcopy.c \
     src/c/int2db.c \
@@ -19,11 +18,8 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/qsort-short.c \
     src/c/qsort-string.c \
     src/c/basic_functions.c \
-    src/c/cosh.c \
-    src/c/sinh.c \
     src/c/expm.c \
     src/c/log.c \
-    src/c/cupro.c \
     src/c/sign.c \
     src/c/eye.c \
     src/c/dmsum.c \
