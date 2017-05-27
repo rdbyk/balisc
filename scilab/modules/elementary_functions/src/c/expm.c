@@ -3,7 +3,7 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - Digiteo - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -2962,7 +2962,7 @@ double dblGetMatrixInfiniteNorm(double *_pdblReal, double *_pdblImg, int _iRows,
             dblTemp = 0;
             for (iIndex2 = 0 ; iIndex2 < _iCols ; iIndex2++)
             {
-                dblTemp += dpythags(_pdblReal[iIndex1 + iIndex2 * _iRows], _pdblImg[iIndex1 + iIndex2 * _iRows]);
+                dblTemp += hypot(_pdblReal[iIndex1 + iIndex2 * _iRows], _pdblImg[iIndex1 + iIndex2 * _iRows]);
             }
             if (dblTemp > dblRef)
             {

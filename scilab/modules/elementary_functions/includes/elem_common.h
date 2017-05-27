@@ -19,7 +19,6 @@
 #include "core_math.h"
 
 #include "log.h"
-#include "pythag.h"
 #include "sign.h"
 
 /*

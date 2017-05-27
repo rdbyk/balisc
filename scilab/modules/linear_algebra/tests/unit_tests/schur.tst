@@ -206,11 +206,11 @@ if or(real(spec(S(1:n,1:n)))>=0) then pause,end
 if or(real(spec(S(n+1:$,n+1:$)))<0) then pause,end
 
 // equal to schur(A, 'd');
-C=[ "extern double dpythags(double,double);" // Scilab 6 function
+C=[ "#include <math.h>" // Scilab 6 function
 ""
 "int mytest2(double* _real, double* _img)"
 "{"
-"    return dpythags(*_real, *_img) < 1;"
+"    return hypot(*_real, *_img) < 1;"
 "}"];
 
 mputl(C,TMPDIR+"/mytest.c");
@@ -241,11 +241,11 @@ if or(real(spec(S(n+1:$,n+1:$)))<0) then pause,end
 // equal to schur(Ac, 'd');
 C=[ "#include ""doublecomplex.h"""
 ""
-"extern double dpythags(double,double);" // Scilab 6 function
+"#include <math.h>" // Scilab 6 function
 ""
 "int mytest4(doublecomplex* _complex)"
 "{"
-"    if(dpythags(_complex->r, _complex->i) < 1)"
+"    if(hypot(_complex->r, _complex->i) < 1)"
 "    {"
 "        return 1;"
 "    }"
@@ -554,11 +554,11 @@ if Err(As-Q'*A*Z) >200*%eps then pause,end
 if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 // equal to schur(A, E, 'd');
-C=[ "extern double dpythags(double,double);" // Scilab 6 function
+C=[ "#include <math.h>" // Scilab 6 function
 ""
 "int mytest6(double* _real, double* _img, double* _beta)"
 "{"
-"    double dblPythag =  dpythags(*_real, *_img);"
+"    double dblPythag =  hypot(*_real, *_img);"
 ""
 "    return (dblPythag < fabs(*_beta));"
 "}"];
@@ -687,12 +687,12 @@ if Err(Es-Q'*E*Z) >1000*%eps then pause,end
 // equal to schur(A, E, 'd');
 C=[ "#include ""doublecomplex.h"";"
 ""
-"extern double dpythags(double,double);" // Scilab 6 function
+"#include <math.h>" // Scilab 6 function
 ""
 "int mytest8(doublecomplex* _alpha, doublecomplex* _beta)"
 "{"
-"    double dblP1 = dpythags(_alpha->r, _alpha->i);"
-"    double dblP2 = dpythags(_beta->r, _beta->i);"
+"    double dblP1 = hypot(_alpha->r, _alpha->i);"
+"    double dblP2 = hypot(_beta->r, _beta->i);"
 ""
 "    return (dblP1 <  dblP2);"
 "}"];
