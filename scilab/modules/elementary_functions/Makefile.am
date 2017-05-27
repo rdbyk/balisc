@@ -7,7 +7,6 @@
 ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/finite.c \
     src/c/vfinite.c \
-    src/c/cmp.c \
     src/c/xerhlt.c \
     src/c/scidcopy.c \
     src/c/int2db.c \
