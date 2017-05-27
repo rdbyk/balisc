@@ -32,9 +32,6 @@
     <ClCompile Include="cmp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cupro.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DllmainElementary_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
