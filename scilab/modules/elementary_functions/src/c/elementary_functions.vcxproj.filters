@@ -32,9 +32,6 @@
     <ClCompile Include="DllmainElementary_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dmsum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dsearch.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -105,9 +102,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="expm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="f2c_workaround.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="log.c">

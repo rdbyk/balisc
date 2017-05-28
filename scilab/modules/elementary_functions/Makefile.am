@@ -21,7 +21,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/expm.c \
     src/c/log.c \
     src/c/eye.c \
-    src/c/dmsum.c \
     src/c/dsearch.c \
     src/c/mprod.c \
     src/c/matrix_generation.c \

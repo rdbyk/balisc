@@ -220,11 +220,9 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="basic_functions.c" />
     <ClCompile Include="convertbase.c" />
     <ClCompile Include="DllmainElementary_functions.c" />
-    <ClCompile Include="dmsum.c" />
     <ClCompile Include="dsearch.c" />
     <ClCompile Include="expm.c" />
     <ClCompile Include="eye.c" />
-    <ClCompile Include="f2c_workaround.c" />
     <ClCompile Include="finite.c" />
     <ClCompile Include="idmax.c" />
     <ClCompile Include="idmin.c" />
