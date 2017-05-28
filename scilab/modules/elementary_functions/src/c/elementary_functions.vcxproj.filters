@@ -41,12 +41,6 @@
     <ClCompile Include="finite.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="idmax.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="idmin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="int2db.c">
       <Filter>Source Files</Filter>
     </ClCompile>

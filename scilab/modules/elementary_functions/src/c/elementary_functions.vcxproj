@@ -224,8 +224,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="expm.c" />
     <ClCompile Include="eye.c" />
     <ClCompile Include="finite.c" />
-    <ClCompile Include="idmax.c" />
-    <ClCompile Include="idmin.c" />
     <ClCompile Include="int2db.c" />
     <ClCompile Include="log.c" />
     <ClCompile Include="matrix_generation.c" />
