@@ -65,9 +65,6 @@
     <ClCompile Include="qsort.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rea2db.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sub_vector.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -137,12 +134,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_elementary_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\rea2b.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\rea2db.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\unsfdcopy.h">

@@ -233,7 +233,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="qsort-short.c" />
     <ClCompile Include="qsort-string.c" />
     <ClCompile Include="qsort.c" />
-    <ClCompile Include="rea2db.c" />
     <ClCompile Include="sub_vector.c" />
     <ClCompile Include="unsfdcopy.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
@@ -255,8 +254,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\..\includes\gsort.hxx" />
     <ClInclude Include="..\..\includes\gw_elementary_functions.h" />
     <ClInclude Include="..\..\includes\log.h" />
-    <ClInclude Include="..\..\includes\rea2b.h" />
-    <ClInclude Include="..\..\includes\rea2db.h" />
     <ClInclude Include="..\..\includes\unsfdcopy.h" />
     <ClInclude Include="..\..\includes\vfinite.h" />
     <ClInclude Include="..\..\includes\xerhlt.h" />

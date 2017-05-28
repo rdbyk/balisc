@@ -8,7 +8,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/finite.c \
     src/c/vfinite.c \
     src/c/xerhlt.c \
-    src/c/rea2db.c \
     src/c/qsort.c \
     src/c/qsort-char.c \
     src/c/qsort-double.c \
