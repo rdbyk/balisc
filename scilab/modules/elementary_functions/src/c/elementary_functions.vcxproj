@@ -224,7 +224,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="expm.c" />
     <ClCompile Include="eye.c" />
     <ClCompile Include="finite.c" />
-    <ClCompile Include="int2db.c" />
     <ClCompile Include="log.c" />
     <ClCompile Include="matrix_generation.c" />
     <ClCompile Include="mprod.c" />
@@ -256,9 +255,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\..\includes\getmode.hxx" />
     <ClInclude Include="..\..\includes\gsort.hxx" />
     <ClInclude Include="..\..\includes\gw_elementary_functions.h" />
-    <ClInclude Include="..\..\includes\idmax.h" />
-    <ClInclude Include="..\..\includes\idmin.h" />
-    <ClInclude Include="..\..\includes\int2db.h" />
     <ClInclude Include="..\..\includes\log.h" />
     <ClInclude Include="..\..\includes\rea2b.h" />
     <ClInclude Include="..\..\includes\rea2db.h" />

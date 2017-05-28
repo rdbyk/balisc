@@ -41,9 +41,6 @@
     <ClCompile Include="finite.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="int2db.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="matrix_generation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -143,15 +140,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_elementary_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\idmax.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\idmin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\int2db.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\rea2b.h">

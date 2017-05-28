@@ -239,7 +239,6 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-vfinite.lo \
 	src/c/libscielementary_functions_algo_la-xerhlt.lo \
 	src/c/libscielementary_functions_algo_la-scidcopy.lo \
-	src/c/libscielementary_functions_algo_la-int2db.lo \
 	src/c/libscielementary_functions_algo_la-rea2db.lo \
 	src/c/libscielementary_functions_algo_la-qsort.lo \
 	src/c/libscielementary_functions_algo_la-qsort-char.lo \
@@ -791,7 +790,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/vfinite.c \
     src/c/xerhlt.c \
     src/c/scidcopy.c \
-    src/c/int2db.c \
     src/c/rea2db.c \
     src/c/qsort.c \
     src/c/qsort-char.c \
@@ -1584,8 +1582,6 @@ src/c/libscielementary_functions_algo_la-xerhlt.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-scidcopy.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscielementary_functions_algo_la-int2db.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-rea2db.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-qsort.lo:  \
@@ -2151,7 +2147,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-expm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-eye.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-finite.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-int2db.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-log.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-matrix_generation.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-mprod.Plo@am__quote@
@@ -2236,13 +2231,6 @@ src/c/libscielementary_functions_algo_la-scidcopy.lo: src/c/scidcopy.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scidcopy.c' object='src/c/libscielementary_functions_algo_la-scidcopy.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-scidcopy.lo `test -f 'src/c/scidcopy.c' || echo '$(srcdir)/'`src/c/scidcopy.c
-
-src/c/libscielementary_functions_algo_la-int2db.lo: src/c/int2db.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-int2db.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-int2db.Tpo -c -o src/c/libscielementary_functions_algo_la-int2db.lo `test -f 'src/c/int2db.c' || echo '$(srcdir)/'`src/c/int2db.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-int2db.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-int2db.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/int2db.c' object='src/c/libscielementary_functions_algo_la-int2db.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-int2db.lo `test -f 'src/c/int2db.c' || echo '$(srcdir)/'`src/c/int2db.c
 
 src/c/libscielementary_functions_algo_la-rea2db.lo: src/c/rea2db.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-rea2db.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-rea2db.Tpo -c -o src/c/libscielementary_functions_algo_la-rea2db.lo `test -f 'src/c/rea2db.c' || echo '$(srcdir)/'`src/c/rea2db.c
