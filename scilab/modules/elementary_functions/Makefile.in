@@ -285,11 +285,11 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/orthes.lo src/fortran/waxpy.lo src/fortran/coef.lo \
 	src/fortran/dwdiv.lo src/fortran/arcosh.lo \
 	src/fortran/wasin.lo src/fortran/wexpm1.lo \
-	src/fortran/ddpowe.lo src/fortran/nearfloat.lo \
-	src/fortran/dmprod.lo src/fortran/wwpowe.lo \
-	src/fortran/wdotci.lo src/fortran/dmcopy.lo \
-	src/fortran/wexchn.lo src/fortran/isoval.lo \
-	src/fortran/dwrdiv.lo src/fortran/wipow.lo src/fortran/wlog.lo \
+	src/fortran/ddpowe.lo src/fortran/dmprod.lo \
+	src/fortran/wwpowe.lo src/fortran/wdotci.lo \
+	src/fortran/dmcopy.lo src/fortran/wexchn.lo \
+	src/fortran/isoval.lo src/fortran/dwrdiv.lo \
+	src/fortran/wipow.lo src/fortran/wlog.lo \
 	src/fortran/infinity.lo src/fortran/dwpow1.lo \
 	src/fortran/wmul.lo src/fortran/dad.lo src/fortran/dset.lo \
 	src/fortran/dtild.lo src/fortran/i1mach.lo \
@@ -997,7 +997,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wasin.f \
     src/fortran/wexpm1.f \
     src/fortran/ddpowe.f \
-    src/fortran/nearfloat.f \
     src/fortran/dmprod.f \
     src/fortran/wwpowe.f \
     src/fortran/wdotci.f \
@@ -1751,8 +1750,6 @@ src/fortran/wasin.lo: src/fortran/$(am__dirstamp) \
 src/fortran/wexpm1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ddpowe.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/nearfloat.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dmprod.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

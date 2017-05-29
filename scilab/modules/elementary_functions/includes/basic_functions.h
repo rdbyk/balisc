@@ -41,7 +41,6 @@ ELEMENTARY_FUNCTIONS_IMPEXP void vDset(int _iNbElem, double _dblVal, double* _pd
 ELEMENTARY_FUNCTIONS_IMPEXP void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 ELEMENTARY_FUNCTIONS_IMPEXP double dfrexps(double _dblVal, double *_pdblExp);
-ELEMENTARY_FUNCTIONS_IMPEXP double dblNearFloat(double _dblVal, double _dblMode);
 
 ELEMENTARY_FUNCTIONS_IMPEXP void vDmProd(int _iMode, double* _pdblIn, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut, int _iInc);
 ELEMENTARY_FUNCTIONS_IMPEXP void vWDmProd(int _iMode, double* _pdblIn1, double* _pdblIn2, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut1, double* _pdblOut2, int _iInc);

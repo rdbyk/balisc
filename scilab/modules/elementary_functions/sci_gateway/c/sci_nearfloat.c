@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,6 +13,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <math.h>
 #include <string.h>
 #include "gw_elementary_functions.h"
 #include "basic_functions.h"
@@ -143,11 +145,11 @@ int sci_nearfloat(char *fname, void* pvApiCtx)
 
     if (strcmp(pstData[0], "succ") == 0)
     {
-        dblMode = 1.0;
+        dblMode = INFINITY;
     }
     else if (strcmp(pstData[0], "pred") == 0)
     {
-        dblMode = -1.0;
+        dblMode = -INFINITY;
     }
     else
     {
@@ -176,7 +178,7 @@ int sci_nearfloat(char *fname, void* pvApiCtx)
 
     for (i = 0 ; i < iRows2 * iCols2 ; i++)
     {
-        pdblRealRet[i] = dblNearFloat(pdblReal[i], dblMode);
+        pdblRealRet[i] = nextafter(pdblReal[i], dblMode);
     }
 
     free(piLen);

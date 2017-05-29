@@ -81,7 +81,6 @@ extern void C2F(wdiv) (double *ar, double *ai, double *br, double *bi, double *c
 extern void C2F(dad) (double *a, int *na, int *i1, int *i2, int *j1, int *j2, double *r, int *isw);
 extern int C2F(entier) (int *_iSize, double *_pdbl, int *_pi);
 extern int C2F(simple) (int *_iSize, double *_pdbl, float *_pf);
-extern double C2F(nearfloat) (double*, double*);
 extern int C2F(daxpy)(int* N, double* DA, double* DX, int* INCX, double* DY, int* INCY);
 extern int C2F(zaxpy)(int* N, doublecomplex* ZA, doublecomplex* ZX, int* INCX, doublecomplex* ZY, int* INCY);
 extern int C2F(dsymv)(char* UPLO, int* N, double* ALPHA, double* A, int* LDA, double* X, int* INCX, double* BETA, double* Y, int* INCY);

@@ -223,7 +223,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wasin.f \
     src/fortran/wexpm1.f \
     src/fortran/ddpowe.f \
-    src/fortran/nearfloat.f \
     src/fortran/dmprod.f \
     src/fortran/wwpowe.f \
     src/fortran/wdotci.f \
