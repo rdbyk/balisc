@@ -3,9 +3,9 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste SILVY
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Cong WU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -16,6 +16,8 @@
  */
 
 /*------------------------------------------------------------------------*/
+
+#include <math.h>
 #include <string.h>
 #include "gw_elementary_functions.h"
 #include "api_scilab.h"
@@ -30,7 +32,7 @@
 int sci_log10(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    int i = 0;
+    
     int complex = 0;
     int check_ieee = 0;
 
@@ -42,13 +44,11 @@ int sci_log10(char *fname, void* pvApiCtx)
     double* pOutR = NULL;
     double* pOutI = NULL;
 
-    // Wolfram Alpha : Pi / log(10)
-    const double imag = 1.364376353841841347485783625431355770210127483723925399900;
-    // Wolfram Alpha : 1 / log(10)
-    const double inverseLog10 = 0.434294481903251827651128918916605082294397005803666566114;
-
     int iRhs = nbInputArgument(pvApiCtx);
-
+    
+    int size;
+    int i;
+    
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -82,16 +82,18 @@ int sci_log10(char *fname, void* pvApiCtx)
         return 0;
     }
 
+    size = iRows* iCols;
+    
     //check values
-    for (i = 0 ; i < iRows * iCols ; ++i)
+    for (i = 0 ; i < size ; ++i)
     {
         double d = pIn[i];
+        
         if (d < 0)
         {
             complex = 1;
         }
-
-        if (d == 0)
+        else if (d == 0)
         {
             check_ieee = 1;
         }
@@ -119,8 +121,12 @@ int sci_log10(char *fname, void* pvApiCtx)
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
-
-        memset(pOutI, 0x00, iRows * iCols * sizeof(double));
+        
+        for (i = 0 ; i < size ; ++i)
+        {
+            pOutR[i] = log10(-pIn[i]);
+            pOutI[i] = 1.3643763538418413474; /* = PI/log(10) */
+        }
     }
     else
     {
@@ -130,21 +136,10 @@ int sci_log10(char *fname, void* pvApiCtx)
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
-    }
-
-
-    for (i = 0 ; i < iRows * iCols ; ++i)
-    {
-        if (pIn[i] < 0)
+        
+        for (i = 0 ; i < size ; ++i)
         {
-            // log10 = log * 1/log(10)
-            pOutR[i] = log(-pIn[i]) * inverseLog10;
-            pOutI[i] = imag;
-        }
-        else
-        {
-            // log10 = log * 1/log(10)
-            pOutR[i] = log(pIn[i]) * inverseLog10;
+            pOutR[i] = log10(pIn[i]);
         }
     }
 
