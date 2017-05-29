@@ -251,10 +251,6 @@ optim: optimization routines (Modulopt library, INRIA).
 
 poly: Scilab polynomial library (INRIA).
 
-
-qsort: qsort.c ( quicksort from the University of California Berkeley)
-       modified for Scilab.
-
 randlib: Library of Fortran Routines for Random Number Generation
       Barry W. Brown, James Lovato, Kathy Russell, John Venier.
 

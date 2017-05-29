@@ -227,12 +227,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="log.c" />
     <ClCompile Include="matrix_generation.c" />
     <ClCompile Include="mprod.c" />
-    <ClCompile Include="qsort-char.c" />
-    <ClCompile Include="qsort-double.c" />
-    <ClCompile Include="qsort-int.c" />
-    <ClCompile Include="qsort-short.c" />
-    <ClCompile Include="qsort-string.c" />
-    <ClCompile Include="qsort.c" />
     <ClCompile Include="sub_vector.c" />
     <ClCompile Include="unsfdcopy.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
@@ -269,12 +263,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="convertbase.h" />
     <ClInclude Include="expm.h" />
     <ClInclude Include="IsEqualVar.h" />
-    <ClInclude Include="qsort-char.h" />
-    <ClInclude Include="qsort-double.h" />
-    <ClInclude Include="qsort-int.h" />
-    <ClInclude Include="qsort-short.h" />
-    <ClInclude Include="qsort-string.h" />
-    <ClInclude Include="qsort.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\elementary_functions.pot" />

@@ -47,24 +47,6 @@
     <ClCompile Include="mprod.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="qsort-char.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort-double.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort-int.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort-short.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort-string.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sub_vector.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -149,24 +131,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IsEqualVar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-char.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-double.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-int.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-short.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="convertbase.h">
