@@ -32,9 +32,6 @@
     <ClCompile Include="DllmainElementary_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dmsum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dsearch.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,43 +41,10 @@
     <ClCompile Include="finite.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="idmax.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="idmin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="int2db.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="matrix_generation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mprod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort-char.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort-double.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort-int.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort-short.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort-string.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qsort.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rea2db.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scidcopy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sub_vector.c">
@@ -105,9 +69,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="expm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="f2c_workaround.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="log.c">
@@ -157,24 +118,6 @@
     <ClInclude Include="..\..\includes\gw_elementary_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\idmax.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\idmin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\int2db.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\rea2b.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\rea2db.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scidcopy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\unsfdcopy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -188,24 +131,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IsEqualVar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-char.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-double.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-int.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-short.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qsort-string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="convertbase.h">

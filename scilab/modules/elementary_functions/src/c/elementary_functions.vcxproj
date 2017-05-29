@@ -220,26 +220,13 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="basic_functions.c" />
     <ClCompile Include="convertbase.c" />
     <ClCompile Include="DllmainElementary_functions.c" />
-    <ClCompile Include="dmsum.c" />
     <ClCompile Include="dsearch.c" />
     <ClCompile Include="expm.c" />
     <ClCompile Include="eye.c" />
-    <ClCompile Include="f2c_workaround.c" />
     <ClCompile Include="finite.c" />
-    <ClCompile Include="idmax.c" />
-    <ClCompile Include="idmin.c" />
-    <ClCompile Include="int2db.c" />
     <ClCompile Include="log.c" />
     <ClCompile Include="matrix_generation.c" />
     <ClCompile Include="mprod.c" />
-    <ClCompile Include="qsort-char.c" />
-    <ClCompile Include="qsort-double.c" />
-    <ClCompile Include="qsort-int.c" />
-    <ClCompile Include="qsort-short.c" />
-    <ClCompile Include="qsort-string.c" />
-    <ClCompile Include="qsort.c" />
-    <ClCompile Include="rea2db.c" />
-    <ClCompile Include="scidcopy.c" />
     <ClCompile Include="sub_vector.c" />
     <ClCompile Include="unsfdcopy.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
@@ -260,13 +247,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\..\includes\getmode.hxx" />
     <ClInclude Include="..\..\includes\gsort.hxx" />
     <ClInclude Include="..\..\includes\gw_elementary_functions.h" />
-    <ClInclude Include="..\..\includes\idmax.h" />
-    <ClInclude Include="..\..\includes\idmin.h" />
-    <ClInclude Include="..\..\includes\int2db.h" />
     <ClInclude Include="..\..\includes\log.h" />
-    <ClInclude Include="..\..\includes\rea2b.h" />
-    <ClInclude Include="..\..\includes\rea2db.h" />
-    <ClInclude Include="..\..\includes\scidcopy.h" />
     <ClInclude Include="..\..\includes\unsfdcopy.h" />
     <ClInclude Include="..\..\includes\vfinite.h" />
     <ClInclude Include="..\..\includes\xerhlt.h" />
@@ -282,12 +263,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="convertbase.h" />
     <ClInclude Include="expm.h" />
     <ClInclude Include="IsEqualVar.h" />
-    <ClInclude Include="qsort-char.h" />
-    <ClInclude Include="qsort-double.h" />
-    <ClInclude Include="qsort-int.h" />
-    <ClInclude Include="qsort-short.h" />
-    <ClInclude Include="qsort-string.h" />
-    <ClInclude Include="qsort.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\elementary_functions.pot" />
