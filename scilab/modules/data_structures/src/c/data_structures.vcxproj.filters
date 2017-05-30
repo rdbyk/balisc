@@ -46,12 +46,6 @@
     <ClInclude Include="..\..\includes\gw_data_structures2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hmops.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="stcreate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\data_structures_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
