@@ -2,9 +2,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Bernard HUGUENEY
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -15,6 +15,7 @@
  */
 
 #include <stdio.h>
+#include <math.h>
 
 #include "machine.h"
 #include "doublecomplex.h"
@@ -47,11 +48,8 @@ extern double C2F(pythag)(double const* a, double const* b);
 
 static double cplx_abs(doublecomplex const * ptrC)
 {
-    return C2F(pythag)((double const*)ptrC, ((double const*)(ptrC)) + 1);
+    return hypot((double const*)ptrC, ((double const*)(ptrC)) + 1);
 }
-/* /!\ maybe pythag would be safer but original Fortran code uses dlapy2 */
-extern double C2F(dlapy2)(double const* a, double const*b);
-
 
 /*
  * functions allocating workspace memory for schur decompositions : first try to allocate optimal workspace by querying Lapack. If MALLOC for optimal
@@ -268,7 +266,7 @@ int sb02ow(double const* alphaReal, double const* alphaImg, double const* beta)
 }
 int sb02ox(double const* alphaReal, double const* alphaImg, double const* beta)
 {
-    return C2F(dlapy2)(alphaReal, alphaImg) < Abs(*beta);
+    return hypot(alphaReal, alphaImg) < Abs(*beta);
 }
 int zb02mv(doublecomplex const* w)
 {
@@ -285,6 +283,6 @@ int sb02mv(double const* wReal, double const* wImg)
 }
 int sb02mw(double const* wReal, double const* wImg)
 {
-    return C2F(dlapy2)(wReal, wImg) < 1.;
+    return hypot(wReal, wImg) < 1.;
 }
 
