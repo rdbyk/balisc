@@ -125,7 +125,6 @@
 		<File RelativePath=".\split.f"/>
 		<File RelativePath=".\urand.f"/>
 		<File RelativePath=".\vpythag.f"/>
-		<File RelativePath=".\wacos.f"/>
 		<File RelativePath=".\wasum.f"/>
 		<File RelativePath=".\watan.f"/>
 		<File RelativePath=".\waxpy.f"/>
