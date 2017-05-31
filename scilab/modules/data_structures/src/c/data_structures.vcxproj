@@ -202,8 +202,6 @@
     <ClInclude Include="..\..\includes\dynlib_data_structures.h" />
     <ClInclude Include="..\..\includes\gw_data_structures1.h" />
     <ClInclude Include="..\..\includes\gw_data_structures2.h" />
-    <ClInclude Include="hmops.h" />
-    <ClInclude Include="stcreate.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\data_structures.pot" />
