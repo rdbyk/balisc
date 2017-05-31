@@ -161,7 +161,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dsum.f \
     src/fortran/urand.f \
     src/fortran/intp.f \
-    src/fortran/watan.f \
     src/fortran/wipowe.f \
     src/fortran/wdpow1.f \
     src/fortran/dlgama.f \

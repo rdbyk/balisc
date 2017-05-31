@@ -231,9 +231,6 @@
     <ClCompile Include="wasum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="watan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="waxpy.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -344,7 +344,6 @@ cd ..
     <ClCompile Include="urand.c" />
     <ClCompile Include="vpythag.c" />
     <ClCompile Include="wasum.c" />
-    <ClCompile Include="watan.c" />
     <ClCompile Include="waxpy.c" />
     <ClCompile Include="wbdiag.c" />
     <ClCompile Include="wcerr.c" />
@@ -453,7 +452,6 @@ cd ..
     <f2c_rule Include="urand.f" />
     <f2c_rule Include="vpythag.f" />
     <f2c_rule Include="wasum.f" />
-    <f2c_rule Include="watan.f" />
     <f2c_rule Include="waxpy.f" />
     <f2c_rule Include="wbdiag.f" />
     <f2c_rule Include="wcerr.f" />

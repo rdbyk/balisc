@@ -126,7 +126,6 @@
 		<File RelativePath=".\urand.f"/>
 		<File RelativePath=".\vpythag.f"/>
 		<File RelativePath=".\wasum.f"/>
-		<File RelativePath=".\watan.f"/>
 		<File RelativePath=".\waxpy.f"/>
 		<File RelativePath=".\wbdiag.f"/>
 		<File RelativePath=".\wcerr.f"/>
