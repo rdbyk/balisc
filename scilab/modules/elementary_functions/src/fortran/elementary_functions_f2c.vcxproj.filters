@@ -228,16 +228,7 @@
     <ClCompile Include="vpythag.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wacos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wasin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wasum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="watan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="waxpy.c">
@@ -560,13 +551,7 @@
     <f2c_rule Include="wacos.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="wasin.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="wasum.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="watan.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="waxpy.f">

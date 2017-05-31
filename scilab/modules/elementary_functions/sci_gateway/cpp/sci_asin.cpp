@@ -22,7 +22,6 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-int C2F(wasin)(double*, double*, double*, double*);
 }
 
 /*
@@ -68,7 +67,9 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
 
         for (int i = 0; i < size; i++)
         {
-            C2F(wasin)(pInR + i, pInI + i, pOutR + i, pOutI + i);
+            std::complex<double> z(std::asin(std::complex<double>(pInR[i], pInI[i])));
+            pOutR[i] = z.real();
+            pOutI[i] = z.imag();
         }
     }
     else
@@ -91,10 +92,12 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
             pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), true);
             double* pOutR = pDblOut->get();
             double* pOutI = pDblOut->getImg();
-            double zero = 0;
+            const double zero = 0;
             for (int i = 0; i < size; i++)
             {
-                C2F(wasin)(pInR + i, &zero, pOutR + i, pOutI + i);
+                std::complex<double> z(std::asin(std::complex<double>(pInR[i], zero)));
+                pOutR[i] = z.real();
+                pOutI[i] = z.imag();
             }
         }
         else //all values are in [-1,1]
