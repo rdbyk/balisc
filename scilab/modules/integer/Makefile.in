@@ -16,6 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -183,8 +184,6 @@ am__objects_1 = src/c/libsciinteger_algo_la-genconcatcol.lo \
 	src/c/libsciinteger_algo_la-geninsert1.lo \
 	src/c/libsciinteger_algo_la-geninsert2.lo \
 	src/c/libsciinteger_algo_la-gendot.lo \
-	src/c/libsciinteger_algo_la-db2int.lo \
-	src/c/libsciinteger_algo_la-genadd.lo \
 	src/c/libsciinteger_algo_la-genset.lo \
 	src/c/libsciinteger_algo_la-gencusum.lo \
 	src/c/libsciinteger_algo_la-gensubst.lo \
@@ -197,7 +196,6 @@ am__objects_1 = src/c/libsciinteger_algo_la-genconcatcol.lo \
 	src/c/libsciinteger_algo_la-genisany.lo \
 	src/c/libsciinteger_algo_la-genmcopy.lo \
 	src/c/libsciinteger_algo_la-gencuprod.lo \
-	src/c/libsciinteger_algo_la-genbitops.lo \
 	src/c/libsciinteger_algo_la-genimpl.lo
 am_libsciinteger_algo_la_OBJECTS = $(am__objects_1)
 libsciinteger_algo_la_OBJECTS = $(am_libsciinteger_algo_la_OBJECTS)
@@ -610,8 +608,6 @@ INTEGER_C_SOURCES = \
     src/c/geninsert1.c \
     src/c/geninsert2.c \
     src/c/gendot.c \
-    src/c/db2int.c \
-    src/c/genadd.c \
     src/c/genset.c \
     src/c/gencusum.c \
     src/c/gensubst.c \
@@ -624,7 +620,6 @@ INTEGER_C_SOURCES = \
     src/c/genisany.c \
     src/c/genmcopy.c \
     src/c/gencuprod.c \
-    src/c/genbitops.c \
     src/c/genimpl.c
 
 GATEWAY_CPP_SOURCES = \
@@ -879,10 +874,6 @@ src/c/libsciinteger_algo_la-geninsert2.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciinteger_algo_la-gendot.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciinteger_algo_la-db2int.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciinteger_algo_la-genadd.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciinteger_algo_la-genset.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciinteger_algo_la-gencusum.lo: src/c/$(am__dirstamp) \
@@ -906,8 +897,6 @@ src/c/libsciinteger_algo_la-genisany.lo: src/c/$(am__dirstamp) \
 src/c/libsciinteger_algo_la-genmcopy.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciinteger_algo_la-gencuprod.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciinteger_algo_la-genbitops.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciinteger_algo_la-genimpl.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
@@ -966,9 +955,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_iconvert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_inttype.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-db2int.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-genadd.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-genbitops.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-gencheck.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-genconcatcol.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-genconcatrow.Plo@am__quote@
@@ -1137,20 +1123,6 @@ src/c/libsciinteger_algo_la-gendot.lo: src/c/gendot.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-gendot.lo `test -f 'src/c/gendot.c' || echo '$(srcdir)/'`src/c/gendot.c
 
-src/c/libsciinteger_algo_la-db2int.lo: src/c/db2int.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinteger_algo_la-db2int.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinteger_algo_la-db2int.Tpo -c -o src/c/libsciinteger_algo_la-db2int.lo `test -f 'src/c/db2int.c' || echo '$(srcdir)/'`src/c/db2int.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinteger_algo_la-db2int.Tpo src/c/$(DEPDIR)/libsciinteger_algo_la-db2int.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/db2int.c' object='src/c/libsciinteger_algo_la-db2int.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-db2int.lo `test -f 'src/c/db2int.c' || echo '$(srcdir)/'`src/c/db2int.c
-
-src/c/libsciinteger_algo_la-genadd.lo: src/c/genadd.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinteger_algo_la-genadd.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinteger_algo_la-genadd.Tpo -c -o src/c/libsciinteger_algo_la-genadd.lo `test -f 'src/c/genadd.c' || echo '$(srcdir)/'`src/c/genadd.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinteger_algo_la-genadd.Tpo src/c/$(DEPDIR)/libsciinteger_algo_la-genadd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/genadd.c' object='src/c/libsciinteger_algo_la-genadd.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-genadd.lo `test -f 'src/c/genadd.c' || echo '$(srcdir)/'`src/c/genadd.c
-
 src/c/libsciinteger_algo_la-genset.lo: src/c/genset.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinteger_algo_la-genset.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinteger_algo_la-genset.Tpo -c -o src/c/libsciinteger_algo_la-genset.lo `test -f 'src/c/genset.c' || echo '$(srcdir)/'`src/c/genset.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinteger_algo_la-genset.Tpo src/c/$(DEPDIR)/libsciinteger_algo_la-genset.Plo
@@ -1234,13 +1206,6 @@ src/c/libsciinteger_algo_la-gencuprod.lo: src/c/gencuprod.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/gencuprod.c' object='src/c/libsciinteger_algo_la-gencuprod.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-gencuprod.lo `test -f 'src/c/gencuprod.c' || echo '$(srcdir)/'`src/c/gencuprod.c
-
-src/c/libsciinteger_algo_la-genbitops.lo: src/c/genbitops.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinteger_algo_la-genbitops.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinteger_algo_la-genbitops.Tpo -c -o src/c/libsciinteger_algo_la-genbitops.lo `test -f 'src/c/genbitops.c' || echo '$(srcdir)/'`src/c/genbitops.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinteger_algo_la-genbitops.Tpo src/c/$(DEPDIR)/libsciinteger_algo_la-genbitops.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/genbitops.c' object='src/c/libsciinteger_algo_la-genbitops.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-genbitops.lo `test -f 'src/c/genbitops.c' || echo '$(srcdir)/'`src/c/genbitops.c
 
 src/c/libsciinteger_algo_la-genimpl.lo: src/c/genimpl.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinteger_algo_la-genimpl.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinteger_algo_la-genimpl.Tpo -c -o src/c/libsciinteger_algo_la-genimpl.lo `test -f 'src/c/genimpl.c' || echo '$(srcdir)/'`src/c/genimpl.c

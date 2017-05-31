@@ -196,11 +196,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="db2int.c" />
     <ClCompile Include="DllmainInteger.c" />
-    <ClCompile Include="genabs.c" />
-    <ClCompile Include="genadd.c" />
-    <ClCompile Include="genbitops.c" />
     <ClCompile Include="gencheck.c" />
     <ClCompile Include="genconcatcol.c" />
     <ClCompile Include="genconcatrow.c" />
@@ -244,12 +240,8 @@
     <ResourceCompile Include="integer.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\db2int.h" />
     <ClInclude Include="..\..\includes\def.h" />
     <ClInclude Include="..\..\includes\dynlib_integer.h" />
-    <ClInclude Include="..\..\includes\genabs.h" />
-    <ClInclude Include="..\..\includes\genadd.h" />
-    <ClInclude Include="..\..\includes\genbitops.h" />
     <ClInclude Include="..\..\includes\gencheck.h" />
     <ClInclude Include="..\..\includes\genconcatcol.h" />
     <ClInclude Include="..\..\includes\genconcatrow.h" />

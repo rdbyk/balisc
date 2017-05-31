@@ -23,18 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="db2int.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="genabs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="genadd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="genbitops.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gencheck.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -154,22 +142,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\db2int.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_integer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\genabs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\genadd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\genbitops.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gencheck.h">

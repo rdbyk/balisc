@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -20,8 +21,6 @@ INTEGER_C_SOURCES = \
     src/c/geninsert1.c \
     src/c/geninsert2.c \
     src/c/gendot.c \
-    src/c/db2int.c \
-    src/c/genadd.c \
     src/c/genset.c \
     src/c/gencusum.c \
     src/c/gensubst.c \
@@ -34,7 +33,6 @@ INTEGER_C_SOURCES = \
     src/c/genisany.c \
     src/c/genmcopy.c \
     src/c/gencuprod.c \
-    src/c/genbitops.c \
     src/c/genimpl.c
 
 GATEWAY_CPP_SOURCES = \
