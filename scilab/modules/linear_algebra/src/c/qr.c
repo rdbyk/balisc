@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,6 +12,8 @@
  * along with this program.
  *
  */
+ 
+#include <math.h>
 #include <string.h> /* for memset */
 #include <stdio.h>
 
@@ -44,8 +46,6 @@ extern void C2F(zungqr)(int const * piRows, int const * piCols, int* piK, double
 
 extern void C2F(dlaset)(char const * uplo /* "U"pper, "L"ower, or full*/, int const * piRows, int const * piCols
                         , double const * pAlpha, double const * pBeta, double* pData, int const * pLDData);
-
-extern double C2F(pythag)(double *a, double *b);
 
 /* /!\ Performance considerations : deprecated lapack subroutines have been replaced by their
    more recent conterparts (introduced in version 3.0 released on June 30, 1999 )
@@ -287,7 +287,7 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
         }
         if ( lhs > 3)
         {
-            double tt = complexArg ? C2F(pythag)(pdblR, pdblR + 1) : Abs(*pdblR) ;
+            double tt = complexArg ? hypot(pdblR[0], pdblR[1]) : Abs(*pdblR) ;
             if ( dblTol < 0) /* /!\ original Frotran code does strict fp comparison with -1.0 */
             {
                 dblTol = Max(iRows, iCols) * nc_eps_machine() * tt;
@@ -298,7 +298,7 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
                 int diagIncrement = (iRows + 1) * (complexArg ? 2 : 1);
                 for (j = 0; (j != Min(iRows, iCols)) ; ++j, ptrDiagR += diagIncrement, ++k)
                 {
-                    if ((complexArg ? C2F(pythag)(ptrDiagR, ptrDiagR + 1) : Abs(*ptrDiagR)) < dblTol)
+                    if ((complexArg ? hypot(ptrDiagR[0], ptrDiagR[1]) : Abs(*ptrDiagR)) < dblTol)
                     {
                         break;
                     }

@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -12,6 +12,9 @@
  * along with this program.
  *
  */
+ 
+#include <math.h>
+
 #include "machine.h"
 #include "doublecomplex.h"
 #include "sci_malloc.h"
@@ -21,8 +24,6 @@
 
 extern void C2F(zgetrf)(int const* m, int const* n, doublecomplex* a, int const* ldA, int* iPiv, int* info);
 extern void C2F(dgetrf)(int const* m, int const* n, double* a, int const* ldA, int* iPiv, int* info);
-
-extern double C2F(pythag)(double *a, double *b); /* complex Abs */
 
 int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg, int* piExponent)
 {
@@ -82,15 +83,15 @@ int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg,
                         *pMantissaImg = a * tmp.i + b * tmp.r;
                         if (piExponent)
                         {
-                            if (C2F(pythag)(pMantissaReal, pMantissaImg) == 0.) /* original Fortran code does the fp strict compare */
+                            if (hypot(*pMantissaReal, *pMantissaImg) == 0.) /* original Fortran code does the fp strict compare */
                             {
                                 break;
                             }
-                            for (; C2F(pythag)(pMantissaReal, pMantissaImg) < 1 ; *pMantissaReal *= base, *pMantissaImg *= base, --(*piExponent))
+                            for (; hypot(*pMantissaReal, *pMantissaImg) < 1 ; *pMantissaReal *= base, *pMantissaImg *= base, --(*piExponent))
                             {
                                 ;
                             }
-                            for (; C2F(pythag)(pMantissaReal, pMantissaImg) > base; *pMantissaReal /= base,  *pMantissaImg /= base, ++(*piExponent))
+                            for (; hypot(*pMantissaReal, *pMantissaImg) > base; *pMantissaReal /= base,  *pMantissaImg /= base, ++(*piExponent))
                             {
                                 ;
                             }
