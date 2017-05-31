@@ -1,41 +1,14 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
 INTEGER_C_SOURCES = \
-    src/c/genconcatcol.c \
-    src/c/genprod.c \
-    src/c/genrdiv.c \
-    src/c/genextrac1.c \
-    src/c/genextrac2.c \
-    src/c/gencopy.c \
     src/c/gentril.c \
-    src/c/gencheck.c \
     src/c/tpconv.c \
-    src/c/genscal.c \
     src/c/gentriu.c \
-    src/c/genvmul.c \
-    src/c/genconcatrow.c \
-    src/c/geninsert1.c \
-    src/c/geninsert2.c \
-    src/c/gendot.c \
-    src/c/db2int.c \
-    src/c/genadd.c \
-    src/c/genset.c \
-    src/c/gencusum.c \
-    src/c/gensubst.c \
-    src/c/genmdsp.c \
-    src/c/gensum.c \
-    src/c/genmmul.c \
-    src/c/genmsum.c \
-    src/c/genmprod.c \
-    src/c/genmtran.c \
-    src/c/genisany.c \
-    src/c/genmcopy.c \
-    src/c/gencuprod.c \
-    src/c/genbitops.c \
-    src/c/genimpl.c
+    src/c/genvmul.c
 
 GATEWAY_CPP_SOURCES = \
     src/cpp/DllmainInteger_gw.cpp \
@@ -93,7 +66,7 @@ modulename=integer
 
 #### integer : Conf files ####
 libsciinteger_la_rootdir = $(mydatadir)
-libsciinteger_la_root_DATA =  license.txt
+libsciinteger_la_root_DATA = license.txt
 
 
 #### integer : init scripts ####
