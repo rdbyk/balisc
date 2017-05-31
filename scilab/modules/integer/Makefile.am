@@ -5,19 +5,16 @@
 # This file is distributed under the same license as the Scilab package.
 
 INTEGER_C_SOURCES = \
-    src/c/genconcatcol.c \
     src/c/genprod.c \
     src/c/genrdiv.c \
     src/c/genextrac1.c \
     src/c/genextrac2.c \
     src/c/gencopy.c \
     src/c/gentril.c \
-    src/c/gencheck.c \
     src/c/tpconv.c \
     src/c/genscal.c \
     src/c/gentriu.c \
     src/c/genvmul.c \
-    src/c/genconcatrow.c \
     src/c/geninsert1.c \
     src/c/geninsert2.c \
     src/c/gendot.c \

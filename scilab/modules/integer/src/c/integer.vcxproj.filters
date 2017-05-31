@@ -23,15 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gencheck.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="genconcatcol.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="genconcatrow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gencopy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -146,15 +137,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_integer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gencheck.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\genconcatcol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\genconcatrow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gencopy.h">

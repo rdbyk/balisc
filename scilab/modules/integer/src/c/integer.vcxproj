@@ -197,9 +197,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DllmainInteger.c" />
-    <ClCompile Include="gencheck.c" />
-    <ClCompile Include="genconcatcol.c" />
-    <ClCompile Include="genconcatrow.c" />
     <ClCompile Include="gencopy.c" />
     <ClCompile Include="gencuprod.c" />
     <ClCompile Include="gencusum.c" />
@@ -242,9 +239,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\def.h" />
     <ClInclude Include="..\..\includes\dynlib_integer.h" />
-    <ClInclude Include="..\..\includes\gencheck.h" />
-    <ClInclude Include="..\..\includes\genconcatcol.h" />
-    <ClInclude Include="..\..\includes\genconcatrow.h" />
     <ClInclude Include="..\..\includes\gencopy.h" />
     <ClInclude Include="..\..\includes\gencuprod.h" />
     <ClInclude Include="..\..\includes\gencusum.h" />
