@@ -231,9 +231,6 @@
     <ClCompile Include="wacos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wasin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wasum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -558,9 +555,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wacos.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wasin.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wasum.f">

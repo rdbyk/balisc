@@ -220,7 +220,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/coef.f \
     src/fortran/dwdiv.f \
     src/fortran/arcosh.f \
-    src/fortran/wasin.f \
     src/fortran/wexpm1.f \
     src/fortran/ddpowe.f \
     src/fortran/dmprod.f \
