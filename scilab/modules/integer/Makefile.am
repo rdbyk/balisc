@@ -4,12 +4,6 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-INTEGER_C_SOURCES = \
-    src/c/gentril.c \
-    src/c/tpconv.c \
-    src/c/gentriu.c \
-    src/c/genvmul.c
-
 GATEWAY_CPP_SOURCES = \
     src/cpp/DllmainInteger_gw.cpp \
     src/cpp/iconvert_converter.cpp \
@@ -41,33 +35,22 @@ libsciinteger_la_CPPFLAGS = \
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciinteger.la
-noinst_LTLIBRARIES = libsciinteger-algo.la
 else
-noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
+noinst_LTLIBRARIES = libsciinteger.la
 endif
 
-
-libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES)
 libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libsciinteger_algo_la_CPPFLAGS = $(libsciinteger_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC=  $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciinteger_la_CPPFLAGS)
-
-# cyclic $(top_builddir)/modules/polynomials/libscipolynomials.la
-libsciinteger_la_LIBADD = libsciinteger-algo.la
-
-
 
 #### Target ######
 modulename=integer
 
-
 #### integer : Conf files ####
 libsciinteger_la_rootdir = $(mydatadir)
 libsciinteger_la_root_DATA = license.txt
-
 
 #### integer : init scripts ####
 libsciinteger_la_etcdir = $(mydatadir)/etc

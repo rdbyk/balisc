@@ -166,30 +166,21 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciinteger_la_rootdir)" \
 	"$(DESTDIR)$(libsciinteger_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libsciinteger_algo_la_LIBADD =
+libsciinteger_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/c/libsciinteger_algo_la-gentril.lo \
-	src/c/libsciinteger_algo_la-tpconv.lo \
-	src/c/libsciinteger_algo_la-gentriu.lo \
-	src/c/libsciinteger_algo_la-genvmul.lo
-am_libsciinteger_algo_la_OBJECTS = $(am__objects_1)
-libsciinteger_algo_la_OBJECTS = $(am_libsciinteger_algo_la_OBJECTS)
-AM_V_lt = $(am__v_lt_@AM_V@)
-am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
-am__v_lt_0 = --silent
-am__v_lt_1 = 
-@MAINTAINER_MODE_FALSE@am_libsciinteger_algo_la_rpath =
-@MAINTAINER_MODE_TRUE@am_libsciinteger_algo_la_rpath =
-libsciinteger_la_DEPENDENCIES = libsciinteger-algo.la
-am__objects_2 = src/cpp/libsciinteger_la-DllmainInteger_gw.lo \
+am__objects_1 = src/cpp/libsciinteger_la-DllmainInteger_gw.lo \
 	src/cpp/libsciinteger_la-iconvert_converter.lo \
 	sci_gateway/cpp/libsciinteger_la-integer_gw.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_inttype.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_double.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_int.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_iconvert.lo
-am_libsciinteger_la_OBJECTS = $(am__objects_2)
+am_libsciinteger_la_OBJECTS = $(am__objects_1)
 libsciinteger_la_OBJECTS = $(am_libsciinteger_la_OBJECTS)
+AM_V_lt = $(am__v_lt_@AM_V@)
+am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
+am__v_lt_0 = --silent
+am__v_lt_1 = 
 @MAINTAINER_MODE_FALSE@am_libsciinteger_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciinteger_la_rpath = -rpath $(pkglibdir)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -208,24 +199,6 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CFLAGS) $(CFLAGS)
-AM_V_CC = $(am__v_CC_@AM_V@)
-am__v_CC_ = $(am__v_CC_@AM_DEFAULT_V@)
-am__v_CC_0 = @echo "  CC      " $@;
-am__v_CC_1 = 
-CCLD = $(CC)
-LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-AM_V_CCLD = $(am__v_CCLD_@AM_V@)
-am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
-am__v_CCLD_0 = @echo "  CCLD    " $@;
-am__v_CCLD_1 = 
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -244,9 +217,8 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(libsciinteger_algo_la_SOURCES) $(libsciinteger_la_SOURCES)
-DIST_SOURCES = $(libsciinteger_algo_la_SOURCES) \
-	$(libsciinteger_la_SOURCES)
+SOURCES = $(libsciinteger_la_SOURCES)
+DIST_SOURCES = $(libsciinteger_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -566,12 +538,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-INTEGER_C_SOURCES = \
-    src/c/gentril.c \
-    src/c/tpconv.c \
-    src/c/gentriu.c \
-    src/c/genvmul.c
-
 GATEWAY_CPP_SOURCES = \
     src/cpp/DllmainInteger_gw.cpp \
     src/cpp/iconvert_converter.cpp \
@@ -602,18 +568,12 @@ libsciinteger_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciinteger.la
-@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
-@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libsciinteger-algo.la
-libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES)
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciinteger.la
 libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libsciinteger_algo_la_CPPFLAGS = $(libsciinteger_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC = $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciinteger_la_CPPFLAGS)
-
-# cyclic $(top_builddir)/modules/polynomials/libscipolynomials.la
-libsciinteger_la_LIBADD = libsciinteger-algo.la
 
 #### Target ######
 modulename = integer
@@ -708,7 +668,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
+.SUFFIXES: .sci .bin .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -786,23 +746,6 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
-src/c/$(am__dirstamp):
-	@$(MKDIR_P) src/c
-	@: > src/c/$(am__dirstamp)
-src/c/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/c/$(DEPDIR)
-	@: > src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciinteger_algo_la-gentril.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciinteger_algo_la-tpconv.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciinteger_algo_la-gentriu.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciinteger_algo_la-genvmul.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-
-libsciinteger-algo.la: $(libsciinteger_algo_la_OBJECTS) $(libsciinteger_algo_la_DEPENDENCIES) $(EXTRA_libsciinteger_algo_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) $(am_libsciinteger_algo_la_rpath) $(libsciinteger_algo_la_OBJECTS) $(libsciinteger_algo_la_LIBADD) $(LIBS)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp
 	@: > src/cpp/$(am__dirstamp)
@@ -842,8 +785,6 @@ mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.lo
-	-rm -f src/c/*.$(OBJEXT)
-	-rm -f src/c/*.lo
 	-rm -f src/cpp/*.$(OBJEXT)
 	-rm -f src/cpp/*.lo
 
@@ -855,64 +796,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_iconvert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_inttype.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-gentril.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-gentriu.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-genvmul.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-tpconv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciinteger_la-DllmainInteger_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciinteger_la-iconvert_converter.Plo@am__quote@
-
-.c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
-
-.c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
-@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-.c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-src/c/libsciinteger_algo_la-gentril.lo: src/c/gentril.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinteger_algo_la-gentril.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinteger_algo_la-gentril.Tpo -c -o src/c/libsciinteger_algo_la-gentril.lo `test -f 'src/c/gentril.c' || echo '$(srcdir)/'`src/c/gentril.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinteger_algo_la-gentril.Tpo src/c/$(DEPDIR)/libsciinteger_algo_la-gentril.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/gentril.c' object='src/c/libsciinteger_algo_la-gentril.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-gentril.lo `test -f 'src/c/gentril.c' || echo '$(srcdir)/'`src/c/gentril.c
-
-src/c/libsciinteger_algo_la-tpconv.lo: src/c/tpconv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinteger_algo_la-tpconv.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinteger_algo_la-tpconv.Tpo -c -o src/c/libsciinteger_algo_la-tpconv.lo `test -f 'src/c/tpconv.c' || echo '$(srcdir)/'`src/c/tpconv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinteger_algo_la-tpconv.Tpo src/c/$(DEPDIR)/libsciinteger_algo_la-tpconv.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/tpconv.c' object='src/c/libsciinteger_algo_la-tpconv.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-tpconv.lo `test -f 'src/c/tpconv.c' || echo '$(srcdir)/'`src/c/tpconv.c
-
-src/c/libsciinteger_algo_la-gentriu.lo: src/c/gentriu.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinteger_algo_la-gentriu.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinteger_algo_la-gentriu.Tpo -c -o src/c/libsciinteger_algo_la-gentriu.lo `test -f 'src/c/gentriu.c' || echo '$(srcdir)/'`src/c/gentriu.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinteger_algo_la-gentriu.Tpo src/c/$(DEPDIR)/libsciinteger_algo_la-gentriu.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/gentriu.c' object='src/c/libsciinteger_algo_la-gentriu.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-gentriu.lo `test -f 'src/c/gentriu.c' || echo '$(srcdir)/'`src/c/gentriu.c
-
-src/c/libsciinteger_algo_la-genvmul.lo: src/c/genvmul.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciinteger_algo_la-genvmul.lo -MD -MP -MF src/c/$(DEPDIR)/libsciinteger_algo_la-genvmul.Tpo -c -o src/c/libsciinteger_algo_la-genvmul.lo `test -f 'src/c/genvmul.c' || echo '$(srcdir)/'`src/c/genvmul.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciinteger_algo_la-genvmul.Tpo src/c/$(DEPDIR)/libsciinteger_algo_la-genvmul.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/genvmul.c' object='src/c/libsciinteger_algo_la-genvmul.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-genvmul.lo `test -f 'src/c/genvmul.c' || echo '$(srcdir)/'`src/c/genvmul.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -993,7 +878,6 @@ mostlyclean-libtool:
 clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
-	-rm -rf src/c/.libs src/c/_libs
 	-rm -rf src/cpp/.libs src/cpp/_libs
 install-libsciinteger_la_etcDATA: $(libsciinteger_la_etc_DATA)
 	@$(NORMAL_INSTALL)
@@ -1177,8 +1061,6 @@ distclean-generic:
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
-	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/c/$(am__dirstamp)
 	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/cpp/$(am__dirstamp)
 
@@ -1191,7 +1073,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1239,7 +1121,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
