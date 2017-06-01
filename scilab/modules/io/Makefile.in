@@ -16,6 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -170,8 +171,7 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libsciio_algo_la-getpidc.lo \
 	src/c/libsciio_algo_la-setenvc.lo \
 	src/c/libsciio_algo_la-systemc.lo \
-	src/c/libsciio_algo_la-getenvc.lo \
-	src/c/libsciio_algo_la-v2cuniterror.lo
+	src/c/libsciio_algo_la-getenvc.lo
 am__objects_2 = src/cpp/libsciio_algo_la-io_gw.lo \
 	src/cpp/libsciio_algo_la-loadlib.lo \
 	src/cpp/libsciio_algo_la-readwrite.lo
@@ -580,8 +580,7 @@ IO_C_SOURCES = \
     src/c/getpidc.c \
     src/c/setenvc.c \
     src/c/systemc.c \
-    src/c/getenvc.c \
-    src/c/v2cuniterror.c
+    src/c/getenvc.c
 
 IO_CPP_SOURCES = \
     src/cpp/io_gw.cpp \
@@ -832,8 +831,6 @@ src/c/libsciio_algo_la-systemc.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciio_algo_la-getenvc.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciio_algo_la-v2cuniterror.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp
 	@: > src/cpp/$(am__dirstamp)
@@ -942,7 +939,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciio_algo_la-getpidc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciio_algo_la-setenvc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciio_algo_la-systemc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciio_algo_la-v2cuniterror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciio_algo_la-io_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciio_algo_la-loadlib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciio_algo_la-readwrite.Plo@am__quote@
@@ -998,13 +994,6 @@ src/c/libsciio_algo_la-getenvc.lo: src/c/getenvc.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getenvc.c' object='src/c/libsciio_algo_la-getenvc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciio_algo_la-getenvc.lo `test -f 'src/c/getenvc.c' || echo '$(srcdir)/'`src/c/getenvc.c
-
-src/c/libsciio_algo_la-v2cuniterror.lo: src/c/v2cuniterror.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciio_algo_la-v2cuniterror.lo -MD -MP -MF src/c/$(DEPDIR)/libsciio_algo_la-v2cuniterror.Tpo -c -o src/c/libsciio_algo_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciio_algo_la-v2cuniterror.Tpo src/c/$(DEPDIR)/libsciio_algo_la-v2cuniterror.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/v2cuniterror.c' object='src/c/libsciio_algo_la-v2cuniterror.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciio_algo_la-v2cuniterror.lo `test -f 'src/c/v2cuniterror.c' || echo '$(srcdir)/'`src/c/v2cuniterror.c
 
 sci_gateway/c/libsciio_la-sci_read4b.lo: sci_gateway/c/sci_read4b.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciio_la-sci_read4b.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciio_la-sci_read4b.Tpo -c -o sci_gateway/c/libsciio_la-sci_read4b.lo `test -f 'sci_gateway/c/sci_read4b.c' || echo '$(srcdir)/'`sci_gateway/c/sci_read4b.c
