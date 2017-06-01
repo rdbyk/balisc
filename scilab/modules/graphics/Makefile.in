@@ -18,8 +18,8 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2010 - Pierre MARECHAL
-#
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -528,7 +528,6 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/libscigraphics_algo_la-StringBox.lo \
 	src/c/libscigraphics_algo_la-axesScale.lo \
 	src/c/libscigraphics_algo_la-TerminateGraphics.lo \
-	src/c/libscigraphics_algo_la-periEmpty.lo \
 	src/c/libscigraphics_algo_la-scitokenize.lo \
 	src/c/libscigraphics_algo_la-get_ticks_utils.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_ambient_color_property.lo \
@@ -1379,7 +1378,6 @@ GRAPHICS_C_SOURCES = \
     src/c/StringBox.c \
     src/c/axesScale.c \
     src/c/TerminateGraphics.c \
-    src/c/periEmpty.c \
     src/c/scitokenize.c \
     src/c/get_ticks_utils.c \
     src/c/getHandleProperty/get_ambient_color_property.c \
@@ -2774,8 +2772,6 @@ src/c/libscigraphics_algo_la-axesScale.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-TerminateGraphics.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscigraphics_algo_la-periEmpty.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-scitokenize.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-get_ticks_utils.lo:  \
@@ -3179,7 +3175,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-loadTextRenderingAPI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-math_graphics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-name2rgb.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-periEmpty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-pixel_mode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-sciCall.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-sciMatrix.Plo@am__quote@
@@ -5985,13 +5980,6 @@ src/c/libscigraphics_algo_la-TerminateGraphics.lo: src/c/TerminateGraphics.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/TerminateGraphics.c' object='src/c/libscigraphics_algo_la-TerminateGraphics.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-TerminateGraphics.lo `test -f 'src/c/TerminateGraphics.c' || echo '$(srcdir)/'`src/c/TerminateGraphics.c
-
-src/c/libscigraphics_algo_la-periEmpty.lo: src/c/periEmpty.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-periEmpty.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-periEmpty.Tpo -c -o src/c/libscigraphics_algo_la-periEmpty.lo `test -f 'src/c/periEmpty.c' || echo '$(srcdir)/'`src/c/periEmpty.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscigraphics_algo_la-periEmpty.Tpo src/c/$(DEPDIR)/libscigraphics_algo_la-periEmpty.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/periEmpty.c' object='src/c/libscigraphics_algo_la-periEmpty.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-periEmpty.lo `test -f 'src/c/periEmpty.c' || echo '$(srcdir)/'`src/c/periEmpty.c
 
 src/c/libscigraphics_algo_la-scitokenize.lo: src/c/scitokenize.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-scitokenize.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-scitokenize.Tpo -c -o src/c/libscigraphics_algo_la-scitokenize.lo `test -f 'src/c/scitokenize.c' || echo '$(srcdir)/'`src/c/scitokenize.c

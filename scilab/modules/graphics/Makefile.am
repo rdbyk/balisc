@@ -2,8 +2,8 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2010 - Pierre MARECHAL
-#
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -380,7 +380,6 @@ GRAPHICS_C_SOURCES = \
     src/c/StringBox.c \
     src/c/axesScale.c \
     src/c/TerminateGraphics.c \
-    src/c/periEmpty.c \
     src/c/scitokenize.c \
     src/c/get_ticks_utils.c \
     src/c/getHandleProperty/get_ambient_color_property.c \
