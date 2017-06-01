@@ -98,8 +98,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphics", "modules\graphic
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D} = {DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integer", "modules\integer\src\c\integer.vcxproj", "{C7865CAA-EC7C-41EB-8324-2B81C384CA20}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui", "modules\gui\src\c\gui.vcxproj", "{45CA5B12-7601-4968-AE16-16069FD1A152}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optimization", "modules\optimization\src\c\optimization.vcxproj", "{425B887B-9FC5-4CD2-B632-DBFC000E3E25}"
