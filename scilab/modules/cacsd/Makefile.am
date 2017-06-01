@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -129,10 +130,8 @@ CACSD_FORTRAN_SOURCES = \
     src/fortran/optml2.f \
     src/fortran/wdegre.f \
     src/fortran/phi.f \
-    src/fortran/ricd.f \
     src/fortran/shrslv.f \
     src/fortran/qhesz.f \
-    src/fortran/rilac.f \
     src/fortran/arl2.f \
     src/fortran/wesidu.f \
     src/fortran/dzdivq.f \
