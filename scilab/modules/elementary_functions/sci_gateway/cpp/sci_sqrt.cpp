@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_sqrt(types::typed_list &in, int _iRetCount, typ
             double* pI = input->getImg();
             for (int i = 0; i < size; ++i)
             {
-                std::complex<double> z(std::exp(std::complex<double>(pR[i], pI[i])));
+                std::complex<double> z(std::sqrt(std::complex<double>(pR[i], pI[i])));
                 pOR[i] = z.real();
                 pOI[i] = z.imag();
             }
@@ -87,7 +87,7 @@ types::Function::ReturnValue sci_sqrt(types::typed_list &in, int _iRetCount, typ
         {
             for (int i = 0; i < size; ++i)
             {
-                std::complex<double> z(std::exp(std::complex<double>(pR[i], 0)));
+                std::complex<double> z(std::sqrt(std::complex<double>(pR[i], 0)));
                 pOR[i] = z.real();
                 pOI[i] = z.imag();
             }
