@@ -13,6 +13,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -92,10 +93,11 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
             pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), true);
             double* pOutR = pDblOut->get();
             double* pOutI = pDblOut->getImg();
-            const double zero = 0;
             for (int i = 0; i < size; i++)
             {
-                std::complex<double> z(std::asin(std::complex<double>(pInR[i], zero)));
+                double x = pInR[i];
+                
+                std::complex<double> z(std::asin(std::complex<double>(x, std::copysign(0, -x))));
                 pOutR[i] = z.real();
                 pOutI[i] = z.imag();
             }
