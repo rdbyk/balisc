@@ -89,8 +89,6 @@
 		<File RelativePath=".\qhesz.f"/>
 		<File RelativePath=".\qitz.f"/>
 		<File RelativePath=".\qvalz.f"/>
-		<File RelativePath=".\ricd.f"/>
-		<File RelativePath=".\rilac.f"/>
 		<File RelativePath=".\rootgp.f"/>
 		<File RelativePath=".\rtitr.f"/>
 		<File RelativePath=".\scapol.f"/>

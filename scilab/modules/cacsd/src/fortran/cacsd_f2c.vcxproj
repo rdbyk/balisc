@@ -322,8 +322,6 @@ cd ..
     <ClCompile Include="qhesz.c" />
     <ClCompile Include="qitz.c" />
     <ClCompile Include="qvalz.c" />
-    <ClCompile Include="ricd.c" />
-    <ClCompile Include="rilac.c" />
     <ClCompile Include="rootgp.c" />
     <ClCompile Include="rtitr.c" />
     <ClCompile Include="scapol.c" />
@@ -362,8 +360,6 @@ cd ..
     <f2c_rule Include="qhesz.f" />
     <f2c_rule Include="qitz.f" />
     <f2c_rule Include="qvalz.f" />
-    <f2c_rule Include="ricd.f" />
-    <f2c_rule Include="rilac.f" />
     <f2c_rule Include="rootgp.f" />
     <f2c_rule Include="rtitr.f" />
     <f2c_rule Include="scapol.f" />
