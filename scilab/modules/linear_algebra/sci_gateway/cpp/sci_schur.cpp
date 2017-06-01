@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -183,7 +183,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         }
         case 12: // double string
         {
-            if (_iRetCount >= 2 && _iRetCount <= 3)
+            if (_iRetCount < 2 || _iRetCount > 3)
             {
                 Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "schur", 2, 3);
                 return types::Function::Error;
