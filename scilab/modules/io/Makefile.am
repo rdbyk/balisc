@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -8,8 +9,7 @@ IO_C_SOURCES = \
     src/c/getpidc.c \
     src/c/setenvc.c \
     src/c/systemc.c \
-    src/c/getenvc.c \
-    src/c/v2cuniterror.c
+    src/c/getenvc.c
 
 IO_CPP_SOURCES = \
     src/cpp/io_gw.cpp \

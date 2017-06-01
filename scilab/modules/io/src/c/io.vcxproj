@@ -200,7 +200,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="getpidc.c" />
     <ClCompile Include="setenvc.c" />
     <ClCompile Include="systemc.c" />
-    <ClCompile Include="v2cuniterror.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_io.h" />
@@ -210,7 +209,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="..\..\includes\gw_io.h" />
     <ClInclude Include="..\..\includes\setenvc.h" />
     <ClInclude Include="..\..\includes\systemc.h" />
-    <ClInclude Include="v2cuniterror.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\io.pot" />

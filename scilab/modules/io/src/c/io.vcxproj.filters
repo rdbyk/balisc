@@ -38,9 +38,6 @@
     <ClCompile Include="systemc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="v2cuniterror.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\loadlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -62,9 +59,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\systemc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="v2cuniterror.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\loadlib.hxx">
