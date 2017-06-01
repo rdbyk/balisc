@@ -30,34 +30,13 @@
     <ClCompile Include="calcsc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ddmpev.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dimin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dmpad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dmpadj.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dmpcle.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dmpcnc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dmpext.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dmpins.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dmpmu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dmptra.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dpmul.c">
@@ -81,9 +60,6 @@
     <ClCompile Include="..\..\..\elementary_functions\src\c\f2c_workaround.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fxshfr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="horner.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,22 +69,10 @@
     <ClCompile Include="impcnc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="impext.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="impins.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imptra.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mpdegr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mpdiag.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mpinsp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mptri.c">
@@ -121,9 +85,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="quad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="quadit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="quadsd.c">
@@ -144,31 +105,10 @@
     <ClCompile Include="sfact2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wdmpad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wdmpmu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wmpad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wmpadj.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wmpcle.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wmpcnc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wmpins.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wmpmu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wmptra.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wpmul.c">
@@ -181,9 +121,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wprxc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="writebufsfact.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="chkvar.c">
@@ -200,22 +137,7 @@
     <f2c_rule Include="calcsc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="ddmpev.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dimin.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmpad.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmpadj.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dmpcle.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmpcnc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dmpext.f">
@@ -248,9 +170,6 @@
     <f2c_rule Include="dwmpmu.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="fxshfr.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="horner.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -260,22 +179,10 @@
     <f2c_rule Include="impcnc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="impext.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="impins.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="imptra.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="mpdegr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="mpdiag.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="mpinsp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="mptri.f">
@@ -288,9 +195,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="quad.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="quadit.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="quadsd.f">
@@ -311,16 +215,7 @@
     <f2c_rule Include="sfact2.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="wdmpad.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wdmpmu.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="wmpad.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wmpadj.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wmpcle.f">
@@ -332,15 +227,6 @@
     <f2c_rule Include="wmpins.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="wmpmu.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wmptra.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wpmul.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="wpmul1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -348,9 +234,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wprxc.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="writebufsfact.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="chkvar.f">
