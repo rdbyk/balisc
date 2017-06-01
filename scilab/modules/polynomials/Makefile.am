@@ -1,63 +1,43 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
 POLYNOMIALS_FORTRAN_SOURCES = \
     src/fortran/residu.f \
-    src/fortran/imptra.f \
-    src/fortran/dmpadj.f \
-    src/fortran/impins.f \
     src/fortran/dpmul1.f \
     src/fortran/wprxc.f \
-    src/fortran/dmpcnc.f \
-    src/fortran/wmpmu.f \
-    src/fortran/mpinsp.f \
-    src/fortran/impext.f \
     src/fortran/recbez.f \
     src/fortran/sfact1.f \
     src/fortran/dpodiv.f \
-    src/fortran/dmptra.f \
-    src/fortran/dmpins.f \
     src/fortran/dpsimp.f \
     src/fortran/dmpext.f \
     src/fortran/wpmul.f \
     src/fortran/bezstp.f \
-    src/fortran/wmpad.f \
     src/fortran/dprxc.f \
     src/fortran/quadsd.f \
-    src/fortran/wmpadj.f \
     src/fortran/dmpmu.f \
     src/fortran/wpmul1.f \
     src/fortran/wmpcnc.f \
     src/fortran/mptri.f \
     src/fortran/horner.f \
     src/fortran/idegre.f \
-    src/fortran/fxshfr.f \
     src/fortran/mpdiag.f \
     src/fortran/dmpcle.f \
     src/fortran/wpodiv.f \
-    src/fortran/wdmpmu.f \
-    src/fortran/wmptra.f \
-    src/fortran/wmpins.f \
     src/fortran/mpdegr.f \
-    src/fortran/ddmpev.f \
     src/fortran/realit.f \
     src/fortran/dpmul.f \
     src/fortran/sfact2.f \
-    src/fortran/dmpad.f \
     src/fortran/nextk.f \
     src/fortran/blktit.f \
-    src/fortran/dimin.f \
     src/fortran/newest.f \
     src/fortran/dwmpmu.f \
     src/fortran/impcnc.f \
-    src/fortran/wdmpad.f \
     src/fortran/wmpcle.f \
-    src/fortran/quadit.f \
     src/fortran/quad.f \
     src/fortran/calcsc.f \
-    src/fortran/writebufsfact.f \
     src/fortran/chkvar.f
 
 POLYNOMIALS_CXX_SOURCES = \
