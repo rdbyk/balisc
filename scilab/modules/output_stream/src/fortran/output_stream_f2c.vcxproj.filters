@@ -36,9 +36,6 @@
     <ClCompile Include="formatnumber.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lspdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wmdsp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,10 +53,7 @@
     <f2c_rule Include="formatnumber.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="lspdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="strdsp.f">
+    <f2c_rule Include="wmdsp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

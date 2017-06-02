@@ -58,7 +58,6 @@
 		<File RelativePath=".\fmt.f"/>
 		<File RelativePath=".\fmttyp.f"/>
 		<File RelativePath=".\formatnumber.f"/>
-		<File RelativePath=".\lspdsp.f"/>
 		<File RelativePath=".\wmdsp.f"/>
 		<File RelativePath="..\..\Makefile.am"/>
 		<File RelativePath="..\..\sci_gateway\output_stream_gateway.xml"/></Files>
