@@ -271,7 +271,6 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\cpp\DiaryList.hxx" />
     <ClInclude Include="..\cpp\getDiaryDate.hxx" />
     <ClInclude Include="..\cpp\getUniqueFilename.hxx" />
-    <ClInclude Include="error_internal.h" />
     <ClInclude Include="msgout.h" />
     <ClInclude Include="msgstore.h" />
     <ClInclude Include="msgstxt.h" />
