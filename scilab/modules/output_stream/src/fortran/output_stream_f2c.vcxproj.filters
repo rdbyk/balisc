@@ -21,25 +21,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="basouttofile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dldsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dmdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dmdspf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dmpdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dmrdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dspdsp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\c\floor_f2c.c">
@@ -54,36 +36,12 @@
     <ClCompile Include="formatnumber.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lspdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="strdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wmdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wspdsp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="basouttofile.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dmdspf.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmpdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmrdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dspdsp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="fmt.f">
@@ -95,19 +53,7 @@
     <f2c_rule Include="formatnumber.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="lspdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="strdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="wmdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wspdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dldsp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

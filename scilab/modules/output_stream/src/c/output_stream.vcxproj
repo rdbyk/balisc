@@ -213,7 +213,6 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="..\cpp\basout.cpp" />
     <ClCompile Include="..\cpp\getUniqueFilename.cpp" />
     <ClCompile Include="..\cpp\Sciwarning.cpp" />
-    <ClCompile Include="cerro.c" />
     <ClCompile Include="..\cpp\Diary.cpp" />
     <ClCompile Include="..\cpp\diary_manager.cpp" />
     <ClCompile Include="..\cpp\DiaryList.cpp" />
@@ -221,13 +220,11 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="erro.c" />
     <ClCompile Include="error.c" />
     <ClCompile Include="..\cpp\getDiaryDate.cpp" />
-    <ClCompile Include="msgout.c" />
     <ClCompile Include="msgs.c" />
     <ClCompile Include="msgstore.c" />
     <ClCompile Include="msgstxt.c" />
     <ClCompile Include="Scierror.c" />
     <ClCompile Include="sciprint.c" />
-    <ClCompile Include="sciprint_full.c" />
     <ClCompile Include="..\cpp\scilabWrite.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -254,7 +251,6 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\basout.h" />
-    <ClInclude Include="..\..\includes\cerro.h" />
     <ClInclude Include="..\..\includes\diary.h" />
     <ClInclude Include="..\..\includes\DiaryModesEnum.hxx" />
     <ClInclude Include="..\..\includes\diary_manager.hxx" />
@@ -267,15 +263,11 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\..\includes\scilabWrite.hxx" />
     <ClInclude Include="..\..\includes\scilab_sprintf.hxx" />
     <ClInclude Include="..\..\includes\sciprint.h" />
-    <ClInclude Include="..\..\includes\sciprint_full.h" />
     <ClInclude Include="..\..\includes\Sciwarning.h" />
     <ClInclude Include="..\cpp\Diary.hxx" />
     <ClInclude Include="..\cpp\DiaryList.hxx" />
     <ClInclude Include="..\cpp\getDiaryDate.hxx" />
     <ClInclude Include="..\cpp\getUniqueFilename.hxx" />
-    <ClInclude Include="errorTable.h" />
-    <ClInclude Include="error_internal.h" />
-    <ClInclude Include="msgout.h" />
     <ClInclude Include="msgstore.h" />
     <ClInclude Include="msgstxt.h" />
   </ItemGroup>

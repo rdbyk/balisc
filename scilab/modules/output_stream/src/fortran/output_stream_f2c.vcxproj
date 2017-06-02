@@ -260,37 +260,19 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="basouttofile.c" />
-    <ClCompile Include="dldsp.c" />
-    <ClCompile Include="dmdsp.c" />
     <ClCompile Include="dmdspf.c" />
-    <ClCompile Include="dmpdsp.c" />
-    <ClCompile Include="dmrdsp.c" />
-    <ClCompile Include="dspdsp.c" />
     <ClCompile Include="..\c\floor_f2c.c" />
     <ClCompile Include="fmt.c" />
     <ClCompile Include="fmttyp.c" />
     <ClCompile Include="formatnumber.c" />
-    <ClCompile Include="lspdsp.c" />
-    <ClCompile Include="strdsp.c" />
     <ClCompile Include="wmdsp.c" />
-    <ClCompile Include="wspdsp.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="basouttofile.f" />
-    <f2c_rule Include="dldsp.f" />
-    <f2c_rule Include="dmdsp.f" />
     <f2c_rule Include="dmdspf.f" />
-    <f2c_rule Include="dmpdsp.f" />
-    <f2c_rule Include="dmrdsp.f" />
-    <f2c_rule Include="dspdsp.f" />
     <f2c_rule Include="fmt.f" />
     <f2c_rule Include="fmttyp.f" />
     <f2c_rule Include="formatnumber.f" />
-    <f2c_rule Include="lspdsp.f" />
-    <f2c_rule Include="strdsp.f" />
     <f2c_rule Include="wmdsp.f" />
-    <f2c_rule Include="wspdsp.f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Elementary_functions_f_Import.def" />

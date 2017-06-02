@@ -26,9 +26,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cerro.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\Diary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -50,9 +47,6 @@
     <ClCompile Include="..\cpp\getDiaryDate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="msgout.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="msgstore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,9 +57,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sciprint.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sciprint_full.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\scilabWrite.cpp">
@@ -110,9 +101,6 @@
     <ClInclude Include="..\..\includes\basout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\cerro.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\diary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -141,18 +129,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\sciprint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\sciprint_full.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="error_internal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="errorTable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="msgout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="msgstore.h">

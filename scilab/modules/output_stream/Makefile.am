@@ -2,8 +2,8 @@
 # Copyright (C) 2007 - INRIA - Bruno JOFRET
 # Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 # Copyright (C) 2011 - DIGITEO - Antoine ELIAS
-#
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,30 +34,18 @@ GATEWAY_CPP_SOURCES = \
 
 OUTPUT_STREAM_C_SOURCES = \
 	src/c/erro.c \
-	src/c/cerro.c \
 	src/c/Scierror.c \
 	src/c/msgstore.c \
-	src/c/msgout.c \
 	src/c/msgs.c \
 	src/c/msgstxt.c \
 	src/c/sciprint.c \
-	src/c/sciprint_full.c \
 	src/c/error.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = \
-	src/fortran/wspdsp.f \
 	src/fortran/wmdsp.f \
-	src/fortran/strdsp.f \
-	src/fortran/lspdsp.f \
 	src/fortran/fmttyp.f \
 	src/fortran/fmt.f \
-	src/fortran/dspdsp.f \
-	src/fortran/dmrdsp.f \
-	src/fortran/dmpdsp.f \
 	src/fortran/dmdspf.f \
-	src/fortran/dmdsp.f \
-	src/fortran/dldsp.f \
-	src/fortran/basouttofile.f \
 	src/fortran/formatnumber.f
 
 
@@ -124,7 +112,6 @@ libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 libscioutput_stream_la_includedir=$(pkgincludedir)
 libscioutput_stream_la_include_HEADERS = includes/do_error_number.h \
 includes/sciprint.h \
-includes/cerro.h \
 includes/Scierror.h \
 includes/dynlib_output_stream.h \
 includes/scilabWrite.hxx
