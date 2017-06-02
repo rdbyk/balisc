@@ -18,8 +18,8 @@
 # Copyright (C) 2007 - INRIA - Bruno JOFRET
 # Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 # Copyright (C) 2011 - DIGITEO - Antoine ELIAS
-#
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -180,7 +180,6 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscioutput_stream_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libscioutput_stream_algo_la-erro.lo \
-	src/c/libscioutput_stream_algo_la-cerro.lo \
 	src/c/libscioutput_stream_algo_la-Scierror.lo \
 	src/c/libscioutput_stream_algo_la-msgstore.lo \
 	src/c/libscioutput_stream_algo_la-msgout.lo \
@@ -640,7 +639,6 @@ GATEWAY_CPP_SOURCES = \
 
 OUTPUT_STREAM_C_SOURCES = \
 	src/c/erro.c \
-	src/c/cerro.c \
 	src/c/Scierror.c \
 	src/c/msgstore.c \
 	src/c/msgout.c \
@@ -723,7 +721,6 @@ libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 libscioutput_stream_la_includedir = $(pkgincludedir)
 libscioutput_stream_la_include_HEADERS = includes/do_error_number.h \
 includes/sciprint.h \
-includes/cerro.h \
 includes/Scierror.h \
 includes/dynlib_output_stream.h \
 includes/scilabWrite.hxx
@@ -890,8 +887,6 @@ src/c/$(DEPDIR)/$(am__dirstamp):
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscioutput_stream_algo_la-erro.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscioutput_stream_algo_la-cerro.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscioutput_stream_algo_la-Scierror.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscioutput_stream_algo_la-msgstore.lo: src/c/$(am__dirstamp) \
@@ -1018,7 +1013,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioutput_stream_la-sci_msprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioutput_stream_la-sci_print.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-Scierror.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-cerro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-erro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-msgout.Plo@am__quote@
@@ -1067,13 +1061,6 @@ src/c/libscioutput_stream_algo_la-erro.lo: src/c/erro.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/erro.c' object='src/c/libscioutput_stream_algo_la-erro.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioutput_stream_algo_la-erro.lo `test -f 'src/c/erro.c' || echo '$(srcdir)/'`src/c/erro.c
-
-src/c/libscioutput_stream_algo_la-cerro.lo: src/c/cerro.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioutput_stream_algo_la-cerro.lo -MD -MP -MF src/c/$(DEPDIR)/libscioutput_stream_algo_la-cerro.Tpo -c -o src/c/libscioutput_stream_algo_la-cerro.lo `test -f 'src/c/cerro.c' || echo '$(srcdir)/'`src/c/cerro.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscioutput_stream_algo_la-cerro.Tpo src/c/$(DEPDIR)/libscioutput_stream_algo_la-cerro.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cerro.c' object='src/c/libscioutput_stream_algo_la-cerro.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioutput_stream_algo_la-cerro.lo `test -f 'src/c/cerro.c' || echo '$(srcdir)/'`src/c/cerro.c
 
 src/c/libscioutput_stream_algo_la-Scierror.lo: src/c/Scierror.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioutput_stream_algo_la-Scierror.lo -MD -MP -MF src/c/$(DEPDIR)/libscioutput_stream_algo_la-Scierror.Tpo -c -o src/c/libscioutput_stream_algo_la-Scierror.lo `test -f 'src/c/Scierror.c' || echo '$(srcdir)/'`src/c/Scierror.c

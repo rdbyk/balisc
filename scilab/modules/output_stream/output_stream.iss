@@ -33,7 +33,6 @@ Source: modules\{#OUTPUT_STREAM}\license.txt; DestDir: {app}\modules\{#OUTPUT_ST
 Source: modules\{#OUTPUT_STREAM}\includes\Scierror.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\includes\sciprint.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\includes\do_error_number.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#OUTPUT_STREAM}\includes\cerro.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\includes\dynlib_output_stream.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\includes\scilabWrite.hxx; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 ;
