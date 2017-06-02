@@ -143,9 +143,6 @@
     <ClInclude Include="error_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="errorTable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="msgout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
