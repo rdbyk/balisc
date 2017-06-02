@@ -185,7 +185,6 @@ am__objects_1 = src/c/libscioutput_stream_algo_la-erro.lo \
 	src/c/libscioutput_stream_algo_la-msgs.lo \
 	src/c/libscioutput_stream_algo_la-msgstxt.lo \
 	src/c/libscioutput_stream_algo_la-sciprint.lo \
-	src/c/libscioutput_stream_algo_la-sciprint_full.lo \
 	src/c/libscioutput_stream_algo_la-error.lo
 am__objects_2 = src/cpp/libscioutput_stream_algo_la-Diary.lo \
 	src/cpp/libscioutput_stream_algo_la-scilabWrite.lo \
@@ -643,7 +642,6 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/msgs.c \
 	src/c/msgstxt.c \
 	src/c/sciprint.c \
-	src/c/sciprint_full.c \
 	src/c/error.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = \
@@ -895,8 +893,6 @@ src/c/libscioutput_stream_algo_la-msgstxt.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscioutput_stream_algo_la-sciprint.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscioutput_stream_algo_la-sciprint_full.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscioutput_stream_algo_la-error.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
@@ -1015,7 +1011,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-msgstore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-sciprint.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-Diary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-DiaryList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-Sciwarning.Plo@am__quote@
@@ -1091,13 +1086,6 @@ src/c/libscioutput_stream_algo_la-sciprint.lo: src/c/sciprint.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sciprint.c' object='src/c/libscioutput_stream_algo_la-sciprint.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioutput_stream_algo_la-sciprint.lo `test -f 'src/c/sciprint.c' || echo '$(srcdir)/'`src/c/sciprint.c
-
-src/c/libscioutput_stream_algo_la-sciprint_full.lo: src/c/sciprint_full.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioutput_stream_algo_la-sciprint_full.lo -MD -MP -MF src/c/$(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Tpo -c -o src/c/libscioutput_stream_algo_la-sciprint_full.lo `test -f 'src/c/sciprint_full.c' || echo '$(srcdir)/'`src/c/sciprint_full.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Tpo src/c/$(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sciprint_full.c' object='src/c/libscioutput_stream_algo_la-sciprint_full.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioutput_stream_algo_la-sciprint_full.lo `test -f 'src/c/sciprint_full.c' || echo '$(srcdir)/'`src/c/sciprint_full.c
 
 src/c/libscioutput_stream_algo_la-error.lo: src/c/error.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioutput_stream_algo_la-error.lo -MD -MP -MF src/c/$(DEPDIR)/libscioutput_stream_algo_la-error.Tpo -c -o src/c/libscioutput_stream_algo_la-error.lo `test -f 'src/c/error.c' || echo '$(srcdir)/'`src/c/error.c

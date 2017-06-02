@@ -39,7 +39,6 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/msgs.c \
 	src/c/msgstxt.c \
 	src/c/sciprint.c \
-	src/c/sciprint_full.c \
 	src/c/error.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = \
@@ -55,7 +54,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/dmdspf.f \
 	src/fortran/dmdsp.f \
 	src/fortran/dldsp.f \
-	src/fortran/basouttofile.f \
 	src/fortran/formatnumber.f
 
 

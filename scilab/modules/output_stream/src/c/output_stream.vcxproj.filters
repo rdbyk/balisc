@@ -59,9 +59,6 @@
     <ClCompile Include="sciprint.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sciprint_full.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\scilabWrite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -132,9 +129,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\sciprint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\sciprint_full.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="msgstore.h">

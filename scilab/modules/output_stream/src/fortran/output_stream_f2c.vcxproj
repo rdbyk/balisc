@@ -260,7 +260,6 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="basouttofile.c" />
     <ClCompile Include="dldsp.c" />
     <ClCompile Include="dmdsp.c" />
     <ClCompile Include="dmdspf.c" />
@@ -277,7 +276,6 @@ cd ..
     <ClCompile Include="wspdsp.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="basouttofile.f" />
     <f2c_rule Include="dldsp.f" />
     <f2c_rule Include="dmdsp.f" />
     <f2c_rule Include="dmdspf.f" />

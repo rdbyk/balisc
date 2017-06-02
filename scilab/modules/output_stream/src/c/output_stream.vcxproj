@@ -225,7 +225,6 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="msgstxt.c" />
     <ClCompile Include="Scierror.c" />
     <ClCompile Include="sciprint.c" />
-    <ClCompile Include="sciprint_full.c" />
     <ClCompile Include="..\cpp\scilabWrite.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -264,7 +263,6 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\..\includes\scilabWrite.hxx" />
     <ClInclude Include="..\..\includes\scilab_sprintf.hxx" />
     <ClInclude Include="..\..\includes\sciprint.h" />
-    <ClInclude Include="..\..\includes\sciprint_full.h" />
     <ClInclude Include="..\..\includes\Sciwarning.h" />
     <ClInclude Include="..\cpp\Diary.hxx" />
     <ClInclude Include="..\cpp\DiaryList.hxx" />
