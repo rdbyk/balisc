@@ -24,15 +24,6 @@
     <ClCompile Include="dmdspf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dmpdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dmrdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dspdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\floor_f2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,15 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="dmdspf.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmpdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmrdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dspdsp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="fmt.f">

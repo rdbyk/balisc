@@ -55,9 +55,6 @@
 		<File RelativePath=".\output_stream_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\dmdspf.f"/>
-		<File RelativePath=".\dmpdsp.f"/>
-		<File RelativePath=".\dmrdsp.f"/>
-		<File RelativePath=".\dspdsp.f"/>
 		<File RelativePath=".\fmt.f"/>
 		<File RelativePath=".\fmttyp.f"/>
 		<File RelativePath=".\formatnumber.f"/>

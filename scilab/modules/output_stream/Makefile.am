@@ -48,9 +48,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/lspdsp.f \
 	src/fortran/fmttyp.f \
 	src/fortran/fmt.f \
-	src/fortran/dspdsp.f \
-	src/fortran/dmrdsp.f \
-	src/fortran/dmpdsp.f \
 	src/fortran/dmdspf.f \
 	src/fortran/formatnumber.f
 

@@ -261,9 +261,6 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dmdspf.c" />
-    <ClCompile Include="dmpdsp.c" />
-    <ClCompile Include="dmrdsp.c" />
-    <ClCompile Include="dspdsp.c" />
     <ClCompile Include="..\c\floor_f2c.c" />
     <ClCompile Include="fmt.c" />
     <ClCompile Include="fmttyp.c" />
@@ -275,9 +272,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="dmdspf.f" />
-    <f2c_rule Include="dmpdsp.f" />
-    <f2c_rule Include="dmrdsp.f" />
-    <f2c_rule Include="dspdsp.f" />
     <f2c_rule Include="fmt.f" />
     <f2c_rule Include="fmttyp.f" />
     <f2c_rule Include="formatnumber.f" />
