@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dmdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dmdspf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -62,9 +59,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="dmdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dmdspf.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>

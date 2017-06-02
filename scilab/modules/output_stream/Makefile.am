@@ -52,7 +52,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/dmrdsp.f \
 	src/fortran/dmpdsp.f \
 	src/fortran/dmdspf.f \
-	src/fortran/dmdsp.f \
 	src/fortran/formatnumber.f
 
 

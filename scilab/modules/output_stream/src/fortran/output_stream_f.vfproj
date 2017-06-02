@@ -54,7 +54,6 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\output_stream_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath=".\dmdsp.f"/>
 		<File RelativePath=".\dmdspf.f"/>
 		<File RelativePath=".\dmpdsp.f"/>
 		<File RelativePath=".\dmrdsp.f"/>
