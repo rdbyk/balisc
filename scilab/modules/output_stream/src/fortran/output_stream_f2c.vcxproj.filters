@@ -45,9 +45,6 @@
     <ClCompile Include="wmdsp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wspdsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="dmdspf.f">
@@ -69,9 +66,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wmdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wspdsp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

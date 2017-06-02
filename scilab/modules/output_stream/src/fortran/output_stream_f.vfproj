@@ -61,7 +61,6 @@
 		<File RelativePath=".\lspdsp.f"/>
 		<File RelativePath=".\strdsp.f"/>
 		<File RelativePath=".\wmdsp.f"/>
-		<File RelativePath=".\wspdsp.f"/></Filter>
 		<File RelativePath="..\..\Makefile.am"/>
 		<File RelativePath="..\..\sci_gateway\output_stream_gateway.xml"/></Files>
 	<Globals/></VisualStudioProject>

@@ -268,7 +268,6 @@ cd ..
     <ClCompile Include="lspdsp.c" />
     <ClCompile Include="strdsp.c" />
     <ClCompile Include="wmdsp.c" />
-    <ClCompile Include="wspdsp.c" />
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="dmdspf.f" />
@@ -278,7 +277,6 @@ cd ..
     <f2c_rule Include="lspdsp.f" />
     <f2c_rule Include="strdsp.f" />
     <f2c_rule Include="wmdsp.f" />
-    <f2c_rule Include="wspdsp.f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Elementary_functions_f_Import.def" />
