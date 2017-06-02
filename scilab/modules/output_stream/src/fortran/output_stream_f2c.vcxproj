@@ -266,7 +266,6 @@ cd ..
     <ClCompile Include="fmttyp.c" />
     <ClCompile Include="formatnumber.c" />
     <ClCompile Include="lspdsp.c" />
-    <ClCompile Include="strdsp.c" />
     <ClCompile Include="wmdsp.c" />
   </ItemGroup>
   <ItemGroup>
@@ -275,7 +274,6 @@ cd ..
     <f2c_rule Include="fmttyp.f" />
     <f2c_rule Include="formatnumber.f" />
     <f2c_rule Include="lspdsp.f" />
-    <f2c_rule Include="strdsp.f" />
     <f2c_rule Include="wmdsp.f" />
   </ItemGroup>
   <ItemGroup>
