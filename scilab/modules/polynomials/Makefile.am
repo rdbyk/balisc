@@ -12,33 +12,17 @@ POLYNOMIALS_FORTRAN_SOURCES = \
     src/fortran/sfact1.f \
     src/fortran/dpodiv.f \
     src/fortran/dpsimp.f \
-    src/fortran/dmpext.f \
-    src/fortran/wpmul.f \
     src/fortran/bezstp.f \
     src/fortran/dprxc.f \
-    src/fortran/quadsd.f \
     src/fortran/dmpmu.f \
     src/fortran/wpmul1.f \
-    src/fortran/wmpcnc.f \
-    src/fortran/mptri.f \
     src/fortran/horner.f \
     src/fortran/idegre.f \
-    src/fortran/mpdiag.f \
-    src/fortran/dmpcle.f \
     src/fortran/wpodiv.f \
-    src/fortran/mpdegr.f \
-    src/fortran/realit.f \
     src/fortran/dpmul.f \
     src/fortran/sfact2.f \
-    src/fortran/nextk.f \
-    src/fortran/blktit.f \
-    src/fortran/newest.f \
-    src/fortran/dwmpmu.f \
-    src/fortran/impcnc.f \
-    src/fortran/wmpcle.f \
-    src/fortran/quad.f \
-    src/fortran/calcsc.f \
-    src/fortran/chkvar.f
+    src/fortran/blktit.f
+    
 
 POLYNOMIALS_CXX_SOURCES = \
     src/cpp/rpoly.cpp \
