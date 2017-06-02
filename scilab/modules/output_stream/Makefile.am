@@ -36,7 +36,6 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/erro.c \
 	src/c/Scierror.c \
 	src/c/msgstore.c \
-	src/c/msgout.c \
 	src/c/msgs.c \
 	src/c/msgstxt.c \
 	src/c/sciprint.c \

@@ -220,7 +220,6 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="erro.c" />
     <ClCompile Include="error.c" />
     <ClCompile Include="..\cpp\getDiaryDate.cpp" />
-    <ClCompile Include="msgout.c" />
     <ClCompile Include="msgs.c" />
     <ClCompile Include="msgstore.c" />
     <ClCompile Include="msgstxt.c" />
@@ -271,7 +270,6 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\cpp\DiaryList.hxx" />
     <ClInclude Include="..\cpp\getDiaryDate.hxx" />
     <ClInclude Include="..\cpp\getUniqueFilename.hxx" />
-    <ClInclude Include="msgout.h" />
     <ClInclude Include="msgstore.h" />
     <ClInclude Include="msgstxt.h" />
   </ItemGroup>

@@ -47,9 +47,6 @@
     <ClCompile Include="..\cpp\getDiaryDate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="msgout.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="msgstore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -138,9 +135,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\sciprint_full.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="msgout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="msgstore.h">
