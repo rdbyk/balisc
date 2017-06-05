@@ -258,7 +258,7 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/simple.lo src/fortran/split.lo \
 	src/fortran/wdrdiv.lo src/fortran/imcopy.lo \
 	src/fortran/cbal.lo src/fortran/dsum.lo src/fortran/urand.lo \
-	src/fortran/intp.lo src/fortran/wipowe.lo \
+	src/fortran/intp.lo src/fortran/watan.lo src/fortran/wipowe.lo \
 	src/fortran/wdpow1.lo src/fortran/dlgama.lo \
 	src/fortran/exch.lo src/fortran/wsign.lo src/fortran/kronr.lo \
 	src/fortran/wrscal.lo src/fortran/dmmul1.lo \
@@ -933,6 +933,7 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dsum.f \
     src/fortran/urand.f \
     src/fortran/intp.f \
+    src/fortran/watan.f \
     src/fortran/wipowe.f \
     src/fortran/wdpow1.f \
     src/fortran/dlgama.f \
@@ -1621,6 +1622,8 @@ src/fortran/dsum.lo: src/fortran/$(am__dirstamp) \
 src/fortran/urand.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/intp.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/watan.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wipowe.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
