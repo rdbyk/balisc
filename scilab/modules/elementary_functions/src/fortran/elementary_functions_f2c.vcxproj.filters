@@ -66,9 +66,6 @@
     <ClCompile Include="ddif.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ddpow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ddpow1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -378,9 +375,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ddpow.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ddpow1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ddpowe.f">

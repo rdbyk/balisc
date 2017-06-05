@@ -288,7 +288,6 @@ cd ..
     <ClCompile Include="danints.c" />
     <ClCompile Include="dclmat.c" />
     <ClCompile Include="ddif.c" />
-    <ClCompile Include="ddpow.c" />
     <ClCompile Include="ddpow1.c" />
     <ClCompile Include="ddpowe.c" />
     <ClCompile Include="ddrdiv.c" />
@@ -393,7 +392,6 @@ cd ..
     <f2c_rule Include="danints.f" />
     <f2c_rule Include="dclmat.f" />
     <f2c_rule Include="ddif.f" />
-    <f2c_rule Include="ddpow.f" />
     <f2c_rule Include="ddpow1.f" />
     <f2c_rule Include="ddpowe.f" />
     <f2c_rule Include="ddrdiv.f" />

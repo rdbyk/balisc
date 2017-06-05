@@ -175,7 +175,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/ddif.f \
     src/fortran/wdiv.f \
     src/fortran/wtan.f \
-    src/fortran/ddpow.f \
     src/fortran/magic.f \
     src/fortran/wcerr.f \
     src/fortran/ivimp.f \

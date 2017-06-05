@@ -70,7 +70,6 @@
 		<File RelativePath=".\danints.f"/>
 		<File RelativePath=".\dclmat.f"/>
 		<File RelativePath=".\ddif.f"/>
-		<File RelativePath=".\ddpow.f"/>
 		<File RelativePath=".\ddpow1.f"/>
 		<File RelativePath=".\ddpowe.f"/>
 		<File RelativePath=".\ddrdiv.f"/>
