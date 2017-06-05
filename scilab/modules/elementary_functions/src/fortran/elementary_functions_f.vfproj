@@ -140,7 +140,6 @@
 		<File RelativePath=".\wipowe.f"/>
 		<File RelativePath=".\wlog.f"/>
 		<File RelativePath=".\wmmul.f"/>
-		<File RelativePath=".\wmprod.f"/>
 		<File RelativePath=".\wmul.f"/>
 		<File RelativePath=".\wrscal.f"/>
 		<File RelativePath=".\wscal.f"/>

@@ -358,7 +358,6 @@ cd ..
     <ClCompile Include="wipowe.c" />
     <ClCompile Include="wlog.c" />
     <ClCompile Include="wmmul.c" />
-    <ClCompile Include="wmprod.c" />
     <ClCompile Include="wmul.c" />
     <ClCompile Include="wrscal.c" />
     <ClCompile Include="wscal.c" />
@@ -456,7 +455,6 @@ cd ..
     <f2c_rule Include="wipowe.f" />
     <f2c_rule Include="wlog.f" />
     <f2c_rule Include="wmmul.f" />
-    <f2c_rule Include="wmprod.f" />
     <f2c_rule Include="wmul.f" />
     <f2c_rule Include="wrscal.f" />
     <f2c_rule Include="wscal.f" />
