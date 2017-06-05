@@ -93,7 +93,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\randlib.iss" />
     <None Include="..\..\sci_gateway\randlib_gateway.xml" />
-    <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\locales\randlib.pot">

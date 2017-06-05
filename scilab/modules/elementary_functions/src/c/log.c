@@ -159,3 +159,5 @@ double lnp1m1(double _dblVar)
         return _dblVar * (2 + dblS2 * (sdblD3 + dblS2 * (sdblD5 + dblS2 * (sdblD7 + dblS2 * (sdblD9 + dblS2 * (sdblD11 + dblS2 * (sdblD13 + dblS2 * sdblD15)))))));
     }
 }
+
+double C2F()(double x)

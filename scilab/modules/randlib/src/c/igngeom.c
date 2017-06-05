@@ -47,8 +47,6 @@
 #include <math.h>
 #include "grand.h"
 
-/* the external functions used  here : */
-double F2C(logp1)(double *x);  /* celle-ci est ds SCI/modules/elementary_functions/src/fortran/watan.f */
 double igngeom(double p)
 {
     static double p_save = 1.0, ln_1_m_p = 0.0;
@@ -62,10 +60,10 @@ double igngeom(double p)
     {
         p_save = p;
         u = -p;
-        ln_1_m_p = F2C(logp1)(&u);
+        ln_1_m_p = log1p(u);
     };
 
     u = -C2F(ranf)();
-    return ( floor( 1.0 + F2C(logp1)(&u) / ln_1_m_p) );
+    return ( floor( 1.0 + log1p(u) / ln_1_m_p) );
 }
 
