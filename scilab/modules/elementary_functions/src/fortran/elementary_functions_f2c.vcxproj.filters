@@ -249,9 +249,6 @@
     <ClCompile Include="wdotcr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wdpow1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wdpowe.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -555,9 +552,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wdpow1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wdpowe.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wdrdiv.f">
