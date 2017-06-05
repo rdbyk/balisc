@@ -90,7 +90,6 @@
 		<File RelativePath=".\dtild.f"/>
 		<File RelativePath=".\dvmul.f"/>
 		<File RelativePath=".\dwdiv.f"/>
-		<File RelativePath=".\dwpow.f"/>
 		<File RelativePath=".\dwpow1.f"/>
 		<File RelativePath=".\dwpowe.f"/>
 		<File RelativePath=".\dwrdiv.f"/>

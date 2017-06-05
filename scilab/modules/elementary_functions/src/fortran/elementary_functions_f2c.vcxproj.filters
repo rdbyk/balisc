@@ -126,9 +126,6 @@
     <ClCompile Include="dwdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dwpow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dwpow1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -438,9 +435,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dwdiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dwpow.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dwpow1.f">
