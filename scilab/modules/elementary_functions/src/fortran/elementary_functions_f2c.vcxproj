@@ -367,7 +367,6 @@ cd ..
     <ClCompile Include="wsign.c" />
     <ClCompile Include="wsqrt.c" />
     <ClCompile Include="wswap.c" />
-    <ClCompile Include="wtan.c" />
     <ClCompile Include="wvmul.c" />
     <ClCompile Include="wwdiv.c" />
     <ClCompile Include="wwrdiv.c" />
@@ -468,7 +467,6 @@ cd ..
     <f2c_rule Include="wsign.f" />
     <f2c_rule Include="wsqrt.f" />
     <f2c_rule Include="wswap.f" />
-    <f2c_rule Include="wtan.f" />
     <f2c_rule Include="wvmul.f" />
     <f2c_rule Include="wwdiv.f" />
     <f2c_rule Include="wwrdiv.f" />

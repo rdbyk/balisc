@@ -300,9 +300,6 @@
     <ClCompile Include="wswap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wtan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wvmul.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -600,9 +597,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wswap.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wtan.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wvmul.f">

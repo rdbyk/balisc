@@ -149,7 +149,6 @@
 		<File RelativePath=".\wsign.f"/>
 		<File RelativePath=".\wsqrt.f"/>
 		<File RelativePath=".\wswap.f"/>
-		<File RelativePath=".\wtan.f"/>
 		<File RelativePath=".\wvmul.f"/>
 		<File RelativePath=".\wwdiv.f"/>
 		<File RelativePath=".\wwrdiv.f"/></Filter>
