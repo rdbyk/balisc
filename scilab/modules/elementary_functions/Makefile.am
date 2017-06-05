@@ -199,7 +199,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/isova0.f \
     src/fortran/gdcp2i.f \
     src/fortran/drdiv.f \
-    src/fortran/wmsum.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
     src/fortran/dvmul.f \

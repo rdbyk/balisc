@@ -276,9 +276,6 @@
     <ClCompile Include="wmprod.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wmsum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wmul.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -570,9 +567,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wmprod.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wmsum.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wmul.f">
