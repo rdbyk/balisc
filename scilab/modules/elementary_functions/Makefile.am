@@ -218,7 +218,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wexpm1.f \
     src/fortran/ddpowe.f \
     src/fortran/dmprod.f \
-    src/fortran/wwpowe.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
