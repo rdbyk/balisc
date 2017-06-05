@@ -153,7 +153,6 @@
 		<File RelativePath=".\wtan.f"/>
 		<File RelativePath=".\wvmul.f"/>
 		<File RelativePath=".\wwdiv.f"/>
-		<File RelativePath=".\wwpow1.f"/>
 		<File RelativePath=".\wwpowe.f"/>
 		<File RelativePath=".\wwrdiv.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\elementary_functions_gateway.xml"/>

@@ -312,9 +312,6 @@
     <ClCompile Include="wwdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wwpow1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wwpowe.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -621,9 +618,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wwdiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wwpow1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wwpowe.f">
