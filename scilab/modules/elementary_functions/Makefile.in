@@ -278,16 +278,16 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/wswap.lo src/fortran/wwpow1.lo \
 	src/fortran/gdcp2i.lo src/fortran/drdiv.lo \
 	src/fortran/wmsum.lo src/fortran/corth.lo src/fortran/mtran.lo \
-	src/fortran/wwpow.lo src/fortran/dvmul.lo \
-	src/fortran/wclmat.lo src/fortran/dsort.lo src/fortran/cerr.lo \
-	src/fortran/rcopy.lo src/fortran/wdpow.lo \
-	src/fortran/orthes.lo src/fortran/waxpy.lo src/fortran/coef.lo \
-	src/fortran/dwdiv.lo src/fortran/arcosh.lo \
-	src/fortran/wexpm1.lo src/fortran/ddpowe.lo \
-	src/fortran/dmprod.lo src/fortran/wwpowe.lo \
-	src/fortran/wdotci.lo src/fortran/dmcopy.lo \
-	src/fortran/wexchn.lo src/fortran/isoval.lo \
-	src/fortran/dwrdiv.lo src/fortran/wipow.lo src/fortran/wlog.lo \
+	src/fortran/dvmul.lo src/fortran/wclmat.lo \
+	src/fortran/dsort.lo src/fortran/cerr.lo src/fortran/rcopy.lo \
+	src/fortran/wdpow.lo src/fortran/orthes.lo \
+	src/fortran/waxpy.lo src/fortran/coef.lo src/fortran/dwdiv.lo \
+	src/fortran/arcosh.lo src/fortran/wexpm1.lo \
+	src/fortran/ddpowe.lo src/fortran/dmprod.lo \
+	src/fortran/wwpowe.lo src/fortran/wdotci.lo \
+	src/fortran/dmcopy.lo src/fortran/wexchn.lo \
+	src/fortran/isoval.lo src/fortran/dwrdiv.lo \
+	src/fortran/wipow.lo src/fortran/wlog.lo \
 	src/fortran/infinity.lo src/fortran/dwpow1.lo \
 	src/fortran/wmul.lo src/fortran/dad.lo src/fortran/dset.lo \
 	src/fortran/dtild.lo src/fortran/i1mach.lo \
@@ -979,7 +979,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wmsum.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
-    src/fortran/wwpow.f \
     src/fortran/dvmul.f \
     src/fortran/wclmat.f \
     src/fortran/dsort.f \
@@ -1714,8 +1713,6 @@ src/fortran/wmsum.lo: src/fortran/$(am__dirstamp) \
 src/fortran/corth.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/mtran.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wwpow.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dvmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

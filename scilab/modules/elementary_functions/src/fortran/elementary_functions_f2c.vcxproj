@@ -374,7 +374,6 @@ cd ..
     <ClCompile Include="wtan.c" />
     <ClCompile Include="wvmul.c" />
     <ClCompile Include="wwdiv.c" />
-    <ClCompile Include="wwpow.c" />
     <ClCompile Include="wwpow1.c" />
     <ClCompile Include="wwpowe.c" />
     <ClCompile Include="wwrdiv.c" />
@@ -482,7 +481,6 @@ cd ..
     <f2c_rule Include="wtan.f" />
     <f2c_rule Include="wvmul.f" />
     <f2c_rule Include="wwdiv.f" />
-    <f2c_rule Include="wwpow.f" />
     <f2c_rule Include="wwpow1.f" />
     <f2c_rule Include="wwpowe.f" />
     <f2c_rule Include="wwrdiv.f" />
