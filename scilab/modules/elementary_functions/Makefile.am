@@ -212,7 +212,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dsort.f \
     src/fortran/cerr.f \
     src/fortran/rcopy.f \
-    src/fortran/wdpow.f \
     src/fortran/orthes.f \
     src/fortran/waxpy.f \
     src/fortran/coef.f \
