@@ -136,8 +136,6 @@
 		<File RelativePath=".\wdrdiv.f"/>
 		<File RelativePath=".\wexchn.f"/>
 		<File RelativePath=".\wexpm1.f"/>
-		<File RelativePath=".\wipow.f"/>
-		<File RelativePath=".\wipowe.f"/>
 		<File RelativePath=".\wlog.f"/>
 		<File RelativePath=".\wmmul.f"/>
 		<File RelativePath=".\wmul.f"/>

@@ -162,14 +162,12 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/urand.f \
     src/fortran/intp.f \
     src/fortran/watan.f \
-    src/fortran/wipowe.f \
     src/fortran/dlgama.f \
     src/fortran/exch.f \
     src/fortran/wsign.f \
     src/fortran/kronr.f \
     src/fortran/wrscal.f \
     src/fortran/dmmul1.f \
-    src/fortran/dwpow.f \
     src/fortran/wmmul.f \
     src/fortran/ddif.f \
     src/fortran/wdiv.f \
@@ -218,7 +216,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wexchn.f \
     src/fortran/isoval.f \
     src/fortran/dwrdiv.f \
-    src/fortran/wipow.f \
     src/fortran/wlog.f \
     src/fortran/infinity.f \
     src/fortran/dwpow1.f \

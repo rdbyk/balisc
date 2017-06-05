@@ -354,8 +354,6 @@ cd ..
     <ClCompile Include="wdrdiv.c" />
     <ClCompile Include="wexchn.c" />
     <ClCompile Include="wexpm1.c" />
-    <ClCompile Include="wipow.c" />
-    <ClCompile Include="wipowe.c" />
     <ClCompile Include="wlog.c" />
     <ClCompile Include="wmmul.c" />
     <ClCompile Include="wmul.c" />
@@ -451,8 +449,6 @@ cd ..
     <f2c_rule Include="wdrdiv.f" />
     <f2c_rule Include="wexchn.f" />
     <f2c_rule Include="wexpm1.f" />
-    <f2c_rule Include="wipow.f" />
-    <f2c_rule Include="wipowe.f" />
     <f2c_rule Include="wlog.f" />
     <f2c_rule Include="wmmul.f" />
     <f2c_rule Include="wmul.f" />
