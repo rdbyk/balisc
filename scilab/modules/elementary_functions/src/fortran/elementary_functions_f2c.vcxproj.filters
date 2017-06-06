@@ -81,9 +81,6 @@
     <ClCompile Include="dipowe.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dlblks.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dlgama.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -291,9 +288,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dipowe.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dlblks.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dlgama.f">

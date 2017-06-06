@@ -293,7 +293,6 @@ cd ..
     <ClCompile Include="dexpm1.c" />
     <ClCompile Include="dipow.c" />
     <ClCompile Include="dipowe.c" />
-    <ClCompile Include="dlblks.c" />
     <ClCompile Include="dlgama.c" />
     <ClCompile Include="dmcopy.c" />
     <ClCompile Include="dmmul.c" />
@@ -365,7 +364,6 @@ cd ..
     <f2c_rule Include="dexpm1.f" />
     <f2c_rule Include="dipow.f" />
     <f2c_rule Include="dipowe.f" />
-    <f2c_rule Include="dlblks.f" />
     <f2c_rule Include="dlgama.f" />
     <f2c_rule Include="dmcopy.f" />
     <f2c_rule Include="dmmul.f" />

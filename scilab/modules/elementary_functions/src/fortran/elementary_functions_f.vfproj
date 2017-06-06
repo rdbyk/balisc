@@ -75,7 +75,6 @@
 		<File RelativePath=".\dexpm1.f"/>
 		<File RelativePath=".\dipow.f"/>
 		<File RelativePath=".\dipowe.f"/>
-		<File RelativePath=".\dlblks.f"/>
 		<File RelativePath=".\dlgama.f"/>
 		<File RelativePath=".\dmcopy.f"/>
 		<File RelativePath=".\dmmul.f"/>
