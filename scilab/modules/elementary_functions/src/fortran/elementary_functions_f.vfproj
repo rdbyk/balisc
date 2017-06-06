@@ -63,7 +63,6 @@
 		<File RelativePath=".\corth.f"/>
 		<File RelativePath=".\cortr.f"/>
 		<File RelativePath=".\coshin.f"/>
-		<File RelativePath=".\cusum.f"/>
 		<File RelativePath=".\d1mach.f"/>
 		<File RelativePath=".\dad.f"/>
 		<File RelativePath=".\dadd.f"/>

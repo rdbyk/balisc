@@ -48,9 +48,6 @@
     <ClCompile Include="coshin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cusum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="d1mach.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -255,9 +252,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="coshin.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="cusum.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="d1mach.f">

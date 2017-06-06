@@ -174,7 +174,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/coshin.f \
     src/fortran/iwamax.f \
     src/fortran/dipowe.f \
-    src/fortran/cusum.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
     src/fortran/ddpow1.f \

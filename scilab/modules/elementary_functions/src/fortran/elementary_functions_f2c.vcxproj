@@ -281,7 +281,6 @@ cd ..
     <ClCompile Include="corth.c" />
     <ClCompile Include="cortr.c" />
     <ClCompile Include="coshin.c" />
-    <ClCompile Include="cusum.c" />
     <ClCompile Include="d1mach.c" />
     <ClCompile Include="dad.c" />
     <ClCompile Include="dadd.c" />
@@ -352,7 +351,6 @@ cd ..
     <f2c_rule Include="corth.f" />
     <f2c_rule Include="cortr.f" />
     <f2c_rule Include="coshin.f" />
-    <f2c_rule Include="cusum.f" />
     <f2c_rule Include="d1mach.f" />
     <f2c_rule Include="dad.f" />
     <f2c_rule Include="dadd.f" />
