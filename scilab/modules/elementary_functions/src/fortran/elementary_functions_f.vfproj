@@ -88,7 +88,6 @@
 		<File RelativePath=".\dsum.f"/>
 		<File RelativePath=".\dtild.f"/>
 		<File RelativePath=".\dvmul.f"/>
-		<File RelativePath=".\dwdiv.f"/>
 		<File RelativePath=".\entier.f"/>
 		<File RelativePath=".\exch.f"/>
 		<File RelativePath=".\gdcp2i.f"/>
