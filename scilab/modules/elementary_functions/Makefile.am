@@ -186,7 +186,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
     src/fortran/ddpow1.f \
-    src/fortran/vpythag.f \
     src/fortran/isova0.f \
     src/fortran/gdcp2i.f \
     src/fortran/drdiv.f \

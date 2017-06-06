@@ -337,7 +337,6 @@ cd ..
     <ClCompile Include="simple.c" />
     <ClCompile Include="split.c" />
     <ClCompile Include="urand.c" />
-    <ClCompile Include="vpythag.c" />
     <ClCompile Include="wasum.c" />
     <ClCompile Include="waxpy.c" />
     <ClCompile Include="wbdiag.c" />
@@ -426,7 +425,6 @@ cd ..
     <f2c_rule Include="simple.f" />
     <f2c_rule Include="split.f" />
     <f2c_rule Include="urand.f" />
-    <f2c_rule Include="vpythag.f" />
     <f2c_rule Include="wasum.f" />
     <f2c_rule Include="waxpy.f" />
     <f2c_rule Include="wbdiag.f" />

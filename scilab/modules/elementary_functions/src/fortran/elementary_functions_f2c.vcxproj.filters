@@ -210,9 +210,6 @@
     <ClCompile Include="urand.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vpythag.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wasum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -471,9 +468,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="urand.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="vpythag.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wacos.f">
