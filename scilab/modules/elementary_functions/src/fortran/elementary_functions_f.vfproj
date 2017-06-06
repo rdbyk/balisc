@@ -81,7 +81,6 @@
 		<File RelativePath=".\dmcopy.f"/>
 		<File RelativePath=".\dmmul.f"/>
 		<File RelativePath=".\dmmul1.f"/>
-		<File RelativePath=".\dmprod.f"/>
 		<File RelativePath=".\drdiv.f"/>
 		<File RelativePath=".\dset.f"/>
 		<File RelativePath=".\dsort.f"/>

@@ -299,7 +299,6 @@ cd ..
     <ClCompile Include="dmcopy.c" />
     <ClCompile Include="dmmul.c" />
     <ClCompile Include="dmmul1.c" />
-    <ClCompile Include="dmprod.c" />
     <ClCompile Include="drdiv.c" />
     <ClCompile Include="dset.c" />
     <ClCompile Include="dsort.c" />
@@ -375,7 +374,6 @@ cd ..
     <f2c_rule Include="dmcopy.f" />
     <f2c_rule Include="dmmul.f" />
     <f2c_rule Include="dmmul1.f" />
-    <f2c_rule Include="dmprod.f" />
     <f2c_rule Include="drdiv.f" />
     <f2c_rule Include="dset.f" />
     <f2c_rule Include="dsort.f" />

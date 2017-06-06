@@ -99,9 +99,6 @@
     <ClCompile Include="dmmul1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dmprod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="drdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -321,9 +318,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dmmul1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmprod.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="drdiv.f">

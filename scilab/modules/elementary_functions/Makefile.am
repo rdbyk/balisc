@@ -194,7 +194,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/arcosh.f \
     src/fortran/wexpm1.f \
     src/fortran/ddpowe.f \
-    src/fortran/dmprod.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
