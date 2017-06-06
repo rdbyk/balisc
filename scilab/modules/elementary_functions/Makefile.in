@@ -251,20 +251,18 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-convertbase.lo
 am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/wwdiv.lo src/fortran/wdotcr.lo src/fortran/iset.lo \
-	src/fortran/franck.lo src/fortran/dwpowe.lo \
-	src/fortran/rcsort.lo src/fortran/wddiv.lo \
-	src/fortran/lnblnk.lo src/fortran/entier.lo \
-	src/fortran/round.lo src/fortran/cortr.lo \
-	src/fortran/simple.lo src/fortran/split.lo \
-	src/fortran/wdrdiv.lo src/fortran/imcopy.lo \
-	src/fortran/cbal.lo src/fortran/dsum.lo src/fortran/urand.lo \
-	src/fortran/intp.lo src/fortran/watan.lo src/fortran/dlgama.lo \
-	src/fortran/exch.lo src/fortran/wsign.lo src/fortran/kronr.lo \
-	src/fortran/wrscal.lo src/fortran/dmmul1.lo \
-	src/fortran/wmmul.lo src/fortran/ddif.lo src/fortran/wdiv.lo \
-	src/fortran/magic.lo src/fortran/wcerr.lo src/fortran/ivimp.lo \
-	src/fortran/dadd.lo src/fortran/isort.lo src/fortran/hilber.lo \
-	src/fortran/wdpowe.lo src/fortran/wscal.lo \
+	src/fortran/dwpowe.lo src/fortran/rcsort.lo \
+	src/fortran/wddiv.lo src/fortran/lnblnk.lo \
+	src/fortran/entier.lo src/fortran/round.lo \
+	src/fortran/cortr.lo src/fortran/simple.lo \
+	src/fortran/split.lo src/fortran/wdrdiv.lo \
+	src/fortran/imcopy.lo src/fortran/cbal.lo src/fortran/dsum.lo \
+	src/fortran/urand.lo src/fortran/intp.lo src/fortran/watan.lo \
+	src/fortran/dlgama.lo src/fortran/exch.lo src/fortran/wsign.lo \
+	src/fortran/kronr.lo src/fortran/wrscal.lo \
+	src/fortran/dmmul1.lo src/fortran/wmmul.lo src/fortran/ddif.lo \
+	src/fortran/wdiv.lo src/fortran/wcerr.lo src/fortran/ivimp.lo \
+	src/fortran/dadd.lo src/fortran/isort.lo src/fortran/wscal.lo \
 	src/fortran/dlblks.lo src/fortran/kronc.lo \
 	src/fortran/ddrdiv.lo src/fortran/dipow.lo \
 	src/fortran/wshrsl.lo src/fortran/wwrdiv.lo \
@@ -911,7 +909,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wwdiv.f \
     src/fortran/wdotcr.f \
     src/fortran/iset.f \
-    src/fortran/franck.f \
     src/fortran/dwpowe.f \
     src/fortran/rcsort.f \
     src/fortran/wddiv.f \
@@ -937,13 +934,10 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wmmul.f \
     src/fortran/ddif.f \
     src/fortran/wdiv.f \
-    src/fortran/magic.f \
     src/fortran/wcerr.f \
     src/fortran/ivimp.f \
     src/fortran/dadd.f \
     src/fortran/isort.f \
-    src/fortran/hilber.f \
-    src/fortran/wdpowe.f \
     src/fortran/wscal.f \
     src/fortran/dlblks.f \
     src/fortran/kronc.f \
@@ -1572,8 +1566,6 @@ src/fortran/wdotcr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/iset.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/franck.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dwpowe.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/rcsort.lo: src/fortran/$(am__dirstamp) \
@@ -1624,8 +1616,6 @@ src/fortran/ddif.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wdiv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/magic.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wcerr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ivimp.lo: src/fortran/$(am__dirstamp) \
@@ -1633,10 +1623,6 @@ src/fortran/ivimp.lo: src/fortran/$(am__dirstamp) \
 src/fortran/dadd.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/isort.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/hilber.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wdpowe.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wscal.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

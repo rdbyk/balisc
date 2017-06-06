@@ -154,7 +154,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/cortr.f \
     src/fortran/simple.f \
     src/fortran/split.f \
-    src/fortran/wdrdiv.f \
     src/fortran/imcopy.f \
     src/fortran/cbal.f \
     src/fortran/dsum.f \

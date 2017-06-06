@@ -129,7 +129,6 @@
 		<File RelativePath=".\wdiv.f"/>
 		<File RelativePath=".\wdotci.f"/>
 		<File RelativePath=".\wdotcr.f"/>
-		<File RelativePath=".\wdrdiv.f"/>
 		<File RelativePath=".\wexchn.f"/>
 		<File RelativePath=".\wexpm1.f"/>
 		<File RelativePath=".\wlog.f"/>
