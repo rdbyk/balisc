@@ -177,7 +177,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dadd.f \
     src/fortran/isort.f \
     src/fortran/hilber.f \
-    src/fortran/wdpowe.f \
     src/fortran/wscal.f \
     src/fortran/dlblks.f \
     src/fortran/kronc.f \

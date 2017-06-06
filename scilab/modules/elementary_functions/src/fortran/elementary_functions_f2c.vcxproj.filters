@@ -249,9 +249,6 @@
     <ClCompile Include="wdotcr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wdpowe.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wdrdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>

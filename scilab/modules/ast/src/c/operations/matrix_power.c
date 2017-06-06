@@ -221,7 +221,6 @@ int iPowerRealScalarByComplexScalar(
     return 0;
 }
 
-/*wdpowe*/
 int iPowerComplexScalarByRealScalar(
     double _dblReal1, double _dblImg1,
     double _dblReal2,
