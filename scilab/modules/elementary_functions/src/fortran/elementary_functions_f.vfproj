@@ -101,8 +101,6 @@
 		<File RelativePath=".\intp.f"/>
 		<File RelativePath=".\iset.f"/>
 		<File RelativePath=".\isort.f"/>
-		<File RelativePath=".\isova0.f"/>
-		<File RelativePath=".\isoval.f"/>
 		<File RelativePath=".\iwamax.f"/>
 		<File RelativePath=".\lnblnk.f"/>
 		<File RelativePath=".\mtran.f"/>

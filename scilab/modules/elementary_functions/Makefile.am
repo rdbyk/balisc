@@ -182,7 +182,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
     src/fortran/ddpow1.f \
-    src/fortran/isova0.f \
     src/fortran/gdcp2i.f \
     src/fortran/drdiv.f \
     src/fortran/corth.f \
@@ -202,7 +201,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
-    src/fortran/isoval.f \
     src/fortran/dwrdiv.f \
     src/fortran/wlog.f \
     src/fortran/infinity.f \

@@ -159,12 +159,6 @@
     <ClCompile Include="isort.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="isova0.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="isoval.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="iwamax.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -402,12 +396,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="isort.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="isova0.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="isoval.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="iwamax.f">
