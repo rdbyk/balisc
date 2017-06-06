@@ -331,7 +331,6 @@ cd ..
     <ClCompile Include="orthes.c" />
     <ClCompile Include="ortran.c" />
     <ClCompile Include="rat.c" />
-    <ClCompile Include="rcopy.c" />
     <ClCompile Include="round.c" />
     <ClCompile Include="simple.c" />
     <ClCompile Include="split.c" />
@@ -419,7 +418,6 @@ cd ..
     <f2c_rule Include="ortran.f" />
     <f2c_rule Include="rat.f" />
     <f2c_rule Include="rcopy.f" />
-    <f2c_rule Include="round.f" />
     <f2c_rule Include="simple.f" />
     <f2c_rule Include="split.f" />
     <f2c_rule Include="urand.f" />
