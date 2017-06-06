@@ -96,7 +96,6 @@
 		<File RelativePath=".\exch.f"/>
 		<File RelativePath=".\gdcp2i.f"/>
 		<File RelativePath=".\i1mach.f"/>
-		<File RelativePath=".\imcopy.f"/>
 		<File RelativePath=".\infinity.f"/>
 		<File RelativePath=".\intp.f"/>
 		<File RelativePath=".\iset.f"/>

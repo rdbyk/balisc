@@ -314,7 +314,6 @@ cd ..
     <ClCompile Include="exch.c" />
     <ClCompile Include="gdcp2i.c" />
     <ClCompile Include="i1mach.c" />
-    <ClCompile Include="imcopy.c" />
     <ClCompile Include="infinity.c" />
     <ClCompile Include="intp.c" />
     <ClCompile Include="iset.c" />
@@ -395,7 +394,6 @@ cd ..
     <f2c_rule Include="exch.f" />
     <f2c_rule Include="gdcp2i.f" />
     <f2c_rule Include="i1mach.f" />
-    <f2c_rule Include="imcopy.f" />
     <f2c_rule Include="infinity.f" />
     <f2c_rule Include="intp.f" />
     <f2c_rule Include="iset.f" />

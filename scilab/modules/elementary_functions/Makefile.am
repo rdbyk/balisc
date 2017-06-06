@@ -152,7 +152,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/cortr.f \
     src/fortran/simple.f \
     src/fortran/split.f \
-    src/fortran/imcopy.f \
     src/fortran/cbal.f \
     src/fortran/dsum.f \
     src/fortran/urand.f \
