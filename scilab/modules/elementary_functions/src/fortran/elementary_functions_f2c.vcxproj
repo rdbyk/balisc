@@ -309,7 +309,6 @@ cd ..
     <ClCompile Include="dwdiv.c" />
     <ClCompile Include="dwpow1.c" />
     <ClCompile Include="dwpowe.c" />
-    <ClCompile Include="dwrdiv.c" />
     <ClCompile Include="entier.c" />
     <ClCompile Include="exch.c" />
     <ClCompile Include="gdcp2i.c" />
@@ -389,7 +388,6 @@ cd ..
     <f2c_rule Include="dwdiv.f" />
     <f2c_rule Include="dwpow1.f" />
     <f2c_rule Include="dwpowe.f" />
-    <f2c_rule Include="dwrdiv.f" />
     <f2c_rule Include="entier.f" />
     <f2c_rule Include="exch.f" />
     <f2c_rule Include="gdcp2i.f" />

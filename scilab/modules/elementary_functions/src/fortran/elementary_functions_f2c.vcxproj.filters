@@ -129,9 +129,6 @@
     <ClCompile Include="dwpowe.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dwrdiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="entier.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -363,9 +360,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dwpowe.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dwrdiv.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="entier.f">

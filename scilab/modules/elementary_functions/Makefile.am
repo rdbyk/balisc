@@ -200,7 +200,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
-    src/fortran/dwrdiv.f \
     src/fortran/wlog.f \
     src/fortran/infinity.f \
     src/fortran/dwpow1.f \

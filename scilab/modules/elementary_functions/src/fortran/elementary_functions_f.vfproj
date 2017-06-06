@@ -91,7 +91,6 @@
 		<File RelativePath=".\dwdiv.f"/>
 		<File RelativePath=".\dwpow1.f"/>
 		<File RelativePath=".\dwpowe.f"/>
-		<File RelativePath=".\dwrdiv.f"/>
 		<File RelativePath=".\entier.f"/>
 		<File RelativePath=".\exch.f"/>
 		<File RelativePath=".\gdcp2i.f"/>
