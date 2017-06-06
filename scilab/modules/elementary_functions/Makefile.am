@@ -161,7 +161,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dlgama.f \
     src/fortran/exch.f \
     src/fortran/wsign.f \
-    src/fortran/kronr.f \
     src/fortran/wrscal.f \
     src/fortran/dmmul1.f \
     src/fortran/wmmul.f \
@@ -173,7 +172,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/isort.f \
     src/fortran/wscal.f \
     src/fortran/dlblks.f \
-    src/fortran/kronc.f \
     src/fortran/ddrdiv.f \
     src/fortran/dipow.f \
     src/fortran/wshrsl.f \

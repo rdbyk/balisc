@@ -171,12 +171,6 @@
     <ClCompile Include="iwamax.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kronc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kronr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lnblnk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -423,12 +417,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="iwamax.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="kronc.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="kronr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="lnblnk.f">

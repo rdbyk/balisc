@@ -105,8 +105,6 @@
 		<File RelativePath=".\isoval.f"/>
 		<File RelativePath=".\ivimp.f"/>
 		<File RelativePath=".\iwamax.f"/>
-		<File RelativePath=".\kronc.f"/>
-		<File RelativePath=".\kronr.f"/>
 		<File RelativePath=".\lnblnk.f"/>
 		<File RelativePath=".\mtran.f"/>
 		<File RelativePath=".\old_pythag.f"/>

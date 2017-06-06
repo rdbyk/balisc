@@ -323,8 +323,6 @@ cd ..
     <ClCompile Include="isoval.c" />
     <ClCompile Include="ivimp.c" />
     <ClCompile Include="iwamax.c" />
-    <ClCompile Include="kronc.c" />
-    <ClCompile Include="kronr.c" />
     <ClCompile Include="lnblnk.c" />
     <ClCompile Include="mtran.c" />
     <ClCompile Include="old_pythag.c" />
@@ -409,8 +407,6 @@ cd ..
     <f2c_rule Include="isoval.f" />
     <f2c_rule Include="ivimp.f" />
     <f2c_rule Include="iwamax.f" />
-    <f2c_rule Include="kronc.f" />
-    <f2c_rule Include="kronr.f" />
     <f2c_rule Include="lnblnk.f" />
     <f2c_rule Include="mtran.f" />
     <f2c_rule Include="old_pythag.f" />
