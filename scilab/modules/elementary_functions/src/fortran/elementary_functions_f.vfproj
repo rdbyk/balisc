@@ -125,7 +125,6 @@
 		<File RelativePath=".\wbdiag.f"/>
 		<File RelativePath=".\wcerr.f"/>
 		<File RelativePath=".\wclmat.f"/>
-		<File RelativePath=".\wddiv.f"/>
 		<File RelativePath=".\wdiv.f"/>
 		<File RelativePath=".\wdotci.f"/>
 		<File RelativePath=".\wdotcr.f"/>

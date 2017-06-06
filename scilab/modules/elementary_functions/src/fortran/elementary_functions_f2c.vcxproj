@@ -343,7 +343,6 @@ cd ..
     <ClCompile Include="wbdiag.c" />
     <ClCompile Include="wcerr.c" />
     <ClCompile Include="wclmat.c" />
-    <ClCompile Include="wddiv.c" />
     <ClCompile Include="wdiv.c" />
     <ClCompile Include="wdotci.c" />
     <ClCompile Include="wdotcr.c" />
@@ -433,7 +432,6 @@ cd ..
     <f2c_rule Include="wbdiag.f" />
     <f2c_rule Include="wcerr.f" />
     <f2c_rule Include="wclmat.f" />
-    <f2c_rule Include="wddiv.f" />
     <f2c_rule Include="wdiv.f" />
     <f2c_rule Include="wdotci.f" />
     <f2c_rule Include="wdotcr.f" />

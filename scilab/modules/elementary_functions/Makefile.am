@@ -147,7 +147,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/iset.f \
     src/fortran/dwpowe.f \
     src/fortran/rcsort.f \
-    src/fortran/wddiv.f \
     src/fortran/lnblnk.f \
     src/fortran/entier.f \
     src/fortran/round.f \

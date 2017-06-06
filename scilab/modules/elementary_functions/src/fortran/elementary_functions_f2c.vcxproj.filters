@@ -228,9 +228,6 @@
     <ClCompile Include="wclmat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wddiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -495,9 +492,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wclmat.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="wddiv.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wdiv.f">
