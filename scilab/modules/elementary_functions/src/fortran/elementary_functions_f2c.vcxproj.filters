@@ -165,9 +165,6 @@
     <ClCompile Include="isoval.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ivimp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="iwamax.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -411,9 +408,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="isoval.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ivimp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="iwamax.f">

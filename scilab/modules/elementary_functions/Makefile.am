@@ -167,7 +167,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/ddif.f \
     src/fortran/wdiv.f \
     src/fortran/wcerr.f \
-    src/fortran/ivimp.f \
     src/fortran/dadd.f \
     src/fortran/isort.f \
     src/fortran/wscal.f \

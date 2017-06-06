@@ -321,7 +321,6 @@ cd ..
     <ClCompile Include="isort.c" />
     <ClCompile Include="isova0.c" />
     <ClCompile Include="isoval.c" />
-    <ClCompile Include="ivimp.c" />
     <ClCompile Include="iwamax.c" />
     <ClCompile Include="lnblnk.c" />
     <ClCompile Include="mtran.c" />
@@ -405,7 +404,6 @@ cd ..
     <f2c_rule Include="isort.f" />
     <f2c_rule Include="isova0.f" />
     <f2c_rule Include="isoval.f" />
-    <f2c_rule Include="ivimp.f" />
     <f2c_rule Include="iwamax.f" />
     <f2c_rule Include="lnblnk.f" />
     <f2c_rule Include="mtran.f" />
