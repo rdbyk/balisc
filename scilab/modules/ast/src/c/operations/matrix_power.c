@@ -40,7 +40,6 @@ C : complex
 - : <= 0
 */
 
-/*ddpowe*/
 int iPowerRealScalarByRealScalar(
     double _dblReal1,
     double _dblReal2,
@@ -221,7 +220,6 @@ int iPowerRealScalarByComplexScalar(
     return 0;
 }
 
-/*wdpowe*/
 int iPowerComplexScalarByRealScalar(
     double _dblReal1, double _dblImg1,
     double _dblReal2,
@@ -326,7 +324,6 @@ int iPowerComplexScalarByRealScalar(
     return 0;
 }
 
-/*wwpowe*/
 int iPowerComplexScalarByComplexScalar(
     double _dblReal1, double _dblImg1,
     double _dblReal2, double _dblImg2,
