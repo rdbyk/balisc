@@ -40,7 +40,6 @@ C : complex
 - : <= 0
 */
 
-/*ddpowe*/
 int iPowerRealScalarByRealScalar(
     double _dblReal1,
     double _dblReal2,

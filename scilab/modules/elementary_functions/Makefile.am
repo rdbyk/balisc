@@ -145,7 +145,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wwdiv.f \
     src/fortran/wdotcr.f \
     src/fortran/iset.f \
-    src/fortran/dwpowe.f \
     src/fortran/lnblnk.f \
     src/fortran/entier.f \
     src/fortran/round.f \
@@ -202,7 +201,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wexchn.f \
     src/fortran/wlog.f \
     src/fortran/infinity.f \
-    src/fortran/dwpow1.f \
     src/fortran/wmul.f \
     src/fortran/dad.f \
     src/fortran/dset.f \
