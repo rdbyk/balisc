@@ -195,9 +195,6 @@
     <ClCompile Include="rcopy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rcsort.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="round.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -453,9 +450,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="rcopy.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="rcsort.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="round.f">

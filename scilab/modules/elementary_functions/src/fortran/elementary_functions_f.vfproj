@@ -114,7 +114,6 @@
 		<File RelativePath=".\ortran.f"/>
 		<File RelativePath=".\rat.f"/>
 		<File RelativePath=".\rcopy.f"/>
-		<File RelativePath=".\rcsort.f"/>
 		<File RelativePath=".\round.f"/>
 		<File RelativePath=".\simple.f"/>
 		<File RelativePath=".\split.f"/>
