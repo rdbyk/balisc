@@ -114,9 +114,6 @@
     <ClCompile Include="dtild.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dvmul.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="entier.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -333,9 +330,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dtild.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dvmul.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="entier.f">

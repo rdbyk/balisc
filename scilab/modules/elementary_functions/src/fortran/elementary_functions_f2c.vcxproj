@@ -304,7 +304,6 @@ cd ..
     <ClCompile Include="dsort.c" />
     <ClCompile Include="dsum.c" />
     <ClCompile Include="dtild.c" />
-    <ClCompile Include="dvmul.c" />
     <ClCompile Include="entier.c" />
     <ClCompile Include="exch.c" />
     <ClCompile Include="gdcp2i.c" />
@@ -379,7 +378,6 @@ cd ..
     <f2c_rule Include="dsort.f" />
     <f2c_rule Include="dsum.f" />
     <f2c_rule Include="dtild.f" />
-    <f2c_rule Include="dvmul.f" />
     <f2c_rule Include="entier.f" />
     <f2c_rule Include="exch.f" />
     <f2c_rule Include="gdcp2i.f" />

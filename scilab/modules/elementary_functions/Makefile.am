@@ -184,7 +184,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/drdiv.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
-    src/fortran/dvmul.f \
     src/fortran/wclmat.f \
     src/fortran/dsort.f \
     src/fortran/cerr.f \
