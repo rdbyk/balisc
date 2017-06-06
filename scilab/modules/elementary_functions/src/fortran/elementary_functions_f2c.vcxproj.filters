@@ -72,9 +72,6 @@
     <ClCompile Include="ddpowe.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ddrdiv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dexpm1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -97,9 +94,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dmmul1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="drdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dset.c">
@@ -290,9 +284,6 @@
     <f2c_rule Include="ddpowe.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="ddrdiv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dexpm1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -315,9 +306,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dmmul1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="drdiv.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dset.f">

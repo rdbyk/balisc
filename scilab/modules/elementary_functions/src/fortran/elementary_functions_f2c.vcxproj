@@ -290,7 +290,6 @@ cd ..
     <ClCompile Include="ddif.c" />
     <ClCompile Include="ddpow1.c" />
     <ClCompile Include="ddpowe.c" />
-    <ClCompile Include="ddrdiv.c" />
     <ClCompile Include="dexpm1.c" />
     <ClCompile Include="dipow.c" />
     <ClCompile Include="dipowe.c" />
@@ -299,7 +298,6 @@ cd ..
     <ClCompile Include="dmcopy.c" />
     <ClCompile Include="dmmul.c" />
     <ClCompile Include="dmmul1.c" />
-    <ClCompile Include="drdiv.c" />
     <ClCompile Include="dset.c" />
     <ClCompile Include="dsort.c" />
     <ClCompile Include="dsum.c" />
@@ -364,7 +362,6 @@ cd ..
     <f2c_rule Include="ddif.f" />
     <f2c_rule Include="ddpow1.f" />
     <f2c_rule Include="ddpowe.f" />
-    <f2c_rule Include="ddrdiv.f" />
     <f2c_rule Include="dexpm1.f" />
     <f2c_rule Include="dipow.f" />
     <f2c_rule Include="dipowe.f" />
@@ -373,7 +370,6 @@ cd ..
     <f2c_rule Include="dmcopy.f" />
     <f2c_rule Include="dmmul.f" />
     <f2c_rule Include="dmmul1.f" />
-    <f2c_rule Include="drdiv.f" />
     <f2c_rule Include="dset.f" />
     <f2c_rule Include="dsort.f" />
     <f2c_rule Include="dsum.f" />

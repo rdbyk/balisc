@@ -169,7 +169,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/isort.f \
     src/fortran/wscal.f \
     src/fortran/dlblks.f \
-    src/fortran/ddrdiv.f \
     src/fortran/dipow.f \
     src/fortran/wshrsl.f \
     src/fortran/wwrdiv.f \
@@ -181,7 +180,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wbdiag.f \
     src/fortran/ddpow1.f \
     src/fortran/gdcp2i.f \
-    src/fortran/drdiv.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
     src/fortran/wclmat.f \

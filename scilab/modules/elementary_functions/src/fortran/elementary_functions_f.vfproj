@@ -72,7 +72,6 @@
 		<File RelativePath=".\ddif.f"/>
 		<File RelativePath=".\ddpow1.f"/>
 		<File RelativePath=".\ddpowe.f"/>
-		<File RelativePath=".\ddrdiv.f"/>
 		<File RelativePath=".\dexpm1.f"/>
 		<File RelativePath=".\dipow.f"/>
 		<File RelativePath=".\dipowe.f"/>
@@ -81,7 +80,6 @@
 		<File RelativePath=".\dmcopy.f"/>
 		<File RelativePath=".\dmmul.f"/>
 		<File RelativePath=".\dmmul1.f"/>
-		<File RelativePath=".\drdiv.f"/>
 		<File RelativePath=".\dset.f"/>
 		<File RelativePath=".\dsort.f"/>
 		<File RelativePath=".\dsum.f"/>
