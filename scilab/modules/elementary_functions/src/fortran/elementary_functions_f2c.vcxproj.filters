@@ -138,13 +138,7 @@
     <ClCompile Include="exch.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="franck.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gdcp2i.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hilber.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="i1mach.c">
@@ -184,9 +178,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lnblnk.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="magic.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mtran.c">
@@ -416,13 +407,7 @@
     <f2c_rule Include="exch.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="franck.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="gdcp2i.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="hilber.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="i1mach.f">
@@ -462,9 +447,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="lnblnk.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="magic.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="mtran.f">

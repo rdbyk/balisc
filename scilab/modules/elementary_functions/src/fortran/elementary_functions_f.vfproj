@@ -94,9 +94,7 @@
 		<File RelativePath=".\dwrdiv.f"/>
 		<File RelativePath=".\entier.f"/>
 		<File RelativePath=".\exch.f"/>
-		<File RelativePath=".\franck.f"/>
 		<File RelativePath=".\gdcp2i.f"/>
-		<File RelativePath=".\hilber.f"/>
 		<File RelativePath=".\i1mach.f"/>
 		<File RelativePath=".\imcopy.f"/>
 		<File RelativePath=".\infinity.f"/>
@@ -110,7 +108,6 @@
 		<File RelativePath=".\kronc.f"/>
 		<File RelativePath=".\kronr.f"/>
 		<File RelativePath=".\lnblnk.f"/>
-		<File RelativePath=".\magic.f"/>
 		<File RelativePath=".\mtran.f"/>
 		<File RelativePath=".\old_pythag.f"/>
 		<File RelativePath=".\orthes.f"/>

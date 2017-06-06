@@ -312,9 +312,7 @@ cd ..
     <ClCompile Include="dwrdiv.c" />
     <ClCompile Include="entier.c" />
     <ClCompile Include="exch.c" />
-    <ClCompile Include="franck.c" />
     <ClCompile Include="gdcp2i.c" />
-    <ClCompile Include="hilber.c" />
     <ClCompile Include="i1mach.c" />
     <ClCompile Include="imcopy.c" />
     <ClCompile Include="infinity.c" />
@@ -328,7 +326,6 @@ cd ..
     <ClCompile Include="kronc.c" />
     <ClCompile Include="kronr.c" />
     <ClCompile Include="lnblnk.c" />
-    <ClCompile Include="magic.c" />
     <ClCompile Include="mtran.c" />
     <ClCompile Include="old_pythag.c" />
     <ClCompile Include="orthes.c" />
@@ -406,9 +403,7 @@ cd ..
     <f2c_rule Include="dwrdiv.f" />
     <f2c_rule Include="entier.f" />
     <f2c_rule Include="exch.f" />
-    <f2c_rule Include="franck.f" />
     <f2c_rule Include="gdcp2i.f" />
-    <f2c_rule Include="hilber.f" />
     <f2c_rule Include="i1mach.f" />
     <f2c_rule Include="imcopy.f" />
     <f2c_rule Include="infinity.f" />
@@ -422,7 +417,6 @@ cd ..
     <f2c_rule Include="kronc.f" />
     <f2c_rule Include="kronr.f" />
     <f2c_rule Include="lnblnk.f" />
-    <f2c_rule Include="magic.f" />
     <f2c_rule Include="mtran.f" />
     <f2c_rule Include="old_pythag.f" />
     <f2c_rule Include="orthes.f" />

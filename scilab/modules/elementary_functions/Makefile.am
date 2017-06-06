@@ -145,7 +145,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wwdiv.f \
     src/fortran/wdotcr.f \
     src/fortran/iset.f \
-    src/fortran/franck.f \
     src/fortran/dwpowe.f \
     src/fortran/rcsort.f \
     src/fortran/wddiv.f \
@@ -171,12 +170,10 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wmmul.f \
     src/fortran/ddif.f \
     src/fortran/wdiv.f \
-    src/fortran/magic.f \
     src/fortran/wcerr.f \
     src/fortran/ivimp.f \
     src/fortran/dadd.f \
     src/fortran/isort.f \
-    src/fortran/hilber.f \
     src/fortran/wscal.f \
     src/fortran/dlblks.f \
     src/fortran/kronc.f \
