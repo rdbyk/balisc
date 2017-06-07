@@ -21,7 +21,6 @@
 int gw_core(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_who)(char *fname, unsigned long fname_len);
-int C2F(sci_resume)(char *fname, unsigned long fname_len);
 int C2F(sci_return)(char *fname, unsigned long fname_len);
 int C2F(sci_isdef)(char *fname, unsigned long fname_len);
 STACK_GATEWAY_PROTOTYPE(C2F(sci_predef));
