@@ -259,23 +259,20 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/wsign.lo src/fortran/wrscal.lo \
 	src/fortran/dmmul1.lo src/fortran/wmmul.lo src/fortran/ddif.lo \
 	src/fortran/wdiv.lo src/fortran/wcerr.lo src/fortran/dadd.lo \
-	src/fortran/isort.lo src/fortran/wscal.lo \
-	src/fortran/dlblks.lo src/fortran/ddrdiv.lo \
-	src/fortran/dipow.lo src/fortran/wshrsl.lo \
-	src/fortran/wwrdiv.lo src/fortran/coshin.lo \
-	src/fortran/iwamax.lo src/fortran/dipowe.lo \
-	src/fortran/cusum.lo src/fortran/d1mach.lo \
+	src/fortran/isort.lo src/fortran/wscal.lo src/fortran/dipow.lo \
+	src/fortran/wshrsl.lo src/fortran/wwrdiv.lo \
+	src/fortran/coshin.lo src/fortran/iwamax.lo \
+	src/fortran/dipowe.lo src/fortran/d1mach.lo \
 	src/fortran/wbdiag.lo src/fortran/ddpow1.lo \
-	src/fortran/gdcp2i.lo src/fortran/drdiv.lo \
-	src/fortran/corth.lo src/fortran/mtran.lo \
-	src/fortran/wclmat.lo src/fortran/dsort.lo src/fortran/cerr.lo \
-	src/fortran/orthes.lo src/fortran/waxpy.lo src/fortran/coef.lo \
-	src/fortran/arcosh.lo src/fortran/wexpm1.lo \
-	src/fortran/ddpowe.lo src/fortran/wdotci.lo \
-	src/fortran/dmcopy.lo src/fortran/wexchn.lo \
-	src/fortran/wlog.lo src/fortran/infinity.lo \
-	src/fortran/wmul.lo src/fortran/dad.lo src/fortran/dset.lo \
-	src/fortran/dtild.lo src/fortran/i1mach.lo \
+	src/fortran/gdcp2i.lo src/fortran/corth.lo \
+	src/fortran/mtran.lo src/fortran/wclmat.lo \
+	src/fortran/dsort.lo src/fortran/cerr.lo src/fortran/orthes.lo \
+	src/fortran/waxpy.lo src/fortran/coef.lo src/fortran/arcosh.lo \
+	src/fortran/wexpm1.lo src/fortran/ddpowe.lo \
+	src/fortran/wdotci.lo src/fortran/dmcopy.lo \
+	src/fortran/wexchn.lo src/fortran/wlog.lo \
+	src/fortran/infinity.lo src/fortran/wmul.lo src/fortran/dad.lo \
+	src/fortran/dset.lo src/fortran/dtild.lo src/fortran/i1mach.lo \
 	src/fortran/dclmat.lo src/fortran/ortran.lo \
 	src/fortran/bdiag.lo src/fortran/wvmul.lo src/fortran/dmmul.lo \
 	src/fortran/wsqrt.lo src/fortran/rat.lo \
@@ -925,20 +922,16 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dadd.f \
     src/fortran/isort.f \
     src/fortran/wscal.f \
-    src/fortran/dlblks.f \
-    src/fortran/ddrdiv.f \
     src/fortran/dipow.f \
     src/fortran/wshrsl.f \
     src/fortran/wwrdiv.f \
     src/fortran/coshin.f \
     src/fortran/iwamax.f \
     src/fortran/dipowe.f \
-    src/fortran/cusum.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
     src/fortran/ddpow1.f \
     src/fortran/gdcp2i.f \
-    src/fortran/drdiv.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
     src/fortran/wclmat.f \
@@ -1588,10 +1581,6 @@ src/fortran/isort.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wscal.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dlblks.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ddrdiv.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dipow.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wshrsl.lo: src/fortran/$(am__dirstamp) \
@@ -1604,8 +1593,6 @@ src/fortran/iwamax.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dipowe.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/cusum.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/d1mach.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wbdiag.lo: src/fortran/$(am__dirstamp) \
@@ -1613,8 +1600,6 @@ src/fortran/wbdiag.lo: src/fortran/$(am__dirstamp) \
 src/fortran/ddpow1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/gdcp2i.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/drdiv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/corth.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

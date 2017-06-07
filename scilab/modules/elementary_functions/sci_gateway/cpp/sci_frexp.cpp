@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -13,6 +13,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -22,8 +23,8 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "basic_functions.h"
 }
+
 /*
 clear a; nb = 2500; a = rand(nb, nb); tic(); [x,y]=frexp(a); toc
 */
@@ -71,9 +72,11 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
     double* pFrexp = pDblExp->get();
     int size = pDblIn->getSize();
 
+    int iExp;
     for (int i = 0; i < size; i++)
     {
-        pCoef[i] = dfrexps(pIn[i], pFrexp + i);
+        pCoef[i] = std::frexp(pIn[i], &iExp);
+        pFrexp[i] = static_cast<double>(iExp);
     }
 
     out.push_back(pDblCoef);
