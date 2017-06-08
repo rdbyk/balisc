@@ -235,9 +235,9 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/cpp/extractblklist.cpp src/c/tree.c src/c/scicos_malloc.c \
 	src/c/scicos_print.c src/c/import.c src/c/scicos.c \
 	src/c/scicos_free.c src/c/ezxml.c src/c/var2sci.c \
-	src/c/MlistGetFieldNumber.c src/c/lsodar.c src/c/ddaskr.c \
-	src/fortran/sctree.f src/fortran/ftree2.f src/fortran/ftree3.f \
-	src/fortran/ftree4.f src/fortran/scifunc.f
+	src/c/lsodar.c src/c/ddaskr.c src/fortran/sctree.f \
+	src/fortran/ftree2.f src/fortran/ftree3.f src/fortran/ftree4.f \
+	src/fortran/scifunc.f
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/noscicos/libsciscicos_algo_la-noscicos.lo
 am__objects_2 = src/cpp/libsciscicos_algo_la-il_state.lo \
@@ -276,7 +276,6 @@ am__objects_3 = src/c/libsciscicos_algo_la-tree.lo \
 	src/c/libsciscicos_algo_la-scicos_free.lo \
 	src/c/libsciscicos_algo_la-ezxml.lo \
 	src/c/libsciscicos_algo_la-var2sci.lo \
-	src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo \
 	src/c/libsciscicos_algo_la-lsodar.lo \
 	src/c/libsciscicos_algo_la-ddaskr.lo
 am__objects_4 = src/fortran/sctree.lo src/fortran/ftree2.lo \
@@ -983,7 +982,6 @@ src/c/scicos.c \
 src/c/scicos_free.c \
 src/c/ezxml.c \
 src/c/var2sci.c \
-src/c/MlistGetFieldNumber.c \
 src/c/lsodar.c \
 src/c/ddaskr.c
 
@@ -1561,8 +1559,6 @@ src/c/libsciscicos_algo_la-ezxml.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-var2sci.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-lsodar.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-ddaskr.lo: src/c/$(am__dirstamp) \
@@ -2095,7 +2091,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_validvar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_var2vec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_vec2var.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-ddaskr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-import.Plo@am__quote@
@@ -2241,13 +2236,6 @@ src/c/libsciscicos_algo_la-var2sci.lo: src/c/var2sci.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/var2sci.c' object='src/c/libsciscicos_algo_la-var2sci.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-var2sci.lo `test -f 'src/c/var2sci.c' || echo '$(srcdir)/'`src/c/var2sci.c
-
-src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo: src/c/MlistGetFieldNumber.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Tpo -c -o src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo `test -f 'src/c/MlistGetFieldNumber.c' || echo '$(srcdir)/'`src/c/MlistGetFieldNumber.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Tpo src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/MlistGetFieldNumber.c' object='src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo `test -f 'src/c/MlistGetFieldNumber.c' || echo '$(srcdir)/'`src/c/MlistGetFieldNumber.c
 
 src/c/libsciscicos_algo_la-lsodar.lo: src/c/lsodar.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-lsodar.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-lsodar.Tpo -c -o src/c/libsciscicos_algo_la-lsodar.lo `test -f 'src/c/lsodar.c' || echo '$(srcdir)/'`src/c/lsodar.c

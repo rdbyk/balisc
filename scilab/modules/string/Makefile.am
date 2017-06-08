@@ -5,12 +5,10 @@
 
 STRING_CPP_SOURCES = \
     src/cpp/stripblanks.cpp \
-    src/cpp/sort_inter.cpp \
     src/cpp/os_wtoi.cpp
 
 STRING_C_SOURCES = \
     src/c/convstr.c \
-    src/c/men_Sutils.c \
     src/c/tokens.c \
     src/c/strsplit.c \
     src/c/partfunction.c \
@@ -29,7 +27,6 @@ STRING_C_SOURCES = \
     src/c/os_wcsdup.c \
     src/c/os_wcstok.c \
     src/c/os_wcstod.c \
-    src/c/scistrtostr.c \
     src/c/stringToDouble.c \
     src/c/stringToComplex.c \
     src/c/complex_array.c \
@@ -157,12 +154,10 @@ includes/cvstr.h \
 includes/dynlib_string_gw.h \
 includes/dynlib_string.h \
 includes/getfastcode.h \
-includes/men_Sutils.h \
 includes/os_string.h \
 includes/os_wcstok.h \
 includes/os_wcstod.h \
 includes/pcre_private.h \
-includes/scistrtostr.h \
 includes/StringConvert.h \
 includes/string_gw.hxx \
 includes/stringToComplex.h \
