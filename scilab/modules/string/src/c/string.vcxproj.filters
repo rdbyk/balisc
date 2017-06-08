@@ -176,9 +176,6 @@
     <ClInclude Include="convstr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CreateEmptystr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="isalphanum.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -329,7 +329,6 @@
     <ClInclude Include="..\..\includes\complex_array.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="convstr.h" />
-    <ClInclude Include="CreateEmptystr.h" />
     <ClInclude Include="isalphanum.h" />
     <ClInclude Include="isascii.h" />
     <ClInclude Include="isdigit.h" />
