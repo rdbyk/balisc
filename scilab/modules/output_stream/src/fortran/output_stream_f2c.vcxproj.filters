@@ -67,9 +67,6 @@
     <None Include="output_stream_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="String_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="..\..\Makefile.am" />
     <None Include="Polynomials_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
