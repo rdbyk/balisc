@@ -26,8 +26,6 @@ extern "C"
 #include "sciprint.h"
 #include "localization.h"
 #include "elem_common.h"
-#include "log.h"
-    int C2F(wlog)(double*, double*, double*, double*);
 }
 
 #include <complex>

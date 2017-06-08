@@ -15,6 +15,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <complex.h>
 #include <string.h>
 #include "matrix_power.h"
 #include "matrix_multiplication.h"
@@ -40,30 +41,30 @@ C : complex
 - : <= 0
 */
 
-int iPowerRealScalarByRealScalar(
-    double _dblReal1,
-    double _dblReal2,
-    double *_pdblRealOut, double *_pdblImgOut, int *_piComplex)
+inline int iPowerRealScalarByRealScalar(double _dblReal1,
+                                        double _dblReal2,
+                                        double *_pdblRealOut,
+                                        double *_pdblImgOut,
+                                        int *_piComplex)
 {
-    //exposant is an integer
+    //exponent is integer
     if ((int)_dblReal2 == _dblReal2)
     {
-        //dipowe
         int iReal2 = (int)_dblReal2;
 
         if (iReal2 == 1)
         {
             //R ^ 1
             *_pdblRealOut = _dblReal1;
-            *_pdblImgOut	= 0;
-            *_piComplex		= 0;
+            *_pdblImgOut  = 0;
+            *_piComplex	  = 0;
         }
         else if (iReal2 == 0)
         {
             //R ^ 0
             *_pdblRealOut = 1;
-            *_pdblImgOut	= 0;
-            *_piComplex		= 0;
+            *_pdblImgOut  = 0;
+            *_piComplex	  = 0;
         }
         else if (iReal2 < 0)
         {
@@ -72,26 +73,23 @@ int iPowerRealScalarByRealScalar(
             {
                 //R* ^ Z-
                 *_pdblRealOut = pow(_dblReal1, iReal2);
-                *_pdblImgOut	= 0;
-                *_piComplex		= 0;
+                *_pdblImgOut  = 0;
+                *_piComplex	  = 0;
             }
             else
             {
                 //0 ^ 0
-                //FIXME : ieee
-                //generate +Inf
-                double dblZero	= 0.0;
-                *_pdblRealOut		= 1.0 / (dblZero);
-                *_pdblImgOut		= 0;
-                *_piComplex			= 0;
+                *_pdblRealOut  = +INFINITY;
+                *_pdblImgOut   = 0;
+                *_piComplex	   = 0;
             }
         }
         else
         {
             //R ^ Z*+ ( N* )
             *_pdblRealOut = pow(_dblReal1, iReal2);
-            *_pdblImgOut	= 0;
-            *_piComplex		= 0;
+            *_pdblImgOut  = 0;
+            *_piComplex	  = 0;
         }
     }
     else
@@ -100,21 +98,17 @@ int iPowerRealScalarByRealScalar(
         {
             //R*+ ^ R
             *_pdblRealOut = pow(_dblReal1, _dblReal2);
-            *_pdblImgOut	= 0;
-            *_piComplex		= 0;
+            *_pdblImgOut  = 0;
+            *_piComplex	  = 0;
         }
         else if (_dblReal1 < 0)
         {
             //R*- ^ R
-            double dblRealTemp	= 0;
-            double dblImgTemp	= 0;
-            
-            wlog(_dblReal1, 0, &dblRealTemp, &dblImgTemp);
-            dblRealTemp					= exp(dblRealTemp * _dblReal2);
-            dblImgTemp					= dblImgTemp * _dblReal2;
-            *_pdblRealOut				= dblRealTemp * cos(dblImgTemp);
-            *_pdblImgOut				= dblRealTemp * sin(dblImgTemp);
-            *_piComplex					= 1;
+            double complex tmp = clog((double complex){ _dblReal1, 0.0 });
+            tmp = (double complex){exp(_dblReal2 * creal(tmp)), _dblReal2 * cimag(tmp)};
+            *_pdblRealOut = cos(cimag(tmp))*creal(tmp);
+            *_pdblImgOut  = sin(cimag(tmp))*creal(tmp);
+            *_piComplex	  = 1;
         }
         else if (_dblReal1 == 0)
         {
@@ -122,12 +116,9 @@ int iPowerRealScalarByRealScalar(
             if (_dblReal2 < 0)
             {
                 //0 ^ R*-
-                //FIXME : ieee
-                //generate +Inf
-                double dblZero	= 0.0;
-                *_pdblRealOut		= 1.0 / (dblZero);
-                *_pdblImgOut		= 0;
-                *_piComplex			= 0;
+                *_pdblRealOut	= +INFINITY;
+                *_pdblImgOut	= 0;
+                *_piComplex		= 0;
             }
             else if (_dblReal2 == 0)
             {
@@ -161,20 +152,17 @@ int iPowerRealScalarByRealScalar(
     return 0;
 }
 
-/*dwpowe*/
-int iPowerRealScalarByComplexScalar(
-    double _dblReal1,
-    double _dblReal2, double _dblImg2,
-    double* _pdblRealOut, double* _pdblImgOut)
+inline int iPowerRealScalarByComplexScalar(double _dblReal1,
+                                           double _dblReal2, double _dblImg2,
+                                           double* _pdblRealOut,
+                                           double* _pdblImgOut)
 {
     if (_dblImg2 == 0)
     {
         //R ^ R
         int iComplex = 0;
-        iPowerRealScalarByRealScalar(
-            _dblReal1,
-            _dblReal2,
-            _pdblRealOut, _pdblImgOut, &iComplex);
+        iPowerRealScalarByRealScalar(_dblReal1, _dblReal2, _pdblRealOut,
+                                     _pdblImgOut, &iComplex);
     }
     else
     {
@@ -182,14 +170,10 @@ int iPowerRealScalarByComplexScalar(
         if (_dblReal1 != 0)
         {
             //R* ^ C
-            double dblRealTemp	= 0;
-            double dblImgTemp		= 0;
-
-            wlog(_dblReal1, 0, &dblRealTemp, &dblImgTemp);
-            C2F(wmul)(&dblRealTemp, &dblImgTemp, &_dblReal2, &_dblImg2, &dblRealTemp, &dblImgTemp);
-            dblRealTemp					= exp(dblRealTemp);
-            *_pdblRealOut				= dblRealTemp * cos(dblImgTemp);
-            *_pdblImgOut				= dblRealTemp * sin(dblImgTemp);
+            double complex tmp = cpow(_dblReal1 + 0.0 * I, 
+                                      _dblReal2 + _dblImg2 * I);
+            *_pdblRealOut = creal(tmp);
+            *_pdblImgOut  = cimag(tmp);
         }
         else
         {
@@ -197,33 +181,31 @@ int iPowerRealScalarByComplexScalar(
             if (_dblReal2 > 0)
             {
                 //0 ^ (r E R*+ ) & ( c E R )
-                *_pdblRealOut				= 0;
-                *_pdblImgOut				= 0;
+                *_pdblRealOut = 0;
+                *_pdblImgOut  = 0;
             }
             else if (_dblReal2 < 0)
             {
                 //0 ^ (r E R*- ) & ( c E R )
-                //FIXME : ieee
-                //generate +Inf
-                double dblZero	= 0.0;
-                *_pdblRealOut		= 1.0 / (dblZero);
-                *_pdblImgOut		= 0;
+                *_pdblRealOut = +INFINITY;
+                *_pdblImgOut  = 0;
             }
             else //_dblReal2 == 0, NaN
             {
                 //0 ^ (r = 0 ) & ( c E R )
-                *_pdblRealOut				= 1;
-                *_pdblImgOut				= 0;
+                *_pdblRealOut = 1;
+                *_pdblImgOut  = 0;
             }
         }
     }
     return 0;
 }
 
-int iPowerComplexScalarByRealScalar(
-    double _dblReal1, double _dblImg1,
-    double _dblReal2,
-    double* _pdblRealOut, double* _pdblImgOut)
+inline int iPowerComplexScalarByRealScalar(double _dblReal1,
+                                           double _dblImg1,
+                                           double _dblReal2,
+                                           double* _pdblRealOut,
+                                           double* _pdblImgOut)
 {
     if ((int)_dblReal2 == _dblReal2)
     {
@@ -231,103 +213,85 @@ int iPowerComplexScalarByRealScalar(
         if (_dblReal2 == 0)
         {
             //C ^ 0
-            *_pdblRealOut				= 1;
-            *_pdblImgOut				= 0;
+            *_pdblRealOut = 1;
+            *_pdblImgOut  = 0;
         }
         else if (_dblReal2 < 0)
         {
             //C ^ Z*-
-            if (fabs(_dblReal1) + fabs(_dblImg1) != 0) //_dblReal1 != 0 || _dblImg1 != 0 ?
+            if ((_dblReal1 != 0) || (_dblImg1 != 0))
             {
-                int i = 0;
-                double dblOne				= 1;
-                double dblZero			= 0;
-                double dblRealTemp	= 0;
-                double dblImgTemp		= 0;
-
-                C2F(wdiv)(&dblOne, &dblZero, &_dblReal1, &_dblImg1, _pdblRealOut, _pdblImgOut);
-
-                dblRealTemp					= *_pdblRealOut;
-                dblImgTemp					= *_pdblImgOut;
-
+                int i;
+                double complex out = (1.0 + 0.0 * I) / (_dblReal1 + _dblImg1 * I);
+                double complex tmp = out;
                 for (i = 2 ; i <= fabs(_dblReal2) ; i++)
                 {
-                    C2F(wmul)(&dblRealTemp, &dblImgTemp, _pdblRealOut, _pdblImgOut, _pdblRealOut, _pdblImgOut);
+                    out *= tmp;
                 }
+                *_pdblRealOut = creal(out);
+                *_pdblImgOut  = cimag(out);
             }
             else
             {
-                //FIXME : ieee
-                //generate +Inf
-                double dblZero	= 0.0;
-                *_pdblRealOut		= 1.0 / (dblZero);
-                *_pdblImgOut		= 0;
+                *_pdblRealOut = +INFINITY;
+                *_pdblImgOut  = 0;
             }
         }
         else
         {
             //C ^ Z*+
-            int i								= 0;
-            double dblRealTemp	= 0;
-            double dblImgTemp		= 0;
-
-            *_pdblRealOut			= _dblReal1;
-            *_pdblImgOut			= _dblImg1;
-            dblRealTemp				= *_pdblRealOut;
-            dblImgTemp				= *_pdblImgOut;
-
+            int i;
+            double complex out = _dblReal1 + _dblImg1 * I;
+            double complex tmp = out;
             for (i = 2 ; i <= fabs(_dblReal2) ; i++)
             {
-                C2F(wmul)(&dblRealTemp, &dblImgTemp, _pdblRealOut, _pdblImgOut, _pdblRealOut, _pdblImgOut);
+                out *= tmp;
             }
+            *_pdblRealOut = creal(out);
+            *_pdblImgOut  = cimag(out);
         }
     }
     else
     {
-        if (fabs(_dblReal1) + fabs(_dblImg1) != 0)
+        if ((_dblReal1 != 0) || (_dblImg1 != 0))
         {
             //C ^ R
-            double dblRealTemp	= 0;
-            double dblImgTemp		= 0;
-
-            wlog(_dblReal1, _dblImg1, &dblRealTemp, &dblImgTemp);
-            dblRealTemp					= exp(dblRealTemp * _dblReal2);
-            dblImgTemp					= dblImgTemp * _dblReal2;
-            *_pdblRealOut				= dblRealTemp * cos(dblImgTemp);
-            *_pdblImgOut				= dblRealTemp * sin(dblImgTemp);
+            double complex tmp = cpow(_dblReal1 + _dblImg1 * I,
+                                      _dblReal2 + 0.0 *I);
+            *_pdblRealOut = creal(tmp);
+            *_pdblImgOut  = cimag(tmp);
         }
         else
         {
             if (_dblReal2 > 0)
             {
                 //0 ^ R*+
-                *_pdblRealOut		= 0;
-                *_pdblImgOut		= 0;
+                *_pdblRealOut = 0;
+                *_pdblImgOut  = 0;
             }
             else if (_dblReal2 < 0)
             {
                 //0 ^ R*-
-                //FIXME : ieee
-                //generate +Inf
-                double dblZero	= 0.0;
-                *_pdblRealOut		= 1.0 / (dblZero);
-                *_pdblImgOut		= 0;
+                *_pdblRealOut = +INFINITY;
+                *_pdblImgOut  = 0;
             }
             else
             {
                 //0 ^ 0
-                *_pdblRealOut		= 1;
-                *_pdblImgOut		= 0;
+                *_pdblRealOut = 1;
+                *_pdblImgOut  = 0;
             }
         }
     }
     return 0;
 }
 
-int iPowerComplexScalarByComplexScalar(
-    double _dblReal1, double _dblImg1,
-    double _dblReal2, double _dblImg2,
-    double* _pdblRealOut, double* _pdblImgOut)
+inline int iPowerComplexScalarByComplexScalar(double _dblReal1,
+                                              double _dblImg1,
+                                              double _dblReal2,
+                                              double _dblImg2,
+                                              double* _pdblRealOut,
+                                              double* _pdblImgOut)
 {
     if (_dblImg2 == 0)
     {
@@ -340,25 +304,18 @@ int iPowerComplexScalarByComplexScalar(
     else
     {
         //C ^ C
-        if (fabs(_dblReal1) + fabs(_dblImg1) != 0)
+        if ((_dblReal1 != 0) || (_dblImg1 != 0))
         {
             // ! 0 ^ C
-            double dblRealTemp = 0;
-            double dblImgTemp  = 0;
-
-            wlog(_dblReal1, _dblImg1, &dblRealTemp, &dblImgTemp);
-            C2F(wmul)(&dblRealTemp, &dblImgTemp, &_dblReal2, &_dblImg2, &dblRealTemp, &dblImgTemp);
-            dblRealTemp   = exp(dblRealTemp);
-            *_pdblRealOut = dblRealTemp * cos(dblImgTemp);
-            *_pdblImgOut  = dblRealTemp * sin(dblImgTemp);
+            double complex tmp = cpow(_dblReal1 + _dblImg1 * I,
+                                      _dblReal2 + _dblImg2 * I);
+            *_pdblRealOut = creal(tmp);
+            *_pdblImgOut  = cimag(tmp);
         }
         else
         {
             // 0 ^ C
-            //FIXME : ieee
-            //generate +Inf
-            double dblZero = 0.0;
-            *_pdblRealOut  = 1.0 / (dblZero);
+            *_pdblRealOut  = +INFINITY;
             *_pdblImgOut   = 0;
         }
     }
@@ -366,34 +323,38 @@ int iPowerComplexScalarByComplexScalar(
 }
 
 /*s .^ []*/
-int iPowerRealScalarByRealMatrix(
-    double _dblReal1,
-    double* _pdblReal2, int _iRows2, int _iCols2,
-    double* _pdblRealOut,	double* _pdblImgOut, int *_piComplex)
+int iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2, 
+                                 int _iRows2, int _iCols2,
+                                 double* _pdblRealOut,
+                                 double* _pdblImgOut, 
+                                 int *_piComplex)
 {
-    int i = 0;
     *_piComplex = 0;
-    for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    
+    int i;
+    for (i = 0; i < _iRows2 * _iCols2; i++)
     {
-        int iComplex = 0;
-        iPowerRealScalarByRealScalar(
-            _dblReal1, _pdblReal2[i], &_pdblRealOut[i], &_pdblImgOut[i], &iComplex);
+        int iComplex;
+        iPowerRealScalarByRealScalar(_dblReal1, _pdblReal2[i], 
+                                     &_pdblRealOut[i], &_pdblImgOut[i],
+                                     &iComplex);
         *_piComplex |= iComplex;
     }
     return 0;
 }
 
-
-int iPowerComplexScalarByRealMatrix(
-    double _dblReal1, double _dblImg1,
-    double* _pdblReal2, int _iRows2, int _iCols2,
-    double* _pdblRealOut,	double* _pdblImgOut)
+int iPowerComplexScalarByRealMatrix(double _dblReal1, double _dblImg1,
+                                    double* _pdblReal2,
+                                    int _iRows2, int _iCols2,
+                                    double* _pdblRealOut, double* _pdblImgOut)
 {
-    int i = 0;
-    for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    int i;
+    for (i = 0; i < _iRows2 * _iCols2; i++)
     {
-        iPowerComplexScalarByRealScalar(
-            _dblReal1, _dblImg1, _pdblReal2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
+        iPowerComplexScalarByRealScalar(_dblReal1, _dblImg1,
+                                        _pdblReal2[i],
+                                        &_pdblRealOut[i],
+                                        &_pdblImgOut[i]);
     }
     return 0;
 }
@@ -427,16 +388,17 @@ int iPowerComplexScalarByComplexMatrix(
 }
 
 //Square Matrix ^ Scalar
-int iPowerRealSquareMatrixByRealScalar(
-    double* _pdblReal1, int _iRows1, int _iCols1,
-    double _dblReal2,
-    double* _pdblRealOut,	double* _pdblImgOut, int *_iComplex)
+int iPowerRealSquareMatrixByRealScalar(double* _pdblReal1, int _iRows1, 
+                                       int _iCols1, double _dblReal2,
+                                       double* _pdblRealOut,
+                                       double* _pdblImgOut,
+                                       int *_iComplex)
 {
     int iInv = 0;
     int iExpRef = (int)_dblReal2;
     if (iExpRef < 0)
     {
-        //call matrix invetion
+        //call matrix inversion
         iInv = 1;
         iExpRef = -iExpRef;
     }
@@ -549,10 +511,12 @@ int iPowerRealSquareMatrixByRealScalar(
     return 0;
 }
 
-int iPowerRealSquareMatrixByComplexScalar(
-    double* _pdblReal1, int _iRows1, int _iCols1,
-    double _dblReal2, double _dblImg2,
-    double* _pdblRealOut,	double* _pdblImgOut)
+int iPowerRealSquareMatrixByComplexScalar(double* _pdblReal1,
+                                          int _iRows1, int _iCols1,
+                                          double _dblReal2,
+                                          double _dblImg2,
+                                          double* _pdblRealOut,
+                                          double* _pdblImgOut)
 {
     return 0;
 }
