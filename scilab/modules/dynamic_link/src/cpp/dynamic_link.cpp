@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA/ENPC
-* Copyright (C) DIGITEO - 2011 - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA/ENPC
+ * Copyright (C) DIGITEO - 2011 - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,7 +24,6 @@ extern "C"
 #include <stdio.h>
 #include <stdlib.h>
 #include "dynamic_link.h"
-#include "men_Sutils.h"
 #include "sci_malloc.h" /* MALLOC */
 #include "configvariable_interface.h"
 #include "sciprint.h"

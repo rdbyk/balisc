@@ -44,9 +44,6 @@
     <ClCompile Include="isletter.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="men_Sutils.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="partfunction.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pcre_private.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scistrtostr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StringConvert.c">
@@ -149,13 +143,7 @@
     <ClInclude Include="..\..\includes\getfastcode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\men_Sutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\pcre_private.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scistrtostr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\string_gw.hxx">

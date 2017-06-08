@@ -171,7 +171,6 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscistring_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libscistring_algo_la-convstr.lo \
-	src/c/libscistring_algo_la-men_Sutils.lo \
 	src/c/libscistring_algo_la-tokens.lo \
 	src/c/libscistring_algo_la-strsplit.lo \
 	src/c/libscistring_algo_la-partfunction.lo \
@@ -190,14 +189,12 @@ am__objects_1 = src/c/libscistring_algo_la-convstr.lo \
 	src/c/libscistring_algo_la-os_wcsdup.lo \
 	src/c/libscistring_algo_la-os_wcstok.lo \
 	src/c/libscistring_algo_la-os_wcstod.lo \
-	src/c/libscistring_algo_la-scistrtostr.lo \
 	src/c/libscistring_algo_la-stringToDouble.lo \
 	src/c/libscistring_algo_la-stringToComplex.lo \
 	src/c/libscistring_algo_la-complex_array.lo \
 	src/c/libscistring_algo_la-isascii.lo \
 	src/c/libscistring_algo_la-isnum.lo
 am__objects_2 = src/cpp/libscistring_algo_la-stripblanks.lo \
-	src/cpp/libscistring_algo_la-sort_inter.lo \
 	src/cpp/libscistring_algo_la-os_wtoi.lo
 am_libscistring_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscistring_algo_la_OBJECTS = $(am_libscistring_algo_la_OBJECTS)
@@ -625,12 +622,10 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 STRING_CPP_SOURCES = \
     src/cpp/stripblanks.cpp \
-    src/cpp/sort_inter.cpp \
     src/cpp/os_wtoi.cpp
 
 STRING_C_SOURCES = \
     src/c/convstr.c \
-    src/c/men_Sutils.c \
     src/c/tokens.c \
     src/c/strsplit.c \
     src/c/partfunction.c \
@@ -649,7 +644,6 @@ STRING_C_SOURCES = \
     src/c/os_wcsdup.c \
     src/c/os_wcstok.c \
     src/c/os_wcstod.c \
-    src/c/scistrtostr.c \
     src/c/stringToDouble.c \
     src/c/stringToComplex.c \
     src/c/complex_array.c \
@@ -770,12 +764,10 @@ includes/cvstr.h \
 includes/dynlib_string_gw.h \
 includes/dynlib_string.h \
 includes/getfastcode.h \
-includes/men_Sutils.h \
 includes/os_string.h \
 includes/os_wcstok.h \
 includes/os_wcstod.h \
 includes/pcre_private.h \
-includes/scistrtostr.h \
 includes/StringConvert.h \
 includes/string_gw.hxx \
 includes/stringToComplex.h \
@@ -945,8 +937,6 @@ src/c/$(DEPDIR)/$(am__dirstamp):
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-convstr.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscistring_algo_la-men_Sutils.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-tokens.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-strsplit.lo: src/c/$(am__dirstamp) \
@@ -983,8 +973,6 @@ src/c/libscistring_algo_la-os_wcstok.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-os_wcstod.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscistring_algo_la-scistrtostr.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-stringToDouble.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-stringToComplex.lo: src/c/$(am__dirstamp) \
@@ -1002,8 +990,6 @@ src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/$(DEPDIR)
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscistring_algo_la-stripblanks.lo: src/cpp/$(am__dirstamp) \
-	src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscistring_algo_la-sort_inter.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscistring_algo_la-os_wtoi.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1162,14 +1148,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-isdigit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-isletter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-isnum.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-men_Sutils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-os_wcsdup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-os_wcstod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-os_wcstok.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-partfunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-pcre_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-pcre_private.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-scistrtostr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-stringToComplex.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-stringToDouble.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-stringsCompare.Plo@am__quote@
@@ -1179,7 +1163,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-strsubst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-tokens.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-os_wtoi.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-sort_inter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-stripblanks.Plo@am__quote@
 
 .c.o:
@@ -1212,13 +1195,6 @@ src/c/libscistring_algo_la-convstr.lo: src/c/convstr.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/convstr.c' object='src/c/libscistring_algo_la-convstr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o src/c/libscistring_algo_la-convstr.lo `test -f 'src/c/convstr.c' || echo '$(srcdir)/'`src/c/convstr.c
-
-src/c/libscistring_algo_la-men_Sutils.lo: src/c/men_Sutils.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT src/c/libscistring_algo_la-men_Sutils.lo -MD -MP -MF src/c/$(DEPDIR)/libscistring_algo_la-men_Sutils.Tpo -c -o src/c/libscistring_algo_la-men_Sutils.lo `test -f 'src/c/men_Sutils.c' || echo '$(srcdir)/'`src/c/men_Sutils.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscistring_algo_la-men_Sutils.Tpo src/c/$(DEPDIR)/libscistring_algo_la-men_Sutils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/men_Sutils.c' object='src/c/libscistring_algo_la-men_Sutils.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o src/c/libscistring_algo_la-men_Sutils.lo `test -f 'src/c/men_Sutils.c' || echo '$(srcdir)/'`src/c/men_Sutils.c
 
 src/c/libscistring_algo_la-tokens.lo: src/c/tokens.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT src/c/libscistring_algo_la-tokens.lo -MD -MP -MF src/c/$(DEPDIR)/libscistring_algo_la-tokens.Tpo -c -o src/c/libscistring_algo_la-tokens.lo `test -f 'src/c/tokens.c' || echo '$(srcdir)/'`src/c/tokens.c
@@ -1346,13 +1322,6 @@ src/c/libscistring_algo_la-os_wcstod.lo: src/c/os_wcstod.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o src/c/libscistring_algo_la-os_wcstod.lo `test -f 'src/c/os_wcstod.c' || echo '$(srcdir)/'`src/c/os_wcstod.c
 
-src/c/libscistring_algo_la-scistrtostr.lo: src/c/scistrtostr.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT src/c/libscistring_algo_la-scistrtostr.lo -MD -MP -MF src/c/$(DEPDIR)/libscistring_algo_la-scistrtostr.Tpo -c -o src/c/libscistring_algo_la-scistrtostr.lo `test -f 'src/c/scistrtostr.c' || echo '$(srcdir)/'`src/c/scistrtostr.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscistring_algo_la-scistrtostr.Tpo src/c/$(DEPDIR)/libscistring_algo_la-scistrtostr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scistrtostr.c' object='src/c/libscistring_algo_la-scistrtostr.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o src/c/libscistring_algo_la-scistrtostr.lo `test -f 'src/c/scistrtostr.c' || echo '$(srcdir)/'`src/c/scistrtostr.c
-
 src/c/libscistring_algo_la-stringToDouble.lo: src/c/stringToDouble.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT src/c/libscistring_algo_la-stringToDouble.lo -MD -MP -MF src/c/$(DEPDIR)/libscistring_algo_la-stringToDouble.Tpo -c -o src/c/libscistring_algo_la-stringToDouble.lo `test -f 'src/c/stringToDouble.c' || echo '$(srcdir)/'`src/c/stringToDouble.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscistring_algo_la-stringToDouble.Tpo src/c/$(DEPDIR)/libscistring_algo_la-stringToDouble.Plo
@@ -1418,13 +1387,6 @@ src/cpp/libscistring_algo_la-stripblanks.lo: src/cpp/stripblanks.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/stripblanks.cpp' object='src/cpp/libscistring_algo_la-stripblanks.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscistring_algo_la-stripblanks.lo `test -f 'src/cpp/stripblanks.cpp' || echo '$(srcdir)/'`src/cpp/stripblanks.cpp
-
-src/cpp/libscistring_algo_la-sort_inter.lo: src/cpp/sort_inter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscistring_algo_la-sort_inter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscistring_algo_la-sort_inter.Tpo -c -o src/cpp/libscistring_algo_la-sort_inter.lo `test -f 'src/cpp/sort_inter.cpp' || echo '$(srcdir)/'`src/cpp/sort_inter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscistring_algo_la-sort_inter.Tpo src/cpp/$(DEPDIR)/libscistring_algo_la-sort_inter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sort_inter.cpp' object='src/cpp/libscistring_algo_la-sort_inter.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscistring_algo_la-sort_inter.lo `test -f 'src/cpp/sort_inter.cpp' || echo '$(srcdir)/'`src/cpp/sort_inter.cpp
 
 src/cpp/libscistring_algo_la-os_wtoi.lo: src/cpp/os_wtoi.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscistring_algo_la-os_wtoi.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscistring_algo_la-os_wtoi.Tpo -c -o src/cpp/libscistring_algo_la-os_wtoi.lo `test -f 'src/cpp/os_wtoi.cpp' || echo '$(srcdir)/'`src/cpp/os_wtoi.cpp
