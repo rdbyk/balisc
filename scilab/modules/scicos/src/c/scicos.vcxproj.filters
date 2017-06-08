@@ -50,9 +50,6 @@
     <ClCompile Include="import.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MlistGetFieldNumber.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lsodar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -290,9 +287,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\import.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MlistGetFieldNumber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lsodar.h">

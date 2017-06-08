@@ -295,7 +295,6 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="DllmainScicos.c" />
     <ClCompile Include="ezxml.c" />
     <ClCompile Include="import.c" />
-    <ClCompile Include="MlistGetFieldNumber.c" />
     <ClCompile Include="lsodar.c" />
     <ClCompile Include="ddaskr.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ftree2.c" />
@@ -349,7 +348,6 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="il_sim.h" />
     <ClInclude Include="il_state.h" />
     <ClInclude Include="..\..\includes\import.h" />
-    <ClInclude Include="MlistGetFieldNumber.h" />
     <ClInclude Include="lsodar.h" />
     <ClInclude Include="ddaskr.h" />
     <ClInclude Include="..\..\includes\scicos-def.h" />

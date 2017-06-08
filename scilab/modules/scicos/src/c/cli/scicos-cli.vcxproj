@@ -292,7 +292,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\ddaskr.c" />
     <ClCompile Include="..\ezxml.c" />
     <ClCompile Include="..\import.c" />
-    <ClCompile Include="..\MlistGetFieldNumber.c" />
     <ClCompile Include="..\lsodar.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree2.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree3.c" />
@@ -344,7 +343,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClInclude Include="..\il_sim.h" />
     <ClInclude Include="..\il_state.h" />
     <ClInclude Include="..\..\..\includes\import.h" />
-    <ClInclude Include="..\MlistGetFieldNumber.h" />
     <ClInclude Include="..\lsodar.h" />
     <ClInclude Include="..\..\..\includes\scicos-def.h" />
     <ClInclude Include="..\..\..\includes\scicos.h" />
