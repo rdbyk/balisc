@@ -23,6 +23,8 @@
 #include "sparse.hxx"
 #include "polynom.hxx"
 
+#include "ceil.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -53,29 +55,7 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isDouble())
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-        double* pIR = pDblIn->get();
-        double* pOR = pDblOut->get();
-
-        int size = pDblIn->getSize();
-
-        if (pDblIn->isComplex())
-        {
-            double* pII = pDblIn->getImg();
-            double* pOI = pDblOut->getImg();
-            for (int i = 0; i < size; i++)
-            {
-                pOI[i] = std::ceil(pII[i]);
-            }
-        }
-
-        for (int i = 0; i < size; i++)
-        {
-            pOR[i] = std::ceil(pIR[i]);
-        }
-
-        out.push_back(pDblOut);
+        out.push_back(balisc::ceil(pDblIn));
     }
     else if (in[0]->isSparse())
     {

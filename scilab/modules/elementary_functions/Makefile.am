@@ -31,7 +31,8 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/sum.cpp \
     src/cpp/max.cpp \
     src/cpp/min.cpp \
-    src/cpp/clean.cpp
+    src/cpp/clean.cpp \
+    src/cpp/ceil.cpp
 
 SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \
@@ -310,6 +311,7 @@ libscielementary_functions_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
+	$(EIGEN_CPPFLAGS)
 	$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
