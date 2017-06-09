@@ -120,7 +120,9 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_x86_features.m4 \
+	$(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+	$(top_srcdir)/m4/ax_gcc_x86_cpu_supports.m4 \
 	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
 	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
@@ -472,6 +474,7 @@ VALGRIND_LIBS = @VALGRIND_LIBS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+X86_FEATURE_CFLAGS = @X86_FEATURE_CFLAGS@
 XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
@@ -1012,9 +1015,9 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@install-html-local:
 @JAVASCI_FALSE@install-data-local:
 @JAVASCI_FALSE@clean-local:
+@JAVASCI_FALSE@install-html-local:
 @JAVASCI_FALSE@distclean-local:
 clean: clean-am
 
