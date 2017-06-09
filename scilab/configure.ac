@@ -394,6 +394,12 @@ SCIVERSION=`cat $SCI_SRCDIR/Version.incl | sed -e "s/SCIVERSION=//" `
 #############################################
 
 ######################
+####### Set SIMD comilation flags
+######################
+
+AX_CHECK_X86_FEATURES
+
+######################
 ######## Set compilation options for intel C/Fortran compilers
 ######################
 
