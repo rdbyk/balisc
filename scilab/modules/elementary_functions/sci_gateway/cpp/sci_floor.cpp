@@ -20,6 +20,8 @@
 #include "sparse.hxx"
 #include "polynom.hxx"
 
+#include "floor.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -47,31 +49,7 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
     if (in[0]->isDouble())
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-        double* pInR = pDblIn->get();
-        double* pOutR = pDblOut->get();
-        int size = pDblIn->getSize();
-
-        if (pDblIn->isComplex())
-        {
-            double* pInI = pDblIn->getImg();
-            double* pOutI = pDblOut->getImg();
-            for (int i = 0; i < size; i++)
-            {
-                pOutR[i] = std::floor(pInR[i]);
-                pOutI[i] = std::floor(pInI[i]);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < size; i++)
-            {
-                pOutR[i] = std::floor(pInR[i]);
-            }
-        }
-
-        out.push_back(pDblOut);
+        out.push_back(balisc::floor(pDblIn));
     }
     else if (in[0]->isSparse())
     {
