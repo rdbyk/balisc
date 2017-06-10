@@ -17,18 +17,25 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 // 02110-1301, USA.
 
-#include "ceil.hxx"
+#include "exp.hxx"
+#include <cmath>
 #include <Eigen/Core>
 
 using types::Double;
 
 using Eigen::Map;
 using Eigen::ArrayXd;
+using Eigen::ArrayXcd;
 
 namespace balisc
 {
 
-Double* ceil(Double* x)
+static inline std::complex<double> __exp__(double re, double im)
+{
+    return std::exp(std::complex<double>(re, im));
+}
+
+Double* exp(Double* x)
 {
     bool is_complex = x->isComplex();
     Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
@@ -37,15 +44,22 @@ Double* ceil(Double* x)
     
     if (n > 0)
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.ceil();
-                    
-        if (is_complex)
+        if (x->isComplex())
         {
+            Map<ArrayXd> xr(x->get(), n);
             Map<ArrayXd> xi(x->getImg(), n);
+            Map<ArrayXd> yr(y->get(), n);
             Map<ArrayXd> yi(y->getImg(), n);
-            yi = xi.ceil();
+            ArrayXcd tmp(n);
+            tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__exp__);
+            yr = tmp.real();
+            yi = tmp.imag();
+        }
+        else
+        {
+            Map<ArrayXd> xr(x->get(), n);
+            Map<ArrayXd> yr(y->get(), n);
+            yr = xr.exp();
         }
     }
     

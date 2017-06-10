@@ -17,7 +17,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 // 02110-1301, USA.
 
-#include "ceil.hxx"
+#include "log1p.hxx"
 #include <Eigen/Core>
 
 using types::Double;
@@ -28,25 +28,23 @@ using Eigen::ArrayXd;
 namespace balisc
 {
 
-Double* ceil(Double* x)
+Double* log1p(Double* x)
 {
-    bool is_complex = x->isComplex();
-    Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
+    Double* y = new Double(x->getDims(), x->getDimsArray(), false);
 
     int n = x->getSize();
     
     if (n > 0)
     {
+        //double* xr = x->get();
+        //double* yr = y->get();
+        //for (int i = 0; i < n; i++)
+        //{
+        //    yr[i] = std::log1p(xr[i]);
+        //}
         Map<ArrayXd> xr(x->get(), n);
         Map<ArrayXd> yr(y->get(), n);
-        yr = xr.ceil();
-                    
-        if (is_complex)
-        {
-            Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yi(y->getImg(), n);
-            yi = xi.ceil();
-        }
+        yr = xr.log1p();
     }
     
     return y;

@@ -32,8 +32,11 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/max.cpp \
     src/cpp/min.cpp \
     src/cpp/clean.cpp \
+    src/cpp/abs.cpp \
     src/cpp/ceil.cpp \
-    src/cpp/floor.cpp
+    src/cpp/exp.cpp \
+    src/cpp/floor.cpp \
+    src/cpp/log1p.cpp
 
 SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \

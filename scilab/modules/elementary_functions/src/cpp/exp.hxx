@@ -17,39 +17,19 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 // 02110-1301, USA.
 
-#include "ceil.hxx"
-#include <Eigen/Core>
+#ifndef __EXP_H__
+#define __EXP_H__
 
-using types::Double;
+#include "double.hxx"
 
-using Eigen::Map;
-using Eigen::ArrayXd;
+extern "C"
+{
+#include "dynlib_elementary_functions.h"
+}
 
 namespace balisc
 {
-
-Double* ceil(Double* x)
-{
-    bool is_complex = x->isComplex();
-    Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
-
-    int n = x->getSize();
-    
-    if (n > 0)
-    {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.ceil();
-                    
-        if (is_complex)
-        {
-            Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yi(y->getImg(), n);
-            yi = xi.ceil();
-        }
-    }
-    
-    return y;
+ELEMENTARY_FUNCTIONS_IMPEXP types::Double* exp(types::Double* x);
 }
 
-}
+#endif // __EXP_H__

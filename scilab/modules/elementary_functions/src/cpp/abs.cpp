@@ -17,7 +17,8 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 // 02110-1301, USA.
 
-#include "ceil.hxx"
+#include "abs.hxx"
+#include <cmath>
 #include <Eigen/Core>
 
 using types::Double;
@@ -28,24 +29,26 @@ using Eigen::ArrayXd;
 namespace balisc
 {
 
-Double* ceil(Double* x)
+Double* abs(Double* x)
 {
-    bool is_complex = x->isComplex();
-    Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
+    Double* y = new Double(x->getDims(), x->getDimsArray(), false);
 
     int n = x->getSize();
     
     if (n > 0)
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.ceil();
-                    
-        if (is_complex)
+        if (x->isComplex())
         {
+            Map<ArrayXd> xr(x->get(), n);
             Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yi(y->getImg(), n);
-            yi = xi.ceil();
+            Map<ArrayXd> yr(y->get(), n);
+            yr = xr.binaryExpr<double(*)(double,double)>(xi, &std::hypot);
+        }
+        else
+        {
+            Map<ArrayXd> xr(x->get(), n);
+            Map<ArrayXd> yr(y->get(), n);
+            yr = xr.abs();
         }
     }
     

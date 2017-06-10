@@ -24,7 +24,6 @@ using types::Double;
 
 using Eigen::Map;
 using Eigen::ArrayXd;
-using Eigen::ceil;
 
 namespace balisc
 {
@@ -40,15 +39,13 @@ Double* floor(Double* x)
     {
         Map<ArrayXd> xr(x->get(), n);
         Map<ArrayXd> yr(y->get(), n);
-        yr = xr;
-        yr.floor();
+        yr = xr.floor();
                     
         if (is_complex)
         {
             Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yi(x->getImg(), n);
-            yi = xi;
-            yi.floor();
+            Map<ArrayXd> yi(y->getImg(), n);
+            yi = xi.floor();
         }
     }
     
