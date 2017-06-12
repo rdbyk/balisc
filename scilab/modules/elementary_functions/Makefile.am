@@ -36,7 +36,8 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/ceil.cpp \
     src/cpp/exp.cpp \
     src/cpp/floor.cpp \
-    src/cpp/log1p.cpp
+    src/cpp/log1p.cpp \
+    src/cpp/sqrt.cpp
 
 SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \

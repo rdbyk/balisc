@@ -16,7 +16,7 @@ b4 = a4 + a4*%i;
 
 for i=1:100
  exp(a1);
- exp(b2);
+ exp(b1);
 end
 
 for i=1:10

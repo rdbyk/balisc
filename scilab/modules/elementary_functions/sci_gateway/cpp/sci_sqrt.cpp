@@ -20,6 +20,8 @@
 #include "double.hxx"
 #include "overload.hxx"
 
+#include "sqrt.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -50,58 +52,8 @@ types::Function::ReturnValue sci_sqrt(types::typed_list &in, int _iRetCount, typ
     }
 
     types::Double* input = in[0]->getAs<types::Double>();
-    bool isComplex = input->isComplex();
-    int size = input->getSize();
-    double* pR = input->get();
-
-    //check neg on input values for real matrix
-    if (isComplex == false)
-    {
-        for (int i = 0; i < size; ++i)
-        {
-            if (pR[i] < 0)
-            {
-                isComplex = true;
-                break;
-            }
-        }
-    }
-
-    types::Double* output = new types::Double(input->getDims(), input->getDimsArray(), isComplex);
-    double* pOR = output->get();
-
-    if (isComplex)
-    {
-        double* pOI = output->getImg();
-        if (input->isComplex())
-        {
-            double* pI = input->getImg();
-            for (int i = 0; i < size; ++i)
-            {
-                std::complex<double> z(std::sqrt(std::complex<double>(pR[i], pI[i])));
-                pOR[i] = z.real();
-                pOI[i] = z.imag();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < size; ++i)
-            {
-                std::complex<double> z(std::sqrt(std::complex<double>(pR[i], 0)));
-                pOR[i] = z.real();
-                pOI[i] = z.imag();
-            }
-        }
-    }
-    else
-    {
-        for (int i = 0; i < size; ++i)
-        {
-            pOR[i] = std::sqrt(pR[i]);
-        }
-    }
-
-    out.push_back(output);
+    out.push_back(balisc::sqrt(input));
+    
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -41,7 +41,8 @@ clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();log(a);toc
 types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iAlert = 1;
-
+    int ieee = ConfigVariable::getIeee();
+    
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "log", 1);
@@ -72,29 +73,31 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
         double* pOutI = pDblOut->getImg();
         
         double InR, InI;
-        
+                
         for (int i = 0; i < size; i++)
         {
             InR = pInR[i];
             InI = pInI[i];
             
-            //If the value is less than precision (eps).
-            if (iAlert && InR == 0 && InI == 0)
+            if (ieee != 2 && iAlert)
             {
-                if (ConfigVariable::getIeee() == 0)
+                if (InR == 0 && InI == 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
-                    return types::Function::Error;
-                }
-                else if (ConfigVariable::getIeee() == 1)
-                {
-                    if (ConfigVariable::getWarningMode())
+                    if (ieee == 0)
                     {
-                        sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        return types::Function::Error;
                     }
-                }
+                    else if (ieee == 1)
+                    {
+                        if (ConfigVariable::getWarningMode())
+                        {
+                            sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        }
+                    }
 
-                iAlert = 0;
+                    iAlert = 0;
+                }
             }
             
             std::complex<double> lz(std::log(std::complex<double>(InR, InI)));
@@ -105,27 +108,35 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
     else
     {
         bool bIsLessZero = false;
+        
+        double InR;
         for (int i = 0; i < size; i++)
         {
-            if (iAlert && pInR[i] == 0)
-            {
-                if (ConfigVariable::getIeee() == 0)
-                {
-                    Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
-                    return types::Function::Error;
-                }
-                else if (ConfigVariable::getIeee() == 1)
-                {
-                    if (ConfigVariable::getWarningMode())
-                    {
-                        sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
-                    }
-                }
-                iAlert = 0;
-            }
-            else if (pInR[i] < 0)
+            InR = pInR[i];
+            
+            if (InR < 0)
             {
                 bIsLessZero = true;
+            }
+            else if (iAlert && ieee != 2)
+            {
+                if (InR == 0)
+                {
+                    if (ieee == 0)
+                    {
+                        Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        return types::Function::Error;
+                    }
+                    else if (ieee == 1)
+                    {
+                        if (ConfigVariable::getWarningMode())
+                        {
+                            sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        }
+                    }
+                    
+                    iAlert = 0;
+                }
             }
         }
 
@@ -134,14 +145,23 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
             pDblOut->setComplex(true);
             double* pOutI = pDblOut->getImg();
 
-            std::complex<double> z;
-            
+            double xr_i;
             for (int i = 0; i < size; i++)
             {
-                z.real(pInR[i]);
-                std::complex<double> lz(std::log(z));
-                pOutR[i] = lz.real();
-                pOutI[i] = lz.imag();
+                xr_i = pInR[i];
+                if (xr_i >= 0)
+                {
+                    pOutR[i] = std::log(xr_i);
+                    pOutI[i] = 0.0;
+                }
+                else
+                {
+                     pOutR[i] = std::log(-xr_i);
+                     pOutI[i] = M_PI;
+                }
+                //std::complex<double> lz(std::log(std::complex<double>(pInR[i], 0.0)));
+                //pOutR[i] = lz.real();
+                //pOutI[i] = lz.imag();
             }
         }
         else
