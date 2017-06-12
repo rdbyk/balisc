@@ -290,6 +290,7 @@ am__objects_6 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
 	src/cpp/libscielementary_functions_algo_la-min.lo \
 	src/cpp/libscielementary_functions_algo_la-clean.lo \
 	src/cpp/libscielementary_functions_algo_la-abs.lo \
+	src/cpp/libscielementary_functions_algo_la-acos.lo \
 	src/cpp/libscielementary_functions_algo_la-ceil.lo \
 	src/cpp/libscielementary_functions_algo_la-exp.lo \
 	src/cpp/libscielementary_functions_algo_la-floor.lo \
@@ -796,6 +797,7 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/min.cpp \
     src/cpp/clean.cpp \
     src/cpp/abs.cpp \
+    src/cpp/acos.cpp \
     src/cpp/ceil.cpp \
     src/cpp/exp.cpp \
     src/cpp/floor.cpp \
@@ -1704,6 +1706,8 @@ src/cpp/libscielementary_functions_algo_la-clean.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-abs.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscielementary_functions_algo_la-acos.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-ceil.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-exp.lo:  \
@@ -2007,6 +2011,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-vmul.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-xerhlt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-abs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-acos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-ceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-clean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-cumprod.Plo@am__quote@
@@ -2301,6 +2306,13 @@ src/cpp/libscielementary_functions_algo_la-abs.lo: src/cpp/abs.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/abs.cpp' object='src/cpp/libscielementary_functions_algo_la-abs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-abs.lo `test -f 'src/cpp/abs.cpp' || echo '$(srcdir)/'`src/cpp/abs.cpp
+
+src/cpp/libscielementary_functions_algo_la-acos.lo: src/cpp/acos.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-acos.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-acos.Tpo -c -o src/cpp/libscielementary_functions_algo_la-acos.lo `test -f 'src/cpp/acos.cpp' || echo '$(srcdir)/'`src/cpp/acos.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-acos.Tpo src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-acos.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/acos.cpp' object='src/cpp/libscielementary_functions_algo_la-acos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-acos.lo `test -f 'src/cpp/acos.cpp' || echo '$(srcdir)/'`src/cpp/acos.cpp
 
 src/cpp/libscielementary_functions_algo_la-ceil.lo: src/cpp/ceil.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-ceil.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-ceil.Tpo -c -o src/cpp/libscielementary_functions_algo_la-ceil.lo `test -f 'src/cpp/ceil.cpp' || echo '$(srcdir)/'`src/cpp/ceil.cpp
