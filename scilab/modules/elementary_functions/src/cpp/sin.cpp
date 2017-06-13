@@ -45,8 +45,10 @@ Double* sin(Double* x)
             Map<ArrayXd> xi(x->getImg(), n);
             Map<ArrayXd> yr(y->get(), n);
             Map<ArrayXd> yi(y->getImg(), n);
-            yr = xr.sin() * xi.cosh();
-            yi = xr.cos() * xi.sinh();
+            ArrayXd ep(exp(xi));
+            ArrayXd en(exp(-xi));
+            yr = 0.5 * xr.sin() * (ep + en);
+            yi = 0.5 * xr.cos() * (ep - en);
         }
         else
         {
