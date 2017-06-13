@@ -29,6 +29,8 @@ extern "C"
 #include "dynlib_elementary_functions_gw.h"
 }
 
+#include "sin.hxx"
+
 /*
 clear a;nb = 2500;a = rand(nb, nb);tic();sin(a);toc
 clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();sin(a);toc
@@ -54,8 +56,7 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
     if (in[0]->isDouble())
     {
         pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = trigo(pDblIn, (double (*)(double))std::sin, (std::complex<double> (*)(const std::complex<double> &))std::sin);
-        out.push_back(pDblOut);
+        out.push_back(balisc::sin(pDblIn));
     }
     else if (in[0]->isSparse())
     {
