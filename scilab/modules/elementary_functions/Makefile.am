@@ -37,6 +37,8 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/ceil.cpp \
     src/cpp/exp.cpp \
     src/cpp/floor.cpp \
+    src/cpp/log.cpp \
+    src/cpp/log10.cpp \
     src/cpp/log1p.cpp \
     src/cpp/sqrt.cpp
 

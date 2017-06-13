@@ -28,6 +28,8 @@ extern "C"
 #include "elem_common.h"
 }
 
+#include "log.hxx"
+
 #include <complex>
 #include <cmath>
 
@@ -40,7 +42,6 @@ clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();log(a);toc
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iAlert = 1;
     int ieee = ConfigVariable::getIeee();
     
     if (in.size() != 1)
@@ -62,118 +63,61 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
     }
 
     types::Double* pDblIn = in[0]->getAs<types::Double>();
-    types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-    double* pInR = pDblIn->get();
-    double* pOutR = pDblOut->get();
-    int size = pDblIn->getSize();
-    if (pDblIn->isComplex())
+    
+    if (ieee != 2)
     {
-        double* pInI = pDblIn->getImg();
-        double* pOutI = pDblOut->getImg();
+        double* pInR = pDblIn->get();
+        int size = pDblIn->getSize();
+    
+        if (pDblIn->isComplex())
+        {
+            double* pInI = pDblIn->getImg();
         
-        double InR, InI;
-                
-        for (int i = 0; i < size; i++)
-        {
-            InR = pInR[i];
-            InI = pInI[i];
-            
-            if (ieee != 2 && iAlert)
-            {
-                if (InR == 0 && InI == 0)
-                {
-                    if (ieee == 0)
-                    {
-                        Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
-                        return types::Function::Error;
-                    }
-                    else if (ieee == 1)
-                    {
-                        if (ConfigVariable::getWarningMode())
-                        {
-                            sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
-                        }
-                    }
-
-                    iAlert = 0;
-                }
-            }
-            
-            std::complex<double> lz(std::log(std::complex<double>(InR, InI)));
-            pOutR[i] = lz.real();
-            pOutI[i] = lz.imag();
-        }
-    }
-    else
-    {
-        bool bIsLessZero = false;
-        
-        double InR;
-        for (int i = 0; i < size; i++)
-        {
-            InR = pInR[i];
-            
-            if (InR < 0)
-            {
-                bIsLessZero = true;
-            }
-            else if (iAlert && ieee != 2)
-            {
-                if (InR == 0)
-                {
-                    if (ieee == 0)
-                    {
-                        Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
-                        return types::Function::Error;
-                    }
-                    else if (ieee == 1)
-                    {
-                        if (ConfigVariable::getWarningMode())
-                        {
-                            sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
-                        }
-                    }
-                    
-                    iAlert = 0;
-                }
-            }
-        }
-
-        if (bIsLessZero)
-        {
-            pDblOut->setComplex(true);
-            double* pOutI = pDblOut->getImg();
-
-            double xr_i;
             for (int i = 0; i < size; i++)
             {
-                xr_i = pInR[i];
-                if (xr_i >= 0)
+                if (pInR[i] == 0 && pInI[i] == 0)
                 {
-                    pOutR[i] = std::log(xr_i);
-                    pOutI[i] = 0.0;
+                    if (ieee == 0)
+                    {
+                        Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        return types::Function::Error;
+                    }
+                    else // ieee == 1
+                    {
+                        if (ConfigVariable::getWarningMode())
+                        {
+                            sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        }
+                    }
+                    break;
                 }
-                else
-                {
-                     pOutR[i] = std::log(-xr_i);
-                     pOutI[i] = M_PI;
-                }
-                //std::complex<double> lz(std::log(std::complex<double>(pInR[i], 0.0)));
-                //pOutR[i] = lz.real();
-                //pOutI[i] = lz.imag();
             }
         }
         else
         {
             for (int i = 0; i < size; i++)
             {
-                pOutR[i] = std::log(pInR[i]);
+                if (pInR[i] == 0)
+                {
+                    if (ieee == 0)
+                    {
+                        Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        return types::Function::Error;
+                    }
+                    else // ieee == 1
+                    {
+                        if (ConfigVariable::getWarningMode())
+                        {
+                            sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        }
+                    }
+                    break;
+                }
             }
         }
     }
-
-    out.push_back(pDblOut);
+    
+    out.push_back(balisc::log(pDblIn));
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

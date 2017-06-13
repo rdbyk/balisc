@@ -294,6 +294,8 @@ am__objects_6 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
 	src/cpp/libscielementary_functions_algo_la-ceil.lo \
 	src/cpp/libscielementary_functions_algo_la-exp.lo \
 	src/cpp/libscielementary_functions_algo_la-floor.lo \
+	src/cpp/libscielementary_functions_algo_la-log.lo \
+	src/cpp/libscielementary_functions_algo_la-log10.lo \
 	src/cpp/libscielementary_functions_algo_la-log1p.lo \
 	src/cpp/libscielementary_functions_algo_la-sqrt.lo
 am_libscielementary_functions_algo_la_OBJECTS = $(am__objects_1) \
@@ -801,6 +803,8 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/ceil.cpp \
     src/cpp/exp.cpp \
     src/cpp/floor.cpp \
+    src/cpp/log.cpp \
+    src/cpp/log10.cpp \
     src/cpp/log1p.cpp \
     src/cpp/sqrt.cpp
 
@@ -1714,6 +1718,10 @@ src/cpp/libscielementary_functions_algo_la-exp.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-floor.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscielementary_functions_algo_la-log.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscielementary_functions_algo_la-log10.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-log1p.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-sqrt.lo:  \
@@ -2021,6 +2029,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-floor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-getmode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-gsort.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log10.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log1p.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-max.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-min.Plo@am__quote@
@@ -2327,6 +2337,20 @@ src/cpp/libscielementary_functions_algo_la-floor.lo: src/cpp/floor.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/floor.cpp' object='src/cpp/libscielementary_functions_algo_la-floor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-floor.lo `test -f 'src/cpp/floor.cpp' || echo '$(srcdir)/'`src/cpp/floor.cpp
+
+src/cpp/libscielementary_functions_algo_la-log.lo: src/cpp/log.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-log.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log.Tpo -c -o src/cpp/libscielementary_functions_algo_la-log.lo `test -f 'src/cpp/log.cpp' || echo '$(srcdir)/'`src/cpp/log.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log.Tpo src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/log.cpp' object='src/cpp/libscielementary_functions_algo_la-log.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-log.lo `test -f 'src/cpp/log.cpp' || echo '$(srcdir)/'`src/cpp/log.cpp
+
+src/cpp/libscielementary_functions_algo_la-log10.lo: src/cpp/log10.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-log10.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log10.Tpo -c -o src/cpp/libscielementary_functions_algo_la-log10.lo `test -f 'src/cpp/log10.cpp' || echo '$(srcdir)/'`src/cpp/log10.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log10.Tpo src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log10.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/log10.cpp' object='src/cpp/libscielementary_functions_algo_la-log10.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-log10.lo `test -f 'src/cpp/log10.cpp' || echo '$(srcdir)/'`src/cpp/log10.cpp
 
 src/cpp/libscielementary_functions_algo_la-log1p.lo: src/cpp/log1p.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-log1p.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log1p.Tpo -c -o src/cpp/libscielementary_functions_algo_la-log1p.lo `test -f 'src/cpp/log1p.cpp' || echo '$(srcdir)/'`src/cpp/log1p.cpp
