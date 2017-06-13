@@ -14,12 +14,12 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#include <complex>
-
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
+
+#include "tan.hxx"
 
 extern "C"
 {
@@ -56,8 +56,8 @@ types::Function::ReturnValue sci_tan(types::typed_list &in, int _iRetCount, type
     }
 
     pDblIn = in[0]->getAs<types::Double>();
-    pDblOut = trigo(pDblIn, std::tan, std::tan);
-    out.push_back(pDblOut);
+    out.push_back(balisc::tan(pDblIn));
+    
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

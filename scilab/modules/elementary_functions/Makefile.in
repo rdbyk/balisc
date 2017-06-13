@@ -299,7 +299,8 @@ am__objects_6 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
 	src/cpp/libscielementary_functions_algo_la-log10.lo \
 	src/cpp/libscielementary_functions_algo_la-log1p.lo \
 	src/cpp/libscielementary_functions_algo_la-sin.lo \
-	src/cpp/libscielementary_functions_algo_la-sqrt.lo
+	src/cpp/libscielementary_functions_algo_la-sqrt.lo \
+	src/cpp/libscielementary_functions_algo_la-tan.lo
 am_libscielementary_functions_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6)
@@ -810,7 +811,8 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/log10.cpp \
     src/cpp/log1p.cpp \
     src/cpp/sin.cpp \
-    src/cpp/sqrt.cpp
+    src/cpp/sqrt.cpp \
+    src/cpp/tan.cpp
 
 SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \
@@ -1734,6 +1736,8 @@ src/cpp/libscielementary_functions_algo_la-sin.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-sqrt.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscielementary_functions_algo_la-tan.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscielementary_functions-algo.la: $(libscielementary_functions_algo_la_OBJECTS) $(libscielementary_functions_algo_la_DEPENDENCIES) $(EXTRA_libscielementary_functions_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscielementary_functions_algo_la_rpath) $(libscielementary_functions_algo_la_OBJECTS) $(libscielementary_functions_algo_la_LIBADD) $(LIBS)
@@ -2047,6 +2051,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-sin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-sqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-sum.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-tan.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -2389,6 +2394,13 @@ src/cpp/libscielementary_functions_algo_la-sqrt.lo: src/cpp/sqrt.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sqrt.cpp' object='src/cpp/libscielementary_functions_algo_la-sqrt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-sqrt.lo `test -f 'src/cpp/sqrt.cpp' || echo '$(srcdir)/'`src/cpp/sqrt.cpp
+
+src/cpp/libscielementary_functions_algo_la-tan.lo: src/cpp/tan.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-tan.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-tan.Tpo -c -o src/cpp/libscielementary_functions_algo_la-tan.lo `test -f 'src/cpp/tan.cpp' || echo '$(srcdir)/'`src/cpp/tan.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-tan.Tpo src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-tan.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/tan.cpp' object='src/cpp/libscielementary_functions_algo_la-tan.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-tan.lo `test -f 'src/cpp/tan.cpp' || echo '$(srcdir)/'`src/cpp/tan.cpp
 
 sci_gateway/cpp/libscielementary_functions_la-sci_isequal.lo: sci_gateway/cpp/sci_isequal.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_isequal.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/cpp/sci_isequal.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isequal.cpp
