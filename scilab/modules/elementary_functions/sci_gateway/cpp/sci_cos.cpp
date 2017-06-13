@@ -22,6 +22,8 @@
 #include "overload.hxx"
 #include "sparse.hxx"
 
+#include "cos.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -54,8 +56,7 @@ types::Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, type
     if (in[0]->isDouble())
     {
         pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = trigo(pDblIn, (double (*)(double))std::cos, (std::complex<double> (*)(const std::complex<double> &))std::cos);
-        out.push_back(pDblOut);
+        out.push_back(balisc::cos(pDblIn));
     }
     else if (in[0]->isSparse())
     {
