@@ -168,7 +168,7 @@
     <ClCompile Include="..\sci_sign.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\c\sci_log10.c">
+    <ClCompile Include="..\sci_log10.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sci_cosh.cpp">

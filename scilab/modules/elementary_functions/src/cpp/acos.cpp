@@ -132,6 +132,10 @@ Double* acos(Double* x)
             }
         }
     }
+    else
+    {
+        return Double::Empty();
+    }
 }
 
 }

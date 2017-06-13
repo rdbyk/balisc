@@ -1,9 +1,9 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -61,6 +61,7 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isequal", &sci_isequal, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"kron", &sci_kron, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"log", &sci_log, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"log10", &sci_log10, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"log1p", &sci_log1p, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"matrix", &sci_matrix, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"max", &sci_max, MODULE_NAME));
@@ -85,7 +86,6 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rat", &sci_rat, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"base2dec", &sci_base2dec, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"dec2base", &sci_dec2base, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"log10", &sci_log10, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cosh", &sci_cosh, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sinh", &sci_sinh, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tanh", &sci_tanh, MODULE_NAME));
