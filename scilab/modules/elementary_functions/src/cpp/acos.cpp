@@ -46,26 +46,27 @@ Double* acos(Double* x)
         {
             Double* y = new Double(x->getDims(), x->getDimsArray(), true);
             
-//            Map<ArrayXd> xr(x->get(), n);
-//            Map<ArrayXd> xi(x->getImg(), n);
-//            Map<ArrayXd> yr(y->get(), n);
-//            Map<ArrayXd> yi(y->getImg(), n);
-//            ArrayXcd tmp(n);
+            Map<ArrayXd> xr(x->get(), n);
+            Map<ArrayXd> xi(x->getImg(), n);
+            Map<ArrayXd> yr(y->get(), n);
+            Map<ArrayXd> yi(y->getImg(), n);
+            ArrayXcd tmp(n);
 //            tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__acos__);
-//            yr = tmp.real();
-//            yi = tmp.imag();
+            tmp = log(tmp + sqrt(tmp*tmp -1));
+            yr =   tmp.imag();
+            yi = - tmp.real();
 
-            double* xr = x->get();
-            double* xi = x->getImg();
-            double* yr = y->get();
-            double* yi = y->getImg();
+            //double* xr = x->get();
+            //double* xi = x->getImg();
+            //double* yr = y->get();
+            //double* yi = y->getImg();
             
-            for (int i = 0; i < n; i++)
-            {
-                std::complex<double> lz(std::acos(std::complex<double>(xr[i], xi[i])));
-                yr[i] = lz.real();
-                yi[i] = lz.imag();
-            }
+            //for (int i = 0; i < n; i++)
+            //{
+                //std::complex<double> lz(std::acos(std::complex<double>(xr[i], xi[i])));
+                //yr[i] = lz.real();
+                //yi[i] = lz.imag();
+            //}
             
             return y;
         }
