@@ -17,7 +17,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 // 02110-1301, USA.
 
-#include "acos.hxx"
+#include "asin.hxx"
 #include <cmath>
 #include <Eigen/Core>
 
@@ -30,7 +30,7 @@ using Eigen::ArrayXcd;
 namespace balisc
 {
 
-Double* acos(Double* x)
+Double* asin(Double* x)
 {
     bool is_complex = x->isComplex();
     int n = x->getSize();
@@ -40,7 +40,7 @@ Double* acos(Double* x)
         if (is_complex)
         {
             Double* y = new Double(x->getDims(), x->getDimsArray(), true);
-
+            
             double* xr = x->get();
             double* xi = x->getImg();
             double* yr = y->get();
@@ -48,7 +48,7 @@ Double* acos(Double* x)
             
             for (int i = 0; i < n; i++)
             {
-                std::complex<double> z(std::acos(std::complex<double>(xr[i], xi[i])));
+                std::complex<double> z(std::asin(std::complex<double>(xr[i], xi[i])));
                 yr[i] = z.real();
                 yi[i] = z.imag();
             }
@@ -81,17 +81,17 @@ Double* acos(Double* x)
                     
                     if (xr_i > 1.0)
                     {
-                        yr[i] = 0.0;
-                        yi[i] = std::log(xr_i + std::sqrt(xr_i*xr_i - 1.0));
+                        yr[i] = M_PI_2;
+                        yi[i] = -std::log(xr_i + std::sqrt(xr_i*xr_i - 1.0));
                     }
                     else if (xr_i < -1.0)
                     {
-                        yr[i] = M_PI;
-                        yi[i] = -std::log(std::sqrt(xr_i*xr_i - 1.0) - xr_i);
+                        yr[i] = - M_PI_2;
+                        yi[i] = std::log(std::sqrt(xr_i*xr_i - 1.0) - xr_i);
                     }
                     else
                     {
-                        yr[i] = std::acos(xr_i);
+                        yr[i] = std::asin(xr_i);
                         yi[i] = 0.0;
                     }
                 }
@@ -107,7 +107,7 @@ Double* acos(Double* x)
                 
                 for (int i = 0; i < n; i++)
                 {
-                    yr[i] = std::acos(xr[i]);
+                    yr[i] = std::asin(xr[i]);
                 }
                 
                 return y;

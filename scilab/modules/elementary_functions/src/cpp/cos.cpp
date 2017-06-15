@@ -54,7 +54,7 @@ Double* cos(Double* x)
         {
             Map<ArrayXd> xr(x->get(), n);
             Map<ArrayXd> yr(y->get(), n);
-            yr = xr.sin();
+            yr = xr.cos();
         }
     }
     

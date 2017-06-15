@@ -55,8 +55,8 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble())
     {
-        pDblIn = in[0]->getAs<types::Double>();
-        out.push_back(balisc::sin(pDblIn));
+        out.push_back(balisc::sin(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
     }
     else if (in[0]->isSparse())
     {
@@ -95,13 +95,12 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
         delete[] pNonZeroI;
 
         out.push_back(pSparseOut);
+        return types::Function::OK;
     }
     else
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sin";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-
-    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -34,6 +34,7 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/clean.cpp \
     src/cpp/abs.cpp \
     src/cpp/acos.cpp \
+    src/cpp/asin.cpp \
     src/cpp/ceil.cpp \
     src/cpp/cos.cpp \
     src/cpp/exp.cpp \
