@@ -38,9 +38,6 @@ clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();sin(a);toc
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Double* pDblIn   = NULL;
-    types::Double* pDblOut  = NULL;
-
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "sin", 1);

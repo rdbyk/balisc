@@ -35,88 +35,81 @@ Double* asin(Double* x)
     bool is_complex = x->isComplex();
     int n = x->getSize();
     
-    if (n > 0)
+    if (is_complex)
     {
+        Double* y = new Double(x->getDims(), x->getDimsArray(), true);
+        
+        double* xr = x->get();
+        double* xi = x->getImg();
+        double* yr = y->get();
+        double* yi = y->getImg();
+        
+        for (int i = 0; i < n; i++)
+        {
+            std::complex<double> z(std::asin(std::complex<double>(xr[i], xi[i])));
+            yr[i] = z.real();
+            yi[i] = z.imag();
+        }
+        
+        return y;
+    }
+    else
+    {
+        double* xr = x->get();
+        
+        for (int i = 0; i < n; i++)
+        {
+            if (std::abs(xr[i]) > 1.0)
+            {
+                is_complex = true;
+                break;
+            }
+        }
+        
         if (is_complex)
         {
             Double* y = new Double(x->getDims(), x->getDimsArray(), true);
             
-            double* xr = x->get();
-            double* xi = x->getImg();
             double* yr = y->get();
             double* yi = y->getImg();
             
             for (int i = 0; i < n; i++)
             {
-                std::complex<double> z(std::asin(std::complex<double>(xr[i], xi[i])));
-                yr[i] = z.real();
-                yi[i] = z.imag();
+                double xr_i = xr[i];
+                
+                if (xr_i > 1.0)
+                {
+                    yr[i] = M_PI_2;
+                    yi[i] = -std::log(xr_i + std::sqrt(xr_i*xr_i - 1.0));
+                }
+                else if (xr_i < -1.0)
+                {
+                    yr[i] = - M_PI_2;
+                    yi[i] = std::log(std::sqrt(xr_i*xr_i - 1.0) - xr_i);
+                }
+                else
+                {
+                    yr[i] = std::asin(xr_i);
+                    yi[i] = 0.0;
+                }
             }
             
             return y;
         }
         else
         {
+            Double* y = new Double(x->getDims(), x->getDimsArray(), false);
+            
             double* xr = x->get();
+            double* yr = y->get();
             
             for (int i = 0; i < n; i++)
             {
-                if (std::abs(xr[i]) > 1.0)
-                {
-                    is_complex = true;
-                    break;
-                }
+                yr[i] = std::asin(xr[i]);
             }
             
-            if (is_complex)
-            {
-                Double* y = new Double(x->getDims(), x->getDimsArray(), true);
-                
-                double* yr = y->get();
-                double* yi = y->getImg();
-                
-                for (int i = 0; i < n; i++)
-                {
-                    double xr_i = xr[i];
-                    
-                    if (xr_i > 1.0)
-                    {
-                        yr[i] = M_PI_2;
-                        yi[i] = -std::log(xr_i + std::sqrt(xr_i*xr_i - 1.0));
-                    }
-                    else if (xr_i < -1.0)
-                    {
-                        yr[i] = - M_PI_2;
-                        yi[i] = std::log(std::sqrt(xr_i*xr_i - 1.0) - xr_i);
-                    }
-                    else
-                    {
-                        yr[i] = std::asin(xr_i);
-                        yi[i] = 0.0;
-                    }
-                }
-                
-                return y;
-            }
-            else
-            {
-                Double* y = new Double(x->getDims(), x->getDimsArray(), false);
-                
-                double* xr = x->get();
-                double* yr = y->get();
-                
-                for (int i = 0; i < n; i++)
-                {
-                    yr[i] = std::asin(xr[i]);
-                }
-                
-                return y;
-            }
+            return y;
         }
-    }
-    else
-    {
-        return Double::Empty();
     }
 }
 

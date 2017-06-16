@@ -34,18 +34,15 @@ Double* log1p(Double* x)
 
     int n = x->getSize();
     
-    if (n > 0)
-    {
-        //double* xr = x->get();
-        //double* yr = y->get();
-        //for (int i = 0; i < n; i++)
-        //{
-        //    yr[i] = std::log1p(xr[i]);
-        //}
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.log1p();
-    }
+    //double* xr = x->get();
+    //double* yr = y->get();
+    //for (int i = 0; i < n; i++)
+    //{
+    //    yr[i] = std::log1p(xr[i]);
+    //}
+    Map<ArrayXd> xr(x->get(), n);
+    Map<ArrayXd> yr(y->get(), n);
+    yr = xr.log1p();
     
     return y;
 }

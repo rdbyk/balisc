@@ -32,7 +32,15 @@ namespace balisc
 
 static inline std::complex<double> __sqrt__(double re, double im)
 {
-    return std::sqrt(std::complex<double>(re, im));
+    if (im != 0)
+    {
+        return std::sqrt(std::complex<double>(re, im));
+    }
+    else
+    {
+        // http://bugzilla.scilab.org/show_bug.cgi?id=13111
+        return std::sqrt(std::complex<double>(re, +0.0));
+    }
 }
 
 Double* sqrt(Double* x)
@@ -44,17 +52,14 @@ Double* sqrt(Double* x)
     {
         Double* y = new Double(x->getDims(), x->getDimsArray(), true);
         
-        if (n > 0)
-        {
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            Map<ArrayXd> yi(y->getImg(), n);
-            ArrayXcd tmp(n);
-            tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__sqrt__);
-            yr = tmp.real();
-            yi = tmp.imag();
-        }
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> xi(x->getImg(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        Map<ArrayXd> yi(y->getImg(), n);
+        ArrayXcd tmp(n);
+        tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__sqrt__);
+        yr = tmp.real();
+        yi = tmp.imag();
         
         return y;
     }
@@ -73,35 +78,32 @@ Double* sqrt(Double* x)
         
         Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
         
-        if (n > 0)
+        if (is_complex)
         {
-            if (is_complex)
+            double* yr = y->get();
+            double* yi = y->getImg();
+            
+            double xr_i;                
+            for (int i = 0; i < n; i++)
             {
-                double* yr = y->get();
-                double* yi = y->getImg();
-                
-                double xr_i;                
-                for (int i = 0; i < n; i++)
+                xr_i = xr[i];
+                if(xr_i < 0)
                 {
-                    xr_i = xr[i];
-                    if(xr_i < 0)
-                    {
-                        yr[i] = 0.0;
-                        yi[i] = std::sqrt(-xr_i);
-                    }
-                    else
-                    {
-                        yr[i] = std::sqrt(xr_i);
-                        yi[i] = 0.0;
-                    }
+                    yr[i] = 0.0;
+                    yi[i] = std::sqrt(-xr_i);
+                }
+                else
+                {
+                    yr[i] = std::sqrt(xr_i);
+                    yi[i] = 0.0;
                 }
             }
-            else
-            {
-                Map<ArrayXd> xr(x->get(), n);
-                Map<ArrayXd> yr(y->get(), n);
-                yr = xr.sqrt();
-            }
+        }
+        else
+        {
+            Map<ArrayXd> xr(x->get(), n);
+            Map<ArrayXd> yr(y->get(), n);
+            yr = xr.sqrt();
         }
         
         return y;

@@ -70,8 +70,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
     {
         case types::InternalType::ScilabDouble:
         {
-            types::Double* pDblIn = in[0]->getAs<types::Double>();
-            out.push_back(balisc::abs(pDblIn));
+            out.push_back(balisc::abs(in[0]->getAs<types::Double>()));
             break;
         }
         case types::InternalType::ScilabPolynom:

@@ -42,25 +42,22 @@ Double* exp(Double* x)
 
     int n = x->getSize();
     
-    if (n > 0)
+    if (x->isComplex())
     {
-        if (x->isComplex())
-        {
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            Map<ArrayXd> yi(y->getImg(), n);
-            ArrayXcd tmp(n);
-            tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__exp__);
-            yr = tmp.real();
-            yi = tmp.imag();
-        }
-        else
-        {
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            yr = xr.exp();
-        }
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> xi(x->getImg(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        Map<ArrayXd> yi(y->getImg(), n);
+        ArrayXcd tmp(n);
+        tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__exp__);
+        yr = tmp.real();
+        yi = tmp.imag();
+    }
+    else
+    {
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        yr = xr.exp();
     }
     
     return y;

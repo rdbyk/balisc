@@ -21,6 +21,11 @@
 #include <cmath>
 #include <Eigen/Core>
 
+extern "C"
+{
+#include <math.h>
+}
+
 using types::Double;
 
 using Eigen::Map;
@@ -33,32 +38,31 @@ namespace balisc
 Double* sin(Double* x)
 {
     bool is_complex = x->isComplex();
-    Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
-
+    Double* y = new Double(x->getDims(), x->getDimsArray(),is_complex);
+     
     int n = x->getSize();
     
-    if (n > 0)
+    if (is_complex)
     {
-        if (x->isComplex())
-        {
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            Map<ArrayXd> yi(y->getImg(), n);
-            ArrayXd ep(exp(xi));
-            ArrayXd en(exp(-xi));
-            yr = 0.5 * xr.sin() * (ep + en);
-            yi = 0.5 * xr.cos() * (ep - en);
-        }
-        else
-        {
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            yr = xr.sin();
-        }
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> xi(x->getImg(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        Map<ArrayXd> yi(y->getImg(), n);
+        ArrayXd ep(xi.exp());
+        ArrayXd en(ep.inverse());
+        yr = 0.5 * xr.sin() * (ep + en);
+        yi = 0.5 * xr.cos() * (ep - en);
+        
+        return y;
     }
-    
-    return y;
+    else
+    {        
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        yr = xr.sin();
+        
+        return y;
+    }
 }
 
 }

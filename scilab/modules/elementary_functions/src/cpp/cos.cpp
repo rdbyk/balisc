@@ -33,32 +33,31 @@ namespace balisc
 Double* cos(Double* x)
 {
     bool is_complex = x->isComplex();
-    Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
-
+    Double* y = new Double(x->getDims(), x->getDimsArray(),is_complex);
+     
     int n = x->getSize();
     
-    if (n > 0)
+    if (is_complex)
     {
-        if (x->isComplex())
-        {
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            Map<ArrayXd> yi(y->getImg(), n);
-            ArrayXd ep(exp(xi));
-            ArrayXd en(exp(-xi));
-            yr = 0.5 * xr.cos() * (ep + en);
-            yi = 0.5 * xr.sin() * (en - ep);
-        }
-        else
-        {
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            yr = xr.cos();
-        }
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> xi(x->getImg(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        Map<ArrayXd> yi(y->getImg(), n);
+        ArrayXd ep(xi.exp());
+        ArrayXd en(ep.inverse());
+        yr = 0.5 * xr.cos() * (ep + en);
+        yi = 0.5 * xr.sin() * (en - ep);
+        
+        return y;
     }
-    
-    return y;
+    else
+    {
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        yr = xr.cos();
+        
+        return y;
+    }
 }
 
 }

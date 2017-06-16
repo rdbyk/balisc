@@ -48,8 +48,8 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
 
     if (in[0]->isDouble())
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
-        out.push_back(balisc::floor(pDblIn));
+        out.push_back(balisc::floor(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
     }
     else if (in[0]->isSparse())
     {
@@ -88,6 +88,7 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
         delete[] pNonZeroI;
 
         out.push_back(pSparseOut);
+        return types::Function::OK;
     }
     else if (in[0]->isPoly())
     {
@@ -134,17 +135,17 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
         }
 
         out.push_back(pPolyOut);
+        return types::Function::OK;
     }
     else if (in[0]->isInt())
     {
         out.push_back(in[0]);
+        return types::Function::OK;
     }
     else
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_floor";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-
-    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

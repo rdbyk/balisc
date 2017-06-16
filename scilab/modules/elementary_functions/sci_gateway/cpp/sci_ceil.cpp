@@ -54,8 +54,8 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble())
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
-        out.push_back(balisc::ceil(pDblIn));
+        out.push_back(balisc::ceil(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
     }
     else if (in[0]->isSparse())
     {
@@ -94,6 +94,7 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
         delete[] pNonZeroI;
 
         out.push_back(pSparseOut);
+        return types::Function::OK;
     }
     else if (in[0]->isPoly())
     {
@@ -140,17 +141,17 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
         }
 
         out.push_back(pPolyOut);
+        return types::Function::OK;
     }
     else if (in[0]->isInt())
     {
         out.push_back(in[0]);
+        return types::Function::OK;
     }
     else
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_ceil";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-
-    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

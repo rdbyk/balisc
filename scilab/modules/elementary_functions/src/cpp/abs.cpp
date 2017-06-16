@@ -35,21 +35,18 @@ Double* abs(Double* x)
 
     int n = x->getSize();
     
-    if (n > 0)
+    if (x->isComplex())
     {
-        if (x->isComplex())
-        {
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            yr = xr.binaryExpr<double(*)(double,double)>(xi, &std::hypot);
-        }
-        else
-        {
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            yr = xr.abs();
-        }
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> xi(x->getImg(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        yr = xr.binaryExpr<double(*)(double,double)>(xi, &std::hypot);
+    }
+    else
+    {
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        yr = xr.abs();
     }
     
     return y;

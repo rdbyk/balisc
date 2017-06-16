@@ -40,76 +40,69 @@ Double* log(Double* x)
     bool is_complex = x->isComplex();
     int n = x->getSize();
     
-    if (n > 0)
+    if (is_complex)
     {
+        Double* y = new Double(x->getDims(), x->getDimsArray(), true);
+        
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> xi(x->getImg(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        Map<ArrayXd> yi(y->getImg(), n);
+        ArrayXcd tmp(n);
+        tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__log__);
+        yr = tmp.real();
+        yi = tmp.imag();
+        
+        return y;
+    }
+    else
+    {
+        double* xr = x->get();
+        
+        for (int i = 0; i < n; i++)
+        {
+            if (xr[i] < 0.0)
+            {
+                is_complex = true;
+                break;
+            }
+        }
+        
         if (is_complex)
         {
             Double* y = new Double(x->getDims(), x->getDimsArray(), true);
             
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            Map<ArrayXd> yi(y->getImg(), n);
-            ArrayXcd tmp(n);
-            tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__log__);
-            yr = tmp.real();
-            yi = tmp.imag();
+            double* yr = y->get();
+            double* yi = y->getImg();
+            
+            for (int i = 0; i < n; i++)
+            {
+                double xr_i = xr[i];
+                
+                if (xr_i >= 0)
+                {
+                    yr[i] = std::log(xr_i);
+                    yi[i] = 0.0;
+                }
+                else
+                {
+                    yr[i] = std::log(-xr_i);
+                    yi[i] = M_PI;
+                }
+            }
             
             return y;
         }
         else
         {
-            double* xr = x->get();
+            Double* y = new Double(x->getDims(), x->getDimsArray(), false);
             
-            for (int i = 0; i < n; i++)
-            {
-                if (xr[i] < 0.0)
-                {
-                    is_complex = true;
-                    break;
-                }
-            }
+            Map<ArrayXd> xr(x->get(), n);
+            Map<ArrayXd> yr(y->get(), n);
+            yr = xr.log();
             
-            if (is_complex)
-            {
-                Double* y = new Double(x->getDims(), x->getDimsArray(), true);
-                
-                double* yr = y->get();
-                double* yi = y->getImg();
-                
-                for (int i = 0; i < n; i++)
-                {
-                    double xr_i = xr[i];
-                    
-                    if (xr_i >= 0)
-                    {
-                        yr[i] = std::log(xr_i);
-                        yi[i] = 0.0;
-                    }
-                    else
-                    {
-                        yr[i] = std::log(-xr_i);
-                        yi[i] = M_PI;
-                    }
-                }
-                
-                return y;
-            }
-            else
-            {
-                Double* y = new Double(x->getDims(), x->getDimsArray(), false);
-                
-                Map<ArrayXd> xr(x->get(), n);
-                Map<ArrayXd> yr(y->get(), n);
-                yr = xr.log();
-                
-                return y;
-            }
+            return y;
         }
-    }
-    else
-    {
-        return Double::Empty();
     }
 }
 

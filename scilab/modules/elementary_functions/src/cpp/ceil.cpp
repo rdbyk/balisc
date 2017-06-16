@@ -35,18 +35,15 @@ Double* ceil(Double* x)
 
     int n = x->getSize();
     
-    if (n > 0)
+    Map<ArrayXd> xr(x->get(), n);
+    Map<ArrayXd> yr(y->get(), n);
+    yr = xr.ceil();
+                
+    if (is_complex)
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.ceil();
-                    
-        if (is_complex)
-        {
-            Map<ArrayXd> xi(x->getImg(), n);
-            Map<ArrayXd> yi(y->getImg(), n);
-            yi = xi.ceil();
-        }
+        Map<ArrayXd> xi(x->getImg(), n);
+        Map<ArrayXd> yi(y->getImg(), n);
+        yi = xi.ceil();
     }
     
     return y;
