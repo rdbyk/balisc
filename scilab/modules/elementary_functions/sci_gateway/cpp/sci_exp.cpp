@@ -22,6 +22,8 @@
 #include "overload.hxx"
 #include "sparse.hxx"
 
+#include "exp.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -50,32 +52,8 @@ types::Function::ReturnValue sci_exp(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble())
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-        double* pInR = pDblIn->get();
-        double* pOutR = pDblOut->get();
-        int size = pDblIn->getSize();
-
-        if (pDblIn->isComplex())
-        {
-            double* pInI = pDblIn->getImg();
-            double* pOutI = pDblOut->getImg();
-            for (int i = 0; i < size; i++)
-            {
-                std::complex<double> z(std::exp(std::complex<double>(pInR[i], pInI[i])));
-                pOutR[i] = z.real();
-                pOutI[i] = z.imag();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < size; i++)
-            {
-                pOutR[i] = std::exp(pInR[i]);
-            }
-        }
-
-        out.push_back(pDblOut);
+        out.push_back(balisc::exp(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
     }
     else if (in[0]->isSparse())
     {
@@ -114,13 +92,12 @@ types::Function::ReturnValue sci_exp(types::typed_list &in, int _iRetCount, type
         delete[] pNonZeroI;
 
         out.push_back(pSparseOut);
+        return types::Function::OK;
     }
     else
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_exp";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-
-    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

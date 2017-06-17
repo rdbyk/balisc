@@ -20,6 +20,8 @@
 #include "sparse.hxx"
 #include "polynom.hxx"
 
+#include "floor.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -46,32 +48,8 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
 
     if (in[0]->isDouble())
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-        double* pInR = pDblIn->get();
-        double* pOutR = pDblOut->get();
-        int size = pDblIn->getSize();
-
-        if (pDblIn->isComplex())
-        {
-            double* pInI = pDblIn->getImg();
-            double* pOutI = pDblOut->getImg();
-            for (int i = 0; i < size; i++)
-            {
-                pOutR[i] = std::floor(pInR[i]);
-                pOutI[i] = std::floor(pInI[i]);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < size; i++)
-            {
-                pOutR[i] = std::floor(pInR[i]);
-            }
-        }
-
-        out.push_back(pDblOut);
+        out.push_back(balisc::floor(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
     }
     else if (in[0]->isSparse())
     {
@@ -110,6 +88,7 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
         delete[] pNonZeroI;
 
         out.push_back(pSparseOut);
+        return types::Function::OK;
     }
     else if (in[0]->isPoly())
     {
@@ -156,17 +135,17 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
         }
 
         out.push_back(pPolyOut);
+        return types::Function::OK;
     }
     else if (in[0]->isInt())
     {
         out.push_back(in[0]);
+        return types::Function::OK;
     }
     else
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_floor";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-
-    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

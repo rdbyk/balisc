@@ -19,6 +19,8 @@
 #include "double.hxx"
 #include "overload.hxx"
 
+#include "asin.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -33,9 +35,6 @@ clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();asin(a);toc
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Double* pDblIn   = NULL;
-    types::Double* pDblOut  = NULL;
-
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "asin", 1);
@@ -54,66 +53,8 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDblIn = in[0]->getAs<types::Double>();
-
-    if (pDblIn->isComplex())
-    {
-        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), true);
-        int size = pDblIn->getSize();
-
-        double* pInR = pDblIn->get();
-        double* pInI = pDblIn->getImg();
-        double* pOutR = pDblOut->get();
-        double* pOutI = pDblOut->getImg();
-
-        for (int i = 0; i < size; i++)
-        {
-            std::complex<double> z(std::asin(std::complex<double>(pInR[i], pInI[i])));
-            pOutR[i] = z.real();
-            pOutI[i] = z.imag();
-        }
-    }
-    else
-    {
-        bool bOutSide = 0;
-        //check if all variables are between [-1,1]
-        double* pInR = pDblIn->get();
-        int size = pDblIn->getSize();
-        for (int i = 0; i < size; i++)
-        {
-            if (std::fabs(pInR[i]) > 1)
-            {
-                bOutSide = 1;
-                break;
-            }
-        }
-
-        if (bOutSide) // Values outside [-1,1]
-        {
-            pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), true);
-            double* pOutR = pDblOut->get();
-            double* pOutI = pDblOut->getImg();
-            for (int i = 0; i < size; i++)
-            {
-                double x = pInR[i];
-                
-                std::complex<double> z(std::asin(std::complex<double>(x, std::copysign(0, -x))));
-                pOutR[i] = z.real();
-                pOutI[i] = z.imag();
-            }
-        }
-        else //all values are in [-1,1]
-        {
-            pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), false);
-            double* pOutR = pDblOut->get();
-            for (int i = 0; i < size; i++)
-            {
-                pOutR[i] = std::asin(pInR[i]);
-            }
-        }
-    }
-
-    out.push_back(pDblOut);
+    out.push_back(balisc::asin(in[0]->getAs<types::Double>()));
+    
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

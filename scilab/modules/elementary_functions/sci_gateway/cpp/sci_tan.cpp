@@ -14,12 +14,12 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#include <complex>
-
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
+
+#include "tan.hxx"
 
 extern "C"
 {
@@ -34,9 +34,6 @@ clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();tan(a);toc
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_tan(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Double* pDblIn   = NULL;
-    types::Double* pDblOut  = NULL;
-
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "tan", 1);
@@ -55,9 +52,7 @@ types::Function::ReturnValue sci_tan(types::typed_list &in, int _iRetCount, type
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDblIn = in[0]->getAs<types::Double>();
-    pDblOut = trigo(pDblIn, std::tan, std::tan);
-    out.push_back(pDblOut);
+    out.push_back(balisc::tan(in[0]->getAs<types::Double>()));    
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

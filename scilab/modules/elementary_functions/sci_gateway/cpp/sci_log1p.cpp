@@ -19,6 +19,8 @@
 #include "overload.hxx"
 #include "configvariable.hxx"
 
+#include "log1p.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -83,15 +85,7 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
-    double* pOutR = pDblOut->get();
-
-    for (int i = 0; i < size; i++)
-    {
-        pOutR[i] = std::log1p(pInR[i]);
-    }
-
-    out.push_back(pDblOut);
+    out.push_back(balisc::log1p(pDblIn));
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

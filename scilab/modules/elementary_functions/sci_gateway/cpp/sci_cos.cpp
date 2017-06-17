@@ -22,6 +22,8 @@
 #include "overload.hxx"
 #include "sparse.hxx"
 
+#include "cos.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -36,7 +38,6 @@ clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();cos(a);toc
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Double* pDblIn   = NULL;
     types::Double* pDblOut  = NULL;
 
     if (in.size() != 1)
@@ -53,9 +54,8 @@ types::Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble())
     {
-        pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = trigo(pDblIn, (double (*)(double))std::cos, (std::complex<double> (*)(const std::complex<double> &))std::cos);
-        out.push_back(pDblOut);
+        out.push_back(balisc::cos(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
     }
     else if (in[0]->isSparse())
     {
@@ -93,13 +93,12 @@ types::Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, type
         delete[] pNonZeroI;
 
         out.push_back(pDblOut);
+        return types::Function::OK;
     }
     else
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_cos";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-
-    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

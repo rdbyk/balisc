@@ -23,6 +23,8 @@
 #include "sparse.hxx"
 #include "polynom.hxx"
 
+#include "ceil.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -52,30 +54,8 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble())
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-        double* pIR = pDblIn->get();
-        double* pOR = pDblOut->get();
-
-        int size = pDblIn->getSize();
-
-        if (pDblIn->isComplex())
-        {
-            double* pII = pDblIn->getImg();
-            double* pOI = pDblOut->getImg();
-            for (int i = 0; i < size; i++)
-            {
-                pOI[i] = std::ceil(pII[i]);
-            }
-        }
-
-        for (int i = 0; i < size; i++)
-        {
-            pOR[i] = std::ceil(pIR[i]);
-        }
-
-        out.push_back(pDblOut);
+        out.push_back(balisc::ceil(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
     }
     else if (in[0]->isSparse())
     {
@@ -114,6 +94,7 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
         delete[] pNonZeroI;
 
         out.push_back(pSparseOut);
+        return types::Function::OK;
     }
     else if (in[0]->isPoly())
     {
@@ -160,17 +141,17 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
         }
 
         out.push_back(pPolyOut);
+        return types::Function::OK;
     }
     else if (in[0]->isInt())
     {
         out.push_back(in[0]);
+        return types::Function::OK;
     }
     else
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_ceil";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-
-    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

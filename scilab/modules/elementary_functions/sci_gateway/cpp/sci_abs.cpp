@@ -24,6 +24,8 @@
 #include "overload.hxx"
 #include "polynom.hxx"
 
+#include "abs.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -68,29 +70,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
     {
         case types::InternalType::ScilabDouble:
         {
-            types::Double* pDblIn = in[0]->getAs<types::Double>();
-            types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
-
-            double* pdblInR = pDblIn->get();
-            double* pdblInI = pDblIn->getImg();
-            double* pdblOut = pDblOut->get();
-            int size = pDblIn->getSize();
-            if (pDblIn->isComplex())
-            {
-                for (int i = 0; i < size; i++)
-                {
-                    pdblOut[i] = hypot(pdblInR[i], pdblInI[i]);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < size; i++)
-                {
-                    pdblOut[i] = std::fabs(pdblInR[i]);
-                }
-            }
-
-            out.push_back(pDblOut);
+            out.push_back(balisc::abs(in[0]->getAs<types::Double>()));
             break;
         }
         case types::InternalType::ScilabPolynom:

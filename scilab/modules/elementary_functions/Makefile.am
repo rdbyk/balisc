@@ -31,7 +31,20 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/sum.cpp \
     src/cpp/max.cpp \
     src/cpp/min.cpp \
-    src/cpp/clean.cpp
+    src/cpp/clean.cpp \
+    src/cpp/abs.cpp \
+    src/cpp/acos.cpp \
+    src/cpp/asin.cpp \
+    src/cpp/ceil.cpp \
+    src/cpp/cos.cpp \
+    src/cpp/exp.cpp \
+    src/cpp/floor.cpp \
+    src/cpp/log.cpp \
+    src/cpp/log10.cpp \
+    src/cpp/log1p.cpp \
+    src/cpp/sin.cpp \
+    src/cpp/sqrt.cpp \
+    src/cpp/tan.cpp
 
 SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \
@@ -215,8 +228,7 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_nearfloat.c \
     sci_gateway/c/sci_isequalbitwise.c \
     sci_gateway/c/sci_base2dec.c \
-    sci_gateway/c/sci_dec2base.c \
-    sci_gateway/c/sci_log10.c
+    sci_gateway/c/sci_dec2base.c
 
 GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_isequal.cpp \
@@ -260,6 +272,7 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_isreal.cpp \
     sci_gateway/cpp/sci_kron.cpp \
     sci_gateway/cpp/sci_log.cpp \
+    sci_gateway/cpp/sci_log10.cpp \
     sci_gateway/cpp/sci_log1p.cpp \
     sci_gateway/cpp/sci_max.cpp \
     sci_gateway/cpp/sci_rat.cpp \
@@ -310,6 +323,7 @@ libscielementary_functions_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
+	$(EIGEN_CPPFLAGS)
 	$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
