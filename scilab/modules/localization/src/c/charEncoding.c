@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - Yung-Jang Lee
-* Copyright (C) 2009 - DIGITEO - Antoine ELIAS , Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Yung-Jang Lee
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS , Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -194,6 +194,11 @@ wchar_t *to_wide_string(const char *_UTFStr)
 /*--------------------------------------------------------------------------*/
 #else // Linux
 /*--------------------------------------------------------------------------*/
+
+static iconv_t __UTF_8_from_WCHAR_T = NULL;
+static iconv_t __WCHAR_T_from_UTF_8 = NULL;
+static iconv_t __WCHAR_T_from_ISO_8859_1 = NULL;
+
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
     char* pOutSave = NULL;
@@ -202,25 +207,35 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     size_t iLeftIn = 0;
     size_t iLeftOut = 0;
     char* pOut = NULL;
-    iconv_t cd_UTF16_to_UTF8;
+    /* iconv_t cd_UTF16_to_UTF8; */
 
     if (_wide == NULL)
     {
         return NULL;
     }
 
-    cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T");
+    /* cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T"); */
+    if (__UTF_8_from_WCHAR_T == NULL)
+    {
+        __UTF_8_from_WCHAR_T = iconv_open("UTF-8", "WCHAR_T");
+    }
 
     pSaveIn = (wchar_t*)_wide;
     iLeftIn = wcslen(_wide) * sizeof(wchar_t);
 
     iLeftOut = iLeftIn + (1 * sizeof(wchar_t));
+    
     pOut = (char*)MALLOC(iLeftOut);
     memset(pOut, 0x00, iLeftOut);
+    
     pOutSave = pOut;
-
+    
+    /*
     iSize = iconv(cd_UTF16_to_UTF8, (char**)&pSaveIn, &iLeftIn, &pOut, &iLeftOut);
     iconv_close(cd_UTF16_to_UTF8);
+    */
+    iSize = iconv(__UTF_8_from_WCHAR_T, (char**)&pSaveIn, &iLeftIn, &pOut, &iLeftOut);
+    
     if (iSize == (size_t)(-1))
     {
         FREE(pOutSave);
@@ -237,7 +252,7 @@ wchar_t *to_wide_string(const char *_UTFStr)
     size_t iSize = 0;
     size_t iLeftIn = 0;
     size_t iLeftOut = 0;
-    iconv_t cd_UTF8_to_UTF16 = NULL;
+    /* iconv_t cd_UTF8_to_UTF16 = NULL; */
     wchar_t* pOut = NULL;
 
     if (_UTFStr == NULL)
@@ -245,7 +260,11 @@ wchar_t *to_wide_string(const char *_UTFStr)
         return NULL;
     }
 
-    cd_UTF8_to_UTF16 = iconv_open("WCHAR_T", "UTF-8");
+    /* cd_UTF8_to_UTF16 = iconv_open("WCHAR_T", "UTF-8"); */
+    if (__WCHAR_T_from_UTF_8 == NULL)
+    {
+        __WCHAR_T_from_UTF_8 = iconv_open("WCHAR_T", "UTF-8");
+    }
 
     iLeftIn = strlen(_UTFStr);
     pInSave = (char*)_UTFStr;
@@ -255,11 +274,20 @@ wchar_t *to_wide_string(const char *_UTFStr)
     memset(pOut, 0x00, iLeftOut);
     pOutSave = pOut;
 
+    /*
     iSize = iconv(cd_UTF8_to_UTF16, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
     iconv_close(cd_UTF8_to_UTF16);
+    */
+    iSize = iconv(__WCHAR_T_from_UTF_8, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+    
     if (iSize == (size_t)(-1))
     {
-        iconv_t cd_ISO8851_to_UTF16 = iconv_open("WCHAR_T", "ISO_8859-1");
+        
+        /* iconv_t cd_ISO8851_to_UTF16 = iconv_open("WCHAR_T", "ISO_8859-1"); */
+        if (__WCHAR_T_from_ISO_8859_1 == NULL)
+        {
+            __WCHAR_T_from_ISO_8859_1 = iconv_open("WCHAR_T", "ISO_8859-1");
+        }
 
         _UTFStr = pInSave;
         iLeftIn = strlen(_UTFStr);
@@ -268,9 +296,12 @@ wchar_t *to_wide_string(const char *_UTFStr)
         pOut = pOutSave;
         memset(pOut, 0x00, iLeftOut);
 
-
+        /*
         iSize = iconv(cd_ISO8851_to_UTF16, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
         iconv_close(cd_ISO8851_to_UTF16);
+        */
+        iSize = iconv(__WCHAR_T_from_ISO_8859_1, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+        
         if (iSize == (size_t)(-1))
         {
             FREE(pOut);
