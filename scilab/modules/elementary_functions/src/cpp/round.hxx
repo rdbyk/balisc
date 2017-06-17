@@ -17,8 +17,8 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 // 02110-1301, USA.
 
-#ifndef __BALISC_CEIL_H__
-#define __BALISC_CEIL_H__
+#ifndef __BALISC_ROUND_H__
+#define __BALISC_ROUND_H__
 
 #include "double.hxx"
 
@@ -29,7 +29,7 @@ extern "C"
 
 namespace balisc
 {
-ELEMENTARY_FUNCTIONS_IMPEXP types::Double* ceil(types::Double* x);
+ELEMENTARY_FUNCTIONS_IMPEXP types::Double* round(types::Double* x);
 }
 
-#endif /* __BALISC_CEIL_H__ */
+#endif /* __BALISC_ROUND_H__ */

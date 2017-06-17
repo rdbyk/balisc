@@ -17,19 +17,44 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 // 02110-1301, USA.
 
-#ifndef __BALISC_CEIL_H__
-#define __BALISC_CEIL_H__
+#include "round.hxx"
+#include <Eigen/Core>
 
-#include "double.hxx"
-
-extern "C"
-{
-#include "dynlib_elementary_functions.h"
-}
+using types::Double;
 
 namespace balisc
 {
-ELEMENTARY_FUNCTIONS_IMPEXP types::Double* ceil(types::Double* x);
+
+Double* round(Double* x)
+{
+    bool is_complex = x->isComplex();
+    Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
+    
+    if (is_complex)
+    {
+        double* xr = x->get();
+        double* yr = y->get();
+        double* xi = x->getImg();
+        double* yi = y->getImg();
+        
+        for (int i = 0; i < x->getSize(); i++)
+        {
+            yr[i] = std::round(xr[i]);
+            yi[i] = std::round(xi[i]);
+        }
+    }
+    else
+    {
+        double* xr = x->get();
+        double* yr = y->get();
+    
+        for (int i = 0; i < x->getSize(); i++)
+        {
+            yr[i] = std::round(xr[i]);
+        }
+    }
+    
+    return y;
 }
 
-#endif /* __BALISC_CEIL_H__ */
+}

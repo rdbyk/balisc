@@ -19,6 +19,8 @@
 #include "polynom.hxx"
 #include "overload.hxx"
 
+#include "round.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -39,7 +41,12 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    if (in[0]->isPoly())
+    if (in[0]->isDouble())
+    {
+        out.push_back(balisc::round(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
+    }
+    else if (in[0]->isPoly())
     {
         /***** get data *****/
         types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
@@ -81,38 +88,6 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
 
         /***** return data *****/
         out.push_back(pPolyOut);
-        return types::Function::OK;
-    }
-    else if (in[0]->isDouble())
-    {
-        /***** get data *****/
-        types::Double* pDblIn  = in[0]->getAs<types::Double>();// double
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-        int size = pDblIn->getSize();
-        /***** perform operation *****/
-        double* pdblInReal  = pDblIn->get();
-        double* pDblOutReal = pDblOut->get();
-        if (pDblIn->isComplex())
-        {
-            double* pdblInImg  = pDblIn->getImg();
-            double* pDblOutImg = pDblOut->getImg();
-            for (int i = 0; i < size; i++)
-            {
-                pDblOutReal[i] = std::round(pdblInReal[i]);
-                pDblOutImg[i]  = std::round(pdblInImg[i]);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < size; i++)
-            {
-                pDblOutReal[i] = std::round(pdblInReal[i]);
-            }
-        }
-
-        /***** return data *****/
-        out.push_back(pDblOut);
         return types::Function::OK;
     }
     else
