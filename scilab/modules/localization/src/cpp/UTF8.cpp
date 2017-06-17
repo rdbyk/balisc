@@ -3,9 +3,9 @@
  * Copyright (C) 2008 - Yung-Jang Lee
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS , Allan CORNET
  * Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -162,6 +162,10 @@ std::wstring UTF8::toWide(const std::string & str)
 
 #else // Linux
 
+static iconv_t __UTF_8_from_WCHAR_T = nullptr;
+static iconv_t __WCHAR_T_from_UTF_8 = nullptr;
+static iconv_t __WCHAR_T_from_ISO_8859_1 = nullptr;
+
 std::string UTF8::toUTF8(const std::wstring & wstr)
 {
     if (wstr.empty())
@@ -174,10 +178,19 @@ std::string UTF8::toUTF8(const std::wstring & wstr)
     size_t iLeftOut = iLeftIn + sizeof(wchar_t);
     char * pOut = new char[iLeftOut];
     char * pOutSave = pOut;
-    iconv_t cd = iconv_open("UTF-8", "WCHAR_T");
-
+    
+    /* iconv_t cd = iconv_open("UTF-8", "WCHAR_T"); */
+    if (__UTF_8_from_WCHAR_T == nullptr)
+    {
+        __UTF_8_from_WCHAR_T = iconv_open("UTF-8", "WCHAR_T");
+    }
+    
+    /*
     size_t iSize = iconv(cd, &pIn, &iLeftIn, &pOut, &iLeftOut);
     iconv_close(cd);
+    */
+    size_t iSize = iconv(__UTF_8_from_WCHAR_T, &pIn, &iLeftIn, &pOut, &iLeftOut);
+
     if (iSize == (size_t)(-1))
     {
         delete[] pOutSave;
@@ -202,20 +215,38 @@ std::wstring UTF8::toWide(const std::string & str)
     size_t iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
     wchar_t * pOut = new wchar_t[iLeftOut];
     wchar_t * pOutSave = pOut;
-    iconv_t cd = iconv_open("WCHAR_T", "UTF-8");
-
+    
+    /* iconv_t cd = iconv_open("WCHAR_T", "UTF-8"); */
+    if (__WCHAR_T_from_UTF_8 == nullptr)
+    {
+        __WCHAR_T_from_UTF_8 = iconv_open("WCHAR_T", "UTF-8");
+    }
+    
+    /*
     size_t iSize = iconv(cd, &pIn, &iLeftIn, (char **)&pOut, &iLeftOut);
     iconv_close(cd);
+    */
+    size_t iSize = iconv(__WCHAR_T_from_UTF_8, &pIn, &iLeftIn, (char **)&pOut, &iLeftOut);
+    
     if (iSize == (size_t)(-1))
     {
-        cd = iconv_open("WCHAR_T", "ISO_8859-1");
+        /* cd = iconv_open("WCHAR_T", "ISO_8859-1"); */
+        if (__WCHAR_T_from_ISO_8859_1 == nullptr)
+        {
+            __WCHAR_T_from_ISO_8859_1 = iconv_open("WCHAR_T", "ISO_8859-1");
+        }
+
         pIn = (char *)str.c_str();
         iLeftIn = str.size();
         iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
         pOut = pOutSave;
-
+        
+        /*
         iSize = iconv(cd, &pIn, &iLeftIn, (char **)&pOut, &iLeftOut);
         iconv_close(cd);
+        */
+        iSize = iconv(__WCHAR_T_from_ISO_8859_1, &pIn, &iLeftIn, (char **)&pOut, &iLeftOut);
+
         if (iSize == (size_t)(-1))
         {
             delete[] pOutSave;
