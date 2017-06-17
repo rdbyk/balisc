@@ -219,8 +219,7 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dmmul.f \
     src/fortran/wsqrt.f \
     src/fortran/rat.f \
-    src/fortran/old_pythag.f \
-    src/fortran/danints.f
+    src/fortran/old_pythag.f
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_number_properties.c \
