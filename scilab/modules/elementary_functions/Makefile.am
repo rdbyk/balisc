@@ -44,6 +44,7 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/log1p.cpp \
     src/cpp/round.cpp \
     src/cpp/sin.cpp \
+    src/cpp/sinh.cpp \
     src/cpp/sqrt.cpp \
     src/cpp/tan.cpp
 

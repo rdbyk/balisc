@@ -1,0 +1,64 @@
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+
+#include "sinh.hxx"
+#include <cmath>
+#include <Eigen/Core>
+
+using types::Double;
+
+using Eigen::Map;
+using Eigen::ArrayXd;
+using Eigen::ArrayXcd;
+
+namespace balisc
+{
+
+Double* sinh(Double* x)
+{
+    bool is_complex = x->isComplex();
+    Double* y = new Double(x->getDims(), x->getDimsArray(),is_complex);
+     
+    int n = x->getSize();
+    
+    if (is_complex)
+    {
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> xi(x->getImg(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        Map<ArrayXd> yi(y->getImg(), n);
+        ArrayXd ep(xr.exp());
+        ArrayXd en(ep.inverse());
+        yr = 0.5 * xi.cos() * (ep - en);
+        yi = 0.5 * xi.sin() * (en + ep);
+        
+        return y;
+    }
+    else
+    {
+        Map<ArrayXd> xr(x->get(), n);
+        Map<ArrayXd> yr(y->get(), n);
+        ArrayXd e(xr.exp());
+        yr = 0.5 * (e - 1/e);
+        
+        return y;
+    }
+}
+
+}
