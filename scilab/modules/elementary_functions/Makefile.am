@@ -47,7 +47,8 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/sin.cpp \
     src/cpp/sinh.cpp \
     src/cpp/sqrt.cpp \
-    src/cpp/tan.cpp
+    src/cpp/tan.cpp \
+    src/cpp/tanh.cpp
 
 SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \
