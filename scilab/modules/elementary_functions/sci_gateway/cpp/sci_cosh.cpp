@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,6 +21,8 @@
 #include "double.hxx"
 #include "overload.hxx"
 
+#include "cosh.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -35,9 +37,6 @@ clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();cosh(a);toc
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_cosh(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Double* pDblIn = NULL;
-    types::Double* pDblOut = NULL;
-
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "cosh", 1);
@@ -52,42 +51,13 @@ types::Function::ReturnValue sci_cosh(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble())
     {
-        pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-        double* pInR = pDblIn->get();
-        double* pOutR = pDblOut->get();
-        int size = pDblIn->getSize();
-        if (pDblIn->isComplex())
-        {
-            double* pInI = pDblIn->getImg();
-            double* pOutI = pDblOut->getImg();
-
-            for (int i = 0; i < size; i++)
-            {
-                //zcoss(-pInI[i], pInR[i], &pOutR[i], &pOutI[i]);
-                std::complex<double> c(pInR[i], pInI[i]);
-                std::complex<double> d = std::cosh(c);
-                pOutR[i] = d.real();
-                pOutI[i] = d.imag();
-            }
-        }
-        else
-        {
-            for (int i = 0; i < size; i++)
-            {
-                pOutR[i] = std::cosh(pInR[i]);
-            }
-        }
-
-        out.push_back(pDblOut);
+        out.push_back(balisc::cosh(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
     }
     else
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_cosh";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-
-    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
