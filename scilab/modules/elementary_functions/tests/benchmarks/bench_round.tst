@@ -1,6 +1,6 @@
 // Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 
-// <-- BENCH NB RUN : 1000 -->
+// <-- BENCH NB RUN : 2000 -->
 
 a1 = 10*rand(1,1);
 a2 = 10*rand(3,3);
@@ -20,25 +20,25 @@ c4 = a4 + a4*%i;
 // <-- BENCH START -->
 
 for i=1:100
- log10(a1);
- log10(b1);
- log10(c1);
+ round(a1);
+ round(b1);
+ round(c1);
 end
 
 for i=1:10
-  log10(a2);
-  log10(b2);
-  log10(c2);
+  round(a2);
+  round(b2);
+  round(c2);
 end
 
 for i=1:3
-  log10(a3);
-  log10(b3);
-  log10(c3);
+  round(a3);
+  round(b3);
+  round(c3);
 end
 
-log10(a4);
-log10(b4);
-log10(c4);
+round(a4);
+round(b4);
+round(c4);
 
 // <-- BENCH END -->

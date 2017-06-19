@@ -37,14 +37,18 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/asin.cpp \
     src/cpp/ceil.cpp \
     src/cpp/cos.cpp \
+    src/cpp/cosh.cpp \
     src/cpp/exp.cpp \
     src/cpp/floor.cpp \
     src/cpp/log.cpp \
     src/cpp/log10.cpp \
     src/cpp/log1p.cpp \
+    src/cpp/round.cpp \
     src/cpp/sin.cpp \
+    src/cpp/sinh.cpp \
     src/cpp/sqrt.cpp \
-    src/cpp/tan.cpp
+    src/cpp/tan.cpp \
+    src/cpp/tanh.cpp
 
 SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \
@@ -219,8 +223,7 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dmmul.f \
     src/fortran/wsqrt.f \
     src/fortran/rat.f \
-    src/fortran/old_pythag.f \
-    src/fortran/danints.f
+    src/fortran/old_pythag.f
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_number_properties.c \

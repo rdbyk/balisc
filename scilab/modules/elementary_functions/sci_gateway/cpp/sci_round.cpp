@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Sylvain Genin
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -19,11 +19,13 @@
 #include "polynom.hxx"
 #include "overload.hxx"
 
+#include "round.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
-    extern double C2F(danints)(double*);
 }
+
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -39,7 +41,12 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    if (in[0]->isPoly())
+    if (in[0]->isDouble())
+    {
+        out.push_back(balisc::round(in[0]->getAs<types::Double>()));
+        return types::Function::OK;
+    }
+    else if (in[0]->isPoly())
     {
         /***** get data *****/
         types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
@@ -64,15 +71,15 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
                 double* pImgOut = pSPOut->getImg();
                 for (int i = 0; i < piRankPolyIn[compterElem] + 1; i++)
                 {
-                    pRealOut[i] = C2F(danints)(pRealIn + i);
-                    pImgOut[i]  = C2F(danints)(pImgIn + i);
+                    pRealOut[i] = std::round(pRealIn[i]);
+                    pImgOut[i]  = std::round(pImgIn[i]);
                 }
             }
             else
             {
                 for (int i = 0; i < piRankPolyIn[compterElem] + 1; i++)
                 {
-                    pRealOut[i] = C2F(danints)(pRealIn + i);
+                    pRealOut[i] = std::round(pRealIn[i]);
                 }
             }
         }
@@ -81,38 +88,6 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
 
         /***** return data *****/
         out.push_back(pPolyOut);
-        return types::Function::OK;
-    }
-    else if (in[0]->isDouble())
-    {
-        /***** get data *****/
-        types::Double* pDblIn  = in[0]->getAs<types::Double>();// double
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-        int size = pDblIn->getSize();
-        /***** perform operation *****/
-        double* pdblInReal  = pDblIn->get();
-        double* pDblOutReal = pDblOut->get();
-        if (pDblIn->isComplex())
-        {
-            double* pdblInImg  = pDblIn->getImg();
-            double* pDblOutImg = pDblOut->getImg();
-            for (int i = 0; i < size; i++)
-            {
-                pDblOutReal[i] = C2F(danints)(pdblInReal + i);
-                pDblOutImg[i]  = C2F(danints)(pdblInImg + i);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < size; i++)
-            {
-                pDblOutReal[i] = C2F(danints)(pdblInReal + i);
-            }
-        }
-
-        /***** return data *****/
-        out.push_back(pDblOut);
         return types::Function::OK;
     }
     else

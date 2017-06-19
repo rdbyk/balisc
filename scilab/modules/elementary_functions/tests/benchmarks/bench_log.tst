@@ -20,25 +20,25 @@ c4 = a4 + a4*%i;
 // <-- BENCH START -->
 
 for i=1:100
- sqrt(a1);
- sqrt(b1);
- sqrt(c1);
+ log(a1);
+ log(b1);
+ log(c1);
 end
 
 for i=1:10
-  sqrt(a2);
-  sqrt(b2);
-  sqrt(c2);
+  log(a2);
+  log(b2);
+  log(c2);
 end
 
 for i=1:3
-  sqrt(a3);
-  sqrt(b3);
-  sqrt(c3);
+  log(a3);
+  log(b3);
+  log(c3);
 end
 
-sqrt(a4);
-sqrt(b4);
-sqrt(c4);
+log(a4);
+log(b4);
+log(c4);
 
 // <-- BENCH END -->

@@ -222,9 +222,6 @@
     <ClCompile Include="old_pythag.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="danints.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="arcosh.f">
@@ -429,9 +426,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="old_pythag.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="danints.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>
