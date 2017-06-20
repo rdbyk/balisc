@@ -1,10 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA - Allan CORNET , Cong WU
-* Copyright (C) DIGITEO - 2010 - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET , Cong WU
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,13 +12,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-
-/* desc : concatenate character strings                                   */
-/* Examples: strcat(string(1:10),',')                                     */
-/*                                                                        */
-/*------------------------------------------------------------------------*/
+ *
+ */
 
 #include "string_gw.hxx"
 #include "function.hxx"
@@ -33,20 +28,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
-/*-------------------------------------------------------------------------------------*/
-#define STAR '*'
-#define COL 'c'
-#define ROW 'r'
-#define ONE_CHAR 1
-#define EMPTY_CHAR ""
-/*-------------------------------------------------------------------------------------*/
-static int sci_strcat_three_rhs(char *fname);
-static int sci_strcat_two_rhs(char *fname);
-static int sci_strcat_one_rhs(char *fname);
-static int sci_strcat_rhs_one_is_a_matrix(char *fname);
-static int sumlengthstring(int rhspos);
-static int *lengthEachString(int rhspos, int *sizeArrayReturned);
-/*-------------------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iMode               = 0;
@@ -115,9 +97,9 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
         case 0 : //"*"
         {
             pOut = new types::String(1, 1);
-            /*compute final size*/
-            int iLen = 1; //L'\0'
-            for (int i = 0 ; i < pS->getSize() ; i++)
+            
+            int iLen = 1;
+            for (int i = 0; i < pS->getSize(); i++)
             {
                 iLen += (int)wcslen(pS->get(i));
             }
@@ -128,17 +110,52 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
             }
 
             wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-            pwstOut[0] = L'\0';
-            for (int i = 0 ; i < pS->getSize() ; i++)
+            
+            wchar_t* dst = pwstOut;
+            wchar_t* src = pS->get(0);
+            while (*src != L'\0')
             {
-                size_t iOffset = wcslen(pwstOut);
-                if (iOffset != 0 && pwstToInsert != NULL)
-                {
-                    wcscat(pwstOut + iOffset, pwstToInsert);
-                }
-                wcscat(pwstOut + iOffset, pS->get(i));
+                *dst = *src;
+                dst++;
+                src++;
             }
-
+            if (pwstToInsert)
+            {
+                for (int i = 1; i < pS->getSize(); i++)
+                {
+                    wchar_t* src = pwstToInsert;
+                    while (*src != L'\0')
+                    {
+                        *dst = *src;
+                        dst++;
+                        src++;
+                    }
+                    src = pS->get(i);
+                    while (*src != L'\0')
+                    {
+                        *dst = *src;
+                        dst++;
+                        src++;
+                    }
+                    
+                }
+            }
+            else
+            {
+                for (int i = 1; i < pS->getSize(); i++)
+                {
+                    wchar_t* src = pS->get(i);
+                    while (*src != L'\0')
+                    {
+                        *dst = *src;
+                        dst++;
+                        src++;
+                    }
+                    
+                }
+            }
+            *dst = L'\0';
+            
             pOut->set(0, pwstOut);
             FREE(pwstOut);
         }
@@ -146,10 +163,10 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
         case 1 : //"r"
         {
             pOut = new types::String(1, pS->getCols());
-            /*compute final size*/
+
             for (int i = 0 ; i < pS->getCols() ; i++)
             {
-                int iLen = 1; //L'\0'
+                int iLen = 1;
                 for (int j = 0 ; j < pS->getRows() ; j++)
                 {
                     iLen += (int)wcslen(pS->get(j, i));
@@ -161,17 +178,52 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-                pwstOut[0] = L'\0';
-
-                for (int j = 0 ; j < pS->getRows() ; j++)
+                
+                wchar_t* dst = pwstOut;
+                wchar_t* src = pS->get(0, i);
+                while (*src != L'\0')
                 {
-                    size_t iOffset = wcslen(pwstOut);
-                    if (iOffset != 0 && pwstToInsert != NULL)
-                    {
-                        wcscat(pwstOut + iOffset, pwstToInsert);
-                    }
-                    wcscat(pwstOut + iOffset, pS->get(j, i));
+                    *dst = *src;
+                    dst++;
+                    src++;
                 }
+                if (pwstToInsert)
+                {
+                    for (int j = 1; j < pS->getRows(); j++)
+                    {
+                        wchar_t* src = pwstToInsert;
+                        while (*src != L'\0')
+                        {
+                            *dst = *src;
+                            dst++;
+                            src++;
+                        }
+                        src = pS->get(j, i);
+                        while (*src != L'\0')
+                        {
+                            *dst = *src;
+                            dst++;
+                            src++;
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    for (int j = 1; j < pS->getRows(); j++)
+                    {
+                        wchar_t* src = pS->get(j, i);
+                        while (*src != L'\0')
+                        {
+                            *dst = *src;
+                            dst++;
+                            src++;
+                        }
+                        
+                    }
+                }
+                *dst = L'\0';
+                
                 pOut->set(0, i, pwstOut);
                 FREE(pwstOut);
             }
@@ -180,10 +232,10 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
         case 2 : //"c"
         {
             pOut = new types::String(pS->getRows(), 1);
-            /*compute final size*/
-            for (int i = 0 ; i < pS->getRows() ; i++)
+            
+            for (int i = 0; i < pS->getRows(); i++)
             {
-                int iLen = 1; //L'\0'
+                int iLen = 1;
                 for (int j = 0 ; j < pS->getCols() ; j++)
                 {
                     iLen += (int)wcslen(pS->get(i, j));
@@ -195,17 +247,52 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-                pwstOut[0] = L'\0';
-
-                for (int j = 0 ; j < pS->getCols() ; j++)
+                
+                wchar_t* dst = pwstOut;
+                wchar_t* src = pS->get(i, 0);
+                while (*src != L'\0')
                 {
-                    size_t iOffset = wcslen(pwstOut);
-                    if (iOffset != 0 && pwstToInsert != NULL)
-                    {
-                        wcscat(pwstOut + iOffset, pwstToInsert);
-                    }
-                    wcscat(pwstOut + iOffset, pS->get(i, j));
+                    *dst = *src;
+                    dst++;
+                    src++;
                 }
+                if (pwstToInsert)
+                {
+                    for (int j = 1; j < pS->getCols(); j++)
+                    {
+                        wchar_t* src = pwstToInsert;
+                        while (*src != L'\0')
+                        {
+                            *dst = *src;
+                            dst++;
+                            src++;
+                        }
+                        src = pS->get(i, j);
+                        while (*src != L'\0')
+                        {
+                            *dst = *src;
+                            dst++;
+                            src++;
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    for (int j = 1; j < pS->getCols(); j++)
+                    {
+                        wchar_t* src = pS->get(i, j);
+                        while (*src != L'\0')
+                        {
+                            *dst = *src;
+                            dst++;
+                            src++;
+                        }
+                        
+                    }
+                }
+                *dst = L'\0';
+                
                 pOut->set(i, 0, pwstOut);
                 FREE(pwstOut);
             }
@@ -216,4 +303,3 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*-------------------------------------------------------------------------------------*/
