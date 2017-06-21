@@ -1,10 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Vincent LEJEUNE
-* Copyright (C) 2011 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Vincent LEJEUNE
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -74,14 +74,12 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
         if ( !strnicmp(pointerOnFindCopy, pointerOnString, strlen(pointerOnFindCopy)) )
         {
             FREE(pointerOnFindCopy);
-            pointerOnFindCopy = NULL;
             return (int)(pointerOnString - string);
         }
 
     }
     //if no return, no position is correct, return last char of string.
     FREE(pointerOnFindCopy);
-    pointerOnFindCopy = NULL;
     return (int)stringLength;
 }
 /*--------------------------------------------------------------------------*/
@@ -123,13 +121,27 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
         new_line = (char*)MALLOC(sizeof(char) * (lengthNewLine + 1));
         if (new_line)
         {
-            strcpy(new_line, currentline);
-            strcat(new_line, stringToAddAtTheEnd);
+//            strcpy(new_line, currentline);
+//            strcat(new_line, stringToAddAtTheEnd);
+            char* dst = new_line;
+            char* src = currentline;
+            while (*src != '\0')
+            {
+                *dst = *src;
+                dst++;
+                src++;
+            }
+            src = stringToAddAtTheEnd;
+            while (*src != '\0')
+            {
+                *dst = *src;
+                dst++;
+                src++;
+            }
+            *dst = '\0';
         }
 
         FREE(stringToAddAtTheEnd);
-        stringToAddAtTheEnd = NULL;
-
         return new_line;
     }
 
@@ -169,36 +181,42 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
                 /*cd SCI/modules/arnoldi/nonreg_tes */
 
                 FREE(drv);
-                drv = NULL;
                 FREE(dir);
-                dir = NULL;
                 FREE(name);
-                name = NULL;
                 FREE(ext);
-                ext = NULL;
 
                 lengthNewLine = lencurrentline + lenstringToAddAtTheEnd;
                 new_line = (char*)MALLOC(sizeof(char) * (lengthNewLine + 1));
                 if (new_line)
                 {
-                    strcpy(new_line, currentline);
-                    strcat(new_line, stringToAddAtTheEnd);
+//                    strcpy(new_line, currentline);
+//                    strcat(new_line, stringToAddAtTheEnd);
+                    char* dst = new_line;
+                    char* src = currentline;
+                    while (*src != '\0')
+                    {
+                        *dst = *src;
+                        dst++;
+                        src++;
+                    }
+                    src = stringToAddAtTheEnd;
+                    while (*src != '\0')
+                    {
+                        *dst = *src;
+                        dst++;
+                        src++;
+                    }
+                    *dst = '\0';
                 }
 
                 FREE(stringToAddAtTheEnd);
-                stringToAddAtTheEnd = NULL;
-
                 return new_line;
             }
 
             FREE(drv);
-            drv = NULL;
             FREE(dir);
-            dir = NULL;
             FREE(name);
-            name = NULL;
             FREE(ext);
-            ext = NULL;
         }
     }
 
@@ -234,16 +252,39 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
     new_line = (char*)MALLOC(sizeof(char) * (lengthNewLine + 1));
     if (new_line)
     {
-        strcpy(new_line, currentline);
-        new_line[iposInsert] = 0;
+//        strcpy(new_line, currentline);
+//        new_line[iposInsert] = 0;
 
-        strcat(new_line, stringToAdd);
-        strcat(new_line, stringToAddAtTheEnd);
+//        strcat(new_line, stringToAdd);
+//        strcat(new_line, stringToAddAtTheEnd);
+        
+        char* dst = new_line;
+        char* src = currentline;
+        src[iposInsert] = '\0';
+        while (*src != '\0')
+        {
+            *dst = *src;
+            dst++;
+            src++;
+        }
+        src = stringToAdd;
+        while (*src != '\0')
+        {
+            *dst = *src;
+            dst++;
+            src++;
+        }
+        src = stringToAddAtTheEnd;
+        while (*src != '\0')
+        {
+            *dst = *src;
+            dst++;
+            src++;
+        }
+        *dst = '\0';
     }
 
     FREE(stringToAddAtTheEnd);
-    stringToAddAtTheEnd = NULL;
-
     return new_line;
 }
 /*--------------------------------------------------------------------------*/

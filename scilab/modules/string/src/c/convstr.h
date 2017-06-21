@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,18 +19,6 @@
 
 #include "dynlib_string.h"
 
-#define LOW 'l'
-#define LOW_B 'L'
-#define UPPER 'u'
-#define UPPER_B 'U'
-
-/**
-* convstr case conversion
-* param[in] Input_Matrix Input string matrix
-* param[out] Output_Matrix
-* param[in] typ  'l' or 'u'  means low or upper
-* param[in] Number_Input   the number of input string matrix
-*/
 STRING_IMPEXP void convstr(wchar_t **Input_Matrix, wchar_t **Output_Matrix, char typ, int Number_Input);
 
 #endif /* __CONVSTR_H__ */
