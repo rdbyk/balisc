@@ -38,14 +38,15 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
     char* pointerOnString = NULL;
     char* pointerOnFindCopy = NULL;
     char* movingPointerOnFindCopy = NULL;
+    size_t stringLength;
     char lastchar;
-    size_t stringLength = 0;
 
     //get a working copy of find
     pointerOnFindCopy = os_strdup(find);
+    
     //last character of string
-    lastchar = *(string + strlen(string) - 1);
     stringLength = strlen(string);
+    lastchar = *(string + stringLength - 1);
 
     // Convert to upper-case
     {
@@ -70,8 +71,9 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
         // Cut tmpfind at this position
         movingPointerOnFindCopy[0] = '\0';
         //Check if the cutted tmpfind match with the suffix of string that has adequat length
-        pointerOnString = (char*)(string + stringLength - 1 - strlen(pointerOnFindCopy));
-        if ( !strnicmp(pointerOnFindCopy, pointerOnString, strlen(pointerOnFindCopy)) )
+        size_t lenPointerOnFindCopy = strlen(pointerOnFindCopy);
+        pointerOnString = (char*)(string + stringLength - 1 - lenPointerOnFindCopy);
+        if ( !strnicmp(pointerOnFindCopy, pointerOnString, lenPointerOnFindCopy) )
         {
             FREE(pointerOnFindCopy);
             return (int)(pointerOnString - string);
@@ -107,7 +109,7 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
     if (postCaretLine == NULL)
     {
         stringToAddAtTheEnd = os_strdup("");
-        lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
+        lenstringToAddAtTheEnd = 0;
     }
     else
     {
