@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -41,15 +41,32 @@ std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, ty
     switch (in.size())
     {
         case 0 :
-            return L"%_" + _stFunctionName;
+            {
+                std::wstring o = L"%_";
+                o += _stFunctionName;
+                return o;
+            }
         case 2:
             if (_isOperator)
             {
-                return L"%" + stType0 + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
+                std::wstring o = L"%";
+                o += stType0;
+                o += L"_";
+                o += _stFunctionName;
+                o += L"_";
+                o += in[1]->getShortTypeStr();
+                return o;
             }
         default:
-            return L"%" + stType0 + L"_" + _stFunctionName;
+            {
+                std::wstring o = L"%";
+                o += stType0;
+                o += L"_";
+                o += _stFunctionName;
+                return o;
+            }
     }
+    
     return _stFunctionName;
 }
 
@@ -158,62 +175,62 @@ std::wstring Overload::getNameFromOper(const int _oper)
     {
         /* standard operators */
         case ast::OpExp::plus :
-            return std::wstring(L"a");
+            return L"a";
         case ast::OpExp::unaryMinus :
         case ast::OpExp::minus :
-            return std::wstring(L"s");
+            return L"s";
         case ast::OpExp::times :
-            return std::wstring(L"m");
+            return L"m";
         case ast::OpExp::rdivide :
-            return std::wstring(L"r");
+            return L"r";
         case ast::OpExp::ldivide :
-            return std::wstring(L"l");
+            return L"l";
         case ast::OpExp::power :
-            return std::wstring(L"p");
+            return L"p";
         /* dot operators */
         case ast::OpExp::dottimes :
-            return std::wstring(L"x");
+            return L"x";
         case ast::OpExp::dotrdivide :
-            return std::wstring(L"d");
+            return L"d";
         case ast::OpExp::dotldivide :
-            return std::wstring(L"q");
+            return L"q";
         case ast::OpExp::dotpower :
-            return std::wstring(L"j");
+            return L"j";
         /* Kron operators */
         case ast::OpExp::krontimes :
-            return std::wstring(L"k");
+            return L"k";
         case ast::OpExp::kronrdivide :
-            return std::wstring(L"y");
+            return L"y";
         case ast::OpExp::kronldivide :
-            return std::wstring(L"z");
+            return L"z";
         /* Control Operators ??? */
         case ast::OpExp::controltimes :
-            return std::wstring(L"u");
+            return L"u";
         case ast::OpExp::controlrdivide :
-            return std::wstring(L"v");
+            return L"v";
         case ast::OpExp::controlldivide :
-            return std::wstring(L"w");
+            return L"w";
         case ast::OpExp::eq :
-            return std::wstring(L"o");
+            return L"o";
         case ast::OpExp::ne :
-            return std::wstring(L"n");
+            return L"n";
         case ast::OpExp::lt :
-            return std::wstring(L"1");
+            return L"1";
         case ast::OpExp::le :
-            return std::wstring(L"3");
+            return L"3";
         case ast::OpExp::gt :
-            return std::wstring(L"2");
+            return L"2";
         case ast::OpExp::ge :
-            return std::wstring(L"4");
+            return L"4";
         case ast::OpExp::logicalAnd :
-            return std::wstring(L"h");
+            return L"h";
         case ast::OpExp::logicalOr :
-            return std::wstring(L"g");
+            return L"g";
         case ast::OpExp::logicalShortCutAnd :
-            return std::wstring(L"h");
+            return L"h";
         case ast::OpExp::logicalShortCutOr :
-            return std::wstring(L"g");
+            return L"g";
         default :
-            return std::wstring(L"???");
+            return L"???";
     }
 }
