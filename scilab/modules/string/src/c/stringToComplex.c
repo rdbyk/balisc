@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -136,9 +136,8 @@ doublecomplex stringToComplex(const char *pSTR, const char *decimal, BOOL bConve
                 if (pStrFormatted[0] == '.')
                 {
                     /* case .4 replaced by 0.4 */
-                    char *pstStrTemp = (char*)MALLOC(sizeof(char) * (lenStrFormatted + strlen("0") + 1));
-                    strcpy(pstStrTemp, "0");
-                    strcat(pstStrTemp, pStrFormatted);
+                    char *pstStrTemp = (char*)MALLOC(sizeof(char) * (lenStrFormatted + 2));
+                    strcat(stpcpy(pstStrTemp, "0"), pStrFormatted);
                     FREE(pStrFormatted);
                     pStrFormatted = pstStrTemp;
                 }
@@ -205,9 +204,8 @@ doublecomplex stringToComplexW(const wchar_t *pSTR, const wchar_t *decimal, BOOL
                 if (pStrFormatted[0] == '.')
                 {
                     /* case .4 replaced by 0.4 */
-                    wchar_t *pstStrTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStrFormatted + wcslen(L"0") + 1));
-                    wcscpy(pstStrTemp, L"0");
-                    wcscat(pstStrTemp, pStrFormatted);
+                    wchar_t *pstStrTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStrFormatted + 2));
+                    wcscat(wcpcpy(pstStrTemp, L"0"), pStrFormatted);
                     FREE(pStrFormatted);
                     pStrFormatted = pstStrTemp;
                 }
@@ -252,6 +250,7 @@ static int ParseNumber(const char* tx)
 {
     int lookahead = 0;
     int len = 0;
+    size_t len_tx = strlen(tx);
 
     if (tx[len] == NULL)
     {
@@ -263,22 +262,22 @@ static int ParseNumber(const char* tx)
     }
 
     // Special cases: constants
-    if (strlen(tx) >= 5 && (strncmp(tx, "+%eps", 5) == 0 || strncmp(tx, "-%eps", 5) == 0 || strncmp(tx, "+%nan", 5) == 0 || strncmp(tx, "-%nan", 5) == 0 || strncmp(tx, "+%inf", 5) == 0 || strncmp(tx, "-%inf", 5) == 0))
+    if (len_tx >= 5 && (strncmp(tx, "+%eps", 5) == 0 || strncmp(tx, "-%eps", 5) == 0 || strncmp(tx, "+%nan", 5) == 0 || strncmp(tx, "-%nan", 5) == 0 || strncmp(tx, "+%inf", 5) == 0 || strncmp(tx, "-%inf", 5) == 0))
     {
         return 5;
     }
-    else if (strlen(tx) >= 4 && (strncmp(tx, "%eps", 4) == 0 || strncmp(tx, "+%pi", 4) == 0 || strncmp(tx, "-%pi", 4) == 0 ||
+    else if (len_tx >= 4 && (strncmp(tx, "%eps", 4) == 0 || strncmp(tx, "+%pi", 4) == 0 || strncmp(tx, "-%pi", 4) == 0 ||
                                  strncmp(tx, "+Inf", 4) == 0 || strncmp(tx, "-Inf", 4) == 0 || strncmp(tx, "+Nan", 4) == 0 ||
                                  strncmp(tx, "-Nan", 4) == 0 || strncmp(tx, "%nan", 4) == 0 || strncmp(tx, "%inf", 4) == 0 ))
     {
         return 4;
     }
-    else if (strlen(tx) >= 3 && (strncmp(tx, "+%e", 3) == 0 || strncmp(tx, "-%e", 3) == 0 || strncmp(tx, "%pi", 3) == 0 ||
+    else if (len_tx >= 3 && (strncmp(tx, "+%e", 3) == 0 || strncmp(tx, "-%e", 3) == 0 || strncmp(tx, "%pi", 3) == 0 ||
                                  strncmp(tx, "Nan", 3) == 0 || strncmp(tx, "Inf", 3) == 0 || strncmp(tx, "%pi", 3) == 0))
     {
         return 3;
     }
-    else if (strlen(tx) >= 2 && strncmp(tx, "%e", 2) == 0)
+    else if (len_tx >= 2 && strncmp(tx, "%e", 2) == 0)
     {
         return 2;
     }
@@ -427,40 +426,44 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
         if (lnum <= 1)
         {
             /* manages special cases nan + nani, ... */
-            if (strnicmp(modifiedTxt, NanString, strlen(NanString)) == 0)
+            if (strnicmp(modifiedTxt, NanString, 3) == 0)
             {
-                lnum = strlen(NanString);
+                lnum = 3; /* strlen(NanString) */
             }
-            else if (strnicmp(modifiedTxt, InfString, strlen(InfString)) == 0)
+            else if (strnicmp(modifiedTxt, InfString, 3) == 0)
             {
-                lnum = strlen(InfString);
+                lnum = 3; /* strlen(InfString) */
             }
-            else if (strnicmp(modifiedTxt, NegInfString, strlen(NegInfString)) == 0)
+            else if (strnicmp(modifiedTxt, NegInfString, 4) == 0)
             {
-                lnum = strlen(NegInfString);
+                lnum = 4; /* strlen(NegInfString) */
             }
-            else if (strnicmp(modifiedTxt, PosInfString, strlen(PosInfString)) == 0)
+            else if (strnicmp(modifiedTxt, PosInfString, 4) == 0)
             {
-                lnum = strlen(PosInfString);
+                lnum = 4; /* strlen(PosInfString) */
             }
-            else if (strnicmp(modifiedTxt, NegNanString, strlen(NegNanString)) == 0)
+            else if (strnicmp(modifiedTxt, NegNanString, 4) == 0)
             {
-                lnum = strlen(NegNanString);
+                lnum = 4; /* strlen(NegNanString) */
             }
-            else if (strnicmp(modifiedTxt, PosNanString, strlen(PosNanString)) == 0)
+            else if (strnicmp(modifiedTxt, PosNanString, 4) == 0)
             {
-                lnum = strlen(PosNanString);
+                lnum = 4; /* strlen(PosNanString) */
             }
         }
+        
         inum_string = midstring(modifiedTxt, lnum, -1);
-
-        if ((inum_string[strlen(inum_string) - 1] == 'i') ||
-                (inum_string[strlen(inum_string) - 1] == 'j')) // The imaginary part looks like "a*%i"
+        size_t len_inum_string = strlen(inum_string);
+        
+        if ((inum_string[len_inum_string - 1] == 'i') ||
+                (inum_string[len_inum_string - 1] == 'j')) // The imaginary part looks like "a*%i"
         {
-            inum_string[strlen(inum_string) - 1] = 0;
-            if (inum_string[strlen(inum_string) - 1] == '*')
+            inum_string[len_inum_string - 1] = '\0';
+            len_inum_string--;
+            if (inum_string[len_inum_string - 1] == '*')
             {
-                inum_string[strlen(inum_string) - 1] = 0;
+                inum_string[len_inum_string - 1] = '\0';
+                /* len_inum_string-- */
             }
 
             if (strcmp(inum_string, "+") == 0)
@@ -613,76 +616,81 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
         if (lnum <= 1)
         {
             /* manages special cases nan + nani, ... */
-            if (wcsnicmp(modifiedTxt, NanStringW, wcslen(NanStringW)) == 0)
+            if (wcsnicmp(modifiedTxt, NanStringW, 3) == 0)
             {
-                lnum = wcslen(NanStringW);
+                lnum = 3; /* wcslen(NanStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, InfStringW, wcslen(InfStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, InfStringW, 3) == 0)
             {
-                lnum = wcslen(InfStringW);
+                lnum = 3; /* wcslen(InfStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, NegInfStringW, wcslen(NegInfStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, NegInfStringW, 4) == 0)
             {
-                lnum = wcslen(NegInfStringW);
+                lnum = 4; /* wcslen(NegInfStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, PosInfStringW, wcslen(PosInfStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, PosInfStringW, 4) == 0)
             {
-                lnum = wcslen(PosInfStringW);
+                lnum = 4; /* wcslen(PosInfStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, NegNanStringW, wcslen(NegNanStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, NegNanStringW, 4) == 0)
             {
-                lnum = wcslen(NegNanStringW);
+                lnum = 4; /* wcslen(NegNanStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, PosNanStringW, wcslen(PosNanStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, PosNanStringW, 4) == 0)
             {
-                lnum = wcslen(PosNanStringW);
+                lnum = 4; /* wcslen(PosNanStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, ScilabEpsStringW, wcslen(ScilabEpsStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, ScilabEpsStringW, 4) == 0)
             {
-                lnum = wcslen(ScilabEpsStringW);
+                lnum = 4; /* wcslen(ScilabEpsStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, ScilabPosEpsStringW, wcslen(ScilabPosEpsStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, ScilabPosEpsStringW, 5) == 0)
             {
-                lnum = wcslen(ScilabPosEpsStringW);
+                lnum = 5; /* wcslen(ScilabPosEpsStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, ScilabNegEpsStringW, wcslen(ScilabNegEpsStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, ScilabNegEpsStringW, 5) == 0)
             {
-                lnum = wcslen(ScilabNegEpsStringW);
+                lnum = 5; /* wcslen(ScilabNegEpsStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, ScilabPiStringW, wcslen(ScilabPiStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, ScilabPiStringW, 3) == 0)
             {
-                lnum = wcslen(ScilabPiStringW);
+                lnum = 3; /* wcslen(ScilabPiStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, ScilabNegPiStringW, wcslen(ScilabNegPiStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, ScilabNegPiStringW, 4) == 0)
             {
-                lnum = wcslen(ScilabNegPiStringW);
+                lnum = 4; /* wcslen(ScilabNegPiStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, ScilabPosPiStringW, wcslen(ScilabPosPiStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, ScilabPosPiStringW, 4) == 0)
             {
-                lnum = wcslen(ScilabPosPiStringW);
+                lnum = 4; /* wcslen(ScilabPosPiStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, ScilabEStringW, wcslen(ScilabEStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, ScilabEStringW, 2) == 0)
             {
-                lnum = wcslen(ScilabEStringW);
+                lnum = 2; /* wcslen(ScilabEStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, ScilabPosEStringW, wcslen(ScilabPosEStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, ScilabPosEStringW, 3) == 0)
             {
-                lnum = wcslen(ScilabPosEStringW);
+                lnum = 3; /* wcslen(ScilabPosEStringW) */
             }
-            else if (wcsnicmp(modifiedTxt, ScilabNegEStringW, wcslen(ScilabNegEStringW)) == 0)
+            else if (wcsnicmp(modifiedTxt, ScilabNegEStringW, 3) == 0)
             {
-                lnum = wcslen(ScilabNegEStringW);
+                lnum = 3; /* wcslen(ScilabNegEStringW) */
             }
         }
+        
         inum_string = midstringW(modifiedTxt, lnum, -1);
-
-        if ((inum_string[wcslen(inum_string) - 1] == L'i') ||
-                (inum_string[wcslen(inum_string) - 1] == L'j'))
+        size_t len_inum_string = wcslen(inum_string);
+        
+        if ((inum_string[len_inum_string - 1] == L'i') ||
+                (inum_string[len_inum_string - 1] == L'j'))
         {
-            inum_string[wcslen(inum_string) - 1] = 0;
-            if (inum_string[wcslen(inum_string) - 1] == L'*')
+            inum_string[len_inum_string - 1] = '\0';
+            len_inum_string--;
+            
+            if (inum_string[len_inum_string - 1] == L'*')
             {
-                inum_string[wcslen(inum_string) - 1] = 0;
+                inum_string[len_inum_string - 1] = '\0';
+                /* len_inum_string-- */
             }
 
             if (wcscmp(inum_string, L"+") == 0)
@@ -703,13 +711,15 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
         {
             if (inum_string[2] == L'*')
             {
+                size_t len_inum_string = wcslen(inum_string);
+                
                 int i = 0;
-                for (i = 1; (i + 2) < wcslen(inum_string); i++)
+                for (i = 1; (i + 2) < len_inum_string; i++)
                 {
                     inum_string[i] = inum_string[i + 2];
                 }
-                inum_string[wcslen(inum_string) - 1] = 0;
-                inum_string[wcslen(inum_string) - 1] = 0;
+                inum_string[len_inum_string - 1] = '\0';
+                inum_string[len_inum_string - 2] = '\0';
             }
 
             if (wcscmp(inum_string, L"+") == 0)
