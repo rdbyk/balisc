@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -92,13 +92,13 @@ BOOL LoadLibrarypath(char *xmlfilename)
                         char *FullLibrarypath = NULL;
                         char *sciPath = getSCI();
 
-                        if (strncmp(libraryPath, KEYWORDSCILAB, strlen(KEYWORDSCILAB)) == 0)
+                        if (strncmp(libraryPath, KEYWORDSCILAB, /*strlen(KEYWORDSCILAB)*/ 7) == 0)
                         {
                             FullLibrarypath = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(libraryPath) + 1));
                             if (FullLibrarypath)
                             {
-                                strcpy(FullLibrarypath, sciPath);
-                                strcat(FullLibrarypath, &libraryPath[strlen(KEYWORDSCILAB)]);
+                                strcat(stpcpy(FullLibrarypath, sciPath),
+                                       &libraryPath[/*strlen(KEYWORDSCILAB)*/ 7]);
                             }
                         }
                         else
