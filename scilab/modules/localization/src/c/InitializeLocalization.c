@@ -58,8 +58,8 @@ BOOL InitializeLocalization(void)
     /* set directory containing message catalogs */
     pathLocales = (char *)MALLOC(sizeof(char) * (strlen(SCIpath) + strlen(PATHLOCALIZATIONFILE) + 1));
 
-    strcpy(pathLocales, SCIpath);
-    strcat(pathLocales, PATHLOCALIZATIONFILE);
+    strcat(stpcpy(pathLocales, SCIpath), PATHLOCALIZATIONFILE);
+
     if (bindtextdomain(NAMELOCALIZATIONDOMAIN, pathLocales) == NULL || !isdir(pathLocales))
     {
         /* source tree and classic build */
@@ -68,9 +68,8 @@ BOOL InitializeLocalization(void)
         pathLocales = NULL;
 
         pathLocales = (char *)MALLOC(sizeof(char) * (strlen(SCIpath) + strlen("/..") + strlen(PATHLOCALIZATIONFILE) + 1));
-        strcpy(pathLocales, SCIpath);
-        strcat(pathLocales, "/..");
-        strcat(pathLocales, PATHLOCALIZATIONFILE);
+        strcat(stpcpy(stpcpy(pathLocales, SCIpath), "/.."), PATHLOCALIZATIONFILE);
+        
         if (bindtextdomain(NAMELOCALIZATIONDOMAIN, pathLocales) == NULL || !isdir(pathLocales))
         {
             /* when it is installed on the system for example /usr/share/locale/ */
