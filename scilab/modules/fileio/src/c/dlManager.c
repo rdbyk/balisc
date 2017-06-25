@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012-2013 - S/E - Sylvestre LEDRU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -198,23 +198,17 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         {
             // Destination is a file
             destdir = (char *)MALLOC((strlen(pathdrive) + strlen(pathdir) + 1) * sizeof(char));
-            strcpy(destdir, pathdrive);
-            strcat(destdir, pathdir);
+            strcat(stpcpy(destdir, pathdrive), pathdir);
 
             // Get filename
             destfile = (char *)MALLOC((strlen(pathfile) + strlen(pathext) + 1) * sizeof(char));
-            strcpy(destfile, pathfile);
-            strcat(destfile, pathext);
+            strcat(stpcpy(destfile, pathfile), pathext);
         }
         else
         {
             // Destination is a directory
             destdir = (char *)MALLOC((strlen(pathdrive) + strlen(pathdir) + strlen(pathfile) + strlen(pathext) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
-            strcpy(destdir, pathdrive);
-            strcat(destdir, pathdir);
-            strcat(destdir, pathfile);
-            strcat(destdir, pathext);
-            strcat(destdir, DIR_SEPARATOR);
+            strcat(stpcpy(stpcpy(stpcpy(stpcpy(destdir, pathdrive), pathdir),pathfile), pathext), DIR_SEPARATOR);
 
             // Retrieve filename from URL
             destfile = getFileNameFromURL(url);
@@ -235,8 +229,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         if (!err)
         {
             destdir = (char *)MALLOC((strlen(currentdir) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
-            strcpy(destdir, currentdir);
-            strcat(destdir, DIR_SEPARATOR);
+            strcat(stpcpy(destdir, currentdir), DIR_SEPARATOR);
             FREE(currentdir);
         }
         else
@@ -257,8 +250,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
 
     // Build file path
     filename = (char *)MALLOC((strlen(destdir) + strlen(destfile) + 1) * sizeof(char));
-    strcpy(filename, destdir);
-    strcat(filename, destfile);
+    strcat(stpcpy(filename, destdir), destfile);
     FREE(destdir);
     FREE(destfile);
 
@@ -289,8 +281,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         }
 
         userpass = (char *)MALLOC((uplen + 2) * sizeof(char));
-        strcpy(userpass, username);
-        strcat(userpass, ":");
+        strcat(stpcpy(userpass, username), ":");
         if (password != NULL)
         {
             strcat(userpass, password);
