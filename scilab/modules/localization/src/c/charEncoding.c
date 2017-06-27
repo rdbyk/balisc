@@ -28,6 +28,7 @@
 
 #include "charEncoding.h"
 #include "sci_malloc.h"
+#include "utf8.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h>
@@ -195,54 +196,36 @@ wchar_t *to_wide_string(const char *_UTFStr)
 #else // Linux
 /*--------------------------------------------------------------------------*/
 
-static iconv_t __UTF_8_from_WCHAR_T = NULL;
 static iconv_t __WCHAR_T_from_UTF_8 = NULL;
 static iconv_t __WCHAR_T_from_ISO_8859_1 = NULL;
 
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
-    char* pOutSave = NULL;
-    wchar_t* pSaveIn = NULL;
-    size_t iSize = 0;
-    size_t iLeftIn = 0;
-    size_t iLeftOut = 0;
-    char* pOut = NULL;
-    /* iconv_t cd_UTF16_to_UTF8; */
-
+    size_t len_utf8;
+    char* utf8;
+    
     if (_wide == NULL)
     {
         return NULL;
     }
 
-    /* cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T"); */
-    if (__UTF_8_from_WCHAR_T == NULL)
+    if ((len_utf8 = utf8_length_from_wchar(_wide)) < 0)
     {
-        __UTF_8_from_WCHAR_T = iconv_open("UTF-8", "WCHAR_T");
-    }
-
-    pSaveIn = (wchar_t*)_wide;
-    iLeftIn = wcslen(_wide) * sizeof(wchar_t);
-
-    iLeftOut = iLeftIn + (1 * sizeof(wchar_t));
-    
-    pOut = (char*)MALLOC(iLeftOut);
-    memset(pOut, 0x00, iLeftOut);
-    
-    pOutSave = pOut;
-    
-    /*
-    iSize = iconv(cd_UTF16_to_UTF8, (char**)&pSaveIn, &iLeftIn, &pOut, &iLeftOut);
-    iconv_close(cd_UTF16_to_UTF8);
-    */
-    iSize = iconv(__UTF_8_from_WCHAR_T, (char**)&pSaveIn, &iLeftIn, &pOut, &iLeftOut);
-    
-    if (iSize == (size_t)(-1))
-    {
-        FREE(pOutSave);
         return NULL;
     }
 
-    return pOutSave;
+    utf8 = (char*)MALLOC((len_utf8 + 1)*sizeof(char));
+    
+    /* FIXME: malloc was successful? */
+    
+    if (utf8_from_wchar(_wide, utf8) == 0)
+    {
+        return utf8;
+    }
+    else
+    {
+        return NULL;
+    }
 }
 /*--------------------------------------------------------------------------*/
 wchar_t *to_wide_string(const char *_UTFStr)
@@ -270,6 +253,7 @@ wchar_t *to_wide_string(const char *_UTFStr)
     pInSave = (char*)_UTFStr;
 
     iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
+    
     pOut = (wchar_t*)MALLOC(iLeftOut);
     memset(pOut, 0x00, iLeftOut);
     pOutSave = pOut;
