@@ -25,5 +25,6 @@
 
 size_t utf8_length_from_wchar(const wchar_t* ucs4);
 int utf8_from_wchar(const wchar_t* ucs4, char* utf8);
+size_t wchar_from_utf8(const char* utf8, wchar_t* ucs4);
  
 #endif /* __BALISC_UTF8_H__ */

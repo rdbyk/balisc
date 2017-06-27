@@ -197,7 +197,6 @@ wchar_t *to_wide_string(const char *_UTFStr)
 /*--------------------------------------------------------------------------*/
 
 static iconv_t __WCHAR_T_from_UTF_8 = NULL;
-static iconv_t __WCHAR_T_from_ISO_8859_1 = NULL;
 
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
@@ -235,7 +234,6 @@ wchar_t *to_wide_string(const char *_UTFStr)
     size_t iSize = 0;
     size_t iLeftIn = 0;
     size_t iLeftOut = 0;
-    /* iconv_t cd_UTF8_to_UTF16 = NULL; */
     wchar_t* pOut = NULL;
 
     if (_UTFStr == NULL)
@@ -258,33 +256,17 @@ wchar_t *to_wide_string(const char *_UTFStr)
     memset(pOut, 0x00, iLeftOut);
     pOutSave = pOut;
 
-    /*
-    iSize = iconv(cd_UTF8_to_UTF16, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
-    iconv_close(cd_UTF8_to_UTF16);
-    */
     iSize = iconv(__WCHAR_T_from_UTF_8, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
-    
+//    iSize = wchar_from_utf8(_UTFStr, pOut);
+
     if (iSize == (size_t)(-1))
     {
-        
-        /* iconv_t cd_ISO8851_to_UTF16 = iconv_open("WCHAR_T", "ISO_8859-1"); */
-        if (__WCHAR_T_from_ISO_8859_1 == NULL)
-        {
-            __WCHAR_T_from_ISO_8859_1 = iconv_open("WCHAR_T", "ISO_8859-1");
-        }
-
         _UTFStr = pInSave;
-        iLeftIn = strlen(_UTFStr);
-
-        iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
         pOut = pOutSave;
         memset(pOut, 0x00, iLeftOut);
-
-        /*
-        iSize = iconv(cd_ISO8851_to_UTF16, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
-        iconv_close(cd_ISO8851_to_UTF16);
-        */
-        iSize = iconv(__WCHAR_T_from_ISO_8859_1, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+        
+//        iSize = iconv(__WCHAR_T_from_ISO_8859_1, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+        iSize = wchar_from_iso8859_1(_UTFStr, pOut);
         
         if (iSize == (size_t)(-1))
         {

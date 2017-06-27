@@ -105,62 +105,106 @@ int utf8_from_wchar(const wchar_t* ucs4, char* utf8)
     return 0; /* success */
 }
 
-// Copyright (c) 2008-2009 Bjoern Hoehrmann <bjoern@hoehrmann.de>
-// See http://bjoern.hoehrmann.de/utf-8/decoder/dfa/ for details.
-
-#define UTF8_ACCEPT 0
-#define UTF8_REJECT 1
-
-static const uint8_t utf8d[] = {
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, // 00..1f
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, // 20..3f
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, // 40..5f
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, // 60..7f
-  1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9, // 80..9f
-  7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7, // a0..bf
-  8,8,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, // c0..df
-  0xa,0x3,0x3,0x3,0x3,0x3,0x3,0x3,0x3,0x3,0x3,0x3,0x3,0x4,0x3,0x3, // e0..ef
-  0xb,0x6,0x6,0x6,0x5,0x8,0x8,0x8,0x8,0x8,0x8,0x8,0x8,0x8,0x8,0x8, // f0..ff
-  0x0,0x1,0x2,0x3,0x5,0x8,0x7,0x1,0x1,0x1,0x4,0x6,0x1,0x1,0x1,0x1, // s0..s0
-  1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,1, // s1..s2
-  1,2,1,1,1,1,1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1, // s3..s4
-  1,2,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1, // s5..s6
-  1,3,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1, // s7..s8
-};
-
-static inline uint32_t decode(uint32_t* state, uint32_t* codep, uint32_t byte)
+size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
 {
-  uint32_t type = utf8d[byte];
-
-  *codep = (*state != UTF8_ACCEPT) ?
-    (byte & 0x3fu) | (*codep << 6) :
-    (0xff >> type) & (byte);
-
-  *state = utf8d[256 + *state*16 + type];
-  return *state;
-}
-
-size_t wchar_length_from_utf8(const char* utf8)
-{
-    uint32_t codepoint;
-    uint32_t state = 0;
+    /* size_t n = 0; */
+    wchar_t* d = ucs4;
     
-    size_t count = 0;
     char* s = (char*)utf8;
-    for ( ; *s; ++s)
+    while (*s)
     {
-        if (!decode(&state, &codepoint, (uint32_t)(*s)))
+        if (*s < 0x80) /* 0xxxxxxx */
         {
-            count += 1;
+            *d = *s;
+            d++;
+            s++;
+            /* n++; */
+        }
+        else if ((s[0] & 0xe0) == 0xc0)
+        {
+            /* 110XXXXx 10xxxxxx */
+            if ((s[1] & 0xc0) != 0x80 /* ||
+                (s[0] & 0xfe) == 0xc0 */ )                          /* overlong? */
+            {
+                return -1;
+            }
+            else
+            {
+                *d = ((0x1f & s[0]) << 6) | (0x3f & s[1]);
+                d++;
+                s += 2;
+                /* n += 2; */
+            }
+        } 
+        else if ((s[0] & 0xf0) == 0xe0)
+        {
+            /* 1110XXXX 10Xxxxxx 10xxxxxx */
+            if ((s[1] & 0xc0) != 0x80 ||
+                (s[2] & 0xc0) != 0x80 /* ||
+                (s[0] == 0xe0 && (s[1] & 0xe0) == 0x80) || */       /* overlong? */
+                /* (s[0] == 0xed && (s[1] & 0xe0) == 0xa0) || */    /* surrogate? */
+                /* (s[0] == 0xef && s[1] == 0xbf &&
+                (s[2] & 0xfe) == 0xbe) */ )                         /* U+FFFE or U+FFFF? */
+            {
+                return -1;
+            }
+            else
+            {
+                *d = ((0x0f & s[0]) << 12) | ((0x3f & s[1]) << 6) | (0x3f & s[2]);
+                s += 3;
+                /* n += 3; */
+            }
+        } 
+        else if ((s[0] & 0xf8) == 0xf0)
+        {
+          /* 11110XXX 10XXxxxx 10xxxxxx 10xxxxxx */
+            if ((s[1] & 0xc0) != 0x80 ||
+                (s[2] & 0xc0) != 0x80 ||
+                (s[3] & 0xc0) != 0x80 ||
+                /* (s[0] == 0xf0 && (s[1] & 0xf0) == 0x80) || */    /* overlong? */
+                (s[0] == 0xf4 && s[1] > 0x8f) || s[0] > 0xf4)       /* > U+10FFFF? */
+            {
+                return -1;
+            }
+            else
+            {
+                *d = ((0x07 & s[0]) << 18) | ((0x3f & s[1]) << 12) | ((0x3f & s[2]) << 6) | (0x3f & s[3]);
+                s += 4;
+                /* n += 4; */
+            }
+        }
+        else
+        {
+            return -1;
         }
     }
+    *d = L'\0';
     
-    if (state == UTF8_ACCEPT)
+    return 0;
+}
+
+size_t wchar_from_iso8859_1(const char* iso, wchar_t* ucs4)
+{
+    size_t len = 0;
+    wchar_t* d = ucs4;
+    char* s = (char*)iso;
+    
+    *d = L'\0';
+    while ((*s != '\0') && (*s < 0xFF))
     {
-        return count;
+        *d = (wchar_t)*s;
+        d++;
+        s++;
+        len++;
+    }
+    *d = L'\0';
+    
+    if (*s != '\0')
+    {
+        return -1;
     }
     else
     {
-        return -1; /* non-valid utf8 */
+        return len;
     }
 }
