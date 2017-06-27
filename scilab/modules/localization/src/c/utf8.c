@@ -123,8 +123,8 @@ size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
         else if ((s[0] & 0xe0) == 0xc0)
         {
             /* 110XXXXx 10xxxxxx */
-            if ((s[1] & 0xc0) != 0x80 /* ||
-                (s[0] & 0xfe) == 0xc0 */ )                          /* overlong? */
+            if ((s[1] & 0xc0) != 0x80 ||
+                (s[0] & 0xfe) == 0xc0)                          /* overlong? */
             {
                 return -1;
             }
@@ -140,17 +140,18 @@ size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
         {
             /* 1110XXXX 10Xxxxxx 10xxxxxx */
             if ((s[1] & 0xc0) != 0x80 ||
-                (s[2] & 0xc0) != 0x80 /* ||
-                (s[0] == 0xe0 && (s[1] & 0xe0) == 0x80) || */       /* overlong? */
-                /* (s[0] == 0xed && (s[1] & 0xe0) == 0xa0) || */    /* surrogate? */
-                /* (s[0] == 0xef && s[1] == 0xbf &&
-                (s[2] & 0xfe) == 0xbe) */ )                         /* U+FFFE or U+FFFF? */
+                (s[2] & 0xc0) != 0x80 ||
+                (s[0] == 0xe0 && (s[1] & 0xe0) == 0x80) ||      /* overlong? */
+                (s[0] == 0xed && (s[1] & 0xe0) == 0xa0) ||  /* surrogate? */
+                (s[0] == 0xef && s[1] == 0xbf &&
+                (s[2] & 0xfe) == 0xbe))                         /* U+FFFE or U+FFFF? */
             {
                 return -1;
             }
             else
             {
                 *d = ((0x0f & s[0]) << 12) | ((0x3f & s[1]) << 6) | (0x3f & s[2]);
+                d++;
                 s += 3;
                 /* n += 3; */
             }
@@ -161,7 +162,7 @@ size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
             if ((s[1] & 0xc0) != 0x80 ||
                 (s[2] & 0xc0) != 0x80 ||
                 (s[3] & 0xc0) != 0x80 ||
-                /* (s[0] == 0xf0 && (s[1] & 0xf0) == 0x80) || */    /* overlong? */
+                (s[0] == 0xf0 && (s[1] & 0xf0) == 0x80) ||   /* overlong? */
                 (s[0] == 0xf4 && s[1] > 0x8f) || s[0] > 0xf4)       /* > U+10FFFF? */
             {
                 return -1;
@@ -169,6 +170,7 @@ size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
             else
             {
                 *d = ((0x07 & s[0]) << 18) | ((0x3f & s[1]) << 12) | ((0x3f & s[2]) << 6) | (0x3f & s[3]);
+                d++;
                 s += 4;
                 /* n += 4; */
             }
