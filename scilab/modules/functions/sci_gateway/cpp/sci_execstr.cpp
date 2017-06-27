@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -127,14 +127,13 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
 
     pstCommand = (wchar_t*)MALLOC(sizeof(wchar_t) * (iTotalLen + 1));//+1 for null termination
 
-    for (int i = 0, iPos = 0 ; i < pS->getSize() ; i++)
+    wchar_t* pos = pstCommand;
+    for (int i = 0; i < pS->getSize(); i++)
     {
-        wcscpy(pstCommand + iPos, pS->get(i));
-        iPos = (int)wcslen(pstCommand);
-        pstCommand[iPos++] = L'\n';
-        pstCommand[iPos] = 0;
+        pos = wcpcpy(wcpcpy(pos, pS->get(i)), L"\n");
     }
-
+    pos = L'\0';
+    
     // add execstr in list of macro called
     // to manage line displayed when error occured.
     ConfigVariable::macroFirstLine_begin(1);

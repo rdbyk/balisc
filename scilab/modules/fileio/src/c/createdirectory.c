@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2007 - INRIA
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
+
 #ifndef _MSC_VER
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -81,8 +81,7 @@ BOOL createdirectoryW(const wchar_t *pathW)
             wchar_t dir[MAX_PATH];
             splitpathW(pathW, TRUE, drv, dir, NULL, NULL);
 
-            wcscpy(path_out, drv);
-            wcscat(path_out, dir);
+            wcscat(wcpcpy(path_out, drv), dir);
 
             //if there is no path_out, get current dir as reference.
             if (wcslen(path_out) == 0)

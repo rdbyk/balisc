@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -23,8 +23,9 @@ char *stristr(const char *psz, const char *tofind)
 {
     const char *ptr = psz;
     const char *ptr2;
-
-    if (strlen(tofind) > 0)
+    size_t len_tofind = strlen(tofind);
+    
+    if (len_tofind > 0)
     {
         while (1)
         {
@@ -46,7 +47,7 @@ char *stristr(const char *psz, const char *tofind)
                 ptr = ptr2;
             }
 
-            if (!strnicmp(ptr, tofind, strlen(tofind)))
+            if (!strnicmp(ptr, tofind, len_tofind))
             {
                 return (char *) ptr;
             }

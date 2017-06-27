@@ -1,11 +1,11 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
-* Copyright (C) 2005-2008 - INRIA - Pierrick MODE
-* Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ * Copyright (C) 2005-2008 - INRIA - Pierrick MODE
+ * Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -134,14 +134,10 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     }
 
     TMPDIR = getTMPDIRW();
-    wcscpy(TMP, TMPDIR);
-
+    wcscat(wcscpy(wcpcpy(TMP, TMPDIR), sep), xls_basename(filename_IN));
     FREE(TMPDIR);
     TMPDIR = NULL;
-
-    wcscat(TMP, sep);
-    wcscat(TMP, xls_basename(filename_IN));
-
+    
     char* tmp = wide_string_to_UTF8(TMP);
     char* filename_in = wide_string_to_UTF8(filename_IN);
     int result = ripole(filename_in, tmp, 0, 0);

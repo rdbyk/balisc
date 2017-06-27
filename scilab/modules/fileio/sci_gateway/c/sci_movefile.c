@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 
 #ifndef _MSC_VER
@@ -133,10 +133,8 @@ int sci_movefile(char *fname, void* pvApiCtx)
                     }
 
                     destFullFilename = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(pStVarTwoExpanded) + (int)wcslen(filename) + (int)wcslen(L"/") + 1));
-                    wcscpy(destFullFilename, pStVarTwoExpanded);
-                    wcscat(destFullFilename, L"/");
-                    wcscat(destFullFilename, filename);
-
+                    wcscat(wcpcpy(wcpcpy(destFullFilename, pStVarTwoExpanded), L"/"), filename);
+                    
                     ierrMove = MoveFileFunction(destFullFilename, pStVarOneExpanded);
 
                     FREE(filename);
@@ -205,8 +203,7 @@ static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename)
 
         splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
 
-        wcscpy(wcfilename, wcname);
-        wcscat(wcfilename, wcext);
+        wcscat(wcpcpy(wcfilename, wcname), wcext);
 
         FREE(wcdrv);
         FREE(wcdir);

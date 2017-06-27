@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -58,8 +58,8 @@ BOOL InitializeLocalization(void)
     /* set directory containing message catalogs */
     pathLocales = (char *)MALLOC(sizeof(char) * (strlen(SCIpath) + strlen(PATHLOCALIZATIONFILE) + 1));
 
-    strcpy(pathLocales, SCIpath);
-    strcat(pathLocales, PATHLOCALIZATIONFILE);
+    strcat(stpcpy(pathLocales, SCIpath), PATHLOCALIZATIONFILE);
+
     if (bindtextdomain(NAMELOCALIZATIONDOMAIN, pathLocales) == NULL || !isdir(pathLocales))
     {
         /* source tree and classic build */
@@ -68,9 +68,8 @@ BOOL InitializeLocalization(void)
         pathLocales = NULL;
 
         pathLocales = (char *)MALLOC(sizeof(char) * (strlen(SCIpath) + strlen("/..") + strlen(PATHLOCALIZATIONFILE) + 1));
-        strcpy(pathLocales, SCIpath);
-        strcat(pathLocales, "/..");
-        strcat(pathLocales, PATHLOCALIZATIONFILE);
+        strcat(stpcpy(stpcpy(pathLocales, SCIpath), "/.."), PATHLOCALIZATIONFILE);
+        
         if (bindtextdomain(NAMELOCALIZATIONDOMAIN, pathLocales) == NULL || !isdir(pathLocales))
         {
             /* when it is installed on the system for example /usr/share/locale/ */
