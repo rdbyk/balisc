@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,6 +32,7 @@
 #include "mgetl.h"
 #include "mopen.h"
 #include "mclose.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #define EOL "\n"
 #define NanString "Nan"
@@ -268,9 +269,9 @@ static BOOL itCanBeMatrixLine(char *line, char *format, char *separator)
 
                 if ((ierr != 0) && (ierr != EOF))
                 {
-                    if ((strncmp(str, NanString, (int)strlen(NanString)) == 0) ||
-                            (strncmp(str, NegInfString, (int)strlen(NegInfString)) == 0) ||
-                            (strncmp(str, InfString, (int)strlen(InfString)) == 0))
+                    if ((strncmp(str, NanString, (int)balisc_strlen(NanString)) == 0) ||
+                            (strncmp(str, NegInfString, (int)balisc_strlen(NegInfString)) == 0) ||
+                            (strncmp(str, InfString, (int)balisc_strlen(InfString)) == 0))
                     {
                         FREE(str);
                         str = NULL;
@@ -430,15 +431,15 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
         return NULL;
     }
 
-    sep_end = sep + strlen(sep);
-    end = str + strlen(str);
+    sep_end = sep + balisc_strlen(sep);
+    end = str + balisc_strlen(str);
 
     sep_idx = sep;
     idx = str;
 
     if (strstr(str, sep) == NULL)
     {
-        if ((int)strlen(str) > 0)
+        if ((int)balisc_strlen(str) > 0)
         {
             if (isValidLineWithOnlyOneNumber(str))
             {
@@ -453,7 +454,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
         return retstr;
     }
 
-    retstr = (char **) MALLOC((sizeof(char *) * (int)strlen(str)));
+    retstr = (char **) MALLOC((sizeof(char *) * (int)balisc_strlen(str)));
     if (retstr == NULL)
     {
         *toks = 0;
@@ -468,7 +469,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
             {
                 if (len > 0)
                 {
-                    if (curr_str < (int)strlen(str))
+                    if (curr_str < (int)balisc_strlen(str))
                     {
                         retstr[curr_str] = (char *) MALLOC((sizeof(char) * len) + 1);
 
@@ -486,7 +487,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
                         idx++;
                     }
 
-                    if (curr_str >= (int)strlen(str))
+                    if (curr_str >= (int)balisc_strlen(str))
                     {
                         *toks = curr_str + 1;
                         return retstr;
@@ -585,7 +586,7 @@ static double *getDoubleValuesInLine(char *line,
                 int ierr = 0;
                 double dValue = 0.;
                 char *cleanedFormat = getCleanedFormat(format);
-                int iLen = strlen(cleanedFormat);
+                int iLen = balisc_strlen(cleanedFormat);
                 switch (cleanedFormat[iLen - 1])
                 {
                     case 'e' :
@@ -736,7 +737,7 @@ static char *getCleanedFormat(char *format)
                 char *token = strstr(percent, supportedFormat[i]);
                 if (token)
                 {
-                    int nbcharacters = (int)(strlen(percent) - strlen(token));
+                    int nbcharacters = (int)(balisc_strlen(percent) - balisc_strlen(token));
                     cleanedFormat = os_strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( (nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters - 1]) ||
@@ -800,15 +801,15 @@ static BOOL isValidLineWithOnlyOneNumber(char *line)
     {
         char *pEnd = NULL;
         strtod(line, &pEnd);
-        if ((pEnd) && ((int)strlen(pEnd) == 0))
+        if ((pEnd) && ((int)balisc_strlen(pEnd) == 0))
         {
             return TRUE;
         }
         else
         {
-            if ((strncmp(line, NanString, (int)strlen(NanString)) == 0) ||
-                    (strncmp(line, NegInfString, (int)strlen(NegInfString)) == 0) ||
-                    (strncmp(line, InfString, (int)strlen(InfString)) == 0))
+            if ((strncmp(line, NanString, (int)balisc_strlen(NanString)) == 0) ||
+                    (strncmp(line, NegInfString, (int)balisc_strlen(NegInfString)) == 0) ||
+                    (strncmp(line, InfString, (int)balisc_strlen(InfString)) == 0))
             {
                 return TRUE;
             }
@@ -822,7 +823,7 @@ static BOOL isOnlyBlankLine(const char *line)
     if (line)
     {
         int i = 0;
-        for (i = 0; i < (int) strlen(line); i++)
+        for (i = 0; i < (int) balisc_strlen(line); i++)
         {
             if (line[i] != ' ')
             {
