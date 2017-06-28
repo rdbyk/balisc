@@ -2,9 +2,9 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -55,7 +55,7 @@ char **getdrives(int *nbDrives)
 #else
     (*nbDrives)++;
     DrivesList = (char**)MALLOC(sizeof(char*) * (*nbDrives));
-    DrivesList[*nbDrives - 1] = (char*)MALLOC(sizeof(char) * (strlen("/") + 1));
+    DrivesList[*nbDrives - 1] = (char*)MALLOC(sizeof(char) * (/* strlen("/") */ 1 + 1));
     strcpy(DrivesList[*nbDrives - 1], "/");
 #endif
 
@@ -96,7 +96,7 @@ wchar_t **getdrivesW(int *nbDrives)
 #else
     (*nbDrives)++;
     DrivesList = (wchar_t**)MALLOC(sizeof(wchar_t*) * (*nbDrives));
-    DrivesList[*nbDrives - 1] = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(L"/") + 1));
+    DrivesList[*nbDrives - 1] = (wchar_t*)MALLOC(sizeof(wchar_t) * (/* wcslen(L"/") */ 1 + 1));
     wcscpy(DrivesList[*nbDrives - 1], L"/");
 #endif
 
