@@ -1,9 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,6 +18,7 @@
 #include "sci_malloc.h"
 #include "charEncoding.h"
 #include "os_string.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h> /* GetShortPathNameW */
@@ -38,7 +38,7 @@ int C2F(getshortpathname)(char *pathname, int *len)
         if (result)
         {
             strcpy(pathname, result);
-            *len = (int)strlen(result);
+            *len = (int)balisc_strlen(result);
             FREE(result);
             result = NULL;
             return 1;
@@ -99,7 +99,7 @@ char *getshortpathname(const char *longpathname, BOOL *convertok)
         }
 #else
         /* Linux */
-        int length = (int)strlen(longpathname) + 1;
+        int length = (int)balisc_strlen(longpathname) + 1;
         ShortName = (char*)MALLOC((length) * sizeof(char));
         if (ShortName)
         {
