@@ -1,10 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA
-* Copyright (C) DIGITEO - 2009
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) DIGITEO - 2009
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -32,6 +32,7 @@
 #include "sciprint.h"
 #include "charEncoding.h"
 #include "freeArrayOfString.h"
+#include "strlen.h"
 /*-------------------------------------------------------------------------------*/
 /* A number of things vary for Windows builds. Originally, pcretest opened its
 input and output without "b"; then I was told that "b" was needed in some
@@ -983,7 +984,7 @@ SKIP_DATA:
                         }
                     }
 
-                    for (copynamesptr = copynames; *copynamesptr != 0; copynamesptr += (int)strlen((char*)copynamesptr) + 1)
+                    for (copynamesptr = copynames; *copynamesptr != 0; copynamesptr += (int)balisc_strlen((char*)copynamesptr) + 1)
                     {
                         char copybuffer[256];
                         pcre_copy_named_substring(re, (char *)bptr, use_offsets, count, (char *)copynamesptr, copybuffer, sizeof(copybuffer));
@@ -998,7 +999,7 @@ SKIP_DATA:
                         }
                     }
 
-                    for (getnamesptr = getnames; *getnamesptr != 0; getnamesptr += (int)strlen((char*)getnamesptr) + 1)
+                    for (getnamesptr = getnames; *getnamesptr != 0; getnamesptr += (int)balisc_strlen((char*)getnamesptr) + 1)
                     {
                         const char *substring;
                         pcre_get_named_substring(re, (char *)bptr, use_offsets, count, (char *)getnamesptr, &substring);
