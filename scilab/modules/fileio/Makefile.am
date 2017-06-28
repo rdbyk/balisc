@@ -10,7 +10,6 @@ FILEIO_C_SOURCES = \
     src/c/scanf_functions.c \
     src/c/do_xxscanf.c \
     src/c/findfiles.c \
-    src/c/Status2Mode.c \
     src/c/getdrives.c \
     src/c/deleteafile.c \
     src/c/getshortpathname.c \

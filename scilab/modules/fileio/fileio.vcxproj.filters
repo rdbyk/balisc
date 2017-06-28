@@ -144,9 +144,6 @@
     <ClCompile Include="src\c\splitpath.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\Status2Mode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\URIFileToFilename.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -288,9 +285,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\URIFileToFilename.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\Status2Mode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\movefile.h">

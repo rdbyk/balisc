@@ -259,7 +259,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\c\scanf_functions.c" />
     <ClCompile Include="src\c\scicurdir.c" />
     <ClCompile Include="src\c\splitpath.c" />
-    <ClCompile Include="src\c\Status2Mode.c" />
     <ClCompile Include="src\c\URIFileToFilename.c" />
   </ItemGroup>
   <ItemGroup>
@@ -346,7 +345,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="src\c\getrelativefilename.h" />
     <ClInclude Include="src\c\isDrive.h" />
     <ClInclude Include="src\c\movefile.h" />
-    <ClInclude Include="src\c\Status2Mode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

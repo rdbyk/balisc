@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,6 +28,7 @@
 #include "strsubst.h"
 #include "scicurdir.h"
 #include "expandPathVariable.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c);
@@ -65,13 +66,13 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
     return _FullPath;
 #else
     char *rp = NULL;
-    int lenPath = (int)strlen(_Path);
+    int lenPath = (int)balisc_strlen(_Path);
     int lenFullPath = 0;
     int haveFileSep = ((lenPath > 1) && isDirSeparator(_Path[lenPath - 1]));
     int addFileSep = 0;
 
     rp = realpath(_Path, _FullPath);
-    lenFullPath = (int)strlen(_FullPath);
+    lenFullPath = (int)balisc_strlen(_FullPath);
 
     if (rp == NULL)
     {
@@ -88,9 +89,9 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
             int ierr = 0;
             char* pstCurrentPath = scigetcwd(&ierr);
             //alloc buffer + 2, 1 for '/' and 1 for null termination
-            pstWorkingPath = (char*)CALLOC(sizeof(char), (lenPath + strlen(pstCurrentPath) + 2));
+            pstWorkingPath = (char*)CALLOC(sizeof(char), (lenPath + balisc_strlen(pstCurrentPath) + 2));
             sprintf(pstWorkingPath, "%s/%s", pstCurrentPath, _Path);
-            lenPath = strlen(pstWorkingPath);
+            lenPath = balisc_strlen(pstWorkingPath);
             FREE(pstCurrentPath);
         }
         else
@@ -135,11 +136,11 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
         FREE(_Path_tmp);
     }
 
-    lenFullPath = (int)strlen(_FullPath);
+    lenFullPath = (int)balisc_strlen(_FullPath);
     addFileSep = ((lenFullPath > 1) && (!isDirSeparator(_FullPath[lenFullPath - 1])) && haveFileSep);
     if (addFileSep)
     {
-        char *bufTmp = (char *)MALLOC(sizeof(char) * (lenFullPath + strlen(DIR_SEPARATOR) + 1));
+        char *bufTmp = (char *)MALLOC(sizeof(char) * (lenFullPath + balisc_strlen(DIR_SEPARATOR) + 1));
         if (bufTmp)
         {
             sprintf(bufTmp, "%s%s", _FullPath, DIR_SEPARATOR);
