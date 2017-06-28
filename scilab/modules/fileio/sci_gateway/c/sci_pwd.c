@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
-
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 int sci_pwd(char *fname, void* pvApiCtx)
 {
@@ -46,7 +46,7 @@ int sci_pwd(char *fname, void* pvApiCtx)
     else
     {
         int n1 = 1;
-        int m1 = (int)strlen(path);
+        int m1 = (int)balisc_strlen(path);
 
         n1 = 1;
         sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, (char const * const*) &path);
