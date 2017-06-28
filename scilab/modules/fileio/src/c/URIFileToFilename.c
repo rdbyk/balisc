@@ -1,10 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -20,6 +19,7 @@
 #include "URIFileToFilename.h"
 #include "sci_malloc.h"
 #include "os_string.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #if _MSC_VER
 #define strnicmp _strnicmp
@@ -37,7 +37,7 @@ char *URIFileToFilename(char *uri)
     {
         if (isURIFile(uri))
         {
-            int pos = (int) strlen(URI_BEGIN);
+            int pos = (int) balisc_strlen(URI_BEGIN);
             filename = os_strdup(&uri[pos]);
         }
         else
@@ -53,9 +53,9 @@ BOOL isURIFile(char *uri)
     BOOL bOK = FALSE;
     if (uri)
     {
-        if (strlen(uri) > strlen(URI_BEGIN))
+        if (balisc_strlen(uri) > balisc_strlen(URI_BEGIN))
         {
-            if ( strnicmp(uri, URI_BEGIN, strlen(URI_BEGIN)) == 0)
+            if ( strnicmp(uri, URI_BEGIN, balisc_strlen(URI_BEGIN)) == 0)
             {
                 bOK = TRUE;
             }
