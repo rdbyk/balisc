@@ -16,6 +16,7 @@
 #include "logger.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
+#include "strlen.h"
 
 //#define SYSLOG_ENABLE 1
 
@@ -204,7 +205,7 @@ int LOGGER_clean_output( char *string, char **buffer )
     char *next_space;
 
     int pc;
-    int slen = (int)strlen( string );
+    int slen = (int)balisc_strlen( string );
     int line_size;
     int maxsize = slen * 2;
 
@@ -323,7 +324,7 @@ int LOGGER_log( char *format, ...)
 
     LOGGER_clean_output( tmpoutput, &output );
 
-    if ( output[strlen(output) - 1] == '\n' )
+    if ( output[balisc_strlen(output) - 1] == '\n' )
     {
         lineend = nolinebreak;
     }
@@ -332,7 +333,7 @@ int LOGGER_log( char *format, ...)
         lineend = linebreak;
     }
 
-    if ( output[strlen(output) - 1] == '\n' )
+    if ( output[balisc_strlen(output) - 1] == '\n' )
     {
         lineend = nolinebreak;
     }

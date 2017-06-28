@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -18,6 +18,7 @@
 #include "strsubst.h"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
+#include "strlen.h"
 
 #define EMPTYFIELD "__EMPTY_FIELD_CSV__"
 #define DOUBLE_QUOTE '"'
@@ -106,28 +107,28 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         substitutedstring = strsub(substitutedstring, tokenstring_to_search, tokenreplacement_string);
     }
 
-    if (strncmp(substitutedstring, sep, strlen(sep)) == 0)
+    if (strncmp(substitutedstring, sep, balisc_strlen(sep)) == 0)
     {
         char *tmp = NULL;
-        size_t l = strlen(substitutedstring) + strlen(EMPTYFIELD) + strlen(sep) + 1;
+        size_t l = balisc_strlen(substitutedstring) + balisc_strlen(EMPTYFIELD) + balisc_strlen(sep) + 1;
         tmp = (char*)MALLOC(sizeof(char) * l);
         sprintf(tmp, "%s%s%s", EMPTYFIELD, sep, &substitutedstring[1]);
         FREE(substitutedstring);
         substitutedstring = tmp;
     }
 
-    if (substitutedstring[strlen(substitutedstring) - 1] == sep[0])
+    if (substitutedstring[balisc_strlen(substitutedstring) - 1] == sep[0])
     {
         char *tmp = NULL;
-        size_t l = strlen(substitutedstring) + strlen(EMPTYFIELD) + 1;
+        size_t l = balisc_strlen(substitutedstring) + balisc_strlen(EMPTYFIELD) + 1;
         tmp = (char*)MALLOC(sizeof(char) * l);
         sprintf(tmp, "%s%s", substitutedstring, EMPTYFIELD);
         FREE(substitutedstring);
         substitutedstring = tmp;
     }
 
-    sep_end = sep + strlen(sep);
-    end = substitutedstring + strlen(substitutedstring);
+    sep_end = sep + balisc_strlen(sep);
+    end = substitutedstring + balisc_strlen(substitutedstring);
 
     idx = substitutedstring;
 
@@ -138,7 +139,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         return NULL;
     }
 
-    retstr = (char **) MALLOC((sizeof(char *) * (int)strlen(substitutedstring)));
+    retstr = (char **) MALLOC((sizeof(char *) * (int)balisc_strlen(substitutedstring)));
     if (retstr == NULL)
     {
         *toks = 0;
@@ -158,7 +159,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
                 {
                     if (len > 0)
                     {
-                        if (curr_str < (int)strlen(substitutedstring))
+                        if (curr_str < (int)balisc_strlen(substitutedstring))
                         {
                             // New token (= field)
                             if (addToken(retstr, &curr_str, (char*)(idx - len), len))
@@ -170,13 +171,13 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
                             else
                             {
                                 *toks = 0;
-                                freeArrayOfString(retstr, (int)strlen(substitutedstring));
+                                freeArrayOfString(retstr, (int)balisc_strlen(substitutedstring));
                                 FREE(substitutedstring);
                                 return NULL;
                             }
                         }
 
-                        if (curr_str >= (int)strlen(substitutedstring))
+                        if (curr_str >= (int)balisc_strlen(substitutedstring))
                         {
                             *toks = curr_str + 1;
                             FREE(substitutedstring);
@@ -229,7 +230,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         if (!addToken(retstr, &curr_str, (char*)(idx - len), len))
         {
             *toks = 0;
-            freeArrayOfString(retstr, (int)strlen(substitutedstring));
+            freeArrayOfString(retstr, (int)balisc_strlen(substitutedstring));
             FREE(substitutedstring);
             return NULL;
         }

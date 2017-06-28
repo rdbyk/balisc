@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,6 +18,7 @@
 #include "sci_malloc.h"
 #include "os_string.h"
 #include "checkCsvWriteFormat.h"
+#include "strlen.h"
 // =============================================================================
 #define NB_FORMAT_SUPPORTED 7
 static const char *supportedFormat[NB_FORMAT_SUPPORTED] =
@@ -76,7 +77,7 @@ static char *getCleanedFormat(const char *format)
                 char *token = strstr(percent, supportedFormat[i]);
                 if (token)
                 {
-                    size_t nbcharacters = strlen(percent) - strlen(token);
+                    size_t nbcharacters = balisc_strlen(percent) - balisc_strlen(token);
                     cleanedFormat = os_strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters - 1])) ||

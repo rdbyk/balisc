@@ -12,6 +12,7 @@
 #include "localization.h"
 
 #include "os_string.h"
+#include "strlen.h"
 
 #ifdef _MSC_VER
 #define vsnprintf _vsnprintf
@@ -471,19 +472,19 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
         return NULL;
     }
 
-    source_length = (int)strlen( replace_details->source );
+    source_length = (int)balisc_strlen( replace_details->source );
     source_end = replace_details->source + source_length;
-    searchfor_length = (int)strlen(replace_details->searchfor);
-    replacewith_length = (int)strlen(replace_details->replacewith);
+    searchfor_length = (int)balisc_strlen(replace_details->searchfor);
+    replacewith_length = (int)balisc_strlen(replace_details->replacewith);
     size_difference = replacewith_length - searchfor_length;
     size_required = source_length;
     replace_count = replace_details->replacenumber;
 
-    if ((replace_details->preexist != NULL) && (strlen(replace_details->preexist) < 1))
+    if ((replace_details->preexist != NULL) && (balisc_strlen(replace_details->preexist) < 1))
     {
         replace_details->preexist = NULL;
     }
-    if ((replace_details->postexist != NULL) && (strlen(replace_details->postexist) < 1))
+    if ((replace_details->postexist != NULL) && (balisc_strlen(replace_details->postexist) < 1))
     {
         replace_details->postexist = NULL;
     }
@@ -513,7 +514,7 @@ char *PLD_strreplace_general( struct PLD_strreplace *replace_details )
             if (p != NULL)
             {
                 postexist_location = p;
-                p = p + strlen(replace_details->postexist);
+                p = p + balisc_strlen(replace_details->postexist);
             }
         }
         while (p != NULL);

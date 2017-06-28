@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,6 +31,7 @@
 #include "csvDefault.h"
 #include "strsubst.h"
 #include "Sciwarning.h"
+#include "strlen.h"
 // =============================================================================
 #if _MSC_VER
 #define READ_ONLY_TEXT_MODE "rt"
@@ -393,7 +394,7 @@ static int getNumbersOfColumnsInLine(const char *line, const char *separator)
         }
         else
         {
-            int len = (int)strlen(line);
+            int len = (int)balisc_strlen(line);
             if (len > 0)
             {
                 nbTokens = 1;
@@ -489,7 +490,7 @@ static char **removeEmptyLinesAtTheEnd(const char **lines, int *sizelines)
                 char *cleanedLine = stripCharacters(lines[i]);
                 if (cleanedLine)
                 {
-                    int len = (int) strlen(cleanedLine);
+                    int len = (int)balisc_strlen(cleanedLine);
                     FREE(cleanedLine);
                     cleanedLine = NULL;
                     if (len == 0)
@@ -535,7 +536,7 @@ static char **removeAllBlankLines(const char **lines, int *sizelines)
             char *cleanedLine = stripCharacters(lines[i]);
             if (cleanedLine)
             {
-                int len = (int) strlen(cleanedLine);
+                int len = (int)balisc_strlen(cleanedLine);
                 FREE(cleanedLine);
                 cleanedLine = NULL;
                 if (len != 0)
