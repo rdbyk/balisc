@@ -2,8 +2,8 @@
  * Copyright (C) 2011 - DIGITEO - Sylvestre LEDRU
  * Copyright (C) 2013 - Scilab Enterprises - Sylvestre LEDRU
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,6 +21,7 @@
 #include "sci_malloc.h"
 #include "dlManager.h"
 #include "localization.h"
+#include "strlen.h"
 /* ==================================================================== */
 static void freeAllocatedStrings(char** url, char** dest, char** username, char** password, char** content, char** filePath);
 /* ==================================================================== */
@@ -128,25 +129,25 @@ int sci_getURL(char *fname, void* pvApiCtx)
     }
 
     //Set to NULL if 0 length strings
-    if (url != NULL && strlen(url) == 0)
+    if (url != NULL && balisc_strlen(url) == 0)
     {
         FREE(url);
         url = NULL;
     }
 
-    if (dest != NULL && strlen(dest) == 0)
+    if (dest != NULL && balisc_strlen(dest) == 0)
     {
         FREE(dest);
         dest = NULL;
     }
 
-    if (username != NULL && strlen(username) == 0)
+    if (username != NULL && balisc_strlen(username) == 0)
     {
         FREE(username);
         username = NULL;
     }
 
-    if (password != NULL && strlen(password) == 0)
+    if (password != NULL && balisc_strlen(password) == 0)
     {
         FREE(password);
         password = NULL;
