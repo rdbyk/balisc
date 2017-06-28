@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #if defined(__linux__)
 #define _GNU_SOURCE /* Bug 5673 fix: avoid dependency on GLIBC_2.7 */
@@ -27,7 +27,7 @@
 #include "strsubst.h"
 #include "BOOL.h"
 #include "os_string.h"
-
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #define EOL "\n"
 #define NanString "Nan"
@@ -235,7 +235,7 @@ static char *getCleanedFormat(char *format)
                 char *token = strstr(percent, supportedFormat[i]);
                 if (token)
                 {
-                    int nbcharacters = (int)(strlen(percent) - strlen(token));
+                    int nbcharacters = (int)(balisc_strlen(percent) - balisc_strlen(token));
                     cleanedFormat = os_strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters - 1])) ||
