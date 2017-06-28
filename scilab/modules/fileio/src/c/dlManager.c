@@ -34,6 +34,7 @@
 #include "getScilabPreference.h"
 #include "os_string.h"
 #include "freeArrayOfString.h"
+#include "strlen.h"
 /* ==================================================================== */
 #ifndef HAVE_BASENAME
 static char *Curl_basename(char *path);
@@ -100,14 +101,14 @@ static char *getFileNameFromURL(char *url)
 
     if (c->path == NULL || strstr(c->path, "/") == 0 || strcmp(c->path, "/") == 0)
     {
-        filename = (char *)MALLOC((strlen(DEFAULT_FILENAME) + 1) * sizeof(char));
+        filename = (char *)MALLOC((balisc_strlen(DEFAULT_FILENAME) + 1) * sizeof(char));
         strcpy(filename, DEFAULT_FILENAME);
     }
     else
     {
         char bname[PATH_MAX] = {0};
         strncpy(bname, basename(c->path), sizeof(bname));
-        filename = (char *)MALLOC((strlen(bname) + 1) * sizeof(char));
+        filename = (char *)MALLOC((balisc_strlen(bname) + 1) * sizeof(char));
         strcpy(filename, bname);
     }
     return filename;
@@ -127,8 +128,8 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
 
     if (stricmp(values[0]/*enabled*/, "true") == 0)
     {
-        const unsigned int ulen = (const unsigned int)strlen(values[3]);
-        const unsigned int plen = (const unsigned int)strlen(values[4]);
+        const unsigned int ulen = (const unsigned int)balisc_strlen(values[3]);
+        const unsigned int plen = (const unsigned int)balisc_strlen(values[4]);
 
         *proxyHost = values[1]; //host;
         *proxyPort = strtol(values[2], NULL, 10); //port;
@@ -197,17 +198,17 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         if (!isdir(dest))
         {
             // Destination is a file
-            destdir = (char *)MALLOC((strlen(pathdrive) + strlen(pathdir) + 1) * sizeof(char));
+            destdir = (char *)MALLOC((balisc_strlen(pathdrive) + balisc_strlen(pathdir) + 1) * sizeof(char));
             strcat(stpcpy(destdir, pathdrive), pathdir);
 
             // Get filename
-            destfile = (char *)MALLOC((strlen(pathfile) + strlen(pathext) + 1) * sizeof(char));
+            destfile = (char *)MALLOC((balisc_strlen(pathfile) + balisc_strlen(pathext) + 1) * sizeof(char));
             strcat(stpcpy(destfile, pathfile), pathext);
         }
         else
         {
             // Destination is a directory
-            destdir = (char *)MALLOC((strlen(pathdrive) + strlen(pathdir) + strlen(pathfile) + strlen(pathext) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
+            destdir = (char *)MALLOC((balisc_strlen(pathdrive) + balisc_strlen(pathdir) + balisc_strlen(pathfile) + balisc_strlen(pathext) + balisc_strlen(DIR_SEPARATOR) + 1) * sizeof(char));
             strcat(stpcpy(stpcpy(stpcpy(stpcpy(destdir, pathdrive), pathdir),pathfile), pathext), DIR_SEPARATOR);
 
             // Retrieve filename from URL
@@ -228,7 +229,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         currentdir = scigetcwd(&err);
         if (!err)
         {
-            destdir = (char *)MALLOC((strlen(currentdir) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
+            destdir = (char *)MALLOC((balisc_strlen(currentdir) + balisc_strlen(DIR_SEPARATOR) + 1) * sizeof(char));
             strcat(stpcpy(destdir, currentdir), DIR_SEPARATOR);
             FREE(currentdir);
         }
@@ -249,7 +250,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     }
 
     // Build file path
-    filename = (char *)MALLOC((strlen(destdir) + strlen(destfile) + 1) * sizeof(char));
+    filename = (char *)MALLOC((balisc_strlen(destdir) + balisc_strlen(destfile) + 1) * sizeof(char));
     strcat(stpcpy(filename, destdir), destfile);
     FREE(destdir);
     FREE(destfile);
@@ -266,10 +267,10 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     if (username != NULL)
     {
         char * userpass;
-        int uplen = (int)strlen(username);
+        int uplen = (int)balisc_strlen(username);
         if (password != NULL)
         {
-            uplen = uplen + (int)strlen(password);
+            uplen = uplen + (int)balisc_strlen(password);
         }
 
         res = curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
