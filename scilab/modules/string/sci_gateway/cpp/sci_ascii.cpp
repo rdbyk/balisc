@@ -1,10 +1,10 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
-*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- *
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -34,6 +34,7 @@ extern "C"
 #include "localization.h"
 #include "sciprint.h"
 #include "configvariable_interface.h"
+#include "strlen.h"
 }
 
 #define MAX_ASCII 255
@@ -162,7 +163,7 @@ types::Double* StringToDouble(types::String* _pst)
     for (int i = 0 ; i < iSize ; i++)
     {
         pst[i] = wide_string_to_UTF8(_pst->get(i));
-        pstLen[i] = (int)strlen(pst[i]);
+        pstLen[i] = (int)balisc_strlen(pst[i]);
         iTotalLen += pstLen[i];
     }
 

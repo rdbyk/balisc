@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA
-* Copyright (C) 2008 - INRIA - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA
+ * Copyright (C) 2008 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,7 @@
 */
 
 #include <stdlib.h>
-#include <string.h> /* strlen */
+#include <string.h>
 #ifdef _MSC_VER
 #include <Windows.h> /* GetEnvironmentVariable */
 #endif
@@ -27,6 +27,7 @@
 #include "PATH_MAX.h"
 #include "FileExist.h"
 #include "charEncoding.h"
+#include "strlen.h"
 
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
@@ -75,7 +76,7 @@ void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag)
     temp = wide_string_to_UTF8(wbuf);
     FREE(wbuf);
     FREE(wvar);
-    *buflen = (int)strlen(temp);
+    *buflen = (int)balisc_strlen(temp);
     if (buf)
     {
         strcpy(buf, temp);
@@ -96,12 +97,12 @@ void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag)
     else
     {
         // updating the size of char array "buf"
-        *buflen = (int)strlen(locale);
+        *buflen = (int)balisc_strlen(locale);
         if (buf)
         {
             // to avoid buffer overflow, we check the size of the source buffer
             // and the size of the destination buffer
-            if ((int) strlen(locale) <= *buflen)
+            if ((int) balisc_strlen(locale) <= *buflen)
             {
                 // "locale" can be copied entirely to "buf"
                 strcpy(buf, locale);
@@ -217,7 +218,7 @@ char *searchEnv(const char *name, const char *env_var)
     }
 #else
     searchenv_others(name, env_var, fullpath);
-    if (strlen(fullpath) > 0)
+    if (balisc_strlen(fullpath) > 0)
     {
         buffer = os_strdup(fullpath);
     }
@@ -249,7 +250,7 @@ wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv)
     }
 #else
     searchenv_others(pstName, pstEnv, pstFullpath);
-    if (strlen(pstFullpath) > 0)
+    if (balisc_strlen(pstFullpath) > 0)
     {
         pwstRet = to_wide_string(pstFullpath);
     }
