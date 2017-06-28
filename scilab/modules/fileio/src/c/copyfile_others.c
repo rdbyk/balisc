@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 #include <stdio.h>
@@ -34,6 +34,7 @@
 #include "PATH_MAX.h"
 #include "fullpath.h"
 #include "os_string.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *SourceFilename);
 static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);
@@ -240,12 +241,12 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir)
             continue ;
         }
 
-        filenameSRC = (char*)MALLOC(sizeof(char) * (strlen(SourceDir) + 1 + strlen(ent->d_name) + 1 + 1)) ;
-        filenameDST = (char*)MALLOC(sizeof(char) * (strlen(DestinationDir) + 1 + strlen(ent->d_name) + 1 + 1)) ;
+        filenameSRC = (char*)MALLOC(sizeof(char) * (balisc_strlen(SourceDir) + 1 + balisc_strlen(ent->d_name) + 1 + 1)) ;
+        filenameDST = (char*)MALLOC(sizeof(char) * (balisc_strlen(DestinationDir) + 1 + balisc_strlen(ent->d_name) + 1 + 1)) ;
 
         sprintf(filenameSRC, "%s/%s", SourceDir, ent->d_name);
 
-        if (DestinationDir[strlen(DestinationDir) - 1] == '/')
+        if (DestinationDir[balisc_strlen(DestinationDir) - 1] == '/')
         {
             sprintf(filenameDST, "%s%s", DestinationDir, ent->d_name);
         }
