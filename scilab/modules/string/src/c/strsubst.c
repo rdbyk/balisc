@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,6 +24,7 @@
 #include "os_string.h"
 #include "charEncoding.h"
 #include "pcre_error.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 char **strsubst(const char **strings_input, int strings_dim, const char *string_to_search, const char *replacement_string)
 {
@@ -83,10 +83,10 @@ char *strsub(const char* input_string, const char* string_to_search, const char*
         return os_strdup(input_string);
     }
 
-    if (strlen (replacement_string) > strlen (string_to_search))
+    if (balisc_strlen(replacement_string) > balisc_strlen(string_to_search))
     {
         count = 0;
-        len = (int)strlen (string_to_search);
+        len = (int)balisc_strlen(string_to_search);
         if (len)
         {
             occurrence_str = input_string;
@@ -100,11 +100,13 @@ char *strsub(const char* input_string, const char* string_to_search, const char*
                 }
             }
         }
-        len = count * ((int)strlen(replacement_string) - (int)strlen(string_to_search)) + (int)strlen(input_string);
+        len = count * ((int)balisc_strlen(replacement_string) - 
+                       (int)balisc_strlen(string_to_search)) + 
+                       (int)balisc_strlen(input_string);
     }
     else
     {
-        len = (int)strlen(input_string);
+        len = (int)balisc_strlen(input_string);
     }
 
     replacedString = (char*)MALLOC (sizeof(char) * (len + 1));
@@ -115,7 +117,7 @@ char *strsub(const char* input_string, const char* string_to_search, const char*
 
     occurrence_str = input_string;
     result_str = replacedString;
-    len = (int)strlen (string_to_search);
+    len = (int)balisc_strlen(string_to_search);
     while (*occurrence_str != '\0')
     {
         if (*occurrence_str == string_to_search[0] && strncmp (occurrence_str, string_to_search, len) == 0)

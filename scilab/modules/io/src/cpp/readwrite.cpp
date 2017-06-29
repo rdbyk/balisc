@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include "strlen.h"    
     extern int C2F(clunit)(int*, char const*, int*, int);
 }
 /*--------------------------------------------------------------------------*/
@@ -40,7 +41,7 @@ types::InternalType::ScilabType checkformat(const char* format)
         types::InternalType::ScilabBool, types::InternalType::ScilabString
     };
 
-    int size = (int)strlen(format);
+    int size = (int)balisc_strlen(format);
     bool isString = false;
     types::InternalType::ScilabType previousType = types::InternalType::ScilabNull;
 
@@ -95,7 +96,7 @@ void closeFile(types::InternalType* _pIT, int _iID)
         types::String* pSPath = _pIT->getAs<types::String>();
         char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
         int  close = -_iID;
-        int iErr = C2F(clunit)(&close, pstFilename, piMode, (int)strlen(pstFilename));
+        int iErr = C2F(clunit)(&close, pstFilename, piMode, (int)balisc_strlen(pstFilename));
         FREE(pstFilename);
     }
 }

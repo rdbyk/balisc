@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2005 - INRIA - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,10 +20,11 @@
 #include <stdio.h>
 #include <string.h>
 #include "setenvc.h"
-#include "sci_malloc.h" /* MALLOC */
+#include "sci_malloc.h"
 #include "charEncoding.h"
 #include "os_string.h"
 #include "setenvtcl.h"
+#include "strlen.h"
 
 /*--------------------------------------------------------------------------*/
 BOOL setenvc(const char *stringIn, const char *valueIn)
@@ -50,7 +51,7 @@ BOOL setenvc(const char *stringIn, const char *valueIn)
 #define _MAX_ENV 32767
 #endif
 
-    int len_env = (int)(strlen(stringIn) + strlen(valueIn) + 1);
+    int len_env = (int)(balisc_strlen(stringIn) + balisc_strlen(valueIn) + 1);
     if (len_env < _MAX_ENV)
     {
         if ( setenv(stringIn, valueIn, 1) )

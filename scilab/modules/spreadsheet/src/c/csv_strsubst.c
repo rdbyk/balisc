@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,6 +19,7 @@
 #include "csv_strsubst.h"
 #include "sci_malloc.h"
 #include "os_strdup.h"
+#include "strlen.h"
 // =============================================================================
 char *csv_strsubst(const char *input_string, const char *string_to_search, const char *replacement_string)
 {
@@ -41,8 +42,8 @@ char *csv_strsubst(const char *input_string, const char *string_to_search, const
         return os_strdup(input_string);
     }
 
-    string_to_searchlen = strlen(string_to_search);
-    replacement_stringlen = strlen(replacement_string);
+    string_to_searchlen = balisc_strlen(string_to_search);
+    replacement_stringlen = balisc_strlen(replacement_string);
 
     if (string_to_searchlen != replacement_stringlen)
     {
@@ -50,11 +51,11 @@ char *csv_strsubst(const char *input_string, const char *string_to_search, const
         {
             count++;
         }
-        resultlen = p - input_string + strlen(p) + count * (replacement_stringlen - string_to_searchlen);
+        resultlen = p - input_string + balisc_strlen(p) + count * (replacement_stringlen - string_to_searchlen);
     }
     else
     {
-        resultlen = strlen(input_string);
+        resultlen = balisc_strlen(input_string);
     }
 
     if (resultlen + 1 > 0)

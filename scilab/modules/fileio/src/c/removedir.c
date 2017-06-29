@@ -1,10 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2007 - INRIA - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -36,6 +36,7 @@
 #include "charEncoding.h"
 #include "os_string.h"
 #include "Sciwarning.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory);
@@ -278,7 +279,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
             continue ;
         }
 
-        filename = MALLOC(sizeof(char) * (strlen(refcstrRootDirectory) + 1 + strlen(ent->d_name) + 1 + 1)) ;
+        filename = MALLOC(sizeof(char) * (balisc_strlen(refcstrRootDirectory) + 1 + balisc_strlen(ent->d_name) + 1 + 1)) ;
         sprintf(filename, "%s/%s", refcstrRootDirectory, ent->d_name);
         if (isdir(filename))
         {

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,6 +30,7 @@
 #include "csvDefault.h"
 #include "utftolatin.h"
 #include "strsubst.h"
+#include "strlen.h"
 // =============================================================================
 #define DEFAULT_CSV_WRITE_STRING_FORMAT "%s"
 #define DEFAULT_CSV_WRITE_DOUBLE_FORMAT "%.lg"
@@ -385,7 +386,7 @@ csvWriteError csvWrite_complex(const char *filename,
                     {
                         if ((hasReal) || (imagValue < 0))
                         {
-                            strncat(StringValue, result, sizeof(StringValue) - strlen(StringValue) - 1);
+                            strncat(StringValue, result, sizeof(StringValue) - balisc_strlen(StringValue) - 1);
                             StringValue[sizeof(StringValue) - 1] = '\0';
                         }
                         else

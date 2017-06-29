@@ -12,7 +12,7 @@
 #include "sci_malloc.h"
 #include "charEncoding.h"
 #include "os_string.h"
-
+#include "strlen.h"
 
 #define DUW if (oleuw->debug)
 
@@ -269,11 +269,11 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 
         /* Full attachment string*/
         oh.attach_name = os_strdup( sp );
-        sp = sp + strlen(oh.attach_name) + 1;
+        sp = sp + balisc_strlen(oh.attach_name) + 1;
 
         /* Attachment full path*/
         oh.fname_1 = os_strdup( sp );
-        sp += strlen(oh.fname_1) + 1;
+        sp += balisc_strlen(oh.fname_1) + 1;
 
         /* Unknown memory segment*/
         memcpy( oh.data2, sp, 8 );
@@ -281,7 +281,7 @@ int OLEUNWRAP_decode_attachment( struct OLEUNWRAP_object *oleuw, char *stream, s
 
         /* Attachment full path*/
         oh.fname_2 = os_strdup( sp );
-        sp += strlen(oh.fname_2) + 1;
+        sp += balisc_strlen(oh.fname_2) + 1;
 
         oh.attach_size = (size_t)get_4byte_value( (unsigned char*) sp );
         sp += 4;

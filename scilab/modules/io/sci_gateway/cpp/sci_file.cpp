@@ -3,8 +3,8 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,6 +32,7 @@ extern "C"
 #include "FileExist.h"
 #include "mclose.h"
 #include "mseek.h"
+#include "strlen.h"
 
     extern int C2F(clunit)(int* , char const*, int*, int);
     extern int C2F(rewindinter)(int*);
@@ -205,7 +206,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
         piMode[0] = iStatus + 10 * (iAccess + 10 * iForm);
         int lunit = 0; // file unit. 0 mean we open the file by this name.
         char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
-        int iErr = C2F(clunit)(&lunit, pstFilename, piMode, (int)strlen(pstFilename));
+        int iErr = C2F(clunit)(&lunit, pstFilename, piMode, (int)balisc_strlen(pstFilename));
         if (iErr)
         {
             if (_iRetCount == 1)

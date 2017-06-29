@@ -16,6 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2007 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -197,7 +198,8 @@ am__objects_1 = src/c/libscistring_algo_la-convstr.lo \
 	src/c/libscistring_algo_la-isascii.lo \
 	src/c/libscistring_algo_la-isnum.lo
 am__objects_2 = src/cpp/libscistring_algo_la-stripblanks.lo \
-	src/cpp/libscistring_algo_la-os_wtoi.lo
+	src/cpp/libscistring_algo_la-os_wtoi.lo \
+	src/cpp/libscistring_algo_la-strlen.lo
 am_libscistring_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscistring_algo_la_OBJECTS = $(am_libscistring_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -625,7 +627,8 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 STRING_CPP_SOURCES = \
     src/cpp/stripblanks.cpp \
-    src/cpp/os_wtoi.cpp
+    src/cpp/os_wtoi.cpp \
+    src/cpp/strlen.cpp
 
 STRING_C_SOURCES = \
     src/c/convstr.c \
@@ -996,6 +999,8 @@ src/cpp/libscistring_algo_la-stripblanks.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscistring_algo_la-os_wtoi.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscistring_algo_la-strlen.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscistring-algo.la: $(libscistring_algo_la_OBJECTS) $(libscistring_algo_la_DEPENDENCIES) $(EXTRA_libscistring_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscistring_algo_la_rpath) $(libscistring_algo_la_OBJECTS) $(libscistring_algo_la_LIBADD) $(LIBS)
@@ -1167,6 +1172,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-tokens.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-os_wtoi.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-stripblanks.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-strlen.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1397,6 +1403,13 @@ src/cpp/libscistring_algo_la-os_wtoi.lo: src/cpp/os_wtoi.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/os_wtoi.cpp' object='src/cpp/libscistring_algo_la-os_wtoi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscistring_algo_la-os_wtoi.lo `test -f 'src/cpp/os_wtoi.cpp' || echo '$(srcdir)/'`src/cpp/os_wtoi.cpp
+
+src/cpp/libscistring_algo_la-strlen.lo: src/cpp/strlen.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscistring_algo_la-strlen.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscistring_algo_la-strlen.Tpo -c -o src/cpp/libscistring_algo_la-strlen.lo `test -f 'src/cpp/strlen.cpp' || echo '$(srcdir)/'`src/cpp/strlen.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscistring_algo_la-strlen.Tpo src/cpp/$(DEPDIR)/libscistring_algo_la-strlen.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/strlen.cpp' object='src/cpp/libscistring_algo_la-strlen.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscistring_algo_la-strlen.lo `test -f 'src/cpp/strlen.cpp' || echo '$(srcdir)/'`src/cpp/strlen.cpp
 
 sci_gateway/cpp/libscistring_la-sci_stripblanks.lo: sci_gateway/cpp/sci_stripblanks.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscistring_la-sci_stripblanks.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_stripblanks.Tpo -c -o sci_gateway/cpp/libscistring_la-sci_stripblanks.lo `test -f 'sci_gateway/cpp/sci_stripblanks.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_stripblanks.cpp

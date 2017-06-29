@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
-* Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+ * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,6 +28,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
+#include "strlen.h"
 
     extern int C2F(clunit)(int*, char const*, int*, int);
 
@@ -75,7 +76,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
         int piMode[2] = {0, 0};
         char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
-        int iErr = C2F(clunit)(&iID, pstFilename, piMode, (int)strlen(pstFilename));
+        int iErr = C2F(clunit)(&iID, pstFilename, piMode, (int)balisc_strlen(pstFilename));
 
         if (iErr == 240)
         {
@@ -165,20 +166,20 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
             case types::InternalType::ScilabInt32:
             {
                 itTypeOfData = types::InternalType::ScilabInt32;
-                pstFormat = (char*)MALLOC(sizeof(char) * (strlen("(%d(1x,I4))") + (int)log10(iCols) + 2));
+                pstFormat = (char*)MALLOC(sizeof(char) * (balisc_strlen("(%d(1x,I4))") + (int)log10(iCols) + 2));
                 sprintf(pstFormat, "(%d(1x,I4))", iCols);
                 break;
             }
             case types::InternalType::ScilabDouble:
             {
-                pstFormat = (char*)MALLOC(sizeof(char) * (strlen("((1x,1pd17.10))") + (int)log10(iCols) + 2));
+                pstFormat = (char*)MALLOC(sizeof(char) * (balisc_strlen("((1x,1pd17.10))") + (int)log10(iCols) + 2));
                 sprintf(pstFormat, "(%d(1x,1pd17.10))", iCols);
                 break;
             }
             case types::InternalType::ScilabString:
             {
                 itTypeOfData = types::InternalType::ScilabString;
-                pstFormat = (char*)MALLOC(sizeof(char) * (strlen("(a)") + 1));
+                pstFormat = (char*)MALLOC(sizeof(char) * (balisc_strlen("(a)") + 1));
                 sprintf(pstFormat, "(a)");
                 break;
             }
@@ -207,7 +208,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                     for (int i = 0; i < iCols; i++)
                     {
                         pd = wide_string_to_UTF8(pD->get(i));
-                        C2F(writestringfile)(&iID, pstFormat, pd, &error, (int)strlen(pstFormat), (int)strlen(pd));
+                        C2F(writestringfile)(&iID, pstFormat, pd, &error, (int)balisc_strlen(pstFormat), (int)balisc_strlen(pd));
                         FREE(pd);
                     }
                 }
@@ -221,14 +222,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                     {
                         if (iRhs > 2)
                         {
-                            C2F(writeintfile)(&iID, pstFormat, pi, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writeintfile)(&iID, pstFormat, pi, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                         else
                         {
                             //we calculate the size for a set of data on a line
                             int iConsoleWidth = ConfigVariable::getConsoleWidth();
                             iConsoleWidth = ((int)(iConsoleWidth / 18)) * 18;
-                            C2F(writeintszscfile)(&iID, pstFormat, pi, &iConsoleWidth, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writeintszscfile)(&iID, pstFormat, pi, &iConsoleWidth, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                     }
                     else if (itTypeOfData == types::InternalType::ScilabDouble)
@@ -241,14 +242,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
                         if (iRhs > 2)
                         {
-                            C2F(writedoublefile)(&iID, pstFormat, pd, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writedoublefile)(&iID, pstFormat, pd, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                         else
                         {
                             //we calculate the size for a set of data on a line
                             int iConsoleWidth = ConfigVariable::getConsoleWidth();
                             iConsoleWidth = ((int)(iConsoleWidth / 18)) * 18;
-                            C2F(writedoubleszscfile)(&iID, pd, &iConsoleWidth, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writedoubleszscfile)(&iID, pd, &iConsoleWidth, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
 
                         delete[] pd;
@@ -264,14 +265,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                     {
                         if (iRhs > 2)
                         {
-                            C2F(writedoublefile)(&iID, pstFormat, pd, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writedoublefile)(&iID, pstFormat, pd, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                         else
                         {
                             //we calculate the size for a set of data on a line
                             int iConsoleWidth = ConfigVariable::getConsoleWidth();
                             iConsoleWidth = ((int)(iConsoleWidth / 18)) * 18;
-                            C2F(writedoubleszscfile)(&iID, pd, &iConsoleWidth, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writedoubleszscfile)(&iID, pd, &iConsoleWidth, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                     }
                     else if (itTypeOfData == types::InternalType::ScilabInt32)
@@ -284,14 +285,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
                         if (iRhs > 2)
                         {
-                            C2F(writeintfile)(&iID, pstFormat, pi, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writeintfile)(&iID, pstFormat, pi, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                         else
                         {
                             //we calculate the size for a set of data on a line
                             int iConsoleWidth = ConfigVariable::getConsoleWidth();
                             iConsoleWidth = ((int)(iConsoleWidth / 18)) * 18;
-                            C2F(writeintszscfile)(&iID, pstFormat, pi, &iConsoleWidth, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writeintszscfile)(&iID, pstFormat, pi, &iConsoleWidth, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
 
                         delete[] pi;
@@ -323,7 +324,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                     for (int i = 0; i < iCols; i++)
                     {
                         pd = wide_string_to_UTF8(pD->get(i));
-                        C2F(writestring)(pstFormat, pd, &error, (int)strlen(pstFormat), (int)strlen(pd));
+                        C2F(writestring)(pstFormat, pd, &error, (int)balisc_strlen(pstFormat), (int)balisc_strlen(pd));
                         FREE(pd);
                     }
                 }
@@ -337,14 +338,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                     {
                         if (iRhs > 2)
                         {
-                            C2F(writeint)(pstFormat, pi, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writeint)(pstFormat, pi, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                         else
                         {
                             //we calculate the size for a set of data on a line
                             int iConsoleWidth = ConfigVariable::getConsoleWidth();
                             iConsoleWidth = ((int)(iConsoleWidth / 18)) * 18;
-                            C2F(writeintszsc)(pstFormat, pi, &iConsoleWidth, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writeintszsc)(pstFormat, pi, &iConsoleWidth, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                     }
                     else if (itTypeOfData == types::GenericType::ScilabDouble)
@@ -357,14 +358,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
                         if (iRhs > 2)
                         {
-                            C2F(writedouble)(pstFormat, pd, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writedouble)(pstFormat, pd, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                         else
                         {
                             //we calculate the size for a set of data on a line
                             int iConsoleWidth = ConfigVariable::getConsoleWidth();
                             iConsoleWidth = ((int)(iConsoleWidth / 18)) * 18;
-                            C2F(writedoubleszsc)(pstFormat, pd, &iConsoleWidth, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writedoubleszsc)(pstFormat, pd, &iConsoleWidth, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
 
                         delete[] pd;
@@ -380,14 +381,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                     {
                         if (iRhs > 2)
                         {
-                            C2F(writedouble)(pstFormat, pd, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writedouble)(pstFormat, pd, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                         else
                         {
                             //we calculate the size for a set of data on a line
                             int iConsoleWidth = ConfigVariable::getConsoleWidth();
                             iConsoleWidth = ((int)(iConsoleWidth / 18)) * 18;
-                            C2F(writedoubleszsc)(pstFormat, pd, &iConsoleWidth, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writedoubleszsc)(pstFormat, pd, &iConsoleWidth, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                     }
                     else if (itTypeOfData == types::GenericType::ScilabInt32)
@@ -400,14 +401,14 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
                         if (iRhs > 2)
                         {
-                            C2F(writeint)(pstFormat, pi, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writeint)(pstFormat, pi, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
                         else
                         {
                             //we calculate the size for a set of data on a line
                             int iConsoleWidth = ConfigVariable::getConsoleWidth();
                             iConsoleWidth = ((int)(iConsoleWidth / 18)) * 18;
-                            C2F(writeintszsc)(pstFormat, pi, &iConsoleWidth, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                            C2F(writeintszsc)(pstFormat, pi, &iConsoleWidth, &iRows, &iCols, &error, (int)balisc_strlen(pstFormat));
                         }
 
                         delete[] pi;

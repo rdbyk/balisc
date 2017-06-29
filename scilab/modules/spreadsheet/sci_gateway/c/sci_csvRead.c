@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,6 +31,7 @@
 #include "gw_csv_helpers.h"
 #include "getRange.h"
 #include "os_string.h"
+#include "strlen.h"
 
 static void freeVar(char** filename, char** separator, char** decimal, char** conversion, int** iRange, char*** toreplace, int sizeReplace, char** regexp);
 /* ==================================================================== */
@@ -206,7 +207,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
            a 'double' conversion */
         if (strcmp(fname, "read_csv") == 0)
         {
-            conversion = (char*)MALLOC((strlen("string") + 1) * sizeof(char));
+            conversion = (char*)MALLOC((balisc_strlen("string") + 1) * sizeof(char));
             strcpy(conversion, "string");
         }
         else

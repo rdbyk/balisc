@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include <string.h> /* strlen */
 #include "filemanager.hxx"
 #include "file.hxx"
 
@@ -22,6 +21,7 @@ extern "C"
 #include "getfileinfo.h"
 #include "charEncoding.h"
 #include "sci_malloc.h"
+#include "strlen.h"
 }
 /*--------------------------------------------------------------------------*/
 void C2F(getfileinfo)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *lf, int *ierr)
@@ -56,7 +56,7 @@ void C2F(getfileinfo)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char 
         strcpy(filename, "");
     }
 
-    *lf = (int)strlen(filename);
+    *lf = (int)balisc_strlen(filename);
     *ierr = 0;
 }
 /*--------------------------------------------------------------------------*/
