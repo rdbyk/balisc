@@ -120,9 +120,6 @@
     <ClInclude Include="..\includes\TerminateLocalization.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="c\getentrieshashtable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="c\getLcidString.h">
       <Filter>Header Files</Filter>
     </ClInclude>

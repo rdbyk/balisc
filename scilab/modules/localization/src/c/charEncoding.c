@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 #include <iconv.h>
@@ -29,6 +29,7 @@
 #include "charEncoding.h"
 #include "sci_malloc.h"
 #include "utf8.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h>
@@ -247,7 +248,7 @@ wchar_t *to_wide_string(const char *_UTFStr)
         __WCHAR_T_from_UTF_8 = iconv_open("WCHAR_T", "UTF-8");
     }
 
-    iLeftIn = strlen(_UTFStr);
+    iLeftIn = balisc_strlen(_UTFStr);
     pInSave = (char*)_UTFStr;
 
     iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);

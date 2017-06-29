@@ -4,8 +4,8 @@
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
  * Copyright (C) 2008 - Yung-Jang Lee
  * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -57,6 +57,7 @@
 #include "charEncoding.h"
 #include "../../../io/includes/setenvc.h"
 #include "os_string.h"
+#include "strlen.h"
 
 /*--------------------------------------------------------------------------*/
 //static wchar_t CURRENTLANGUAGESTRING[LengthAlphacode] = SCILABDEFAULTLANGUAGE;
@@ -118,7 +119,7 @@ BOOL setlanguage(const wchar_t *lang)
                         int i = 0;
                         for (; i < NumberOfCharsets; i++)
                         {
-                            newlang = (char*)MALLOC(strlen(pstLang) + strlen(CHARSETS[i]) + 1 + 1);
+                            newlang = (char*)MALLOC(balisc_strlen(pstLang) + balisc_strlen(CHARSETS[i]) + 1 + 1);
                             sprintf(newlang, "%s.%s", pstLang, CHARSETS[i]);
                             pstRet = setlocale(LC_CTYPE, newlang);
                             if (pstRet == NULL)
