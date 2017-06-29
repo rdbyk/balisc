@@ -756,7 +756,7 @@ void* scilabReadAndStore(void* param)
                 else
                 {
                     //+1 for null termination and +1 for '\n'
-                    size_t iLen = balisc_strlen(command) + strlen(pstRead) + 2;
+                    size_t iLen = balisc_strlen(command) + balisc_strlen(pstRead) + 2;
                     char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
 
 #ifdef _MSC_VER
