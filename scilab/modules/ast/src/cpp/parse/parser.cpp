@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -36,6 +36,7 @@ extern "C"
 #include "PATH_MAX.h"
 #endif
 #include "os_wfopen.h"
+#include "strlen.h"
 }
 
 extern FILE*    yyin;
@@ -191,7 +192,7 @@ void Parser::disableStopOnFirstError(void)
 /** \brief parse the given file command */
 void ParserSingleInstance::parse(const char *command)
 {
-    size_t len = strlen(command);
+    size_t len = balisc_strlen(command);
 
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;

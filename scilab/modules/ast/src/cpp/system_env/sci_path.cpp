@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,6 +32,7 @@ extern "C"
 #include "setenvvar.h"
 #include "getshortpathname.h"
 #include "getlongpathname.h"
+#include "strlen.h"
 }
 
 char *getSCI(void)
@@ -62,7 +63,7 @@ void setSCI(const char* _sci_path)
 
 
     //SCI
-    char *pstSlash = new char[strlen(_sci_path) + 1];
+    char *pstSlash = new char[balisc_strlen(_sci_path) + 1];
     AntislashToSlash(ShortPath, pstSlash);
     wchar_t* pwstSCI = to_wide_string(pstSlash);
     types::String *pSSCI = new types::String(pwstSCI);
@@ -121,7 +122,7 @@ void putenvSCI(const char* _sci_path)
     BOOL bConvertOK = FALSE;
     ShortPath = getshortpathname(_sci_path, &bConvertOK);
 
-    CopyOfDefaultPath = new char[strlen(_sci_path) + 1];
+    CopyOfDefaultPath = new char[balisc_strlen(_sci_path) + 1];
     //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
     AntislashToSlash(ShortPath, CopyOfDefaultPath);
 

@@ -1,9 +1,9 @@
 /*
- *  Scilab (http://www.scilab.org/) - This file is part of Scilab
- *  Copyright (C) 2012-2013 - OCAMLPRO INRIA - Fabrice LE FESSANT
- *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab (http://www.scilab.org/) - This file is part of Scilab
+ * Copyright (C) 2012-2013 - OCAMLPRO INRIA - Fabrice LE FESSANT
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,8 +20,13 @@
 #include "dummyvisitor.hxx"
 #include "deserializervisitor.hxx"
 #include "timer.hxx"
+
+extern "C"
+{
 #include "charEncoding.h"
 #include "version.h"
+#include "strlen.h"
+}
 
 #define FAGMENT_SIZE 65536
 
@@ -180,7 +185,7 @@ private :
     void add_wstring(const std::wstring &w)
     {
         char *c_str = wide_string_to_UTF8(w.c_str());
-        int size = strlen(c_str);
+        int size = balisc_strlen(c_str);
         int final_size = size * sizeof(char);
         add_uint32(final_size);
         need(final_size);
