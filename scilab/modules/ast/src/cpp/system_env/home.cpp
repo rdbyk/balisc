@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 
 #include "configvariable.hxx"
@@ -31,6 +31,7 @@ extern "C"
 #include "getenvc.h"
 #include "setenvvar.h"
 #include "getshortpathname.h"
+#include "strlen.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -146,7 +147,7 @@ void putenvHOME(const char* _home)
     BOOL bConvertOK = FALSE;
     ShortPath = getshortpathname(_home, &bConvertOK);
 
-    CopyOfDefaultPath = new char[strlen(_home) + 1];
+    CopyOfDefaultPath = new char[balisc_strlen(_home) + 1];
     AntislashToSlash(ShortPath, CopyOfDefaultPath);
 
     setenvc("HOME", ShortPath);
