@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -69,6 +69,7 @@ extern "C"
 #include "scicurdir.h"
 #include "FileBrowserChDir.h"
 #include "InitializePreferences.h"
+#include "strlen.h"
 
 #ifdef _MSC_VER
 #include "InitializeWindows_tools.h"
@@ -399,7 +400,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     else if (_pSEI->pstFile)
     {
         //-f option execute exec('%s',-1)
-        char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
+        char *pstCommand = (char *)MALLOC(sizeof(char) * (/* strlen("exec(\"\",-1)") */ 11 + balisc_strlen(_pSEI->pstFile) + 1));
         sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
 
         StoreConsoleCommand(pstCommand, 0);
@@ -462,7 +463,7 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     if (_pSEI->pstFile)
     {
         //-f option execute exec('%s',-1)
-        char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
+        char *pstCommand = (char *)MALLOC(sizeof(char) * (/* strlen("exec(\"\",-1)") */ 11 + balisc_strlen(_pSEI->pstFile) + 1));
         sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
 
         _pSEI->pstExec = pstCommand;
@@ -627,7 +628,7 @@ void* scilabReadAndExecCommand(void* param)
         }
 
         // empty command
-        if (command == NULL || strlen(command) == 0)
+        if (command == NULL || balisc_strlen(command) == 0)
         {
             continue;
         }
@@ -755,7 +756,7 @@ void* scilabReadAndStore(void* param)
                 else
                 {
                     //+1 for null termination and +1 for '\n'
-                    size_t iLen = strlen(command) + strlen(pstRead) + 2;
+                    size_t iLen = balisc_strlen(command) + balisc_strlen(pstRead) + 2;
                     char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
 
 #ifdef _MSC_VER
@@ -773,7 +774,7 @@ void* scilabReadAndStore(void* param)
             {
                 bool disableDebug = false;
                 char* tmpCommand = NULL;
-                int commandsize = strlen(command);
+                int commandsize = balisc_strlen(command);
 
                 //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("something")
                 if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
@@ -833,7 +834,7 @@ void* scilabReadAndStore(void* param)
                 }
                 else
                 {
-                    int iLen = (int)strlen(command) + (int)strlen("debug ") + 1;
+                    int iLen = (int)balisc_strlen(command) + /* (int)strlen("debug ") */ 6 + 1;
                     tmpCommand = (char*)MALLOC(sizeof(char) * iLen);
 #ifdef _MSC_VER
                     os_sprintf(tmpCommand, iLen, "%s %s", "debug", command);

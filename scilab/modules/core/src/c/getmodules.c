@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,6 +28,7 @@
 #include "FileExist.h"
 #include "os_string.h"
 #include "getshortpathname.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 static struct MODULESLIST *ScilabModules = NULL;
 /*--------------------------------------------------------------------------*/
@@ -85,7 +86,7 @@ static BOOL ReadModulesFile(void)
         return FALSE;
     }
 
-    ModulesFilename = (char*)MALLOC((strlen(SciPath) + strlen("/") + strlen(basenamemodulesfile) + 1) * sizeof(char));
+    ModulesFilename = (char*)MALLOC((balisc_strlen(SciPath) + balisc_strlen(basenamemodulesfile) + /* strlen("/") */ 1 + + 1) * sizeof(char));
     sprintf(ModulesFilename, "%s/%s", SciPath, basenamemodulesfile);
     FREE(SciPath);
     SciPath = NULL;
@@ -120,7 +121,7 @@ static BOOL VerifyModule(char *ModuleName)
         return FALSE;
     }
 
-    FullPathModuleName = (char*)MALLOC((strlen(SciPath) + strlen("%s/modules/%s/etc/%s.start") + (strlen(ModuleName) * 2) + 1) * sizeof(char));
+    FullPathModuleName = (char*)MALLOC((balisc_strlen(SciPath) + balisc_strlen("%s/modules/%s/etc/%s.start") + (balisc_strlen(ModuleName) * 2) + 1) * sizeof(char));
     sprintf(FullPathModuleName, "%s/modules/%s/etc/%s.start", SciPath, ModuleName, ModuleName);
     FREE(SciPath);
     SciPath = NULL;
@@ -212,7 +213,7 @@ static BOOL AppendModules(char *xmlfilename)
                         attrib = attrib->next;
                     }
 
-                    if ( (name) && (strlen(name) > 0) && (activate) )
+                    if ( (name) && (balisc_strlen(name) > 0) && (activate) )
                     {
                         if ( VerifyModule(name) )
                         {

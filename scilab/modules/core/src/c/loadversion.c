@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,6 +30,7 @@
 #include "getshortpathname.h"
 #include "charEncoding.h"
 #include "version.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 BOOL getversionmodule(wchar_t* _pwstModule,
                       int *sci_version_major,
@@ -48,7 +49,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
         int len = 0;
 
         SciPath = getSCI();
-        len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(pstModule) + 1;
+        len = (int)balisc_strlen(FORMATVERSIONFILENAME) + (int)balisc_strlen(SciPath) + (int)balisc_strlen(pstModule) + 1;
         filename_VERSION_module = (char*)MALLOC(sizeof(char) * len);
         sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, pstModule);
         FREE(pstModule);
