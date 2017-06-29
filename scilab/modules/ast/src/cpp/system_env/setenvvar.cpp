@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifdef _MSC_VER
 #ifndef MAX_PATH_SHORT
@@ -50,6 +50,7 @@ extern "C"
 #include "sci_tmpdir.h"
 #include "sci_malloc.h"
 #include "getshortpathname.h"
+#include "strlen.h"
 }
 
 
@@ -165,8 +166,8 @@ static BOOL AddScilabBinDirectoryToPATHEnvironnementVariable(char *DefaultPath)
 
     PATH = getenv("PATH");
 
-    env = (char*) MALLOC(sizeof(char) * (strlen(PATH_FORMAT) + strlen(PATH) +
-                                         strlen(DefaultPath) + 1));
+    env = (char*) MALLOC(sizeof(char) * (balisc_strlen(PATH_FORMAT) + balisc_strlen(PATH) +
+                                         balisc_strlen(DefaultPath) + 1));
     if (env)
     {
         sprintf(env, PATH_FORMAT, DefaultPath, PATH);
@@ -240,7 +241,7 @@ bool convertSlash(const char *path_in, char *path_out, bool slashToAntislash)
     {
         int i = 0;
         strcpy(path_out, path_in);
-        for (i = 0; i < (int)strlen(path_out); i++)
+        for (i = 0; i < (int)balisc_strlen(path_out); i++)
         {
             if ( slashToAntislash )
             {
