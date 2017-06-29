@@ -48,14 +48,18 @@
   1999-10-18 lpd Fixed typo in header comment (ansi2knr rather than md5).
   1999-05-03 lpd Original version.
 
-	Added in Scilab A.C April 2006
+  Added in Scilab A.C April 2006
+    
+  Modifications for Balisc (https://github.com/rdbyk/balisc/)
+  Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+    
 */
 /*--------------------------------------------------------------------------*/
 #include "md5.h"
 #include <string.h>
 #include <stdio.h>
-
 #include "sci_malloc.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #undef BYTE_ORDER	/* 1 = big-endian, -1 = little-endian, 0 = unknown */
 #ifdef ARCH_IS_BIG_ENDIAN
@@ -409,7 +413,7 @@ char *md5_str(char *p)
 
     /* hashage */
     md5_init(&state);
-    md5_append(&state, (const md5_byte_t *)p, (int)strlen(p));
+    md5_append(&state, (const md5_byte_t *)p, (int)balisc_strlen(p));
     md5_finish(&state, digest);
 
     /* output */
