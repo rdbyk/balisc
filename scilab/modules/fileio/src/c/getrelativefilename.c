@@ -1,10 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Pierre MARECHAL
-* Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
-* Copyright (C) 2011 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Pierre MARECHAL
+ * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 #include <ctype.h>
 #include <string.h>
 #include "machine.h" /* DIR_SEPARATOR */
@@ -21,9 +21,10 @@
 #include "sci_malloc.h"
 #include "PATH_MAX.h"
 #include "strsubst.h"
+#include "strlen.h"
 /* ================================================================================== */
-static char *normalizeFileSeparator(const char *path);
-static wchar_t *normalizeFileSeparatorW(const wchar_t *path);
+static inline char *normalizeFileSeparator(const char *path);
+static inline wchar_t *normalizeFileSeparatorW(const wchar_t *path);
 /* ================================================================================== */
 // getrelativefilename
 //
@@ -41,8 +42,8 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     char *_currentDirectory = normalizeFileSeparator(currentDirectory);
     char *_absoluteFilename = normalizeFileSeparator(absoluteFilename);
 
-    cdLen = (int)strlen(_currentDirectory);
-    afLen = (int)strlen(_absoluteFilename);
+    cdLen = (int)balisc_strlen(_currentDirectory);
+    afLen = (int)balisc_strlen(_absoluteFilename);
 
     // make sure the names are not too short
     if ( cdLen < ABSOLUTE_NAME_START + 1 || afLen < ABSOLUTE_NAME_START + 1)
