@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include <string.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,6 +20,7 @@
 #include "convertbase.h"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #define char_a 'a'
 #define char_A 'A'
@@ -40,7 +40,7 @@ double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err)
     if (pStr)
     {
         size_t i = 0;
-        size_t len = strlen(pStr);
+        size_t len = balisc_strlen(pStr);
         for (i = 0; i < len; i++)
         {
             if ((pStr[i] >= char_zero) && (pStr[i] <= char_nine))
@@ -117,11 +117,11 @@ static char *convertDec2Base(double dValue, int numberbase,
             iDec = iDec / numberbase;
         }
 
-        convertedValue = (char*)MALLOC(sizeof(char) * (strlen(chResult) + 1));
+        convertedValue = (char*)MALLOC(sizeof(char) * (balisc_strlen(chResult) + 1));
         if (convertedValue)
         {
             size_t j = 0;
-            size_t i = strlen(chResult);
+            size_t i = balisc_strlen(chResult);
             int t = !(i % 2) ? 1 : 0;
             int k = 0;
             strcpy(convertedValue, chResult);
@@ -143,7 +143,7 @@ static char *convertDec2Base(double dValue, int numberbase,
 
     if (*err == ERROR_CONVERTBASE_OK)
     {
-        size_t lenConvertedValue = strlen(convertedValue);
+        size_t lenConvertedValue = balisc_strlen(convertedValue);
         if ((nbDigits > lenConvertedValue) && (nbDigits > 0))
         {
             size_t i = 0;
@@ -204,7 +204,7 @@ char **convertMatrixOfDec2Base(const double* dValues, int mn,
         char *maxBaseString = convertDec2Base(maxVal, numberbase, nbDigits, err);
         if (maxBaseString)
         {
-            maxDigits = strlen(maxBaseString);
+            maxDigits = balisc_strlen(maxBaseString);
             FREE(maxBaseString);
             if (maxDigits > nbDigits)
             {
