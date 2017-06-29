@@ -39,6 +39,7 @@
 #include "setgetlanguage.h"
 #include "isdir.h"
 #include "os_string.h"
+#include "strlen.h"
 #ifdef _MSC_VER
 #include "LanguagePreferences_Windows.h"
 #endif
@@ -56,7 +57,7 @@ BOOL InitializeLocalization(void)
     char *ret = NULL;
 
     /* set directory containing message catalogs */
-    pathLocales = (char *)MALLOC(sizeof(char) * (strlen(SCIpath) + strlen(PATHLOCALIZATIONFILE) + 1));
+    pathLocales = (char *)MALLOC(sizeof(char) * (balisc_strlen(SCIpath) + balisc_strlen(PATHLOCALIZATIONFILE) + 1));
 
     strcat(stpcpy(pathLocales, SCIpath), PATHLOCALIZATIONFILE);
 
@@ -67,7 +68,7 @@ BOOL InitializeLocalization(void)
         FREE(pathLocales);
         pathLocales = NULL;
 
-        pathLocales = (char *)MALLOC(sizeof(char) * (strlen(SCIpath) + strlen("/..") + strlen(PATHLOCALIZATIONFILE) + 1));
+        pathLocales = (char *)MALLOC(sizeof(char) * (balisc_strlen(SCIpath) + /* strlen("/..") */ 3 + balisc_strlen(PATHLOCALIZATIONFILE) + 1));
         strcat(stpcpy(stpcpy(pathLocales, SCIpath), "/.."), PATHLOCALIZATIONFILE);
         
         if (bindtextdomain(NAMELOCALIZATIONDOMAIN, pathLocales) == NULL || !isdir(pathLocales))
