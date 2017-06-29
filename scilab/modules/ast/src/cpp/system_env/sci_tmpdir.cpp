@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <errno.h>
 #include <stdlib.h>
@@ -42,6 +42,7 @@ extern "C"
 #include "removedir.h"
 #include "setenvvar.h"
 #include "getshortpathname.h"
+#include "strlen.h"
 }
 
 char* getTMPDIR(void)
@@ -92,7 +93,7 @@ void putenvTMPDIR(const char *_sci_tmpdir)
     ShortPath = getshortpathname(_sci_tmpdir, &bConvertOK);
     //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
 
-    CopyOfDefaultPath = new char[strlen(_sci_tmpdir) + 1];
+    CopyOfDefaultPath = new char[balisc_strlen(_sci_tmpdir) + 1];
     AntislashToSlash(ShortPath, CopyOfDefaultPath);
 
     setenvc("TMPDIR", ShortPath);
@@ -190,7 +191,7 @@ char* computeTMPDIR()
     char* env_dir = (char*)MALLOC(sizeof(char) * (PATH_MAX + 16));
     /* If the env variable TMPDIR is set, honor this preference */
     tmpdir = getenv("TMPDIR");
-    if (tmpdir != NULL && strlen(tmpdir) < (PATH_MAX) && strstr(tmpdir, "SCI_TMP_") == NULL)
+    if (tmpdir != NULL && balisc_strlen(tmpdir) < (PATH_MAX) && strstr(tmpdir, "SCI_TMP_") == NULL)
     {
         strcpy(env_dir, tmpdir);
     }
