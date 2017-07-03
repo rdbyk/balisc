@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifdef _MSC_VER
 #pragma warning(disable : 4996) //It's not beautifull but that works !
@@ -186,7 +186,7 @@ bool FuncManager::AppendModules()
                     attrib = attrib->next;
                 }
 
-                if ((name) && (strlen(name) > 0) && (activate))
+                if ((name) && (name[0] != '\0') && (activate))
                 {
                     wchar_t* pstName = to_wide_string(name);
                     if (VerifyModule(pstName))
