@@ -84,11 +84,11 @@ BOOL createdirectoryW(const wchar_t *pathW)
             wcscat(wcpcpy(path_out, drv), dir);
 
             //if there is no path_out, get current dir as reference.
-            if (wcslen(path_out) == 0)
+            if (path_out[0] == L'\0')
             {
                 int err = 0;
                 wchar_t * cur = NULL;
-                if (wcslen(pathW)  == 0)
+                if (pathW[0]  == L'\0')
                 {
                     return FALSE;
                 }
