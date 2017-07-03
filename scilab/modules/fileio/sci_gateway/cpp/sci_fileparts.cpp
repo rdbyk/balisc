@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include "function.hxx"
 #include "string.hxx"
@@ -112,11 +112,12 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
         for (int i = 0; i < pStrPath->getSize(); i++)
         {
             wchar_t* pPath = pStrPath->get(i);
-
-            wchar_t* pwstDrive      = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstDirectory  = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstName       = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstExtension  = new wchar_t[wcslen(pPath) + 1];
+            size_t size_pPath = wcslen(pPath) + 1;
+            
+            wchar_t* pwstDrive      = new wchar_t[size_pPath];
+            wchar_t* pwstDirectory  = new wchar_t[size_pPath];
+            wchar_t* pwstName       = new wchar_t[size_pPath];
+            wchar_t* pwstExtension  = new wchar_t[size_pPath];
 
             splitpathW(pPath, FALSE, pwstDrive, pwstDirectory, pwstName, pwstExtension);
             wcscat(pwstDrive, pwstDirectory);
@@ -161,11 +162,12 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
         for (int i = 0; i < pStrPath->getSize(); i++)
         {
             wchar_t* pPath = pStrPath->get(i);
-
-            wchar_t* pwstDrive      = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstDirectory  = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstName       = new wchar_t[wcslen(pPath) + 1];
-            wchar_t* pwstExtension  = new wchar_t[wcslen(pPath) + 1];
+            size_t size_pPath = wcslen(pPath) + 1;
+            
+            wchar_t* pwstDrive      = new wchar_t[size_pPath];
+            wchar_t* pwstDirectory  = new wchar_t[size_pPath];
+            wchar_t* pwstName       = new wchar_t[size_pPath];
+            wchar_t* pwstExtension  = new wchar_t[size_pPath];
 
             splitpathW(pPath, FALSE, pwstDrive, pwstDirectory, pwstName, pwstExtension);
             wcscat(pwstDrive, pwstDirectory);
