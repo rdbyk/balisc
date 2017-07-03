@@ -160,7 +160,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
                         }
 
                         destFullFilename = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(pStVarTwoExpanded) +
-                                                              (int)wcslen(filename) + (int)wcslen(L"/") + 1));
+                                                              (int)wcslen(filename) + /* (int)wcslen(L"/") */ + 1 + 1));
                         wcscat(wcpcpy(wcpcpy(destFullFilename, pStVarTwoExpanded), L"/"), filename);
 
                         ierrCopy = CopyFileFunction(destFullFilename, pStVarOneExpanded);
@@ -221,12 +221,14 @@ static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
 
     if (wcFullFilename)
     {
-        wchar_t *wcdrv = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcdir = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcname = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
-        wchar_t *wcext = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        size_t size_wcFullFilename = sizeof(wchar_t) * (wcslen(wcFullFilename) + 1);
+        
+        wchar_t *wcdrv = (wchar_t *)MALLOC(size_wcFullFilename);
+        wchar_t *wcdir = (wchar_t *)MALLOC(size_wcFullFilename);
+        wchar_t *wcname = (wchar_t *)MALLOC(size_wcFullFilename);
+        wchar_t *wcext = (wchar_t *)MALLOC(size_wcFullFilename);
 
-        wcfilename = (wchar_t *)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcFullFilename) + 1));
+        wcfilename = (wchar_t *)MALLOC(size_wcFullFilename);
 
         if (wcdrv == NULL || wcdir == NULL || wcname == NULL || wcext == NULL || wcfilename == NULL)
         {
