@@ -18,33 +18,21 @@
  * 02110-1301, USA.
  */
 
-#ifndef __BALISC_STRLEN_H__
-#define __BALISC_STRLEN_H__
+#ifndef __BALISC_STRCMP_H__
+#define __BALISC_STRCMP_H__
 
 #include "dynlib_string.h"
 
-#if defined(__SSE4_1__) || defined(__SSE4_2__)
+#if defined(__SSE4_2__)
 
-#if defined(__SSE4_1__)
-
-size_t sse41_strlen(const char* s);
-#define balisc_strlen sse41_strlen
-
-#else /* __SSE4_2__ */
-
-size_t sse42_strlen(const char* s);
-#define balisc_strlen sse42_strlen
-
-#endif
-
-STRING_IMPEXP size_t balisc_strlen(const char* s);
+#define balisc_strlen sse42_strcmp
+STRING_IMPEXP int balisc_strcmp(const char* s1, const char* s2);
 
 #else
 
 #include <string.h>
-#define balisc_strlen strlen
+#define balisc_strcmp strcmp
     
 #endif
 
-#endif /* __BALISC_STRLEN_H__ */
-
+#endif /* __BALISC_STRCMP_H__ */
