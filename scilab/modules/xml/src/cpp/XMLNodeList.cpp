@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012-2014 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -110,7 +110,7 @@ const std::string XMLNodeList::dump() const
     for (xmlNode * cur = parent->children; cur; cur = cur->next)
     {
         xmlNodeDump(buffer, doc.getRealDocument(), cur, 0, 1);
-        xmlBufferAdd(buffer, (xmlChar *) "\n", (int)strlen("\n"));
+        xmlBufferAdd(buffer, (xmlChar *) "\n", /* (int)strlen("\n") */ 1);
     }
     std::string str = std::string((const char *)buffer->content);
 
