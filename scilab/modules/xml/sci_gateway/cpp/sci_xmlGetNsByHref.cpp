@@ -82,7 +82,7 @@ int sci_xmlGetNsByHref(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    if (!strlen(href))
+    if (href[0] == '\0')
     {
         freeAllocatedSingleString(href);
         Scierror(999, gettext("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), fname, 2);
