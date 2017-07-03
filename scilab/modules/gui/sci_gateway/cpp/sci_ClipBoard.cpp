@@ -3,7 +3,6 @@
  * Copyright (C) 2005 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
