@@ -53,13 +53,15 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
     wcsFileName = in[0]->getAs<types::String>()->get(0);
     wcsFilesOpened = FileManager::getFilenames();
 
+    size_t len_wcsFileName = wcslen(wcsFileName);
+    
     for (int i = FileManager::getOpenedCount() - 1; i >= 0; --i)
     {
         wcsTemp = wcsstr(wcsFilesOpened[i], wcsFileName);
         if (wcsTemp)
         {
             int iSize = (int)(wcsTemp - wcsFilesOpened[i]);
-            if (wcslen(wcsFilesOpened[i]) == wcslen(wcsFileName) + iSize)
+            if (wcslen(wcsFilesOpened[i]) == len_wcsFileName + iSize)
             {
                 wcsPath = (wchar_t*)MALLOC((iSize + 1) * sizeof(wchar_t));
                 memcpy(wcsPath, wcsFilesOpened[i], iSize * sizeof(wchar_t));
