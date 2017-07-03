@@ -3,8 +3,8 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -49,7 +49,7 @@ int set_event_handler_property(void* _pvCtx, int iObjUID, void* _pvData, int val
     pstHandler = (char*)_pvData;
     status = setGraphicObjectProperty(iObjUID, __GO_EVENTHANDLER_NAME__, pstHandler, jni_string, 1);
 
-    if (strlen(pstHandler) == 0)
+    if (pstHandler[0] == '\0')
     {
         // f.event_handler = "" => f.event_handler_enable = "off"
         status = setGraphicObjectProperty(iObjUID, __GO_EVENTHANDLER_ENABLE__, &bEnable, jni_bool, 1);
