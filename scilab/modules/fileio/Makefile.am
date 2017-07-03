@@ -103,7 +103,6 @@ FILEIO_CPP_SOURCES = \
 	src/cpp/mseek.cpp \
 	src/cpp/mtell.cpp \
 	src/cpp/newest.cpp \
-	src/cpp/scilab_sscanf.cpp \
     src/cpp/addfile.cpp \
     src/cpp/delfile.cpp \
     src/cpp/getfiledesc.cpp \

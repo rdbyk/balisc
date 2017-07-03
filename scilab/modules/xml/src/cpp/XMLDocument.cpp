@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -109,8 +109,10 @@ XMLDocument::XMLDocument(char *uri, char *version): XMLObject()
 
     if (expandedPath)
     {
-        newUri = (char *)xmlMalloc(sizeof(char) * (strlen(expandedPath) + 1));
-        memcpy(newUri, expandedPath, sizeof(char) * (strlen(expandedPath) + 1));
+        size_t size_expandedPath = sizeof(char) * (strlen(expandedPath) + 1);
+        
+        newUri = (char *)xmlMalloc(size_expandedPath);
+        memcpy(newUri, expandedPath, size_expandedPath);
         document->URL = (xmlChar *) newUri;
         FREE(expandedPath);
     }
@@ -306,9 +308,11 @@ void XMLDocument::setDocumentURL(const std::string & url) const
 
     if (expandedPath)
     {
+        size_t size_expandedPath = sizeof(char) * (strlen(expandedPath) + 1);
+        
         xmlFree((void *)document->URL);
-        newURL = (char *)xmlMalloc(sizeof(char) * (strlen(expandedPath) + 1));
-        memcpy(newURL, expandedPath, sizeof(char) * (strlen(expandedPath) + 1));
+        newURL = (char *)xmlMalloc(size_expandedPath);
+        memcpy(newURL, expandedPath, size_expandedPath);
         document->URL = (xmlChar *) newURL;
         FREE(expandedPath);
     }

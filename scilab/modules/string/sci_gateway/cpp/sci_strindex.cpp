@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Cong WU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     }
 
     wchar_t* pwstData = in[0]->getAs<types::String>()->get()[0];
-    if (wcslen(pwstData) == 0)
+    if (pwstData[0] == L'\0')
     {
         out.push_back(types::Double::Empty());
         if (_iRetCount == 2)

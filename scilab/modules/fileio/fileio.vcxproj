@@ -215,7 +215,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\cpp\getfiledesc.cpp" />
     <ClCompile Include="src\cpp\getfileinfo.cpp" />
     <ClCompile Include="src\cpp\getfiletype.cpp" />
-    <ClCompile Include="src\cpp\scilab_sscanf.cpp" />
     <ClCompile Include="src\c\basename.c" />
     <ClCompile Include="src\c\cluni0.c" />
     <ClCompile Include="src\c\convert_tools.c" />
@@ -333,7 +332,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\URIFileToFilename.h" />
     <ClInclude Include="src\cpp\mgetstr.h" />
     <ClInclude Include="src\cpp\mputi.hxx" />
-    <ClInclude Include="src\cpp\scilab_sscanf.hxx" />
     <ClInclude Include="src\c\basename.h" />
     <ClInclude Include="src\c\convert_tools.h" />
     <ClInclude Include="src\c\copyfile.h" />

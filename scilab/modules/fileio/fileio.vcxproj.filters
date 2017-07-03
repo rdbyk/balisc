@@ -150,9 +150,6 @@
     <ClCompile Include="src\c\createtempfilename.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\scilab_sscanf.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\dlManager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -318,9 +315,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\mgetstr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\scilab_sscanf.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\deleteafile.h">

@@ -4,8 +4,8 @@
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2005 - INRIA - Fabrice Leray
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -123,7 +123,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
             case '8':
             case '9':
                 /* Force data bounds to the x and y bounds */
-                if ((int)strlen(logflags) < 1)
+                if (logflags[0] == '\0')
                 {
                     dataflag = 'g';
                 }
