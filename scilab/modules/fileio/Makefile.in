@@ -217,7 +217,6 @@ am__objects_2 = src/cpp/libscifileio_algo_la-expandPathVariable.lo \
 	src/cpp/libscifileio_algo_la-mseek.lo \
 	src/cpp/libscifileio_algo_la-mtell.lo \
 	src/cpp/libscifileio_algo_la-newest.lo \
-	src/cpp/libscifileio_algo_la-scilab_sscanf.lo \
 	src/cpp/libscifileio_algo_la-addfile.lo \
 	src/cpp/libscifileio_algo_la-delfile.lo \
 	src/cpp/libscifileio_algo_la-getfiledesc.lo \
@@ -761,7 +760,6 @@ FILEIO_CPP_SOURCES = \
 	src/cpp/mseek.cpp \
 	src/cpp/mtell.cpp \
 	src/cpp/newest.cpp \
-	src/cpp/scilab_sscanf.cpp \
     src/cpp/addfile.cpp \
     src/cpp/delfile.cpp \
     src/cpp/getfiledesc.cpp \
@@ -1084,8 +1082,6 @@ src/cpp/libscifileio_algo_la-mtell.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscifileio_algo_la-newest.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscifileio_algo_la-scilab_sscanf.lo:  \
-	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscifileio_algo_la-addfile.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscifileio_algo_la-delfile.lo: src/cpp/$(am__dirstamp) \
@@ -1366,7 +1362,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-mseek.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-mtell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-newest.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-scilab_sscanf.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1786,13 +1781,6 @@ src/cpp/libscifileio_algo_la-newest.lo: src/cpp/newest.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/newest.cpp' object='src/cpp/libscifileio_algo_la-newest.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscifileio_algo_la-newest.lo `test -f 'src/cpp/newest.cpp' || echo '$(srcdir)/'`src/cpp/newest.cpp
-
-src/cpp/libscifileio_algo_la-scilab_sscanf.lo: src/cpp/scilab_sscanf.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscifileio_algo_la-scilab_sscanf.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscifileio_algo_la-scilab_sscanf.Tpo -c -o src/cpp/libscifileio_algo_la-scilab_sscanf.lo `test -f 'src/cpp/scilab_sscanf.cpp' || echo '$(srcdir)/'`src/cpp/scilab_sscanf.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscifileio_algo_la-scilab_sscanf.Tpo src/cpp/$(DEPDIR)/libscifileio_algo_la-scilab_sscanf.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/scilab_sscanf.cpp' object='src/cpp/libscifileio_algo_la-scilab_sscanf.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscifileio_algo_la-scilab_sscanf.lo `test -f 'src/cpp/scilab_sscanf.cpp' || echo '$(srcdir)/'`src/cpp/scilab_sscanf.cpp
 
 src/cpp/libscifileio_algo_la-addfile.lo: src/cpp/addfile.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscifileio_algo_la-addfile.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscifileio_algo_la-addfile.Tpo -c -o src/cpp/libscifileio_algo_la-addfile.lo `test -f 'src/cpp/addfile.cpp' || echo '$(srcdir)/'`src/cpp/addfile.cpp
