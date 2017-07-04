@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,6 +18,7 @@
 extern "C"
 {
 #include "api_scilab.h"
+#include "strcmp.h"
 }
 
 #include "FieldsManager.hxx"
@@ -54,22 +55,22 @@ const char ** XMLElemFieldsGetter::getFieldsName(const XMLElement * e, char ** f
         return XMLFieldsGetter::copy(fieldsName, 7);
     }
 
-    if (!strcmp(fieldPath[0], "namespace"))
+    if (!balisc_strcmp(fieldPath[0], "namespace"))
     {
         return XMLNsFieldsGetter::getFieldsName(e->getNodeNameSpace(), fieldPath + 1, fieldPathLen - 1, fieldsSize);
     }
 
-    if (!strcmp(fieldPath[0], "parent"))
+    if (!balisc_strcmp(fieldPath[0], "parent"))
     {
         return XMLElemFieldsGetter::getFieldsName(e->getParentElement(), fieldPath + 1, fieldPathLen - 1, fieldsSize);
     }
 
-    if (!strcmp(fieldPath[0], "attributes"))
+    if (!balisc_strcmp(fieldPath[0], "attributes"))
     {
         return XMLAttrFieldsGetter::getFieldsName(e->getAttributes(), fieldPath + 1, fieldPathLen - 1, fieldsSize);
     }
 
-    if (!strcmp(fieldPath[0], "children"))
+    if (!balisc_strcmp(fieldPath[0], "children"))
     {
         return XMLListFieldsGetter::getFieldsName(e->getChildren(), fieldPath + 1, fieldPathLen - 1, fieldsSize);
     }
