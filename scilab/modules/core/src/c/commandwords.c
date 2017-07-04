@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,7 @@
 #include "sci_malloc.h"
 #include "BOOL.h"
 #include "os_string.h"
-
+#include "strcmp.h"
 
 /*--------------------------------------------------------------------------*/
 /* if you update command.f , please update this file too ... */
@@ -78,7 +78,7 @@ static void SortStrings(char **Strs, int SizeOfStrs)
         int Sorted = FALSE;
         for (i = 0; i < fin; i++)
         {
-            if (strcmp(Strs[i], Strs[i + 1]) > 0)
+            if (balisc_strcmp(Strs[i], Strs[i + 1]) > 0)
             {
                 char *tmp;
                 memcpy(&tmp, Strs + i, sizeof(char *));
