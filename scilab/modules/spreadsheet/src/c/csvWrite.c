@@ -31,6 +31,7 @@
 #include "utftolatin.h"
 #include "strsubst.h"
 #include "strlen.h"
+#include "strcmp.h"
 // =============================================================================
 #define DEFAULT_CSV_WRITE_STRING_FORMAT "%s"
 #define DEFAULT_CSV_WRITE_DOUBLE_FORMAT "%.lg"
@@ -71,7 +72,7 @@ static int doConvertToLatin(void)
     const char *encoding = getCsvDefaultEncoding();
     if (encoding)
     {
-        return (strcmp(encoding, "iso-latin") == 0) ? 1 : 0;
+        return (balisc_strcmp(encoding, "iso-latin") == 0) ? 1 : 0;
     }
     return 0;
 }
@@ -114,7 +115,7 @@ csvWriteError csvWrite_double(const char *filename,
         return CSV_WRITE_ERROR;
     }
 
-    if (strcmp(separator, decimal) == 0)
+    if (balisc_strcmp(separator, decimal) == 0)
     {
         return CSV_WRITE_SEPARATOR_DECIMAL_EQUAL;
     }
@@ -250,7 +251,7 @@ csvWriteError csvWrite_complex(const char *filename,
         return CSV_WRITE_ERROR;
     }
 
-    if (strcmp(separator, decimal) == 0)
+    if (balisc_strcmp(separator, decimal) == 0)
     {
         return CSV_WRITE_SEPARATOR_DECIMAL_EQUAL;
     }
@@ -464,7 +465,7 @@ csvWriteError csvWrite_string(const char *filename,
         return CSV_WRITE_ERROR;
     }
 
-    if (strcmp(separator, decimal) == 0)
+    if (balisc_strcmp(separator, decimal) == 0)
     {
         return CSV_WRITE_SEPARATOR_DECIMAL_EQUAL;
     }
