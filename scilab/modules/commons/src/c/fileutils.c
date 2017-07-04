@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,6 +32,7 @@
 
 
 #include "fileutils.h"
+#include "strcmp.h"
 
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -110,7 +111,7 @@ int isEmptyDirectory(char *dirName)
     while ((readdir_r(dir, ptr, &result) == 0) && (result != NULL))
 #endif
     {
-        if (!strcmp(ptr->d_name, ".") || !strcmp(ptr->d_name, ".."))
+        if (!balisc_strcmp(ptr->d_name, ".") || !balisc_strcmp(ptr->d_name, ".."))
         {
             continue;
         }
