@@ -29,6 +29,7 @@
 #include "scicurdir.h"
 #include "expandPathVariable.h"
 #include "strlen.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c);
