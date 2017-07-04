@@ -25,7 +25,9 @@
 
 #if defined(__SSE4_2__)
 
-#define balisc_strlen sse42_strcmp
+int sse42_strcmp(const char* s1, const char* s2);
+#define balisc_strcmp sse42_strcmp
+
 STRING_IMPEXP int balisc_strcmp(const char* s1, const char* s2);
 
 #else
