@@ -1,17 +1,17 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) ????-2008 - Université de Nancy - Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - Université de Nancy - Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <string.h>
 #include "api_scilab.h"
@@ -20,6 +20,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2,
                         double *x, int *id, double *pqa, int *ipqa, int *ierror);
@@ -222,7 +223,7 @@ int sci_legendre(char *fname, void* pvApiCtx)
             return iRet;
         }
 
-        if ( strcmp(lschar, "norm") == 0)
+        if ( balisc_strcmp(lschar, "norm") == 0)
         {
             normalized = 1;
         }
