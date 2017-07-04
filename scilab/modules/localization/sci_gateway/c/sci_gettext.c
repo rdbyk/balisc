@@ -1,10 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - INRIA - Sylvestre LEDRU
-* Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
-* Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
+ * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,6 +24,7 @@
 #include "strsubst.h"
 #include "os_string.h"
 #include "freeArrayOfString.h"
+#include "strcmp.h"
 
 /*--------------------------------------------------------------------------*/
 static char *convertString_dgettext(const char *domain, const char *pStr);
@@ -105,7 +106,7 @@ int sci_gettext(char *fname, void* pvApiCtx)
 
     for (i = 0; i < m * n; i++)
     {
-        if (strcmp(StringsToTranslate[i], "") == 0)
+        if (balisc_strcmp(StringsToTranslate[i], "") == 0)
         {
             TranslatedStrings[i] = strdup("");
         }
