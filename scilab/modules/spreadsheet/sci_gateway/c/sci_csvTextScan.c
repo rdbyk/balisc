@@ -29,6 +29,7 @@
 #include "getRange.h"
 #include "gw_csv_helpers.h"
 #include "os_string.h"
+#include "strcmp.h"
 
 static void freeVar(char*** text, int sizeText, int** lengthText, char** separator, char** decimal, char** conversion, int** iRange);
 // =============================================================================
@@ -109,7 +110,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        if (!((strcmp(conversion, CONVTOSTR) == 0) || (strcmp(conversion, CONVTODOUBLE) == 0)))
+        if (!((balisc_strcmp(conversion, CONVTOSTR) == 0) || (balisc_strcmp(conversion, CONVTODOUBLE) == 0)))
         {
             freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"), fname, 4, "double", "string");
@@ -187,7 +188,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
 
             case CSV_READ_NO_ERROR:
             {
-                if (strcmp(conversion, CONVTOSTR) == 0)
+                if (balisc_strcmp(conversion, CONVTOSTR) == 0)
                 {
                     if (haveRange)
                     {
