@@ -32,6 +32,7 @@
 #include "getRange.h"
 #include "os_string.h"
 #include "strlen.h"
+#include "strcmp.h"
 
 static void freeVar(char** filename, char** separator, char** decimal, char** conversion, int** iRange, char*** toreplace, int sizeReplace, char** regexp);
 /* ==================================================================== */
@@ -122,7 +123,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
         regexp = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 6, fname, getCsvDefaultCommentsRegExp(), &iErr);
         if (regexp)
         {
-            if (strcmp(regexp, "") == 0)
+            if (regexp[0] == '\0')
             {
                 FREE(regexp);
                 regexp = NULL;
@@ -144,7 +145,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
         regexp = os_strdup(getCsvDefaultCommentsRegExp());
         if (regexp)
         {
-            if (strcmp(regexp, "") == 0)
+            if (regexp[0] == '\0')
             {
                 FREE(regexp);
                 regexp = NULL;
@@ -194,7 +195,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        if (!((strcmp(conversion, CONVTOSTR) == 0) || (strcmp(conversion, CONVTODOUBLE) == 0)))
+        if (!((balisc_strcmp(conversion, CONVTOSTR) == 0) || (balisc_strcmp(conversion, CONVTODOUBLE) == 0)))
         {
             freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, nbElementsToReplace, &regexp);
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"), fname, 4, "double", "string");
@@ -205,7 +206,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
     {
         /* read_csv is using a 'string' conversion while csvRead is doing
            a 'double' conversion */
-        if (strcmp(fname, "read_csv") == 0)
+        if (balisc_strcmp(fname, "read_csv") == 0)
         {
             conversion = (char*)MALLOC((balisc_strlen("string") + 1) * sizeof(char));
             strcpy(conversion, "string");
@@ -246,7 +247,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
         separator = os_strdup(getCsvDefaultSeparator());
     }
 
-    if (strcmp(separator, "\\t") == 0)
+    if (balisc_strcmp(separator, "\\t") == 0)
     {
         /* In Scilab, if the user is providing \t as separator, transform it to a real
            tab. Example: read_csv(filename,"\t");
@@ -283,7 +284,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
 
             case CSV_READ_NO_ERROR:
             {
-                if (strcmp(conversion, CONVTOSTR) == 0)
+                if (balisc_strcmp(conversion, CONVTOSTR) == 0)
                 {
                     if (haveRange)
                     {
