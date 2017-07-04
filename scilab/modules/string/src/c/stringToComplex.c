@@ -24,6 +24,7 @@
 #include "os_string.h"
 #include "BOOL.h"
 #include "strsubst.h"
+#include "strlen.h"
 #include "strcmp.h"
 /* ========================================================================== */
 #define PlusChar '+'
@@ -131,7 +132,7 @@ doublecomplex stringToComplex(const char *pSTR, const char *decimal, BOOL bConve
 
             if (pStrFormatted)
             {
-                int lenStrFormatted = (int) strlen(pStrFormatted);
+                int lenStrFormatted = (int) balisc_strlen(pStrFormatted);
 
                 /* case .4 replaced by 0.4 */
                 if (pStrFormatted[0] == '.')
@@ -251,7 +252,7 @@ static int ParseNumber(const char* tx)
 {
     int lookahead = 0;
     int len = 0;
-    size_t len_tx = strlen(tx);
+    size_t len_tx = balisc_strlen(tx);
 
     if (tx[len] == NULL)
     {
@@ -398,7 +399,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
     *imag = 0;
 
     /* test on strlen(tx) > 1 to remove case 'e' */
-    if ((int)strlen(tx) < 2)
+    if ((int)balisc_strlen(tx) < 2)
     {
         if (ierrDouble == STRINGTODOUBLE_NO_ERROR)
         {
@@ -454,7 +455,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
         }
         
         inum_string = midstring(modifiedTxt, lnum, -1);
-        size_t len_inum_string = strlen(inum_string);
+        size_t len_inum_string = balisc_strlen(inum_string);
         
         if ((inum_string[len_inum_string - 1] == 'i') ||
                 (inum_string[len_inum_string - 1] == 'j')) // The imaginary part looks like "a*%i"
@@ -482,7 +483,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
         }
         else if (inum_string[1] == 'i' || inum_string[1] == 'j') // The imaginary part looks like "%i*a". For instance if string() has been used
         {
-            int len_inum_string = strlen(inum_string);
+            int len_inum_string = balisc_strlen(inum_string);
             for (i = 1; i < len_inum_string; ++i)
             {
                 inum_string[i] = inum_string[i + 1];    // Removing the "i"
@@ -813,7 +814,7 @@ static char *midstring(const char *tx, size_t pos, int nb)
     char *returnString = NULL;
     if (tx)
     {
-        int lenTx = (int) strlen(tx);
+        int lenTx = (int) balisc_strlen(tx);
         int posEnd = 0;
         int newLen = 0;
 
@@ -869,7 +870,7 @@ static char *leftstring(const char *tx, size_t pos)
     char *returnString = NULL;
     if (tx)
     {
-        int lenTx = (int) strlen(tx);
+        int lenTx = (int) balisc_strlen(tx);
         returnString = os_strdup(tx);
         if (pos > lenTx)
         {
