@@ -24,6 +24,7 @@
 #include "os_string.h"
 #include "BOOL.h"
 #include "strsubst.h"
+#include "strcmp.h"
 /* ========================================================================== */
 #define PlusChar '+'
 #define PlusCharW L'+'
@@ -466,13 +467,13 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
                 /* len_inum_string-- */
             }
 
-            if (strcmp(inum_string, "+") == 0)
+            if (balisc_strcmp(inum_string, "+") == 0)
             {
                 FREE(inum_string);
                 inum_string = os_strdup("+1");
             }
 
-            if (strcmp(inum_string, "-") == 0)
+            if (balisc_strcmp(inum_string, "-") == 0)
             {
                 FREE(inum_string);
                 inum_string = os_strdup("-1");
@@ -494,13 +495,13 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
                 }
             }
 
-            if (strcmp(inum_string, "+") == 0)
+            if (balisc_strcmp(inum_string, "+") == 0)
             {
                 FREE(inum_string);
                 inum_string = strdup("+1");
             }
 
-            if (strcmp(inum_string, "-") == 0)
+            if (balisc_strcmp(inum_string, "-") == 0)
             {
                 FREE(inum_string);
                 inum_string = strdup("-1");
@@ -513,7 +514,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
         }
         rnum_string = leftstring(modifiedTxt, lnum);
 
-        if (strcmp(inum_string, "") == 0)
+        if (balisc_strcmp(inum_string, "") == 0)
         {
             *imag = stringToDouble(rnum_string, bConvertByNAN, &ierrDouble);
             ierr = (stringToComplexError)(ierrDouble);
