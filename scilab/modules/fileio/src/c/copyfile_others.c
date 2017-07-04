@@ -35,6 +35,7 @@
 #include "fullpath.h"
 #include "os_string.h"
 #include "strlen.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *SourceFilename);
 static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);
@@ -89,7 +90,7 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
     get_full_path(strDestFullPath, pStrDest, PATH_MAX * 2);
     get_full_path(strSrcFullPath, pStrSrc, PATH_MAX * 2);
 
-    if (strcmp(strDestFullPath, strSrcFullPath) == 0)
+    if (balisc_strcmp(strDestFullPath, strSrcFullPath) == 0)
     {
         status = EPERM;
         goto err;
@@ -236,7 +237,7 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir)
         char *filenameSRC = NULL;
         char *filenameDST = NULL;
 
-        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0)
+        if (balisc_strcmp(ent->d_name, ".") == 0 || balisc_strcmp(ent->d_name, "..") == 0)
         {
             continue ;
         }
