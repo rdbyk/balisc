@@ -28,6 +28,7 @@
 #include "toolsdictionary.h"
 #include "os_string.h"
 #include "stdio.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 char **completionOnDictionary(char **dictionary, int sizedictionary, const char *somechars, int *sizearrayreturned);
 /*--------------------------------------------------------------------------*/
@@ -200,7 +201,7 @@ char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayR
         {
             for ( j = 0; j < sizedictionaryMacros; j++)
             {
-                if ( strcmp(dictionaryVariables[i], dictionaryMacros[j]) == 0 )
+                if ( balisc_strcmp(dictionaryVariables[i], dictionaryMacros[j]) == 0 )
                 {
                     nbWordsAlreadyInMacros++;
                 }
@@ -227,7 +228,7 @@ char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayR
                     {
                         for ( j = 0; j < sizedictionaryMacros; j++)
                         {
-                            if ( strcmp(dictionaryVariables[i], dictionaryMacros[j]) == 0 )
+                            if ( balisc_strcmp(dictionaryVariables[i], dictionaryMacros[j]) == 0 )
                             {
                                 FREE(ListWordsTmp[i]);
                                 ListWordsTmp[i] = NULL;
