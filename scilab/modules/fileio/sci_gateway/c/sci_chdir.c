@@ -24,6 +24,7 @@
 #include "api_scilab.h"
 #include "isdir.h"
 #include "charEncoding.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 int sci_chdir(char *fname, void* pvApiCtx)
 {
@@ -115,7 +116,7 @@ int sci_chdir(char *fname, void* pvApiCtx)
         }
     }
 
-    if (strcmp(fname, "chdir") == 0) /* chdir output boolean */
+    if (balisc_strcmp(fname, "chdir") == 0) /* chdir output boolean */
     {
         int iOutput = FALSE;
         if (scichdirW(expandedPath))
