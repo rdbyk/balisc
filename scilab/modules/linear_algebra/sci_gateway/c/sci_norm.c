@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,6 +21,7 @@
 #include "localization.h"
 #include "sci_malloc.h"
 #include "norm.h"
+#include "strcmp.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_norm(char *fname, void* pvApiCtx)
@@ -172,8 +173,8 @@ int sci_norm(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        if (strcmp(pflagChar, "inf") != 0 && strcmp(pflagChar, "i") != 0 &&
-                strcmp(pflagChar, "fro") != 0 && strcmp(pflagChar, "f") != 0) // flag must be = "inf", "i", "fro" or "f".
+        if (balisc_strcmp(pflagChar, "inf") != 0 && balisc_strcmp(pflagChar, "i") != 0 &&
+                balisc_strcmp(pflagChar, "fro") != 0 && balisc_strcmp(pflagChar, "f") != 0) // flag must be = "inf", "i", "fro" or "f".
         {
             Scierror(116, _("%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"), fname, 2, "i", "inf", "f", "fro");
             freeAllocatedSingleString(pflagChar);
