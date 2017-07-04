@@ -37,6 +37,7 @@
 #include "os_string.h"
 #include "Sciwarning.h"
 #include "strlen.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory);
@@ -274,7 +275,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
     while ((ent = readdir(dir)) != NULL)
     {
         char *filename = NULL;
-        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0)
+        if (balisc_strcmp(ent->d_name, ".") == 0 || balisc_strcmp(ent->d_name, "..") == 0)
         {
             continue ;
         }
