@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
@@ -20,6 +20,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "strcmp.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_number_properties(char *fname, void* pvApiCtx)
@@ -55,35 +56,35 @@ int sci_number_properties(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if (strcmp(pstData[0], "eps") == 0)
+    if (balisc_strcmp(pstData[0], "eps") == 0)
     {
         dblRet = nc_eps();
     }
-    else if (strcmp(pstData[0], "huge") == 0)
+    else if (balisc_strcmp(pstData[0], "huge") == 0)
     {
         dblRet = nc_double_max();
     }
-    else if (strcmp(pstData[0], "tiny") == 0)
+    else if (balisc_strcmp(pstData[0], "tiny") == 0)
     {
         dblRet = nc_double_min();
     }
-    else if (strcmp(pstData[0], "radix") == 0)
+    else if (balisc_strcmp(pstData[0], "radix") == 0)
     {
         dblRet = nc_base();
     }
-    else if (strcmp(pstData[0], "digits") == 0)
+    else if (balisc_strcmp(pstData[0], "digits") == 0)
     {
         dblRet = nc_num_mantissa_digits();
     }
-    else if (strcmp(pstData[0], "minexp") == 0)
+    else if (balisc_strcmp(pstData[0], "minexp") == 0)
     {
         dblRet = nc_exp_min();
     }
-    else if (strcmp(pstData[0], "maxexp") == 0)
+    else if (balisc_strcmp(pstData[0], "maxexp") == 0)
     {
         dblRet = nc_exp_max();
     }
-    else if (strcmp(pstData[0], "denorm") == 0)
+    else if (balisc_strcmp(pstData[0], "denorm") == 0)
     {
         bBoolFlag = 1;
         if (nc_double_min() / nc_base() > 0)
@@ -95,7 +96,7 @@ int sci_number_properties(char *fname, void* pvApiCtx)
             bRet	= 0;
         }
     }
-    else if (strcmp(pstData[0], "tiniest") == 0)
+    else if (balisc_strcmp(pstData[0], "tiniest") == 0)
     {
         double dblRadix = nc_base();
         dblRet = nc_double_min();
