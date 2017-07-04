@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2006-2008 - DIGITEO - Bruno JOFRET
- *  Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -62,6 +62,7 @@ extern "C"
 #ifdef ENABLE_MPI
 #include "initMPI.h"
 #endif
+#include "strcmp.h"
 }
 
 /*
@@ -113,47 +114,47 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
 
     for (i = 1; i < argc; ++i)
     {
-        if (!strcmp("--parse-trace", argv[i]))
+        if (!balisc_strcmp("--parse-trace", argv[i]))
         {
             _pSEI->iParseTrace = 1;
         }
-        else if (!strcmp("--pretty-print", argv[i]))
+        else if (!balisc_strcmp("--pretty-print", argv[i]))
         {
             _pSEI->iPrintAst = 1;
         }
-        else if (!strcmp("--help", argv[i]))
+        else if (!balisc_strcmp("--help", argv[i]))
         {
             usage();
             exit(WELL_DONE);
         }
-        else if (!strcmp("--AST-trace", argv[i]))
+        else if (!balisc_strcmp("--AST-trace", argv[i]))
         {
             _pSEI->iDumpAst = 1;
         }
-        else if (!strcmp("--no-exec", argv[i]))
+        else if (!balisc_strcmp("--no-exec", argv[i]))
         {
             _pSEI->iExecAst = 0;
         }
-        else if (!strcmp("--context-dump", argv[i]))
+        else if (!balisc_strcmp("--context-dump", argv[i]))
         {
             _pSEI->iDumpStack = 1;
         }
-        else if (!strcmp("--timed", argv[i]))
+        else if (!balisc_strcmp("--timed", argv[i]))
         {
             _pSEI->iTimed = 1;
             ConfigVariable::setTimed(true);
         }
-        else if (!strcmp("--serialize", argv[i]))
+        else if (!balisc_strcmp("--serialize", argv[i]))
         {
             _pSEI->iSerialize = 1;
             ConfigVariable::setSerialize(true);
         }
-        else if (!strcmp("--AST-timed", argv[i]))
+        else if (!balisc_strcmp("--AST-timed", argv[i]))
         {
             std::cout << "Timed execution" << std::endl;
             _pSEI->iAstTimed = 1;
         }
-        else if (!strcmp("--parse-file", argv[i]))
+        else if (!balisc_strcmp("--parse-file", argv[i]))
         {
             i++;
             if (argc >= i)
@@ -161,11 +162,11 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->pstParseFile = argv[i];
             }
         }
-        else if (!strcmp("-quit", argv[i]))
+        else if (!balisc_strcmp("-quit", argv[i]))
         {
             _pSEI->iForceQuit = 1;
         }
-        else if (!strcmp("-version", argv[i]))
+        else if (!balisc_strcmp("-version", argv[i]))
         {
             i++;
             if (argc >= i)
@@ -173,7 +174,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->iShowVersion = 1;
             }
         }
-        else if (!strcmp("-f", argv[i]))
+        else if (!balisc_strcmp("-f", argv[i]))
         {
             i++;
             if (argc >= i)
@@ -181,7 +182,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->pstFile = argv[i];
             }
         }
-        else if (!strcmp("-e", argv[i]))
+        else if (!balisc_strcmp("-e", argv[i]))
         {
             i++;
             if (argc >= i)
@@ -189,7 +190,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->pstExec = argv[i];
             }
         }
-        else if (!strcmp("-O", argv[i]))
+        else if (!balisc_strcmp("-O", argv[i]))
         {
             i++;
             if (argc >= i)
@@ -198,7 +199,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->iCodeAction = 0;
             }
         }
-        else if (!strcmp("-X", argv[i]))
+        else if (!balisc_strcmp("-X", argv[i]))
         {
             i++;
             if (argc >= i)
@@ -207,7 +208,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->iCodeAction = 1;
             }
         }
-        else if (!strcmp("-P", argv[i]))
+        else if (!balisc_strcmp("-P", argv[i]))
         {
             i++;
             if (argc >= i)
@@ -216,7 +217,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->iCodeAction = 2;
             }
         }
-        else if (!strcmp("-l", argv[i]))
+        else if (!balisc_strcmp("-l", argv[i]))
         {
             i++;
             if (argc >= i)
@@ -224,34 +225,34 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
                 _pSEI->pstLang = argv[i];
             }
         }
-        else if (!strcmp("-nw", argv[i]))
+        else if (!balisc_strcmp("-nw", argv[i]))
         {
             _pSEI->iConsoleMode = 1;
         }
-        else if (!strcmp("-nwni", argv[i]))
+        else if (!balisc_strcmp("-nwni", argv[i]))
         {
             _pSEI->iConsoleMode = 1;
             _pSEI->iNoJvm = 1;
         }
-        else if (!strcmp("-ns", argv[i]))
+        else if (!balisc_strcmp("-ns", argv[i]))
         {
             _pSEI->iNoStart = 1;
         }
-        else if (!strcmp("-nb", argv[i]))
+        else if (!balisc_strcmp("-nb", argv[i]))
         {
             _pSEI->iNoBanner = 0;
         }
-        else if (!strcmp("--exec-verbose", argv[i]))
+        else if (!balisc_strcmp("--exec-verbose", argv[i]))
         {
             _pSEI->iExecVerbose = 1;
         }
-        else if (!strcmp("-nocolor", argv[i]))
+        else if (!balisc_strcmp("-nocolor", argv[i]))
         {
 #ifndef _MSC_VER
             setCLIColor(FALSE);
 #endif
         }
-        else if (!strcmp("--timeout", argv[i]))
+        else if (!balisc_strcmp("--timeout", argv[i]))
         {
             i++;
             if (argc > i)
@@ -292,11 +293,11 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
             }
 
         }
-        else if (!strcmp("-keepconsole", argv[i]))
+        else if (!balisc_strcmp("-keepconsole", argv[i]))
         {
             _pSEI->iKeepConsole = 1;
         }
-        else if (!strcmp("--webmode", argv[i]))
+        else if (!balisc_strcmp("--webmode", argv[i]))
         {
             _pSEI->iWebMode = 1;
         }
