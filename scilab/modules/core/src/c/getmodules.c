@@ -29,6 +29,7 @@
 #include "os_string.h"
 #include "getshortpathname.h"
 #include "strlen.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 static struct MODULESLIST *ScilabModules = NULL;
 /*--------------------------------------------------------------------------*/
@@ -205,7 +206,7 @@ static BOOL AppendModules(char *xmlfilename)
                         {
                             /* we found the tag activate */
                             const char *str = (const char*)attrib->children->content;
-                            if (stricmp(str, "yes") == 0 || strcmp(str, "1") == 0)
+                            if (stricmp(str, "yes") == 0 || balisc_strcmp(str, "1") == 0)
                             {
                                 activate = 1;
                             }
