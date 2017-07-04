@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,6 +15,7 @@
 
 #include "norm.h"
 #include "sci_malloc.h"
+#include "strcmp.h"
 
 #ifdef _MSC_VER
 int la_isinf(double dbl)
@@ -51,7 +52,7 @@ double normString (double *A, int iRows, int iCols, char *flag)
     double ret = 0;
     double *work = NULL;
 
-    if (strcmp(flag, "inf") == 0 || strcmp(flag, "i") == 0)
+    if (balisc_strcmp(flag, "inf") == 0 || balisc_strcmp(flag, "i") == 0)
     {
         work = (double *)CALLOC(Max(1, iRows), sizeof(double));
 
@@ -62,7 +63,7 @@ double normString (double *A, int iRows, int iCols, char *flag)
         return ret;
     }
 
-    if (strcmp(flag, "fro") == 0 || strcmp(flag, "f") == 0)
+    if (balisc_strcmp(flag, "fro") == 0 || balisc_strcmp(flag, "f") == 0)
     {
         // Call Lapack routine for computation of the Frobenius norm.
         ret = C2F(dlange)("F", &iRows, &iCols, A, &iRows, NULL);
@@ -78,7 +79,7 @@ double normStringC (doublecomplex *A, int iRows, int iCols, char *flag)
     double ret = 0;
     double *work = NULL;
 
-    if (strcmp(flag, "inf") == 0 || strcmp(flag, "i") == 0)
+    if (balisc_strcmp(flag, "inf") == 0 || balisc_strcmp(flag, "i") == 0)
     {
         work = (double *)MALLOC(Max(1, iRows) * sizeof(double));
 
@@ -89,7 +90,7 @@ double normStringC (doublecomplex *A, int iRows, int iCols, char *flag)
         return ret;
     }
 
-    if (strcmp(flag, "fro") == 0 || strcmp(flag, "f") == 0)
+    if (balisc_strcmp(flag, "fro") == 0 || balisc_strcmp(flag, "f") == 0)
     {
         // Call Lapack routine for computation of the Frobenius norm.
         ret = C2F(zlange)("F", &iRows, &iCols, A, &iRows, NULL);
