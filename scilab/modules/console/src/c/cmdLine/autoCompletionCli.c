@@ -455,7 +455,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
 
         completionDictionaryFields = completionOnFields(lineBeforeCaret, defaultPattern, &sizecompletionDictionaryFields);
 
-        if (!completionDictionaryFields && strcmp(defaultPattern, ""))
+        if (!completionDictionaryFields && (defaultPattern[0] != '\0'))
         {
             completionDictionaryFunctions = completionOnFunctions(defaultPattern, &sizecompletionDictionaryFunctions);
             completionDictionaryCommandWords = completionOnCommandWords(defaultPattern, &sizecompletionDictionaryCommandWords);
