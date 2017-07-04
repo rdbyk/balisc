@@ -3,8 +3,8 @@
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +26,8 @@
 #include "api_scilab.h"
 #include "localization.h"
 #include "os_string.h"
+#include "strlen.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 static int commonFindLabel(void* _pvCtx, int * _piAddress, char const * const _pstLabelToFind);
 static int commonFindLabelPartial(void* _pvCtx, int * _piAddress, char const * const _pstLabelToFind);
@@ -74,7 +76,7 @@ int checkPList(void* _pvCtx, int * _piAddress)
             label_list[i] = (char *)MALLOC((len_label[i] + 1) * sizeof(char));
         }
         _SciErr = getMatrixOfStringInList(_pvCtx, _piAddress, 1, &m_label, &n_label, len_label, label_list);
-        if (strcmp(label_list[0], "plist") != 0)
+        if (balisc_strcmp(label_list[0], "plist") != 0)
         {
             if (len_label)
             {
@@ -491,7 +493,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
                 for (i = 0; i < nb_value_to_check; i++)
                 {
                     value_to_check = va_arg(vl, char *);
-                    check_res = check_res || (strcmp(value_to_check, *_pstValue) == 0);
+                    check_res = check_res || (balisc_strcmp(value_to_check, *_pstValue) == 0);
                 }
 
                 if (!check_res)
@@ -1076,7 +1078,7 @@ static int commonFindLabelPartial(void* _pvCtx, int * _piAddress, char const * c
             /* A bug in scilab: if the mlist contains only the type, the C API returns m_label*n_label==2 !! */
             if (label_list[i] != NULL)
             {
-                if (strncmp(label_list[i], _pstLabelToFind, strlen(_pstLabelToFind)) == 0)
+                if (strncmp(label_list[i], _pstLabelToFind, balisc_strlen(_pstLabelToFind)) == 0)
                 {
                     Pos = i;
 
@@ -1131,7 +1133,7 @@ static int commonFindLabel(void* _pvCtx, int * _piAddress, char const * const _p
             /* A bug in scilab: if the mlist contains only the type, the C API returns m_label*n_label==2 !! */
             if (label_list[i] != NULL)
             {
-                if (strcmp(label_list[i], (char *)_pstLabelToFind) == 0)
+                if (balisc_strcmp(label_list[i], (char *)_pstLabelToFind) == 0)
                 {
                     Pos = i;
 

@@ -117,7 +117,7 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
         lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
     }
 
-    if ( (stringToAdd == NULL)  || (strcmp(stringToAdd, "") == 0) )
+    if ( (stringToAdd == NULL)  || (stringToAdd[0] == '\0') )
     {
         lengthNewLine = lencurrentline + lenstringToAddAtTheEnd;
         new_line = (char*)MALLOC(sizeof(char) * (lengthNewLine + 1));
@@ -177,7 +177,7 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
                 filePatternBuf = NULL;
             }
 
-            if ( strcmp(drv, "") || strcmp(dir, "") )
+            if ( (drv[0] != '\0') || (dir[0] != '\0') )
             {
                 /* bug 4365 */
                 /*cd SCI/modules/arnoldi/nonreg_tes */

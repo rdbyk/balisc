@@ -20,7 +20,7 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-
+#include "strcmp.h"
 
 int sci_nearfloat(char *fname, void* pvApiCtx)
 {
@@ -143,11 +143,11 @@ int sci_nearfloat(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    if (strcmp(pstData[0], "succ") == 0)
+    if (balisc_strcmp(pstData[0], "succ") == 0)
     {
         dblMode = INFINITY;
     }
-    else if (strcmp(pstData[0], "pred") == 0)
+    else if (balisc_strcmp(pstData[0], "pred") == 0)
     {
         dblMode = -INFINITY;
     }

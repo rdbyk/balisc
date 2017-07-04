@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,7 +20,7 @@
 char **searchAllDictionaries(char *somechars)
 {
     int nbrElements = 0;
-    if ( (somechars) && (strcmp(somechars, "")) )
+    if ( (somechars) && (somechars[0] != '\0') )
     {
         return completion(somechars, &nbrElements);
     }
@@ -30,7 +30,7 @@ char **searchAllDictionaries(char *somechars)
 char **searchFunctionsDictionary(char *somechars)
 {
     int nbrElements = 0;
-    if ( (somechars) && (strcmp(somechars, "")) )
+    if ( (somechars) && (somechars[0] != '\0') )
     {
         return completionOnFunctions(somechars, &nbrElements);
     }
@@ -40,7 +40,7 @@ char **searchFunctionsDictionary(char *somechars)
 char **searchCommandsDictionary(char *somechars)
 {
     int nbrElements = 0;
-    if ( (somechars) && (strcmp(somechars, "")) )
+    if ( (somechars) && (somechars[0] != '\0') )
     {
         return completionOnCommandWords(somechars, &nbrElements);
     }
@@ -50,7 +50,7 @@ char **searchCommandsDictionary(char *somechars)
 char **searchMacrosDictionary(char *somechars)
 {
     int nbrElements = 0;
-    if ( (somechars) && (strcmp(somechars, "")) )
+    if ( (somechars) && (somechars[0] != '\0') )
     {
         return completionOnMacros(somechars, &nbrElements);
     }
@@ -60,7 +60,7 @@ char **searchMacrosDictionary(char *somechars)
 char **searchVariablesDictionary(char *somechars)
 {
     int nbrElements = 0;
-    if ( (somechars) && (strcmp(somechars, "")) )
+    if ( (somechars) && (somechars[0] != '\0') )
     {
         return completionOnVariablesWithoutMacros(somechars, &nbrElements);
     }
@@ -70,7 +70,7 @@ char **searchVariablesDictionary(char *somechars)
 char **searchFilesDictionary(char *somechars)
 {
     int nbrElements = 0;
-    if ( (somechars) && (strcmp(somechars, "")) )
+    if ( (somechars) && (somechars[0] != '\0') )
     {
         return completionOnFiles(somechars, &nbrElements);
     }
@@ -80,7 +80,7 @@ char **searchFilesDictionary(char *somechars)
 char **searchFieldsDictionary(char *lineBeforeCaret, char *pattern)
 {
     int nbrElements = 0;
-    if ( (lineBeforeCaret) && (strcmp(lineBeforeCaret, "")) )
+    if ( (lineBeforeCaret) && (lineBeforeCaret[0] != '\0') )
     {
         return completionOnFields(lineBeforeCaret, pattern, &nbrElements);
     }
@@ -90,7 +90,7 @@ char **searchFieldsDictionary(char *lineBeforeCaret, char *pattern)
 char **searchHandleGraphicsPropertiesDictionary(char *somechars)
 {
     int nbrElements = 0;
-    if ( (somechars) && (strcmp(somechars, "")) )
+    if ( (somechars) && (somechars[0] != '\0') )
     {
         char *pattern = somechars;
         while (*(pattern++) == ' ')

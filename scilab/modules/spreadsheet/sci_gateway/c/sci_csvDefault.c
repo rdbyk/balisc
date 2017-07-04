@@ -30,6 +30,7 @@
 #include "gw_csv_helpers.h"
 #include "csvDefault.h"
 #include "strlen.h"
+#include "strcmp.h"
 
 // =============================================================================
 #define SEPARATOR_FIELDNAME "separator"
@@ -104,15 +105,15 @@ static int sci_csvDefault_no_rhs(char *fname, void* pvApiCtx)
 
         if (currentEol)
         {
-            if (strcmp(currentEol, MACOS9_EOL) == 0)
+            if (balisc_strcmp(currentEol, MACOS9_EOL) == 0)
             {
                 arrayOut[13] = os_strdup(MACOS9_EOL_STRING);
             }
-            else if (strcmp(currentEol, WINDOWS_EOL) == 0)
+            else if (balisc_strcmp(currentEol, WINDOWS_EOL) == 0)
             {
                 arrayOut[13] = os_strdup(WINDOWS_EOL_STRING);
             }
-            else if (strcmp(currentEol, LINUX_EOL) == 0)
+            else if (balisc_strcmp(currentEol, LINUX_EOL) == 0)
             {
                 arrayOut[13] = os_strdup(LINUX_EOL_STRING);
             }
@@ -162,40 +163,40 @@ static int sci_csvDefault_one_rhs(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    if (strcmp(fieldname, SEPARATOR_FIELDNAME) == 0)
+    if (balisc_strcmp(fieldname, SEPARATOR_FIELDNAME) == 0)
     {
         fieldvalue = os_strdup(getCsvDefaultSeparator());
     }
-    else if (strcmp(fieldname, DECIMAL_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, DECIMAL_FIELDNAME) == 0)
     {
         fieldvalue = os_strdup(getCsvDefaultDecimal());
     }
-    else if (strcmp(fieldname, CONVERSION_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, CONVERSION_FIELDNAME) == 0)
     {
         fieldvalue = os_strdup(getCsvDefaultConversion());
     }
-    else if (strcmp(fieldname, PRECISION_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, PRECISION_FIELDNAME) == 0)
     {
         fieldvalue = os_strdup(getCsvDefaultPrecision());
     }
-    else if (strcmp(fieldname, COMMENTSREGEXP_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, COMMENTSREGEXP_FIELDNAME) == 0)
     {
         fieldvalue = os_strdup(getCsvDefaultCommentsRegExp());
     }
-    else if (strcmp(fieldname, EOL_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, EOL_FIELDNAME) == 0)
     {
         const char *currentEol = getCsvDefaultEOL();
         if (currentEol)
         {
-            if (strcmp(currentEol, MACOS9_EOL) == 0)
+            if (balisc_strcmp(currentEol, MACOS9_EOL) == 0)
             {
                 fieldvalue = os_strdup(MACOS9_EOL_STRING);
             }
-            else if (strcmp(currentEol, WINDOWS_EOL) == 0)
+            else if (balisc_strcmp(currentEol, WINDOWS_EOL) == 0)
             {
                 fieldvalue = os_strdup(WINDOWS_EOL_STRING);
             }
-            else if (strcmp(currentEol, LINUX_EOL) == 0)
+            else if (balisc_strcmp(currentEol, LINUX_EOL) == 0)
             {
                 fieldvalue = os_strdup(LINUX_EOL_STRING);
             }
@@ -209,15 +210,15 @@ static int sci_csvDefault_one_rhs(char *fname, void* pvApiCtx)
             fieldvalue = os_strdup("ERROR");
         }
     }
-    else if (strcmp(fieldname, ENCODING_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, ENCODING_FIELDNAME) == 0)
     {
         fieldvalue = os_strdup(getCsvDefaultEncoding());
     }
-    else if (strcmp(fieldname, BLANK_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, BLANK_FIELDNAME) == 0)
     {
         fieldvalue = os_strdup(getCsvDefaultCsvIgnoreBlankLine());
     }
-    else if (strcmp(fieldname, RESET_PARAMATERS) == 0)
+    else if (balisc_strcmp(fieldname, RESET_PARAMATERS) == 0)
     {
         freeVar(&fieldname, &fieldvalue);
 
@@ -262,7 +263,7 @@ static int sci_csvDefault_two_rhs(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    if (strcmp(fieldname, PRECISION_FIELDNAME) == 0)
+    if (balisc_strcmp(fieldname, PRECISION_FIELDNAME) == 0)
     {
         if (csv_isEmpty(pvApiCtx, 2))
         {
@@ -317,37 +318,37 @@ static int sci_csvDefault_two_rhs(char *fname, void* pvApiCtx)
         }
     }
 
-    if (strcmp(fieldname, SEPARATOR_FIELDNAME) == 0)
+    if (balisc_strcmp(fieldname, SEPARATOR_FIELDNAME) == 0)
     {
         resultSet = setCsvDefaultSeparator(fieldvalue);
     }
-    else if (strcmp(fieldname, DECIMAL_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, DECIMAL_FIELDNAME) == 0)
     {
         resultSet = setCsvDefaultDecimal(fieldvalue);
     }
-    else if (strcmp(fieldname, CONVERSION_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, CONVERSION_FIELDNAME) == 0)
     {
         resultSet = setCsvDefaultConversion(fieldvalue);
     }
-    else if (strcmp(fieldname, PRECISION_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, PRECISION_FIELDNAME) == 0)
     {
         resultSet = setCsvDefaultPrecision(fieldvalue);
     }
-    else if (strcmp(fieldname, COMMENTSREGEXP_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, COMMENTSREGEXP_FIELDNAME) == 0)
     {
         resultSet = setCsvDefaultCommentsRegExp(fieldvalue);
     }
-    else if (strcmp(fieldname, EOL_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, EOL_FIELDNAME) == 0)
     {
-        if (strcmp(fieldvalue, MACOS9_EOL_STRING) == 0)
+        if (balisc_strcmp(fieldvalue, MACOS9_EOL_STRING) == 0)
         {
             resultSet = setCsvDefaultEOL(MACOS9_EOL);
         }
-        else if (strcmp(fieldvalue, WINDOWS_EOL_STRING) == 0)
+        else if (balisc_strcmp(fieldvalue, WINDOWS_EOL_STRING) == 0)
         {
             resultSet = setCsvDefaultEOL(WINDOWS_EOL);
         }
-        else if (strcmp(fieldvalue, LINUX_EOL_STRING) == 0)
+        else if (balisc_strcmp(fieldvalue, LINUX_EOL_STRING) == 0)
         {
             resultSet = setCsvDefaultEOL(LINUX_EOL);
         }
@@ -356,11 +357,11 @@ static int sci_csvDefault_two_rhs(char *fname, void* pvApiCtx)
             resultSet = 1;
         }
     }
-    else if (strcmp(fieldname, ENCODING_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, ENCODING_FIELDNAME) == 0)
     {
         resultSet = setCsvDefaultEncoding(fieldvalue);
     }
-    else if (strcmp(fieldname, BLANK_FIELDNAME) == 0)
+    else if (balisc_strcmp(fieldname, BLANK_FIELDNAME) == 0)
     {
         resultSet = setCsvDefaultCsvIgnoreBlankLine(fieldvalue);
     }

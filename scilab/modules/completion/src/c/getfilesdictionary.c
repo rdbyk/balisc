@@ -23,6 +23,7 @@
 #include "expandPathVariable.h"
 #include "machine.h"
 #include "isdir.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 static void mysplitpath(char *composite,  char *path,  char *fname);
 static char **addPath(char **dictionary, int sizearray, char *path);
@@ -30,7 +31,7 @@ static char **addDirSeparator(char **dictionary, int sizearray, char *path);
 /*--------------------------------------------------------------------------*/
 static int cmpfiles( const void *a , const void *b)
 {
-    return strcmp(*(const char **)a, *(const char **)b );
+    return balisc_strcmp(*(const char **)a, *(const char **)b );
 }
 /*--------------------------------------------------------------------------*/
 char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
@@ -52,7 +53,7 @@ char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
 
         mysplitpath(somechars, pathname, filename);
 
-        if ( strcmp(pathname, "") == 0 )
+        if (pathname[0] == '\0')
         {
             /* current path */
             int ierr = 0;
@@ -70,7 +71,7 @@ char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
             strcpy(path, pathname);
         }
 
-        if ( strcmp(filename, "") == 0 )
+        if (filename[0] == '\0')
         {
             /* no filename */
             strcpy(filespec, "*");

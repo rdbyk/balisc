@@ -33,6 +33,7 @@
 #include "mopen.h"
 #include "mclose.h"
 #include "strlen.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 #define EOL "\n"
 #define NanString "Nan"
@@ -376,9 +377,9 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
 
                     if ((ierr != 0) && (ierr != EOF))
                     {
-                        if ( (strcmp(str, NanString) == 0) ||
-                                (strcmp(str, NegInfString) == 0) ||
-                                (strcmp(str, InfString) == 0) )
+                        if ( (balisc_strcmp(str, NanString) == 0) ||
+                                (balisc_strcmp(str, NegInfString) == 0) ||
+                                (balisc_strcmp(str, InfString) == 0) )
                         {
                             nbColums++;
                         }
@@ -630,21 +631,21 @@ static double *getDoubleValuesInLine(char *line,
                     ierr = sscanf(splittedStr[i], "%4s", str);
                     if ((ierr != 0) && (ierr != EOF))
                     {
-                        if ( (strcmp(str, NanString) == 0) ||
-                                (strcmp(str, NegInfString) == 0) ||
-                                (strcmp(str, InfString) == 0) )
+                        if ( (balisc_strcmp(str, NanString) == 0) ||
+                                (balisc_strcmp(str, NegInfString) == 0) ||
+                                (balisc_strcmp(str, InfString) == 0) )
                         {
-                            if (strcmp(str, NanString) == 0)
+                            if (balisc_strcmp(str, NanString) == 0)
                             {
                                 dValues[i] = returnNAN();
                             }
 
-                            if (strcmp(str, NegInfString) == 0)
+                            if (balisc_strcmp(str, NegInfString) == 0)
                             {
                                 dValues[i] = returnINF(FALSE);
                             }
 
-                            if (strcmp(str, InfString) == 0)
+                            if (balisc_strcmp(str, InfString) == 0)
                             {
                                 dValues[i] = returnINF(TRUE);
                             }
@@ -769,7 +770,7 @@ static char **removeEmptyLinesAtTheEnd(char **lines, int *sizelines)
         {
             if (lines[i])
             {
-                if ( (strcmp(lines[i], "") == 0) || (isOnlyBlankLine(lines[i])) )
+                if ( (lines[i][0] == '\0') || (isOnlyBlankLine(lines[i])) )
                 {
                     FREE(lines[i]);
                     lines[i] = NULL;

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,6 +16,7 @@
 #include <string.h>
 #include "toolsdictionary.h"
 #include "sci_malloc.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 /**
 * merge two strings array
@@ -69,7 +70,7 @@ static char **mergearrays(char **array1, int pos, char **array2, int sizearray2)
 /*--------------------------------------------------------------------------*/
 static int comparewords(const void *a, const void *b)
 {
-    return (strcmp(*(char **)a, *(char **)b));
+    return (balisc_strcmp(*(char **)a, *(char **)b));
 }
 
 /*--------------------------------------------------------------------------*/
@@ -91,7 +92,7 @@ char **RemoveDuplicateDictionary(char **Strings, int *SizeStrings)
 
         for (i = j = 0; i < *SizeStrings - 1; i++)
         {
-            if (strcmp(Strings[i], Strings[i + 1]))
+            if (balisc_strcmp(Strings[i], Strings[i + 1]))
             {
                 Strings[j++] = Strings[i];
             }

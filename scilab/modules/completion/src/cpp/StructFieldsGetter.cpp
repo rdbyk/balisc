@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,6 +21,7 @@ extern "C"
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 #include "sci_malloc.h"
+#include "strcmp.h"
 }
 
 namespace org_modules_completion
@@ -88,7 +89,7 @@ const char ** StructFieldsGetter::getFieldsName(int * mlist, char ** fieldPath, 
 
     for (int i = 2; i < rc; i++)
     {
-        if (!strcmp(pstData[i], fieldPath[0]))
+        if (!balisc_strcmp(pstData[i], fieldPath[0]))
         {
             freeArrayOfString(pstData, rc);
             int * itemAddr = 0;

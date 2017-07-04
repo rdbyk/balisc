@@ -19,6 +19,7 @@
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "strlen.h"
+#include "strcmp.h"
 
 #define EMPTYFIELD "__EMPTY_FIELD_CSV__"
 #define DOUBLE_QUOTE '"'
@@ -38,7 +39,7 @@ static int addToken(char **tokens, int *tokenIdx, const char* tokenValue, int to
         memcpy(token, tokenValue, tokenLen);
         token[tokenLen] = 0;
 
-        if (strcmp(token, EMPTYFIELD) == 0)
+        if (balisc_strcmp(token, EMPTYFIELD) == 0)
         {
             strcpy(token, "");
         }

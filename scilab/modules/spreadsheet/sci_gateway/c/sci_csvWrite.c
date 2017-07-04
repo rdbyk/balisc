@@ -30,6 +30,7 @@
 #include "gw_csv_helpers.h"
 #include "os_string.h"
 #include "strlen.h"
+#include "strcmp.h"
 
 static void freeVar(char** separator, char** decimal, char** filename, char** precisionFormat, char*** pHeadersLines, int sizeHeader);
 // =============================================================================
@@ -147,7 +148,7 @@ int sci_csvWrite(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        if (strcmp(decimal, ".") && strcmp(decimal, ","))
+        if (balisc_strcmp(decimal, ".") && balisc_strcmp(decimal, ","))
         {
             //invalid value
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "write_csv", 4, ".", ",");

@@ -150,7 +150,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     ConfigVariable::setStartProcessing(true);
 
     // ignore -e argument if the command is empty
-    if (_pSEI->pstExec && strcmp(_pSEI->pstExec, "") == 0)
+    if (_pSEI->pstExec &&  (_pSEI->pstExec)[0] == '\0')
     {
         _pSEI->pstExec = NULL;
     }
@@ -726,7 +726,7 @@ void* scilabReadAndStore(void* param)
             if (command == NULL)
             {
                 command = pstRead;
-                if (strcmp(command, "") == 0)
+                if (command[0] == '\0')
                 {
                     FREE(command);
                     command = NULL;
