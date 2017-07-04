@@ -23,6 +23,7 @@
 #define OLE_SECTORID_MSAT	-4 /** Sector used by master sector allocation Table **/
 
 #include "sci_malloc.h"             /* MALLOC */
+#include "strcmp.h"
 
 /* Main header accessors*/
 #define header_id(x)						((x) +0)
@@ -1883,7 +1884,7 @@ int OLE_decode_stream(struct OLE_object *ole, struct OLE_directory_entry *adir, 
 
     /* Added for Scilab */
     if ((stream_data != NULL) && (decode_result == OLEUW_STREAM_NOT_DECODED) &&
-            (ole->save_unknown_streams == 2) && ((strcmp(element_name, "Workbook") == 0) || (strcmp(element_name, "Book") == 0)))
+            (ole->save_unknown_streams == 2) && ((balisc_strcmp(element_name, "Workbook") == 0) || (balisc_strcmp(element_name, "Book") == 0)))
     {
         strcpy(element_name, "Workbook");
         OLE_store_stream(ole, element_name, decode_path, stream_data, adir->stream_size);
@@ -2098,7 +2099,7 @@ int OLE_decode_file(struct OLE_object *ole, char *fname, char *decode_path)
             memset(element_name, '\0', 64);
             OLE_dbstosbs(adir->element_name, adir->element_name_byte_count, element_name, 64);
 
-            if ((strcmp(element_name, "Workbook") == 0) || (strcmp(element_name, "Book") == 0))
+            if ((balisc_strcmp(element_name, "Workbook") == 0) || (balisc_strcmp(element_name, "Book") == 0))
             {
                 OLE_decode_stream(ole, adir, decode_path);
             }
