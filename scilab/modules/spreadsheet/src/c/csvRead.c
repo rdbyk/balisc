@@ -32,6 +32,7 @@
 #include "strsubst.h"
 #include "Sciwarning.h"
 #include "strlen.h"
+#include "strcmp.h"
 // =============================================================================
 #if _MSC_VER
 #define READ_ONLY_TEXT_MODE "rt"
@@ -232,7 +233,7 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
     char **cleanedLines = NULL;
     int nbLines = numberOfLines;
 
-    if (strcmp(separator, decimal) == 0)
+    if (balisc_strcmp(separator, decimal) == 0)
     {
         result = (csvResult*)(MALLOC(sizeof(csvResult)));
         if (result)
@@ -250,7 +251,7 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
     // ticket 472
     {
         const char *blankMode = getCsvDefaultCsvIgnoreBlankLine();
-        if (strcmp(blankMode, "on") == 0)
+        if (balisc_strcmp(blankMode, "on") == 0)
         {
             char **tmpLines = removeAllBlankLines(lines, &nbLines);
             if (tmpLines)
