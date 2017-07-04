@@ -30,6 +30,7 @@
 #include "gw_csv_helpers.h"
 #include "os_string.h"
 #include "strlen.h"
+#include "strcmp.h"
 
 static void freeVar(char** separator, char** decimal, char** filename, char** precisionFormat, char*** pHeadersLines, int sizeHeader);
 // =============================================================================
