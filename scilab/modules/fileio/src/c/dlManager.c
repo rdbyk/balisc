@@ -35,6 +35,7 @@
 #include "os_string.h"
 #include "freeArrayOfString.h"
 #include "strlen.h"
+#include "strcmp.h"
 /* ==================================================================== */
 #ifndef HAVE_BASENAME
 static char *Curl_basename(char *path);
@@ -99,7 +100,7 @@ static char *getFileNameFromURL(char *url)
         return NULL;
     }
 
-    if (c->path == NULL || strstr(c->path, "/") == 0 || strcmp(c->path, "/") == 0)
+    if (c->path == NULL || strstr(c->path, "/") == 0 || balisc_strcmp(c->path, "/") == 0)
     {
         filename = (char *)MALLOC((balisc_strlen(DEFAULT_FILENAME) + 1) * sizeof(char));
         strcpy(filename, DEFAULT_FILENAME);
