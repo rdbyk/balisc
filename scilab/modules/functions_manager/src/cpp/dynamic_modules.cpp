@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "dynamic_modules.hxx"
 #include "context.hxx"
@@ -33,8 +33,13 @@ extern "C"
 vectGateway loadGatewaysName(const std::wstring& _wstModuleName)
 {
     vectGateway vect;
-    std::wstring wstPath = ConfigVariable::getSCIPath();
-    std::wstring wstModuleName = wstPath + L"/modules/" + _wstModuleName + L"/sci_gateway/" + _wstModuleName + L"_gateway.xml";
+    
+    std::wstring wstModuleName = ConfigVariable::getSCIPath();
+    wstModuleName += L"/modules/";
+    wstModuleName += _wstModuleName;
+    wstModuleName += L"/sci_gateway/";
+    wstModuleName += _wstModuleName;
+    wstModuleName += L"_gateway.xml";
 
     char* pstModuleName = wide_string_to_UTF8(wstModuleName.c_str());
 
