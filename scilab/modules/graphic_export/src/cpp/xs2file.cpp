@@ -3,9 +3,8 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * desc : interface for xs2file routine
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,6 +36,7 @@ extern "C"
 #include "HandleManagement.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "strcmp.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -213,12 +213,12 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                     {
                         /* Value should be 'landscape' or 'portrait' but check only the first character */
                         /* for compatibility with Scilab 4*/
-                        if (strcmp(sciOrientation[0], "landscape") == 0 || strcmp(sciOrientation[0], "l") == 0)
+                        if (balisc_strcmp(sciOrientation[0], "landscape") == 0 || balisc_strcmp(sciOrientation[0], "l") == 0)
                         {
                             freeAllocatedMatrixOfString(nbRow, nbCol, sciOrientation);
                             orientation = EXPORT_LANDSCAPE;
                         }
-                        else if (strcmp(sciOrientation[0], "portrait") == 0 || strcmp(sciOrientation[0], "p") == 0)
+                        else if (balisc_strcmp(sciOrientation[0], "portrait") == 0 || balisc_strcmp(sciOrientation[0], "p") == 0)
                         {
                             freeAllocatedMatrixOfString(nbRow, nbCol, sciOrientation);
                             orientation = EXPORT_PORTRAIT;
@@ -284,7 +284,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
             }
 
             /* treat errors */
-            if (strlen(status) != 0)
+            if (status[0] != '\0')
             {
                 Scierror(999, _("%s: %s\n"), fname, status);
                 delete[] status;
