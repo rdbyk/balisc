@@ -29,13 +29,14 @@
 #include "FileExist.h"
 #include "GetXmlFileEncoding.h"
 #include "os_string.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 BOOL loadOnUseClassPath(char const* tag)
 {
     BOOL bOK = FALSE;
     char *sciPath = getSCI();
-
-    char *classpathfile = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(XMLCLASSPATH) + 1));
+    size_t len_sciPath = balisc_strlen(sciPath);
+    char *classpathfile = (char*)MALLOC(sizeof(char) * (len_sciPath + balisc_strlen(XMLCLASSPATH) + 1));
 
     sprintf(classpathfile, XMLCLASSPATH, sciPath);
 
@@ -53,7 +54,7 @@ BOOL loadOnUseClassPath(char const* tag)
          * load="onUse" and the tag we are looking for
          */
 #define XPATH "//classpaths/path[@load='onUse']/load[@on='%s']"
-        XPath = (char*)MALLOC(sizeof(char) * (strlen(XPATH)  + strlen(tag) - 2 + 1)); /* -2 = strlen(%s) */
+        XPath = (char*)MALLOC(sizeof(char) * (balisc_strlen(XPATH)  + balisc_strlen(tag) - 2 + 1)); /* -2 = strlen(%s) */
         sprintf(XPath, XPATH, tag);
 
         doc = getClassPathxmlDocPtr();
@@ -62,11 +63,7 @@ BOOL loadOnUseClassPath(char const* tag)
         {
             fprintf(stderr, _("Error: could not parse file %s\n"), classpathfile);
             FREE(XPath);
-            XPath = NULL;
-
             FREE(classpathfile);
-            classpathfile = NULL;
-
             FREE(sciPath);
             return bOK;
         }
@@ -95,7 +92,7 @@ BOOL loadOnUseClassPath(char const* tag)
 
                         if (strncmp(classpath, KEYWORDSCILAB, /*strlen(KEYWORDSCILAB)*/ 7) == 0)
                         {
-                            FullClasspath = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(classpath) + 1));
+                            FullClasspath = (char*)MALLOC(sizeof(char) * (len_sciPath + balisc_strlen(classpath) + 1));
                             if (FullClasspath)
                             {
                                 strcat(stpcpy(FullClasspath, sciPath),
@@ -126,8 +123,6 @@ BOOL loadOnUseClassPath(char const* tag)
             xmlXPathFreeContext(xpathCtxt);
         }
         FREE(XPath);
-        XPath = NULL;
-
     }
     else
     {
@@ -135,9 +130,7 @@ BOOL loadOnUseClassPath(char const* tag)
     }
 
     FREE(classpathfile);
-    classpathfile = NULL;
     FREE(sciPath);
-    sciPath = NULL;
 
     return FALSE;
 }

@@ -53,7 +53,7 @@ void C2F(getfileinfo)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char 
     }
     else
     {
-        strcpy(filename, "");
+        filename[0] = '\0';
     }
 
     *lf = (int)balisc_strlen(filename);

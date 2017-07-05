@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,6 +31,7 @@ extern "C"
 #include "localization.h"
 #include "configvariable_interface.h"
 #include "charEncoding.h"
+#include "strlen.h"
 }
 /*--------------------------------------------------------------------------*/
 /*===============================================
@@ -122,8 +123,11 @@ void mput2 (FILE *fa, int swap, double *res, int n, char *type, int *ierr)
     char c1, c2;
     int i;
     *ierr = 0;
-    c1 = ( strlen(type) > 1) ? type[1] : ' ';
-    c2 = ( strlen(type) > 2) ? type[2] : ' ';
+    size_t len_type = balisc_strlen(type);
+    
+    c1 = (len_type > 1) ? type[1] : ' ';
+    c2 = (len_type > 2) ? type[2] : ' ';
+
     switch ( type[0] )
     {
         case 'i' :

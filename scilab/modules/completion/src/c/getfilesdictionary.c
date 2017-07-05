@@ -23,6 +23,7 @@
 #include "expandPathVariable.h"
 #include "machine.h"
 #include "isdir.h"
+#include "strlen.h"
 #include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 static void mysplitpath(char *composite,  char *path,  char *fname);
@@ -157,11 +158,13 @@ static void mysplitpath(char *composite,  char *path,  char *fname)
 /*--------------------------------------------------------------------------*/
 static char **addPath(char **dictionary, int sizearray, char *path)
 {
+    size_t len_path = balisc_strlen(path);
+    
     int i = 0;
     for (i = 0; i < sizearray; i++)
     {
         char *newPath = NULL;
-        int newlength = (int)(strlen(dictionary[i]) + strlen(path) + 1);
+        int newlength = (int)(balisc_strlen(dictionary[i]) + len_path + 1);
         newPath = (char *)MALLOC(sizeof(char) * (newlength));
         sprintf(newPath, "%s%s", path, dictionary[i]);
         FREE(dictionary[i]);
@@ -172,11 +175,14 @@ static char **addPath(char **dictionary, int sizearray, char *path)
 /*--------------------------------------------------------------------------*/
 static char **addDirSeparator(char **dictionary, int sizearray, char *path)
 {
+    size_t len_DIR_SEPARATOR = balisc_strlen(DIR_SEPARATOR);
+    
     int i = 0;
     for (i = 0; i < sizearray; i++)
     {
         char *pathextended = NULL;
         char fullpath[PATH_MAX * 2];
+        size_t len_dictionary_i = balisc_strlen(dictionary[i]);
 
         pathextended = expandPathVariable(path);
         if (pathextended)
@@ -188,10 +194,10 @@ static char **addDirSeparator(char **dictionary, int sizearray, char *path)
             strcpy(fullpath, dictionary[i]);
         }
 
-        if ( isdir(fullpath) && (dictionary[i][strlen(dictionary[i]) - 1] != DIR_SEPARATOR[0]) )
+        if ( isdir(fullpath) && (dictionary[i][len_dictionary_i - 1] != DIR_SEPARATOR[0]) )
         {
             char *newPath = NULL;
-            int newlength = (int)(strlen(dictionary[i]) + strlen(DIR_SEPARATOR) + 1);
+            int newlength = (int)(len_dictionary_i + len_DIR_SEPARATOR + 1);
             newPath = (char *)MALLOC(sizeof(char) * (newlength));
             sprintf(newPath, "%s%s", dictionary[i], DIR_SEPARATOR);
             FREE(dictionary[i]);

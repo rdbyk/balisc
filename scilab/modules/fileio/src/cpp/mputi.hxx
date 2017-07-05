@@ -1,7 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2017 - Scilab Enterprises - Antoine ELIAS
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -23,6 +24,7 @@ extern "C" {
 #include "localization.h"
 #include "islittleendian.h"
 #include "convert_tools.h"
+#include "strlen.h"
 }
 
 
@@ -40,7 +42,7 @@ int mputi(int fd, const T* _val, int size, const char* opt)
     int iUnsigned = 0;
     int iEndian = 0;
 
-    int iTypeLen = (int)strlen(opt);
+    int iTypeLen = (int)balisc_strlen(opt);
     int i;
 
     types::File *pFile = FileManager::getFile(fd);

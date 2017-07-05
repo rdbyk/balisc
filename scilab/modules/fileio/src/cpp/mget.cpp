@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,6 +32,7 @@ extern "C"
 #include "localization.h"
 #include "charEncoding.h"
 #include "sci_malloc.h"
+#include "strlen.h"
 }
 /*--------------------------------------------------------------------------*/
 /* =================================================
@@ -85,6 +86,7 @@ void C2F(mgetnc)(int* fd, void* res, int* n1, const char* type, int* ierr)
     int n       = *n1;
     FILE* fa; // used in MGET_GEN_NC => MGET_NC
     types::File* pFile = FileManager::getFile(*fd);
+    size_t len_type = balisc_strlen(type);
 
     *ierr = 0;
 
@@ -95,8 +97,8 @@ void C2F(mgetnc)(int* fd, void* res, int* n1, const char* type, int* ierr)
         return;
     }
 
-    c1 = (strlen(type) > 1) ? type[1] : ' ';
-    c2 = (strlen(type) > 2) ? type[2] : ' ';
+    c1 = (len_type > 1) ? type[1] : ' ';
+    c2 = (len_type > 2) ? type[2] : ' ';
 
     int swap = pFile->getFileSwap(); // used in MGET_GEN_NC => MGET_NC
 
@@ -178,8 +180,11 @@ void mget2(FILE *fa, int swap, double *res, int n, const char *type, int *ierr)
     char c1, c2;
     int i, items = n;
     *ierr = 0;
-    c1 = ( strlen(type) > 1) ? type[1] : ' ';
-    c2 = ( strlen(type) > 2) ? type[2] : ' ';
+    size_t len_type = balisc_strlen(type);
+    
+    c1 = (len_type > 1) ? type[1] : ' ';
+    c2 = (len_type > 2) ? type[2] : ' ';
+    
     switch ( type[0] )
     {
         case 'i' :
@@ -239,7 +244,7 @@ void mget2(FILE *fa, int swap, double *res, int n, const char *type, int *ierr)
 void C2F(mget) (int *fd, double *res, int *n, const char *type, int *ierr)
 {
     *ierr = 0;
-    if (strlen(type) == 0)
+    if (balisc_strlen(type) == 0)
     {
         sciprint(_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), "mget", 4, type);
         *ierr = 2;
