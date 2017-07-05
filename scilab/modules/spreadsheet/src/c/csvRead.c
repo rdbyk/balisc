@@ -395,8 +395,7 @@ static int getNumbersOfColumnsInLine(const char *line, const char *separator)
         }
         else
         {
-            int len = (int)balisc_strlen(line);
-            if (len > 0)
+            if (line[0] != '\0')
             {
                 nbTokens = 1;
                 return nbTokens;
