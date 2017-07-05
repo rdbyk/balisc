@@ -33,7 +33,7 @@ char* getPipeLine(void)
     }
 
     //remove trailing \n
-    len_line = (int)basic_strlen(buffer);
+    len_line = (int)balisc_strlen(buffer);
     if (buffer[len_line - 1] == '\n')
     {
         buffer[len_line - 1] = '\0';
