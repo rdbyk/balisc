@@ -275,7 +275,7 @@ static int ParseNumber(const char* tx)
         return 4;
     }
     else if (len_tx >= 3 && (strncmp(tx, "+%e", 3) == 0 || strncmp(tx, "-%e", 3) == 0 || strncmp(tx, "%pi", 3) == 0 ||
-                                 strncmp(tx, "Nan", 3) == 0 || strncmp(tx, "Inf", 3) == 0 || strncmp(tx, "%pi", 3) == 0))
+                                 strncmp(tx, "Nan", 3) == 0 || strncmp(tx, "Inf", 3) == 0))
     {
         return 3;
     }
