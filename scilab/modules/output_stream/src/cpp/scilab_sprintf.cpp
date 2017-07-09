@@ -1,10 +1,10 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
- *  Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
- *  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <cmath>
 #include <list>
+#include <cwchar>
 #include "types.hxx"
 #include "double.hxx"
 #include "string.hxx"
@@ -29,8 +30,6 @@ extern "C"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "os_string.h"
-#include "os_wtoi.h"
 #include "os_string.h"
 }
 
@@ -176,7 +175,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 //number
                 if (iswdigit(*(pwstPercent + 1)))
                 {
-                    tok->width = os_wtoi(pwstPercent + 1);
+                    tok->width = static_cast<int>(wcstol(pwstPercent + 1, NULL, 10));
                     while (iswdigit(*(pwstPercent + 1)))
                     {
                         pwstPercent++;
@@ -191,7 +190,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                 if (iswdigit(*(pwstPercent + 1)))
                 {
-                    tok->prec = os_wtoi(pwstPercent + 1);
+                    tok->prec = static_cast<int>(wcstol(pwstPercent + 1, NULL, 10));
                     while (iswdigit(*(pwstPercent + 1)))
                     {
                         pwstPercent++;

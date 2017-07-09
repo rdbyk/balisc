@@ -6,7 +6,6 @@
 
 STRING_CPP_SOURCES = \
     src/cpp/stripblanks.cpp \
-    src/cpp/os_wtoi.cpp \
     src/cpp/strcmp.cpp \
     src/cpp/strlen.cpp
 
