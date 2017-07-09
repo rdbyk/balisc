@@ -248,7 +248,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\os_wtoi.cpp" />
     <ClCompile Include="convstr.c" />
     <ClCompile Include="cvstr.c" />
     <ClCompile Include="DllMainString.c" />
@@ -313,7 +312,6 @@
     <ClInclude Include="..\..\includes\os_string.h" />
     <ClInclude Include="..\..\includes\os_wcstod.h" />
     <ClInclude Include="..\..\includes\os_wcstok.h" />
-    <ClInclude Include="..\..\includes\os_wtoi.h" />
     <ClInclude Include="..\..\includes\pcre_private.h" />
     <ClInclude Include="..\..\includes\StringConvert.h" />
     <ClInclude Include="..\..\includes\stringToDouble.h" />
