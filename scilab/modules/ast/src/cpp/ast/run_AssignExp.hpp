@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 //file included in runvisitor.cpp
 namespace ast {
@@ -132,12 +132,13 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             if (e.isVerbose() && ConfigVariable::isPrintOutput())
             {
                 std::wstring wstrName = pVar->getSymbol().getName();
-                std::wostringstream ostr;
-                ostr << L" " << wstrName << L"  = " << std::endl << std::endl;
-                scilabWriteW(ostr.str().c_str());
-                std::wostringstream ostrName;
-                ostrName << wstrName;
-                VariableToString(pIT, ostrName.str().c_str());
+                
+                std::wstring ostr(L" ");
+                ostr += wstrName.c_str();
+                ostr += L"  = \n\n";
+                scilabWriteW(ostr.c_str());
+                
+                VariableToString(pIT, wstrName.c_str());
             }
             CoverageInstance::stopChrono((void*)&e);
             return;
@@ -213,12 +214,12 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 if (e.isVerbose() && ConfigVariable::isPrintOutput())
                 {
-                    std::wostringstream ostr;
-                    ostr << L" " << *getStructNameFromExp(pCell) << L"  = " << std::endl;
-                    ostr << std::endl;
-                    scilabWriteW(ostr.str().c_str());
+                    std::wstring ostr(L" ");
+                    ostr += (*getStructNameFromExp(pCell)).c_str();
+                    ostr += L"  = \n\n";
+                    scilabWriteW(ostr.c_str());
 
-                    VariableToString(pOut, ostr.str().c_str());
+                    VariableToString(pOut, ostr.c_str());
                 }
             }
             else
@@ -383,14 +384,14 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (e.isVerbose() && ConfigVariable::isPrintOutput())
             {
-                std::wostringstream ostr;
-                ostr << L" " << *getStructNameFromExp(&pCall->getName()) << L"  = " << std::endl;
-                ostr << std::endl;
-                scilabWriteW(ostr.str().c_str());
+                std::wstring ostrName(*getStructNameFromExp(&pCall->getName()));
+                
+                std::wstring ostr(L" ");
+                ostr += ostrName.c_str();
+                ostr += L"  = \n\n";
+                scilabWriteW(ostr.c_str());
 
-                std::wostringstream ostrName;
-                ostrName << *getStructNameFromExp(&pCall->getName());
-                VariableToString(pOut, ostrName.str().c_str());
+                VariableToString(pOut, ostrName.c_str());
             }
 
             clearResult();
@@ -526,13 +527,13 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 const std::wstring *pstName = getStructNameFromExp(pField);
 
                 types::InternalType* pPrint = ctx->get(symbol::Symbol(*pstName));
-                std::wostringstream ostr;
-                ostr << L" " << *pstName << L"  = " << std::endl << std::endl;
-                scilabWriteW(ostr.str().c_str());
+                
+                std::wstring ostr(L" ");
+                ostr += (*pstName).c_str();
+                ostr += L"  = \n\n";
+                scilabWriteW(ostr.c_str());
 
-                std::wostringstream ostrName;
-                ostrName << *pstName;
-                VariableToString(pPrint, ostrName.str().c_str());
+                VariableToString(pPrint, (*pstName).c_str());
             }
 
             clearResult();
