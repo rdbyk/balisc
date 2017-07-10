@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -119,17 +119,19 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
     {
         if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPrintOutput())
         {
-            std::wostringstream ostr;
-            ostr << L" " << e.getSymbol().getName() << L"  = ";
+            std::wstring ostr(L" ");
+            
+            ostr += e.getSymbol().getName();
+            ostr += L"  = ";            
 #ifndef NDEBUG
-            ostr << L"(" << pI->getRef() << L")";
+            ostr += L"(";
+            ostr += std::to_wstring(pI->getRef());
+            ostr += L")";
 #endif
-            ostr << std::endl;
-            ostr << std::endl;
-            scilabWriteW(ostr.str().c_str());
-            std::wostringstream ostrName;
-            ostrName << e.getSymbol().getName();
-            VariableToString(pI, ostrName.str().c_str());
+            ostr += L"\n\n";
+            scilabWriteW(ostr.c_str());
+
+            VariableToString(pI, e.getSymbol().getName().c_str());
         }
 
         //check if var is recalled in current scope like
