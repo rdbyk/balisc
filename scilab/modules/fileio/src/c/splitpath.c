@@ -1,9 +1,8 @@
-/*--------------------------------------------------------------------------*/
 /*
-* ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) DIGITEO - 2009 - Allan CORNET
-*
+ * ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,19 +30,19 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 
     if (drv)
     {
-        wcscpy(drv, L"");
+        drv[0] = L'\0';
     }
     if (dir)
     {
-        wcscpy(dir, L"");
+        dir[0] = L'\0';
     }
     if (name)
     {
-        wcscpy(name, L"");
+        name[0] = L'\0';
     }
     if (ext)
     {
-        wcscpy(ext, L"");
+        ext[0] = L'\0';
     }
 
     /* pathconvert hardcoded */
@@ -194,10 +193,10 @@ void splitpath(const char* path, BOOL bExpand, char* drv, char* dir, char* name,
     wcname = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
     wcext = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX + 1));
 
-    strcpy(drv, "");
-    strcpy(dir, "");
-    strcpy(name, "");
-    strcpy(ext, "");
+    drv[0] = '\0';
+    dir[0] = '\0';
+    name[0] = '\0';
+    ext[0] = '\0';
 
     splitpathW(wcpath, bExpand, wcdrv, wcdir, wcname, wcext);
 
