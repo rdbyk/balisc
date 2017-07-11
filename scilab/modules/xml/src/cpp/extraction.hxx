@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,6 +33,7 @@ extern "C"
 #include "xml_constants.h"
 #include "localization.h"
 #include "os_string.h"
+#include "strcmp.h"
 }
 
 using namespace org_modules_xml;
@@ -103,7 +104,7 @@ int createStringOnStack(char * fname, const char * str, int pos, void* pvApiCtx)
  */
 int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, const char * field, int pos, void* pvApiCtx)
 {
-    if (!strcmp("root", field))
+    if (!balisc_strcmp("root", field))
     {
         const XMLElement * e = doc.getRoot();
         if (!e)
@@ -113,7 +114,7 @@ int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, cons
         }
         return e->createOnStack(pos, pvApiCtx);
     }
-    else if (!strcmp("url", field))
+    else if (!balisc_strcmp("url", field))
     {
         return createStringOnStack(fname, doc.getDocumentURL(), pos, pvApiCtx);
     }
@@ -135,11 +136,11 @@ int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, cons
  */
 int createVariableOnStack(char * fname, XMLElement & elem, const char * field, int pos, void* pvApiCtx)
 {
-    if (!strcmp("name", field))
+    if (!balisc_strcmp("name", field))
     {
         return createStringOnStack(fname, elem.getNodeName(), pos, pvApiCtx);
     }
-    else if (!strcmp("namespace", field))
+    else if (!balisc_strcmp("namespace", field))
     {
         const XMLNs * ns = elem.getNodeNameSpace();
         if (ns)
@@ -152,18 +153,18 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
             return 1;
         }
     }
-    else if (!strcmp("content", field))
+    else if (!balisc_strcmp("content", field))
     {
         const char * content = elem.getNodeContent();
         int ret = createStringOnStack(fname, content, pos, pvApiCtx);
         xmlFree(const_cast<char *>(content));
         return ret;
     }
-    else if (!strcmp("type", field))
+    else if (!balisc_strcmp("type", field))
     {
         return createStringOnStack(fname, nodes_type[elem.getNodeType() - 1], pos, pvApiCtx);
     }
-    else if (!strcmp("parent", field))
+    else if (!balisc_strcmp("parent", field))
     {
         const XMLElement * parent = elem.getParentElement();
         if (parent)
@@ -176,15 +177,15 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
             return 1;
         }
     }
-    else if (!strcmp("attributes", field))
+    else if (!balisc_strcmp("attributes", field))
     {
         return elem.getAttributes()->createOnStack(pos, pvApiCtx);
     }
-    else if (!strcmp("children", field))
+    else if (!balisc_strcmp("children", field))
     {
         return elem.getChildren()->createOnStack(pos, pvApiCtx);
     }
-    else if (!strcmp("line", field))
+    else if (!balisc_strcmp("line", field))
     {
         double line = (double)elem.getDefinitionLine();
         SciErr err = createMatrixOfDouble(pvApiCtx, pos, 1, 1, &line);
@@ -215,11 +216,11 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
  */
 int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos, void* pvApiCtx)
 {
-    if (!strcmp("href", field))
+    if (!balisc_strcmp("href", field))
     {
         return createStringOnStack(fname, ns.getHref(), pos, pvApiCtx);
     }
-    else if (!strcmp("prefix", field))
+    else if (!balisc_strcmp("prefix", field))
     {
         return createStringOnStack(fname, ns.getPrefix(), pos, pvApiCtx);
     }
