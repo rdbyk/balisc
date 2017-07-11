@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,6 +25,7 @@ extern "C"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "localization.h"
+#include "strlen.h"
 }
 
 using namespace org_modules_xml;
@@ -81,7 +82,7 @@ int sci_xmlGetNsByPrefix(char *fname, void* pvApiCtx)
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
-    if (!strlen(href))
+    if (!balisc_strlen(href))
     {
         freeAllocatedSingleString(href);
         Scierror(999, gettext("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), fname, 2);
