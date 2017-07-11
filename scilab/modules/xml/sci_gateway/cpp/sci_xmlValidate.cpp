@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,6 +22,7 @@ extern "C"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "localization.h"
+#include "strlen.h"
 }
 
 #include "XMLObject.hxx"
@@ -133,7 +134,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
             isValid = validation->validate(path[i], &error);
             if (!isValid)
             {
-                char *s = new char[strlen(gettext("The file %s is not valid:\n%s\n")) + strlen(path[i]) + error.size() + 1];
+                char *s = new char[balisc_strlen(gettext("The file %s is not valid:\n%s\n")) + balisc_strlen(path[i]) + error.size() + 1];
 
                 sprintf(s, gettext("The file %s is not valid:\n%s\n"), path[i], error.c_str());
                 msg.append(s);
