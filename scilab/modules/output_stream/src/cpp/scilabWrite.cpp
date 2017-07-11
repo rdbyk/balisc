@@ -13,8 +13,8 @@
  *
  */
 
-
 #include "scilabWrite.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -22,7 +22,6 @@ extern "C"
 #include "charEncoding.h"
 #include "sci_malloc.h"
 #include "diary.h"
-#include "configvariable_interface.h"
 }
 
 static SCILAB_OUTPUT_METHOD _writer;
@@ -50,7 +49,7 @@ static inline void scilabPrintW(const wchar_t* _pwsText)
 
 void scilabWrite(const char* _pstText)
 {
-    if (isPrintOutput())
+    if (ConfigVariable::isPrintOutput())
     {
         scilabPrint(const_cast<char*>(_pstText));
     }
@@ -63,7 +62,7 @@ void scilabForcedWrite(const char* _pstText)
 
 void scilabWriteW(const wchar_t* _pwsText)
 {
-    if (isPrintOutput())
+    if (ConfigVariable::isPrintOutput())
     {
         scilabPrintW(const_cast<wchar_t*>(_pwsText));
     }
@@ -76,7 +75,7 @@ void scilabForcedWriteW(const wchar_t* _pwsText)
 
 void scilabError(const char* _pstText)
 {
-    if (isSilentError() == 0)
+    if (ConfigVariable::isSilentError() == 0)
     {
         scilabPrint(const_cast<char*>(_pstText));
     }
@@ -84,7 +83,7 @@ void scilabError(const char* _pstText)
 
 void scilabErrorW(const wchar_t* _pwsText)
 {
-    if (isSilentError() == 0)
+    if (ConfigVariable::isSilentError() == 0)
     {
         scilabPrintW(const_cast<wchar_t*>(_pwsText));
     }
