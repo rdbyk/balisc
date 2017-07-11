@@ -28,6 +28,7 @@ extern "C"
 #include "xml_mlist.h"
 #include "localization.h"
 #include "os_string.h"
+#include "strlen.h"
 
 }
 
@@ -101,7 +102,7 @@ int sci_percent_foo_i_XMLList(char *fname, void* pvApiCtx)
     {
         *underscore = '\0';
     }
-    format = (char *)MALLOC(sizeof(char) * (strlen(prefix) + strlen("_xmlFormat") + 1));
+    format = (char *)MALLOC(sizeof(char) * (balisc_strlen(prefix) + /*strlen("_xmlFormat")*/ 10 + 1));
     sprintf(format, "%s_xmlFormat", prefix);
     free(prefix);
 
