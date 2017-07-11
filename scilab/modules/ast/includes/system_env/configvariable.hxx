@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __CONFIGVARIABLE_HXX__
 #define __CONFIGVARIABLE_HXX__
@@ -29,11 +29,13 @@
 #include <atomic>
 
 #include "visitor.hxx"
+#include "context.hxx"
 
 extern "C"
 {
 #include "dynamiclibrary.h"
 #include "dynlib_ast.h"
+#include "core_math.h"
 }
 
 // Minimal values for iConsoleLines & iConsoleWidth
@@ -54,122 +56,225 @@ private :
     static std::list<std::wstring> m_ModuleList;
 
 public :
-    static void setModuleList(std::list<std::wstring>& _module_list);
-    static std::list<std::wstring> getModuleList();
+    static void setModuleList(std::list<std::wstring>& _module_list)
+    {
+        m_ModuleList = _module_list;
+    }
 
+    static std::list<std::wstring> getModuleList()
+    {
+        return std::list<std::wstring>(m_ModuleList);
+    }
 
     //SCI
 private :
     static std::wstring m_SCIPath;
 
 public :
-    static void setSCIPath(const std::wstring& _SCIPath);
-    static std::wstring& getSCIPath();
+    static void setSCIPath(const std::wstring& _SCIPath)
+    {
+        m_SCIPath = _SCIPath;
+    }
 
+    static std::wstring& getSCIPath()
+    {
+        return m_SCIPath;
+    }
+    
     //SCIHOME
 private :
     static std::wstring m_SCIHOME;
 
 public :
-    static void setSCIHOME(const std::wstring& _m_SCIHOME);
-    static std::wstring& getSCIHOME();
+    static void setSCIHOME(const std::wstring& _m_SCIHOME)
+    {
+        m_SCIHOME = _m_SCIHOME;
+    }
+
+    static std::wstring& getSCIHOME()
+    {
+        return m_SCIHOME;
+    }
 
     //TMPDIR
 private :
     static std::wstring m_TMPDIR;
 
 public :
-    static void setTMPDIR(const std::wstring& _TMPDIR);
-    static std::wstring& getTMPDIR();
+    static void setTMPDIR(const std::wstring& _TMPDIR)
+    {
+        m_TMPDIR = _TMPDIR;
+    }
+
+    static std::wstring& getTMPDIR()
+    {
+        return m_TMPDIR;
+    }
 
     // Force Quit
 private :
     static bool m_bForceQuit;
 
 public :
-    static void setForceQuit(bool _bForceQuit);
-    static bool getForceQuit(void);
+    static void setForceQuit(bool _bForceQuit)
+    {
+        m_bForceQuit = _bForceQuit;
+    }
+
+    static bool getForceQuit(void)
+    {
+        return m_bForceQuit;
+    }
 
     // Exit Status
 private :
     static int m_iExitStatus;
 
 public :
-    static void setExitStatus(int _iExitStatus);
-    static int getExitStatus(void);
+    static void setExitStatus(int _iExitStatus)
+    {
+        m_iExitStatus = _iExitStatus;
+    }
+
+    static int getExitStatus(void)
+    {
+        return m_iExitStatus;
+    }
 
     // Digit precision, ex format function
 private :
     static int m_iFormatSize;
 
 public :
-    static void setFormatSize(int _iFormatSize);
-    static int getFormatSize(void);
+    static void setFormatSize(int _iFormatSize)
+    {
+        m_iFormatSize = _iFormatSize;
+    }
+    
+    static int getFormatSize(void)
+    {
+        return m_iFormatSize;
+    }
 
     // printf format ( 0 -> "e", 1 -> "v")
 private :
     static int m_iFormatMode;
 
 public :
-    static void setFormatMode(int _iFormatMode);
-    static int getFormatMode(void);
-
+    static void setFormatMode(int _iFormatMode)
+    {
+        m_iFormatMode = _iFormatMode;
+    }
+    
+    static int getFormatMode(void)
+    {
+        return m_iFormatMode;
+    }
 
     // Screen console width
 private :
     static int m_iConsoleWidth;
 
 public :
-    static void setConsoleWidth(int _iConsoleWidth);
-    static int getConsoleWidth(void);
+    static void setConsoleWidth(int _iConsoleWidth)
+    {
+        m_iConsoleWidth = Max(ICONSOLEWIDTH_MIN, _iConsoleWidth);
+    }
+    
+    static int getConsoleWidth(void)
+    {
+        return m_iConsoleWidth;
+    }
 
     // Screen console lines
 private :
     static int m_iConsoleLines;
 
 public :
-    static void setConsoleLines(int _iConsoleLines);
-    static int getConsoleLines(void);
+    static void setConsoleLines(int _iConsoleLines)
+    {
+        m_iConsoleLines = Max(ICONSOLELINES_MIN, _iConsoleLines);
+    }
+
+    static int getConsoleLines(void)
+    {
+        return m_iConsoleLines;
+    }
 
     // Scilab mode
 private :
     static int m_iScilabMode;
 
 public :
-    static void setScilabMode(int _iScilabMode);
-    static int getScilabMode(void);
+    static void setScilabMode(int _iScilabMode)
+    {
+        m_iScilabMode = _iScilabMode;
+    }
+
+    static int getScilabMode(void)
+    {
+        return m_iScilabMode;
+    }
 
     //Warning mode
 private :
     static bool m_bWarningMode;
 
 public :
-    static void setWarningMode(bool _bWarningMode);
-    static bool getWarningMode(void);
+    static void setWarningMode(bool _bWarningMode)
+    {
+        m_bWarningMode = _bWarningMode;
+    }
 
+    static bool getWarningMode(void)
+    {
+        return m_bWarningMode;
+    }
+    
     // WarningStop
 private :
     static bool m_bWarningStop;
 
 public :
-    static void setWarningStop(bool _bWarningStop);
-    static bool getWarningStop(void);
+    static void setWarningStop(bool _bWarningStop)
+    {
+        m_bWarningStop = _bWarningStop;
+    }
+
+    static bool getWarningStop(void)
+    {
+        return m_bWarningStop;
+    }
 
     // WarningStop
 private :
     static bool m_bOldEmptyBehaviour;
 
 public :
-    static void setOldEmptyBehaviour(bool _bOldEmptyBehaviour);
-    static bool getOldEmptyBehaviour(void);
+    static void setOldEmptyBehaviour(bool _bOldEmptyBehaviour)
+    {
+        m_bOldEmptyBehaviour = _bOldEmptyBehaviour;
+    }
+
+    static bool getOldEmptyBehaviour(void)
+    {
+        return m_bOldEmptyBehaviour;
+    }
 
     //HOME
 private :
     static std::wstring m_HOME;
 
 public :
-    static void setHOME(const std::wstring& _m_HOME);
-    static std::wstring& getHOME();
+    static void setHOME(const std::wstring& _m_HOME)
+    {
+        m_HOME = _m_HOME;
+    }
+
+    static std::wstring& getHOME()
+    {
+        return m_HOME;
+    }
 
     //Clear last error information
 public :
@@ -179,16 +284,37 @@ public :
 private :
     static bool m_bLastErrorCall;
 public :
-    static void setLastErrorCall(void);
-    static void clearLastError(void);
+    static void setLastErrorCall(void)
+    {
+        m_bLastErrorCall = true;
+    }
+
+    static void clearLastError(void)
+    {
+        //if (m_bLastErrorCall == false)
+        {
+            m_wstError          = L"";
+            m_iError            = 0;
+            m_iErrorLine        = 0;
+            m_wstErrorFunction  = L"";
+        }
+        m_bLastErrorCall = false;
+    }
 
     //Last Error Message
 private :
     static std::wstring m_wstError;
 
 public :
-    static void setLastErrorMessage(const std::wstring& _wstError);
-    static std::wstring& getLastErrorMessage();
+    static void setLastErrorMessage(const std::wstring& _wstError)
+    {
+        m_wstError = _wstError;
+    }
+
+    static std::wstring& getLastErrorMessage()
+    {
+        return m_wstError;
+    }
 
     //Last Error ID
 private :
@@ -196,26 +322,59 @@ private :
     static bool m_bError;
 
 public :
-    static void setLastErrorNumber(int _iError);
-    static int getLastErrorNumber();
-    static void setError();
-    static bool isError();
-    static void resetError();
+    static void setLastErrorNumber(int _iError)
+    {
+        m_iError = _iError;
+    }
+
+    static int getLastErrorNumber()
+    {
+        return m_iError;
+    }
+
+    static void setError()
+    {
+        m_bError = true;
+    }
+
+    static bool isError()
+    {
+        return m_bError;
+    }
+
+    static void resetError()
+    {
+        m_bError = false;
+    }
 
     //Last Error Line
 private :
     static int m_iErrorLine;
 
 public :
-    static void setLastErrorLine(int _iLine);
-    static int getLastErrorLine();
+    static void setLastErrorLine(int _iLine)
+    {
+        m_iErrorLine = _iLine;
+    }
+
+    static int getLastErrorLine()
+    {
+        return m_iErrorLine;
+    }
 
     //Last Error Function
 private :
     static std::wstring m_wstErrorFunction;
 public:
-    static void setLastErrorFunction(const std::wstring& _wstFunction);
-    static std::wstring& getLastErrorFunction();
+    static void setLastErrorFunction(const std::wstring& _wstFunction)
+    {
+        m_wstErrorFunction = _wstFunction;
+    }
+
+    static std::wstring& getLastErrorFunction()
+    {
+        return m_wstErrorFunction;
+    }
 
     //verbose ";" after instruction
     //set before function call to know status of e.isVerbose in functions
@@ -223,16 +382,29 @@ private:
     static bool m_bVerbose;
 
 public :
-    static void setVerbose(bool _bVerbose);
-    static bool getVerbose(void);
+    static void setVerbose(bool _bVerbose)
+    {
+        m_bVerbose = _bVerbose;
+    }
 
+    static bool getVerbose(void)
+    {
+        return m_bVerbose;
+    }
 
     //silent error ( try catch, errcatch, ... )
 private :
     static bool m_iSilentError;
 public:
-    static void setSilentError(bool _iSilentError);
-    static bool isSilentError(void);
+    static void setSilentError(bool _iSilentError)
+    {
+        m_iSilentError = _iSilentError;
+    }
+
+    static bool isSilentError(void)
+    {
+        return m_iSilentError;
+    }
 
     //Prompt Mode
 public :
@@ -256,23 +428,75 @@ private :
 
 public :
     static void setPromptMode(int _iPromptMode);
-    static int getPromptMode(void);
+    
+    static int getPromptMode(void)
+    {
+        return m_iPromptMode;
+    }
 
-    static void setPrintInput(bool val);
-    static bool isPrintInput(void);
-    static bool togglePrintInput(void);
+    static void setPrintInput(bool val)
+    {
+        m_printInput = val;
+    }
 
-    static void setPrintOutput(bool val);
-    static bool isPrintOutput(void);
-    static bool togglePrintOutput(void);
+    static bool isPrintInput(void)
+    {
+        return m_printInput;
+    }
 
-    static void setPrintInteractive(bool val);
-    static bool isPrintInteractive(void);
-    static bool togglePrintInteractive(void);
+    static bool togglePrintInput(void)
+    {
+        m_printInput = !m_printInput;
+        return m_printInput;
+    }
 
-    static void setPrintCompact(bool val);
-    static bool isPrintCompact(void);
-    static bool togglePrintCompact(void);
+    static void setPrintOutput(bool val)
+    {
+        m_printOutput = val;
+    }
+
+    static bool isPrintOutput(void)
+    {
+        return m_printOutput;
+    }
+
+    static bool togglePrintOutput(void)
+    {
+        m_printOutput = !m_printOutput;
+        return m_printOutput;
+    }
+
+    static void setPrintInteractive(bool val)
+    {
+        m_printInteractive = val;
+    }
+
+    static bool isPrintInteractive(void)
+    {
+        return m_printInteractive;
+    }
+
+    static bool togglePrintInteractive(void)
+    {
+        m_printInteractive = !m_printInteractive;
+        return m_printInteractive;
+    }
+
+    static void setPrintCompact(bool val)
+    {
+        m_printCompact = val;
+    }
+
+    static bool isPrintCompact(void)
+    {
+        return m_printCompact;
+    }
+
+    static bool togglePrintCompact(void)
+    {
+        m_printCompact = !m_printCompact;
+        return m_printCompact;
+    }
 
 
     // Pause level
@@ -281,10 +505,28 @@ private :
     static std::list<int> m_listScope;
 
 public :
-    static void IncreasePauseLevel();
-    static void DecreasePauseLevel();
-    static int getPauseLevel();
-    static int getActivePauseLevel();
+    static void IncreasePauseLevel()
+    {
+        m_iPauseLevel++;
+        m_listScope.push_back(symbol::Context::getInstance()->getScopeLevel());
+    }
+
+    static void DecreasePauseLevel()
+    {
+        m_iPauseLevel--;
+        m_listScope.pop_back();
+    }
+
+    static int getPauseLevel()
+    {
+        return m_iPauseLevel;
+    }
+
+    static int getActivePauseLevel()
+    {
+        return m_listScope.back();
+    }
+    
     // Dynamic Libraries
 
     typedef struct
@@ -392,8 +634,15 @@ private :
     static int m_iIeee;
 
 public :
-    static void setIeee(int _iIeee);
-    static int getIeee();
+    static void setIeee(int _iIeee)
+    {
+        m_iIeee = _iIeee;
+    }
+
+    static int getIeee()
+    {
+        return m_iIeee;
+    }
 
     // simp mode
 private :
@@ -408,8 +657,15 @@ private :
     static int m_iFuncprot;
 
 public :
-    static void setFuncprot(int _iFuncprot);
-    static int getFuncprot();
+    static void setFuncprot(int _iFuncprot)
+    {
+        m_iFuncprot = _iFuncprot;
+    }
+
+    static int getFuncprot()
+    {
+        return m_iFuncprot;
+    }
 
     // where
 public :
@@ -426,15 +682,49 @@ public :
     typedef std::vector<WhereEntry> WhereVector;
 
     static void where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall);
-    static void where_end();
-    static const WhereVector& getWhere();
-    static void fillWhereError(int _iErrorLine);
-    static void resetWhereError();
 
-    static void macroFirstLine_begin(int _iLine);
-    static void macroFirstLine_end();
-    static int getMacroFirstLines();
-    static void setFileNameToLastWhere(const std::wstring& _fileName);
+    static void where_end()
+    {
+        m_Where.pop_back();
+    }
+
+    static const WhereVector& getWhere()
+    {
+        return m_Where;
+    }
+
+    static void fillWhereError(int _iErrorLine);
+    
+    static void resetWhereError()
+    {
+        m_WhereError.clear();
+    }
+
+    static void macroFirstLine_begin(int _iLine)
+    {
+        m_FirstMacroLine.push_back(_iLine);
+    }
+
+    static void macroFirstLine_end()
+    {
+        m_FirstMacroLine.pop_back();
+    }
+
+    static int getMacroFirstLines()
+    {
+        if (m_FirstMacroLine.empty())
+        {
+            return 1;
+        }
+
+        return m_FirstMacroLine.back();
+    }
+
+    static void setFileNameToLastWhere(const std::wstring& _fileName)
+    {
+        m_Where.back().m_file_name = _fileName;
+    }
+
     static void whereErrorToString(std::wostringstream &ostr);
 private :
     static WhereVector m_Where;

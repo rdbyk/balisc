@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <vector>
 #include <list>
@@ -39,17 +39,6 @@ extern "C"
 ** \{
 */
 std::list<std::wstring> ConfigVariable::m_ModuleList;
-
-void ConfigVariable::setModuleList(std::list<std::wstring>& _pModule_list)
-{
-    m_ModuleList = _pModule_list;
-}
-
-std::list<std::wstring> ConfigVariable::getModuleList()
-{
-    std::list<std::wstring> moduleList(m_ModuleList);
-    return moduleList;
-}
 /*
 ** \}
 */
@@ -59,17 +48,6 @@ std::list<std::wstring> ConfigVariable::getModuleList()
 ** \{
 */
 std::wstring ConfigVariable::m_SCIPath;
-
-void ConfigVariable::setSCIPath(const std::wstring& _SCIPath)
-{
-    m_SCIPath = _SCIPath;
-}
-
-std::wstring& ConfigVariable::getSCIPath()
-{
-    return m_SCIPath;
-}
-
 /*
 ** \}
 */
@@ -78,18 +56,7 @@ std::wstring& ConfigVariable::getSCIPath()
 ** SCIHOME
 ** \{
 */
-
 std::wstring ConfigVariable::m_SCIHOME;
-
-void ConfigVariable::setSCIHOME(const std::wstring& _SCIHOME)
-{
-    m_SCIHOME = _SCIHOME;
-}
-
-std::wstring& ConfigVariable::getSCIHOME()
-{
-    return m_SCIHOME;
-}
 /*
 ** \}
 */
@@ -98,18 +65,7 @@ std::wstring& ConfigVariable::getSCIHOME()
 ** TMPDIR
 ** \{
 */
-
 std::wstring ConfigVariable::m_TMPDIR;
-
-void ConfigVariable::setTMPDIR(const std::wstring& _TMPDIR)
-{
-    m_TMPDIR = _TMPDIR;
-}
-
-std::wstring& ConfigVariable::getTMPDIR()
-{
-    return m_TMPDIR;
-}
 /*
 ** \}
 */
@@ -119,16 +75,6 @@ std::wstring& ConfigVariable::getTMPDIR()
 ** \{
 */
 bool ConfigVariable::m_bForceQuit = false;
-
-void ConfigVariable::setForceQuit(bool _bForceQuit)
-{
-    m_bForceQuit = _bForceQuit;
-}
-
-bool ConfigVariable::getForceQuit(void)
-{
-    return m_bForceQuit;
-}
 /*
 ** \}
 */
@@ -138,16 +84,6 @@ bool ConfigVariable::getForceQuit(void)
 ** \{
 */
 int ConfigVariable::m_iExitStatus = 0;
-
-void ConfigVariable::setExitStatus(int _iExitStatus)
-{
-    m_iExitStatus = _iExitStatus;
-}
-
-int ConfigVariable::getExitStatus(void)
-{
-    return m_iExitStatus;
-}
 /*
 ** \}
 */
@@ -156,31 +92,8 @@ int ConfigVariable::getExitStatus(void)
 ** Digit precision, ex format function
 ** \{
 */
-
 int ConfigVariable::m_iFormatSize = 0;
-
-void ConfigVariable::setFormatSize(int _iFormatSize)
-{
-    m_iFormatSize = _iFormatSize;
-}
-
-int ConfigVariable::getFormatSize(void)
-{
-    return m_iFormatSize;
-}
-
 int ConfigVariable::m_iFormatMode = 0;
-
-void ConfigVariable::setFormatMode(int _iFormatMode)
-{
-    m_iFormatMode = _iFormatMode;
-}
-
-int ConfigVariable::getFormatMode(void)
-{
-    return m_iFormatMode;
-}
-
 /*
 ** \}
 */
@@ -189,18 +102,7 @@ int ConfigVariable::getFormatMode(void)
 ** Screen console width
 ** \{
 */
-
 int ConfigVariable::m_iConsoleWidth = 0;
-
-void ConfigVariable::setConsoleWidth(int _iConsoleWidth)
-{
-    m_iConsoleWidth = Max(ICONSOLEWIDTH_MIN, _iConsoleWidth);
-}
-
-int ConfigVariable::getConsoleWidth(void)
-{
-    return m_iConsoleWidth;
-}
 /*
 ** \}
 */
@@ -209,18 +111,7 @@ int ConfigVariable::getConsoleWidth(void)
 ** Screen console lines
 ** \{
 */
-
 int ConfigVariable::m_iConsoleLines = 0; //console lines default value
-
-void ConfigVariable::setConsoleLines(int _iConsoleLines)
-{
-    m_iConsoleLines = Max(ICONSOLELINES_MIN, _iConsoleLines);
-}
-
-int ConfigVariable::getConsoleLines(void)
-{
-    return m_iConsoleLines;
-}
 /*
 ** \}
 */
@@ -229,18 +120,7 @@ int ConfigVariable::getConsoleLines(void)
 ** Scilab mode
 ** \{
 */
-
 int ConfigVariable::m_iScilabMode = 1; //SCILAB_API = 1  Scilab is launch as an API
-
-void ConfigVariable::setScilabMode(int _iScilabMode)
-{
-    m_iScilabMode = _iScilabMode;
-}
-
-int ConfigVariable::getScilabMode(void)
-{
-    return m_iScilabMode;
-}
 /*
 ** \}
 */
@@ -250,16 +130,6 @@ int ConfigVariable::getScilabMode(void)
 ** \{
 */
 bool ConfigVariable::m_bWarningMode = true;
-
-void ConfigVariable::setWarningMode(bool _bWarningMode)
-{
-    m_bWarningMode = _bWarningMode;
-}
-
-bool ConfigVariable::getWarningMode(void)
-{
-    return m_bWarningMode;
-}
 /*
 ** \}
 */
@@ -272,16 +142,6 @@ bool ConfigVariable::getWarningMode(void)
 ** \{
 */
 bool ConfigVariable::m_bWarningStop = false;
-
-void ConfigVariable::setWarningStop(bool _bWarningStop)
-{
-    m_bWarningStop = _bWarningStop;
-}
-
-bool ConfigVariable::getWarningStop(void)
-{
-    return m_bWarningStop;
-}
 /*
 ** \}
 */
@@ -291,16 +151,6 @@ bool ConfigVariable::getWarningStop(void)
 ** \{
 */
 bool ConfigVariable::m_bOldEmptyBehaviour = false;
-
-void ConfigVariable::setOldEmptyBehaviour(bool _bOldEmptyBehaviour)
-{
-    m_bOldEmptyBehaviour = _bOldEmptyBehaviour;
-}
-
-bool ConfigVariable::getOldEmptyBehaviour(void)
-{
-    return m_bOldEmptyBehaviour;
-}
 /*
 ** \}
 */
@@ -310,18 +160,7 @@ bool ConfigVariable::getOldEmptyBehaviour(void)
 ** HOME
 ** \{
 */
-
 std::wstring ConfigVariable::m_HOME;
-
-void ConfigVariable::setHOME(const std::wstring& _HOME)
-{
-    m_HOME = _HOME;
-}
-
-std::wstring& ConfigVariable::getHOME()
-{
-    return m_HOME;
-}
 /*
 ** \}
 */
@@ -331,23 +170,6 @@ std::wstring& ConfigVariable::getHOME()
 ** \{
 */
 bool ConfigVariable::m_bLastErrorCall = false;
-
-void ConfigVariable::setLastErrorCall(void)
-{
-    m_bLastErrorCall = true;
-}
-
-void ConfigVariable::clearLastError(void)
-{
-    //if (m_bLastErrorCall == false)
-    {
-        m_wstError          = L"";
-        m_iError            = 0;
-        m_iErrorLine        = 0;
-        m_wstErrorFunction  = L"";
-    }
-    m_bLastErrorCall = false;
-}
 /*
 ** \}
 */
@@ -356,18 +178,7 @@ void ConfigVariable::clearLastError(void)
 ** Last Error Message
 ** \{
 */
-
 std::wstring ConfigVariable::m_wstError;
-
-void ConfigVariable::setLastErrorMessage(const std::wstring& _wstError)
-{
-    m_wstError = _wstError;
-}
-
-std::wstring& ConfigVariable::getLastErrorMessage()
-{
-    return m_wstError;
-}
 /*
 ** \}
 */
@@ -378,31 +189,6 @@ std::wstring& ConfigVariable::getLastErrorMessage()
 */
 int ConfigVariable::m_iError = 0;
 bool ConfigVariable::m_bError = false;
-
-void ConfigVariable::setError()
-{
-    m_bError = true;
-}
-
-bool ConfigVariable::isError()
-{
-    return m_bError;
-}
-
-void ConfigVariable::resetError()
-{
-    m_bError = false;
-}
-
-void ConfigVariable::setLastErrorNumber(int _iError)
-{
-    m_iError = _iError;
-}
-
-int ConfigVariable::getLastErrorNumber(void)
-{
-    return m_iError;
-}
 /*
 ** \}
 */
@@ -412,16 +198,6 @@ int ConfigVariable::getLastErrorNumber(void)
 ** \{
 */
 int ConfigVariable::m_iErrorLine = 0;
-
-void ConfigVariable::setLastErrorLine(int _iErrorLine)
-{
-    m_iErrorLine = _iErrorLine;
-}
-
-int ConfigVariable::getLastErrorLine(void)
-{
-    return m_iErrorLine;
-}
 /*
 ** \}
 */
@@ -430,19 +206,7 @@ int ConfigVariable::getLastErrorLine(void)
 ** Last Error Function
 ** \{
 */
-
 std::wstring ConfigVariable::m_wstErrorFunction = L"";
-
-void ConfigVariable::setLastErrorFunction(const std::wstring& _wstErrorFunction)
-{
-    m_wstErrorFunction = _wstErrorFunction;
-}
-
-std::wstring& ConfigVariable::getLastErrorFunction()
-{
-    return m_wstErrorFunction;
-}
-
 /*
 ** \}
 */
@@ -450,33 +214,10 @@ std::wstring& ConfigVariable::getLastErrorFunction()
 /* verbose */
 bool ConfigVariable::m_bVerbose = true;
 
-void ConfigVariable::setVerbose(bool _bVerbose)
-{
-    m_bVerbose = _bVerbose;
-}
-
-bool ConfigVariable::getVerbose(void)
-{
-    return m_bVerbose;
-}
-
 /* silent error */
-
 bool ConfigVariable::m_iSilentError = false;
 
-void ConfigVariable::setSilentError(bool _iSilentError)
-{
-    m_iSilentError = _iSilentError;
-}
-
-bool ConfigVariable::isSilentError(void)
-{
-    return m_iSilentError;
-}
-
-
 /* Prompt Mode */
-
 int ConfigVariable::m_iPromptMode = 0;
 bool ConfigVariable::m_printInput = true;
 bool ConfigVariable::m_printOutput = true;
@@ -547,94 +288,6 @@ void ConfigVariable::setPromptMode(int _iPromptMode)
             break;
     }
 }
-
-int ConfigVariable::getPromptMode(void)
-{
-    //bool input = isPrintInput();
-    //bool output = isPrintOutput();
-    //bool compact = isPrintCompact();
-    //bool interactive = isPrintInteractive();
-
-    //return !interactive ?
-    //    (/*-1*/ !input && !output ? -1 :
-    //    /* 0*/ !input &&  output &&  compact ? 0 :
-    //    /* 1*/  input &&  output &&  compact ? 1 :
-    //    /* 2*/ !input &&  output && !compact ? 2 :
-    //    /* 3*/  input &&  output && !compact ? 3 : 2 /*default*/) :
-    //    (/* 4*/  compact ? 4 :
-    //    /* 7*/ 7);
-
-    return m_iPromptMode;
-}
-
-void ConfigVariable::setPrintInput(bool val)
-{
-    m_printInput = val;
-}
-
-bool ConfigVariable::isPrintInput(void)
-{
-    return m_printInput;
-}
-
-bool ConfigVariable::togglePrintInput(void)
-{
-    m_printInput = !m_printInput;
-    return m_printInput;
-}
-
-
-void ConfigVariable::setPrintOutput(bool val)
-{
-    m_printOutput = val;
-}
-
-bool ConfigVariable::isPrintOutput(void)
-{
-    return m_printOutput;
-}
-
-bool ConfigVariable::togglePrintOutput(void)
-{
-    m_printOutput = !m_printOutput;
-    return m_printOutput;
-}
-
-
-void ConfigVariable::setPrintInteractive(bool val)
-{
-    m_printInteractive = val;
-}
-
-bool ConfigVariable::isPrintInteractive(void)
-{
-    return m_printInteractive;
-}
-
-bool ConfigVariable::togglePrintInteractive(void)
-{
-    m_printInteractive = !m_printInteractive;
-    return m_printInteractive;
-}
-
-
-void ConfigVariable::setPrintCompact(bool val)
-{
-    m_printCompact = val;
-}
-
-bool ConfigVariable::isPrintCompact(void)
-{
-    return m_printCompact;
-}
-
-bool ConfigVariable::togglePrintCompact(void)
-{
-    m_printCompact = !m_printCompact;
-    return m_printCompact;
-}
-
-
 /*
 ** \}
 */
@@ -643,32 +296,8 @@ bool ConfigVariable::togglePrintCompact(void)
 ** Prompt Mode
 ** \{
 */
-
 int ConfigVariable::m_iPauseLevel = 0;
 std::list<int> ConfigVariable::m_listScope;
-
-void ConfigVariable::IncreasePauseLevel()
-{
-    m_iPauseLevel++;
-    m_listScope.push_back(symbol::Context::getInstance()->getScopeLevel());
-}
-
-void ConfigVariable::DecreasePauseLevel()
-{
-    m_iPauseLevel--;
-    m_listScope.pop_back();
-}
-
-int ConfigVariable::getActivePauseLevel()
-{
-    return m_listScope.back();
-}
-
-int ConfigVariable::getPauseLevel()
-{
-    return m_iPauseLevel;
-}
-
 /*
 ** \}
 */
@@ -1109,16 +738,6 @@ bool ConfigVariable::getEndProcessing()
 ** \{
 */
 int ConfigVariable::m_iIeee = 2;
-
-void ConfigVariable::setIeee(int _iIeee)
-{
-    m_iIeee = _iIeee;
-}
-
-int ConfigVariable::getIeee()
-{
-    return m_iIeee;
-}
 /*
 ** \}
 */
@@ -1147,16 +766,6 @@ int ConfigVariable::getSimpMode()
 ** \{
 */
 int ConfigVariable::m_iFuncprot = 1;
-
-void ConfigVariable::setFuncprot(int _iFuncprot)
-{
-    m_iFuncprot = _iFuncprot;
-}
-
-int ConfigVariable::getFuncprot()
-{
-    return m_iFuncprot;
-}
 /*
 ** \}
 */
@@ -1186,40 +795,6 @@ void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, types::Calla
     }
 
     m_Where.emplace_back(_iLineNum, _iLineLocation, pCall->getName(), pCall->getFirstLine(), wstrFileName);
-}
-
-void ConfigVariable::where_end()
-{
-    m_Where.pop_back();
-}
-
-const ConfigVariable::WhereVector& ConfigVariable::getWhere()
-{
-    return m_Where;
-}
-
-void ConfigVariable::macroFirstLine_begin(int _iLine)
-{
-    m_FirstMacroLine.push_back(_iLine);
-}
-
-void ConfigVariable::macroFirstLine_end()
-{
-    m_FirstMacroLine.pop_back();
-}
-
-int ConfigVariable::getMacroFirstLines()
-{
-    if (m_FirstMacroLine.empty())
-    {
-        return 1;
-    }
-
-    return m_FirstMacroLine.back();
-}
-void ConfigVariable::setFileNameToLastWhere(const std::wstring& _fileName)
-{
-    m_Where.back().m_file_name = _fileName;
 }
 
 void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
@@ -1347,12 +922,6 @@ void ConfigVariable::fillWhereError(int _iErrorLine)
         }
     }
 }
-
-void ConfigVariable::resetWhereError()
-{
-    m_WhereError.clear();
-}
-
 /*
 ** \}
 */
