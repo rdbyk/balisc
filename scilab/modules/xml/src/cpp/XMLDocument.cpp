@@ -26,6 +26,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "sci_malloc.h"
 #include "localization.h"
+#include "strlen.h"
 }
 
 #include <iostream>
@@ -109,7 +110,7 @@ XMLDocument::XMLDocument(char *uri, char *version): XMLObject()
 
     if (expandedPath)
     {
-        size_t size_expandedPath = sizeof(char) * (strlen(expandedPath) + 1);
+        size_t size_expandedPath = sizeof(char) * (balisc_strlen(expandedPath) + 1);
         
         newUri = (char *)xmlMalloc(size_expandedPath);
         memcpy(newUri, expandedPath, size_expandedPath);
@@ -308,7 +309,7 @@ void XMLDocument::setDocumentURL(const std::string & url) const
 
     if (expandedPath)
     {
-        size_t size_expandedPath = sizeof(char) * (strlen(expandedPath) + 1);
+        size_t size_expandedPath = sizeof(char) * (balisc_strlen(expandedPath) + 1);
         
         xmlFree((void *)document->URL);
         newURL = (char *)xmlMalloc(size_expandedPath);

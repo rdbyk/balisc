@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +26,7 @@ extern "C"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "localization.h"
+#include "strcmp.h"
 }
 
 using namespace org_modules_xml;
@@ -49,7 +50,7 @@ using namespace org_modules_xml;
 template <class T>
 bool setProperty(char * fname, org_modules_xml::XMLDocument & doc, const char * field, T & value)
 {
-    if (!strcmp("root", field))
+    if (!balisc_strcmp("root", field))
     {
         if (typeid(T &) != typeid(XMLElement &) && typeid(T &) != typeid(std::string &))
         {
@@ -71,7 +72,7 @@ bool setProperty(char * fname, org_modules_xml::XMLDocument & doc, const char * 
             }
         }
     }
-    else if (!strcmp("url", field))
+    else if (!balisc_strcmp("url", field))
     {
         __XML_CHECK_TYPE__(T &, std::string &, "url");
         doc.setDocumentURL((std::string &)value);
@@ -97,37 +98,37 @@ bool setProperty(char * fname, org_modules_xml::XMLDocument & doc, const char * 
 template <class T>
 bool setProperty(char * fname, XMLElement & elem, const char * field, T & value)
 {
-    if (!strcmp("name", field))
+    if (!balisc_strcmp("name", field))
     {
         __XML_CHECK_TYPE__(T &, std::string &, "name");
         elem.setNodeName((std::string &)value);
     }
-    else if (!strcmp("namespace", field))
+    else if (!balisc_strcmp("namespace", field))
     {
         __XML_CHECK_TYPE__(T &, XMLNs &, "namespace");
         elem.setNodeNameSpace((XMLNs &)value);
     }
-    else if (!strcmp("content", field))
+    else if (!balisc_strcmp("content", field))
     {
         __XML_CHECK_TYPE__(T &, std::string &, "content");
         elem.setNodeContent((std::string &)value);
     }
-    else if (!strcmp("type", field))
+    else if (!balisc_strcmp("type", field))
     {
         Scierror(999, gettext("%s: Field %s is not modifiable: %s\n"), fname, "type");
         return false;
     }
-    else if (!strcmp("parent", field))
+    else if (!balisc_strcmp("parent", field))
     {
         Scierror(999, gettext("%s: Field %s is not modifiable: %s\n"), fname, "parent");
         return false;
     }
-    else if (!strcmp("attributes", field))
+    else if (!balisc_strcmp("attributes", field))
     {
         __XML_CHECK_TYPE__(T &, XMLAttr &, "attributes");
         elem.setAttributes((XMLAttr &)value);
     }
-    else if (!strcmp("children", field))
+    else if (!balisc_strcmp("children", field))
     {
         if (typeid(T &) != typeid(XMLElement &) && typeid(T &) != typeid(XMLNodeList &) && typeid(T &) != typeid(std::string &))
         {

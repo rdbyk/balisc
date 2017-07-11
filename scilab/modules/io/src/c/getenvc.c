@@ -201,10 +201,10 @@ char *searchEnv(const char *name, const char *env_var)
         wchar_t *wenv_var		= NULL;
         wchar_t wfullpath[PATH_MAX];
 
-        wname			= to_wide_string((char*)name);
-        wenv_var	= to_wide_string((char*)env_var);
+        wname = to_wide_string((char*)name);
+        wenv_var = to_wide_string((char*)env_var);
 
-        wcscpy(wfullpath, L"");
+        wfullpath = L'\0';
 
         _wsearchenv(wname, wenv_var, wfullpath);
 
@@ -237,7 +237,7 @@ wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv)
     char pstFullpath[PATH_MAX];
 #endif
 
-    wcscpy(pwstFullpath, L"");
+    pwstFullpath[0] = L'\0';
 
 #if _MSC_VER
     {

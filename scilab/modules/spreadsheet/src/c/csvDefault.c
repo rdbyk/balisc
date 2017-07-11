@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,6 +17,7 @@
 #include "sci_malloc.h"
 #include "os_string.h"
 #include "checkCsvWriteFormat.h"
+#include "strcmp.h"
 // =============================================================================
 #define DEFAULT_CSV_SEPARATOR ","
 #define DEFAULT_CSV_DECIMAL "."
@@ -109,7 +110,7 @@ int setCsvDefaultSeparator(const char *separator)
         return 1;
     }
 
-    if (strcmp(separator, getCsvDefaultDecimal()) == 0)
+    if (balisc_strcmp(separator, getCsvDefaultDecimal()) == 0)
     {
         return 1;
     }
@@ -139,8 +140,8 @@ int setCsvDefaultDecimal(const char *decimal)
     }
 
     /* decimal separator supported . and , */
-    if ((strcmp(decimal, CSV_DECIMAL_MODE_1) == 0) ||
-            (strcmp(decimal, CSV_DECIMAL_MODE_2) == 0))
+    if ((balisc_strcmp(decimal, CSV_DECIMAL_MODE_1) == 0) ||
+            (balisc_strcmp(decimal, CSV_DECIMAL_MODE_2) == 0))
     {
         if (defaultCsvDecimal)
         {
@@ -166,8 +167,8 @@ int setCsvDefaultConversion(const char *conversion)
         return 1;
     }
 
-    if ((strcmp(conversion, CSV_CONVERSION_MODE_1) == 0) ||
-            (strcmp(conversion, CSV_CONVERSION_MODE_2) == 0))
+    if ((balisc_strcmp(conversion, CSV_CONVERSION_MODE_1) == 0) ||
+            (balisc_strcmp(conversion, CSV_CONVERSION_MODE_2) == 0))
     {
         if (defaultCsvConversion)
         {
@@ -218,8 +219,8 @@ int setCsvDefaultCsvIgnoreBlankLine(const char *blankMode)
     {
         return 1;
     }
-    if ((strcmp(blankMode, CSV_IGNORE_BLANK_LINE_MODE_1) == 0) ||
-            (strcmp(blankMode, CSV_IGNORE_BLANK_LINE_MODE_2) == 0))
+    if ((balisc_strcmp(blankMode, CSV_IGNORE_BLANK_LINE_MODE_1) == 0) ||
+            (balisc_strcmp(blankMode, CSV_IGNORE_BLANK_LINE_MODE_2) == 0))
     {
         if (defaultCsvIgnoreBlankLine)
         {
@@ -347,7 +348,7 @@ int setCsvDefaultCommentsRegExp(const char *commentsRegExp)
         return 1;
     }
 
-    if (strcmp(commentsRegExp, getCsvDefaultCommentsRegExp()) == 0)
+    if (balisc_strcmp(commentsRegExp, getCsvDefaultCommentsRegExp()) == 0)
     {
         return 1;
     }
@@ -379,7 +380,7 @@ int setCsvDefaultEOL(const char *eol)
         return 1;
     }
 
-    if (strcmp(eol, getCsvDefaultEOL()) == 0)
+    if (balisc_strcmp(eol, getCsvDefaultEOL()) == 0)
     {
         return 0;
     }
@@ -411,13 +412,13 @@ int setCsvDefaultEncoding(const char *encoding)
         return 1;
     }
 
-    if (strcmp(encoding, getCsvDefaultEncoding()) == 0)
+    if (balisc_strcmp(encoding, getCsvDefaultEncoding()) == 0)
     {
         return 1;
     }
 
-    if ((strcmp(encoding, DEFAULT_CSV_ENCODING_MODE1) != 0) &&
-            (strcmp(encoding, DEFAULT_CSV_ENCODING_MODE2) != 0))
+    if ((balisc_strcmp(encoding, DEFAULT_CSV_ENCODING_MODE1) != 0) &&
+            (balisc_strcmp(encoding, DEFAULT_CSV_ENCODING_MODE2) != 0))
     {
         return 1;
     }

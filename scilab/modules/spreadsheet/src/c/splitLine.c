@@ -41,7 +41,7 @@ static int addToken(char **tokens, int *tokenIdx, const char* tokenValue, int to
 
         if (balisc_strcmp(token, EMPTYFIELD) == 0)
         {
-            strcpy(token, "");
+            token[0] = '\0';
         }
 
         // Escape double quotes, and remove simple quotes

@@ -371,7 +371,7 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                 else
                 {
                     char *str = os_strdup(splittedStr[i]);
-                    strcpy(str, "");
+                    str[0] = '\0';
 
                     ierr = sscanf(splittedStr[i], "%4s", str);
 
@@ -627,7 +627,7 @@ static double *getDoubleValuesInLine(char *line,
                 else
                 {
                     char *str = os_strdup(line);
-                    strcpy(str, "");
+                    str[0] = '\0';
                     ierr = sscanf(splittedStr[i], "%4s", str);
                     if ((ierr != 0) && (ierr != EOF))
                     {

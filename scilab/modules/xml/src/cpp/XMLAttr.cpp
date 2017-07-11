@@ -22,6 +22,11 @@
 #include "XMLDocument.hxx"
 #include "VariableScope.hxx"
 
+extern "C"
+{
+#include "strcmp.h"
+}
+
 namespace org_modules_xml
 {
 XMLAttr::XMLAttr(const XMLElement & _elem): XMLObject(), elem(_elem)
@@ -65,8 +70,8 @@ const char *XMLAttr::getAttributeValue(const char *ns, const char *name) const
     xmlAttr *attrs = 0;
     for (xmlAttr * cur = node->properties; cur; cur = cur->next)
     {
-        if (cur->ns && !strcmp(name, (const char *)cur->name)
-                && (!strcmp(ns, (const char *)cur->ns->prefix) || !strcmp(ns, (const char *)cur->ns->href)))
+        if (cur->ns && !balisc_strcmp(name, (const char *)cur->name)
+                && (!balisc_strcmp(ns, (const char *)cur->ns->prefix) || !balisc_strcmp(ns, (const char *)cur->ns->href)))
         {
             attrs = cur;
             break;
@@ -109,8 +114,8 @@ void XMLAttr::setAttributeValue(xmlNode * node, const char *prefix, const char *
 
         for (xmlAttr * cur = node->properties; cur; cur = cur->next)
         {
-            if (cur->ns && !strcmp(name, (const char *)cur->name)
-                    && (!strcmp(prefix, (const char *)cur->ns->prefix) || !strcmp(prefix, (const char *)cur->ns->href)))
+            if (cur->ns && !balisc_strcmp(name, (const char *)cur->name)
+                    && (!balisc_strcmp(prefix, (const char *)cur->ns->prefix) || !balisc_strcmp(prefix, (const char *)cur->ns->href)))
             {
                 attrs = cur;
                 break;

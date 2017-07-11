@@ -121,8 +121,8 @@ bool IsTheGoodShell(void)
     char fname[_MAX_FNAME];
     char ext[_MAX_EXT];
 
-    strcpy(shellCmd, "");
-    strcpy(fname, "");
+    shellCmd[0] = '\0';
+    fname[0] = '\0';
     GetEnvironmentVariableA("ComSpec", shellCmd, PATH_MAX);
     os_splitpath(shellCmd, drive, dir, fname, ext);
 
