@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,6 +25,7 @@ extern "C"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "localization.h"
+#include "strcmp.h"
 }
 
 using namespace org_modules_xml;
@@ -104,7 +105,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        if (!strcmp(field, "size"))
+        if (!balisc_strcmp(field, "size"))
         {
             d = (double)list->getSize();
             createScalarDouble(pvApiCtx, Rhs + 1, d);
@@ -112,7 +113,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
             LhsVar(1) = Rhs + 1;
             PutLhsVar();
         }
-        else if (!strcmp(field, "content"))
+        else if (!balisc_strcmp(field, "content"))
         {
             pstStrings = list->getContentFromList();
 
@@ -134,7 +135,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
             LhsVar(1) = Rhs + 1;
             PutLhsVar();
         }
-        else if (!strcmp(field, "name"))
+        else if (!balisc_strcmp(field, "name"))
         {
             pstStrings = list->getNameFromList();
 
