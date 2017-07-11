@@ -24,6 +24,7 @@ extern "C"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "localization.h"
+#include "strcmp.h"
 }
 
 using namespace org_modules_xml;
@@ -68,7 +69,7 @@ int sci_xmlDelete(char *fname, void* pvApiCtx)
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
-        if (!strcmp(com, "all"))
+        if (!balisc_strcmp(com, "all"))
         {
             org_modules_xml::XMLDocument::closeAllDocuments();
             XMLValidation::closeAllValidationFiles();
