@@ -29,7 +29,7 @@ extern "C"
 #include "localization.h"
 #include "os_string.h"
 #include "strlen.h"
-
+#include "strchr.h"
 }
 
 using namespace org_modules_xml;
@@ -97,7 +97,7 @@ int sci_percent_foo_i_XMLList(char *fname, void* pvApiCtx)
     }
 
     prefix = os_strdup(fname);
-    underscore = strchr(prefix, '_');
+    underscore = balisc_strchr(prefix, '_');
     if (underscore)
     {
         *underscore = '\0';
