@@ -5,8 +5,8 @@
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2014-2015 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -51,6 +51,8 @@
 #include "CurrentObject.h"
 #include "Format.h"
 #include "deleteGraphicObject.h"
+
+#include "strcmp.h"
 
 /** Check if auto_scale is on/off */
 static int mustUpdate(int iSubwinUID);
@@ -600,7 +602,7 @@ void Objplot3d (char    * fname ,
     {
         if (*izcol == 0)
         {
-            if (strcmp(fname, "plot3d1") == 0)
+            if (balisc_strcmp(fname, "plot3d1") == 0)
             {
                 typeof3d = SCI_FAC3D;
                 flagcolor = 1;
@@ -624,7 +626,7 @@ void Objplot3d (char    * fname ,
     }
     else if (*isfac == 0)
     {
-        if (strcmp(fname, "plot3d1") == 0)
+        if (balisc_strcmp(fname, "plot3d1") == 0)
         {
             typeof3d = SCI_PLOT3D;
             flagcolor = 1;
