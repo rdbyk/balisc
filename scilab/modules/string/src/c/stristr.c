@@ -18,19 +18,21 @@
 #include <string.h>
 #include "stristr.h"
 #include "os_string.h"
+#include "strlen.h"
+#include "strchr.h"
 /*--------------------------------------------------------------------------*/
 char *stristr(const char *psz, const char *tofind)
 {
     const char *ptr = psz;
     const char *ptr2;
-    size_t len_tofind = strlen(tofind);
+    size_t len_tofind = balisc_strlen(tofind);
     
     if (len_tofind > 0)
     {
         while (1)
         {
-            ptr = strchr(psz, toupper(*tofind));
-            ptr2 = strchr(psz, tolower(*tofind));
+            ptr = balisc_strchr(psz, toupper(*tofind));
+            ptr2 = balisc_strchr(psz, tolower(*tofind));
 
             if (!ptr)
             {
