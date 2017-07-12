@@ -6,8 +6,8 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,6 +48,7 @@
 #include "Scierror.h"
 #include "machine.h"
 #include "numericconstants_interface.h"
+#include "strcmp.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -165,7 +166,7 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
     *l = 0;
     /**  Take care of : sprintf(buf1,"%.*f",0,1.d230) which overflow in buf1 **/
     /**  we don't use %.*f format if numbers are two big **/
-    if (strcmp("%.*f", fmt) == 0 && (Abs(xmax) > 1.e+10 || Abs(xmin) > 1.e+10))
+    if (balisc_strcmp("%.*f", fmt) == 0 && (Abs(xmax) > 1.e+10 || Abs(xmin) > 1.e+10))
     {
         return (0);
     }
@@ -176,7 +177,7 @@ static int Fsepare(char *fmt, int dec, int *l, double xmin, double xmax, double 
         strcpy(buf2, buf1);
         sprintf(buf1, fmt, dec, x);
         *l = (((int)strlen(buf1) >= *l) ? (int) strlen(buf1) : *l);
-        if (strcmp(buf1, buf2) == 0)
+        if (balisc_strcmp(buf1, buf2) == 0)
         {
             return (0);
         }
@@ -259,7 +260,7 @@ static int Fsepare1(char *fmt, int dec, int *l, double *xx, int nx)
     *l = 0;
     /**  Take care of : sprintf(buf1,"%.*f",0,1.d230) which overflow in buf1 **/
     /**  we don't use %.*f format if numbers are two big **/
-    if (strcmp("%.*f", fmt) == 0 && (Abs(xx[nx - 1]) > 1.e+10 || Abs(xx[0]) > 1.e+10))
+    if (balisc_strcmp("%.*f", fmt) == 0 && (Abs(xx[nx - 1]) > 1.e+10 || Abs(xx[0]) > 1.e+10))
     {
         return (0);
     }
@@ -269,7 +270,7 @@ static int Fsepare1(char *fmt, int dec, int *l, double *xx, int nx)
         strcpy(buf2, buf1);
         sprintf(buf1, fmt, dec, xx[i]);
         *l = (((int)strlen(buf1) >= *l) ? (int) strlen(buf1) : *l);
-        if (strcmp(buf1, buf2) == 0)
+        if (balisc_strcmp(buf1, buf2) == 0)
         {
             return (0);
         }
@@ -1210,7 +1211,7 @@ StringMatrix * computeDefaultTicsLabels(int iObjUID)
      * If different from the empty string, the format is already specified,
      * if equal, it needs to be computed.
      */
-    if (c_format && strcmp(c_format, "") == 0)
+    if (c_format && balisc_strcmp(c_format, "") == 0)
     {
         ComputeC_format(iObjUID, tempFormat);
         c_format = tempFormat;

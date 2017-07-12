@@ -4,8 +4,8 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -49,6 +49,7 @@
 #include "createGraphicObject.h"
 
 #include "os_string.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname, void* pvApiCtx)
 {
@@ -168,7 +169,7 @@ int sci_delete(char *fname, void* pvApiCtx)
                     return 1;
                 }
 
-                if (strcmp((l2), "all") == 0)
+                if (balisc_strcmp((l2), "all") == 0)
                 {
                     int i = 0;
                     int iFigureNumber = sciGetNbFigure();

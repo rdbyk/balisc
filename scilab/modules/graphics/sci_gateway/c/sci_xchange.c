@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,6 +25,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "PloEch.h"
+#include "strcmp.h"
 
 #define VIEWING_RECT_SIZE 4
 
@@ -69,7 +70,7 @@ int sci_xchange(char * fname, void *pvApiCtx)
     }
 
     /* Convert coordinates */
-    if (strcmp(l3Input, "i2f") == 0)
+    if (balisc_strcmp(l3Input, "i2f") == 0)
     {
         int* l1 = NULL;
         int* l2 = NULL;

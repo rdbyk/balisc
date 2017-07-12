@@ -5,8 +5,8 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2014 - Scilab Enterprises - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,6 +32,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "strcmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
@@ -111,11 +112,11 @@ int set_tight_limits_property(void* _pvCtx, int iObjUID, void* _pvData, int valu
 
         for (i = 0; i < mSize; i++)
         {
-            if (strcmp(values[i], "off") == 0)
+            if (balisc_strcmp(values[i], "off") == 0)
             {
                 tightLimits[i] = FALSE;
             }
-            else if (strcmp(values[i], "on") == 0)
+            else if (balisc_strcmp(values[i], "on") == 0)
             {
                 tightLimits[i] = TRUE;
             }

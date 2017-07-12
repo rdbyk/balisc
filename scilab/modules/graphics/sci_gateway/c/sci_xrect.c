@@ -4,8 +4,8 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,6 +29,7 @@
 #include "GetProperty.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "strcmp.h"
 
 #include "HandleManagement.h"
 #include "getGraphicObjectProperty.h"
@@ -90,7 +91,7 @@ int sci_xrect(char *fname, void *pvApiCtx)
 
             getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
-            if (strcmp(fname, "xrect") == 0)
+            if (balisc_strcmp(fname, "xrect") == 0)
             {
                 Objrect ((l1), (l1 + 1), (l1 + 2), (l1 + 3),
                          &foreground, NULL, FALSE, TRUE, &hdl);
@@ -189,7 +190,7 @@ int sci_xrect(char *fname, void *pvApiCtx)
             }
 
 
-            if (strcmp(fname, "xrect") == 0)
+            if (balisc_strcmp(fname, "xrect") == 0)
             {
                 Objrect ((l1), (l2), (l3), (l4),
                          &foreground, NULL, FALSE, TRUE, &hdl);

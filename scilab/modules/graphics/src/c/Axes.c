@@ -3,8 +3,8 @@
  * Copyright (C) 1998-2000 - ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010-2012 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -41,6 +41,8 @@
 #include "CurrentSubwin.h"
 
 #include "deleteGraphicObject.h"
+#include "strcmp.h"
+
 /*--------------------------------------------------------------------------------*/
 static void initSubWinAngles(int iSubWinUID);
 static void initSubWinBounds(int iSubWinUID);
@@ -161,47 +163,47 @@ BOOL checkRedrawing(void)
 /*--------------------------------------------------------------------------------*/
 sciLegendPlace propertyNameToLegendPlace(const char * string)
 {
-    if (strcmp(string, "in_upper_right") == 0)
+    if (balisc_strcmp(string, "in_upper_right") == 0)
     {
         return SCI_LEGEND_IN_UPPER_RIGHT;
     }
-    else if (strcmp(string, "in_upper_left") == 0)
+    else if (balisc_strcmp(string, "in_upper_left") == 0)
     {
         return SCI_LEGEND_IN_UPPER_LEFT;
     }
-    else if (strcmp(string, "in_lower_right") == 0)
+    else if (balisc_strcmp(string, "in_lower_right") == 0)
     {
         return SCI_LEGEND_IN_LOWER_RIGHT;
     }
-    else if (strcmp(string, "in_lower_left") == 0)
+    else if (balisc_strcmp(string, "in_lower_left") == 0)
     {
         return SCI_LEGEND_IN_LOWER_LEFT;
     }
-    else if (strcmp(string, "out_upper_right") == 0)
+    else if (balisc_strcmp(string, "out_upper_right") == 0)
     {
         return SCI_LEGEND_OUT_UPPER_RIGHT;
     }
-    else if (strcmp(string, "out_upper_left") == 0)
+    else if (balisc_strcmp(string, "out_upper_left") == 0)
     {
         return SCI_LEGEND_OUT_UPPER_LEFT;
     }
-    else if (strcmp(string, "out_lower_right") == 0)
+    else if (balisc_strcmp(string, "out_lower_right") == 0)
     {
         return SCI_LEGEND_OUT_LOWER_RIGHT;
     }
-    else if (strcmp(string, "out_lower_left") == 0)
+    else if (balisc_strcmp(string, "out_lower_left") == 0)
     {
         return SCI_LEGEND_OUT_LOWER_LEFT;
     }
-    else if (strcmp(string, "upper_caption") == 0)
+    else if (balisc_strcmp(string, "upper_caption") == 0)
     {
         return SCI_LEGEND_UPPER_CAPTION;
     }
-    else if (strcmp(string, "lower_caption") == 0)
+    else if (balisc_strcmp(string, "lower_caption") == 0)
     {
         return SCI_LEGEND_LOWER_CAPTION;
     }
-    else if (strcmp(string, "by_coordinates") == 0)
+    else if (balisc_strcmp(string, "by_coordinates") == 0)
     {
         return SCI_LEGEND_BY_COORDINATES;
     }

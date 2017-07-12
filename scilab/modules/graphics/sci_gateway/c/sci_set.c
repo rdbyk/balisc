@@ -5,8 +5,8 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2006 - INRIA - Vincent Couvert
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -39,6 +39,7 @@
 #include "api_scilab.h"
 #include "FigureList.h"
 
+#include "strcmp.h"
 /*--------------------------------------------------------------------------
  * sciset(choice-name,x1,x2,x3,x4,x5)
  * or   xset()
@@ -166,9 +167,9 @@ int sci_set(char *fname, void *pvApiCtx)
                 }
                 break;
             case sci_strings :
-                if (strcmp(pstProperty, "tics_labels") == 0 || strcmp(pstProperty, "auto_ticks") == 0 ||
-                        strcmp(pstProperty, "axes_visible") == 0 || strcmp(pstProperty, "axes_reverse") == 0 ||
-                        strcmp(pstProperty, "text") == 0 || strcmp(pstProperty, "ticks_format") == 0)
+                if (balisc_strcmp(pstProperty, "tics_labels") == 0 || balisc_strcmp(pstProperty, "auto_ticks") == 0 ||
+                        balisc_strcmp(pstProperty, "axes_visible") == 0 || balisc_strcmp(pstProperty, "axes_reverse") == 0 ||
+                        balisc_strcmp(pstProperty, "text") == 0 || balisc_strcmp(pstProperty, "ticks_format") == 0)
                 {
                     isMatrixOfString = 1;
                     if (getAllocatedMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, (char***)&pvData))
@@ -198,7 +199,7 @@ int sci_set(char *fname, void *pvApiCtx)
         for (i = 0; i < NB_PROPERTIES_SUPPORTED; i++)
         {
 
-            if (strcmp(propertiesSupported[i], pstProperty) == 0)
+            if (balisc_strcmp(propertiesSupported[i], pstProperty) == 0)
             {
                 iPropertyFound = 1;
             }
@@ -388,9 +389,9 @@ int sci_set(char *fname, void *pvApiCtx)
                     sciErr = getMatrixOfHandle(pvApiCtx, piAddr3, &iRows3, &iCols3, (long long**)&pvData);
                     break;
                 case sci_strings :
-                    if (strcmp(pstProperty, "tics_labels") != 0 && strcmp(pstProperty, "auto_ticks") != 0 && strcmp(pstProperty, "tight_limits") != 0 &&
-                            strcmp(pstProperty, "axes_visible") != 0 && strcmp(pstProperty, "axes_reverse") != 0 &&
-                            strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
+                    if (balisc_strcmp(pstProperty, "tics_labels") != 0 && balisc_strcmp(pstProperty, "auto_ticks") != 0 && balisc_strcmp(pstProperty, "tight_limits") != 0 &&
+                            balisc_strcmp(pstProperty, "axes_visible") != 0 && balisc_strcmp(pstProperty, "axes_reverse") != 0 &&
+                            balisc_strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
                             stricmp(pstProperty, "tooltipstring") != 0 && stricmp(pstProperty, "ticks_format") != 0) /* Added for uicontrols */
                     {
                         if (isScalar(pvApiCtx, piAddr3) == 0)

@@ -5,8 +5,8 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,6 +37,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
+#include "strcmp.h"
 /*------------------------------------------------------------------------*/
 int set_auto_ticks_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
@@ -58,11 +59,11 @@ int set_auto_ticks_property(void* _pvCtx, int iObjUID, void* _pvData, int valueT
     if (mSize == 1)
     {
         /* only one parameter to set the value for every axes.*/
-        if (strcmp(values[0], "off") == 0)
+        if (balisc_strcmp(values[0], "off") == 0)
         {
             autoTicks = FALSE;
         }
-        else if (strcmp(values[0], "on") == 0)
+        else if (balisc_strcmp(values[0], "on") == 0)
         {
             autoTicks = TRUE;
         }
@@ -111,11 +112,11 @@ int set_auto_ticks_property(void* _pvCtx, int iObjUID, void* _pvData, int valueT
 
         for (i = 0; i < mSize; i++)
         {
-            if (strcmp(values[i], "off") == 0)
+            if (balisc_strcmp(values[i], "off") == 0)
             {
                 autoTicks[i] = FALSE;
             }
-            else if (strcmp(values[i], "on") == 0)
+            else if (balisc_strcmp(values[i], "on") == 0)
             {
                 autoTicks[i] = TRUE;
             }

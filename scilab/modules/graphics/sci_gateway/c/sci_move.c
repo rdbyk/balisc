@@ -3,8 +3,8 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +26,7 @@
 #include "gw_graphics.h"
 #include "Interaction.h"
 #include "localization.h"
+#include "strcmp.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
 #include "getPropertyAssignedValue.h"
@@ -68,7 +69,7 @@ int sci_move(char * fname, void *pvApiCtx)
         }
 
         option = l3;
-        if (strcmp(option, "alone") == 0)
+        if (balisc_strcmp(option, "alone") == 0)
         {
             alone = TRUE;
         }

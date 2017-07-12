@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +26,7 @@
 #include "SetPropertyStatus.h"
 #include "sci_types.h"
 #include "os_string.h"
+#include "strcmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
@@ -77,12 +78,12 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
 
         pstType = pstField[0];
         //depend of kind of tlist
-        if (strcmp(pstType, "NoLayoutConstraint") == 0)
+        if (balisc_strcmp(pstType, "NoLayoutConstraint") == 0)
         {
             freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return clearConstraints(iObjUID);
         }
-        else if (strcmp(pstType, "BorderConstraint") == 0)
+        else if (balisc_strcmp(pstType, "BorderConstraint") == 0)
         {
             //arg2 -> string -> int enum
             //arg3 -> double[] -> int[]
@@ -158,12 +159,12 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_PREFERREDSIZE__, piPreferredSize, jni_int_vector, 2);
             setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
         }
-        else if (strcmp(pstType, "GridConstraints") == 0)
+        else if (balisc_strcmp(pstType, "GridConstraints") == 0)
         {
             freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return clearConstraints(iObjUID);
         }
-        else if (strcmp(pstType, "GridBagConstraints") == 0)
+        else if (balisc_strcmp(pstType, "GridBagConstraints") == 0)
         {
             //arg2 -> double 1x4 -> int 1*4
             //arg3 -> double 1x2 -> double 1*2

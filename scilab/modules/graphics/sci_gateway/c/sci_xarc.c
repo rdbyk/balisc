@@ -3,8 +3,8 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +26,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "strcmp.h"
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
@@ -206,7 +207,7 @@ int sci_xarc(char *fname, void *pvApiCtx)
 
     getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piCurColor);
 
-    if (strcmp(fname, "xarc") == 0)
+    if (balisc_strcmp(fname, "xarc") == 0)
     {
         Objarc (&angle1, &angle2, (l1), (l2), (l3), (l4), &curcolor, NULL, FALSE, TRUE, &hdl);
     }
