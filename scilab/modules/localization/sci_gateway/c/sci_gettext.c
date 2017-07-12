@@ -25,6 +25,7 @@
 #include "os_string.h"
 #include "freeArrayOfString.h"
 #include "strcmp.h"
+#include "strchr.h"
 
 /*--------------------------------------------------------------------------*/
 static char *convertString_dgettext(const char *domain, const char *pStr);
@@ -146,7 +147,7 @@ static char *convertString_dgettext(const char *domain, const char *pStr)
         BOOL revertStrsub = FALSE;
         char *TranslatedString = NULL;
         char *tmpStr = NULL;
-        if (strchr(pStr, '\\') != NULL)
+        if (balisc_strchr(pStr, '\\') != NULL)
         {
             char *tmpStr1 = NULL;
             char *tmpStr2 = NULL;
