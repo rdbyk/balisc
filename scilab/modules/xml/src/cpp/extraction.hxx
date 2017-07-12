@@ -34,6 +34,7 @@ extern "C"
 #include "localization.h"
 #include "os_string.h"
 #include "strcmp.h"
+#include "strchr.h"
 }
 
 using namespace org_modules_xml;
@@ -56,7 +57,7 @@ int createStringOnStack(char * fname, const char * str, int pos, void* pvApiCtx)
         str = "";
     }
 
-    if (strchr(str, '\n'))
+    if (balisc_strchr(str, '\n'))
     {
         char * tok = os_strdup(str);
         char * stok = tok;

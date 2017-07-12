@@ -19,6 +19,8 @@
 #include "os_string.h"
 #include "checkCsvWriteFormat.h"
 #include "strlen.h"
+#include "strchr.h"
+#include "strrchr.h"
 // =============================================================================
 #define NB_FORMAT_SUPPORTED 7
 static const char *supportedFormat[NB_FORMAT_SUPPORTED] =
@@ -31,8 +33,8 @@ int checkCsvWriteFormat(const char *format)
 {
     if (format)
     {
-        char *tokenPercent1 = strchr((char*)format, '%');
-        char *tokenPercent2 = strrchr((char*)format, '%');
+        char *tokenPercent1 = balisc_strchr((char*)format, '%');
+        char *tokenPercent2 = balisc_strrchr((char*)format, '%');
         if ((tokenPercent2 && tokenPercent1) && (tokenPercent1 == tokenPercent2))
         {
             char *cleanedFormat = getCleanedFormat(format);
@@ -68,7 +70,7 @@ static char *getCleanedFormat(const char *format)
     char *cleanedFormat = NULL;
     if (format)
     {
-        char *percent = strchr((char*)format, '%');
+        char *percent = balisc_strchr((char*)format, '%');
         if (percent)
         {
             int i = 0;

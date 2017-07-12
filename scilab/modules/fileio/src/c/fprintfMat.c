@@ -28,6 +28,8 @@
 #include "BOOL.h"
 #include "os_string.h"
 #include "strlen.h"
+#include "strchr.h"
+#include "strrchr.h"
 /*--------------------------------------------------------------------------*/
 #define EOL "\n"
 #define NanString "Nan"
@@ -189,8 +191,8 @@ static BOOL checkFprintfMatFormat(char *format)
 {
     if (format)
     {
-        char *tokenPercent1 = strchr(format, '%');
-        char *tokenPercent2 = strrchr(format, '%');
+        char *tokenPercent1 = balisc_strchr(format, '%');
+        char *tokenPercent2 = balisc_strrchr(format, '%');
         if ((tokenPercent2 && tokenPercent1) && (tokenPercent1 == tokenPercent2))
         {
             char *cleanedFormat = getCleanedFormat(format);
@@ -226,7 +228,7 @@ static char *getCleanedFormat(char *format)
     char *cleanedFormat = NULL;
     if (format)
     {
-        char *percent = strchr(format, '%');
+        char *percent = balisc_strchr(format, '%');
         if (percent)
         {
             int i = 0;

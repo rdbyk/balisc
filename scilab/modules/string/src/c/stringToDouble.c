@@ -25,6 +25,7 @@
 #include "core_math.h"
 #include "sci_malloc.h"
 #include "os_string.h"
+#include "strchr.h"
 #ifndef _MSC_VER
 #ifndef stricmp
 #define stricmp strcasecmp
@@ -46,7 +47,7 @@ static char* replace_D_By_E(const char* _pst)
     char* pstFind = pstReturn;
     do
     {
-        pstFind = strchr(pstFind, 'D');
+        pstFind = balisc_strchr(pstFind, 'D');
         if (pstFind)
         {
             pstFind[0] = 'E';
@@ -57,7 +58,7 @@ static char* replace_D_By_E(const char* _pst)
     pstFind = pstReturn;
     do
     {
-        pstFind = strchr(pstFind, 'd');
+        pstFind = balisc_strchr(pstFind, 'd');
         if (pstFind)
         {
             pstFind[0] = 'e';
