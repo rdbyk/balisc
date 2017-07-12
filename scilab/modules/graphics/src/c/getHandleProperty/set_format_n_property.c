@@ -33,7 +33,7 @@
 #include "localization.h"
 #include "sci_malloc.h"
 #include "string.h"
-#include "balisc_strcmp.h"
+#include "strcmp.h"
 #include "StringMatrix.h"
 #include "Format.h"
 
