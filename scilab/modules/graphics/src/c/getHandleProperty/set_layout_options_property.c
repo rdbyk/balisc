@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,6 +28,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "sci_types.h"
+#include "strcmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
@@ -72,12 +73,12 @@ int set_layout_options_property(void* _pvCtx, int iObjUID, void* _pvData, int va
 
         pstType = pstField[0];
         //depend of kind of tlist
-        if (strcmp(pstType, "OptNoLayout") == 0)
+        if (balisc_strcmp(pstType, "OptNoLayout") == 0)
         {
             freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return clearLayoutOptions(iObjUID);
         }
-        else if (strcmp(pstType, "OptBorder") == 0)
+        else if (balisc_strcmp(pstType, "OptBorder") == 0)
         {
             //arg2 -> double 1x2 -> int 1*2
             int* piAddr2 = NULL;
@@ -105,7 +106,7 @@ int set_layout_options_property(void* _pvCtx, int iObjUID, void* _pvData, int va
 
             setGraphicObjectProperty(iObjUID, __GO_BORDER_OPT_PADDING__, piPadding, jni_int_vector, 2);
         }
-        else if (strcmp(pstType, "OptGrid") == 0)
+        else if (balisc_strcmp(pstType, "OptGrid") == 0)
         {
             //arg2 -> double 1x2 -> int 1*2
             //arg3 -> double 1x2 -> int 1*2
@@ -157,7 +158,7 @@ int set_layout_options_property(void* _pvCtx, int iObjUID, void* _pvData, int va
             setGraphicObjectProperty(iObjUID, __GO_GRID_OPT_GRID__, piGrid, jni_int_vector, 2);
             setGraphicObjectProperty(iObjUID, __GO_GRID_OPT_PADDING__, piPadding, jni_int_vector, 2);
         }
-        else if (strcmp(pstType, "OptGridBag") == 0)
+        else if (balisc_strcmp(pstType, "OptGridBag") == 0)
         {
             freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return clearLayoutOptions(iObjUID);
