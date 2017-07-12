@@ -5,8 +5,8 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2006 - INRIA - Vincent Couvert
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -42,6 +42,7 @@
 #include "FigureList.h"
 #include "MALLOC.h"
 
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 int sci_get(char *fname, void *pvApiCtx)
 {
@@ -220,13 +221,13 @@ int sci_get(char *fname, void *pvApiCtx)
                 return 1;
             }
 
-            if (strcmp(pstFirst, "default_figure") == 0 ||
-                    strcmp(pstFirst, "default_axes") == 0 ||
-                    strcmp(pstFirst, "current_figure") == 0 ||
-                    strcmp(pstFirst, "current_axes") == 0 ||
-                    strcmp(pstFirst, "current_entity") == 0 ||
-                    strcmp(pstFirst, "hdl") == 0 ||
-                    strcmp(pstFirst, "figures_id") == 0)
+            if (balisc_strcmp(pstFirst, "default_figure") == 0 ||
+                balisc_strcmp(pstFirst, "default_axes") == 0 ||
+                balisc_strcmp(pstFirst, "current_figure") == 0 ||
+                balisc_strcmp(pstFirst, "current_axes") == 0 ||
+                balisc_strcmp(pstFirst, "current_entity") == 0 ||
+                balisc_strcmp(pstFirst, "hdl") == 0 ||
+                balisc_strcmp(pstFirst, "figures_id") == 0)
             {
                 hdl = 0;
                 l2 = pstFirst;
