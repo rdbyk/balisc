@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +26,7 @@
 #include "SetPropertyStatus.h"
 #include "sci_types.h"
 #include "os_string.h"
+#include "strcmp.h"
 
 #include "createGraphicObject.h"
 #include "deleteGraphicObject.h"
@@ -100,39 +101,39 @@ int createBorder(void* _pvCtx, int* _piAddrList, int _iParent)
     pstType = pstField[0];
 
     //depend of kind of tlist
-    if (strcmp(pstType, "NoBorder") == 0)
+    if (balisc_strcmp(pstType, "NoBorder") == 0)
     {
         ret = clearBorder(_iParent);
     }
-    else if (strcmp(pstType, "LineBorder") == 0)
+    else if (balisc_strcmp(pstType, "LineBorder") == 0)
     {
         ret = createLineBorder(_pvCtx, _piAddrList, _iParent);
     }
-    else if (strcmp(pstType, "BevelBorder") == 0)
+    else if (balisc_strcmp(pstType, "BevelBorder") == 0)
     {
         ret = createBevelBorder(_pvCtx, _piAddrList, _iParent);
     }
-    else if (strcmp(pstType, "SoftBevelBorder") == 0)
+    else if (balisc_strcmp(pstType, "SoftBevelBorder") == 0)
     {
         ret = createSoftBevelBorder(_pvCtx, _piAddrList, _iParent);
     }
-    else if (strcmp(pstType, "EtchedBorder") == 0)
+    else if (balisc_strcmp(pstType, "EtchedBorder") == 0)
     {
         ret = createEtchedBorder(_pvCtx, _piAddrList, _iParent);
     }
-    else if (strcmp(pstType, "TitledBorder") == 0)
+    else if (balisc_strcmp(pstType, "TitledBorder") == 0)
     {
         ret = createTitledBorder(_pvCtx, _piAddrList, _iParent);
     }
-    else if (strcmp(pstType, "EmptyBorder") == 0)
+    else if (balisc_strcmp(pstType, "EmptyBorder") == 0)
     {
         ret = createEmptyBorder(_pvCtx, _piAddrList, _iParent);
     }
-    else if (strcmp(pstType, "CompoundBorder") == 0)
+    else if (balisc_strcmp(pstType, "CompoundBorder") == 0)
     {
         ret = createCompoundBorder(_pvCtx, _piAddrList, _iParent);
     }
-    else if (strcmp(pstType, "MatteBorder") == 0)
+    else if (balisc_strcmp(pstType, "MatteBorder") == 0)
     {
         ret = createMatteBorder(_pvCtx, _piAddrList, _iParent);
     }
