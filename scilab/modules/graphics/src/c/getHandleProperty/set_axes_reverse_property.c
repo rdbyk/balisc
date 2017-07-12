@@ -5,8 +5,8 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,6 +32,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "strcmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -54,11 +55,11 @@ int set_axes_reverse_property(void* _pvCtx, int iObjUID, void* _pvData, int valu
     if (nbCol == 1)
     {
         /* only one parameter to set the value for every axes.*/
-        if (strcmp(values[0], "off") == 0)
+        if (balisc_strcmp(values[0], "off") == 0)
         {
             reverse = FALSE;
         }
-        else if (strcmp(values[0], "on") == 0)
+        else if (balisc_strcmp(values[0], "on") == 0)
         {
             reverse = TRUE;
         }
@@ -89,11 +90,11 @@ int set_axes_reverse_property(void* _pvCtx, int iObjUID, void* _pvData, int valu
 
         for (i = 0; i < nbCol; i++)
         {
-            if (strcmp(values[i], "off") == 0)
+            if (balisc_strcmp(values[i], "off") == 0)
             {
                 reverse = FALSE;
             }
-            else if (strcmp(values[i], "on") == 0)
+            else if (balisc_strcmp(values[i], "on") == 0)
             {
                 reverse = TRUE;
             }
