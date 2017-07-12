@@ -198,7 +198,9 @@ am__objects_1 = src/c/libscistring_algo_la-convstr.lo \
 	src/c/libscistring_algo_la-isascii.lo \
 	src/c/libscistring_algo_la-isnum.lo
 am__objects_2 = src/cpp/libscistring_algo_la-stripblanks.lo \
+	src/cpp/libscistring_algo_la-strchr.lo \
 	src/cpp/libscistring_algo_la-strcmp.lo \
+	src/cpp/libscistring_algo_la-strrchr.lo \
 	src/cpp/libscistring_algo_la-strlen.lo
 am_libscistring_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscistring_algo_la_OBJECTS = $(am_libscistring_algo_la_OBJECTS)
@@ -627,7 +629,9 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 STRING_CPP_SOURCES = \
     src/cpp/stripblanks.cpp \
+    src/cpp/strchr.cpp \
     src/cpp/strcmp.cpp \
+    src/cpp/strrchr.cpp \
     src/cpp/strlen.cpp
 
 STRING_C_SOURCES = \
@@ -997,7 +1001,11 @@ src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscistring_algo_la-stripblanks.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscistring_algo_la-strchr.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscistring_algo_la-strcmp.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscistring_algo_la-strrchr.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscistring_algo_la-strlen.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1170,9 +1178,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-strsplit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-strsubst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-tokens.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-strchr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-strcmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-stripblanks.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-strlen.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscistring_algo_la-strrchr.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1397,12 +1407,26 @@ src/cpp/libscistring_algo_la-stripblanks.lo: src/cpp/stripblanks.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscistring_algo_la-stripblanks.lo `test -f 'src/cpp/stripblanks.cpp' || echo '$(srcdir)/'`src/cpp/stripblanks.cpp
 
+src/cpp/libscistring_algo_la-strchr.lo: src/cpp/strchr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscistring_algo_la-strchr.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscistring_algo_la-strchr.Tpo -c -o src/cpp/libscistring_algo_la-strchr.lo `test -f 'src/cpp/strchr.cpp' || echo '$(srcdir)/'`src/cpp/strchr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscistring_algo_la-strchr.Tpo src/cpp/$(DEPDIR)/libscistring_algo_la-strchr.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/strchr.cpp' object='src/cpp/libscistring_algo_la-strchr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscistring_algo_la-strchr.lo `test -f 'src/cpp/strchr.cpp' || echo '$(srcdir)/'`src/cpp/strchr.cpp
+
 src/cpp/libscistring_algo_la-strcmp.lo: src/cpp/strcmp.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscistring_algo_la-strcmp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscistring_algo_la-strcmp.Tpo -c -o src/cpp/libscistring_algo_la-strcmp.lo `test -f 'src/cpp/strcmp.cpp' || echo '$(srcdir)/'`src/cpp/strcmp.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscistring_algo_la-strcmp.Tpo src/cpp/$(DEPDIR)/libscistring_algo_la-strcmp.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/strcmp.cpp' object='src/cpp/libscistring_algo_la-strcmp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscistring_algo_la-strcmp.lo `test -f 'src/cpp/strcmp.cpp' || echo '$(srcdir)/'`src/cpp/strcmp.cpp
+
+src/cpp/libscistring_algo_la-strrchr.lo: src/cpp/strrchr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscistring_algo_la-strrchr.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscistring_algo_la-strrchr.Tpo -c -o src/cpp/libscistring_algo_la-strrchr.lo `test -f 'src/cpp/strrchr.cpp' || echo '$(srcdir)/'`src/cpp/strrchr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscistring_algo_la-strrchr.Tpo src/cpp/$(DEPDIR)/libscistring_algo_la-strrchr.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/strrchr.cpp' object='src/cpp/libscistring_algo_la-strrchr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscistring_algo_la-strrchr.lo `test -f 'src/cpp/strrchr.cpp' || echo '$(srcdir)/'`src/cpp/strrchr.cpp
 
 src/cpp/libscistring_algo_la-strlen.lo: src/cpp/strlen.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscistring_algo_la-strlen.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscistring_algo_la-strlen.Tpo -c -o src/cpp/libscistring_algo_la-strlen.lo `test -f 'src/cpp/strlen.cpp' || echo '$(srcdir)/'`src/cpp/strlen.cpp

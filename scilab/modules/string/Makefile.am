@@ -6,7 +6,9 @@
 
 STRING_CPP_SOURCES = \
     src/cpp/stripblanks.cpp \
+    src/cpp/strchr.cpp \
     src/cpp/strcmp.cpp \
+    src/cpp/strrchr.cpp \
     src/cpp/strlen.cpp
 
 STRING_C_SOURCES = \
