@@ -37,7 +37,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
-#include "balisc_strcmp.h"
+#include "strcmp.h"
 /*------------------------------------------------------------------------*/
 int set_auto_ticks_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

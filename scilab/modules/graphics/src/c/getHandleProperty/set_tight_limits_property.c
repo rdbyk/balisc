@@ -32,7 +32,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "balisc_strcmp.h"
+#include "strcmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
