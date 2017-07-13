@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #define H5_NO_DEPRECATED_SYMBOLS
 
@@ -30,12 +30,13 @@
 #include "h5_attributeConstants.h"
 #include "h5_readDataFromFile.h"
 #include "doublecomplex.h"
+#include "strcmp.h"
 
 //#define TIME_DEBUG
 
 static herr_t find_attr_by_name(hid_t loc_id, const char *name, const H5A_info_t *ainfo, void *data)
 {
-    return !strcmp(name, (const char *)data);
+    return !balisc_strcmp(name, (const char *)data);
 }
 
 /************************************************************
@@ -218,7 +219,7 @@ static int checkAttribute(int _iDatasetId, char *_pstAttribute, char *_pstValue)
 
     //status = H5Giterate (_iFile, "/", NULL, op_func, &iDatasetId);
     pstScilabClass = readAttribute(_iDatasetId, _pstAttribute);
-    if (pstScilabClass != NULL && strcmp(pstScilabClass, _pstValue) == 0)
+    if (pstScilabClass != NULL && balisc_strcmp(pstScilabClass, _pstValue) == 0)
     {
         iRet = 1;
     }
@@ -335,35 +336,35 @@ int getDatasetPrecision(int _iDatasetId, int *_piPrec)
     {
         return -1;
     }
-    else if (strcmp(pstScilabClass, "8") == 0)
+    else if (balisc_strcmp(pstScilabClass, "8") == 0)
     {
         *_piPrec = SCI_INT8;
     }
-    else if (strcmp(pstScilabClass, "u8") == 0)
+    else if (balisc_strcmp(pstScilabClass, "u8") == 0)
     {
         *_piPrec = SCI_UINT8;
     }
-    else if (strcmp(pstScilabClass, "16") == 0)
+    else if (balisc_strcmp(pstScilabClass, "16") == 0)
     {
         *_piPrec = SCI_INT16;
     }
-    else if (strcmp(pstScilabClass, "u16") == 0)
+    else if (balisc_strcmp(pstScilabClass, "u16") == 0)
     {
         *_piPrec = SCI_UINT16;
     }
-    else if (strcmp(pstScilabClass, "32") == 0)
+    else if (balisc_strcmp(pstScilabClass, "32") == 0)
     {
         *_piPrec = SCI_INT32;
     }
-    else if (strcmp(pstScilabClass, "u32") == 0)
+    else if (balisc_strcmp(pstScilabClass, "u32") == 0)
     {
         *_piPrec = SCI_UINT32;
     }
-    else if (strcmp(pstScilabClass, "64") == 0)
+    else if (balisc_strcmp(pstScilabClass, "64") == 0)
     {
         *_piPrec = SCI_INT64;
     }
-    else if (strcmp(pstScilabClass, "u64") == 0)
+    else if (balisc_strcmp(pstScilabClass, "u64") == 0)
     {
         *_piPrec = SCI_UINT64;
     }
@@ -1079,51 +1080,51 @@ int getScilabTypeFromDataSet(int _iDatasetId)
         return unknow_type;
     }
     /* HDF5 Float type + SCILAB_Class = double <=> double */
-    if (strcmp(pstScilabClass, g_SCILAB_CLASS_DOUBLE) == 0)
+    if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_DOUBLE) == 0)
     {
         iVarType = sci_matrix;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0)
     {
         iVarType = sci_strings;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
     {
         iVarType = sci_boolean;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_POLY) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_POLY) == 0)
     {
         iVarType = sci_poly;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_INT) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_INT) == 0)
     {
         iVarType = sci_ints;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_SPARSE) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_SPARSE) == 0)
     {
         iVarType = sci_sparse;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BSPARSE) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_BSPARSE) == 0)
     {
         iVarType = sci_boolean_sparse;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_LIST) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_LIST) == 0)
     {
         iVarType = sci_list;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_TLIST) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_TLIST) == 0)
     {
         iVarType = sci_tlist;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_MLIST) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_MLIST) == 0)
     {
         iVarType = sci_mlist;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_VOID) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_VOID) == 0)
     {
         iVarType = sci_void;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_UNDEFINED) == 0)
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_UNDEFINED) == 0)
     {
         iVarType = sci_undefined;
     }
