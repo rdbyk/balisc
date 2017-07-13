@@ -119,7 +119,7 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
     {
         if (lastslash == 0)
         {
-            wcscpy(dir, L"");
+            dir[0] = L'\0';
         }
         else
         {
@@ -168,7 +168,7 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
     if (name && name[0] == 0 && ext && wcslen(ext) > 0)
     {
         wcscpy(name, ext);
-        wcscpy(ext, L"");
+        ext[0] = L'\0';
     }
 }
 /*--------------------------------------------------------------------------*/
