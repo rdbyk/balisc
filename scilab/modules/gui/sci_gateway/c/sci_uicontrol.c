@@ -4,8 +4,8 @@
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,6 +38,7 @@
 #include "createGraphicObject.h"
 #include "expandPathVariable.h"
 #include "os_string.h"
+#include "strcmp.h"
 
 static const char* propertiesNames[] =
 {
@@ -482,7 +483,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                     return 1;
                 }
 
-                if (strcmp(styleProperty, "frame") == 0)
+                if (balisc_strcmp(styleProperty, "frame") == 0)
                 {
                     //check scrollable property to create a scroll frame instead of normal frame
                     if (propertiesValuesIndices[scrollable_property] != NOT_FOUND)
@@ -516,7 +517,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                                 return 1;
                             }
 
-                            if (strcmp(pstScroll, "on") == 0)
+                            if (balisc_strcmp(pstScroll, "on") == 0)
                             {
                                 iScroll = 1;
                             }
@@ -749,73 +750,73 @@ void init_property_index()
         int i = 0;
         for (i = 0 ; i < iPropertiesCount ; i++)
         {
-            if (style_property == -1 && strcmp(propertiesNames[i], "style") == 0)
+            if (style_property == -1 && balisc_strcmp(propertiesNames[i], "style") == 0)
             {
                 style_property = i;
                 continue;
             }
 
-            if (parent_property == -1 && strcmp(propertiesNames[i], "parent") == 0)
+            if (parent_property == -1 && balisc_strcmp(propertiesNames[i], "parent") == 0)
             {
                 parent_property = i;
                 continue;
             }
 
-            if (user_data_property == -1 && strcmp(propertiesNames[i], "user_data") == 0)
+            if (user_data_property == -1 && balisc_strcmp(propertiesNames[i], "user_data") == 0)
             {
                 user_data_property = i;
                 continue;
             }
 
-            if (userdata_property == -1 && strcmp(propertiesNames[i], "userdata") == 0)
+            if (userdata_property == -1 && balisc_strcmp(propertiesNames[i], "userdata") == 0)
             {
                 userdata_property = i;
                 continue;
             }
 
-            if (sliderstep_property == -1 && strcmp(propertiesNames[i], "sliderstep") == 0)
+            if (sliderstep_property == -1 && balisc_strcmp(propertiesNames[i], "sliderstep") == 0)
             {
                 sliderstep_property = i;
                 continue;
             }
 
-            if (min_property == -1 && strcmp(propertiesNames[i], "min") == 0)
+            if (min_property == -1 && balisc_strcmp(propertiesNames[i], "min") == 0)
             {
                 min_property = i;
                 continue;
             }
 
-            if (max_property == -1 && strcmp(propertiesNames[i], "max") == 0)
+            if (max_property == -1 && balisc_strcmp(propertiesNames[i], "max") == 0)
             {
                 max_property = i;
                 continue;
             }
 
-            if (visible_property == -1 && strcmp(propertiesNames[i], "visible") == 0)
+            if (visible_property == -1 && balisc_strcmp(propertiesNames[i], "visible") == 0)
             {
                 visible_property = i;
                 continue;
             }
 
-            if (position_property == -1 && strcmp(propertiesNames[i], "position") == 0)
+            if (position_property == -1 && balisc_strcmp(propertiesNames[i], "position") == 0)
             {
                 position_property = i;
                 continue;
             }
 
-            if (scrollable_property == -1 && strcmp(propertiesNames[i], "scrollable") == 0)
+            if (scrollable_property == -1 && balisc_strcmp(propertiesNames[i], "scrollable") == 0)
             {
                 scrollable_property = i;
                 continue;
             }
 
-            if (tooltipstring_property == -1 && strcmp(propertiesNames[i], "tooltipstring") == 0)
+            if (tooltipstring_property == -1 && balisc_strcmp(propertiesNames[i], "tooltipstring") == 0)
             {
                 tooltipstring_property = i;
                 continue;
             }
 
-            if (string_property == -1 && strcmp(propertiesNames[i], "string") == 0)
+            if (string_property == -1 && balisc_strcmp(propertiesNames[i], "string") == 0)
             {
                 string_property = i;
                 continue;
