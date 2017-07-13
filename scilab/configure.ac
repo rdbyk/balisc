@@ -1439,6 +1439,12 @@ AC_CHECK_LIB(dl, dlopen)
 AC_SEARCH_LIBS([pthread_join],[pthread])
 
 #################
+## SLEEF
+#################
+
+AX_CHECK_LIBRARY([SLEEF], [sleef.h], [sleef], [LIBS="$LIBS -lsleef"], [AC_MSG_ERROR([Unable to find libsleef])])
+
+#################
 ## FFTW
 #################
 

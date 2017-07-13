@@ -3553,6 +3553,7 @@ AC_SUBST([am__tar])
 AC_SUBST([am__untar])
 ]) # _AM_PROG_TAR
 
+m4_include([m4/ax_check_library.m4])
 m4_include([m4/ax_check_x86_features.m4])
 m4_include([m4/ax_cxx_compile_stdcxx_11.m4])
 m4_include([m4/ax_gcc_x86_cpu_supports.m4])
