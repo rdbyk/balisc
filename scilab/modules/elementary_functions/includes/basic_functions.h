@@ -32,7 +32,6 @@
 
 ELEMENTARY_FUNCTIONS_IMPEXP double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
 
-ELEMENTARY_FUNCTIONS_IMPEXP void vCusum(int _iNbElem, double *_dblIn, double *_dblOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDadd(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDless(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
