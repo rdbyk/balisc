@@ -32,7 +32,7 @@ extern "C"
 #include "h5_attributeConstants.h"
 #include "expandPathVariable.h"
 #include "freeArrayOfString.h"
-#include "strlen.h"
+#include "strcmp.h"
 }
 
 //#define PRINT_DEBUG
