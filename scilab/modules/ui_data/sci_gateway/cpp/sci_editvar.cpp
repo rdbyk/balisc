@@ -33,7 +33,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "localization.h"
 #include <time.h>
-#include "strlen.h"
+#include "strcmp.h"
 }
 
 using namespace org_scilab_modules_ui_data;
