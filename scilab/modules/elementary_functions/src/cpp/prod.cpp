@@ -19,7 +19,7 @@
 extern "C"
 {
 #include "matrix_multiplication.h"
-#if defined(__SSE2_)
+#if defined(__SSE2__)
 #include "emmintrin.h"
 #endif
 }

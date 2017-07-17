@@ -18,7 +18,7 @@
 
 extern "C"
 {
-#if defined(__SSE2_)
+#if defined(__SSE2__)
 #include "emmintrin.h"
 #endif
 }
