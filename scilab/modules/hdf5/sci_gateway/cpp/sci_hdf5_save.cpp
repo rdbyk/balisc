@@ -1,8 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <list>
 #include <map>
@@ -47,6 +48,7 @@ extern "C"
 #include "h5_readDataFromFile.h"
 #include "h5_attributeConstants.h"
 #include "HandleManagement.h"
+#include "strcmp.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -270,7 +272,7 @@ static bool isVarExist(int _iFile, const char* _pstVarName)
         //import all data
         for (int i = 0; i < iNbItem; i++)
         {
-            if (strcmp(pstVarNameList[i], _pstVarName) == 0)
+            if (balisc_strcmp(pstVarNameList[i], _pstVarName) == 0)
             {
                 freeArrayOfString(pstVarNameList, iNbItem);
                 return true;
