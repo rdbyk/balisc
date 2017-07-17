@@ -22,7 +22,7 @@ extern "C" {
 #include "scicurdir.h"
 #include "sci_malloc.h"
 #include "fullpath.h"
-#include "strlen.h"
+#include "strcmp.h"
 }
 /*------------------------------------------------------------------------*/
 int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
