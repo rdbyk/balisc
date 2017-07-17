@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <hdf5.h>
 #include "context.hxx"
@@ -32,6 +32,7 @@ extern "C"
 #include "h5_attributeConstants.h"
 #include "expandPathVariable.h"
 #include "freeArrayOfString.h"
+#include "strlen.h"
 }
 
 //#define PRINT_DEBUG
@@ -1269,7 +1270,7 @@ static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _
     // get data of first item for check the type of mlist
     char** pstData = new char*[iRows * iCols];
     iRet = readStringMatrix_v1(iItemDataset, iRows, iCols, pstData);
-    if (iRet || strcmp(pstData[0], "hm") != 0)
+    if (iRet || balisc_strcmp(pstData[0], "hm") != 0)
     {
         FREE(piItemRef);
         for (int i = 0; i < iRows * iCols; i++)
