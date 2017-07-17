@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,9 +15,13 @@
 /*--------------------------------------------------------------------------*/
 
 #include "prod.hxx"
+
 extern "C"
 {
 #include "matrix_multiplication.h"
+#if defined(__SSE2_)
+#include "emmintrin.h"
+#endif
 }
 
 types::Double* prod(types::Double* pIn, int iOrientation)
@@ -28,14 +32,13 @@ types::Double* prod(types::Double* pIn, int iOrientation)
 
     if (iOrientation == 0) // all
     {
-        int size = pIn->getSize();
-        double dblR = pdblInReal[0];
         if (pIn->isComplex())
         {
+            double dblR = pdblInReal[0];
             double dblI = pdblInImg[0];
             double dblRTmp = 0;
             double dblITmp = 0;
-            for (int i = 1; i < size; i++)
+            for (int i = 1; i < pIn->getSize(); i++)
             {
                 dblRTmp = dblR * pdblInReal[i] - dblI * pdblInImg[i];
                 dblITmp = dblR * pdblInImg[i] + dblI * pdblInReal[i];
@@ -48,12 +51,33 @@ types::Double* prod(types::Double* pIn, int iOrientation)
         }
         else
         {
-            for (int i = 1; i < size; i++)
+#if !defined(__SSE2__)
+            double dblR = pdblInReal[0];
+            
+            for (int i = 1; i < pIn->getSize(); i++)
             {
                 dblR *= pdblInReal[i];
             }
 
             pOut = new types::Double(dblR);
+#else
+            int imax = pIn->getSize() - 1;
+            
+            __m128d s = _mm_set1_pd(1);
+            
+            for (int i = 0 ; i < imax ; i += 2)
+            {
+                s = _mm_mul_pd(s, *((__m128d*)(&(pdblInReal[i]))));
+            }
+            if (pIn->getSize() % 2)
+            {
+                pOut = new types::Double(s[0] * s[1] * pdblInReal[imax]);
+            }
+            else
+            {
+                pOut = new types::Double(s[0] * s[1]);
+            }
+#endif
         }
     }
     else // prod on one dimension
