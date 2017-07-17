@@ -13,9 +13,7 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/log.c \
     src/c/eye.c \
     src/c/dsearch.c \
-    src/c/mprod.c \
     src/c/matrix_generation.c \
-    src/c/vmul.c \
     src/c/add_vector.c \
     src/c/sub_vector.c \
     src/c/convertbase.c

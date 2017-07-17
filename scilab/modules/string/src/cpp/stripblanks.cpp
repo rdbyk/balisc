@@ -1,10 +1,10 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010 - DIGITEO - Allan CORNET
- *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- *
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - Siddhartha Gairola
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -89,7 +89,7 @@ static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos)
     wchar_t* pwstBuf = NULL;
 
     //bad len or empty string
-    if (iLen < 0 || wcscmp(_pstStr, L"") == 0)
+    if (iLen < 0 || _pstStr[0] == L'\0')
     {
         return os_wcsdup(L"");
     }

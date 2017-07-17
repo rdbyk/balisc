@@ -245,9 +245,7 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-log.lo \
 	src/c/libscielementary_functions_algo_la-eye.lo \
 	src/c/libscielementary_functions_algo_la-dsearch.lo \
-	src/c/libscielementary_functions_algo_la-mprod.lo \
 	src/c/libscielementary_functions_algo_la-matrix_generation.lo \
-	src/c/libscielementary_functions_algo_la-vmul.lo \
 	src/c/libscielementary_functions_algo_la-add_vector.lo \
 	src/c/libscielementary_functions_algo_la-sub_vector.lo \
 	src/c/libscielementary_functions_algo_la-convertbase.lo
@@ -786,9 +784,7 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/log.c \
     src/c/eye.c \
     src/c/dsearch.c \
-    src/c/mprod.c \
     src/c/matrix_generation.c \
-    src/c/vmul.c \
     src/c/add_vector.c \
     src/c/sub_vector.c \
     src/c/convertbase.c
@@ -1549,11 +1545,7 @@ src/c/libscielementary_functions_algo_la-eye.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-dsearch.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscielementary_functions_algo_la-mprod.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-matrix_generation.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscielementary_functions_algo_la-vmul.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-add_vector.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
@@ -2042,10 +2034,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-finite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-log.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-matrix_generation.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-mprod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-sub_vector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-vfinite.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-vmul.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-xerhlt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-abs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-acos.Plo@am__quote@
@@ -2162,26 +2152,12 @@ src/c/libscielementary_functions_algo_la-dsearch.lo: src/c/dsearch.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-dsearch.lo `test -f 'src/c/dsearch.c' || echo '$(srcdir)/'`src/c/dsearch.c
 
-src/c/libscielementary_functions_algo_la-mprod.lo: src/c/mprod.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-mprod.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-mprod.Tpo -c -o src/c/libscielementary_functions_algo_la-mprod.lo `test -f 'src/c/mprod.c' || echo '$(srcdir)/'`src/c/mprod.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-mprod.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-mprod.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/mprod.c' object='src/c/libscielementary_functions_algo_la-mprod.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-mprod.lo `test -f 'src/c/mprod.c' || echo '$(srcdir)/'`src/c/mprod.c
-
 src/c/libscielementary_functions_algo_la-matrix_generation.lo: src/c/matrix_generation.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-matrix_generation.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-matrix_generation.Tpo -c -o src/c/libscielementary_functions_algo_la-matrix_generation.lo `test -f 'src/c/matrix_generation.c' || echo '$(srcdir)/'`src/c/matrix_generation.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-matrix_generation.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-matrix_generation.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/matrix_generation.c' object='src/c/libscielementary_functions_algo_la-matrix_generation.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-matrix_generation.lo `test -f 'src/c/matrix_generation.c' || echo '$(srcdir)/'`src/c/matrix_generation.c
-
-src/c/libscielementary_functions_algo_la-vmul.lo: src/c/vmul.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-vmul.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-vmul.Tpo -c -o src/c/libscielementary_functions_algo_la-vmul.lo `test -f 'src/c/vmul.c' || echo '$(srcdir)/'`src/c/vmul.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-vmul.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-vmul.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/vmul.c' object='src/c/libscielementary_functions_algo_la-vmul.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-vmul.lo `test -f 'src/c/vmul.c' || echo '$(srcdir)/'`src/c/vmul.c
 
 src/c/libscielementary_functions_algo_la-add_vector.lo: src/c/add_vector.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-add_vector.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-add_vector.Tpo -c -o src/c/libscielementary_functions_algo_la-add_vector.lo `test -f 'src/c/add_vector.c' || echo '$(srcdir)/'`src/c/add_vector.c

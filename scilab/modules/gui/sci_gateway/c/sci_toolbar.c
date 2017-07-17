@@ -3,8 +3,8 @@
  * Copyright (C) 2005 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,6 +30,7 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getConsoleIdentifier.h"
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 int sci_toolbar(char *fname, void* pvApiCtx)
 {
@@ -178,9 +179,9 @@ int sci_toolbar(char *fname, void* pvApiCtx)
                 return FALSE;
             }
 
-            if ((strcmp(param[0], "off") == 0) || (strcmp(param[0], "on") == 0))
+            if ((balisc_strcmp(param[0], "off") == 0) || (balisc_strcmp(param[0], "on") == 0))
             {
-                iIsVisible = strcmp(param[0], "on") == 0;
+                iIsVisible = balisc_strcmp(param[0], "on") == 0;
                 if (iParentUID != getConsoleIdentifier() || getScilabMode() == SCILAB_STD)
                 {
                     setGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, &iIsVisible, jni_bool, 1);

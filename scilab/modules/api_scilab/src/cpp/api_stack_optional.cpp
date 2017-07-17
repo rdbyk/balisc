@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,6 +25,7 @@ extern "C"
 #include "call_scilab.h"
 #include "sciprint.h"
 #include "sci_malloc.h"
+#include "strcmp.h"
 }
 
 
@@ -137,7 +138,7 @@ static int findOptional(void* _pvCtx, char *pstProperty, rhs_opts opts[])
     {
         int cmp;
         /* name is terminated by white space and we want to ignore them */
-        if ((cmp = strcmp(pstProperty, opts[i].pstName)) == 0)
+        if ((cmp = balisc_strcmp(pstProperty, opts[i].pstName)) == 0)
         {
             rep = i;
             break;

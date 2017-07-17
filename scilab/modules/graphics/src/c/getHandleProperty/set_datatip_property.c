@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,6 +23,7 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "strcmp.h"
 
 /**
  * Sets the datatip oriantation.
@@ -84,15 +85,15 @@ int set_datatip_display_mode_property(void* _pvCtx, int iObj, void* _pvData, int
     BOOL status = FALSE;
     const char * value = (const char*) _pvData;
     int datatip_display_mode = -1;
-    if (strcmp(value, "always") == 0)
+    if (balisc_strcmp(value, "always") == 0)
     {
         datatip_display_mode = 0;
     }
-    else if (strcmp(value, "mouseclick") == 0)
+    else if (balisc_strcmp(value, "mouseclick") == 0)
     {
         datatip_display_mode = 1;
     }
-    else if (strcmp(value, "mouseover") == 0)
+    else if (balisc_strcmp(value, "mouseover") == 0)
     {
         datatip_display_mode = 2;
     }

@@ -44,9 +44,6 @@
     <ClCompile Include="matrix_generation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mprod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sub_vector.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vfinite.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vmul.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="xerhlt.c">

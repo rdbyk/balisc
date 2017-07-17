@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Pedro Arthur dos S. Souza
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,6 +24,7 @@ extern "C"
 #include "gw_gui.h"
 #include "HandleManagement.h"
 #include "CurrentFigure.h"
+#include "strcmp.h"
 }
 
 using namespace org_scilab_modules_gui_datatip;
@@ -116,12 +117,12 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
                     free(pstData);
                     return 1;
                 }
-                if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
+                if (balisc_strcmp("on", pstData) == 0 || balisc_strcmp("T", pstData) == 0 || balisc_strcmp("1", pstData) == 0)
                 {
                     iFigureUID = getCurrentFigure();
                     enabled = true;
                 }
-                else if (strcmp("off", pstData) == 0 || strcmp("F", pstData) == 0 || strcmp("0", pstData) == 0)
+                else if (balisc_strcmp("off", pstData) == 0 || balisc_strcmp("F", pstData) == 0 || balisc_strcmp("0", pstData) == 0)
                 {
                     iFigureUID = getCurrentFigure();
                     enabled = false;
@@ -227,12 +228,12 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
                     free(pstData);
                     return 1;
                 }
-                if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
+                if (balisc_strcmp("on", pstData) == 0 || balisc_strcmp("T", pstData) == 0 || balisc_strcmp("1", pstData) == 0)
                 {
                     iFigureUID = getCurrentFigure();
                     enabled = true;
                 }
-                else if (strcmp("off", pstData) == 0 || strcmp("F", pstData) == 0 || strcmp("0", pstData) == 0)
+                else if (balisc_strcmp("off", pstData) == 0 || balisc_strcmp("F", pstData) == 0 || balisc_strcmp("0", pstData) == 0)
                 {
                     iFigureUID = getCurrentFigure();
                     enabled = false;

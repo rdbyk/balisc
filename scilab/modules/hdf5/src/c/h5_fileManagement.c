@@ -12,8 +12,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include <hdf5.h>
 #include <string.h>
@@ -69,7 +69,7 @@ int createHDF5File(const char *name)
     currentpath = scigetcwd(&ierr);
 
     //prevent error msg to change directory to ""
-    if (strcmp(pathdest, "") != 0)
+    if (pathdest[0] != '\0')
     {
         scichdir(pathdest);
     }
@@ -121,7 +121,7 @@ int openHDF5File(const char *name, int _iAppendMode)
     currentpath = scigetcwd(&ierr);
 
     //prevent error msg to change directory to ""
-    if (strcmp(pathdest, "") != 0)
+    if (pathdest[0] != '\0')
     {
         scichdir(pathdest);
     }
@@ -178,7 +178,7 @@ int isHDF5File(const char* _pstFilename)
     currentpath = scigetcwd(&ierr);
 
     //prevent error msg to change directory to ""
-    if (strcmp(pathdest, "") != 0)
+    if (pathdest[0] != '\0')
     {
         scichdir(pathdest);
     }
@@ -233,7 +233,7 @@ static char *getPathFilename(const char *fullfilename)
         {
             splitpath(fullfilename, FALSE, drv, dir, name, ext);
 
-            if (strcmp(drv, "") == 0)
+            if (drv[0] == '\0')
             {
                 strcpy(path, dir);
             }
@@ -283,7 +283,7 @@ static char *getFilenameWithExtension(const char *fullfilename)
         {
             splitpath(fullfilename, FALSE, drv, dir, name, ext);
 
-            if (strcmp(ext, "") == 0)
+            if (ext[0] == '\0')
             {
                 strcpy(filename, name);
             }

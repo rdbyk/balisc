@@ -32,18 +32,12 @@
 
 ELEMENTARY_FUNCTIONS_IMPEXP double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
 
-ELEMENTARY_FUNCTIONS_IMPEXP void vDvmul(int _iNbElem, double* _piIn1, double* _piIn2, int _iIncIn1, int _iIncIn2, double* _piOut);
-ELEMENTARY_FUNCTIONS_IMPEXP void vWvmul(int _iNbElem, double* _piRealIn1, double* _piImgIn1, double* _piRealIn2, double* _piImgIn2, int _iIncIn1, int _iIncIn2, double* _piRealOut, double* _piImgOut);
-ELEMENTARY_FUNCTIONS_IMPEXP void vCusum(int _iNbElem, double *_dblIn, double *_dblOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDadd(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDless(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 ELEMENTARY_FUNCTIONS_IMPEXP double dfrexps(double _dblVal, double *_pdblExp);
-
-ELEMENTARY_FUNCTIONS_IMPEXP void vDmProd(int _iMode, double* _pdblIn, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut, int _iInc);
-ELEMENTARY_FUNCTIONS_IMPEXP void vWDmProd(int _iMode, double* _pdblIn1, double* _pdblIn2, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut1, double* _pdblOut2, int _iInc);
 
 ELEMENTARY_FUNCTIONS_IMPEXP double durands(int *_iVal);
 ELEMENTARY_FUNCTIONS_IMPEXP int nint(double _iVal);

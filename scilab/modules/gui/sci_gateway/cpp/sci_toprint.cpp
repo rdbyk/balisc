@@ -34,6 +34,7 @@ extern "C"
 #include "loadOnUseClassPath.h"
 #include "configvariable_interface.h"
 #include "FigureList.h"
+#include "strcmp.h"
 }
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
@@ -401,11 +402,11 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
 
                     if (getAllocatedSingleString(_pvCtx, piAddressVarTwo, &outputType) == 0)
                     {
-                        if ((strcmp(outputType, "pos") == 0) || (strcmp(outputType, "gdi") == 0))
+                        if ((balisc_strcmp(outputType, "pos") == 0) || (balisc_strcmp(outputType, "gdi") == 0))
                         {
                             try
                             {
-                                if (strcmp(outputType, "pos") == 0)
+                                if (balisc_strcmp(outputType, "pos") == 0)
                                 {
                                     iRet = booltoBOOL(CallScilabBridge::printFigure(getScilabJavaVM(), getFigureFromIndex(num_win), TRUE, FALSE));
                                 }
