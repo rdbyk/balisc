@@ -16,6 +16,11 @@
 
 #include "sum.hxx"
 
+extern "C"
+{
+#include "emmintrin.h"
+}
+
 types::Double* sum(types::Double* pIn, int iOrientation)
 {
     types::Double* pOut = NULL;
@@ -24,11 +29,12 @@ types::Double* sum(types::Double* pIn, int iOrientation)
 
     if (iOrientation == 0) // all
     {
-        double dblR = 0;
-        double dblI = 0;
-
         if (pIn->isComplex())
         {
+#if !defined(__SSE2__)
+            double dblR = 0;
+            double dblI = 0;
+            
             for (int i = 0 ; i < pIn->getSize() ; i++)
             {
                 dblR += pdblInReal[i];
@@ -36,15 +42,58 @@ types::Double* sum(types::Double* pIn, int iOrientation)
             }
 
             pOut = new types::Double(dblR, dblI);
+#else
+            int imax = pIn->getSize() - 1;
+            
+            __m128d sr = _mm_set1_pd(0);
+            __m128d si = _mm_set1_pd(0);
+            
+            for (int i = 0 ; i < imax ; i += 2)
+            {
+                sr = _mm_add_pd(sr, *((__m128d*)(&(pdblInReal[i]))));
+                si = _mm_add_pd(si, *((__m128d*)(&(pdblInImg[i]))));
+            }
+            
+            if (pIn->getSize() % 2)
+            {
+                pOut = new types::Double(sr[0] + sr[1] + pdblInReal[imax],
+                                         si[0] + si[1] + pdblInImg[imax]);
+            }
+            else
+            {
+                pOut = new types::Double(sr[0] + sr[1], si[0] + si[1]);
+            }
+#endif
         }
         else
         {
+#if !defined(__SSE2__)
+            double dblR = 0;
+            
             for (int i = 0 ; i < pIn->getSize() ; i++)
             {
                 dblR += pdblInReal[i];
             }
 
             pOut = new types::Double(dblR);
+#else
+            int imax = pIn->getSize() - 1;
+            
+            __m128d s = _mm_set1_pd(0);
+            
+            for (int i = 0 ; i < imax ; i += 2)
+            {
+                s = _mm_add_pd(s, *((__m128d*)(&(pdblInReal[i]))));
+            }
+            if (pIn->getSize() % 2)
+            {
+                pOut = new types::Double(s[0] + s[1] + pdblInReal[imax]);
+            }
+            else
+            {
+                pOut = new types::Double(s[0] + s[1]);
+            }
+#endif
         }
     }
     else // sum on one dimension
