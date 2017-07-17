@@ -323,7 +323,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
     nbColOutSelection = selectionSize;
 
     //if cancel is selected on the filechooser
-    if (strcmp(selection[0], "") == 0)
+    if (selection[0][0] == '\0')
     {
         // "" is returned as filename
         sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, selection);
