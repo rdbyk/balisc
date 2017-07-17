@@ -18,7 +18,9 @@
 
 extern "C"
 {
+#if defined(__SSE2_)
 #include "emmintrin.h"
+#endif
 }
 
 types::Double* sum(types::Double* pIn, int iOrientation)
