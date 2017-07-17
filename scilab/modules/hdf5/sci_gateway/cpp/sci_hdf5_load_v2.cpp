@@ -1,8 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <hdf5.h>
 #include "context.hxx"
@@ -35,6 +36,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "stdlib.h"
 #include "freeArrayOfString.h"
+#include "strcmp.h"
 }
 
 #include "hdf5_load_v1.hxx"
@@ -1274,7 +1276,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     // get data of first item for check the type of mlist
     char** pstData = new char*[iSize];
     iRet = readStringMatrix(iItemDataset, pstData);
-    if (iRet || strcmp(pstData[0], "hm") != 0)
+    if (iRet || balisc_strcmp(pstData[0], "hm") != 0)
     {
         // if not the good type, do not h5close (deleteListItemReferences)
         FREE(piItemRef);
@@ -1440,7 +1442,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     char** pstData = new char*[iSize];
     char** pstDataSave = new char*[iSize - 2];
     iRet = readStringMatrix(iItemDataset, pstData);
-    if (iRet || strcmp(pstData[0], "st") != 0)
+    if (iRet || balisc_strcmp(pstData[0], "st") != 0)
     {
         // if not the good type, do not h5close (deleteListItemReferences)
         FREE(piItemRef);
@@ -1707,7 +1709,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     // get data of first item for check the type of mlist
     char** pstData = new char*[iSize];
     iRet = readStringMatrix(iItemDataset, pstData);
-    if (iRet || strcmp(pstData[0], "ce") != 0)
+    if (iRet || balisc_strcmp(pstData[0], "ce") != 0)
     {
         // if not the good type, do not h5close (deleteListItemReferences)
         FREE(piItemRef);
