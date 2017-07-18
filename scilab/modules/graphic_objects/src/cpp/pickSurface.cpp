@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -54,7 +54,8 @@ public:
 
     Vec3 operator / (double s)
     {
-        return Vec3( x / s, y / s, z / s );
+        double inv_s = 1.0 / s;
+        return Vec3( x * inv_s, y * inv_s, z * inv_s );
     }
 
     double dot(Vec3 v)
@@ -76,9 +77,10 @@ public:
         }
         else
         {
-            x /= d;
-            y /= d;
-            z /= d;
+            double inv_d = 1.0 / d;
+            x *= inv_d;
+            y *= inv_d;
+            z *= inv_d;
         }
         return *this;
     }
