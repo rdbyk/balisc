@@ -66,14 +66,16 @@ int iRightDivisionComplexByComplex(
         }
         else
         {
-            *_pdblRealOut   = _dblReal1 / _dblReal2;
-            *_pdblImgOut    = _dblImg1 / _dblReal2;
+            double dblReal2Inv = 1.0 / _dblReal2;
+            *_pdblRealOut   = _dblReal1 * dblReal2Inv;
+            *_pdblImgOut    = _dblImg1 * dblReal2Inv;
         }
     }
     else if (_dblReal2 == 0)
     {
-        *_pdblRealOut   = _dblImg1 / _dblImg2;
-        *_pdblImgOut    = (-_dblReal1) / _dblImg2;
+        double dblImg2Inv = 1.0 / _dblImg2;
+        *_pdblRealOut   = _dblImg1 * dblImg2Inv;
+        *_pdblImgOut    = (-_dblReal1) * dblImg2Inv;
     }
     else
     {
@@ -82,16 +84,16 @@ int iRightDivisionComplexByComplex(
         if (fabs(_dblReal2) >= fabs(_dblImg2))
         {
             double dblRatio2    = _dblImg2 / _dblReal2;
-            double dblSum       = _dblReal2 + dblRatio2 * _dblImg2;
-            *_pdblRealOut       = (_dblReal1 + _dblImg1 * dblRatio2) / dblSum;
-            *_pdblImgOut        = (_dblImg1 - _dblReal1 * dblRatio2) / dblSum;
+            double dblSumInv    = 1.0 / (_dblReal2 + dblRatio2 * _dblImg2);
+            *_pdblRealOut       = (_dblReal1 + _dblImg1 * dblRatio2) * dblSumInv;
+            *_pdblImgOut        = (_dblImg1 - _dblReal1 * dblRatio2) * dblSumInv;
         }
         else
         {
             double dblRatio2    = _dblReal2 / _dblImg2;
-            double dblSum       = _dblImg2 +  dblRatio2 * _dblReal2;
-            *_pdblRealOut       = (_dblReal1 * dblRatio2 + _dblImg1) / dblSum;
-            *_pdblImgOut        = (_dblImg1 * dblRatio2 - _dblReal1) / dblSum;
+            double dblSumInv    = 1.0 / (_dblImg2 +  dblRatio2 * _dblReal2);
+            *_pdblRealOut       = (_dblReal1 * dblRatio2 + _dblImg1) * dblSumInv;
+            *_pdblImgOut        = (_dblImg1 * dblRatio2 - _dblReal1) * dblSumInv;
         }
     }
     return iErr;
@@ -157,12 +159,13 @@ int iRightDivisionRealByComplex(
         }
         else
         {
-            double dblReal1Sum  = _dblReal1 / dblAbsSum;
-            double dblReal2Sum  = _dblReal2 / dblAbsSum;
-            double dblImg2Sum   = _dblImg2 / dblAbsSum;
-            double dblSum       = pow(dblReal2Sum, 2) + pow(dblImg2Sum, 2);
-            *_pdblRealOut       = (dblReal1Sum * dblReal2Sum) / dblSum;
-            *_pdblImgOut        = (-dblReal1Sum * dblImg2Sum) / dblSum;
+            double dblAbsSumInv = 1.0 / dblAbsSum;
+            double dblReal1Sum  = _dblReal1 * dblAbsSumInv;
+            double dblReal2Sum  = _dblReal2 * dblAbsSumInv;
+            double dblImg2Sum   = _dblImg2 * dblAbsSumInv;
+            double dblSumInv    = 1.0 / (pow(dblReal2Sum, 2) + pow(dblImg2Sum, 2));
+            *_pdblRealOut       = (dblReal1Sum * dblReal2Sum) * dblSumInv;
+            *_pdblImgOut        = (-dblReal1Sum * dblImg2Sum) * dblSumInv;
         }
     }
     return iErr;
@@ -209,9 +212,9 @@ int iRightDivisionComplexByReal(
             iErr = 4;
         }
     }
-
-    *_pdblRealOut    = _dblReal1 / _dblReal2;
-    *_pdblImgOut    = _dblImg1 / _dblReal2;
+    double dblReal2Inv = 1.0 / _dblReal2;
+    *_pdblRealOut    = _dblReal1 * dblReal2Inv;
+    *_pdblImgOut    = _dblImg1 * dblReal2Inv;
 
     return iErr;
 }
@@ -308,12 +311,13 @@ int iRightDivisionOfRealMatrix(
     vTransposeRealMatrix(_pdblReal2, _iRows2, _iCols2, pAt);
 
     {
+        int Max_iRows_iCols2 = Max(_iRows2, _iCols2);
         int i, j, ij, ji;
         for (j = 0 ; j < _iRows1 ; j++)
         {
             for (i = 0 ; i < _iCols2 ; i++)
             {
-                ij = i + j * Max(_iRows2, _iCols2);
+                ij = i + j * Max_iRows_iCols2;
                 ji = j + i * _iRows1;
                 pBt[ij]    = _pdblReal1[ji];
             }//for(j = 0 ; j < _iRows1 ; j++)
@@ -370,13 +374,14 @@ int iRightDivisionOfRealMatrix(
             //Mega caca de la mort qui tue des ours a mains nues
             //mais je ne sais pas comment le rendre "beau" :(
             {
+                int Max_iRows2_iCols2 = Max(_iRows2, _iCols2);
                 int i, j, ij, ji;
                 for (j = 0 ; j < _iRows2 ; j++)
                 {
                     for (i = 0 ; i < _iRows1 ; i++)
                     {
                         ij = i + j * _iRows1;
-                        ji = j + i * Max(_iRows2, _iCols2);
+                        ji = j + i * Max_iRows2_iCols2;
                         _pdblRealOut[ij]    = pBt[ji];
                     }//for(i = 0 ; i < _iRows2 ; i++)
                 }//for(j = 0 ; j < _iRows1 ; j++)
@@ -457,12 +462,13 @@ int iRightDivisionOfComplexMatrix(
     vTransposeDoubleComplexMatrix(poVar2, _iRows2, _iCols2, poAt, 1);
 
     {
+        int Max_iRows2_iCols2 = Max(_iRows2, _iCols2);
         int i, j, ij, ji;
         for (j = 0 ; j < _iRows1 ; j++)
         {
             for (i = 0 ; i < _iCols2 ; i++)
             {
-                ij = i + j * Max(_iRows2, _iCols2);
+                ij = i + j * Max_iRows2_iCols2;
                 ji = j + i * _iRows1;
                 poBt[ij].r    = poVar1[ji].r;
                 //Conjugate
@@ -523,13 +529,14 @@ int iRightDivisionOfComplexMatrix(
             //Mega caca de la mort qui tue des ours a mains nues
             //mais je ne sais pas comment le rendre "beau" :(
             {
+                int Max_iRows2_iCols2 = Max(_iRows2, _iCols2);
                 int i, j, ij, ji;
                 for (j = 0 ; j < _iRows2 ; j++)
                 {
                     for (i = 0 ; i < _iRows1 ; i++)
                     {
                         ij = i + j * _iRows1;
-                        ji = j + i * Max(_iRows2, _iCols2);
+                        ji = j + i * Max_iRows2_iCols2;
                         _pdblRealOut[ij]    = poBt[ji].r;
                         //Conjugate
                         _pdblImgOut[ij]        = -poBt[ji].i;
