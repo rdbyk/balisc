@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -71,15 +71,16 @@ void Triangulator::fillPoints(void)
             approxNormal = plus(approxNormal, tmp);
         }
 
-        double den = sqrt(approxNormal.x * approxNormal.x + approxNormal.y * approxNormal.y + approxNormal.z * approxNormal.z);
+        double inv_den = 1.0 / sqrt(approxNormal.x * approxNormal.x + approxNormal.y * approxNormal.y + approxNormal.z * approxNormal.z);
 
-        approxNormal.x /= den;
-        approxNormal.y /= den;
-        approxNormal.z /= den;
+        approxNormal.x *= inv_den;
+        approxNormal.y *= inv_den;
+        approxNormal.z *= inv_den;
 
-        middle.x /= numPoints;
-        middle.y /= numPoints;
-        middle.z /= numPoints;
+        double inv_numPoints = 1.0 / numPoints;
+        middle.x *= inv_numPoints;
+        middle.y *= inv_numPoints;
+        middle.z *= inv_numPoints;
 
         for (int i = 0; i < numPoints; ++i)
         {
@@ -589,8 +590,9 @@ Vector3d Triangulator::normalize(Vector3d v)
         n = 1.;
     }
 
-    v.x /= n;
-    v.y /= n;
+    double inv_n = 1.0 / n;
+    v.x *= inv_n;
+    v.y *= inv_n;
 
     return v;
 }
@@ -966,10 +968,10 @@ void Triangulator::diagonalize(const double (&A)[3][3], double (&Q)[3][3], doubl
         q[1] = (q[3] * jr[1] - q[0] * jr[2] + q[1] * jr[3] + q[2] * jr[0]);
         q[2] = (q[3] * jr[2] + q[0] * jr[1] - q[1] * jr[0] + q[2] * jr[3]);
         q[3] = (q[3] * jr[3] - q[0] * jr[0] - q[1] * jr[1] - q[2] * jr[2]);
-        double mq = sqrt(q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3]);
-        q[0] /= mq;
-        q[1] /= mq;
-        q[2] /= mq;
-        q[3] /= mq;
+        double inv_mq = 1.0 / (sqrt(q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3]));
+        q[0] *= inv_mq;
+        q[1] *= inv_mq;
+        q[2] *= inv_mq;
+        q[3] *= inv_mq;
     }
 }
