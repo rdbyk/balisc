@@ -32,8 +32,6 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
     double dot0 = 0.;
     double dot1 = 0.;
 
-    double denom = 0.;
-
     /*
      * The input vertices are given in counter-clockwise order, from v0 to v3.
      * Two decompositions are possible: either (v0,v1,v2) and (v0,v2,v3) or (v1,v2,v3) and (v1,v3,v0).
@@ -65,16 +63,12 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
     nmo0 = mo0[0] * mo0[0] + mo0[1] * mo0[1] + mo0[2] * mo0[2];
     nmo1 = mo1[0] * mo1[0] + mo1[1] * mo1[1] + mo1[2] * mo1[2];
 
+    dot0 = mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2];
+
     if (nmo0 * nmo1 > 0.0)
     {
-        denom = DecompositionUtils::getSquareRoot(nmo0 * nmo1);
+        dot0 /= getSquareRoot(nmo0 * nmo1);
     }
-    else
-    {
-        denom = 1.0;
-    }
-
-    dot0 = (mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2]) / denom;
 
     /* 2nd decomposition */
 
@@ -90,17 +84,13 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
 
     nmo0 = mo0[0] * mo0[0] + mo0[1] * mo0[1] + mo0[2] * mo0[2];
     nmo1 = mo1[0] * mo1[0] + mo1[1] * mo1[1] + mo1[2] * mo1[2];
+    
+    dot1 = mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2];
 
     if (nmo0 * nmo1 > 0.0)
     {
-        denom = getSquareRoot(nmo0 * nmo1);
+        dot1 /= getSquareRoot(nmo0 * nmo1);
     }
-    else
-    {
-        denom = 1.0;
-    }
-
-    dot1 = (mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2]) / denom;
 
     /* The lower the dot product, the closer to -1, and the more coplanar the triangles are. */
     if (dot0 <= dot1)
