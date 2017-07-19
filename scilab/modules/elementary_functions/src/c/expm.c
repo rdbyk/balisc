@@ -157,8 +157,7 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
                 dblAlpha	= 0;
                 for (iIndex5 = iIndex2 ; iIndex5 < iIndex4 ; iIndex5++)
                 {
-                    double dblTemp1 = pow(pdblWS[iEigenReal - 1 + iIndex5], 2) + pow(pdblWS[iEigenImg - 1 + iIndex5], 2);
-                    dblTemp1		= sqrt(dblTemp1);
+                    double dblTemp1 = hypot(pdblWS[iEigenReal - 1 + iIndex5], pdblWS[iEigenImg - 1 + iIndex5]);
                     if (dblTemp1 > dblAlpha)
                     {
                         dblAlpha = dblTemp1;
@@ -1652,7 +1651,7 @@ L280:
     dblS	= fabs(dblX) + fabs(dblZZ);
     dblP	= dblX / dblS;
     dblQ	= dblZZ / dblS;
-    dblR	= sqrt(dblP * dblP + dblQ * dblQ);
+    dblR	= hypot(dblP, dblQ);
     dblP	= dblP / dblR;
     dblQ	= dblQ / dblR;
 
@@ -2547,7 +2546,7 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
         dblP	= dblY;
     }
 
-    dblR	= sqrt(dblP * dblP + dblQ * dblQ);
+    dblR = hypot(dblP, dblQ);
     if (dblR <= dblZero)
     {
         *_pdblE1	= _pdblVal[_iPos + _iPos * _iLeadDimVal];
