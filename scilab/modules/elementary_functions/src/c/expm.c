@@ -720,8 +720,11 @@ originator
 */
 int dbalancs(int _iRows, int _iSize, double *_pdblVal, int *_piLow, int *_piHigh, double *_pdblScale)
 {
-    double dblRadix		= 2;
-    double dblRadix2	= dblRadix * dblRadix;
+    const double dblRadix  = 2;
+    const double dblRadix2 = 4; /* dblRadix * dblRadix */
+    const double inv_dblRadix = 0.5;
+    const double inv_dblRadix2 = 0.25;
+    
     int iIndex1			= 0;
     int iIndex2			= 0;
     int iLoop1			= _iSize;
@@ -843,7 +846,7 @@ int dbalancs(int _iRows, int _iSize, double *_pdblVal, int *_piLow, int *_piHigh
                 continue;
             }
 
-            dblG	= dblRowSum / dblRadix;
+            dblG	= dblRowSum * inv_dblRadix;
             dblF	= 1;
             dblS	= dblColSum + dblRowSum;
 
@@ -857,8 +860,8 @@ int dbalancs(int _iRows, int _iSize, double *_pdblVal, int *_piLow, int *_piHigh
 
             while (dblColSum >= dblG)
             {
-                dblF		/= dblRadix;
-                dblColSum	/= dblRadix2;
+                dblF	  *= inv_dblRadix;
+                dblColSum *= inv_dblRadix2;
             }
 
             //:::::::::: now balance ::::::::::
