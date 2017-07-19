@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,6 +20,14 @@
 #include <list>
 #include <vector>
 #include <string>
+
+#include <algorithm>
+#include <limits.h>
+
+extern "C"
+{
+#include "getScilabJavaVM.h"
+}
 
 #include "dynlib_graphic_objects.h"
 
@@ -133,6 +141,221 @@ private :
     static PathItem* search_children(PathItem* _path, std::string _subPath, bool _bDeep, std::list<int>& _ignoredList);
 
 };
+
+inline int ScilabView::getValidDefaultFigureId()
+{
+    if (m_figureList.empty())
+    {
+        return 0;
+    }
+    else
+    {
+        int max = INT_MIN;
+        for (__figureList_iterator it = m_figureList.begin(); it != m_figureList.end(); ++it)
+        {
+            if (it->second > max)
+            {
+                max = it->second;
+            }
+        }
+
+        return max + 1;
+    }
+}
+
+inline bool ScilabView::isEmptyFigureList()
+{
+    return m_figureList.empty();
+}
+
+inline int ScilabView::getFigureFromIndex(int figNum)
+{
+    __figureList_iterator it;
+
+    for (it = m_figureList.begin(); it != m_figureList.end(); ++it)
+    {
+        if (it->second == figNum)
+        {
+            return it->first;
+        }
+    }
+    return 0;
+}
+
+inline bool ScilabView::existsFigureId(int id)
+{
+    __figureList_iterator it;
+
+    for (it = m_figureList.begin(); it != m_figureList.end(); ++it)
+    {
+        if (it->second == id)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+inline void ScilabView::getFiguresId(int ids[])
+{
+    __figureList_reverse_iterator it;
+    int i = (int)(m_figureList.size() - 1);
+
+    for (it = m_figureList.rbegin(); it != m_figureList.rend(); ++it, --i)
+    {
+        ids[i] = it->second;
+    }
+}
+
+inline int ScilabView::getNbFigure(void)
+{
+    return (int)m_figureList.size();
+}
+
+inline void ScilabView::setCurrentFigure(int UID)
+{
+    m_currentFigure = UID;
+}
+
+inline int ScilabView::getCurrentFigure()
+{
+    return m_currentFigure;
+}
+
+inline void ScilabView::setCurrentObject(int UID)
+{
+    m_currentObject = UID;
+}
+
+inline int ScilabView::getCurrentObject()
+{
+    return m_currentObject;
+}
+
+inline void ScilabView::setCurrentSubWin(int UID)
+{
+    m_currentSubWin = UID;
+}
+
+inline int ScilabView::getCurrentSubWin()
+{
+    return m_currentSubWin;
+}
+
+inline long ScilabView::getObjectHandle(int UID)
+{
+    __handleList_iterator it = m_handleList.find(UID);
+
+    if (it != m_handleList.end())
+    {
+        return it->second;
+    }
+    // increase maximum value
+    // register new handle and return it.
+    m_topHandleValue++;
+    m_handleList[UID] = m_topHandleValue;
+    m_uidList[m_topHandleValue] = UID;
+
+    return m_topHandleValue;
+}
+
+inline int ScilabView::getObjectFromHandle(long handle)
+{
+    __uidList_iterator it = m_uidList.find(handle);
+    if (it == m_uidList.end())
+    {
+        return 0;
+    }
+
+    return it->second;
+}
+
+inline int ScilabView::getFigureModel(void)
+{
+    return m_figureModel;
+}
+
+inline void ScilabView::setFigureModel(int UID)
+{
+    m_figureModel = UID;
+}
+
+inline int ScilabView::getAxesModel(void)
+{
+    return m_axesModel;
+}
+
+inline void ScilabView::setAxesModel(int UID)
+{
+    m_axesModel = UID;
+}
+
+inline PathItem* ScilabView::getItem(int uid)
+{
+    __pathList_iterator it = m_pathList.find(uid);
+    if (it != m_pathList.end())
+    {
+        return it->second;
+    }
+
+    return NULL;
+}
+
+inline PathItem* ScilabView::getItem(std::string _pstTag)
+{
+    std::list<int> ignored;
+    return getItem(_pstTag, ignored);
+}
+
+inline PathItem* ScilabView::getItem(std::string _pstTag, std::list<int>& _ignoredList)
+{
+    __pathList_iterator it = m_pathList.begin();
+    for (; it != m_pathList.end(); it++)
+    {
+        PathItem * item = it->second;
+        if (item->tag == _pstTag)
+        {
+            if (std::find(_ignoredList.begin(), _ignoredList.end(), item->uid) == _ignoredList.end())
+            {
+                return item;
+            }
+        }
+    }
+    return NULL;
+}
+
+inline PathItem* ScilabView::getFigureItem(std::string _pstTag)
+{
+    __pathFigList_iterator it = m_pathFigList.find(_pstTag);
+    if (it != m_pathFigList.end())
+    {
+        return getItem(it->second);
+    }
+
+    return NULL;
+}
+
+inline void ScilabView::setUserdata(int _id, int* _data, int _datasize)
+{
+    m_userdata[_id] = std::vector<int>(_data, _data + _datasize);
+}
+
+inline int ScilabView::getUserdataSize(int _id)
+{
+    return (int)m_userdata[_id].size();
+}
+
+inline int* ScilabView::getUserdata(int _id)
+{
+    std::vector<int> &vect = m_userdata[_id];
+    int size = (int)vect.size();
+
+    if (size != 0)
+    {
+        return &(vect[0]);
+    }
+    return NULL;
+}
 
 #endif /* !__SCILAB_VIEW_HXX__ */
 
