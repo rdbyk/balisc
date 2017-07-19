@@ -296,7 +296,6 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
     double dblMinusOne	= -1;
     double dblZero		= 0;
     double dblOne		= 1;
-    double dblTwo		= 2;
 
     double dblEps		= 0;
     double dblAvgReal	= 0;
@@ -1968,7 +1967,6 @@ int dpades(double *_pdblVal, int _iLeadDimIn, int _iSize, double *_pdblExp, int 
 
     double dblZero	= 0;
     double dblOne	= 1;
-    double dblTwo	= 2;
     double dblEfact	= 0;
     double dblNorm	= 0;
     double dblRcon	= 0;
@@ -2003,7 +2001,7 @@ int dpades(double *_pdblVal, int _iLeadDimIn, int _iSize, double *_pdblExp, int 
     for (iLoop1 = 0 ; iLoop1 < iMax ; iLoop1++)
     {
         iIndex1++;
-        dblEfact *= dblTwo;
+        dblEfact *= 2.0;
 
         if (*_pdblAlpha <= dblEfact)
         {
@@ -2013,14 +2011,14 @@ int dpades(double *_pdblVal, int _iLeadDimIn, int _iSize, double *_pdblExp, int 
 
 L30:
     iIndex1++;
-    dblEfact *= dblTwo;
+    dblEfact *= 2.0;
     for (iLoop1 = 0 ; iLoop1 < _iSize ; iLoop1++)
         for (iLoop2 = 0 ; iLoop2 < _iSize ; iLoop2++)
         {
-            _pdblVal[iLoop1 + iLoop2 * _iSize] /= dblTwo;
+            _pdblVal[iLoop1 + iLoop2 * _iSize] *= 0.5;
         }
 
-    dblNorm /= dblTwo;
+    dblNorm *= 0.5;
     goto L115;
 
     //we find a matrix a'=a*2-m whith a spectral radius smaller than one.
@@ -2483,7 +2481,6 @@ auxiliary routines
 int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double *_pdblE1, double *_pdblE2, int _iLeadDimVal, int _iLeadDimSplit)
 {
     double dblZero	= 0;
-    double dblTwo	= 2;
     double dblP = 0, dblQ = 0, dblR = 0, dblS = 0, dblT = 0, dblU = 0;
     double dblW = 0, dblX = 0, dblY = 0, dblZ = 0;
 
@@ -2497,7 +2494,7 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
     dblY	=	_pdblVal[_iPos + _iPos * _iLeadDimVal];
     dblW	=	_pdblVal[_iPos + (iIndex - 1) * _iLeadDimVal] *
                 _pdblVal[(iIndex - 1) + _iPos * _iLeadDimVal];
-    dblP	= (dblY / dblX) / dblTwo;
+    dblP	= 0.5 * (dblY / dblX);
     dblQ	= dblP * dblP + dblW;
 
     if (dblQ < 0)
