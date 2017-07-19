@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,6 +15,20 @@
 
 #ifndef DECOMPOSITION_UTILS_HXX
 #define DECOMPOSITION_UTILS_HXX
+
+extern "C"
+{
+#include <math.h>
+#include <float.h>
+#ifdef _MSC_VER
+#define isnan _isnan
+    // isinf(x)
+    // | +%inf -> 1
+    // | -%inf -> -1
+    // | _ -> 0
+#define isinf(x) (_fpclass(x)==_FPCLASS_PINF?1:(_fpclass(x)==_FPCLASS_NINF?-1:0))
+#endif
+}
 
 /**
  * Decomposition utility class
@@ -181,5 +195,116 @@ public :
      */
     static void getDecomposedQuadTriangleIndices(double vertices[4][3], int* facetVertexIndices, int* triangleVertexIndices);
 };
+
+inline int DecompositionUtils::isANumber(double x)
+{
+    return isnan(x) ? 0 : 1;
+}
+
+inline int DecompositionUtils::isFinite(double x)
+{
+    return isinf(x) ? 0 : 1;
+}
+
+inline int DecompositionUtils::isValid(double x)
+{
+    return isnan(x) || isinf(x) ? 0 : 1;
+}
+
+inline int DecompositionUtils::isValid(double x, double y, double z)
+{
+    return isnan(x) || isnan(y) || isnan(z) || isinf(x) || isinf(y) || isinf(z) ? 0 : 1;
+}
+
+inline int DecompositionUtils::isValid(double x, double y)
+{
+    return isnan(x) || isnan(y) || isinf(x) || isinf(y) ? 0 : 1;
+}
+
+inline double DecompositionUtils::getLog10Value(double value)
+{
+    return log10(value);
+}
+
+inline int DecompositionUtils::isLogValid(double x)
+{
+    return x > 0.0 ? 1 : 0;
+}
+
+inline int DecompositionUtils::isLogValid(double x, double y, double z, int logMask)
+{
+    int valid = 1;
+
+    if (logMask & 0x1)
+    {
+        valid &= (x > 0.0);
+    }
+
+    if (logMask & 0x2)
+    {
+        valid &= (y > 0.0);
+    }
+
+    if (logMask & 0x4)
+    {
+        valid &= (z > 0.0);
+    }
+
+    return valid;
+}
+
+inline int DecompositionUtils::isLogValid(double x, double y, int logMask)
+{
+    int valid = 1;
+
+    if (logMask & 0x1)
+    {
+        valid &= (x > 0.0);
+    }
+
+    if (logMask & 0x2)
+    {
+        valid &= (y > 0.0);
+    }
+
+    return valid;
+}
+
+inline double DecompositionUtils::getMaxDoubleValue(void)
+{
+    return DBL_MAX;
+}
+
+inline double DecompositionUtils::getMinDoubleValue(void)
+{
+    return DBL_MIN;
+}
+
+inline double DecompositionUtils::getAbsoluteValue(double value)
+{
+    return fabs(value);
+}
+
+inline double DecompositionUtils::getSquareRoot(double value)
+{
+    return sqrt(value);
+}
+
+/*
+ * Decomposes a rectangle into two adjacent triangles.
+ * The rectangle's vertices are supposed to be specified in
+ * counter-clockwise order, with 0 corresponding to the former's lower-left vertex.
+ * The two output triangles' vertex indices are also specified in
+ * counter-clockwise order.
+ */
+inline void DecompositionUtils::getDecomposedRectangleTriangleIndices(int* indices)
+{
+    indices[0] = 0;
+    indices[1] = 1;
+    indices[2] = 2;
+    indices[3] = 0;
+    indices[4] = 2;
+    indices[5] = 3;
+}
 
 #endif
