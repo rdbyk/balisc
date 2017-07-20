@@ -40,6 +40,7 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     int iLoop1			= 0;
     int iSquare			= 0;
     int iOne				= 1;
+    int iMallocSize = 0;
 
     int iComplex = 0;
 
@@ -75,28 +76,29 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     }
 
     iSquare = _iLeadDim * _iLeadDim;
+    iMallocSize = sizeof(double) * iSquare;
 
-    pdblMatrixRealA			= (double*)malloc(sizeof(double) * iSquare);
-    pdblMatrixRealX			= (double*)malloc(sizeof(double) * iSquare);
-    pdblMatrixRealD			= (double*)malloc(sizeof(double) * iSquare);
-    pdblMatrixRealcX		= (double*)malloc(sizeof(double) * iSquare);
-    pdblMatrixRealcA		= (double*)malloc(sizeof(double) * iSquare);
-    pdblMatrixRealEye		= (double*)malloc(sizeof(double) * iSquare);
-    pdblMatrixRealTemp		= (double*)malloc(sizeof(double) * iSquare);
-    pdblMatrixRealTemp2		= (double*)malloc(sizeof(double) * iSquare);
+    pdblMatrixRealA			= (double*)malloc(iMallocSize);
+    pdblMatrixRealX			= (double*)malloc(iMallocSize);
+    pdblMatrixRealD			= (double*)malloc(iMallocSize);
+    pdblMatrixRealcX		= (double*)malloc(iMallocSize);
+    pdblMatrixRealcA		= (double*)malloc(iMallocSize);
+    pdblMatrixRealEye		= (double*)malloc(iMallocSize);
+    pdblMatrixRealTemp		= (double*)malloc(iMallocSize);
+    pdblMatrixRealTemp2		= (double*)malloc(iMallocSize);
 
     if (iComplex)
     {
-        pdblMatrixImgA			= (double*)malloc(sizeof(double) * iSquare);
-        pdblMatrixImgX			= (double*)malloc(sizeof(double) * iSquare);
-        pdblMatrixImgD			= (double*)malloc(sizeof(double) * iSquare);
-        pdblMatrixImgcX			= (double*)malloc(sizeof(double) * iSquare);
-        pdblMatrixImgcA			= (double*)malloc(sizeof(double) * iSquare);
-        pdblMatrixImgEye		= (double*)malloc(sizeof(double) * iSquare);
-        pdblMatrixImgTemp		= (double*)malloc(sizeof(double) * iSquare);
-        pdblMatrixImgTemp2		= (double*)malloc(sizeof(double) * iSquare);
+        pdblMatrixImgA			= (double*)malloc(iMallocSize);
+        pdblMatrixImgX			= (double*)malloc(iMallocSize);
+        pdblMatrixImgD			= (double*)malloc(iMallocSize);
+        pdblMatrixImgcX			= (double*)malloc(iMallocSize);
+        pdblMatrixImgcA			= (double*)malloc(iMallocSize);
+        pdblMatrixImgEye		= (double*)malloc(iMallocSize);
+        pdblMatrixImgTemp		= (double*)malloc(iMallocSize);
+        pdblMatrixImgTemp2		= (double*)malloc(iMallocSize);
 
-        memset(pdblMatrixImgEye, 0x00, sizeof(double) * iSquare);
+        memset(pdblMatrixImgEye, 0x00, iMallocSize);
     }
 
 
