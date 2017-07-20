@@ -128,8 +128,9 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     }
 
 
-    deyes(pdblMatrixRealEye, _iLeadDim, _iLeadDim);
-
+    // initialize real part of identity matrix
+    vDset(iSquare, 0, pdblMatrixRealEye, 1);
+    vDset(_iLeadDim, 1, pdblMatrixRealEye, _iLeadDim + 1);
 
     //cA = A * c
     if (iComplex)
