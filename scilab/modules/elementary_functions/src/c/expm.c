@@ -59,7 +59,6 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     double *pdblMatrixRealcA	= NULL;//cX
     double *pdblMatrixRealEye	= NULL;//Eye
     double *pdblMatrixRealTemp	= NULL;//Temp
-    double *pdblMatrixRealTemp2	= NULL;//Temp2
 
     double *pdblMatrixImgA		= NULL;//A'
     double *pdblMatrixImgX		= NULL;//X
@@ -68,7 +67,6 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     double *pdblMatrixImgcA		= NULL;//cX
     double *pdblMatrixImgEye	= NULL;//Eye
     double *pdblMatrixImgTemp	= NULL;//Temp
-    double *pdblMatrixImgTemp2	= NULL;//Temp2
 
     if (_pdblImg != NULL)
     {
@@ -85,7 +83,6 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     pdblMatrixRealcA		= (double*)malloc(iMallocSize);
     pdblMatrixRealEye		= (double*)malloc(iMallocSize);
     pdblMatrixRealTemp		= (double*)malloc(iMallocSize);
-    pdblMatrixRealTemp2		= (double*)malloc(iMallocSize);
 
     if (iComplex)
     {
@@ -96,7 +93,6 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
         pdblMatrixImgcA			= (double*)malloc(iMallocSize);
         pdblMatrixImgEye		= (double*)malloc(iMallocSize);
         pdblMatrixImgTemp		= (double*)malloc(iMallocSize);
-        pdblMatrixImgTemp2		= (double*)malloc(iMallocSize);
 
         memset(pdblMatrixImgEye, 0x00, iMallocSize);
     }
@@ -293,14 +289,10 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     {
         //Temp = E
         C2F(dcopy)(&iSquare, _pdblReturnReal, &iOne, pdblMatrixRealTemp, &iOne);
-        //Temp2 = E
-        C2F(dcopy)(&iSquare, _pdblReturnReal, &iOne, pdblMatrixRealTemp2, &iOne);
         if (iComplex)
         {
             //Temp = E
             C2F(dcopy)(&iSquare, _pdblReturnImg, &iOne, pdblMatrixImgTemp, &iOne);
-            //Temp2 = E
-            C2F(dcopy)(&iSquare, _pdblReturnImg, &iOne, pdblMatrixImgTemp2, &iOne);
         }
 
 
@@ -313,13 +305,13 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
         // E = E*E
         if (iComplex)
             iMultiComplexMatrixByComplexMatrix(
-                pdblMatrixRealTemp,		pdblMatrixImgTemp,	_iLeadDim, _iLeadDim,
-                pdblMatrixRealTemp2,	pdblMatrixImgTemp2,	_iLeadDim, _iLeadDim,
+                pdblMatrixRealTemp, pdblMatrixImgTemp,	_iLeadDim, _iLeadDim,
+                pdblMatrixRealTemp, pdblMatrixImgTemp,	_iLeadDim, _iLeadDim,
                 _pdblReturnReal,		_pdblReturnImg);
         else
             iMultiRealMatrixByRealMatrix(
-                pdblMatrixRealTemp,		_iLeadDim, _iLeadDim,
-                pdblMatrixRealTemp2,	_iLeadDim, _iLeadDim,
+                pdblMatrixRealTemp,	_iLeadDim, _iLeadDim,
+                pdblMatrixRealTemp,	_iLeadDim, _iLeadDim,
                 _pdblReturnReal);
         /*
         		C2F(dgemm)("n", "n", &_iLeadDim, &_iLeadDim, &_iLeadDim, &dblOne,
@@ -336,7 +328,6 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     free(pdblMatrixRealcA);
     free(pdblMatrixRealEye);
     free(pdblMatrixRealTemp);
-    free(pdblMatrixRealTemp2);
 
     if (iComplex)
     {
@@ -347,7 +338,6 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
         free(pdblMatrixImgcA);
         free(pdblMatrixImgEye);
         free(pdblMatrixImgTemp);
-        free(pdblMatrixImgTemp2);
     }
 
     return 0;
