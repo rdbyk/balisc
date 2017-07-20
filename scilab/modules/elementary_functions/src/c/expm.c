@@ -47,7 +47,7 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     double dblZero	= 0;
     double dblOne	= 1;
 
-    double dblExp	= 0;
+    int iExp	= 0;
     double dblS		= 0;
     double dblS2	= 0;
     double dblCst	= 0.5;
@@ -99,8 +99,8 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 
 
     // Scale A by power of 2 so that its norm is < 1/2 .
-    dfrexps(dblGetMatrixInfiniteNorm(_pdblReal, _pdblImg, _iLeadDim, _iLeadDim), &dblExp);
-    dblS	= Max(0, dblExp + 1);
+    frexp(dblGetMatrixInfiniteNorm(_pdblReal, _pdblImg, _iLeadDim, _iLeadDim), &iExp);
+    dblS	= Max(0, iExp + 1);
     dblS2	= pow(2, dblS);
 
     //A = A./2^s
