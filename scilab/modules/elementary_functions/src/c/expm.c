@@ -121,10 +121,10 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 
     // Pade approximation for exp(A)
     //X = A
-    C2F(dcopy)(&iSquare, pdblMatrixRealA, &iOne, pdblMatrixRealX, &iOne );
+    memcpy(pdblMatrixRealX, pdblMatrixRealA, iMallocSize);
     if (iComplex)
     {
-        C2F(dcopy)(&iSquare, pdblMatrixImgA, &iOne, pdblMatrixImgX, &iOne );
+        memcpy(pdblMatrixImgX, pdblMatrixImgA, iMallocSize);
     }
 
 
@@ -142,10 +142,6 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
             dblCst,
             pdblMatrixRealA, _iLeadDim, _iLeadDim,
             pdblMatrixRealcA);
-    /*
-    	C2F(dcopy)(&iSquare, pdblMatrixRealA, &iOne, pdblMatrixRealcA, &iOne);
-    	C2F(dscal)(&iSquare, &dblCst, pdblMatrixRealcA, &iOne);
-    */
 
     //E = Eye + cA
     vDadd(iSquare, pdblMatrixRealEye, pdblMatrixRealcA, 1, 1, _pdblReturnReal);
@@ -169,14 +165,12 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
         dblCst	= dblCst * (iMax - iLoop1 + 1 ) / (iLoop1 * (2 * iMax - iLoop1 + 1));
 
         //Temp = X
-        C2F(dcopy)(&iSquare, pdblMatrixRealX, &iOne, pdblMatrixRealTemp, &iOne);
+        memcpy(pdblMatrixRealTemp, pdblMatrixRealX, iMallocSize);
         if (iComplex)
         {
-            C2F(dcopy)(&iSquare, pdblMatrixImgX, &iOne, pdblMatrixImgTemp, &iOne);
+            memcpy(pdblMatrixImgTemp, pdblMatrixImgX, iMallocSize);
         }
-        /*		for(iIndex1 = 0 ; iIndex1 < iSquare ; iIndex1++)
-        			pdblMatrixRealTemp[iIndex1]	= pdblMatrixRealX[iIndex1];
-        */
+
         //X = A * Temp;
         if (iComplex)
         {
@@ -208,9 +202,6 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
                 dblCst,
                 pdblMatrixRealX, _iLeadDim, _iLeadDim,
                 pdblMatrixRealcX);
-        /*		C2F(dcopy)(&iSquare, pdblMatrixRealX, &iOne, pdblMatrixRealcX, &iOne);
-        		C2F(dscal)(&iSquare, &dblCst, pdblMatrixRealcX, &iOne);
-        */
 
         //E = E + cX
         vDadd(iSquare, _pdblReturnReal, pdblMatrixRealcX, 1, 1, _pdblReturnReal);
@@ -242,13 +233,10 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     }
 
     //Temp = E
-    C2F(dcopy)(&iSquare, _pdblReturnReal, &iOne, pdblMatrixRealTemp, &iOne);
+    memcpy(pdblMatrixRealTemp, _pdblReturnReal, iMallocSize);
     if (iComplex)
     {
-        C2F(dcopy)(&iSquare, _pdblReturnImg, &iOne, pdblMatrixImgTemp, &iOne);
-        /*	for(iIndex1 = 0 ; iIndex1 < iSquare ; iIndex1++)
-        		pdblMatrixRealTemp[iIndex1]	= _pdblReturnReal[iIndex1];
-        */
+        memcpy(pdblMatrixImgTemp, _pdblReturnImg, iMallocSize);
     }
 
     //E = D\E
@@ -288,20 +276,12 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     for (iLoop1 = 0 ; iLoop1 < dblS ; iLoop1++)
     {
         //Temp = E
-        C2F(dcopy)(&iSquare, _pdblReturnReal, &iOne, pdblMatrixRealTemp, &iOne);
+        memcpy(pdblMatrixRealTemp, _pdblReturnReal, iMallocSize);
         if (iComplex)
         {
-            //Temp = E
-            C2F(dcopy)(&iSquare, _pdblReturnImg, &iOne, pdblMatrixImgTemp, &iOne);
+            memcpy(pdblMatrixImgTemp, _pdblReturnImg, iMallocSize);
         }
 
-
-        /*		for(iIndex1 = 0 ; iIndex1 < iSquare ; iIndex1++)
-        			pdblMatrixRealTemp[iIndex1]		= _pdblReturnReal[iIndex1];
-        */
-        /*		for(iIndex1 = 0 ; iIndex1 < iSquare ; iIndex1++)
-        			pdblMatrixRealTemp2[iIndex1]	= _pdblReturnReal[iIndex1];
-        */
         // E = E*E
         if (iComplex)
             iMultiComplexMatrixByComplexMatrix(
@@ -346,14 +326,13 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 double dblGetMatrixInfiniteNorm(double *_pdblReal, double *_pdblImg, int _iRows, int _iCols)
 {
     int iIndex1 = 0, iIndex2 = 0;
-    double dblTemp = 0;
     double dblRef = 0;
 
     if (_pdblImg == NULL)
     {
         for (iIndex1 = 0 ; iIndex1 < _iRows ; iIndex1++)
         {
-            dblTemp = 0;
+            double dblTemp = 0;
             for (iIndex2 = 0 ; iIndex2 < _iCols ; iIndex2++)
             {
                 dblTemp += _pdblReal[iIndex1 + iIndex2 * _iRows];
@@ -368,7 +347,7 @@ double dblGetMatrixInfiniteNorm(double *_pdblReal, double *_pdblImg, int _iRows,
     {
         for (iIndex1 = 0 ; iIndex1 < _iRows ; iIndex1++)
         {
-            dblTemp = 0;
+            double dblTemp = 0;
             for (iIndex2 = 0 ; iIndex2 < _iCols ; iIndex2++)
             {
                 dblTemp += hypot(_pdblReal[iIndex1 + iIndex2 * _iRows], _pdblImg[iIndex1 + iIndex2 * _iRows]);
