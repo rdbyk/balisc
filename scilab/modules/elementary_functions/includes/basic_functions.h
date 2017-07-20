@@ -45,6 +45,4 @@ ELEMENTARY_FUNCTIONS_IMPEXP void franck_matrix(int _iSize, double *_pData);
 ELEMENTARY_FUNCTIONS_IMPEXP void hilb_matrix(int _iSize, double *_pData);
 ELEMENTARY_FUNCTIONS_IMPEXP void magic_matrix(int _iSize, double *_pData);
 
-ELEMENTARY_FUNCTIONS_IMPEXP void deyes(double *_pdblOut, int _iRows, int _iCols);
-
 #endif //__BASIC_FUNCTION__
