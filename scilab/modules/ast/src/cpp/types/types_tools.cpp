@@ -931,7 +931,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
 
             if (ConfigVariable::isPrintCompact() == false && ConfigVariable::isPrintInput() == false)
             {
-                ostr << std::endl;
+                ostr << L"\n";
             }
 
             scilabForcedWriteW(ostr.str().c_str());
