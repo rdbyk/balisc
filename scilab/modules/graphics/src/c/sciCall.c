@@ -141,8 +141,8 @@ void Objarc(double* angle1    ,
 
     if (mustUpdate(iSubwinUID))
     {
-        double rect[6];
         const double two_pi = 2 * M_PI;
+        double rect[6];
         if (abs(*angle2) >= two_pi)
         {
             rect[0] = *x;
@@ -160,21 +160,17 @@ void Objarc(double* angle1    ,
             a -= (floor(a / two_pi)) * two_pi;
             b = a + s;
 
-            if (s >= 0)
-            {
-                b = a + s;
-            }
-            else
+            if (s < 0)
             {
                 b = a;
                 a += s;
             }
 
-            b1 = b / M_PI;
-            a1 = a / M_PI;
+            b1 = b * M_1_PI;
+            a1 = a * M_1_PI;
 
             // is there a 2k\pi in [a,b] ?
-            if (ceil(a1 / 2) <= floor(b1 / 2))
+            if (ceil(a1 * 0.5) <= floor(b1 * 0.5))
             {
                 rect[1] = *x + *width;
             }
@@ -184,7 +180,7 @@ void Objarc(double* angle1    ,
             }
 
             // is there a (2k+1)\pi in [a,b] ?
-            if (ceil((a1 - 1) / 2) <= floor((b1 - 1) / 2))
+            if (ceil((a1 - 1) * 0.5) <= floor((b1 - 1) * 0.5))
             {
                 rect[0] = *x;
             }
@@ -194,7 +190,7 @@ void Objarc(double* angle1    ,
             }
 
             // is there a (2k+1/2)\pi in [a,b] ?
-            if (ceil((a1 - 0.5) / 2) <= floor((b1 - 0.5) / 2))
+            if (ceil((a1 - 0.5) * 0.5) <= floor((b1 - 0.5) * 0.5))
             {
                 rect[3] = *y;
             }
@@ -204,7 +200,7 @@ void Objarc(double* angle1    ,
             }
 
             // is there a (2k+3/2)\pi in [a,b] ?
-            if (ceil((a1 - 1.5) / 2) <= floor((b1 - 1.5) / 2))
+            if (ceil((a1 - 1.5) * 0.5) <= floor((b1 - 1.5) * 0.5))
             {
                 rect[2] = *y - *height;
             }

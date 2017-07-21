@@ -38,7 +38,7 @@ Void* Void::clone(void)
 
 bool Void::toString(std::wostringstream& ostr)
 {
-    ostr << L"" << std::endl;
+    ostr << L"\n";
     return true;
 }
 }

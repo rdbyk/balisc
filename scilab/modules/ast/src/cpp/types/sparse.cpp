@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <sstream>
 #include <math.h>
@@ -163,7 +163,7 @@ template<typename T> std::wstring toString(T const& m, int precision)
             addUnsignedIntValue<unsigned long long>(&ostr, (int)j, iWidthRows);
             ostr << L",";
             addUnsignedIntValue<unsigned long long>(&ostr, pIColPos[iPos] + 1, iWidthCols);
-            ostr << L")\t" << p(m.valuePtr()[iPos]) << std::endl;
+            ostr << L")\t" << p(m.valuePtr()[iPos]) << L"\n";
 
             iPos++;
         }

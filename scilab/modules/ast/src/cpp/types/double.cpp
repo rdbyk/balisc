@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <sstream>
 #include <math.h>
@@ -354,24 +354,24 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
     if (isIdentity())
     {
-        ostr << L"eye *" << std::endl << std::endl;
+        ostr << L"eye *\n\n";
         if (isComplex() == false)
         {
             printDoubleValue(ostr, m_pRealData[0]);
-            ostr << std::endl;
+            ostr << L"\n";
         }
         else
         {
             //complex value
             printComplexValue(ostr, m_pRealData[0], m_pImgData[0]);
-            ostr << std::endl;
+            ostr << L"\n";
         }
-        ostr << std::endl;
+        ostr << L"\n";
     }
     else if (isEmpty())
     {
         printEmptyString(ostr);
-        ostr << std::endl;
+        ostr << L"\n";
     }
     else if (isScalar())
     {
@@ -383,13 +383,13 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         if (isComplex() == false)
         {
             printDoubleValue(ostr, m_pRealData[iPos]);
-            ostr << std::endl;
+            ostr << L"\n";
         }
         else
         {
             //complex value
             printComplexValue(ostr, m_pRealData[iPos], m_pImgData[iPos]);
-            ostr << std::endl;
+            ostr << L"\n";
         }
     }
     else if (getCols() == 1)
@@ -413,7 +413,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 int iPos = getIndex(_piDims);
 
                 printDoubleValue(ostr, m_pRealData[iPos]);
-                ostr << std::endl;
+                ostr << L"\n";
             }
         }
         else
@@ -433,7 +433,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 int iPos = getIndex(_piDims);
 
                 printComplexValue(ostr, m_pRealData[iPos], m_pImgData[iPos]);
-                ostr << std::endl;
+                ostr << L"\n";
             }
         }
     }
@@ -469,7 +469,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     }
 
                     addColumnString(ostr, iLastVal + 1, i);
-                    ostr << ostemp.str() << std::endl;
+                    ostr << ostemp.str() << L"\n";
                     ostemp.str(L"");
                     iLastVal = i;
                 }
@@ -482,7 +482,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             {
                 addColumnString(ostr, iLastVal + 1, getCols());
             }
-            ostemp << std::endl;
+            ostemp << L"\n";
             ostr << ostemp.str();
         }
         else //complex case
@@ -512,7 +512,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     }
 
                     addColumnString(ostr, iLastVal + 1, i);
-                    ostr << ostemp.str() << std::endl;
+                    ostr << ostemp.str() << L"\n";
                     ostemp.str(L"");
                     iLastVal = i;
                 }
@@ -525,7 +525,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             {
                 addColumnString(ostr, iLastVal + 1, getCols());
             }
-            ostemp << std::endl;
+            ostemp << L"\n";
             ostr << ostemp.str();
         }
     }
@@ -594,7 +594,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             df.iWidth = piSize[iCols2];
                             addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                         }
-                        ostemp << std::endl;
+                        ostemp << L"\n";
                     }
 
                     iLen = 0;
@@ -646,7 +646,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     df.iWidth = piSize[iCols2];
                     addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                 }
-                ostemp << std::endl;
+                ostemp << L"\n";
             }
 
             if (m_iRows2PrintState == 0 && iLastCol != 0)
@@ -716,7 +716,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
                             addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                         }
-                        ostemp << std::endl;
+                        ostemp << L"\n";
                     }
 
                     iLen = 0;
@@ -768,7 +768,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
                     addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                 }
-                ostemp << std::endl;
+                ostemp << L"\n";
             }
 
             if (m_iRows2PrintState == 0 && iLastCol != 0)
@@ -780,7 +780,9 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
         delete[] piSize;
     }
-
+    
+    std::flush(ostr);
+    
     return true;
 }
 

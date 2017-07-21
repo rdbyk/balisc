@@ -37,7 +37,6 @@ ELEMENTARY_FUNCTIONS_IMPEXP void vDless(int _iNbElem, double* _pdblIn1, double* 
 ELEMENTARY_FUNCTIONS_IMPEXP void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 ELEMENTARY_FUNCTIONS_IMPEXP void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
-ELEMENTARY_FUNCTIONS_IMPEXP double dfrexps(double _dblVal, double *_pdblExp);
 
 ELEMENTARY_FUNCTIONS_IMPEXP double durands(int *_iVal);
 ELEMENTARY_FUNCTIONS_IMPEXP int nint(double _iVal);
@@ -45,7 +44,5 @@ ELEMENTARY_FUNCTIONS_IMPEXP int nint(double _iVal);
 ELEMENTARY_FUNCTIONS_IMPEXP void franck_matrix(int _iSize, double *_pData);
 ELEMENTARY_FUNCTIONS_IMPEXP void hilb_matrix(int _iSize, double *_pData);
 ELEMENTARY_FUNCTIONS_IMPEXP void magic_matrix(int _iSize, double *_pData);
-
-ELEMENTARY_FUNCTIONS_IMPEXP void deyes(double *_pdblOut, int _iRows, int _iCols);
 
 #endif //__BASIC_FUNCTION__

@@ -45,16 +45,6 @@ void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
     }
 }
 
-/*frexp*/
-double dfrexps(double _dblVal, double *_pdblExp)
-{
-    int iExp = 0;
-    double dblCoef = 0;
-    dblCoef = frexp(_dblVal, &iExp);
-    *_pdblExp = iExp;
-    return dblCoef;
-}
-
 double durands(int* _iVal)
 {
     static int ia = 0, ic = 0, itwo = 2, m2 = 0, m = 0, mic = 0;

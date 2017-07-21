@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -181,8 +181,8 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                     return false;
                 }
 
-                ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << i << std::endl << std::endl;
-                ostr << L" " << ostemp.str() << std::endl;
+                ostr << L"\n       column " << iLastVal + 1 << L" to " << i;
+                ostr << L"\n\n " << ostemp.str() << std::endl;
                 ostemp.str(L"");
                 iLastVal = i;
                 iLen = 0;
@@ -194,9 +194,9 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
 
         if (iLastVal != 0)
         {
-            ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << getCols() << std::endl << std::endl;
+            ostr << L"\n       column " << iLastVal + 1 << L" to " << getCols();
         }
-        ostr << L" " << ostemp.str() << std::endl;
+        ostr << L"\n\n " << ostemp.str() << std::endl;
     }
     else
     {
@@ -220,7 +220,7 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                         if (m_iRows2PrintState == 0 && iRows2 != 0)
                         {
                             //add header
-                            ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                            ostr << L"\n       column " << iLastCol + 1 << L" to " << iCols1 << L"\n\n";
                         }
                         ostr << L" " << ostemp.str();
                         m_iRows2PrintState = iRows2;
@@ -235,14 +235,14 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                         int iPos = getIndex(_piDims);
                         ostemp << (get(iPos) == 0 ? L" F" : L" T");
                     }
-                    ostemp << std::endl << L" ";
+                    ostemp << L"\n ";
                 }
                 iLen = 0;
                 iCurrentLine++;
                 if (m_iRows2PrintState == 0)
                 {
                     iCurrentLine += 3;
-                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                    ostr << L"\n       column " << iLastCol + 1 << L" to " << iCols1 << L"\n\n";
                 }
 
                 ostr << L" " << ostemp.str();
@@ -262,7 +262,7 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                 if (m_iRows2PrintState == 0 && iLastCol != 0)
                 {
                     //add header
-                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+                    ostr << L"\n       column " << iLastCol + 1 << L" to " << getCols() << L"\n\n";
                 }
 
                 ostr << ostemp.str();
@@ -283,7 +283,7 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
         }
         if (m_iRows2PrintState == 0 && iLastCol != 0)
         {
-            ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+            ostr << L"\n       column " << iLastCol + 1 << L" to " << getCols() << L"\n" << std::endl;
         }
         ostr << L" " << ostemp.str();
     }

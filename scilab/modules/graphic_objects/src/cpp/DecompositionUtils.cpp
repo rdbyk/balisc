@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,173 +14,6 @@
  */
 
 #include "DecompositionUtils.hxx"
-
-extern "C"
-{
-#include <math.h>
-#include <float.h>
-#ifdef _MSC_VER
-#define isnan _isnan
-    // isinf(x)
-    // | +%inf -> 1
-    // | -%inf -> -1
-    // | _ -> 0
-#define isinf(x) (_fpclass(x)==_FPCLASS_PINF?1:(_fpclass(x)==_FPCLASS_NINF?-1:0))
-#endif
-}
-
-int DecompositionUtils::isANumber(double x)
-{
-    if (isnan(x))
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-int DecompositionUtils::isFinite(double x)
-{
-    if (isinf(x))
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-int DecompositionUtils::isValid(double x)
-{
-    if (isnan(x) || isinf(x))
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-int DecompositionUtils::isValid(double x, double y, double z)
-{
-    if (isnan(x) || isnan(y) || isnan(z) || isinf(x) || isinf(y) || isinf(z))
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-int DecompositionUtils::isValid(double x, double y)
-{
-    if (isnan(x) || isnan(y) || isinf(x) || isinf(y))
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
-}
-
-double DecompositionUtils::getLog10Value(double value)
-{
-    return log10(value);
-}
-
-int DecompositionUtils::isLogValid(double x)
-{
-    if (x > 0.0)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-int DecompositionUtils::isLogValid(double x, double y, double z, int logMask)
-{
-    int valid = 1;
-
-    if (logMask & 0x1)
-    {
-        valid &= (x > 0.0);
-    }
-
-    if (logMask & 0x2)
-    {
-        valid &= (y > 0.0);
-    }
-
-    if (logMask & 0x4)
-    {
-        valid &= (z > 0.0);
-    }
-
-    return valid;
-}
-
-int DecompositionUtils::isLogValid(double x, double y, int logMask)
-{
-    int valid = 1;
-
-    if (logMask & 0x1)
-    {
-        valid &= (x > 0.0);
-    }
-
-    if (logMask & 0x2)
-    {
-        valid &= (y > 0.0);
-    }
-
-    return valid;
-}
-
-double DecompositionUtils::getMaxDoubleValue(void)
-{
-    return DBL_MAX;
-}
-
-double DecompositionUtils::getMinDoubleValue(void)
-{
-    return DBL_MIN;
-}
-
-double DecompositionUtils::getAbsoluteValue(double value)
-{
-    return fabs(value);
-}
-
-double DecompositionUtils::getSquareRoot(double value)
-{
-    return sqrt(value);
-}
-
-/*
- * Decomposes a rectangle into two adjacent triangles.
- * The rectangle's vertices are supposed to be specified in
- * counter-clockwise order, with 0 corresponding to the former's lower-left vertex.
- * The two output triangles' vertex indices are also specified in
- * counter-clockwise order.
- */
-void DecompositionUtils::getDecomposedRectangleTriangleIndices(int* indices)
-{
-    indices[0] = 0;
-    indices[1] = 1;
-    indices[2] = 2;
-    indices[3] = 0;
-    indices[4] = 2;
-    indices[5] = 3;
-}
 
 /* To do: use a Vector3d class to perform vector operations. */
 void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3], int* facetVertexIndices, int* triangleVertexIndices)
@@ -198,8 +31,6 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
 
     double dot0 = 0.;
     double dot1 = 0.;
-
-    double denom = 0.;
 
     /*
      * The input vertices are given in counter-clockwise order, from v0 to v3.
@@ -232,16 +63,12 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
     nmo0 = mo0[0] * mo0[0] + mo0[1] * mo0[1] + mo0[2] * mo0[2];
     nmo1 = mo1[0] * mo1[0] + mo1[1] * mo1[1] + mo1[2] * mo1[2];
 
+    dot0 = mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2];
+
     if (nmo0 * nmo1 > 0.0)
     {
-        denom = DecompositionUtils::getSquareRoot(nmo0 * nmo1);
+        dot0 /= getSquareRoot(nmo0 * nmo1);
     }
-    else
-    {
-        denom = 1.0;
-    }
-
-    dot0 = (mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2]) / denom;
 
     /* 2nd decomposition */
 
@@ -257,17 +84,13 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
 
     nmo0 = mo0[0] * mo0[0] + mo0[1] * mo0[1] + mo0[2] * mo0[2];
     nmo1 = mo1[0] * mo1[0] + mo1[1] * mo1[1] + mo1[2] * mo1[2];
+    
+    dot1 = mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2];
 
     if (nmo0 * nmo1 > 0.0)
     {
-        denom = getSquareRoot(nmo0 * nmo1);
+        dot1 /= getSquareRoot(nmo0 * nmo1);
     }
-    else
-    {
-        denom = 1.0;
-    }
-
-    dot1 = (mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2]) / denom;
 
     /* The lower the dot product, the closer to -1, and the more coplanar the triangles are. */
     if (dot0 <= dot1)

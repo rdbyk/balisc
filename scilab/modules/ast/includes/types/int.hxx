@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
- *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -185,7 +185,7 @@ private :
 
         if (GenericType::isIdentity())
         {
-            ostr << L"eye *" << std::endl << std::endl;
+            ostr << L"eye *\n\n";
             int iWidth = 0;
             if (isSigned())
             {
@@ -197,7 +197,7 @@ private :
                 getUnsignedIntFormat(ArrayOf<T>::get(0), &iWidth);
                 addUnsignedIntValue(&ostr, ArrayOf<T>::get(0), iWidth);
             }
-            ostr << std::endl;
+            ostr << L"\n";
         }
         else if (GenericType::isScalar())
         {
@@ -217,7 +217,7 @@ private :
                 getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
                 addUnsignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
             }
-            ostr << std::endl;
+            ostr << L"\n";
         }
         else if (GenericType::getCols() == 1)
         {
@@ -263,7 +263,7 @@ private :
                 {
                     addUnsignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
                 }
-                ostr << std::endl;
+                ostr << L"\n";
             }
         }
         else if (GenericType::getRows() == 1)
@@ -301,7 +301,7 @@ private :
                     }
 
                     addColumnString(ostr, iLastVal + 1, i);
-                    ostr << ostemp.str() << std::endl;
+                    ostr << ostemp.str() << L"\n";
                     ostemp.str(L"");
                     iLastVal = i;
                 }
@@ -321,7 +321,7 @@ private :
                 addColumnString(ostr, iLastVal + 1, GenericType::getCols());
             }
 
-            ostemp << std::endl;
+            ostemp << L"\n";
             ostr << ostemp.str();
         }
         else // matrix
@@ -392,7 +392,7 @@ private :
                                 addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
                             }
                         }
-                        ostemp << std::endl;
+                        ostemp << L"\n";
                     }
                     iLen = 0;
 
@@ -445,7 +445,7 @@ private :
                         addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
                     }
                 }
-                ostemp << std::endl;
+                ostemp << L"\n";
             }
 
             if (this->m_iRows2PrintState == 0 && iLastCol != 0)
@@ -455,7 +455,9 @@ private :
 
             ostr << ostemp.str();
         }
-
+        
+        std::flush(ostr);
+        
         return true;
     }
 
