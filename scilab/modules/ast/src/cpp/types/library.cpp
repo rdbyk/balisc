@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -62,7 +62,7 @@ bool Library::toString(std::wostringstream& ostr)
     wchar_t output[1024] = {0};
     os_swprintf(output, 1024, _W("Functions files location : %s.\n").c_str(), m_wstPath.c_str());
 
-    ostr << output << std::endl;
+    ostr << output << L"\n";
 
     size_t iLineLen = (size_t)ConfigVariable::getConsoleWidth();
 
@@ -71,7 +71,7 @@ bool Library::toString(std::wostringstream& ostr)
     {
         if (iCurrentLen + macro.first.length() + 2 > iLineLen)
         {
-            ostr << std::endl;
+            ostr << L"\n";
             iCurrentLen = 0;
         }
         ostr << macro.first << "  ";
