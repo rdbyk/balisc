@@ -479,11 +479,11 @@ void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo)
 {
     if (_iFrom == _iTo)
     {
-        ostr << std::endl << L"         column " << _iFrom << std::endl << std::endl;
+        ostr << L"\n         column " << _iFrom << L"\n" << std::endl;
     }
     else
     {
-        ostr << std::endl << L"         column " << _iFrom << L" to " << _iTo << std::endl << std::endl;
+        ostr << L"\n         column " << _iFrom << L" to " << _iTo << L"\n" << std::endl;
     }
 }
 
