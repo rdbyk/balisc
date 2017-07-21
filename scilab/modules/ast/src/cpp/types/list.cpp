@@ -1,8 +1,9 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <sstream>
 #include "double.hxx"
@@ -130,7 +131,7 @@ bool List::toString(std::wostringstream& ostr)
     if (getSize() == 0)
     {
         ostr.str(L"");
-        ostr << L"     ()" << std::endl;
+        ostr << L"     ()" << L"\n";
     }
     else
     {
@@ -141,7 +142,7 @@ bool List::toString(std::wostringstream& ostr)
             std::wostringstream nextVarName;
             ostr.str(L"");
             nextVarName << " " << SPACES_LIST << wcsVarName << L"(" << iPosition++ << L")";
-            ostr << std::endl << nextVarName.str() << std::endl << std::endl;
+            ostr << L"\n" << nextVarName.str() << L"\n\n";
             scilabForcedWriteW(ostr.str().c_str());
             if (VariableToString(val, nextVarName.str().c_str()) == types::Function::Error)
             {
@@ -154,7 +155,9 @@ bool List::toString(std::wostringstream& ostr)
         ostr.str(L"");
         free(wcsVarName);
     }
-
+    
+    std::flush(ostr);
+    
     return true;
 }
 
