@@ -999,9 +999,9 @@ void TreeVisitor::visit(const FunctionDec  &e)
     // Then get function args
     wostr << SCI_OPEN_ARGS;
     e.getArgs().getOriginal()->accept(pv);
-    wostr << SCI_CLOSE_ARGS << L"\n";
+    wostr << SCI_CLOSE_ARGS;
     wchar_t* pwstFun = os_wcsdup(wostr.str().data());
-    function->append(new types::String(os_wcstok(pwstFun, L"\n", &pwstState)));
+    function->append(new types::String(pwstFun));
     FREE(pwstFun);
 
     // Now print function body
