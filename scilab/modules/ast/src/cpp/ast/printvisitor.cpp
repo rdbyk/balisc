@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -58,7 +58,7 @@ void PrintVisitor::visit (const MatrixExp &e)
         //if (lines.size() > 1 || this->is_last_column_comment)
         if (addIndent)
         {
-            *ostr << std::endl;
+            *ostr << "\n";
             this->apply_indent();
         }
 
@@ -127,7 +127,7 @@ void PrintVisitor::visit (const CellExp &e)
         }
         if (++i != lines.end())
         {
-            *ostr << SCI_LINE_SEPARATOR << std::endl;
+            *ostr << SCI_LINE_SEPARATOR << "\n";
             this->apply_indent();
         }
     }
@@ -646,7 +646,7 @@ void PrintVisitor::visit (const IfExp  &e)
         e.getTest().accept(*this);
     }
     *ostr << SCI_CLOSE_TEST << " ";
-    *ostr << SCI_THEN << std::endl;
+    *ostr << SCI_THEN << "\n";
 
     if (headerOnly)
     {
@@ -666,7 +666,7 @@ void PrintVisitor::visit (const IfExp  &e)
     if (e.hasElse())
     {
         this->apply_indent();
-        *ostr << SCI_ELSE << std::endl;
+        *ostr << SCI_ELSE << "\n";
         ++indent;
         if (displayOriginal)
         {
@@ -684,7 +684,7 @@ void PrintVisitor::visit (const IfExp  &e)
 
 void PrintVisitor::visit (const TryCatchExp  &e)
 {
-    *ostr << SCI_TRY << std::endl;
+    *ostr << SCI_TRY << "\n";
 
     if (headerOnly)
     {
@@ -702,7 +702,7 @@ void PrintVisitor::visit (const TryCatchExp  &e)
     }
     --indent;
     this->apply_indent();
-    *ostr << SCI_CATCH << std::endl;
+    *ostr << SCI_CATCH << "\n";
     ++indent;
     if (displayOriginal)
     {
@@ -729,7 +729,7 @@ void PrintVisitor::visit (const WhileExp  &e)
     {
         e.getTest().accept(*this);
     }
-    *ostr << SCI_CLOSE_TEST << " " << SCI_DO << std::endl;
+    *ostr << SCI_CLOSE_TEST << " " << SCI_DO << "\n";
 
     if (headerOnly)
     {
@@ -763,7 +763,7 @@ void PrintVisitor::visit (const ForExp  &e)
         e.getVardec().accept(*this);
     }
     *ostr << SCI_CLOSE_TEST << " ";
-    *ostr << SCI_DO << std::endl;
+    *ostr << SCI_DO << "\n";
 
     if (headerOnly)
     {
@@ -823,7 +823,7 @@ void PrintVisitor::visit (const SelectExp &e)
     {
         e.getSelect()->accept(*this);
     }
-    *ostr << SCI_CLOSE_TEST << std::endl;
+    *ostr << SCI_CLOSE_TEST << "\n";
     ++indent;
     exps_t cases = e.getCases();
     for (auto exp : cases)
@@ -841,7 +841,7 @@ void PrintVisitor::visit (const SelectExp &e)
     if (e.hasDefault())
     {
         this->apply_indent();
-        *ostr << SCI_DEFAULT_CASE << std::endl;
+        *ostr << SCI_DEFAULT_CASE << "\n";
         ++indent;
         if (displayOriginal)
         {
@@ -871,7 +871,7 @@ void PrintVisitor::visit (const CaseExp &e)
     {
         e.getTest()->accept(*this);
     }
-    *ostr << SCI_CLOSE_TEST << std::endl;
+    *ostr << SCI_CLOSE_TEST << "\n";
     indent++;
     if (displayOriginal)
     {
@@ -897,7 +897,7 @@ void PrintVisitor::visit (const SeqExp  &e)
 
         if (previousLine != -1 && (*it)->getLocation().first_line != previousLine)
         {
-            *ostr << std::endl;
+            *ostr << "\n";
             this->apply_indent();
         }
 
@@ -923,7 +923,7 @@ void PrintVisitor::visit (const SeqExp  &e)
         previousLine = (*it)->getLocation().last_line;
     }
 
-    *ostr << std::endl;
+    *ostr << "\n";
 }
 
 void PrintVisitor::visit (const ArrayListExp  &e)
@@ -1070,7 +1070,7 @@ void PrintVisitor::visit (const FunctionDec  &e)
     {
         e.getArgs().accept(*this);
     }
-    *ostr << SCI_CLOSE_ARGS << std::endl;
+    *ostr << SCI_CLOSE_ARGS << "\n";
 
     // Now print function body
     ++indent;
@@ -1156,11 +1156,7 @@ void PrintVisitor::visit(const StringSelectExp &e)
 
 void PrintVisitor::apply_indent()
 {
-    int i;
-    for (i = 0; i < indent; ++i)
-    {
-        *ostr << "    ";
-    }
+    *ostr << std::wstring(4 * indent, L' ');
 }
 
 void PrintVisitor::enable_force_parenthesis()
