@@ -990,7 +990,7 @@ void TreeVisitor::visit(const FunctionDec  &e)
 
     if (returnSize > 0)
     {
-        wostr << L" " << SCI_ASSIGN << L" ";
+        wostr << SCI_ASSIGN;
     }
 
     // Then get the function name
