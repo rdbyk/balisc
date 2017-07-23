@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 /**
 ** \file symbol/context.hh
@@ -171,5 +171,34 @@ inline std::wostream& operator<< (std::wostream& ostr, const Context &ctx)
     return ostr;
 }
 
+inline Context::Context()
+{
+    m_iLevel = SCOPE_ALL;
+    globals = new std::list<Symbol>();
+    console = nullptr;
+}
+
+inline Context* Context::getInstance(void)
+{
+    if (me == nullptr)
+    {
+        me = new Context();
+    }
+    return me;
+}
+
+inline void Context::destroyInstance(void)
+{
+    if (me)
+    {
+        delete me;
+        me = nullptr;
+    }
+}
+
+inline int Context::getScopeLevel()
+{
+    return m_iLevel;
+}
 }
 #endif /* !__CONTEXT_HXX__ */

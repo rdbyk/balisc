@@ -33,13 +33,6 @@ namespace symbol
 {
 Context* Context::me = nullptr;
 
-Context::Context()
-{
-    m_iLevel = SCOPE_ALL;
-    globals = new std::list<Symbol>();
-    console = nullptr;
-}
-
 Context::~Context()
 {
     while (!varStack.empty())
@@ -52,24 +45,6 @@ Context::~Context()
     if (globals)
     {
         delete globals;
-    }
-}
-
-Context* Context::getInstance(void)
-{
-    if (me == nullptr)
-    {
-        me = new Context();
-    }
-    return me;
-}
-
-void Context::destroyInstance(void)
-{
-    if (me)
-    {
-        delete me;
-        me = nullptr;
     }
 }
 
@@ -571,11 +546,6 @@ void Context::print(std::wostream& ostr, bool sorted) const
 
     os_swprintf(wcsGlobalVariable, strSize, _W(" and   %10d variables out of %10d.\n").c_str(), lstGlobal.size(), nbMaxVar);
     ostr << wcsGlobalVariable;
-}
-
-int Context::getScopeLevel()
-{
-    return m_iLevel;
 }
 
 bool Context::isValidVariableName(const wchar_t* wcsVarName)
