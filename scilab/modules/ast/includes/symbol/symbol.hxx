@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -109,6 +109,46 @@ EXTERN_AST std::wostream& operator<< (std::wostream &ostr, const Symbol &the);
 
 /** Typedef for the list of Symbol */
 typedef std::list<const Symbol*> symbols_t;
+
+// Constructor
+inline Symbol::Symbol (const std::wstring &s):
+    _set_node (_set.insert(s).first)
+{
+}
+
+// Accessor
+inline const std::wstring& Symbol::getName () const
+{
+    return (*_set_node);
+}
+
+// Return the size of the Symbol map.
+inline Symbol::size_type Symbol::getSize()
+{
+    return _set.size();
+}
+// Operators for better performances.
+inline bool Symbol::operator== (const Symbol &rhs) const
+{
+    return &(*_set_node) == &(*rhs.getNode());
+}
+
+inline bool Symbol::operator!= (const Symbol &rhs) const
+{
+    return !(*this == rhs);
+}
+
+inline bool Symbol::operator<(const Symbol &rhs) const
+{
+    // compare values instead of pointers to preserve consistency across runs, platforms, etc..
+    return *_set_node < *rhs.getNode();
+}
+
+inline std::wostream& operator<< (std::wostream &ostr, const Symbol &the)
+{
+    return ostr << the.getName();
+}
+
 }
 
 namespace std
