@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -87,7 +87,7 @@ std::string H5HardLink::dump(std::map<haddr_t, std::string> & alreadyVisited, co
     std::ostringstream os;
     H5Object & obj = getLinkedObject();
 
-    os << H5Object::getIndentString(indentLevel) << "HARDLINK \"" << obj.getName() << "\"" << std::endl;
+    os << H5Object::getIndentString(indentLevel) << "HARDLINK \"" << obj.getName() << "\"\n";
 
     delete &obj;
 
@@ -100,10 +100,10 @@ std::string H5HardLink::toString(const unsigned int indentLevel) const
     std::string indentString = H5Object::getIndentString(indentLevel);
     H5Object & obj = getLinkedObject();
 
-    os << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
-       << indentString << _("Link type") << ": " << getLinkType() << std::endl
-       << indentString << _("Link name") << ": " << name << std::endl
-       << indentString << _("Link path") << ": " << getCompletePath() << std::endl
+    os << indentString << _("Filename") << ": " << getFile().getFileName() << '\n'
+       << indentString << _("Link type") << ": " << getLinkType() << '\n'
+       << indentString << _("Link name") << ": " << name << '\n'
+       << indentString << _("Link path") << ": " << getCompletePath() << '\n'
        << indentString << _("Link target name") << ": " << obj.getName();
 
     delete &obj;
