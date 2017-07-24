@@ -76,7 +76,7 @@ std::string H5ArrayData::toString(const unsigned int indentLevel) const
     std::ostringstream os;
     std::string indentString = H5Object::getIndentString(indentLevel + 1);
 
-    os << H5Object::getIndentString(indentLevel) << "HDF5 Array data\n";
+    os << H5Object::getIndentString(indentLevel) << "HDF5 Array data\n"
        << indentString << _("Dimensions") << ": [";
 
     if (ndims == 0)
