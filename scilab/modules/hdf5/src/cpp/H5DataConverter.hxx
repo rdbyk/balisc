@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -44,9 +44,9 @@ public:
         os.setf(std::ios::fixed, std::ios::floatfield);
         os.precision(1);
 
-        os << indent << "DATA {" << std::endl;
+        os << indent << "DATA {\n";
         printData(indentLevel, indent + "(", os, ndims, dims, &pos, obj, line);
-        os << indent << "}" << std::endl;
+        os << indent << "}\n";
 
         return os.str();
     }
@@ -59,7 +59,7 @@ public:
         {
             os << start << "0): ";
             obj.printData(os, 0, 0);
-            os << std::endl;
+            os << '\n';
         }
         else if (ndims == 1)
         {
@@ -79,13 +79,13 @@ public:
                 {
                     os << start << i << "): ";
                     obj.printData(os, *pos + (int)i, indentLevel);
-                    os << ", " << std::endl;
+                    os << ", \n";
                 }
                 os << start << dims[0] - 1 << "): ";
                 obj.printData(os, *pos + (int)dims[0] - 1, indentLevel);
             }
 
-            os << std::endl;
+            os << '\n';
             *pos += (int)dims[0];
         }
         else
