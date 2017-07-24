@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -106,10 +106,10 @@ public :
             std::string indent = H5Object::getIndentString(indentLevel);
             std::string indent1 = H5Object::getIndentString(indentLevel + 1);
 
-            os << indent << "STORAGE_LAYOUT {" << std::endl
-               << indent1 << "COMPACT" << std::endl
-               << indent1 << "SIZE " << getStorageSize() << std::endl
-               << indent << "}" << std::endl;
+            os << indent << "STORAGE_LAYOUT {\n"
+               << indent1 << "COMPACT" << '\n'
+               << indent1 << "SIZE " << getStorageSize() << '\n'
+               << indent << "}" << '\n';
 
             return os.str();
         }
@@ -130,10 +130,10 @@ public :
             std::string indent = H5Object::getIndentString(indentLevel);
             std::string indent1 = H5Object::getIndentString(indentLevel + 1);
             // TODO: chunked est a finir (cf h5dump.c::2758)
-            os << indent << "STORAGE_LAYOUT {" << std::endl
-               << indent1 << "CHUNKED" << std::endl
-               << indent1 << "SIZE " << getStorageSize() << std::endl
-               << indent << "}" << std::endl;
+            os << indent << "STORAGE_LAYOUT {\n"
+               << indent1 << "CHUNKED" << '\n'
+               << indent1 << "SIZE " << getStorageSize() << '\n'
+               << indent << "}" << '\n';
 
             return os.str();
         }
@@ -155,8 +155,8 @@ public :
             std::string indent1 = H5Object::getIndentString(indentLevel + 1);
             unsigned int extCount = (unsigned int)getExternalCount();
 
-            os << indent << "STORAGE_LAYOUT {" << std::endl
-               << indent1 << "CONTIGUOUS" << std::endl;
+            os << indent << "STORAGE_LAYOUT {\n"
+               << indent1 << "CONTIGUOUS\n";
 
             if (extCount)
             {
@@ -167,17 +167,17 @@ public :
                     hsize_t size;
                     char name[__HDF5_SCILAB_NAME_LENGTH__];
                     H5Pget_external(plist, i, __HDF5_SCILAB_NAME_LENGTH__, name, &offset, &size);
-                    os << indent1 << "FILENAME " << name << " SIZE " << size << " OFFSET " << offset << std::endl;
+                    os << indent1 << "FILENAME " << name << " SIZE " << size << " OFFSET " << offset << '\n';
                 }
                 H5Pclose(plist);
             }
             else
             {
-                os << indent1 << "SIZE " << getStorageSize() << std::endl
-                   << indent1 << "OFFSET " << getIOffset() << std::endl;
+                os << indent1 << "SIZE " << getStorageSize() << '\n'
+                   << indent1 << "OFFSET " << getIOffset() << '\n';
             }
 
-            os << indent << "}" << std::endl;
+            os << indent << "}\n";
 
             return os.str();
         }
