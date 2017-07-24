@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *  Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     {
         std::wstringstream wstream;
         symbol::Context::getInstance()->print(wstream, bSorted);
-        wstream << std::endl;
+        wstream << L'\n';
         scilabForcedWriteW(wstream.str().c_str());
         return types::Function::OK;
     }
@@ -117,7 +117,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
         bSorted = true;
         std::wstringstream wstream;
         symbol::Context::getInstance()->print(wstream, bSorted);
-        wstream << std::endl;
+        wstream << L'\n';
         scilabForcedWriteW(wstream.str().c_str());
         return types::Function::OK;
     }
