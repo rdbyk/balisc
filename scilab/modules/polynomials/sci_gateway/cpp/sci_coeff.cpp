@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -36,7 +36,6 @@ types::Function::ReturnValue sci_coeff(types::typed_list &in, int _iRetCount, ty
 
     double* pdblV = NULL;
     int iVSize    = 1;
-    int iOne      = 1;
     double dZero  = 1;
 
     if (in.size() < 1 || in.size() > 2)
@@ -108,10 +107,10 @@ types::Function::ReturnValue sci_coeff(types::typed_list &in, int _iRetCount, ty
         {
             if (pdblV[i] == 0)
             {
-                C2F(dcopy)(&iSize, pDblIn->get(), &iOne, pDblOut->get() + i * iSize, &iOne);
+                memmove(pDblOut->get() + i * iSize, pDblIn->get(), iSize * sizeof(double));
                 if (pDblIn->isComplex())
                 {
-                    C2F(dcopy)(&iSize, pDblIn->getImg(), &iOne, pDblOut->getImg() + i * iSize, &iOne);
+                    memmove(pDblOut->getImg() + i * iSize, pDblIn->getImg(), iSize * sizeof(double));
                 }
             }
             else

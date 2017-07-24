@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
