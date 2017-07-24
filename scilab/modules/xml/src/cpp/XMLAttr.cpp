@@ -253,16 +253,16 @@ const std::string XMLAttr::toString() const
     std::ostringstream oss;
     xmlNode *node = elem.getRealNode();
 
-    oss << "XML Attributes" << std::endl;
+    oss << "XML Attributes\n";
     for (xmlAttr * cur = node->properties; cur; cur = cur->next)
     {
         if (cur->ns)
         {
-            oss << cur->ns->prefix << ":" << cur->name << " --> " << cur->children->content << std::endl;
+            oss << cur->ns->prefix << ":" << cur->name << " --> " << cur->children->content << '\n';
         }
         else
         {
-            oss << cur->name << " --> " << cur->children->content << std::endl;
+            oss << cur->name << " --> " << cur->children->content << '\n';
         }
     }
 
