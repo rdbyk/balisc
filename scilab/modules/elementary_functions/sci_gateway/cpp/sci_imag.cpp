@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -50,7 +50,6 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
         types::Double* pDblIn = in[0]->getAs<types::Double>();
 
         int iSize = pDblIn->getSize();
-        int iOne = 1;
 
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
 
@@ -60,7 +59,7 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            C2F(dcopy)(&iSize, pDblIn->getImg(), &iOne, pDblOut->getReal(), &iOne);
+            memmove(pDblOut->getReal(), pDblIn->getImg(), iSize * sizeof(double));
         }
 
 

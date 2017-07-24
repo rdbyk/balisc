@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -55,7 +55,6 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), true);
 
         int iSize = pDblIn->getSize();
-        int iOne = 1;
 
         if (pDblIn->isComplex())
         {
@@ -70,8 +69,8 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
         {
             memset(pDblOut->getReal(), 0x00, iSize * sizeof(double));
         }
-
-        C2F(dcopy)(&iSize, pDblIn->getReal(), &iOne, pDblOut->getImg(), &iOne);
+        
+        memmove(pDblOut->getImg(), pDblIn->getReal(), iSize * sizeof(double));
 
         out.push_back(pDblOut);
     }
