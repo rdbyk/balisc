@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -197,7 +197,7 @@ std::string H5Dataspace::dump(std::map<haddr_t, std::string> & alreadyVisited, c
             os << _("Unknown dataspace");
     }
 
-    os << std::endl;
+    os << '\n';
 
     return os.str();
 }
@@ -244,14 +244,14 @@ std::string H5Dataspace::toString(unsigned int indentLevel) const
     std::string indentString = H5Object::getIndentString(indentLevel + 1);
     std::string type = getTypeName();
 
-    os << H5Object::getIndentString(indentLevel) << "HDF5 Dataspace" << std::endl
-       << indentString << "Filename" << ": " << getParent().getFile().getFileName() << std::endl
-       << indentString << "Path" << ": " << getCompletePath() << std::endl
+    os << H5Object::getIndentString(indentLevel) << "HDF5 Dataspace\n"
+       << indentString << "Filename" << ": " << getParent().getFile().getFileName() << '\n'
+       << indentString << "Path" << ": " << getCompletePath() << '\n'
        << indentString << "Type" << ": " << type;
 
     if (type == "simple")
     {
-        os << std::endl << indentString << _("Dimensions") << ": [1 x " << getDims(true).size() << "]" << std::endl
+        os << '\n' << indentString << _("Dimensions") << ": [1 x " << getDims(true).size() << "]\n"
            << indentString << _("Extents") << ": [1 x " << getDims(false).size() << "]";
     }
 
