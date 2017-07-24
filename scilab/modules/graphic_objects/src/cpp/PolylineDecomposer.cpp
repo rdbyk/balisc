@@ -451,10 +451,12 @@ void PolylineDecomposer::fillVerticalBarsDecompositionVertices(int id, float* bu
 
     for (int i = 0; i < nPoints; i++)
     {
-        offsets[0] = elementsSize * 4 * i;
-        offsets[1] = elementsSize * (4 * i + 1);
-        offsets[2] = elementsSize * (4 * i + 2);
-        offsets[3] = elementsSize * (4 * i + 3);
+        int i0 = 4 * i;
+        
+        offsets[0] = elementsSize * i0;
+        offsets[1] = elementsSize * (i0 + 1);
+        offsets[2] = elementsSize * (i0 + 2);
+        offsets[3] = elementsSize * (i0 + 3);
 
         offsets[4] = elementsSize * (4 * nPoints + i);
 
@@ -505,12 +507,14 @@ void PolylineDecomposer::fillVerticalBarsDecompositionVertices(int id, float* bu
 
         if (coordinateMask & 0x04)
         {
-            coords[0] = coordinates[i + 2 * nPoints];
-            coords[1] = coordinates[i + 2 * nPoints];
-            coords[2] = coordinates[i + 2 * nPoints];
-            coords[3] = coordinates[i + 2 * nPoints];
+            int i0 = 2 * nPoints;
+            
+            coords[0] = coordinates[i + i0];
+            coords[1] = coordinates[i + i0];
+            coords[2] = coordinates[i + i0];
+            coords[3] = coordinates[i + i0];
 
-            coords[4] = coordinates[i + 2 * nPoints];
+            coords[4] = coordinates[i + i0];
 
             if (shiftUsed[2])
             {
@@ -573,10 +577,12 @@ void PolylineDecomposer::fillHorizontalBarsDecompositionVertices(int id, float* 
 
     for (int i = 0; i < nPoints; i++)
     {
-        offsets[0] = elementsSize * 4 * i;
-        offsets[1] = elementsSize * (4 * i + 1);
-        offsets[2] = elementsSize * (4 * i + 2);
-        offsets[3] = elementsSize * (4 * i + 3);
+        int i0 = 4 * i;
+        
+        offsets[0] = elementsSize * i0;
+        offsets[1] = elementsSize * (i0 + 1);
+        offsets[2] = elementsSize * (i0 + 2);
+        offsets[3] = elementsSize * (i0 + 3);
 
         offsets[4] = elementsSize * (4 * nPoints + i);
 
@@ -629,12 +635,14 @@ void PolylineDecomposer::fillHorizontalBarsDecompositionVertices(int id, float* 
 
         if (coordinateMask & 0x04)
         {
-            coords[0] = coordinates[i + 2 * nPoints];
-            coords[1] = coordinates[i + 2 * nPoints];
-            coords[2] = coordinates[i + 2 * nPoints];
-            coords[3] = coordinates[i + 2 * nPoints];
+            int i0 = 2 * nPoints;
+            
+            coords[0] = coordinates[i + i0];
+            coords[1] = coordinates[i + i0];
+            coords[2] = coordinates[i + i0];
+            coords[3] = coordinates[i + i0];
 
-            coords[4] = coordinates[i + 2 * nPoints];
+            coords[4] = coordinates[i + i0];
 
             if (shiftUsed[2])
             {
@@ -901,9 +909,11 @@ void PolylineDecomposer::fillTextureCoordinates(int id, float* buffer, int buffe
         nPoints = 4;
     }
 
+    double inv_colormapSize_2 = 1.0 / (double) (colormapSize + 2);
+    
     for (int i = 0; i < nPoints; i++)
     {
-        double index = (ColorComputer::getDirectIndex((double) interpColorVector[i] - 1.0, colormapSize) + 2.0 + COLOR_TEXTURE_OFFSET) / (double) (colormapSize + 2);
+        double index = (ColorComputer::getDirectIndex((double) interpColorVector[i] - 1.0, colormapSize) + 2.0 + COLOR_TEXTURE_OFFSET) * inv_colormapSize_2;
 
         buffer[bufferOffset] = (float)index;
         buffer[bufferOffset + 1] = 0.0;
@@ -1161,9 +1171,11 @@ int PolylineDecomposer::fillTriangleIndices(int id, int* buffer, int bufferLengt
 
         for (int i = 0; i < numTriangles; i++)
         {
-            buffer[3 * i] = indices[3 * i];
-            buffer[3 * i + 1] = indices[3 * i + 1];
-            buffer[3 * i + 2] = indices[3 * i + 2];
+            int i0 = 3 * i;
+            
+            buffer[i0] = indices[i0];
+            buffer[i0 + 1] = indices[i0 + 1];
+            buffer[i0 + 2] = indices[i0 + 2];
             nIndices += 3;
         }
 
@@ -1346,12 +1358,15 @@ int PolylineDecomposer::fillBarsDecompositionTriangleIndices(int id, int* buffer
                 continue;
             }
 
-            buffer[6 * offset] = 4 * i + triangleIndices[0];
-            buffer[6 * offset + 1] = 4 * i + triangleIndices[1];
-            buffer[6 * offset + 2] = 4 * i + triangleIndices[2];
-            buffer[6 * offset + 3] = 4 * i + triangleIndices[3];
-            buffer[6 * offset + 4] = 4 * i + triangleIndices[4];
-            buffer[6 * offset + 5] = 4 * i + triangleIndices[5];
+            int b0 = 6 * offset;
+            int i0 = 4 * i;
+            
+            buffer[b0] = i0 + triangleIndices[0];
+            buffer[b0 + 1] = i0 + triangleIndices[1];
+            buffer[b0 + 2] = i0 + triangleIndices[2];
+            buffer[b0 + 3] = i0 + triangleIndices[3];
+            buffer[b0 + 4] = i0 + triangleIndices[4];
+            buffer[b0 + 5] = i0 + triangleIndices[5];
 
             numberValidIndices += 6;
             offset++;
@@ -1705,6 +1720,7 @@ int PolylineDecomposer::fillBarsDecompositionSegmentIndices(int id, int* buffer,
     /* 0 bar segment indices if the bar width is invalid, as it is the same for all bars. */
     if (barWidthValid)
     {
+
         /* Bars */
         for (int i = 0; i < nPoints; i++)
         {
@@ -1716,15 +1732,18 @@ int PolylineDecomposer::fillBarsDecompositionSegmentIndices(int id, int* buffer,
                 {
                     continue;
                 }
-
-                buffer[8 * offset] = 4 * i;
-                buffer[8 * offset + 1] = 4 * i + 1;
-                buffer[8 * offset + 2] = 4 * i + 1;
-                buffer[8 * offset + 3] = 4 * i + 2;
-                buffer[8 * offset + 4] = 4 * i + 2;
-                buffer[8 * offset + 5] = 4 * i + 3;
-                buffer[8 * offset + 6] = 4 * i + 3;
-                buffer[8 * offset + 7] = 4 * i;
+                
+                int b0 = 8 * offset;
+                int i0 = 4 *i;
+                
+                buffer[b0] = i0;
+                buffer[b0 + 1] = i0 + 1;
+                buffer[b0 + 2] = i0 + 1;
+                buffer[b0 + 3] = i0 + 2;
+                buffer[b0 + 4] = i0 + 2;
+                buffer[b0 + 5] = i0 + 3;
+                buffer[b0 + 6] = i0 + 3;
+                buffer[b0 + 7] = i0;
 
                 numberValidIndices += 8;
                 offset++;
