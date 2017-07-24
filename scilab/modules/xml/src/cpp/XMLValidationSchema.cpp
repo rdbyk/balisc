@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -165,9 +165,9 @@ const std::string XMLValidationSchema::toString() const
     std::ostringstream oss;
     xmlSchema *schema = getValidationFile < xmlSchema > ();
 
-    oss << "XML Schema" << std::endl;
-    oss << "name: " << (schema->name ? (const char *)schema->name : "") << std::endl;
-    oss << "target namespace: " << (schema->targetNamespace ? (const char *)schema->targetNamespace : "") << std::endl;
+    oss << "XML Schema\n";
+    oss << "name: " << (schema->name ? (const char *)schema->name : "") << '\n';
+    oss << "target namespace: " << (schema->targetNamespace ? (const char *)schema->targetNamespace : "") << '\n';
     oss << "version: " << (schema->version ? (const char *)schema->version : "");
 
     return oss.str();
