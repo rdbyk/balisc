@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -126,7 +126,7 @@ std::string H5CompoundData::toString(const unsigned int indentLevel) const
     std::ostringstream os;
     std::string indentString = H5Object::getIndentString(indentLevel + 1);
 
-    os << H5Object::getIndentString(indentLevel) << "HDF5 Compound data" << std::endl
+    os << H5Object::getIndentString(indentLevel) << "HDF5 Compound data\n"
        << indentString << _("Dimensions") << ": [";
 
     if (ndims == 0)
@@ -143,7 +143,7 @@ std::string H5CompoundData::toString(const unsigned int indentLevel) const
         {
             os << dims[i] << " x ";
         }
-        os << dims[ndims - 1] << "]" << std::endl;
+        os << dims[ndims - 1] << "]\n";
     }
 
     os << indentString << _("Fields Names") << ": [";
@@ -163,7 +163,7 @@ std::string H5CompoundData::dump(std::map<haddr_t, std::string> & alreadyVisited
 
 void H5CompoundData::printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
 {
-    os << "{" << std::endl;
+    os << "{\n";
     std::string indent = H5Object::getIndentString(indentLevel + 2);
 
     for (unsigned int i = 0; i < nfields; i++)
@@ -174,12 +174,12 @@ void H5CompoundData::printData(std::ostream & os, const unsigned int pos, const 
 
         if (i != nfields - 1)
         {
-            os << ", " << std::endl;
+            os << ", \n";
         }
 
         delete &hdata;
     }
 
-    os << std::endl << H5Object::getIndentString(indentLevel + 1) << "}";
+    os << '\n' << H5Object::getIndentString(indentLevel + 1) << "}";
 }
 }

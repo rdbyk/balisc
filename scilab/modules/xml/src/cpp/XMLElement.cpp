@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012-2014 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -256,16 +256,16 @@ const std::string XMLElement::toString() const
         }
     }
 
-    oss << "XML Element" << std::endl
-        << "name: " << getNodeName() << std::endl
-        << "namespace: XML Namespace" << std::endl
-        << "    href: " << ns << std::endl
-        << "    prefix: " << prefix << std::endl
-        << "type: " << nodes_type[getNodeType() - 1] << std::endl
-        << "parent: XML Element" << std::endl
-        << "attributes: [1 x " << XMLAttr::getSize(node->properties) << "]" << std::endl
-        << "children: [1 x " << XMLNodeList::getNodeListSize(node->children) << "]" << std::endl
-        << "content: ..." << std::endl
+    oss << "XML Element\n"
+        << "name: " << getNodeName() << '\n'
+        << "namespace: XML Namespace\n"
+        << "    href: " << ns << '\n'
+        << "    prefix: " << prefix << '\n'
+        << "type: " << nodes_type[getNodeType() - 1] << '\n'
+        << "parent: XML Element\n"
+        << "attributes: [1 x " << XMLAttr::getSize(node->properties) << "]\n"
+        << "children: [1 x " << XMLNodeList::getNodeListSize(node->children) << "]\n"
+        << "content: ...\n"
         << "line: " << node->line;
 
     return oss.str();

@@ -210,8 +210,8 @@ const std::string XMLDocument::toString() const
 {
     std::ostringstream oss;
 
-    oss << "XML Document" << std::endl
-        << "url: " << getDocumentURL() << std::endl
+    oss << "XML Document\n"
+        << "url: " << getDocumentURL() << '\n'
         << "root: " << "XML Element";
 
     return oss.str();

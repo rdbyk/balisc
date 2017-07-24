@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -52,7 +52,7 @@ const std::string XMLNotHandledElement::toString() const
 {
     std::ostringstream oss;
 
-    oss << "Not handled XML Element" << std::endl;
+    oss << "Not handled XML Element\n";
     oss << "type: " << nodes_type[node->type - 1];
 
     return oss.str();

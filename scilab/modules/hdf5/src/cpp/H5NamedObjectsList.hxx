@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -227,10 +227,10 @@ public :
         std::string indentString = H5Object::getIndentString(indentLevel);
         const unsigned int size = getSize();
 
-        os << indentString << _("Filename") << ": " << H5Object::getParent().getFile().getFileName() << std::endl
-           << indentString << _("Parent group name") << ": " << H5Object::getParent().getName() << std::endl
-           << indentString << _("Parent group path") << ": " << H5Object::getParent().getCompletePath() << std::endl
-           << indentString << _("Elements type") << ": " << baseTypeName << std::endl
+        os << indentString << _("Filename") << ": " << H5Object::getParent().getFile().getFileName() << '\n'
+           << indentString << _("Parent group name") << ": " << H5Object::getParent().getName() << '\n'
+           << indentString << _("Parent group path") << ": " << H5Object::getParent().getCompletePath() << '\n'
+           << indentString << _("Elements type") << ": " << baseTypeName << '\n'
            << indentString << _("Size") << ": " << size;
 
         return os.str();

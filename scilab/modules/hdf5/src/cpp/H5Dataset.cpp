@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -200,9 +200,9 @@ std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, con
     std::map<haddr_t, std::string>::iterator it = alreadyVisited.find(addr);
     if (it != alreadyVisited.end())
     {
-        os << H5Object::getIndentString(indentLevel) << "DATASET \"" << getName() << "\" {" << std::endl
-           << H5Object::getIndentString(indentLevel + 1) << "HARDLINK \"" << it->second << "\"" << std::endl
-           << H5Object::getIndentString(indentLevel) << "}" << std::endl;
+        os << H5Object::getIndentString(indentLevel) << "DATASET \"" << getName() << "\" {\n"
+           << H5Object::getIndentString(indentLevel + 1) << "HARDLINK \"" << it->second << "\"\n"
+           << H5Object::getIndentString(indentLevel) << "}\n";
 
         return os.str();
     }
@@ -227,7 +227,7 @@ std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, con
 
     }
 
-    os << H5Object::getIndentString(indentLevel) << "DATASET \"" << getName() << "\" {" << std::endl
+    os << H5Object::getIndentString(indentLevel) << "DATASET \"" << getName() << "\" {\n"
        << type.dump(alreadyVisited, indentLevel + 1)
        << space.dump(alreadyVisited, indentLevel + 1)
        << layout.dump(alreadyVisited, indentLevel + 1);
@@ -238,11 +238,11 @@ std::string H5Dataset::dump(std::map<haddr_t, std::string> & alreadyVisited, con
     }
     else
     {
-        os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << std::endl;
+        os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << '\n';
     }
 
     os << attrs.dump(alreadyVisited, indentLevel + 1)
-       << H5Object::getIndentString(indentLevel) << "}" << std::endl;
+       << H5Object::getIndentString(indentLevel) << "}\n";
 
     delete &type;
     delete &space;
@@ -280,7 +280,7 @@ void H5Dataset::printLsInfo(std::ostringstream & os) const
 
     delete &space;
 
-    os << std::endl;
+    os << '\n';
 }
 
 std::string H5Dataset::ls() const
@@ -312,13 +312,13 @@ std::string H5Dataset::toString(const unsigned int indentLevel) const
     const H5AttributesList & attrs = const_cast<H5Dataset *>(this)->getAttributes();
     const H5Dataspace & space = const_cast<H5Dataset *>(this)->getSpace();
 
-    os << H5Object::getIndentString(indentLevel) << "HDF5 Dataset" << std::endl
-       << indentString << "Filename" << ": " << getParent().getFile().getFileName() << std::endl
-       << indentString << "Name" << ": " << getName() << std::endl
-       << indentString << "Path" << ": " << getCompletePath() << std::endl
-       << indentString << "Type" << ": " << type.getTypeName() << std::endl
-       << indentString << "Dataspace" << ": " << space.getTypeName() << std::endl
-       << indentString << "Data" << ": " << space.getStringDims() << std::endl
+    os << H5Object::getIndentString(indentLevel) << "HDF5 Dataset\n"
+       << indentString << "Filename" << ": " << getParent().getFile().getFileName() << '\n'
+       << indentString << "Name" << ": " << getName() << '\n'
+       << indentString << "Path" << ": " << getCompletePath() << '\n'
+       << indentString << "Type" << ": " << type.getTypeName() << '\n'
+       << indentString << "Dataspace" << ": " << space.getTypeName() << '\n'
+       << indentString << "Data" << ": " << space.getStringDims() << '\n'
        << indentString << "Attributes" << ": [1 x " << attrs.getSize() << "]";
 
     delete &space;
