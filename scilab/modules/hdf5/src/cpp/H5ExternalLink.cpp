@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -108,7 +108,7 @@ void H5ExternalLink::printLsInfo(std::ostringstream & os) const
     H5Object::getResizedString(str);
     std::vector<std::string *> target = getLinkTargets();
 
-    os << str << "External Link {" << *target[0] << "//" << *target[1] << "}" << std::endl;
+    os << str << "External Link {" << *target[0] << "//" << *target[1] << "}\n";
 
     target.erase(target.begin(), target.end());
 }
@@ -126,10 +126,10 @@ std::string H5ExternalLink::dump(std::map<haddr_t, std::string> & alreadyVisited
     std::ostringstream os;
     std::vector<std::string *> target = getLinkTargets();
 
-    os << H5Object::getIndentString(indentLevel) << "EXTERNAL_LINK \"" << name << "\" {" << std::endl
-       << H5Object::getIndentString(indentLevel + 1) << "TARGETFILE \"" << *target[0] << "\"" << std::endl
-       << H5Object::getIndentString(indentLevel + 1) << "TARGETPATH \"" << *target[1] << "\"" << std::endl
-       << H5Object::getIndentString(indentLevel) << "}" << std::endl;
+    os << H5Object::getIndentString(indentLevel) << "EXTERNAL_LINK \"" << name << "\" {\n"
+       << H5Object::getIndentString(indentLevel + 1) << "TARGETFILE \"" << *target[0] << "\"\n"
+       << H5Object::getIndentString(indentLevel + 1) << "TARGETPATH \"" << *target[1] << "\"\n"
+       << H5Object::getIndentString(indentLevel) << "}\n";
 
     target.erase(target.begin(), target.end());
 
@@ -142,11 +142,11 @@ std::string H5ExternalLink::toString(const unsigned int indentLevel) const
     std::vector<std::string *> target = getLinkTargets();
     std::string indentString = H5Object::getIndentString(indentLevel);
 
-    os << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
-       << indentString << _("Link type") << ": " << getLinkType() << std::endl
-       << indentString << _("Link name") << ": " << name << std::endl
-       << indentString << _("Link path") << ": " << getCompletePath() << std::endl
-       << indentString << _("Link target file") << ": " << *target[0] << std::endl
+    os << indentString << _("Filename") << ": " << getFile().getFileName() << '\n'
+       << indentString << _("Link type") << ": " << getLinkType() << '\n'
+       << indentString << _("Link name") << ": " << name << '\n'
+       << indentString << _("Link path") << ": " << getCompletePath() << '\n'
+       << indentString << _("Link target file") << ": " << *target[0] << '\n'
        << indentString << _("Link target path") << ": " << *target[1];
 
     target.erase(target.begin(), target.end());
