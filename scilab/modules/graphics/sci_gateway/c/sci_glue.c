@@ -3,8 +3,8 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -49,7 +49,7 @@ int sci_glue(char * fname, void *pvApiCtx)
     int* lind = NULL;
     long long* outindex = NULL;
 
-    int numrow = 0, numcol = 0, n = 0, cx1 = 1;
+    int numrow = 0, numcol = 0, n = 0;
     int *pObj = NULL;
     int i = 0;
 
@@ -98,7 +98,7 @@ int sci_glue(char * fname, void *pvApiCtx)
 
     if (n > 1)
     {
-        C2F(dcopy)(&n, (double*)l1, &cx1, l2, &cx1);
+        memmove(l2, (double*)l1, n * sizeof(double));
         C2F(dsort)(l2, &n, (int*)(lind));
         for (i = 1; i < n; i++)
         {
