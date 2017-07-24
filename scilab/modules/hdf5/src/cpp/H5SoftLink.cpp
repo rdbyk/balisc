@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -87,9 +87,9 @@ std::string H5SoftLink::dump(std::map<haddr_t, std::string> & alreadyVisited, co
 {
     std::ostringstream os;
 
-    os << H5Object::getIndentString(indentLevel) << "SOFTLINK \"" << name << "\" {" << std::endl
-       << H5Object::getIndentString(indentLevel + 1) << "LINKTARGET \"" << getLinkValue() << "\"" << std::endl
-       << H5Object::getIndentString(indentLevel) << "}" << std::endl;
+    os << H5Object::getIndentString(indentLevel) << "SOFTLINK \"" << name << "\" {\n"
+       << H5Object::getIndentString(indentLevel + 1) << "LINKTARGET \"" << getLinkValue() << "\"\n"
+       << H5Object::getIndentString(indentLevel) << "}\n";
 
     return os.str();
 }
@@ -99,7 +99,7 @@ void H5SoftLink::printLsInfo(std::ostringstream & os) const
     std::string str(getName());
     H5Object::getResizedString(str);
 
-    os << str << "Soft Link {" << getLinkValue() << "}" << std::endl;
+    os << str << "Soft Link {" << getLinkValue() << "}\n";
 }
 
 std::string H5SoftLink::ls() const
@@ -115,11 +115,11 @@ std::string H5SoftLink::toString(const unsigned int indentLevel) const
     std::ostringstream os;
     std::string indentString = H5Object::getIndentString(indentLevel);
 
-    os << indentString << _("Filename") << ": " << getFile().getFileName() << std::endl
-       << indentString << _("Link type") << ": " << getLinkType() << std::endl
-       << indentString << _("Link name") << ": " << name << std::endl
-       << indentString << _("Link path") << ": " << getCompletePath() << std::endl
-       << indentString << _("Link target") << ": " << getLinkValue() << std::endl;
+    os << indentString << _("Filename") << ": " << getFile().getFileName() << '\n'
+       << indentString << _("Link type") << ": " << getLinkType() << '\n'
+       << indentString << _("Link name") << ": " << name << '\n'
+       << indentString << _("Link path") << ": " << getCompletePath() << '\n'
+       << indentString << _("Link target") << ": " << getLinkValue() << '\n';
 
     return os.str();
 }
