@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -68,7 +68,6 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
     int iRowDen     = 0;
     int iColDen     = 0;
     int iSizeF      = 0;
-    int iOne        = 1;
     int iComplex    = 0;
     int iError      = 0;
     double dZero    = 0;
@@ -311,14 +310,13 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
 
         /*** retrun output arguments ***/
         types::Double* pDblOut = new types::Double(iRowDen, iColDen * iSizeF, iComplex == 1);
-        double* pdblOut = pDblOut->get();
         int iSizeOut = pDblOut->getSize();
-        C2F(dcopy)(&iSizeOut, pdblR, &iOne, pdblOut, &iOne);
+        
+        memmove(pDblOut->get(), pdblR, iSizeOut * sizeof(double));
 
         if (iComplex)
         {
-            double* pdblOutImg = pDblOut->getImg();
-            C2F(dcopy)(&iSizeOut, pdblI, &iOne, pdblOutImg, &iOne);
+            memmove(pDblOut->getImg(), pdblI, iSizeOut * sizeof(double));
         }
 
         out.push_back(pDblOut);
@@ -555,14 +553,12 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
 
     /*** retrun output arguments ***/
     types::Double* pDblOut  = new types::Double(iRowsC, iColsB * iSizeF, iComplex == 1);
-    double* pdblOutReal     = pDblOut->get();
-    double* pdblOutImg      = pDblOut->getImg();
     int iSizeOut            = pDblOut->getSize();
 
-    C2F(dcopy)(&iSizeOut, pdblWgr, &iOne, pdblOutReal, &iOne);
+    memmove(pDblOut->get(), pdblWgr, iSizeOut * sizeof(double));
     if (iComplex)
     {
-        C2F(dcopy)(&iSizeOut, pdblWgi, &iOne, pdblOutImg, &iOne);
+        memmove(pDblOut->getImg(), pdblWgi, iSizeOut * sizeof(double));
     }
 
     // free memory
