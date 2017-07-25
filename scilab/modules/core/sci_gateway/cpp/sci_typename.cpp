@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include "core_gw.hxx"
 #include "double.hxx"
@@ -29,7 +29,6 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iOne = 1;
     const wchar_t* pstShortTypeName[NB_OF_TYPE] = {L"s", L"p", L"b", L"sp", L"spb", L"msp", L"i", L"h", L"c",
                                                    L"m", L"mc", L"f", L"l", L"tl", L"ml", L"ptr", L"ip", L"fptr"
                                                   };
@@ -54,8 +53,7 @@ types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount,
         // get type number
         types::Double* pDblOut = new types::Double(NB_OF_TYPE, 1);
         double* pdblOut = pDblOut->get();
-        int iSize = NB_OF_TYPE;
-        C2F(dcopy)(&iSize, pstShortTypeNum, &iOne, pdblOut, &iOne);
+        memmove(pdblOut, pstShortTypeNum, NB_OF_TYPE * sizeof(double));
         out.push_back(pDblOut);
 
         // get type name

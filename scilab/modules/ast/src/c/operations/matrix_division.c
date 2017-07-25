@@ -627,7 +627,7 @@ int iLeftDivisionOfRealMatrix(
                 // _pdblReal2 will be overwrite by dgetrs
                 iSize = _iRows2 * _iCols2;
                 dblTemp = (double*)malloc(iSize * sizeof(double));
-                C2F(dcopy)(&iSize, _pdblReal2, &iOne, dblTemp, &iOne);
+                memmove(dblTemp, _pdblReal2, iSize * sizeof(double));
 
                 cNorm = 'N';
                 C2F(dgetrs)(&cNorm, &_iCols1, &_iCols2, pAf, &_iCols1, pIpiv, dblTemp, &_iCols1, &iInfo);
@@ -656,7 +656,7 @@ int iLeftDivisionOfRealMatrix(
         // _pdblReal1 will be overwrite by dgelsy1
         iSize = _iRows1 * _iCols1;
         dblTemp = (double*)malloc(iSize * sizeof(double));
-        C2F(dcopy)(&iSize, _pdblReal1, &iOne, dblTemp, &iOne);
+        memmove(dblTemp, _pdblReal1, iSize * sizeof(double));
         iInfo = 1;
         C2F(dgelsy1)(&_iRows1, &_iCols1, &_iCols2, dblTemp, &_iRows1, pXb, &iMax,
                      pJpvt, &dblRcond, &pRank[0], pDwork, &iWorkMin, &iInfo);

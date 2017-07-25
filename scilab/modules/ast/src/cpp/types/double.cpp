@@ -25,6 +25,7 @@
 extern "C"
 {
 #include <stdio.h>
+#include <string.h>
 #include "elem_common.h"
 #include "localization.h"
 #include "charEncoding.h"
@@ -790,14 +791,12 @@ Double* Double::clone()
 {
     int iOne = 1;
     Double *pReturn = new Double(m_iDims, m_piDims, isComplex());
-    //memcpy(pReturn->getReal(), m_pRealData, m_iSize * sizeof(double));
-    dcopy_(&m_iSize, m_pRealData, &iOne, pReturn->getReal(), &iOne);
+    memmove(pReturn->getReal(), m_pRealData, m_iSize * sizeof(double));
 
     if (isComplex())
     {
         pReturn->setComplex(true);
-        //memcpy(pReturn->getImg(), m_pImgData, m_iSize * sizeof(double));
-        dcopy_(&m_iSize, m_pImgData, &iOne, pReturn->getImg(), &iOne);
+        memmove(pReturn->getImg(), m_pImgData, m_iSize * sizeof(double));
     }
     return pReturn;
 }
@@ -808,26 +807,26 @@ bool Double::fillFromCol(int _iCols, Double *_poSource)
     int iDestOffset     = _iCols * m_iRows;
     int iSize           = _poSource->getSize();
     double* pdblDest    = m_pRealData + iDestOffset;
-    int iOne            = 1;
-    dcopy_(&iSize, _poSource->getReal(), &iOne, pdblDest, &iOne);
+    
+    memmove(pdblDest, _poSource->getReal(), iSize * sizeof(double));
 
     if (isComplex())
     {
         pdblDest    = m_pImgData + iDestOffset;
-        dcopy_(&iSize, _poSource->getImg(), &iOne, pdblDest, &iOne);
+        memmove(pdblDest, _poSource->getImg(), iSize * sizeof(double));
     }
     return true;
 }
 
 bool Double::fillFromRow(int _iRows, Double *_poSource)
 {
-    int iCols = _poSource->getCols();
-
     if (isComplex())
     {
     }
     else
     {
+        int iCols = _poSource->getCols();
+        
         for (int i = 0 ; i < iCols ; i++)
         {
             int iDestOffset     = i * m_iRows + _iRows;
@@ -835,9 +834,8 @@ bool Double::fillFromRow(int _iRows, Double *_poSource)
             int iSize           = _poSource->getRows();
             double* pdblDest    = m_pRealData + iDestOffset;
             double* pdblSource  = _poSource->getReal() + iOrigOffset;
-            int iOne            = 1;
-
-            dcopy_(&iSize, pdblSource, &iOne, pdblDest, &iOne);
+            
+            memmove(pdblDest, pdblSource, iSize * sizeof(double));
         }
     }
     return true;
@@ -1036,10 +1034,10 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
                 for (int i = 0 ; i < iCols ; i++)
                 {
                     int iOffset = i * getRows();
-                    C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + iOffset, &iOne);
+                    memmove(get() + iOffset, pD->get() + i * iRows, iRows * sizeof(double));
                     if (pD->isComplex())
                     {
-                        C2F(dcopy)(&iRows, pD->getImg() + i * iRows, &iOne, getImg() + iOffset, &iOne);
+                        memmove(getImg() + iOffset, pD->getImg() + i * iRows, iRows * sizeof(double));
                     }
                     else
                     {
@@ -1051,7 +1049,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
             {
                 for (int i = 0 ; i < iCols ; i++)
                 {
-                    C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + i * getRows(), &iOne);
+                    memmove(get() + i * getRows(), pD->get() + i * iRows, iRows * sizeof(double));
                 }
             }
         }
@@ -1093,10 +1091,12 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
             for (int i = 0 ; i < iCols ; i++)
             {
                 int iOffset = (_iCols + i) * getRows() + _iRows;
-                C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + iOffset, &iOne);
+                
+                memmove(get() + iOffset, pD->get() + i * iRows, iRows * sizeof(double));
+                
                 if (pD->isComplex())
                 {
-                    C2F(dcopy)(&iRows, pD->getImg() + i * iRows, &iOne, getImg() + iOffset, &iOne);
+                    memmove(getImg() + iOffset, pD->getImg() + i * iRows, iRows * sizeof(double));
                 }
                 else
                 {
@@ -1108,7 +1108,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
         {
             for (int i = 0 ; i < iCols ; i++)
             {
-                C2F(dcopy)(&iRows, pD->get() + i * iRows, &iOne, get() + (_iCols + i) * getRows() + _iRows, &iOne);
+                memmove(get() + (_iCols + i) * getRows() + _iRows, pD->get() + i * iRows, iRows * sizeof(double));
             }
         }
     }
