@@ -573,11 +573,10 @@ int iPowerComplexSquareMatrixByRealScalar(
 
             double* pdblResult = (double*)malloc(iSize2 * sizeof(double));
             double* pdblTmp = (double*)malloc(iSize2 * sizeof(double));
-            double* pdblOut = (double*)malloc(iSize2 * sizeof(double));
+            double* pdblOut = (double*)calloc(iSize2, sizeof(double));
 
             // initialize the output as identity matrix
             // because we use this array in the first multiplication.
-            memset(pdblOut, 0x00, iSize2 * sizeof(double));
             C2F(dset)(&_iCols1, &alpha[0], pdblOut, &iInc);
 
             // copy input complex in working array as Z storage.
