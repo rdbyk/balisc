@@ -33,8 +33,8 @@ wchar_t* mgetstr(int _iFileId, int _iSizeToRead)
         if (pF->getFileModeAsInt() % 2 == 0) //to determine if the file have been opened with binary or text mode
         {
             int iSizeRead = 0;
-            pwstOut = (wchar_t*)MALLOC((_iSizeToRead + 1) * sizeof(wchar_t));
-            memset(pwstOut, 0x00, (_iSizeToRead + 1) * sizeof(wchar_t));
+            
+            pwstOut = (wchar_t*)CALLOC(_iSizeToRead + 1, sizeof(wchar_t));
 
             while (_iSizeToRead > iSizeRead)
             {
@@ -54,8 +54,8 @@ wchar_t* mgetstr(int _iFileId, int _iSizeToRead)
         else
         {
             int iSizeRead = 0;
-            char* buffer = (char*)MALLOC((_iSizeToRead + 1) * sizeof(char));
-            memset(buffer, 0x00, (_iSizeToRead + 1) * sizeof(char));
+            
+            char* buffer = (char*)CALLOC(_iSizeToRead + 1, sizeof(char));
 
             while (_iSizeToRead > iSizeRead)
             {
