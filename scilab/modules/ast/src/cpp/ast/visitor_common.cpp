@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <string>
 #include <numeric>
@@ -581,8 +581,10 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     types::typed_list in;
     types::typed_list out;
 
-    std::wstring function_name;
-    function_name = L"%" + _source->getShortTypeStr() + L"_" + _strType;
+    std::wstring function_name = L"%";
+    function_name += _source->getShortTypeStr();
+    function_name += L"_"; 
+    function_name += _strType;
 
     for (int i = 0; i < (int)_pArgs->size(); i++)
     {
@@ -598,7 +600,8 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
         _dest->IncreaseRef();
         in.push_back(_dest);
 
-        function_name += L"_" + _dest->getShortTypeStr();
+        function_name += L"_";
+        function_name += _dest->getShortTypeStr();
     }
 
     types::InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
@@ -607,16 +610,23 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     {
         if (_source->getShortTypeStr().size() > 8)
         {
-            function_name = L"%" + _source->getShortTypeStr().substr(0, 8) + L"_" + _strType;
+            function_name = L"%";
+            function_name += _source->getShortTypeStr().substr(0, 8);
+            function_name += L"_";
+            function_name += _strType;
         }
         else if (_dest)
         {
-            function_name = L"%" + _source->getShortTypeStr() + L"_" + _strType;
+            function_name = L"%";
+            function_name += _source->getShortTypeStr();
+            function_name += L"_";
+            function_name +=_strType;
         }
 
         if (_dest && _dest->getShortTypeStr().size() > 8)
         {
-            function_name += L"_" + _dest->getShortTypeStr().substr(0, 8);
+            function_name += L"_";
+            function_name += _dest->getShortTypeStr().substr(0, 8);
         }
 
         pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
@@ -625,7 +635,8 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     // if %type_6 doesn't exist, call %l_6
     if (_dest == NULL && pFunc == NULL)
     {
-        function_name = L"%l_" + _strType;
+        function_name = L"%l_";
+        function_name += _strType;
     }
 
     // For insertion in TList, call normal insertion if overload doesn't exits
