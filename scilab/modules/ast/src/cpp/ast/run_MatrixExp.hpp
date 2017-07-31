@@ -256,7 +256,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         double* pdblI = pDb->getImg();
                         pP->setComplex(true);
-                        for (int i = 0; i < pDb->getSize(); i++)
+                        int size = pDb->getSize();
+                        for (int i = 0; i < size; i++)
                         {
                             pSS[i]->setRank(0);
                             pSS[i]->setCoef(pdblR + i, pdblI + i);
@@ -264,7 +265,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     }
                     else
                     {
-                        for (int i = 0; i < pDb->getSize(); i++)
+                        int size = pDb->getSize();
+                        for (int i = 0; i < size; i++)
                         {
                             pSS[i]->setRank(0);
                             pSS[i]->setCoef(pdblR + i, NULL);
