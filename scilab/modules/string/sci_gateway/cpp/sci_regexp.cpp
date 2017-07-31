@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - INRIA - Cong WU
-* Copyright (C) 2008 - 2009 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Cong WU
+ * Copyright (C) 2008 - 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 /* desc : search position of a character string in an other string
 using regular expression .                                      */
@@ -102,7 +102,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
     }
 
     //input is empty
-    if (wcslen(pwstInput) == 0)
+    if (pwstInput[0] == L'\0')
     {
         types::Double* pStart = new types::Double(0, 0);
         out.push_back(pStart);
@@ -120,11 +120,12 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
         return types::Function::OK;
     }
 
-    piStart     = new int[wcslen(pwstInput)];
-    piEnd       = new int[wcslen(pwstInput)];
+    size_t len_Input = wcslen(pwstInput);
+    piStart     = new int[len_Input];
+    piEnd       = new int[len_Input];
 
-    pwstCapturedString = (wchar_t***)CALLOC(sizeof(wchar_t**), wcslen(pwstInput));
-    piCapturedStringCount = (int*)CALLOC(sizeof(int), wcslen(pwstInput));
+    pwstCapturedString = (wchar_t***)CALLOC(sizeof(wchar_t**), len_Input);
+    piCapturedStringCount = (int*)CALLOC(sizeof(int), len_Input);
 
     do
     {
