@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -283,16 +283,20 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             bool ret = false;
             if (pIT->isInvokable() == false)
             {
-                // call overload
-                ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, true);
+                std::wstring fun = L"%";
+                fun += pIT->getShortTypeStr();
+                fun += L"_e";
+                ret = Overload::call(fun, in, iRetCount, out, true);
             }
             else
             {
                 ret = pIT->invoke(in, opt, iRetCount, out, e);
                 if (ret == false && pIT->isUserType())
                 {
-                    // call overload
-                    ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, true);
+                    std::wstring fun = L"%";
+                    fun += pIT->getShortTypeStr();
+                    fun += L"_e";
+                    ret = Overload::call(fun, in, iRetCount, out, true);
                 }
             }
 

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -164,7 +164,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
                 }
             }
         }
-        else if (wcslen(pstStr) == 0) //strtod("")
+        else if (pstStr[0] == L'\0') //strtod("")
         {
             pOutDouble->set(i, dblNan);
         }

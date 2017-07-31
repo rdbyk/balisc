@@ -437,8 +437,7 @@ wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wch
         }
     }
 
-    pwstOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(_pwstInput) + iOffset + 1));
-    memset(pwstOutput, 0x00, sizeof(wchar_t) * (wcslen(_pwstInput) + iOffset + 1));
+    pwstOutput = (wchar_t*)CALLOC(wcslen(_pwstInput) + iOffset + 1, sizeof(wchar_t));
 
     if (iOccurs == 0)
     {

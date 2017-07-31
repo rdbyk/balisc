@@ -88,8 +88,9 @@ wchar_t *getFullFilenameW(const wchar_t* FilenameInput)
         {
             if ( (wcPath[lenPath - 1 ] != L'/') && (wcPath[lenPath - 1 ] != L'\\') )
             {
-                wcscat(wcPath, L"/");
-                lenPath = (int)wcslen(wcPath);
+                wcPath[lenPath] = L'/';
+                lenPath++;
+                wcPath[lenPath] = L'\0';
             }
         }
 

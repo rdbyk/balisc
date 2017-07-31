@@ -72,9 +72,9 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
     double* pFrexp = pDblExp->get();
     int size = pDblIn->getSize();
 
-    int iExp;
     for (int i = 0; i < size; i++)
     {
+        int iExp;
         pCoef[i] = std::frexp(pIn[i], &iExp);
         pFrexp[i] = static_cast<double>(iExp);
     }

@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -458,11 +458,20 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& s
     {
         if (_paramR->isGenericType() && _paramR->getAs<types::GenericType>()->getDims() > 2)
         {
-            Ret = Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, true);
+            std::wstring fun = L"%hm_";
+            fun += strType;
+            fun += L"_hm";
+            Ret = Overload::call(fun, in, 1, out, true);
         }
         else
         {
-            Ret = Overload::call(L"%" + _paramL->getAs<types::List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, true);
+            std::wstring fun = L"%";
+            fun += _paramL->getAs<types::List>()->getShortTypeStr();
+            fun += L"_"; 
+            fun += strType;
+            fun += L"_";
+            fun += _paramR->getAs<types::List>()->getShortTypeStr();
+            Ret = Overload::call(fun, in, 1, out, true);
         }
     }
     catch (const InternalError& error)
