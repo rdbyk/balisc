@@ -324,10 +324,13 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             pSP[i]->set(0, pR[i]);
                         }
                     }
-
-                    for (int i = 0 ; i < pPSource->getRows() ; i++)
+                    
+                    int rows = pPSource->getRows();
+                    int cols = pPSource->getCols();
+                    
+                    for (int i = 0; i < rows; i++)
                     {
-                        for (int j = 0 ; j < pPSource->getCols() ; j++)
+                        for (int j = 0; j < cols; j++)
                         {
                             pPResult->set(iCurRow + i, iCurCol + j, pPSource->get(i, j));
                         }
@@ -345,10 +348,13 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
                     if (pD->isComplex())
                     {
+                        int rows = pD->getRows();
+                        int cols = pD->getCols();
+                    
                         pPolyOut->setComplex(true);
-                        for (int i = 0 ; i < pD->getRows() ; i++)
+                        for (int i = 0 ; i < rows; i++)
                         {
-                            for (int j = 0 ; j < pD->getCols() ; j++)
+                            for (int j = 0 ; j < cols; j++)
                             {
                                 types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
@@ -361,9 +367,12 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     }
                     else
                     {
-                        for (int i = 0 ; i < pD->getRows() ; i++)
+                        int rows = pD->getRows();
+                        int cols = pD->getCols();
+                        
+                        for (int i = 0 ; i < rows; i++)
                         {
-                            for (int j = 0 ; j < pD->getCols() ; j++)
+                            for (int j = 0 ; j < cols; j++)
                             {
                                 types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
@@ -397,9 +406,12 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     {
                         if (poSource->isComplex())
                         {
-                            for (int i = 0; i < poSource->getRows(); i++)
+                            int rows = poSource->getRows();
+                            int cols = poSource->getCols();
+                    
+                            for (int i = 0; i < rows; i++)
                             {
-                                for (int j = 0; j < poSource->getCols(); j++)
+                                for (int j = 0; j < cols; j++)
                                 {
                                     double dbl = poSource->get(i, j);
                                     double dblImg = poSource->getImg(i, j);
@@ -412,9 +424,12 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                         }
                         else
                         {
-                            for (int i = 0; i < poSource->getRows(); i++)
+                            int rows = poSource->getRows();
+                            int cols = poSource->getCols();
+                            
+                            for (int i = 0; i < rows; i++)
                             {
-                                for (int j = 0; j < poSource->getCols(); j++)
+                                for (int j = 0; j < cols; j++)
                                 {
                                     double dbl = poSource->get(i, j);
                                     if (dbl != 0)
@@ -427,9 +442,12 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     }
                     else
                     {
-                        for (int i = 0; i < poSource->getRows(); i++)
+                        int rows = poSource->getRows();
+                        int cols = poSource->getCols();
+                            
+                        for (int i = 0; i < rows; i++)
                         {
-                            for (int j = 0; j < poSource->getCols(); j++)
+                            for (int j = 0; j < cols; j++)
                             {
                                 double dbl = poSource->get(i, j);
                                 if (dbl != 0)
@@ -448,11 +466,14 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 {
                     types::Bool* poSource = _poSource->getAs<types::Bool>();
                     types::SparseBool* spResult = poResult->getAs<types::SparseBool>();
-
+                    
+                    int rows = poSource->getRows();
+                    int cols = poSource->getCols();
+                    
                     // Add poSource at the end of spResult
-                    for (int i = 0; i < poSource->getRows(); i++)
+                    for (int i = 0; i < rows; i++)
                     {
-                        for (int j = 0; j < poSource->getCols(); j++)
+                        for (int j = 0; j < cols; j++)
                         {
                             bool bValue = poSource->get(i, j) != 0;
                             if (bValue)
@@ -586,7 +607,8 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     function_name += L"_"; 
     function_name += _strType;
 
-    for (int i = 0; i < (int)_pArgs->size(); i++)
+    int args_size =  _pArgs->size();
+    for (int i = 0; i < args_size; i++)
     {
         (*_pArgs)[i]->IncreaseRef();
         in.push_back((*_pArgs)[i]);
@@ -664,7 +686,7 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
         }
 
         // unprotect variables
-        for (int i = 0; i < (int)_pArgs->size(); i++)
+        for (int i = 0; i < args_size; i++)
         {
             (*_pArgs)[i]->DecreaseRef();
         }
@@ -684,14 +706,16 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
         }
     }
 
-    if (out.size() == 1)
+    int out_size = out.size();
+    
+    if (out_size == 1)
     {
         pITOut = out[0];
     }
-    else if (out.size() > 1)
+    else if (out_size > 1)
     {
         types::List* pListOut = new types::List();
-        for (int i = 0; i < (int)out.size(); i++)
+        for (int i = 0; i < out_size; i++)
         {
             pListOut->append(out[i]);
         }
@@ -1941,7 +1965,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 
             if (pP->isComplex())
             {
-                for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                int size = pP->getSize();
+                for (int idx = 0; idx < size; idx++)
                 {
                     double dblR = pDest->get(idx);
                     double dblI = pDest->getImg(idx);
@@ -1950,7 +1975,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             }
             else
             {
-                for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                int size = pP->getSize();
+                for (int idx = 0; idx < size; idx++)
                 {
                     double dblR = pDest->get(idx);
                     pP->get(idx)->setCoef(&dblR, NULL);
@@ -1977,7 +2003,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 double* pR = pIns->get();
                 double* pI = pIns->getImg();
                 types::SinglePoly** pSP = pP->get();
-                for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                int size = pP->getSize();
+                for (int idx = 0; idx < size; idx++)
                 {
                     double dblR = pR[idx];
                     double dblI = pI[idx];
@@ -1989,7 +2016,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             {
                 double* pdblR = pIns->get();
                 types::SinglePoly** pSP = pP->get();
-                for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                int size = pP->getSize();
+                for (int idx = 0; idx < size; idx++)
                 {
                     double dblR = pdblR[idx];
                     pSP[idx]->setCoef(&dblR, NULL);
@@ -2027,8 +2055,9 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 else
                 {
                     /* Add a field */
+                    int size = pStruct->getSize();
                     pStruct = pStruct->addField(pS->get(0));
-                    for (int i = 0; i < pStruct->getSize(); i++)
+                    for (int i = 0; i < size; i++)
                     {
                         pStruct->get(i)->set(pS->get(0), _pInsert);
                     }
@@ -2058,8 +2087,9 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                             {
                                 std::wstring pwcsField = pStrFieldsName->get(i - 1);
                                 types::List* pLExtract = pStructInsert->extractFieldWithoutClone(pwcsField);
-
-                                for (int i = 0; i < pLExtract->getSize(); i++)
+                                
+                                int size = pLExtract->getSize();
+                                for (int i = 0; i < size; i++)
                                 {
                                     // protect element wich are not cloned before call removeField.
                                     pLExtract->get(i)->IncreaseRef();
@@ -2068,7 +2098,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                                 pStructInsert->removeField(pwcsField);
                                 pStructInsert->addFieldFront(pwcsField);
 
-                                for (int i = 0; i < pLExtract->getSize(); i++)
+                                for (int i = 0; i < size; i++)
                                 {
                                     // set elements in the new position
                                     pStructInsert->get(i)->set(pwcsField, pLExtract->get(i));
@@ -2089,7 +2119,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     pStructInsert->killMe();
 
                     // insert fields of pStructInsert in pRet
-                    for (int i = 0; i < pStrInsertFieldsName->getSize(); i++)
+                    int size = pStrInsertFieldsName->getSize();
+                    for (int i = 0; i < size; i++)
                     {
                         if (pStructRet->exists(pStrInsertFieldsName->get(i)) == false)
                         {
@@ -2180,7 +2211,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                         if (pTL->get(0)->isString() == false)
                         {
                             types::List* pL = new types::List();
-                            for (int i = 0; i < pTL->getSize(); i++)
+                            int size = pTL->getSize();
+                            for (int i = 0; i < size; i++)
                             {
                                 pL->append(pTL->get(i));
                             }
@@ -2272,7 +2304,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         }
         else if (_pVar->isUserType())
         {
-            for (int i = 0; i < _pArgs->size(); i++)
+            int size = _pArgs->size();
+            for (int i = 0; i < size; i++)
             {
                 if ((*_pArgs)[i]->isImplicitList())
                 {
