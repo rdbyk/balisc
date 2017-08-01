@@ -43,8 +43,9 @@ Double* Double::Identity(int _iRows, int _iCols)
 {
     double* pdbl = NULL;
     Double* pI = new Double(_iRows, _iCols, &pdbl);
+    int n = std::min(_iRows, _iCols);
     pI->setZeros();
-    for (int i = 0 ; i < std::min(_iRows, _iCols) ; i++)
+    for (int i = 0; i < n; i++)
     {
         pI->set(i, i, 1);
     }
@@ -855,7 +856,7 @@ bool Double::operator==(const InternalType& it)
         return false;
     }
 
-    for (int i = 0 ; i < getDims() ; i++)
+    for (int i = 0; i < m_iDims; i++)
     {
         if (pdbl->getDimsArray()[i] != getDimsArray()[i])
         {
@@ -864,7 +865,7 @@ bool Double::operator==(const InternalType& it)
     }
 
     double *pdblReal = pdbl->getReal();
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0; i < m_iSize; i++)
     {
         if (m_pRealData[i] != pdblReal[i])
         {
@@ -1132,7 +1133,7 @@ void Double::convertToInteger()
         double *pdblI = getImg();
 
         //normal way to prevent overlap
-        for (int i = 0 ; i < getSize() ; i++)
+        for (int i = 0; i < m_iSize; i++)
         {
             piR[i] = (int)pdblR[i];
             piI[i] = (int)pdblI[i];
@@ -1141,7 +1142,7 @@ void Double::convertToInteger()
     else
     {
         //normal way to prevent overlap
-        for (int i = 0 ; i < getSize() ; i++)
+        for (int i = 0; i < m_iSize; i++)
         {
             piR[i] = (int)pdblR[i];
         }
@@ -1168,7 +1169,7 @@ void Double::convertFromInteger()
         double *pdblI = getImg();
 
         //reverse way to prevent overlap
-        for (int i = getSize() - 1 ; i >= 0 ; i--)
+        for (int i = m_iSize - 1 ; i >= 0 ; i--)
         {
             pdblR[i] = (double)piR[i];
             pdblI[i] = (double)piI[i];
@@ -1177,7 +1178,7 @@ void Double::convertFromInteger()
     else
     {
         //reverse way to prevent overlap
-        for (int i = getSize() - 1 ; i >= 0 ; i--)
+        for (int i = m_iSize - 1 ; i >= 0 ; i--)
         {
             pdblR[i] = (double)piR[i];
         }
