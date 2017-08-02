@@ -133,8 +133,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 std::wstring wstrName = pVar->getSymbol().getName();
                 
-                std::wstring ostr(L" ");
-                ostr += wstrName.c_str();
+                std::wstring ostr;
+                ostr.reserve(wstrName.size() + 7);
+                ostr = L" ";
+                ostr += wstrName;
                 ostr += L"  = \n\n";
                 scilabWriteW(ostr.c_str());
                 
@@ -214,8 +216,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 if (e.isVerbose() && ConfigVariable::isPrintOutput())
                 {
-                    std::wstring ostr(L" ");
-                    ostr += (*getStructNameFromExp(pCell)).c_str();
+                    std::wstring ostr;
+                    ostr.reserve((*getStructNameFromExp(pCell)).size() + 7);
+                    ostr = L" ";
+                    ostr += *getStructNameFromExp(pCell);
                     ostr += L"  = \n\n";
                     scilabWriteW(ostr.c_str());
 
@@ -386,8 +390,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 std::wstring ostrName(*getStructNameFromExp(&pCall->getName()));
                 
-                std::wstring ostr(L" ");
-                ostr += ostrName.c_str();
+                std::wstring ostr;
+                ostr.reserve(ostrName.size() + 7);
+                ostr = L" ";
+                ostr += ostrName;
                 ostr += L"  = \n\n";
                 scilabWriteW(ostr.c_str());
 
@@ -528,8 +534,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
                 types::InternalType* pPrint = ctx->get(symbol::Symbol(*pstName));
                 
-                std::wstring ostr(L" ");
-                ostr += (*pstName).c_str();
+                std::wstring ostr;
+                ostr.reserve((*pstName).size() + 7);
+                ostr = L" ";
+                ostr += *pstName;
                 ostr += L"  = \n\n";
                 scilabWriteW(ostr.c_str());
 
