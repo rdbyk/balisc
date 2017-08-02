@@ -285,7 +285,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             bool ret = false;
             if (pIT->isInvokable() == false)
             {
-                std::wstring fun = L"%";
+                std::wstring fun;
+                fun.reserve((pIT->getShortTypeStr()).size() + 3);
+                fun += L"%";
                 fun += pIT->getShortTypeStr();
                 fun += L"_e";
                 ret = Overload::call(fun, in, iRetCount, out, true);
@@ -295,7 +297,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 ret = pIT->invoke(in, opt, iRetCount, out, e);
                 if (ret == false && pIT->isUserType())
                 {
-                    std::wstring fun = L"%";
+                    std::wstring fun;
+                    fun.reserve((pIT->getShortTypeStr()).size() + 3);
+                    fun += L"%";
                     fun += pIT->getShortTypeStr();
                     fun += L"_e";
                     ret = Overload::call(fun, in, iRetCount, out, true);
