@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 // This code is separated in double.hxx
 // but will be inlined in arrayof.hxx
@@ -87,11 +87,9 @@ public :
     {
         if (isComplex())
         {
-            int listSize = getSize();
-            double* bImg = getImg();
-            for (int i = 0; i < listSize; i++)
+            for (int i = 0; i < m_iSize; i++)
             {
-                if (abs(bImg[i]) > tolerance)
+                if (std::abs(m_pImgData[i]) > tolerance)
                 {
                     return false;
                 }
@@ -178,10 +176,10 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(getCols(), getRows(), true);
+            Double * pReturn = new Double(m_iCols, m_iRows, true);
             out = pReturn;
 
-            Transposition::conjugate(getSize(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+            Transposition::conjugate(m_iSize, m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
             return true;
         }
 
@@ -219,15 +217,15 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(getCols(), getRows(), isComplex());
+            Double * pReturn = new Double(m_iCols, m_iRows, isComplex());
             out = pReturn;
             if (isComplex())
             {
-                Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+                Transposition::adjoint(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
             }
             else
             {
-                Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
+                Transposition::adjoint(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData);
             }
 
             return true;
@@ -252,15 +250,15 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(getCols(), getRows(), isComplex());
+            Double * pReturn = new Double(m_iCols, m_iRows, isComplex());
             out = pReturn;
             if (isComplex())
             {
-                Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+                Transposition::transpose(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
             }
             else
             {
-                Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
+                Transposition::transpose(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData);
             }
 
             return true;
@@ -291,7 +289,7 @@ public :
 
     virtual Double* set(int _iRows, int _iCols, const double _data)
     {
-        return set(_iCols * getRows() + _iRows, _data);
+        return set(_iCols * m_iRows + _iRows, _data);
     }
 
     virtual Double* set(double* _pdata)
@@ -345,7 +343,7 @@ public :
 
     virtual void fillDefaultValues() override
     {
-        int size = getSize();
+        int size = m_iSize;
         memset(m_pRealData, 0x00, sizeof(double) * size);
         if (isComplex())
         {
