@@ -144,15 +144,6 @@ Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal, double
     return pI;
 }
 
-bool Double::isEmpty()
-{
-    if (getDims() == 2 && getRows() == 0 && getCols() == 0)
-    {
-        return true;
-    }
-    return false;
-}
-
 Double::~Double()
 {
     if (isDeletable() == true)
@@ -267,16 +258,6 @@ Double::Double(int _iDims, const int* _piDims, bool _bComplex, bool _bZComplex)
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
-}
-
-double*    Double::getReal() const
-{
-    return get();
-}
-
-double Double::getReal(int _iRows, int _iCols)
-{
-    return get(_iRows, _iCols);
 }
 
 bool Double::setInt(int* _piReal)
@@ -394,12 +375,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             ostr << L"\n";
         }
     }
-    else if (getCols() == 1)
+    else if (m_iCols == 1)
     {
         //column vector
         if (isComplex() == false)
         {
-            for (int i = m_iRows1PrintState ; i < getRows() ; i++)
+            for (int i = m_iRows1PrintState; i < m_iRows; i++)
             {
                 iCurrentLine++;
                 if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
@@ -420,7 +401,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         }
         else
         {
-            for (int i = m_iRows1PrintState ; i < getRows() ; i++)
+            for (int i = m_iRows1PrintState; i < m_iRows; i++)
             {
                 //complex value
                 iCurrentLine++;
@@ -439,7 +420,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             }
         }
     }
-    else if (getRows() == 1)
+    else if (m_iRows == 1)
     {
         //row vector
         std::wostringstream ostemp;
@@ -448,7 +429,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         if (isComplex() == false)
         {
             int iLen = 0;
-            for (int i = m_iCols1PrintState ; i < getCols() ; i++)
+            for (int i = m_iCols1PrintState ; i < m_iCols; i++)
             {
                 _piDims[0] = 0;
                 _piDims[1] = i;
@@ -482,7 +463,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
             if (iLastVal != 0)
             {
-                addColumnString(ostr, iLastVal + 1, getCols());
+                addColumnString(ostr, iLastVal + 1, m_iCols);
             }
             ostemp << L"\n";
             ostr << ostemp.str();
@@ -492,7 +473,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             int iTotalLen = 0;
             int iLen = 0;
 
-            for (int i = m_iCols1PrintState ; i < getCols() ; i++)
+            for (int i = m_iCols1PrintState ; i < m_iCols; i++)
             {
                 _piDims[0] = 0;
                 _piDims[1] = i;
@@ -525,7 +506,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
             if (iLastVal != 0)
             {
-                addColumnString(ostr, iLastVal + 1, getCols());
+                addColumnString(ostr, iLastVal + 1, m_iCols);
             }
             ostemp << L"\n";
             ostr << ostemp.str();
@@ -538,15 +519,15 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         int iLastCol = m_iCols1PrintState;
 
         //Array with the max printed size of each col
-        int *piSize = new int[getCols()];
-        memset(piSize, 0x00, getCols() * sizeof(int));
+        int *piSize = new int[m_iCols];
+        memset(piSize, 0x00, m_iCols * sizeof(int));
 
         if (isComplex() == false)
         {
             //compute the row size for padding for the full matrix
-            for (int iCols1 = 0 ; iCols1 < getCols() ; iCols1++)
+            for (int iCols1 = 0 ; iCols1 < m_iCols; iCols1++)
             {
-                for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
+                for (int iRows1 = 0; iRows1 < m_iRows; iRows1++)
                 {
                     _piDims[0] = iRows1;
                     _piDims[1] = iCols1;
@@ -558,12 +539,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 }
             }
 
-            for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
+            for (int iCols1 = m_iCols1PrintState ; iCols1 < m_iCols; iCols1++)
             {
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
                 {
                     //find the limit, print this part
-                    for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+                    for (int iRows2 = m_iRows2PrintState ; iRows2 < m_iRows; iRows2++)
                     {
                         iCurrentLine++;
                         if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) ||
@@ -617,7 +598,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 iLen += piSize[iCols1] + SIGN_LENGTH + SIZE_BETWEEN_TWO_VALUES;
             }
 
-            for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+            for (int iRows2 = m_iRows2PrintState ; iRows2 < m_iRows ; iRows2++)
             {
                 iCurrentLine++;
                 if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
@@ -625,7 +606,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     if (m_iRows2PrintState == 0 && iLastCol != 0)
                     {
                         //add header
-                        addColumnString(ostr, iLastCol + 1, getCols());
+                        addColumnString(ostr, iLastCol + 1, m_iCols);
                     }
 
                     ostr << ostemp.str();
@@ -635,7 +616,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     return false;
                 }
 
-                for (int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
+                for (int iCols2 = iLastCol ; iCols2 < m_iCols; iCols2++)
                 {
                     _piDims[0] = iRows2;
                     _piDims[1] = iCols2;
@@ -653,16 +634,16 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
             if (m_iRows2PrintState == 0 && iLastCol != 0)
             {
-                addColumnString(ostr, iLastCol + 1, getCols());
+                addColumnString(ostr, iLastCol + 1, m_iCols);
             }
             ostr << ostemp.str();
         }
         else //Complex case
         {
             //compute the row size for padding for the full matrix.
-            for (int iCols1 = 0; iCols1 < getCols() ; iCols1++)
+            for (int iCols1 = 0; iCols1 < m_iCols; iCols1++)
             {
-                for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
+                for (int iRows1 = 0 ; iRows1 < m_iRows ; iRows1++)
                 {
                     int iTotalWidth = 0;
                     _piDims[0] = iRows1;
@@ -681,12 +662,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 }
             }
 
-            for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
+            for (int iCols1 = m_iCols1PrintState ; iCols1 < m_iCols; iCols1++)
             {
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
                 {
                     //find the limit, print this part
-                    for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+                    for (int iRows2 = m_iRows2PrintState ; iRows2 < m_iRows ; iRows2++)
                     {
                         iCurrentLine++;
                         if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) ||
@@ -739,7 +720,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
             }
 
-            for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+            for (int iRows2 = m_iRows2PrintState ; iRows2 < m_iRows ; iRows2++)
             {
                 iCurrentLine++;
                 if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
@@ -747,7 +728,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     if (m_iRows2PrintState == 0 && iLastCol != 0)
                     {
                         //add header
-                        addColumnString(ostr, iLastCol + 1, getCols());
+                        addColumnString(ostr, iLastCol + 1, m_iCols);
                     }
 
                     ostr << ostemp.str();
@@ -757,7 +738,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     return false;
                 }
 
-                for (int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
+                for (int iCols2 = iLastCol ; iCols2 < m_iCols; iCols2++)
                 {
                     int iTotalWidth = 0;
                     _piDims[0] = iRows2;
@@ -775,7 +756,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
             if (m_iRows2PrintState == 0 && iLastCol != 0)
             {
-                addColumnString(ostr, iLastCol + 1, getCols());
+                addColumnString(ostr, iLastCol + 1, m_iCols);
             }
             ostr << ostemp.str();
         }
@@ -827,16 +808,16 @@ bool Double::fillFromRow(int _iRows, Double *_poSource)
     else
     {
         int iCols = _poSource->getCols();
-        
+        size_t mem_size = _poSource->getRows() * sizeof(double);
+
         for (int i = 0 ; i < iCols ; i++)
         {
             int iDestOffset     = i * m_iRows + _iRows;
             int iOrigOffset     = i * _poSource->getRows();
-            int iSize           = _poSource->getRows();
             double* pdblDest    = m_pRealData + iDestOffset;
             double* pdblSource  = _poSource->getReal() + iOrigOffset;
             
-            memmove(pdblDest, pdblSource, iSize * sizeof(double));
+            memmove(pdblDest, pdblSource, mem_size);
         }
     }
     return true;
@@ -851,7 +832,7 @@ bool Double::operator==(const InternalType& it)
 
     Double* pdbl = const_cast<InternalType &>(it).getAs<Double>();
 
-    if (pdbl->getDims() != getDims())
+    if (pdbl->getDims() != m_iDims)
     {
         return false;
     }
@@ -917,19 +898,9 @@ bool Double::operator!=(const InternalType& it)
     return !(*this == it);
 }
 
-double Double::getNullValue()
-{
-    return 0;
-}
-
 Double* Double::createEmpty(int _iDims, int* _piDims, bool _bComplex)
 {
     return new Double(_iDims, _piDims, _bComplex);
-}
-
-double Double::copyValue(double _dblData)
-{
-    return _dblData;
 }
 
 void Double::deleteAll()
@@ -1001,12 +972,12 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
     {
         //append to 0,0
         //std::cout << "append 0,0" << std::endl;
-        if (iRows == 1 || iRows == getRows())
+        if (iRows == 1 || iRows == m_iRows)
         {
             //std::cout << "full Rows or one row" << std::endl;
             if (iRows == 1)
             {
-                iInc = getRows();
+                iInc = m_iRows;
                 //std::cout << "iInc : " << iInc << std::endl;
             }
 
@@ -1029,20 +1000,22 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
         }
         else
         {
+            size_t mem_size = iRows * sizeof(double);
+            
             //std::cout << "part of row" << std::endl;
             if (isComplex())
             {
                 for (int i = 0 ; i < iCols ; i++)
                 {
-                    int iOffset = i * getRows();
-                    memmove(get() + iOffset, pD->get() + i * iRows, iRows * sizeof(double));
+                    int iOffset = i * m_iRows;
+                    memmove(get() + iOffset, pD->get() + i * iRows, mem_size);
                     if (pD->isComplex())
                     {
-                        memmove(getImg() + iOffset, pD->getImg() + i * iRows, iRows * sizeof(double));
+                        memmove(getImg() + iOffset, pD->getImg() + i * iRows, mem_size);
                     }
                     else
                     {
-                        memset(getImg() + iOffset, 0x00, iRows * sizeof(double));
+                        memset(getImg() + iOffset, 0x00, mem_size);
                     }
                 }
             }
@@ -1050,7 +1023,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
             {
                 for (int i = 0 ; i < iCols ; i++)
                 {
-                    memmove(get() + i * getRows(), pD->get() + i * iRows, iRows * sizeof(double));
+                    memmove(get() + i * m_iRows, pD->get() + i * iRows, mem_size);
                 }
             }
         }
@@ -1061,16 +1034,16 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
         //std::cout << "real append in x,y" << std::endl;
         if (iRows == 1)
         {
-            iInc = getRows();
+            iInc = m_iRows;
             //std::cout << "iInc : " << iInc << std::endl;
         }
 
-        int iOffset =  _iCols * getRows() + _iRows;
+        int iOffset =  _iCols * m_iRows + _iRows;
         C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
 
         if (isComplex())
         {
-            int iOffset =  _iCols * getRows() + _iRows;
+            int iOffset =  _iCols * m_iRows + _iRows;
             C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
             if (pD->isComplex())
             {
@@ -1086,22 +1059,24 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
     }
     else
     {
+        size_t mem_size = iRows * sizeof(double);
+        
         //std::cout << "no optimisation" << std::endl;
         if (isComplex())
         {
             for (int i = 0 ; i < iCols ; i++)
             {
-                int iOffset = (_iCols + i) * getRows() + _iRows;
+                int iOffset = (_iCols + i) * m_iRows + _iRows;
                 
-                memmove(get() + iOffset, pD->get() + i * iRows, iRows * sizeof(double));
+                memmove(get() + iOffset, pD->get() + i * iRows, mem_size);
                 
                 if (pD->isComplex())
                 {
-                    memmove(getImg() + iOffset, pD->getImg() + i * iRows, iRows * sizeof(double));
+                    memmove(getImg() + iOffset, pD->getImg() + i * iRows, mem_size);
                 }
                 else
                 {
-                    memset(getImg() + iOffset, 0x00, iRows * sizeof(double));
+                    memset(getImg() + iOffset, 0x00, mem_size);
                 }
             }
         }
@@ -1109,7 +1084,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
         {
             for (int i = 0 ; i < iCols ; i++)
             {
-                memmove(get() + (_iCols + i) * getRows() + _iRows, pD->get() + i * iRows, iRows * sizeof(double));
+                memmove(get() + (_iCols + i) * m_iRows + _iRows, pD->get() + i * iRows, mem_size);
             }
         }
     }
@@ -1196,16 +1171,16 @@ void Double::convertFromZComplex()
     }
 
     doublecomplex* pdblZ = (doublecomplex*)get();
-    m_pRealData = new double[getSize()];
+    m_pRealData = new double[m_iSize];
 
     if (m_pImgData)
     {
         delete[] m_pImgData;
     }
 
-    m_pImgData = new double[getSize()];
+    m_pImgData = new double[m_iSize];
 
-    vGetPointerFromDoubleComplex(pdblZ, getSize(), m_pRealData, m_pImgData);
+    vGetPointerFromDoubleComplex(pdblZ, m_iSize, m_pRealData, m_pImgData);
     vFreeDoubleComplexFromPointer(pdblZ);
     setViewAsZComplex(false);
 }
@@ -1222,13 +1197,13 @@ void Double::convertToZComplex()
 
     if (isComplex())
     {
-        pdblZ = oGetDoubleComplexFromPointer(getReal(), getImg() , getSize());
+        pdblZ = oGetDoubleComplexFromPointer(m_pRealData, m_pImgData, m_iSize);
         delete[] m_pImgData;
         m_pImgData = NULL;
     }
     else
     {
-        pdblZ = oGetDoubleComplexFromPointer(getReal(), NULL, getSize());
+        pdblZ = oGetDoubleComplexFromPointer(m_pRealData, NULL, m_iSize);
     }
 
     delete[] m_pRealData;
