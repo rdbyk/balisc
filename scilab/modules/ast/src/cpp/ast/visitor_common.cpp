@@ -602,7 +602,21 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     types::typed_list in;
     types::typed_list out;
 
-    std::wstring function_name = L"%";
+    std::wstring function_name;
+    
+    if (_dest)
+    {
+        function_name.reserve((_source->getShortTypeStr()).size() + 
+                              _strType.size() +
+                              (_dest->getShortTypeStr()).size() + 3);
+    }
+    else
+    {
+        function_name.reserve((_source->getShortTypeStr()).size() + 
+                              _strType.size() + 2);
+    }
+    
+    function_name += L"%";
     function_name += _source->getShortTypeStr();
     function_name += L"_"; 
     function_name += _strType;
@@ -616,7 +630,7 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
 
     _source->IncreaseRef();
     in.push_back(_source);
-
+    
     if (_dest)
     {
         _dest->IncreaseRef();
@@ -2548,6 +2562,9 @@ void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _b
 {
     std::string st;
     int size = _stPrompt.size();
+    
+    st.reserve(size + _stLine.size() + 2);
+    
     if (size && ConfigVariable::isPrintCompact() == false)
     {
         st = "\n";
