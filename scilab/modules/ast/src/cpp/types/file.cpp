@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,6 +28,7 @@ File::File()
 {
     m_fileDesc = NULL;
     m_iSwap = 0;
+    m_pstMode.reserve(3);
     m_pstMode = L"";
     m_iFortranMode = -1; // see clunit.f
     m_iType = 0; // 1 : fortran open   2 : c open   3 : std::err std::out std::in
