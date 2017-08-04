@@ -79,8 +79,7 @@ Struct::~Struct()
             SingleStruct *pStr = m_pRealData[i];
             if (pStr)
             {
-                pStr->DecreaseRef();
-                pStr->killMe();
+                pStr->DecreaseRefKillMe();
             }
         }
 
@@ -126,8 +125,7 @@ bool Struct::transpose(InternalType *& out)
         out = pSt;
         for (int i = 0; i < m_iSize; ++i)
         {
-            pSt->m_pRealData[i]->DecreaseRef();
-            pSt->m_pRealData[i]->killMe();
+            pSt->m_pRealData[i]->DecreaseRefKillMe();
         }
 
         Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->m_pRealData);
@@ -248,8 +246,7 @@ Struct* Struct::set(int _iIndex, SingleStruct* _pIT)
 
         if (pOld != NULL)
         {
-            pOld->DecreaseRef();
-            pOld->killMe();
+            pOld->DecreaseRefKillMe();
         }
 
         return this;
@@ -274,8 +271,7 @@ Struct* Struct::set(int _iIndex, const SingleStruct* _pIT)
 
         if (pOld != NULL)
         {
-            pOld->DecreaseRef();
-            pOld->killMe();
+            pOld->DecreaseRefKillMe();
         }
 
         return this;
@@ -391,8 +387,7 @@ void Struct::deleteAll()
 {
     for (int i = 0 ; i < getSize() ; i++)
     {
-        m_pRealData[i]->DecreaseRef();
-        m_pRealData[i]->killMe();
+        m_pRealData[i]->DecreaseRefKillMe();
     }
     delete[] m_pRealData;
     m_pRealData = NULL;
