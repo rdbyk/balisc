@@ -256,7 +256,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         double* pdblI = pDb->getImg();
                         pP->setComplex(true);
-                        for (int i = 0; i < pDb->getSize(); i++)
+                        int size = pDb->getSize();
+                        for (int i = 0; i < size; i++)
                         {
                             pSS[i]->setRank(0);
                             pSS[i]->setCoef(pdblR + i, pdblI + i);
@@ -264,7 +265,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     }
                     else
                     {
-                        for (int i = 0; i < pDb->getSize(); i++)
+                        int size = pDb->getSize();
+                        for (int i = 0; i < size; i++)
                         {
                             pSS[i]->setRank(0);
                             pSS[i]->setCoef(pdblR + i, NULL);
@@ -458,14 +460,19 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& s
     {
         if (_paramR->isGenericType() && _paramR->getAs<types::GenericType>()->getDims() > 2)
         {
-            std::wstring fun = L"%hm_";
+            std::wstring fun;
+            fun.reserve(strType.size() + 7);
+            fun += L"%hm_";
             fun += strType;
             fun += L"_hm";
             Ret = Overload::call(fun, in, 1, out, true);
         }
         else
         {
-            std::wstring fun = L"%";
+            std::wstring fun;
+            fun.reserve((_paramL->getAs<types::List>()->getShortTypeStr()).size() + strType.size() + 
+                        (_paramR->getAs<types::List>()->getShortTypeStr()).size() + 3);
+            fun += L"%";
             fun += _paramL->getAs<types::List>()->getShortTypeStr();
             fun += L"_"; 
             fun += strType;

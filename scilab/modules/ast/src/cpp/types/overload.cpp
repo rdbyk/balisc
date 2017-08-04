@@ -42,14 +42,18 @@ std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, ty
     {
         case 0 :
             {
-                std::wstring o = L"%_";
+                std::wstring o;
+                o.reserve(_stFunctionName.size() + 2);
+                o += L"%_";
                 o += _stFunctionName;
                 return o;
             }
         case 2:
             if (_isOperator)
             {
-                std::wstring o = L"%";
+                std::wstring o;
+                o.reserve(stType0.size() + _stFunctionName.size() + (in[1]->getShortTypeStr()).size() + 3);
+                o += L"%";
                 o += stType0;
                 o += L"_";
                 o += _stFunctionName;
@@ -59,7 +63,9 @@ std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, ty
             }
         default:
             {
-                std::wstring o = L"%";
+                std::wstring o;
+                o.reserve(stType0.size() + _stFunctionName.size() + 2);
+                o += L"%";
                 o += stType0;
                 o += L"_";
                 o += _stFunctionName;
