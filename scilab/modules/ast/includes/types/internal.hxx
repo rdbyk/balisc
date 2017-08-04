@@ -292,8 +292,9 @@ public :
 
     inline void _decreaserefkillme(const char * f, int l)
     {
-        if (m_iRef == 0 || --m_iRef == 0)
+        if (m_iRef < 2)
         {
+            m_iRef = 0;
             bKillMe = true;
             delete this;
         }
@@ -330,8 +331,9 @@ public :
     
     inline void DecreaseRefKillMe()
     {
-        if (m_iRef == 0 || --m_iRef == 0)
+        if (m_iRef < 2)
         {
+            m_iRef = 0;
             delete this;
         }
     }
