@@ -1,9 +1,9 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 
 #ifndef __INTERNAL_HXX__
@@ -43,6 +43,7 @@ extern "C"
 #define DecreaseRef() _decreaseref(__FILE__, __LINE__)
 #define IncreaseRef() _increaseref(__FILE__, __LINE__)
 #define killMe() _killme(__FILE__, __LINE__)
+#define DecreaseRefKillMe() _decreaserefkillme(__FILE__, __LINE__)
 #endif
 
 #include "visitor.hxx"
@@ -256,7 +257,7 @@ public :
             std::cout << "killme " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
         }
 
-        if (isDeletable())
+        if (m_iRef == 0)
         {
             bKillMe = true;
             delete this;
@@ -288,11 +289,28 @@ public :
             std::cout << "decref " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
         }
     }
+
+    inline void _decreaserefkillme(const char * f, int l)
+    {
+        if (m_iRef < 2)
+        {
+            m_iRef = 0;
+            bKillMe = true;
+            delete this;
+        }
+
+#if defined(_SCILAB_DEBUGREF_WITHOUT_START_END)
+        if (getStartProcessing() == 0 && getEndProcessing() == 0)
+#endif
+        {
+            std::cout << "decrefkillme " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
+        }
+    }
 #else
 
     inline void killMe()
     {
-        if (isDeletable())
+        if (m_iRef == 0)
         {
             delete this;
         }
@@ -308,6 +326,15 @@ public :
         if (m_iRef > 0)
         {
             m_iRef--;
+        }
+    }
+    
+    inline void DecreaseRefKillMe()
+    {
+        if (m_iRef < 2)
+        {
+            m_iRef = 0;
+            delete this;
         }
     }
 #endif

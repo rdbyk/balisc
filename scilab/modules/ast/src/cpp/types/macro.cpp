@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <memory>
 #include <sstream>
@@ -59,10 +59,8 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputAr
 Macro::~Macro()
 {
     delete m_body;
-    m_pDblArgIn->DecreaseRef();
-    m_pDblArgIn->killMe();
-    m_pDblArgOut->DecreaseRef();
-    m_pDblArgOut->killMe();
+    m_pDblArgIn->DecreaseRefKillMe();
+    m_pDblArgOut->DecreaseRefKillMe();
 
     if (m_inputArgs)
     {
@@ -76,8 +74,7 @@ Macro::~Macro()
 
     for (const auto & sub : m_submacro)
     {
-        sub.second->DecreaseRef();
-        sub.second->killMe();
+        sub.second->DecreaseRefKillMe();
     }
 
     m_submacro.clear();
@@ -358,8 +355,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             {
                 for (int j = 0; j < i; ++j)
                 {
-                    out[j]->DecreaseRef();
-                    out[j]->killMe();
+                    out[j]->DecreaseRefKillMe();
                 }
                 out.clear();
                 cleanCall(pContext, oldVal);
@@ -388,8 +384,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 const int size = (const int)out.size();
                 for (int j = 0; j < size; ++j)
                 {
-                    out[j]->DecreaseRef();
-                    out[j]->killMe();
+                    out[j]->DecreaseRefKillMe();
                 }
                 out.clear();
                 cleanCall(pContext, oldVal);
