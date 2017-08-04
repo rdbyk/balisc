@@ -110,8 +110,7 @@ bool Context::clearCurrentScope(bool _bClose)
                     libraries.remove(var.first, m_iLevel);
                 }
 
-                pIT->DecreaseRef();
-                pIT->killMe();
+                pIT->DecreaseRefKillMe();
 
                 var.second->pop();
                 delete pSV;
