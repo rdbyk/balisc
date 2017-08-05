@@ -1686,7 +1686,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     if (bPutInCtx)
                     {
-                        pITMain->DecreaseRefKillMe();
+                        pITMain->DecreaseRef();
+                        pITMain->killMe();
                     }
 
                     bPutInCtx = true;

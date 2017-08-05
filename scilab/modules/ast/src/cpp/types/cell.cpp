@@ -1,9 +1,9 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+*  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+*
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- *
- */
+*
+*/
 
 #include <algorithm>
 #include <sstream>
@@ -83,7 +83,8 @@ Cell::~Cell()
     {
         for (int i = 0; i < m_iSizeMax; i++)
         {
-            m_pRealData[i]->DecreaseRefKillMe();
+            m_pRealData[i]->DecreaseRef();
+            m_pRealData[i]->killMe();
         }
     }
 
@@ -178,7 +179,8 @@ Cell* Cell::set(int _iIndex, InternalType* _pIT)
 
     if (m_pRealData[_iIndex] != NULL)
     {
-        m_pRealData[_iIndex]->DecreaseRefKillMe();
+        m_pRealData[_iIndex]->DecreaseRef();
+        m_pRealData[_iIndex]->killMe();
     }
 
     _pIT->IncreaseRef();
@@ -202,7 +204,8 @@ Cell* Cell::set(int _iIndex, const InternalType* _pIT)
 
     if (m_pRealData[_iIndex] != NULL)
     {
-        m_pRealData[_iIndex]->DecreaseRefKillMe();
+        m_pRealData[_iIndex]->DecreaseRef();
+        m_pRealData[_iIndex]->killMe();
     }
 
     const_cast<InternalType*>(_pIT)->IncreaseRef();
@@ -229,7 +232,8 @@ Cell* Cell::set(InternalType** _pIT)
 
         if (m_pRealData[i] != NULL)
         {
-            m_pRealData[i]->DecreaseRefKillMe();
+            m_pRealData[i]->DecreaseRef();
+            m_pRealData[i]->killMe();
         }
 
         _pIT[i]->IncreaseRef();
@@ -268,7 +272,8 @@ void Cell::deleteAll()
 {
     for (int i = 0 ; i < getSize() ; i++)
     {
-        m_pRealData[i]->DecreaseRefKillMe();
+        m_pRealData[i]->DecreaseRef();
+        m_pRealData[i]->killMe();
     }
 
     delete[] m_pRealData;
