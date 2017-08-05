@@ -51,17 +51,20 @@ ImplicitList::~ImplicitList()
     {
         if (m_poStart)
         {
-            m_poStart->DecreaseRefKillMe();
+            m_poStart->DecreaseRef();
+            m_poStart->killMe();
         }
 
         if (m_poStep)
         {
-            m_poStep->DecreaseRefKillMe();
+            m_poStep->DecreaseRef();
+            m_poStep->killMe();
         }
 
         if (m_poEnd)
         {
-            m_poEnd->DecreaseRefKillMe();
+            m_poEnd->DecreaseRef();
+            m_poEnd->killMe();
         }
     }
 #ifndef NDEBUG
@@ -135,7 +138,8 @@ void ImplicitList::setStart(InternalType *_poIT)
     if (m_poStart)
     {
         //clear previous value
-        m_poStart->DecreaseRefKillMe();
+        m_poStart->DecreaseRef();
+        m_poStart->killMe();
         m_poStart = NULL;
     }
 
@@ -153,7 +157,8 @@ void ImplicitList::setStep(InternalType *_poIT)
     if (m_poStep)
     {
         //clear previous value
-        m_poStep->DecreaseRefKillMe();
+        m_poStep->DecreaseRef();
+        m_poStep->killMe();
         m_poStep = NULL;
     }
 
@@ -171,7 +176,8 @@ void ImplicitList::setEnd(InternalType* _poIT)
     if (m_poEnd)
     {
         //clear previous value
-        m_poEnd->DecreaseRefKillMe();
+        m_poEnd->DecreaseRef();
+        m_poEnd->killMe();
         m_poEnd = NULL;
     }
 
