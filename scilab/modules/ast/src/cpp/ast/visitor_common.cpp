@@ -742,13 +742,9 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
 
 bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 {
-    ast::FieldExp* pField      = dynamic_cast<ast::FieldExp*>(_pExp);
-    ast::SimpleVar* pVar       = dynamic_cast<ast::SimpleVar*>(_pExp);
-    ast::CallExp* pCall        = dynamic_cast<ast::CallExp*>(_pExp);
-    ast::CellCallExp* pCell    = dynamic_cast<ast::CellCallExp*>(_pExp);
-
-    if (pField)
+    if (_pExp->isFieldExp())
     {
+        ast::FieldExp* pField = static_cast<ast::FieldExp*>(_pExp);
         if (getFieldsFromExp(pField->getHead(), fields))
         {
             return getFieldsFromExp(pField->getTail(), fields);
@@ -756,8 +752,9 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 
         return false;
     }
-    else if (pVar)
+    else if (_pExp->isSimpleVar())
     {
+        ast::SimpleVar* pVar = static_cast<ast::SimpleVar*>(_pExp);
         if (fields.empty())
         {
             fields.push_back(new ExpHistory(NULL, pVar));
@@ -772,8 +769,9 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 
         return true;
     }
-    else if (pCall)
+    else if (_pExp->isCallExp())
     {
+        ast::CallExp* pCall = static_cast<ast::CallExp*>(_pExp);
         bool bArgList = false;
         types::List* pList = NULL;
         int iListIncr = 0;
@@ -858,7 +856,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             pList->killMe();
         }
 
-        if (pCell)
+        if (_pExp->isCellCallExp())
         {
             // a{x}
             fields.back()->setCellExp();
