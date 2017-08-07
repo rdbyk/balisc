@@ -292,7 +292,7 @@ public :
 
     inline void killMe()
     {
-        if (isDeletable())
+        if (m_iRef == 0)
         {
             delete this;
         }
