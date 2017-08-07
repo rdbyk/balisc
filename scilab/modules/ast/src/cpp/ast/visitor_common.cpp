@@ -601,22 +601,26 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     types::typed_list in;
     types::typed_list out;
 
+    std::wstring source_type_str = _source->getShortTypeStr();
+    int source_type_str_size = source_type_str.size();
+    std::wstring dest_type_str;
+    int dest_type_str_size;
     std::wstring function_name;
     
     if (_dest)
     {
-        function_name.reserve((_source->getShortTypeStr()).size() + 
-                              _strType.size() +
-                              (_dest->getShortTypeStr()).size() + 3);
+        dest_type_str = _dest->getShortTypeStr();
+        dest_type_str_size = dest_type_str.size();
+        function_name.reserve(source_type_str_size + _strType.size() +
+                              dest_type_str_size + 3);
     }
     else
     {
-        function_name.reserve((_source->getShortTypeStr()).size() + 
-                              _strType.size() + 2);
+        function_name.reserve(source_type_str_size + _strType.size() + 2);
     }
     
     function_name += L"%";
-    function_name += _source->getShortTypeStr();
+    function_name += source_type_str;
     function_name += L"_"; 
     function_name += _strType;
 
@@ -636,32 +640,32 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
         in.push_back(_dest);
 
         function_name += L"_";
-        function_name += _dest->getShortTypeStr();
+        function_name += dest_type_str;
     }
 
     types::InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
     if (pFunc == NULL &&
-            (_source->getShortTypeStr().size() > 8 || _dest && _dest->getShortTypeStr().size() > 8))
+            (source_type_str_size > 8 || _dest && dest_type_str_size > 8))
     {
-        if (_source->getShortTypeStr().size() > 8)
+        if (source_type_str_size > 8)
         {
             function_name = L"%";
-            function_name += _source->getShortTypeStr().substr(0, 8);
+            function_name += source_type_str.substr(0, 8);
             function_name += L"_";
             function_name += _strType;
         }
         else if (_dest)
         {
             function_name = L"%";
-            function_name += _source->getShortTypeStr();
+            function_name += source_type_str;
             function_name += L"_";
             function_name +=_strType;
         }
 
-        if (_dest && _dest->getShortTypeStr().size() > 8)
+        if (_dest && dest_type_str_size > 8)
         {
             function_name += L"_";
-            function_name += _dest->getShortTypeStr().substr(0, 8);
+            function_name += dest_type_str.substr(0, 8);
         }
 
         pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
