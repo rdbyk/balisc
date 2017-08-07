@@ -587,53 +587,60 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 bUndefine = true;
                 continue;
             }
-            if (_pRef->isStruct())
+
+            switch(_pRef->getType())
             {
-                Struct* pStruct = _pRef->getAs<Struct>();
-
-                if (_pArgsIn->size() != 1 || pStr->isScalar() == false)
-                {
-                    bUndefine = true;
-                    continue;
-                }
-
-                wchar_t* pFieldName = pStr->get(0);
-
-                // pCurrent arg is indexed to 1 unlike the return of "getFieldIndex"
-                int iIndex = pStruct->get(0)->getFieldIndex(pFieldName) + 1;
-                if (iIndex == -1)
-                {
-                    bUndefine = true;
-                    continue;
-                }
-
-                pCurrentArg = new Double((double)iIndex);
-            }
-            else if (_pRef->isTList())
-            {
-                // List can't be extract by field and MList must call overload
-                TList* pTL = _pRef->getAs<TList>();
-                pCurrentArg = new Double(pStr->getDims(), pStr->getDimsArray());
-                double* pdbl = pCurrentArg->get();
-                for (int i = 0; i < pStr->getSize(); i++)
-                {
-                    wchar_t* pFieldName = pStr->get(i);
-                    int iIndex = pTL->getIndexFromString(pFieldName);
-                    if (iIndex == -1)
+                case types::InternalType::ScilabStruct:
                     {
-                        bUndefine = true;
-                        continue;
+                        Struct* pStruct = _pRef->getAs<Struct>();
+
+                        if (_pArgsIn->size() != 1 || pStr->isScalar() == false)
+                        {
+                            bUndefine = true;
+                            continue;
+                        }
+
+                        wchar_t* pFieldName = pStr->get(0);
+
+                        // pCurrent arg is indexed to 1 unlike the return of "getFieldIndex"
+                        int iIndex = pStruct->get(0)->getFieldIndex(pFieldName) + 1;
+                        if (iIndex == -1)
+                        {
+                            bUndefine = true;
+                            continue;
+                        }
+
+                        pCurrentArg = new Double((double)iIndex);
                     }
-                    pdbl[i] = (double)(iIndex + 1);
-                }
-            }
-            else if (_pRef->isList())
-            {
-                bUndefine = true;
-                break;
-            }
-            else if (_pRef->isCell())
-            {
+                    break;
+                
+                case types::InternalType::ScilabTList:
+                    {
+                        // List can't be extract by field and MList must call overload
+                        TList* pTL = _pRef->getAs<TList>();
+                        pCurrentArg = new Double(pStr->getDims(), pStr->getDimsArray());
+                        double* pdbl = pCurrentArg->get();
+                        for (int i = 0; i < pStr->getSize(); i++)
+                        {
+                            wchar_t* pFieldName = pStr->get(i);
+                            int iIndex = pTL->getIndexFromString(pFieldName);
+                            if (iIndex == -1)
+                            {
+                                bUndefine = true;
+                                continue;
+                            }
+                            pdbl[i] = (double)(iIndex + 1);
+                        }
+                    }
+                    break;
+                
+                case types::InternalType::ScilabList:
+                    bUndefine = true;
+                    i = iDims; // break loop
+                    break;
+                    
+                case types::InternalType::ScilabCell:
+                    break;
             }
         }
         else if (pIT->isPoly())
