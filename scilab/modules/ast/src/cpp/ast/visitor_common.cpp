@@ -564,29 +564,28 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
 const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
 {
-    const ast::FieldExp* pField =  dynamic_cast<const ast::FieldExp*>(_pExp);
-    const ast::SimpleVar* pVar =  dynamic_cast<const ast::SimpleVar*>(_pExp);
-    const ast::CallExp* pCall =  dynamic_cast<const ast::CallExp*>(_pExp);
-
-    if (pField)
+    switch(_pExp->getType())
     {
-        return getStructNameFromExp(pField->getHead());
+        case ast::Exp::FIELDEXP:
+            return getStructNameFromExp(static_cast<const ast::FieldExp*>(_pExp)->getHead());
+            break;
+            
+        case ast::Exp::SIMPLEVAR:
+            return &(static_cast<const ast::SimpleVar*>(_pExp)->getSymbol().getName());
+            break;
+            
+        case ast::Exp::CALLEXP:
+            return getStructNameFromExp(&(static_cast<const ast::CallExp*>(_pExp)->getName()));
+            break;
+            
+        default:
+            std::wostringstream os;
+            os << _W("Unknown expression");
+            //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
+            throw ast::InternalError(os.str(), 999, _pExp->getLocation());
+            break;
     }
-    else if (pVar)
-    {
-        return &(pVar->getSymbol().getName());
-    }
-    else if (pCall)
-    {
-        return getStructNameFromExp(&(pCall->getName()));
-    }
-    else
-    {
-        std::wostringstream os;
-        os << _W("Unknown expression");
-        //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
-        throw ast::InternalError(os.str(), 999, _pExp->getLocation());
-    }
+    
     return NULL;
 }
 
@@ -602,22 +601,26 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     types::typed_list in;
     types::typed_list out;
 
+    std::wstring source_type_str = _source->getShortTypeStr();
+    int source_type_str_size = source_type_str.size();
+    std::wstring dest_type_str;
+    int dest_type_str_size;
     std::wstring function_name;
     
     if (_dest)
     {
-        function_name.reserve((_source->getShortTypeStr()).size() + 
-                              _strType.size() +
-                              (_dest->getShortTypeStr()).size() + 3);
+        dest_type_str = _dest->getShortTypeStr();
+        dest_type_str_size = dest_type_str.size();
+        function_name.reserve(source_type_str_size + _strType.size() +
+                              dest_type_str_size + 3);
     }
     else
     {
-        function_name.reserve((_source->getShortTypeStr()).size() + 
-                              _strType.size() + 2);
+        function_name.reserve(source_type_str_size + _strType.size() + 2);
     }
     
     function_name += L"%";
-    function_name += _source->getShortTypeStr();
+    function_name += source_type_str;
     function_name += L"_"; 
     function_name += _strType;
 
@@ -637,32 +640,32 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
         in.push_back(_dest);
 
         function_name += L"_";
-        function_name += _dest->getShortTypeStr();
+        function_name += dest_type_str;
     }
 
     types::InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
     if (pFunc == NULL &&
-            (_source->getShortTypeStr().size() > 8 || _dest && _dest->getShortTypeStr().size() > 8))
+            (source_type_str_size > 8 || _dest && dest_type_str_size > 8))
     {
-        if (_source->getShortTypeStr().size() > 8)
+        if (source_type_str_size > 8)
         {
             function_name = L"%";
-            function_name += _source->getShortTypeStr().substr(0, 8);
+            function_name += source_type_str.substr(0, 8);
             function_name += L"_";
             function_name += _strType;
         }
         else if (_dest)
         {
             function_name = L"%";
-            function_name += _source->getShortTypeStr();
+            function_name += source_type_str;
             function_name += L"_";
             function_name +=_strType;
         }
 
-        if (_dest && _dest->getShortTypeStr().size() > 8)
+        if (_dest && dest_type_str_size > 8)
         {
             function_name += L"_";
-            function_name += _dest->getShortTypeStr().substr(0, 8);
+            function_name += dest_type_str.substr(0, 8);
         }
 
         pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
@@ -743,13 +746,9 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
 
 bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 {
-    ast::FieldExp* pField      = dynamic_cast<ast::FieldExp*>(_pExp);
-    ast::SimpleVar* pVar       = dynamic_cast<ast::SimpleVar*>(_pExp);
-    ast::CallExp* pCall        = dynamic_cast<ast::CallExp*>(_pExp);
-    ast::CellCallExp* pCell    = dynamic_cast<ast::CellCallExp*>(_pExp);
-
-    if (pField)
+    if (_pExp->isFieldExp())
     {
+        ast::FieldExp* pField = static_cast<ast::FieldExp*>(_pExp);
         if (getFieldsFromExp(pField->getHead(), fields))
         {
             return getFieldsFromExp(pField->getTail(), fields);
@@ -757,8 +756,9 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 
         return false;
     }
-    else if (pVar)
+    else if (_pExp->isSimpleVar())
     {
+        ast::SimpleVar* pVar = static_cast<ast::SimpleVar*>(_pExp);
         if (fields.empty())
         {
             fields.push_back(new ExpHistory(NULL, pVar));
@@ -773,8 +773,9 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 
         return true;
     }
-    else if (pCall)
+    else if (_pExp->isCallExp())
     {
+        ast::CallExp* pCall = static_cast<ast::CallExp*>(_pExp);
         bool bArgList = false;
         types::List* pList = NULL;
         int iListIncr = 0;
@@ -859,7 +860,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             pList->killMe();
         }
 
-        if (pCell)
+        if (_pExp->isCellCallExp())
         {
             // a{x}
             fields.back()->setCellExp();
