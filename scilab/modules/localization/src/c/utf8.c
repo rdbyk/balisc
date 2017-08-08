@@ -23,7 +23,7 @@
  
 size_t utf8_length_from_wchar(const wchar_t* ucs4)
 {
-    size_t len_utf8 = 0;
+    int len_utf8 = 0;
     wchar_t* s = (wchar_t*)ucs4;
     
     while (*s != L'\0')
@@ -31,18 +31,22 @@ size_t utf8_length_from_wchar(const wchar_t* ucs4)
         if (*s <= 0x0000007F)
         {
             len_utf8++;
+            ++s;
         }
         else if (*s <= 0x000007FF)
         {
             len_utf8 += 2;
+            ++s;
         }
         else if (*s <= 0x0000FFFF)
         {
             len_utf8 += 3;
+            ++s;
         }
         else if (*s <= 0x0010FFFF)
         {
             len_utf8 += 4;
+            ++s;
         }
         else
         {
@@ -50,7 +54,6 @@ size_t utf8_length_from_wchar(const wchar_t* ucs4)
             len_utf8 = -1;
             break;
         }
-        s++;
     }
     
     return len_utf8;
@@ -66,40 +69,37 @@ int utf8_from_wchar(const wchar_t* ucs4, char* utf8)
     {
         if (*s <= 0x0000007F)
         {
-            *d = (char)*s;
+            *d++ = (char)*s;
+            ++s;
         }
         else if (*s <= 0x000007FF)
         {
-            *d = 0xc0 | (*s >> 6);
-            d++;
-		    *d = 0x80 | (*s & 0x3f);
+            *d++ = 0xc0 | (*s >> 6);
+		    *d++ = 0x80 | (*s & 0x3f);
+            ++s;
         }
         else if (*s <= 0x0000FFFF)
         {
-            *d = 0xe0 | (*s >> 12);
-            d++;
-            *d = 0x80 | ((*s >> 6) & 0x3f);
-            d++;
-            *d = 0x80 | (*s & 0x3f);
+            *d++ = 0xe0 | (*s >> 12);
+            *d++ = 0x80 | ((*s >> 6) & 0x3f);
+            *d++ = 0x80 | (*s & 0x3f);
+            ++s;
         }
         else if (*s <= 0x0010FFFF)
         {
-            *d = 0xf0 | (*s >> 18);
-            d++;
-            *d = 0x80 | ((*s >> 12) & 0x3f);
-            d++;
-		    *d = 0x80 | ((*s >> 6) & 0x3f);
-            d++;
-            *d= 0x80 | (*s & 0x3f);
+            *d++ = 0xf0 | (*s >> 18);
+            *d++ = 0x80 | ((*s >> 12) & 0x3f);
+		    *d++ = 0x80 | ((*s >> 6) & 0x3f);
+            *d++ = 0x80 | (*s & 0x3f);
+            ++s;
         }
         else
         {
             /* violation of RFC 3629 */
             return 1; /* failure */
         }
-        d++;
-        s++;
     }
+    
     *d = '\0';
     
     return 0; /* success */
@@ -115,9 +115,7 @@ size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
     {
         if (*s < 0x80) /* 0xxxxxxx */
         {
-            *d = *s;
-            d++;
-            s++;
+            *d++ = *s++;
             /* n++; */
         }
         else if ((s[0] & 0xe0) == 0xc0)
@@ -130,8 +128,7 @@ size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
             }
             else
             {
-                *d = ((0x1f & s[0]) << 6) | (0x3f & s[1]);
-                d++;
+                *d++ = ((0x1f & s[0]) << 6) | (0x3f & s[1]);
                 s += 2;
                 /* n += 2; */
             }
@@ -150,8 +147,7 @@ size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
             }
             else
             {
-                *d = ((0x0f & s[0]) << 12) | ((0x3f & s[1]) << 6) | (0x3f & s[2]);
-                d++;
+                *d++ = ((0x0f & s[0]) << 12) | ((0x3f & s[1]) << 6) | (0x3f & s[2]);
                 s += 3;
                 /* n += 3; */
             }
@@ -169,8 +165,7 @@ size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
             }
             else
             {
-                *d = ((0x07 & s[0]) << 18) | ((0x3f & s[1]) << 12) | ((0x3f & s[2]) << 6) | (0x3f & s[3]);
-                d++;
+                *d++ = ((0x07 & s[0]) << 18) | ((0x3f & s[1]) << 12) | ((0x3f & s[2]) << 6) | (0x3f & s[3]);
                 s += 4;
                 /* n += 4; */
             }
@@ -180,6 +175,7 @@ size_t wchar_from_utf8(const char *utf8, wchar_t* ucs4)
             return -1;
         }
     }
+    
     *d = L'\0';
     
     return 0;
@@ -191,14 +187,12 @@ size_t wchar_from_iso8859_1(const char* iso, wchar_t* ucs4)
     wchar_t* d = ucs4;
     char* s = (char*)iso;
     
-    *d = L'\0';
     while ((*s != '\0') && (*s < 0xFF))
     {
-        *d = (wchar_t)*s;
-        d++;
-        s++;
+        *d++ = (wchar_t)*s++;
         len++;
     }
+    
     *d = L'\0';
     
     if (*s != '\0')
