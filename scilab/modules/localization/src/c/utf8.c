@@ -30,29 +30,35 @@ size_t utf8_length_from_wchar(const wchar_t* ucs4)
     {
         if (*s <= 0x0000007F)
         {
-            len_utf8++;
+            ++len_utf8;
             ++s;
-        }
-        else if (*s <= 0x000007FF)
-        {
-            len_utf8 += 2;
-            ++s;
-        }
-        else if (*s <= 0x0000FFFF)
-        {
-            len_utf8 += 3;
-            ++s;
-        }
-        else if (*s <= 0x0010FFFF)
-        {
-            len_utf8 += 4;
-            ++s;
+            continue;
         }
         else
-        {
-            /* violation of RFC 3629 */
-            len_utf8 = -1;
-            break;
+        { 
+            if (*s <= 0x000007FF)
+            {
+                len_utf8 += 2;
+                ++s;
+                continue;
+            }
+            else if (*s <= 0x0000FFFF)
+            {
+                len_utf8 += 3;
+                ++s;
+                continue;
+            }
+            else if (*s <= 0x0010FFFF)
+            {
+                len_utf8 += 4;
+                ++s;
+                continue;
+            }
+            else
+            {
+                /* violation of RFC 3629 */
+                return -1;
+            }
         }
     }
     
@@ -71,32 +77,45 @@ int utf8_from_wchar(const wchar_t* ucs4, char* utf8)
         {
             *d++ = (char)*s;
             ++s;
+            continue;
         }
-        else if (*s <= 0x000007FF)
+        else 
         {
-            *d++ = 0xc0 | (*s >> 6);
-		    *d++ = 0x80 | (*s & 0x3f);
-            ++s;
-        }
-        else if (*s <= 0x0000FFFF)
-        {
-            *d++ = 0xe0 | (*s >> 12);
-            *d++ = 0x80 | ((*s >> 6) & 0x3f);
-            *d++ = 0x80 | (*s & 0x3f);
-            ++s;
-        }
-        else if (*s <= 0x0010FFFF)
-        {
-            *d++ = 0xf0 | (*s >> 18);
-            *d++ = 0x80 | ((*s >> 12) & 0x3f);
-		    *d++ = 0x80 | ((*s >> 6) & 0x3f);
-            *d++ = 0x80 | (*s & 0x3f);
-            ++s;
-        }
-        else
-        {
-            /* violation of RFC 3629 */
-            return 1; /* failure */
+            if (*s <= 0x000007FF)
+            {
+                wchar_t ss = *s;
+                d[1] = 0x80 | (ss & 0x3f); ss >>= 6;
+                d[0] = 0xc0 | ss;
+                d += 2;
+                ++s;
+                continue;
+            }
+            else if (*s <= 0x0000FFFF)
+            {
+                wchar_t ss = *s;
+                d[2] = 0x80 | (ss & 0x3f); ss >>= 6;
+                d[1] = 0x80 | (ss & 0x3f); ss >>= 6;
+                d[0] = 0xe0 | ss;
+                d += 3;
+                ++s;
+                continue;
+            }
+            else if (*s <= 0x0010FFFF)
+            {
+                wchar_t ss = *s;
+                d[3] = 0x80 | (ss & 0x3f); ss >>= 6;
+                d[2] = 0x80 | (ss & 0x3f); ss >>= 6;
+                d[1] = 0x80 | (ss & 0x3f); ss >>= 6;
+                d[0] = 0xf0 | ss;
+                d += 4;
+                ++s;
+                continue;
+            }
+            else
+            {
+                /* violation of RFC 3629 */
+                return 1; /* failure */
+            }
         }
     }
     
