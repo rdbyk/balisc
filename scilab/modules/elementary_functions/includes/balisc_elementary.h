@@ -21,24 +21,30 @@
 #ifndef __BALISC_ELEMENTARY_H__
 #define __BALISC_ELEMENTARY_H__
 
+#include <math.h>
 #include <sleef.h>
 
-#define balisc_acos_d Sleef_acos_u35
-#define balisc_asin_d Sleef_asin_u35
+#define balisc_acos_d     Sleef_acos_u35
+#define balisc_asin_d     Sleef_asin_u35
 #define balisc_copysign_d copysign
-#define balisc_fabs_d fabs
-#define balisc_log_d Sleef_log_u35
-#define balisc_sqrt_d sqrt
+#define balisc_fabs_d     fabs
+#define balisc_log_d      Sleef_log_u35
+#define balisc_log10_d    log10
+#define balisc_sqrt_d     sqrt
 
 #if defined(__SSE4_1__) || defined(__SSE4_2__)
 
 #define balisc_acos_m128d  Sleef_acosd2_u35sse4
 #define balisc_asin_m128d  Sleef_asind2_u35sse4
+#define balisc_log_m128d   Sleef_logd2_u35sse4
+#define balisc_log10_m128d Sleef_log10d2_u10sse4
 
 #elif defined(__SSE2__)
 
 #define balisc_acos_m128d  Sleef_acosd2_u35sse2
 #define balisc_asin_m128d  Sleef_asind2_u35sse2
+#define balisc_log_m128d   Sleef_logd2_u35sse2
+#define balisc_log10_m128d Sleef_log10d2_u10sse2
 
 #endif
 

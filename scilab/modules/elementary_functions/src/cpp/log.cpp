@@ -18,8 +18,15 @@
 // 02110-1301, USA.
 
 #include "log.hxx"
+
+#include <complex>
 #include <cmath>
 #include <Eigen/Core>
+
+extern "C"
+{
+#include "balisc_elementary.h"
+}
 
 using types::Double;
 
@@ -81,12 +88,12 @@ Double* log(Double* x)
                 
                 if (xr_i >= 0)
                 {
-                    yr[i] = std::log(xr_i);
+                    yr[i] = balisc_log_d(xr_i);
                     yi[i] = 0.0;
                 }
                 else
                 {
-                    yr[i] = std::log(-xr_i);
+                    yr[i] = balisc_log_d(-xr_i);
                     yi[i] = M_PI;
                 }
             }
@@ -97,11 +104,31 @@ Double* log(Double* x)
         {
             Double* y = new Double(x->getDims(), x->getDimsArray(), false);
             
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            yr = xr.log();
+            double* xr = x->get();
+            double* yr = y->get();
+
+#if !defined(balisc_log_m128d)
+            for (int i = 0; i < n; i++)
+            {
+                yr[i] = balisc_log_d(xr[i]);
+            }
+            return y;
+#else
+            int i;
+            for (i = 0; i < n - 1; i++)
+            {
+                __m128d a = balisc_log_m128d(*((__m128d*)&(xr[i])));
+                yr[i] = a[0];
+                yr[++i] = a[1];
+            }
+
+            for ( ; i < n; i++)
+            {
+                yr[i] = balisc_log_d(xr[i]);
+            }
             
             return y;
+#endif
         }
     }
 }
