@@ -45,8 +45,14 @@ Double* round(Double* x)
         
         for (int i = 0; i < n; i++)
         {
+#if !defined(balisc_round_m128d)
             yr[i] = ::balisc_round_d(xr[i]);
             yi[i] = ::balisc_round_d(xi[i]);
+#else
+            __m128d a = ::balisc_round_m128d((__m128d){xr[i],xi[i]});
+            yr[i] = a[0];
+            yi[i] = a[1];
+#endif
         }
         
         return y;
