@@ -18,14 +18,16 @@
 // 02110-1301, USA.
 
 #include "asin.hxx"
+
+#include <complex>
 #include <cmath>
-#include <Eigen/Core>
+
+extern "C"
+{
+#include "balisc_elementary.h"
+}
 
 using types::Double;
-
-using Eigen::Map;
-using Eigen::ArrayXd;
-using Eigen::ArrayXcd;
 
 namespace balisc
 {
@@ -59,7 +61,7 @@ Double* asin(Double* x)
         
         for (int i = 0; i < n; i++)
         {
-            if (std::abs(xr[i]) > 1.0)
+            if (balisc_fabs_d(xr[i]) > 1.0)
             {
                 is_complex = true;
                 break;
@@ -80,16 +82,16 @@ Double* asin(Double* x)
                 if (xr_i > 1.0)
                 {
                     yr[i] = M_PI_2;
-                    yi[i] = -std::log(xr_i + std::sqrt(xr_i*xr_i - 1.0));
+                    yi[i] = -balisc_log_d(xr_i + balisc_sqrt_d(xr_i*xr_i - 1.0));
                 }
                 else if (xr_i < -1.0)
                 {
                     yr[i] = - M_PI_2;
-                    yi[i] = std::log(std::sqrt(xr_i*xr_i - 1.0) - xr_i);
+                    yi[i] = balisc_log_d(balisc_sqrt_d(xr_i*xr_i - 1.0) - xr_i);
                 }
                 else
                 {
-                    yr[i] = std::asin(xr_i);
+                    yr[i] = balisc_asin_d(xr_i);
                     yi[i] = 0.0;
                 }
             }
@@ -103,12 +105,28 @@ Double* asin(Double* x)
             double* xr = x->get();
             double* yr = y->get();
             
+#if !defined(balisc_asin_m128d)
             for (int i = 0; i < n; i++)
             {
-                yr[i] = std::asin(xr[i]);
+                yr[i] = balisc_asin_d(xr[i]);
+            }
+            return y;
+#else
+            int i;
+            for (i = 0; i < n - 1; i++)
+            {
+                __m128d a = balisc_asin_m128d(*((__m128d*)&(xr[i])));
+                yr[i] = a[0];
+                yr[++i] = a[1];
+            }
+
+            for ( ; i < n; i++)
+            {
+                yr[i] = balisc_asin_d(xr[i]);
             }
             
             return y;
+#endif
         }
     }
 }
