@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -222,6 +222,7 @@ void Fac3DDecomposer::fillNormalizedZColorsTextureCoordinates(float* buffer, int
     double zMax = 0.;
     double zRange = 0.;
     double minDoubleValue = 0.;
+    float inv_colormapSize_2 = 1.0f / (float)(colormapSize + 2);
     float index = 0.;
 
     int i = 0;
@@ -246,7 +247,7 @@ void Fac3DDecomposer::fillNormalizedZColorsTextureCoordinates(float* buffer, int
     {
         /* Per-face average */
         zavg = computeAverageValue(&z[i * numVerticesPerGon], numVerticesPerGon);
-        index = (float)((ColorComputer::getIndex(zavg, zMin, zRange, Z_COLOR_OFFSET, 0, colormapSize - 1) + 2.0 + COLOR_TEXTURE_OFFSET) / (float) (colormapSize + 2));
+        index = (float)((ColorComputer::getIndex(zavg, zMin, zRange, Z_COLOR_OFFSET, 0, colormapSize - 1) + 2.0 + COLOR_TEXTURE_OFFSET) * inv_colormapSize_2);
 
         for (j = 0; j < numVerticesPerGon; j++)
         {
@@ -284,7 +285,8 @@ void Fac3DDecomposer::fillDataColorsTextureCoordinates(float* buffer, int buffer
     double color = 0.;
     double colorTextureOffset = 0.;
     double index = 0.;
-
+    float inv_colormapSize_2 = 1.0f / (float)(colormapSize + 2);
+    
     int bufferOffset = 0;
 
     int numColors = 0;
@@ -332,7 +334,7 @@ void Fac3DDecomposer::fillDataColorsTextureCoordinates(float* buffer, int buffer
             }
 
             /* The offset corresponding to the black and white colors must added to the index and the colormap size. */
-            buffer[bufferOffset++] = (float) ((index + colorTextureOffset + 2.0) / (double) (colormapSize + 2));
+            buffer[bufferOffset++] = (float) ((index + colorTextureOffset + 2.0) * inv_colormapSize_2);
             buffer[bufferOffset++] = 0;
             buffer[bufferOffset++] = 0;
             buffer[bufferOffset++] = 1.0;

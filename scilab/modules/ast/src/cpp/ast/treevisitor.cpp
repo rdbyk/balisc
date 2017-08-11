@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -990,7 +990,7 @@ void TreeVisitor::visit(const FunctionDec  &e)
 
     if (returnSize > 0)
     {
-        wostr << L" " << SCI_ASSIGN << L" ";
+        wostr << SCI_ASSIGN;
     }
 
     // Then get the function name
@@ -999,9 +999,9 @@ void TreeVisitor::visit(const FunctionDec  &e)
     // Then get function args
     wostr << SCI_OPEN_ARGS;
     e.getArgs().getOriginal()->accept(pv);
-    wostr << SCI_CLOSE_ARGS << std::endl;
+    wostr << SCI_CLOSE_ARGS;
     wchar_t* pwstFun = os_wcsdup(wostr.str().data());
-    function->append(new types::String(os_wcstok(pwstFun, L"\n", &pwstState)));
+    function->append(new types::String(pwstFun));
     FREE(pwstFun);
 
     // Now print function body

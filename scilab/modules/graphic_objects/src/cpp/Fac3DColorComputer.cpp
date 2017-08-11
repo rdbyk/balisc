@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -258,13 +258,14 @@ int Fac3DColorComputer::isFacetColorValid(int facetIndex)
 double Fac3DColorComputer::computeAverageValue(int facetIndex)
 {
     double averageValue = 0.;
+    int first_color = numVerticesPerGon * facetIndex;
     int i = 0;
 
     averageValue = 0.0;
 
     for (i = 0; i < numVerticesPerGon; i++)
     {
-        averageValue += colors[numVerticesPerGon * facetIndex + i];
+        averageValue += colors[first_color + i];
     }
 
     averageValue /= (double) numVerticesPerGon;

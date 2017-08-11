@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -122,7 +122,7 @@ std::string H5Attribute::dump(std::map<haddr_t, std::string> & alreadyVisited, c
 
     }
 
-    os << H5Object::getIndentString(indentLevel) << "ATTRIBUTE \"" << getName() << "\" {" << std::endl
+    os << H5Object::getIndentString(indentLevel) << "ATTRIBUTE \"" << getName() << "\" {\n"
        << type.dump(alreadyVisited, indentLevel + 1)
        << space.dump(alreadyVisited, indentLevel + 1);
 
@@ -132,10 +132,10 @@ std::string H5Attribute::dump(std::map<haddr_t, std::string> & alreadyVisited, c
     }
     else
     {
-        os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << std::endl;
+        os << H5Object::getIndentString(indentLevel + 1) << _("Error in retrieving data.") << '\n';
     }
 
-    os << H5Object::getIndentString(indentLevel) << "}" << std::endl;
+    os << H5Object::getIndentString(indentLevel) << "}\n";
 
     delete &type;
     delete &space;
@@ -154,13 +154,13 @@ std::string H5Attribute::toString(const unsigned int indentLevel) const
     const H5Type & type = const_cast<H5Attribute *>(this)->getDataType();
     const H5Dataspace & space = const_cast<H5Attribute *>(this)->getSpace();
 
-    os << H5Object::getIndentString(indentLevel) << "HDF5 Attribute" << std::endl
-       << indentString << "Filename" << ": " << getFile().getFileName() << std::endl
-       << indentString << "Name" << ": " << getName() << std::endl
-       << indentString << "Parent path" << ": " << getParent().getCompletePath() << std::endl
-       << indentString << "Type" << ": " << type.getTypeName() << std::endl
-       << indentString << "Dataspace" << ": " << space.getTypeName() << std::endl
-       << indentString << "Data" << ": " << space.getStringDims() << std::endl;
+    os << H5Object::getIndentString(indentLevel) << "HDF5 Attribute\n"
+       << indentString << "Filename" << ": " << getFile().getFileName() << '\n'
+       << indentString << "Name" << ": " << getName() << '\n'
+       << indentString << "Parent path" << ": " << getParent().getCompletePath() << '\n'
+       << indentString << "Type" << ": " << type.getTypeName() << '\n'
+       << indentString << "Dataspace" << ": " << space.getTypeName() << '\n'
+       << indentString << "Data" << ": " << space.getStringDims() << '\n';
 
     delete &type;
     delete &space;

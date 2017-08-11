@@ -4,8 +4,8 @@
  * Copyright (C) 2010 - DIGITEO - Allan SIMON
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,6 +33,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "localization.h"
 #include <time.h>
+#include "strcmp.h"
 }
 
 using namespace org_scilab_modules_ui_data;
@@ -197,7 +198,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
         return 0;
     }
 
-    if (strcmp(pStVarOne, "ans") == 0)
+    if (balisc_strcmp(pStVarOne, "ans") == 0)
     {
         Scierror(999, _("%s: ans cannot be edited.\n"), fname);
         freeAllocatedSingleString(pStVarOne);
@@ -215,29 +216,29 @@ int sci_editvar(char * fname, void* pvApiCtx)
 
     /* Workaround to check for permanent variable.*/
 
-    if (strcmp(pStVarOne, "$")			    == 0 ||
-            strcmp(pStVarOne, "%e")		    == 0 ||
-            strcmp(pStVarOne, "%eps")   	== 0 ||
-            strcmp(pStVarOne, "%fftw")  	== 0 ||
-            strcmp(pStVarOne, "%f")		    == 0 ||
-            strcmp(pStVarOne, "%F")		    == 0 ||
-            strcmp(pStVarOne, "%gui")		== 0 ||
-            strcmp(pStVarOne, "%i")		    == 0 ||
-            strcmp(pStVarOne, "%io")		== 0 ||
-            strcmp(pStVarOne, "%inf")		== 0 ||
-            strcmp(pStVarOne, "%nan")		== 0 ||
-            strcmp(pStVarOne, "%pi")		== 0 ||
-            strcmp(pStVarOne, "%s")	    	== 0 ||
-            strcmp(pStVarOne, "%tk")		== 0 ||
-            strcmp(pStVarOne, "%t")	    	== 0 ||
-            strcmp(pStVarOne, "%T")	    	== 0 ||
-            strcmp(pStVarOne, "%z")	    	== 0 ||
-            strcmp(pStVarOne, "evoid")	    == 0 ||
-            strcmp(pStVarOne, "home")		== 0 ||
-            strcmp(pStVarOne, "PWD")		== 0 ||
-            strcmp(pStVarOne, "SCI")		== 0 ||
-            strcmp(pStVarOne, "SCIHOME")	== 0 ||
-            strcmp(pStVarOne, "TMPDIR") 	== 0 )
+    if (balisc_strcmp(pStVarOne, "$")			    == 0 ||
+            balisc_strcmp(pStVarOne, "%e")		    == 0 ||
+            balisc_strcmp(pStVarOne, "%eps")   	== 0 ||
+            balisc_strcmp(pStVarOne, "%fftw")  	== 0 ||
+            balisc_strcmp(pStVarOne, "%f")		    == 0 ||
+            balisc_strcmp(pStVarOne, "%F")		    == 0 ||
+            balisc_strcmp(pStVarOne, "%gui")		== 0 ||
+            balisc_strcmp(pStVarOne, "%i")		    == 0 ||
+            balisc_strcmp(pStVarOne, "%io")		== 0 ||
+            balisc_strcmp(pStVarOne, "%inf")		== 0 ||
+            balisc_strcmp(pStVarOne, "%nan")		== 0 ||
+            balisc_strcmp(pStVarOne, "%pi")		== 0 ||
+            balisc_strcmp(pStVarOne, "%s")	    	== 0 ||
+            balisc_strcmp(pStVarOne, "%tk")		== 0 ||
+            balisc_strcmp(pStVarOne, "%t")	    	== 0 ||
+            balisc_strcmp(pStVarOne, "%T")	    	== 0 ||
+            balisc_strcmp(pStVarOne, "%z")	    	== 0 ||
+            balisc_strcmp(pStVarOne, "evoid")	    == 0 ||
+            balisc_strcmp(pStVarOne, "home")		== 0 ||
+            balisc_strcmp(pStVarOne, "PWD")		== 0 ||
+            balisc_strcmp(pStVarOne, "SCI")		== 0 ||
+            balisc_strcmp(pStVarOne, "SCIHOME")	== 0 ||
+            balisc_strcmp(pStVarOne, "TMPDIR") 	== 0 )
     {
         Scierror(13, _("Redefining permanent variable.\n"), fname);
         freeAllocatedSingleString(pStVarOne);

@@ -59,7 +59,7 @@ wchar_t *getFullFilenameW(const wchar_t* FilenameInput)
         wcscat(wcpcpy(wcNameExt, wcName), wcExt);
         wcscat(wcpcpy(wcPath, wcDrv), wcDir);
 
-        if (wcscmp(wcPath, L"") == 0)
+        if (wcPath[0] == L'\0')
         {
             int ierr = 0;
             wchar_t *wcCurrentDir = scigetcwdW(&ierr);
@@ -88,8 +88,9 @@ wchar_t *getFullFilenameW(const wchar_t* FilenameInput)
         {
             if ( (wcPath[lenPath - 1 ] != L'/') && (wcPath[lenPath - 1 ] != L'\\') )
             {
-                wcscat(wcPath, L"/");
-                lenPath = (int)wcslen(wcPath);
+                wcPath[lenPath] = L'/';
+                lenPath++;
+                wcPath[lenPath] = L'\0';
             }
         }
 

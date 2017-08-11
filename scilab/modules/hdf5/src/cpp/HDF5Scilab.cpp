@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,6 +23,11 @@
 #include "bool.hxx"
 
 #include "HDF5Scilab.hxx"
+
+extern "C"
+{
+#include "strcmp.h"
+}
 
 namespace org_modules_hdf5
 {
@@ -102,7 +107,7 @@ bool HDF5Scilab::isH5Object(int * mlist, void * pvApiCtx)
         return false;
     }
 
-    bool ret = !strcmp(mlist_type[0], __SCILAB_MLIST_H5OBJECT__) && !strcmp(mlist_type[1], "_id");
+    bool ret = !balisc_strcmp(mlist_type[0], __SCILAB_MLIST_H5OBJECT__) && !balisc_strcmp(mlist_type[1], "_id");
 
     for (int i = 0; i < 2; i++)
     {
@@ -806,7 +811,7 @@ int * HDF5Scilab::exists(H5Object & obj, const unsigned int size, const char ** 
 
     if (attrNames)
     {
-        if ((isfile && (!strcmp(*locations, "/") || !strcmp(*locations, ".") || **locations == '\0')) || H5Lexists(loc, *locations, H5P_DEFAULT) > 0)
+        if ((isfile && (!balisc_strcmp(*locations, "/") || !balisc_strcmp(*locations, ".") || **locations == '\0')) || H5Lexists(loc, *locations, H5P_DEFAULT) > 0)
         {
             const hid_t _loc = H5Oopen(loc, *locations, H5P_DEFAULT);
             if (_loc < 0)
@@ -826,7 +831,7 @@ int * HDF5Scilab::exists(H5Object & obj, const unsigned int size, const char ** 
     {
         for (unsigned int i = 0; i < size; i++)
         {
-            res[i] = ((isfile && (!strcmp(locations[i], "/") || !strcmp(locations[i], ".") || *(locations[i]) == '\0')) || H5Lexists(loc, locations[i], H5P_DEFAULT) > 0) ? 1 : 0;
+            res[i] = ((isfile && (!balisc_strcmp(locations[i], "/") || !balisc_strcmp(locations[i], ".") || *(locations[i]) == '\0')) || H5Lexists(loc, locations[i], H5P_DEFAULT) > 0) ? 1 : 0;
         }
     }
 

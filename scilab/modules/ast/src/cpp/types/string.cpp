@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <sstream>
 #include <iomanip>
@@ -171,7 +171,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             {
                 ostr << L" ";
                 ostr.write(wcsStr + iStrPos, iStrMaxSize);
-                ostr << L" " << std::endl;
+                ostr << L" \n";
                 iCurLen -= iStrMaxSize;
                 iStrPos += iStrMaxSize;
             }
@@ -182,16 +182,16 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         }
         else
         {
-            ostr << L" " << wcsStr << std::endl;
+            ostr << L" " << wcsStr << L"\n";
         }
     }
-    else if (getCols() == 1)
+    else if (m_iCols == 1)
     {
         std::wstring spaces(L"");
 
         // compte max string size
         int iMaxLen = 0;
-        for (int i = 0 ; i < getRows() ; i++)
+        for (int i = 0; i < m_iRows; i++)
         {
             _piDims[1] = 0;
             _piDims[0] = i;
@@ -209,7 +209,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             spaces = SPACE_BETWEEN_TWO_STRING_VALUES;
         }
 
-        for (int i = m_iRows1PrintState ; i < getRows() ; i++)
+        for (int i = m_iRows1PrintState; i < m_iRows; i++)
         {
             iCurrentLine += 2;
             if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
@@ -231,7 +231,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 while (iCurLen > iStrMaxSize)
                 {
                     ostr.write(wcsStr + iStrPos, iStrMaxSize);
-                    ostr << L"!" << std::endl << L"!";
+                    ostr << L"!\n!";
                     iCurLen -= iStrMaxSize;
                     iStrPos += iStrMaxSize;
                 }
@@ -245,7 +245,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 ostr << std::left << wcsStr << spaces;
             }
 
-            ostr << L"!" << std::endl;
+            ostr << L"!\n";
 
             if ((i + 1) < m_iSize)
             {
@@ -253,17 +253,17 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 ostr << L"!";
                 configureStream(&ostr, iEmptyLineSize, iPrecision, ' ');
                 ostr << std::left << L" ";
-                ostr << L"!" << std::endl;
+                ostr << L"!\n";
             }
         }
         ostr << std::resetiosflags(std::ios::adjustfield);
     }
-    else if (getRows() == 1)
+    else if (m_iRows == 1)
     {
         std::wostringstream ostemp;
         int iLastVal = m_iCols1PrintState;
 
-        for (int i = m_iCols1PrintState ; i < getCols() ; i++)
+        for (int i = m_iCols1PrintState; i < m_iCols; i++)
         {
             _piDims[0] = 0;
             _piDims[1] = i;
@@ -283,7 +283,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 }
 
                 addColumnString(ostr, iLastVal + 1, i);
-                ostr << L"!" << ostemp.str() << L"!" << std::endl;
+                ostr << L"!" << ostemp.str() << L"!\n";
                 ostemp.str(L"");
                 iLastVal = i;
             }
@@ -296,7 +296,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 while (iCurLen > iStrMaxSize) // -2 because of two "!"
                 {
                     ostemp.write(wcsStr + iStrPos, iStrMaxSize);
-                    ostemp << L"!" << std::endl << L"!";
+                    ostemp << L"!\n!";
                     iCurLen -= iStrMaxSize;
                     iStrPos += iStrMaxSize;
                 }
@@ -313,10 +313,10 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
         if (iLastVal != 0)
         {
-            addColumnString(ostr, iLastVal + 1, getCols());
+            addColumnString(ostr, iLastVal + 1, m_iCols);
         }
 
-        ostr << L"!" << ostemp.str() << L"!" << std::endl << std::resetiosflags(std::ios::adjustfield);
+        ostr << L"!" << ostemp.str() << L"!\n" << std::resetiosflags(std::ios::adjustfield);
     }
     else //Matrix
     {
@@ -325,13 +325,13 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         int iLastCol = m_iCols1PrintState;
 
         //Array with the max printed size of each col
-        int *piSize = new int[getCols()];
-        memset(piSize, 0x00, getCols() * sizeof(int));
+        int *piSize = new int[m_iCols];
+        memset(piSize, 0x00, m_iCols * sizeof(int));
 
-        for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
+        for (int iCols1 = m_iCols1PrintState; iCols1 < m_iCols; iCols1++)
         {
             std::wstring spaces(L"");
-            for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
+            for (int iRows1 = 0; iRows1 < m_iRows; iRows1++)
             {
                 _piDims[1] = iCols1;
                 _piDims[0] = iRows1;
@@ -352,7 +352,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             if (iLen + piSize[iCols1] > iLineLen && iLastCol != iCols1)
             {
                 //find the limit, print this part
-                for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+                for (int iRows2 = m_iRows2PrintState; iRows2 < m_iRows; iRows2++)
                 {
                     iCurrentLine += 2;
                     if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) ||
@@ -387,7 +387,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             while (iLenStr > iStrMaxSize)
                             {
                                 ostemp.write(wcsStr + iStrPos, iStrMaxSize);
-                                ostemp << L"!" << std::endl << L"!";
+                                ostemp << L"!\n!";
                                 iLenStr -= iStrMaxSize;
                                 iStrPos += iStrMaxSize;
                             }
@@ -401,7 +401,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             ostemp << std::left << get(iPos) << spaces;
                         }
                     }
-                    ostemp << L"!" << std::endl;
+                    ostemp << L"!\n";
 
                     if ((iRows2 + 1) != m_iRows)
                     {
@@ -409,7 +409,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                         // -2 because of two "!"
                         configureStream(&ostemp, iEmptyLineSize, iPrecision, ' ');
                         ostemp << std::left << L" ";
-                        ostemp << L"!" << std::endl;
+                        ostemp << L"!\n";
                     }
                 }
 
@@ -430,7 +430,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_STRING_VALUES;
         }
 
-        for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+        for (int iRows2 = m_iRows2PrintState; iRows2 < m_iRows; iRows2++)
         {
             std::wstring spaces(L"");
             iCurrentLine += 2;
@@ -439,7 +439,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 if (m_iRows2PrintState == 0 && iLastCol != 0)
                 {
                     //add header
-                    addColumnString(ostr, iLastCol + 1, getCols());
+                    addColumnString(ostr, iLastCol + 1, m_iCols);
                 }
 
                 ostr << ostemp.str();
@@ -461,7 +461,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
             ostemp << L"!";
             iLen = 0;
-            for (int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
+            for (int iCols2 = iLastCol; iCols2 < m_iCols; iCols2++)
             {
                 _piDims[0] = iRows2;
                 _piDims[1] = iCols2;
@@ -476,7 +476,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     while (iLenStr > iStrMaxSize)
                     {
                         ostemp.write(wcsStr + iStrPos, iStrMaxSize);
-                        ostemp << L"!" << std::endl << L"!";
+                        ostemp << L"!\n!";
                         iLenStr -= iStrMaxSize;
                         iStrPos += iStrMaxSize;
                     }
@@ -492,25 +492,26 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     iLen += piSize[iCols2] + static_cast<int>(spaces.size());
                 }
             }
-            ostemp << L"!" << std::endl;
+            ostemp << L"!\n";
 
             if ((iRows2 + 1) != m_iRows)
             {
                 ostemp << L"!";
                 configureStream(&ostemp, iLen, iPrecision, ' ');
                 ostemp << std::left << L" ";
-                ostemp << L"!" << std::endl;
+                ostemp << L"!\n";
             }
         }
 
         if (m_iRows2PrintState == 0 && iLastCol != 0)
         {
-            addColumnString(ostr, iLastCol + 1, getCols());
+            addColumnString(ostr, iLastCol + 1, m_iCols);
         }
         ostr << ostemp.str() << std::resetiosflags(std::ios::adjustfield);
         delete[] piSize;
     }
-
+    std::flush(ostr);
+    
     return true;
 }
 
@@ -523,7 +524,7 @@ bool String::operator==(const InternalType& it)
 
     String* pS = const_cast<InternalType&>(it).getAs<types::String>();
 
-    if (pS->getRows() != getRows() || pS->getCols() != getCols())
+    if (pS->getRows() != m_iRows || pS->getCols() != m_iCols)
     {
         return false;
     }
@@ -531,7 +532,7 @@ bool String::operator==(const InternalType& it)
     wchar_t **p1 = get();
     wchar_t **p2 = pS->get();
 
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0; i < m_iSize; i++)
     {
         if (wcscmp(p1[i], p2[i]) != 0)
         {

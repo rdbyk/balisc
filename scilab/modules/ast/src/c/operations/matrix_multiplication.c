@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - INRIA - Antoine ELIAS <antoine.elias@scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
  *
  */
 
-#include <string.h> // for memset fonction
+#include <string.h> // for memset function
 #include "elem_common.h"
 #include "matrix_multiplication.h"
 
@@ -95,7 +95,7 @@ int iMultiRealScalarByRealMatrix(
     int iOne	= 1;
     int iSize2	= _iRows2 * _iCols2;
 
-    C2F(dcopy)(&iSize2, _pdblReal2, &iOne, _pdblRealOut, &iOne);
+    memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
     C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
     return 0;
 }
@@ -107,9 +107,9 @@ int iMultiRealScalarByComplexMatrix(
 {
     int iOne	= 1;
     int iSize2	= _iRows2 * _iCols2;
-
-    C2F(dcopy)(&iSize2, _pdblReal2, &iOne, _pdblRealOut, &iOne);
-    C2F(dcopy)(&iSize2, _pdblImg2, &iOne, _pdblImgOut, &iOne);
+    
+    memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
+    memmove(_pdblImgOut, _pdblImg2, sizeof(double) * iSize2);
     C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
     C2F(dscal)(&iSize2, &_dblReal1, _pdblImgOut, &iOne);
     return 0;
@@ -122,9 +122,9 @@ int iMultiComplexScalarByRealMatrix(
 {
     int iOne	= 1;
     int iSize2	= _iRows2 * _iCols2;
-
-    C2F(dcopy)(&iSize2, _pdblReal2, &iOne, _pdblRealOut, &iOne);
-    C2F(dcopy)(&iSize2, _pdblReal2, &iOne, _pdblImgOut, &iOne);
+    
+    memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
+    memmove(_pdblImgOut, _pdblReal2, sizeof(double) * iSize2);
     C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
     C2F(dscal)(&iSize2, &_dblImg1,	_pdblImgOut, &iOne);
     return 0;
@@ -301,4 +301,3 @@ int iDotMultiplyComplexMatrixByComplexMatrix(
     }
     return 0;
 }
-

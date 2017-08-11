@@ -226,7 +226,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="finite.c" />
     <ClCompile Include="log.c" />
     <ClCompile Include="matrix_generation.c" />
-    <ClCompile Include="mprod.c" />
     <ClCompile Include="sub_vector.c" />
     <ClCompile Include="unsfdcopy.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
@@ -235,7 +234,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
       <FavorSizeOrSpeed Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Size</FavorSizeOrSpeed>
     </ClCompile>
     <ClCompile Include="vfinite.c" />
-    <ClCompile Include="vmul.c" />
     <ClCompile Include="xerhlt.c" />
   </ItemGroup>
   <ItemGroup>

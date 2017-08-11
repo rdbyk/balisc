@@ -27,12 +27,14 @@ wchar_t **partfunctionW(wchar_t** _pwstStringInput, int _iRows, int _iCols, int 
     int i;
     for (i = 0 ; i < iSize ; i++)
     {
+        int len_StringInput_i = wcslen(_pwstStringInput[i]);
+        
         pwstParts[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (_iVectSize + 1));
         
         int j;
         for (j = 0 ; j < _iVectSize ; j++)
         {
-            if (_piVectInput[j] > wcslen(_pwstStringInput[i]))
+            if (_piVectInput[j] > len_StringInput_i)
             {
                 pwstParts[i][j] = L' ';
             }

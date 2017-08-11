@@ -407,9 +407,7 @@ int iPowerRealSquareMatrixByRealScalar(double* _pdblReal1, int _iRows1,
     {
         if (iExpRef == 1)
         {
-            int iSize = _iRows1 * _iCols1;
-            int iOne = 1;
-            C2F(dcopy)(&iSize, _pdblReal1, &iOne, _pdblRealOut, &iOne);
+            memmove(_pdblRealOut, _pdblReal1, _iRows1 * _iCols1 * sizeof(double));
         }
         else if (iExpRef == 0)
         {
@@ -448,7 +446,7 @@ int iPowerRealSquareMatrixByRealScalar(double* _pdblReal1, int _iRows1,
             C2F(dset)(&_iCols1, &alpha, _pdblRealOut, &iInc);
 
             // copy input data to avoid input modification
-            C2F(dcopy)(&iSize, _pdblReal1, &iOne, pdblTmp, &iOne);
+            memmove(pdblTmp, _pdblReal1, iSize * sizeof(double));
 
             // find all "1" in binary representation of the power integer.
             // then perform multiplication according the "1" position.
@@ -475,7 +473,7 @@ int iPowerRealSquareMatrixByRealScalar(double* _pdblReal1, int _iRows1,
                     C2F(dgemm)( "N", "N", &_iCols1, &_iCols1, &_iCols1, &alpha, pdblTmp, &_iCols1,
                                 _pdblRealOut, &_iCols1, &beta, pdblResult, &_iCols1);
 
-                    C2F(dcopy)(&iSize, pdblResult, &iOne, _pdblRealOut, &iOne);
+                    memmove(_pdblRealOut, pdblResult, iSize * sizeof(double));
                 }
 
                 iPos++;
@@ -540,9 +538,8 @@ int iPowerComplexSquareMatrixByRealScalar(
         if (iExpRef == 1)
         {
             int iSize = _iRows1 * _iCols1;
-            int iOne = 1;
-            C2F(dcopy)(&iSize, _pdblReal1, &iOne, _pdblRealOut, &iOne);
-            C2F(dcopy)(&iSize, _pdblImg1, &iOne, _pdblImgOut, &iOne);
+            memmove(_pdblRealOut, _pdblReal1, iSize * sizeof(double));
+            memmove(_pdblImgOut, _pdblImg1, iSize * sizeof(double));
         }
         else if (iExpRef == 0)
         {
@@ -576,11 +573,10 @@ int iPowerComplexSquareMatrixByRealScalar(
 
             double* pdblResult = (double*)malloc(iSize2 * sizeof(double));
             double* pdblTmp = (double*)malloc(iSize2 * sizeof(double));
-            double* pdblOut = (double*)malloc(iSize2 * sizeof(double));
+            double* pdblOut = (double*)calloc(iSize2, sizeof(double));
 
             // initialize the output as identity matrix
             // because we use this array in the first multiplication.
-            memset(pdblOut, 0x00, iSize2 * sizeof(double));
             C2F(dset)(&_iCols1, &alpha[0], pdblOut, &iInc);
 
             // copy input complex in working array as Z storage.
@@ -612,7 +608,7 @@ int iPowerComplexSquareMatrixByRealScalar(
                     C2F(zgemm)("N", "N", &_iCols1, &_iCols1, &_iCols1, alpha, pdblTmp, &_iCols1,
                                pdblOut, &_iCols1, beta, pdblResult, &_iCols1);
 
-                    C2F(dcopy)(&iSize2, pdblResult, &iOne, pdblOut, &iOne);
+                    memmove(pdblOut, pdblResult, iSize2 * sizeof(double));
                 }
 
                 iPos++;

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -737,7 +737,7 @@ void H5Type::printComplexNameFromType(std::ostringstream & os, const unsigned in
     {
         unsigned int nmembers = H5Tget_nmembers(type);
 
-        os << indent << "H5T_COMPOUND {" << std::endl;
+        os << indent << "H5T_COMPOUND {\n";
 
         for (unsigned int i = 0; i < nmembers; i++)
         {
@@ -746,8 +746,7 @@ void H5Type::printComplexNameFromType(std::ostringstream & os, const unsigned in
 
             os << indent;
             H5Type::printComplexNameFromType(os, indentLevel + 1, mtype);
-            os << " \"" << mname << "\";" << std::endl;
-            os << std::endl;
+            os << " \"" << mname << "\";\n\n";
 
             free(mname);
         }
@@ -1395,45 +1394,45 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
             H5Tset_cset(strType, cset);
             H5Tset_strpad(strType, strpad);
 
-            os << "H5T_STRING {" << std::endl;
+            os << "H5T_STRING {\n";
             if (isVariableLength)
             {
-                os << indent << "STRSIZE H5T_VARIABLE;" << std::endl;
+                os << indent << "STRSIZE H5T_VARIABLE;\n";
             }
             else
             {
-                os << indent << "STRSIZE " << (int)size << ";" << std::endl;
+                os << indent << "STRSIZE " << (int)size << ";\n";
             }
 
             os << indent << "STRPAD ";
             switch (strpad)
             {
                 case H5T_STR_NULLTERM:
-                    os << "H5T_STR_NULLTERM;" << std::endl;
+                    os << "H5T_STR_NULLTERM;\n";
                     break;
                 case H5T_STR_NULLPAD:
-                    os << "H5T_STR_NULLPAD;" << std::endl;
+                    os << "H5T_STR_NULLPAD;\n";
                     break;
                 case H5T_STR_SPACEPAD:
-                    os << "H5T_STR_SPACEPAD;" << std::endl;
+                    os << "H5T_STR_SPACEPAD;\n";
                     break;
                 default:
-                    os << "H5T_STR_ERROR;" << std::endl;
+                    os << "H5T_STR_ERROR;\n";
                     break;
             }
 
             os << indent << "CSET ";
             if (cset == H5T_CSET_ASCII)
             {
-                os << "H5T_CSET_ASCII;" << std::endl;
+                os << "H5T_CSET_ASCII;\n";
             }
             else if (cset == H5T_CSET_UTF8)
             {
-                os << "H5T_CSET_UTF8;" << std::endl;
+                os << "H5T_CSET_UTF8;\n";
             }
             else
             {
-                os << "Unknown charset;" << std::endl;
+                os << "Unknown charset;\n";
             }
 
             // TODO: modif l'endianess (cf h5dump.c::1068)
@@ -1441,7 +1440,7 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
             if (H5Tequal(type, strType) > 0)
             {
                 H5Tclose(strType);
-                os << "H5T_C_S1;" << std::endl;
+                os << "H5T_C_S1;\n";
             }
             else
             {
@@ -1452,11 +1451,11 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
                 H5Tset_strpad(strType, strpad);
                 if (H5Tequal(type, H5T_FORTRAN_S1) > 0)
                 {
-                    os << "H5T_FORTRAN_S1;" << std::endl;
+                    os << "H5T_FORTRAN_S1;\n";
                 }
                 else
                 {
-                    os << "Unknown one character type;" << std::endl;
+                    os << "Unknown one character type;\n";
                 }
             }
 
@@ -1550,7 +1549,7 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
             break;
         case H5T_OPAQUE:
             opaqueTag = H5Tget_tag(type);
-            os << "H5T_OPAQUE;" << std::endl
+            os << "H5T_OPAQUE;\n"
                << H5Object::getIndentString(indentLevel + 1)
                << "OPAQUE TAG \"" << opaqueTag << "\";";
 
@@ -1559,7 +1558,7 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
         case H5T_COMPOUND:
             nmembers = H5Tget_nmembers(type);
             indent = H5Object::getIndentString(indentLevel + 1);
-            os << "H5T_COMPOUND {" << std::endl;
+            os << "H5T_COMPOUND {\n";
 
             for (unsigned int i = 0; i < nmembers; i++)
             {
@@ -1568,7 +1567,7 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
 
                 os << indent;
                 H5Type::printComplexNameFromType(os, indentLevel + 1, mtype);
-                os << " \"" << mname << "\";" << std::endl;
+                os << " \"" << mname << "\";\n";
 
                 free(mname);
             }
@@ -1609,7 +1608,7 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
                 dstSize = size;
             }
 
-            os << "H5T_ENUM { " << std::endl
+            os << "H5T_ENUM { \n"
                << indent << H5Type(*const_cast<H5Type *>(this), H5Tcopy(super)).dump(alreadyVisited, 0);
 
             value = new char[std::max(size, dstSize)]();
@@ -1649,7 +1648,7 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
                     }
                 }
 
-                os << ";" << std::endl;
+                os << ";\n";
             }
 
             delete[] value;
@@ -1689,7 +1688,7 @@ std::string H5Type::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
             break;
     }
 
-    os << std::endl;
+    os << '\n';
 
     return os.str();
 }
@@ -1701,7 +1700,7 @@ void H5Type::printLsInfo(std::ostringstream & os) const
         std::string str(getName());
         H5Object::getResizedString(str);
 
-        os << str << "Type" << std::endl;
+        os << str << "Type\n";
     }
 }
 
@@ -1718,12 +1717,12 @@ std::string H5Type::toString(const unsigned int indentLevel) const
     std::ostringstream os;
     std::string indentString = H5Object::getIndentString(indentLevel);
 
-    os << indentString << "Filename" << ": " << getFile().getFileName() << std::endl
-       << indentString << "Name" << ": " << name << std::endl
-       << indentString << "Class" << ": " << getClassName() << std::endl
-       << indentString << "Type" << ": " << getTypeName() << std::endl
-       << indentString << "Size" << ": " << getTypeSize() << std::endl
-       << indentString << "Nativetype" << ": " << getNativeTypeName() << std::endl
+    os << indentString << "Filename" << ": " << getFile().getFileName() << '\n'
+       << indentString << "Name" << ": " << name << '\n'
+       << indentString << "Class" << ": " << getClassName() << '\n'
+       << indentString << "Type" << ": " << getTypeName() << '\n'
+       << indentString << "Size" << ": " << getTypeSize() << '\n'
+       << indentString << "Nativetype" << ": " << getNativeTypeName() << '\n'
        << indentString << "Nativesize" << ": " << getNativeTypeSize();
 
     return os.str();

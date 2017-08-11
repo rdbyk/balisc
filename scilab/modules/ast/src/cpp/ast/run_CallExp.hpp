@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -101,7 +101,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             }
             else
             {
-                for (int i = 0; i < getResultSize(); i++)
+                int size = getResultSize();
+                for (int i = 0; i < size; i++)
                 {
                     types::InternalType * pITArg = getResult(i);
                     pITArg->IncreaseRef();
@@ -256,7 +257,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                         // list used like "varargin"
                         types::List* pLFuncArgs = in[0]->getAs<types::List>();
                         types::typed_list input;
-                        for (int j = 0; j < pLFuncArgs->getSize(); j++)
+                        int size = pLFuncArgs->getSize();
+                        for (int j = 0; j < size; j++)
                         {
                             input.push_back(pLFuncArgs->get(j));
                             input.back()->IncreaseRef();
@@ -283,16 +285,24 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             bool ret = false;
             if (pIT->isInvokable() == false)
             {
-                // call overload
-                ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, true);
+                std::wstring fun;
+                fun.reserve((pIT->getShortTypeStr()).size() + 3);
+                fun += L"%";
+                fun += pIT->getShortTypeStr();
+                fun += L"_e";
+                ret = Overload::call(fun, in, iRetCount, out, true);
             }
             else
             {
                 ret = pIT->invoke(in, opt, iRetCount, out, e);
                 if (ret == false && pIT->isUserType())
                 {
-                    // call overload
-                    ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, true);
+                    std::wstring fun;
+                    fun.reserve((pIT->getShortTypeStr()).size() + 3);
+                    fun += L"%";
+                    fun += pIT->getShortTypeStr();
+                    fun += L"_e";
+                    ret = Overload::call(fun, in, iRetCount, out, true);
                 }
             }
 
@@ -327,9 +337,10 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 // If out == pIT, do not delete it.
                 if (getResult() != pIT)
                 {
+                    int size = out.size();
                     // protect element of out in case where
                     // out contain elements of pIT
-                    for (int i = 0; i < out.size(); i++)
+                    for (int i = 0; i < size; i++)
                     {
                         out[i]->IncreaseRef();
                     }
@@ -337,7 +348,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     pIT->killMe();
 
                     // unprotect
-                    for (int i = 0; i < out.size(); i++)
+                    for (int i = 0; i < size; i++)
                     {
                         out[i]->DecreaseRef();
                     }
@@ -470,9 +481,9 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 setResult(pList);
             }
 
-
             //clean pArgs return by GetArgumentList
-            for (int iArg = 0; iArg < (int)pArgs->size(); iArg++)
+            int size = pArgs->size();
+            for (int iArg = 0; iArg < size; iArg++)
             {
                 (*pArgs)[iArg]->killMe();
             }

@@ -3,8 +3,8 @@
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,6 +38,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "os_string.h"
+#include "strlen.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -93,7 +94,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
         for (int i = 0 ; i < iSize; i++)
         {
             char* pstTemp = wide_string_to_UTF8(pS->get(i));
-            _piLength[i] = (int)strlen(pstTemp);
+            _piLength[i] = (int)balisc_strlen(pstTemp);
             FREE(pstTemp);
         }
     }

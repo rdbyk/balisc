@@ -38,6 +38,7 @@ extern "C"
 #include "findfiles.h"
 #include "configvariable_interface.h"
 #include "os_string.h"
+#include "strcmp.h"
 }
 
 #define BASENAMEMODULESFILE L"etc/modules.xml"
@@ -178,7 +179,7 @@ bool FuncManager::AppendModules()
                     {
                         /* we found the tag activate */
                         const char *str = (const char*)attrib->children->content;
-                        if (stricmp(str, "yes") == 0 || strcmp(str, "1") == 0)
+                        if (stricmp(str, "yes") == 0 || balisc_strcmp(str, "1") == 0)
                         {
                             activate = 1;
                         }

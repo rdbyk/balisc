@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -382,7 +382,7 @@ void H5Group::printLsInfo(std::ostringstream & os) const
     std::string str(getName());
     H5Object::getResizedString(str);
 
-    os << str << "Group" << std::endl;
+    os << str << "Group\n";
 }
 
 std::string H5Group::dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const
@@ -392,9 +392,9 @@ std::string H5Group::dump(std::map<haddr_t, std::string> & alreadyVisited, const
     std::map<haddr_t, std::string>::iterator it = alreadyVisited.find(addr);
     if (it != alreadyVisited.end())
     {
-        os << H5Object::getIndentString(indentLevel) << "GROUP \"" << getName() << "\" {" << std::endl
-           << H5Object::getIndentString(indentLevel + 1) << "HARDLINK \"" << it->second << "\"" << std::endl
-           << H5Object::getIndentString(indentLevel) << "}" << std::endl;
+        os << H5Object::getIndentString(indentLevel) << "GROUP \"" << getName() << "\" {\n"
+           << H5Object::getIndentString(indentLevel + 1) << "HARDLINK \"" << it->second << "\"\n"
+           << H5Object::getIndentString(indentLevel) << "}\n";
 
         return os.str();
     }
@@ -410,14 +410,14 @@ std::string H5Group::dump(std::map<haddr_t, std::string> & alreadyVisited, const
     H5NamedObjectsList<H5Type> & hardtypes = const_cast<H5Group *>(this)->getHardTypes();
     H5NamedObjectsList<H5Dataset> & harddatasets = const_cast<H5Group *>(this)->getHardDatasets();
 
-    os << H5Object::getIndentString(indentLevel) << "GROUP \"" << name << "\" {" << std::endl;
+    os << H5Object::getIndentString(indentLevel) << "GROUP \"" << name << "\" {\n";
     os << attrs.dump(alreadyVisited, indentLevel + 1);
     os << hardgroups.dump(alreadyVisited, indentLevel + 1);
     os << hardtypes.dump(alreadyVisited, indentLevel + 1);
     os << harddatasets.dump(alreadyVisited, indentLevel + 1);
     os << softlinks.dump(alreadyVisited, indentLevel + 1);
     os << externallinks.dump(alreadyVisited, indentLevel + 1);
-    os << H5Object::getIndentString(indentLevel) << "}" << std::endl;
+    os << H5Object::getIndentString(indentLevel) << "}\n";
 
     delete &attrs;
     delete &softlinks;
@@ -436,15 +436,15 @@ std::string H5Group::toString(const unsigned int indentLevel) const
     OpDataCount opdata(false);
     H5Object::count(*this, opdata);
 
-    os << H5Object::getIndentString(indentLevel) << "HDF5 Group" << std::endl
-       << indentString << "Filename" << ": " << getFile().getFileName() << std::endl
-       << indentString << "Name" << ": " << getBaseName() << std::endl
-       << indentString << "Path" << ": " << getCompletePath() << std::endl
-       << indentString << "Attributes" << ": [1 x " << getAttributesNumber() << "]" << std::endl
-       << indentString << "Groups" << ": [1 x " << opdata.group << "]" << std::endl
-       << indentString << "Datasets" << ": [1 x " << opdata.dataset << "]" << std::endl
-       << indentString << "Types" << ": [1 x " << opdata.type << "]" << std::endl
-       << indentString << "Externals" << ": [1 x " << opdata.external << "]" << std::endl
+    os << H5Object::getIndentString(indentLevel) << "HDF5 Group\n"
+       << indentString << "Filename" << ": " << getFile().getFileName() << '\n'
+       << indentString << "Name" << ": " << getBaseName() << '\n'
+       << indentString << "Path" << ": " << getCompletePath() << '\n'
+       << indentString << "Attributes" << ": [1 x " << getAttributesNumber() << "]\n"
+       << indentString << "Groups" << ": [1 x " << opdata.group << "]\n"
+       << indentString << "Datasets" << ": [1 x " << opdata.dataset << "]\n"
+       << indentString << "Types" << ": [1 x " << opdata.type << "]\n"
+       << indentString << "Externals" << ": [1 x " << opdata.external << "]\n"
        << indentString << "Softs" << ": [1 x " << opdata.soft << "]";
 
     return os.str();

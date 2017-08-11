@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,6 +22,7 @@ extern "C" {
 #include "scicurdir.h"
 #include "sci_malloc.h"
 #include "fullpath.h"
+#include "strcmp.h"
 }
 /*------------------------------------------------------------------------*/
 int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
@@ -46,7 +47,7 @@ int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
             get_full_path(absolutepath, expandedpath, 4096);
 
             //it is a absolute path, put it only in model
-            if (strcmp(expandedpath, absolutepath))
+            if (balisc_strcmp(expandedpath, absolutepath))
             {
                 int iErr = 0;
                 char* pwd = scigetcwd(&iErr);

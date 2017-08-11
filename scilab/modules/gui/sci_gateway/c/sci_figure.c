@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2014 - Scilab Enterprises - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,7 +34,7 @@
 #include "os_string.h"
 #include "sciprint.h"
 #include "addColor.h"
-
+#include "strcmp.h"
 /*--------------------------------------------------------------------------*/
 int setDefaultProperties(int _iFig, BOOL bDefaultAxes);
 int getStackArgumentAsBoolean(void* _pvCtx, int* _piAddr);
@@ -510,7 +510,7 @@ int sci_figure(char * fname, void* pvApiCtx)
 
         getVarType(pvApiCtx, piAddrData, &iType);
 
-        if ((strcmp(pstProName, "user_data") == 0) || (stricmp(pstProName, "userdata") == 0))
+        if ((balisc_strcmp(pstProName, "user_data") == 0) || (stricmp(pstProName, "userdata") == 0))
         {
             /* in this case set_user_data_property
              * directly uses the  third position in the stack
@@ -535,9 +535,9 @@ int sci_figure(char * fname, void* pvApiCtx)
                     getMatrixOfHandle(pvApiCtx, piAddrData, &iRows, &iCols, (long long**)&_pvData);
                     break;
                 case sci_strings :
-                    if (   strcmp(pstProName, "tics_labels") != 0 && strcmp(pstProName, "auto_ticks") != 0 &&
-                            strcmp(pstProName, "axes_visible") != 0 && strcmp(pstProName, "axes_reverse") != 0 &&
-                            strcmp(pstProName, "text") != 0 && stricmp(pstProName, "string") != 0 &&
+                    if (   balisc_strcmp(pstProName, "tics_labels") != 0 && balisc_strcmp(pstProName, "auto_ticks") != 0 &&
+                            balisc_strcmp(pstProName, "axes_visible") != 0 && balisc_strcmp(pstProName, "axes_reverse") != 0 &&
+                            balisc_strcmp(pstProName, "text") != 0 && stricmp(pstProName, "string") != 0 &&
                             stricmp(pstProName, "tooltipstring") != 0) /* Added for uicontrols */
                     {
                         if (getAllocatedSingleString(pvApiCtx, piAddrData, (char**)&_pvData))

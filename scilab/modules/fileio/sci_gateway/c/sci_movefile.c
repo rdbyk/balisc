@@ -125,14 +125,16 @@ int sci_movefile(char *fname, void* pvApiCtx)
                 {
 #define FORMAT_FULLFILENAME "%s/%s"
                     wchar_t *destFullFilename = NULL;
-
+                    
+                    int len_StVarTwoExpanded = wcslen(pStVarTwoExpanded);
+                    
                     /* remove last file separator if it exists */
-                    if ((pStVarTwoExpanded[wcslen(pStVarTwoExpanded) - 1] == L'\\') || (pStVarTwoExpanded[wcslen(pStVarTwoExpanded) - 1] == L'/'))
+                    if ((pStVarTwoExpanded[len_StVarTwoExpanded - 1] == L'\\') || (pStVarTwoExpanded[len_StVarTwoExpanded - 1] == L'/'))
                     {
-                        pStVarTwoExpanded[wcslen(pStVarTwoExpanded) - 1] = L'\0';
+                        pStVarTwoExpanded[len_StVarTwoExpanded - 1] = L'\0';
                     }
 
-                    destFullFilename = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(pStVarTwoExpanded) + (int)wcslen(filename) +  /* (int)wcslen(L"/") */ + 1 + 1));
+                    destFullFilename = (wchar_t *) MALLOC(sizeof(wchar_t) * (len_StVarTwoExpanded + (int)wcslen(filename) +  /* (int)wcslen(L"/") */ + 1 + 1));
                     wcscat(wcpcpy(wcpcpy(destFullFilename, pStVarTwoExpanded), L"/"), filename);
                     
                     ierrMove = MoveFileFunction(destFullFilename, pStVarOneExpanded);

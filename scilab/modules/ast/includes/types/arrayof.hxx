@@ -548,7 +548,7 @@ public :
                 {
                     ostr << L"," << (_piDims[i] + 1);
                 }
-                ostr << L")" << std::endl << std::endl;
+                ostr << L")" << L"\n\n";
             }
 
             //reset flag to print dims on next call

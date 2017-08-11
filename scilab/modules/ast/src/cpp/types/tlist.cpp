@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -179,7 +179,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
             //tlist/mlist name are truncated to 8 first character
             if (stType.size() > 8)
             {
-                std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << std::endl;
+                std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << L"\n";
                 ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out);
             }
             else
@@ -349,7 +349,7 @@ bool TList::toString(std::wostringstream& ostr)
             std::wostringstream nextVarName;
             ostr.str(L"");
             nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
-            ostr << std::endl << nextVarName.str() << wcsDesc[iPosition - 1] << std::endl << std::endl;
+            ostr << L"\n" << nextVarName.str() << wcsDesc[iPosition - 1] << L"\n\n";
             scilabWriteW(ostr.str().c_str());
             VariableToString(val, nextVarName.str().c_str());
             iPosition++;

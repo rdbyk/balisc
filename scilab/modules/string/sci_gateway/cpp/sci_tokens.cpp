@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "tokens", 1);
         return types::Function::Error;
     }
-    if (wcslen(pString->get(0)) == 0)
+    if ((pString->get(0))[0] == L'\0')
     {
         types::Double* pOutDouble = types::Double::Empty();
         out.push_back(pOutDouble);

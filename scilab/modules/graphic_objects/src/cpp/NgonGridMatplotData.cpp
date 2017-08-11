@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
- *  Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -420,9 +420,11 @@ void NgonGridMatplotData::computeCoordinates(void)
             numElements = xSize - 1;
         }
 
+        double inv_numElements = (max - min) / (double) numElements;
+        
         for (int i = 0; i < xSize; i++)
         {
-            xCoordinates[i] = min + (double) i * (max - min) / (double) numElements;
+            xCoordinates[i] = min + (double) i * inv_numElements;
         }
 
         min = boundingRectangle[2];
@@ -437,9 +439,11 @@ void NgonGridMatplotData::computeCoordinates(void)
             numElements = ySize - 1;
         }
 
+        inv_numElements = (max - min) / (double) numElements;
+        
         for (int i = 0; i < ySize; i++)
         {
-            yCoordinates[i] = min + (double) i * (max - min) / (double) numElements;
+            yCoordinates[i] = min + (double) i * inv_numElements;
         }
     }
 }

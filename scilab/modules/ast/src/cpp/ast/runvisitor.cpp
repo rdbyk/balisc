@@ -212,7 +212,8 @@ void RunVisitorT<T>::visitprivate(const ArrayListExp & e)
     for (it = e.getExps().begin(); it != e.getExps().end(); it++)
     {
         (*it)->accept(*this);
-        for (int j = 0; j < getResultSize(); j++)
+        int size = getResultSize();
+        for (int j = 0; j < size; j++)
         {
             lstIT.push_back(getResult(j));
         }
@@ -828,7 +829,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         }
 
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
-        for (int i = 0; i < pVar->getCols(); i++)
+        int cols = pVar->getCols();
+        for (int i = 0; i < cols; i++)
         {
             types::GenericType* pNew = pVar->getColumnValues(i);
             if (pNew == NULL)

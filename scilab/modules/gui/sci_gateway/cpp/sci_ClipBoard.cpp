@@ -31,6 +31,7 @@ extern "C"
 #include "CallClipboard.h"
 #include "os_string.h"
 #include "FigureList.h"
+#include "strcmp.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -75,7 +76,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                     return 1;
                 }
 
-                if ( ( strcmp(param1, "paste") == 0 ) || ( strcmp(param1, "pastespecial") == 0 ) )
+                if ( ( balisc_strcmp(param1, "paste") == 0 ) || ( balisc_strcmp(param1, "pastespecial") == 0 ) )
                 {
                     /* Use the Java clipboard (CallScilabBridge.java returns "" if clipboard could not be read) */
                     char *output = getClipboardContents();
@@ -132,7 +133,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                     return 1;
                 }
 
-                if (( strcmp(param1, "do") != 0 ) && ( strcmp(param1, "copy") != 0 ))
+                if (( balisc_strcmp(param1, "do") != 0 ) && ( balisc_strcmp(param1, "copy") != 0 ))
                 {
                     freeAllocatedSingleString(param1);
                     Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "do", "copy");
@@ -147,7 +148,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                     /*-------------------------------------------*/
 
                     /* @TODO : should be remplaced by an enum */
-                    if ( strcmp(param1, "do") == 0 )
+                    if ( balisc_strcmp(param1, "do") == 0 )
                     {
                         freeAllocatedSingleString(param1);
 
@@ -165,17 +166,17 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                             return 1;
                         }
 
-                        if ( strcmp(param2, "paste") == 0 )
+                        if ( balisc_strcmp(param2, "paste") == 0 )
                         {
                             /* Call Java to do the job */
                             pasteClipboardIntoConsole();
                         }
-                        else if ( strcmp(param2, "copy") == 0 )
+                        else if ( balisc_strcmp(param2, "copy") == 0 )
                         {
                             /* Call Java to do the job */
                             copyConsoleSelection();
                         }
-                        else if ( strcmp(param2, "empty") == 0 )
+                        else if ( balisc_strcmp(param2, "empty") == 0 )
                         {
                             /* Call Java to do the job */
                             emptyClipboard();
@@ -209,7 +210,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                     /* clipboard("copy", data) */
                     /*-------------------------*/
 
-                    else if ( strcmp(param1, "copy") == 0 )
+                    else if ( balisc_strcmp(param1, "copy") == 0 )
                     {
                         char *TextToPutInClipboard = NULL;
                         char **Str = NULL;
@@ -270,14 +271,12 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                                 return FALSE;
                             }
 
-                            strcpy(TextToSendInClipboard, "");
-
+                            TextToSendInClipboard[0] = '\0';
                             for (i = 0; i < m2; i++)
                             {
                                 for (j = 0; j < n2; j++)
                                 {
-                                    strcat(TextToSendInClipboard, buffer[l2++]);
-                                    strcat(TextToSendInClipboard, " ");
+                                    strcat(stpcpy(TextToSendInClipboard, buffer[l2++]), " ");
                                 }
                                 if ( i != (m2 - 1) )
                                 {
@@ -369,12 +368,12 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                         return 1;
                     }
 
-                    if ( ( strcmp(param2, "EMF") == 0 ) || ( strcmp(param2, "DIB") == 0 ) )
+                    if ( ( balisc_strcmp(param2, "EMF") == 0 ) || ( balisc_strcmp(param2, "DIB") == 0 ) )
                     {
                         if (num_win >= 0)
                         {
                             /* Call Java */
-                            if ( strcmp(param2, "EMF") == 0)
+                            if ( balisc_strcmp(param2, "EMF") == 0)
                             {
                                 /* @TODO create EMF */
                                 copyFigureToClipBoard(getFigureFromIndex(num_win));

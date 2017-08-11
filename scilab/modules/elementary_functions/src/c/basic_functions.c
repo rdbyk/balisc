@@ -28,21 +28,6 @@ double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg)
     return dblRetVal;
 }
 
-
-/*Cumulative sum*/
-void vCusum(int _iNbElem, double *_pdblIn, double *_pdblOut)
-{
-    double dblTemp = 0;
-    int iIndex = 0;
-
-    for (iIndex = 0 ; iIndex < _iNbElem ; iIndex++)
-    {
-        _pdblOut[iIndex] = dblTemp + _pdblIn[iIndex];
-        dblTemp = _pdblOut[iIndex];
-    }
-}
-
-
 /*memset on vector*/
 void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
 {
@@ -58,16 +43,6 @@ void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
         _pdblIn[iIndex2] = _dblVal;
         iIndex2 += _iInc;
     }
-}
-
-/*frexp*/
-double dfrexps(double _dblVal, double *_pdblExp)
-{
-    int iExp = 0;
-    double dblCoef = 0;
-    dblCoef = frexp(_dblVal, &iExp);
-    *_pdblExp = iExp;
-    return dblCoef;
 }
 
 double durands(int* _iVal)

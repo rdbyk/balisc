@@ -253,8 +253,10 @@ wchar_t *to_wide_string(const char *_UTFStr)
 
     iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
     
-    pOut = (wchar_t*)MALLOC(iLeftOut);
-    memset(pOut, 0x00, iLeftOut);
+//    pOut = (wchar_t*)MALLOC(iLeftOut);
+//    memset(pOut, 0x00, iLeftOut);
+    pOut = (wchar_t*)CALLOC(iLeftIn + 1, sizeof(wchar_t));
+    
     pOutSave = pOut;
 
     iSize = iconv(__WCHAR_T_from_UTF_8, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);

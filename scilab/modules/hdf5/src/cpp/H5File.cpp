@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -242,12 +242,12 @@ H5File::~H5File()
 
 #if defined(__HDF5OBJECTS_DEBUG__)
 
-        std::cout << "File " << filename << " is closing." << std::endl
-                  << "Open groups: " << H5Fget_obj_count(file, H5F_OBJ_GROUP) << std::endl
-                  << "Open datasets: " << H5Fget_obj_count(file, H5F_OBJ_DATASET) << std::endl
-                  << "Open datatypes: " << H5Fget_obj_count(file, H5F_OBJ_DATATYPE) << std::endl
-                  << "Open attributes: " << H5Fget_obj_count(file, H5F_OBJ_ATTR) << std::endl
-                  << "Open all (except the file itself): " << H5Fget_obj_count(file, H5F_OBJ_ALL) - 1 << std::endl;
+        std::cout << "File " << filename << " is closing.\n"
+                  << "Open groups: " << H5Fget_obj_count(file, H5F_OBJ_GROUP) << '\n'
+                  << "Open datasets: " << H5Fget_obj_count(file, H5F_OBJ_DATASET) << '\n'
+                  << "Open datatypes: " << H5Fget_obj_count(file, H5F_OBJ_DATATYPE) << '\n'
+                  << "Open attributes: " << H5Fget_obj_count(file, H5F_OBJ_ATTR) << '\n'
+                  << "Open all (except the file itself): " << H5Fget_obj_count(file, H5F_OBJ_ALL) - 1 << '\n';
 
 #endif
 
@@ -403,9 +403,9 @@ std::string H5File::dump(std::map<haddr_t, std::string> & alreadyVisited, const 
 {
     std::ostringstream os;
     H5Object & _root = const_cast<H5File *>(this)->getRoot();
-    os << H5Object::getIndentString(indentLevel) << "HDF5 \"" << filename << "\" {" << std::endl
+    os << H5Object::getIndentString(indentLevel) << "HDF5 \"" << filename << "\" {\n"
        << _root.dump(alreadyVisited, indentLevel + 1)
-       << H5Object::getIndentString(indentLevel) << "}" << std::endl;
+       << H5Object::getIndentString(indentLevel) << "}\n";
 
     delete &_root;
 
@@ -444,11 +444,11 @@ std::string H5File::toString(const unsigned int indentLevel) const
 
     err = H5get_libversion(&major, &minor, &release);
 
-    os << H5Object::getIndentString(indentLevel) << "HDF5 File" << std::endl
-       << indentString << "Filename" << ": " << filename << std::endl
-       << indentString << "Version" << ": " << major << "." << minor << "." << release << std::endl
-       << indentString << "Size" << ": " << size << std::endl
-       << indentString << "Root" << ": /" <<  std::endl;
+    os << H5Object::getIndentString(indentLevel) << "HDF5 File\n"
+       << indentString << "Filename" << ": " << filename << '\n'
+       << indentString << "Version" << ": " << major << "." << minor << "." << release << '\n'
+       << indentString << "Size" << ": " << size << '\n'
+       << indentString << "Root" << ": /\n";
 
     return os.str();
 }
