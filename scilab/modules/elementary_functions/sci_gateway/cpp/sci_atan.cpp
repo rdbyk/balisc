@@ -23,6 +23,8 @@
 #include "overload.hxx"
 #include "configvariable.hxx"
 
+#include "atan.hxx"
+
 extern "C"
 {
 #include "Scierror.h"
@@ -98,18 +100,14 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
                 pOR[i] = z.real();
                 pOI[i] = z.imag();
             }
+            
+            out.push_back(pDblOut);
+            return types::Function::OK;
         }
         else
         {
-            pDblOut = new types::Double(pDblX->getDims(), pDblX->getDimsArray(), false);
-            double* pXR = pDblX->get();
-            double* pOR = pDblOut->get();
-            int size = pDblX->getSize();
-
-            for (int i = 0; i < size; i++)
-            {
-                pOR[i] = std::atan(pXR[i]);
-            }
+            out.push_back(balisc::atan_real(pDblX));
+            return types::Function::OK;
         }
     }
     else // in.size() == 2
@@ -138,9 +136,9 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
         {
             pOR[i] =  std::atan2(pXR[i], pYR[i]);
         }
+        
+        out.push_back(pDblOut);
+        return types::Function::OK;
     }
-
-    out.push_back(pDblOut);
-    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

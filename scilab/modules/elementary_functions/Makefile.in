@@ -112,7 +112,8 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/elementary_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_x86_features.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_library.m4 \
+	$(top_srcdir)/m4/ax_check_x86_features.m4 \
 	$(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
 	$(top_srcdir)/m4/ax_gcc_x86_cpu_supports.m4 \
 	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
@@ -292,6 +293,7 @@ am__objects_6 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
 	src/cpp/libscielementary_functions_algo_la-abs.lo \
 	src/cpp/libscielementary_functions_algo_la-acos.lo \
 	src/cpp/libscielementary_functions_algo_la-asin.lo \
+	src/cpp/libscielementary_functions_algo_la-atan.lo \
 	src/cpp/libscielementary_functions_algo_la-ceil.lo \
 	src/cpp/libscielementary_functions_algo_la-cos.lo \
 	src/cpp/libscielementary_functions_algo_la-cosh.lo \
@@ -685,6 +687,8 @@ SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SLEEF_CPPFLAGS = @SLEEF_CPPFLAGS@
+SLEEF_LDFLAGS = @SLEEF_LDFLAGS@
 SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
@@ -809,6 +813,7 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/abs.cpp \
     src/cpp/acos.cpp \
     src/cpp/asin.cpp \
+    src/cpp/atan.cpp \
     src/cpp/ceil.cpp \
     src/cpp/cos.cpp \
     src/cpp/cosh.cpp \
@@ -1727,6 +1732,8 @@ src/cpp/libscielementary_functions_algo_la-acos.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-asin.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscielementary_functions_algo_la-atan.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-ceil.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-cos.lo:  \
@@ -2050,6 +2057,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-abs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-acos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-asin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-atan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-ceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-clean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-cos.Plo@am__quote@
@@ -2360,6 +2368,13 @@ src/cpp/libscielementary_functions_algo_la-asin.lo: src/cpp/asin.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/asin.cpp' object='src/cpp/libscielementary_functions_algo_la-asin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-asin.lo `test -f 'src/cpp/asin.cpp' || echo '$(srcdir)/'`src/cpp/asin.cpp
+
+src/cpp/libscielementary_functions_algo_la-atan.lo: src/cpp/atan.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-atan.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-atan.Tpo -c -o src/cpp/libscielementary_functions_algo_la-atan.lo `test -f 'src/cpp/atan.cpp' || echo '$(srcdir)/'`src/cpp/atan.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-atan.Tpo src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-atan.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/atan.cpp' object='src/cpp/libscielementary_functions_algo_la-atan.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-atan.lo `test -f 'src/cpp/atan.cpp' || echo '$(srcdir)/'`src/cpp/atan.cpp
 
 src/cpp/libscielementary_functions_algo_la-ceil.lo: src/cpp/ceil.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-ceil.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-ceil.Tpo -c -o src/cpp/libscielementary_functions_algo_la-ceil.lo `test -f 'src/cpp/ceil.cpp' || echo '$(srcdir)/'`src/cpp/ceil.cpp
