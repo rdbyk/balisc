@@ -58,6 +58,7 @@ int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg,
             {
                 int i;
                 int const base = 10;
+                int const inv_base = 0.1;
                 *pMantissaReal = 1.;
                 if (piExponent)
                 {
@@ -92,7 +93,7 @@ int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg,
                             {
                                 ;
                             }
-                            for (; balisc_hypot_d(*pMantissaReal, *pMantissaImg) > base; *pMantissaReal /= base,  *pMantissaImg /= base, ++(*piExponent))
+                            for (; balisc_hypot_d(*pMantissaReal, *pMantissaImg) > base; *pMantissaReal *= inv_base,  *pMantissaImg *= inv_base, ++(*piExponent))
                             {
                                 ;
                             }
@@ -114,7 +115,7 @@ int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg,
                             {
                                 ;
                             }
-                            for (; Abs(*pMantissaReal) >= base; *pMantissaReal /= base, ++(*piExponent))
+                            for (; Abs(*pMantissaReal) >= base; *pMantissaReal *= inv_base, ++(*piExponent))
                             {
                                 ;
                             }
