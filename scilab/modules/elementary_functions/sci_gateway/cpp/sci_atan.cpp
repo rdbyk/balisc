@@ -125,19 +125,8 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
             Scierror(999, _("%s: Wrong size for input argument #%d and #%d: Same size expected.\n"), "atan", 1, 2);
             return types::Function::Error;
         }
-
-        pDblOut = new types::Double(pDblX->getDims(), pDblX->getDimsArray(), false);
-        double* pXR = pDblX->get();
-        double* pYR = pDblY->get();
-        double* pOR = pDblOut->get();
-        int size = pDblX->getSize();
-
-        for (int i = 0; i < size; i++)
-        {
-            pOR[i] =  std::atan2(pXR[i], pYR[i]);
-        }
         
-        out.push_back(pDblOut);
+        out.push_back(balisc::atan2(pDblX, pDblY));
         return types::Function::OK;
     }
 }

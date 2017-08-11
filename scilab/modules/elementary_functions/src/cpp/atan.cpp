@@ -44,7 +44,7 @@ Double* atan_real(Double* x)
 #if !defined(balisc_atan_m128d)
     for (int i = 0; i < n; i++)
     {
-        yr[i] = ::balisc_atan_d(xr[i]);
+        yr[i] = balisc_atan_d(xr[i]);
     }
 #else
     int n2 = n - 1;
@@ -57,6 +57,42 @@ Double* atan_real(Double* x)
             for (int i = 0; i < n2; i++)
             {
                 __m128d a = balisc_atan_m128d(*((__m128d*)&(xr[i])));
+                yr[i] = a[0];
+                yr[++i] = a[1];
+            }
+    }
+#endif
+
+    return y;
+}
+
+
+Double* atan2(Double* x1, Double* x2)
+{
+    int n = x1->getSize();
+    
+    Double* y = new Double(x1->getDims(), x1->getDimsArray(), false);
+    
+    double* x1r = x1->get();
+    double* x2r = x2->get();
+    double* yr = y->get();
+
+#if !defined(balisc_atan2_m128d)
+    for (int i = 0; i < n; i++)
+    {
+        yr[i] = ::balisc_atan2_d(x1r[i], x2r[i]);
+    }
+#else
+    int n2 = n - 1;
+                
+    switch (n & 0x1)
+    {
+        case 1:
+            yr[n2] = ::balisc_atan2_d(x1r[n2], x2r[n2]);
+        default:
+            for (int i = 0; i < n2; i++)
+            {
+                __m128d a = ::balisc_atan2_m128d(*((__m128d*)&(x1r[i])), *((__m128d*)&(x2r[i])));
                 yr[i] = a[0];
                 yr[++i] = a[1];
             }
