@@ -19,6 +19,7 @@
 #include "doublecomplex.h"
 #include "sci_malloc.h"
 #include "core_math.h"
+#include "balisc_elementary.h"
 
 #include "det.h"
 
@@ -83,15 +84,15 @@ int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg,
                         *pMantissaImg = a * tmp.i + b * tmp.r;
                         if (piExponent)
                         {
-                            if (hypot(*pMantissaReal, *pMantissaImg) == 0.) /* original Fortran code does the fp strict compare */
+                            if (balisc_hypot_d(*pMantissaReal, *pMantissaImg) == 0.) /* original Fortran code does the fp strict compare */
                             {
                                 break;
                             }
-                            for (; hypot(*pMantissaReal, *pMantissaImg) < 1 ; *pMantissaReal *= base, *pMantissaImg *= base, --(*piExponent))
+                            for (; balisc_hypot_d(*pMantissaReal, *pMantissaImg) < 1 ; *pMantissaReal *= base, *pMantissaImg *= base, --(*piExponent))
                             {
                                 ;
                             }
-                            for (; hypot(*pMantissaReal, *pMantissaImg) > base; *pMantissaReal /= base,  *pMantissaImg /= base, ++(*piExponent))
+                            for (; balisc_hypot_d(*pMantissaReal, *pMantissaImg) > base; *pMantissaReal /= base,  *pMantissaImg /= base, ++(*piExponent))
                             {
                                 ;
                             }
