@@ -18,7 +18,11 @@
 // 02110-1301, USA.
 
 #include "round.hxx"
-#include <Eigen/Core>
+
+extern "C"
+{
+#include "balisc_elementary.h"
+}
 
 using types::Double;
 
@@ -28,33 +32,59 @@ namespace balisc
 Double* round(Double* x)
 {
     bool is_complex = x->isComplex();
-    Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
+    int n = x->getSize();
     
     if (is_complex)
     {
+        Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
+        
         double* xr = x->get();
         double* yr = y->get();
         double* xi = x->getImg();
         double* yi = y->getImg();
         
-        for (int i = 0; i < x->getSize(); i++)
+        for (int i = 0; i < n; i++)
         {
-            yr[i] = std::round(xr[i]);
-            yi[i] = std::round(xi[i]);
+#if !defined(balisc_round_m128d)
+            yr[i] = ::balisc_round_d(xr[i]);
+            yi[i] = ::balisc_round_d(xi[i]);
+#else
+            __m128d a = ::balisc_round_m128d((__m128d){xr[i],xi[i]});
+            yr[i] = a[0];
+            yi[i] = a[1];
+#endif
         }
+        
+        return y;
     }
     else
     {
+        Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
+        
         double* xr = x->get();
         double* yr = y->get();
-    
-        for (int i = 0; i < x->getSize(); i++)
+        
+#if !defined(balisc_round_m128d)
+        for (int i = 0; i < n; i++)
         {
-            yr[i] = std::round(xr[i]);
+            yr[i] = ::balisc_round_d(xr[i]);
         }
+#else
+        int i;
+        for (i = 0; i < n - 1; i++)
+        {
+            __m128d a = ::balisc_round_m128d(*((__m128d*)&(xr[i])));
+            yr[i] = a[0];
+            yr[++i] = a[1];
+        }
+
+        for ( ; i < n; i++)
+        {
+            yr[i] = ::balisc_round_d(xr[i]);
+        }
+#endif
+        return y;
     }
-    
-    return y;
 }
 
 }

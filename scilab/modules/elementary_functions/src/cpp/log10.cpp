@@ -18,8 +18,15 @@
 // 02110-1301, USA.
 
 #include "log10.hxx"
+
+#include <complex>
 #include <cmath>
 #include <Eigen/Core>
+
+extern "C"
+{
+#include "balisc_elementary.h"
+}
 
 using types::Double;
 
@@ -81,12 +88,12 @@ Double* log10(Double* x)
                 
                 if (xr_i >= 0)
                 {
-                    yr[i] = std::log10(xr_i);
+                    yr[i] = ::balisc_log10_d(xr_i);
                     yi[i] = 0.0;
                 }
                 else
                 {
-                    yr[i] = std::log10(-xr_i);
+                    yr[i] = ::balisc_log10_d(-xr_i);
                     yi[i] = M_PI / M_LN10;
                 }
             }
@@ -97,11 +104,31 @@ Double* log10(Double* x)
         {
             Double* y = new Double(x->getDims(), x->getDimsArray(), false);
             
-            Map<ArrayXd> xr(x->get(), n);
-            Map<ArrayXd> yr(y->get(), n);
-            yr = xr.log10();
+            double* xr = x->get();
+            double* yr = y->get();
+
+#if !defined(balisc_log10_m128d)
+            for (int i = 0; i < n; i++)
+            {
+                yr[i] = ::balisc_log10_d(xr[i]);
+            }
+            return y;
+#else
+            int i;
+            for (i = 0; i < n - 1; i++)
+            {
+                __m128d a = ::balisc_log10_m128d(*((__m128d*)&(xr[i])));
+                yr[i] = a[0];
+                yr[++i] = a[1];
+            }
+
+            for ( ; i < n; i++)
+            {
+                yr[i] = ::balisc_log10_d(xr[i]);
+            }
             
             return y;
+#endif
         }
     }
 }

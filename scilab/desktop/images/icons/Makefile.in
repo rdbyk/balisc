@@ -96,7 +96,8 @@ subdir = desktop/images/icons
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/config/mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_x86_features.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_library.m4 \
+	$(top_srcdir)/m4/ax_check_x86_features.m4 \
 	$(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
 	$(top_srcdir)/m4/ax_gcc_x86_cpu_supports.m4 \
 	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
@@ -373,6 +374,8 @@ SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
 SHELL = @SHELL@
 SKINLF = @SKINLF@
+SLEEF_CPPFLAGS = @SLEEF_CPPFLAGS@
+SLEEF_LDFLAGS = @SLEEF_LDFLAGS@
 SPLINT = @SPLINT@
 STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@

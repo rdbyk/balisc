@@ -25,6 +25,7 @@ extern "C"
 {
 #include "basic_functions.h"
 #include "Scierror.h"
+#include "balisc_elementary.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -69,7 +70,7 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
 
             for (int i = 0; i < size; i++)
             {
-                double dblTemp = std::hypot(dInR[i], dInImg[i]);
+                double dblTemp = balisc_hypot_d(dInR[i], dInImg[i]);
                 if (dblTemp == 0)
                 {
                     dOutR[i] = 0;
@@ -77,8 +78,9 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
                 }
                 else
                 {
-                    dOutR[i] =  dInR[i] / dblTemp;
-                    dOutImg[i] = dInImg[i] / dblTemp;
+                    double inv_dblTemp = 1. / dblTemp;
+                    dOutR[i] =  dInR[i] * inv_dblTemp;
+                    dOutImg[i] = dInImg[i] * inv_dblTemp;
                 }
             }
 

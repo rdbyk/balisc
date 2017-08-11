@@ -18,13 +18,13 @@
 // 02110-1301, USA.
 
 #include "abs.hxx"
-#include <cmath>
-#include <Eigen/Core>
+
+extern "C"
+{
+#include "balisc_elementary.h"
+}
 
 using types::Double;
-
-using Eigen::Map;
-using Eigen::ArrayXd;
 
 namespace balisc
 {
@@ -37,19 +37,64 @@ Double* abs(Double* x)
     
     if (x->isComplex())
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> xi(x->getImg(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.binaryExpr<double(*)(double,double)>(xi, &std::hypot);
+        double* xr = x->get();
+        double* xi = x->getImg();
+        double* yr = y->get();
+        
+#if !defined(balisc_hypot_m128d)
+        for (int i = 0; i < n; i++)
+        {
+            yr[i] = ::balisc_hypot_d(xr[i], xi[i]);
+        }
+#else
+        int n2 = n - 1;
+                    
+        switch (n & 0x1)
+        {
+            case 1:
+                yr[n2] = ::balisc_hypot_d(xr[n2], xi [n2]);
+            default:
+                for (int i = 0; i < n2; i++)
+                {
+                    __m128d a = ::balisc_hypot_m128d(*((__m128d*)&(xr[i])), *((__m128d*)&(xi[i])));
+                    yr[i] = a[0];
+                    yr[++i] = a[1];
+                }
+        }
+#endif
+        
+        return y;
     }
     else
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.abs();
+        double* xr = x->get();
+        double* yr = y->get();
+
+#if !defined(balisc_fabs_m128d)
+        for (int i = 0; i < n; i++)
+        {
+            yr[i] = ::balisc_fabs_d(xr[i]);
+        }
+#else
+        int n2 = n - 1;
+                    
+        switch (n & 0x1)
+        {
+            case 1:
+                yr[n2] = ::balisc_fabs_d(xr[n2]);
+            default:
+                for (int i = 0; i < n2; i++)
+                {
+                    __m128d a = ::balisc_fabs_m128d(*((__m128d*)&(xr[i])));
+                    yr[i] = a[0];
+                    yr[++i] = a[1];
+                }
+        }
+#endif
+
+        return y;
     }
-    
-    return y;
+
 }
 
 }

@@ -18,8 +18,13 @@
 // 02110-1301, USA.
 
 #include "exp.hxx"
-#include <cmath>
+
 #include <Eigen/Core>
+
+extern "C"
+{
+#include "balisc_elementary.h"
+}
 
 using types::Double;
 
@@ -30,37 +35,38 @@ using Eigen::ArrayXcd;
 namespace balisc
 {
 
-static inline std::complex<double> __exp__(double re, double im)
-{
-    return std::exp(std::complex<double>(re, im));
-}
-
 Double* exp(Double* x)
 {
     bool is_complex = x->isComplex();
     Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
-
+    
     int n = x->getSize();
     
-    if (x->isComplex())
+    if (is_complex)
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> xi(x->getImg(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        Map<ArrayXd> yi(y->getImg(), n);
-        ArrayXcd tmp(n);
-        tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__exp__);
-        yr = tmp.real();
-        yi = tmp.imag();
+        double* xr = x->get();
+        double* yr = y->get();
+        double* xi = x->getImg();
+        double* yi = y->getImg();
+        
+        for (int i = 0; i < n; i++)
+        {   
+            double r = ::balisc_exp_d(xr[i]);
+            Sleef_double2 a = Sleef_sincos_u35(xi[i]);
+            yr[i] = r * a.y;
+            yi[i] = r * a.x;
+        }        
+        
+        return y;
     }
     else
     {
         Map<ArrayXd> xr(x->get(), n);
         Map<ArrayXd> yr(y->get(), n);
         yr = xr.exp();
+
+        return y;
     }
-    
-    return y;
 }
 
 }

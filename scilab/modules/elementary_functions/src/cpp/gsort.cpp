@@ -253,7 +253,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                 std::sort(V.begin(), V.end(), (*pFuncWay));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     pdblOutR[iPosSet] = pdblInR[(*it).first.first];
@@ -297,7 +297,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
             std::sort(V.begin(), V.end(), (*pFuncWayL));
 
             int j = 0;
-            for (it = V.begin(); it != V.end(); it++, j++)
+            for (it = V.begin(); it != V.end(); ++it, j++)
             {
                 for (int i = 0; i < iItem; i++)
                 {
@@ -346,7 +346,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
                     std::sort(V.begin(), V.end(), (*pFuncWay));
 
                     int j = 0;
-                    for (it = V.begin(); it != V.end(); it++, j++)
+                    for (it = V.begin(); it != V.end(); ++it, j++)
                     {
                         iPosSet = i * iOffset2 + j * iOffset1;
                         pdblOutR[iPosSet] = (*it).second;
@@ -420,7 +420,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstr
             std::sort(V.begin(), V.end(), (*pFuncWayL));
 
             int j = 0;
-            for (it = V.begin(); it != V.end(); it++, j++)
+            for (it = V.begin(); it != V.end(); ++it, j++)
             {
                 for (int i = 0; i < iItem; i++)
                 {
@@ -525,7 +525,7 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
                 std::sort(V.begin(), V.end(), (*pFuncWayStr));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     pOut->set(iPosSet, (*it).second);
@@ -649,7 +649,7 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
         std::sort(V.begin(), V.end(), (*pFuncWayStrL));
 
         int j = 0;
-        for (it = V.begin(); it != V.end(); it++, j++)
+        for (it = V.begin(); it != V.end(); ++it, j++)
         {
             for (int i = 0; i < iItem; i++)
             {
@@ -745,7 +745,7 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
                 std::sort(V.begin(), V.end(), (*pFuncWay));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     piOut[iPosSet] = (char)(*it).second;
@@ -870,7 +870,7 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring&
         std::sort(V.begin(), V.end(), (*pFuncWayL));
 
         int j = 0;
-        for (it = V.begin(); it != V.end(); it++, j++)
+        for (it = V.begin(); it != V.end(); ++it, j++)
         {
             for (int i = 0; i < iItem; i++)
             {
@@ -966,7 +966,7 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
                 std::sort(V.begin(), V.end(), (*pFuncWay));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     piOut[iPosSet] = (short)(*it).second;
@@ -1091,7 +1091,7 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstrin
         std::sort(V.begin(), V.end(), (*pFuncWayL));
 
         int j = 0;
-        for (it = V.begin(); it != V.end(); it++, j++)
+        for (it = V.begin(); it != V.end(); ++it, j++)
         {
             for (int i = 0; i < iItem; i++)
             {
@@ -1187,7 +1187,7 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
                 std::sort(V.begin(), V.end(), (*pFuncWay));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     piOut[iPosSet] = (int)(*it).second;
@@ -1312,7 +1312,7 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstrin
         std::sort(V.begin(), V.end(), (*pFuncWayL));
 
         int j = 0;
-        for (it = V.begin(); it != V.end(); it++, j++)
+        for (it = V.begin(); it != V.end(); ++it, j++)
         {
             for (int i = 0; i < iItem; i++)
             {
@@ -1408,7 +1408,7 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
                 std::sort(V.begin(), V.end(), (*pFuncWay));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     piOut[iPosSet] = (*it).second;
@@ -1533,7 +1533,7 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstrin
         std::sort(V.begin(), V.end(), (*pFuncWayL));
 
         int j = 0;
-        for (it = V.begin(); it != V.end(); it++, j++)
+        for (it = V.begin(); it != V.end(); ++it, j++)
         {
             for (int i = 0; i < iItem; i++)
             {
@@ -1629,7 +1629,7 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
                 std::sort(V.begin(), V.end(), (*pFuncWay));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     piOut[iPosSet] = (unsigned char)(*it).second;
@@ -1754,7 +1754,7 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstrin
         std::sort(V.begin(), V.end(), (*pFuncWayL));
 
         int j = 0;
-        for (it = V.begin(); it != V.end(); it++, j++)
+        for (it = V.begin(); it != V.end(); ++it, j++)
         {
             for (int i = 0; i < iItem; i++)
             {
@@ -1850,7 +1850,7 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
                 std::sort(V.begin(), V.end(), (*pFuncWay));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     piOut[iPosSet] = (unsigned short)(*it).second;
@@ -1975,7 +1975,7 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstr
         std::sort(V.begin(), V.end(), (*pFuncWayL));
 
         int j = 0;
-        for (it = V.begin(); it != V.end(); it++, j++)
+        for (it = V.begin(); it != V.end(); ++it, j++)
         {
             for (int i = 0; i < iItem; i++)
             {
@@ -2071,7 +2071,7 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
                 std::sort(V.begin(), V.end(), (*pFuncWay));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     piOut[iPosSet] = (unsigned int)(*it).second;
@@ -2196,7 +2196,7 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstr
         std::sort(V.begin(), V.end(), (*pFuncWayL));
 
         int j = 0;
-        for (it = V.begin(); it != V.end(); it++, j++)
+        for (it = V.begin(); it != V.end(); ++it, j++)
         {
             for (int i = 0; i < iItem; i++)
             {
@@ -2292,7 +2292,7 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
                 std::sort(V.begin(), V.end(), (*pFuncWay));
 
                 int j = 0;
-                for (it = V.begin(); it != V.end(); it++, j++)
+                for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
                     piOut[iPosSet] = (*it).second;
@@ -2417,7 +2417,7 @@ types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstr
         std::sort(V.begin(), V.end(), (*pFuncWayL));
 
         int j = 0;
-        for (it = V.begin(); it != V.end(); it++, j++)
+        for (it = V.begin(); it != V.end(); ++it, j++)
         {
             for (int i = 0; i < iItem; i++)
             {
