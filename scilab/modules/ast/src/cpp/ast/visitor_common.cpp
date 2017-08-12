@@ -564,28 +564,29 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
 const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
 {
-    switch(_pExp->getType())
+    const ast::FieldExp* pField =  dynamic_cast<const ast::FieldExp*>(_pExp);
+    const ast::SimpleVar* pVar =  dynamic_cast<const ast::SimpleVar*>(_pExp);
+    const ast::CallExp* pCall =  dynamic_cast<const ast::CallExp*>(_pExp);
+
+    if (pField)
     {
-        case ast::Exp::FIELDEXP:
-            return getStructNameFromExp(static_cast<const ast::FieldExp*>(_pExp)->getHead());
-            break;
-            
-        case ast::Exp::SIMPLEVAR:
-            return &(static_cast<const ast::SimpleVar*>(_pExp)->getSymbol().getName());
-            break;
-            
-        case ast::Exp::CALLEXP:
-            return getStructNameFromExp(&(static_cast<const ast::CallExp*>(_pExp)->getName()));
-            break;
-            
-        default:
-            std::wostringstream os;
-            os << _W("Unknown expression");
-            //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
-            throw ast::InternalError(os.str(), 999, _pExp->getLocation());
-            break;
+        return getStructNameFromExp(pField->getHead());
     }
-    
+    else if (pVar)
+    {
+        return &(pVar->getSymbol().getName());
+    }
+    else if (pCall)
+    {
+        return getStructNameFromExp(&(pCall->getName()));
+    }
+    else
+    {
+        std::wostringstream os;
+        os << _W("Unknown expression");
+        //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
+        throw ast::InternalError(os.str(), 999, _pExp->getLocation());
+    }
     return NULL;
 }
 
