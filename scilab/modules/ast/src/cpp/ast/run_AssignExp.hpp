@@ -437,7 +437,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 pIT[i]->IncreaseRef();
             }
 
-            for (i = iLhsCount - 1, it = exps.rbegin(); it != exps.rend(); it++, i--)
+            for (i = iLhsCount - 1, it = exps.rbegin(); it != exps.rend(); ++it, i--)
             {
                 Exp* pExp = e.getRightExp().clone();
                 AssignExp pAssign((*it)->getLocation(), *(*it), *pExp, pIT[i]);
