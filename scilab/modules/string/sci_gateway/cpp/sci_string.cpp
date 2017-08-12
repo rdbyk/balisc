@@ -98,7 +98,7 @@ static void getMacroString(types::Macro* _pM, types::InternalType** _pOut, types
         types::String *pSIn = new types::String(1, (int)pIn->size());
 
         std::list<symbol::Variable*>::iterator itIn = pIn->begin();
-        for (int i = 0 ; i < pIn->size() ; i++, itIn++)
+        for (int i = 0 ; i < pIn->size() ; i++, ++itIn)
         {
             pSIn->set(i, (*itIn)->getSymbol().getName().c_str());
         }
@@ -117,7 +117,7 @@ static void getMacroString(types::Macro* _pM, types::InternalType** _pOut, types
         types::String* pSOut = new types::String(1, (int)pOut->size());
 
         std::list<symbol::Variable*>::iterator itOut = pOut->begin();
-        for (int i = 0 ; i < pOut->size() ; i++, itOut++)
+        for (int i = 0 ; i < pOut->size() ; i++, ++itOut)
         {
             pSOut->set(i, (*itOut)->getSymbol().getName().c_str());
         }
