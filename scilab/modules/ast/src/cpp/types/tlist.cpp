@@ -245,7 +245,7 @@ InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
     int i = 0;
     List* pLResult = new List();
     std::list<std::wstring>::const_iterator it;
-    for (it = _stFields.begin() ; it != _stFields.end() ; it++)
+    for (it = _stFields.begin() ; it != _stFields.end() ; ++it)
     {
         if (exists(*it) == false)
         {
@@ -253,7 +253,7 @@ InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
         }
     }
 
-    for (it = _stFields.begin() ; it != _stFields.end() ; it++, i++)
+    for (it = _stFields.begin() ; it != _stFields.end() ; ++it, i++)
     {
         InternalType* pIT = getField(*it);
         if (pIT == NULL)

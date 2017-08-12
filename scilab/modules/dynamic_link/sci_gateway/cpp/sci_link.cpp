@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2011 - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -209,7 +209,7 @@ void displayDynLibInfo(void)
     }
 
     std::list<ConfigVariable::EntryPointStr*>::const_reverse_iterator it;
-    for (it = pEPList->rbegin() ; it != pEPList->rend() ; it++)
+    for (it = pEPList->rbegin() ; it != pEPList->rend() ; ++it)
     {
         if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {

@@ -209,7 +209,7 @@ void RunVisitorT<T>::visitprivate(const ArrayListExp & e)
     this->setExpectedSize(1);
 
     types::typed_list lstIT;
-    for (it = e.getExps().begin(); it != e.getExps().end(); it++)
+    for (it = e.getExps().begin(); it != e.getExps().end(); ++it)
     {
         (*it)->accept(*this);
         int size = getResultSize();

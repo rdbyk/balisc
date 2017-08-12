@@ -439,7 +439,7 @@ void ConfigVariable::addEntryPoint(ConfigVariable::EntryPointStr* _pEP)
 ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
 {
     std::list<EntryPointStr*>::const_iterator it;
-    for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+    for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; ++it)
     {
         //by pass iLibIndex check if _iDynamicLibraryIndex == -1
         if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
@@ -457,7 +457,7 @@ dynlib_ptr ConfigVariable::getEntryPointFromPosition(int position)
 {
     std::list<EntryPointStr*>::const_iterator it;
     int pos = 0;
-    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); it++, ++pos)
+    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); ++it, ++pos)
     {
         if (pos == position)
         {
@@ -471,7 +471,7 @@ int ConfigVariable::getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDy
 {
     int pos = 0;
     std::list<EntryPointStr*>::const_iterator it;
-    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); it++, ++pos)
+    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); ++it, ++pos)
     {
         //by pass iLibIndex check if _iDynamicLibraryIndex == -1
         if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
@@ -489,7 +489,7 @@ std::vector<std::wstring> ConfigVariable::getEntryPointNameList()
 {
     std::vector<std::wstring> EntryPointNames;
     std::list<EntryPointStr*>::const_iterator it;
-    for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+    for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; ++it)
     {
         EntryPointNames.push_back((*it)->pwstEntryPointName);
     }

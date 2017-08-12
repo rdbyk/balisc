@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2017 - ESI Group - Clement DAVID
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -576,7 +576,7 @@ types::String* decode(std::vector<int>::iterator& prop_it)
 
         // increment the value iterator by the number of element
         const size_t numberOfElem = static_cast<size_t>(*prop_it) - static_cast<size_t>(*(prop_it - 1)) ;
-        prop_it++;
+        ++prop_it;
         strData += numberOfElem;
     }
 
@@ -622,7 +622,7 @@ bool encode(std::vector<int>& prop_content, types::String* v)
     }
 
     // free all the string, after being copied
-    for (std::vector<char*>::iterator it = utf8.begin(); it != utf8.end(); it++)
+    for (std::vector<char*>::iterator it = utf8.begin(); it != utf8.end(); ++it)
     {
         FREE(*it);
     }

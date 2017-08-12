@@ -310,7 +310,7 @@ inline PathItem* ScilabView::getItem(std::string _pstTag)
 inline PathItem* ScilabView::getItem(std::string _pstTag, std::list<int>& _ignoredList)
 {
     __pathList_iterator it = m_pathList.begin();
-    for (; it != m_pathList.end(); it++)
+    for (; it != m_pathList.end(); ++it)
     {
         PathItem * item = it->second;
         if (item->tag == _pstTag)

@@ -1,10 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2007-2008 - INRIA - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Vincent COUVERT
-* Copyright (C) 2011 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 /*------------------------------------------------------------------------*/
 #include <iostream>
@@ -377,7 +377,7 @@ void HistoryManager::displayHistory(void)
 {
     int nbline = 0;
     std::list<std::string>::const_iterator it;
-    for (it = m_Commands.begin() ; it != m_Commands.end() ; it++)
+    for (it = m_Commands.begin() ; it != m_Commands.end() ; ++it)
     {
         sciprint(_("%d : %s\n"), nbline++, (*it).c_str());
     }
@@ -547,7 +547,7 @@ char* HistoryManager::getNthLine(int _iLine)
     {
         int i = 0;
         std::list<std::string>::const_iterator it;
-        for (it = m_Commands.begin() ; it != m_Commands.end() ; it++)
+        for (it = m_Commands.begin() ; it != m_Commands.end() ; ++it)
         {
             if (i == _iLine)
             {
@@ -566,7 +566,7 @@ BOOL HistoryManager::deleteNthLine(int _iLine)
     {
         int i = 0;
         std::list<std::string>::iterator it;
-        for (it = m_Commands.begin() ; it != m_Commands.end(); it++)
+        for (it = m_Commands.begin() ; it != m_Commands.end(); ++it)
         {
             if (i == _iLine)
             {
