@@ -382,7 +382,7 @@ int ScilabView::search_path(char* _pstPath)
 PathItem* ScilabView::search_children(PathItem* _path, std::string _subPath, bool _bDeep, std::list<int>& _ignoredList)
 {
     PathItem::__child_iterator it = _path->children.begin();
-    for (; it != _path->children.end() ; it++)
+    for (; it != _path->children.end() ; ++it)
     {
         PathItem* child = ScilabView::getItem(*it);
         if (child->tag == _subPath)
