@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <memory>
 #include <sstream>
@@ -219,7 +219,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 else
                 {
                     pL->append(it->second);
-                    it++;
+                    ++it;
                 }
 
                 itValue++;
@@ -259,7 +259,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
         //add optional paramter in current scope
         optional_list::const_iterator it;
-        for (it = opt.begin() ; it != opt.end() ; it++)
+        for (it = opt.begin() ; it != opt.end() ; ++it)
         {
             pContext->put(symbol::Symbol(it->first), it->second);
         }
