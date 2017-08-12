@@ -123,7 +123,7 @@ BOOL HistoryFile::writeToFile(std::string _stFilename)
         }
 
         std::list<std::string>::const_iterator it;
-        for (it = m_Commands.begin(); it != m_Commands.end(); it++)
+        for (it = m_Commands.begin(); it != m_Commands.end(); ++it)
         {
             fOut << (*it).c_str() << '\n';
         }
@@ -259,7 +259,7 @@ BOOL HistoryFile::setHistory(std::list<std::string> _lstCommands)
         m_Commands.clear();
     }
 
-    for (it = _lstCommands.begin(); it != _lstCommands.end(); it++)
+    for (it = _lstCommands.begin(); it != _lstCommands.end(); ++it)
     {
         m_Commands.push_back(*it);
     }
