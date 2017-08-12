@@ -146,418 +146,413 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             return;
         }
 
-        switch(e.getLeftExp().getType())
+        if (e.getLeftExp().isCellCallExp())
         {
-            case Exp::CELLCALLEXP:
+            CellCallExp *pCell = static_cast<CellCallExp*>(&e.getLeftExp());
+            types::InternalType *pOut = NULL;
+
+            /*getting what to assign*/
+            types::InternalType* pITR = e.getRightVal();
+            if (pITR == NULL)
+            {
+                e.getRightExp().accept(*this);
+                pITR = getResult();
+                //reset result
+                setResult(NULL);
+            }
+
+            if (pITR == NULL)
+            {
+                // if the right hand is NULL.
+                std::wostringstream os;
+                os << _W("Unable to extract right part expression.\n");
+                throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
+            }
+
+            std::list<ExpHistory*> fields;
+            if (getFieldsFromExp(pCell, fields) == false)
+            {
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                 {
-                    CellCallExp *pCell = static_cast<CellCallExp*>(&e.getLeftExp());
-                    types::InternalType *pOut = NULL;
+                    delete *i;
+                }
+                std::wostringstream os;
+                os << _W("Get fields from expression failed.");
+                throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+            }
 
-                    /*getting what to assign*/
-                    types::InternalType* pITR = e.getRightVal();
-                    if (pITR == NULL)
-                    {
-                        e.getRightExp().accept(*this);
-                        pITR = getResult();
-                        //reset result
-                        setResult(NULL);
-                    }
+            try
+            {
+                pOut = evaluateFields(pCell, fields, pITR);
+            }
+            catch (const InternalError& error)
+            {
+                // catch error when call overload
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    (*i)->setDeleteCurrent(true);
+                    delete *i;
+                }
 
-                    if (pITR == NULL)
+                pITR->killMe();
+                throw error;
+            }
+
+            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+            {
+                delete *i;
+            }
+
+            pITR->killMe();
+
+            if (pOut == NULL)
+            {
+                std::wostringstream os;
+                os << _W("Fields evaluation failed.");
+                throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+            }
+
+            if (pOut != NULL)
+            {
+                if (e.isVerbose() && ConfigVariable::isPrintOutput())
+                {
+                    std::wstring ostr;
+                    ostr.reserve((*getStructNameFromExp(pCell)).size() + 7);
+                    ostr = L" ";
+                    ostr += *getStructNameFromExp(pCell);
+                    ostr += L"  = \n\n";
+                    scilabWriteW(ostr.c_str());
+
+                    VariableToString(pOut, ostr.c_str());
+                }
+            }
+            else
+            {
+                //manage error
+                std::wostringstream os;
+                os << _W("Invalid index.\n");
+                throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+            }
+
+            CoverageInstance::stopChrono((void*)&e);
+            return;
+        }
+
+        if (e.getLeftExp().isCallExp())
+        {
+            CallExp *pCall = static_cast<CallExp*>(&e.getLeftExp());
+            //x(?) = ?
+            types::InternalType *pOut = NULL;
+
+            if (e.getRightExp().isReturnExp())
+            {
+                // We can't put in the previous scope a variable create like that : a(2)=resume(1)
+                std::wostringstream os;
+                os << _W("Indexing not allowed for output arguments of resume.\n");
+                throw ast::InternalError(os.str(), 79, e.getLeftExp().getLocation());
+            }
+
+            /*getting what to assign*/
+            types::InternalType* pITR = e.getRightVal();
+            if (pITR == NULL)
+            {
+                e.getRightExp().accept(*this);
+                pITR = getResult();
+                //reset result
+                setResult(NULL);
+            }
+
+            if (pITR == NULL)
+            {
+                // if the right hand is NULL.
+                std::wostringstream os;
+                os << _W("Unable to extract right part expression.\n");
+                throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
+            }
+
+            bool alreadyProcessed = false;
+            //a(...) without fields or whatever on arrayof derived types
+            if (pCall->getName().isSimpleVar())
+            {
+                ast::SimpleVar* var = pCall->getName().getAs<ast::SimpleVar>();
+                types::InternalType* pIT = ctx->getCurrentLevel(var->getStack());
+                if (pIT && pIT->isArrayOf())
+                {
+                    if (ctx->isprotected(var->getStack()))
                     {
-                        // if the right hand is NULL.
                         std::wostringstream os;
-                        os << _W("Unable to extract right part expression.\n");
-                        throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
+                        os << _W("Redefining permanent variable.\n");
+                        throw ast::InternalError(os.str(), 999, pCall->getLocation());
                     }
 
-                    std::list<ExpHistory*> fields;
-                    if (getFieldsFromExp(pCell, fields) == false)
-                    {
-                        for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
-                        {
-                            delete *i;
-                        }
-                        std::wostringstream os;
-                        os << _W("Get fields from expression failed.");
-                        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
-                    }
+                    // prevent delete after extractFullMatrix
+                    // called in insertionCall when pITR is an ImplicitList
+                    pITR->IncreaseRef();
+
+                    types::typed_list* currentArgs = GetArgumentList(pCall->getArgs());
 
                     try
                     {
-                        pOut = evaluateFields(pCell, fields, pITR);
+                        pOut = insertionCall(e, currentArgs, pIT, pITR);
                     }
                     catch (const InternalError& error)
                     {
-                        // catch error when call overload
-                        for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
-                        {
-                            (*i)->setDeleteCurrent(true);
-                            delete *i;
-                        }
-
+                        pITR->DecreaseRef();
+                        // call killMe on all arguments
+                        cleanOut(*currentArgs);
+                        delete currentArgs;
+                        // insertion have done, call killMe on pITR
                         pITR->killMe();
                         throw error;
                     }
 
-                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
-                    {
-                        delete *i;
-                    }
+                    pITR->DecreaseRef();
 
+                    // call killMe on all arguments
+                    cleanOut(*currentArgs);
+                    delete currentArgs;
+
+                    // insertion have done, call killMe on pITR
                     pITR->killMe();
 
                     if (pOut == NULL)
                     {
                         std::wostringstream os;
-                        os << _W("Fields evaluation failed.");
-                        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+                        os << _W("Submatrix incorrectly defined.\n");
+                        throw ast::InternalError(os.str(), 999, e.getLocation());
                     }
 
-                    if (pOut != NULL)
+
+                    //update variable with new value
+                    if (pOut != pIT)
                     {
-                        if (e.isVerbose() && ConfigVariable::isPrintOutput())
-                        {
-                            std::wstring ostr;
-                            ostr.reserve((*getStructNameFromExp(pCell)).size() + 7);
-                            ostr = L" ";
-                            ostr += *getStructNameFromExp(pCell);
-                            ostr += L"  = \n\n";
-                            scilabWriteW(ostr.c_str());
-
-                            VariableToString(pOut, ostr.c_str());
-                        }
-                    }
-                    else
-                    {
-                        //manage error
-                        std::wostringstream os;
-                        os << _W("Invalid index.\n");
-                        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+                        ctx->put(var->getStack(), pOut);
                     }
 
-                    CoverageInstance::stopChrono((void*)&e);
-                    return;
+                    alreadyProcessed = true;
                 }
+            }
 
-            case Exp::CALLEXP:
+            if (alreadyProcessed == false)
+            {
+                std::list<ExpHistory*> fields;
+                if (getFieldsFromExp(pCall, fields) == false)
                 {
-                    CallExp *pCall = static_cast<CallExp*>(&e.getLeftExp());
-                    //x(?) = ?
-                    types::InternalType *pOut = NULL;
-
-                    if (e.getRightExp().isReturnExp())
+                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                     {
-                        // We can't put in the previous scope a variable create like that : a(2)=resume(1)
-                        std::wostringstream os;
-                        os << _W("Indexing not allowed for output arguments of resume.\n");
-                        throw ast::InternalError(os.str(), 79, e.getLeftExp().getLocation());
+                        delete *i;
                     }
 
-                    /*getting what to assign*/
-                    types::InternalType* pITR = e.getRightVal();
-                    if (pITR == NULL)
-                    {
-                        e.getRightExp().accept(*this);
-                        pITR = getResult();
-                        //reset result
-                        setResult(NULL);
-                    }
-
-                    if (pITR == NULL)
-                    {
-                        // if the right hand is NULL.
-                        std::wostringstream os;
-                        os << _W("Unable to extract right part expression.\n");
-                        throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
-                    }
-
-                    bool alreadyProcessed = false;
-                    //a(...) without fields or whatever on arrayof derived types
-                    if (pCall->getName().isSimpleVar())
-                    {
-                        ast::SimpleVar* var = pCall->getName().getAs<ast::SimpleVar>();
-                        types::InternalType* pIT = ctx->getCurrentLevel(var->getStack());
-                        if (pIT && pIT->isArrayOf())
-                        {
-                            if (ctx->isprotected(var->getStack()))
-                            {
-                                std::wostringstream os;
-                                os << _W("Redefining permanent variable.\n");
-                                throw ast::InternalError(os.str(), 999, pCall->getLocation());
-                            }
-
-                            // prevent delete after extractFullMatrix
-                            // called in insertionCall when pITR is an ImplicitList
-                            pITR->IncreaseRef();
-
-                            types::typed_list* currentArgs = GetArgumentList(pCall->getArgs());
-
-                            try
-                            {
-                                pOut = insertionCall(e, currentArgs, pIT, pITR);
-                            }
-                            catch (const InternalError& error)
-                            {
-                                pITR->DecreaseRef();
-                                // call killMe on all arguments
-                                cleanOut(*currentArgs);
-                                delete currentArgs;
-                                // insertion have done, call killMe on pITR
-                                pITR->killMe();
-                                throw error;
-                            }
-
-                            pITR->DecreaseRef();
-
-                            // call killMe on all arguments
-                            cleanOut(*currentArgs);
-                            delete currentArgs;
-
-                            // insertion have done, call killMe on pITR
-                            pITR->killMe();
-
-                            if (pOut == NULL)
-                            {
-                                std::wostringstream os;
-                                os << _W("Submatrix incorrectly defined.\n");
-                                throw ast::InternalError(os.str(), 999, e.getLocation());
-                            }
-
-
-                            //update variable with new value
-                            if (pOut != pIT)
-                            {
-                                ctx->put(var->getStack(), pOut);
-                            }
-
-                            alreadyProcessed = true;
-                        }
-                    }
-
-                    if (alreadyProcessed == false)
-                    {
-                        std::list<ExpHistory*> fields;
-                        if (getFieldsFromExp(pCall, fields) == false)
-                        {
-                            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
-                            {
-                                delete *i;
-                            }
-
-                            std::wostringstream os;
-                            os << _W("Instruction left hand side: waiting for a name.");
-                            throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
-                        }
-
-                        // prevent delete after extractFullMatrix
-                        // called in evaluateFields when pITR is an ImplicitList
-                        pITR->IncreaseRef();
-
-                        try
-                        {
-                            pOut = evaluateFields(pCall, fields, pITR);
-                        }
-                        catch (const InternalError& error)
-                        {
-                            // catch error when call overload
-                            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
-                            {
-                                delete *i;
-                            }
-
-                            pITR->DecreaseRef();
-                            pITR->killMe();
-
-                            throw error;
-                        }
-
-                        for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
-                        {
-                            delete *i;
-                        }
-
-                        pITR->DecreaseRef();
-                        pITR->killMe();
-
-                        if (pOut == NULL)
-                        {
-                            std::wostringstream os;
-                            os << _W("Fields evaluation failed.");
-                            throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
-                        }
-                    }
-
-                    if (e.isVerbose() && ConfigVariable::isPrintOutput())
-                    {
-                        std::wstring ostrName(*getStructNameFromExp(&pCall->getName()));
-                        
-                        std::wstring ostr;
-                        ostr.reserve(ostrName.size() + 7);
-                        ostr = L" ";
-                        ostr += ostrName;
-                        ostr += L"  = \n\n";
-                        scilabWriteW(ostr.c_str());
-
-                        VariableToString(pOut, ostrName.c_str());
-                    }
-
-                    clearResult();
-                    CoverageInstance::stopChrono((void*)&e);
-
-                    return;
+                    std::wostringstream os;
+                    os << _W("Instruction left hand side: waiting for a name.");
+                    throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
 
-            case Exp::ASSIGNLISTEXP:
+                // prevent delete after extractFullMatrix
+                // called in evaluateFields when pITR is an ImplicitList
+                pITR->IncreaseRef();
+
+                try
                 {
-                    AssignListExp *pList = e.getLeftExp().getAs<AssignListExp>();
-                    //[x,y] = ?
-                    int iLhsCount = (int)pList->getExps().size();
-
-                    /*getting what to assign*/
-                    T exec;
-                    exec.setExpectedSize(iLhsCount);
-                    e.getRightExp().accept(exec);
-
-                    if (exec.getResultSize() < iLhsCount)
-                    {
-                        std::wostringstream os;
-                        os << _W("Incompatible assignation: trying to assign ") << exec.getResultSize();
-                        os << _W(" values in ") << iLhsCount << _W(" variables.") << std::endl;
-                        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
-                    }
-
-                    exps_t::const_reverse_iterator it;
-                    exps_t exps = pList->getExps();
-                    types::InternalType** pIT = new types::InternalType*[iLhsCount];
-                    int i = 0;
-                    for (i = iLhsCount - 1; i >= 0; i--)
-                    {
-                        //create a new AssignExp and run it
-                        pIT[i] = exec.getResult(i);
-                        //protet rhs against removal [a,b] = (b,a);
-                        pIT[i]->IncreaseRef();
-                    }
-
-                    for (i = iLhsCount - 1, it = exps.rbegin(); it != exps.rend(); it++, i--)
-                    {
-                        Exp* pExp = e.getRightExp().clone();
-                        AssignExp pAssign((*it)->getLocation(), *(*it), *pExp, pIT[i]);
-                        pAssign.setLrOwner(false);
-                        pAssign.setVerbose(e.isVerbose());
-                        pAssign.accept(*this);
-                        //clear result to take care of [n,n]
-                        exec.setResult(i, NULL);
-                        delete pExp;
-                    }
-
-                    for (i = iLhsCount - 1; i >= 0; i--)
-                    {
-                        //unprotect rhs
-                        pIT[i]->DecreaseRef();
-                        pIT[i]->killMe();
-                    }
-
-                    delete[] pIT;
-                    exec.clearResult();
-                    CoverageInstance::stopChrono((void*)&e);
-                    return;
+                    pOut = evaluateFields(pCall, fields, pITR);
                 }
-
-            case Exp::FIELDEXP:
+                catch (const InternalError& error)
                 {
-                    FieldExp *pField = static_cast<FieldExp*>(&e.getLeftExp());
-                    types::InternalType *pIT = e.getRightVal();
-                    if (pIT == NULL)
+                    // catch error when call overload
+                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                     {
-                        //a.b = x
-                        //a.b can be a struct or a tlist/mlist or a handle
-                        /*getting what to assign*/
-                        setExpectedSize(1);
-                        e.getRightExp().accept(*this);
-                        pIT = getResult();
-                        setResult(NULL);
+                        delete *i;
                     }
 
-                    if (pIT->isImplicitList())
-                    {
-                        if (pIT->getAs<types::ImplicitList>()->isComputable())
-                        {
-                            types::InternalType *pTemp = pIT->getAs<types::ImplicitList>()->extractFullMatrix();
-                            delete pIT;
-                            setResult(NULL);
-                            pIT = pTemp;
-                        }
-                    }
+                    pITR->DecreaseRef();
+                    pITR->killMe();
 
-                    std::list<ExpHistory*> fields;
-                    if (getFieldsFromExp(pField, fields) == false)
-                    {
-                        for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
-                        {
-                            delete *i;
-                        }
-                        std::wostringstream os;
-                        os << _W("Get fields from expression failed.");
-                        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
-                    }
-
-                    try
-                    {
-                        if (evaluateFields(pField, fields, pIT) == NULL)
-                        {
-                            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
-                            {
-                                delete *i;
-                            }
-                            std::wostringstream os;
-                            os << _W("Fields evaluation failed.");
-                            throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
-                        }
-                    }
-                    catch (const InternalError& error)
-                    {
-                        for (auto i : fields)
-                        {
-                            delete i;
-                        }
-
-                        throw error;
-                    }
-
-                    for (auto i : fields)
-                    {
-                        delete i;
-                    }
-
-                    if (e.isVerbose() && ConfigVariable::isPrintOutput())
-                    {
-                        const std::wstring *pstName = getStructNameFromExp(pField);
-
-                        types::InternalType* pPrint = ctx->get(symbol::Symbol(*pstName));
-                        
-                        std::wstring ostr;
-                        ostr.reserve((*pstName).size() + 7);
-                        ostr = L" ";
-                        ostr += *pstName;
-                        ostr += L"  = \n\n";
-                        scilabWriteW(ostr.c_str());
-
-                        VariableToString(pPrint, (*pstName).c_str());
-                    }
-
-                    clearResult();
-                    CoverageInstance::stopChrono((void*)&e);
-                    return;
+                    throw error;
                 }
+
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    delete *i;
+                }
+
+                pITR->DecreaseRef();
+                pITR->killMe();
+
+                if (pOut == NULL)
+                {
+                    std::wostringstream os;
+                    os << _W("Fields evaluation failed.");
+                    throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+                }
+            }
+
+            if (e.isVerbose() && ConfigVariable::isPrintOutput())
+            {
+                std::wstring ostrName(*getStructNameFromExp(&pCall->getName()));
                 
-            default:
-                std::wostringstream os;
-                os << _W("unknown script form");
-                //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
-                throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+                std::wstring ostr;
+                ostr.reserve(ostrName.size() + 7);
+                ostr = L" ";
+                ostr += ostrName;
+                ostr += L"  = \n\n";
+                scilabWriteW(ostr.c_str());
+
+                VariableToString(pOut, ostrName.c_str());
+            }
+
+            clearResult();
+            CoverageInstance::stopChrono((void*)&e);
+
+            return;
         }
 
+        if (e.getLeftExp().isAssignListExp())
+        {
+            AssignListExp *pList = e.getLeftExp().getAs<AssignListExp>();
+            //[x,y] = ?
+            int iLhsCount = (int)pList->getExps().size();
+
+            /*getting what to assign*/
+            T exec;
+            exec.setExpectedSize(iLhsCount);
+            e.getRightExp().accept(exec);
+
+            if (exec.getResultSize() < iLhsCount)
+            {
+                std::wostringstream os;
+                os << _W("Incompatible assignation: trying to assign ") << exec.getResultSize();
+                os << _W(" values in ") << iLhsCount << _W(" variables.") << std::endl;
+                throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+            }
+
+            exps_t::const_reverse_iterator it;
+            exps_t exps = pList->getExps();
+            types::InternalType** pIT = new types::InternalType*[iLhsCount];
+            int i = 0;
+            for (i = iLhsCount - 1; i >= 0; i--)
+            {
+                //create a new AssignExp and run it
+                pIT[i] = exec.getResult(i);
+                //protet rhs against removal [a,b] = (b,a);
+                pIT[i]->IncreaseRef();
+            }
+
+            for (i = iLhsCount - 1, it = exps.rbegin(); it != exps.rend(); it++, i--)
+            {
+                Exp* pExp = e.getRightExp().clone();
+                AssignExp pAssign((*it)->getLocation(), *(*it), *pExp, pIT[i]);
+                pAssign.setLrOwner(false);
+                pAssign.setVerbose(e.isVerbose());
+                pAssign.accept(*this);
+                //clear result to take care of [n,n]
+                exec.setResult(i, NULL);
+                delete pExp;
+            }
+
+            for (i = iLhsCount - 1; i >= 0; i--)
+            {
+                //unprotect rhs
+                pIT[i]->DecreaseRef();
+                pIT[i]->killMe();
+            }
+
+            delete[] pIT;
+            exec.clearResult();
+            CoverageInstance::stopChrono((void*)&e);
+            return;
+        }
+
+        if (e.getLeftExp().isFieldExp())
+        {
+            FieldExp *pField = static_cast<FieldExp*>(&e.getLeftExp());
+            types::InternalType *pIT = e.getRightVal();
+            if (pIT == NULL)
+            {
+                //a.b = x
+                //a.b can be a struct or a tlist/mlist or a handle
+                /*getting what to assign*/
+                setExpectedSize(1);
+                e.getRightExp().accept(*this);
+                pIT = getResult();
+                setResult(NULL);
+            }
+
+            if (pIT->isImplicitList())
+            {
+                if (pIT->getAs<types::ImplicitList>()->isComputable())
+                {
+                    types::InternalType *pTemp = pIT->getAs<types::ImplicitList>()->extractFullMatrix();
+                    delete pIT;
+                    setResult(NULL);
+                    pIT = pTemp;
+                }
+            }
+
+            std::list<ExpHistory*> fields;
+            if (getFieldsFromExp(pField, fields) == false)
+            {
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    delete *i;
+                }
+                std::wostringstream os;
+                os << _W("Get fields from expression failed.");
+                throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+            }
+
+            try
+            {
+                if (evaluateFields(pField, fields, pIT) == NULL)
+                {
+                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                    {
+                        delete *i;
+                    }
+                    std::wostringstream os;
+                    os << _W("Fields evaluation failed.");
+                    throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+                }
+            }
+            catch (const InternalError& error)
+            {
+                for (auto i : fields)
+                {
+                    delete i;
+                }
+
+                throw error;
+            }
+
+            for (auto i : fields)
+            {
+                delete i;
+            }
+
+            if (e.isVerbose() && ConfigVariable::isPrintOutput())
+            {
+                const std::wstring *pstName = getStructNameFromExp(pField);
+
+                types::InternalType* pPrint = ctx->get(symbol::Symbol(*pstName));
+                
+                std::wstring ostr;
+                ostr.reserve((*pstName).size() + 7);
+                ostr = L" ";
+                ostr += *pstName;
+                ostr += L"  = \n\n";
+                scilabWriteW(ostr.c_str());
+
+                VariableToString(pPrint, (*pstName).c_str());
+            }
+
+            clearResult();
+            CoverageInstance::stopChrono((void*)&e);
+            return;
+        }
+
+        std::wostringstream os;
+        os << _W("unknown script form");
+        //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
+        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
     }
     catch (const InternalError& error)
     {
