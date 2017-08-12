@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2013 - scilab Enterprises - Cedric Delamarre
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -54,8 +54,8 @@ types::Function::ReturnValue sci_where(types::typed_list &in, int _iRetCount, ty
 
     auto it = where.rbegin();
     pDblLines->set(0, it->m_line);
-    it++;
-    for (int i = 0; it != where.rend(); it++, i++)
+    ++it;
+    for (int i = 0; it != where.rend(); ++it, i++)
     {
         pDblLines->set(i + 1, it->m_line);
         pStrNames->set(i, it->m_name.c_str());
