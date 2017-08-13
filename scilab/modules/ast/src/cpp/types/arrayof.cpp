@@ -1517,10 +1517,6 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             //copy values into new one
             int* piIndexes = new int[std::max(m_iDims, _iDims)];
             memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
-            for (int i = 0; i < _iDims; i++)
-            {
-                piIndexes[i] = 0;
-            }
 
             int iPreviousNewIdx = 0;
             for (int i = 0; i < m_iSize; i++)
@@ -1629,10 +1625,6 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             //copy values into new one
             int* piIndexes = new int[std::max(m_iDims, _iDims)];
             memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
-            for (int i = 0; i < _iDims; i++)
-            {
-                piIndexes[i] = 0;
-            }
 
             int iPreviousNewIdx = 0;
             for (int i = 0; i < m_iSize; i++)
