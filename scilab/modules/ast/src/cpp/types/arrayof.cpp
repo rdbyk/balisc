@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "arrayof.hxx"
 #include "double.hxx"
@@ -37,8 +37,8 @@ static int get_max_size(int* _piDims, int _iDims)
         return 0;
     }
 
-    int iMax = 1;
-    for (int i = 0 ; i < _iDims ; i++)
+    int iMax = _iDims[0];
+    for (int i = 1; i < _iDims; i++)
     {
         iMax *= _piDims[i];
     }
@@ -440,7 +440,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 int iPas = 1;
                 for (int j = 0; j < iDimsOrigine; j++)
                 {
-                    iPas = iPas * m_piDims[j];
+                    iPas *= m_piDims[j];
                 }
 
                 for (int iPost = iPos; iPost < this->getSize(); iPost += iPas)
