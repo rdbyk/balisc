@@ -1515,8 +1515,9 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             pImgData = allocData(m_iSizeMax);
 
             //copy values into new one
-            int* piIndexes = new int[std::max(m_iDims, _iDims)];
-            memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
+            int iMaxDims = std::max(m_iDims, _iDims);
+            int* piIndexes = new int[iMaxDims];
+            memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
 
             int iPreviousNewIdx = 0;
             for (int i = 0; i < m_iSize; i++)
@@ -1591,8 +1592,9 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             if (m_iDims != _iDims || (!isVector() && bNonLastDimChange))
             {
                 //copy values into new one
-                int* piIndexes = new int[std::max(m_iDims, _iDims)];
-                memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
+                int iMaxDims = std::max(m_iDims, _iDims);
+                int* piIndexes = new int[iMaxDims];
+                memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
                 for (int i = m_iSize - 1; i >= 0; i--)
                 {
                     getIndexes(i, piIndexes);
@@ -1623,8 +1625,9 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             pRealData = allocData(m_iSizeMax);
 
             //copy values into new one
-            int* piIndexes = new int[std::max(m_iDims, _iDims)];
-            memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
+            int iMaxDims = std::max(m_iDims, _iDims);
+            int* piIndexes = new int[iMaxDims];
+            memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
 
             int iPreviousNewIdx = 0;
             for (int i = 0; i < m_iSize; i++)
@@ -1694,8 +1697,9 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             if (m_iDims != _iDims || (!isVector() && bNonLastDimChange))
             {
                 //copy values into new one
-                int* piIndexes = new int[std::max(m_iDims, _iDims)];
-                memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
+                int iMaxDims = std::max(m_iDims, _iDims);
+                int* piIndexes = new int[iMaxDims];
+                memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
                 for (int i = m_iSize - 1; i >= 0; i--)
                 {
                     getIndexes(i, piIndexes);
