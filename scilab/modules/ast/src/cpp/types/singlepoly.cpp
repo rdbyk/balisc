@@ -446,7 +446,7 @@ bool SinglePoly::operator==(const InternalType& it)
         return false;
     }
     
-    if (memcmp(m_pRealData, pP->get(), sizeof(double) * m_iSize) != 0)
+    if (memcmp(m_pRealData, pP->get(), m_iSize) != 0)
     {
         return false;
     }
@@ -454,7 +454,7 @@ bool SinglePoly::operator==(const InternalType& it)
     //both complex
     if (isComplex() && pP->isComplex())
     {
-        if (memcmp(m_pImgData, pP->getImg(), sizeof(double) * m_iSize) != 0)
+        if (memcmp(m_pImgData, pP->getImg(), m_iSize) != 0)
         {
             return false;
         }
