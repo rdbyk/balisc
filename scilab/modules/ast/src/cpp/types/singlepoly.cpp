@@ -445,18 +445,26 @@ bool SinglePoly::operator==(const InternalType& it)
     {
         return false;
     }
-    
-    if (memcmp(m_pRealData, pP->get(), m_iSize) != 0)
+
+    double *pdblReal = pP->get();
+    for (int i = 0 ; i < getSize() ; i++)
     {
-        return false;
+        if (m_pRealData[i] != pdblReal[i])
+        {
+            return false;
+        }
     }
-    
+
     //both complex
     if (isComplex() && pP->isComplex())
     {
-        if (memcmp(m_pImgData, pP->getImg(), m_iSize) != 0)
+        double *pdblImg = pP->getImg();
+        for (int i = 0 ; i < m_iSize ; i++)
         {
-            return false;
+            if (m_pImgData[i] != pdblImg[i])
+            {
+                return false;
+            }
         }
     }
     //pdbl complex check all img values == 0
