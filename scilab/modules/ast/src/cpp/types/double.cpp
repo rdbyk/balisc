@@ -792,12 +792,12 @@ Double* Double::clone()
 {
     int iOne = 1;
     Double *pReturn = new Double(m_iDims, m_piDims, isComplex());
-    memmove(pReturn->getReal(), m_pRealData, m_iSize * sizeof(double));
+    memcpy(pReturn->getReal(), m_pRealData, m_iSize * sizeof(double));
 
     if (isComplex())
     {
         pReturn->setComplex(true);
-        memmove(pReturn->getImg(), m_pImgData, m_iSize * sizeof(double));
+        memcpy(pReturn->getImg(), m_pImgData, m_iSize * sizeof(double));
     }
     return pReturn;
 }
