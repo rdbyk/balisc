@@ -845,17 +845,25 @@ bool Double::operator==(const InternalType& it)
         }
     }
 
-    if (memcmp(m_pRealData, pdbl->getReal(), sizeof(double) * m_iSize) != 0)
+    double *pdblReal = pdbl->getReal();
+    for (int i = 0; i < m_iSize; i++)
     {
-        return false;
+        if (m_pRealData[i] != pdblReal[i])
+        {
+            return false;
+        }
     }
-    
+
     //both complex
     if (isComplex() && pdbl->isComplex())
     {
-        if (memcmp(m_pImgData, pdbl->getImg(), sizeof(double) * m_iSize) != 0)
+        double *pdblImg = pdbl->getImg();
+        for (int i = 0 ; i < m_iSize ; i++)
         {
-            return false;
+            if (m_pImgData[i] != pdblImg[i])
+            {
+                return false;
+            }
         }
     }
     //pdbl complex check all img values == 0
