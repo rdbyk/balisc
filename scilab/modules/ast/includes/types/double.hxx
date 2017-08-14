@@ -80,7 +80,7 @@ public :
 
     bool isComplex()
     {
-        return (m_pImgData != NULL) || m_bViewAsZComplex;
+        return (m_pImgData != NULL) || isViewAsZComplex();
     }
 
     inline bool isNumericallyComplex(double tolerance = 0)
@@ -306,8 +306,11 @@ public :
             return pIT;
         }
 
-        memmove(m_pRealData, _pdata, sizeof(double) * m_iSize);
-        
+        for (int i = 0; i < m_iSize; i++)
+        {
+            m_pRealData[i] = _pdata[i];
+        }
+
         return this;
     }
 
@@ -324,9 +327,12 @@ public :
         {
             return pIT;
         }
-        
-        memmove(m_pRealData, _pdata, sizeof(double) * m_iSize);
-        
+
+        for (int i = 0; i < m_iSize; i++)
+        {
+            m_pRealData[i] = _pdata[i];
+        }
+
         return this;
     }
 
@@ -337,11 +343,11 @@ public :
 
     virtual void fillDefaultValues() override
     {
-        size_t mem_size = sizeof(double) * m_iSize;
-        memset(m_pRealData, 0x00, mem_size);
+        int size = m_iSize;
+        memset(m_pRealData, 0x00, sizeof(double) * size);
         if (isComplex())
         {
-            memset(m_pImgData, 0x00, mem_size);
+            memset(m_pImgData, 0x00, sizeof(double) * size);
         }
     }
 
@@ -360,36 +366,6 @@ private:
     bool                        m_bViewAsZComplex;
 
 };
-
-inline bool Double::isEmpty()
-{
-    if (m_iDims == 2 && m_iRows == 0 && m_iCols == 0)
-    {
-        return true;
-    }
-    return false;
-}
-
-inline double* Double::getReal() const
-{
-    return get();
-}
-
-inline double Double::getReal(int _iRows, int _iCols)
-{
-    return get(_iRows, _iCols);
-}
-
-inline double Double::getNullValue()
-{
-    return 0;
-}
-
-inline double Double::copyValue(double _dblData)
-{
-    return _dblData;
-}
-
 }
 
 #ifdef _MSC_VER
