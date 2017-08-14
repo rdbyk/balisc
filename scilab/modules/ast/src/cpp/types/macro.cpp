@@ -131,7 +131,7 @@ bool Macro::toString(std::wostringstream& ostr)
         std::list<symbol::Variable*>::iterator OutArgfter = OutArg;
         OutArgfter++;
 
-        for (; OutArgfter != m_outputArgs->end(); OutArgfter++)
+        for (; OutArgfter != m_outputArgs->end(); ++OutArgfter)
         {
             ostr << (*OutArg)->getSymbol().getName();
             ostr << ",";
@@ -153,7 +153,7 @@ bool Macro::toString(std::wostringstream& ostr)
         std::list<symbol::Variable*>::iterator inRagAfter = inArg;
         inRagAfter++;
 
-        for (; inRagAfter != m_inputArgs->end(); inRagAfter++)
+        for (; inRagAfter != m_inputArgs->end(); ++inRagAfter)
         {
             ostr << (*inArg)->getSymbol().getName();
             ostr << ",";
