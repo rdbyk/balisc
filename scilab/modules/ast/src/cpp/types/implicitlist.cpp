@@ -1,8 +1,8 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+*
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- *
- */
+*
+*/
 #include <sstream>
 #include <math.h>
 #include "double.hxx"
@@ -489,57 +489,60 @@ InternalType* ImplicitList::extractFullMatrix()
     InternalType* pIT = NULL;
     if (compute())
     {
-        if (m_iSize == 0) // return []
+        if (getSize() == 0) // return []
         {
             pIT = Double::Empty();
         }
-        else if (m_iSize == -1) // return nan
+        else if (getSize() == -1) // return nan
         {
             unsigned long long raw = 0x7ff8000000000000;
             double not_a_number = *( double* )&raw;
             pIT = new Double(not_a_number);
         }
-        else
+        else if (m_eOutType == ScilabDouble)
         {
-            switch(m_eOutType)
-            {
-                case ScilabDouble:
-                    pIT = new Double(1, m_iSize);
-                    extractFullMatrix(pIT->getAs<Double>());
-                    break;
-                case ScilabInt8:
-                    pIT	= new Int8(1, m_iSize);
-                    extractFullMatrix(pIT->getAs<Int8>());
-                    break;
-                case ScilabUInt8:
-                    pIT	= new UInt8(1, m_iSize);
-                    extractFullMatrix(pIT->getAs<UInt8>());
-                    break;
-                case ScilabInt16:
-                    pIT	= new Int16(1, m_iSize);
-                    extractFullMatrix(pIT->getAs<Int16>());
-                    break;
-                case ScilabUInt16:
-                    pIT	= new UInt16(1, m_iSize);
-                    extractFullMatrix(pIT->getAs<UInt16>());
-                    break;
-                case ScilabInt32:
-                    pIT	= new Int32(1, m_iSize);
-                    extractFullMatrix(pIT->getAs<Int32>());
-                    break;
-                case ScilabUInt32:
-                    pIT	= new UInt32(1, m_iSize);
-                    extractFullMatrix(pIT->getAs<UInt32>());
-                    break;
-                case ScilabInt64:
-                    pIT	= new Int64(1, m_iSize);
-                    extractFullMatrix(pIT->getAs<Int64>());
-                    break;
-                case ScilabUInt64:
-                    pIT	= new UInt64(1, m_iSize);
-                    extractFullMatrix(pIT->getAs<UInt64>());
-                    break;
-            }
+            pIT = new Double(1, m_iSize);
+            extractFullMatrix(pIT->getAs<Double>());
+        }
+        else if (m_eOutType == ScilabInt8)
+        {
+            pIT	= new Int8(1, m_iSize);
+            extractFullMatrix(pIT->getAs<Int8>());
+        }
+        else if (m_eOutType == ScilabUInt8)
+        {
+            pIT	= new UInt8(1, m_iSize);
+            extractFullMatrix(pIT->getAs<UInt8>());
+        }
+        else if (m_eOutType == ScilabInt16)
+        {
+            pIT	= new Int16(1, m_iSize);
+            extractFullMatrix(pIT->getAs<Int16>());
+        }
+        else if (m_eOutType == ScilabUInt16)
+        {
+            pIT	= new UInt16(1, m_iSize);
+            extractFullMatrix(pIT->getAs<UInt16>());
+        }
+        else if (m_eOutType == ScilabInt32)
+        {
+            pIT	= new Int32(1, m_iSize);
+            extractFullMatrix(pIT->getAs<Int32>());
+        }
+        else if (m_eOutType == ScilabUInt32)
+        {
+            pIT	= new UInt32(1, m_iSize);
+            extractFullMatrix(pIT->getAs<UInt32>());
+        }
+        else if (m_eOutType == ScilabInt64)
+        {
+            pIT	= new Int64(1, m_iSize);
+            extractFullMatrix(pIT->getAs<Int64>());
+        }
+        else if (m_eOutType == ScilabUInt64)
+        {
+            pIT	= new UInt64(1, m_iSize);
+            extractFullMatrix(pIT->getAs<UInt64>());
         }
     }
     return pIT;
