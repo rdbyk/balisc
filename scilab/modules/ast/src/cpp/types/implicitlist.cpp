@@ -546,9 +546,10 @@ void ImplicitList::extractFullMatrix(Double *_p)
 {
     double dblStart = m_poStart->getAs<Double>()->get(0);
     double dblStep  = m_poStep->getAs<Double>()->get(0);
-
+    
     double* p = _p->get();
-    for (int i = 0 ; i < m_iSize ; i++)
+    p[0] = dblStart;
+    for (int i = 1; i < m_iSize; i++)
     {
         p[i] = dblStart + i * dblStep;
     }
@@ -561,9 +562,11 @@ void ImplicitList::extractFullMatrix(T *_pT)
     typename T::type tStep = static_cast<typename T::type>(convert_input(m_poStep));
 
     typename T::type* p = _pT->get();
-    for (int i = 0 ; i < m_iSize ; i++)
+    p[0] = tStart;
+    for (int i = 1; i < m_iSize; i++)
     {
-        p[i] = tStart + i * tStep;
+        // p[i] = tStart + i * tStep;
+        p[i] = p[i-1] + tStep;
     }
 }
 
