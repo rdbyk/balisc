@@ -26,7 +26,7 @@ if expected<>computed then pause,end
 // With start, step, stop reals
 a=(1-0.9)*50
 computed=(1:a)
-expected = [1 2 3 4 5]
+expected = [1 2 3 4]
 if norm(expected-computed)>100*%eps then pause,end
 // With start, step, stop reals
 step=(1-0.9)*20
