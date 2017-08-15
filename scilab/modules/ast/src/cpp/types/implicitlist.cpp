@@ -233,19 +233,16 @@ bool ImplicitList::compute()
                 return true;
             }
 
-            double dblVal = dblStart; // temp value
-            double dblEps = NumericConstants::eps;
-            double dblPrec = 2 * std::max(fabs(dblStart), fabs(dblEnd)) * dblEps;
+            // compute list size
+            m_iSize = std::ceil(dblRange / dblStep);
 
-            while (dblStep * (dblVal - dblEnd) <= 0)
+            if (m_iSize < 0)
             {
-                m_iSize++;
-                dblVal = dblStart + m_iSize * dblStep;
+                m_iSize = 0;
             }
-
-            if (fabs(dblVal - dblEnd) < dblPrec)
+            else if (std::fabs(m_iSize * dblStep) <= fabs(dblRange))
             {
-                m_iSize++;
+                ++m_iSize;
             }
         }
         else //m_eOutType == ScilabInt
