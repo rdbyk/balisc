@@ -32,8 +32,7 @@ ListInsert::~ListInsert()
 {
     if (m_pInsert != NULL)
     {
-        m_pInsert->DecreaseRef();
-        m_pInsert->killMe();
+        m_pInsert->DecreaseRefKillMe();
     }
 }
 
