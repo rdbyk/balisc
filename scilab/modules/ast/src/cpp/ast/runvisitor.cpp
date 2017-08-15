@@ -730,10 +730,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             catch (const InternalError& ie)
             {
                 //unlock loop index and implicit list
-                pIL->DecreaseRef();
-                pIL->killMe();
-                pIT->DecreaseRef();
-                pIT->killMe();
+                pIL->DecreaseRefKillMe();
+                pIT->DecreaseRefKillMe();
 
                 setResult(NULL);
                 CoverageInstance::stopChrono((void*)&e);
@@ -761,8 +759,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         }
 
         //unlock loop index
-        pIL->DecreaseRef();
-        pIL->killMe();
+        pIL->DecreaseRefKillMe();
     }
     else if (pIT->isList())
     {
@@ -789,8 +786,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             catch (const InternalError& ie)
             {
                 //implicit list
-                pIT->DecreaseRef();
-                pIT->killMe();
+                pIT->DecreaseRefKillMe();
                 setResult(NULL);
                 CoverageInstance::stopChrono((void*)&e);
                 throw ie;
@@ -822,8 +818,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         types::GenericType* pVar = pIT->getAs<types::GenericType>();
         if (pVar->getDims() > 2)
         {
-            pIT->DecreaseRef();
-            pIT->killMe();
+            pIT->DecreaseRefKillMe();
             CoverageInstance::stopChrono((void*)&e);
             throw InternalError(_W("for expression can only manage 1 or 2 dimensions variables\n"), 999, e.getVardec().getLocation());
         }
@@ -835,8 +830,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             types::GenericType* pNew = pVar->getColumnValues(i);
             if (pNew == NULL)
             {
-                pIT->DecreaseRef();
-                pIT->killMe();
+                pIT->DecreaseRefKillMe();
                 CoverageInstance::stopChrono((void*)&e);
                 throw InternalError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
             }
@@ -857,8 +851,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             catch (const InternalError& ie)
             {
                 //implicit list
-                pIT->DecreaseRef();
-                pIT->killMe();
+                pIT->DecreaseRefKillMe();
                 setResult(NULL);
                 CoverageInstance::stopChrono((void*)&e);
                 throw ie;
@@ -886,14 +879,12 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     }
     else
     {
-        pIT->DecreaseRef();
-        pIT->killMe();
+        pIT->DecreaseRefKillMe();
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
     }
 
-    pIT->DecreaseRef();
-    pIT->killMe();
+    pIT->DecreaseRefKillMe();
 
     setResult(NULL);
     CoverageInstance::stopChrono((void*)&e);
@@ -1192,8 +1183,7 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
                     }
                     catch (const InternalError& ie)
                     {
-                        pIT->DecreaseRef();
-                        pIT->killMe();
+                        pIT->DecreaseRefKillMe();
                         CoverageInstance::stopChrono((void*)&e);
                         throw ie;
                     }
@@ -1237,8 +1227,7 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
         {
             if (pIT)
             {
-                pIT->DecreaseRef();
-                pIT->killMe();
+                pIT->DecreaseRefKillMe();
             }
             CoverageInstance::stopChrono((void*)&e);
             throw ie;
@@ -1267,8 +1256,7 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
 
     if (pIT)
     {
-        pIT->DecreaseRef();
-        pIT->killMe();
+        pIT->DecreaseRefKillMe();
     }
     CoverageInstance::stopChrono((void*)&e);
 }

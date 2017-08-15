@@ -89,7 +89,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 {
                     str = printExp(*file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
                     iLastLine = (*k)->getLocation().last_line;
-                    k++;
+                    ++k;
                 } while (k != exps.end() && (*k)->getLocation().first_line == iLastLine);
             }
         }

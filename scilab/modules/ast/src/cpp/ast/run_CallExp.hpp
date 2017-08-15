@@ -193,8 +193,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     types::InternalType* pITExtract = pIL->extractFullMatrix();
                     pITExtract->IncreaseRef();
                     inTmp[iterIn] = pITExtract;
-                    pIL->DecreaseRef();
-                    pIL->killMe();
+                    pIL->DecreaseRefKillMe();
                 }
             }
         }
@@ -268,8 +267,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     }
                     else
                     {
-                        pListArg->DecreaseRef();
-                        pListArg->killMe();
+                        pListArg->DecreaseRefKillMe();
 
                         std::wostringstream os;
                         os << _W("Invalid index.\n");
@@ -371,8 +369,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         if (pListArg)
         {
-            pListArg->DecreaseRef();
-            pListArg->killMe();
+            pListArg->DecreaseRefKillMe();
         }
     }
     catch (InternalAbort & ia)

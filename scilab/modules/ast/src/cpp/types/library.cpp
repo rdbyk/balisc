@@ -44,8 +44,7 @@ Library::~Library()
     for (auto macro : m_macros)
     {
         MacroFile* pMacro = macro.second;
-        pMacro->DecreaseRef();
-        pMacro->killMe();
+        pMacro->DecreaseRefKillMe();
     }
 
     m_macros.clear();
