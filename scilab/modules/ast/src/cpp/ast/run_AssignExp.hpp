@@ -364,8 +364,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                         delete *i;
                     }
 
-                    pITR->DecreaseRef();
-                    pITR->killMe();
+                    pITR->DecreaseRefKillMe();
 
                     throw error;
                 }
@@ -375,8 +374,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     delete *i;
                 }
 
-                pITR->DecreaseRef();
-                pITR->killMe();
+                pITR->DecreaseRefKillMe();
 
                 if (pOut == NULL)
                 {
@@ -452,8 +450,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             for (i = iLhsCount - 1; i >= 0; i--)
             {
                 //unprotect rhs
-                pIT[i]->DecreaseRef();
-                pIT[i]->killMe();
+                pIT[i]->DecreaseRefKillMe();
             }
 
             delete[] pIT;
