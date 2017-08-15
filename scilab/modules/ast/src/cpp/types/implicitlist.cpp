@@ -211,33 +211,23 @@ bool ImplicitList::compute()
 
             m_pDblEnd = m_poEnd->getAs<Double>();
             double dblEnd	= m_pDblEnd->get(0);
-            // othe way to compute
+            
+            // handle finiteness of start, step, and end value
+            double dblRange = dblEnd - dblStart;
 
-            // nan value
-            if (ISNAN(dblStart) || ISNAN(dblStep) || ISNAN(dblEnd))
+            if (finite(dblStep) == 0 || finite(dblRange) == 0)
             {
-                m_iSize = -1;
-                m_bComputed = true;
-                return true;
-            }
-
-            // no finite values
-            if ( finite(dblStart) == 0 || finite(dblStep) == 0 || finite(dblEnd) == 0)
-            {
-                if ((dblStep > 0 && dblStart < dblEnd) ||
-                        (dblStep < 0 && dblStart > dblEnd))
+                if (isnan(dblStep) || isnan(dblRange) || std::signbit(dblStep) == std::signbit(dblRange))
                 {
-                    // return nan
                     m_iSize = -1;
                 }
-                // else return []
 
                 m_bComputed = true;
                 return true;
             }
 
-            // step null
-            if (dblStep == 0) // return []
+            // zero step => return []
+            if (dblStep == 0)
             {
                 m_bComputed = true;
                 return true;
