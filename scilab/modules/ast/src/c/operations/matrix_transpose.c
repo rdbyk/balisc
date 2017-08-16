@@ -15,46 +15,6 @@
 
 #include "matrix_transpose.h"
 
-/*
-+---+---+
-| 1 | 2 |       +---+---+---+
-+---+---+       | 6 | 4 | 2 |
-| 3 | 4 |   ->  +---+---+---+
-+---+---+       | 5 | 3 | 1 |
-| 5 | 6 |       +---+---+---+
-+---+---+
-*/
-void vPretransposeRealMatrix(double *_pdblRealIn, int _iRowsIn, int _iColsIn, double *_pdblRealOut)
-{
-    int iIndex = 0;
-    for (iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
-    {
-        int Xa          = iIndex % _iRowsIn;
-        int Ya          = iIndex / _iRowsIn;
-        int Xb          = _iRowsIn - Xa - 1;
-        int Yb          = _iColsIn - Ya - 1;
-        int iNewCoord   = Xb * _iColsIn + Yb;
-
-        _pdblRealOut[iNewCoord] = _pdblRealIn[iIndex];
-    }
-}
-
-void vPretransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRowsIn, int _iColsIn, double *_pdblRealOut, double *_pdblImgOut)
-{
-    int iIndex = 0;
-    for (iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
-    {
-        int Xa          = iIndex % _iRowsIn;
-        int Ya          = iIndex / _iRowsIn;
-        int Xb          = _iRowsIn - Xa - 1;
-        int Yb          = _iColsIn - Ya - 1;
-        int iNewCoord   = Xb * _iColsIn + Yb;
-
-        _pdblRealOut[iNewCoord] = _pdblRealIn[iIndex];
-        _pdblImgOut[iNewCoord]  = -_pdblImgIn[iIndex];
-    }
-}
-
 void vTransposeRealMatrix(double *_pdblRealIn, int _iRowsIn, int _iColsIn, double *_pdblRealOut)
 {
     int iIndex = 0;
