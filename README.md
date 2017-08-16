@@ -5,7 +5,7 @@
 - `svn --force checkout https://github.com/scilab/scilab-prerequirements.git/trunk/linux_x64/ .`
 - `mv usr usr_DEV`
 - `mv lib lib_DEV`
-- `mkdir -p lib/thirdpary`
-- `cp lib_DEV/thirdparty/libjogl_*.so lib/thirdpary`
+- `mkdir -p lib/thirdparty`
+- `cp lib_DEV/thirdparty/libjogl_*.so lib/thirdparty`
 - `./configure --with-eigen-include=<PATH>/balisc_master/scilab/usr_DEV/include`
 - `make`
