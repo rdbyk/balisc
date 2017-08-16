@@ -1,9 +1,8 @@
-##
-##  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-##  Copyright (C) 2007-2008 - DIGITEO - Bruno JOFRET
-##  Copyright (C) 2007-2008 - DIGITEO - Antoine ELIAS
-##
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2007-2008 - DIGITEO - Bruno JOFRET
+# Copyright (C) 2007-2008 - DIGITEO - Antoine ELIAS
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +10,6 @@
 # and continues to be available under such terms.
 # For more information, see the COPYING file which you should have received
 # along with this program.
-##
-##
 
 pkglib_LTLIBRARIES 	= libsciast.la
 
@@ -26,7 +23,6 @@ src/c/operations/matrix_kronecker.c \
 src/c/operations/matrix_multiplication.c \
 src/c/operations/matrix_power.c \
 src/c/operations/matrix_transpose.c \
-src/c/operations/operations_tools.c \
 src/cpp/ast/expHistory.cpp \
 src/cpp/ast/macrovarvisitor.cpp \
 src/cpp/ast/printvisitor.cpp \
@@ -416,7 +412,6 @@ includes/operations/matrix_right_division.h \
 includes/operations/matrix_transpose.h \
 includes/operations/operation_f.h \
 includes/operations/operations.hxx \
-includes/operations/operations_tools.h \
 includes/operations/types_addition.hxx \
 includes/operations/types_and.hxx \
 includes/operations/types_comparison_eq.hxx \
