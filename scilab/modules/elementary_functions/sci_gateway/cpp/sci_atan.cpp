@@ -69,39 +69,20 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
     {
         if (pDblX->isComplex())
         {
-            pDblOut = new types::Double(pDblX->getDims(), pDblX->getDimsArray(), true);
-            double* pXR = pDblX->get();
-            double* pXI = pDblX->getImg();
-            double* pOR = pDblOut->get();
-            double* pOI = pDblOut->getImg();
-
-            int size = pDblX->getSize();
-            bool msg = true;
-            for (int i = 0; i < size; i++)
+            if (balisc::atan_singularity(pDblX))
             {
-                if (msg && pXR[i] == 0 && std::abs(pXI[i]) == 1)
+                if (ConfigVariable::getIeee() == 0)
                 {
-                    if (ConfigVariable::getIeee() == 0)
-                    {
-                        Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "atan", 1);
-                        return types::Function::Error;
-                    }
-                    else if (msg && ConfigVariable::getIeee() == 1)
-                    {
-                        if (ConfigVariable::getWarningMode())
-                        {
-                            sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "atan", 1);
-                        }
-
-                        msg = false;
-                    }
+                    Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "atan", 1);
+                    return types::Function::Error;
                 }
-                std::complex<double> z(std::atan(std::complex<double>(pXR[i], pXI[i])));
-                pOR[i] = z.real();
-                pOI[i] = z.imag();
+                else if (ConfigVariable::getIeee() == 1 && ConfigVariable::getWarningMode())
+                {
+                    sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "atan", 1);
+                }
             }
             
-            out.push_back(pDblOut);
+            out.push_back(balisc::atan_complex(pDblX));
             return types::Function::OK;
         }
         else

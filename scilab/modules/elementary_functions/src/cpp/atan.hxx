@@ -30,6 +30,8 @@ extern "C"
 namespace balisc
 {
 ELEMENTARY_FUNCTIONS_IMPEXP types::Double* atan_real(types::Double* x);
+ELEMENTARY_FUNCTIONS_IMPEXP bool atan_singularity(types::Double* x);
+ELEMENTARY_FUNCTIONS_IMPEXP types::Double* atan_complex(types::Double* x);
 ELEMENTARY_FUNCTIONS_IMPEXP types::Double* atan2(types::Double* x1, types::Double* x2);
 }
 

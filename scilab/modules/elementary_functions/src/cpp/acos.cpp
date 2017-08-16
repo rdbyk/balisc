@@ -19,7 +19,6 @@
 
 #include "acos.hxx"
 
-#include <complex>
 #include <cmath>
 
 extern "C"
@@ -48,9 +47,30 @@ Double* acos(Double* x)
         
         for (int i = 0; i < n; i++)
         {
-            std::complex<double> z(std::acos(std::complex<double>(xr[i], xi[i])));
-            yr[i] = z.real();
-            yi[i] = z.imag();
+            double xr_i = xr[i];
+            double xi_i = xi[i];
+#if !defined(balisc_hypot_m128d)
+            double cp = balisc_hypot_d(xr_i + 1, xi_i);
+            double cn = balisc_hypot_d(xr_i - 1, xi_i);
+            double a = 0.5 * (cp + cn);
+            double b = 0.5 * (cp - cn);
+#else
+            __m128d c = balisc_hypot_m128d((__m128d){xr_i + 1, xr_i - 1}, (__m128d){xi_i, xi_i});
+            double a = 0.5 * (c[0] + c[1]);
+            double b = 0.5 * (c[0] - c[1]);
+#endif
+            double im = balisc_log_d(a + balisc_sqrt_d(a * a - 1));
+
+            yr[i] = balisc_acos_d(b);
+
+            if (xi_i < 0)
+            {
+                yi[i] = im;
+            }
+            else
+            {
+                yi[i] = -im;
+            }
         }
         
         return y;

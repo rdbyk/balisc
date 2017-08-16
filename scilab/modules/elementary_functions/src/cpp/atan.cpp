@@ -19,7 +19,6 @@
 
 #include "atan.hxx"
 
-#include <complex>
 #include <cmath>
 
 extern "C"
@@ -66,6 +65,53 @@ Double* atan_real(Double* x)
     return y;
 }
 
+bool atan_singularity(Double* x)
+{
+    int n = x->getSize();
+    
+    double* xr = x->get();
+    double* xi = x->getImg();
+    
+    for (int i = 0; i < n; i++)
+    {
+        if (xr[i] == 0 && xi[i] == 1)
+        {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+Double* atan_complex(Double* x)
+{
+    int n = x->getSize();
+    
+    Double* y = new Double(x->getDims(), x->getDimsArray(), true);
+    
+    double* xr = x->get();
+    double* xi = x->getImg();
+    double* yr = y->get();
+    double* yi = y->getImg();
+    
+    for (int i = 0; i < n; i++)
+    {
+        double xr_i = xr[i];
+        double xi_i = xi[i];
+#if !defined(balisc_hypot_m128d)
+        double cp = balisc_hypot_d(xr_i, xi_i + 1);
+        double cn = balisc_hypot_d(xr_i, xi_i - 1);
+        double a = cp / cn;
+#else
+        __m128d c = balisc_hypot_m128d((__m128d){xr_i, xr_i}, (__m128d){xi_i + 1, xi_i - 1});
+        double a = c[0] / c[1];
+#endif
+        yr[i] = 0.5 * balisc_atan2_d(2 * xr_i, 1 - (xr_i * xr_i + xi_i * xi_i));
+        yi[i] = 0.5 * balisc_log_d(a);
+    }
+    
+    return y;
+}
 
 Double* atan2(Double* x1, Double* x2)
 {
