@@ -211,51 +211,38 @@ bool ImplicitList::compute()
 
             m_pDblEnd = m_poEnd->getAs<Double>();
             double dblEnd	= m_pDblEnd->get(0);
-            // othe way to compute
+            
+            // handle finiteness of start, step, and end value
+            double dblRange = dblEnd - dblStart;
 
-            // nan value
-            if (ISNAN(dblStart) || ISNAN(dblStep) || ISNAN(dblEnd))
+            if (finite(dblStep) == 0 || finite(dblRange) == 0)
             {
-                m_iSize = -1;
-                m_bComputed = true;
-                return true;
-            }
-
-            // no finite values
-            if ( finite(dblStart) == 0 || finite(dblStep) == 0 || finite(dblEnd) == 0)
-            {
-                if ((dblStep > 0 && dblStart < dblEnd) ||
-                        (dblStep < 0 && dblStart > dblEnd))
+                if (isnan(dblStep) || isnan(dblRange) || std::signbit(dblStep) == std::signbit(dblRange))
                 {
-                    // return nan
                     m_iSize = -1;
                 }
-                // else return []
 
                 m_bComputed = true;
                 return true;
             }
 
-            // step null
-            if (dblStep == 0) // return []
+            // zero step => return []
+            if (dblStep == 0)
             {
                 m_bComputed = true;
                 return true;
             }
 
-            double dblVal = dblStart; // temp value
-            double dblEps = NumericConstants::eps;
-            double dblPrec = 2 * std::max(fabs(dblStart), fabs(dblEnd)) * dblEps;
+            // compute list size
+            m_iSize = std::ceil(dblRange / dblStep);
 
-            while (dblStep * (dblVal - dblEnd) <= 0)
+            if (m_iSize < 0)
             {
-                m_iSize++;
-                dblVal = dblStart + m_iSize * dblStep;
+                m_iSize = 0;
             }
-
-            if (fabs(dblVal - dblEnd) < dblPrec)
+            else if (std::fabs(m_iSize * dblStep) <= fabs(dblRange))
             {
-                m_iSize++;
+                ++m_iSize;
             }
         }
         else //m_eOutType == ScilabInt
