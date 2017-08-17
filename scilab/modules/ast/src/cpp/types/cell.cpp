@@ -83,7 +83,8 @@ Cell::~Cell()
     {
         for (int i = 0; i < m_iSizeMax; i++)
         {
-            m_pRealData[i]->DecreaseRefKillMe();
+            m_pRealData[i]->DecreaseRef();
+            m_pRealData[i]->killMe();
         }
     }
 
@@ -178,7 +179,8 @@ Cell* Cell::set(int _iIndex, InternalType* _pIT)
 
     if (m_pRealData[_iIndex] != NULL)
     {
-        m_pRealData[_iIndex]->DecreaseRefKillMe();
+        m_pRealData[_iIndex]->DecreaseRef();
+        m_pRealData[_iIndex]->killMe();
     }
 
     _pIT->IncreaseRef();
@@ -202,7 +204,8 @@ Cell* Cell::set(int _iIndex, const InternalType* _pIT)
 
     if (m_pRealData[_iIndex] != NULL)
     {
-        m_pRealData[_iIndex]->DecreaseRefKillMe();
+        m_pRealData[_iIndex]->DecreaseRef();
+        m_pRealData[_iIndex]->killMe();
     }
 
     const_cast<InternalType*>(_pIT)->IncreaseRef();
@@ -229,7 +232,8 @@ Cell* Cell::set(InternalType** _pIT)
 
         if (m_pRealData[i] != NULL)
         {
-            m_pRealData[i]->DecreaseRefKillMe();
+            m_pRealData[i]->DecreaseRef();
+            m_pRealData[i]->killMe();
         }
 
         _pIT[i]->IncreaseRef();
@@ -268,7 +272,8 @@ void Cell::deleteAll()
 {
     for (int i = 0 ; i < getSize() ; i++)
     {
-        m_pRealData[i]->DecreaseRefKillMe();
+        m_pRealData[i]->DecreaseRef();
+        m_pRealData[i]->killMe();
     }
 
     delete[] m_pRealData;

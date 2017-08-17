@@ -47,7 +47,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         }
         pITR = getResult();
 
-        if (pITL->getType() == types::InternalType::ScilabImplicitList)
+        if (pITL->isImplicitList())
         {
             types::ImplicitList* pIL = pITL->getAs<types::ImplicitList>();
             if (pIL->isComputable())
@@ -57,7 +57,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             }
         }
 
-        if (pITR->getType() == types::InternalType::ScilabImplicitList)
+        if (pITR->isImplicitList())
         {
             types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
             if (pIR->isComputable())
@@ -245,7 +245,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 
         setResult(NULL);
 
-        if (pITL->getType() == types::InternalType::ScilabImplicitList)
+        if (pITL->isImplicitList())
         {
             types::ImplicitList* pIL = pITL->getAs<types::ImplicitList>();
             if (pIL->isComputable())
@@ -280,7 +280,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
                 }
 
-                if (pITR->getType() == types::InternalType::ScilabImplicitList)
+                if (pITR->isImplicitList())
                 {
                     types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
                     if (pIR->isComputable())
@@ -329,7 +329,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
                 }
 
-                if (pITR->getType() == types::InternalType::ScilabImplicitList)
+                if (pITR->isImplicitList())
                 {
                     types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
                     if (pIR->isComputable())
@@ -372,7 +372,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
             }
 
-            if (pITR->getType() == types::InternalType::ScilabImplicitList)
+            if (pITR->isImplicitList())
             {
                 types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
                 if (pIR->isComputable())

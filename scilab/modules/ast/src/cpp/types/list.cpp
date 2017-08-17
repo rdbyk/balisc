@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
@@ -52,7 +53,8 @@ List::~List()
     {
         for (auto data : *m_plData)
         {
-            data->DecreaseRefKillMe();
+            data->DecreaseRef();
+            data->killMe();
         }
         delete m_plData;
     }
@@ -259,7 +261,8 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
             InternalType* pIT = (*m_plData)[idx - 1];
             if (pIT)
             {
-                pIT->DecreaseRefKillMe();
+                pIT->DecreaseRef();
+                pIT->killMe();
             }
             m_plData->erase(m_plData->begin() + idx - 1);
         }
@@ -314,7 +317,8 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
         (*m_plData)[idx - 1] = _pSource;
         (*m_plData)[idx - 1]->IncreaseRef();
 
-        pIT->DecreaseRefKillMe();
+        pIT->DecreaseRef();
+        pIT->killMe();
     }
 
     m_iSize = (int)m_plData->size();
@@ -371,7 +375,8 @@ List* List::set(const int _iIndex, InternalType* _pIT)
         //manage ref on the old value
         if (pOld)
         {
-            pOld->DecreaseRefKillMe();
+            pOld->DecreaseRef();
+            pOld->killMe();
         }
     }
 

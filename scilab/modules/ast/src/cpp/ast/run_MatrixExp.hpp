@@ -58,11 +58,11 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
         }
 
         //do all [x,x]
-        for (row = lines.begin(); row != lines.end(); ++row)
+        for (row = lines.begin(); row != lines.end(); row++)
         {
             types::InternalType* poRow = NULL;
             exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
-            for (col = cols.begin(); col != cols.end(); ++col)
+            for (col = cols.begin(); col != cols.end(); col++)
             {
                 setResult(NULL); // Reset value on loop re-start
 
