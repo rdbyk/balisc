@@ -17,7 +17,6 @@
 #include "matrix_division.h"
 #include <string.h>
 
-/*iRightDivisionComplexMatrixByComplexMatrix*/
 int iRightDivisionComplexMatrixByComplexMatrix(
     double *_pdblReal1,     double *_pdblImg1,      int _iInc1,
     double *_pdblReal2,     double *_pdblImg2,      int _iInc2,
@@ -48,7 +47,6 @@ int iRightDivisionComplexMatrixByComplexMatrix(
     return iErr;
 }
 
-/*iRightDivisionComplexByComplex*/
 int iRightDivisionComplexByComplex(
     double _dblReal1, double _dblImg1,
     double _dblReal2, double _dblImg2,
@@ -99,7 +97,6 @@ int iRightDivisionComplexByComplex(
     return iErr;
 }
 
-/*iRightDivisionRealMatrixByComplexMatrix*/
 int iRightDivisionRealMatrixByComplexMatrix(
     double *_pdblReal1,     int _iInc1,
     double *_pdblReal2,     double *_pdblImg2,      int _iInc2,
@@ -130,7 +127,6 @@ int iRightDivisionRealMatrixByComplexMatrix(
     return iErr;
 }
 
-/*iRightDivisionRealByComplex*/
 int iRightDivisionRealByComplex(
     double _dblReal1,
     double _dblReal2, double _dblImg2,
@@ -171,7 +167,6 @@ int iRightDivisionRealByComplex(
     return iErr;
 }
 
-/*iRightDivisionComplexMatrixByRealMatrix*/
 int iRightDivisionComplexMatrixByRealMatrix(
     double *_pdblReal1,        double *_pdblImg1,        int _iInc1,
     double *_pdblReal2,                                int _iInc2,
@@ -192,7 +187,6 @@ int iRightDivisionComplexMatrixByRealMatrix(
     return iErr;
 }
 
-/*iRightDivisionComplexByReal*/
 int iRightDivisionComplexByReal(
     double _dblReal1, double _dblImg1,
     double _dblReal2,
@@ -219,7 +213,6 @@ int iRightDivisionComplexByReal(
     return iErr;
 }
 
-/*iRightDivisionRealMatrixByRealMatrix*/
 int iRightDivisionRealMatrixByRealMatrix(
     double *_pdblReal1, int _iInc1,
     double *_pdblReal2, int _iInc2,
@@ -297,16 +290,13 @@ int iRightDivisionOfRealMatrix(
     pJpvt       = (int*)malloc(sizeof(int) * _iRows2);
     pIwork      = (int*)malloc(sizeof(int) * _iCols2);
 
-
-    //C'est du grand nawak ca, on reserve toute la stack ! Oo
-
     cNorm       = '1';
     pDwork      = (double*)malloc(sizeof(double) * iWorkMin);
     dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(dlange)(&cNorm, &_iRows2, &_iCols2, _pdblReal2, &_iRows2, pDwork);
 
-    //tranpose A and B
+    // tranpose A and B
 
     vTransposeRealMatrix(_pdblReal2, _iRows2, _iCols2, pAt);
 
@@ -320,9 +310,9 @@ int iRightDivisionOfRealMatrix(
                 ij = i + j * Max_iRows_iCols2;
                 ji = j + i * _iRows1;
                 pBt[ij]    = _pdblReal1[ji];
-            }//for(j = 0 ; j < _iRows1 ; j++)
-        }//for(i = 0 ; i < _iCols2 ; i++)
-    }//bloc esthetique
+            }
+        }
+    }
 
     if (_iRows2 == _iCols2)
     {
@@ -344,7 +334,6 @@ int iRightDivisionOfRealMatrix(
 
         if (iExit == 0)
         {
-            //how to extract that ? Oo
             *_pdblRcond = dblRcond;
             iReturn = -1;
         }
@@ -364,12 +353,11 @@ int iRightDivisionOfRealMatrix(
         {
             if ( _iRows2 != _iCols2 && pRank[0] < Min(_iRows2, _iCols2))
             {
-                //how to extract that ? Oo
                 iReturn = -2;
                 *_pdblRcond = pRank[0];
             }
 
-            //    TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
+            // TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
 
             //Mega caca de la mort qui tue des ours a mains nues
             //mais je ne sais pas comment le rendre "beau" :(
@@ -383,11 +371,11 @@ int iRightDivisionOfRealMatrix(
                         ij = i + j * _iRows1;
                         ji = j + i * Max_iRows2_iCols2;
                         _pdblRealOut[ij]    = pBt[ji];
-                    }//for(i = 0 ; i < _iRows2 ; i++)
-                }//for(j = 0 ; j < _iRows1 ; j++)
-            }//bloc esthetique
-        }//if(iInfo == 0)
-    }//if(bExit == 0)
+                    }
+                }
+            }
+        }
+    }
 
     free(pAf);
     free(pAt);
@@ -457,7 +445,7 @@ int iRightDivisionOfComplexMatrix(
     cNorm       = '1';
     dblAnorm    = C2F(zlange)(&cNorm, &_iRows2, &_iCols2, (double*)poVar2, &_iRows2, (double*)poDwork);
 
-    //tranpose A and B
+    // tranpose A and B
 
     vTransposeDoubleComplexMatrix(poVar2, _iRows2, _iCols2, poAt, 1);
 
@@ -473,9 +461,9 @@ int iRightDivisionOfComplexMatrix(
                 poBt[ij].r    = poVar1[ji].r;
                 //Conjugate
                 poBt[ij].i    = -poVar1[ji].i;
-            }//for(j = 0 ; j < _iRows1 ; j++)
-        }//for(i = 0 ; i < _iCols2 ; i++)
-    }//bloc esthetique
+            }
+        }
+    }
 
 
     if (_iRows2 == _iCols2)
@@ -499,7 +487,6 @@ int iRightDivisionOfComplexMatrix(
 
         if (iExit == 0)
         {
-            //how to extract that ? Oo
             *_pdblRcond = dblRcond;
             iReturn = -1;
         }
@@ -519,12 +506,11 @@ int iRightDivisionOfComplexMatrix(
         {
             if ( _iRows2 != _iCols2 && pRank[0] < Min(_iRows2, _iCols2))
             {
-                //how to extract that ? Oo
                 iReturn = -2;
                 *_pdblRcond = pRank[0];
             }
 
-            //    TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
+            // TransposeRealMatrix(pBt, _iRows1, _iRows2, _pdblRealOut, Max(_iRows1,_iCols1), _iRows2);
 
             //Mega caca de la mort qui tue des ours a mains nues
             //mais je ne sais pas comment le rendre "beau" :(
@@ -540,11 +526,11 @@ int iRightDivisionOfComplexMatrix(
                         _pdblRealOut[ij]    = poBt[ji].r;
                         //Conjugate
                         _pdblImgOut[ij]        = -poBt[ji].i;
-                    }//for(i = 0 ; i < _iRows2 ; i++)
-                }//for(j = 0 ; j < _iRows1 ; j++)
-            }//bloc esthetique
-        }//if(iInfo == 0)
-    }//if(iExit == 0)
+                    }
+                }
+            }
+        }
+    }
 
 
     vFreeDoubleComplexFromPointer(poVar1);
@@ -562,7 +548,6 @@ int iRightDivisionOfComplexMatrix(
     return 0;
 }
 
-/*Matrix left division*/
 int iLeftDivisionOfRealMatrix(
     double *_pdblReal1,     int _iRows1,    int _iCols1,
     double *_pdblReal2,     int _iRows2,    int _iCols2,
@@ -685,8 +670,6 @@ int iLeftDivisionOfRealMatrix(
     return 0;
 }
 
-
-/*Complex matrices left division*/
 int iLeftDivisionOfComplexMatrix(
     double *_pdblReal1,     double *_pdblImg1,      int _iRows1,    int _iCols1,
     double *_pdblReal2,     double *_pdblImg2,      int _iRows2,    int _iCols2,
@@ -783,7 +766,6 @@ int iLeftDivisionOfComplexMatrix(
 
             if ( _iRows1 != _iCols1 && iRank < Min(_iRows1, _iCols1))
             {
-                //how to extract that ? Oo
                 iReturn = -2;
                 *_pdblRcond = (double)iRank;
             }
