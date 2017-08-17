@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "arrayof.hxx"
 #include "double.hxx"
@@ -782,10 +782,12 @@ ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     {
         for (int i = 0; i < iRows; i++)
         {
+            int r = _iRows + i;
             for (int j = 0; j < iCols; j++)
             {
-                set(_iRows + i, _iCols + j, pGT->get(i, j));
-                setImg(_iRows + i, _iCols + j, pGT->getImg(i, j));
+                int c = _iCols + j;
+                set(r, c, pGT->get(i, j));
+                setImg(r, c, pGT->getImg(i, j));
             }
         }
     }
@@ -793,9 +795,10 @@ ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     {
         for (int i = 0; i < iRows; i++)
         {
+            int r = _iRows + i;
             for (int j = 0; j < iCols; j++)
             {
-                set(_iRows + i, _iCols + j, pGT->get(i, j));
+                set(r, _iCols + j, pGT->get(i, j));
             }
         }
     }
@@ -1437,7 +1440,10 @@ ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
         return NULL;
     }
 
-    memmove(m_piDims, _piDims, sizeof(int) * _iDims);
+    for (int i = 0 ; i < _iDims ; i++)
+    {
+        m_piDims[i] = _piDims[i];
+    }
 
     if (_iDims == 1)
     {
@@ -1512,8 +1518,9 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             pImgData = allocData(m_iSizeMax);
 
             //copy values into new one
-            int* piIndexes = new int[std::max(m_iDims, _iDims)];
-            memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
+            int iMaxDims = std::max(m_iDims, _iDims);
+            int* piIndexes = new int[iMaxDims];
+            memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
 
             int iPreviousNewIdx = 0;
             for (int i = 0; i < m_iSize; i++)
@@ -1540,9 +1547,11 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             // fill new data with element of last allocation
             if (iPreviousNewIdx < iOldSizeMax)
             {
-                size_t mem_size = sizeof(T) * (iOldSizeMax - iPreviousNewIdx);
-                memcpy(pRealData, m_pRealData, mem_size);
-                memcpy(pImgData, m_pImgData, mem_size);
+                for (int i = iPreviousNewIdx; i < iOldSizeMax; ++i)
+                {
+                    pRealData[i] = m_pRealData[i];
+                    pImgData[i] = m_pImgData[i];
+                }
             }
             else
             {
@@ -1586,8 +1595,9 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             if (m_iDims != _iDims || (!isVector() && bNonLastDimChange))
             {
                 //copy values into new one
-                int* piIndexes = new int[std::max(m_iDims, _iDims)];
-                memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
+                int iMaxDims = std::max(m_iDims, _iDims);
+                int* piIndexes = new int[iMaxDims];
+                memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
                 for (int i = m_iSize - 1; i >= 0; i--)
                 {
                     getIndexes(i, piIndexes);
@@ -1618,8 +1628,9 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             pRealData = allocData(m_iSizeMax);
 
             //copy values into new one
-            int* piIndexes = new int[std::max(m_iDims, _iDims)];
-            memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
+            int iMaxDims = std::max(m_iDims, _iDims);
+            int* piIndexes = new int[iMaxDims];
+            memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
 
             int iPreviousNewIdx = 0;
             for (int i = 0; i < m_iSize; i++)
@@ -1689,8 +1700,9 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             if (m_iDims != _iDims || (!isVector() && bNonLastDimChange))
             {
                 //copy values into new one
-                int* piIndexes = new int[std::max(m_iDims, _iDims)];
-                memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
+                int iMaxDims = std::max(m_iDims, _iDims);
+                int* piIndexes = new int[iMaxDims];
+                memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
                 for (int i = m_iSize - 1; i >= 0; i--)
                 {
                     getIndexes(i, piIndexes);
@@ -1710,14 +1722,20 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
     if (_iDims != m_iDims)
     {
         //int* piDims = new int[_iDims];
-        memmove(m_piDims, _piDims, sizeof(int) * _iDims);
+        for (int i = 0; i < _iDims; i++)
+        {
+            m_piDims[i] = _piDims[i];
+        }
         //delete[] m_piDims;
         //m_piDims = piDims;
         m_iDims = _iDims;
     }
     else
     {
-        memmove(m_piDims, _piDims, sizeof(int) * m_iDims);
+        for (int i = 0; i < m_iDims; i++)
+        {
+            m_piDims[i] = _piDims[i];
+        }
     }
     m_iRows = m_piDims[0];
     m_iCols = m_piDims[1];
