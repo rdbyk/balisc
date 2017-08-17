@@ -1,8 +1,8 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+*
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- *
- */
+*
+*/
 
 #include <algorithm>
 #include "variables.hxx"
@@ -32,14 +32,16 @@ Variable::~Variable()
     {
         ScopedVariable * pSV = top();
         types::InternalType * pIT = pSV->m_pIT;
-        pIT->DecreaseRefKillMe();
+        pIT->DecreaseRef();
+        pIT->killMe();
         pop();
         delete pSV;
     }
 
     if (m_GlobalValue)
     {
-        m_GlobalValue->DecreaseRefKillMe();
+        m_GlobalValue->DecreaseRef();
+        m_GlobalValue->killMe();
     }
 }
 
@@ -49,7 +51,8 @@ void Variable::setGlobalValue(types::InternalType* _pIT)
     {
         if (m_GlobalValue)
         {
-            m_GlobalValue->DecreaseRefKillMe();
+            m_GlobalValue->DecreaseRef();
+            m_GlobalValue->killMe();
         }
 
         m_GlobalValue = _pIT;
@@ -141,7 +144,8 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
             if (pIT)
             {
                 _pIT->IncreaseRef();
-                pIT->DecreaseRefKillMe();
+                pIT->DecreaseRef();
+                pIT->killMe();
             }
         }
     }
@@ -237,7 +241,8 @@ bool Variables::remove(Variable* _var, int _iLevel)
         {
             ScopedVariable* pSave = _var->top();
             types::InternalType* pIT = pSave->m_pIT;
-            pIT->DecreaseRefKillMe();
+            pIT->DecreaseRef();
+            pIT->killMe();
             _var->pop();
             delete pSave;
             return true;

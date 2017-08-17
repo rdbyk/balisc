@@ -1688,7 +1688,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     if (bPutInCtx)
                     {
-                        pITMain->DecreaseRefKillMe();
+                        pITMain->DecreaseRef();
+                        pITMain->killMe();
                     }
 
                     bPutInCtx = true;
@@ -1782,7 +1783,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
         if (!evalFields.empty())
         {
-            for (std::list<ExpHistory*>::const_iterator i = evalFields.begin(), end = evalFields.end(); i != end; ++i)
+            for (std::list<ExpHistory*>::const_iterator i = evalFields.begin(), end = evalFields.end(); i != end; i++)
             {
                 delete *i;
             }

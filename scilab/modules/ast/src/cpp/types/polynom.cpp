@@ -478,14 +478,14 @@ bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iD
         {
             ostr << L"Real part" << L"\n\n\n";
             get(0)->toStringReal(getVariableName(), &listExpR, &listCoefR);
-            for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; ++it_Coef, ++it_Exp)
+            for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
             {
                 ostr << *it_Exp << L"\n" << *it_Coef << L"\n";
             }
 
             ostr << L"Imaginary part\n\n\n";
             get(0)->toStringImg(getVariableName(), &listExpI, &listCoefI);
-            for (it_Coef = listCoefI.begin(), it_Exp = listExpI.begin() ; it_Coef != listCoefI.end() ; ++it_Coef, ++it_Exp)
+            for (it_Coef = listCoefI.begin(), it_Exp = listExpI.begin() ; it_Coef != listCoefI.end() ; it_Coef++, it_Exp++)
             {
                 ostr << *it_Exp << L"\n" << *it_Coef << L"\n";
             }
@@ -494,7 +494,7 @@ bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iD
         {
             get(0)->toStringReal(getVariableName(), &listExpR, &listCoefR);
 
-            for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; ++it_Coef++, ++it_Exp)
+            for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
             {
                 ostr << *it_Exp << L"\n" << *it_Coef << L"\n";
             }
@@ -591,7 +591,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
 
             if (listExpR.size() > 1)
             {
-                for (it_Exp = listExpR.begin() ; it_Exp != listExpR.end() ; ++it_Exp)
+                for (it_Exp = listExpR.begin() ; it_Exp != listExpR.end() ; it_Exp++)
                 {
                     iLength += static_cast<int>((*it_Exp).size());
                 }
@@ -638,7 +638,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
 
                     if (listCoefR.size() > 1)
                     {
-                        for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; ++it_Coef, ++it_Exp)
+                        for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
                         {
                             osExp << *it_Exp;
                             addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Exp).size()));
@@ -712,7 +712,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
 
             if (listCoefR.size() > 1)
             {
-                for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; ++it_Coef, ++it_Exp)
+                for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
                 {
                     //normally useless ...
                     osExp << *it_Exp;
@@ -803,7 +803,7 @@ std::wstring Polynom::getRowString(int* _piDims, int /*_iDims*/, bool _bComplex)
 
         if (listCoefR.size() > 1)
         {
-            for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; ++it_Coef, ++it_Exp)
+            for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
             {
                 osExp << *it_Exp << L"\n" << *it_Coef << L"\n";
             }
@@ -863,7 +863,7 @@ std::wstring Polynom::getColString(int* _piDims, int /*_iDims*/, bool _bComplex)
             get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
         }
 
-        for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; ++it_Coef, ++it_Exp)
+        for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
         {
             ostr << *it_Exp << L"\n" << *it_Coef << L"\n";
         }

@@ -36,7 +36,8 @@ SingleStruct::~SingleStruct()
     {
         for (auto data : m_Data)
         {
-            data->DecreaseRefKillMe();
+            data->DecreaseRef();
+            data->killMe();
         }
     }
 #ifndef NDEBUG
@@ -90,7 +91,8 @@ bool SingleStruct::set(const std::wstring& _sKey, InternalType *_typedValue)
         /* Look if we are replacing some existing value */
         if (pOld != nullptr)
         {
-            pOld->DecreaseRefKillMe();
+            pOld->DecreaseRef();
+            pOld->killMe();
         }
 
         if (_typedValue)
@@ -190,7 +192,8 @@ bool SingleStruct::removeField(const std::wstring & _sKey)
     if (i != m_wstFields.end())
     {
         const int pos = i->second;
-        m_Data[pos]->DecreaseRefKillMe();
+        m_Data[pos]->DecreaseRef();
+        m_Data[pos]->killMe();
         m_wstFields.erase(i);
 
         for (auto & p : m_wstFields)

@@ -59,8 +59,10 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputAr
 Macro::~Macro()
 {
     delete m_body;
-    m_pDblArgIn->DecreaseRefKillMe();
-    m_pDblArgOut->DecreaseRefKillMe();
+    m_pDblArgIn->DecreaseRef();
+    m_pDblArgIn->killMe();
+    m_pDblArgOut->DecreaseRef();
+    m_pDblArgOut->killMe();
 
     if (m_inputArgs)
     {
@@ -74,7 +76,8 @@ Macro::~Macro()
 
     for (const auto & sub : m_submacro)
     {
-        sub.second->DecreaseRefKillMe();
+        sub.second->DecreaseRef();
+        sub.second->killMe();
     }
 
     m_submacro.clear();
@@ -128,7 +131,7 @@ bool Macro::toString(std::wostringstream& ostr)
         std::list<symbol::Variable*>::iterator OutArgfter = OutArg;
         OutArgfter++;
 
-        for (; OutArgfter != m_outputArgs->end(); ++OutArgfter)
+        for (; OutArgfter != m_outputArgs->end(); OutArgfter++)
         {
             ostr << (*OutArg)->getSymbol().getName();
             ostr << ",";
@@ -150,7 +153,7 @@ bool Macro::toString(std::wostringstream& ostr)
         std::list<symbol::Variable*>::iterator inRagAfter = inArg;
         inRagAfter++;
 
-        for (; inRagAfter != m_inputArgs->end(); ++inRagAfter)
+        for (; inRagAfter != m_inputArgs->end(); inRagAfter++)
         {
             ostr << (*inArg)->getSymbol().getName();
             ostr << ",";
@@ -355,7 +358,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             {
                 for (int j = 0; j < i; ++j)
                 {
-                    out[j]->DecreaseRefKillMe();
+                    out[j]->DecreaseRef();
+                    out[j]->killMe();
                 }
                 out.clear();
                 cleanCall(pContext, oldVal);
@@ -384,7 +388,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 const int size = (const int)out.size();
                 for (int j = 0; j < size; ++j)
                 {
-                    out[j]->DecreaseRefKillMe();
+                    out[j]->DecreaseRef();
+                    out[j]->killMe();
                 }
                 out.clear();
                 cleanCall(pContext, oldVal);

@@ -172,7 +172,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             std::list<ExpHistory*> fields;
             if (getFieldsFromExp(pCell, fields) == false)
             {
-                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                 {
                     delete *i;
                 }
@@ -188,7 +188,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             catch (const InternalError& error)
             {
                 // catch error when call overload
-                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                 {
                     (*i)->setDeleteCurrent(true);
                     delete *i;
@@ -198,7 +198,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 throw error;
             }
 
-            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
+            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
             {
                 delete *i;
             }
@@ -338,7 +338,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 std::list<ExpHistory*> fields;
                 if (getFieldsFromExp(pCall, fields) == false)
                 {
-                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
+                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                     {
                         delete *i;
                     }
@@ -359,22 +359,24 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 catch (const InternalError& error)
                 {
                     // catch error when call overload
-                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
+                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                     {
                         delete *i;
                     }
 
-                    pITR->DecreaseRefKillMe();
+                    pITR->DecreaseRef();
+                    pITR->killMe();
 
                     throw error;
                 }
 
-                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                 {
                     delete *i;
                 }
 
-                pITR->DecreaseRefKillMe();
+                pITR->DecreaseRef();
+                pITR->killMe();
 
                 if (pOut == NULL)
                 {
@@ -450,7 +452,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             for (i = iLhsCount - 1; i >= 0; i--)
             {
                 //unprotect rhs
-                pIT[i]->DecreaseRefKillMe();
+                pIT[i]->DecreaseRef();
+                pIT[i]->killMe();
             }
 
             delete[] pIT;
@@ -488,7 +491,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             std::list<ExpHistory*> fields;
             if (getFieldsFromExp(pField, fields) == false)
             {
-                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                 {
                     delete *i;
                 }
@@ -501,7 +504,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 if (evaluateFields(pField, fields, pIT) == NULL)
                 {
-                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
+                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
                     {
                         delete *i;
                     }

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +12,6 @@
  * along with this program.
  *
  */
-
 #include <sstream>
 #include <math.h>
 #include "double.hxx"
@@ -51,17 +51,20 @@ ImplicitList::~ImplicitList()
     {
         if (m_poStart)
         {
-            m_poStart->DecreaseRefKillMe();
+            m_poStart->DecreaseRef();
+            m_poStart->killMe();
         }
 
         if (m_poStep)
         {
-            m_poStep->DecreaseRefKillMe();
+            m_poStep->DecreaseRef();
+            m_poStep->killMe();
         }
 
         if (m_poEnd)
         {
-            m_poEnd->DecreaseRefKillMe();
+            m_poEnd->DecreaseRef();
+            m_poEnd->killMe();
         }
     }
 #ifndef NDEBUG
@@ -135,7 +138,8 @@ void ImplicitList::setStart(InternalType *_poIT)
     if (m_poStart)
     {
         //clear previous value
-        m_poStart->DecreaseRefKillMe();
+        m_poStart->DecreaseRef();
+        m_poStart->killMe();
         m_poStart = NULL;
     }
 
@@ -153,7 +157,8 @@ void ImplicitList::setStep(InternalType *_poIT)
     if (m_poStep)
     {
         //clear previous value
-        m_poStep->DecreaseRefKillMe();
+        m_poStep->DecreaseRef();
+        m_poStep->killMe();
         m_poStep = NULL;
     }
 
@@ -171,7 +176,8 @@ void ImplicitList::setEnd(InternalType* _poIT)
     if (m_poEnd)
     {
         //clear previous value
-        m_poEnd->DecreaseRefKillMe();
+        m_poEnd->DecreaseRef();
+        m_poEnd->killMe();
         m_poEnd = NULL;
     }
 
@@ -205,38 +211,51 @@ bool ImplicitList::compute()
 
             m_pDblEnd = m_poEnd->getAs<Double>();
             double dblEnd	= m_pDblEnd->get(0);
-            
-            // handle finiteness of start, step, and end value
-            double dblRange = dblEnd - dblStart;
+            // othe way to compute
 
-            if (finite(dblStep) == 0 || finite(dblRange) == 0)
+            // nan value
+            if (ISNAN(dblStart) || ISNAN(dblStep) || ISNAN(dblEnd))
             {
-                if (isnan(dblStep) || isnan(dblRange) || std::signbit(dblStep) == std::signbit(dblRange))
+                m_iSize = -1;
+                m_bComputed = true;
+                return true;
+            }
+
+            // no finite values
+            if ( finite(dblStart) == 0 || finite(dblStep) == 0 || finite(dblEnd) == 0)
+            {
+                if ((dblStep > 0 && dblStart < dblEnd) ||
+                        (dblStep < 0 && dblStart > dblEnd))
                 {
+                    // return nan
                     m_iSize = -1;
                 }
+                // else return []
 
                 m_bComputed = true;
                 return true;
             }
 
-            // zero step => return []
-            if (dblStep == 0)
+            // step null
+            if (dblStep == 0) // return []
             {
                 m_bComputed = true;
                 return true;
             }
 
-            // compute list size
-            m_iSize = std::ceil(dblRange / dblStep);
+            double dblVal = dblStart; // temp value
+            double dblEps = NumericConstants::eps;
+            double dblPrec = 2 * std::max(fabs(dblStart), fabs(dblEnd)) * dblEps;
 
-            if (m_iSize < 0)
+            while (dblStep * (dblVal - dblEnd) <= 0)
             {
-                m_iSize = 0;
+                m_iSize++;
+                dblVal = dblStart + m_iSize * dblStep;
             }
-            else if (std::fabs(m_iSize * dblStep) <= fabs(dblRange))
+
+            if (fabs(dblVal - dblEnd) < dblPrec)
             {
-                ++m_iSize;
+                m_iSize++;
             }
         }
         else //m_eOutType == ScilabInt
@@ -470,60 +489,57 @@ InternalType* ImplicitList::extractFullMatrix()
     InternalType* pIT = NULL;
     if (compute())
     {
-        if (getSize() == 0) // return []
+        if (m_iSize == 0) // return []
         {
             pIT = Double::Empty();
         }
-        else if (getSize() == -1) // return nan
+        else if (m_iSize == -1) // return nan
         {
             unsigned long long raw = 0x7ff8000000000000;
             double not_a_number = *( double* )&raw;
             pIT = new Double(not_a_number);
         }
-        else if (m_eOutType == ScilabDouble)
+        else
         {
-            pIT = new Double(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Double>());
-        }
-        else if (m_eOutType == ScilabInt8)
-        {
-            pIT	= new Int8(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Int8>());
-        }
-        else if (m_eOutType == ScilabUInt8)
-        {
-            pIT	= new UInt8(1, m_iSize);
-            extractFullMatrix(pIT->getAs<UInt8>());
-        }
-        else if (m_eOutType == ScilabInt16)
-        {
-            pIT	= new Int16(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Int16>());
-        }
-        else if (m_eOutType == ScilabUInt16)
-        {
-            pIT	= new UInt16(1, m_iSize);
-            extractFullMatrix(pIT->getAs<UInt16>());
-        }
-        else if (m_eOutType == ScilabInt32)
-        {
-            pIT	= new Int32(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Int32>());
-        }
-        else if (m_eOutType == ScilabUInt32)
-        {
-            pIT	= new UInt32(1, m_iSize);
-            extractFullMatrix(pIT->getAs<UInt32>());
-        }
-        else if (m_eOutType == ScilabInt64)
-        {
-            pIT	= new Int64(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Int64>());
-        }
-        else if (m_eOutType == ScilabUInt64)
-        {
-            pIT	= new UInt64(1, m_iSize);
-            extractFullMatrix(pIT->getAs<UInt64>());
+            switch(m_eOutType)
+            {
+                case ScilabDouble:
+                    pIT = new Double(1, m_iSize);
+                    extractFullMatrix(pIT->getAs<Double>());
+                    break;
+                case ScilabInt8:
+                    pIT	= new Int8(1, m_iSize);
+                    extractFullMatrix(pIT->getAs<Int8>());
+                    break;
+                case ScilabUInt8:
+                    pIT	= new UInt8(1, m_iSize);
+                    extractFullMatrix(pIT->getAs<UInt8>());
+                    break;
+                case ScilabInt16:
+                    pIT	= new Int16(1, m_iSize);
+                    extractFullMatrix(pIT->getAs<Int16>());
+                    break;
+                case ScilabUInt16:
+                    pIT	= new UInt16(1, m_iSize);
+                    extractFullMatrix(pIT->getAs<UInt16>());
+                    break;
+                case ScilabInt32:
+                    pIT	= new Int32(1, m_iSize);
+                    extractFullMatrix(pIT->getAs<Int32>());
+                    break;
+                case ScilabUInt32:
+                    pIT	= new UInt32(1, m_iSize);
+                    extractFullMatrix(pIT->getAs<UInt32>());
+                    break;
+                case ScilabInt64:
+                    pIT	= new Int64(1, m_iSize);
+                    extractFullMatrix(pIT->getAs<Int64>());
+                    break;
+                case ScilabUInt64:
+                    pIT	= new UInt64(1, m_iSize);
+                    extractFullMatrix(pIT->getAs<UInt64>());
+                    break;
+            }
         }
     }
     return pIT;
@@ -533,10 +549,9 @@ void ImplicitList::extractFullMatrix(Double *_p)
 {
     double dblStart = m_poStart->getAs<Double>()->get(0);
     double dblStep  = m_poStep->getAs<Double>()->get(0);
-    
+
     double* p = _p->get();
-    p[0] = dblStart;
-    for (int i = 1; i < m_iSize; i++)
+    for (int i = 0 ; i < m_iSize ; i++)
     {
         p[i] = dblStart + i * dblStep;
     }
@@ -549,11 +564,9 @@ void ImplicitList::extractFullMatrix(T *_pT)
     typename T::type tStep = static_cast<typename T::type>(convert_input(m_poStep));
 
     typename T::type* p = _pT->get();
-    p[0] = tStart;
-    for (int i = 1; i < m_iSize; i++)
+    for (int i = 0 ; i < m_iSize ; i++)
     {
-        // p[i] = tStart + i * tStep;
-        p[i] = p[i-1] + tStep;
+        p[i] = tStart + i * tStep;
     }
 }
 
