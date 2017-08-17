@@ -41,7 +41,7 @@ int iAddScilabPolynomToScilabPolynom(double* _pCoef1R, int _iRank1, double* _pCo
         }
     }
 
-    for (iRank = iRankMin ; iRank < iRankMax ; iRank++)
+    for (/* iRank = iRankMin */ ; iRank < iRankMax ; iRank++)
     {
         _pCoefOutR[iRank] = pCoefMaxR[iRank];
     }
@@ -64,7 +64,7 @@ int iAddScilabPolynomToComplexPoly(double* _pCoef1R, int _iRank1, double* _pCoef
 
     if (_iRank1 > _iRank2)
     {
-        for (iRank = iRankMin ; iRank < iRankMax ; iRank++)
+        for (/* iRank = iRankMin */ ; iRank < iRankMax ; iRank++)
         {
             _pCoefOutR[iRank] = pCoefMaxR[iRank];
             _pCoefOutI[iRank] = 0;
@@ -72,7 +72,7 @@ int iAddScilabPolynomToComplexPoly(double* _pCoef1R, int _iRank1, double* _pCoef
     }
     else
     {
-        for (iRank = iRankMin ; iRank < iRankMax ; iRank++)
+        for (/* iRank = iRankMin */ ; iRank < iRankMax ; iRank++)
         {
             _pCoefOutR[iRank] = pCoefMaxR[iRank];
             _pCoefOutI[iRank] = _pCoef2I[iRank];
@@ -95,7 +95,7 @@ int iAddComplexPolyToComplexPoly(double* _pCoef1R, double* _pCoef1I, int _iRank1
         _pCoefOutI[iRank] = _pCoef1I[iRank] + _pCoef2I[iRank];
     }
 
-    for (iRank = iRankMin ; iRank < iRankMax ; iRank++)
+    for (/* iRank = iRankMin */ ; iRank < iRankMax ; iRank++)
     {
         _pCoefOutR[iRank] = pCoefMaxR[iRank];
         _pCoefOutI[iRank] = pCoefMaxI[iRank];
