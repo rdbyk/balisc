@@ -25,12 +25,11 @@ int iAddScilabPolynomToScilabPolynom(double* _pCoef1R, int _iRank1, double* _pCo
     int iRankMin			= Min(_iRank1, _iRank2);
     int iRankMax			= Max(_iRank1, _iRank2);
     int iRank				= 0;
-    double dblSum 			= 0.0;
     double* pCoefMaxR	= (_iRank1 > _iRank2) ? _pCoef1R : _pCoef2R;
 
     for (iRank = 0; iRank < iRankMin ; iRank++)
     {
-        dblSum = _pCoef1R[iRank] + _pCoef2R[iRank];
+        double dblSum = _pCoef1R[iRank] + _pCoef2R[iRank];
         if (fabs(dblSum) > Max(fabs(_pCoef1R[iRank]), fabs(_pCoef2R[iRank])) * 2 * nc_eps())
         {
             _pCoefOutR[iRank] = dblSum;
