@@ -38,6 +38,7 @@
 #define balisc_round_d    round
 #define balisc_sin_d      sin
 #define balisc_sqrt_d     sqrt
+#define balisc_tan_d      tan
 
 #if defined(__SSE4_1__) || defined(__SSE4_2__)
 
@@ -52,6 +53,7 @@
 #define balisc_log10_m128d Sleef_log10d2_u10sse4
 #define balisc_sin_m128d   Sleef_sind2_u35sse4
 #define balisc_round_m128d Sleef_roundd2_sse4
+#define balisc_tan_m128d   Sleef_tand2_u35sse4 // not really fast
 
 #elif defined(__SSE2__)
 
@@ -66,6 +68,7 @@
 #define balisc_log10_m128d Sleef_log10d2_u10sse2
 #define balisc_sin_m128d   Sleef_sind2_u35sse2
 #define balisc_round_m128d Sleef_roundd2_sse2
+#define balisc_tan_m128d   Sleef_tand2_u35sse2 // not really fast
 
 #endif
 
