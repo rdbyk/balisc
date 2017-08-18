@@ -18,12 +18,11 @@
 // 02110-1301, USA.
 
 #include "sin.hxx"
-#include <cmath>
 #include <Eigen/Core>
 
 extern "C"
 {
-#include <math.h>
+#include "balisc_elementary.h"
 }
 
 using types::Double;
@@ -57,11 +56,32 @@ Double* sin(Double* x)
     }
     else
     {        
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.sin();
-        
+        double* xr = x->get();
+        double* yr = y->get();
+
+#if !defined(balisc_sin_m128d)
+        for (int i = 0; i < n; i++)
+        {
+            yr[i] = ::balisc_sin_d(xr[i]);
+        }
         return y;
+#else
+        int i = 0;
+        for ( ; i < n - 1; i += 2)
+        {
+            __m128d a = ::balisc_sin_m128d(*((__m128d*)&(xr[i])));
+            yr[i] = a[0];
+            yr[i+1] = a[1];
+        }
+
+        if (n & 0x1)
+        {
+            yr[i] = ::balisc_sin_d(xr[i]);
+            return y;
+        }
+
+        return y;
+#endif
     }
 }
 
