@@ -29,6 +29,7 @@
 #define balisc_atan_d     atan
 #define balisc_atan2_d    Sleef_atan2_u35
 #define balisc_copysign_d copysign
+#define balisc_cos_d      cos
 #define balisc_exp_d      exp
 #define balisc_fabs_d     fabs
 #define balisc_hypot_d    Sleef_hypot_u35
@@ -44,6 +45,7 @@
 #define balisc_asin_m128d  Sleef_asind2_u35sse4
 #define balisc_atan_m128d  Sleef_atand2_u35sse4
 #define balisc_atan2_m128d Sleef_atan2d2_u35sse4
+#define balisc_cos_m128d   Sleef_cosd2_u35sse4
 #define balisc_exp_m128d   Sleef_expd2_u10sse4
 #define balisc_hypot_m128d Sleef_hypotd2_u35sse4
 #define balisc_log_m128d   Sleef_logd2_u35sse4
@@ -57,6 +59,7 @@
 #define balisc_asin_m128d  Sleef_asind2_u35sse2
 #define balisc_atan_m128d  Sleef_atand2_u35sse2
 #define balisc_atan2_m128d Sleef_atan2d2_u35sse2
+#define balisc_cos_m128d   Sleef_cosd2_u35sse2
 #define balisc_exp_m128d   Sleef_expd2_u10sse2
 #define balisc_hypot_m128d Sleef_hypotd2_u35sse2
 #define balisc_log_m128d   Sleef_logd2_u35sse2

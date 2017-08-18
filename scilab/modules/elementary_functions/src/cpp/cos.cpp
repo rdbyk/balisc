@@ -18,8 +18,12 @@
 // 02110-1301, USA.
 
 #include "cos.hxx"
-#include <cmath>
 #include <Eigen/Core>
+
+extern "C"
+{
+#include "balisc_elementary.h"
+}
 
 using types::Double;
 
@@ -52,11 +56,32 @@ Double* cos(Double* x)
     }
     else
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.cos();
-        
+        double* xr = x->get();
+        double* yr = y->get();
+
+#if !defined(balisc_cos_m128d)
+        for (int i = 0; i < n; i++)
+        {
+            yr[i] = ::balisc_cos_d(xr[i]);
+        }
         return y;
+#else
+        int i = 0;
+        for ( ; i < n - 1; i += 2)
+        {
+            __m128d a = ::balisc_cos_m128d(*((__m128d*)&(xr[i])));
+            yr[i] = a[0];
+            yr[i+1] = a[1];
+        }
+
+        if (n & 0x1)
+        {
+            yr[i] = ::balisc_cos_d(xr[i]);
+            return y;
+        }
+
+        return y;
+#endif
     }
 }
 
