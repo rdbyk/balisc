@@ -22,7 +22,6 @@
 
 extern "C"
 {
-#include "log.h"
 #include "elem_common.h"
 }
 

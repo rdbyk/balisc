@@ -18,8 +18,6 @@
 
 #include "core_math.h"
 
-#include "log.h"
-
 /*
 'E' or 'e',   DLAMCH := eps ( relative machine precision )
 'S' or 's ,   DLAMCH := sfmin ( safe minimum, such that 1/sfmin does not overflow )
