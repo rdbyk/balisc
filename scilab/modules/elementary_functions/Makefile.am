@@ -212,7 +212,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dclmat.f \
     src/fortran/ortran.f \
     src/fortran/bdiag.f \
-    src/fortran/wvmul.f \
     src/fortran/dmmul.f \
     src/fortran/wsqrt.f \
     src/fortran/rat.f \

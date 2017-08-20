@@ -272,9 +272,8 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/wmul.lo src/fortran/dad.lo src/fortran/dset.lo \
 	src/fortran/dtild.lo src/fortran/i1mach.lo \
 	src/fortran/dclmat.lo src/fortran/ortran.lo \
-	src/fortran/bdiag.lo src/fortran/wvmul.lo src/fortran/dmmul.lo \
-	src/fortran/wsqrt.lo src/fortran/rat.lo \
-	src/fortran/old_pythag.lo
+	src/fortran/bdiag.lo src/fortran/dmmul.lo src/fortran/wsqrt.lo \
+	src/fortran/rat.lo src/fortran/old_pythag.lo
 am__objects_6 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
 	src/cpp/libscielementary_functions_algo_la-cumsum.lo \
 	src/cpp/libscielementary_functions_algo_la-cumprod.lo \
@@ -985,7 +984,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dclmat.f \
     src/fortran/ortran.f \
     src/fortran/bdiag.f \
-    src/fortran/wvmul.f \
     src/fortran/dmmul.f \
     src/fortran/wsqrt.f \
     src/fortran/rat.f \
@@ -1660,8 +1658,6 @@ src/fortran/dclmat.lo: src/fortran/$(am__dirstamp) \
 src/fortran/ortran.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/bdiag.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wvmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dmmul.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
