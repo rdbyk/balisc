@@ -189,7 +189,6 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/c/operations/invert_matrix.c \
 	src/c/operations/matrix_addition.c \
 	src/c/operations/matrix_division.c \
-	src/c/operations/matrix_finite.c \
 	src/c/operations/matrix_kronecker.c \
 	src/c/operations/matrix_multiplication.c \
 	src/c/operations/matrix_power.c \
@@ -384,7 +383,6 @@ am_libsciast_la_OBJECTS =  \
 	src/c/operations/libsciast_la-invert_matrix.lo \
 	src/c/operations/libsciast_la-matrix_addition.lo \
 	src/c/operations/libsciast_la-matrix_division.lo \
-	src/c/operations/libsciast_la-matrix_finite.lo \
 	src/c/operations/libsciast_la-matrix_kronecker.lo \
 	src/c/operations/libsciast_la-matrix_multiplication.lo \
 	src/c/operations/libsciast_la-matrix_power.lo \
@@ -1004,7 +1002,6 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/c/operations/invert_matrix.c \
 	src/c/operations/matrix_addition.c \
 	src/c/operations/matrix_division.c \
-	src/c/operations/matrix_finite.c \
 	src/c/operations/matrix_kronecker.c \
 	src/c/operations/matrix_multiplication.c \
 	src/c/operations/matrix_power.c \
@@ -1338,7 +1335,6 @@ includes/operations/invert_matrix.h \
 includes/operations/matrix_addition.h \
 includes/operations/matrix_division.h \
 includes/operations/matrix_finite.h \
-includes/operations/matrix_kronecker.h \
 includes/operations/matrix_left_division.h \
 includes/operations/matrix_multiplication.h \
 includes/operations/matrix_power.h \
@@ -1604,9 +1600,6 @@ src/c/operations/libsciast_la-matrix_addition.lo:  \
 	src/c/operations/$(am__dirstamp) \
 	src/c/operations/$(DEPDIR)/$(am__dirstamp)
 src/c/operations/libsciast_la-matrix_division.lo:  \
-	src/c/operations/$(am__dirstamp) \
-	src/c/operations/$(DEPDIR)/$(am__dirstamp)
-src/c/operations/libsciast_la-matrix_finite.lo:  \
 	src/c/operations/$(am__dirstamp) \
 	src/c/operations/$(DEPDIR)/$(am__dirstamp)
 src/c/operations/libsciast_la-matrix_kronecker.lo:  \
@@ -2342,7 +2335,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-invert_matrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_division.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_finite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_kronecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_multiplication.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_power.Plo@am__quote@
@@ -2625,13 +2617,6 @@ src/c/operations/libsciast_la-matrix_division.lo: src/c/operations/matrix_divisi
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/operations/matrix_division.c' object='src/c/operations/libsciast_la-matrix_division.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/operations/libsciast_la-matrix_division.lo `test -f 'src/c/operations/matrix_division.c' || echo '$(srcdir)/'`src/c/operations/matrix_division.c
-
-src/c/operations/libsciast_la-matrix_finite.lo: src/c/operations/matrix_finite.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/operations/libsciast_la-matrix_finite.lo -MD -MP -MF src/c/operations/$(DEPDIR)/libsciast_la-matrix_finite.Tpo -c -o src/c/operations/libsciast_la-matrix_finite.lo `test -f 'src/c/operations/matrix_finite.c' || echo '$(srcdir)/'`src/c/operations/matrix_finite.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/operations/$(DEPDIR)/libsciast_la-matrix_finite.Tpo src/c/operations/$(DEPDIR)/libsciast_la-matrix_finite.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/operations/matrix_finite.c' object='src/c/operations/libsciast_la-matrix_finite.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/operations/libsciast_la-matrix_finite.lo `test -f 'src/c/operations/matrix_finite.c' || echo '$(srcdir)/'`src/c/operations/matrix_finite.c
 
 src/c/operations/libsciast_la-matrix_kronecker.lo: src/c/operations/matrix_kronecker.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/operations/libsciast_la-matrix_kronecker.lo -MD -MP -MF src/c/operations/$(DEPDIR)/libsciast_la-matrix_kronecker.Tpo -c -o src/c/operations/libsciast_la-matrix_kronecker.lo `test -f 'src/c/operations/matrix_kronecker.c' || echo '$(srcdir)/'`src/c/operations/matrix_kronecker.c
