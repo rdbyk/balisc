@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - INRIA - Antoine ELIAS <antoine.elias@scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,18 +17,30 @@
 
 bool isDoubleFinite(types::Double *_pDouble)
 {
-    int iSize = _pDouble->getSize();
-    if (matrix_finite( _pDouble->getReal(), iSize) == 1)
-    {
-        return false;
-    }
+    int n = _pDouble->getSize();
 
-    if (_pDouble->isComplex())
+    double* re = _pDouble->get();
+
+    for (int i = 0; i < n; i++)
     {
-        if (matrix_finite(_pDouble->getImg(), iSize) == 1)
+        if (!finite(re[i]))
         {
             return false;
         }
     }
+
+    if (_pDouble->isComplex())
+    {
+        double* im = _pDouble->getImg();
+
+        for (int i = 0; i < n; i++)
+        {
+            if (!finite(im[i]))
+            {
+                return false;
+            }
+        }
+    }
+
     return true;
 }
