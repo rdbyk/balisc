@@ -18,7 +18,6 @@
 // 02110-1301, USA.
 
 #include "sin.hxx"
-#include <Eigen/Core>
 
 extern "C"
 {
@@ -27,10 +26,6 @@ extern "C"
 
 using types::Double;
 
-using Eigen::Map;
-using Eigen::ArrayXd;
-using Eigen::ArrayXcd;
-
 namespace balisc
 {
 
@@ -38,20 +33,33 @@ Double* sin(Double* x)
 {
     bool is_complex = x->isComplex();
     Double* y = new Double(x->getDims(), x->getDimsArray(),is_complex);
-     
+
     int n = x->getSize();
-    
+
     if (is_complex)
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> xi(x->getImg(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        Map<ArrayXd> yi(y->getImg(), n);
-        ArrayXd ep(xi.exp());
-        ArrayXd en(ep.inverse());
-        yr = 0.5 * xr.sin() * (ep + en);
-        yi = 0.5 * xr.cos() * (ep - en);
-        
+        double* xr = x->get();
+        double* yr = y->get();
+        double* xi = x->getImg();
+        double* yi = y->getImg();
+
+        for (int i = 0; i < n; i++)
+        {
+#if !defined(balisc_sin_m128d)
+            double a0 = ::balisc_exp_d(xi[i]);
+            double a1 = 1 / a0;
+            Sleef_double2 b = Sleef_sincos_u35(xr[i]);
+            yr[i] = 0.5 * b.x * (a0 + a1);
+            yi[i] = 0.5 * b.y * (a0 - a1);
+#else
+            double xi_i = xi[i];
+            __m128d a = ::balisc_exp_m128d((__m128d){xi_i,-xi_i});
+            Sleef_double2 b = Sleef_sincos_u35(xr[i]);
+            yr[i] = 0.5 * b.x * (a[0] + a[1]);
+            yi[i] = 0.5 * b.y * (a[0] - a[1]);
+#endif
+        }
+
         return y;
     }
     else
