@@ -181,12 +181,10 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dadd.f \
     src/fortran/isort.f \
     src/fortran/wscal.f \
-    src/fortran/dipow.f \
     src/fortran/wshrsl.f \
     src/fortran/wwrdiv.f \
     src/fortran/coshin.f \
     src/fortran/iwamax.f \
-    src/fortran/dipowe.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
     src/fortran/gdcp2i.f \
