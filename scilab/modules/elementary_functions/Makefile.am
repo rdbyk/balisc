@@ -10,7 +10,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/xerhlt.c \
     src/c/basic_functions.c \
     src/c/expm.c \
-    src/c/log.c \
     src/c/dsearch.c \
     src/c/matrix_generation.c \
     src/c/add_vector.c \

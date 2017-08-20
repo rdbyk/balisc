@@ -243,7 +243,6 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-xerhlt.lo \
 	src/c/libscielementary_functions_algo_la-basic_functions.lo \
 	src/c/libscielementary_functions_algo_la-expm.lo \
-	src/c/libscielementary_functions_algo_la-log.lo \
 	src/c/libscielementary_functions_algo_la-dsearch.lo \
 	src/c/libscielementary_functions_algo_la-matrix_generation.lo \
 	src/c/libscielementary_functions_algo_la-add_vector.lo \
@@ -255,20 +254,19 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/round.lo src/fortran/cortr.lo \
 	src/fortran/simple.lo src/fortran/split.lo src/fortran/cbal.lo \
 	src/fortran/dsum.lo src/fortran/urand.lo src/fortran/intp.lo \
-	src/fortran/watan.lo src/fortran/dlgama.lo src/fortran/exch.lo \
-	src/fortran/wsign.lo src/fortran/wrscal.lo \
-	src/fortran/dmmul1.lo src/fortran/wmmul.lo src/fortran/ddif.lo \
-	src/fortran/wdiv.lo src/fortran/wcerr.lo src/fortran/dadd.lo \
-	src/fortran/isort.lo src/fortran/wscal.lo src/fortran/dipow.lo \
+	src/fortran/dlgama.lo src/fortran/exch.lo src/fortran/wsign.lo \
+	src/fortran/wrscal.lo src/fortran/dmmul1.lo \
+	src/fortran/wmmul.lo src/fortran/ddif.lo src/fortran/wdiv.lo \
+	src/fortran/wcerr.lo src/fortran/dadd.lo src/fortran/isort.lo \
+	src/fortran/wscal.lo src/fortran/dipow.lo \
 	src/fortran/wshrsl.lo src/fortran/wwrdiv.lo \
 	src/fortran/coshin.lo src/fortran/iwamax.lo \
 	src/fortran/dipowe.lo src/fortran/d1mach.lo \
-	src/fortran/wbdiag.lo src/fortran/ddpow1.lo \
-	src/fortran/gdcp2i.lo src/fortran/corth.lo \
-	src/fortran/mtran.lo src/fortran/wclmat.lo \
-	src/fortran/dsort.lo src/fortran/cerr.lo src/fortran/orthes.lo \
-	src/fortran/waxpy.lo src/fortran/coef.lo src/fortran/arcosh.lo \
-	src/fortran/wexpm1.lo src/fortran/ddpowe.lo \
+	src/fortran/wbdiag.lo src/fortran/gdcp2i.lo \
+	src/fortran/corth.lo src/fortran/mtran.lo \
+	src/fortran/wclmat.lo src/fortran/dsort.lo src/fortran/cerr.lo \
+	src/fortran/orthes.lo src/fortran/waxpy.lo src/fortran/coef.lo \
+	src/fortran/arcosh.lo src/fortran/wexpm1.lo \
 	src/fortran/wdotci.lo src/fortran/dmcopy.lo \
 	src/fortran/wexchn.lo src/fortran/wlog.lo \
 	src/fortran/infinity.lo src/fortran/wmul.lo src/fortran/dad.lo \
@@ -784,7 +782,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/xerhlt.c \
     src/c/basic_functions.c \
     src/c/expm.c \
-    src/c/log.c \
     src/c/dsearch.c \
     src/c/matrix_generation.c \
     src/c/add_vector.c \
@@ -945,7 +942,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dsum.f \
     src/fortran/urand.f \
     src/fortran/intp.f \
-    src/fortran/watan.f \
     src/fortran/dlgama.f \
     src/fortran/exch.f \
     src/fortran/wsign.f \
@@ -966,7 +962,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dipowe.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
-    src/fortran/ddpow1.f \
     src/fortran/gdcp2i.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
@@ -978,7 +973,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/coef.f \
     src/fortran/arcosh.f \
     src/fortran/wexpm1.f \
-    src/fortran/ddpowe.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
@@ -1542,8 +1536,6 @@ src/c/libscielementary_functions_algo_la-basic_functions.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-expm.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscielementary_functions_algo_la-log.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-dsearch.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-matrix_generation.lo:  \
@@ -1583,8 +1575,6 @@ src/fortran/dsum.lo: src/fortran/$(am__dirstamp) \
 src/fortran/urand.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/intp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/watan.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dlgama.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1626,8 +1616,6 @@ src/fortran/d1mach.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wbdiag.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ddpow1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/gdcp2i.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/corth.lo: src/fortran/$(am__dirstamp) \
@@ -1649,8 +1637,6 @@ src/fortran/coef.lo: src/fortran/$(am__dirstamp) \
 src/fortran/arcosh.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wexpm1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ddpowe.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wdotci.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -2034,7 +2020,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-dsearch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-expm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-finite.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-log.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-matrix_generation.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-sub_vector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-vfinite.Plo@am__quote@
@@ -2133,13 +2118,6 @@ src/c/libscielementary_functions_algo_la-expm.lo: src/c/expm.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/expm.c' object='src/c/libscielementary_functions_algo_la-expm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-expm.lo `test -f 'src/c/expm.c' || echo '$(srcdir)/'`src/c/expm.c
-
-src/c/libscielementary_functions_algo_la-log.lo: src/c/log.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-log.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-log.Tpo -c -o src/c/libscielementary_functions_algo_la-log.lo `test -f 'src/c/log.c' || echo '$(srcdir)/'`src/c/log.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-log.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-log.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/log.c' object='src/c/libscielementary_functions_algo_la-log.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-log.lo `test -f 'src/c/log.c' || echo '$(srcdir)/'`src/c/log.c
 
 src/c/libscielementary_functions_algo_la-dsearch.lo: src/c/dsearch.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-dsearch.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-dsearch.Tpo -c -o src/c/libscielementary_functions_algo_la-dsearch.lo `test -f 'src/c/dsearch.c' || echo '$(srcdir)/'`src/c/dsearch.c
