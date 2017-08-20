@@ -190,7 +190,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dipowe.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
-    src/fortran/ddpow1.f \
     src/fortran/gdcp2i.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
@@ -202,7 +201,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/coef.f \
     src/fortran/arcosh.f \
     src/fortran/wexpm1.f \
-    src/fortran/ddpowe.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
