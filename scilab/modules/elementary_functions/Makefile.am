@@ -5,7 +5,6 @@
 # This file is distributed under the same license as the Scilab package.
 
 ELEMENTARIES_FUNCTIONS_C_SOURCES = \
-    src/c/finite.c \
     src/c/vfinite.c \
     src/c/xerhlt.c \
     src/c/basic_functions.c \
