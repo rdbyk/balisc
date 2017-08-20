@@ -5,12 +5,10 @@
 # This file is distributed under the same license as the Scilab package.
 
 ELEMENTARIES_FUNCTIONS_C_SOURCES = \
-    src/c/finite.c \
     src/c/vfinite.c \
     src/c/xerhlt.c \
     src/c/basic_functions.c \
     src/c/expm.c \
-    src/c/log.c \
     src/c/dsearch.c \
     src/c/matrix_generation.c \
     src/c/add_vector.c \
@@ -170,7 +168,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dsum.f \
     src/fortran/urand.f \
     src/fortran/intp.f \
-    src/fortran/watan.f \
     src/fortran/dlgama.f \
     src/fortran/exch.f \
     src/fortran/wsign.f \
@@ -183,15 +180,12 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dadd.f \
     src/fortran/isort.f \
     src/fortran/wscal.f \
-    src/fortran/dipow.f \
     src/fortran/wshrsl.f \
     src/fortran/wwrdiv.f \
     src/fortran/coshin.f \
     src/fortran/iwamax.f \
-    src/fortran/dipowe.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
-    src/fortran/ddpow1.f \
     src/fortran/gdcp2i.f \
     src/fortran/corth.f \
     src/fortran/mtran.f \
@@ -203,11 +197,9 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/coef.f \
     src/fortran/arcosh.f \
     src/fortran/wexpm1.f \
-    src/fortran/ddpowe.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
-    src/fortran/wlog.f \
     src/fortran/infinity.f \
     src/fortran/wmul.f \
     src/fortran/dad.f \
@@ -217,7 +209,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dclmat.f \
     src/fortran/ortran.f \
     src/fortran/bdiag.f \
-    src/fortran/wvmul.f \
     src/fortran/dmmul.f \
     src/fortran/wsqrt.f \
     src/fortran/rat.f \

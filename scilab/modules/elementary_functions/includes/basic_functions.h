@@ -23,8 +23,6 @@
 #include "BOOL.h"
 #include "elem_common.h"
 
-#include "log.h"
-
 #define BY_ROWS			1
 #define BY_COLS			2
 #define BY_ALL			0
