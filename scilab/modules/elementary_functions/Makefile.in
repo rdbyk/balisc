@@ -268,9 +268,9 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/orthes.lo src/fortran/waxpy.lo src/fortran/coef.lo \
 	src/fortran/arcosh.lo src/fortran/wexpm1.lo \
 	src/fortran/wdotci.lo src/fortran/dmcopy.lo \
-	src/fortran/wexchn.lo src/fortran/wlog.lo \
-	src/fortran/infinity.lo src/fortran/wmul.lo src/fortran/dad.lo \
-	src/fortran/dset.lo src/fortran/dtild.lo src/fortran/i1mach.lo \
+	src/fortran/wexchn.lo src/fortran/infinity.lo \
+	src/fortran/wmul.lo src/fortran/dad.lo src/fortran/dset.lo \
+	src/fortran/dtild.lo src/fortran/i1mach.lo \
 	src/fortran/dclmat.lo src/fortran/ortran.lo \
 	src/fortran/bdiag.lo src/fortran/wvmul.lo src/fortran/dmmul.lo \
 	src/fortran/wsqrt.lo src/fortran/rat.lo \
@@ -976,7 +976,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
-    src/fortran/wlog.f \
     src/fortran/infinity.f \
     src/fortran/wmul.f \
     src/fortran/dad.f \
@@ -1643,8 +1642,6 @@ src/fortran/wdotci.lo: src/fortran/$(am__dirstamp) \
 src/fortran/dmcopy.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wexchn.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/wlog.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/infinity.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

@@ -203,7 +203,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
     src/fortran/wexchn.f \
-    src/fortran/wlog.f \
     src/fortran/infinity.f \
     src/fortran/wmul.f \
     src/fortran/dad.f \
