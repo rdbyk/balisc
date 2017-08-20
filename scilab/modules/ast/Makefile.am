@@ -18,7 +18,6 @@ src/c/operations/doublecomplex.c \
 src/c/operations/invert_matrix.c \
 src/c/operations/matrix_addition.c \
 src/c/operations/matrix_division.c \
-src/c/operations/matrix_finite.c \
 src/c/operations/matrix_kronecker.c \
 src/c/operations/matrix_multiplication.c \
 src/c/operations/matrix_power.c \
@@ -404,7 +403,6 @@ includes/operations/invert_matrix.h \
 includes/operations/matrix_addition.h \
 includes/operations/matrix_division.h \
 includes/operations/matrix_finite.h \
-includes/operations/matrix_kronecker.h \
 includes/operations/matrix_left_division.h \
 includes/operations/matrix_multiplication.h \
 includes/operations/matrix_power.h \
