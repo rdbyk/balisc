@@ -21,6 +21,11 @@
 #include <cmath>
 #include <Eigen/Core>
 
+extern "C"
+{
+#include "balisc_elementary.h"
+}
+
 using types::Double;
 
 using Eigen::Map;
@@ -39,15 +44,28 @@ Double* sinh(Double* x)
     
     if (is_complex)
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> xi(x->getImg(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        Map<ArrayXd> yi(y->getImg(), n);
-        ArrayXd ep(xr.exp());
-        ArrayXd en(ep.inverse());
-        yr = 0.5 * xi.cos() * (ep - en);
-        yi = 0.5 * xi.sin() * (en + ep);
-        
+        double* xr = x->get();
+        double* yr = y->get();
+        double* xi = x->getImg();
+        double* yi = y->getImg();
+
+        for (int i = 0; i < n; i++)
+        {
+#if !defined(balisc_exp_m128d)
+            double a0 = ::balisc_exp_d(xr[i]);
+            double a1 = 1 / a0;
+            Sleef_double2 b = Sleef_sincos_u35(xi[i]);
+            yr[i] = 0.5 * b.y * (a0 - a1);
+            yi[i] = 0.5 * b.x * (a0 + a1);
+#else
+            double xr_i = xr[i];
+            __m128d a = ::balisc_exp_m128d((__m128d){xr_i,-xr_i});
+            Sleef_double2 b = Sleef_sincos_u35(xi[i]);
+            yr[i] = 0.5 * b.y * (a[0] - a[1]);
+            yi[i] = 0.5 * b.x * (a[0] + a[1]);
+#endif
+        }
+
         return y;
     }
     else
