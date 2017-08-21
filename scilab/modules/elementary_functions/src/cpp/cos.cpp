@@ -18,14 +18,13 @@
 // 02110-1301, USA.
 
 #include "cos.hxx"
-#include <cmath>
-#include <Eigen/Core>
+
+extern "C"
+{
+#include "balisc_elementary.h"
+}
 
 using types::Double;
-
-using Eigen::Map;
-using Eigen::ArrayXd;
-using Eigen::ArrayXcd;
 
 namespace balisc
 {
@@ -39,24 +38,58 @@ Double* cos(Double* x)
     
     if (is_complex)
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> xi(x->getImg(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        Map<ArrayXd> yi(y->getImg(), n);
-        ArrayXd ep(xi.exp());
-        ArrayXd en(ep.inverse());
-        yr = 0.5 * xr.cos() * (ep + en);
-        yi = 0.5 * xr.sin() * (en - ep);
-        
+        double* xr = x->get();
+        double* yr = y->get();
+        double* xi = x->getImg();
+        double* yi = y->getImg();
+
+        for (int i = 0; i < n; i++)
+        {
+#if !defined(balisc_cos_m128d)
+            double a0 = ::balisc_exp_d(xi[i]);
+            double a1 = 1 / a0;
+            Sleef_double2 b = Sleef_sincos_u35(xr[i]);
+            yr[i] = 0.5 * b.y * (a0 + a1);
+            yi[i] = 0.5 * b.x * (a1 - a0);
+#else
+            double xi_i = xi[i];
+            __m128d a = ::balisc_exp_m128d((__m128d){xi_i,-xi_i});
+            Sleef_double2 b = Sleef_sincos_u35(xr[i]);
+            yr[i] = 0.5 * b.y * (a[0] + a[1]);
+            yi[i] = 0.5 * b.x * (a[1] - a[0]);
+#endif
+        }
+
         return y;
     }
     else
     {
-        Map<ArrayXd> xr(x->get(), n);
-        Map<ArrayXd> yr(y->get(), n);
-        yr = xr.cos();
-        
+        double* xr = x->get();
+        double* yr = y->get();
+
+#if !defined(balisc_cos_m128d)
+        for (int i = 0; i < n; i++)
+        {
+            yr[i] = ::balisc_cos_d(xr[i]);
+        }
         return y;
+#else
+        int i = 0;
+        for ( ; i < n - 1; i += 2)
+        {
+            __m128d a = ::balisc_cos_m128d(*((__m128d*)&(xr[i])));
+            yr[i] = a[0];
+            yr[i+1] = a[1];
+        }
+
+        if (n & 0x1)
+        {
+            yr[i] = ::balisc_cos_d(xr[i]);
+            return y;
+        }
+
+        return y;
+#endif
     }
 }
 

@@ -18,22 +18,19 @@
 // 02110-1301, USA.
 
 #include "tan.hxx"
+
+#include <complex>
 #include <cmath>
-#include <Eigen/Core>
+
+extern "C"
+{
+#include "balisc_elementary.h"
+}
 
 using types::Double;
 
-using Eigen::Map;
-using Eigen::ArrayXd;
-using Eigen::ArrayXcd;
-
 namespace balisc
 {
-
-static inline std::complex<double> __tan__(double re, double im)
-{
-    return std::tan(std::complex<double>(re, im));
-}
 
 Double* tan(Double* x)
 {
@@ -44,15 +41,6 @@ Double* tan(Double* x)
 
     if (is_complex)
     {
-        //Map<ArrayXd> xr(x->get(), n);
-        //Map<ArrayXd> xi(x->getImg(), n);
-        //Map<ArrayXd> yr(y->get(), n);
-        //Map<ArrayXd> yi(y->getImg(), n);
-        //ArrayXcd tmp(n);
-        //tmp = xr.binaryExpr<std::complex<double>(*)(double,double)>(xi, &__tan__);
-        //yr = tmp.real();
-        //yi = tmp.imag();
-
         double* xr = x->get();
         double* xi = x->getImg();
         double* yr = y->get();
@@ -69,19 +57,32 @@ Double* tan(Double* x)
     }
     else
     {
-        //Map<ArrayXd> xr(x->get(), n);
-        //Map<ArrayXd> yr(y->get(), n);
-        //yr = xr.tan();
-    
         double* xr = x->get();
         double* yr = y->get();
-    
+
+#if !defined(balisc_tan_m128d)
         for (int i = 0; i < n; i++)
         {
-            yr[i] = std::tan(xr[i]);
+            yr[i] = ::balisc_tan_d(xr[i]);
         }
-    
         return y;
+#else
+        int i = 0;
+        for ( ; i < n - 1; i += 2)
+        {
+            __m128d a = ::balisc_tan_m128d(*((__m128d*)&(xr[i])));
+            yr[i] = a[0];
+            yr[i+1] = a[1];
+        }
+
+        if (n & 0x1)
+        {
+            yr[i] = ::balisc_tan_d(xr[i]);
+            return y;
+        }
+
+        return y;
+#endif
     }
 }
 

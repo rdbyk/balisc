@@ -29,13 +29,16 @@
 #define balisc_atan_d     atan
 #define balisc_atan2_d    Sleef_atan2_u35
 #define balisc_copysign_d copysign
+#define balisc_cos_d      cos
 #define balisc_exp_d      exp
 #define balisc_fabs_d     fabs
 #define balisc_hypot_d    Sleef_hypot_u35
 #define balisc_log_d      Sleef_log_u35
 #define balisc_log10_d    log10
 #define balisc_round_d    round
+#define balisc_sin_d      sin
 #define balisc_sqrt_d     sqrt
+#define balisc_tan_d      tan
 
 #if defined(__SSE4_1__) || defined(__SSE4_2__)
 
@@ -43,11 +46,14 @@
 #define balisc_asin_m128d  Sleef_asind2_u35sse4
 #define balisc_atan_m128d  Sleef_atand2_u35sse4
 #define balisc_atan2_m128d Sleef_atan2d2_u35sse4
+#define balisc_cos_m128d   Sleef_cosd2_u35sse4
 #define balisc_exp_m128d   Sleef_expd2_u10sse4
 #define balisc_hypot_m128d Sleef_hypotd2_u35sse4
 #define balisc_log_m128d   Sleef_logd2_u35sse4
 #define balisc_log10_m128d Sleef_log10d2_u10sse4
+#define balisc_sin_m128d   Sleef_sind2_u35sse4
 #define balisc_round_m128d Sleef_roundd2_sse4
+#define balisc_tan_m128d   Sleef_tand2_u35sse4 // not really fast
 
 #elif defined(__SSE2__)
 
@@ -55,11 +61,14 @@
 #define balisc_asin_m128d  Sleef_asind2_u35sse2
 #define balisc_atan_m128d  Sleef_atand2_u35sse2
 #define balisc_atan2_m128d Sleef_atan2d2_u35sse2
+#define balisc_cos_m128d   Sleef_cosd2_u35sse2
 #define balisc_exp_m128d   Sleef_expd2_u10sse2
 #define balisc_hypot_m128d Sleef_hypotd2_u35sse2
 #define balisc_log_m128d   Sleef_logd2_u35sse2
 #define balisc_log10_m128d Sleef_log10d2_u10sse2
+#define balisc_sin_m128d   Sleef_sind2_u35sse2
 #define balisc_round_m128d Sleef_roundd2_sse2
+#define balisc_tan_m128d   Sleef_tand2_u35sse2 // not really fast
 
 #endif
 

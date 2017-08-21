@@ -121,8 +121,7 @@ Double* asin(Double* x)
         else
         {
             Double* y = new Double(x->getDims(), x->getDimsArray(), false);
-            
-            double* xr = x->get();
+
             double* yr = y->get();
             
 #if !defined(balisc_asin_m128d)
@@ -132,17 +131,18 @@ Double* asin(Double* x)
             }
             return y;
 #else
-            int i;
-            for (i = 0; i < n - 1; i++)
+            int i = 0;
+            for ( ; i < n - 1; i += 2)
             {
                 __m128d a = balisc_asin_m128d(*((__m128d*)&(xr[i])));
                 yr[i] = a[0];
-                yr[++i] = a[1];
+                yr[i+1] = a[1];
             }
 
-            for ( ; i < n; i++)
+            if (n & 0x1)
             {
                 yr[i] = balisc_asin_d(xr[i]);
+                return y;
             }
             
             return y;

@@ -41,28 +41,28 @@ Double* atan_real(Double* x)
     double* yr = y->get();
 
 #if !defined(balisc_atan_m128d)
-    for (int i = 0; i < n; i++)
-    {
-        yr[i] = balisc_atan_d(xr[i]);
-    }
+            for (int i = 0; i < n; i++)
+            {
+                yr[i] = balisc_atan_d(xr[i]);
+            }
+            return y;
 #else
-    int n2 = n - 1;
-                
-    switch (n & 0x1)
-    {
-        case 1:
-            yr[n2] = balisc_atan_d(xr[n2]);
-        default:
-            for (int i = 0; i < n2; i++)
+            int i = 0;
+            for ( ; i < n - 1; i += 2)
             {
                 __m128d a = balisc_atan_m128d(*((__m128d*)&(xr[i])));
                 yr[i] = a[0];
-                yr[++i] = a[1];
+                yr[i+1] = a[1];
             }
-    }
-#endif
 
-    return y;
+            if (n & 0x1)
+            {
+                yr[i] = balisc_atan_d(xr[i]);
+                return y;
+            }
+
+            return y;
+#endif
 }
 
 bool atan_singularity(Double* x)
@@ -124,28 +124,28 @@ Double* atan2(Double* x1, Double* x2)
     double* yr = y->get();
 
 #if !defined(balisc_atan2_m128d)
-    for (int i = 0; i < n; i++)
-    {
-        yr[i] = ::balisc_atan2_d(x1r[i], x2r[i]);
-    }
+            for (int i = 0; i < n; i++)
+            {
+                yr[i] = ::balisc_atan2_d(x1r[i], x2r[i]);
+            }
+            return y;
 #else
-    int n2 = n - 1;
-                
-    switch (n & 0x1)
-    {
-        case 1:
-            yr[n2] = ::balisc_atan2_d(x1r[n2], x2r[n2]);
-        default:
-            for (int i = 0; i < n2; i++)
+            int i = 0;
+            for ( ; i < n - 1; i += 2)
             {
                 __m128d a = ::balisc_atan2_m128d(*((__m128d*)&(x1r[i])), *((__m128d*)&(x2r[i])));
                 yr[i] = a[0];
-                yr[++i] = a[1];
+                yr[i+1] = a[1];
             }
-    }
-#endif
 
-    return y;
+            if (n & 0x1)
+            {
+                yr[i] = ::balisc_atan2_d(x1r[i], x2r[i]);
+                return y;
+            }
+
+            return y;
+#endif
 }
 
 }
