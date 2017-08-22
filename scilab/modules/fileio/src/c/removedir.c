@@ -281,7 +281,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
         }
 
         filename = MALLOC(sizeof(char) * (balisc_strlen(refcstrRootDirectory) + 1 + balisc_strlen(ent->d_name) + 1 + 1)) ;
-        sprintf(filename, "%s/%s", refcstrRootDirectory, ent->d_name);
+        strcat(stpcpy(stpcpy(filename, refcstrRootDirectory), "/"), ent->d_name);
         if (isdir(filename))
         {
             /* Delete recursively */
