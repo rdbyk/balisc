@@ -245,15 +245,15 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir)
         filenameSRC = (char*)MALLOC(sizeof(char) * (balisc_strlen(SourceDir) + 1 + balisc_strlen(ent->d_name) + 1 + 1)) ;
         filenameDST = (char*)MALLOC(sizeof(char) * (balisc_strlen(DestinationDir) + 1 + balisc_strlen(ent->d_name) + 1 + 1)) ;
 
-        sprintf(filenameSRC, "%s/%s", SourceDir, ent->d_name);
+        strcat(stpcpy(stpcpy(filenameSRC, SourceDir), "/"), ent->d_name);
 
         if (DestinationDir[balisc_strlen(DestinationDir) - 1] == '/')
         {
-            sprintf(filenameDST, "%s%s", DestinationDir, ent->d_name);
+            strcat(stpcpy(filenameDST, DestinationDir), ent->d_name);
         }
         else
         {
-            sprintf(filenameDST, "%s/%s", DestinationDir, ent->d_name);
+            strcat(stpcpy(stpcpy(filenameDST, DestinationDir), "/"), ent->d_name);
         }
 
         if (isdir(filenameSRC))
