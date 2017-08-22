@@ -80,7 +80,7 @@ char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
         else
         {
             /* we have the beginning of a filename */
-            sprintf(filespec, "%s*", filename);
+            strcat(stpcpy(filespec, filename), "*");
         }
 
         pathextended = expandPathVariable(path);
@@ -166,7 +166,7 @@ static char **addPath(char **dictionary, int sizearray, char *path)
         char *newPath = NULL;
         int newlength = (int)(balisc_strlen(dictionary[i]) + len_path + 1);
         newPath = (char *)MALLOC(sizeof(char) * (newlength));
-        sprintf(newPath, "%s%s", path, dictionary[i]);
+        strcat(stpcpy(newPath, path), dictionary[i]);
         FREE(dictionary[i]);
         dictionary[i] = newPath;
     }
@@ -199,7 +199,7 @@ static char **addDirSeparator(char **dictionary, int sizearray, char *path)
             char *newPath = NULL;
             int newlength = (int)(len_dictionary_i + len_DIR_SEPARATOR + 1);
             newPath = (char *)MALLOC(sizeof(char) * (newlength));
-            sprintf(newPath, "%s%s", dictionary[i], DIR_SEPARATOR);
+            strcat(stpcpy(newPath, dictionary[i]), DIR_SEPARATOR);
             FREE(dictionary[i]);
             dictionary[i] = newPath;
         }
