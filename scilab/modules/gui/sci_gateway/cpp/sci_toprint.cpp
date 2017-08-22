@@ -301,10 +301,11 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
 
                 if (mnOne > 0)
                 {
-                    sprintf(lines, "%s\n", pStVarOne[0]);
+                    char* e = stpcpy(stpcpy(lines, pStVarOne[0]), "\n");
+                    
                     for (i = 1; i < mnOne; ++i)
                     {
-                        sprintf(lines, "%s%s\n", lines, pStVarOne[i]);
+                        e = stpcpy(stpcpy(e, pStVarOne[i]), "\n");
                     }
                 }
                 freeArrayOfString(pStVarOne, mnOne);
