@@ -47,7 +47,7 @@ char *FindFileExtension(char *filename)
             extension = (char*)MALLOC(sizeof(char) * (lengthextension + 1));
             if (extension)
             {
-                sprintf(extension, "%s", &filename[i]);
+                strcpy(extension, &filename[i]);
             }
         }
 #else

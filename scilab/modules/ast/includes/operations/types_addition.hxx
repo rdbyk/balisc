@@ -1,9 +1,9 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __TYPES_ADD_H__
 #define __TYPES_ADD_H__
@@ -137,7 +137,7 @@ inline static void add(wchar_t** l, size_t size, wchar_t** r, int* length , wcha
 {
     for (size_t i = 0; i < size ; ++i)
     {
-        os_swprintf(o[i], length[i], L"%ls%ls", l[i], r[i]);
+        wcscat(wcpcpy(o[i], l[i]), r[i]);
     }
 }
 
@@ -215,7 +215,7 @@ inline static void add(wchar_t** l, size_t size, wchar_t* r, int* length , wchar
 {
     for (size_t i = 0; i < size ; ++i)
     {
-        os_swprintf(o[i], length[i], L"%ls%ls", l[i], r);
+        wcscat(wcpcpy(o[i], l[i]), r);
     }
 }
 
@@ -264,7 +264,7 @@ inline static void add(wchar_t* l, size_t size, wchar_t** r, int* length , wchar
 {
     for (size_t i = 0; i < size ; ++i)
     {
-        os_swprintf(o[i], length[i], L"%ls%ls", l, r[i]);
+        wcscat(wcpcpy(o[i], l), r[i]);
     }
 }
 
@@ -314,7 +314,7 @@ template<typename T, typename U, typename O> inline static void add(T l, U r, O*
 //string version
 inline static void add(wchar_t* l, wchar_t* r, int length , wchar_t* o)
 {
-    os_swprintf(o, length, L"%ls%ls", l, r);
+    wcscat(wcpcpy(o, l), r);
 }
 
 //x1C + x1C

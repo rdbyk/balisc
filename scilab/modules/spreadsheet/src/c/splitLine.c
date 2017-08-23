@@ -99,8 +99,8 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
     char tokenreplacement_string[64] = "";
     char *substitutedstring = NULL;
 
-    sprintf(tokenstring_to_search, "%s%s", sep, sep);
-    sprintf(tokenreplacement_string, "%s%s%s", sep, EMPTYFIELD, sep);
+    strcat(stpcpy(tokenstring_to_search, sep), sep);
+    strcat(stpcpy(stpcpy(tokenreplacement_string, sep), EMPTYFIELD), sep);
     substitutedstring = strsub(str, tokenstring_to_search, tokenreplacement_string);
     /* in a string like foo;bar;;;, replace all the ;;, not only the first and last one */
     while (strstr(substitutedstring, tokenstring_to_search) != NULL)
@@ -113,7 +113,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         char *tmp = NULL;
         size_t l = balisc_strlen(substitutedstring) + balisc_strlen(EMPTYFIELD) + balisc_strlen(sep) + 1;
         tmp = (char*)MALLOC(sizeof(char) * l);
-        sprintf(tmp, "%s%s%s", EMPTYFIELD, sep, &substitutedstring[1]);
+        strcat(stpcpy(stpcpy(tmp, EMPTYFIELD), sep), &substitutedstring[1]);
         FREE(substitutedstring);
         substitutedstring = tmp;
     }
@@ -123,7 +123,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         char *tmp = NULL;
         size_t l = balisc_strlen(substitutedstring) + balisc_strlen(EMPTYFIELD) + 1;
         tmp = (char*)MALLOC(sizeof(char) * l);
-        sprintf(tmp, "%s%s", substitutedstring, EMPTYFIELD);
+        strcat(stpcpy(tmp, substitutedstring), EMPTYFIELD);
         FREE(substitutedstring);
         substitutedstring = tmp;
     }
