@@ -58,17 +58,18 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
         }
 
         //do all [x,x]
-        for (row = lines.begin(); row != lines.end(); ++row)
+        for (const auto& row : lines)
         {
             types::InternalType* poRow = NULL;
-            exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
-            for (col = cols.begin(); col != cols.end(); ++col)
+            exps_t cols = row->getAs<MatrixLineExp>()->getColumns();
+
+            for (const auto& col : cols)
             {
                 setResult(NULL); // Reset value on loop re-start
 
                 try
                 {
-                    (*col)->accept(*this);
+                    col->accept(*this);
                 }
                 catch (const InternalError& error)
                 {
@@ -224,7 +225,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     }
                     std::wostringstream os;
                     os << _W("inconsistent row/column dimensions\n");
-                    throw ast::InternalError(os.str(), 999, (*row)->getLocation());
+                    throw ast::InternalError(os.str(), 999, row->getLocation());
                 }
 
                 // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
