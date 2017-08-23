@@ -63,7 +63,6 @@ public:
                 if (*rv != nullptr)
                 {
                     (*rv)->killMe();
-                    *rv = nullptr;
                 }
             }
         }
