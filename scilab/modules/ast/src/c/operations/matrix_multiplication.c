@@ -14,6 +14,9 @@
  */
 
 #include <string.h> // for memset function
+#if defined(__SSE2__)
+#include <emmintrin.h>
+#endif
 #include "elem_common.h"
 #include "matrix_multiplication.h"
 
@@ -92,11 +95,29 @@ int iMultiRealScalarByRealMatrix(
     double *_pdblReal2,	int _iRows2, int _iCols2,
     double *_pdblRealOut)
 {
+#if !defined(__SSE2__)
     int iOne	= 1;
     int iSize2	= _iRows2 * _iCols2;
 
     memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
     C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
+#else
+    int n = _iRows2 * _iCols2;
+
+    int i = 0;
+    for ( ; i < n - 1; i += 2)
+    {
+        __m128d a = _mm_mul_pd(_mm_load1_pd(&_dblReal1), *((__m128d*)&(_pdblReal2[i])));
+        _pdblRealOut[i] = a[0];
+        _pdblRealOut[i+1] = a[1];
+    }
+
+    if (n & 0x1)
+    {
+        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
+    }
+#endif
+
     return 0;
 }
 
@@ -105,6 +126,7 @@ int iMultiRealScalarByComplexMatrix(
     double *_pdblReal2,	double *_pdblImg2, int _iRows2, int _iCols2,
     double *_pdblRealOut, double *_pdblImgOut)
 {
+#if !defined(__SSE2__)
     int iOne	= 1;
     int iSize2	= _iRows2 * _iCols2;
     
@@ -112,6 +134,27 @@ int iMultiRealScalarByComplexMatrix(
     memmove(_pdblImgOut, _pdblImg2, sizeof(double) * iSize2);
     C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
     C2F(dscal)(&iSize2, &_dblReal1, _pdblImgOut, &iOne);
+#else
+    int n = _iRows2 * _iCols2;
+
+    int i = 0;
+    for ( ; i < n - 1; i += 2)
+    {
+        __m128d a = _mm_load1_pd(&_dblReal1);
+        __m128d re = _mm_mul_pd(a, *((__m128d*)&(_pdblReal2[i])));
+        _pdblRealOut[i] = re[0];
+        _pdblRealOut[i+1] = re[1];
+        __m128d im = _mm_mul_pd(a, *((__m128d*)&(_pdblImg2[i])));
+        _pdblImgOut[i] = im[0];
+        _pdblImgOut[i+1] = im[1];
+    }
+
+    if (n & 0x1)
+    {
+        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
+        _pdblImgOut[i] = _dblReal1 * _pdblImg2[i];
+    }
+#endif
     return 0;
 }
 
@@ -120,6 +163,7 @@ int iMultiComplexScalarByRealMatrix(
     double *_pdblReal2,		int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut)
 {
+#if !defined(__SSE2__)
     int iOne	= 1;
     int iSize2	= _iRows2 * _iCols2;
     
@@ -127,6 +171,27 @@ int iMultiComplexScalarByRealMatrix(
     memmove(_pdblImgOut, _pdblReal2, sizeof(double) * iSize2);
     C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
     C2F(dscal)(&iSize2, &_dblImg1,	_pdblImgOut, &iOne);
+#else
+    int n = _iRows2 * _iCols2;
+
+    int i = 0;
+    for ( ; i < n - 1; i += 2)
+    {
+        __m128d a = *((__m128d*)&(_pdblReal2[i]));
+        __m128d re = _mm_mul_pd(a, _mm_load1_pd(&_dblReal1));
+        _pdblRealOut[i] = re[0];
+        _pdblRealOut[i+1] = re[1];
+        __m128d im = _mm_mul_pd(a, _mm_load1_pd(&_dblImg1));
+        _pdblImgOut[i] = im[0];
+        _pdblImgOut[i+1] = im[1];
+    }
+
+    if (n & 0x1)
+    {
+        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
+        _pdblImgOut[i] = _dblImg1 * _pdblReal2[i];
+    }
+#endif
     return 0;
 }
 
