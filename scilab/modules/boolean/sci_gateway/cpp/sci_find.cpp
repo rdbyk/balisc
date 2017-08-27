@@ -185,27 +185,32 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         }
         else if (iDims > iRefDims)
         {
-            for (int i = 0 ; i < iRefDims ; i++)
+            int i = 0;
+            for ( ; i < iRefDims ; i++)
             {
                 piDims[i] = piRefDims[i];
             }
 
-            for (int i = iRefDims ; i < iDims ; i++)
+            for ( ; i < iDims ; i++)
             {
                 piDims[i] = 1;
             }
         }
         else //iDims < iRefDims
         {
-            for (int i = 0 ; i < iDims - 1 ; i++)
+            int iDimsMinusOne = iDims - 1;
+
+            int i = 0;
+            for ( ; i < iDimsMinusOne ; i++)
             {
                 piDims[i] = piRefDims[i];
             }
 
-            piDims[iDims - 1] = 1;
-            for (int i = iDims - 1 ; i < iRefDims ; i++)
+            piDims[iDimsMinusOne] = 1;
+
+            for ( ; i < iRefDims ; i++)
             {
-                piDims[iDims - 1] *= piRefDims[i];
+                piDims[iDimsMinusOne] *= piRefDims[i];
             }
         }
 
