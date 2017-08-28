@@ -74,23 +74,16 @@ int cleanImagPartComplexArray(complexArray *pComplexArray)
         if (pComplexArray->imagPart)
         {
             int i = 0;
-            int isComplex = 0;
+
+            pComplexArray->isComplex = 0;
+
             for (i = 0; i < pComplexArray->nbElements; i++)
             {
                 if (pComplexArray->imagPart[i] != 0)
                 {
-                    isComplex = 1;
+                    pComplexArray->isComplex = 1;
                     break;
                 }
-            }
-
-            if (isComplex)
-            {
-                pComplexArray->isComplex = 1;
-            }
-            else
-            {
-                pComplexArray->isComplex = 0;
             }
         }
         else
