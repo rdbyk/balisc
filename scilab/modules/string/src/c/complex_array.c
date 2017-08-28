@@ -22,14 +22,14 @@ complexArray *createComplexArrayEmpty(int nbSize)
     pComplexArray = (complexArray *) MALLOC(sizeof(complexArray));
     if (pComplexArray)
     {
-        pComplexArray->realPart = (double *)MALLOC(sizeof(double) * nbSize);
+        pComplexArray->realPart = (double *)CALLOC(nbSize, sizeof(double));
         if (pComplexArray->realPart == NULL)
         {
             FREE(pComplexArray);
             return NULL;
         }
 
-        pComplexArray->imagPart = (double *)MALLOC(sizeof(double) * nbSize);
+        pComplexArray->imagPart = (double *)CALLOC(nbSize, sizeof(double));
         if (pComplexArray->imagPart == NULL)
         {
             FREE(pComplexArray->realPart);
@@ -38,8 +38,6 @@ complexArray *createComplexArrayEmpty(int nbSize)
             return NULL;
         }
 
-        memset(pComplexArray->realPart, 0, sizeof(double) * nbSize);
-        memset(pComplexArray->imagPart, 0, sizeof(double) * nbSize);
         pComplexArray->isComplex = 1;
         pComplexArray->nbElements = nbSize;
     }
