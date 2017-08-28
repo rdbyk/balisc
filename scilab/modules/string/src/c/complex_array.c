@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,10 +12,10 @@
  * along with this program.
  *
  */
-#include <string.h>
+
 #include "complex_array.h"
 #include "sci_malloc.h"
-// =============================================================================
+
 complexArray *createComplexArrayEmpty(int nbSize)
 {
     complexArray *pComplexArray = NULL;
@@ -45,64 +45,7 @@ complexArray *createComplexArrayEmpty(int nbSize)
     }
     return pComplexArray;
 }
-// =============================================================================
-complexArray *createComplexArray(const double *realpart, const double *imagpart, int nbSize)
-{
-    complexArray *pComplexArray = NULL;
 
-    if (realpart == NULL)
-    {
-        return pComplexArray;
-    }
-
-    if (nbSize <= 0)
-    {
-        return pComplexArray;
-    }
-
-    pComplexArray = (complexArray *) MALLOC(sizeof(complexArray));
-    if (pComplexArray)
-    {
-        if (imagpart == NULL)
-        {
-            pComplexArray->isComplex = 0;
-        }
-        else
-        {
-            int i = 0;
-            pComplexArray->isComplex = 0;
-            for (i = 0; i < nbSize; i++)
-            {
-                if (imagpart[i] != 0)
-                {
-                    pComplexArray->isComplex = 1;
-                    break;
-                }
-            }
-        }
-
-        pComplexArray->realPart = (double *)MALLOC(sizeof(double) * nbSize);
-        if (pComplexArray->realPart)
-        {
-            memcpy(pComplexArray->realPart, realpart, nbSize);
-            pComplexArray->nbElements = nbSize;
-        }
-        if (pComplexArray->isComplex)
-        {
-            pComplexArray->imagPart = (double *)MALLOC(sizeof(double) * nbSize);
-            if (pComplexArray->imagPart)
-            {
-                memcpy(pComplexArray->imagPart, imagpart, nbSize);
-            }
-        }
-        else
-        {
-            pComplexArray->imagPart = NULL;
-        }
-    }
-    return pComplexArray;
-}
-// =============================================================================
 void freeComplexArray(complexArray *pComplexArray)
 {
     if (pComplexArray)
@@ -125,7 +68,7 @@ void freeComplexArray(complexArray *pComplexArray)
         pComplexArray = NULL;
     }
 }
-// =============================================================================
+
 int cleanImagPartComplexArray(complexArray *pComplexArray)
 {
     if (pComplexArray)
@@ -159,4 +102,3 @@ int cleanImagPartComplexArray(complexArray *pComplexArray)
     }
     return 0;
 }
-// =============================================================================
