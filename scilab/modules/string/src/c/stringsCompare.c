@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,17 +19,9 @@
 #include "sci_malloc.h"
 #include "os_string.h"
 /*--------------------------------------------------------------------------*/
-static int sign(int x)
+static inline int sign(int x)
 {
-    if (x < 0)
-    {
-        return -1;
-    }
-    if (x > 0)
-    {
-        return 1;
-    }
-    return 0;
+    return (0 < x) - (x < 0);
 }
 
 int * stringsCompare(wchar_t **Input_String_One, int dim_One, wchar_t **Input_String_Two, int dim_Two, BOOL dostricmp)
