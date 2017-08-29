@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 
 #include "boolean_gw.hxx"
@@ -185,27 +185,32 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         }
         else if (iDims > iRefDims)
         {
-            for (int i = 0 ; i < iRefDims ; i++)
+            int i = 0;
+            for ( ; i < iRefDims ; i++)
             {
                 piDims[i] = piRefDims[i];
             }
 
-            for (int i = iRefDims ; i < iDims ; i++)
+            for ( ; i < iDims ; i++)
             {
                 piDims[i] = 1;
             }
         }
         else //iDims < iRefDims
         {
-            for (int i = 0 ; i < iDims - 1 ; i++)
+            int iDimsMinusOne = iDims - 1;
+
+            int i = 0;
+            for ( ; i < iDimsMinusOne ; i++)
             {
                 piDims[i] = piRefDims[i];
             }
 
-            piDims[iDims - 1] = 1;
-            for (int i = iDims - 1 ; i < iRefDims ; i++)
+            piDims[iDimsMinusOne] = 1;
+
+            for ( ; i < iRefDims ; i++)
             {
-                piDims[iDims - 1] *= piRefDims[i];
+                piDims[iDimsMinusOne] *= piRefDims[i];
             }
         }
 
@@ -213,10 +218,6 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         for (int i = 0 ; i < iValues ; i++)
         {
             piCoord[i] = new int[_iRetCount];
-        }
-
-        for (int i = 0 ; i < iValues ; i++)
-        {
             getCoordFromIndex(piIndex[i], piCoord[i], piDims, iDims);
         }
 
