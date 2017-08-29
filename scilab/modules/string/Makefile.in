@@ -191,7 +191,6 @@ am__objects_1 = src/c/libscistring_algo_la-convstr.lo \
 	src/c/libscistring_algo_la-isalphanum.lo \
 	src/c/libscistring_algo_la-StringConvert.lo \
 	src/c/libscistring_algo_la-os_wcsdup.lo \
-	src/c/libscistring_algo_la-os_wcstok.lo \
 	src/c/libscistring_algo_la-os_wcstod.lo \
 	src/c/libscistring_algo_la-stringToDouble.lo \
 	src/c/libscistring_algo_la-stringToComplex.lo \
@@ -655,7 +654,6 @@ STRING_C_SOURCES = \
     src/c/isalphanum.c \
     src/c/StringConvert.c \
     src/c/os_wcsdup.c \
-    src/c/os_wcstok.c \
     src/c/os_wcstod.c \
     src/c/stringToDouble.c \
     src/c/stringToComplex.c \
@@ -982,8 +980,6 @@ src/c/libscistring_algo_la-StringConvert.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-os_wcsdup.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscistring_algo_la-os_wcstok.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-os_wcstod.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-stringToDouble.lo: src/c/$(am__dirstamp) \
@@ -1169,7 +1165,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-isnum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-os_wcsdup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-os_wcstod.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-os_wcstok.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-partfunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-pcre_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-pcre_private.Plo@am__quote@
@@ -1329,13 +1324,6 @@ src/c/libscistring_algo_la-os_wcsdup.lo: src/c/os_wcsdup.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/os_wcsdup.c' object='src/c/libscistring_algo_la-os_wcsdup.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o src/c/libscistring_algo_la-os_wcsdup.lo `test -f 'src/c/os_wcsdup.c' || echo '$(srcdir)/'`src/c/os_wcsdup.c
-
-src/c/libscistring_algo_la-os_wcstok.lo: src/c/os_wcstok.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT src/c/libscistring_algo_la-os_wcstok.lo -MD -MP -MF src/c/$(DEPDIR)/libscistring_algo_la-os_wcstok.Tpo -c -o src/c/libscistring_algo_la-os_wcstok.lo `test -f 'src/c/os_wcstok.c' || echo '$(srcdir)/'`src/c/os_wcstok.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscistring_algo_la-os_wcstok.Tpo src/c/$(DEPDIR)/libscistring_algo_la-os_wcstok.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/os_wcstok.c' object='src/c/libscistring_algo_la-os_wcstok.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o src/c/libscistring_algo_la-os_wcstok.lo `test -f 'src/c/os_wcstok.c' || echo '$(srcdir)/'`src/c/os_wcstok.c
 
 src/c/libscistring_algo_la-os_wcstod.lo: src/c/os_wcstod.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT src/c/libscistring_algo_la-os_wcstod.lo -MD -MP -MF src/c/$(DEPDIR)/libscistring_algo_la-os_wcstod.Tpo -c -o src/c/libscistring_algo_la-os_wcstod.lo `test -f 'src/c/os_wcstod.c' || echo '$(srcdir)/'`src/c/os_wcstod.c
