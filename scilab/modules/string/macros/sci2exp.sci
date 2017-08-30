@@ -279,8 +279,14 @@ function t=pol2exp(a,lmax)
     $
     if nargin<2 then lmax = 0, end
 
-    [m,n]=size(a),var=" ";lvar=1
-    var=varn(a),lvar=length(var);
+    [m,n] = size(a)
+    var = " ";
+    lvar = 1;
+    var = varn(a);
+    if or(var==["s" "z"]) then
+        var = "%"+var;
+    end
+    lvar=length(var);
     while part(var,lvar)==" " then lvar=lvar-1,end
     var=part(var,1:lvar);
     if m<0 then
