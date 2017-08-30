@@ -27,7 +27,7 @@ consult the [embedded help](modules/helptools/data/pages/homepage-en_US.html). I
 as the "What's new" page of the help, by simply typing `help` in Scilab console.
 
 In summary, the main new features are:
-* 
+* Webtools utilities added for HTTP protocol, JSON data usage
 
 
 Installation
@@ -41,6 +41,7 @@ Compilation
    - automake 1.15
    - autoconf 2.69
    - libtool 2.4.6 (patched for Mac Os X)
+
 
 Dependencies
 ------------
@@ -71,11 +72,14 @@ Packaging & Supported Operating Systems
 
 Feature changes and additions
 -----------------------------
- 
+
 * Empty strings are used as the default values on String allocation
+* HTTP get, post, put, upload, patch, delete functions added
+* JSON encoding / decoding for Scilab datatypes added
 * Memory invalid accesses have been greatly reduced thanks to :
   - PVS-Studio inspections blog report
   - Coverity scan weekly source analysis
+
 
 Help pages:
 -----------
@@ -89,6 +93,9 @@ Data Structures
 
 Xcos
 ----
+
+* scicos_log() support options parameters to retrieve model statistics.
+* Added two new blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` which are `CSCOPE` & `CMSCOPE` blocks (resp) with additional feature of autoscaling of graph. It takes a parameter (1 for Yes or 0 for No) for scaling or no-scaling.
 
 
 API modification
@@ -115,19 +122,33 @@ strange behaviors or unexpected results do not hesitate to [report](https://bugz
 the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 
 
+Bug Fixes
+---------
+
+### Bugs fixed in 6.1.0:
+* [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
+* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
+* [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
+* [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
+* [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf`segmentation fault was caught due to wrong size
+
+
 ### Bugs fixed in 6.0.1:
 * [#4276](http://bugzilla.scilab.org/show_bug.cgi?id=4276): `strsubst` replaced the first occurence in regex mode.
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
 * [#11756](http://bugzilla.scilab.org/show_bug.cgi?id=11756): In the categories of the ATOMS GUI, actually available modules might be not listed.
 * [#12771](http://bugzilla.scilab.org/show_bug.cgi?id=12771): xcosPalGenerateAllIcons help example was broken.
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
+* [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
 * [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): input() is broken: \n introduced before prompting, multiple prompts, missing assignment, "%" "\n" "\t" no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): Whereami : wrong information (line numbers).
 * [#14424](http://bugzilla.scilab.org/show_bug.cgi?id=14424): New problem with the input function.
 * [#14598](http://bugzilla.scilab.org/show_bug.cgi?id=14598): `fort` wasn't properly removed.
+* [#14629](http://bugzilla.scilab.org/show_bug.cgi?id=14629): In the Xcos EXPRESSION block, `<` could truncate the rendering of the expression in the icon.
 * [#14636](http://bugzilla.scilab.org/show_bug.cgi?id=14636): Xcos model with modelica electrical blocks (created in 5.5.2) crashed Scilab 6.
 * [#14637](http://bugzilla.scilab.org/show_bug.cgi?id=14367): Some Scilab 5.5.2 diagrams didn't simulate properly in Xcos.
+* [#14680](http://bugzilla.scilab.org/show_bug.cgi?id=14680): The `<` char in expression was not rendered in the icon of Xcos EXPRESSION block.
 * [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): Matplot save/load failed.
 * [#14910](http://bugzilla.scilab.org/show_bug.cgi?id=14910): The `plot()` example was displayed in overlay to the existing graphics.
 * [#14978](http://bugzilla.scilab.org/show_bug.cgi?id=15006): ode help page still contained 'root' which has been replaced by 'roots'.
@@ -137,6 +158,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15019](http://bugzilla.scilab.org/show_bug.cgi?id=15019): Add 'csci6' in the calling of ilib_build in 'Getting started with API_Scilab' help page.
 * [#15023](http://bugzilla.scilab.org/show_bug.cgi?id=15023): `clf()` wrongly reset `figure_id`.
 * [#15024](http://bugzilla.scilab.org/show_bug.cgi?id=15024): Xcos labels were not preserved at diagram compilation.
+* [#15037](http://bugzilla.scilab.org/show_bug.cgi?id=15037): the residu function may crash Scilab6.
 * [#15039](http://bugzilla.scilab.org/show_bug.cgi?id=15039): Added demos to showcase Xcos' new graphical features
 * [#15046](http://bugzilla.scilab.org/show_bug.cgi?id=15046): `call` couldn't mix inputs and outputs
 * [#15052](http://bugzilla.scilab.org/show_bug.cgi?id=15052): `getpid` wasn't available anymore
@@ -155,8 +177,12 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15138](http://bugzilla.scilab.org/show_bug.cgi?id=15138): Scilab crashes at start on Windows
 * [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in try/catch expression
 * [#15144](http://bugzilla.scilab.org/show_bug.cgi?id=15144): `mean` and `stdev` could not be overloaded.
+* [#15184](http://bugzilla.scilab.org/show_bug.cgi?id=15184): error management when calling operator overload fixed.
+* [#15185](http://bugzilla.scilab.org/show_bug.cgi?id=15185): "Region to Superblock" did not restore broken links.
 * [#15188](http://bugzilla.scilab.org/show_bug.cgi?id=15188): Failed to load hdf5_is_file function.
+* [#15199](http://bugzilla.scilab.org/show_bug.cgi?id=15199): Scilab crash when using fsolve for functions containing other functions.
 * [#15205](http://bugzilla.scilab.org/show_bug.cgi?id=15205): `get_scicos_version` returned the previous version.
+* [#15207](http://bugzilla.scilab.org/show_bug.cgi?id=15207): `xcos(scs_m)` did not work for sub-systems.
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`
@@ -499,12 +525,3 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14685](http://bugzilla.scilab.org/show_bug.cgi?id=14685): datavec produced an invalid index error.
 * [#14980] (http://bugzilla.scilab.org/show_bug.cgi?id=14980): The datatip display of the root locus arcs is broken.
 * [#14992] (http://bugzilla.scilab.org/show_bug.cgi?id=14992): `readgateway` has been removed, use `whereis` instead.
-
-Bug Fixes
----------
-
-### Bugs fixed in 6.1.0:
-* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
-* [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
-* [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
-* [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf`segmentation fault was caught due to wrong size
