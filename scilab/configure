@@ -53340,11 +53340,6 @@ else
 fi
 
 echo ""
-echo "SLEEF Configuration:"
-echo "  SLEEF CPPFLAGS ...... = $SLEEF_CPPFLAGS"
-echo "  SLEEF LDFLAGS ....... = $SLEEF_LDFLAGS"
-
-echo ""
 if test $FFTW_ENABLE = yes;  then
    echo "FFTW Configuration:"
    echo "  FFTW LIBS .......... = $FFTW3_LIB"
