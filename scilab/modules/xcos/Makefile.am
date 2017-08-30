@@ -60,7 +60,7 @@ GIWS_WRAPPERS = \
 SWIG_WRAPPERS = \
     src/jni/JavaController.i \
     src/jni/JavaXMIResource.i
-    
+
 # FORCE directors due to a bug into swig
 SWIG_OPTIONS=-c++ -directors
 BUILT_SOURCES=
@@ -281,6 +281,7 @@ images/palettes/CLSS.png \
 images/palettes/CMAT3D.png \
 images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
+images/palettes/SCALE_CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
 images/palettes/CONST_f.png \
 images/palettes/CONST_m.png \
@@ -291,6 +292,7 @@ images/palettes/CONVERT.png \
 images/palettes/COSBLK_f.png \
 images/palettes/Counter.png \
 images/palettes/CSCOPE.png \
+images/palettes/SCALE_CSCOPE.png \
 images/palettes/CSCOPXY3D.png \
 images/palettes/CSCOPXY.png \
 images/palettes/CUMSUM.png \
