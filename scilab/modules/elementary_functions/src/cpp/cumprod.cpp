@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -43,9 +43,15 @@ int cumprod(types::Double* pIn, int iOrientation, types::Double* pOut)
         }
         else
         {
-            for (int i = 1; i < size; i++)
+            int i;
+            for (i = 1; i < size - 1; i += 2)
             {
-                pdblOutReal[i] = pdblInReal[i] * pdblOutReal[i - 1];
+                pdblOutReal[i] = pdblOutReal[i-1] * pdblInReal[i];
+                pdblOutReal[i+1] = pdblOutReal[i] * pdblInReal[i+1];
+            }
+            if (!(size & 0x1))
+            {
+                pdblOutReal[i] = pdblOutReal[i - 1] * pdblInReal[i];
             }
         }
     }
