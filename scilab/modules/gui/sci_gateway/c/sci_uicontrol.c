@@ -39,6 +39,7 @@
 #include "expandPathVariable.h"
 #include "os_string.h"
 #include "strcmp.h"
+#include "strlen.h"
 
 static const char* propertiesNames[] =
 {
@@ -434,6 +435,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                     return 1;
                 }
 
+                size_t iLenPropertyName = balisc_strlen(propertyName);
 
                 /* Bug 3031 */
                 /* We only want to compare propertyName along its length */
@@ -441,9 +443,9 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 found = 0;
                 for (k = 0; k < iPropertiesCount ; k++)
                 {
-                    if (strlen(propertyName) <= strlen(propertiesNames[k]))
+                    if (iLenPropertyName <= balisc_strlen(propertiesNames[k]))
                     {
-                        if (strnicmp(propertyName, propertiesNames[k], strlen(propertyName)) == 0)
+                        if (strnicmp(propertyName, propertiesNames[k], iLenPropertyName) == 0)
                         {
                             propertiesValuesIndices[k] = inputIndex + 1;    /* Position of value for property */
                             found = 1;
@@ -649,7 +651,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                                     return 1;
                                 }
 
-                                nbRow = (int)strlen(pstValue);
+                                nbRow = (int)balisc_strlen(pstValue);
                                 nbCol = 1;
                                 setStatus = callSetProperty(pvApiCtx, iUicontrol, pstValue, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                                 freeAllocatedSingleString(pstValue);

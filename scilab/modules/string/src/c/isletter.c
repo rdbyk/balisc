@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,6 +20,7 @@
 #include <wctype.h> /* iswalpha */
 #include "isletter.h"
 #include "sci_malloc.h"
+#include "strlen.h"
 
 /*--------------------------------------------------------------------------*/
 BOOL *isletter(char *input_string, int *sizeArray)
@@ -28,7 +29,7 @@ BOOL *isletter(char *input_string, int *sizeArray)
     if (input_string)
     {
         int i = 0;
-        int length_input_string = (int)strlen(input_string);
+        int length_input_string = (int)balisc_strlen(input_string);
         *sizeArray = length_input_string;
 
         if (length_input_string > 0)

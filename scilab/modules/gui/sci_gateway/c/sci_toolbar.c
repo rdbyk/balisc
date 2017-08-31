@@ -31,6 +31,7 @@
 #include "graphicObjectProperties.h"
 #include "getConsoleIdentifier.h"
 #include "strcmp.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 int sci_toolbar(char *fname, void* pvApiCtx)
 {
@@ -215,7 +216,7 @@ int sci_toolbar(char *fname, void* pvApiCtx)
     }
 
     nbCol = 1;
-    nbRow = (int)strlen(Output);
+    nbRow = (int)balisc_strlen(Output);
     if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, Output))
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);

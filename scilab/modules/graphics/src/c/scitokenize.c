@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2002-2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,6 +19,7 @@
 #include "scitokenize.h"
 #include "sci_malloc.h" /* MALLOC */
 #include "freeArrayOfString.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 int scitokenize(char * legend, char *** Strptr, int *n)
 {
@@ -28,7 +29,7 @@ int scitokenize(char * legend, char *** Strptr, int *n)
     int prevIndex = 0;
     int stringLength = 0, j = 0;
     char **Str = NULL;
-    int lenlegend = (int)strlen(legend);
+    int lenlegend = (int)balisc_strlen(legend);
 
     /* first get the number of tokens */
     for (i = 0; i < lenlegend; i++)
