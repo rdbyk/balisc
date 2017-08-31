@@ -35,6 +35,7 @@
 #include "sciprint.h"
 #include "addColor.h"
 #include "strcmp.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 int setDefaultProperties(int _iFig, BOOL bDefaultAxes);
 int getStackArgumentAsBoolean(void* _pvCtx, int* _piAddr);
@@ -546,7 +547,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                             freeAllocatedSingleString(pstProName);
                             return 1;
                         }
-                        iRows = (int)strlen((char*)_pvData);
+                        iRows = (int)balisc_strlen((char*)_pvData);
                         iCols = 1;
                     }
                     else
