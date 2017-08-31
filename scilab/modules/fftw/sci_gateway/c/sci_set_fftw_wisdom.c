@@ -23,6 +23,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 
 /* Set fftw wisdom
