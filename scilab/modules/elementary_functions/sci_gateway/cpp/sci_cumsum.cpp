@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -54,18 +54,17 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
-    {
-        out.push_back(types::Double::Empty());
-        return types::Function::OK;
-    }
-
     bool isCloned = true;
     /***** get data *****/
     switch (in[0]->getType())
     {
         case types::InternalType::ScilabDouble:
             pDblIn = in[0]->getAs<types::Double>();
+            if (pDblIn->isEmpty())
+            {
+                out.push_back(types::Double::Empty());
+                return types::Function::OK;
+            }
             isCloned = false;
             break;
         case types::InternalType::ScilabBool:
