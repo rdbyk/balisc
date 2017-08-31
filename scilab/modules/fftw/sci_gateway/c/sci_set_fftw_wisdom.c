@@ -1,10 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006/2007 - INRIA - Alan LAYEC
-* Copyright (C) 2007 - INRIA - Allan CORNET
-* Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006/2007 - INRIA - Alan LAYEC
+ * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <string.h>
 #include "api_scilab.h"
@@ -107,7 +107,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
 
     for (j = 0; j < m1 * n1; j++)
     {
-        len += (int)strlen(Str1[j]) + 1;
+        len += (int)balisc_strlen(Str1[j]) + 1;
 
         if (Str)
         {
@@ -126,12 +126,12 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        for (i = 0; i < (int)strlen(Str1[j]); i++)
+        for (i = 0; i < (int)balisc_strlen(Str1[j]); i++)
         {
             Str[k + i] = Str1[j][i];
         }
-        Str[k + strlen(Str1[j])] = '\n';
-        k += (int)strlen(Str1[j]) + 1;
+        Str[k + balisc_strlen(Str1[j])] = '\n';
+        k += (int)balisc_strlen(Str1[j]) + 1;
     }
     Str[k - 1] = '\0';
 
