@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,6 +22,7 @@
 #include <string.h>
 
 #include "pixel_mode.h"
+#include "strlen.h"
 
 /**
 * number of different pixel drawing modes.
@@ -60,9 +61,7 @@ int getPixelModeIndex(const char * modeName)
     /* I'm lazy. I won't use a hash table. Sorry if you are adding a new mode. */
     /* But I don't think it will happen often */
 
-    int nameLen = 0;
-
-    nameLen =  (int)strlen(modeName);
+    int nameLen = (int)balisc_strlen(modeName);
 
     switch (modeName[0])
     {
