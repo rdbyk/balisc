@@ -107,7 +107,9 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
 
     for (j = 0; j < m1 * n1; j++)
     {
-        len += (int)balisc_strlen(Str1[j]) + 1;
+        int lenStr1_j = (int)balisc_strlen(Str1[j]);
+
+        len += lenStr1_j + 1;
 
         if (Str)
         {
@@ -126,12 +128,12 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        for (i = 0; i < (int)balisc_strlen(Str1[j]); i++)
+        for (i = 0; i < lenStr1_j; i++)
         {
             Str[k + i] = Str1[j][i];
         }
-        Str[k + balisc_strlen(Str1[j])] = '\n';
-        k += (int)balisc_strlen(Str1[j]) + 1;
+        Str[k + lenStr1_j] = '\n';
+        k += lenStr1_j + 1;
     }
     Str[k - 1] = '\0';
 
