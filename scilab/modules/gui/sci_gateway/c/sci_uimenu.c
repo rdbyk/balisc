@@ -1,12 +1,11 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Allan Cornet
-* Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
-* Copyright (C) 2006 - INRIA - Fabrice Leray
-* Copyright (C) 2011 - DIGITEO - Allan CORNET
-* desc : interface for sci_uimenu routine
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan Cornet
+ * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,8 +13,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
@@ -37,6 +36,7 @@
 #include "CurrentFigure.h"
 #include "api_scilab.h"
 #include "HandleManagement.h"
+#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 int sci_uimenu(char *fname, void *pvApiCtx)
 {
@@ -219,7 +219,7 @@ int sci_uimenu(char *fname, void *pvApiCtx)
                         return 1;
                     }
 
-                    nbRow = (int)strlen(pstValue);
+                    nbRow = (int)balisc_strlen(pstValue);
                     nbCol = 1;
                     setStatus = callSetProperty(pvApiCtx, getObjectFromHandle(GraphicHandle), pstValue, sci_strings, nbRow, nbCol, propertyName);
                     freeAllocatedSingleString(pstValue);
