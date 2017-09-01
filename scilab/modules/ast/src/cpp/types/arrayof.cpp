@@ -263,16 +263,14 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             iNewDims = iDims;
             piNewDims = new int[iNewDims];
-            for (int i = 0; i < m_iDims; i++)
+
+            int i = 0;
+            for ( ; i < m_iDims; i++)
             {
                 piNewDims[i] = std::max(piMaxDim[i], m_piDims[i]);
             }
 
-            int iSource = (pSource->getDims() - 1);
-            bool bPassed = false;
-            int *piSourceDims = pSource->getDimsArray();
-
-            for (int i = m_iDims; i < iNewDims; ++i)
+            for ( ; i < iNewDims; ++i)
             {
                 piNewDims[i] = piMaxDim[i];
             }
