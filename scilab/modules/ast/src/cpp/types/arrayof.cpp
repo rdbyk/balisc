@@ -1490,23 +1490,10 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
         return pIT;
     }
 
-    if (_iDims == m_iDims)
+    if (_iDims == m_iDims && memcmp(m_piDims, _piDims, sizeof(int) * m_iDims) == 0)
     {
-        bool bChange = false;
-        for (int i = 0; i < _iDims; i++)
-        {
-            if (m_piDims[i] != _piDims[i])
-            {
-                bChange = true;
-                break;
-            }
-        }
-
-        if (bChange == false)
-        {
-            //nothing to do
-            return this;
-        }
+        //nothing to do
+        return this;
     }
 
     //alloc new data array
