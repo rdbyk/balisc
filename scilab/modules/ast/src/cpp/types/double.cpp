@@ -210,7 +210,7 @@ Double::Double(double _dblReal)
 
 Double::Double(double _dblReal, double _dblImg)
 {
-    int piDims[2] = {1, 1};
+    static int piDims[2] = {1, 1};
     double *pdblR;
     double *pdblI;
     setViewAsInteger(false);
