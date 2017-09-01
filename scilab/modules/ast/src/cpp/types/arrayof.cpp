@@ -1174,9 +1174,9 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             pOut = createEmpty(static_cast<int>(dims.size()), dims.data(), isComplex());
         }
 
-        int size = getSize();
         if (isComplex())
         {
+            int size = getSize();
             int idx = 0;
             for (int & i : indexes)
             {
