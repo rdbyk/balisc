@@ -48,18 +48,15 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isDouble())
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
-
-        int iSize = pDblIn->getSize();
-
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
 
-        if (pDblIn->isComplex() == false)
+        if (pDblIn->isComplex())
         {
-            memset(pDblOut->get(), 0x00, iSize * sizeof(double));
+            memcpy(pDblOut->get(), pDblIn->getImg(), pDblIn->getSize() * sizeof(double));
         }
         else
         {
-            memmove(pDblOut->getReal(), pDblIn->getImg(), iSize * sizeof(double));
+            memset(pDblOut->get(), 0x00, pDblIn->getSize() * sizeof(double));
         }
 
 
