@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - 2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,8 +26,14 @@
 #include "fscanfMat.h"
 
 /*--------------------------------------------------------------------------*/
+#define NB_DEFAULT_SUPPORTED_SEPARATORS 2
+/* bug 8148 */
+/* default separator can be a space or a tabulation */
+static const char *supportedSeparators[NB_DEFAULT_SUPPORTED_SEPARATORS] = {DEFAULT_FSCANFMAT_SEPARATOR, "\t"};
+
 static void freeVar(char** filename, char** expandedFilename, char** Format, char** separator);
 /*--------------------------------------------------------------------------*/
+
 int sci_fscanfMat(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -145,14 +151,8 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     expandedFilename = expandPathVariable(filename);
     if (bIsDefaultSeparator)
     {
-#define NB_DEFAULT_SUPPORTED_SEPARATORS 2
-
-        /* bug 8148 */
-        /* default separator can be a space or a tabulation */
-        char *supportedSeparators[NB_DEFAULT_SUPPORTED_SEPARATORS] = {DEFAULT_FSCANFMAT_SEPARATOR, "\t"};
         int i = 0;
-
-        for (i = 0; i < NB_DEFAULT_SUPPORTED_SEPARATORS; i++)
+        for ( ; i < NB_DEFAULT_SUPPORTED_SEPARATORS; i++)
         {
             if (results)
             {
