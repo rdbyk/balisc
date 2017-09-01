@@ -45,15 +45,19 @@ types::Function::ReturnValue sci_real(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isDouble())
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
-        if (pDblIn->isComplex() == false)
+
+        if (pDblIn->isComplex())
+        {
+            types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+            pDblOut->set(pDblIn->get());
+            out.push_back(pDblOut);
+            return types::Function::OK;
+        }
+        else
         {
             out.push_back(pDblIn);
             return types::Function::OK;
         }
-
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
-        pDblOut->set(pDblIn->get()) ;
-        out.push_back(pDblOut);
     }
     else if (in[0]->isSparse())
     {
