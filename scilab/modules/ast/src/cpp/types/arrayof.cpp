@@ -1083,7 +1083,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             return NULL;
         }
 
-        int dims[2] = {1, 1};
+        static int dims[2] = {1, 1};
         pOut = createEmpty(2, dims, isComplex());;
         pOut->set(0, get(index));
         if (isComplex())
