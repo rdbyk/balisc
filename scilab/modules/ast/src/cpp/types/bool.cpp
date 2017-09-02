@@ -52,7 +52,7 @@ Bool::Bool(int _iRows, int _iCols)
 
 Bool::Bool(int _iReal)
 {
-    int piDims[2]   = {1, 1};
+    static int piDims[2] = {1, 1};
     int *piBool = NULL;
     create(piDims, 2, &piBool, NULL);
     piBool[0] = _iReal == 0 ? 0 : 1;
