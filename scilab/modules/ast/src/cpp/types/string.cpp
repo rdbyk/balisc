@@ -56,8 +56,8 @@ String::String(int _iDims, const int* _piDims)
 
 String::String(const wchar_t* _pwstData)
 {
+    static int piDims[] = {1, 1};
     wchar_t** pwsData = NULL;
-    int piDims[] = {1, 1};
     create(piDims, 2, &pwsData, NULL);
     set(0, 0, _pwstData);
 #ifndef NDEBUG
@@ -67,8 +67,8 @@ String::String(const wchar_t* _pwstData)
 
 String::String(const char *_pstData)
 {
+    static int piDims[] = {1, 1};
     wchar_t** pwsData = NULL;
-    int piDims[] = {1, 1};
     create(piDims, 2, &pwsData, NULL);
     wchar_t* data = to_wide_string(const_cast<char*>(_pstData));
     set(0, 0, data);
