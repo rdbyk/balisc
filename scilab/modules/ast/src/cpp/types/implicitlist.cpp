@@ -397,30 +397,30 @@ void ImplicitList::extractValueAsUnsignedInteger(int _iOccur, T* val)
 
 InternalType* ImplicitList::getInitalType()
 {
+    static const int piDims[2] = {1, 1};
+
     if (compute())
     {
-        int iDims = 2;
-        int piDms[2] = {1, 1};
         switch (m_eOutType)
         {
             case ScilabDouble:
-                return new Double(iDims, piDms);
+                return new Double(2, piDims);
             case ScilabInt8:
-                return new Int8(iDims, piDms);
+                return new Int8(2, piDims);
             case ScilabInt16:
-                return new Int16(iDims, piDms);
+                return new Int16(2, piDims);
             case ScilabInt32:
-                return new Int32(iDims, piDms);
+                return new Int32(2, piDims);
             case ScilabInt64:
-                return new Int64(iDims, piDms);
+                return new Int64(2, piDims);
             case ScilabUInt8:
-                return new UInt8(iDims, piDms);
+                return new UInt8(2, piDims);
             case ScilabUInt16:
-                return new UInt16(iDims, piDms);
+                return new UInt16(2, piDims);
             case ScilabUInt32:
-                return new UInt32(iDims, piDms);
+                return new UInt32(2, piDims);
             case ScilabUInt64:
-                return new UInt64(iDims, piDms);
+                return new UInt64(2, piDims);
         }
     }
 
