@@ -116,24 +116,27 @@ void String::whoAmI()
 
 void String::deleteString(int _iPos)
 {
-    if (m_pRealData != NULL)
+    wchar_t* str = m_pRealData[_iPos];
+
+    if (str && str != String::nullValue())
     {
-        if (m_pRealData[_iPos] != NULL && m_pRealData[_iPos] != String::nullValue())
-        {
-            FREE(m_pRealData[_iPos]);
-            m_pRealData[_iPos] = NULL;
-        }
+        FREE(str);
+        str = NULL;
     }
 }
 
 void String::deleteAll()
 {
-    for (int i = 0 ; i < m_iSizeMax ; i++)
+    if (m_pRealData)
     {
-        deleteString(i);
+        for (int i = 0 ; i < m_iSizeMax ; i++)
+        {
+            deleteString(i);
+        }
+
+        delete[] m_pRealData;
+        m_pRealData = NULL;
     }
-    delete[] m_pRealData;
-    m_pRealData = NULL;
 }
 
 void String::deleteImg()
