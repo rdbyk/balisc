@@ -642,25 +642,13 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     }
     else
     {
-        int* piDims = new int[iDims];
-        int* pIndex = new int[iDims];
-        for (int i = 0 ; i < iDims ; i++)
+        if (iSeqCount > 0) // FIXME: is this really needed?
         {
-            piDims[i] = 1;
-        }
-
-        for (int i = 0 ; i < iSeqCount ; i++)
-        {
-            for (int j = 0 ; j < iDims ; j++)
+            for (int i = 0; i < iDims; i++)
             {
-                Double* pDbl = pArg[j]->getAs<Double>();
-                pIndex[j] = (int)pDbl->get()[i] - 1;
+                index += (int)pArg[i]->getAs<Double>()->get()[iSeqCount - 1] - 1;
             }
-
-            index = getIndexWithDims(pIndex, piDims, iDims);
         }
-        delete[] pIndex;
-        delete[] piDims;
     }
 
     switch (index)
