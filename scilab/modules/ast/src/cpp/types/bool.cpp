@@ -55,7 +55,7 @@ Bool::Bool(int _iReal)
     static int piDims[2] = {1, 1};
     int *piBool = NULL;
     create(piDims, 2, &piBool, NULL);
-    piBool[0] = _iReal == 0 ? 0 : 1;
+    piBool[0] = (_iReal != 0);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
