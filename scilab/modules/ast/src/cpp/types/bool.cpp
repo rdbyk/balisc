@@ -337,7 +337,7 @@ Bool* Bool::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 
 int Bool::copyValue(int _iData)
 {
-    return _iData == 0 ? 0 : 1;
+    return (_iData != 0);
 }
 
 void Bool::deleteAll()
