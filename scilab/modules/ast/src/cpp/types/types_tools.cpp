@@ -411,10 +411,11 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         if (pv[0] == -1 && currentSize == 2)
         {
             currentSize = pv[1];
-            int occ = finalSize / (currentSize * previousSize);
+            int prodOfSizes = currentSize * previousSize;
+            int occ = finalSize / prodOfSizes;
             for (int n = 0; n < occ; ++n)
             {
-                int idx = currentSize * previousSize * n;
+                int idx = prodOfSizes * n;
                 for (int m = 0; m < currentSize; ++m)
                 {
                     if (dimsIn > 1 && m >= pdims[currentDim])
@@ -433,10 +434,11 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         else
         {
             int* p = index.data();
-            int occ = finalSize / (currentSize * previousSize);
+            int prodOfSizes = currentSize * previousSize;
+            int occ = finalSize / prodOfSizes;
             for (int n = 0; n < occ; ++n)
             {
-                int idx = currentSize * previousSize * n;
+                int idx = prodOfSizes * n;
                 for (int m = 0; m < currentSize; ++m)
                 {
                     if (dimsIn > 1 && pv[m] >= pdims[currentDim])
