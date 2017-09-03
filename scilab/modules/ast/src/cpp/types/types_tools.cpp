@@ -377,7 +377,12 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 std::vector<int> idx(size);
 
                 double val = start - 1;
-                std::generate(idx.begin(), idx.end(), [&val, step]{ double s = val; val += step; return (int)s; });
+                idx[0] = (int)val;
+                for (int i = 1; i < size; ++i)
+                {
+                    val += step;
+                    idx[i] = (int)val;
+                }
 
                 lstIdx.push_back(idx);
                 finalSize *= size;
