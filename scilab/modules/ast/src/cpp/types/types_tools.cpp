@@ -501,7 +501,6 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             if (pCurrentArg->isComplex())
             {
                 pCurrentArg->killMe();
-                pCurrentArg = NULL;
             }
             else
             {
@@ -512,7 +511,6 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     if (dbl[j] < 0)
                     {
                         pCurrentArg->killMe();
-                        pCurrentArg = NULL;
                         break;
                     }
                 }
