@@ -159,9 +159,9 @@ GraphicHandle* GraphicHandle::createEmpty(int _iDims, int* _piDims, bool /*_bCom
     return new GraphicHandle(_iDims, _piDims);
 }
 
-long long GraphicHandle::copyValue(long long _hanlde)
+long long GraphicHandle::copyValue(long long _handle)
 {
-    return _hanlde;
+    return _handle;
 }
 
 void GraphicHandle::deleteAll()
