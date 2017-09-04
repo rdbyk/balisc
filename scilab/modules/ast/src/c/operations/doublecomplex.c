@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "elem_common.h"
 
@@ -33,8 +33,6 @@ Arguments
 */
 void vGetPointerFromDoubleComplex(const doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
-    int iIndex = 0;
-
     int iTwo	= 2;
     int iOne	= 1;
     double *pReal = (double*)&_poComplex[0].r;
@@ -69,7 +67,6 @@ Arguments
 */
 doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize)
 {
-    int iIndex = 0;
     doublecomplex *poComplex = (doublecomplex*)malloc(sizeof(doublecomplex) * _iSize);
     int iTwo	= 2;
     int iOne	= 1;
@@ -78,7 +75,6 @@ doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg,
 
     if (_pdblReal != NULL && _pdblImg != NULL)
     {
-
         C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
         C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
     }
