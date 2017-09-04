@@ -889,14 +889,8 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();
     double* piNotEntireIndex = getDoubleArrayFromDouble(pArg[iNotEntire]);
     int iKeepSize = getVarMaxDim(iNotEntire, iDims);
-    bool* pbKeep = new bool[iKeepSize];
 
-    //fill pbKeep with true value
-    for (int i = 0; i < iKeepSize; i++)
-    {
-        pbKeep[i] = true;
-    }
-
+    int iNewDimSize = iKeepSize;
     for (int i = 0; i < iNotEntireSize; i++)
     {
         int idx = (int)piNotEntireIndex[i] - 1;
@@ -904,19 +898,9 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         //don't care of value out of bounds
         if (idx < iKeepSize)
         {
-            pbKeep[idx] = false;
+            --iNewDimSize;
         }
     }
-
-    int iNewDimSize = 0;
-    for (int i = 0; i < iKeepSize; i++)
-    {
-        if (pbKeep[i] == true)
-        {
-            iNewDimSize++;
-        }
-    }
-    delete[] pbKeep;
 
     int* piNewDims = new int[iDims];
     for (int i = 0; i < iDims; i++)
