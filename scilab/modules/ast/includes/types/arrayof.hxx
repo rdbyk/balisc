@@ -179,23 +179,15 @@ public :
 
     virtual bool isVector() //only one dim must be != 1
     {
-        bool bFirstChance = false;
+        int count = 2;
 
-        for (int i = 0 ; i < m_iDims ; i++)
+        int i = 0;
+        while (i < m_iDims && count)
         {
-            if (m_piDims[i] != 1)
-            {
-                if (bFirstChance == true)
-                {
-                    return false;
-                }
-                else
-                {
-                    bFirstChance = true;
-                }
-            }
+            count -= (m_piDims[i++] != 1);
         }
-        return true;
+
+        return count;
     }
 
     virtual bool isComplex()
