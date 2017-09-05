@@ -221,22 +221,13 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         return NULL;
     }
 
-    //remove last dimension at size 1
-    //remove last dimension if are == 1
-    for (int i = (iDims - 1); i >= m_iDims; i--)
+    // removing trailing dims of size 1
+    while (iDims > m_iDims && piMaxDim[iDims - 1] == 1)
     {
-        if (piMaxDim[i] == 1)
-        {
-            iDims--;
-            pArg.back()->killMe();
-            pArg.pop_back();
-        }
-        else
-        {
-            break;
-        }
+        --iDims;
+        pArg.back()->killMe();
+        pArg.pop_back();
     }
-
 
     if (iDims >= m_iDims)
     {
@@ -629,20 +620,12 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
         }
     }
 
-    //remove last dimension at size 1
-    //remove last dimension if are == 1
-    for (int i = (iDims - 1); i >= 2; i--)
+    // removing trailing dims of size 1
+    while (iDims > 2 && piMaxDim[iDims - 1] == 1)
     {
-        if (piMaxDim[i] == 1)
-        {
-            iDims--;
-            pArg.back()->killMe();
-            pArg.pop_back();
-        }
-        else
-        {
-            break;
-        }
+        --iDims;
+        pArg.back()->killMe();
+        pArg.pop_back();
     }
 
     if (checkArgValidity(pArg) == false)
@@ -915,18 +898,12 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
-    //remove last dimension if are == 1
     int iOrigDims = iDims;
-    for (int i = (iDims - 1); i >= 2; i--)
+
+    // removing trailing dims of size 1
+    while (iDims > 2 && piNewDims[iDims - 1] == 1)
     {
-        if (piNewDims[i] == 1)
-        {
-            iDims--;
-        }
-        else
-        {
-            break;
-        }
+        --iDims;
     }
 
     if (iNewDimSize == 0)
@@ -1278,17 +1255,10 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         }
     }
 
-    //remove last dimension if are == 1
-    for (int i = (iDims - 1); i >= 2; i--)
+    // removing trailing dims of size 1
+    while (iDims > 2 && piCountDim[iDims - 1] == 1)
     {
-        if (piCountDim[i] == 1)
-        {
-            (iDims)--;
-        }
-        else
-        {
-            break;
-        }
+        --iDims;
     }
 
     //vector
@@ -1443,17 +1413,10 @@ ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
         _iDims++;
     }
 
-    int iDims = _iDims;
-    for (int i = iDims - 1; i >= 2; --i)
+    // removing trailing dims of size 1
+    while (_iDims > 2 && m_piDims[_iDims - 1] == 1)
     {
-        if (m_piDims[i] == 1)
-        {
-            _iDims--;
-        }
-        else
-        {
-            break;
-        }
+        --_iDims;
     }
 
     m_iRows = m_piDims[0];

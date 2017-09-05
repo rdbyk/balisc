@@ -174,14 +174,9 @@ bool getArgsDims(typed_list* _pArgsIn, std::vector<int>& dims)
     }
 
 
-    //remove last dims == 1
-    while (dims.size() > 2)
+    // removing trailing dims with size 1
+    while (dims.size() > 2 && dims.back() == 1)
     {
-        if (dims.back() != 1)
-        {
-            break;
-        }
-
         dims.pop_back();
     }
 
