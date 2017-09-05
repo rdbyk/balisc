@@ -550,12 +550,12 @@ bool String::operator!=(const InternalType& it)
     return !(*this == it);
 }
 
-static std::wstring null = L"";
+static wchar_t* null = L"";
 wchar_t* String::nullValue()
 {
     // The null value pointer is shared to speed up "" assignement
     // Empty strings creation can then be done without memory allocation
-    return (wchar_t*) null.data();
+    return null;
 }
 
 String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
