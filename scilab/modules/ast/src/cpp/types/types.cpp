@@ -51,15 +51,11 @@ std::wstring GenericType::DimToString()
 
 bool GenericType::isIdentity(void)
 {
-    for (int i = 0; i < getDims(); i++)
-    {
-        if (m_piDims[i] != -1)
-        {
-            return false;
-        }
-    }
+    int i = getDims();
 
-    return true;
+    while (i && m_piDims[--i] == -1);
+
+    return !i;
 }
 
 bool GenericType::hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount)
