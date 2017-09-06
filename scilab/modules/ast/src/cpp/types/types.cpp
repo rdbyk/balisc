@@ -16,31 +16,8 @@
 #include <sstream>
 #include "types.hxx"
 
-extern "C"
-{
-#include "localization.h"
-#include "charEncoding.h"
-#include "os_string.h"
-}
-
-
-
 namespace types
 {
-
-static bool isCoordIndex(int _iIndex, int* _piCoord, int _iCoordCount)
-{
-    bool bFind = false;
-    for (int j = 0 ; j < _iCoordCount ; j++)
-    {
-        if (_piCoord[j] == _iIndex)
-        {
-            bFind = true;
-            break;
-        }
-    }
-    return bFind;
-}
 
 std::wstring GenericType::DimToString()
 {
@@ -56,42 +33,6 @@ bool GenericType::isIdentity(void)
     while (i && m_piDims[--i] == -1);
 
     return !i;
-}
-
-bool GenericType::hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount)
-{
-    bool bAll = true;
-    for (int i = 0; i < getCols(); i++)
-    {
-        //+1 to keep 1 based index
-        int iIdx = _iRow + i * getCols() + 1;
-
-
-        if (isCoordIndex(iIdx, _piCoord, _iCoordCount) == false)
-        {
-            bAll = false;
-            break;
-        }
-    }
-    return bAll;
-}
-
-bool GenericType::hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount)
-{
-    bool bAll = true;
-    for (int i = 0; i < getRows(); i++)
-    {
-        //+1 to keep 1 based index
-        int iIdx = i + _iCol * getRows() + 1;
-
-
-        if (isCoordIndex(iIdx, _piCoord, _iCoordCount) == false)
-        {
-            bAll = false;
-            break;
-        }
-    }
-    return bAll;
 }
 
 int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
@@ -133,4 +74,3 @@ int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
     return iDim;
 }
 }
-
