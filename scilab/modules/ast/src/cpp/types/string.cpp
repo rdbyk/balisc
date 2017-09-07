@@ -637,17 +637,23 @@ String* String::set(const wchar_t* const* _pwstData)
         return pIT;
     }
 
-    for (int i = 0; i < m_iSize; i++)
-    {
-        if (m_pRealData == NULL || i >= m_iSize)
-        {
-            return NULL;
-        }
+    int i = m_iSize;
 
+    while (i && m_pRealData)
+    {
+        --i;
         deleteString(i);
         m_pRealData[i] = copyValue(_pwstData[i]);
     }
-    return this;
+
+    if (i)
+    {
+        return NULL;
+    }
+    else
+    {
+        return this;
+    }
 }
 
 String* String::set(int _iPos, const char* _pcData)
@@ -673,14 +679,18 @@ String* String::set(const char* const* _pstrData)
         return pIT;
     }
 
-    for (int i = 0; i < m_iSize; i++)
+    int i = m_iSize;
+
+    while (i-- && set(i, _pstrData[i]));
+
+    if (++i) // revert decrement
     {
-        if (set(i, _pstrData[i]) == NULL)
-        {
-            return NULL;
-        }
+        return NULL;
     }
-    return this;
+    else
+    {
+        return this;
+    }
 }
 
 wchar_t** String::allocData(int _iSize)
