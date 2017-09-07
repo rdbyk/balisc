@@ -38,6 +38,7 @@ bool GenericType::isIdentity(void)
 int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
 {
     int iDim = 1;
+
     if (m_iDims != 0)
     {
         if (_iMaxDim < m_iDims)
@@ -55,11 +56,7 @@ int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
                 iDim = m_piDims[_iCurrentDim];
             }
         }
-        else if (_iCurrentDim >= m_iDims)
-        {
-            iDim = 1;
-        }
-        else
+        else if (_iCurrentDim < m_iDims)
         {
             //normal view, all dimensions are used
             iDim = m_piDims[_iCurrentDim];
