@@ -96,18 +96,35 @@ ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, Intern
 {
     m_iSize     = -1;
     m_eOutType  = ScilabGeneric;
-    m_bComputed = false;
-    m_poStart   = NULL;
-    m_poStep    = NULL;
-    m_poEnd     = NULL;
     m_pDblStart = NULL;
     m_pDblStep  = NULL;
     m_pDblEnd   = NULL;
 
-    setStart(_poStart);
-    setStep(_poStep);
-    setEnd(_poEnd);
+    m_poStart = _poStart;
+    if (m_poStart)
+    {
+        m_poStart->IncreaseRef();
+        m_eStartType = m_poStart->getType();
+    }
+
+    m_poStep = _poStep;
+    if (m_poStep)
+    {
+        m_poStep->IncreaseRef();
+        m_eStepType = m_poStep->getType();
+    }
+
+    m_poEnd = _poEnd;
+    if (m_poEnd)
+    {
+        m_poEnd->IncreaseRef();
+        m_eEndType = m_poEnd->getType();
+    }
+
+    m_bComputed = false;
+
     compute();
+
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
