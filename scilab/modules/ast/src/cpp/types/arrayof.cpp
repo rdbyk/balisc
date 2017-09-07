@@ -597,7 +597,7 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
                 return NULL;
             }
 
-            //replace ":" by know source dimensions
+            // replace ":" by known source dimensions
             int iSource = 0;
             for (int i = 0; i < iDims; ++i)
             {
@@ -605,15 +605,14 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
                 {
                     if (iSource < iSourceDims)
                     {
-                        piMaxDim[i] = piSourceDims[iSource];
+                        piMaxDim[i] = piSourceDims[iSource++];
                         pArg[i] = createDoubleVector(piMaxDim[i]);
-                        ++iSource;
                     }
                     else
                     {
-                        //fill dimensions after getDimes() with 1
+                        // fill dimensions after getDims() with 1
                         piMaxDim[i] = 1;
-                        pArg[i] = createDoubleVector(piMaxDim[i]);
+                        pArg[i] = createDoubleVector(1);
                     }
                 }
             }

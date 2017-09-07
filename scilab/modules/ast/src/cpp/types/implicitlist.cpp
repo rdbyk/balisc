@@ -157,7 +157,6 @@ void ImplicitList::setStart(InternalType *_poIT)
         //clear previous value
         m_poStart->DecreaseRef();
         m_poStart->killMe();
-        m_poStart = NULL;
     }
 
     m_poStart = _poIT;
@@ -176,7 +175,6 @@ void ImplicitList::setStep(InternalType *_poIT)
         //clear previous value
         m_poStep->DecreaseRef();
         m_poStep->killMe();
-        m_poStep = NULL;
     }
 
     m_poStep = _poIT;
@@ -195,7 +193,6 @@ void ImplicitList::setEnd(InternalType* _poIT)
         //clear previous value
         m_poEnd->DecreaseRef();
         m_poEnd->killMe();
-        m_poEnd = NULL;
     }
 
     m_poEnd = _poIT;
