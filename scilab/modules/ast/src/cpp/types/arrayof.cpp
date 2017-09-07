@@ -548,8 +548,6 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
     if (bUndefine)
     {
         //manage : and $ in creation by insertion
-        int *piSourceDims = getDimsArray();
-        int iSourceDims = getDims();
         int iCompteurNull = 0;
         int iLastNull = 0;
         for (int i = 0; i < iDims; i++)
@@ -598,6 +596,8 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
             }
 
             // replace ":" by known source dimensions
+            int *piSourceDims = getDimsArray();
+            int iSourceDims = getDims();
             int iSource = 0;
             for (int i = 0; i < iDims; ++i)
             {
