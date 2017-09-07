@@ -313,11 +313,7 @@ bool Bool::operator==(const InternalType& it)
         }
     }
 
-    if (memcmp(get(), pb->get(), getSize() * sizeof(int)) != 0)
-    {
-        return false;
-    }
-    return true;
+    return (memcmp(get(), pb->get(), getSize() * sizeof(int)) == 0);
 }
 
 bool Bool::operator!=(const InternalType& it)
