@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <string.h>
 #include "function.hxx"
@@ -55,10 +55,12 @@ bool is_of_type(const std::string & Str)
 }
 
 /*--------------------------------------------------------------------------*/
+
+static int piMode[2] = { -1, 0};
+
 types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iID = 0;
-    int iAcces = 0;
     int iRhs = static_cast<int>(in.size());
     char* pstFormat = NULL;
     types::InternalType::ScilabType itTypeOfData = types::InternalType::ScilabDouble;
@@ -80,7 +82,6 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        int piMode[2] = { -1, 0};
         char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
         int iErr = C2F(clunit)(&iID, pstFilename, piMode, (int)balisc_strlen(pstFilename));
 

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,10 +32,6 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
     types::Double* pDblOut      = NULL;
     types::Polynom* pPolyOut    = NULL;
 
-    double dLeatOne = -1;
-    int iOne        = 1;
-    int iSize       = 0;
-
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "conj", 1);
@@ -63,10 +59,15 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    iSize = pDblOut->getSize();
     if (pDblOut->isComplex())
     {
-        C2F(dscal)(&iSize, &dLeatOne, pDblOut->getImg(), &iOne);
+        double* im = pDblOut->getImg();
+        int n = pDblOut->getSize();
+
+        for (int i = 0; i < n; i++)
+        {
+            im[i] = -im[i];
+        }
     }
 
     if (in[0]->isDouble())

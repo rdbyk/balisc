@@ -35,10 +35,7 @@ types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, t
 {
     static wchar_t *pwstState  = NULL;
     wchar_t *pwstString = NULL;
-
-    wchar_t* pwstSeps           = NULL;
-    int dims                    = 2;
-    int dimsArray[2]            = {1, 1};
+    wchar_t* pwstSeps = NULL;
 
     if (in.size() < 1 || in.size() > 2)
     {

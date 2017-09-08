@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,7 +37,6 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
     types::Bool* pOutBool   = NULL;
     types::String* pString  = NULL;
     int dimsArray[2]        = {1, 0};
-    int dims                = 2;
     BOOL *values            = NULL;
 
     if (in.size() != 1)
@@ -72,7 +71,7 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
 
     if (dimsArray[1] > 0)
     {
-        pOutBool  = new types::Bool(dims, dimsArray);
+        pOutBool  = new types::Bool(2, dimsArray);
         pOutBool->set((int *) values);
         out.push_back(pOutBool);
     }

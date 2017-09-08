@@ -1,11 +1,11 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Allan CORNET
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +13,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include "fileio_gw.hxx"
 #include "string.hxx"
@@ -35,13 +35,14 @@ extern "C"
 #include "scilabRead.h"
 }
 
+static const int dimsArray[2] = {1, 1};
+
 types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int size                    = (int)in.size();
     int iNiter                  = 1;
     wchar_t* wcsFormat          = NULL;
     wchar_t* wcsRead            = NULL;
-    int dimsArray[2]            = {1, 1};
     std::vector<types::InternalType*> pIT;
 
     int args        = 0;
