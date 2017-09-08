@@ -198,18 +198,23 @@ bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
     }
 
     int* pdims = _pRef->getDimsArray();
-    int ind[MAX_DIMS];
+    int previousDims = 1;
+    *index = 0;
     for (int i = 0; i < dimsIn; ++i)
     {
         InternalType* in = (*_pArgsIn)[i];
         //input arg type must be scalar double, int8, int16, ...
         if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
         {
-            ind[i] = static_cast<int>(getIndex(in)) - 1;
-            if (ind[i] == -1)
+            int ind = static_cast<int>(getIndex(in));
+
+            if (ind == 0 || (dimsIn != 1 && ind > pdims[i]))
             {
                 return false;
             }
+
+            *index += (ind - 1) * previousDims;
+            previousDims *= pdims[i];
         }
         else
         {
@@ -218,20 +223,6 @@ bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
         }
     }
 
-    int idx = 0;
-    int previousDims = 1;
-    for (int i = 0; i < dimsIn; ++i)
-    {
-        if (dimsIn != 1 && ind[i] >= pdims[i])
-        {
-            return false;
-        }
-
-        idx += ind[i] * previousDims;
-        previousDims *= pdims[i];
-    }
-
-    *index = idx;
     return true;
 }
 
