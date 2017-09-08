@@ -52,10 +52,10 @@ Bool::Bool(int _iRows, int _iCols)
 
 Bool::Bool(int _iReal)
 {
-    int piDims[2]   = {1, 1};
+    static int piDims[2] = {1, 1};
     int *piBool = NULL;
     create(piDims, 2, &piBool, NULL);
-    piBool[0] = _iReal == 0 ? 0 : 1;
+    piBool[0] = (_iReal != 0);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -313,11 +313,7 @@ bool Bool::operator==(const InternalType& it)
         }
     }
 
-    if (memcmp(get(), pb->get(), getSize() * sizeof(int)) != 0)
-    {
-        return false;
-    }
-    return true;
+    return (memcmp(get(), pb->get(), getSize() * sizeof(int)) == 0);
 }
 
 bool Bool::operator!=(const InternalType& it)
@@ -337,7 +333,7 @@ Bool* Bool::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 
 int Bool::copyValue(int _iData)
 {
-    return _iData == 0 ? 0 : 1;
+    return (_iData != 0);
 }
 
 void Bool::deleteAll()

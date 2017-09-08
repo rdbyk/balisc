@@ -100,10 +100,8 @@ public :
     virtual ast::Exp*       getExp(const Location& loc);
 
 private :
-    void                    deleteString(int _iRows, int _iCols);
     void                    deleteString(int _iPos);
 
-    void                    createString(int _iDims, int* _piDims);
     virtual wchar_t*        copyValue(wchar_t* _pwstData);
     virtual wchar_t*        copyValue(const wchar_t* _pwstData);
     virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

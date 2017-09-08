@@ -26,9 +26,9 @@ namespace types
 {
 Struct::Struct()
 {
+    static int piDims[2] = {0, 0};
     m_bDisableCloneInCopyValue = false;
     SingleStruct** pIT  = NULL;
-    int piDims[2] = {0, 0};
     create(piDims, 2, &pIT, NULL);
 #ifndef NDEBUG
     Inspector::addItem(this);

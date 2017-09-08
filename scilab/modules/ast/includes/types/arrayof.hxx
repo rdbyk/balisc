@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -61,18 +61,11 @@ protected :
         m_iSize     = 1;
         m_iDims     = _iDims;
 
-        //reduce dims if it's possible
-        for (int i = _iDims - 1 ; i > 1 ; i--)
+        // reduce dims if it's possible,
+        // i.e. removing trailing dims of size 1
+        while (m_iDims > 2 && _piDims[m_iDims - 1] == 1)
         {
-            if (_piDims[i] == 1)
-            {
-                //remove dimension equal to 1
-                m_iDims--;
-            }
-            else
-            {
-                break;
-            }
+            --m_iDims;
         }
 
         //m_piDims    = new int[m_iDims];
@@ -186,23 +179,15 @@ public :
 
     virtual bool isVector() //only one dim must be != 1
     {
-        bool bFirstChance = false;
+        int count = 2;
 
-        for (int i = 0 ; i < m_iDims ; i++)
+        int i = 0;
+        while (i < m_iDims && count)
         {
-            if (m_piDims[i] != 1)
-            {
-                if (bFirstChance == true)
-                {
-                    return false;
-                }
-                else
-                {
-                    bFirstChance = true;
-                }
-            }
+            count -= (m_piDims[i++] != 1);
         }
-        return true;
+
+        return count;
     }
 
     virtual bool isComplex()

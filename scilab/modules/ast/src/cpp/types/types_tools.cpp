@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -173,14 +174,9 @@ bool getArgsDims(typed_list* _pArgsIn, std::vector<int>& dims)
     }
 
 
-    //remove last dims == 1
-    while (dims.size() > 2)
+    // removing trailing dims with size 1
+    while (dims.size() > 2 && dims.back() == 1)
     {
-        if (dims.back() != 1)
-        {
-            break;
-        }
-
         dims.pop_back();
     }
 
@@ -376,7 +372,12 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 std::vector<int> idx(size);
 
                 double val = start - 1;
-                std::generate(idx.begin(), idx.end(), [&val, step]{ double s = val; val += step; return (int)s; });
+                idx[0] = (int)val;
+                for (int i = 1; i < size; ++i)
+                {
+                    val += step;
+                    idx[i] = (int)val;
+                }
 
                 lstIdx.push_back(idx);
                 finalSize *= size;
@@ -410,10 +411,11 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         if (pv[0] == -1 && currentSize == 2)
         {
             currentSize = pv[1];
-            int occ = finalSize / (currentSize * previousSize);
+            int prodOfSizes = currentSize * previousSize;
+            int occ = finalSize / prodOfSizes;
             for (int n = 0; n < occ; ++n)
             {
-                int idx = currentSize * previousSize * n;
+                int idx = prodOfSizes * n;
                 for (int m = 0; m < currentSize; ++m)
                 {
                     if (dimsIn > 1 && m >= pdims[currentDim])
@@ -432,10 +434,11 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         else
         {
             int* p = index.data();
-            int occ = finalSize / (currentSize * previousSize);
+            int prodOfSizes = currentSize * previousSize;
+            int occ = finalSize / prodOfSizes;
             for (int n = 0; n < occ; ++n)
             {
-                int idx = currentSize * previousSize * n;
+                int idx = prodOfSizes * n;
                 for (int m = 0; m < currentSize; ++m)
                 {
                     if (dimsIn > 1 && pv[m] >= pdims[currentDim])
@@ -500,10 +503,8 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             if (pCurrentArg->isComplex())
             {
                 pCurrentArg->killMe();
-                pCurrentArg = NULL;
             }
-
-            if (pCurrentArg)
+            else
             {
                 int size = pCurrentArg->getSize();
                 double* dbl = pCurrentArg->get();
@@ -512,7 +513,6 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     if (dbl[j] < 0)
                     {
                         pCurrentArg->killMe();
-                        pCurrentArg = NULL;
                         break;
                     }
                 }

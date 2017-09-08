@@ -221,22 +221,13 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         return NULL;
     }
 
-    //remove last dimension at size 1
-    //remove last dimension if are == 1
-    for (int i = (iDims - 1); i >= m_iDims; i--)
+    // removing trailing dims of size 1
+    while (iDims > m_iDims && piMaxDim[iDims - 1] == 1)
     {
-        if (piMaxDim[i] == 1)
-        {
-            iDims--;
-            pArg.back()->killMe();
-            pArg.pop_back();
-        }
-        else
-        {
-            break;
-        }
+        --iDims;
+        pArg.back()->killMe();
+        pArg.pop_back();
     }
-
 
     if (iDims >= m_iDims)
     {
@@ -263,16 +254,14 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             iNewDims = iDims;
             piNewDims = new int[iNewDims];
-            for (int i = 0; i < m_iDims; i++)
+
+            int i = 0;
+            for ( ; i < m_iDims; i++)
             {
                 piNewDims[i] = std::max(piMaxDim[i], m_piDims[i]);
             }
 
-            int iSource = (pSource->getDims() - 1);
-            bool bPassed = false;
-            int *piSourceDims = pSource->getDimsArray();
-
-            for (int i = m_iDims; i < iNewDims; ++i)
+            for ( ; i < iNewDims; ++i)
             {
                 piNewDims[i] = piMaxDim[i];
             }
@@ -559,8 +548,6 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
     if (bUndefine)
     {
         //manage : and $ in creation by insertion
-        int *piSourceDims = getDimsArray();
-        int iSourceDims = getDims();
         int iCompteurNull = 0;
         int iLastNull = 0;
         for (int i = 0; i < iDims; i++)
@@ -608,7 +595,9 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
                 return NULL;
             }
 
-            //replace ":" by know source dimensions
+            // replace ":" by known source dimensions
+            int *piSourceDims = getDimsArray();
+            int iSourceDims = getDims();
             int iSource = 0;
             for (int i = 0; i < iDims; ++i)
             {
@@ -616,35 +605,26 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
                 {
                     if (iSource < iSourceDims)
                     {
-                        piMaxDim[i] = piSourceDims[iSource];
+                        piMaxDim[i] = piSourceDims[iSource++];
                         pArg[i] = createDoubleVector(piMaxDim[i]);
-                        ++iSource;
                     }
                     else
                     {
-                        //fill dimensions after getDimes() with 1
+                        // fill dimensions after getDims() with 1
                         piMaxDim[i] = 1;
-                        pArg[i] = createDoubleVector(piMaxDim[i]);
+                        pArg[i] = createDoubleVector(1);
                     }
                 }
             }
         }
     }
 
-    //remove last dimension at size 1
-    //remove last dimension if are == 1
-    for (int i = (iDims - 1); i >= 2; i--)
+    // removing trailing dims of size 1
+    while (iDims > 2 && piMaxDim[iDims - 1] == 1)
     {
-        if (piMaxDim[i] == 1)
-        {
-            iDims--;
-            pArg.back()->killMe();
-            pArg.pop_back();
-        }
-        else
-        {
-            break;
-        }
+        --iDims;
+        pArg.back()->killMe();
+        pArg.pop_back();
     }
 
     if (checkArgValidity(pArg) == false)
@@ -891,14 +871,8 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();
     double* piNotEntireIndex = getDoubleArrayFromDouble(pArg[iNotEntire]);
     int iKeepSize = getVarMaxDim(iNotEntire, iDims);
-    bool* pbKeep = new bool[iKeepSize];
 
-    //fill pbKeep with true value
-    for (int i = 0; i < iKeepSize; i++)
-    {
-        pbKeep[i] = true;
-    }
-
+    int iNewDimSize = iKeepSize;
     for (int i = 0; i < iNotEntireSize; i++)
     {
         int idx = (int)piNotEntireIndex[i] - 1;
@@ -906,19 +880,9 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         //don't care of value out of bounds
         if (idx < iKeepSize)
         {
-            pbKeep[idx] = false;
+            --iNewDimSize;
         }
     }
-
-    int iNewDimSize = 0;
-    for (int i = 0; i < iKeepSize; i++)
-    {
-        if (pbKeep[i] == true)
-        {
-            iNewDimSize++;
-        }
-    }
-    delete[] pbKeep;
 
     int* piNewDims = new int[iDims];
     for (int i = 0; i < iDims; i++)
@@ -933,18 +897,12 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
-    //remove last dimension if are == 1
     int iOrigDims = iDims;
-    for (int i = (iDims - 1); i >= 2; i--)
+
+    // removing trailing dims of size 1
+    while (iDims > 2 && piNewDims[iDims - 1] == 1)
     {
-        if (piNewDims[i] == 1)
-        {
-            iDims--;
-        }
-        else
-        {
-            break;
-        }
+        --iDims;
     }
 
     if (iNewDimSize == 0)
@@ -1085,7 +1043,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             return NULL;
         }
 
-        int dims[2] = {1, 1};
+        static int dims[2] = {1, 1};
         pOut = createEmpty(2, dims, isComplex());;
         pOut->set(0, get(index));
         if (isComplex())
@@ -1120,9 +1078,19 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             return NULL;
         }
 
-        bool isRowVector = m_iRows == 1;
-        isRowVector = isRowVector && !isForceColVector;
-        int dims[2] = {isRowVector ? 1 : size, isRowVector ? size : 1};
+        int dims[2];
+
+        if (m_iRows == 1 && !isForceColVector)
+        {   // row vector
+            dims[0] = 1;
+            dims[1] = size;
+        }
+        else
+        {
+            dims[0] = size;
+            dims[1] = 1;
+        }
+
         pOut = createEmpty(2, dims, isComplex());
         double idx = start;
 
@@ -1166,9 +1134,9 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             pOut = createEmpty(static_cast<int>(dims.size()), dims.data(), isComplex());
         }
 
-        int size = getSize();
         if (isComplex())
         {
+            int size = getSize();
             int idx = 0;
             for (int & i : indexes)
             {
@@ -1286,17 +1254,10 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         }
     }
 
-    //remove last dimension if are == 1
-    for (int i = (iDims - 1); i >= 2; i--)
+    // removing trailing dims of size 1
+    while (iDims > 2 && piCountDim[iDims - 1] == 1)
     {
-        if (piCountDim[i] == 1)
-        {
-            (iDims)--;
-        }
-        else
-        {
-            break;
-        }
+        --iDims;
     }
 
     //vector
@@ -1451,17 +1412,10 @@ ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
         _iDims++;
     }
 
-    int iDims = _iDims;
-    for (int i = iDims - 1; i >= 2; --i)
+    // removing trailing dims of size 1
+    while (_iDims > 2 && m_piDims[_iDims - 1] == 1)
     {
-        if (m_piDims[i] == 1)
-        {
-            _iDims--;
-        }
-        else
-        {
-            break;
-        }
+        --_iDims;
     }
 
     m_iRows = m_piDims[0];
@@ -1482,23 +1436,10 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
         return pIT;
     }
 
-    if (_iDims == m_iDims)
+    if (_iDims == m_iDims && memcmp(m_piDims, _piDims, sizeof(int) * m_iDims) == 0)
     {
-        bool bChange = false;
-        for (int i = 0; i < _iDims; i++)
-        {
-            if (m_piDims[i] != _piDims[i])
-            {
-                bChange = true;
-                break;
-            }
-        }
-
-        if (bChange == false)
-        {
-            //nothing to do
-            return this;
-        }
+        //nothing to do
+        return this;
     }
 
     //alloc new data array

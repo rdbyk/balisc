@@ -210,7 +210,7 @@ Double::Double(double _dblReal)
 
 Double::Double(double _dblReal, double _dblImg)
 {
-    int piDims[2] = {1, 1};
+    static int piDims[2] = {1, 1};
     double *pdblR;
     double *pdblI;
     setViewAsInteger(false);
@@ -281,11 +281,9 @@ double Double::getReal(int _iRows, int _iCols)
 
 bool Double::setInt(int* _piReal)
 {
-    bool ret = true;
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        ret = set(i, static_cast<double>(_piReal[i]));
-        if (ret == false)
+        if (!set(i, static_cast<double>(_piReal[i])))
         {
             return false;
         }

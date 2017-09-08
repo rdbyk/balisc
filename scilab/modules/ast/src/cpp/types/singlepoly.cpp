@@ -29,8 +29,8 @@ namespace types
 {
 SinglePoly::SinglePoly()
 {
+    static int piDims[2] = {1, 1};
     double* pdblCoefR = NULL;
-    int piDims[2] = {1, 1};
     create(piDims, 2, &pdblCoefR, NULL);
     pdblCoefR[0] = 0;
 #ifndef NDEBUG

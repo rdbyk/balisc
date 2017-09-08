@@ -16,31 +16,8 @@
 #include <sstream>
 #include "types.hxx"
 
-extern "C"
-{
-#include "localization.h"
-#include "charEncoding.h"
-#include "os_string.h"
-}
-
-
-
 namespace types
 {
-
-static bool isCoordIndex(int _iIndex, int* _piCoord, int _iCoordCount)
-{
-    bool bFind = false;
-    for (int j = 0 ; j < _iCoordCount ; j++)
-    {
-        if (_piCoord[j] == _iIndex)
-        {
-            bFind = true;
-            break;
-        }
-    }
-    return bFind;
-}
 
 std::wstring GenericType::DimToString()
 {
@@ -51,56 +28,17 @@ std::wstring GenericType::DimToString()
 
 bool GenericType::isIdentity(void)
 {
-    for (int i = 0; i < getDims(); i++)
-    {
-        if (m_piDims[i] != -1)
-        {
-            return false;
-        }
-    }
+    int i = getDims();
 
-    return true;
-}
+    while (i && m_piDims[--i] == -1);
 
-bool GenericType::hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount)
-{
-    bool bAll = true;
-    for (int i = 0; i < getCols(); i++)
-    {
-        //+1 to keep 1 based index
-        int iIdx = _iRow + i * getCols() + 1;
-
-
-        if (isCoordIndex(iIdx, _piCoord, _iCoordCount) == false)
-        {
-            bAll = false;
-            break;
-        }
-    }
-    return bAll;
-}
-
-bool GenericType::hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount)
-{
-    bool bAll = true;
-    for (int i = 0; i < getRows(); i++)
-    {
-        //+1 to keep 1 based index
-        int iIdx = i + _iCol * getRows() + 1;
-
-
-        if (isCoordIndex(iIdx, _piCoord, _iCoordCount) == false)
-        {
-            bAll = false;
-            break;
-        }
-    }
-    return bAll;
+    return !i;
 }
 
 int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
 {
     int iDim = 1;
+
     if (m_iDims != 0)
     {
         if (_iMaxDim < m_iDims)
@@ -118,11 +56,7 @@ int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
                 iDim = m_piDims[_iCurrentDim];
             }
         }
-        else if (_iCurrentDim >= m_iDims)
-        {
-            iDim = 1;
-        }
-        else
+        else if (_iCurrentDim < m_iDims)
         {
             //normal view, all dimensions are used
             iDim = m_piDims[_iCurrentDim];
@@ -137,4 +71,3 @@ int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
     return iDim;
 }
 }
-

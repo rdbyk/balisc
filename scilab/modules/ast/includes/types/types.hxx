@@ -43,11 +43,7 @@ protected :
     int                         m_piDims[MAX_DIMS];
     int                         m_iDims;
 
-
     GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0), m_iSizeMax(0), m_iDims(0) {}
-
-    bool                        hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount);
-    bool                        hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount);
 
 public :
     virtual                     ~GenericType() {}

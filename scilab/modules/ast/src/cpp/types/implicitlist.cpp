@@ -96,18 +96,35 @@ ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, Intern
 {
     m_iSize     = -1;
     m_eOutType  = ScilabGeneric;
-    m_bComputed = false;
-    m_poStart   = NULL;
-    m_poStep    = NULL;
-    m_poEnd     = NULL;
     m_pDblStart = NULL;
     m_pDblStep  = NULL;
     m_pDblEnd   = NULL;
 
-    setStart(_poStart);
-    setStep(_poStep);
-    setEnd(_poEnd);
+    m_poStart = _poStart;
+    if (m_poStart)
+    {
+        m_poStart->IncreaseRef();
+        m_eStartType = m_poStart->getType();
+    }
+
+    m_poStep = _poStep;
+    if (m_poStep)
+    {
+        m_poStep->IncreaseRef();
+        m_eStepType = m_poStep->getType();
+    }
+
+    m_poEnd = _poEnd;
+    if (m_poEnd)
+    {
+        m_poEnd->IncreaseRef();
+        m_eEndType = m_poEnd->getType();
+    }
+
+    m_bComputed = false;
+
     compute();
+
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -140,7 +157,6 @@ void ImplicitList::setStart(InternalType *_poIT)
         //clear previous value
         m_poStart->DecreaseRef();
         m_poStart->killMe();
-        m_poStart = NULL;
     }
 
     m_poStart = _poIT;
@@ -159,7 +175,6 @@ void ImplicitList::setStep(InternalType *_poIT)
         //clear previous value
         m_poStep->DecreaseRef();
         m_poStep->killMe();
-        m_poStep = NULL;
     }
 
     m_poStep = _poIT;
@@ -178,7 +193,6 @@ void ImplicitList::setEnd(InternalType* _poIT)
         //clear previous value
         m_poEnd->DecreaseRef();
         m_poEnd->killMe();
-        m_poEnd = NULL;
     }
 
     m_poEnd = _poIT;
@@ -397,30 +411,30 @@ void ImplicitList::extractValueAsUnsignedInteger(int _iOccur, T* val)
 
 InternalType* ImplicitList::getInitalType()
 {
+    static const int piDims[2] = {1, 1};
+
     if (compute())
     {
-        int iDims = 2;
-        int piDms[2] = {1, 1};
         switch (m_eOutType)
         {
             case ScilabDouble:
-                return new Double(iDims, piDms);
+                return new Double(2, piDims);
             case ScilabInt8:
-                return new Int8(iDims, piDms);
+                return new Int8(2, piDims);
             case ScilabInt16:
-                return new Int16(iDims, piDms);
+                return new Int16(2, piDims);
             case ScilabInt32:
-                return new Int32(iDims, piDms);
+                return new Int32(2, piDims);
             case ScilabInt64:
-                return new Int64(iDims, piDms);
+                return new Int64(2, piDims);
             case ScilabUInt8:
-                return new UInt8(iDims, piDms);
+                return new UInt8(2, piDims);
             case ScilabUInt16:
-                return new UInt16(iDims, piDms);
+                return new UInt16(2, piDims);
             case ScilabUInt32:
-                return new UInt32(iDims, piDms);
+                return new UInt32(2, piDims);
             case ScilabUInt64:
-                return new UInt64(iDims, piDms);
+                return new UInt64(2, piDims);
         }
     }
 
@@ -642,25 +656,13 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     }
     else
     {
-        int* piDims = new int[iDims];
-        int* pIndex = new int[iDims];
-        for (int i = 0 ; i < iDims ; i++)
+        if (iSeqCount > 0) // FIXME: is this really needed?
         {
-            piDims[i] = 1;
-        }
-
-        for (int i = 0 ; i < iSeqCount ; i++)
-        {
-            for (int j = 0 ; j < iDims ; j++)
+            for (int i = 0; i < iDims; i++)
             {
-                Double* pDbl = pArg[j]->getAs<Double>();
-                pIndex[j] = (int)pDbl->get()[i] - 1;
+                index += (int)pArg[i]->getAs<Double>()->get()[iSeqCount - 1] - 1;
             }
-
-            index = getIndexWithDims(pIndex, piDims, iDims);
         }
-        delete[] pIndex;
-        delete[] piDims;
     }
 
     switch (index)

@@ -56,8 +56,8 @@ String::String(int _iDims, const int* _piDims)
 
 String::String(const wchar_t* _pwstData)
 {
+    static int piDims[] = {1, 1};
     wchar_t** pwsData = NULL;
-    int piDims[] = {1, 1};
     create(piDims, 2, &pwsData, NULL);
     set(0, 0, _pwstData);
 #ifndef NDEBUG
@@ -67,8 +67,8 @@ String::String(const wchar_t* _pwstData)
 
 String::String(const char *_pstData)
 {
+    static int piDims[] = {1, 1};
     wchar_t** pwsData = NULL;
-    int piDims[] = {1, 1};
     create(piDims, 2, &pwsData, NULL);
     wchar_t* data = to_wide_string(const_cast<char*>(_pstData));
     set(0, 0, data);
@@ -116,24 +116,27 @@ void String::whoAmI()
 
 void String::deleteString(int _iPos)
 {
-    if (m_pRealData != NULL)
+    wchar_t* str = m_pRealData[_iPos];
+
+    if (str && str != String::nullValue())
     {
-        if (m_pRealData[_iPos] != NULL && m_pRealData[_iPos] != String::nullValue())
-        {
-            FREE(m_pRealData[_iPos]);
-            m_pRealData[_iPos] = NULL;
-        }
+        FREE(str);
+        str = NULL;
     }
 }
 
 void String::deleteAll()
 {
-    for (int i = 0 ; i < m_iSizeMax ; i++)
+    if (m_pRealData)
     {
-        deleteString(i);
+        for (int i = 0 ; i < m_iSizeMax ; i++)
+        {
+            deleteString(i);
+        }
+
+        delete[] m_pRealData;
+        m_pRealData = NULL;
     }
-    delete[] m_pRealData;
-    m_pRealData = NULL;
 }
 
 void String::deleteImg()
@@ -547,12 +550,12 @@ bool String::operator!=(const InternalType& it)
     return !(*this == it);
 }
 
-static std::wstring null = L"";
+static wchar_t* null = L"";
 wchar_t* String::nullValue()
 {
     // The null value pointer is shared to speed up "" assignement
     // Empty strings creation can then be done without memory allocation
-    return (wchar_t*) null.data();
+    return null;
 }
 
 String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
@@ -634,17 +637,23 @@ String* String::set(const wchar_t* const* _pwstData)
         return pIT;
     }
 
-    for (int i = 0; i < m_iSize; i++)
-    {
-        if (m_pRealData == NULL || i >= m_iSize)
-        {
-            return NULL;
-        }
+    int i = m_iSize;
 
+    while (i && m_pRealData)
+    {
+        --i;
         deleteString(i);
         m_pRealData[i] = copyValue(_pwstData[i]);
     }
-    return this;
+
+    if (i)
+    {
+        return NULL;
+    }
+    else
+    {
+        return this;
+    }
 }
 
 String* String::set(int _iPos, const char* _pcData)
@@ -670,14 +679,18 @@ String* String::set(const char* const* _pstrData)
         return pIT;
     }
 
-    for (int i = 0; i < m_iSize; i++)
+    int i = m_iSize;
+
+    while (i-- && set(i, _pstrData[i]));
+
+    if (++i) // revert decrement
     {
-        if (set(i, _pstrData[i]) == NULL)
-        {
-            return NULL;
-        }
+        return NULL;
     }
-    return this;
+    else
+    {
+        return this;
+    }
 }
 
 wchar_t** String::allocData(int _iSize)
