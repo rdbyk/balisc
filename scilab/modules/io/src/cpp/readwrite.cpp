@@ -24,7 +24,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::InternalType::ScilabType checkformat(const char* format)
 {
-    const char type1[] =
+    static const char type1[] =
     {
         'i', 'f', 'e',
         'd', 'g', 'l',
@@ -32,7 +32,7 @@ types::InternalType::ScilabType checkformat(const char* format)
         'E', 'D', 'G',
         'L', 'A'
     };
-    const types::InternalType::ScilabType type2[] =
+    static const types::InternalType::ScilabType type2[] =
     {
         types::InternalType::ScilabInt32, types::InternalType::ScilabDouble, types::InternalType::ScilabDouble,
         types::InternalType::ScilabDouble, types::InternalType::ScilabDouble, types::InternalType::ScilabBool,
