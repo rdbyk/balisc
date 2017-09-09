@@ -301,20 +301,18 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         InternalType* in = (*_pArgsIn)[i];
         if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
         {
-            int idx = static_cast<int>(getIndex(in)) - 1;
-            if (idx == -1)
+            int idx = static_cast<int>(getIndex(in));
+            if (idx == 0)
             {
                 return false;
             }
 
-            lstIdx.emplace_back(1, idx);
+            lstIdx.emplace_back(1, idx - 1);
             dims.push_back(1);
         }
         else if (in->isColon())
         {
-            std::vector<int> idx(2);
-            idx[0] = -1;
-            idx[1] = viewAsVector ? _pRef->getSize() : pdims[i];
+            std::vector<int> idx {-1, viewAsVector ? _pRef->getSize() : pdims[i]};
             lstIdx.push_back(idx);
             finalSize *= idx[1];
             dims.push_back(idx[1]);
@@ -334,9 +332,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     SinglePoly* end = piEnd->getAs<Polynom>()->get()[0];
                     if (end->getRank() == 1 && end->get()[0] == 0 && end->get()[1] == 1)
                     {
-                        std::vector<int> idx(2);
-                        idx[0] = -1;
-                        idx[1] = viewAsVector ? _pRef->getSize() : pdims[i];
+                        std::vector<int> idx {-1, viewAsVector ? _pRef->getSize() : pdims[i]};
                         lstIdx.push_back(idx);
                         finalSize *= idx[1];
                         isColon = true;
