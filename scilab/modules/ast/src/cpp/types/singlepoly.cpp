@@ -161,7 +161,7 @@ bool SinglePoly::setRank(int _iRank, bool bSave)
     {
         double* pdblOldReal = m_pRealData;
         double* pdblOldImg  = m_pImgData;
-        int iMinSize = Min(m_iSize, _iRank + 1);
+        int iMinSize = std::min(m_iSize, _iRank + 1);
         int piDims[2] = {_iRank + 1, 1};
 
         if (m_pImgData == NULL)
