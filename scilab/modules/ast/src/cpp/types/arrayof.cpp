@@ -1078,20 +1078,18 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             return NULL;
         }
 
-        int dims[2];
-
         if (m_iRows == 1 && !isForceColVector)
-        {   // row vector
-            dims[0] = 1;
-            dims[1] = size;
+        {
+            // row vector
+            int dims[2] = {1, size};
+            pOut = createEmpty(2, dims, isComplex());
         }
         else
         {
-            dims[0] = size;
-            dims[1] = 1;
+            int dims[2] = {size, 1};
+            pOut = createEmpty(2, dims, isComplex());
         }
 
-        pOut = createEmpty(2, dims, isComplex());
         double idx = start;
 
         if (isComplex())
