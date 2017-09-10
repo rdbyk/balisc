@@ -269,7 +269,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     }
     else // _iDims < m_iDims
     {
-        if (isVector() || isScalar() || getSize() == 0) //getSize() == 0, only for [] and {}
+        if (isVector() || getSize() == 0) //getSize() == 0, only for [] and {}
         {
             if (getSize() < piMaxDim[0])
             {
