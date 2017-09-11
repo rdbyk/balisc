@@ -317,8 +317,9 @@ bool ImplicitList::isComputable()
         return false;
     }
 
-    //"compute" output type
-    m_eOutType = ScilabGeneric; //not defined type
+    // determine output type
+    m_eOutType  = ScilabDouble;
+
     if (m_poStart->isInt())
     {
         m_eOutType  = m_poStart->getType();
@@ -330,10 +331,6 @@ bool ImplicitList::isComputable()
     else if (m_poEnd->isInt())
     {
         m_eOutType  = m_poEnd->getType();
-    }
-    else
-    {
-        m_eOutType  = ScilabDouble;
     }
 
     return true;
