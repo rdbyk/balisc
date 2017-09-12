@@ -803,18 +803,16 @@ Double* Double::clone()
 
 bool Double::fillFromCol(int _iCols, Double *_poSource)
 {
-    //blas
-    int iDestOffset     = _iCols * m_iRows;
-    int iSize           = _poSource->getSize();
-    double* pdblDest    = m_pRealData + iDestOffset;
-    
-    memmove(pdblDest, _poSource->getReal(), iSize * sizeof(double));
+    int iDestOffset = _iCols * m_iRows;
+    int iMemSize = _poSource->getSize() * sizeof(double);
+
+    memmove(m_pRealData + iDestOffset, _poSource->getReal(), iMemSize);
 
     if (isComplex())
     {
-        pdblDest    = m_pImgData + iDestOffset;
-        memmove(pdblDest, _poSource->getImg(), iSize * sizeof(double));
+        memmove(m_pImgData + iDestOffset, _poSource->getImg(), iMemSize);
     }
+
     return true;
 }
 
