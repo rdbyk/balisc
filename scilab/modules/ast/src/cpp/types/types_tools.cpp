@@ -803,11 +803,21 @@ void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew)
 
 void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims)
 {
-    int iMul = 1;
-    for (int i = 0; i < _iDims; i++)
+    if (_iDims == 2)
     {
-        _piIndexes[i] = (int)(_iIndex / iMul) % _piDims[i];
-        iMul *= _piDims[i];
+        int iDim0 = _piDims[0];
+        _piIndexes[0] = _iIndex % iDim0;
+        _piIndexes[1] = (_iIndex / iDim0) % _piDims[1];
+    }
+    else
+    {
+        int iMul = 1;
+
+        for (int i = 0; i < _iDims; i++)
+        {
+            _piIndexes[i] = (int)(_iIndex / iMul) % _piDims[i];
+            iMul *= _piDims[i];
+        }
     }
 
     //matrix [2,4,3]
@@ -841,14 +851,24 @@ void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _i
 
 int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims)
 {
-    int idx = 0;
-    int iMult = 1;
-    for (int i = 0; i < _iDims; i++)
+    if (_iDims == 2)
     {
-        idx += _piIndexes[i] * iMult;
-        iMult *= _piDims[i];
+        return _piIndexes[0] + _piIndexes[1] * _piDims[0];
     }
-    return idx;
+    else
+    {
+        int idx = 0;
+        int iMult = 1;
+
+        for (int i = 0; i < _iDims; i++)
+
+        {
+            idx += _piIndexes[i] * iMult;
+            iMult *= _piDims[i];
+        }
+
+        return idx;
+    }
 }
 
 types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
