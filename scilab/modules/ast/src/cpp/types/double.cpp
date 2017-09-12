@@ -788,7 +788,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
 Double* Double::clone()
 {
-    int iOne = 1;
     Double *pReturn = new Double(m_iDims, m_piDims, isComplex());
     memcpy(pReturn->getReal(), m_pRealData, m_iSize * sizeof(double));
 
