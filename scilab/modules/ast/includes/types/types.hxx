@@ -59,7 +59,7 @@ public :
 
     inline bool isScalar()
     {
-        if (m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] == 1)
+        if (m_iDims == 2 && m_iRows == 1 && m_iCols == 1)
         {
             return true;
         }

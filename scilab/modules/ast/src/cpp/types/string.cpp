@@ -624,8 +624,7 @@ String* String::set(int _iPos, const wchar_t* _pwstData)
 
 String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
 {
-    int piIndexes[2] = {_iRows, _iCols};
-    return set(getIndex(piIndexes), _pwstData);
+    return set(_iCols * getRows() + _iRows, _pwstData);
 }
 
 String* String::set(const wchar_t* const* _pwstData)
@@ -666,8 +665,7 @@ String* String::set(int _iPos, const char* _pcData)
 
 String* String::set(int _iRows, int _iCols, const char* _pcData)
 {
-    int piIndexes[2] = {_iRows, _iCols};
-    return set(getIndex(piIndexes), _pcData);
+    return set(_iCols * getRows() + _iRows, _pcData);
 }
 
 String* String::set(const char* const* _pstrData)

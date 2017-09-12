@@ -788,32 +788,31 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
 Double* Double::clone()
 {
-    int iOne = 1;
+    int iMemSize = m_iSize * sizeof(double);
+
     Double *pReturn = new Double(m_iDims, m_piDims, isComplex());
-    memcpy(pReturn->getReal(), m_pRealData, m_iSize * sizeof(double));
+    memcpy(pReturn->getReal(), m_pRealData, iMemSize);
 
     if (isComplex())
     {
-        pReturn->setComplex(true);
-        memcpy(pReturn->getImg(), m_pImgData, m_iSize * sizeof(double));
+        memcpy(pReturn->getImg(), m_pImgData, iMemSize);
     }
+
     return pReturn;
 }
 
 bool Double::fillFromCol(int _iCols, Double *_poSource)
 {
-    //blas
-    int iDestOffset     = _iCols * m_iRows;
-    int iSize           = _poSource->getSize();
-    double* pdblDest    = m_pRealData + iDestOffset;
-    
-    memmove(pdblDest, _poSource->getReal(), iSize * sizeof(double));
+    int iDestOffset = _iCols * m_iRows;
+    int iMemSize = _poSource->getSize() * sizeof(double);
+
+    memmove(m_pRealData + iDestOffset, _poSource->getReal(), iMemSize);
 
     if (isComplex())
     {
-        pdblDest    = m_pImgData + iDestOffset;
-        memmove(pdblDest, _poSource->getImg(), iSize * sizeof(double));
+        memmove(m_pImgData + iDestOffset, _poSource->getImg(), iMemSize);
     }
+
     return true;
 }
 
