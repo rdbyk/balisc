@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -1372,15 +1372,11 @@ InternalType* add_I_M(T *_pL, U *_pR)
     double* pdblRight = _pR->get();
     double dblLeft = _pL->get(0);
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
 
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -1416,14 +1412,11 @@ InternalType* add_IC_M(T *_pL, U *_pR)
     O* pOut = (O*)_pR->clone();
     pOut->setComplex(true);
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
+
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -1452,14 +1445,11 @@ InternalType* add_IC_MC(T *_pL, U *_pR)
     int* piDims = _pR->getDimsArray();
     O* pOut = (O*)_pR->clone();
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
+
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -2333,14 +2323,11 @@ template<> InternalType* add_M_I<Polynom, Double, Polynom>(Polynom* _pL, Double*
     int iDims = _pL->getDims();
     int* piDims = _pL->getDimsArray();
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
+
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
