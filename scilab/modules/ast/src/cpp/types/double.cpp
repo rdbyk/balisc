@@ -793,7 +793,6 @@ Double* Double::clone()
 
     if (isComplex())
     {
-        pReturn->setComplex(true);
         memcpy(pReturn->getImg(), m_pImgData, m_iSize * sizeof(double));
     }
     return pReturn;
