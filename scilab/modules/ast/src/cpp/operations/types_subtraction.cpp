@@ -1142,15 +1142,11 @@ InternalType* sub_I_M(T *_pL, U *_pR)
     O* pOut = (O*)opposite_M<U, O>(_pR);
     double dblLeft = _pL->get(0);
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
 
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -1182,15 +1178,11 @@ InternalType* sub_I_MC(T *_pL, U *_pR)
     double* pdblRight = _pR->get();
     double dblLeft = _pL->get(0);
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
 
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -1225,15 +1217,11 @@ InternalType* sub_IC_M(T *_pL, U *_pR)
     double dblLeftR = _pL->get(0);
     double dblLeftI = _pL->getImg(0);
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
 
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -1268,14 +1256,11 @@ InternalType* sub_IC_MC(T *_pL, U *_pR)
     double* pdblRightR = _pR->get();
     double* pdblRightI = _pR->getImg();
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
+
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -1330,15 +1315,11 @@ template<class T, class U, class O> InternalType* sub_M_I(T *_pL, U *_pR)
     double* pdblLeft = _pL->get();
     double dblRight = _pR->get(0);
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
 
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -1377,15 +1358,11 @@ template<class T, class U, class O> InternalType* sub_M_IC(T *_pL, U *_pR)
     double dblRightR = _pR->get(0);
     double dblRightI = _pR->getImg(0);
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
 
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -1420,15 +1397,11 @@ template<class T, class U, class O> InternalType* sub_MC_IC(T *_pL, U *_pR)
     double dblRightR = _pR->get(0);
     double dblRightI = _pR->getImg(0);
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
-    piIndex[0] = 0;
+    int* piIndex = new int[iDims]();
 
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -1860,15 +1833,11 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         SinglePoly** pSPOut = pOut->get();
         SinglePoly** pSPLeft = _pL->get();
         int iLeadDims = piDims[0];
-        int* piIndex = new int[iDims];
-        piIndex[0] = 0;
+        int* piIndex = new int[iDims]();
 
         //find smaller dims
         for (int i = 1 ; i < iDims ; ++i)
         {
-            //init
-            piIndex[i] = 0;
-
             if (iLeadDims > piDims[i])
             {
                 iLeadDims = piDims[i];
@@ -2055,17 +2024,13 @@ template<> InternalType* sub_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
+    int* piIndex = new int[iDims]();
     SinglePoly** pSP = _pR->get();
     SinglePoly** pSPOut = pOut->get();
-    piIndex[0] = 0;
 
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -2095,16 +2060,12 @@ template<> InternalType* sub_I_MC<Double, Polynom, Polynom>(Double* _pL, Polynom
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
+    int* piIndex = new int[iDims]();
     SinglePoly** pSP = _pR->get();
     SinglePoly** pSPOut = pOut->get();
-    piIndex[0] = 0;
 
     for (int i = 0 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -2136,16 +2097,12 @@ template<> InternalType* sub_IC_M<Double, Polynom, Polynom>(Double* _pL, Polynom
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
+    int* piIndex = new int[iDims]();
     SinglePoly** pSP = _pR->get();
     SinglePoly** pSPOut = pOut->get();
-    piIndex[0] = 0;
 
     for (int i = 0 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
@@ -2176,16 +2133,12 @@ template<> InternalType* sub_IC_MC<Double, Polynom, Polynom>(Double* _pL, Polyno
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
     int iLeadDims = piDims[0];
-    int* piIndex = new int[iDims];
+    int* piIndex = new int[iDims]();
     SinglePoly** pSP = _pR->get();
     SinglePoly** pSPOut = pOut->get();
-    piIndex[0] = 0;
 
     for (int i = 0 ; i < iDims ; ++i)
     {
-        //init
-        piIndex[i] = 0;
-
         if (iLeadDims > piDims[i])
         {
             iLeadDims = piDims[i];
