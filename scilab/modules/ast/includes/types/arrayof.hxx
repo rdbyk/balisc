@@ -94,6 +94,10 @@ protected :
 
                 m_piDims[i] = _piDims[i];
 
+                // At this point all elements of m_piDims are positive
+                // ( > 0), thus in the following iterative calculation
+                // we have always m_iSize > 0.
+
                 /*
                 ** Manage overflow on size
                 ** a = b * c is in overflow if a / b != c
@@ -109,16 +113,6 @@ protected :
 
                 m_iSize = iTmpSize;
             }
-
-            if (m_iSize < 0)
-            {
-                m_pRealData = NULL;
-                m_pImgData = NULL;
-                char message[bsiz];
-                os_sprintf(message, _("Can not allocate negative size (%d).\n"), m_iSize);
-                throw ast::InternalError(message);
-            }
-
         }
 
         try
