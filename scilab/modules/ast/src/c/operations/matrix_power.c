@@ -104,10 +104,9 @@ inline int iPowerRealScalarByRealScalar(double _dblReal1,
         else if (_dblReal1 < 0)
         {
             //R*- ^ R
-            double complex tmp = clog((double complex){ _dblReal1, 0.0 });
-            tmp = (double complex){exp(_dblReal2 * creal(tmp)), _dblReal2 * cimag(tmp)};
-            *_pdblRealOut = cos(cimag(tmp))*creal(tmp);
-            *_pdblImgOut  = sin(cimag(tmp))*creal(tmp);
+            double complex tmp = cpow((double complex){ _dblReal1, 0.0 }, (double complex){ _dblReal2, 0.0 });
+            *_pdblRealOut = creal(tmp);
+            *_pdblImgOut  = cimag(tmp);
             *_piComplex	  = 1;
         }
         else if (_dblReal1 == 0)
