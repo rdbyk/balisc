@@ -361,10 +361,9 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     }
 
     int argSize = static_cast<int>(pArg.size());
-    int* piIndex = new int[argSize];
+    int* piIndex = new int[argSize]();
     int* piCoord = new int[argSize];
     int* piViewDims = new int[iDims];
-    memset(piIndex, 0x00, sizeof(int) * argSize);
 
     //convert  current dimension to view dimension
     for (int i = 0; i < iDims; i++)
@@ -1299,10 +1298,9 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         pOut = createEmpty(iDims, piCountDim, m_pImgData != NULL);
     }
 
-    int* piIndex = new int[_pArgs->size()];
+    int* piIndex = new int[_pArgs->size()]();
     int* piCoord = new int[_pArgs->size()];
     int* piViewDims = new int[iDims];
-    memset(piIndex, 0x00, sizeof(int) * _pArgs->size());
 
     for (int i = 0; i < iDims; i++)
     {
@@ -1458,8 +1456,7 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
 
             //copy values into new one
             int iMaxDims = std::max(m_iDims, _iDims);
-            int* piIndexes = new int[iMaxDims];
-            memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
+            int* piIndexes = new int[iMaxDims]();
 
             int iPreviousNewIdx = 0;
             for (int i = 0; i < m_iSize; i++)
@@ -1535,8 +1532,8 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             {
                 //copy values into new one
                 int iMaxDims = std::max(m_iDims, _iDims);
-                int* piIndexes = new int[iMaxDims];
-                memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
+                int* piIndexes = new int[iMaxDims]();
+
                 for (int i = m_iSize - 1; i >= 0; i--)
                 {
                     getIndexes(i, piIndexes);
@@ -1568,8 +1565,7 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
 
             //copy values into new one
             int iMaxDims = std::max(m_iDims, _iDims);
-            int* piIndexes = new int[iMaxDims];
-            memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
+            int* piIndexes = new int[iMaxDims]();
 
             int iPreviousNewIdx = 0;
             for (int i = 0; i < m_iSize; i++)
@@ -1640,8 +1636,8 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             {
                 //copy values into new one
                 int iMaxDims = std::max(m_iDims, _iDims);
-                int* piIndexes = new int[iMaxDims];
-                memset(piIndexes, 0x00, sizeof(int) * iMaxDims);
+                int* piIndexes = new int[iMaxDims]();
+
                 for (int i = m_iSize - 1; i >= 0; i--)
                 {
                     getIndexes(i, piIndexes);
