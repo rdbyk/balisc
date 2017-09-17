@@ -37,37 +37,33 @@ bool GenericType::isIdentity(void)
 
 int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
 {
-    int iDim = 1;
-
     if (m_iDims != 0)
     {
+         // normal view, all dimensions are used
+        int iVarMaxDim = m_piDims[_iCurrentDim];
+
         if (_iMaxDim < m_iDims)
         {
-            //view as "vector", not all dimensions are used
-            if (_iCurrentDim == (_iMaxDim - 1))
+            if (_iCurrentDim + 1 == _iMaxDim)
             {
-                for (int i = _iCurrentDim; i < m_iDims; i++)
+                // view as "vector", not all dimensions are used
+                for (int i = _iCurrentDim + 1; i < m_iDims; ++i)
                 {
-                    iDim *= m_piDims[i];
+                    iVarMaxDim *= m_piDims[i];
                 }
             }
-            else
-            {
-                iDim = m_piDims[_iCurrentDim];
-            }
         }
-        else if (_iCurrentDim < m_iDims)
+        else if (_iCurrentDim >= m_iDims)
         {
-            //normal view, all dimensions are used
-            iDim = m_piDims[_iCurrentDim];
+            iVarMaxDim = 1;
         }
+
+        return iVarMaxDim;
     }
     else
     {
-        //for non ArrayOf derived types, like list, tlist, mlist
-        iDim = getSize();
+        // for non ArrayOf derived types, like list, tlist, mlist
+        return getSize();
     }
-
-    return iDim;
 }
 }

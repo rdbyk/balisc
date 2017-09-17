@@ -146,7 +146,7 @@ Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal, double
 
 bool Double::isEmpty()
 {
-    if (getDims() == 2 && getRows() == 0 && getCols() == 0)
+    if (getDims() == 2 && getSize() == 0)
     {
         return true;
     }
