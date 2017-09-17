@@ -1654,24 +1654,12 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
         }
     }
 
-    if (_iDims != m_iDims)
+    for (int i = 0; i < _iDims; i++)
     {
-        //int* piDims = new int[_iDims];
-        for (int i = 0; i < _iDims; i++)
-        {
-            m_piDims[i] = _piDims[i];
-        }
-        //delete[] m_piDims;
-        //m_piDims = piDims;
-        m_iDims = _iDims;
+        m_piDims[i] = _piDims[i];
     }
-    else
-    {
-        for (int i = 0; i < m_iDims; i++)
-        {
-            m_piDims[i] = _piDims[i];
-        }
-    }
+
+    m_iDims = _iDims;
     m_iRows = m_piDims[0];
     m_iCols = m_piDims[1];
     m_iSize = iNewSize;
