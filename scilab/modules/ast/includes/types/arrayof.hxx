@@ -98,13 +98,10 @@ protected :
                 // ( > 0), thus in the following iterative calculation
                 // we have always m_iSize > 0.
 
-                /*
-                ** Manage overflow on size
-                ** a = b * c is in overflow if a / b != c
-                ** check b is not 0 (empty matrix case)
-                */
                 int iTmpSize = m_iSize * m_piDims[i];
-                if (m_iSize != 0 && iTmpSize / m_iSize != m_piDims[i])
+
+                // overflow of iTmpSize ?
+                if (iTmpSize / m_iSize != m_piDims[i])
                 {
                     char message[bsiz];
                     os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
