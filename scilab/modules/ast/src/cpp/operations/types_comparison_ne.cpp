@@ -1,10 +1,10 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
- *  Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
- *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "types_comparison_ne.hxx"
 #include "bool.hxx"
@@ -3781,9 +3781,13 @@ InternalType* compnoequal_UT_UT(T *_pL, U *_pR)
 {
     // Get the equality and return its contrary
     Bool* eq = _pL->equal(_pR);
-    for (int i = 0; i < eq->getSize(); ++i)
+
+    if (eq)
     {
-        eq->set(i, !eq->get(i));
+        for (int i = 0; i < eq->getSize(); ++i)
+        {
+            eq->set(i, !eq->get(i));
+        }
     }
 
     return eq;
