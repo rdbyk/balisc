@@ -85,8 +85,7 @@ static types::InternalType* allocDest(types::InternalType* _poSource, int _iRows
             break;
         case types::InternalType::ScilabPolynom:
         {
-            int* piRank = new int[_iRows * _iCols];
-            memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
+            int* piRank = new int[_iRows * _iCols]();
             poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
             delete[] piRank;
             break;
@@ -249,8 +248,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 break;
             case types::InternalType::ScilabPolynom :
             {
-                int* piRank = new int[_iRows * _iCols];
-                memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
+                int* piRank = new int[_iRows * _iCols]();
                 poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
                 delete[] piRank;
                 break;
@@ -293,8 +291,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
                     //Convert Dest to ScilabPolynom
                     int iSize = poDest->getSize();
-                    int *piRank = new int[iSize];
-                    memset(piRank, 0x00, iSize * sizeof(int));
+                    int *piRank = new int[iSize]();
+
                     if (isNew && poResult)
                     {
                         poResult->killMe();
@@ -1973,8 +1971,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             types::Double* pDest = _pVar->getAs<types::Double>();
             types::Polynom* pIns = _pInsert->getAs<types::Polynom>();
             int iSize = pDest->getSize();
-            int* piRanks = new int[iSize];
-            memset(piRanks, 0x00, iSize * sizeof(int));
+            int* piRanks = new int[iSize]();
             types::Polynom* pP = new types::Polynom(pIns->getVariableName(), pDest->getDims(), pDest->getDimsArray(), piRanks);
             delete[] piRanks;
             pP->setComplex(pDest->isComplex());
@@ -2007,8 +2004,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             types::Double* pIns = _pInsert->getAs<types::Double>();
             bool isComplexIns = pIns->isComplex();
             int iSize = pIns->getSize();
-            int* piRanks = new int[iSize];
-            memset(piRanks, 0x00, iSize * sizeof(int));
+            int* piRanks = new int[iSize]();
 
             //create a new polynom with Double to insert it into dest polynom
             types::Polynom* pP = new types::Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray(), piRanks);

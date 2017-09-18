@@ -1574,8 +1574,7 @@ int DotMultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyO
         return 1;
     }
 
-    int* piRanks = new int[iSize];
-    memset(piRanks, 0x00, iSize * sizeof(int));
+    int* piRanks = new int[iSize]();
     Polynom* pPolyTemp = new Polynom(_pPoly->getVariableName(), _pDouble->getDims(), _pDouble->getDimsArray(), piRanks);
     delete[] piRanks;
     pPolyTemp->setCoef(_pDouble);

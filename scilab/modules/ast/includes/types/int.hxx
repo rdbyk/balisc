@@ -331,8 +331,7 @@ private :
             int iLastCol = this->m_iCols1PrintState;
 
             //Array with the max printed size of each col
-            int *piSize = new int[GenericType::getCols()];
-            memset(piSize, 0x00, GenericType::getCols() * sizeof(int));
+            int *piSize = new int[GenericType::getCols()]();
 
             //compute the row size for padding for each printed bloc.
             for (int iCols1 = this->m_iCols1PrintState ; iCols1 < this->getCols() ; iCols1++)

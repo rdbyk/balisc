@@ -536,8 +536,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         int iLastCol = m_iCols1PrintState;
 
         //Array with the max printed size of each col
-        int *piSize = new int[getCols()];
-        memset(piSize, 0x00, getCols() * sizeof(int));
+        int *piSize = new int[getCols()]();
 
         if (isComplex() == false)
         {

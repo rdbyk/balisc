@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -514,8 +514,7 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
     FREE(name);
 
     int nlhs = _iRetCount;
-    mxArray** plhs = new mxArray*[nlhs];
-    memset(plhs, 0x00, sizeof(mxArray*) * nlhs);
+    mxArray** plhs = new mxArray*[nlhs]();
 
     int nrhs = (int)in.size();
     mxArray** prhs = new mxArray*[nrhs];

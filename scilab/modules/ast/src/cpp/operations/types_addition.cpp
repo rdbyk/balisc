@@ -1859,12 +1859,10 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     if (_pL->isScalar())
     {
         int *pRank = new int[_pR->getSize()];
-        int *pRank1 = new int[_pR->getSize()];
+        int *pRank1 = new int[_pR->getSize()]();
         int *pRank2 = new int[_pR->getSize()];
         bool bComplex1 = _pL->isComplex();
         bool bComplex2 = _pR->isComplex();
-
-        memset(pRank1, 0x00, _pR->getSize() * sizeof(int));
 
         _pL->getRank(pRank1);
         _pR->getRank(pRank2);
@@ -1939,11 +1937,9 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     {
         int *pRank = new int[_pL->getSize()];
         int *pRank1 = new int[_pL->getSize()];
-        int *pRank2 = new int[_pL->getSize()];
+        int *pRank2 = new int[_pL->getSize()]();
         bool bComplex1 = _pL->isComplex();
         bool bComplex2 = _pR->isComplex();
-
-        memset(pRank2, 0x00, _pL->getSize() * sizeof(int));
 
         _pL->getRank(pRank1);
         _pR->getRank(pRank2);

@@ -328,8 +328,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         int iLastCol = m_iCols1PrintState;
 
         //Array with the max printed size of each col
-        int *piSize = new int[m_iCols];
-        memset(piSize, 0x00, m_iCols * sizeof(int));
+        int *piSize = new int[m_iCols]();
 
         for (int iCols1 = m_iCols1PrintState; iCols1 < m_iCols; iCols1++)
         {
@@ -696,8 +695,7 @@ wchar_t** String::allocData(int _iSize)
     wchar_t** pStr = nullptr;
     try
     {
-        pStr = new wchar_t*[_iSize];
-        memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
+        pStr = new wchar_t*[_iSize]();
     }
     catch (std::bad_alloc & /*e*/)
     {

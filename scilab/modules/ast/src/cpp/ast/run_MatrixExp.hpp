@@ -246,8 +246,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     int _iRows = pGTResult->getRows();
                     int _iCols = pGTResult->getCols();
-                    int* piRank = new int[_iRows * _iCols];
-                    memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
+                    int* piRank = new int[_iRows * _iCols]();
                     poRow = new types::Polynom(pGT->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
                     types::Polynom* pP = poRow->getAs<types::Polynom>();
                     types::SinglePoly** pSS = pP->get();
