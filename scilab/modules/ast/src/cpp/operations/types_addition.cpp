@@ -1385,10 +1385,7 @@ InternalType* add_I_M(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         add(dblLeft, pdblRight[index], pdblOut + index);
@@ -1425,10 +1422,7 @@ InternalType* add_IC_M(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         add(_pR->get() + index, 1, _pL->get(0), _pL->getImg(0), pOut->get() + index, pOut->getImg() + index);
@@ -1458,10 +1452,7 @@ InternalType* add_IC_MC(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
 
@@ -2344,10 +2335,7 @@ template<> InternalType* add_M_I<Polynom, Double, Polynom>(Polynom* _pL, Double*
 
         for (int i = 0 ; i < iLeadDims ; ++i)
         {
-            for (int j = 0 ; j < iDims ; ++j)
-            {
-                piIndex[j] = i;
-            }
+            std::fill(piIndex, piIndex + iDims, i);
 
             int index = _pL->getIndex(piIndex);
             add(dblR, dblI, pSP[index]->get(0), pSP[index]->getImg(0), pSP[index]->get(), pSP[index]->getImg());
@@ -2358,10 +2346,7 @@ template<> InternalType* add_M_I<Polynom, Double, Polynom>(Polynom* _pL, Double*
         SinglePoly** pSP = pOut->get();
         for (int i = 0 ; i < iLeadDims ; ++i)
         {
-            for (int j = 0 ; j < iDims ; ++j)
-            {
-                piIndex[j] = i;
-            }
+            std::fill(piIndex, piIndex + iDims, i);
 
             int index = _pL->getIndex(piIndex);
             add(dblR, pSP[index]->get(0), pSP[index]->get());
