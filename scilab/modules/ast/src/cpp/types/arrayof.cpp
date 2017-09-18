@@ -1404,14 +1404,17 @@ ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
 
     if (_iDims == 1)
     {
+        // append dim of size 1
         m_piDims[1] = 1;
         _iDims++;
     }
-
-    // removing trailing dims of size 1
-    while (_iDims > 2 && m_piDims[_iDims - 1] == 1)
+    else
     {
-        --_iDims;
+        // removing trailing dims of size 1
+        while (_iDims > 2 && m_piDims[_iDims - 1] == 1)
+        {
+            --_iDims;
+        }
     }
 
     m_iRows = m_piDims[0];
