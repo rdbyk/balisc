@@ -1155,10 +1155,7 @@ InternalType* sub_I_M(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeft, _pR->get(index), pOut->get() + index);
@@ -1191,10 +1188,7 @@ InternalType* sub_I_MC(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeft, pdblRight[index], pdblOut + index);
@@ -1230,10 +1224,7 @@ InternalType* sub_IC_M(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(&dblLeftR, &dblLeftI, (size_t)1, pdblRight[index], pdblOutR + index, pdblOutI + index);
@@ -1269,10 +1260,7 @@ InternalType* sub_IC_MC(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeftR, dblLeftI, pdblRightR[index], pdblRightI[index], pdblOutR + index, pdblOutI + index);
@@ -1328,10 +1316,7 @@ template<class T, class U, class O> InternalType* sub_M_I(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pL->getIndex(piIndex);
         sub(pdblLeft[index], (size_t)1, &dblRight, pdblOutR + index);
@@ -1371,10 +1356,7 @@ template<class T, class U, class O> InternalType* sub_M_IC(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pL->getIndex(piIndex);
         sub(pdblLeft[index], (size_t)1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
@@ -1410,10 +1392,7 @@ template<class T, class U, class O> InternalType* sub_MC_IC(T *_pL, U *_pR)
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pL->getIndex(piIndex);
         sub(pdblLeftR[index], pdblLeftI[index], (size_t)1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
@@ -1848,10 +1827,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         {
             for (int i = 0 ; i < iLeadDims ; ++i)
             {
-                for (int j = 0 ; j < iDims ; ++j)
-                {
-                    piIndex[j] = i;
-                }
+                std::fill(piIndex, piIndex + iDims, i);
 
                 int index = _pL->getIndex(piIndex);
                 sub(pSPLeft[index]->get(0), pSPLeft[index]->getImg(0), (size_t)1, &dblRightR, &dblRightI, pSPOut[index]->get(), pSPOut[index]->getImg());
@@ -1861,10 +1837,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         {
             for (int i = 0 ; i < iLeadDims ; ++i)
             {
-                for (int j = 0 ; j < iDims ; ++j)
-                {
-                    piIndex[j] = i;
-                }
+                std::fill(piIndex, piIndex + iDims, i);
 
                 int index = _pL->getIndex(piIndex);
                 sub(pSPLeft[index]->get(0), (size_t)1, &dblRightR, pSPOut[index]->get());
@@ -2039,10 +2012,7 @@ template<> InternalType* sub_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeft, pSP[index]->get(0), pSPOut[index]->get());
@@ -2074,10 +2044,7 @@ template<> InternalType* sub_I_MC<Double, Polynom, Polynom>(Double* _pL, Polynom
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeft, pSP[index]->get(0), pSPOut[index]->get());
@@ -2111,10 +2078,7 @@ template<> InternalType* sub_IC_M<Double, Polynom, Polynom>(Double* _pL, Polynom
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(&dblLeftR, &dblLeftI, (size_t)1, pSP[index]->get(0), pSPOut[index]->get(), pSPOut[index]->getImg());
@@ -2147,10 +2111,7 @@ template<> InternalType* sub_IC_MC<Double, Polynom, Polynom>(Double* _pL, Polyno
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeftR, dblLeftI, pSP[index]->get(0), pSP[index]->getImg(0), pSPOut[index]->get(), pSPOut[index]->getImg());
