@@ -43,43 +43,40 @@ Double* Double::Identity(int _iRows, int _iCols)
 {
     double* pdbl = NULL;
     Double* pI = new Double(_iRows, _iCols, &pdbl);
-    int n = std::min(_iRows, _iCols);
-    pI->setZeros();
-    for (int i = 0; i < n; i++)
-    {
-        pI->set(i, i, 1);
-    }
 
     if (_iRows == -1 && _iCols == -1)
     {
-        pdbl[0] = 1;
+        pdbl[0] = 1.0;
     }
+    else
+    {
+        pI->setZeros();
+
+        int n = std::min(_iRows, _iCols);
+        for (int i = 0; i < n; ++i)
+        {
+            pdbl[i * (_iRows +  1)] = 1.0;
+        }
+    }
+
     return pI;
 }
 
 Double* Double::Identity(int _iDims, const int* _piDims)
 {
     Double* pI = new Double(_iDims, _piDims);
-    pI->setZeros();
-    int iMinDim = _piDims[0];
-    for (int i = 1 ; i < _iDims ; i++)
-    {
-        if (_piDims[i] < iMinDim)
-        {
-            iMinDim = _piDims[i];
-        }
-    }
-
+    double* pdbl = pI->get();
+    int iMinDim = *std::min_element(_piDims, _piDims + _iDims);
     int* piIndex = new int[_iDims];
+
+    pI->setZeros();
+
     for (int i = 0; i < iMinDim; i++)
     {
-        for (int j = 0 ; j < _iDims ; j++)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + _iDims, i);
 
         int index = getIndexWithDims(piIndex, _piDims, _iDims);
-        pI->set(index, 1);
+        pdbl[index] = 1.0;
     }
 
     delete[] piIndex;
@@ -89,26 +86,18 @@ Double* Double::Identity(int _iDims, const int* _piDims)
 Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal)
 {
     Double* pI = new Double(_iDims, _piDims);
-    pI->setZeros();
-    int iMinDim = _piDims[0];
-    for (int i = 1; i < _iDims; i++)
-    {
-        if (_piDims[i] < iMinDim)
-        {
-            iMinDim = _piDims[i];
-        }
-    }
-
+    double* pdbl = pI->get();
+    int iMinDim = *std::min_element(_piDims, _piDims + _iDims);
     int* piIndex = new int[_iDims];
+
+    pI->setZeros();
+
     for (int i = 0; i < iMinDim; i++)
     {
-        for (int j = 0; j < _iDims; j++)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + _iDims, i);
 
         int index = getIndexWithDims(piIndex, _piDims, _iDims);
-        pI->set(index, _dblReal);
+        pdbl[index] = _dblReal;
     }
 
     delete[] piIndex;
@@ -118,29 +107,23 @@ Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal)
 Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal, double _dblImg)
 {
     Double* pI = new Double(_iDims, _piDims, true);
+    double* pdblReal = pI->get();
+    double* pdblImg = pI->getImg();
+    int iMinDim = *std::min_element(_piDims, _piDims + _iDims);
+    int* piIndex = new int[_iDims];
+
     pI->setZeros();
-    int iMinDim = _piDims[0];
-    for (int i = 1; i < _iDims; i++)
-    {
-        if (_piDims[i] < iMinDim)
-        {
-            iMinDim = _piDims[i];
-        }
-    }
 
     for (int i = 0; i < iMinDim; i++)
     {
-        int* piIndex = new int[_iDims];
-        for (int j = 0; j < _iDims; j++)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + _iDims, i);
 
         int index = getIndexWithDims(piIndex, _piDims, _iDims);
-        pI->set(index, _dblReal);
-        pI->setImg(index, _dblImg);
-        delete[] piIndex;
+        pdblReal[index] = _dblReal;
+        pdblImg[index] = _dblImg;
     }
+
+    delete[] piIndex;
     return pI;
 }
 
