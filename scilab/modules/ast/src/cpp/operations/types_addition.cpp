@@ -1371,17 +1371,8 @@ InternalType* add_I_M(T *_pL, U *_pR)
     double* pdblOut = pOut->get();
     double* pdblRight = _pR->get();
     double dblLeft = _pL->get(0);
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
@@ -1408,17 +1399,8 @@ InternalType* add_IC_M(T *_pL, U *_pR)
     int* piDims = _pR->getDimsArray();
     O* pOut = (O*)_pR->clone();
     pOut->setComplex(true);
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
@@ -1438,17 +1420,8 @@ InternalType* add_IC_MC(T *_pL, U *_pR)
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
     O* pOut = (O*)_pR->clone();
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
@@ -1805,16 +1778,10 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         int iDims = _pL->getDims();
         int* piDims = _pL->getDimsArray();
-        int iLeadDims = piDims[0];
+        int iLeadDims = *std::min_element(piDims, piDims + iDims);
+
         _pR->resize(piDims, iDims);
-        //find smaller dims
-        for (int i = 1 ; i < iDims ; ++i)
-        {
-            if (iLeadDims > piDims[i])
-            {
-                iLeadDims = piDims[i];
-            }
-        }
+
         for (int i = 1 ; i < iLeadDims ; ++i)
         {
             _pR->set(i, i, sp);
@@ -1830,16 +1797,9 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         int iDims = _pR->getDims();
         int* piDims = _pR->getDimsArray();
-        int iLeadDims = piDims[0];
+        int iLeadDims = *std::min_element(piDims, piDims + iDims);
+
         _pL->resize(piDims, iDims);
-        //find smaller dims
-        for (int i = 1 ; i < iDims ; ++i)
-        {
-            if (iLeadDims > piDims[i])
-            {
-                iLeadDims = piDims[i];
-            }
-        }
 
         for (int i = 1 ; i < iLeadDims ; ++i)
         {
@@ -2309,17 +2269,8 @@ template<> InternalType* add_M_I<Polynom, Double, Polynom>(Polynom* _pL, Double*
 
     int iDims = _pL->getDims();
     int* piDims = _pL->getDimsArray();
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     double dblR = _pR->get(0);
 
