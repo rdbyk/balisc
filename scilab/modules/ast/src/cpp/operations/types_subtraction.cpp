@@ -1,9 +1,9 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <algorithm>
 
@@ -1141,24 +1141,12 @@ InternalType* sub_I_M(T *_pL, U *_pR)
     int* piDims = _pR->getDimsArray();
     O* pOut = (O*)opposite_M<U, O>(_pR);
     double dblLeft = _pL->get(0);
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeft, _pR->get(index), pOut->get() + index);
@@ -1177,24 +1165,12 @@ InternalType* sub_I_MC(T *_pL, U *_pR)
     double* pdblOut = pOut->get();
     double* pdblRight = _pR->get();
     double dblLeft = _pL->get(0);
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeft, pdblRight[index], pdblOut + index);
@@ -1216,24 +1192,12 @@ InternalType* sub_IC_M(T *_pL, U *_pR)
     double* pdblRight = _pR->get();
     double dblLeftR = _pL->get(0);
     double dblLeftI = _pL->getImg(0);
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(&dblLeftR, &dblLeftI, (size_t)1, pdblRight[index], pdblOutR + index, pdblOutI + index);
@@ -1255,24 +1219,12 @@ InternalType* sub_IC_MC(T *_pL, U *_pR)
     double* pdblOutI = pOut->getImg();
     double* pdblRightR = _pR->get();
     double* pdblRightI = _pR->getImg();
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeftR, dblLeftI, pdblRightR[index], pdblRightI[index], pdblOutR + index, pdblOutI + index);
@@ -1314,24 +1266,12 @@ template<class T, class U, class O> InternalType* sub_M_I(T *_pL, U *_pR)
     double* pdblOutR = pOut->get();
     double* pdblLeft = _pL->get();
     double dblRight = _pR->get(0);
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pL->getIndex(piIndex);
         sub(pdblLeft[index], (size_t)1, &dblRight, pdblOutR + index);
@@ -1357,24 +1297,12 @@ template<class T, class U, class O> InternalType* sub_M_IC(T *_pL, U *_pR)
     double* pdblLeft = _pL->get();
     double dblRightR = _pR->get(0);
     double dblRightI = _pR->getImg(0);
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pL->getIndex(piIndex);
         sub(pdblLeft[index], (size_t)1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
@@ -1396,24 +1324,12 @@ template<class T, class U, class O> InternalType* sub_MC_IC(T *_pL, U *_pR)
     double* pdblLeftI = _pL->getImg();
     double dblRightR = _pR->get(0);
     double dblRightI = _pR->getImg(0);
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
-
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
 
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pL->getIndex(piIndex);
         sub(pdblLeftR[index], pdblLeftI[index], (size_t)1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
@@ -1832,26 +1748,14 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         pOut->setComplex(isComplexOut);
         SinglePoly** pSPOut = pOut->get();
         SinglePoly** pSPLeft = _pL->get();
-        int iLeadDims = piDims[0];
+        int iLeadDims = *std::min_element(piDims, piDims + iDims);
         int* piIndex = new int[iDims]();
-
-        //find smaller dims
-        for (int i = 1 ; i < iDims ; ++i)
-        {
-            if (iLeadDims > piDims[i])
-            {
-                iLeadDims = piDims[i];
-            }
-        }
 
         if (isComplexOut)
         {
             for (int i = 0 ; i < iLeadDims ; ++i)
             {
-                for (int j = 0 ; j < iDims ; ++j)
-                {
-                    piIndex[j] = i;
-                }
+                std::fill(piIndex, piIndex + iDims, i);
 
                 int index = _pL->getIndex(piIndex);
                 sub(pSPLeft[index]->get(0), pSPLeft[index]->getImg(0), (size_t)1, &dblRightR, &dblRightI, pSPOut[index]->get(), pSPOut[index]->getImg());
@@ -1861,10 +1765,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         {
             for (int i = 0 ; i < iLeadDims ; ++i)
             {
-                for (int j = 0 ; j < iDims ; ++j)
-                {
-                    piIndex[j] = i;
-                }
+                std::fill(piIndex, piIndex + iDims, i);
 
                 int index = _pL->getIndex(piIndex);
                 sub(pSPLeft[index]->get(0), (size_t)1, &dblRightR, pSPOut[index]->get());
@@ -2023,26 +1924,14 @@ template<> InternalType* sub_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
     SinglePoly** pSP = _pR->get();
     SinglePoly** pSPOut = pOut->get();
 
-    //find smaller dims
-    for (int i = 1 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
-
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeft, pSP[index]->get(0), pSPOut[index]->get());
@@ -2059,25 +1948,14 @@ template<> InternalType* sub_I_MC<Double, Polynom, Polynom>(Double* _pL, Polynom
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
     SinglePoly** pSP = _pR->get();
     SinglePoly** pSPOut = pOut->get();
 
-    for (int i = 0 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
-
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeft, pSP[index]->get(0), pSPOut[index]->get());
@@ -2096,25 +1974,14 @@ template<> InternalType* sub_IC_M<Double, Polynom, Polynom>(Double* _pL, Polynom
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
     SinglePoly** pSP = _pR->get();
     SinglePoly** pSPOut = pOut->get();
 
-    for (int i = 0 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
-
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(&dblLeftR, &dblLeftI, (size_t)1, pSP[index]->get(0), pSPOut[index]->get(), pSPOut[index]->getImg());
@@ -2132,25 +1999,14 @@ template<> InternalType* sub_IC_MC<Double, Polynom, Polynom>(Double* _pL, Polyno
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
-    int iLeadDims = piDims[0];
+    int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
     SinglePoly** pSP = _pR->get();
     SinglePoly** pSPOut = pOut->get();
 
-    for (int i = 0 ; i < iDims ; ++i)
-    {
-        if (iLeadDims > piDims[i])
-        {
-            iLeadDims = piDims[i];
-        }
-    }
-
     for (int i = 0 ; i < iLeadDims ; ++i)
     {
-        for (int j = 0 ; j < iDims ; ++j)
-        {
-            piIndex[j] = i;
-        }
+        std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
         sub(dblLeftR, dblLeftI, pSP[index]->get(0), pSP[index]->getImg(0), pSPOut[index]->get(), pSPOut[index]->getImg());

@@ -567,9 +567,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
 
     std::wstring szExp, szCoef;
 
-
-    int *piMaxLen = new int[abs(getCols())];
-    memset(piMaxLen, 0x00, sizeof(int) * abs(getCols()));
+    int *piMaxLen = new int[abs(getCols())]();
 
     //find the largest row for each col
     for (int iCols1 = 0 ; iCols1 < abs(getCols()) ; iCols1++)
@@ -1012,8 +1010,7 @@ void Polynom::deleteImg()
 
 SinglePoly** Polynom::allocData(int _iSize)
 {
-    SinglePoly** pData = new SinglePoly*[_iSize];
-    memset(pData, 0x00, _iSize * sizeof(SinglePoly*));
+    SinglePoly** pData = new SinglePoly*[_iSize]();
     return pData;
 }
 

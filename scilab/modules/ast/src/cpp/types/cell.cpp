@@ -309,11 +309,8 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
     else
     {
         //max len for each column
-        int *piTypeLen = new int[getCols()];
-        int *piSizeLen = new int[getCols()];
-
-        memset(piTypeLen, 0x00, getCols() * sizeof(int));
-        memset(piSizeLen, 0x00, getCols() * sizeof(int));
+        int *piTypeLen = new int[getCols()]();
+        int *piSizeLen = new int[getCols()]();
 
         for (int j = 0 ; j < getCols() ; j++)
         {

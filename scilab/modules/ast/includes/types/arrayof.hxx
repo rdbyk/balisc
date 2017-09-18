@@ -94,13 +94,14 @@ protected :
 
                 m_piDims[i] = _piDims[i];
 
-                /*
-                ** Manage overflow on size
-                ** a = b * c is in overflow if a / b != c
-                ** check b is not 0 (empty matrix case)
-                */
+                // At this point all elements of m_piDims are positive
+                // ( > 0), thus in the following iterative calculation
+                // we have always m_iSize > 0.
+
                 int iTmpSize = m_iSize * m_piDims[i];
-                if (m_iSize != 0 && iTmpSize / m_iSize != m_piDims[i])
+
+                // overflow of iTmpSize ?
+                if (iTmpSize / m_iSize != m_piDims[i])
                 {
                     char message[bsiz];
                     os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
@@ -109,16 +110,6 @@ protected :
 
                 m_iSize = iTmpSize;
             }
-
-            if (m_iSize < 0)
-            {
-                m_pRealData = NULL;
-                m_pImgData = NULL;
-                char message[bsiz];
-                os_sprintf(message, _("Can not allocate negative size (%d).\n"), m_iSize);
-                throw ast::InternalError(message);
-            }
-
         }
 
         try
