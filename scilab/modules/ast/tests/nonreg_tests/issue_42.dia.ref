@@ -1,0 +1,30 @@
+// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for issue 42 -->
+//
+// <-- Github URL -->
+// https://github.com/rdbyk/balisc/issues/42
+//
+// <-- Short Description -->
+// Fix not-equal operator (<>, ~=) with UserType arguments
+ilib_verbose(0);
+mkdir(pathconvert(TMPDIR+"/newtype"));
+cd(pathconvert(TMPDIR+"/newtype"));
+copyfile(SCI+"/modules/ast/tests/unit_tests/sci_newtype.cpp",pathconvert(TMPDIR+"/newtype/sci_newtype.cpp",%F));
+copyfile(SCI+"/modules/ast/tests/unit_tests/newtype.hxx",pathconvert(TMPDIR+"/newtype/newtype.hxx",%F));
+cflags = "-I"+SCI+"/modules/localization/includes";
+cflags = cflags + " -I"+TMPDIR+"/newtype";
+ilib_build("gw_newtype",["newtype","sci_newtype", "cppsci"],"sci_newtype.cpp",[],"","",cflags);
+exec("loader.sce");
+function res=%nt_o_nt(a, b)
+    res=%t;
+end
+function res=%nt_n_nt(a, b)
+    res=%f;
+end
+a = newtype();
+b = newtype();
+assert_checkequal(a == b, %t);
+assert_checkequal(a <> b, %f);
