@@ -938,7 +938,10 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
     }
 
     //Update complexity if necessary
-    setComplex(isComplex() || pD->isComplex());
+    if (isComplex() != pD->isComplex())
+    {
+        setComplex(true);
+    }
 
     int iInc = 1;
     int iOne = 1;
