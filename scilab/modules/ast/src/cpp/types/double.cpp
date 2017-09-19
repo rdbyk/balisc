@@ -747,11 +747,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 Double* Double::clone()
 {
     int iMemSize = m_iSize * sizeof(double);
+    bool bHasImgData = (m_pImgData !=  NULL);
+    Double *pReturn = new Double(m_iDims, m_piDims, bHasImgData);
 
-    Double *pReturn = new Double(m_iDims, m_piDims, isComplex());
     memcpy(pReturn->getReal(), m_pRealData, iMemSize);
 
-    if (isComplex())
+    if (bHasImgData)
     {
         memcpy(pReturn->getImg(), m_pImgData, iMemSize);
     }
