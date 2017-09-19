@@ -1161,19 +1161,14 @@ void Double::convertToZComplex()
 
     doublecomplex* pdblZ = NULL;
 
-    if (isComplex())
-    {
-        pdblZ = oGetDoubleComplexFromPointer(getReal(), getImg() , getSize());
-        delete[] m_pImgData;
-        m_pImgData = NULL;
-    }
-    else
-    {
-        pdblZ = oGetDoubleComplexFromPointer(getReal(), NULL, getSize());
-    }
+    pdblZ = oGetDoubleComplexFromPointer(getReal(), getImg() , getSize());
+
+    delete[] m_pImgData;
+    m_pImgData = NULL;
 
     delete[] m_pRealData;
     m_pRealData = (double*)pdblZ;
+
     setViewAsZComplex(true);
 }
 
