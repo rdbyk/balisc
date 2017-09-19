@@ -189,7 +189,10 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 }
 
                 //manage overload on list/struct/implicitlist and hypermatrix before management of []
-                if (pGT->isList() || poRow->isList() || pGT->isStruct() || poRow->isStruct() || poRow->isImplicitList() || pGT->getDims() > 2)
+                if (pGT->isList() || poRow->isList() ||
+                    pGT->isStruct() || poRow->isStruct() ||
+                    pGT->isUserType() || poRow->isUserType() ||
+                    poRow->isImplicitList() || pGT->getDims() > 2)
                 {
                     try
                     {
@@ -342,7 +345,10 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             //check dimension
             types::GenericType* pGTResult = poResult->getAs<types::GenericType>();
 
-            if (pGT->isList() || pGTResult->isList() || pGT->isStruct() || pGTResult->isStruct() || pGT->getDims() > 2)
+            if (pGT->isList() || pGTResult->isList() ||
+                pGT->isStruct() || pGTResult->isStruct() ||
+                pGT->isUserType() || pGTResult->isUserType() ||
+                pGT->getDims() > 2)
             {
                 try
                 {
