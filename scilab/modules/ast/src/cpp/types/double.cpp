@@ -902,11 +902,8 @@ void Double::deleteAll()
 
 void Double::deleteImg()
 {
-    if (isComplex() && m_pImgData)
-    {
-        delete[] m_pImgData;
-        m_pImgData = NULL;
-    }
+    delete[] m_pImgData;
+    m_pImgData = NULL;
 }
 
 double* Double::allocData(int _iSize)
