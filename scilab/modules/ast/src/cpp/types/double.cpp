@@ -1068,7 +1068,7 @@ void Double::convertToInteger()
     int* piR = (int*)get();
     double *pdblR = get();
 
-    if (isComplex())
+    if (getImg())
     {
         int* piI = (int*)getImg();
         double *pdblI = getImg();
@@ -1104,7 +1104,7 @@ void Double::convertFromInteger()
     double *pdblR = get();
     //convert in place integer to double
 
-    if (isComplex())
+    if (getImg())
     {
         int* piI = (int*)getImg();
         double *pdblI = getImg();
