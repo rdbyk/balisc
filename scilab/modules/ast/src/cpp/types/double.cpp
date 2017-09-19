@@ -286,12 +286,9 @@ void Double::setZeros()
         memset(m_pRealData, 0x00, m_iSize * sizeof(double));
     }
 
-    if (isComplex() == true)
+    if (m_pImgData != NULL)
     {
-        if (m_pImgData != NULL)
-        {
-            memset(m_pImgData, 0x00, m_iSize * sizeof(double));
-        }
+        memset(m_pImgData, 0x00, m_iSize * sizeof(double));
     }
 }
 
@@ -302,12 +299,9 @@ void Double::setOnes()
         std::fill(m_pRealData, m_pRealData + m_iSize, 1);
     }
 
-    if (isComplex() == true)
+    if (m_pImgData != NULL)
     {
-        if (m_pImgData != NULL)
-        {
-            std::fill(m_pImgData, m_pImgData + m_iSize, 1);
-        }
+        std::fill(m_pImgData, m_pImgData + m_iSize, 1);
     }
 }
 
