@@ -1139,15 +1139,12 @@ void Double::convertFromZComplex()
     doublecomplex* pdblZ = (doublecomplex*)get();
     m_pRealData = new double[getSize()];
 
-    if (m_pImgData)
-    {
-        delete[] m_pImgData;
-    }
-
+    delete[] m_pImgData;
     m_pImgData = new double[getSize()];
 
     vGetPointerFromDoubleComplex(pdblZ, getSize(), m_pRealData, m_pImgData);
     vFreeDoubleComplexFromPointer(pdblZ);
+
     setViewAsZComplex(false);
 }
 
