@@ -343,11 +343,13 @@ public :
 
     virtual void fillDefaultValues() override
     {
-        int size = m_iSize;
-        memset(m_pRealData, 0x00, sizeof(double) * size);
-        if (isComplex())
+        int iMemSize = m_iSize * sizeof(double);
+
+        memset(m_pRealData, 0x00, iMemSize);
+
+        if (m_pImgData)
         {
-            memset(m_pImgData, 0x00, sizeof(double) * size);
+            memset(m_pImgData, 0x00, iMemSize);
         }
     }
 
