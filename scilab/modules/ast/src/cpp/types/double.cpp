@@ -760,7 +760,7 @@ Double* Double::clone()
     return pReturn;
 }
 
-bool Double::fillFromCol(int _iCols, Double *_poSource)
+void Double::fillFromCol(int _iCols, Double *_poSource)
 {
     int iDestOffset = _iCols * m_iRows;
     int iMemSize = _poSource->getSize() * sizeof(double);
@@ -771,11 +771,9 @@ bool Double::fillFromCol(int _iCols, Double *_poSource)
     {
         memmove(m_pImgData + iDestOffset, _poSource->getImg(), iMemSize);
     }
-
-    return true;
 }
 
-bool Double::fillFromRow(int _iRows, Double *_poSource)
+void Double::fillFromRow(int _iRows, Double *_poSource)
 {
     if (isComplex())
     {
@@ -795,7 +793,6 @@ bool Double::fillFromRow(int _iRows, Double *_poSource)
             memmove(pdblDest, pdblSource, iSize * sizeof(double));
         }
     }
-    return true;
 }
 
 bool Double::operator==(const InternalType& it)
