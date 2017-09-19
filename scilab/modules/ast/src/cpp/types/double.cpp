@@ -767,7 +767,7 @@ void Double::fillFromCol(int _iCols, Double *_poSource)
 
     memmove(m_pRealData + iDestOffset, _poSource->getReal(), iMemSize);
 
-    if (isComplex())
+    if (m_pImgData != NULL)
     {
         memmove(m_pImgData + iDestOffset, _poSource->getImg(), iMemSize);
     }
@@ -775,7 +775,7 @@ void Double::fillFromCol(int _iCols, Double *_poSource)
 
 void Double::fillFromRow(int _iRows, Double *_poSource)
 {
-    if (isComplex())
+    if (m_pImgData != NULL)
     {
     }
     else
