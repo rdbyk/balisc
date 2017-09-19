@@ -827,7 +827,7 @@ bool Double::operator==(const InternalType& it)
     }
 
     //both complex
-    if (isComplex() && pdbl->isComplex())
+    if (getImg() && pdbl->getImg())
     {
         double *pdblImg = pdbl->getImg();
         for (int i = 0 ; i < m_iSize ; i++)
@@ -839,7 +839,7 @@ bool Double::operator==(const InternalType& it)
         }
     }
     //pdbl complex check all img values == 0
-    else if (pdbl->isComplex())
+    else if (pdbl->getImg())
     {
         double *pdblImg = pdbl->getImg();
         for (int i = 0 ; i < m_iSize ; i++)
@@ -851,7 +851,7 @@ bool Double::operator==(const InternalType& it)
         }
     }
     //complex check all img values == 0
-    else if (isComplex())
+    else if (getImg())
     {
         for (int i = 0 ; i < m_iSize ; i++)
         {
