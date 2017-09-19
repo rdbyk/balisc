@@ -960,10 +960,10 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
                 //std::cout << "iInc : " << iInc << std::endl;
             }
 
-            if (isComplex())
+            if (getImg())
             {
                 C2F(dcopy)(&iSize, pD->get(), &iOne, get(), &iInc);
-                if (pD->isComplex())
+                if (pD->getImg())
                 {
                     C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg(), &iInc);
                 }
@@ -980,13 +980,13 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
         else
         {
             //std::cout << "part of row" << std::endl;
-            if (isComplex())
+            if (getImg())
             {
                 for (int i = 0 ; i < iCols ; i++)
                 {
                     int iOffset = i * getRows();
                     memmove(get() + iOffset, pD->get() + i * iRows, iRows * sizeof(double));
-                    if (pD->isComplex())
+                    if (pD->getImg())
                     {
                         memmove(getImg() + iOffset, pD->getImg() + i * iRows, iRows * sizeof(double));
                     }
@@ -1018,11 +1018,11 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
         int iOffset =  _iCols * getRows() + _iRows;
         C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
 
-        if (isComplex())
+        if (getImg())
         {
             int iOffset =  _iCols * getRows() + _iRows;
             C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
-            if (pD->isComplex())
+            if (pD->getImg())
             {
                 C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg() + iOffset, &iInc);
             }
@@ -1037,7 +1037,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
     else
     {
         //std::cout << "no optimisation" << std::endl;
-        if (isComplex())
+        if (getImg())
         {
             for (int i = 0 ; i < iCols ; i++)
             {
@@ -1045,7 +1045,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
                 
                 memmove(get() + iOffset, pD->get() + i * iRows, iRows * sizeof(double));
                 
-                if (pD->isComplex())
+                if (pD->getImg())
                 {
                     memmove(getImg() + iOffset, pD->getImg() + i * iRows, iRows * sizeof(double));
                 }
