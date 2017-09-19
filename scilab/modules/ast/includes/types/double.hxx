@@ -55,9 +55,9 @@ public :
     double                      getReal(int _iRows, int _iCols);
     bool                        setInt(int* _piReal); //to translate int to double matrix
 
-    /*zero or one set filler*/
-    bool                        setZeros();
-    bool                        setOnes();
+    // fill array with zeros or ones
+    void setZeros();
+    void setOnes();
 
     /*Config management*/
     void                        whoAmI();

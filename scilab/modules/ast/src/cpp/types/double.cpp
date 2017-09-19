@@ -279,15 +279,11 @@ void Double::whoAmI()
     std::cout << "types::Double";
 }
 
-bool Double::setZeros()
+void Double::setZeros()
 {
     if (m_pRealData != NULL)
     {
         memset(m_pRealData, 0x00, m_iSize * sizeof(double));
-    }
-    else
-    {
-        return false;
     }
 
     if (isComplex() == true)
@@ -296,23 +292,14 @@ bool Double::setZeros()
         {
             memset(m_pImgData, 0x00, m_iSize * sizeof(double));
         }
-        else
-        {
-            return false;
-        }
     }
-    return true;
 }
 
-bool Double::setOnes()
+void Double::setOnes()
 {
     if (m_pRealData != NULL)
     {
         std::fill(m_pRealData, m_pRealData + m_iSize, 1);
-    }
-    else
-    {
-        return false;
     }
 
     if (isComplex() == true)
@@ -321,12 +308,7 @@ bool Double::setOnes()
         {
             std::fill(m_pImgData, m_pImgData + m_iSize, 1);
         }
-        else
-        {
-            return false;
-        }
     }
-    return true;
 }
 
 bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
