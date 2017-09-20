@@ -189,36 +189,35 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
             *_pDoubleOut    = new Double(*_pDouble1);
             return 0;
         }
-        double dblSavedR = 0;
-        double dblSavedI = 0;
-        Double *pdblTemp = NULL;
 
         int iRowResult = _pDouble2->getCols();
         int iColResult = _pDouble2->getRows();
 
-
-
-
         //in this case, we have to create a temporary square matrix
-        pdblTemp = new Double(iRowResult, iRowResult, _pDouble1->isComplex());
+        Double *pdblTemp = new Double(iRowResult, iRowResult, _pDouble1->isComplex());
         pdblTemp->setZeros();
+
+        double* pdblTempReal = pdblTemp->get();
+        double dblSavedR = _pDouble1->getReal()[0];
 
         if (_pDouble1->isComplex())
         {
-            dblSavedR = _pDouble1->getReal()[0];
-            dblSavedI = _pDouble1->getImg()[0];
+            double* pdblTempImg = pdblTemp->getImg();
+            double dblSavedI = _pDouble1->getImg()[0];
+
             for (int i = 0 ; i < iRowResult ; i++)
             {
-                pdblTemp->set(i, i, dblSavedR);
-                pdblTemp->setImg(i, i, dblSavedI);
+                int index = i * iRowResult + i;
+                pdblTempReal[index] = dblSavedR;
+                pdblTempImg[index] = dblSavedI;
             }
         }
         else
         {
-            dblSavedR = _pDouble1->getReal()[0];
             for (int i = 0 ; i < iRowResult ; i++)
             {
-                pdblTemp->set(i, i, dblSavedR);
+                int index = i * iRowResult + i;
+                pdblTempReal[index] = dblSavedR;
             }
         }
 
