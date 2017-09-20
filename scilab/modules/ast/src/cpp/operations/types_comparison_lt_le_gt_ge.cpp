@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -151,11 +151,12 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
     {
         //d < D
         pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
-        double dblRef	= _pDouble1->get(0);
+        int* pb = pB->get();
+        double dblRef = _pDouble1->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pB->set(i, dblRef < _pDouble2->get(i));
+            pb[i] = dblRef < _pDouble2->get(i);
         }
 
         *_pOut = pB;
@@ -165,11 +166,12 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
     {
         //D < d
         pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
+        int* pb = pB->get();
         double dblRef	= _pDouble2->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pB->set(i, _pDouble1->get(i) < dblRef);
+            pb[i] = _pDouble1->get(i) < dblRef;
         }
 
         *_pOut = pB;
@@ -194,10 +196,11 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
     }
 
     pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
+    int* pb = pB->get();
 
     for (int i = 0 ; i < pB->getSize() ; i++)
     {
-        pB->set(i, _pDouble1->get(i) < _pDouble2->get(i));
+        pb[i] = _pDouble1->get(i) < _pDouble2->get(i);
     }
 
     *_pOut = pB;
@@ -363,11 +366,12 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
     {
         //d <= D
         pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
+        int* pb = pB->get();
         double dblRef	= _pDouble1->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pB->set(i, dblRef <= _pDouble2->get(i));
+            pb[i] = dblRef <= _pDouble2->get(i);
         }
 
         *_pOut = pB;
@@ -377,11 +381,13 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
     {
         //D <= d
         pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
+        int* pb = pB->get();
+
         double dblRef	= _pDouble2->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pB->set(i, _pDouble1->get(i) <= dblRef);
+            pb[i] = _pDouble1->get(i) <= dblRef;
         }
 
         *_pOut = pB;
@@ -406,10 +412,11 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
     }
 
     pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
+    int* pb = pB->get();
 
     for (int i = 0 ; i < pB->getSize() ; i++)
     {
-        pB->set(i, _pDouble1->get(i) <= _pDouble2->get(i));
+        pb[i] = _pDouble1->get(i) <= _pDouble2->get(i);
     }
 
     *_pOut = pB;
@@ -513,9 +520,11 @@ static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
     }
 
     Bool* pB = new Bool(_pR->getDims(), _pR->getDimsArray());
+    int* pb = pB->get();
+
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        pB->set(i, _pL->get(i) < _pR->get(i));
+        pb[i] = _pL->get(i) < _pR->get(i);
     }
 
     *_pOut = pB;
@@ -617,9 +626,11 @@ static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
     }
 
     Bool* pB = new Bool(_pR->getDims(), _pR->getDimsArray());
+    int* pb = pB->get();
+
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        pB->set(i, _pL->get(i) <= _pR->get(i));
+        pb[i] = _pL->get(i) <= _pR->get(i);
     }
 
     *_pOut = pB;
