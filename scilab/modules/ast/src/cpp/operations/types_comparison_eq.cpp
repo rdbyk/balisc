@@ -1,10 +1,10 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
- *  Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
- *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
+ * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -2958,6 +2958,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
     if (_pR->isScalar())
     {
         pbOut = new Bool(_pL->getDims(), _pL->getDimsArray());
+        int* pb = pbOut->get();
         int iSize = pbOut->getSize();
 
         if (_pL->isComplex())
@@ -2978,7 +2979,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                             compequal(pSPR[0]->get(j), pSPR[0]->getImg(j), pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
                         }
                     }
-                    pbOut->set(i, bPoise);
+                    pb[i] = bPoise;
 
                 }
             }
@@ -2998,7 +2999,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                             compequal(pSPR[0]->get(j), (double)0, pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
                         }
                     }
-                    pbOut->set(i, bPoise);
+                    pb[i] = bPoise;
                 }
             }
         }
@@ -3020,7 +3021,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                             compequal(pSPR[0]->get(j), pSPR[0]->getImg(j), pSPL[i]->get(j), (double)0, &bPoise);
                         }
                     }
-                    pbOut->set(i, bPoise);
+                    pb[i] = bPoise;
                 }
             }
             else
@@ -3039,7 +3040,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                             compequal(pSPR[0]->get(j), pSPL[i]->get(j), &bPoise);
                         }
                     }
-                    pbOut->set(i, bPoise);
+                    pb[i] = bPoise;
                 }
             }
         }
@@ -3047,6 +3048,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
     else if (_pL->isScalar())
     {
         pbOut = new Bool(_pR->getDims(), _pR->getDimsArray());
+        int* pb = pbOut->get();
         int iSize = pbOut->getSize();
 
         if (pSPR[0]->getSize() != 1)
@@ -3069,7 +3071,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                                 compequal(pSPL[0]->get(j), pSPL[0]->getImg(j), pSPR[i]->get(j), pSPR[i]->getImg(j), &bPoise);
                             }
                         }
-                        pbOut->set(i, bPoise);
+                        pb[i] = bPoise;
                     }
                 }
                 else
@@ -3088,7 +3090,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                                 compequal(pSPL[0]->get(j), pSPL[0]->getImg(j), pSPR[i]->get(j), (double)0, &bPoise);
                             }
                         }
-                        pbOut->set(i, bPoise);
+                        pb[i] = bPoise;
                     }
                 }
             }
@@ -3111,7 +3113,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                                 compequal(pSPL[0]->get(j), (double)0, pSPR[i]->get(j), pSPR[i]->get(j), &bPoise);
                             }
                         }
-                        pbOut->set(i, bPoise);
+                        pb[i] = bPoise;
                     }
                 }
                 else
@@ -3130,7 +3132,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                                 compequal(pSPL[0]->get(j), pSPR[i]->get(j), &bPoise);
                             }
                         }
-                        pbOut->set(i, bPoise);
+                        pb[i] = bPoise;
                     }
                 }
 
@@ -3154,6 +3156,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
         }
 
         pbOut = new Bool(_pL->getDims(), _pL->getDimsArray());
+        int* pb = pbOut->get();
         int iSize = pbOut->getSize();
 
         if (_pL->isComplex())
@@ -3174,7 +3177,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                             compequal(pSPR[i]->get(j), pSPR[i]->getImg(j), pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
                         }
                     }
-                    pbOut->set(i, bPoise);
+                    pb[i] = bPoise;
                 }
             }
             else
@@ -3193,7 +3196,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                             compequal(pSPL[i]->get(j), pSPL[i]->getImg(j), pSPR[i]->get(j), (double)0, &bPoise);
                         }
                     }
-                    pbOut->set(i, bPoise);
+                    pb[i] = bPoise;
                 }
             }
         }
@@ -3215,7 +3218,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                             compequal(pSPR[i]->get(j), pSPR[i]->getImg(j), pSPL[i]->get(j), (double)0, &bPoise);
                         }
                     }
-                    pbOut->set(i, bPoise);
+                    pb[i] = bPoise;
                 }
             }
             else
@@ -3234,7 +3237,7 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
                             compequal(pSPR[i]->get(j), pSPL[i]->get(j), &bPoise);
                         }
                     }
-                    pbOut->set(i, bPoise);
+                    pb[i] = bPoise;
                 }
             }
         }
@@ -3254,6 +3257,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
     {
         Double* pdblEye = NULL;
         pbOut = new Bool(_pL->getDims(), _pL->getDimsArray());
+        int* pb = pbOut->get();
         int iSize = pbOut->getSize();
 
         if (_pL->isComplex())
@@ -3265,7 +3269,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3280,7 +3284,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3298,7 +3302,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3313,7 +3317,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3327,6 +3331,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
     else if (_pR->isScalar())
     {
         pbOut = new Bool(_pL->getDims(), _pL->getDimsArray());
+        int* pb = pbOut->get();
         int iSize = pbOut->getSize();
 
         if (_pL->isComplex())
@@ -3337,7 +3342,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3351,7 +3356,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3368,7 +3373,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3382,7 +3387,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3458,6 +3463,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
         }
 
         pbOut = new Bool(_pL->getDims(), _pL->getDimsArray());
+        int* pb = pbOut->get();
         int iSize = pbOut->getSize();
 
         if (_pL->isComplex())
@@ -3468,7 +3474,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3482,7 +3488,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3499,7 +3505,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3513,7 +3519,7 @@ InternalType* compequal_P_M(T *_pL, U *_pR)
                 {
                     if (pSPR[i]->getSize() != 1)
                     {
-                        pbOut->set(i, false);
+                        pb[i] = false;
                     }
                     else
                     {
@@ -3539,21 +3545,27 @@ InternalType* compequal_M_M<String, String, Bool>(String* _pL, String* _pR)
 
     if (_pL->isScalar())
     {
-        Bool*  pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
+        Bool* pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
+        int* pb = pOut->get();
+
         for (int i = 0; i < _pR->getSize(); i++)
         {
-            pOut->set(i, wcscmp(_pL->get(0), _pR->get(i)) == 0);
+            pb[i] = wcscmp(_pL->get(0), _pR->get(i)) == 0;
         }
+
         return pOut;
     }
 
     if (_pR->isScalar())
     {
-        Bool*  pOut = new Bool(_pL->getDims(), _pL->getDimsArray());
+        Bool* pOut = new Bool(_pL->getDims(), _pL->getDimsArray());
+        int* pb = pOut->get();
+
         for (int i = 0; i < _pL->getSize(); i++)
         {
-            pOut->set(i, wcscmp(_pL->get(i), _pR->get(0)) == 0);
+            pb[i] = wcscmp(_pL->get(i), _pR->get(0)) == 0;
         }
+
         return pOut;
     }
 
@@ -3581,11 +3593,12 @@ InternalType* compequal_M_M<String, String, Bool>(String* _pL, String* _pR)
 
     if (_pL->getSize() == _pR->getSize())
     {
-        Bool*  pOut = new Bool(iDimsL, piDimsL);
+        Bool* pOut = new Bool(iDimsL, piDimsL);
+        int* pb = pOut->get();
 
         for (int i = 0; i < _pL->getSize(); i++)
         {
-            pOut->set(i, wcscmp(_pL->get(i), _pR->get(i)) == 0);
+            pb[i] = wcscmp(_pL->get(i), _pR->get(i)) == 0;
         }
         return pOut;
     }
@@ -3618,9 +3631,11 @@ types::InternalType* compequal_M_M<Struct, Struct, Bool>(types::Struct* _pL, typ
     }
 
     Bool *pOut = new Bool(_pL->getDims(), piDimsL);
+    int* pb = pOut->get();
+
     for (int i = 0; i < _pL->getSize(); i++)
     {
-        pOut->set(i, *_pL->get(i) == *_pR->get(i));
+        pb[i] = *_pL->get(i) == *_pR->get(i);
     }
     return pOut;
 }
@@ -3655,9 +3670,11 @@ InternalType* compequal_LT_LT(T *_pL, U *_pR)
     }
 
     Bool* pB = new Bool(1, _pL->getSize());
+    int* pb = pB->get();
+
     for (int i = 0; i < _pL->getSize(); i++)
     {
-        pB->set(i, ((*_pL->get(i) == *_pR->get(i)) && (_pL->get(i)->getType() != types::InternalType::ScilabVoid)));
+        pb[i] = *_pL->get(i) == *_pR->get(i) && _pL->get(i)->getType() != types::InternalType::ScilabVoid;
     }
 
     return pB;
@@ -3690,9 +3707,11 @@ types::InternalType* compequal_M_M<Cell, Cell, Bool>(types::Cell* _pL, types::Ce
     }
 
     Bool *pB = new Bool(_pL->getDims(), piDimsL);
+    int* pb = pB->get();
+
     for (int i = 0; i < _pL->getSize(); i++)
     {
-        pB->set(i, *_pL->get(i) == *_pR->get(i));
+        pb[i] = *_pL->get(i) == *_pR->get(i);
     }
 
     return pB;
