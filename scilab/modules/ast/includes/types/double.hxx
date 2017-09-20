@@ -64,8 +64,8 @@ public :
     bool                        isEmpty();
 
     Double*                     clone();
-    bool                        fillFromCol(int _iCols, Double *_poSource);
-    bool                        fillFromRow(int _iRows, Double *_poSource);
+    void fillFromCol(int _iCols, Double *_poSource);
+    void fillFromRow(int _iRows, Double *_poSource);
     Double*                     append(int _iRows, int _iCols, InternalType* _poSource);
 
     //bool                        append(int _iRows, int _iCols, Double *_poSource);
@@ -343,11 +343,13 @@ public :
 
     virtual void fillDefaultValues() override
     {
-        int size = m_iSize;
-        memset(m_pRealData, 0x00, sizeof(double) * size);
-        if (isComplex())
+        int iMemSize = m_iSize * sizeof(double);
+
+        memset(m_pRealData, 0x00, iMemSize);
+
+        if (m_pImgData)
         {
-            memset(m_pImgData, 0x00, sizeof(double) * size);
+            memset(m_pImgData, 0x00, iMemSize);
         }
     }
 

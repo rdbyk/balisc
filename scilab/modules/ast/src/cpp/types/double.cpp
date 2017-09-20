@@ -747,11 +747,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 Double* Double::clone()
 {
     int iMemSize = m_iSize * sizeof(double);
+    bool bHasImgData = (m_pImgData !=  NULL);
+    Double *pReturn = new Double(m_iDims, m_piDims, bHasImgData);
 
-    Double *pReturn = new Double(m_iDims, m_piDims, isComplex());
     memcpy(pReturn->getReal(), m_pRealData, iMemSize);
 
-    if (isComplex())
+    if (bHasImgData)
     {
         memcpy(pReturn->getImg(), m_pImgData, iMemSize);
     }
@@ -759,24 +760,22 @@ Double* Double::clone()
     return pReturn;
 }
 
-bool Double::fillFromCol(int _iCols, Double *_poSource)
+void Double::fillFromCol(int _iCols, Double *_poSource)
 {
     int iDestOffset = _iCols * m_iRows;
     int iMemSize = _poSource->getSize() * sizeof(double);
 
     memmove(m_pRealData + iDestOffset, _poSource->getReal(), iMemSize);
 
-    if (isComplex())
+    if (m_pImgData != NULL)
     {
         memmove(m_pImgData + iDestOffset, _poSource->getImg(), iMemSize);
     }
-
-    return true;
 }
 
-bool Double::fillFromRow(int _iRows, Double *_poSource)
+void Double::fillFromRow(int _iRows, Double *_poSource)
 {
-    if (isComplex())
+    if (m_pImgData != NULL)
     {
     }
     else
@@ -794,7 +793,6 @@ bool Double::fillFromRow(int _iRows, Double *_poSource)
             memmove(pdblDest, pdblSource, iSize * sizeof(double));
         }
     }
-    return true;
 }
 
 bool Double::operator==(const InternalType& it)
@@ -829,7 +827,7 @@ bool Double::operator==(const InternalType& it)
     }
 
     //both complex
-    if (isComplex() && pdbl->isComplex())
+    if (getImg() && pdbl->getImg())
     {
         double *pdblImg = pdbl->getImg();
         for (int i = 0 ; i < m_iSize ; i++)
@@ -841,27 +839,15 @@ bool Double::operator==(const InternalType& it)
         }
     }
     //pdbl complex check all img values == 0
-    else if (pdbl->isComplex())
+    else if (pdbl->getImg())
     {
         double *pdblImg = pdbl->getImg();
-        for (int i = 0 ; i < m_iSize ; i++)
-        {
-            if (pdblImg[i])
-            {
-                return false;
-            }
-        }
+        return std::all_of(pdblImg, pdblImg + m_iSize, [](int i){ return i == 0; });
     }
     //complex check all img values == 0
-    else if (isComplex())
+    else if (getImg())
     {
-        for (int i = 0 ; i < m_iSize ; i++)
-        {
-            if (m_pImgData[i])
-            {
-                return false;
-            }
-        }
+        return std::all_of(m_pImgData, m_pImgData + m_iSize, [](int i){ return i == 0; });
     }
 
     return true;
@@ -904,11 +890,8 @@ void Double::deleteAll()
 
 void Double::deleteImg()
 {
-    if (isComplex() && m_pImgData)
-    {
-        delete[] m_pImgData;
-        m_pImgData = NULL;
-    }
+    delete[] m_pImgData;
+    m_pImgData = NULL;
 }
 
 double* Double::allocData(int _iSize)
@@ -943,7 +926,10 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
     }
 
     //Update complexity if necessary
-    setComplex(isComplex() || pD->isComplex());
+    if (isComplex() != pD->isComplex())
+    {
+        setComplex(true);
+    }
 
     int iInc = 1;
     int iOne = 1;
@@ -965,10 +951,10 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
                 //std::cout << "iInc : " << iInc << std::endl;
             }
 
-            if (isComplex())
+            if (getImg())
             {
                 C2F(dcopy)(&iSize, pD->get(), &iOne, get(), &iInc);
-                if (pD->isComplex())
+                if (pD->getImg())
                 {
                     C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg(), &iInc);
                 }
@@ -985,13 +971,13 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
         else
         {
             //std::cout << "part of row" << std::endl;
-            if (isComplex())
+            if (getImg())
             {
                 for (int i = 0 ; i < iCols ; i++)
                 {
                     int iOffset = i * getRows();
                     memmove(get() + iOffset, pD->get() + i * iRows, iRows * sizeof(double));
-                    if (pD->isComplex())
+                    if (pD->getImg())
                     {
                         memmove(getImg() + iOffset, pD->getImg() + i * iRows, iRows * sizeof(double));
                     }
@@ -1023,11 +1009,11 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
         int iOffset =  _iCols * getRows() + _iRows;
         C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
 
-        if (isComplex())
+        if (getImg())
         {
             int iOffset =  _iCols * getRows() + _iRows;
             C2F(dcopy)(&iSize, pD->get(), &iOne, get() + iOffset, &iInc);
-            if (pD->isComplex())
+            if (pD->getImg())
             {
                 C2F(dcopy)(&iSize, pD->getImg(), &iOne, getImg() + iOffset, &iInc);
             }
@@ -1042,7 +1028,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
     else
     {
         //std::cout << "no optimisation" << std::endl;
-        if (isComplex())
+        if (getImg())
         {
             for (int i = 0 ; i < iCols ; i++)
             {
@@ -1050,7 +1036,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
                 
                 memmove(get() + iOffset, pD->get() + i * iRows, iRows * sizeof(double));
                 
-                if (pD->isComplex())
+                if (pD->getImg())
                 {
                     memmove(getImg() + iOffset, pD->getImg() + i * iRows, iRows * sizeof(double));
                 }
@@ -1082,7 +1068,7 @@ void Double::convertToInteger()
     int* piR = (int*)get();
     double *pdblR = get();
 
-    if (isComplex())
+    if (getImg())
     {
         int* piI = (int*)getImg();
         double *pdblI = getImg();
@@ -1118,7 +1104,7 @@ void Double::convertFromInteger()
     double *pdblR = get();
     //convert in place integer to double
 
-    if (isComplex())
+    if (getImg())
     {
         int* piI = (int*)getImg();
         double *pdblI = getImg();
@@ -1153,15 +1139,12 @@ void Double::convertFromZComplex()
     doublecomplex* pdblZ = (doublecomplex*)get();
     m_pRealData = new double[getSize()];
 
-    if (m_pImgData)
-    {
-        delete[] m_pImgData;
-    }
-
+    delete[] m_pImgData;
     m_pImgData = new double[getSize()];
 
     vGetPointerFromDoubleComplex(pdblZ, getSize(), m_pRealData, m_pImgData);
     vFreeDoubleComplexFromPointer(pdblZ);
+
     setViewAsZComplex(false);
 }
 
@@ -1175,19 +1158,14 @@ void Double::convertToZComplex()
 
     doublecomplex* pdblZ = NULL;
 
-    if (isComplex())
-    {
-        pdblZ = oGetDoubleComplexFromPointer(getReal(), getImg() , getSize());
-        delete[] m_pImgData;
-        m_pImgData = NULL;
-    }
-    else
-    {
-        pdblZ = oGetDoubleComplexFromPointer(getReal(), NULL, getSize());
-    }
+    pdblZ = oGetDoubleComplexFromPointer(getReal(), getImg() , getSize());
+
+    delete[] m_pImgData;
+    m_pImgData = NULL;
 
     delete[] m_pRealData;
     m_pRealData = (double*)pdblZ;
+
     setViewAsZComplex(true);
 }
 
