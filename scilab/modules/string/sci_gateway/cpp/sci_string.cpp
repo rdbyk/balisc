@@ -249,7 +249,7 @@ types::Function::ReturnValue booleanString(types::Bool* pB, types::typed_list &o
     int iSize = pB->getSize();
     for (int i = 0 ; i < iSize ; i++)
     {
-        pstOutput->set(i, pb[i] == 0 ? "F" : "T");
+        pstOutput->set(i, pb[i] == 0 ? L"F" : L"T");
     }
 
     out.push_back(pstOutput);
@@ -334,7 +334,7 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
             std::vector<std::wstring> vect;
 
 
-            ostr << "(" << iRows << "," << iCols << ") sparse matrix";
+            ostr << L"(" << iRows << L"," << iCols << L") sparse matrix";
 
             vect.push_back(ostr.str());
             ostr.str(L"");
