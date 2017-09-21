@@ -602,6 +602,13 @@ void String::deleteData(wchar_t* data)
     }
 }
 
+String* String::set_(int _iPos, const wchar_t* _pwstData)
+{
+    deleteString(_iPos);
+    m_pRealData[_iPos] = copyValue(_pwstData);
+    return this;
+}
+
 String* String::set(int _iPos, const wchar_t* _pwstData)
 {
     if (m_pRealData == NULL || _iPos >= m_iSize)
@@ -610,15 +617,18 @@ String* String::set(int _iPos, const wchar_t* _pwstData)
     }
 
     typedef String* (String::*set_t)(int, const wchar_t*);
-    String* pIT = checkRef(this, (set_t)&String::set, _iPos, _pwstData);
+    String* pIT = checkRef(this, (set_t)&String::set_, _iPos, _pwstData);
     if (pIT != this)
     {
         return pIT;
     }
 
-    deleteString(_iPos);
-    m_pRealData[_iPos] = copyValue(_pwstData);
-    return this;
+    return set_(_iPos, _pwstData);
+}
+
+String* String::set_(int _iRows, int _iCols, const wchar_t* _pwstData)
+{
+    return set_(_iCols * getRows() + _iRows, _pwstData);
 }
 
 String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
