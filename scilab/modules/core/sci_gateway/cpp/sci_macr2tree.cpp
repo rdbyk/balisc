@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010 - DIGITEO- Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO- Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "core_gw.hxx"
 #include "function.hxx"
@@ -68,12 +68,12 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     //create a tlist "program"
     types::TList* l = new types::TList();
     types::String* s = new types::String(1, 6);
-    s->set(0, L"program");
-    s->set(1, L"name");
-    s->set(2, L"outputs");
-    s->set(3, L"inputs");
-    s->set(4, L"statements");
-    s->set(5, L"nblines");
+    s->set_(0, L"program");
+    s->set_(1, L"name");
+    s->set_(2, L"outputs");
+    s->set_(3, L"inputs");
+    s->set_(4, L"statements");
+    s->set_(5, L"nblines");
 
     //header
     l->append(s);
@@ -113,10 +113,10 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
 
     types::TList* funcall = new types::TList();
     types::String* sf = new types::String(1, 4);
-    sf->set(0, L"funcall");
-    sf->set(1, L"rhs");
-    sf->set(2, L"name");
-    sf->set(3, L"lhsnb");
+    sf->set_(0, L"funcall");
+    sf->set_(1, L"rhs");
+    sf->set_(2, L"name");
+    sf->set_(3, L"lhsnb");
 
     funcall->append(sf);
     funcall->append(types::Double::Empty());
