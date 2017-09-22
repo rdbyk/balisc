@@ -35,8 +35,6 @@ extern "C"
 #include "scilabRead.h"
 }
 
-static const int dimsArray[2] = {1, 1};
-
 types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int size                    = (int)in.size();
@@ -140,7 +138,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                 types::String* ps = new types::String(iNiter, 1);
                 for (int j = 0; j < iNiter; j++)
                 {
-                    ps->set(j, data[i + ncol * j].s);
+                    ps->set_(j, data[i + ncol * j].s);
                 }
                 pIT.push_back(ps);
                 uiFormatUsed |= (1 << 1);
@@ -156,9 +154,10 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
             case SF_F:
             {
                 types::Double* p = new types::Double(iNiter, 1);
+                double* pd = p->get();
                 for (int j = 0; j < iNiter; j++)
                 {
-                    p->set(j, data[i + ncol * j].d);
+                    pd[j] = data[i + ncol * j].d;
                 }
                 pIT.push_back(p);
                 uiFormatUsed |= (1 << 2);
@@ -172,8 +171,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     int sizeOfVector = (int)pIT.size();
     if (_iRetCount > 1)
     {
-        types::Double* pDouble = new types::Double(2, dimsArray);
-        pDouble->set(0, retval);
+        types::Double* pDouble = new types::Double(retval);
         out.push_back(pDouble);
 
         for (int i = 0; i < sizeOfVector; i++)
@@ -204,7 +202,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                 {
                     for (int j = 0; j < sizeOfString; j++)
                     {
-                        pString->set(i * sizeOfString + j, pIT[i]->getAs<types::String>()->get(j));
+                        pString->set_(i * sizeOfString + j, pIT[i]->getAs<types::String>()->get(j));
                     }
                 }
                 out.push_back(pString);
@@ -215,11 +213,12 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                 int sizeOfDouble = pIT[0]->getAs<types::Double>()->getRows();
                 int dimsArrayOfRes[2] = {sizeOfDouble, sizeOfVector};
                 types::Double* pDouble = new types::Double(2, dimsArrayOfRes);
+                double* pd = pDouble->get();
                 for (int i = 0; i < sizeOfVector; i++)
                 {
                     for (int j = 0; j < sizeOfDouble; j++)
                     {
-                        pDouble->set(i * sizeOfDouble + j, pIT[i]->getAs<types::Double>()->get(j));
+                        pd[i * sizeOfDouble + j] = pIT[i]->getAs<types::Double>()->get(j);
                     }
                 }
                 out.push_back(pDouble);
@@ -246,11 +245,11 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
                                 for (int k = 0; k < pITTemp.back()->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set(k, pITTemp.back()->getAs<types::String>()->get(k));
+                                    pType->set_(k, pITTemp.back()->getAs<types::String>()->get(k));
                                 }
                                 for (int k = 0; k < pIT[i]->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set(iRows * iCols + k, pIT[i]->getAs<types::String>()->get(k));
+                                    pType->set_(iRows * iCols + k, pIT[i]->getAs<types::String>()->get(k));
                                 }
                                 pITTemp.pop_back();
                                 pITTemp.push_back(pType);
@@ -262,11 +261,11 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                                 int iCols               = pITTemp.back()->getAs<types::Double>()->getCols();
                                 int arrayOfType[2]      = {iRows, iCols + 1};
                                 types::Double* pType    = new types::Double(2, arrayOfType);
-
                                 pType->set(pITTemp.back()->getAs<types::Double>()->get());
+                                double* pd = pType->get();
                                 for (int k = 0; k < pIT[i]->getAs<types::Double>()->getSize(); k++)
                                 {
-                                    pType->set(iRows * iCols + k, pIT[i]->getAs<types::Double>()->get(k));
+                                    pd[iRows * iCols + k] = pIT[i]->getAs<types::Double>()->get(k);
                                 }
                                 pITTemp.pop_back();
                                 pITTemp.push_back(pType);
