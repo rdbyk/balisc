@@ -29,13 +29,9 @@ extern "C"
 #include "mtell.h"
 }
 
-static const int dimsArray[2] = {1, 1};
-
 types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iFile           = -1; //default file : last opened file
-    int dimsArray[2]    = {1, 1};
-    types::Double* pOut = NULL;
+    int iFile = -1; // default file : last opened file
 
     if (in.size() > 1)
     {
@@ -69,10 +65,8 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    pOut = new types::Double(2, dimsArray);
-    pOut->set(0, (double)offset);
+    out.push_back(new types::Double((double)offset));
 
-    out.push_back(pOut);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
