@@ -998,9 +998,11 @@ Double* createDoubleVector(int _iSize)
 {
     int piDims[] = {1, _iSize};
     Double* pOut = new Double(2, piDims);
+    double* pd = pOut->get();
+
     for (int i = 0; i < _iSize; i++)
     {
-        pOut->set(i, i + 1);
+        pd[i] = i + 1;
     }
     return pOut;
 }

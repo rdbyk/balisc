@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -59,6 +59,7 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
     types::String *pInString = in[1]->getAs<types::String>();
     wchar_t** wcsStr = pInString->get();
     types::Bool *pOutBool = new types::Bool(pInString->getRows(), pInString->getCols());
+    int* pb = pOutBool->get();
 
     switch (in[0]->getType())
     {
@@ -67,7 +68,7 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
             types::Struct* pStruct = in[0]->getAs<types::Struct>();
             for (int i = 0; i < pInString->getSize(); i++)
             {
-                pOutBool->set(i, pStruct->exists(std::wstring(wcsStr[i])));
+               pb[i] = pStruct->exists(std::wstring(wcsStr[i]));
             }
             break;
         }
@@ -77,7 +78,7 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
             types::TList* pTL = in[0]->getAs<types::TList>();
             for (int i = 0; i < pInString->getSize(); i++)
             {
-                pOutBool->set(i, pTL->exists(std::wstring(wcsStr[i])));
+                pb[i] = pTL->exists(std::wstring(wcsStr[i]));
             }
             break;
         }

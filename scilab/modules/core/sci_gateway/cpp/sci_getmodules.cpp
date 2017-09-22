@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCoun
     std::list<std::wstring>::iterator it = sModuleList.begin();
     for (int i = 0; it != sModuleList.end() ; ++it, i++)
     {
-        pOut->set(i, it->c_str());
+        pOut->set_(i, it->c_str());
     }
 
     out.push_back(pOut);

@@ -188,9 +188,10 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     else
     {
         pIndex = new types::Double(1, iValues);
+        double* pd = pIndex->get();
         for (int i = 0 ; i < iValues ; i++)
         {
-            pIndex->set(0, i, pstrResult[i].data);
+            pd[i] = pstrResult[i].data;
         }
     }
     out.push_back(pIndex);
@@ -205,9 +206,10 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         else
         {
             pPos = new types::Double(1, iValues);
+            double* pd = pPos->get();
             for (int i = 0 ; i < iValues ; i++)
             {
-                pPos->set(0, i, pstrResult[i].position);
+                pd[i] = pstrResult[i].position;
             }
         }
         out.push_back(pPos);

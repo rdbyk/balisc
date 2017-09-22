@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount,
         types::String* pStrOut = new types::String(NB_OF_TYPE, 1);
         for (int i = 0; i < NB_OF_TYPE; i++)
         {
-            pStrOut->set(i, pstShortTypeName[i]);
+            pStrOut->set_(i, pstShortTypeName[i]);
         }
         out.push_back(pStrOut);
     }
