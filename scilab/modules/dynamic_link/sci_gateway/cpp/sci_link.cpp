@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         types::String* pSFunctionNames = new types::String(1, (int)FunctionsList.size());
         for (int i = 0 ; i < FunctionsList.size(); i++)
         {
-            pSFunctionNames->set(FunctionsList.size() - i - 1, FunctionsList[i].c_str());
+            pSFunctionNames->set_(FunctionsList.size() - i - 1, FunctionsList[i].c_str());
         }
 
         out.push_back(pSFunctionNames);
@@ -222,11 +222,15 @@ types::Double* getLibraryIDs(void)
 {
     std::vector<ConfigVariable::DynamicLibraryStr*>* pDLList = ConfigVariable::getDynamicLibraryList();
 
+    int iDLListSize = pDLList->size();
+    int piLibID[iDLListSize];
+
     int iLibCount = 0;
-    for (int i = 0 ; i < pDLList->size() ; i++)
+    for (int i = 0; i < iDLListSize; i++)
     {
         if ((*pDLList)[i] != NULL)
         {
+            piLibID[iLibCount] = i;
             iLibCount++;
         }
     }
@@ -237,14 +241,13 @@ types::Double* getLibraryIDs(void)
     }
 
     types::Double* pOut = new types::Double(1, iLibCount);
-    iLibCount = 0;
-    for (int i = 0 ; i < pDLList->size() ; i++)
+    double* pd = pOut->get();
+
+    for (int i = 0 ; i < iLibCount ; i++)
     {
-        if ((*pDLList)[i] != NULL)
-        {
-            pOut->set(iLibCount++, (double)i);
-        }
+        pd[i] = piLibID[i];
     }
+
     return pOut;
 }
 /*-----------------------------------------------------------------------------------*/

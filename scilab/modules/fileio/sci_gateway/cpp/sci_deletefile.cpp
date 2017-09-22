@@ -3,8 +3,8 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2010 - INRIA - Antoine ELIAS
  * Copyright (C) 2016 - Scilab Enterprises - Clement DAVID
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -45,9 +45,10 @@ types::Function::ReturnValue sci_deletefile(types::typed_list &in, int _iRetCoun
 
     auto pIn = in[0]->getAs<types::String>();
     types::Bool *pOut = new types::Bool(pIn->getDims(), pIn->getDimsArray());
+    int* pb = pOut->get();
     for (int i = 0; i < pIn->getSize(); i++)
     {
-        pOut->set(i, deleteafileW(pIn->get(i)));
+        pb[i] = deleteafileW(pIn->get(i));
     }
 
     out.push_back(pOut);

@@ -126,17 +126,17 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
             {
                 case PathPart :
                 {
-                    pStrOut->set(i, pwstDrive);
+                    pStrOut->set_(i, pwstDrive);
                     break;
                 }
                 case NamePart :
                 {
-                    pStrOut->set(i, pwstName);
+                    pStrOut->set_(i, pwstName);
                     break;
                 }
                 case ExtensionPart :
                 {
-                    pStrOut->set(i, pwstExtension);
+                    pStrOut->set_(i, pwstExtension);
                     break;
                 }
                 default :
@@ -173,9 +173,9 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
             wcscat(pwstDrive, pwstDirectory);
 
             //standard case, 3 outputs
-            pStrOut->set(i, pwstDrive);
-            pStrOut2->set(i, pwstName);
-            pStrOut3->set(i, pwstExtension);
+            pStrOut->set_(i, pwstDrive);
+            pStrOut2->set_(i, pwstName);
+            pStrOut3->set_(i, pwstExtension);
 
             delete[] pwstDirectory;
             delete[] pwstDrive;

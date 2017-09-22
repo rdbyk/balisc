@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Antoine Elias
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -287,10 +287,10 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         {
             // Return the properties
             types::String* ret = new types::String(1, 1 + propertiesStr->getSize());
-            ret->set(0, pUT->getTypeStr().c_str());
+            ret->set_(0, pUT->getTypeStr().c_str());
             for (int i = 0; i < propertiesStr->getSize(); ++i)
             {
-                ret->set(i + 1, propertiesStr->get(i));
+                ret->set_(i + 1, propertiesStr->get(i));
             }
             out.push_back(ret);
         }

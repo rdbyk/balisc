@@ -1,9 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
- *
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -52,7 +51,7 @@ types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount
     else
     {
         pOut = new types::String(2, dimsArray);
-        pOut->set(0, L"");
+        pOut->set_(0, L"");
     }
 
     out.push_back(pOut);
