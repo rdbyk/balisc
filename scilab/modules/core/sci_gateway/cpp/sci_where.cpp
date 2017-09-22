@@ -53,13 +53,14 @@ types::Function::ReturnValue sci_where(types::typed_list &in, int _iRetCount, ty
 
     types::Double* pDblLines = new types::Double(iWhereSize, 1);
     types::String* pStrNames = new types::String(iWhereSize, 1);
+    double* pd = pDblLines->get();
 
     auto it = where.rbegin();
 
     for (int i = 0; i < iWhereSize; ++i)
     {
-        pDblLines->set(i, it->m_line);
-        pStrNames->set(i, (++it)->m_name.c_str());
+        pd[i] = it->m_line;
+        pStrNames->set_(i, (++it)->m_name.c_str());
     }
 
     out.push_back(pDblLines);
