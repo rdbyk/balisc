@@ -224,9 +224,10 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         for (int i = 0 ; i < _iRetCount ; i++)
         {
             types::Double* pOut = new types::Double(1, iValues);
+            double* pd = pOut->get();
             for (int j = 0 ; j < iValues ; j++)
             {
-                pOut->set(j, piCoord[j][i] + 1);
+                pd[j] = piCoord[j][i] + 1;
             }
             out.push_back(pOut);
         }
