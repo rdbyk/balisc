@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_fileext(types::typed_list &in, int _iRetCount, 
         wchar_t* pwstExtension  = new wchar_t[size_pwstIn];
 
         splitpathW(pwstIn, FALSE, pwstDrive, pwstDirectory, pwstName, pwstExtension);
-        pOut->set(i, pwstExtension);
+        pOut->set_(i, pwstExtension);
 
         delete[] pwstDirectory;
         delete[] pwstDrive;
