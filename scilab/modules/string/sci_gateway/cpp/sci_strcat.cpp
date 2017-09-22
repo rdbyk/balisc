@@ -115,9 +115,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
             wchar_t* src = pS->get(0);
             while (*src != L'\0')
             {
-                *dst = *src;
-                dst++;
-                src++;
+                *dst++ = *src++;
             }
             if (pwstToInsert)
             {
@@ -126,16 +124,12 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                     wchar_t* src = pwstToInsert;
                     while (*src != L'\0')
                     {
-                        *dst = *src;
-                        dst++;
-                        src++;
+                        *dst++ = *src++;
                     }
                     src = pS->get(i);
                     while (*src != L'\0')
                     {
-                        *dst = *src;
-                        dst++;
-                        src++;
+                        *dst++ = *src++;
                     }
                     
                 }
@@ -147,16 +141,14 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                     wchar_t* src = pS->get(i);
                     while (*src != L'\0')
                     {
-                        *dst = *src;
-                        dst++;
-                        src++;
+                        *dst++ = *src++;
                     }
                     
                 }
             }
             *dst = L'\0';
             
-            pOut->set(0, pwstOut);
+            pOut->set_(0, pwstOut);
             FREE(pwstOut);
         }
         break;
@@ -183,9 +175,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 wchar_t* src = pS->get(0, i);
                 while (*src != L'\0')
                 {
-                    *dst = *src;
-                    dst++;
-                    src++;
+                    *dst++ = *src++;
                 }
                 if (pwstToInsert)
                 {
@@ -194,16 +184,12 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                         wchar_t* src = pwstToInsert;
                         while (*src != L'\0')
                         {
-                            *dst = *src;
-                            dst++;
-                            src++;
+                            *dst++ = *src++;
                         }
                         src = pS->get(j, i);
                         while (*src != L'\0')
                         {
-                            *dst = *src;
-                            dst++;
-                            src++;
+                            *dst++ = *src++;
                         }
                         
                     }
@@ -215,16 +201,14 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                         wchar_t* src = pS->get(j, i);
                         while (*src != L'\0')
                         {
-                            *dst = *src;
-                            dst++;
-                            src++;
+                            *dst++ = *src++;
                         }
                         
                     }
                 }
                 *dst = L'\0';
                 
-                pOut->set(0, i, pwstOut);
+                pOut->set_(i, pwstOut);
                 FREE(pwstOut);
             }
             break;
@@ -252,9 +236,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 wchar_t* src = pS->get(i, 0);
                 while (*src != L'\0')
                 {
-                    *dst = *src;
-                    dst++;
-                    src++;
+                    *dst++ = *src++;
                 }
                 if (pwstToInsert)
                 {
@@ -263,16 +245,12 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                         wchar_t* src = pwstToInsert;
                         while (*src != L'\0')
                         {
-                            *dst = *src;
-                            dst++;
-                            src++;
+                            *dst++ = *src++;
                         }
                         src = pS->get(i, j);
                         while (*src != L'\0')
                         {
-                            *dst = *src;
-                            dst++;
-                            src++;
+                            *dst++ = *src++;
                         }
                         
                     }
@@ -284,16 +262,14 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                         wchar_t* src = pS->get(i, j);
                         while (*src != L'\0')
                         {
-                            *dst = *src;
-                            dst++;
-                            src++;
+                            *dst++ = *src++;
                         }
                         
                     }
                 }
                 *dst = L'\0';
                 
-                pOut->set(i, 0, pwstOut);
+                pOut->set_(i, pwstOut);
                 FREE(pwstOut);
             }
             break;
