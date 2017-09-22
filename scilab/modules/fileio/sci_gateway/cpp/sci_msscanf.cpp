@@ -134,7 +134,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 types::String* ps = new types::String(iNiter, 1);
                 for (int j = 0; j < iNiter; j++)
                 {
-                    ps->set(j, data[i + ncol * j].s);
+                    ps->set_(j, data[i + ncol * j].s);
                 }
 
                 IT.push_back(ps);
@@ -151,9 +151,10 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
             case SF_F:
             {
                 types::Double* p = new types::Double(iNiter, 1);
+                double* pd = p->get();
                 for (int j = 0; j < iNiter; j++)
                 {
-                    p->set(j, data[i + ncol * j].d);
+                    pd[j] = data[i + ncol * j].d;
                 }
 
                 IT.push_back(p);
@@ -198,7 +199,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 {
                     for (int j = 0; j < sizeOfString; j++)
                     {
-                        pString->set(i * sizeOfString + j, IT[i]->getAs<types::String>()->get(j));
+                        pString->set_(i * sizeOfString + j, IT[i]->getAs<types::String>()->get(j));
                     }
                 }
                 out.push_back(pString);
@@ -209,13 +210,14 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 int sizeOfDouble = IT[0]->getAs<types::Double>()->getRows();
                 int dimsArrayOfRes[2] = {sizeOfDouble, sizeOfVector};
                 types::Double* pDouble = new types::Double(2, dimsArrayOfRes);
+                double* pd = pDouble->get();
                 for (int i = 0; i < sizeOfVector; i++)
                 {
                     types::Double* pdbl = IT[i]->getAs<types::Double>();
                     double* dbl = pdbl->get();
                     for (int j = 0; j < sizeOfDouble; j++)
                     {
-                        pDouble->set(i * sizeOfDouble + j, dbl[j]);
+                        pd[i * sizeOfDouble + j] = dbl[j];
                     }
 
                     pdbl->killMe();
@@ -244,11 +246,11 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
 
                                 for (int k = 0; k < pITTemp.back()->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set(k, pITTemp.back()->getAs<types::String>()->get(k));
+                                    pType->set_(k, pITTemp.back()->getAs<types::String>()->get(k));
                                 }
                                 for (int k = 0; k < IT[i]->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set(iRows * iCols + k, IT[i]->getAs<types::String>()->get(k));
+                                    pType->set_(iRows * iCols + k, IT[i]->getAs<types::String>()->get(k));
                                 }
                                 pITTemp.pop_back();
                                 pITTemp.push_back(pType);
@@ -260,11 +262,11 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                                 int iCols               = pITTemp.back()->getAs<types::Double>()->getCols();
                                 int arrayOfType[2]      = {iRows, iCols + 1};
                                 types::Double* pType    = new types::Double(2, arrayOfType);
-
                                 pType->set(pITTemp.back()->getAs<types::Double>()->get());
+                                double* pd = pType->get();
                                 for (int k = 0; k < IT[i]->getAs<types::Double>()->getSize(); k++)
                                 {
-                                    pType->set(iRows * iCols + k, IT[i]->getAs<types::Double>()->get(k));
+                                    pd[iRows * iCols + k] = IT[i]->getAs<types::Double>()->get(k);
                                 }
                                 pITTemp.pop_back();
                                 pITTemp.push_back(pType);
