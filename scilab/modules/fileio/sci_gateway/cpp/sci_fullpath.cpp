@@ -61,7 +61,8 @@ types::Function::ReturnValue sci_fullpath(types::typed_list &in, int _iRetCount,
         char *relPath = wide_string_to_UTF8(pIn->get(i));
         if (get_full_path(fullpath, relPath, PATH_MAX * 4 ) != NULL)
         {
-            pOut->set_(i, fullpath);
+            // FIXME: use currently unavailable "set_(int, wchar_t*)"
+            pOut->set(i, fullpath);
             FREE(relPath);
         }
         else
