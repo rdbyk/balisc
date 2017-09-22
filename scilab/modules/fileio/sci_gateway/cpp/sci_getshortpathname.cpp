@@ -3,8 +3,8 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_getshortpathname(types::typed_list &in, int _iR
         }
 
         wchar_t* pwstPath = pathconvertW(tmp, flagtrail, FALSE, AUTO_STYLE);
-        pOut1->set(i, pwstPath);
+        pOut1->set_(i, pwstPath);
         FREE(pwstPath);
         FREE(tmp);
     }
