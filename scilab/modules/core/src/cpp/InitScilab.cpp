@@ -1187,8 +1187,9 @@ static void Add_z(void)
 static void Add_io(void)
 {
     types::Double * pVal = new types::Double(1, 2);
-    pVal->set(0, 5);
-    pVal->set(1, 6);
+    double* pd = pVal->get();
+    pd[0] = 5;
+    pd[1] = 6;
     symbol::Context::getInstance()->put(symbol::Symbol(L"%io"), pVal);
 }
 
