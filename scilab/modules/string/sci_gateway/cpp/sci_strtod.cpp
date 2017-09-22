@@ -76,6 +76,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
     pString = in[0]->getAs<types::String>();
 
     pOutDouble = new types::Double(pString->getDims(), pString->getDimsArray());
+    double* pd = pOutDouble->get();
     if (_iRetCount == 2)
     {
         pOutString = new types::String(pString->getDims(), pString->getDimsArray());
@@ -142,7 +143,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
             {
                 if ((pstStr[j] != ' ') && (pstStr[j] != '\t') && (pstStr[j] != '\r'))// spaces are accepted
                 {
-                    pOutDouble->set(i, dblNan);
+                    pd[i] = dblNan;
                     bStop = true;
                     pwstStop = pstStr;
                     break;
@@ -155,33 +156,33 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
                 //only spaces ?
                 if (wcslen(pstStr) == iKey) // strtod("  ")
                 {
-                    pOutDouble->set(i, dblNan);
+                    pd[i] = dblNan;
                     pwstStop = pstStr;
                 }
                 else // strtod("  000xxx")
                 {
-                    pOutDouble->set(i, os_wcstod(pstStr + iKey, &pwstStop));
+                    pd[i] = os_wcstod(pstStr + iKey, &pwstStop);
                 }
             }
         }
         else if (pstStr[0] == L'\0') //strtod("")
         {
-            pOutDouble->set(i, dblNan);
+            pd[i] = dblNan;
         }
         else //all characters are digits
         {
-            pOutDouble->set(i, os_wcstod(pstStr, &pwstStop));
+            pd[i] = os_wcstod(pstStr, &pwstStop);
         }
 
         if (_iRetCount == 2)
         {
             if (pwstStop)
             {
-                pOutString->set(i, pwstStop);
+                pOutString->set_(i, pwstStop);
             }
             else
             {
-                pOutString->set(i, L"");
+                pOutString->set_(i, L"");
             }
         }
     }
