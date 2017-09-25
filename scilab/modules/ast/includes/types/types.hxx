@@ -133,14 +133,14 @@ public :
         return NULL;
     }
 
-    virtual GenericType*        resize(int* /*_piDims*/, int /*_iDims*/)
+    virtual bool resize(int* /*_piDims*/, int /*_iDims*/)
     {
-        return NULL;
+        return false;
     }
 
-    virtual GenericType*        resize(int /*_iNewRows*/, int /*_iNewCols*/)
+    virtual bool resize(int /*_iNewRows*/, int /*_iNewCols*/)
     {
-        return NULL;
+        return false;
     }
 
     virtual bool reshape(int* /*_piDims*/, int /*_iDims*/)
