@@ -703,24 +703,22 @@ bool Struct::resize(int _iNewRows, int _iNewCols)
 bool Struct::resize(int* _piDims, int _iDims)
 {
     m_bDisableCloneInCopyValue = true;
-    Struct* pSRes = ArrayOf<SingleStruct*>::resize(_piDims, _iDims)->getAs<Struct>();
+    ArrayOf<SingleStruct*>::resize(_piDims, _iDims);
     m_bDisableCloneInCopyValue = false;
-    if (pSRes)
-    {
-        // insert field(s) only in new element(s) of current struct
-        String* pFields = getFieldNames();
-        for (int iterField = 0; iterField < pFields->getSize(); iterField++)
-        {
-            for (int iterStruct = 0; iterStruct < getSize(); iterStruct++)
-            {
-                get(iterStruct)->addField(pFields->get(iterField));
-            }
-        }
 
-        pFields->killMe();
+    // insert field(s) only in new element(s) of current struct
+    String* pFields = getFieldNames();
+    for (int iterField = 0; iterField < pFields->getSize(); iterField++)
+    {
+        for (int iterStruct = 0; iterStruct < getSize(); iterStruct++)
+        {
+            get(iterStruct)->addField(pFields->get(iterField));
+        }
     }
 
-    return (bool)pSRes;
+    pFields->killMe();
+
+    return true;
 }
 
 InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)
