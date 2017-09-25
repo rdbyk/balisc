@@ -1419,19 +1419,12 @@ bool ArrayOf<T>::reshape(int* _piDims, int _iDims)
 }
 
 template <typename T>
-ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
+bool ArrayOf<T>::resize(int* _piDims, int _iDims)
 {
-    typedef ArrayOf<T>* (ArrayOf<T>::*resize_t)(int*, int);
-    ArrayOf<T>* pIT = checkRef(this, (resize_t)&ArrayOf::resize, _piDims, _iDims);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iDims == m_iDims && memcmp(m_piDims, _piDims, sizeof(int) * m_iDims) == 0)
     {
         //nothing to do
-        return this;
+        return true;
     }
 
     //alloc new data array
@@ -1659,7 +1652,7 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
     m_iRows = m_piDims[0];
     m_iCols = m_piDims[1];
     m_iSize = iNewSize;
-    return this;
+    return true;
 }
 
 template <typename T>

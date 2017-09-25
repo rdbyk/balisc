@@ -422,7 +422,7 @@ public :
 
     virtual ArrayOf<T>* insert(typed_list* _pArgs, InternalType* _pSource);
     virtual ArrayOf<T>* append(int _iRows, int _iCols, InternalType* _poSource);
-    virtual ArrayOf<T>* resize(int* _piDims, int _iDims);
+    virtual bool resize(int* _piDims, int _iDims);
 
     // return a GenericType because of [] wich is a types::Double (can't be a ArrayOf<char>)
     virtual GenericType* remove(typed_list* _pArgs);
@@ -444,7 +444,7 @@ public :
     virtual bool reshape(int* _piDims, int _iDims);
 
 
-    virtual ArrayOf<T>* resize(int _iNewRows, int _iNewCols)
+    virtual bool resize(int _iNewRows, int _iNewCols)
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return resize(piDims, 2);
