@@ -215,15 +215,8 @@ public :
         deleteData(tNullVal);
     }
 
-    virtual ArrayOf<T>* setComplex(bool _bComplex)
+    virtual void setComplex(bool _bComplex)
     {
-        typedef ArrayOf<T>* (ArrayOf<T>::*setcplx_t)(bool);
-        ArrayOf<T>* pIT = checkRef(this, (setcplx_t)&ArrayOf<T>::setComplex, _bComplex);
-        if (pIT != this)
-        {
-            return pIT;
-        }
-
         if (_bComplex == false)
         {
             if (m_pImgData != NULL)
@@ -239,8 +232,6 @@ public :
                 memset(m_pImgData, 0x00, sizeof(T) * m_iSize);
             }
         }
-
-        return this;
     }
 
     virtual ArrayOf<T>* set(int _iPos, const T _data)
