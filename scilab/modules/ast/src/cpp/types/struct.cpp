@@ -427,14 +427,8 @@ bool Struct::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, 
     return true;
 }
 
-Struct* Struct::addField(const std::wstring& _sKey)
+void Struct::addField(const std::wstring& _sKey)
 {
-    Struct* pIT = checkRef(this, &Struct::addField, _sKey);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (getSize() == 0)
     {
         //change dimension to 1x1 and add field
@@ -445,18 +439,10 @@ Struct* Struct::addField(const std::wstring& _sKey)
     {
         get(i)->addField(_sKey);
     }
-
-    return this;
 }
 
-Struct* Struct::addFieldFront(const std::wstring& _sKey)
+void Struct::addFieldFront(const std::wstring& _sKey)
 {
-    Struct* pIT = checkRef(this, &Struct::addFieldFront, _sKey);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (getSize() == 0)
     {
         //change dimension to 1x1 and add field
@@ -467,24 +453,14 @@ Struct* Struct::addFieldFront(const std::wstring& _sKey)
     {
         get(i)->addFieldFront(_sKey);
     }
-
-    return this;
 }
 
-Struct* Struct::removeField(const std::wstring& _sKey)
+void Struct::removeField(const std::wstring& _sKey)
 {
-    Struct* pIT = checkRef(this, &Struct::removeField, _sKey);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     for (int j = 0; j < getSize(); j++)
     {
         get(j)->removeField(_sKey);
     }
-
-    return this;
 }
 
 bool Struct::toString(std::wostringstream& ostr)
