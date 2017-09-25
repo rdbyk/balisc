@@ -2985,9 +2985,8 @@ SparseBool* Sparse::newEqualTo(Sparse &o)
     return ret;
 }
 
-Sparse* Sparse::reshape(int* _piDims, int _iDims)
+bool Sparse::reshape(int* _piDims, int _iDims)
 {
-    Sparse* pSp = NULL;
     int iCols = 1;
 
     if (_iDims == 2)
@@ -2997,24 +2996,17 @@ Sparse* Sparse::reshape(int* _piDims, int _iDims)
 
     if (_iDims <= 2)
     {
-        pSp = reshape(_piDims[0], iCols);
+        return reshape(_piDims[0], iCols);
     }
 
-    return pSp;
+    return false;
 }
 
-Sparse* Sparse::reshape(int _iNewRows, int _iNewCols)
+bool Sparse::reshape(int _iNewRows, int _iNewCols)
 {
-    typedef Sparse* (Sparse::*reshape_t)(int, int);
-    Sparse* pIT = checkRef(this, (reshape_t)&Sparse::reshape, _iNewRows, _iNewCols);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iNewRows * _iNewCols != getRows() * getCols())
     {
-        return NULL;
+        return false;
     }
 
     Sparse* res = NULL;
@@ -3102,7 +3094,7 @@ Sparse* Sparse::reshape(int _iNewRows, int _iNewCols)
     {
         res = NULL;
     }
-    return res;
+    return (bool)res;
 }
 
 //    SparseBool* SparseBool::new
@@ -4430,9 +4422,8 @@ SparseBool* SparseBool::newLogicalAnd(SparseBool const&o) const
     return cwiseOp<std::logical_and>(*this, o);
 }
 
-SparseBool* SparseBool::reshape(int* _piDims, int _iDims)
+bool SparseBool::reshape(int* _piDims, int _iDims)
 {
-    SparseBool* pSpBool = NULL;
     int iCols = 1;
 
     if (_iDims == 2)
@@ -4442,24 +4433,17 @@ SparseBool* SparseBool::reshape(int* _piDims, int _iDims)
 
     if (_iDims <= 2)
     {
-        pSpBool = reshape(_piDims[0], iCols);
+        return reshape(_piDims[0], iCols);
     }
 
-    return pSpBool;
+    return false;
 }
 
-SparseBool* SparseBool::reshape(int _iNewRows, int _iNewCols)
+bool SparseBool::reshape(int _iNewRows, int _iNewCols)
 {
-    typedef SparseBool* (SparseBool::*reshape_t)(int, int);
-    SparseBool* pIT = checkRef(this, (reshape_t)&SparseBool::reshape, _iNewRows, _iNewCols);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iNewRows * _iNewCols != getRows() * getCols())
     {
-        return NULL;
+        return false;
     }
 
     SparseBool* res = NULL;
@@ -4505,7 +4489,7 @@ SparseBool* SparseBool::reshape(int _iNewRows, int _iNewCols)
     {
         res = NULL;
     }
-    return res;
+    return (bool)res;
 }
 
 bool SparseBool::transpose(InternalType *& out)

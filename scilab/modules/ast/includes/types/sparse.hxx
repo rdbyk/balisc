@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -164,8 +164,8 @@ struct EXTERN_AST Sparse : GenericType
        @param _iNewDims new size for each dimension
        @return true upon succes, false otherwise.
     */
-    Sparse* reshape(int* _piNewDims, int _iNewDims);
-    Sparse* reshape(int _iNewRows, int _iNewCols);
+    bool reshape(int* _piNewDims, int _iNewDims);
+    bool reshape(int _iNewRows, int _iNewCols);
     /*
       insert _iSeqCount elements from _poSource at coords given by _piSeqCoord (max in _piMaxDim).
       coords are considered 1D if _bAsVector, 2D otherwise.
@@ -522,8 +522,8 @@ struct EXTERN_AST SparseBool : GenericType
     SparseBool* clone(void);
 
     SparseBool* resize(int _iNewRows, int _iNewCols);
-    SparseBool* reshape(int* _piNewDims, int _iNewDims);
-    SparseBool* reshape(int _iNewRows, int _iNewCols);
+    bool reshape(int* _piNewDims, int _iNewDims);
+    bool reshape(int _iNewRows, int _iNewCols);
     SparseBool* insert(typed_list* _pArgs, InternalType* _pSource);
     SparseBool* append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
 
