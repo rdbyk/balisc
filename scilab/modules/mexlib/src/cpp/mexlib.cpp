@@ -63,6 +63,7 @@
 #include "printvisitor.hxx"
 
 #include "types.hxx"
+#include "internal.hxx"
 #include "int.hxx"
 #include "double.hxx"
 #include "bool.hxx"
@@ -1005,9 +1006,9 @@ void mxSetM(mxArray *ptr, int M)
         return;
     }
 
-    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+    types::GenericType *res = pIT->copyAs<types::GenericType>();
+    res->resize(M, res->getCols());
 
-    types::InternalType* res = pGT->resize(M, pGT->getCols());
     ptr->ptr = (int*)res;
 }
 
@@ -1031,9 +1032,9 @@ void mxSetN(mxArray *ptr, int N)
         return;
     }
 
-    types::GenericType * pGT = pIT->getAs<types::GenericType>();
+    types::GenericType* res = pIT->copyAs<types::GenericType>();
+    res->resize(res->getRows(), N);
 
-    types::InternalType* res = pGT->resize(pGT->getRows(), N);
     ptr->ptr = (int*)res;
 }
 
