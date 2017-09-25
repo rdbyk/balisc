@@ -435,13 +435,13 @@ public :
     virtual int getInvokeNbIn();
     virtual int getInvokeNbOut();
 
-    virtual ArrayOf<T>* reshape(int _iNewRows, int _iNewCols)
+    virtual bool reshape(int _iNewRows, int _iNewCols)
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return reshape(piDims, 2);
     }
 
-    virtual ArrayOf<T>* reshape(int* _piDims, int _iDims);
+    virtual bool reshape(int* _piDims, int _iDims);
 
 
     virtual ArrayOf<T>* resize(int _iNewRows, int _iNewCols)

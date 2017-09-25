@@ -1382,19 +1382,12 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 }
 
 template <typename T>
-ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
+bool ArrayOf<T>::reshape(int* _piDims, int _iDims)
 {
-    typedef ArrayOf<T>* (ArrayOf<T>::*reshape_t)(int*, int);
-    ArrayOf<T>* pIT = checkRef(this, (reshape_t)&ArrayOf<T>::reshape, _piDims, _iDims);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     int iNewSize = get_max_size(_piDims, _iDims);
     if (iNewSize != m_iSize)
     {
-        return NULL;
+        return false;
     }
 
     for (int i = 0 ; i < _iDims ; i++)
@@ -1422,7 +1415,7 @@ ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
     m_iSize = iNewSize;
     m_iDims = _iDims;
 
-    return this;
+    return true;
 }
 
 template <typename T>
