@@ -244,14 +244,14 @@ public :
         return _pIT;
     }
 
-    template <typename T>
-    T* copy(T* _pIT)
+    template <class T>
+    inline T* copyAs(void)
     {
         if (getRef() > 1)
         {
-            return _pIT->clone()->template getAs<T>();
+            return static_cast<T*>(this->clone());
         }
-        return _pIT;
+        return static_cast<T*>(this);
     }
 
 #ifdef _SCILAB_DEBUGREF_
