@@ -992,8 +992,10 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                     }
 
+                    // copy current struct (if necessary it gets cloned!)
+                    pStruct = pStruct->copyAs<types::Struct>();
                     // resize current struct
-                    pStruct = pStruct->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                    pStruct->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
                     pEH->setCurrent(pStruct);
                 }
 
@@ -1441,8 +1443,10 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                                 }
 
+                                // copy current Cell
+                                pCell = pCell->copyAs<types::GenericType>();
                                 // resize current Cell
-                                pCell = pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                                pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
                                 pEH->setCurrent(pCell);
                             }
 
@@ -1466,10 +1470,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                     os << _W("Invalid index.\n");
                                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                                 }
-
+                                // copy current Cell
+                                pCell = pCell->copyAs<types::GenericType>();
                                 // resize current Cell
-                                pCell = pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims())->getAs<types::Cell>();
-                                pEH->setCurrent(pCell);
+                                pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                                pEH->setCurrent(pCell->getAs<types::Cell>());
                             }
 
                             types::InternalType* pIT = pCell->extract(pEH->getArgs());
