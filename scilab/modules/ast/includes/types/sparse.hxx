@@ -154,7 +154,7 @@ struct EXTERN_AST Sparse : GenericType
        @param _iNewCols new minimum nb of cols
        @return true upon succes, false otherwise.
      */
-    Sparse* resize(int _iNewRows, int _iNewCols);
+    bool resize(int _iNewRows, int _iNewCols);
     /* post condition: new total size must be equal to the old size.
                        Two dimensions maximum.
 
@@ -521,7 +521,7 @@ struct EXTERN_AST SparseBool : GenericType
     /* Config management and GenericType methods overrides */
     SparseBool* clone(void);
 
-    SparseBool* resize(int _iNewRows, int _iNewCols);
+    bool resize(int _iNewRows, int _iNewCols);
     bool reshape(int* _piNewDims, int _iNewDims);
     bool reshape(int _iNewRows, int _iNewCols);
     SparseBool* insert(typed_list* _pArgs, InternalType* _pSource);

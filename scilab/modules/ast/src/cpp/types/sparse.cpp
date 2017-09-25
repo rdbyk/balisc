@@ -823,19 +823,12 @@ bool Sparse::toString(std::wostringstream& ostr)
     return true;
 }
 
-Sparse* Sparse::resize(int _iNewRows, int _iNewCols)
+bool Sparse::resize(int _iNewRows, int _iNewCols)
 {
-    typedef Sparse* (Sparse::*resize_t)(int, int);
-    Sparse* pIT = checkRef(this, (resize_t)&Sparse::resize, _iNewRows, _iNewCols);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iNewRows <= getRows() && _iNewCols <= getCols())
     {
         //nothing to do: hence we do NOT fail
-        return this;
+        return true;
     }
 
     Sparse* res = NULL;
@@ -918,7 +911,7 @@ Sparse* Sparse::resize(int _iNewRows, int _iNewCols)
     {
         res = NULL;
     }
-    return res;
+    return (bool)res;
 }
 // TODO decide if a complex matrix with 0 imag can be == to a real matrix
 // not true for dense (cf double.cpp)
@@ -3264,19 +3257,12 @@ SparseBool* SparseBool::clone(void)
     return new SparseBool(*this);
 }
 
-SparseBool* SparseBool::resize(int _iNewRows, int _iNewCols)
+bool SparseBool::resize(int _iNewRows, int _iNewCols)
 {
-    typedef SparseBool* (SparseBool::*resize_t)(int, int);
-    SparseBool* pIT = checkRef(this, (resize_t)&SparseBool::resize, _iNewRows, _iNewCols);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iNewRows <= getRows() && _iNewCols <= getCols())
     {
         //nothing to do: hence we do NOT fail
-        return this;
+        return true;
     }
 
     SparseBool* res = NULL;
@@ -3318,7 +3304,7 @@ SparseBool* SparseBool::resize(int _iNewRows, int _iNewCols)
     {
         res = NULL;
     }
-    return res;
+    return (bool)res;
 }
 
 SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
