@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __STRUCT_HXX__
 #define __STRUCT_HXX__
@@ -115,8 +115,8 @@ public :
     std::vector<InternalType*>  extractFields(typed_list* _pArgs);
     InternalType *              extractField(const std::wstring& wstField);
 
-    Struct*                     resize(int* _piDims, int _iDims);
-    Struct*                     resize(int _iNewRows, int _iNewCols);
+    bool resize(int* _piDims, int _iDims);
+    bool resize(int _iNewRows, int _iNewCols);
 
     /*specials functions to disable clone operation during copydata*/
     InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);

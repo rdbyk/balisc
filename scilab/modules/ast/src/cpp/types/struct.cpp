@@ -694,21 +694,14 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
     return ResultList;
 }
 
-Struct* Struct::resize(int _iNewRows, int _iNewCols)
+bool Struct::resize(int _iNewRows, int _iNewCols)
 {
     int piDims[2] = {_iNewRows, _iNewCols};
     return resize(piDims, 2);
 }
 
-Struct* Struct::resize(int* _piDims, int _iDims)
+bool Struct::resize(int* _piDims, int _iDims)
 {
-    typedef Struct* (Struct::*resize_t)(int*, int);
-    Struct* pIT = checkRef(this, (resize_t)&Struct::resize, _piDims, _iDims);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     m_bDisableCloneInCopyValue = true;
     Struct* pSRes = ArrayOf<SingleStruct*>::resize(_piDims, _iDims)->getAs<Struct>();
     m_bDisableCloneInCopyValue = false;
@@ -727,7 +720,7 @@ Struct* Struct::resize(int* _piDims, int _iDims)
         pFields->killMe();
     }
 
-    return pSRes;
+    return (bool)pSRes;
 }
 
 InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)
