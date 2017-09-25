@@ -244,7 +244,15 @@ public :
         return _pIT;
     }
 
-
+    template <typename T>
+    T* copy(T* _pIT)
+    {
+        if (getRef() > 1)
+        {
+            return _pIT->clone()->template getAs<T>();
+        }
+        return _pIT;
+    }
 
 #ifdef _SCILAB_DEBUGREF_
     inline void _killme(const char * f, int l)
