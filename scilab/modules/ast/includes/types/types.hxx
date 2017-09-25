@@ -143,14 +143,14 @@ public :
         return NULL;
     }
 
-    virtual GenericType*        reshape(int* /*_piDims*/, int /*_iDims*/)
+    virtual bool reshape(int* /*_piDims*/, int /*_iDims*/)
     {
-        return NULL;
+        return false;
     }
 
-    virtual GenericType*        reshape(int /*_iNewRows*/, int /*_iNewCols*/)
+    virtual bool reshape(int /*_iNewRows*/, int /*_iNewCols*/)
     {
-        return NULL;
+        return false;
     }
 
     virtual GenericType*        insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
