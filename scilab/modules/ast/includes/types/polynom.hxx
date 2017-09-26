@@ -91,9 +91,9 @@ public :
     void                    setZeros();
     Polynom*                insert(typed_list* _pArgs, InternalType* _pSource);
 
-    Polynom*                set(int _iPos, SinglePoly* _pS);
-    Polynom*                set(int _iRows, int _iCols, SinglePoly* _pS);
-    Polynom*                set(SinglePoly** _pS);
+    bool set(int _iPos, SinglePoly* _pS);
+    bool set(int _iRows, int _iCols, SinglePoly* _pS);
+    bool set(SinglePoly** _pS);
 
     std::wstring            getRowString(int* _piDims, int _iDims, bool _bComplex);
     std::wstring            getColString(int* _piDims, int _iDims, bool _bComplex);
