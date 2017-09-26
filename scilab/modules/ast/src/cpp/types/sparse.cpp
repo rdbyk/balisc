@@ -1174,7 +1174,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == NULL)
+        if (resize(iNewRows, iNewCols) == false)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -1597,7 +1597,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == NULL)
+        if (resize(iNewRows, iNewCols) == false)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -3369,7 +3369,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == NULL)
+        if (resize(iNewRows, iNewCols) == false)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -3520,7 +3520,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == NULL)
+        if (resize(iNewRows, iNewCols) == false)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
