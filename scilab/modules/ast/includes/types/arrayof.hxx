@@ -234,42 +234,28 @@ public :
         }
     }
 
-    virtual ArrayOf<T>* set(int _iPos, const T _data)
+    virtual bool set(int _iPos, const T _data)
     {
         if (m_pRealData == NULL || _iPos >= m_iSize)
         {
-            return NULL;
-        }
-
-        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(int, T);
-        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _iPos, _data);
-        if (pIT != this)
-        {
-            return pIT;
+            return false;
         }
 
         deleteData(m_pRealData[_iPos]);
         m_pRealData[_iPos] = copyValue(_data);
-        return this;
+        return true;
     }
 
-    virtual ArrayOf<T>* set(int _iRows, int _iCols, const T _data)
+    virtual bool set(int _iRows, int _iCols, const T _data)
     {
         return set(_iCols * getRows() + _iRows, _data);
     }
 
-    virtual ArrayOf<T>* set(T* _pdata)
+    virtual bool set(T* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return NULL;
-        }
-
-        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(T*);
-        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
+            return false;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -277,21 +263,14 @@ public :
             deleteData(m_pRealData[i]);
             m_pRealData[i] = copyValue(_pdata[i]);
         }
-        return this;
+        return true;
     }
 
-    virtual ArrayOf<T>* set(const T* _pdata)
+    virtual bool set(const T* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return NULL;
-        }
-
-        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(const T*);
-        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
+            return false;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -300,7 +279,7 @@ public :
             m_pRealData[i] = copyValue(_pdata[i]);
         }
 
-        return this;
+        return true;
     }
 
     inline T* get() const
