@@ -331,17 +331,11 @@ InternalType* List::get(const int _iIndex)
     return NULL;
 }
 
-List* List::set(const int _iIndex, InternalType* _pIT)
+bool List::set(const int _iIndex, InternalType* _pIT)
 {
     if (_iIndex < 0)
     {
-        return NULL;
-    }
-
-    List* pIT = checkRef(this, &List::set, _iIndex, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
+        return false;
     }
 
     while ((int)m_plData->size() < _iIndex)
@@ -373,7 +367,7 @@ List* List::set(const int _iIndex, InternalType* _pIT)
         }
     }
 
-    return this;
+    return true;
 }
 
 bool List::operator==(const InternalType& it)

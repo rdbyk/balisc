@@ -116,7 +116,7 @@ public :
     }
 
     virtual InternalType*           get(const int _iIndex);
-    virtual List*                   set(const int _iIndex, InternalType* _pIT);
+    virtual bool set(const int _iIndex, InternalType* _pIT);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring            getTypeStr() const
