@@ -721,14 +721,8 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 }
 
 template <typename T>
-ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
+bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
 {
-    ArrayOf<T>* pIT = checkRef(this, &ArrayOf::append, _iRows, _iCols, _poSource);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     ArrayOf * pGT = _poSource->getAs<ArrayOf>();
     int iRows = pGT->getRows();
     int iCols = pGT->getCols();
@@ -736,7 +730,7 @@ ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     //insert without resize
     if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
     {
-        return NULL;
+        return false;
     }
 
     //Update complexity if necessary
@@ -774,7 +768,7 @@ ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
         }
     }
 
-    return this;
+    return true;
 }
 
 template <typename T>
