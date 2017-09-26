@@ -614,18 +614,11 @@ void Sparse::fill(Double& dest, int r, int c) SPARSE_CONST
     }
 }
 
-Sparse* Sparse::set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize)
+bool Sparse::set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize)
 {
     if (_iRows >= getRows() || _iCols >= getCols())
     {
-        return NULL;
-    }
-
-    typedef Sparse* (Sparse::*set_t)(int, int, std::complex<double>, bool);
-    Sparse* pIT = checkRef(this, (set_t)&Sparse::set, _iRows, _iCols, v, _bFinalize);
-    if (pIT != this)
-    {
-        return pIT;
+        return false;
     }
 
     if (matrixReal)
@@ -651,21 +644,14 @@ Sparse* Sparse::set(int _iRows, int _iCols, std::complex<double> v, bool _bFinal
     {
         finalize();
     }
-    return this;
+    return true;
 }
 
-Sparse* Sparse::set(int _iRows, int _iCols, double _dblReal, bool _bFinalize)
+bool Sparse::set(int _iRows, int _iCols, double _dblReal, bool _bFinalize)
 {
     if (_iRows >= getRows() || _iCols >= getCols())
     {
-        return NULL;
-    }
-
-    typedef Sparse* (Sparse::*set_t)(int, int, double, bool);
-    Sparse* pIT = checkRef(this, (set_t)&Sparse::set, _iRows, _iCols, _dblReal, _bFinalize);
-    if (pIT != this)
-    {
-        return pIT;
+        return false;
     }
 
     if (matrixReal)
@@ -693,7 +679,7 @@ Sparse* Sparse::set(int _iRows, int _iCols, double _dblReal, bool _bFinalize)
         finalize();
     }
 
-    return this;
+    return true;
 }
 
 void Sparse::finalize()
@@ -4268,15 +4254,8 @@ bool SparseBool::get(int r, int c) SPARSE_CONST
     return matrixBool->coeff(r, c);
 }
 
-SparseBool* SparseBool::set(int _iRows, int _iCols, bool _bVal, bool _bFinalize) SPARSE_CONST
+bool SparseBool::set(int _iRows, int _iCols, bool _bVal, bool _bFinalize) SPARSE_CONST
 {
-    typedef SparseBool* (SparseBool::*set_t)(int, int, bool, bool);
-    SparseBool* pIT = checkRef(this, (set_t)&SparseBool::set, _iRows, _iCols, _bVal, _bFinalize);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (matrixBool->isCompressed() && matrixBool->coeff(_iRows, _iCols) == false)
     {
         matrixBool->reserve(1);
@@ -4289,7 +4268,7 @@ SparseBool* SparseBool::set(int _iRows, int _iCols, bool _bVal, bool _bFinalize)
         finalize();
     }
 
-    return this;
+    return true;
 }
 
 void SparseBool::fill(Bool& dest, int r, int c) SPARSE_CONST
