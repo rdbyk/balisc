@@ -285,12 +285,12 @@ std::wstring TList::getShortTypeStr() const
 
 bool TList::set(const std::wstring& _sKey, InternalType* _pIT)
 {
-    return List::set(getIndexFromString(_sKey), _pIT)->getAs<TList>();
+    return List::set(getIndexFromString(_sKey), _pIT);
 }
 
 bool TList::set(const int _iIndex, InternalType* _pIT)
 {
-    return List::set(_iIndex, _pIT)->getAs<TList>();
+    return List::set(_iIndex, _pIT);
 }
 
 String* TList::getFieldNames() const
