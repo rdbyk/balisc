@@ -69,11 +69,11 @@ public :
     */
     Struct*                     clone();
 
-    Struct*                     set(int _iRows, int _iCols, SingleStruct* _pIT);
-    Struct*                     set(int _iRows, int _iCols, const SingleStruct* _pIT);
-    Struct*                     set(int _iIndex, SingleStruct* _pIT);
-    Struct*                     set(int _iIndex, const SingleStruct* _pIT);
-    Struct*                     set(SingleStruct** _pIT);
+    bool set(int _iRows, int _iCols, SingleStruct* _pIT);
+    bool set(int _iRows, int _iCols, const SingleStruct* _pIT);
+    bool set(int _iIndex, SingleStruct* _pIT);
+    bool set(int _iIndex, const SingleStruct* _pIT);
+    bool set(SingleStruct** _pIT);
 
     bool                        operator==(const InternalType& it);
     bool                        operator!=(const InternalType& it);
