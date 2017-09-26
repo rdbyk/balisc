@@ -185,7 +185,7 @@ struct EXTERN_AST Sparse : GenericType
        @param _iCols col to append from
        @param _poSource src data to append
      */
-    Sparse* append(int r, int c, types::Sparse SPARSE_CONST* src);
+    bool append(int r, int c, types::Sparse SPARSE_CONST* src);
 
     /*
       extract a submatrix
@@ -525,7 +525,7 @@ struct EXTERN_AST SparseBool : GenericType
     bool reshape(int* _piNewDims, int _iNewDims);
     bool reshape(int _iNewRows, int _iNewCols);
     SparseBool* insert(typed_list* _pArgs, InternalType* _pSource);
-    SparseBool* append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
+    bool append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
 
     GenericType* remove(typed_list* _pArgs);
     GenericType* insertNew(typed_list* _pArgs);
