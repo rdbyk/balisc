@@ -626,7 +626,7 @@ String* String::set_(int _iRows, int _iCols, const wchar_t* _pwstData)
     return set_(_iCols * getRows() + _iRows, _pwstData);
 }
 
-String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
+bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
 {
     return set(_iCols * getRows() + _iRows, _pwstData);
 }
