@@ -609,21 +609,16 @@ String* String::set_(int _iPos, const wchar_t* _pwstData)
     return this;
 }
 
-String* String::set(int _iPos, const wchar_t* _pwstData)
+bool String::set(int _iPos, const wchar_t* _pwstData)
 {
     if (m_pRealData == NULL || _iPos >= m_iSize)
     {
-        return NULL;
+        return false;
     }
 
-    typedef String* (String::*set_t)(int, const wchar_t*);
-    String* pIT = checkRef(this, (set_t)&String::set_, _iPos, _pwstData);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
-    return set_(_iPos, _pwstData);
+    deleteString(_iPos);
+    m_pRealData[_iPos] = copyValue(_pwstData);
+    return true;
 }
 
 String* String::set_(int _iRows, int _iCols, const wchar_t* _pwstData)
@@ -636,17 +631,11 @@ String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
     return set(_iCols * getRows() + _iRows, _pwstData);
 }
 
-String* String::set(const wchar_t* const* _pwstData)
+bool String::set(const wchar_t* const* _pwstData)
 {
-    typedef String* (String::*set_t)(const wchar_t * const*);
-    String* pIT = checkRef(this, (set_t)&String::set, _pwstData);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     int i = m_iSize;
 
+    // FIXME: check m_pRealData more effeciently?
     while (i && m_pRealData)
     {
         --i;
@@ -656,47 +645,40 @@ String* String::set(const wchar_t* const* _pwstData)
 
     if (i)
     {
-        return NULL;
+        return false;
     }
     else
     {
-        return this;
+        return true;
     }
 }
 
-String* String::set(int _iPos, const char* _pcData)
+bool String::set(int _iPos, const char* _pcData)
 {
     wchar_t* w = to_wide_string(_pcData);
-    String* ret = set(_iPos, w);
+    bool ret = set(_iPos, w);
     FREE(w);
     return ret;
 }
 
-String* String::set(int _iRows, int _iCols, const char* _pcData)
+bool String::set(int _iRows, int _iCols, const char* _pcData)
 {
     return set(_iCols * getRows() + _iRows, _pcData);
 }
 
-String* String::set(const char* const* _pstrData)
+bool String::set(const char* const* _pstrData)
 {
-    typedef String* (String::*set_t)(const char * const*);
-    String* pIT = checkRef(this, (set_t)&String::set, _pstrData);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     int i = m_iSize;
 
     while (i-- && set(i, _pstrData[i]));
 
     if (++i) // revert decrement
     {
-        return NULL;
+        return false;
     }
     else
     {
-        return this;
+        return true;
     }
 }
 
