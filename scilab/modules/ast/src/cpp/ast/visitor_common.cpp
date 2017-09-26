@@ -995,7 +995,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     // copy current struct (if necessary it gets cloned!)
                     pStruct = pStruct->copyAs<types::Struct>();
                     // resize current struct
-                    pStruct->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                    // FIXME: is this check really needed?
+                    if (pStruct->resize(pEH->getArgsDimsArray(), pEH->getArgsDims()) == false)
+                    {
+                        pStruct = NULL;
+                    }
                     pEH->setCurrent(pStruct);
                 }
 
@@ -1102,7 +1106,12 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         int iNewSize = pEH->getSizeFromArgs();
                         if (pTL->getSize() < iNewSize)
                         {
-                            pTL = pTL->set(iNewSize - 1, new types::ListUndefined());
+                            pTL = pTL->copyAs<types::TList>();
+                            // FIXME: is this check really needed?
+                            if (pTL->set(iNewSize - 1, new types::ListUndefined()) == false)
+                            {
+                                pTL = NULL;
+                            }
                             pEH->setCurrent(pTL);
                         }
 
@@ -1258,7 +1267,12 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             int iNewSize = pEH->getSizeFromArgs();
                             if (pL->getSize() < iNewSize)
                             {
-                                pL = pL->set(iNewSize - 1, new types::ListUndefined());
+                                pL = pL->copyAs<types::List>();
+                                // FIXME: is this check really needed?
+                                if(pL->set(iNewSize - 1, new types::ListUndefined()) == false)
+                                {
+                                    pL = NULL;
+                                }
                                 pEH->setCurrent(pL);
                             }
 
@@ -1447,7 +1461,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 // copy current Cell
                                 pCell = pCell->copyAs<types::GenericType>();
                                 // resize current Cell
-                                pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                                // FIXME: is this check really needed?
+                                if (pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims()) == false)
+                                {
+                                    pCell = NULL;
+                                }
                                 pEH->setCurrent(pCell);
                             }
 
@@ -1474,7 +1492,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 // copy current Cell
                                 pCell = pCell->copyAs<types::GenericType>();
                                 // resize current Cell
-                                pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                                // FIXME: is this check really needed?
+                                if (pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims()) == false)
+                                {
+                                    pCell = NULL;
+                                }
                                 pEH->setCurrent(pCell->getAs<types::Cell>());
                             }
 
@@ -1719,7 +1741,12 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         types::TList* pTL = pParent->getAs<types::TList>();
                         if (pParentArgs)
                         {
-                            pTL = pTL->set(pEH->getWhereReinsert(), pEH->getCurrent());
+                            pTL = pTL->copyAs<types::TList>();
+                            // FIXME: is this check really needed?
+                            if (pTL->set(pEH->getWhereReinsert(), pEH->getCurrent()) == false)
+                            {
+                                pTL = NULL;
+                            }
                             pEHParent->setCurrent(pTL);
                             evalFields.pop_back();
                             delete pEH;
@@ -1729,7 +1756,12 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         {
                             if (pTL->exists(pEH->getExpAsString()))
                             {
-                                pTL = pTL->set(pEH->getExpAsString(), pEH->getCurrent());
+                                pTL = pTL->copyAs<types::TList>();
+                                // FIXME: is this check really needed?
+                                if (pTL->set(pEH->getExpAsString(), pEH->getCurrent()) == false)
+                                {
+                                    pTL = NULL;
+                                }
                                 pEHParent->setCurrent(pTL);
                                 evalFields.pop_back();
                                 delete pEH;
@@ -2185,7 +2217,9 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 
                     if (pTL->exists(pS->get(0)))
                     {
-                        pRet = pTL->set(pS->get(0), _pInsert);
+                        pRet = pTL->copyAs<types::InternalType>();
+                        // FIXME: is this check really needed?
+                        pRet = pTL->set(pS->get(0), _pInsert) ? pTL : NULL;
                     }
                     else
                     {
