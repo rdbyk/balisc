@@ -602,11 +602,10 @@ void String::deleteData(wchar_t* data)
     }
 }
 
-String* String::set_(int _iPos, const wchar_t* _pwstData)
+void String::set_(int _iPos, const wchar_t* _pwstData)
 {
     deleteString(_iPos);
     m_pRealData[_iPos] = copyValue(_pwstData);
-    return this;
 }
 
 bool String::set(int _iPos, const wchar_t* _pwstData)
@@ -621,9 +620,9 @@ bool String::set(int _iPos, const wchar_t* _pwstData)
     return true;
 }
 
-String* String::set_(int _iRows, int _iCols, const wchar_t* _pwstData)
+void String::set_(int _iRows, int _iCols, const wchar_t* _pwstData)
 {
-    return set_(_iCols * getRows() + _iRows, _pwstData);
+    set_(_iCols * getRows() + _iRows, _pwstData);
 }
 
 bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)

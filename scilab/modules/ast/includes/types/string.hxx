@@ -48,8 +48,8 @@ public :
 
     void                    whoAmI();
 
-    virtual String* set_(int _iPos, const wchar_t* _pwstData);
-    virtual String* set_(int _iRows, int _iCols, const wchar_t* _pwstData);
+    void set_(int _iPos, const wchar_t* _pwstData);
+    void set_(int _iRows, int _iCols, const wchar_t* _pwstData);
 
     virtual bool set(int _iPos, const wchar_t* _pwstData);
     virtual bool set(int _iRows, int _iCols, const wchar_t* _pwstData);
