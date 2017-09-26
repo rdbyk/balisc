@@ -302,42 +302,28 @@ public :
     }
 
     /*internal function to manage img part*/
-    ArrayOf<T>* setImg(int _iPos, T _data)
+    bool setImg(int _iPos, T _data)
     {
         if (m_pImgData == NULL || _iPos >= m_iSize)
         {
-            return NULL;
-        }
-
-        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(int, T);
-        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _iPos, _data);
-        if (pIT != this)
-        {
-            return pIT;
+            return false;
         }
 
         m_pImgData[_iPos] = copyValue(_data);
-        return this;
+        return true;
     }
 
 
-    ArrayOf<T>* setImg(int _iRows, int _iCols, T _data)
+    bool setImg(int _iRows, int _iCols, T _data)
     {
         return setImg(_iCols * getRows() + _iRows, copyValue(_data));
     }
 
-    ArrayOf<T>* setImg(T* _pdata)
+    bool setImg(T* _pdata)
     {
         if (m_pImgData == NULL)
         {
-            return NULL;
-        }
-
-        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(T*);
-        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
+            return false;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -345,22 +331,15 @@ public :
             m_pImgData[i] = copyValue(_pdata[i]);
         }
 
-        return this;
+        return true;
     }
 
 
-    ArrayOf<T>* setImg(const T* _pdata)
+    bool setImg(const T* _pdata)
     {
         if (m_pImgData == NULL)
         {
-            return NULL;
-        }
-
-        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(const T*);
-        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
+            return false;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -368,7 +347,7 @@ public :
             m_pImgData[i] = copyValue(_pdata[i]);
         }
 
-        return this;
+        return true;
     }
 
     inline T* getImg() const
