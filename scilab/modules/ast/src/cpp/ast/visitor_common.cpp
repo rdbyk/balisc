@@ -1100,12 +1100,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         int iNewSize = pEH->getSizeFromArgs();
                         if (pTL->getSize() < iNewSize)
                         {
-                            pTL = pTL->copyAs<types::TList>();
-                            // FIXME: is this check really needed?
-                            if (pTL->set(iNewSize - 1, new types::ListUndefined()) == false)
-                            {
-                                pTL = NULL;
-                            }
+                            pTL = pTL->setClone(iNewSize - 1, new types::ListUndefined())->getAs<types::TList>();
                             pEH->setCurrent(pTL);
                         }
 
@@ -1261,12 +1256,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             int iNewSize = pEH->getSizeFromArgs();
                             if (pL->getSize() < iNewSize)
                             {
-                                pL = pL->copyAs<types::List>();
-                                // FIXME: is this check really needed?
-                                if(pL->set(iNewSize - 1, new types::ListUndefined()) == false)
-                                {
-                                    pL = NULL;
-                                }
+                                pL= pL->setClone(iNewSize - 1, new types::ListUndefined());
                                 pEH->setCurrent(pL);
                             }
 
@@ -1724,12 +1714,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         types::TList* pTL = pParent->getAs<types::TList>();
                         if (pParentArgs)
                         {
-                            pTL = pTL->copyAs<types::TList>();
-                            // FIXME: is this check really needed?
-                            if (pTL->set(pEH->getWhereReinsert(), pEH->getCurrent()) == false)
-                            {
-                                pTL = NULL;
-                            }
+                            pTL = pTL->setClone(pEH->getWhereReinsert(), pEH->getCurrent())->getAs<types::TList>();
                             pEHParent->setCurrent(pTL);
                             evalFields.pop_back();
                             delete pEH;
