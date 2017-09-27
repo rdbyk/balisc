@@ -1650,25 +1650,6 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
 }
 
 template <typename T>
-ArrayOf<T>* ArrayOf<T>::resizeClone(int* _piDims, int _iDims)
-{
-    if (getRef() > 1)
-    {
-        ArrayOf<T>* pClone = clone()->getAs<ArrayOf<T>>();
-
-        if (pClone->resize(_piDims, _iDims) == false)
-        {
-            pClone->killMe();
-            return NULL;
-        }
-
-        return pClone;
-    }
-
-    return resize(_piDims, _iDims) ? this : NULL;
-}
-
-template <typename T>
 bool ArrayOf<T>::isTrue()
 {
     return type_traits::isTrue<T>(m_iSize, m_pRealData);

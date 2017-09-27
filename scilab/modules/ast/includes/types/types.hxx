@@ -178,6 +178,13 @@ public :
         return NULL;
     }
 
+    virtual GenericType* resizeClone(int* /*_piDims*/, int /*_iDims*/);
+
+    virtual GenericType* resizeClone(int _iNewRows, int _iNewCols)
+    {
+        int piDims[2] = {_iNewRows, _iNewCols};
+        return resizeClone(piDims, 2);
+    }
 };
 
 }
