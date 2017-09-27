@@ -338,7 +338,15 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     //before resize, check input dimension
     if (bNeedToResize)
     {
-        resize(piNewDims, iNewDims);
+        // FIXME: do we actually perform a resize here?
+        if (resize(piNewDims, iNewDims) == false)
+        {
+            delete[] piCountDim;
+            delete[] piMaxDim;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
+            return NULL;
+        }
     }
     else
     {
