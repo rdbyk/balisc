@@ -1100,7 +1100,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         int iNewSize = pEH->getSizeFromArgs();
                         if (pTL->getSize() < iNewSize)
                         {
-                            pTL = pTL->setClone(iNewSize - 1, new types::ListUndefined())->getAs<types::TList>();
+                            pTL = pTL->setClone(iNewSize - 1, new types::ListUndefined());
                             pEH->setCurrent(pTL);
                         }
 
@@ -1714,7 +1714,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         types::TList* pTL = pParent->getAs<types::TList>();
                         if (pParentArgs)
                         {
-                            pTL = pTL->setClone(pEH->getWhereReinsert(), pEH->getCurrent())->getAs<types::TList>();
+                            pTL = pTL->setClone(pEH->getWhereReinsert(), pEH->getCurrent());
                             pEHParent->setCurrent(pTL);
                             evalFields.pop_back();
                             delete pEH;
@@ -1722,14 +1722,10 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         }
                         else
                         {
+                            // FIXME: use local var for pEH->getExpAsString() ?
                             if (pTL->exists(pEH->getExpAsString()))
                             {
-                                pTL = pTL->copyAs<types::TList>();
-                                // FIXME: is this check really needed?
-                                if (pTL->set(pEH->getExpAsString(), pEH->getCurrent()) == false)
-                                {
-                                    pTL = NULL;
-                                }
+                                pTL = pTL->setClone(pEH->getExpAsString(), pEH->getCurrent());
                                 pEHParent->setCurrent(pTL);
                                 evalFields.pop_back();
                                 delete pEH;
@@ -2185,9 +2181,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 
                     if (pTL->exists(pS->get(0)))
                     {
-                        pRet = pTL->copyAs<types::InternalType>();
-                        // FIXME: is this check really needed?
-                        pRet = pTL->set(pS->get(0), _pInsert) ? pTL : NULL;
+                        pRet = pTL->setClone(pS->get(0), _pInsert)->getAs<types::InternalType>();
                     }
                     else
                     {
