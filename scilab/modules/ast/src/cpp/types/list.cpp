@@ -395,4 +395,22 @@ bool List::operator==(const InternalType& it)
     return true;
 }
 
+List* List::setClone(const int _iIndex, InternalType* _pIT)
+{
+    if (getRef() > 1)
+    {
+        List* pClone = clone();
+
+        if (pClone->set(_iIndex, _pIT) == false)
+        {
+            pClone->killMe();
+            return NULL;
+        }
+
+        return pClone;
+    }
+
+    return set(_iIndex, _pIT) ? this : NULL;
+}
+
 }

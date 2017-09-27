@@ -117,6 +117,7 @@ public :
 
     virtual InternalType*           get(const int _iIndex);
     virtual bool set(const int _iIndex, InternalType* _pIT);
+    virtual List* setClone(const int _iIndex, InternalType* _pIT);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring            getTypeStr() const
