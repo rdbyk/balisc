@@ -992,14 +992,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                     }
 
-                    // copy current struct (if necessary it gets cloned!)
-                    pStruct = pStruct->copyAs<types::Struct>();
                     // resize current struct
-                    // FIXME: is this check really needed?
-                    if (pStruct->resize(pEH->getArgsDimsArray(), pEH->getArgsDims()) == false)
-                    {
-                        pStruct = NULL;
-                    }
+                    pStruct = pStruct->resizeClone(pEH->getArgsDimsArray(), pEH->getArgsDims())->getAs<types::Struct>();;
                     pEH->setCurrent(pStruct);
                 }
 
@@ -1458,14 +1452,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                                 }
 
-                                // copy current Cell
-                                pCell = pCell->copyAs<types::GenericType>();
                                 // resize current Cell
-                                // FIXME: is this check really needed?
-                                if (pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims()) == false)
-                                {
-                                    pCell = NULL;
-                                }
+                                pCell = pCell->resizeClone(pEH->getArgsDimsArray(), pEH->getArgsDims())->getAs<types::Cell>();
                                 pEH->setCurrent(pCell);
                             }
 
@@ -1489,14 +1477,9 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                     os << _W("Invalid index.\n");
                                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                                 }
-                                // copy current Cell
-                                pCell = pCell->copyAs<types::GenericType>();
+
                                 // resize current Cell
-                                // FIXME: is this check really needed?
-                                if (pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims()) == false)
-                                {
-                                    pCell = NULL;
-                                }
+                                pCell = pCell->resizeClone(pEH->getArgsDimsArray(), pEH->getArgsDims())->getAs<types::Cell>();
                                 pEH->setCurrent(pCell->getAs<types::Cell>());
                             }
 
