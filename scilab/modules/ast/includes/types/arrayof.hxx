@@ -314,6 +314,18 @@ public :
         return get(_iCols * getRows() + _iRows);
     }
 
+    // specialized "get" for scalars (first element)
+    // wo/ any safety checks!!!
+    inline T getScalar_()
+    {
+        return m_pRealData[0];
+    }
+
+    inline T getImgScalar_()
+    {
+        return m_pImgData[0];
+    }
+
     /*internal function to manage img part*/
     void setImg_(int _iPos, T _data)
     {
