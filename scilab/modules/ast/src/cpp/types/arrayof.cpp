@@ -89,7 +89,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             }
             else
             {
-                if (set(index, *pRealData) != NULL)
+                if (set(index, *pRealData) == true)
                 {
                     return this;
                 }
@@ -142,7 +142,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 {
                     for (int i : indexes)
                     {
-                        if (set(i, *pRealData) == NULL)
+                        if (set(i, *pRealData) == false)
                         {
                             status = false;
                             break;
@@ -170,7 +170,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 {
                     for (int i : indexes)
                     {
-                        if (set(i, *pRealData) == NULL)
+                        if (set(i, *pRealData) == false)
                         {
                             status = false;
                             break;
@@ -338,8 +338,8 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     //before resize, check input dimension
     if (bNeedToResize)
     {
-        ArrayOf<T>* pTemp = resize(piNewDims, iNewDims);
-        if (pTemp == NULL)
+        // FIXME: do we actually perform a resize here?
+        if (resize(piNewDims, iNewDims) == false)
         {
             delete[] piCountDim;
             delete[] piMaxDim;
@@ -729,14 +729,8 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 }
 
 template <typename T>
-ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
+bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
 {
-    ArrayOf<T>* pIT = checkRef(this, &ArrayOf::append, _iRows, _iCols, _poSource);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     ArrayOf * pGT = _poSource->getAs<ArrayOf>();
     int iRows = pGT->getRows();
     int iCols = pGT->getCols();
@@ -744,7 +738,7 @@ ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     //insert without resize
     if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
     {
-        return NULL;
+        return false;
     }
 
     //Update complexity if necessary
@@ -782,7 +776,7 @@ ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
         }
     }
 
-    return this;
+    return true;
 }
 
 template <typename T>
@@ -1382,19 +1376,12 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 }
 
 template <typename T>
-ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
+bool ArrayOf<T>::reshape(int* _piDims, int _iDims)
 {
-    typedef ArrayOf<T>* (ArrayOf<T>::*reshape_t)(int*, int);
-    ArrayOf<T>* pIT = checkRef(this, (reshape_t)&ArrayOf<T>::reshape, _piDims, _iDims);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     int iNewSize = get_max_size(_piDims, _iDims);
     if (iNewSize != m_iSize)
     {
-        return NULL;
+        return false;
     }
 
     for (int i = 0 ; i < _iDims ; i++)
@@ -1422,23 +1409,16 @@ ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
     m_iSize = iNewSize;
     m_iDims = _iDims;
 
-    return this;
+    return true;
 }
 
 template <typename T>
-ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
+bool ArrayOf<T>::resize(int* _piDims, int _iDims)
 {
-    typedef ArrayOf<T>* (ArrayOf<T>::*resize_t)(int*, int);
-    ArrayOf<T>* pIT = checkRef(this, (resize_t)&ArrayOf::resize, _piDims, _iDims);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iDims == m_iDims && memcmp(m_piDims, _piDims, sizeof(int) * m_iDims) == 0)
     {
         //nothing to do
-        return this;
+        return true;
     }
 
     //alloc new data array
@@ -1666,7 +1646,7 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
     m_iRows = m_piDims[0];
     m_iCols = m_piDims[1];
     m_iSize = iNewSize;
-    return this;
+    return true;
 }
 
 template <typename T>

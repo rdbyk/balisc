@@ -906,14 +906,8 @@ double* Double::allocData(int _iSize)
     }
 }
 
-Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
+bool Double::append(int _iRows, int _iCols, InternalType* _poSource)
 {
-    Double* pIT = checkRef(this, &Double::append, _iRows, _iCols, _poSource);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     Double* pD = _poSource->getAs<Double>();
     int iRows = pD->getRows();
     int iCols = pD->getCols();
@@ -922,7 +916,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
     //insert without resize
     if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
     {
-        return NULL;
+        return false;
     }
 
     //Update complexity if necessary
@@ -1054,7 +1048,7 @@ Double* Double::append(int _iRows, int _iCols, InternalType* _poSource)
             }
         }
     }
-    return this;
+    return true;
 }
 
 void Double::convertToInteger()

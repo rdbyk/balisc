@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -82,14 +82,14 @@ struct EXTERN_AST Sparse : GenericType
     void finalize();
 
     /*data management member function defined for compatibility with the Double API*/
-    Sparse* set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
-    Sparse* set(int _iIndex, double _dblReal, bool _bFinalize = true)
+    bool set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
+    bool set(int _iIndex, double _dblReal, bool _bFinalize = true)
     {
         return set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal, _bFinalize);
     }
 
-    Sparse* set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
-    Sparse* set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
+    bool set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
+    bool set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
     {
         return set(_iIndex % m_iRows, _iIndex / m_iRows, v, _bFinalize);
     }
@@ -154,7 +154,7 @@ struct EXTERN_AST Sparse : GenericType
        @param _iNewCols new minimum nb of cols
        @return true upon succes, false otherwise.
      */
-    Sparse* resize(int _iNewRows, int _iNewCols);
+    bool resize(int _iNewRows, int _iNewCols);
     /* post condition: new total size must be equal to the old size.
                        Two dimensions maximum.
 
@@ -164,8 +164,8 @@ struct EXTERN_AST Sparse : GenericType
        @param _iNewDims new size for each dimension
        @return true upon succes, false otherwise.
     */
-    Sparse* reshape(int* _piNewDims, int _iNewDims);
-    Sparse* reshape(int _iNewRows, int _iNewCols);
+    bool reshape(int* _piNewDims, int _iNewDims);
+    bool reshape(int _iNewRows, int _iNewCols);
     /*
       insert _iSeqCount elements from _poSource at coords given by _piSeqCoord (max in _piMaxDim).
       coords are considered 1D if _bAsVector, 2D otherwise.
@@ -185,7 +185,7 @@ struct EXTERN_AST Sparse : GenericType
        @param _iCols col to append from
        @param _poSource src data to append
      */
-    Sparse* append(int r, int c, types::Sparse SPARSE_CONST* src);
+    bool append(int r, int c, types::Sparse SPARSE_CONST* src);
 
     /*
       extract a submatrix
@@ -521,11 +521,11 @@ struct EXTERN_AST SparseBool : GenericType
     /* Config management and GenericType methods overrides */
     SparseBool* clone(void);
 
-    SparseBool* resize(int _iNewRows, int _iNewCols);
-    SparseBool* reshape(int* _piNewDims, int _iNewDims);
-    SparseBool* reshape(int _iNewRows, int _iNewCols);
+    bool resize(int _iNewRows, int _iNewCols);
+    bool reshape(int* _piNewDims, int _iNewDims);
+    bool reshape(int _iNewRows, int _iNewCols);
     SparseBool* insert(typed_list* _pArgs, InternalType* _pSource);
-    SparseBool* append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
+    bool append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
 
     GenericType* remove(typed_list* _pArgs);
     GenericType* insertNew(typed_list* _pArgs);
@@ -620,8 +620,8 @@ struct EXTERN_AST SparseBool : GenericType
         return get(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
-    SparseBool* set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
-    SparseBool* set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
+    bool set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
+    bool set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
     {
         return set(_iIndex % m_iRows, _iIndex / m_iRows, b, _bFinalize);
     }

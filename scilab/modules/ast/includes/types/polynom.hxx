@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 // This code is separated in matrixpoly.hxx
 // but will be inlined in arrayof.hxx
@@ -50,10 +50,10 @@ public :
     // FIXME : Should not return NULL
     Polynom*                clone();
 
-    Polynom*                setCoef(int _iRows, int _iCols, Double *_pdblCoef);
-    Polynom*                setCoef(int _iIdx, Double *_pdblCoef);
+    bool setCoef(int _iRows, int _iCols, Double *_pdblCoef);
+    bool setCoef(int _iIdx, Double *_pdblCoef);
 
-    virtual Polynom*        setComplex(bool _bComplex);
+    virtual void setComplex(bool _bComplex);
 
     inline ScilabType       getType(void)
     {
@@ -85,15 +85,15 @@ public :
     Double*                 evaluate(Double* _pdblValue);
     void                    updateRank(void);
     Double*                 getCoef(void);
-    Polynom*                setCoef(Double *_pCoef);
+    bool setCoef(Double *_pCoef);
     Double*                 extractCoef(int _iRank);
     bool                    insertCoef(int _iRank, Double* _pCoef);
     void                    setZeros();
     Polynom*                insert(typed_list* _pArgs, InternalType* _pSource);
 
-    Polynom*                set(int _iPos, SinglePoly* _pS);
-    Polynom*                set(int _iRows, int _iCols, SinglePoly* _pS);
-    Polynom*                set(SinglePoly** _pS);
+    bool set(int _iPos, SinglePoly* _pS);
+    bool set(int _iRows, int _iCols, SinglePoly* _pS);
+    bool set(SinglePoly** _pS);
 
     std::wstring            getRowString(int* _piDims, int _iDims, bool _bComplex);
     std::wstring            getColString(int* _piDims, int _iDims, bool _bComplex);

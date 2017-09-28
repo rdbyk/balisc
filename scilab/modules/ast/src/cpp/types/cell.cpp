@@ -139,42 +139,35 @@ bool Cell::transpose(InternalType *& out)
     return false;
 }
 
-Cell* Cell::set(int _iRows, int _iCols, InternalType* _pIT)
+bool Cell::set(int _iRows, int _iCols, InternalType* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())
     {
         return set(_iCols * getRows() + _iRows, _pIT);
     }
-    return NULL;
+    return false;
 }
 
-Cell* Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
+bool Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())
     {
         return set(_iCols * getRows() + _iRows, _pIT);
     }
-    return NULL;
+    return false;
 }
 
-Cell* Cell::set(int _iIndex, InternalType* _pIT)
+bool Cell::set(int _iIndex, InternalType* _pIT)
 {
     if (_iIndex >= m_iSize)
     {
-        return NULL;
+        return false;
     }
 
     // corner case when inserting twice
     if (m_pRealData[_iIndex] == _pIT)
     {
-        return this;
-    }
-
-    typedef Cell* (Cell::*set_t)(int, InternalType*);
-    Cell* pIT = checkRef(this, (set_t)&Cell::set, _iIndex, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
+        return true;
     }
 
     if (m_pRealData[_iIndex] != NULL)
@@ -185,21 +178,14 @@ Cell* Cell::set(int _iIndex, InternalType* _pIT)
 
     _pIT->IncreaseRef();
     m_pRealData[_iIndex] = _pIT;
-    return this;
+    return true;
 }
 
-Cell* Cell::set(int _iIndex, const InternalType* _pIT)
+bool Cell::set(int _iIndex, const InternalType* _pIT)
 {
     if (_iIndex >= m_iSize)
     {
-        return NULL;
-    }
-
-    typedef Cell* (Cell::*set_t)(int, const InternalType*);
-    Cell* pIT = checkRef(this, (set_t)&Cell::set, _iIndex, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
+        return false;
     }
 
     if (m_pRealData[_iIndex] != NULL)
@@ -211,23 +197,16 @@ Cell* Cell::set(int _iIndex, const InternalType* _pIT)
     const_cast<InternalType*>(_pIT)->IncreaseRef();
     m_pRealData[_iIndex] = const_cast<InternalType*>(_pIT);
 
-    return this;
+    return true;
 }
 
-Cell* Cell::set(InternalType** _pIT)
+bool Cell::set(InternalType** _pIT)
 {
-    typedef Cell* (Cell::*set_t)(InternalType**);
-    Cell* pIT = checkRef(this, (set_t)&Cell::set, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     for (int i = 0; i < m_iSize; i++)
     {
         if (i >= m_iSize)
         {
-            return NULL;
+            return false;
         }
 
         if (m_pRealData[i] != NULL)
@@ -240,7 +219,7 @@ Cell* Cell::set(InternalType** _pIT)
         m_pRealData[i] = _pIT[i];
     }
 
-    return this;
+    return true;
 }
 
 /**

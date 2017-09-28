@@ -1,9 +1,9 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-*  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 
 //#ifndef __ARRAYOF_HXX__
@@ -68,11 +68,11 @@ public :
     */
     Cell*               clone();
 
-    Cell*               set(int _iRows, int _iCols, InternalType* _pIT);
-    Cell*               set(int _iRows, int _iCols, const InternalType* _pIT);
-    Cell*               set(int _iIndex, InternalType* _pIT);
-    Cell*               set(int _iIndex, const InternalType* _pIT);
-    Cell*               set(InternalType** _pIT);
+    bool set(int _iRows, int _iCols, InternalType* _pIT);
+    bool set(int _iRows, int _iCols, const InternalType* _pIT);
+    bool set(int _iIndex, InternalType* _pIT);
+    bool set(int _iIndex, const InternalType* _pIT);
+    bool set(InternalType** _pIT);
 
     bool                operator==(const InternalType& it);
     bool                operator!=(const InternalType& it);

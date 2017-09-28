@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
@@ -100,18 +99,12 @@ int List::getSize() const
 ** append(InternalType *_typedValue)
 ** Append the given value to the end of the List
 */
-List* List::append(InternalType *_typedValue)
+bool List::append(InternalType *_typedValue)
 {
-    List* pIT = checkRef(this, &List::append, _typedValue);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     _typedValue->IncreaseRef();
     m_plData->push_back(_typedValue);
     m_iSize = static_cast<int>(m_plData->size());
-    return this;
+    return true;
 }
 
 /**
@@ -338,17 +331,11 @@ InternalType* List::get(const int _iIndex)
     return NULL;
 }
 
-List* List::set(const int _iIndex, InternalType* _pIT)
+bool List::set(const int _iIndex, InternalType* _pIT)
 {
     if (_iIndex < 0)
     {
-        return NULL;
-    }
-
-    List* pIT = checkRef(this, &List::set, _iIndex, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
+        return false;
     }
 
     while ((int)m_plData->size() < _iIndex)
@@ -380,7 +367,7 @@ List* List::set(const int _iIndex, InternalType* _pIT)
         }
     }
 
-    return this;
+    return true;
 }
 
 bool List::operator==(const InternalType& it)
@@ -406,6 +393,24 @@ bool List::operator==(const InternalType& it)
     }
 
     return true;
+}
+
+List* List::setClone(const int _iIndex, InternalType* _pIT)
+{
+    if (getRef() > 1)
+    {
+        List* pClone = clone();
+
+        if (pClone->set(_iIndex, _pIT) == false)
+        {
+            pClone->killMe();
+            return NULL;
+        }
+
+        return pClone;
+    }
+
+    return set(_iIndex, _pIT) ? this : NULL;
 }
 
 }

@@ -203,38 +203,31 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
     return ArrayOf<SingleStruct*>::invoke(in, opt, _iRetCount, out, e);
 }
 
-Struct* Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
+bool Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())
     {
         return set(_iCols * getRows() + _iRows, _pIT);
     }
-    return NULL;
+    return false;
 }
 
-Struct* Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
+bool Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())
     {
         return set(_iCols * getRows() + _iRows, _pIT);
     }
-    return NULL;
+    return false;
 }
 
-Struct* Struct::set(int _iIndex, SingleStruct* _pIT)
+bool Struct::set(int _iIndex, SingleStruct* _pIT)
 {
-    typedef Struct* (Struct::*set_t)(int, SingleStruct*);
-    Struct* pIT = checkRef(this, (set_t)&Struct::set, _iIndex, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iIndex < getSize())
     {
         if (m_bDisableCloneInCopyValue && m_pRealData[_iIndex] == _pIT)
         {
-            return this;
+            return true;
         }
 
         InternalType* pOld = m_pRealData[_iIndex];
@@ -252,20 +245,13 @@ Struct* Struct::set(int _iIndex, SingleStruct* _pIT)
             pOld->killMe();
         }
 
-        return this;
+        return true;
     }
-    return NULL;
+    return false;
 }
 
-Struct* Struct::set(int _iIndex, const SingleStruct* _pIT)
+bool Struct::set(int _iIndex, const SingleStruct* _pIT)
 {
-    typedef Struct* (Struct::*set_t)(int, const SingleStruct*);
-    Struct* pIT = checkRef(this, (set_t)&Struct::set, _iIndex, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iIndex < getSize())
     {
         InternalType* pOld = m_pRealData[_iIndex];
@@ -278,28 +264,21 @@ Struct* Struct::set(int _iIndex, const SingleStruct* _pIT)
             pOld->killMe();
         }
 
-        return this;
+        return true;
     }
-    return NULL;
+    return false;
 }
 
-Struct* Struct::set(SingleStruct** _pIT)
+bool Struct::set(SingleStruct** _pIT)
 {
-    typedef Struct* (Struct::*set_t)(SingleStruct**);
-    Struct* pIT = checkRef(this, (set_t)&Struct::set, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     for (int i = 0 ; i < getSize() ; i++)
     {
-        if (set(i, _pIT[i]) == NULL)
+        if (set(i, _pIT[i]) == false)
         {
-            return NULL;
+            return false;
         }
     }
-    return this;
+    return true;
 }
 
 String* Struct::getFieldNames()
@@ -427,14 +406,8 @@ bool Struct::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, 
     return true;
 }
 
-Struct* Struct::addField(const std::wstring& _sKey)
+void Struct::addField(const std::wstring& _sKey)
 {
-    Struct* pIT = checkRef(this, &Struct::addField, _sKey);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (getSize() == 0)
     {
         //change dimension to 1x1 and add field
@@ -445,18 +418,10 @@ Struct* Struct::addField(const std::wstring& _sKey)
     {
         get(i)->addField(_sKey);
     }
-
-    return this;
 }
 
-Struct* Struct::addFieldFront(const std::wstring& _sKey)
+void Struct::addFieldFront(const std::wstring& _sKey)
 {
-    Struct* pIT = checkRef(this, &Struct::addFieldFront, _sKey);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (getSize() == 0)
     {
         //change dimension to 1x1 and add field
@@ -467,24 +432,14 @@ Struct* Struct::addFieldFront(const std::wstring& _sKey)
     {
         get(i)->addFieldFront(_sKey);
     }
-
-    return this;
 }
 
-Struct* Struct::removeField(const std::wstring& _sKey)
+void Struct::removeField(const std::wstring& _sKey)
 {
-    Struct* pIT = checkRef(this, &Struct::removeField, _sKey);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     for (int j = 0; j < getSize(); j++)
     {
         get(j)->removeField(_sKey);
     }
-
-    return this;
 }
 
 bool Struct::toString(std::wostringstream& ostr)
@@ -694,40 +649,31 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
     return ResultList;
 }
 
-Struct* Struct::resize(int _iNewRows, int _iNewCols)
+bool Struct::resize(int _iNewRows, int _iNewCols)
 {
     int piDims[2] = {_iNewRows, _iNewCols};
     return resize(piDims, 2);
 }
 
-Struct* Struct::resize(int* _piDims, int _iDims)
+bool Struct::resize(int* _piDims, int _iDims)
 {
-    typedef Struct* (Struct::*resize_t)(int*, int);
-    Struct* pIT = checkRef(this, (resize_t)&Struct::resize, _piDims, _iDims);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     m_bDisableCloneInCopyValue = true;
-    Struct* pSRes = ArrayOf<SingleStruct*>::resize(_piDims, _iDims)->getAs<Struct>();
+    ArrayOf<SingleStruct*>::resize(_piDims, _iDims);
     m_bDisableCloneInCopyValue = false;
-    if (pSRes)
-    {
-        // insert field(s) only in new element(s) of current struct
-        String* pFields = getFieldNames();
-        for (int iterField = 0; iterField < pFields->getSize(); iterField++)
-        {
-            for (int iterStruct = 0; iterStruct < getSize(); iterStruct++)
-            {
-                get(iterStruct)->addField(pFields->get(iterField));
-            }
-        }
 
-        pFields->killMe();
+    // insert field(s) only in new element(s) of current struct
+    String* pFields = getFieldNames();
+    for (int iterField = 0; iterField < pFields->getSize(); iterField++)
+    {
+        for (int iterStruct = 0; iterStruct < getSize(); iterStruct++)
+        {
+            get(iterStruct)->addField(pFields->get(iterField));
+        }
     }
 
-    return pSRes;
+    pFields->killMe();
+
+    return true;
 }
 
 InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)

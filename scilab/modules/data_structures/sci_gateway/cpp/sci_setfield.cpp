@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Antoine Elias
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -70,9 +70,8 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
         }
 
         types::TList* pT = pL->getAs<types::TList>();
-
         std::wstring stField = pS->get(0);
-        types::TList* pRet = pT->set(stField, pData);
+        types::TList* pRet = pT->setClone(stField, pData);
         if (pRet == nullptr)
         {
             Scierror(999, _("%s: Invalid index.\n"), "setfield");
