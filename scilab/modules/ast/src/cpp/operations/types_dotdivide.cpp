@@ -909,7 +909,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    dotdiv(_pL->get(), (size_t)pOut->getSize(), _pR->get(0), pOut->get());
+    dotdiv(_pL->get(), (size_t)pOut->getSize(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -917,7 +917,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_M_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    dotdiv(_pL->get(), pOut->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->get(), pOut->getSize(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1010,7 +1010,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_MC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    dotdiv(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->get(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1018,7 +1018,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_MC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    dotdiv(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1039,7 +1039,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_S_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    dotdiv(_pL->get(0), (size_t)pOut->getSize(), _pR->get(), pOut->get());
+    dotdiv(_pL->getScalar_(), (size_t)pOut->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -1047,7 +1047,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_S_MC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
-    dotdiv(_pL->get(0), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1055,7 +1055,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_S_S(T *_pL, U *_pR)
 {
     O* pOut = new O(0);
-    dotdiv(_pL->get(0), _pR->get(0), pOut->get());
+    dotdiv(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -1063,7 +1063,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_S_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    dotdiv(_pL->get(), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->get(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1071,7 +1071,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_S_I(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
-    dotdiv(_pL->get(0), _pR->get(0), pOut->get());
+    dotdiv(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -1079,7 +1079,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_S_IC(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
-    dotdiv(_pL->get(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 //Scalar complex ./ x
@@ -1087,7 +1087,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_SC_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
-    dotdiv(_pL->get(0), _pL->getImg(0), pOut->getSize(), _pR->get(), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), pOut->getSize(), _pR->get(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1095,7 +1095,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_SC_MC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
-    dotdiv(_pL->get(0), _pL->getImg(0), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1103,7 +1103,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_SC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    dotdiv(_pL->get(0), _pL->getImg(0), 1 , _pR->get(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), 1 , _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1111,7 +1111,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_SC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    dotdiv(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1120,7 +1120,7 @@ InternalType* dotdiv_SC_I(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
     pOut->setComplex(true);
-    dotdiv(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1128,7 +1128,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_SC_IC(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
-    dotdiv(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1149,7 +1149,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_I_S(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pL->clone();
-    dotdiv(_pL->get(0), _pR->get(0), pOut->get());
+    dotdiv(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -1163,7 +1163,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_I_I(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pL->clone();
-    dotdiv(_pL->get(0), _pR->get(0), pOut->get());
+    dotdiv(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -1171,7 +1171,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_I_IC(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
-    dotdiv(_pL->get(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1192,7 +1192,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_IC_S(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pL->clone();
-    dotdiv(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1200,7 +1200,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_IC_SC(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pL->clone();
-    dotdiv(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1208,7 +1208,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_IC_I(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pL->clone();
-    dotdiv(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1216,7 +1216,7 @@ template<class T, class U, class O>
 InternalType* dotdiv_IC_IC(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pL->clone();
-    dotdiv(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotdiv(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1297,7 +1297,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
         if (_pL->isComplex())
         {
             pTemp = new Sparse(_pR->getRows(), _pR->getCols(), true);
-            std::complex<double> stComplex(_pL->get(0), _pL->getImg(0));
+            std::complex<double> stComplex(_pL->getScalar_(), _pL->getImgScalar_());
             for (int i = 0 ; i < iSizeOut ; i++)
             {
                 if (_pR->get(i) != 0)
@@ -1313,7 +1313,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
             {
                 if (_pR->get(i) != 0)
                 {
-                    pTemp->set(i, _pL->get(0), false);
+                    pTemp->set(i, _pL->getScalar_(), false);
                 }
             }
         }
@@ -1348,10 +1348,10 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
     {
         Sparse* pSPTemp = new Sparse(_pR->getRows(), _pR->getCols(), _pL->isComplex());
         int size = std::min(_pR->getRows(), _pR->getCols());
-        double dblLeftR = _pL->get(0);
+        double dblLeftR = _pL->getScalar_();
         if (_pL->isComplex())
         {
-            std::complex<double> complexLeft(dblLeftR, _pL->getImg(0));
+            std::complex<double> complexLeft(dblLeftR, _pL->getImgScalar_());
             for (int i = 0; i < size; i++)
             {
                 pSPTemp->set(i, i, complexLeft, false);
@@ -1474,7 +1474,7 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
         if (_pR->isComplex())
         {
             pTemp = new Sparse(_pL->getRows(), _pL->getCols(), true);
-            std::complex<double> stComplex(_pR->get(0), _pR->getImg(0));
+            std::complex<double> stComplex(_pR->getScalar_(), _pR->getImgScalar_());
             for (int i = 0 ; i < iSizeOut ; i++)
             {
                 if (_pL->get(i) != 0)
@@ -1486,12 +1486,12 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
         else
         {
             pTemp = new Sparse(_pL->getRows(), _pL->getCols(), _pL->isComplex());
-            std::complex<double> stComplex(_pR->get(0), _pR->getImg(0));
+            std::complex<double> stComplex(_pR->getScalar_(), _pR->getImgScalar_());
             for (int i = 0 ; i < iSizeOut ; i++)
             {
                 if (_pL->get(i) != 0)
                 {
-                    pTemp->set(i, _pR->get(0), false);
+                    pTemp->set(i, _pR->getScalar_(), false);
                 }
             }
         }
@@ -1526,10 +1526,10 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
     {
         Sparse* pSPTemp = new Sparse(_pL->getRows(), _pL->getCols(), _pR->isComplex());
         int size = std::min(_pL->getRows(), _pL->getCols());
-        double dblRightR = _pR->get(0);
+        double dblRightR = _pR->getScalar_();
         if (_pR->isComplex())
         {
-            std::complex<double> complexRight(dblRightR, _pR->getImg(0));
+            std::complex<double> complexRight(dblRightR, _pR->getImgScalar_());
             for (int i = 0; i < size; i++)
             {
                 pSPTemp->set(i, i, complexRight, false);
@@ -1662,10 +1662,10 @@ InternalType* dotdiv_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double* _pR)
         SinglePoly** pSP = pOut->get();
         int iSize = pOut->getSize();
 
-        double dblR = _pR->get(0);
+        double dblR = _pR->getScalar_();
         if (isComplexL)
         {
-            double dblI = _pR->getImg(0);
+            double dblI = _pR->getImgScalar_();
             pOut->setComplex(true);
             if (isComplexR)
             {
@@ -1707,7 +1707,7 @@ InternalType* dotdiv_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double* _pR)
     if (_pL->isScalar())
     {
         pOut = new Polynom(_pL->getVariableName(), _pR->getDims(), _pR->getDimsArray());
-        SinglePoly* pSPL = _pL->get(0);
+        SinglePoly* pSPL = _pL->getScalar_();
         SinglePoly** pSP = pOut->get();
         int iSize = pOut->getSize();
         double* pdblLR = _pR->get();
