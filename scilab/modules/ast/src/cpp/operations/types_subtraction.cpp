@@ -1378,7 +1378,7 @@ template<class T, class U, class O> InternalType* sub_IC_I(T *_pL, U *_pR)
 {
     O* pOut = types::Double::Identity(-1, -1);
     pOut->setComplex(true);
-    sub(_pL->getScalar_(), _pL->getImgScalar_(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
+    sub(_pL->getScalar_(), _pL->getImgScalar_(), _pR->getScalar_(), 0.0, pOut->get(), pOut->getImg());
     return pOut;
 }
 
