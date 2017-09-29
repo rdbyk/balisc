@@ -1758,7 +1758,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
                 std::fill(piIndex, piIndex + iDims, i);
 
                 int index = _pL->getIndex(piIndex);
-                sub(pSPLeft[index]->getScalar_(), pSPLeft[index]->getImgScalar_(), (size_t)1, &dblRightR, &dblRightI, pSPOut[index]->get(), pSPOut[index]->getImg());
+                sub(pSPLeft[index]->getScalar_(), bComplex1 ? pSPLeft[index]->getImgScalar_() : 0.0, (size_t)1, &dblRightR, &dblRightI, pSPOut[index]->get(), pSPOut[index]->getImg());
             }
         }
         else
@@ -1789,7 +1789,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         double dblR = _pR->getScalar_();
         if (isComplexOut)
         {
-            double dblI = _pR->getImgScalar_();
+            double dblI = bComplex2 ? _pR->getImgScalar_() : 0.0;
             for (int i = 0 ; i < iSize ; ++i)
             {
                 pSP[i]->get()[0] -= dblR;
