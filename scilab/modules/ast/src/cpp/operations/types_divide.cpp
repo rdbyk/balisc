@@ -302,7 +302,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
     if (bScalar2)
     {
         double dblDivR = _pDouble->getScalar_();
-        double dblDivI = _pDouble->getImgScalar_();
+        double dblDivI = bComplex2 ? _pDouble->getImgScalar_() : 0.0;
 
         (*_pPolyOut) = _pPoly->clone()->getAs<Polynom>();
         if (_pDouble->isComplex())
