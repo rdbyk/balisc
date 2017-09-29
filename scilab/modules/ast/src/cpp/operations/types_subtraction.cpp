@@ -884,7 +884,7 @@ template<class T, class U, class O>
 InternalType* sub_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    sub(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), pOut->get());
+    sub(_pL->get(), (size_t)_pL->getSize(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -892,7 +892,7 @@ template<class T, class U, class O>
 InternalType* sub_M_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    sub(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), (size_t)_pL->getSize(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -972,7 +972,7 @@ template<class T, class U, class O>
 InternalType* sub_MC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    sub(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -980,7 +980,7 @@ template<class T, class U, class O>
 InternalType* sub_MC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    sub(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1004,7 +1004,7 @@ template<class T, class U, class O>
 InternalType* sub_S_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    sub(_pL->get(0), (size_t)_pR->getSize(), _pR->get(), pOut->get());
+    sub(_pL->getScalar_(), (size_t)_pR->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -1012,7 +1012,7 @@ template<class T, class U, class O>
 InternalType* sub_S_MC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
-    sub(_pL->get(0), (size_t)_pR->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    sub(_pL->getScalar_(), (size_t)_pR->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1020,7 +1020,7 @@ template<class T, class U, class O>
 InternalType* sub_S_S(T *_pL, U *_pR)
 {
     O* pOut = new O(0);
-    sub(_pL->get(0), _pR->get(0), pOut->get());
+    sub(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -1028,7 +1028,7 @@ template<class T, class U, class O>
 InternalType* sub_S_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    sub(_pL->get(), (size_t)1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), (size_t)1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1052,7 +1052,7 @@ template<class T, class U, class O>
 InternalType* sub_SC_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
-    sub(_pL->get(0), _pL->getImg(0), (size_t)_pR->getSize(), _pR->get(), pOut->get(), pOut->getImg());
+    sub(_pL->getScalar_(), _pL->getImgScalar_(), (size_t)_pR->getSize(), _pR->get(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1060,7 +1060,7 @@ template<class T, class U, class O>
 InternalType* sub_SC_MC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
-    sub(_pL->get(0), _pL->getImg(0), (size_t)_pR->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    sub(_pL->getScalar_(), _pL->getImgScalar_(), (size_t)_pR->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1068,7 +1068,7 @@ template<class T, class U, class O>
 InternalType* sub_SC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    sub(_pL->get(), _pL->getImg(), (size_t)1, _pR->get(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), _pL->getImg(), (size_t)1, _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1076,7 +1076,7 @@ template<class T, class U, class O>
 InternalType* sub_SC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    sub(_pL->get(0), _pL->getImg(0), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->getScalar_(), _pL->getImgScalar_(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1140,7 +1140,7 @@ InternalType* sub_I_M(T *_pL, U *_pR)
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
     O* pOut = (O*)opposite_M<U, O>(_pR);
-    double dblLeft = _pL->get(0);
+    double dblLeft = _pL->getScalar_();
     int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
 
@@ -1164,7 +1164,7 @@ InternalType* sub_I_MC(T *_pL, U *_pR)
     O* pOut = (O*)opposite_MC<U, O>(_pR);
     double* pdblOut = pOut->get();
     double* pdblRight = _pR->get();
-    double dblLeft = _pL->get(0);
+    double dblLeft = _pL->getScalar_();
     int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
 
@@ -1190,8 +1190,8 @@ InternalType* sub_IC_M(T *_pL, U *_pR)
     double* pdblOutR = pOut->get();
     double* pdblOutI = pOut->getImg();
     double* pdblRight = _pR->get();
-    double dblLeftR = _pL->get(0);
-    double dblLeftI = _pL->getImg(0);
+    double dblLeftR = _pL->getScalar_();
+    double dblLeftI = _pL->getImgScalar_();
     int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
 
@@ -1213,8 +1213,8 @@ InternalType* sub_IC_MC(T *_pL, U *_pR)
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
     O* pOut = (O*)opposite_MC<U, O>(_pR);
-    double dblLeftR = _pL->get(0);
-    double dblLeftI = _pL->getImg(0);
+    double dblLeftR = _pL->getScalar_();
+    double dblLeftI = _pL->getImgScalar_();
     double* pdblOutR = pOut->get();
     double* pdblOutI = pOut->getImg();
     double* pdblRightR = _pR->get();
@@ -1265,7 +1265,7 @@ template<class T, class U, class O> InternalType* sub_M_I(T *_pL, U *_pR)
     O* pOut = (O*)_pL->clone();
     double* pdblOutR = pOut->get();
     double* pdblLeft = _pL->get();
-    double dblRight = _pR->get(0);
+    double dblRight = _pR->getScalar_();
     int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
 
@@ -1295,8 +1295,8 @@ template<class T, class U, class O> InternalType* sub_M_IC(T *_pL, U *_pR)
     double* pdblOutR = pOut->get();
     double* pdblOutI = pOut->getImg();
     double* pdblLeft = _pL->get();
-    double dblRightR = _pR->get(0);
-    double dblRightI = _pR->getImg(0);
+    double dblRightR = _pR->getScalar_();
+    double dblRightI = _pR->getImgScalar_();
     int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
 
@@ -1322,8 +1322,8 @@ template<class T, class U, class O> InternalType* sub_MC_IC(T *_pL, U *_pR)
     double* pdblOutI = pOut->getImg();
     double* pdblLeftR = _pL->get();
     double* pdblLeftI = _pL->getImg();
-    double dblRightR = _pR->get(0);
-    double dblRightI = _pR->getImg(0);
+    double dblRightR = _pR->getScalar_();
+    double dblRightI = _pR->getImgScalar_();
     int iLeadDims = *std::min_element(piDims, piDims + iDims);
     int* piIndex = new int[iDims]();
 
@@ -1362,7 +1362,7 @@ template<class T, class U, class O> InternalType* sub_SC_IC(T *_pL, U *_pR)
 template<class T, class U, class O> InternalType* sub_I_I(T *_pL, U *_pR)
 {
     O* pOut = types::Double::Identity(-1, -1);
-    sub(_pL->get(0), _pR->get(0), pOut->get());
+    sub(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -1370,7 +1370,7 @@ template<class T, class U, class O> InternalType* sub_I_IC(T *_pL, U *_pR)
 {
     O* pOut = types::Double::Identity(-1, -1);
     pOut->setComplex(true);
-    sub(_pL->get(), (size_t)1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), (size_t)1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1378,7 +1378,7 @@ template<class T, class U, class O> InternalType* sub_IC_I(T *_pL, U *_pR)
 {
     O* pOut = types::Double::Identity(-1, -1);
     pOut->setComplex(true);
-    sub(_pL->get(0), _pL->getImg(0), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->getScalar_(), _pL->getImgScalar_(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1386,7 +1386,7 @@ template<class T, class U, class O> InternalType* sub_IC_IC(T *_pL, U *_pR)
 {
     O* pOut = types::Double::Identity(-1, -1);
     pOut->setComplex(true);
-    sub(_pL->get(0), _pL->getImg(0), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->getScalar_(), _pL->getImgScalar_(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1451,7 +1451,7 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     Polynom* pOut = NULL;
     if (_pL->isScalar())
     {
-        SinglePoly* p1Coef  = _pL->get(0);
+        SinglePoly* p1Coef  = _pL->getScalar_();
         int iRank1          = p1Coef->getRank();
         int* pRank2         = new int[_pR->getSize()];
         int* pRankOut       = new int[_pR->getSize()];
@@ -1539,7 +1539,7 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     {
         //size(p2) == 1
         int *pRank1     = new int[_pL->getSize()];
-        int iRank2      = _pR->get(0)->getRank();
+        int iRank2      = _pR->getScalar_()->getRank();
         int *pRankOut   = new int[_pL->getSize()];
 
         _pL->getRank(pRank1);
@@ -1552,7 +1552,7 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         bool isOutComplex = _pL->isComplex() || _pR->isComplex();
 
         //Result P1(i) - P2(0)
-        SinglePoly *p2Coef          = _pR->get(0);
+        SinglePoly *p2Coef          = _pR->getScalar_();
         double *p2R                 = p2Coef->get();
 
         if (isOutComplex)
@@ -1735,11 +1735,11 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
 
     if (_pR->isIdentity())
     {
-        double dblRightR = _pR->get(0);
+        double dblRightR = _pR->getScalar_();
         double dblRightI = 0;
         if (_pR->isComplex())
         {
-            dblRightI = _pR->getImg(0);
+            dblRightI = _pR->getImgScalar_();
         }
 
         int iDims = _pL->getDims();
@@ -1758,7 +1758,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
                 std::fill(piIndex, piIndex + iDims, i);
 
                 int index = _pL->getIndex(piIndex);
-                sub(pSPLeft[index]->get(0), pSPLeft[index]->getImg(0), (size_t)1, &dblRightR, &dblRightI, pSPOut[index]->get(), pSPOut[index]->getImg());
+                sub(pSPLeft[index]->getScalar_(), pSPLeft[index]->getImgScalar_(), (size_t)1, &dblRightR, &dblRightI, pSPOut[index]->get(), pSPOut[index]->getImg());
             }
         }
         else
@@ -1768,7 +1768,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
                 std::fill(piIndex, piIndex + iDims, i);
 
                 int index = _pL->getIndex(piIndex);
-                sub(pSPLeft[index]->get(0), (size_t)1, &dblRightR, pSPOut[index]->get());
+                sub(pSPLeft[index]->getScalar_(), (size_t)1, &dblRightR, pSPOut[index]->get());
             }
         }
 
@@ -1786,10 +1786,10 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         SinglePoly** pSP = pOut->get();
         int iSize = pOut->getSize();
 
-        double dblR = _pR->get(0);
+        double dblR = _pR->getScalar_();
         if (isComplexOut)
         {
-            double dblI = _pR->getImg(0);
+            double dblI = _pR->getImgScalar_();
             for (int i = 0 ; i < iSize ; ++i)
             {
                 pSP[i]->get()[0] -= dblR;
@@ -1816,7 +1816,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
 
         pOut = new Polynom(_pL->getVariableName(), iDims, piDims);
 
-        SinglePoly* pSPL = _pL->get(0);
+        SinglePoly* pSPL = _pL->getScalar_();
         if (_pR->isComplex())
         {
             double* pdblR = _pR->get();
@@ -1920,7 +1920,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
 template<> InternalType* sub_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
 {
     Polynom* pOut = (Polynom*)opposite_M<Polynom, Polynom>(_pR);
-    double dblLeft = _pL->get(0);
+    double dblLeft = _pL->getScalar_();
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
@@ -1934,7 +1934,7 @@ template<> InternalType* sub_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
-        sub(dblLeft, pSP[index]->get(0), pSPOut[index]->get());
+        sub(dblLeft, pSP[index]->getScalar_(), pSPOut[index]->get());
     }
 
     delete[] piIndex;
@@ -1944,7 +1944,7 @@ template<> InternalType* sub_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 template<> InternalType* sub_I_MC<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
 {
     Polynom* pOut = (Polynom*)opposite_MC<Polynom, Polynom>(_pR);
-    double dblLeft = _pL->get(0);
+    double dblLeft = _pL->getScalar_();
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
@@ -1958,7 +1958,7 @@ template<> InternalType* sub_I_MC<Double, Polynom, Polynom>(Double* _pL, Polynom
         std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
-        sub(dblLeft, pSP[index]->get(0), pSPOut[index]->get());
+        sub(dblLeft, pSP[index]->getScalar_(), pSPOut[index]->get());
     }
 
     delete[] piIndex;
@@ -1969,8 +1969,8 @@ template<> InternalType* sub_IC_M<Double, Polynom, Polynom>(Double* _pL, Polynom
 {
     Polynom* pOut = (Polynom*)opposite_M<Polynom, Polynom>(_pR);
     pOut->setComplex(true);
-    double dblLeftR = _pL->get(0);
-    double dblLeftI = _pL->getImg(0);
+    double dblLeftR = _pL->getScalar_();
+    double dblLeftI = _pL->getImgScalar_();
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
@@ -1984,7 +1984,7 @@ template<> InternalType* sub_IC_M<Double, Polynom, Polynom>(Double* _pL, Polynom
         std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
-        sub(&dblLeftR, &dblLeftI, (size_t)1, pSP[index]->get(0), pSPOut[index]->get(), pSPOut[index]->getImg());
+        sub(&dblLeftR, &dblLeftI, (size_t)1, pSP[index]->getScalar_(), pSPOut[index]->get(), pSPOut[index]->getImg());
     }
 
     delete[] piIndex;
@@ -1994,8 +1994,8 @@ template<> InternalType* sub_IC_M<Double, Polynom, Polynom>(Double* _pL, Polynom
 template<> InternalType* sub_IC_MC<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
 {
     Polynom* pOut = (Polynom*)opposite_MC<Polynom, Polynom>(_pR);
-    double dblLeftR = _pL->get(0);
-    double dblLeftI = _pL->getImg(0);
+    double dblLeftR = _pL->getScalar_();
+    double dblLeftI = _pL->getImgScalar_();
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
@@ -2009,7 +2009,7 @@ template<> InternalType* sub_IC_MC<Double, Polynom, Polynom>(Double* _pL, Polyno
         std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
-        sub(dblLeftR, dblLeftI, pSP[index]->get(0), pSP[index]->getImg(0), pSPOut[index]->get(), pSPOut[index]->getImg());
+        sub(dblLeftR, dblLeftI, pSP[index]->getScalar_(), pSP[index]->getImgScalar_(), pSPOut[index]->get(), pSPOut[index]->getImg());
     }
 
     delete[] piIndex;
@@ -2035,7 +2035,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         int *piRank = new int[_pL->getSize()];
         for (int i = 0 ; i < _pL->getSize() ; i++)
         {
-            piRank[i] = _pR->get(0)->getRank();
+            piRank[i] = _pR->getScalar_()->getRank();
         }
 
         pOut = new Polynom(_pR->getVariableName(), _pL->getDims(), _pL->getDimsArray(), piRank);
@@ -2047,7 +2047,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pInPoly  = _pR->get(0);
+            SinglePoly *pInPoly  = _pR->getScalar_();
             SinglePoly *pOutPoly = pOut->get(i);
             double *pInPolyR     = pInPoly->get();
             double *pOutPolyR    = pOutPoly->get();
@@ -2064,7 +2064,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         {
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
-                SinglePoly *pInPoly  = _pR->get(0);
+                SinglePoly *pInPoly  = _pR->getScalar_();
                 SinglePoly *pOutPoly = pOut->get(i);
                 double *pInPolyI     = pInPoly->getImg();
                 double *pOutPolyI    = pOutPoly->getImg();
@@ -2240,12 +2240,12 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         if (bComplex2)
         {
             std::complex<double> dbl = _pR->getImg(0, 0);
-            pOut->set(0, dbl.real() - pOut->get(0));
-            pOut->setImg(0, pOut->getImg(0) - dbl.imag());
+            pOut->set(0, dbl.real() - pOut->getScalar_());
+            pOut->setImg(0, pOut->getImgScalar_() - dbl.imag());
         }
         else
         {
-            pOut->set(0, pOut->get(0) - _pL->get(0, 0));
+            pOut->set(0, pOut->getScalar_() - _pL->get(0, 0));
         }
 
         return pOut;
@@ -2256,13 +2256,13 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         //d - SP
         pOut = new Double(_pR->getRows(), _pR->getCols(), bComplex1 || bComplex2);
         int iSize = _pR->getSize();
-        double dblVal = _pL->get(0);
+        double dblVal = _pL->getScalar_();
         double dblValI = 0;
         C2F(dset)(&iSize, &dblVal, pOut->get(), &iOne);
         if (bComplex1)
         {
             //initialize imag part at 0
-            dblValI = _pL->getImg(0);
+            dblValI = _pL->getImgScalar_();
             C2F(dset)(&iSize, &dblValI, pOut->getImg(), &iOne);
         }
         else if (bComplex2)
@@ -2325,7 +2325,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         {
             double* pReal = pOut->get();
             int size = pOut->getSize();
-            double dblTmp = _pR->get(0);
+            double dblTmp = _pR->getScalar_();
             for (int i = 0 ; i < size ; i++)
             {
                 pReal[i] -= dblTmp;
@@ -2399,12 +2399,12 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
         if (bComplex1)
         {
             std::complex<double> dbl = _pL->getImg(0, 0);
-            pOut->set(0, pOut->get(0) - dbl.real());
-            pOut->setImg(0, dbl.imag() - pOut->getImg(0));
+            pOut->set(0, pOut->getScalar_() - dbl.real());
+            pOut->setImg(0, dbl.imag() - pOut->getImgScalar_());
         }
         else
         {
-            pOut->set(0, _pL->get(0, 0) - pOut->get(0));
+            pOut->set(0, _pL->get(0, 0) - pOut->getScalar_());
         }
 
         return pOut;
@@ -2415,12 +2415,12 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
         //SP - d
         pOut = new Double(_pL->getRows(), _pL->getCols(), bComplexOut);
         int iSize = _pL->getSize();
-        double dblVal = -_pR->get(0);
+        double dblVal = -_pR->getScalar_();
         double dblValI = 0;
         C2F(dset)(&iSize, &dblVal, pOut->get(), &iOne);
         if (bComplex2)
         {
-            dblValI = -_pR->getImg(0);
+            dblValI = -_pR->getImgScalar_();
             C2F(dset)(&iSize, &dblValI, pOut->getImg(), &iOne);
         }
         else if (bComplex1)
@@ -2549,12 +2549,12 @@ template<> InternalType* sub_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _p
         //convert to _pL
         Sparse* pS = new Sparse(_pR->getRows(), _pR->getCols(), _pL->isComplex());
         int size = std::min(_pR->getRows(), _pR->getCols());
-        double dblLeftR = _pL->get(0);
+        double dblLeftR = _pL->getScalar_();
 
 
         if (_pL->isComplex())
         {
-            std::complex<double> complexLeft(dblLeftR, _pL->getImg(0));
+            std::complex<double> complexLeft(dblLeftR, _pL->getImgScalar_());
             for (int i = 0 ; i < size ; i++)
             {
                 pS->set(i, i, complexLeft);
@@ -2590,11 +2590,11 @@ template<> InternalType* sub_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _p
         //convert to _pL
         Sparse* pS = new Sparse(_pL->getRows(), _pL->getCols(), _pR->isComplex());
         int size = std::min(_pL->getRows(), _pL->getCols());
-        double dblRightR = _pR->get(0);
+        double dblRightR = _pR->getScalar_();
 
         if (_pR->isComplex())
         {
-            std::complex<double> complexRight(dblRightR, _pR->getImg(0));
+            std::complex<double> complexRight(dblRightR, _pR->getImgScalar_());
             for (int i = 0 ; i < size ; i++)
             {
                 pS->set(i, i, complexRight, false);
