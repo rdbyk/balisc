@@ -289,7 +289,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
     iColResult = 1;
 
     piRank = new int[1];
-    piRank[0] = _pPoly->get(0)->getRank();
+    piRank[0] = _pPoly->getScalar_()->getRank();
     }
     else */
 
@@ -301,7 +301,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
 
     if (bScalar2)
     {
-        double dblDivR = _pDouble->get(0);
+        double dblDivR = _pDouble->getScalar_();
         double dblDivI = _pDouble->getImg(0);
 
         (*_pPolyOut) = _pPoly->clone()->getAs<Polynom>();
@@ -356,7 +356,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
             pTemp->setComplex(true);
         }
 
-        SinglePoly *pdblData = _pPoly->get(0);
+        SinglePoly *pdblData = _pPoly->getScalar_();
         for (int i = 0 ; i < iRowResult ; i++)
         {
             pTemp->set(i, i, pdblData);
@@ -372,7 +372,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
 
     if (bScalar1)
     {
-        for (int i = 0 ; i < pTemp->get(0)->getSize() ; i++)
+        for (int i = 0 ; i < pTemp->getScalar_()->getSize() ; i++)
         {
             Double *pCoef    = pTemp->extractCoef(i);
             Double *pResultCoef = new Double(iRowResult, iColResult, pCoef->isComplex());
@@ -503,7 +503,7 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
     int iResultat;
     for (int i = 0; i < iSize; i++)
     {
-        if ((pDblSp[i]->get(0) != 0) || (pDblSp[i]->getImg(0) != 0))
+        if ((pDblSp[i]->getScalar_() != 0) || (pDblSp[i]->getImg(0) != 0))
         {
             iResultat = RDivideDoubleByDouble(pDblSp[i], pDbl[i], &ppDblGet);
             if (iResultat != 0)
@@ -520,7 +520,7 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
                 delete ppDblGet;
                 return iResultat;
             }
-            std::complex<double> cplx(ppDblGet->get(0), ppDblGet->getImg(0));
+            std::complex<double> cplx(ppDblGet->getScalar_(), ppDblGet->getImg(0));
             pSpTemp->set(iPositVal[i], cplx, false);
             delete ppDblGet;
         }
