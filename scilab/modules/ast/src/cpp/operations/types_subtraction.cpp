@@ -2325,7 +2325,8 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         {
             double* pReal = pOut->get();
             int size = pOut->getSize();
-            double dblTmp = _pR->getScalar_();
+            // FIXME: Sparse has no "getScalar_"
+            double dblTmp = _pR->get(0);
             for (int i = 0 ; i < size ; i++)
             {
                 pReal[i] -= dblTmp;
