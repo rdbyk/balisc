@@ -1346,7 +1346,7 @@ template<class T, class U, class O> InternalType* sub_S_I(T *_pL, U *_pR)
 
 template<class T, class U, class O> InternalType* sub_SC_I(T *_pL, U *_pR)
 {
-    return sub_SC_SC<T, U, O>(_pL, _pR);
+    return sub_SC_S<T, U, O>(_pL, _pR);
 }
 
 template<class T, class U, class O> InternalType* sub_S_IC(T *_pL, U *_pR)
