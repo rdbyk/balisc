@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -865,7 +865,7 @@ template<class T, class U, class O>
 InternalType* dotmul_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    dotmul(_pL->get(), (size_t)pOut->getSize(), _pR->get(0), pOut->get());
+    dotmul(_pL->get(), (size_t)pOut->getSize(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -873,7 +873,7 @@ template<class T, class U, class O>
 InternalType* dotmul_M_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    dotmul(_pL->get(), pOut->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->get(), pOut->getSize(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -960,7 +960,7 @@ template<class T, class U, class O>
 InternalType* dotmul_MC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    dotmul(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->get(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -968,7 +968,7 @@ template<class T, class U, class O>
 InternalType* dotmul_MC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    dotmul(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1001,7 +1001,7 @@ template<class T, class U, class O>
 InternalType* dotmul_S_S(T *_pL, U *_pR)
 {
     O* pOut = new O(0);
-    dotmul(_pL->get(0), _pR->get(0), pOut->get());
+    dotmul(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -1009,7 +1009,7 @@ template<class T, class U, class O>
 InternalType* dotmul_S_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    dotmul(_pL->get(), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->get(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1017,7 +1017,7 @@ template<class T, class U, class O>
 InternalType* dotmul_S_I(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
-    dotmul(_pL->get(0), _pR->get(0), pOut->get());
+    dotmul(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -1025,7 +1025,7 @@ template<class T, class U, class O>
 InternalType* dotmul_S_IC(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
-    dotmul(_pL->get(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->getScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1052,7 +1052,7 @@ template<class T, class U, class O>
 InternalType* dotmul_SC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    dotmul(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1061,7 +1061,7 @@ InternalType* dotmul_SC_I(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
     pOut->setComplex(true);
-    dotmul(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1069,7 +1069,7 @@ template<class T, class U, class O>
 InternalType* dotmul_SC_IC(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
-    dotmul(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1102,7 +1102,7 @@ template<class T, class U, class O>
 InternalType* dotmul_I_I(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pL->clone();
-    dotmul(_pL->get(0), _pR->get(0), pOut->get());
+    dotmul(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -1110,7 +1110,7 @@ template<class T, class U, class O>
 InternalType* dotmul_I_IC(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
-    dotmul(_pL->get(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->getScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1143,7 +1143,7 @@ template<class T, class U, class O>
 InternalType* dotmul_IC_I(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pL->clone();
-    dotmul(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1151,7 +1151,7 @@ template<class T, class U, class O>
 InternalType* dotmul_IC_IC(T *_pL, U *_pR)
 {
     O* pOut = (O*)_pL->clone();
-    dotmul(_pL->get(0), _pL->getImg(0), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    dotmul(_pL->getScalar_(), _pL->getImgScalar_(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1234,12 +1234,12 @@ InternalType* dotmul_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
         //d * SP -> SP
         if (_pL->isComplex())
         {
-            std::complex<double> dbl(_pL->get(0), _pL->getImg(0));
+            std::complex<double> dbl(_pL->getScalar_(), _pL->getImgScalar_());
             return _pR->multiply(dbl);
         }
         else
         {
-            return _pR->multiply(_pL->get(0));
+            return _pR->multiply(_pL->getScalar_());
         }
     }
 
@@ -1378,7 +1378,7 @@ InternalType* dotmul_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
         Polynom* pOut = new Polynom(_pL->getVariableName(), iDimsR, piDimsR);
         int iSize = pOut->getSize();
         SinglePoly** pSPOut = pOut->get();
-        SinglePoly* pSPL = _pL->get(0);
+        SinglePoly* pSPL = _pL->getScalar_();
         SinglePoly** pSPR = _pR->get();
 
         for (int i = 0 ; i < iSize ; ++i)
@@ -1395,7 +1395,7 @@ InternalType* dotmul_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
         int iSize = pOut->getSize();
         SinglePoly** pSPOut = pOut->get();
         SinglePoly** pSPL = _pL->get();
-        SinglePoly* pSPR = _pR->get(0);
+        SinglePoly* pSPR = _pR->getScalar_();
 
         for (int i = 0 ; i < iSize ; ++i)
         {
@@ -1455,10 +1455,10 @@ InternalType* dotmul_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
         SinglePoly** pSP = pOut->get();
         int iSize = pOut->getSize();
 
-        double dblR = _pL->get(0);
+        double dblR = _pL->getScalar_();
         if (isComplexL)
         {
-            double dblI = _pL->getImg(0);
+            double dblI = _pL->getImgScalar_();
             pOut->setComplex(true);
             if (isComplexR)
             {
@@ -1500,7 +1500,7 @@ InternalType* dotmul_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
     if (_pR->isScalar())
     {
         pOut = new Polynom(_pR->getVariableName(), _pL->getDims(), _pL->getDimsArray());
-        SinglePoly* pSPL = _pR->get(0);
+        SinglePoly* pSPL = _pR->getScalar_();
         SinglePoly** pSP = pOut->get();
         int iSize = pOut->getSize();
         double* pdblLR = _pL->get();
