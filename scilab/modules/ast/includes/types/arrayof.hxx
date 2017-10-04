@@ -215,7 +215,7 @@ public :
         deleteData(tNullVal);
     }
 
-    virtual ArrayOf<T>* setComplex(bool _bComplex)
+    virtual void setComplex(bool _bComplex)
     {
         if (_bComplex == false)
         {
@@ -232,8 +232,6 @@ public :
                 memset(m_pImgData, 0x00, sizeof(T) * m_iSize);
             }
         }
-
-        return this;
     }
 
     virtual ArrayOf<T>* set(int _iPos, const T _data)

@@ -229,19 +229,15 @@ bool Polynom::isComplex()
     return false;
 }
 
-Polynom* Polynom::setComplex(bool _bComplex)
+void Polynom::setComplex(bool _bComplex)
 {
-    if (_bComplex == isComplex())
+    if (_bComplex != isComplex())
     {
-        return this;
+        for (int i = 0 ; i < getSize() ; i++)
+        {
+            get(i)->setComplex(_bComplex);
+        }
     }
-
-    for (int i = 0 ; i < getSize() ; i++)
-    {
-        get(i)->setComplex(_bComplex);
-    }
-
-    return this;
 }
 
 Polynom* Polynom::clone()
