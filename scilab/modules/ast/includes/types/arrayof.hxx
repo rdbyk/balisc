@@ -217,13 +217,6 @@ public :
 
     virtual ArrayOf<T>* setComplex(bool _bComplex)
     {
-        typedef ArrayOf<T>* (ArrayOf<T>::*setcplx_t)(bool);
-        ArrayOf<T>* pIT = checkRef(this, (setcplx_t)&ArrayOf<T>::setComplex, _bComplex);
-        if (pIT != this)
-        {
-            return pIT;
-        }
-
         if (_bComplex == false)
         {
             if (m_pImgData != NULL)

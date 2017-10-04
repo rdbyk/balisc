@@ -236,13 +236,6 @@ Polynom* Polynom::setComplex(bool _bComplex)
         return this;
     }
 
-    typedef Polynom* (Polynom::*setcplx_t)(bool);
-    Polynom* pIT = checkRef(this, (setcplx_t)&Polynom::setComplex, _bComplex);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     for (int i = 0 ; i < getSize() ; i++)
     {
         get(i)->setComplex(_bComplex);
