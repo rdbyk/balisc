@@ -229,26 +229,15 @@ bool Polynom::isComplex()
     return false;
 }
 
-Polynom* Polynom::setComplex(bool _bComplex)
+void Polynom::setComplex(bool _bComplex)
 {
-    if (_bComplex == isComplex())
+    if (_bComplex != isComplex())
     {
-        return this;
+        for (int i = 0 ; i < getSize() ; i++)
+        {
+            get(i)->setComplex(_bComplex);
+        }
     }
-
-    typedef Polynom* (Polynom::*setcplx_t)(bool);
-    Polynom* pIT = checkRef(this, (setcplx_t)&Polynom::setComplex, _bComplex);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
-    for (int i = 0 ; i < getSize() ; i++)
-    {
-        get(i)->setComplex(_bComplex);
-    }
-
-    return this;
 }
 
 Polynom* Polynom::clone()
