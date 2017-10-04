@@ -1,11 +1,11 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
- * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+ *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Gsoc 2017 - Siddhartha Gairola
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ *  Copyright (C) 2017 - Gsoc 2017 - Siddhartha Gairola
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -63,7 +63,6 @@
 #include "printvisitor.hxx"
 
 #include "types.hxx"
-#include "internal.hxx"
 #include "int.hxx"
 #include "double.hxx"
 #include "bool.hxx"
@@ -1006,9 +1005,9 @@ void mxSetM(mxArray *ptr, int M)
         return;
     }
 
-    types::GenericType* pGT = pIT->getAs<types::GenericType>();
-    types::InternalType* res = pGT->resizeClone(M, pGT->getCols());
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
+    types::InternalType* res = pGT->resize(M, pGT->getCols());
     ptr->ptr = (int*)res;
 }
 
@@ -1032,9 +1031,9 @@ void mxSetN(mxArray *ptr, int N)
         return;
     }
 
-    types::GenericType* pGT = pIT->getAs<types::GenericType>();
-    types::InternalType* res = pGT->resizeClone(pGT->getRows(), N);
+    types::GenericType * pGT = pIT->getAs<types::GenericType>();
 
+    types::InternalType* res = pGT->resize(pGT->getRows(), N);
     ptr->ptr = (int*)res;
 }
 
@@ -1567,9 +1566,7 @@ int mxAddField(mxArray *ptr, const char *fieldname)
 
     types::Struct *pa = (types::Struct*)ptr->ptr;
     wchar_t *wfieldname = to_wide_string(fieldname);
-    pa = pa->copyAs<types::Struct>();
-    pa->addField(wfieldname);
-    ptr->ptr = (int*)pa;
+    ptr->ptr = (int*)pa->addField(wfieldname);
     FREE(wfieldname);
     return mxGetFieldNumber(ptr, fieldname);
 }

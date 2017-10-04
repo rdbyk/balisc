@@ -283,24 +283,14 @@ std::wstring TList::getShortTypeStr() const
     return getTypeStr();
 }
 
-bool TList::set(const std::wstring& _sKey, InternalType* _pIT)
+TList* TList::set(const std::wstring& _sKey, InternalType* _pIT)
 {
-    return List::set(getIndexFromString(_sKey), _pIT);
+    return List::set(getIndexFromString(_sKey), _pIT)->getAs<TList>();
 }
 
-bool TList::set(const int _iIndex, InternalType* _pIT)
+TList* TList::set(const int _iIndex, InternalType* _pIT)
 {
-    return List::set(_iIndex, _pIT);
-}
-
-TList* TList::setClone(const std::wstring& _sKey, InternalType* _pIT)
-{
-    return List::setClone(getIndexFromString(_sKey), _pIT)->getAs<types::TList>();
-}
-
-TList* TList::setClone(const int _iIndex, InternalType* _pIT)
-{
-    return List::setClone(_iIndex, _pIT)->getAs<types::TList>();
+    return List::set(_iIndex, _pIT)->getAs<TList>();
 }
 
 String* TList::getFieldNames() const

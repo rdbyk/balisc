@@ -215,8 +215,15 @@ public :
         deleteData(tNullVal);
     }
 
-    virtual void setComplex(bool _bComplex)
+    virtual ArrayOf<T>* setComplex(bool _bComplex)
     {
+        typedef ArrayOf<T>* (ArrayOf<T>::*setcplx_t)(bool);
+        ArrayOf<T>* pIT = checkRef(this, (setcplx_t)&ArrayOf<T>::setComplex, _bComplex);
+        if (pIT != this)
+        {
+            return pIT;
+        }
+
         if (_bComplex == false)
         {
             if (m_pImgData != NULL)
@@ -232,30 +239,46 @@ public :
                 memset(m_pImgData, 0x00, sizeof(T) * m_iSize);
             }
         }
+
+        return this;
     }
 
-    virtual bool set(int _iPos, const T _data)
+    virtual ArrayOf<T>* set(int _iPos, const T _data)
     {
         if (m_pRealData == NULL || _iPos >= m_iSize)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(int, T);
+        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _iPos, _data);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         deleteData(m_pRealData[_iPos]);
         m_pRealData[_iPos] = copyValue(_data);
-        return true;
+        return this;
     }
 
-    virtual bool set(int _iRows, int _iCols, const T _data)
+    virtual ArrayOf<T>* set(int _iRows, int _iCols, const T _data)
     {
         return set(_iCols * getRows() + _iRows, _data);
     }
 
-    virtual bool set(T* _pdata)
+    virtual ArrayOf<T>* set(T* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(T*);
+        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -263,14 +286,21 @@ public :
             deleteData(m_pRealData[i]);
             m_pRealData[i] = copyValue(_pdata[i]);
         }
-        return true;
+        return this;
     }
 
-    virtual bool set(const T* _pdata)
+    virtual ArrayOf<T>* set(const T* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(const T*);
+        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -279,7 +309,7 @@ public :
             m_pRealData[i] = copyValue(_pdata[i]);
         }
 
-        return true;
+        return this;
     }
 
     inline T* get() const
@@ -302,28 +332,42 @@ public :
     }
 
     /*internal function to manage img part*/
-    bool setImg(int _iPos, T _data)
+    ArrayOf<T>* setImg(int _iPos, T _data)
     {
         if (m_pImgData == NULL || _iPos >= m_iSize)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(int, T);
+        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _iPos, _data);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         m_pImgData[_iPos] = copyValue(_data);
-        return true;
+        return this;
     }
 
 
-    bool setImg(int _iRows, int _iCols, T _data)
+    ArrayOf<T>* setImg(int _iRows, int _iCols, T _data)
     {
         return setImg(_iCols * getRows() + _iRows, copyValue(_data));
     }
 
-    bool setImg(T* _pdata)
+    ArrayOf<T>* setImg(T* _pdata)
     {
         if (m_pImgData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(T*);
+        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -331,15 +375,22 @@ public :
             m_pImgData[i] = copyValue(_pdata[i]);
         }
 
-        return true;
+        return this;
     }
 
 
-    bool setImg(const T* _pdata)
+    ArrayOf<T>* setImg(const T* _pdata)
     {
         if (m_pImgData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(const T*);
+        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
@@ -347,7 +398,7 @@ public :
             m_pImgData[i] = copyValue(_pdata[i]);
         }
 
-        return true;
+        return this;
     }
 
     inline T* getImg() const
@@ -370,8 +421,8 @@ public :
     }
 
     virtual ArrayOf<T>* insert(typed_list* _pArgs, InternalType* _pSource);
-    virtual bool append(int _iRows, int _iCols, InternalType* _poSource);
-    virtual bool resize(int* _piDims, int _iDims);
+    virtual ArrayOf<T>* append(int _iRows, int _iCols, InternalType* _poSource);
+    virtual ArrayOf<T>* resize(int* _piDims, int _iDims);
 
     // return a GenericType because of [] wich is a types::Double (can't be a ArrayOf<char>)
     virtual GenericType* remove(typed_list* _pArgs);
@@ -384,16 +435,16 @@ public :
     virtual int getInvokeNbIn();
     virtual int getInvokeNbOut();
 
-    virtual bool reshape(int _iNewRows, int _iNewCols)
+    virtual ArrayOf<T>* reshape(int _iNewRows, int _iNewCols)
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return reshape(piDims, 2);
     }
 
-    virtual bool reshape(int* _piDims, int _iDims);
+    virtual ArrayOf<T>* reshape(int* _piDims, int _iDims);
 
 
-    virtual bool resize(int _iNewRows, int _iNewCols)
+    virtual ArrayOf<T>* resize(int _iNewRows, int _iNewCols)
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return resize(piDims, 2);

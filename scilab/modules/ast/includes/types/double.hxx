@@ -66,7 +66,7 @@ public :
     Double*                     clone();
     void fillFromCol(int _iCols, Double *_poSource);
     void fillFromRow(int _iRows, Double *_poSource);
-    bool append(int _iRows, int _iCols, InternalType* _poSource);
+    Double*                     append(int _iRows, int _iCols, InternalType* _poSource);
 
     //bool                        append(int _iRows, int _iCols, Double *_poSource);
 
@@ -269,27 +269,41 @@ public :
 
     virtual ast::Exp*           getExp(const Location& loc);
 
-    virtual bool set(int _iPos, const double _data)
+    virtual Double* set(int _iPos, const double _data)
     {
         if (_iPos >= m_iSize)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef Double* (Double::*set_t)(int, double);
+        Double* pIT = checkRef(this, (set_t)&Double::set, _iPos, _data);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         m_pRealData[_iPos] = _data;
-        return true;
+        return this;
     }
 
-    virtual bool set(int _iRows, int _iCols, const double _data)
+    virtual Double* set(int _iRows, int _iCols, const double _data)
     {
         return set(_iCols * m_iRows + _iRows, _data);
     }
 
-    virtual bool set(double* _pdata)
+    virtual Double* set(double* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef Double* (Double::*set_t)(double*);
+        Double* pIT = checkRef(this, (set_t)&Double::set, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0; i < m_iSize; i++)
@@ -297,14 +311,21 @@ public :
             m_pRealData[i] = _pdata[i];
         }
 
-        return true;
+        return this;
     }
 
-    virtual bool set(const double* _pdata)
+    virtual Double* set(const double* _pdata)
     {
         if (m_pRealData == NULL)
         {
-            return false;
+            return NULL;
+        }
+
+        typedef Double* (Double::*set_t)(const double*);
+        Double* pIT = checkRef(this, (set_t)&Double::set, _pdata);
+        if (pIT != this)
+        {
+            return pIT;
         }
 
         for (int i = 0; i < m_iSize; i++)
@@ -312,7 +333,7 @@ public :
             m_pRealData[i] = _pdata[i];
         }
 
-        return true;
+        return this;
     }
 
     virtual bool isNativeType() override

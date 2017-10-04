@@ -66,23 +66,4 @@ int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
         return getSize();
     }
 }
-
-GenericType* GenericType::resizeClone(int* _piDims, int _iDims)
-{
-    if (getRef() > 1)
-    {
-        GenericType* pClone = clone();
-
-        if (pClone->resize(_piDims, _iDims) == false)
-        {
-            pClone->killMe();
-            return NULL;
-        }
-
-        return pClone;
-    }
-
-    return resize(_piDims, _iDims) ? this : NULL;
-}
-
 }
