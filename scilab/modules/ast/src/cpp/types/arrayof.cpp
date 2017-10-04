@@ -89,7 +89,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             }
             else
             {
-                if (set(index, *pRealData) == true)
+                if (set(index, *pRealData) != NULL)
                 {
                     return this;
                 }
@@ -142,7 +142,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 {
                     for (int i : indexes)
                     {
-                        if (set(i, *pRealData) == false)
+                        if (set(i, *pRealData) == NULL)
                         {
                             status = false;
                             break;
@@ -170,7 +170,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 {
                     for (int i : indexes)
                     {
-                        if (set(i, *pRealData) == false)
+                        if (set(i, *pRealData) == NULL)
                         {
                             status = false;
                             break;
@@ -338,8 +338,8 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     //before resize, check input dimension
     if (bNeedToResize)
     {
-        // FIXME: do we actually perform a resize here?
-        if (resize(piNewDims, iNewDims) == false)
+        ArrayOf<T>* pTemp = resize(piNewDims, iNewDims);
+        if (pTemp == NULL)
         {
             delete[] piCountDim;
             delete[] piMaxDim;
@@ -729,8 +729,14 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 }
 
 template <typename T>
-bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
+ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
 {
+    ArrayOf<T>* pIT = checkRef(this, &ArrayOf::append, _iRows, _iCols, _poSource);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     ArrayOf * pGT = _poSource->getAs<ArrayOf>();
     int iRows = pGT->getRows();
     int iCols = pGT->getCols();
@@ -738,7 +744,7 @@ bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     //insert without resize
     if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
     {
-        return false;
+        return NULL;
     }
 
     //Update complexity if necessary
@@ -776,7 +782,7 @@ bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
         }
     }
 
-    return true;
+    return this;
 }
 
 template <typename T>
@@ -1376,12 +1382,19 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 }
 
 template <typename T>
-bool ArrayOf<T>::reshape(int* _piDims, int _iDims)
+ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
 {
+    typedef ArrayOf<T>* (ArrayOf<T>::*reshape_t)(int*, int);
+    ArrayOf<T>* pIT = checkRef(this, (reshape_t)&ArrayOf<T>::reshape, _piDims, _iDims);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     int iNewSize = get_max_size(_piDims, _iDims);
     if (iNewSize != m_iSize)
     {
-        return false;
+        return NULL;
     }
 
     for (int i = 0 ; i < _iDims ; i++)
@@ -1409,16 +1422,23 @@ bool ArrayOf<T>::reshape(int* _piDims, int _iDims)
     m_iSize = iNewSize;
     m_iDims = _iDims;
 
-    return true;
+    return this;
 }
 
 template <typename T>
-bool ArrayOf<T>::resize(int* _piDims, int _iDims)
+ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
 {
+    typedef ArrayOf<T>* (ArrayOf<T>::*resize_t)(int*, int);
+    ArrayOf<T>* pIT = checkRef(this, (resize_t)&ArrayOf::resize, _piDims, _iDims);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     if (_iDims == m_iDims && memcmp(m_piDims, _piDims, sizeof(int) * m_iDims) == 0)
     {
         //nothing to do
-        return true;
+        return this;
     }
 
     //alloc new data array
@@ -1646,7 +1666,7 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
     m_iRows = m_piDims[0];
     m_iCols = m_piDims[1];
     m_iSize = iNewSize;
-    return true;
+    return this;
 }
 
 template <typename T>

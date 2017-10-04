@@ -1,8 +1,8 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+*
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- */
+*/
 
 #include "gatewaystruct.hxx"
 #include "list.hxx"
@@ -98,7 +98,7 @@ scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, sci
     }
 #endif
 
-    bool ret = l->set(index, (types::InternalType*)val);
+    bool ret = l->set(index, (types::InternalType*)val) != nullptr;
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
@@ -153,7 +153,7 @@ scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_
         fields->set(fields->getSize() - 1, field);
     }
 
-    bool ret = l->set(field, (types::InternalType*)val);
+    bool ret = l->set(field, (types::InternalType*)val) != nullptr;
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
@@ -206,7 +206,7 @@ scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const wchar_
         fields->set(fields->getSize() - 1, field);
     }
 
-    bool ret = l->set(field, (types::InternalType*)val);
+    bool ret = l->set(field, (types::InternalType*)val) != nullptr;
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 

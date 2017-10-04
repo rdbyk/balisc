@@ -1,8 +1,8 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+*
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- */
+*/
 
 #include "gatewaystruct.hxx"
 #include "cell.hxx"
@@ -117,7 +117,7 @@ scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, s
     }
 #endif
     int i = c->getIndex(index);
-    bool bset = c->set(i, (types::InternalType*)val);
+    bool bset = c->set(i, (types::InternalType*)val) != nullptr;
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {
@@ -140,7 +140,7 @@ scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, in
     }
 #endif
     int i = c->getIndex(index);
-    bool bset = c->set(i, (types::InternalType*)val);
+    bool bset = c->set(i, (types::InternalType*)val) != nullptr;
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {

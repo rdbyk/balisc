@@ -133,24 +133,24 @@ public :
         return NULL;
     }
 
-    virtual bool resize(int* /*_piDims*/, int /*_iDims*/)
+    virtual GenericType*        resize(int* /*_piDims*/, int /*_iDims*/)
     {
-        return false;
+        return NULL;
     }
 
-    virtual bool resize(int /*_iNewRows*/, int /*_iNewCols*/)
+    virtual GenericType*        resize(int /*_iNewRows*/, int /*_iNewCols*/)
     {
-        return false;
+        return NULL;
     }
 
-    virtual bool reshape(int* /*_piDims*/, int /*_iDims*/)
+    virtual GenericType*        reshape(int* /*_piDims*/, int /*_iDims*/)
     {
-        return false;
+        return NULL;
     }
 
-    virtual bool reshape(int /*_iNewRows*/, int /*_iNewCols*/)
+    virtual GenericType*        reshape(int /*_iNewRows*/, int /*_iNewCols*/)
     {
-        return false;
+        return NULL;
     }
 
     virtual GenericType*        insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
@@ -178,13 +178,6 @@ public :
         return NULL;
     }
 
-    virtual GenericType* resizeClone(int* /*_piDims*/, int /*_iDims*/);
-
-    virtual GenericType* resizeClone(int _iNewRows, int _iNewCols)
-    {
-        int piDims[2] = {_iNewRows, _iNewCols};
-        return resizeClone(piDims, 2);
-    }
 };
 
 }

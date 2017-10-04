@@ -91,22 +91,38 @@ void Bool::whoAmI()
     std::cout << "types::Bool";
 }
 
-void Bool::setFalse()
+Bool* Bool::setFalse()
 {
+    Bool* pb = checkRef(this, &Bool::setFalse);
+    if (pb != this)
+    {
+        return pb;
+    }
+
     int size = getSize();
     for (int i = 0 ; i < size ; i++)
     {
         m_pRealData[i] = 0;
     }
+
+    return this;
 }
 
-void Bool::setTrue()
+Bool* Bool::setTrue()
 {
+    Bool* pb = checkRef(this, &Bool::setTrue);
+    if (pb != this)
+    {
+        return pb;
+    }
+
     int size = getSize();
     for (int i = 0; i < size; i++)
     {
         m_pRealData[i] = 1;
     }
+
+    return this;
 }
 
 bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
