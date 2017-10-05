@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
@@ -100,18 +99,11 @@ int List::getSize() const
 ** append(InternalType *_typedValue)
 ** Append the given value to the end of the List
 */
-List* List::append(InternalType *_typedValue)
+void List::append(InternalType *_typedValue)
 {
-    List* pIT = checkRef(this, &List::append, _typedValue);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     _typedValue->IncreaseRef();
     m_plData->push_back(_typedValue);
     m_iSize = static_cast<int>(m_plData->size());
-    return this;
 }
 
 /**
