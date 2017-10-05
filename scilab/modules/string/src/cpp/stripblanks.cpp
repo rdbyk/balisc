@@ -75,7 +75,7 @@ types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB, int fl
             }
 
             wchar_t* pwstReplace = subwcs(pStr, iInputStartIndex, iInputEndIndex);
-            pOutputStrings->set(x, pwstReplace);
+            pOutputStrings->set_(x, pwstReplace);
             FREE(pwstReplace);
         }
     }

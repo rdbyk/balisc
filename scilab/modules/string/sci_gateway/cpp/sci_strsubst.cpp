@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU , Allan CORNET
  * Copyright (C) DIGITEO - 2009 - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -114,7 +114,7 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
         pwstOutput = wcssubst(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace);
     }
 
-    pOut->set(pwstOutput);
+    pOut->set_(pwstOutput);
     freeArrayOfWideString(pwstOutput, pOut->getSize());
     out.push_back(pOut);
     return types::Function::OK;
