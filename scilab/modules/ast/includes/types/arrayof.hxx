@@ -412,7 +412,7 @@ public :
     }
 
     virtual ArrayOf<T>* insert(typed_list* _pArgs, InternalType* _pSource);
-    virtual ArrayOf<T>* append(int _iRows, int _iCols, InternalType* _poSource);
+    virtual void append(int _iRows, int _iCols, InternalType* _poSource);
     virtual ArrayOf<T>* resize(int* _piDims, int _iDims);
 
     // return a GenericType because of [] wich is a types::Double (can't be a ArrayOf<char>)

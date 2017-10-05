@@ -1932,14 +1932,8 @@ GenericType* Sparse::remove(typed_list* _pArgs)
     return pOut;
 }
 
-Sparse* Sparse::append(int r, int c, types::Sparse SPARSE_CONST* src)
+void Sparse::append(int r, int c, types::Sparse SPARSE_CONST* src)
 {
-    Sparse* pIT = checkRef(this, &Sparse::append, r, c, src);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     //        std::wcerr << L"to a sparse of size"<<getRows() << L","<<getCols() << L" should append @"<<r << L","<<c<< "a sparse:"<< src->toString(32,80)<<std::endl;
     if (src->isComplex())
     {
@@ -1962,8 +1956,6 @@ Sparse* Sparse::append(int r, int c, types::Sparse SPARSE_CONST* src)
     }
 
     finalize();
-
-    return this; // realloc is meaningless for sparse matrices
 }
 
 /*
@@ -3840,17 +3832,10 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
     return pOut;
 }
 
-SparseBool* SparseBool::append(int r, int c, SparseBool SPARSE_CONST* src)
+void SparseBool::append(int r, int c, SparseBool SPARSE_CONST* src)
 {
-    SparseBool* pIT = checkRef(this, &SparseBool::append, r, c, src);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     doAppend(*src, r, c, *matrixBool);
     finalize();
-    return this;
 }
 
 GenericType* SparseBool::insertNew(typed_list* _pArgs)
