@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -97,7 +97,7 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
 
         if (wcslen(pString->get(i)) < wcslen(pCharSample->get(j)))
         {
-            pOutString->set(i, L"");
+            pOutString->set_(i, L"");
         }
         else
         {
@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
 
             if (ptrwstrstr)
             {
-                pOutString->set(i, ptrwstrstr);
+                pOutString->set_(i, ptrwstrstr);
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
@@ -116,7 +116,7 @@ types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, t
             }
             else
             {
-                pOutString->set(i, L"");
+                pOutString->set_(i, L"");
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
