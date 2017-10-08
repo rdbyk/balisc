@@ -330,19 +330,8 @@ InternalType* List::get(const int _iIndex)
     return NULL;
 }
 
-List* List::set(const int _iIndex, InternalType* _pIT)
+void List::set_(const int _iIndex, InternalType* _pIT)
 {
-    if (_iIndex < 0)
-    {
-        return NULL;
-    }
-
-    List* pIT = checkRef(this, &List::set, _iIndex, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     while ((int)m_plData->size() < _iIndex)
     {
         //incease list size and fill with "Undefined"
@@ -371,8 +360,18 @@ List* List::set(const int _iIndex, InternalType* _pIT)
             pOld->killMe();
         }
     }
+}
 
-    return this;
+List* List::set(const int _iIndex, InternalType* _pIT)
+{
+    if (_iIndex < 0)
+    {
+        return NULL;
+    }
+
+    List* l = copyAs<List>();
+    l->set_(_iIndex, _pIT);
+    return l;
 }
 
 bool List::operator==(const InternalType& it)
