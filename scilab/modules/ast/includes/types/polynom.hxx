@@ -91,6 +91,10 @@ public :
     void                    setZeros();
     Polynom*                insert(typed_list* _pArgs, InternalType* _pSource);
 
+    void set_(int _iPos, SinglePoly* _pS);
+    void set_(int _iRows, int _iCols, SinglePoly* _pS);
+    void set_(SinglePoly** _pS);
+
     Polynom*                set(int _iPos, SinglePoly* _pS);
     Polynom*                set(int _iRows, int _iCols, SinglePoly* _pS);
     Polynom*                set(SinglePoly** _pS);

@@ -82,20 +82,8 @@ void Polynom::createPoly(const std::wstring& _szVarName, int _iDims, const int* 
 #endif
 }
 
-Polynom* Polynom::set(int _iPos, SinglePoly* _pS)
+void Polynom::set_(int _iPos, SinglePoly* _pS)
 {
-    if (m_pRealData == NULL || _iPos >= m_iSize)
-    {
-        return NULL;
-    }
-
-    typedef Polynom* (Polynom::*set_t)(int, SinglePoly*);
-    Polynom* pIT = checkRef(this, (set_t)&Polynom::set, _iPos, _pS);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (m_pRealData[_iPos])
     {
         delete m_pRealData[_iPos];
@@ -112,8 +100,23 @@ Polynom* Polynom::set(int _iPos, SinglePoly* _pS)
     {
         m_pRealData[_iPos]->setComplex(true);
     }
+}
 
-    return this;
+Polynom* Polynom::set(int _iPos, SinglePoly* _pS)
+{
+    if (m_pRealData == NULL || _iPos >= m_iSize)
+    {
+        return NULL;
+    }
+
+    Polynom* p = copyAs<Polynom>();
+    p->set_(_iPos, _pS);
+    return p;
+}
+
+void Polynom::set_(int _iRows, int _iCols, SinglePoly* _pS)
+{
+    return set_(_iCols * getRows() + _iRows, _pS);
 }
 
 Polynom* Polynom::set(int _iRows, int _iCols, SinglePoly* _pS)
@@ -121,21 +124,19 @@ Polynom* Polynom::set(int _iRows, int _iCols, SinglePoly* _pS)
     return set(_iCols * getRows() + _iRows, _pS);
 }
 
-Polynom* Polynom::set(SinglePoly** _pS)
+void Polynom::set_(SinglePoly** _pS)
 {
-    typedef Polynom* (Polynom::*set_t)(SinglePoly**);
-    Polynom* pIT = checkRef(this, (set_t)&Polynom::set, _pS);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        set(i, _pS[i]);
+        set_(i, _pS[i]);
     }
+}
 
-    return this;
+Polynom* Polynom::set(SinglePoly** _pS)
+{
+    Polynom* p = copyAs<Polynom>();
+    p->set_(_pS);
+    return p;
 }
 
 Polynom* Polynom::setCoef(int _iRows, int _iCols, Double *_pdblCoef)
