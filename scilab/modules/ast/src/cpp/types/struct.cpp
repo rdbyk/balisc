@@ -461,12 +461,6 @@ Struct* Struct::addFieldFront(const std::wstring& _sKey)
 
 Struct* Struct::removeField(const std::wstring& _sKey)
 {
-    Struct* pIT = checkRef(this, &Struct::removeField, _sKey);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     for (int j = 0; j < getSize(); j++)
     {
         get(j)->removeField(_sKey);

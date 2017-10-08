@@ -2063,7 +2063,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 if (_pInsert->isListDelete())
                 {
                     /* Remove a field */
-                    pStruct = pStruct->removeField(pS->get(0));
+                    pStruct = pStruct->copyAs<types::Struct>();
+                    pStruct->removeField(pS->get(0));
                 }
                 else
                 {
