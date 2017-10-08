@@ -429,12 +429,6 @@ bool Struct::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, 
 
 Struct* Struct::addField(const std::wstring& _sKey)
 {
-    Struct* pIT = checkRef(this, &Struct::addField, _sKey);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (getSize() == 0)
     {
         //change dimension to 1x1 and add field

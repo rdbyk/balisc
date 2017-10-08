@@ -1000,7 +1000,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 // create field in parent if it not exist
                 if (pStruct->exists(pwcsFieldname) == false)
                 {
-                    pStruct = pStruct->addField(pwcsFieldname);
+                    pStruct = pStruct->copyAs<types::Struct>();
+                    pStruct->addField(pwcsFieldname);
                     pEH->setCurrent(pStruct);
                 }
 
@@ -2068,7 +2069,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 {
                     /* Add a field */
                     int size = pStruct->getSize();
-                    pStruct = pStruct->addField(pS->get(0));
+                    pStruct = pStruct->copyAs<types::Struct>();
+                    pStruct->addField(pS->get(0));
                     for (int i = 0; i < size; i++)
                     {
                         pStruct->get(i)->set(pS->get(0), _pInsert);
