@@ -445,12 +445,6 @@ Struct* Struct::addField(const std::wstring& _sKey)
 
 Struct* Struct::addFieldFront(const std::wstring& _sKey)
 {
-    Struct* pIT = checkRef(this, &Struct::addFieldFront, _sKey);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (getSize() == 0)
     {
         //change dimension to 1x1 and add field
