@@ -246,7 +246,7 @@ Polynom* Polynom::clone()
     Polynom* pMP = new Polynom(getVariableName(), getDims(), getDimsArray());
     for (int i = 0 ; i < getSize() ; i++)
     {
-        pMP->set(i, m_pRealData[i]);
+        pMP->set_(i, m_pRealData[i]);
     }
 
     return pMP;
