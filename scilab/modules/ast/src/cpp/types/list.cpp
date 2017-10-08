@@ -183,7 +183,7 @@ InternalType* List::extract(typed_list* _pArgs)
             break;
         }
         InternalType* pIT = (*m_plData)[idx - 1];
-        outList->set(i, pIT);
+        outList->set_(i, pIT);
     }
 
     //free pArg content
