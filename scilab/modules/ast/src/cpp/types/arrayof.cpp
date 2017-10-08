@@ -415,7 +415,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         if (pSource->isScalar())
         {
             //element-wise insertion
-            set(iPos, pRealData[0]);
+            set_(iPos, pRealData[0]);
             if (pImgData != NULL && bComplex)
             {
                 setImg(iPos, pImgData[0]);
@@ -433,7 +433,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
                 for (int iPost = iPos; iPost < this->getSize(); iPost += iPas)
                 {
-                    set(iPost, pRealData[i]);
+                    set_(iPost, pRealData[i]);
                     if (pImgData != NULL && bComplex)
                     {
                         setImg(iPost, pImgData[i]);
@@ -443,7 +443,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             }
             else
             {
-                set(iPos, pRealData[i]);
+                set_(iPos, pRealData[i]);
                 if (pImgData != NULL && bComplex)
                 {
                     setImg(iPos, pImgData[i]);
