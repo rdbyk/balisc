@@ -759,7 +759,7 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
             for (int j = 0; j < iCols; j++)
             {
                 int c = _iCols + j;
-                set(r, c, pGT->get(i, j));
+                set_(r, c, pGT->get(i, j));
                 setImg(r, c, pGT->getImg(i, j));
             }
         }
@@ -771,7 +771,7 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
             int r = _iRows + i;
             for (int j = 0; j < iCols; j++)
             {
-                set(r, _iCols + j, pGT->get(i, j));
+                set_(r, _iCols + j, pGT->get(i, j));
             }
         }
     }
