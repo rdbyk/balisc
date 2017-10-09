@@ -148,6 +148,11 @@ Cell* Cell::set(int _iRows, int _iCols, InternalType* _pIT)
     return NULL;
 }
 
+void Cell::set_(int _iRows, int _iCols, const InternalType* _pIT)
+{
+    set_(_iCols * getRows() + _iRows, _pIT);
+}
+
 Cell* Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())
@@ -170,22 +175,21 @@ Cell* Cell::set(int _iIndex, InternalType* _pIT)
         return this;
     }
 
-    typedef Cell* (Cell::*set_t)(int, InternalType*);
-    Cell* pIT = checkRef(this, (set_t)&Cell::set, _iIndex, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
-    }
+    Cell* c = copyAs<Cell>();
+    c->set_(_iIndex, _pIT);
+    return c;
+}
 
+void Cell::set_(int _iIndex, const InternalType* _pIT)
+{
     if (m_pRealData[_iIndex] != NULL)
     {
         m_pRealData[_iIndex]->DecreaseRef();
         m_pRealData[_iIndex]->killMe();
     }
 
-    _pIT->IncreaseRef();
-    m_pRealData[_iIndex] = _pIT;
-    return this;
+    const_cast<InternalType*>(_pIT)->IncreaseRef();
+    m_pRealData[_iIndex] = const_cast<InternalType*>(_pIT);
 }
 
 Cell* Cell::set(int _iIndex, const InternalType* _pIT)
@@ -195,41 +199,15 @@ Cell* Cell::set(int _iIndex, const InternalType* _pIT)
         return NULL;
     }
 
-    typedef Cell* (Cell::*set_t)(int, const InternalType*);
-    Cell* pIT = checkRef(this, (set_t)&Cell::set, _iIndex, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
-    if (m_pRealData[_iIndex] != NULL)
-    {
-        m_pRealData[_iIndex]->DecreaseRef();
-        m_pRealData[_iIndex]->killMe();
-    }
-
-    const_cast<InternalType*>(_pIT)->IncreaseRef();
-    m_pRealData[_iIndex] = const_cast<InternalType*>(_pIT);
-
-    return this;
+    Cell* c = copyAs<Cell>();
+    c->set_(_iIndex, _pIT);
+    return c;
 }
 
-Cell* Cell::set(InternalType** _pIT)
+void Cell::set_(InternalType** _pIT)
 {
-    typedef Cell* (Cell::*set_t)(InternalType**);
-    Cell* pIT = checkRef(this, (set_t)&Cell::set, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     for (int i = 0; i < m_iSize; i++)
     {
-        if (i >= m_iSize)
-        {
-            return NULL;
-        }
-
         if (m_pRealData[i] != NULL)
         {
             m_pRealData[i]->DecreaseRef();
@@ -239,8 +217,13 @@ Cell* Cell::set(InternalType** _pIT)
         _pIT[i]->IncreaseRef();
         m_pRealData[i] = _pIT[i];
     }
+}
 
-    return this;
+Cell* Cell::set(InternalType** _pIT)
+{
+    Cell* c = copyAs<Cell>();
+    c->set_(_pIT);
+    return c;
 }
 
 /**
