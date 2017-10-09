@@ -50,8 +50,8 @@ public :
     // FIXME : Should not return NULL
     Polynom*                clone();
 
-    Polynom*                setCoef(int _iRows, int _iCols, Double *_pdblCoef);
-    Polynom*                setCoef(int _iIdx, Double *_pdblCoef);
+    void setCoef(int _iRows, int _iCols, Double *_pdblCoef);
+    void setCoef(int _iIdx, Double *_pdblCoef);
 
     virtual void setComplex(bool _bComplex);
 
@@ -85,11 +85,15 @@ public :
     Double*                 evaluate(Double* _pdblValue);
     void                    updateRank(void);
     Double*                 getCoef(void);
-    Polynom*                setCoef(Double *_pCoef);
+    void setCoef(Double *_pCoef);
     Double*                 extractCoef(int _iRank);
     bool                    insertCoef(int _iRank, Double* _pCoef);
     void                    setZeros();
     Polynom*                insert(typed_list* _pArgs, InternalType* _pSource);
+
+    void set_(int _iPos, SinglePoly* _pS);
+    void set_(int _iRows, int _iCols, SinglePoly* _pS);
+    void set_(SinglePoly** _pS);
 
     Polynom*                set(int _iPos, SinglePoly* _pS);
     Polynom*                set(int _iRows, int _iCols, SinglePoly* _pS);

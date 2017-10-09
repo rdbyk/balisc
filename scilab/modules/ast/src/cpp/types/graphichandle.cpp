@@ -83,7 +83,7 @@ GraphicHandle* GraphicHandle::clone()
     GraphicHandle* pGH = new GraphicHandle(getDims(), getDimsArray());
     for (int i = 0 ; i < getSize() ; i++)
     {
-        pGH->set(i, get(i));
+        pGH->set_(i, get(i));
     }
     return pGH;
 }

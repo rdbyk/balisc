@@ -1564,7 +1564,7 @@ int mxAddField(mxArray *ptr, const char *fieldname)
         return -1;
     }
 
-    types::Struct *pa = (types::Struct*)ptr->ptr;
+    types::Struct *pa = ((types::Struct*)ptr->ptr)->copyAs<types::Struct>();
     wchar_t *wfieldname = to_wide_string(fieldname);
     ptr->ptr = (int*)pa->addField(wfieldname);
     FREE(wfieldname);

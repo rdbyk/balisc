@@ -82,7 +82,7 @@ Bool::Bool(int _iDims, const int* _piDims)
 Bool* Bool::clone()
 {
     Bool *pbClone =  new Bool(getDims(), getDimsArray());
-    pbClone->set(get());
+    pbClone->set_(get());
     return pbClone;
 }
 

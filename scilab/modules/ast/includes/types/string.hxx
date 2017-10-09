@@ -48,11 +48,11 @@ public :
 
     void                    whoAmI();
 
-    virtual String* set_(int _iPos, const wchar_t* _pwstData);
-    virtual String* set_(int _iRows, int _iCols, const wchar_t* _pwstData);
-    virtual String* set_(const wchar_t* const* _pwstData);
-    virtual String* set_(const char* const* _pstrData);
-    virtual String* set_(int _iPos, const char* _pcData);
+    virtual void set_(int _iPos, const wchar_t* _pwstData);
+    virtual void set_(int _iRows, int _iCols, const wchar_t* _pwstData);
+    virtual void set_(const wchar_t* const* _pwstData);
+    virtual void set_(const char* const* _pstrData);
+    virtual void set_(int _iPos, const char* _pcData);
 
     virtual String*         set(int _iPos, const wchar_t* _pwstData);
     virtual String*         set(int _iRows, int _iCols, const wchar_t* _pwstData);

@@ -234,6 +234,12 @@ public :
         }
     }
 
+    virtual void set_(int _iPos, const T _data)
+    {
+        deleteData(m_pRealData[_iPos]);
+        m_pRealData[_iPos] = copyValue(_data);
+    }
+
     virtual ArrayOf<T>* set(int _iPos, const T _data)
     {
         if (m_pRealData == NULL || _iPos >= m_iSize)
@@ -241,21 +247,28 @@ public :
             return NULL;
         }
 
-        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(int, T);
-        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _iPos, _data);
-        if (pIT != this)
-        {
-            return pIT;
-        }
+        ArrayOf<T>* a = copyAs<ArrayOf<T>>();
+        a->set_(_iPos, _data);
+        return a;
+    }
 
-        deleteData(m_pRealData[_iPos]);
-        m_pRealData[_iPos] = copyValue(_data);
-        return this;
+    virtual void set_(int _iRows, int _iCols, const T _data)
+    {
+        return set_(_iCols * getRows() + _iRows, _data);
     }
 
     virtual ArrayOf<T>* set(int _iRows, int _iCols, const T _data)
     {
         return set(_iCols * getRows() + _iRows, _data);
+    }
+
+    virtual void set_(const T* _pdata)
+    {
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            deleteData(m_pRealData[i]);
+            m_pRealData[i] = copyValue(_pdata[i]);
+        }
     }
 
     virtual ArrayOf<T>* set(T* _pdata)
@@ -265,19 +278,9 @@ public :
             return NULL;
         }
 
-        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(T*);
-        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
-        }
-
-        for (int i = 0 ; i < m_iSize ; i++)
-        {
-            deleteData(m_pRealData[i]);
-            m_pRealData[i] = copyValue(_pdata[i]);
-        }
-        return this;
+        ArrayOf<T>* a = copyAs<ArrayOf<T>>();
+        a->set_(_pdata);
+        return a;
     }
 
     virtual ArrayOf<T>* set(const T* _pdata)
@@ -287,20 +290,9 @@ public :
             return NULL;
         }
 
-        typedef ArrayOf<T>* (ArrayOf<T>::*set_t)(const T*);
-        ArrayOf<T>* pIT = checkRef(this, (set_t)&ArrayOf<T>::set, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
-        }
-
-        for (int i = 0 ; i < m_iSize ; i++)
-        {
-            deleteData(m_pRealData[i]);
-            m_pRealData[i] = copyValue(_pdata[i]);
-        }
-
-        return this;
+        ArrayOf<T>* a = copyAs<ArrayOf<T>>();
+        a->set_(_pdata);
+        return a;
     }
 
     inline T* get() const
@@ -323,6 +315,32 @@ public :
     }
 
     /*internal function to manage img part*/
+    void setImg_(int _iPos, T _data)
+    {
+        m_pImgData[_iPos] = copyValue(_data);
+    }
+
+    void setImg_(int _iRows, int _iCols, T _data)
+    {
+        setImg_(_iCols * getRows() + _iRows, copyValue(_data));
+    }
+
+    void setImg_(T* _pdata)
+    {
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            m_pImgData[i] = copyValue(_pdata[i]);
+        }
+    }
+
+    void setImg_(const T* _pdata)
+    {
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            m_pImgData[i] = copyValue(_pdata[i]);
+        }
+    }
+
     ArrayOf<T>* setImg(int _iPos, T _data)
     {
         if (m_pImgData == NULL || _iPos >= m_iSize)
@@ -330,17 +348,9 @@ public :
             return NULL;
         }
 
-        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(int, T);
-        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _iPos, _data);
-        if (pIT != this)
-        {
-            return pIT;
-        }
-
         m_pImgData[_iPos] = copyValue(_data);
         return this;
     }
-
 
     ArrayOf<T>* setImg(int _iRows, int _iCols, T _data)
     {
@@ -354,13 +364,6 @@ public :
             return NULL;
         }
 
-        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(T*);
-        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
-        }
-
         for (int i = 0 ; i < m_iSize ; i++)
         {
             m_pImgData[i] = copyValue(_pdata[i]);
@@ -369,19 +372,11 @@ public :
         return this;
     }
 
-
     ArrayOf<T>* setImg(const T* _pdata)
     {
         if (m_pImgData == NULL)
         {
             return NULL;
-        }
-
-        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(const T*);
-        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
