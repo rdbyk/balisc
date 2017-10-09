@@ -315,6 +315,32 @@ public :
     }
 
     /*internal function to manage img part*/
+    void setImg_(int _iPos, T _data)
+    {
+        m_pImgData[_iPos] = copyValue(_data);
+    }
+
+    void setImg_(int _iRows, int _iCols, T _data)
+    {
+        setImg_(_iCols * getRows() + _iRows, copyValue(_data));
+    }
+
+    void setImg_(T* _pdata)
+    {
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            m_pImgData[i] = copyValue(_pdata[i]);
+        }
+    }
+
+    void setImg_(const T* _pdata)
+    {
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            m_pImgData[i] = copyValue(_pdata[i]);
+        }
+    }
+
     ArrayOf<T>* setImg(int _iPos, T _data)
     {
         if (m_pImgData == NULL || _iPos >= m_iSize)
@@ -325,7 +351,6 @@ public :
         m_pImgData[_iPos] = copyValue(_data);
         return this;
     }
-
 
     ArrayOf<T>* setImg(int _iRows, int _iCols, T _data)
     {
@@ -346,7 +371,6 @@ public :
 
         return this;
     }
-
 
     ArrayOf<T>* setImg(const T* _pdata)
     {
