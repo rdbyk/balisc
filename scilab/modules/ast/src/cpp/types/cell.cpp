@@ -451,7 +451,7 @@ List* Cell::extractCell(typed_list* _pArgs)
 Cell* Cell::insertCell(typed_list* _pArgs, InternalType* _pSource)
 {
     Cell* pCell = new Cell(1, 1);
-    pCell->set(0, _pSource);
+    pCell->set_(0, _pSource);
     Cell* pOut = insert(_pArgs, pCell)->getAs<Cell>();
     pCell->killMe();
     return pOut;
@@ -460,7 +460,7 @@ Cell* Cell::insertCell(typed_list* _pArgs, InternalType* _pSource)
 Cell* Cell::insertNewCell(typed_list* _pArgs, InternalType* _pSource)
 {
     Cell* pCell = new Cell(1, 1);
-    pCell->set(0, _pSource);
+    pCell->set_(0, _pSource);
     Cell* pOut = pCell->insertNew(_pArgs)->getAs<Cell>();
     return pOut;
 }
