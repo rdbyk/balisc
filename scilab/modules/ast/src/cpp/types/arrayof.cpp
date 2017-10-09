@@ -418,7 +418,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             set_(iPos, pRealData[0]);
             if (pImgData != NULL && bComplex)
             {
-                setImg(iPos, pImgData[0]);
+                setImg_(iPos, pImgData[0]);
             }
         }
         else
@@ -436,7 +436,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                     set_(iPost, pRealData[i]);
                     if (pImgData != NULL && bComplex)
                     {
-                        setImg(iPost, pImgData[i]);
+                        setImg_(iPost, pImgData[i]);
                     }
                     i++;
                 }
@@ -446,7 +446,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 set_(iPos, pRealData[i]);
                 if (pImgData != NULL && bComplex)
                 {
-                    setImg(iPos, pImgData[i]);
+                    setImg_(iPos, pImgData[i]);
                 }
             }
         }
@@ -454,7 +454,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         // reset imaginary part
         if (m_pImgData != NULL && bComplex == false)
         {
-            setImg(iPos, 0);
+            setImg_(iPos, 0);
         }
 
         //update index
@@ -751,7 +751,7 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
         pGT->setComplex(true);
     }
 
-    if (pGT->isComplex())
+    if (m_pImgData)
     {
         for (int i = 0; i < iRows; i++)
         {
@@ -760,7 +760,7 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
             {
                 int c = _iCols + j;
                 set_(r, c, pGT->get(i, j));
-                setImg(r, c, pGT->getImg(i, j));
+                setImg_(r, c, pGT->getImg(i, j));
             }
         }
     }
@@ -934,10 +934,10 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
                 int ii = piNotEntireIndex[i] - 1;
                 for (int j = last; j < ii; ++j)
                 {
-                    pOut->set(iNewPos, get(j));
+                    pOut->set_(iNewPos, get(j));
                     if (m_pImgData != NULL)
                     {
-                        pOut->setImg(iNewPos, getImg(j));
+                        pOut->setImg_(iNewPos, getImg(j));
                     }
                     iNewPos++;
                 }
@@ -947,10 +947,10 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
 
             for (int i = last; i < size; ++i)
             {
-                pOut->set(iNewPos, get(i));
+                pOut->set_(iNewPos, get(i));
                 if (m_pImgData != NULL)
                 {
-                    pOut->setImg(iNewPos, getImg(i));
+                    pOut->setImg_(iNewPos, getImg(i));
                 }
                 iNewPos++;
             }
@@ -988,10 +988,10 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
             if (bByPass == false)
             {
                 //compute new index
-                pOut->set(iNewPos, get(i));
+                pOut->set_(iNewPos, get(i));
                 if (m_pImgData != NULL)
                 {
-                    pOut->setImg(iNewPos, getImg(i));
+                    pOut->setImg_(iNewPos, getImg(i));
                 }
                 iNewPos++;
             }
@@ -1036,10 +1036,10 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         static int dims[2] = {1, 1};
         pOut = createEmpty(2, dims, isComplex());;
-        pOut->set(0, get(index));
-        if (isComplex())
+        pOut->set_(0, get(index));
+        if (m_pImgData)
         {
-            pOut->setImg(0, getImg(index));
+            pOut->setImg_(0, getImg(index));
         }
 
         return pOut;
@@ -1083,13 +1083,13 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         double idx = start;
 
-        if (isComplex())
+        if (m_pImgData)
         {
             for (int i = 0; i < size; ++i)
             {
                 int index = static_cast<int>(idx) - 1;
-                pOut->set(i, get(index));
-                pOut->setImg(i, getImg(index));
+                pOut->set_(i, get(index));
+                pOut->setImg_(i, getImg(index));
                 idx += step;
             }
         }
@@ -1097,7 +1097,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         {
             for (int i = 0; i < size; ++i)
             {
-                pOut->set(i, get(static_cast<int>(idx) - 1));
+                pOut->set_(i, get(static_cast<int>(idx) - 1));
                 idx += step;
             }
         }
@@ -1123,7 +1123,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             pOut = createEmpty(static_cast<int>(dims.size()), dims.data(), isComplex());
         }
 
-        if (isComplex())
+        if (m_pImgData)
         {
             int size = getSize();
             int idx = 0;
@@ -1135,8 +1135,8 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
                     return NULL;
                 }
 
-                pOut->set(idx, get(i));
-                pOut->setImg(idx, getImg(i));
+                pOut->set_(idx, get(i));
+                pOut->setImg_(idx, getImg(i));
                 ++idx;
             }
         }
@@ -1145,7 +1145,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             int idx = 0;
             for (int & i : indexes)
             {
-                pOut->set(idx, get(i));
+                pOut->set_(idx, get(i));
                 ++idx;
             }
         }
@@ -1351,10 +1351,10 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             }
         }
 
-        pOut->set(i, get(iPos));
+        pOut->set_(i, get(iPos));
         if (m_pImgData != NULL)
         {
-            pOut->setImg(i, getImg(iPos));
+            pOut->setImg_(i, getImg(iPos));
         }
 
 
