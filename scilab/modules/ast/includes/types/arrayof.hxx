@@ -322,13 +322,6 @@ public :
             return NULL;
         }
 
-        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(int, T);
-        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _iPos, _data);
-        if (pIT != this)
-        {
-            return pIT;
-        }
-
         m_pImgData[_iPos] = copyValue(_data);
         return this;
     }
@@ -346,13 +339,6 @@ public :
             return NULL;
         }
 
-        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(T*);
-        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
-        }
-
         for (int i = 0 ; i < m_iSize ; i++)
         {
             m_pImgData[i] = copyValue(_pdata[i]);
@@ -367,13 +353,6 @@ public :
         if (m_pImgData == NULL)
         {
             return NULL;
-        }
-
-        typedef ArrayOf<T>* (ArrayOf<T>::*setimg_t)(const T*);
-        ArrayOf<T>* pIT = checkRef(this, (setimg_t)&ArrayOf<T>::setImg, _pdata);
-        if (pIT != this)
-        {
-            return pIT;
         }
 
         for (int i = 0 ; i < m_iSize ; i++)
