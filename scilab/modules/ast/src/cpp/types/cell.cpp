@@ -108,7 +108,7 @@ Cell::Cell(Cell *_oCellCopyMe)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        set(i, _oCellCopyMe->get(i)->clone());
+        set_(i, _oCellCopyMe->get(i)->clone());
     }
 #ifndef NDEBUG
     Inspector::addItem(this);
