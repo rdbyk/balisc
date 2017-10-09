@@ -139,32 +139,18 @@ Polynom* Polynom::set(SinglePoly** _pS)
     return p;
 }
 
-Polynom* Polynom::setCoef(int _iRows, int _iCols, Double *_pdblCoef)
+void Polynom::setCoef(int _iRows, int _iCols, Double *_pdblCoef)
 {
     int piDims[] = {_iRows, _iCols};
     int iPos = getIndex(piDims);
-    return setCoef(iPos, _pdblCoef);
+    setCoef(iPos, _pdblCoef);
 }
 
-Polynom* Polynom::setCoef(int _iIdx, Double *_pdblCoef)
+void Polynom::setCoef(int _iIdx, Double *_pdblCoef)
 {
-    if (_iIdx > m_iSize)
-    {
-        return NULL;
-    }
-
-    typedef Polynom* (Polynom::*setCoef_t)(int, Double*);
-    Polynom* pIT = checkRef(this, (setCoef_t)&Polynom::setCoef, _iIdx, _pdblCoef);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     /*Get old SinglePoly*/
     m_pRealData[_iIdx]->setRank(_pdblCoef->getSize() - 1);
     m_pRealData[_iIdx]->setCoef(_pdblCoef);
-
-    return this;
 }
 
 void Polynom::setZeros()
@@ -405,15 +391,8 @@ Double* Polynom::getCoef(void)
     return pCoef;
 }
 
-Polynom* Polynom::setCoef(Double *_pCoef)
+void Polynom::setCoef(Double *_pCoef)
 {
-    typedef Polynom* (Polynom::*setCoef_t)(Double*);
-    Polynom* pIT = checkRef(this, (setCoef_t)&Polynom::setCoef, _pCoef);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     setComplex(_pCoef->isComplex());
     double *pR = _pCoef->getReal();
 
@@ -448,8 +427,6 @@ Polynom* Polynom::setCoef(Double *_pCoef)
             }
         }
     }
-
-    return this;
 }
 
 bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
