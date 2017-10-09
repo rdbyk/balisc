@@ -602,11 +602,10 @@ void String::deleteData(wchar_t* data)
     }
 }
 
-String* String::set_(int _iPos, const wchar_t* _pwstData)
+void String::set_(int _iPos, const wchar_t* _pwstData)
 {
     deleteString(_iPos);
     m_pRealData[_iPos] = copyValue(_pwstData);
-    return this;
 }
 
 String* String::set(int _iPos, const wchar_t* _pwstData)
@@ -616,19 +615,14 @@ String* String::set(int _iPos, const wchar_t* _pwstData)
         return NULL;
     }
 
-    typedef String* (String::*set_t)(int, const wchar_t*);
-    String* pIT = checkRef(this, (set_t)&String::set_, _iPos, _pwstData);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
-    return set_(_iPos, _pwstData);
+    String* s = copyAs<String>();
+    s->set_(_iPos, _pwstData);
+    return s;
 }
 
-String* String::set_(int _iRows, int _iCols, const wchar_t* _pwstData)
+void String::set_(int _iRows, int _iCols, const wchar_t* _pwstData)
 {
-    return set_(_iCols * getRows() + _iRows, _pwstData);
+    set_(_iCols * getRows() + _iRows, _pwstData);
 }
 
 String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
@@ -636,45 +630,32 @@ String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
     return set(_iCols * getRows() + _iRows, _pwstData);
 }
 
-String* String::set_(const wchar_t* const* _pwstData)
+void String::set_(const wchar_t* const* _pwstData)
 {
-    int i = m_iSize;
-
-    while (i && m_pRealData)
+    for (int i = 0; i < m_iSize; ++i)
     {
-        --i;
         deleteString(i);
         m_pRealData[i] = copyValue(_pwstData[i]);
-    }
-
-    if (i)
-    {
-        return NULL;
-    }
-    else
-    {
-        return this;
     }
 }
 
 String* String::set(const wchar_t* const* _pwstData)
 {
-    typedef String* (String::*set_t)(const wchar_t * const*);
-    String* pIT = checkRef(this, (set_t)&String::set_, _pwstData);
-    if (pIT != this)
+    if (m_pRealData == NULL)
     {
-        return pIT;
+        return NULL;
     }
 
-    return set_(_pwstData);
+    String* s = copyAs<String>();
+    s->set_(_pwstData);
+    return s;
 }
 
-String* String::set_(int _iPos, const char* _pcData)
+void  String::set_(int _iPos, const char* _pcData)
 {
     wchar_t* w = to_wide_string(_pcData);
-    String* ret = set_(_iPos, w);
+    set_(_iPos, w);
     FREE(w);
-    return ret;
 }
 
 String* String::set(int _iPos, const char* _pcData)
@@ -690,32 +671,19 @@ String* String::set(int _iRows, int _iCols, const char* _pcData)
     return set(_iCols * getRows() + _iRows, _pcData);
 }
 
-String* String::set_(const char* const* _pstrData)
+void String::set_(const char* const* _pstrData)
 {
-    int i = m_iSize;
-
-    while (i-- && set_(i, _pstrData[i]));
-
-    if (++i) // revert decrement
+    for (int i = 0; i < m_iSize; ++i)
     {
-        return NULL;
-    }
-    else
-    {
-        return this;
+        set_(i, _pstrData[i]);
     }
 }
 
 String* String::set(const char* const* _pstrData)
 {
-    typedef String* (String::*set_t)(const char * const*);
-    String* pIT = checkRef(this, (set_t)&String::set_, _pstrData);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
-    return set_(_pstrData);
+    String* s = copyAs<String>();
+    s->set_(_pstrData);
+    return s;
 }
 
 wchar_t** String::allocData(int _iSize)
