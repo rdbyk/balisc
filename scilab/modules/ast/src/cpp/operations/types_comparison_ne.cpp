@@ -2220,7 +2220,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    compnoequal(_pL->get(), (size_t)pOut->getSize(), _pR->get(0), pOut->get());
+    compnoequal(_pL->get(), (size_t)pOut->getSize(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2228,7 +2228,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_M_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    compnoequal(_pL->get(), pOut->getSize(), _pR->get(0), _pR->getImg(0), pOut->get());
+    compnoequal(_pL->get(), pOut->getSize(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2236,7 +2236,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_M_I(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    Double* pIdentity = Double::Identity(_pL->getDims(), _pL->getDimsArray(), _pR->get(0));
+    Double* pIdentity = Double::Identity(_pL->getDims(), _pL->getDimsArray(), _pR->getScalar_());
     compnoequal(_pL->get(), (size_t)pOut->getSize(), pIdentity->get(), pOut->get());
     delete pIdentity;
     return pOut;
@@ -2246,7 +2246,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_M_IC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    Double* pIdentity = Double::Identity(_pL->getDims(), _pL->getDimsArray(), _pR->get(0), _pR->getImg(0));
+    Double* pIdentity = Double::Identity(_pL->getDims(), _pL->getDimsArray(), _pR->getScalar_(), _pR->getImgScalar_());
     compnoequal(_pL->get(), (size_t)pOut->getSize(), pIdentity->get(), pIdentity->getImg(), pOut->get());
     delete pIdentity;
     return pOut;
@@ -2440,7 +2440,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_MC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    compnoequal(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->get(0), pOut->get());
+    compnoequal(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2448,7 +2448,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_MC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    compnoequal(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->get(0), _pR->getImg(0), pOut->get());
+    compnoequal(_pL->get(), _pL->getImg(), pOut->getSize(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2456,7 +2456,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_MC_I(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    Double* pIdentity = Double::Identity(_pL->getDims(), _pL->getDimsArray(), _pR->get(0));
+    Double* pIdentity = Double::Identity(_pL->getDims(), _pL->getDimsArray(), _pR->getScalar_());
     compnoequal(_pL->get(), _pL->getImg(), (size_t)pOut->getSize(), pIdentity->get(), pOut->get());
     delete pIdentity;
     return pOut;
@@ -2466,7 +2466,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_MC_IC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    Double* pIdentity = Double::Identity(_pL->getDims(), _pL->getDimsArray(), _pR->get(0), _pR->getImg(0));
+    Double* pIdentity = Double::Identity(_pL->getDims(), _pL->getDimsArray(), _pR->getScalar_(), _pR->getImgScalar_());
     compnoequal(_pL->get(), _pL->getImg(), (size_t)pOut->getSize(), pIdentity->get(), pIdentity->getImg(), pOut->get());
     delete pIdentity;
     return pOut;
@@ -2477,7 +2477,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_S_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    compnoequal(_pL->get(0), (size_t)pOut->getSize(), _pR->get(), pOut->get());
+    compnoequal(_pL->getScalar_(), (size_t)pOut->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -2485,7 +2485,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_S_MC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    compnoequal(_pL->get(0), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get());
+    compnoequal(_pL->getScalar_(), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get());
     return pOut;
 }
 
@@ -2493,7 +2493,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_S_S(T *_pL, U *_pR)
 {
     O* pOut = new O(1, 1);
-    compnoequal(_pL->get(0), _pR->get(0), pOut->get());
+    compnoequal(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2501,7 +2501,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_S_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(1, 1);
-    compnoequal(_pL->get(), 1, _pR->get(0), _pR->getImg(0), pOut->get());
+    compnoequal(_pL->get(), 1, _pR->getScalar_(), _pR->getImgScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2509,7 +2509,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_S_I(T *_pL, U *_pR)
 {
     O* pOut = new O(1, 1);
-    compnoequal(_pL->get(0), _pR->get(0), pOut->get());
+    compnoequal(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2518,7 +2518,7 @@ InternalType* compnoequal_S_IC(T *_pL, U *_pR)
 {
 
     O* pOut = new  Bool(true);
-    compnoequal(_pL->get(0), 1, _pR->get(), _pR->getImg(), pOut->get());
+    compnoequal(_pL->getScalar_(), 1, _pR->get(), _pR->getImg(), pOut->get());
     return pOut;
 }
 
@@ -2527,7 +2527,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_SC_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    compnoequal(_pL->get(0), _pL->getImg(0), pOut->getSize(), _pR->get(), pOut->get());
+    compnoequal(_pL->getScalar_(), _pL->getImgScalar_(), pOut->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -2535,7 +2535,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_SC_MC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    compnoequal(_pL->get(0), _pL->getImg(0), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get());
+    compnoequal(_pL->getScalar_(), _pL->getImgScalar_(), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get());
     return pOut;
 }
 
@@ -2543,9 +2543,9 @@ template<class T, class U, class O>
 InternalType* compnoequal_SC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(true);
-    if (_pL->getImg(0) == 0)
+    if (_pL->getImgScalar_() == 0)
     {
-        compnoequal(_pL->get(0), _pR->get(0), pOut->get());
+        compnoequal(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     }
     return pOut;
 }
@@ -2554,7 +2554,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_SC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(false);
-    compnoequal(_pL->get(0), _pL->getImg(0), _pR->get(0), _pR->getImg(0), pOut->get());
+    compnoequal(_pL->getScalar_(), _pL->getImgScalar_(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2562,9 +2562,9 @@ template<class T, class U, class O>
 InternalType* compnoequal_SC_I(T *_pL, U *_pR)
 {
     O* pOut = new Bool(true);
-    if (_pL->getImg(0) == 0)
+    if (_pL->getImgScalar_() == 0)
     {
-        compnoequal(_pL->get(0), _pR->get(0), pOut->get());
+        compnoequal(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     }
     return pOut;
 }
@@ -2573,7 +2573,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_SC_IC(T *_pL, U *_pR)
 {
     O* pOut = new Bool(true);
-    compnoequal(_pL->get(0), _pL->getImg(0), _pR->get(0), _pR->getImg(0), pOut->get());
+    compnoequal(_pL->getScalar_(), _pL->getImgScalar_(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2582,7 +2582,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_I_M(T *_pL, U *_pR)
 {
     O* pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
-    Double* pIdentity = Double::Identity(_pR->getDims(), _pR->getDimsArray(), _pL->get(0));
+    Double* pIdentity = Double::Identity(_pR->getDims(), _pR->getDimsArray(), _pL->getScalar_());
     compnoequal(pIdentity->get(), pOut->getSize(), _pR->get(), pOut->get());
     delete pIdentity;
     return pOut;
@@ -2592,7 +2592,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_I_MC(T *_pL, U *_pR)
 {
     O* pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
-    Double* pIdentity = Double::Identity(_pR->getDims(), _pR->getDimsArray(), _pL->get(0));
+    Double* pIdentity = Double::Identity(_pR->getDims(), _pR->getDimsArray(), _pL->getScalar_());
     compnoequal(pIdentity->get(), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get());
     delete pIdentity;
     return pOut;
@@ -2602,7 +2602,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_I_S(T *_pL, U *_pR)
 {
     O* pOut = new Bool(true);
-    compnoequal(_pL->get(0), _pR->get(0), pOut->get());
+    compnoequal(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2616,7 +2616,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_I_I(T *_pL, U *_pR)
 {
     O* pOut = new Bool(true);
-    compnoequal(_pL->get(0), _pR->get(0), pOut->get());
+    compnoequal(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2624,9 +2624,9 @@ template<class T, class U, class O>
 InternalType* compnoequal_I_IC(T *_pL, U *_pR)
 {
     O* pOut = new Bool(true);
-    if (_pR->getImg(0) == 0)
+    if (_pR->getImgScalar_() == 0)
     {
-        compnoequal(_pL->get(0), _pR->get(0), pOut->get());
+        compnoequal(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     }
     return pOut;
 }
@@ -2636,7 +2636,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_IC_M(T *_pL, U *_pR)
 {
     O* pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
-    Double* pIdentity = Double::Identity(_pR->getDims(), _pR->getDimsArray(), _pL->get(0), _pL->getImg(0));
+    Double* pIdentity = Double::Identity(_pR->getDims(), _pR->getDimsArray(), _pL->getScalar_(), _pL->getImgScalar_());
     compnoequal(pIdentity->get(), pIdentity->getImg(), pOut->getSize(), _pR->get(), pOut->get());
     delete pIdentity;
     return pOut;
@@ -2646,7 +2646,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_IC_MC(T *_pL, U *_pR)
 {
     O* pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
-    Double* pIdentity = Double::Identity(_pR->getDims(), _pR->getDimsArray(), _pL->get(0), _pL->getImg(0));
+    Double* pIdentity = Double::Identity(_pR->getDims(), _pR->getDimsArray(), _pL->getScalar_(), _pL->getImgScalar_());
     compnoequal(pIdentity->get(), pIdentity->getImg(), pOut->getSize(), _pR->get(), _pR->getImg(), pOut->get());
     delete pIdentity;
     return pOut;
@@ -2656,9 +2656,9 @@ template<class T, class U, class O>
 InternalType* compnoequal_IC_S(T *_pL, U *_pR)
 {
     O* pOut = new Bool(true);
-    if (_pL->getImg(0) == 0)
+    if (_pL->getImgScalar_() == 0)
     {
-        compnoequal(_pL->get(0), _pR->get(0), pOut->get());
+        compnoequal(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     }
     return pOut;
 }
@@ -2667,7 +2667,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_IC_SC(T *_pL, U *_pR)
 {
     O* pOut = new Bool(true);
-    compnoequal(_pL->get(0), _pL->getImg(0), _pR->get(0), _pR->getImg(0), pOut->get());
+    compnoequal(_pL->getScalar_(), _pL->getImgScalar_(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2675,9 +2675,9 @@ template<class T, class U, class O>
 InternalType* compnoequal_IC_I(T *_pL, U *_pR)
 {
     O* pOut = new Bool(true);
-    if (_pL->getImg(0) == 0)
+    if (_pL->getImgScalar_() == 0)
     {
-        compnoequal(_pL->get(0), _pR->get(0), pOut->get());
+        compnoequal(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     }
     return pOut;
 }
@@ -2686,7 +2686,7 @@ template<class T, class U, class O>
 InternalType* compnoequal_IC_IC(T *_pL, U *_pR)
 {
     O* pOut = new Bool(true);
-    compnoequal(_pL->get(0), _pL->getImg(0), _pR->get(0), _pR->getImg(0), pOut->get());
+    compnoequal(_pL->getScalar_(), _pL->getImgScalar_(), _pR->getScalar_(), _pR->getImgScalar_(), pOut->get());
     return pOut;
 }
 
@@ -2748,7 +2748,7 @@ InternalType* compnoequal_M_SP(T* _pL, U* _pR)
         if (_pL->isComplex())
         {
             pspConvert = new Sparse(_pR->getRows(), _pR->getCols(), true);
-            std::complex<double> stComplex((double)_pL->get(0), (double)_pL->getImg(0));
+            std::complex<double> stComplex((double)_pL->getScalar_(), (double)_pL->getImgScalar_());
             for (int i = 0; i < iSizeOut; i++)
             {
                 pspConvert->set(i, stComplex, false);
@@ -2759,7 +2759,7 @@ InternalType* compnoequal_M_SP(T* _pL, U* _pR)
             pspConvert = new Sparse(_pR->getRows(), _pR->getCols(), _pR->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pL->get(0), false);
+                pspConvert->set(i, (double)_pL->getScalar_(), false);
             }
         }
     }
@@ -2813,7 +2813,7 @@ InternalType* compnoequal_SP_M(T* _pL, U* _pR)
         if (_pR->isComplex())
         {
             pspConvert = new Sparse(_pL->getRows(), _pL->getCols(), true);
-            std::complex<double> stComplex((double)_pR->get(0), (double)_pR->getImg(0));
+            std::complex<double> stComplex((double)_pR->getScalar_(), (double)_pR->getImgScalar_());
             for (int i = 0; i < iSizeOut; i++)
             {
                 pspConvert->set(i, stComplex, false);
@@ -2824,7 +2824,7 @@ InternalType* compnoequal_SP_M(T* _pL, U* _pR)
             pspConvert = new Sparse(_pL->getRows(), _pL->getCols(), _pL->isComplex());
             for (int i = 0; i < iSizeOut; i++)
             {
-                pspConvert->set(i, (double)_pR->get(0), false);
+                pspConvert->set(i, (double)_pR->getScalar_(), false);
             }
         }
     }
@@ -2882,7 +2882,7 @@ InternalType* compnoequal_M_M<Bool, SparseBool, SparseBool>(Bool* _pL, SparseBoo
         pspConvert = new SparseBool(_pR->getRows(), _pR->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pL->get(0) == 1, false);
+            pspConvert->set(i, _pL->getScalar_() == 1, false);
         }
 
     }
@@ -2924,7 +2924,7 @@ InternalType* compnoequal_M_M<SparseBool, Bool, SparseBool>(SparseBool* _pL, Boo
         pspConvert = new SparseBool(_pL->getRows(), _pL->getCols());
         for (int i = 0; i < iSizeOut; i++)
         {
-            pspConvert->set(i, _pR->get(0) == 1, false);
+            pspConvert->set(i, _pR->getScalar_() == 1, false);
         }
     }
     else
@@ -3270,7 +3270,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
         {
             if (_pR->isComplex())
             {
-                pdblEye = Double::Identity(_pL->getDims(), _pL->getDimsArray(), (double)_pR->get(0), (double)_pR->getImg(0));
+                pdblEye = Double::Identity(_pL->getDims(), _pL->getDimsArray(), (double)_pR->getScalar_(), (double)_pR->getImgScalar_());
                 for (int i = 0; i < iSize; i++)
                 {
                     if (pSPR[i]->getSize() != 1)
@@ -3279,13 +3279,13 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)pSPR[i]->getImg(0), (double)pdblEye->get(i), (double)pdblEye->getImg(i), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)pSPR[i]->getImgScalar_(), (double)pdblEye->get(i), (double)pdblEye->getImg(i), &(pbOut->get()[i]));
                     }
                 }
             }
             else
             {
-                pdblEye = Double::Identity(_pL->getDims(), _pL->getDimsArray(), (double)_pR->get(0));
+                pdblEye = Double::Identity(_pL->getDims(), _pL->getDimsArray(), (double)_pR->getScalar_());
                 for (int i = 0; i < iSize; i++)
                 {
                     if (pSPR[i]->getSize() != 1)
@@ -3294,7 +3294,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)pSPR[i]->getImg(0), (double)pdblEye->get(i), (double)0, &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)pSPR[i]->getImgScalar_(), (double)pdblEye->get(i), (double)0, &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3303,7 +3303,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
         {
             if (_pR->isComplex())
             {
-                pdblEye = Double::Identity(_pL->getDims(), _pL->getDimsArray(), (double)_pR->get(0), (double)_pR->getImg(0));
+                pdblEye = Double::Identity(_pL->getDims(), _pL->getDimsArray(), (double)_pR->getScalar_(), (double)_pR->getImgScalar_());
                 for (int i = 0; i < iSize; i++)
                 {
                     if (pSPR[i]->getSize() != 1)
@@ -3312,13 +3312,13 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)0, (double)pdblEye->get(i), (double)pdblEye->getImg(i), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)0, (double)pdblEye->get(i), (double)pdblEye->getImg(i), &(pbOut->get()[i]));
                     }
                 }
             }
             else
             {
-                pdblEye = Double::Identity(_pL->getDims(), _pL->getDimsArray(), (double)_pR->get(0));
+                pdblEye = Double::Identity(_pL->getDims(), _pL->getDimsArray(), (double)_pR->getScalar_());
                 for (int i = 0; i < iSize; i++)
                 {
                     if (pSPR[i]->getSize() != 1)
@@ -3327,7 +3327,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)pdblEye->get(i), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)pdblEye->get(i), &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3352,7 +3352,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)pSPR[i]->getImg(0), (double)_pR->get(0), (double)_pR->getImg(0), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)pSPR[i]->getImgScalar_(), (double)_pR->getScalar_(), (double)_pR->getImgScalar_(), &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3366,7 +3366,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)pSPR[i]->getImg(0), (double)_pR->get(0), (double)0, &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)pSPR[i]->getImgScalar_(), (double)_pR->getScalar_(), (double)0, &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3383,7 +3383,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)0, (double)_pR->get(0), (double)_pR->getImg(0), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)0, (double)_pR->getScalar_(), (double)_pR->getImgScalar_(), &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3397,7 +3397,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)_pR->get(0), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)_pR->getScalar_(), &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3416,14 +3416,14 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                 {
                     for (int i = 0; i < iSize; i++)
                     {
-                        compnoequal((double)pSPR[0]->get(0), (double)pSPR[0]->getImg(0), (double)_pR->get(i), (double)_pR->getImg(i), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[0]->getScalar_(), (double)pSPR[0]->getImgScalar_(), (double)_pR->get(i), (double)_pR->getImg(i), &(pbOut->get()[i]));
                     }
                 }
                 else
                 {
                     for (int i = 0; i < iSize; i++)
                     {
-                        compnoequal((double)pSPR[0]->get(0), (double)pSPR[0]->getImg(0), (double)_pR->get(i), (double)0, &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[0]->getScalar_(), (double)pSPR[0]->getImgScalar_(), (double)_pR->get(i), (double)0, &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3433,14 +3433,14 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                 {
                     for (int i = 0; i < iSize; i++)
                     {
-                        compnoequal((double)pSPR[0]->get(0), (double)0, (double)_pR->get(i), (double)_pR->getImg(i), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[0]->getScalar_(), (double)0, (double)_pR->get(i), (double)_pR->getImg(i), &(pbOut->get()[i]));
                     }
                 }
                 else
                 {
                     for (int i = 0; i < iSize; i++)
                     {
-                        compnoequal((double)pSPR[0]->get(0), (double)_pR->get(i), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[0]->getScalar_(), (double)_pR->get(i), &(pbOut->get()[i]));
                     }
                 }
 
@@ -3484,7 +3484,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)pSPR[i]->getImg(0), (double)_pR->get(i), (double)_pR->getImg(i), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)pSPR[i]->getImgScalar_(), (double)_pR->get(i), (double)_pR->getImg(i), &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3498,7 +3498,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)pSPR[i]->getImg(0), (double)_pR->get(i), (double)0, &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)pSPR[i]->getImgScalar_(), (double)_pR->get(i), (double)0, &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3515,7 +3515,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)0, (double)_pR->get(i), (double)_pR->getImg(i), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)0, (double)_pR->get(i), (double)_pR->getImg(i), &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3529,7 +3529,7 @@ InternalType* compnoequal_P_M(T *_pL, U *_pR)
                     }
                     else
                     {
-                        compnoequal((double)pSPR[i]->get(0), (double)_pR->get(i), &(pbOut->get()[i]));
+                        compnoequal((double)pSPR[i]->getScalar_(), (double)_pR->get(i), &(pbOut->get()[i]));
                     }
                 }
             }
@@ -3555,7 +3555,7 @@ InternalType* compnoequal_M_M<String, String, Bool>(String* _pL, String* _pR)
 
         for (int i = 0; i < _pR->getSize(); i++)
         {
-            pb[i] = wcscmp(_pL->get(0), _pR->get(i)) != 0;
+            pb[i] = wcscmp(_pL->getScalar_(), _pR->get(i)) != 0;
         }
         return pOut;
     }
@@ -3567,7 +3567,7 @@ InternalType* compnoequal_M_M<String, String, Bool>(String* _pL, String* _pR)
 
         for (int i = 0; i < _pL->getSize(); i++)
         {
-            pb[i] = wcscmp(_pL->get(i), _pR->get(0)) != 0;
+            pb[i] = wcscmp(_pL->get(i), _pR->getScalar_()) != 0;
         }
         return pOut;
     }
@@ -3728,14 +3728,14 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     if (_pL->isScalar())
     {
         Bool* pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
-        compnoequal(_pL->get(0), _pR->getSize(), _pR->get(), pOut->get());
+        compnoequal(_pL->getScalar_(), _pR->getSize(), _pR->get(), pOut->get());
         return pOut;
     }
 
     if (_pR->isScalar())
     {
         Bool* pOut = new Bool(_pL->getDims(), _pL->getDimsArray());
-        compnoequal(_pR->get(0), _pL->getSize(), _pL->get(), pOut->get());
+        compnoequal(_pR->getScalar_(), _pL->getSize(), _pL->get(), pOut->get());
         return pOut;
     }
 

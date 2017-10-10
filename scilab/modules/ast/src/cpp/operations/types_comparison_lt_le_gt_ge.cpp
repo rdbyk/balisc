@@ -152,7 +152,7 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         //d < D
         pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
         int* pb = pB->get();
-        double dblRef = _pDouble1->get(0);
+        double dblRef = _pDouble1->getScalar_();
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
@@ -167,7 +167,7 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         //D < d
         pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
         int* pb = pB->get();
-        double dblRef	= _pDouble2->get(0);
+        double dblRef	= _pDouble2->getScalar_();
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
@@ -367,7 +367,7 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         //d <= D
         pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
         int* pb = pB->get();
-        double dblRef	= _pDouble1->get(0);
+        double dblRef	= _pDouble1->getScalar_();
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
@@ -383,7 +383,7 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
         int* pb = pB->get();
 
-        double dblRef	= _pDouble2->get(0);
+        double dblRef	= _pDouble2->getScalar_();
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
@@ -476,7 +476,7 @@ static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
         Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
 
         int* pb = pB->get();
-        const typename T::type x = _pL->get(0);
+        const typename T::type x = _pL->getScalar_();
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
@@ -492,7 +492,7 @@ static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
         Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
 
         int* pb = pB->get();
-        const typename T::type x = _pR->get(0);
+        const typename T::type x = _pR->getScalar_();
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
@@ -582,7 +582,7 @@ static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
         Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
 
         int* pb = pB->get();
-        const typename T::type x = _pL->get(0);
+        const typename T::type x = _pL->getScalar_();
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
@@ -598,7 +598,7 @@ static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
         Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
 
         int* pb = pB->get();
-        const typename T::type x = _pR->get(0);
+        const typename T::type x = _pR->getScalar_();
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {

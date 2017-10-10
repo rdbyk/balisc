@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -573,7 +573,7 @@ template<class T, class U, class O>
 InternalType* and_S_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    bit_and(_pL->get(0), (size_t)_pR->getSize(), _pR->get(), pOut->get());
+    bit_and(_pL->getScalar_(), (size_t)_pR->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -581,7 +581,7 @@ template<class T, class U, class O>
 InternalType* and_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    bit_and(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), pOut->get());
+    bit_and(_pL->get(), (size_t)_pL->getSize(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -589,7 +589,7 @@ template<class T, class U, class O>
 InternalType* and_S_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    bit_and(_pL->get(0), _pR->get(0), pOut->get());
+    bit_and(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -662,7 +662,7 @@ template<class T, class U, class O>
 InternalType* and_int_S_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    int_and(_pL->get(0), (size_t)_pR->getSize(), _pR->get(), pOut->get());
+    int_and(_pL->getScalar_(), (size_t)_pR->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -670,7 +670,7 @@ template<class T, class U, class O>
 InternalType* and_int_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    int_and(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), pOut->get());
+    int_and(_pL->get(), (size_t)_pL->getSize(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
@@ -678,7 +678,7 @@ template<class T, class U, class O>
 InternalType* and_int_S_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    int_and(_pL->get(0), _pR->get(0), pOut->get());
+    int_and(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
     return pOut;
 }
 
