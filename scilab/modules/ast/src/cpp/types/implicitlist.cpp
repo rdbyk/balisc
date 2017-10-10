@@ -218,13 +218,13 @@ bool ImplicitList::compute()
         if (m_eOutType == ScilabDouble)
         {
             m_pDblStart = m_poStart->getAs<Double>();
-            double dblStart	= m_pDblStart->get(0);
+            double dblStart	= m_pDblStart->getScalar_();
 
             m_pDblStep = m_poStep->getAs<Double>();
-            double dblStep	= m_pDblStep->get(0);
+            double dblStep	= m_pDblStep->getScalar_();
 
             m_pDblEnd = m_poEnd->getAs<Double>();
-            double dblEnd	= m_pDblEnd->get(0);
+            double dblEnd	= m_pDblEnd->getScalar_();
             
             // handle finiteness of start, step, and end value
             double dblRange = dblEnd - dblStart;
@@ -347,7 +347,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
     else //Polynom
     {
         Polynom* pMP = m_poStart->getAs<types::Polynom>();
-        ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
+        ostr << printInLinePoly(pMP->getScalar_(), pMP->getVariableName());
     }
 
     ostr << L":";
@@ -360,7 +360,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
     else //Polynom
     {
         Polynom* pMP = m_poStep->getAs<types::Polynom>();
-        ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
+        ostr << printInLinePoly(pMP->getScalar_(), pMP->getVariableName());
     }
 
     ostr << L":";
@@ -373,7 +373,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
     else //Polynom
     {
         Polynom* pMP = m_poEnd->getAs<types::Polynom>();
-        ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
+        ostr << printInLinePoly(pMP->getScalar_(), pMP->getVariableName());
     }
     ostr << std::endl;
     return true;
@@ -386,8 +386,8 @@ InternalType::ScilabType ImplicitList::getOutputType()
 
 void ImplicitList::extractValueAsDouble(int _iOccur, Double* d)
 {
-    double dblStart = m_pDblStart->get(0);
-    double dblStep = m_pDblStep->get(0);
+    double dblStart = m_pDblStart->getScalar_();
+    double dblStep = m_pDblStep->getScalar_();
     d->get()[0] = dblStart + _iOccur * dblStep;
 }
 
@@ -548,8 +548,8 @@ InternalType* ImplicitList::extractFullMatrix()
 
 void ImplicitList::extractFullMatrix(Double *_p)
 {
-    double dblStart = m_poStart->getAs<Double>()->get(0);
-    double dblStep  = m_poStep->getAs<Double>()->get(0);
+    double dblStart = m_poStart->getAs<Double>()->getScalar_();
+    double dblStep  = m_poStep->getAs<Double>()->getScalar_();
 
     double* p = _p->get();
     for (int i = 0 ; i < m_iSize ; i++)
@@ -590,7 +590,7 @@ bool ImplicitList::neg(InternalType *& out)
     if (compute() && m_poStart->isDouble() && m_poStep->isDouble() && m_poEnd->isDouble())
     {
         out = new Bool(1, m_iSize);
-        type_traits::neg(m_poStart->getAs<Double>()->get(0), m_poStep->getAs<Double>()->get(0), m_poEnd->getAs<Double>()->get(0), static_cast<Bool *>(out)->get());
+        type_traits::neg(m_poStart->getAs<Double>()->getScalar_(), m_poStep->getAs<Double>()->getScalar_(), m_poEnd->getAs<Double>()->getScalar_(), static_cast<Bool *>(out)->get());
 
         return true;
     }
@@ -696,7 +696,7 @@ bool ImplicitList::isTrue()
     // TODO : manage int & co
     if (m_poStart->isDouble() && m_poStep->isDouble() && m_poEnd->isDouble())
     {
-        return type_traits::isTrue(m_poStart->getAs<Double>()->get(0), m_poStep->getAs<Double>()->get(0), m_poEnd->getAs<Double>()->get(0));
+        return type_traits::isTrue(m_poStart->getAs<Double>()->getScalar_(), m_poStep->getAs<Double>()->getScalar_(), m_poEnd->getAs<Double>()->getScalar_());
     }
 
     return false;
@@ -740,11 +740,11 @@ std::wstring printDouble(types::Double* _pD)
 {
     std::wostringstream ostr;
     DoubleFormat df;
-    getDoubleFormat(_pD->get(0), &df);
+    getDoubleFormat(_pD->getScalar_(), &df);
     df.bPrintPoint = false;
     df.bPaddSign = false;
     df.bPrintBlank = false;
-    addDoubleValue(&ostr, _pD->get(0), &df);
+    addDoubleValue(&ostr, _pD->getScalar_(), &df);
     return ostr.str();
 }
 
@@ -753,23 +753,23 @@ long long convert_input(types::InternalType* _poIT)
     switch (_poIT->getType())
     {
         case types::InternalType::ScilabDouble:
-            return static_cast<long long>(_poIT->getAs<types::Double>()->get(0));
+            return static_cast<long long>(_poIT->getAs<types::Double>()->getScalar_());
         case types::InternalType::ScilabInt8:
-            return static_cast<long long>(_poIT->getAs<types::Int8>()->get(0));
+            return static_cast<long long>(_poIT->getAs<types::Int8>()->getScalar_());
         case types::InternalType::ScilabUInt8:
-            return static_cast<long long>(_poIT->getAs<types::UInt8>()->get(0));
+            return static_cast<long long>(_poIT->getAs<types::UInt8>()->getScalar_());
         case types::InternalType::ScilabInt16:
-            return static_cast<long long>(_poIT->getAs<types::Int16>()->get(0));
+            return static_cast<long long>(_poIT->getAs<types::Int16>()->getScalar_());
         case types::InternalType::ScilabUInt16:
-            return static_cast<long long>(_poIT->getAs<types::UInt16>()->get(0));
+            return static_cast<long long>(_poIT->getAs<types::UInt16>()->getScalar_());
         case types::InternalType::ScilabInt32:
-            return static_cast<long long>(_poIT->getAs<types::Int32>()->get(0));
+            return static_cast<long long>(_poIT->getAs<types::Int32>()->getScalar_());
         case types::InternalType::ScilabUInt32:
-            return static_cast<long long>(_poIT->getAs<types::UInt32>()->get(0));
+            return static_cast<long long>(_poIT->getAs<types::UInt32>()->getScalar_());
         case types::InternalType::ScilabInt64:
-            return static_cast<long long>(_poIT->getAs<types::Int64>()->get(0));
+            return static_cast<long long>(_poIT->getAs<types::Int64>()->getScalar_());
         case types::InternalType::ScilabUInt64:
-            return static_cast<long long>(_poIT->getAs<types::UInt64>()->get(0));
+            return static_cast<long long>(_poIT->getAs<types::UInt64>()->getScalar_());
         default:
             return 0;
     }
@@ -781,23 +781,23 @@ unsigned long long convert_unsigned_input(types::InternalType* _poIT)
     switch (_poIT->getType())
     {
         case types::InternalType::ScilabDouble:
-            return static_cast<unsigned long long>(_poIT->getAs<types::Double>()->get(0));
+            return static_cast<unsigned long long>(_poIT->getAs<types::Double>()->getScalar_());
         case types::InternalType::ScilabInt8:
-            return static_cast<unsigned long long>(_poIT->getAs<types::Int8>()->get(0));
+            return static_cast<unsigned long long>(_poIT->getAs<types::Int8>()->getScalar_());
         case types::InternalType::ScilabUInt8:
-            return static_cast<unsigned long long>(_poIT->getAs<types::UInt8>()->get(0));
+            return static_cast<unsigned long long>(_poIT->getAs<types::UInt8>()->getScalar_());
         case types::InternalType::ScilabInt16:
-            return static_cast<unsigned long long>(_poIT->getAs<types::Int16>()->get(0));
+            return static_cast<unsigned long long>(_poIT->getAs<types::Int16>()->getScalar_());
         case types::InternalType::ScilabUInt16:
-            return static_cast<unsigned long long>(_poIT->getAs<types::UInt16>()->get(0));
+            return static_cast<unsigned long long>(_poIT->getAs<types::UInt16>()->getScalar_());
         case types::InternalType::ScilabInt32:
-            return static_cast<unsigned long long>(_poIT->getAs<types::Int32>()->get(0));
+            return static_cast<unsigned long long>(_poIT->getAs<types::Int32>()->getScalar_());
         case types::InternalType::ScilabUInt32:
-            return static_cast<unsigned long long>(_poIT->getAs<types::UInt32>()->get(0));
+            return static_cast<unsigned long long>(_poIT->getAs<types::UInt32>()->getScalar_());
         case types::InternalType::ScilabInt64:
-            return static_cast<unsigned long long>(_poIT->getAs<types::Int64>()->get(0));
+            return static_cast<unsigned long long>(_poIT->getAs<types::Int64>()->getScalar_());
         case types::InternalType::ScilabUInt64:
-            return static_cast<unsigned long long>(_poIT->getAs<types::UInt64>()->get(0));
+            return static_cast<unsigned long long>(_poIT->getAs<types::UInt64>()->getScalar_());
         default:
             return 0;
     }
