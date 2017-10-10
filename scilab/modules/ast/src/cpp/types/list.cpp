@@ -241,7 +241,7 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
     if (_pSource->isListDelete())
     {
         //delete item
-        if (idx == 0)
+        if (idx <= 0)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -262,12 +262,12 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
     else if (_pSource->isListInsert())
     {
         //insert item
-        if (idx == 0)
+        if (idx <= 0)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             std::wostringstream os;
-            os << _W("Index out of bounds.\n");
+            os << _W("Invalid index.\n");
             throw ast::InternalError(os.str());
         }
 
@@ -288,11 +288,20 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
             m_plData->insert(m_plData->begin() + idx - 1, pInsert);
         }
     }
-    else if (idx == 0)
+    else if (idx <= 0)
     {
-        //special case to insert at the first position
-        _pSource->IncreaseRef();
-        m_plData->insert(m_plData->begin(), _pSource);
+        if (idx == 0)
+        {
+            //special case to insert at the first position
+            _pSource->IncreaseRef();
+            m_plData->insert(m_plData->begin(), _pSource);
+        }
+        else // idx < 0
+        {
+            // do nothing
+            cleanIndexesArguments(_pArgs, &pArg);
+            return this;
+        }
     }
     else
     {
