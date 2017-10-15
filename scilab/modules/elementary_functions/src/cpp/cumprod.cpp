@@ -130,7 +130,7 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
     if (iOrientation == 0) // all
     {
         // set first element
-        pOut->set(0, pIn->get(0));
+        pOut->set(0, pIn->getScalar_());
 
         iLastSize    = pOut->get(0)->getSize();
         pdblLastReal = pOut->get(0)->get();
