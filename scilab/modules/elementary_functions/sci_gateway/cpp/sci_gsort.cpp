@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        wstrWay = in[2]->getAs<types::String>()->get(0);
+        wstrWay = in[2]->getAs<types::String>()->getScalar_();
         if (wstrWay != L"i" && wstrWay != L"d")
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"), "gsort", 3);
@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        wstrProcess = in[1]->getAs<types::String>()->get(0);
+        wstrProcess = in[1]->getAs<types::String>()->getScalar_();
 
         if ( wstrProcess != L"c"  &&
                 wstrProcess != L"r"  &&
