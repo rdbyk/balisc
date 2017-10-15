@@ -129,9 +129,9 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
         // set first element
         pOut->set(0, pIn->getScalar_());
 
-        iLastRank    = pOut->get(0)->getRank();
-        pdblLastReal = pOut->get(0)->get();
-        pdblLastImg  = pOut->get(0)->getImg();
+        iLastRank    = pOut->getScalar_()->getRank();
+        pdblLastReal = pOut->getScalar_()->get();
+        pdblLastImg  = pOut->getScalar_()->getImg();
 
         // compute next elements
         if (bComplex)
