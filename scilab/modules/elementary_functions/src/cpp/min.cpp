@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -101,7 +101,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
     {
         if (iOrientation == 0) // Find the min value between all matrix elements
         {
-            double dMin = vectIn[0]->get(0);
+            double dMin = vectIn[0]->getScalar_();
             int iIndex = 0;
             for (int i = 1; i < iSize; i++)
             {
