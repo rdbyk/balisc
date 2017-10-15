@@ -182,8 +182,8 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         // create output matrix of poly
         pOut = new types::Polynom(pIn->getVariableName(), 1, 1, &iRankMax);
         pOut->setComplex(pIn->isComplex());
-        double* pdblRealOut = pOut->get(0)->get();
-        memcpy(pdblRealOut, pIn->get(0)->get(), (piRanks[0] + 1) * sizeof(double));
+        double* pdblRealOut = pOut->getScalar_()->get();
+        memcpy(pdblRealOut, pIn->getScalar_()->get(), (piRanks[0] + 1) * sizeof(double));
 
         // do prod
         int iSize = pIn->getSize();
@@ -191,10 +191,10 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         int iRank = piRanks[0];
         if (pIn->isComplex())
         {
-            double* pdblImgOut = pOut->get(0)->getImg();
+            double* pdblImgOut = pOut->getScalar_()->getImg();
             // alloc temporary workspace
             double* pdblTempImg  = new double[iRankMax + 1];
-            memcpy(pdblImgOut, pIn->get(0)->getImg(), (piRanks[0] + 1) * sizeof(double));
+            memcpy(pdblImgOut, pIn->getScalar_()->getImg(), (piRanks[0] + 1) * sizeof(double));
 
             // perform operations
             for (int i = 1; i < iSize; i++)
