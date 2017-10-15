@@ -141,7 +141,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
 
     if (inputs.size() == 2 && inputs[1]->isString())
     {
-        std::wstring wcsOrientation = inputs[1]->getAs<types::String>()->get(0);
+        std::wstring wcsOrientation = inputs[1]->getAs<types::String>()->getScalar_();
         if (wcsOrientation == L"r")
         {
             iOrientation = 1;
