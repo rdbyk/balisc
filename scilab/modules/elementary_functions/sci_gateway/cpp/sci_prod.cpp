@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -145,7 +145,7 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            iOrientation = static_cast<int>(pDbl->get(0));
+            iOrientation = static_cast<int>(pDbl->getScalar_());
 
             if (iOrientation <= 0)
             {
@@ -173,7 +173,7 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            wchar_t* wcsString = pStr->get(0);
+            wchar_t* wcsString = pStr->getScalar_();
 
             if (wcscmp(wcsString, L"*") == 0)
             {
@@ -280,7 +280,7 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        wchar_t* wcsString = pStr->get(0);
+        wchar_t* wcsString = pStr->getScalar_();
 
         if (wcscmp(wcsString, L"native") == 0)
         {
