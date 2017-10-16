@@ -162,7 +162,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         _piDims[1]  = 0;
 
         int iPos = getIndex(_piDims);
-        wchar_t* wcsStr = get(iPos);
+        wchar_t* wcsStr = get_(iPos);
         int iCurLen = static_cast<int>(wcslen(wcsStr));
         iMaxLen = std::max(iMaxLen, iCurLen);
         iMaxLen = std::min(iMaxLen, iStrMaxSize);
@@ -199,7 +199,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             _piDims[1] = 0;
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
-            iMaxLen = std::max(iMaxLen, static_cast<int>(wcslen(get(iPos))));
+            iMaxLen = std::max(iMaxLen, static_cast<int>(wcslen(get_(iPos))));
             iMaxLen = std::min(iMaxLen, iStrMaxSize);
         }
 
@@ -224,7 +224,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             _piDims[1] = 0;
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
-            wchar_t* wcsStr = get(iPos);
+            wchar_t* wcsStr = get_(iPos);
             int iCurLen = static_cast<int>(wcslen(wcsStr));
 
             ostr << L"!";
@@ -273,7 +273,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             int iPos = getIndex(_piDims);
 
             int iLen = 0;
-            int iCurLen = static_cast<int>(wcslen(get(iPos)));
+            int iCurLen = static_cast<int>(wcslen(get_(iPos)));
             iLen = iCurLen + SIZE_BETWEEN_TWO_STRING_VALUES + static_cast<int>(ostemp.str().size());
             if (iLen > iLineLen && iLastVal != i)
             {
@@ -294,7 +294,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             // Manage case where string length is greater than max line size.
             if (iStrMaxSize < iCurLen)
             {
-                wchar_t* wcsStr = get(iPos);
+                wchar_t* wcsStr = get_(iPos);
                 int iStrPos = 0;
                 while (iCurLen > iStrMaxSize) // -2 because of two "!"
                 {
@@ -310,7 +310,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             else
             {
                 configureStream(&ostemp, iCurLen + 2, iPrecision, ' ');
-                ostemp << std::left << get(iPos);
+                ostemp << std::left << get_(iPos);
             }
         }
 
@@ -338,7 +338,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 _piDims[1] = iCols1;
                 _piDims[0] = iRows1;
                 int iPos = getIndex(_piDims);
-                piSize[iCols1] = std::max(piSize[iCols1], static_cast<int>(wcslen(get(iPos))));
+                piSize[iCols1] = std::max(piSize[iCols1], static_cast<int>(wcslen(get_(iPos))));
                 piSize[iCols1] = std::min(piSize[iCols1], iStrMaxSize);
             }
 
@@ -379,7 +379,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                         _piDims[0] = iRows2;
                         _piDims[1] = iCols2;
                         int iPos = getIndex(_piDims);
-                        wchar_t* wcsStr = get(iPos);
+                        wchar_t* wcsStr = get_(iPos);
                         int iLenStr = static_cast<int>(wcslen(wcsStr));
 
                         // Manage case where string length is greater than max line size.
@@ -400,7 +400,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                         else
                         {
                             configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                            ostemp << std::left << get(iPos) << spaces;
+                            ostemp << std::left << get_(iPos) << spaces;
                         }
                     }
                     ostemp << L"!\n";
@@ -468,7 +468,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 _piDims[0] = iRows2;
                 _piDims[1] = iCols2;
                 int iPos = getIndex(_piDims);
-                wchar_t* wcsStr = get(iPos);
+                wchar_t* wcsStr = get_(iPos);
                 int iLenStr = static_cast<int>(wcslen(wcsStr));
 
                 // Manage case where string length is greater than max line size.
@@ -490,7 +490,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 else
                 {
                     configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                    ostemp << std::left << get(iPos) << spaces;
+                    ostemp << std::left << get_(iPos) << spaces;
                     iLen += piSize[iCols2] + static_cast<int>(spaces.size());
                 }
             }
