@@ -452,9 +452,9 @@ void isValueFalse(T* _pL, types::Bool** _pOut)
 {
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        if (_pL->get(i) == 0)
+        if (_pL->get_(i) == 0)
         {
-            if ( !_pL->isComplex() || (_pL->getImg(i) == 0) )
+            if ( !_pL->isComplex() || (_pL->getImg_(i) == 0) )
             {
                 *_pOut = new Bool(0); //false && something -> false
                 return;
@@ -479,9 +479,9 @@ void isValueFalse(Double* _pL, Bool** _pOut)
 
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        if (_pL->get(i) == 0)
+        if (_pL->get_(i) == 0)
         {
-            if ( !_pL->isComplex() || (_pL->getImg(i) == 0) )
+            if ( !_pL->isComplex() || (_pL->getImg_(i) == 0) )
             {
                 *_pOut = new Bool(0); //false && something -> false
                 return;
