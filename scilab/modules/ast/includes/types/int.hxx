@@ -189,13 +189,13 @@ private :
             int iWidth = 0;
             if (isSigned())
             {
-                getSignedIntFormat(ArrayOf<T>::get(0), &iWidth);
-                addSignedIntValue(&ostr, ArrayOf<T>::get(0), iWidth);
+                getSignedIntFormat(ArrayOf<T>::getScalar_(), &iWidth);
+                addSignedIntValue(&ostr, ArrayOf<T>::getScalar_(), iWidth);
             }
             else
             {
-                getUnsignedIntFormat(ArrayOf<T>::get(0), &iWidth);
-                addUnsignedIntValue(&ostr, ArrayOf<T>::get(0), iWidth);
+                getUnsignedIntFormat(ArrayOf<T>::getScalar_(), &iWidth);
+                addUnsignedIntValue(&ostr, ArrayOf<T>::getScalar_(), iWidth);
             }
             ostr << L"\n";
         }
