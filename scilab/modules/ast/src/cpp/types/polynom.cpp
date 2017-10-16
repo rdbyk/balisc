@@ -444,14 +444,14 @@ bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iD
         if (isComplex())
         {
             ostr << L"Real part" << L"\n\n\n";
-            get(0)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+            getScalar_()->toStringReal(getVariableName(), &listExpR, &listCoefR);
             for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; ++it_Coef, ++it_Exp)
             {
                 ostr << *it_Exp << L"\n" << *it_Coef << L"\n";
             }
 
             ostr << L"Imaginary part\n\n\n";
-            get(0)->toStringImg(getVariableName(), &listExpI, &listCoefI);
+            getScalar_()->toStringImg(getVariableName(), &listExpI, &listCoefI);
             for (it_Coef = listCoefI.begin(), it_Exp = listExpI.begin() ; it_Coef != listCoefI.end() ; ++it_Coef, ++it_Exp)
             {
                 ostr << *it_Exp << L"\n" << *it_Coef << L"\n";
@@ -459,7 +459,7 @@ bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iD
         }
         else
         {
-            get(0)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+            getScalar_()->toStringReal(getVariableName(), &listExpR, &listCoefR);
 
             for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; ++it_Coef++, ++it_Exp)
             {
@@ -1010,7 +1010,7 @@ Polynom* Polynom::Dollar()
 {
     int iRank = 1;
     Polynom* pDollar = new Polynom(L"$", 1, 1, &iRank);
-    double* pdblCoef = pDollar->get(0)->get();
+    double* pdblCoef = pDollar->getScalar_()->get();
     pdblCoef[0] = 0;
     pdblCoef[1] = 1;
 
@@ -1024,7 +1024,7 @@ bool Polynom::isDollar()
         return false;
     }
 
-    double* pCoef = get(0)->get();
+    double* pCoef = getScalar_()->get();
 
     if (pCoef[0] != 0 && pCoef[1] != 1)
     {
