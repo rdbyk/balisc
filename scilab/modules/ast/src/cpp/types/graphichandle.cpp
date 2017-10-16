@@ -83,7 +83,7 @@ GraphicHandle* GraphicHandle::clone()
     GraphicHandle* pGH = new GraphicHandle(getDims(), getDimsArray());
     for (int i = 0 ; i < getSize() ; i++)
     {
-        pGH->set_(i, get(i));
+        pGH->set_(i, get_(i));
     }
     return pGH;
 }
@@ -112,7 +112,7 @@ bool GraphicHandle::operator==(const InternalType& it)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        if (get(i) == pGH->get(i))
+        if (get_(i) == pGH->get_(i))
         {
             return false;
         }
