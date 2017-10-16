@@ -176,7 +176,7 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
             {
                 case types::InternalType::ScilabDouble:
                 {
-                    double dValue = in[i]->getAs<types::Double>()->get(0);
+                    double dValue = in[i]->getAs<types::Double>()->getScalar_();
                     if (dValue >= INT_MAX)
                     {
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
@@ -206,7 +206,7 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                     break;
                 case types::InternalType::ScilabInt64:
                 {
-                    long long llValue = in[i]->getAs<types::Int64>()->get(0);
+                    long long llValue = in[i]->getAs<types::Int64>()->getScalar_();
                     if (llValue >= INT_MAX)
                     {
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
@@ -218,7 +218,7 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                 }
                 case types::InternalType::ScilabUInt64:
                 {
-                    unsigned long long ullValue = in[i]->getAs<types::UInt64>()->get(0);
+                    unsigned long long ullValue = in[i]->getAs<types::UInt64>()->getScalar_();
                     if (ullValue >= INT_MAX)
                     {
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
@@ -239,38 +239,4 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
     }
 
     return false;
-}
-
-types::Double* trigo(types::Double* in, func_real func_r, func_complex func_c, bool forceComplex)
-{
-    bool isComplex = in->isComplex() || forceComplex;
-    types::Double* out = new types::Double(in->getDims(), in->getDimsArray(), isComplex);
-
-    int size = in->getSize();
-    double* pInR = in->get();
-    double* pOutR = out->get();
-
-    if (isComplex)
-    {
-        double* pInI = in->getImg();
-        double* pOutI = out->getImg();
-        std::complex<double> d;
-        for (int i = 0; i < size; ++i)
-        {
-            d.real(pInR[i]);
-            d.imag(pInI[i]);
-            std::complex<double> res = func_c(d);
-            pOutR[i] = res.real();
-            pOutI[i] = res.imag();
-        }
-    }
-    else
-    {
-        for (int i = 0; i < size; ++i)
-        {
-            pOutR[i] = func_r(pInR[i]);
-        }
-    }
-
-    return out;
 }

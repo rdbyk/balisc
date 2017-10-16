@@ -306,7 +306,7 @@ String* Struct::getFieldNames()
 {
     if (getSize() != 0)
     {
-        return get(0)->getFieldNames();
+        return getScalar_()->getFieldNames();
     }
     else
     {
@@ -318,7 +318,7 @@ bool Struct::exists(const std::wstring& _sKey)
 {
     if (getSize() != 0)
     {
-        return get(0)->exists(_sKey);
+        return getScalar_()->exists(_sKey);
     }
     else
     {
@@ -477,7 +477,7 @@ bool Struct::toString(std::wostringstream& ostr)
     }
     else if (getSize() == 1)
     {
-        SingleStruct* pSS =  get(0);
+        SingleStruct* pSS =  getScalar_();
         String* pwstFields =  pSS->getFieldNames();
         if (pwstFields->getSize() == 0)
         {
@@ -562,7 +562,7 @@ InternalType * Struct::extractField(const std::wstring & wstField)
     {
         if (getSize() == 1)
         {
-            return get(0)->get(wstField);
+            return getScalar_()->get(wstField);
         }
         else
         {
@@ -645,14 +645,14 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
         {
             break;
         }
-        else if (iIndex > (int)get(0)->getNumFields() + 2)
+        else if (iIndex > (int)getScalar_()->getNumFields() + 2)
         {
             break;
         }
         else if (getSize() == 1)
         {
             //return elements
-            const std::vector<InternalType*> & pData = get(0)->getData();
+            const std::vector<InternalType*> & pData = getScalar_()->getData();
             ResultList.push_back(pData[iIndex - 3]->clone());
         }
         else

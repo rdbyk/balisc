@@ -177,10 +177,10 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
         pOut->setZeros();
 
         // do sum
-        double* dblRealOut = pOut->get(0)->get();
+        double* dblRealOut = pOut->getScalar_()->get();
         if (pIn->isComplex())
         {
-            double* dblImgOut = pOut->get(0)->get();
+            double* dblImgOut = pOut->getScalar_()->get();
             // perform operations
             for (int i = 0; i < pIn->getSize(); i++)
             {

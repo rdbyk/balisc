@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -140,7 +140,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        dEpsR = pDbl->get(0);
+        dEpsR = pDbl->getScalar_();
     }
 
     if (in.size() >= 2)
@@ -179,7 +179,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        dEpsA = pDbl->get(0);
+        dEpsA = pDbl->getScalar_();
     }
 
     /***** perform operation *****/

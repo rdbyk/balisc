@@ -814,7 +814,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             {
                 // a("b") => a.b or a(x)("b") => a(x).b
                 ExpHistory * pEHParent = fields.back();
-                ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->getLocation(), symbol::Symbol((*pCurrentArgs)[0]->getAs<types::String>()->get(0)));
+                ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->getLocation(), symbol::Symbol((*pCurrentArgs)[0]->getAs<types::String>()->getScalar_()));
                 ExpHistory * pEH = new ExpHistory(pEHParent, pFieldVar);
                 pEH->setLevel(pEHParent->getLevel() + 1);
                 pEH->setExpOwner(true);
@@ -1052,7 +1052,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             // clone element before modify it.
                             //pIT->DecreaseRef();
                             pIT = pIT->clone();
-                            pStruct->get(0)->set(pwcsFieldname, pIT);
+                            pStruct->getScalar_()->set(pwcsFieldname, pIT);
                         }
 
                         ExpHistory* pEHChield = new ExpHistory(pEH,
@@ -1918,8 +1918,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 throw ast::InternalError(os.str(), 999, e.getLocation());
             }
 
-            pStr->addField(pS->get(0));
-            pStr->get(0)->set(pS->get(0), _pInsert);
+            pStr->addField(pS->getScalar_());
+            pStr->getScalar_()->set(pS->getScalar_(), _pInsert);
             pOut = pStr;
         }
         else
@@ -2064,17 +2064,17 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 {
                     /* Remove a field */
                     pStruct = pStruct->copyAs<types::Struct>();
-                    pStruct->removeField(pS->get(0));
+                    pStruct->removeField(pS->getScalar_());
                 }
                 else
                 {
                     /* Add a field */
                     int size = pStruct->getSize();
                     pStruct = pStruct->copyAs<types::Struct>();
-                    pStruct->addField(pS->get(0));
+                    pStruct->addField(pS->getScalar_());
                     for (int i = 0; i < size; i++)
                     {
-                        pStruct->get(i)->set(pS->get(0), _pInsert);
+                        pStruct->get(i)->set(pS->getScalar_(), _pInsert);
                     }
                 }
                 pRet = pStruct;
@@ -2178,9 +2178,9 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                         return callOverload(e, L"i", _pArgs, _pInsert, _pVar);
                     }
 
-                    if (pTL->exists(pS->get(0)))
+                    if (pTL->exists(pS->getScalar_()))
                     {
-                        pRet = pTL->set(pS->get(0), _pInsert);
+                        pRet = pTL->set(pS->getScalar_(), _pInsert);
                     }
                     else
                     {
