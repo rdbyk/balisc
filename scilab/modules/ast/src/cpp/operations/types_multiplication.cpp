@@ -385,7 +385,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
         int* piRank = new int[_pPoly->getSize()];
         for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
-            piRank[i] = _pPoly->get(i)->getRank();
+            piRank[i] = _pPoly->get_(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pPoly->getDims(), _pPoly->getDimsArray(), piRank);
@@ -397,11 +397,11 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
 
         for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
-            SinglePoly *pPolyIn     = _pPoly->get(i);
+            SinglePoly *pPolyIn     = _pPoly->get_(i);
             double* pRealIn         = pPolyIn->get();
             double* pImgIn          = pPolyIn->getImg();
 
-            SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
+            SinglePoly *pPolyOut    = (*_pPolyOut)->get_(i);
             double* pRealOut        = pPolyOut->get();
             double* pImgOut         = pPolyOut->getImg();
 
@@ -450,7 +450,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
 
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
-            SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
+            SinglePoly *pPolyOut    = (*_pPolyOut)->get_(i);
             double* pRealOut        = pPolyOut->get();
             double* pImgOut         = pPolyOut->getImg();
 
@@ -563,7 +563,7 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
 
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
-            SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
+            SinglePoly *pPolyOut    = (*_pPolyOut)->get_(i);
             double* pRealOut        = pPolyOut->get();
             double* pImgOut         = pPolyOut->getImg();
 
@@ -593,7 +593,7 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
         int* piRank = new int[_pPoly->getSize()];
         for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
-            piRank[i] = _pPoly->get(i)->getRank();
+            piRank[i] = _pPoly->get_(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pPoly->getDims(), _pPoly->getDimsArray(), piRank);
@@ -605,11 +605,11 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
 
         for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
-            SinglePoly *pPolyIn = _pPoly->get(i);
+            SinglePoly *pPolyIn = _pPoly->get_(i);
             double* pRealIn     = pPolyIn->get();
             double* pImgIn      = pPolyIn->getImg();
 
-            SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
+            SinglePoly *pPolyOut    = (*_pPolyOut)->get_(i);
             double* pRealOut        = pPolyOut->get();
             double* pImgOut         = pPolyOut->getImg();
 
@@ -663,42 +663,42 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
         //for each col of _pDouble
         for (int iCol2 = 0 ; iCol2 < _pDouble->getCols() ; iCol2++)
         {
-            SinglePoly* pSPOut = (*_pPolyOut)->get(iRow1, iCol2);
+            SinglePoly* pSPOut = (*_pPolyOut)->get_(iRow1, iCol2);
             pSPOut->setZeros();
 
             //for each rows of _pDouble / cols of _pPoly
             for (int iRow2 = 0 ; iRow2 < _pDouble->getRows() ; iRow2++)
             {
                 // SinglePoly(iRow1, iRow2) * Double(iRow2, iCol2)
-                SinglePoly* pSPIn = _pPoly->get(iRow1, iRow2);
+                SinglePoly* pSPIn = _pPoly->get_(iRow1, iRow2);
                 int iSize = pSPIn->getSize();
                 double* pdblMult = new double[iSize];
 
                 if (bComplex1 == false && bComplex2 == false)
                 {
                     //Real Matrix by Real Scalar
-                    iMultiRealScalarByRealMatrix(_pDouble->get(iRow2, iCol2), pSPIn->get(), iSize, 1, pdblMult);
+                    iMultiRealScalarByRealMatrix(_pDouble->get_(iRow2, iCol2), pSPIn->get(), iSize, 1, pdblMult);
                     add(pSPOut->get(), (long long)iSize, pdblMult, pSPOut->get());
                 }
                 else if (bComplex1 == false && bComplex2 == true)
                 {
                     //Real Matrix by Scalar Complex
                     double* pdblMultImg = new double[iSize];
-                    iMultiComplexScalarByRealMatrix(_pDouble->get(iRow2, iCol2), _pDouble->getImg(iRow2, iCol2), pSPIn->get(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
+                    iMultiComplexScalarByRealMatrix(_pDouble->get_(iRow2, iCol2), _pDouble->getImg_(iRow2, iCol2), pSPIn->get(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
                     add(pSPOut->get(), pSPOut->getImg(), (long long)iSize, pdblMult, pdblMultImg, pSPOut->get(), pSPOut->getImg());
                     delete[] pdblMultImg;
                 }
                 else if (bComplex1 == true && bComplex2 == false)
                 {
                     double* pdblMultImg = new double[iSize];
-                    iMultiRealScalarByComplexMatrix(_pDouble->get(iRow2, iCol2), pSPIn->get(), pSPIn->getImg(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
+                    iMultiRealScalarByComplexMatrix(_pDouble->get_(iRow2, iCol2), pSPIn->get(), pSPIn->getImg(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
                     add(pSPOut->get(), pSPOut->getImg(), (long long)iSize, pdblMult, pdblMultImg, pSPOut->get(), pSPOut->getImg());
                     delete[] pdblMultImg;
                 }
                 else //if(bComplex1 == true && bComplex2 == true)
                 {
                     double* pdblMultImg = new double[iSize];
-                    iMultiComplexScalarByComplexMatrix(_pDouble->get(iRow2, iCol2), _pDouble->getImg(iRow2, iCol2), pSPIn->get(), pSPIn->getImg(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
+                    iMultiComplexScalarByComplexMatrix(_pDouble->get_(iRow2, iCol2), _pDouble->getImg_(iRow2, iCol2), pSPIn->get(), pSPIn->getImg(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
                     add(pSPOut->get(), pSPOut->getImg(), (long long)iSize, pdblMult, pdblMultImg, pSPOut->get(), pSPOut->getImg());
                     delete[] pdblMultImg;
                 }
@@ -790,7 +790,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         int* piRank = new int[_pPoly2->getSize()];
         for (int i = 0 ; i < _pPoly2->getSize() ; i++)
         {
-            piRank[i] = _pPoly1->getScalar_()->getRank() + _pPoly2->get(i)->getRank();
+            piRank[i] = _pPoly1->getScalar_()->getRank() + _pPoly2->get_(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly2->getDims(), _pPoly2->getDimsArray(), piRank);
@@ -806,8 +806,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
             {
-                SinglePoly *pPoly2  = _pPoly2->get(iPoly);
-                SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
+                SinglePoly *pPoly2  = _pPoly2->get_(iPoly);
+                SinglePoly *pPolyOut = (*_pPolyOut)->get_(iPoly);
 
                 pPolyOut->setZeros();
 
@@ -821,8 +821,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
             {
-                SinglePoly *pPoly2  = _pPoly2->get(iPoly);
-                SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
+                SinglePoly *pPoly2  = _pPoly2->get_(iPoly);
+                SinglePoly *pPolyOut = (*_pPolyOut)->get_(iPoly);
 
                 pPolyOut->setZeros();
 
@@ -836,8 +836,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
             {
-                SinglePoly *pPoly2  = _pPoly2->get(iPoly);
-                SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
+                SinglePoly *pPoly2  = _pPoly2->get_(iPoly);
+                SinglePoly *pPolyOut = (*_pPolyOut)->get_(iPoly);
 
                 pPolyOut->setZeros();
 
@@ -851,8 +851,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
             {
-                SinglePoly *pPoly2   = _pPoly2->get(iPoly);
-                SinglePoly *pPolyOut  = (*_pPolyOut)->get(iPoly);
+                SinglePoly *pPoly2   = _pPoly2->get_(iPoly);
+                SinglePoly *pPolyOut  = (*_pPolyOut)->get_(iPoly);
 
                 pPolyOut->setZeros();
 
@@ -873,7 +873,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         int* piRank = new int[_pPoly1->getSize()];
         for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
-            piRank[i] = _pPoly2->getScalar_()->getRank() + _pPoly1->get(i)->getRank();
+            piRank[i] = _pPoly2->getScalar_()->getRank() + _pPoly1->get_(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getDims(), _pPoly1->getDimsArray(), piRank);
@@ -888,8 +888,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
             {
-                SinglePoly *pPoly1  = _pPoly1->get(iPoly);
-                SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
+                SinglePoly *pPoly1  = _pPoly1->get_(iPoly);
+                SinglePoly *pPolyOut = (*_pPolyOut)->get_(iPoly);
 
                 pPolyOut->setZeros();
 
@@ -903,8 +903,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
             {
-                SinglePoly *pPoly1  = _pPoly1->get(iPoly);
-                SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
+                SinglePoly *pPoly1  = _pPoly1->get_(iPoly);
+                SinglePoly *pPolyOut = (*_pPolyOut)->get_(iPoly);
 
                 pPolyOut->setZeros();
 
@@ -918,8 +918,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
             {
-                SinglePoly *pPoly1  = _pPoly1->get(iPoly);
-                SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
+                SinglePoly *pPoly1  = _pPoly1->get_(iPoly);
+                SinglePoly *pPolyOut = (*_pPolyOut)->get_(iPoly);
 
                 pPolyOut->setZeros();
 
@@ -933,8 +933,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
             {
-                SinglePoly *pPoly1   = _pPoly1->get(iPoly);
-                SinglePoly *pPolyOut  = (*_pPolyOut)->get(iPoly);
+                SinglePoly *pPoly1   = _pPoly1->get_(iPoly);
+                SinglePoly *pPolyOut  = (*_pPolyOut)->get_(iPoly);
 
                 pPolyOut->setZeros();
 
@@ -981,13 +981,13 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
-                SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
+                SinglePoly *pResult = (*_pPolyOut)->get_(iRow, iCol);
                 pResult->setZeros();
 
                 for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
-                    SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
-                    SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
+                    SinglePoly *pL   = _pPoly1->get_(iRow, iCommon);
+                    SinglePoly *pR   = _pPoly2->get_(iCommon, iCol);
 
                     pTemp->setZeros();
 
@@ -1016,13 +1016,13 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
-                SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
+                SinglePoly *pResult = (*_pPolyOut)->get_(iRow, iCol);
                 pResult->setZeros();
 
                 for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
-                    SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
-                    SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
+                    SinglePoly *pL   = _pPoly1->get_(iRow, iCommon);
+                    SinglePoly *pR   = _pPoly2->get_(iCommon, iCol);
 
                     pTemp->setZeros();
 
@@ -1051,13 +1051,13 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
-                SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
+                SinglePoly *pResult = (*_pPolyOut)->get_(iRow, iCol);
                 pResult->setZeros();
 
                 for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
-                    SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
-                    SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
+                    SinglePoly *pL   = _pPoly1->get_(iRow, iCommon);
+                    SinglePoly *pR   = _pPoly2->get_(iCommon, iCol);
 
                     pTemp->setZeros();
 
@@ -1086,13 +1086,13 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         {
             for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
-                SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
+                SinglePoly *pResult = (*_pPolyOut)->get_(iRow, iCol);
                 pResult->setZeros();
 
                 for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
-                    SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
-                    SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
+                    SinglePoly *pL   = _pPoly1->get_(iRow, iCommon);
+                    SinglePoly *pR   = _pPoly2->get_(iCommon, iCol);
 
                     pTemp->setZeros();
 
@@ -1385,8 +1385,8 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
 
             for (int j = 0 ; j < _pDouble->getCols() ; j++)
             {
-                double dblVal = _pDouble->get(iCol, j) * dbl;
-                pOut->set(iRow, j, pOut->get(iRow, j) + dblVal);
+                double dblVal = _pDouble->get_(iCol, j) * dbl;
+                pOut->set(iRow, j, pOut->get_(iRow, j) + dblVal);
             }
         }
     }
@@ -1402,10 +1402,10 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
 
             for (int j = 0 ; j < _pDouble->getCols() ; j++)
             {
-                double dblValR = _pDouble->get(iCol, j) * dblR;
-                double dblValI = _pDouble->get(iCol, j) * dblI;
-                pOut->set(iRow, j, pOut->get(iRow, j) + dblValR);
-                pOut->setImg(iRow, j, pOut->getImg(iRow, j) + dblValI);
+                double dblValR = _pDouble->get_(iCol, j) * dblR;
+                double dblValI = _pDouble->get_(iCol, j) * dblI;
+                pOut->set(iRow, j, pOut->get_(iRow, j) + dblValR);
+                pOut->setImg(iRow, j, pOut->getImg_(iRow, j) + dblValI);
             }
         }
     }
@@ -1420,10 +1420,10 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
 
             for (int j = 0 ; j < _pDouble->getCols() ; j++)
             {
-                double dblValR = _pDouble->get(iCol, j) * dblR;
-                double dblValI = _pDouble->getImg(iCol, j) * dblR;
-                pOut->set(iRow, j, pOut->get(iRow, j) + dblValR);
-                pOut->setImg(iRow, j, pOut->getImg(iRow, j) + dblValI);
+                double dblValR = _pDouble->get_(iCol, j) * dblR;
+                double dblValI = _pDouble->getImg_(iCol, j) * dblR;
+                pOut->set(iRow, j, pOut->get_(iRow, j) + dblValR);
+                pOut->setImg(iRow, j, pOut->getImg_(iRow, j) + dblValI);
             }
         }
     }
@@ -1438,10 +1438,10 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
 
             for (int j = 0 ; j < _pDouble->getCols() ; j++)
             {
-                double dblValR = _pDouble->get(iCol, j) * dblR - _pDouble->getImg(iCol, j) * dblI;
-                double dblValI = _pDouble->get(iCol, j) * dblI + _pDouble->getImg(iCol, j) * dblR;
-                pOut->set(iRow, j, pOut->get(iRow, j) + dblValR);
-                pOut->setImg(iRow, j, pOut->getImg(iRow, j) + dblValI);
+                double dblValR = _pDouble->get_(iCol, j) * dblR - _pDouble->getImg_(iCol, j) * dblI;
+                double dblValI = _pDouble->get_(iCol, j) * dblI + _pDouble->getImg_(iCol, j) * dblR;
+                pOut->set(iRow, j, pOut->get_(iRow, j) + dblValR);
+                pOut->setImg(iRow, j, pOut->getImg_(iRow, j) + dblValI);
             }
         }
     }
@@ -1508,7 +1508,7 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
         {
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
-            pOut->set(iRow, iCol, _pSparse->get(iRow, iCol) * _pDouble->get(iRow, iCol));
+            pOut->set(iRow, iCol, _pSparse->get(iRow, iCol) * _pDouble->get_(iRow, iCol));
         }
     }
     else if (_pDouble->isComplex() == false && _pSparse->isComplex() == true)
@@ -1518,7 +1518,7 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             std::complex<double> dbl = _pSparse->getImg(iRow, iCol);
-            std::complex<double> newVal(dbl.real() * _pDouble->get(iRow, iCol), dbl.imag() * _pDouble->get(iRow, iCol));
+            std::complex<double> newVal(dbl.real() * _pDouble->get_(iRow, iCol), dbl.imag() * _pDouble->get_(iRow, iCol));
             pOut->set(iRow, iCol, newVal);
         }
     }
@@ -1529,7 +1529,7 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             std::complex<double> dbl = _pSparse->getImg(iRow, iCol);
-            std::complex<double> newVal(dbl.real() * _pDouble->get(iRow, iCol), dbl.real() * _pDouble->getImg(iRow, iCol));
+            std::complex<double> newVal(dbl.real() * _pDouble->get_(iRow, iCol), dbl.real() * _pDouble->getImg_(iRow, iCol));
             pOut->set(iRow, iCol, newVal);
         }
     }
@@ -1540,8 +1540,8 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
             int iRow = static_cast<int>(pRows[i]) - 1;
             int iCol = static_cast<int>(pCols[i]) - 1;
             std::complex<double> dbl = _pSparse->getImg(iRow, iCol);
-            double dblR = _pDouble->get(iRow, iCol) * dbl.real() - _pDouble->getImg(iRow, iCol) * dbl.imag();
-            double dblI = _pDouble->getImg(iRow, iCol) * dbl.real() + _pDouble->get(iRow, iCol) * dbl.imag();
+            double dblR = _pDouble->get_(iRow, iCol) * dbl.real() - _pDouble->getImg_(iRow, iCol) * dbl.imag();
+            double dblI = _pDouble->getImg_(iRow, iCol) * dbl.real() + _pDouble->get_(iRow, iCol) * dbl.imag();
 
             std::complex<double> newVal(dblR, dblI);
             pOut->set(iRow, iCol, newVal);
@@ -1599,7 +1599,7 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
         int* piRank = new int[_pPoly1->getSize()];
         for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
-            piRank[i] = _pPoly1->get(i)->getRank() + _pPoly2->get(i)->getRank();
+            piRank[i] = _pPoly1->get_(i)->getRank() + _pPoly2->get_(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getDims(), _pPoly1->getDimsArray(), piRank);
@@ -1610,9 +1610,9 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
             (*_pPolyOut)->setComplex(true);
             for (int i = 0; i < _pPoly1->getSize(); i++)
             {
-                SinglePoly *pSP1    = _pPoly1->get(i);
-                SinglePoly *pSP2    = _pPoly2->get(i);
-                SinglePoly *pSPOut  = (*_pPolyOut)->get(i);
+                SinglePoly *pSP1    = _pPoly1->get_(i);
+                SinglePoly *pSP2    = _pPoly2->get_(i);
+                SinglePoly *pSPOut  = (*_pPolyOut)->get_(i);
 
                 pSPOut->setZeros();
 
@@ -1628,9 +1628,9 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
             (*_pPolyOut)->setComplex(true);
             for (int i = 0; i < _pPoly1->getSize(); i++)
             {
-                SinglePoly *pSP1   = _pPoly1->get(i);
-                SinglePoly *pSP2   = _pPoly2->get(i);
-                SinglePoly *pSPOut = (*_pPolyOut)->get(i);
+                SinglePoly *pSP1   = _pPoly1->get_(i);
+                SinglePoly *pSP2   = _pPoly2->get_(i);
+                SinglePoly *pSPOut = (*_pPolyOut)->get_(i);
 
                 pSPOut->setZeros();
 
@@ -1645,9 +1645,9 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
             (*_pPolyOut)->setComplex(true);
             for (int i = 0; i < _pPoly1->getSize(); i++)
             {
-                SinglePoly *pSP1   = _pPoly1->get(i);
-                SinglePoly *pSP2   = _pPoly2->get(i);
-                SinglePoly *pSPOut = (*_pPolyOut)->get(i);
+                SinglePoly *pSP1   = _pPoly1->get_(i);
+                SinglePoly *pSP2   = _pPoly2->get_(i);
+                SinglePoly *pSPOut = (*_pPolyOut)->get_(i);
 
                 pSPOut->setZeros();
 
@@ -1661,9 +1661,9 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
         {
             for (int i = 0; i < _pPoly1->getSize(); i++)
             {
-                SinglePoly *pSP1   = _pPoly1->get(i);
-                SinglePoly *pSP2   = _pPoly2->get(i);
-                SinglePoly *pSPOut = (*_pPolyOut)->get(i);
+                SinglePoly *pSP1   = _pPoly1->get_(i);
+                SinglePoly *pSP2   = _pPoly2->get_(i);
+                SinglePoly *pSPOut = (*_pPolyOut)->get_(i);
 
                 pSPOut->setZeros();
 
