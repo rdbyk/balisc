@@ -119,7 +119,6 @@ public :
     Struct*                     resize(int _iNewRows, int _iNewCols);
 
     /*specials functions to disable clone operation during copydata*/
-    InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);
     InternalType*               extractWithoutClone(typed_list* _pArgs);
     void                        setCloneInCopyValue(bool _val);
 

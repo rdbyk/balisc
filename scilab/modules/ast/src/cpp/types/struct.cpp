@@ -712,18 +712,6 @@ Struct* Struct::resize(int* _piDims, int _iDims)
     return pSRes;
 }
 
-InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)
-{
-    //std::wcout << L"insertWithoutClone start" << std::endl;
-    m_bDisableCloneInCopyValue = true;
-    InternalType* pIT = insert(_pArgs, _pSource);
-    _pSource->IncreaseRef();
-    //std::wcout << L"insertWithoutClone -> " << _pSource << L" : " << _pSource->getRef() << std::endl;
-    m_bDisableCloneInCopyValue = false;
-    //std::wcout << L"insertWithoutClone end" << std::endl;
-    return pIT;
-}
-
 InternalType* Struct::extractWithoutClone(typed_list* _pArgs)
 {
     //std::wcout << L"extractWithoutClone start" << std::endl;
