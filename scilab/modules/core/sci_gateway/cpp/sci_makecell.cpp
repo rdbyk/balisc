@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -163,7 +163,7 @@ types::Function::ReturnValue sci_makecell(types::typed_list &in, int _iRetCount,
         int idx2dStart = (i / i2dSize) * i2dSize;
         int idx2dRowMajor = (((i - idx2dStart) % piDimsArray[1]) * piDimsArray[0]) + ((i - idx2dStart) / piDimsArray[1]);
         int idx = idx2dRowMajor + idx2dStart;
-        pC->set(idx , in[i + 1]);
+        pC->set_(idx , in[i + 1]);
     }
 
     delete[] piDimsArray;
