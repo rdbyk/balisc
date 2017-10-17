@@ -553,7 +553,7 @@ InternalType * Struct::extractField(const std::wstring & wstField)
         Int32 * pDims = new Int32(1, getDims());
         for (int j = 0 ; j < getDims() ; j++)
         {
-            pDims->set(j, getDimsArray()[j]);
+            pDims->set_(j, getDimsArray()[j]);
         }
 
         return pDims;
@@ -615,7 +615,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
                 pFields = new String(1, pS->getSize() + 2);
                 for (int j = 0; j < pS->getSize(); j++)
                 {
-                    pFields->set(2 + j, pS->get(j));
+                    pFields->set_(2 + j, pS->get(j));
                 }
 
                 pS->killMe();
@@ -625,8 +625,8 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
                 pFields = new String(1, 2);
             }
 
-            pFields->set(0, L"st");
-            pFields->set(1, L"dims");
+            pFields->set_(0, L"st");
+            pFields->set_(1, L"dims");
 
             ResultList.push_back(pFields);
         }
@@ -636,7 +636,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
             Int32* pDims = new Int32(1, getDims());
             for (int j = 0 ; j < getDims() ; j++)
             {
-                pDims->set(j, getDimsArray()[j]);
+                pDims->set_(j, getDimsArray()[j]);
             }
 
             ResultList.push_back(pDims);
@@ -710,18 +710,6 @@ Struct* Struct::resize(int* _piDims, int _iDims)
     }
 
     return pSRes;
-}
-
-InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)
-{
-    //std::wcout << L"insertWithoutClone start" << std::endl;
-    m_bDisableCloneInCopyValue = true;
-    InternalType* pIT = insert(_pArgs, _pSource);
-    _pSource->IncreaseRef();
-    //std::wcout << L"insertWithoutClone -> " << _pSource << L" : " << _pSource->getRef() << std::endl;
-    m_bDisableCloneInCopyValue = false;
-    //std::wcout << L"insertWithoutClone end" << std::endl;
-    return pIT;
 }
 
 InternalType* Struct::extractWithoutClone(typed_list* _pArgs)

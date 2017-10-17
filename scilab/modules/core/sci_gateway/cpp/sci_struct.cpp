@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
     for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
     {
         //for each field
-        std::wstring wstField((*itInput)->getAs<types::String>()->get(0));
+        std::wstring wstField((*itInput)->getAs<types::String>()->getScalar_());
         types::InternalType* pData = (*(itInput + 1));
 
         //add field in struct
@@ -119,14 +119,14 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
             {
                 for (int i = 0 ; i < pOut->getSize() ; i++)
                 {
-                    pOut->get(i)->set(wstField, pCell->get(0));
+                    pOut->get_(i)->set(wstField, pCell->getScalar_());
                 }
             }
             else
             {
                 for (int i = 0 ; i < pOut->getSize() ; i++)
                 {
-                    pOut->get(i)->set(wstField, pCell->get(i));
+                    pOut->get_(i)->set(wstField, pCell->get_(i));
                 }
             }
         }
@@ -135,7 +135,7 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
             //others
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
-                pOut->get(i)->set(wstField, pData);
+                pOut->get_(i)->set(wstField, pData);
             }
         }
     }
