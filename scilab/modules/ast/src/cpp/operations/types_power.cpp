@@ -250,7 +250,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
                 for (int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
                 {
                     iPowerRealScalarByRealScalar(
-                        _pDouble1->get(i),
+                        _pDouble1->get_(i),
                         _pDouble2->getScalar_(),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i], &iComplex);
                 }
@@ -260,7 +260,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
                 for (int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
                 {
                     iPowerRealScalarByComplexScalar(
-                        _pDouble1->get(i),
+                        _pDouble1->get_(i),
                         _pDouble2->getScalar_(), _pDouble2->getImgScalar_(),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
@@ -270,7 +270,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
                 for (int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
                 {
                     iPowerComplexScalarByRealScalar(
-                        _pDouble1->get(i), _pDouble1->getImg(i),
+                        _pDouble1->get_(i), _pDouble1->getImg_(i),
                         _pDouble2->getScalar_(),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
@@ -280,7 +280,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
                 for (int i = 0 ; i < (*_pDoubleOut)->getSize() ; i++)
                 {
                     iPowerComplexScalarByComplexScalar(
-                        _pDouble1->get(i), _pDouble1->getImg(i),
+                        _pDouble1->get_(i), _pDouble1->getImg_(i),
                         _pDouble2->getScalar_(), _pDouble2->getImgScalar_(),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
@@ -365,7 +365,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
         _pPoly->getRank(&iRank);
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
-            int iInputRank = (int)_pDouble->get(i);
+            int iInputRank = (int)_pDouble->get_(i);
             if (iInputRank < 0)
             {
                 //call overload
@@ -383,10 +383,10 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
 
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
-            SinglePoly* pCoeffOut = pOut->get(i);
+            SinglePoly* pCoeffOut = pOut->get_(i);
 
             int iCurrentRank    = 0;
-            int iLoop           = (int)_pDouble->get(i);
+            int iLoop           = (int)_pDouble->get_(i);
 
             //initialize Out to 1
             pCoeffOut->set(0, 1);
@@ -475,7 +475,7 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
             for (int i = 0; i < iSize; i++)
             {
                 pDbl[i] = new Double(pdbl[0]);
-                pDblSp[i] = new Double(_pSp->getReal(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
+                pDblSp[i] = new Double(_pSp->get(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
             }
         }
     }
@@ -487,7 +487,7 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
             for (int i = 0; i < iSize; i++)
             {
                 pDbl[i] = new Double(pdbl[i], pdblImg[i]);
-                pDblSp[i] = new Double(_pSp->getReal(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
+                pDblSp[i] = new Double(_pSp->get(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
             }
         }
         else
@@ -495,7 +495,7 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
             for (int i = 0; i < iSize; i++)
             {
                 pDbl[i] = new Double(pdbl[i]);
-                pDblSp[i] = new Double(_pSp->getReal(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
+                pDblSp[i] = new Double(_pSp->get(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
             }
         }
     }
@@ -688,7 +688,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 {
                     iPowerComplexScalarByComplexScalar(
                         dblR1, dblI1,
-                        _pDouble2->get(i), _pDouble2->getImg(i),
+                        _pDouble2->get_(i), _pDouble2->getImg_(i),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
             }
@@ -699,7 +699,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 {
                     iPowerComplexScalarByRealScalar(
                         dblR1, dblI1,
-                        _pDouble2->get(i),
+                        _pDouble2->get_(i),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
             }
@@ -714,7 +714,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 {
                     iPowerRealScalarByComplexScalar(
                         dblR1,
-                        _pDouble2->get(i), _pDouble2->getImg(i),
+                        _pDouble2->get_(i), _pDouble2->getImg_(i),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
             }
@@ -725,7 +725,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                     int iComplex = 1;
                     iPowerRealScalarByRealScalar(
                         dblR1,
-                        _pDouble2->get(i),
+                        _pDouble2->get_(i),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i], &iComplex);
                     iResultComplex |= iComplex;
                 }
@@ -746,7 +746,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 for (int i = 0 ; i < _pDouble1->getSize() ; i++)
                 {
                     iPowerComplexScalarByComplexScalar(
-                        _pDouble1->get(i), _pDouble1->getImg(i),
+                        _pDouble1->get_(i), _pDouble1->getImg_(i),
                         dblR2, dblI2,
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
@@ -758,7 +758,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 for (int i = 0 ; i < _pDouble1->getSize() ; i++)
                 {
                     iPowerComplexScalarByRealScalar(
-                        _pDouble1->get(i), _pDouble1->getImg(i),
+                        _pDouble1->get_(i), _pDouble1->getImg_(i),
                         dblR2,
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
@@ -774,7 +774,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 for (int i = 0 ; i < _pDouble1->getSize() ; i++)
                 {
                     iPowerRealScalarByComplexScalar(
-                        _pDouble1->get(i),
+                        _pDouble1->get_(i),
                         dblR2, dblI2,
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
@@ -785,7 +785,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 {
                     int iComplex = 1;
                     iPowerRealScalarByRealScalar(
-                        _pDouble1->get(i),
+                        _pDouble1->get_(i),
                         dblR2,
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i], &iComplex);
                     iResultComplex |= iComplex;
@@ -825,8 +825,8 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 for (int i = 0 ; i < _pDouble1->getSize() ; i++)
                 {
                     iPowerComplexScalarByComplexScalar(
-                        _pDouble1->get(i), _pDouble1->getImg(i),
-                        _pDouble2->get(i), _pDouble2->getImg(i),
+                        _pDouble1->get_(i), _pDouble1->getImg_(i),
+                        _pDouble2->get_(i), _pDouble2->getImg_(i),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
             }
@@ -836,8 +836,8 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 for (int i = 0 ; i < _pDouble1->getSize() ; i++)
                 {
                     iPowerComplexScalarByRealScalar(
-                        _pDouble1->get(i), _pDouble1->getImg(i),
-                        _pDouble2->get(i),
+                        _pDouble1->get_(i), _pDouble1->getImg_(i),
+                        _pDouble2->get_(i),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
             }
@@ -850,8 +850,8 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 for (int i = 0 ; i < _pDouble1->getSize() ; i++)
                 {
                     iPowerRealScalarByComplexScalar(
-                        _pDouble1->get(i),
-                        _pDouble2->get(i), _pDouble2->getImg(i),
+                        _pDouble1->get_(i),
+                        _pDouble2->get_(i), _pDouble2->getImg_(i),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
             }
@@ -861,8 +861,8 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
                 {
                     int iComplex = 1;
                     iPowerRealScalarByRealScalar(
-                        _pDouble1->get(i),
-                        _pDouble2->get(i),
+                        _pDouble1->get_(i),
+                        _pDouble2->get_(i),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i], &iComplex);
                     iResultComplex |= iComplex;
                 }

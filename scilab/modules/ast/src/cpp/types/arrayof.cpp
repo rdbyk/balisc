@@ -759,8 +759,8 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
             for (int j = 0; j < iCols; j++)
             {
                 int c = _iCols + j;
-                set_(r, c, pGT->get(i, j));
-                setImg_(r, c, pGT->getImg(i, j));
+                set_(r, c, pGT->get_(i, j));
+                setImg_(r, c, pGT->getImg_(i, j));
             }
         }
     }
@@ -771,7 +771,7 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
             int r = _iRows + i;
             for (int j = 0; j < iCols; j++)
             {
-                set_(r, _iCols + j, pGT->get(i, j));
+                set_(r, _iCols + j, pGT->get_(i, j));
             }
         }
     }
@@ -934,10 +934,10 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
                 int ii = piNotEntireIndex[i] - 1;
                 for (int j = last; j < ii; ++j)
                 {
-                    pOut->set_(iNewPos, get(j));
+                    pOut->set_(iNewPos, get_(j));
                     if (m_pImgData != NULL)
                     {
-                        pOut->setImg_(iNewPos, getImg(j));
+                        pOut->setImg_(iNewPos, getImg_(j));
                     }
                     iNewPos++;
                 }
@@ -947,10 +947,10 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
 
             for (int i = last; i < size; ++i)
             {
-                pOut->set_(iNewPos, get(i));
+                pOut->set_(iNewPos, get_(i));
                 if (m_pImgData != NULL)
                 {
-                    pOut->setImg_(iNewPos, getImg(i));
+                    pOut->setImg_(iNewPos, getImg_(i));
                 }
                 iNewPos++;
             }
@@ -988,10 +988,10 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
             if (bByPass == false)
             {
                 //compute new index
-                pOut->set_(iNewPos, get(i));
+                pOut->set_(iNewPos, get_(i));
                 if (m_pImgData != NULL)
                 {
-                    pOut->setImg_(iNewPos, getImg(i));
+                    pOut->setImg_(iNewPos, getImg_(i));
                 }
                 iNewPos++;
             }
@@ -1036,10 +1036,10 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         static int dims[2] = {1, 1};
         pOut = createEmpty(2, dims, isComplex());;
-        pOut->set_(0, get(index));
+        pOut->set_(0, get_(index));
         if (m_pImgData)
         {
-            pOut->setImg_(0, getImg(index));
+            pOut->setImg_(0, getImg_(index));
         }
 
         return pOut;
@@ -1088,8 +1088,8 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             for (int i = 0; i < size; ++i)
             {
                 int index = static_cast<int>(idx) - 1;
-                pOut->set_(i, get(index));
-                pOut->setImg_(i, getImg(index));
+                pOut->set_(i, get_(index));
+                pOut->setImg_(i, getImg_(index));
                 idx += step;
             }
         }
@@ -1097,7 +1097,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         {
             for (int i = 0; i < size; ++i)
             {
-                pOut->set_(i, get(static_cast<int>(idx) - 1));
+                pOut->set_(i, get_(static_cast<int>(idx) - 1));
                 idx += step;
             }
         }
@@ -1135,8 +1135,8 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
                     return NULL;
                 }
 
-                pOut->set_(idx, get(i));
-                pOut->setImg_(idx, getImg(i));
+                pOut->set_(idx, get_(i));
+                pOut->setImg_(idx, getImg_(i));
                 ++idx;
             }
         }
@@ -1145,7 +1145,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             int idx = 0;
             for (int & i : indexes)
             {
-                pOut->set_(idx, get(i));
+                pOut->set_(idx, get_(i));
                 ++idx;
             }
         }
@@ -1351,10 +1351,10 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             }
         }
 
-        pOut->set_(i, get(iPos));
+        pOut->set_(i, get_(iPos));
         if (m_pImgData != NULL)
         {
-            pOut->setImg_(i, getImg(iPos));
+            pOut->setImg_(i, getImg_(iPos));
         }
 
 

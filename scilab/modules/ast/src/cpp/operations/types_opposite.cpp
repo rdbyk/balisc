@@ -228,8 +228,8 @@ types::InternalType* opposite_M<types::Polynom, types::Polynom>(types::Polynom *
 
     for (int i = 0 ; i < iSize ; ++i)
     {
-        types::SinglePoly* pSPL = _pL->get(i);
-        types::SinglePoly* pSPO = pOut->get(i);
+        types::SinglePoly* pSPL = _pL->get_(i);
+        types::SinglePoly* pSPO = pOut->get_(i);
         opposite(pSPL->get(), pSPL->getSize(), pSPO->get());
     }
     return pOut;
@@ -244,8 +244,8 @@ types::InternalType* opposite_MC<types::Polynom, types::Polynom>(types::Polynom 
 
     for (int i = 0 ; i < iSize ; ++i)
     {
-        types::SinglePoly* pSPL = _pL->get(i);
-        types::SinglePoly* pSPO = pOut->get(i);
+        types::SinglePoly* pSPL = _pL->get_(i);
+        types::SinglePoly* pSPO = pOut->get_(i);
         opposite(pSPL->get(), pSPL->getImg(), pSPL->getSize(), pSPO->get(), pSPO->getImg());
     }
     return pOut;
