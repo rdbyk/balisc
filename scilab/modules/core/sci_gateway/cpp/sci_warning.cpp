@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -60,28 +60,28 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
     if (psInput->getSize() == 1)
     {
         /* "on" "off" "query" "stop" */
-        if (wcscmp(psInput->get(0), L"on") == 0)
+        if (wcscmp(psInput->get_(0), L"on") == 0)
         {
             setWarningMode(TRUE);
             setWarningStop(FALSE);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->get(0), L"off") == 0)
+        if (wcscmp(psInput->get_(0), L"off") == 0)
         {
             setWarningMode(FALSE);
             setWarningStop(FALSE);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->get(0), L"stop") == 0)
+        if (wcscmp(psInput->get_(0), L"stop") == 0)
         {
             setWarningMode(TRUE);
             setWarningStop(TRUE);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->get(0), L"query") == 0)
+        if (wcscmp(psInput->get_(0), L"query") == 0)
         {
             if (getWarningMode())
             {
@@ -108,7 +108,7 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
     {
         for (int i = 0; i < psInput->getSize() ; ++i)
         {
-            wchar_t* pwstTemp = psInput->get(i);
+            wchar_t* pwstTemp = psInput->get_(i);
             std::wstring warning = _W("WARNING: %ls\n");
             size_t iSize = (wcslen(pwstTemp) + warning.size() + 1);
 
