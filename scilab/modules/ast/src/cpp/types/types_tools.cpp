@@ -604,7 +604,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 double* pdbl = pCurrentArg->get();
                 for (int i = 0; i < pStr->getSize(); i++)
                 {
-                    wchar_t* pFieldName = pStr->get(i);
+                    wchar_t* pFieldName = pStr->get_(i);
                     int iIndex = pTL->getIndexFromString(pFieldName);
                     if (iIndex == -1)
                     {
@@ -740,7 +740,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     throw ast::InternalError(szError);
                 }
 
-                int d = static_cast<int>(pCurrentArg->get(j));
+                int d = static_cast<int>(pCurrentArg->get_(j));
                 if (d > _piMaxDim[i])
                 {
                     _piMaxDim[i] = d;
@@ -986,7 +986,7 @@ Double* createEmptyDouble()
 
 int getIntValueFromDouble(InternalType* _pIT, int _iPos)
 {
-    return static_cast<int>(_pIT->getAs<Double>()->get(_iPos));
+    return static_cast<int>(_pIT->getAs<Double>()->get_(_iPos));
 }
 
 double* getDoubleArrayFromDouble(InternalType* _pIT)
