@@ -1413,7 +1413,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             // extract each elements of a(x)
                             for (int iCell = 0; iCell < pCell->getSize(); iCell++)
                             {
-                                types::InternalType* pIT = pCell->get(iCell);
+                                types::InternalType* pIT = pCell->get_(iCell);
                                 if ((*iterFields)->getExp() == NULL)
                                 {
                                     // a{x}(y)
@@ -1984,7 +1984,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 {
                     double dblR = pDest->get_(idx);
                     double dblI = pDest->getImg_(idx);
-                    pP->get(idx)->setCoef(&dblR, &dblI);
+                    pP->get_(idx)->setCoef(&dblR, &dblI);
                 }
             }
             else
