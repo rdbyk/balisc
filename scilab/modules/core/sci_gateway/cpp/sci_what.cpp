@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Charlotte HECQUET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -84,12 +84,12 @@ types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, typ
     {
         // Scilab functions in first output argument
         types::String* pOutStringFct = new types::String(sizeFct, 1);
-        pOutStringFct->set(pOutStringFctTmp);
+        pOutStringFct->set_(pOutStringFctTmp);
         out.push_back(pOutStringFct);
 
         // Scilab commands in second output argument
         types::String* pOutStringCmd = new types::String(sizeCmd, 1);
-        pOutStringCmd->set(pOutStringCmdTmp);
+        pOutStringCmd->set_(pOutStringCmdTmp);
         out.push_back(pOutStringCmd);
     }
 
