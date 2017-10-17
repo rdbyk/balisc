@@ -722,6 +722,11 @@ InternalType* Struct::extractWithoutClone(typed_list* _pArgs)
     return pIT;
 }
 
+void Struct::setCloneInCopyValue(bool _val)
+{
+    m_bDisableCloneInCopyValue = !_val;
+}
+
 void Struct::deleteData(SingleStruct* data)
 {
     if (data)
