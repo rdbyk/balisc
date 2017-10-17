@@ -553,7 +553,7 @@ InternalType * Struct::extractField(const std::wstring & wstField)
         Int32 * pDims = new Int32(1, getDims());
         for (int j = 0 ; j < getDims() ; j++)
         {
-            pDims->set(j, getDimsArray()[j]);
+            pDims->set_(j, getDimsArray()[j]);
         }
 
         return pDims;
@@ -615,7 +615,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
                 pFields = new String(1, pS->getSize() + 2);
                 for (int j = 0; j < pS->getSize(); j++)
                 {
-                    pFields->set(2 + j, pS->get(j));
+                    pFields->set_(2 + j, pS->get(j));
                 }
 
                 pS->killMe();
@@ -625,8 +625,8 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
                 pFields = new String(1, 2);
             }
 
-            pFields->set(0, L"st");
-            pFields->set(1, L"dims");
+            pFields->set_(0, L"st");
+            pFields->set_(1, L"dims");
 
             ResultList.push_back(pFields);
         }
@@ -636,7 +636,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
             Int32* pDims = new Int32(1, getDims());
             for (int j = 0 ; j < getDims() ; j++)
             {
-                pDims->set(j, getDimsArray()[j]);
+                pDims->set_(j, getDimsArray()[j]);
             }
 
             ResultList.push_back(pDims);
