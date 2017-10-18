@@ -137,7 +137,7 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
             for (int j = 0; j < iSize; j++)
             {
                 int iPos = i * iRows + j;
-                pPolyOut->set(iPos, pPolyIn->get(iPos));
+                pPolyOut->set_(iPos, pPolyIn->get_(iPos));
             }
         }
 
