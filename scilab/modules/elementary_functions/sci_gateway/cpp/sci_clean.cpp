@@ -187,7 +187,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     {
         for (int i = 0 ; i < iSize ; i++)
         {
-            types::SinglePoly* pSP = pPolyOut->get(i);
+            types::SinglePoly* pSP = pPolyOut->get_(i);
             clean(pSP->get(), pSP->getImg(), pSP->getSize(), dEpsA, dEpsR);
         }
     }
