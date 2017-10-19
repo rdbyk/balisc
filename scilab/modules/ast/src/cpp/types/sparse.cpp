@@ -742,6 +742,18 @@ double  Sparse::get(int _iRows, int _iCols) const
     return getReal(_iRows, _iCols);
 }
 
+double Sparse::getFirst() const
+{
+    if (matrixReal)
+    {
+        return matrixReal->coeff(0, 0);
+    }
+    else
+    {
+        return matrixCplx->coeff(0, 0).real();
+    }
+}
+
 double Sparse::getReal(int _iRows, int _iCols) const
 {
     double res = 0;
@@ -764,6 +776,18 @@ std::complex<double>* Sparse::getImg()
     }
 
     return nullptr;
+}
+
+std::complex<double> Sparse::getImgFirst() const
+{
+    if (matrixCplx)
+    {
+        return matrixCplx->coeff(0, 0);
+    }
+    else
+    {
+        return std::complex<double>(matrixReal->coeff(0, 0), 0.0);
+    }
 }
 
 std::complex<double> Sparse::getImg(int _iRows, int _iCols) const
