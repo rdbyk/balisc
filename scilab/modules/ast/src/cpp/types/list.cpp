@@ -341,7 +341,7 @@ InternalType* List::get(const int _iIndex)
 
 InternalType* List::getFirst()
 {
-    return (*m_plData)[_iIndex];
+    return (*m_plData)[0];
 }
 
 void List::set_(const int _iIndex, InternalType* _pIT)
