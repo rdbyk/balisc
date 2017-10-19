@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012-2014 - DIGITEO - Cedric Delamarre
  * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -59,7 +59,7 @@ types::InternalType* diag(types::Polynom* pIn,  int iStartPos)
         for (int i = 0; i < iSize; i++)
         {
             iPos = (i + iStartCol) * iRows + (i + iStartRow);
-            pPolyOut->set(i, pIn->get(iPos));
+            pPolyOut->set_(i, pIn->get_(iPos));
         }
     }
     else // pIn is a vector
@@ -86,7 +86,7 @@ types::InternalType* diag(types::Polynom* pIn,  int iStartPos)
         for (int i = 0; i < iSizeOfVector; i++)
         {
             iPos = (i + iStartCol) * iSize + (i + iStartRow);
-            pPolyOut->set(iPos, pIn->get(i));
+            pPolyOut->set_(iPos, pIn->get_(i));
         }
     }
 
@@ -130,7 +130,7 @@ types::InternalType* diag(types::String* pIn,  int iStartPos)
         for (int i = 0; i < iSize; i++)
         {
             iPos = (i + iStartCol) * iRows + (i + iStartRow);
-            pStrOut->set(i, pIn->get(iPos));
+            pStrOut->set_(i, pIn->get_(iPos));
         }
     }
     else // pIn is a vector
@@ -151,13 +151,13 @@ types::InternalType* diag(types::String* pIn,  int iStartPos)
 
         for (int i = 0; i < iSize * iSize; i++)
         {
-            pStrOut->set(i, L"");
+            pStrOut->set_(i, L"");
         }
 
         for (int i = 0; i < iSizeOfVector; i++)
         {
             iPos = (i + iStartCol) * iSize + (i + iStartRow);
-            pStrOut->set(iPos, pIn->get(i));
+            pStrOut->set_(iPos, pIn->get_(i));
         }
     }
 

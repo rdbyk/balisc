@@ -83,15 +83,15 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
             {
                 for (int i = 0; i < pPolyIn->getSize(); i++)
                 {
-                    int rank = pPolyIn->get(i)->getRank();
+                    int rank = pPolyIn->get_(i)->getRank();
                     types::SinglePoly* pSP = new types::SinglePoly(&data, rank);
 
                     for (int j = 0; j < rank + 1; j++)
                     {
-                        data[j] = hypot(pPolyIn->get(i)->get()[j], pPolyIn->get(i)->getImg()[j]);
+                        data[j] = hypot(pPolyIn->get_(i)->get()[j], pPolyIn->get_(i)->getImg()[j]);
                     }
 
-                    pPolyOut->set(i, pSP);
+                    pPolyOut->set_(i, pSP);
                     delete pSP;
                     pSP = NULL;
                 }
@@ -100,15 +100,15 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
             {
                 for (int i = 0; i < pPolyIn->getSize(); i++)
                 {
-                    int rank = pPolyIn->get(i)->getRank();
+                    int rank = pPolyIn->get_(i)->getRank();
                     types::SinglePoly* pSP = new types::SinglePoly(&data, rank);
 
                     for (int j = 0; j < rank + 1; j++)
                     {
-                        data[j] = std::fabs(pPolyIn->get(i)->get()[j]);
+                        data[j] = std::fabs(pPolyIn->get_(i)->get()[j]);
                     }
 
-                    pPolyOut->set(i, pSP);
+                    pPolyOut->set_(i, pSP);
                     delete pSP;
                     pSP = NULL;
                 }
