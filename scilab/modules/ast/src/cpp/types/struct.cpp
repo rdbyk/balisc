@@ -190,7 +190,7 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
                 InternalType * pIT = _out[0];
                 if (pIT->isList() && pIT->getAs<List>()->getSize() == 1)
                 {
-                    out.push_back(pIT->getAs<List>()->get(0));
+                    out.push_back(pIT->getAs<List>()->getFirst());
                     return true;
                 }
             }
