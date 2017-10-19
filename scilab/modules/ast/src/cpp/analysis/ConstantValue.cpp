@@ -196,7 +196,7 @@ bool ConstantValue::getGVNValue(GVN & gvn, GVN::Value *& _val) const
         if (val.pIT->isDouble() && static_cast<types::Double *>(val.pIT)->getSize() == 1)
         {
             types::Double * pDbl = static_cast<types::Double *>(val.pIT);
-            if (!pDbl->isComplex() || pDbl->getImg(0) == 0)
+            if (!pDbl->isComplex() || pDbl->getImgFirst() == 0)
             {
                 const double x = pDbl->get()[0];
                 int64_t i;
@@ -219,7 +219,7 @@ bool ConstantValue::getDblValue(double & _val) const
         if (val.pIT->isDouble() && static_cast<types::Double *>(val.pIT)->getSize() == 1)
         {
             types::Double * pDbl = static_cast<types::Double *>(val.pIT);
-            if (!pDbl->isComplex() || pDbl->getImg(0) == 0)
+            if (!pDbl->isComplex() || pDbl->getImgFirst() == 0)
             {
                 _val = pDbl->get()[0];
                 return true;
@@ -246,7 +246,7 @@ bool ConstantValue::getBoolValue(bool & _val) const
     {
         if (val.pIT->isBool() && static_cast<types::Bool *>(val.pIT)->getSize() == 1)
         {
-            _val = (bool)static_cast<types::Bool *>(val.pIT)->get(0);
+            _val = (bool)static_cast<types::Bool *>(val.pIT)->getFirst();
         }
         else
         {
@@ -277,12 +277,12 @@ bool ConstantValue::getCplxValue(std::complex<double> & _val) const
             types::Double * pDbl = static_cast<types::Double *>(val.pIT);
             if (pDbl->isComplex())
             {
-                _val.real(pDbl->get(0));
-                _val.imag(pDbl->getImg(0));
+                _val.real(pDbl->getFirst());
+                _val.imag(pDbl->getImgFirst());
             }
             else
             {
-                _val.real(pDbl->get(0));
+                _val.real(pDbl->getFirst());
                 _val.imag(0);
             }
             return true;
@@ -309,7 +309,7 @@ bool ConstantValue::getStrValue(std::wstring & _val) const
     {
         if (val.pIT->isString() && static_cast<types::String *>(val.pIT)->getSize() == 1)
         {
-            _val = std::wstring(static_cast<types::String *>(val.pIT)->get(0));
+            _val = std::wstring(static_cast<types::String *>(val.pIT)->getFirst());
             return true;
         }
     }
@@ -329,7 +329,7 @@ std::wostream & operator<<(std::wostream & out, const ConstantValue & cv)
         {
             if (cv.val.pIT->isDouble() && static_cast<types::Double *>(cv.val.pIT)->getSize() == 1)
             {
-                out << static_cast<types::Double *>(cv.val.pIT)->get(0, 0);
+                out << static_cast<types::Double *>(cv.val.pIT)->getFirst();
             }
             else
             {
