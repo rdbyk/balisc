@@ -339,6 +339,11 @@ InternalType* List::get(const int _iIndex)
     return NULL;
 }
 
+InternalType* List::getFirst()
+{
+    return (*m_plData)[_iIndex];
+}
+
 void List::set_(const int _iIndex, InternalType* _pIT)
 {
     while ((int)m_plData->size() < _iIndex)
