@@ -101,7 +101,7 @@ void max(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
     {
         if (iOrientation == 0) // Find the max value between all matrix elements
         {
-            double dMax = vectIn[0]->getScalar_();
+            double dMax = vectIn[0]->getFirst();
             int iIndex = 0;
             for (int i = 1; i < iSize; i++)
             {

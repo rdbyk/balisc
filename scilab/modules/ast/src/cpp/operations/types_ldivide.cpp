@@ -112,7 +112,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
     {
         //X \ y => X \ (eye() * y)
         pDblTmp = new types::Double(_pDouble1->getRows(), _pDouble1->getRows(), _pDouble2->isComplex());
-        double dblScalarReal = _pDouble2->getScalar_();
+        double dblScalarReal = _pDouble2->getFirst();
         double* pdblReal = pDblTmp->get();
         int iSize = pDblTmp->getSize();
         int iRowsP1 = pDblTmp->getRows() + 1;
@@ -120,7 +120,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         memset(pdblReal, 0x00, iSize * sizeof(double));
         if (_pDouble2->isComplex())
         {
-            double dblScalarImag = _pDouble2->getImgScalar_();
+            double dblScalarImag = _pDouble2->getImgFirst();
             double* pdblImag = pDblTmp->getImg();
             memset(pdblImag, 0x00, iSize * sizeof(double));
             for (int i = 0; i < iSize; i += iRowsP1)

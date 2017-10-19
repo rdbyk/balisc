@@ -289,7 +289,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
     iColResult = 1;
 
     piRank = new int[1];
-    piRank[0] = _pPoly->getScalar_()->getRank();
+    piRank[0] = _pPoly->getFirst()->getRank();
     }
     else */
 
@@ -301,8 +301,8 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
 
     if (bScalar2)
     {
-        double dblDivR = _pDouble->getScalar_();
-        double dblDivI = bComplex2 ? _pDouble->getImgScalar_() : 0.0;
+        double dblDivR = _pDouble->getFirst();
+        double dblDivI = bComplex2 ? _pDouble->getImgFirst() : 0.0;
 
         (*_pPolyOut) = _pPoly->clone()->getAs<Polynom>();
         if (_pDouble->isComplex())
@@ -356,7 +356,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
             pTemp->setComplex(true);
         }
 
-        SinglePoly *pdblData = _pPoly->getScalar_();
+        SinglePoly *pdblData = _pPoly->getFirst();
         for (int i = 0 ; i < iRowResult ; i++)
         {
             pTemp->set(i, i, pdblData);
@@ -372,7 +372,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
 
     if (bScalar1)
     {
-        for (int i = 0 ; i < pTemp->getScalar_()->getSize() ; i++)
+        for (int i = 0 ; i < pTemp->getFirst()->getSize() ; i++)
         {
             Double *pCoef    = pTemp->extractCoef(i);
             Double *pResultCoef = new Double(iRowResult, iColResult, pCoef->isComplex());
@@ -503,7 +503,7 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
     int iResultat;
     for (int i = 0; i < iSize; i++)
     {
-        if ((pDblSp[i]->getScalar_() != 0) || (pDblSp[i]->getImgScalar_() != 0))
+        if ((pDblSp[i]->getFirst() != 0) || (pDblSp[i]->getImgFirst() != 0))
         {
             iResultat = RDivideDoubleByDouble(pDblSp[i], pDbl[i], &ppDblGet);
             if (iResultat != 0)
@@ -520,7 +520,7 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
                 delete ppDblGet;
                 return iResultat;
             }
-            std::complex<double> cplx(ppDblGet->getScalar_(), ppDblGet->getImgScalar_());
+            std::complex<double> cplx(ppDblGet->getFirst(), ppDblGet->getImgFirst());
             pSpTemp->set(iPositVal[i], cplx, false);
             delete ppDblGet;
         }

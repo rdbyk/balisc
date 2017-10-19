@@ -237,7 +237,7 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
         return NULL;
     }
 
-    int idx = (int)pArg[0]->getAs<Double>()->getScalar_();
+    int idx = (int)pArg[0]->getAs<Double>()->getFirst();
     if (_pSource->isListDelete())
     {
         //delete item

@@ -327,12 +327,12 @@ public :
 
     // specialized "get" for scalars (first element)
     // wo/ any safety checks!!!
-    inline T getScalar_()
+    inline T getFirst()
     {
         return m_pRealData[0];
     }
 
-    inline T getImgScalar_()
+    inline T getImgFirst()
     {
         return m_pImgData[0];
     }

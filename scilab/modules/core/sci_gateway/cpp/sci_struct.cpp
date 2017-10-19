@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
     for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
     {
         //for each field
-        std::wstring wstField((*itInput)->getAs<types::String>()->getScalar_());
+        std::wstring wstField((*itInput)->getAs<types::String>()->getFirst());
         types::InternalType* pData = (*(itInput + 1));
 
         //add field in struct
@@ -119,7 +119,7 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
             {
                 for (int i = 0 ; i < pOut->getSize() ; i++)
                 {
-                    pOut->get_(i)->set(wstField, pCell->getScalar_());
+                    pOut->get_(i)->set(wstField, pCell->getFirst());
                 }
             }
             else

@@ -65,8 +65,8 @@ types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        int iScilabMode = (int)pDblIn->getScalar_();
-        if (pDblIn->getScalar_() != (double)iScilabMode)
+        int iScilabMode = (int)pDblIn->getFirst();
+        if (pDblIn->getFirst() != (double)iScilabMode)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "mode", 1);
             return types::Function::Error;

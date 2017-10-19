@@ -1061,7 +1061,7 @@ void RunVisitorT<T>::visitprivate(const StringSelectExp &e)
         types::String * pStr = static_cast<types::String *>(pIT);
         if (pStr->getSize() == 1)
         {
-            if (wchar_t * s = pStr->getScalar_())
+            if (wchar_t * s = pStr->getFirst())
             {
                 const std::wstring ws(s);
                 Exp * exp = e.getExp(ws);

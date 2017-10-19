@@ -101,7 +101,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
     {
         if (iOrientation == 0) // Find the min value between all matrix elements
         {
-            double dMin = vectIn[0]->getScalar_();
+            double dMin = vectIn[0]->getFirst();
             int iIndex = 0;
             for (int i = 1; i < iSize; i++)
             {

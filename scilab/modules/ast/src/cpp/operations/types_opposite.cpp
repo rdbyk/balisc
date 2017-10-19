@@ -106,7 +106,7 @@ types::InternalType* opposite_I(T *_pL)
 {
     double* pR = NULL;
     O* pOut = new types::Double(-1, -1, &pR);
-    opposite(_pL->getScalar_(), pR);
+    opposite(_pL->getFirst(), pR);
     return pOut;
 }
 
@@ -116,7 +116,7 @@ types::InternalType* opposite_IC(T *_pL)
     double* pR = NULL;
     double* pI = NULL;
     O* pOut = new types::Double(-1, -1, &pR, &pI);
-    opposite(_pL->getScalar_(), _pL->getImgScalar_(), pR, pI);
+    opposite(_pL->getFirst(), _pL->getImgFirst(), pR, pI);
     return pOut;
 }
 
@@ -124,7 +124,7 @@ template<class T, class O>
 types::InternalType* opposite_S(T *_pL)
 {
     O* pOut = new O(0);
-    opposite(_pL->getScalar_(), pOut->get());
+    opposite(_pL->getFirst(), pOut->get());
     return pOut;
 }
 
@@ -132,7 +132,7 @@ template<class T, class O>
 types::InternalType* opposite_SC(T *_pL)
 {
     O* pOut = new O(0.0, 0.0);
-    opposite(_pL->getScalar_(), _pL->getImgScalar_(), pOut->get(), pOut->getImg());
+    opposite(_pL->getFirst(), _pL->getImgFirst(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -203,8 +203,8 @@ template<>
 types::InternalType* opposite_S<types::Polynom, types::Polynom>(types::Polynom *_pL)
 {
     types::Polynom* pOut = (types::Polynom*)_pL->clone();
-    types::SinglePoly* pSPL = _pL->getScalar_();
-    types::SinglePoly* pSPO = pOut->getScalar_();
+    types::SinglePoly* pSPL = _pL->getFirst();
+    types::SinglePoly* pSPO = pOut->getFirst();
     opposite(pSPL->get(), pSPL->getSize(), pSPO->get());
     return pOut;
 }
@@ -213,8 +213,8 @@ template<>
 types::InternalType* opposite_SC<types::Polynom, types::Polynom>(types::Polynom *_pL)
 {
     types::Polynom* pOut = (types::Polynom*)_pL->clone();
-    types::SinglePoly* pSPL = _pL->getScalar_();
-    types::SinglePoly* pSPO = pOut->getScalar_();
+    types::SinglePoly* pSPL = _pL->getFirst();
+    types::SinglePoly* pSPO = pOut->getFirst();
     opposite(pSPL->get(), pSPL->getImg(), pSPL->getSize(), pSPO->get(), pSPO->getImg());
     return pOut;
 }

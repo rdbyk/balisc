@@ -140,7 +140,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        dEpsR = pDbl->getScalar_();
+        dEpsR = pDbl->getFirst();
     }
 
     if (in.size() >= 2)
@@ -179,7 +179,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        dEpsA = pDbl->getScalar_();
+        dEpsA = pDbl->getFirst();
     }
 
     /***** perform operation *****/

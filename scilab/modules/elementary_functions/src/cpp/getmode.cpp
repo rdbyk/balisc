@@ -36,7 +36,7 @@ int getMode(types::typed_list &in, int _iProcess, int _iRef)
             Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
         }
 
-        switch (pS->getScalar_()[0])
+        switch (pS->getFirst()[0])
         {
             case 'r' :
                 iMode = 1;

@@ -49,7 +49,7 @@ types::Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    wchar_t* pwcsName = pS1->getScalar_();
+    wchar_t* pwcsName = pS1->getFirst();
 
     bool bDeleted = false;
     symbol::Context* pCtx = symbol::Context::getInstance();

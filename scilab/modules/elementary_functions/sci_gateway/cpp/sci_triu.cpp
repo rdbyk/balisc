@@ -79,7 +79,7 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        iOffset = (int)pDblOffset->getScalar_();
+        iOffset = (int)pDblOffset->getFirst();
     }
 
     /***** get data *****/

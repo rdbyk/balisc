@@ -584,10 +584,10 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     continue;
                 }
 
-                wchar_t* pFieldName = pStr->getScalar_();
+                wchar_t* pFieldName = pStr->getFirst();
 
                 // pCurrent arg is indexed to 1 unlike the return of "getFieldIndex"
-                int iIndex = pStruct->getScalar_()->getFieldIndex(pFieldName) + 1;
+                int iIndex = pStruct->getFirst()->getFieldIndex(pFieldName) + 1;
                 if (iIndex == -1)
                 {
                     bUndefine = true;

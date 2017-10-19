@@ -68,7 +68,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        wchar_t* pwstKey = pS->getScalar_();
+        wchar_t* pwstKey = pS->getFirst();
 
         if (pwstKey[0] == g_pwstConfigInfo[0])
         {
@@ -104,7 +104,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
                     return types::Function::Error;
                 }
 
-                siRandSave = (int)std::max(in[1]->getAs<types::Double>()->getScalar_(), double(0));
+                siRandSave = (int)std::max(in[1]->getAs<types::Double>()->getFirst(), double(0));
                 iForceInit = 1;
             }
             else
@@ -133,7 +133,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
 
             //set randomize law
             iRandSave = siRandType;
-            siRandType = setRandType(pS->getScalar_()[0]);
+            siRandType = setRandType(pS->getFirst()[0]);
             iSizeIn--;
         }
 
