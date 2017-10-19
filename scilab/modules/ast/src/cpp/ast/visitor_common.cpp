@@ -1046,7 +1046,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         types::List* pLOut = pStruct->extractFieldWithoutClone(pwcsFieldname);
 
                         // pStruct must be scalar because we cant insert most of one element in the same insertion
-                        types::InternalType* pIT = pLOut->get(0);
+                        types::InternalType* pIT = pLOut->getFirst();
                         if (pIT->getRef() > 2) //One for my own ref + 1 for "extractFieldWithoutClone" artificial ref
                         {
                             // clone element before modify it.
@@ -1123,7 +1123,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         {
                             // a(x)(y)
                             // extract a(x) and push_BACK to extract y
-                            ExpHistory* pEHExtract = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pList->get(0));
+                            ExpHistory* pEHExtract = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pList->getFirst());
                             pEHExtract->setWhereReinsert((int)(pdblArgs[0] - 1));
                             workFields.push_back(pEHExtract);
                         }
@@ -1131,7 +1131,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         {
                             // a(x).b
                             // extract a(x) and push_FRONT to extract b
-                            ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pList->get(0));
+                            ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pList->getFirst());
                             pEHExtract->setWhereReinsert((int)(pdblArgs[0] - 1));
                             workFields.push_front(pEHExtract);
                         }
@@ -2223,7 +2223,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 
                         // If we have inserted something else than a String
                         // in the first element, the TList have to be a List.
-                        if (pTL->get(0)->isString() == false)
+                        if (pTL->getFirst()->isString() == false)
                         {
                             types::List* pL = new types::List();
                             int size = pTL->getSize();
