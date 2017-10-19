@@ -689,7 +689,7 @@ InternalType* and_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Spars
     SparseBool* pOut = NULL;
     if (_pL->isScalar())
     {
-        if (_pL->get(0, 0))
+        if (_pL->getFirst())
         {
             pOut = _pR;
         }
@@ -703,7 +703,7 @@ InternalType* and_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Spars
 
     if (_pR->isScalar())
     {
-        if (_pR->get(0, 0))
+        if (_pR->getFirst())
         {
             pOut = _pL;
         }

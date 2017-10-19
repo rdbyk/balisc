@@ -824,12 +824,12 @@ int AddSparseToSparse(Sparse* sp1, Sparse* sp2, Sparse** pSpRes)
         Double* pDbl = NULL;
         if (sp1->isComplex())
         {
-            std::complex<double> dbl = sp1->getImg(0, 0);
+            std::complex<double> dbl = sp1->getFirst();
             pDbl = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pDbl = new Double(sp1->get(0, 0));
+            pDbl = new Double(sp1->getFirst());
         }
 
         AddSparseToDouble(sp2, pDbl, (GenericType**)pSpRes);
@@ -843,12 +843,12 @@ int AddSparseToSparse(Sparse* sp1, Sparse* sp2, Sparse** pSpRes)
         Double* pDbl = NULL;
         if (sp2->isComplex())
         {
-            std::complex<double> dbl = sp2->getImg(0, 0);
+            std::complex<double> dbl = sp2->getFirst();
             pDbl = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pDbl = new Double(sp2->get(0, 0));
+            pDbl = new Double(sp2->getFirst());
         }
 
         AddSparseToDouble(sp1, pDbl, (GenericType**)pSpRes);
@@ -920,7 +920,7 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
 
         if (bComplex1)
         {
-            std::complex<double> dbl = sp->getImg(0, 0);
+            std::complex<double> dbl = sp->getFirst();
             pRes->set(0, pRes->getFirst() + dbl.real());
             pRes->setImg(0, pRes->getImgFirst() + dbl.imag());
         }
@@ -997,7 +997,7 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
             double* pImg = pRes->getImg();
             for (int i = 0 ; i < pRes->getSize() ; i++)
             {
-                std::complex<double> dbl = sp->getImg(0, 0);
+                std::complex<double> dbl = sp->getFirst();
                 pReal[i] += dbl.real();
                 pImg[i] += dbl.imag();
             }
@@ -1007,7 +1007,7 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
             double* pReal = pRes->get();
             for (int i = 0 ; i < pRes->getSize() ; i++)
             {
-                pReal[i] += sp->get(0, 0);
+                pReal[i] += sp->getFirst();
             }
         }
 
@@ -2325,12 +2325,12 @@ template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _p
          Double* pDbl = NULL;
          if (_pL->isComplex())
          {
-             std::complex<double> dbl = _pL->getImg(0, 0);
+             std::complex<double> dbl = _pL->getFirst();
              pDbl = new Double(dbl.real(), dbl.imag());
          }
          else
          {
-             pDbl = new Double(_pL->get(0, 0));
+             pDbl = new Double(_pL->getFirst());
          }
 
          AddSparseToDouble(_pR, pDbl, (GenericType**)pOut);
@@ -2344,12 +2344,12 @@ template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _p
          Double* pDbl = NULL;
          if (_pR->isComplex())
          {
-             std::complex<double> dbl = _pR->getImg(0, 0);
+             std::complex<double> dbl = _pR->getFirst();
              pDbl = new Double(dbl.real(), dbl.imag());
          }
          else
          {
-             pDbl = new Double(_pR->get(0, 0));
+             pDbl = new Double(_pR->getFirst());
          }
 
          AddSparseToDouble(_pL, pDbl, (GenericType**)pOut);
@@ -2399,13 +2399,13 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
         pOut->setComplex(bComplex1 | bComplex2);
         if (bComplex1)
         {
-            std::complex<double> dbl = _pL->getImg(0, 0);
+            std::complex<double> dbl = _pL->getFirst();
             pOut->set(0, pOut->getFirst() + dbl.real());
             pOut->setImg(0, pOut->getImgFirst() + dbl.imag());
         }
         else
         {
-            pOut->set(0, pOut->getFirst() + _pL->get(0, 0));
+            pOut->set(0, pOut->getFirst() + _pL->getFirst());
         }
 
         return pOut;
@@ -2475,7 +2475,7 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
             int size = pOut->getSize();
             for (int i = 0 ; i < size ; i++)
             {
-                std::complex<double> dbl = _pL->getImg(0, 0);
+                std::complex<double> dbl = _pL->getFirst();
                 pReal[i] += dbl.real();
                 pImg[i] += dbl.imag();
             }
@@ -2486,7 +2486,7 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
             int size = pOut->getSize();
             for (int i = 0 ; i < size ; i++)
             {
-                pReal[i] += _pL->get(0, 0);
+                pReal[i] += _pL->getFirst();
             }
         }
 

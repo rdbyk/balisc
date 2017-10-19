@@ -1124,12 +1124,12 @@ int MultiplySparseBySparse(Sparse* _pSparse1, Sparse* _pSparse2, Sparse** _pSpar
         Double* pDbl = NULL;
         if (_pSparse1->isComplex())
         {
-            std::complex<double> dbl = _pSparse1->getImg(0, 0);
+            std::complex<double> dbl = _pSparse1->getFirst();
             pDbl = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pDbl = new Double(_pSparse1->get(0, 0));
+            pDbl = new Double(_pSparse1->getFirst());
         }
 
         MultiplyDoubleBySparse(pDbl, _pSparse2, (GenericType**)_pSparseOut);
@@ -1143,12 +1143,12 @@ int MultiplySparseBySparse(Sparse* _pSparse1, Sparse* _pSparse2, Sparse** _pSpar
         Double* pDbl = NULL;
         if (_pSparse2->isComplex())
         {
-            std::complex<double> dbl = _pSparse2->getImg(0, 0);
+            std::complex<double> dbl = _pSparse2->getFirst();
             pDbl = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pDbl = new Double(_pSparse2->get(0, 0));
+            pDbl = new Double(_pSparse2->getFirst());
         }
 
         MultiplySparseByDouble(_pSparse1, pDbl, (GenericType**)_pSparseOut);
@@ -1192,12 +1192,12 @@ int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pO
 
         if (_pSparse->isComplex())
         {
-            std::complex<double> dbl(_pSparse->getImg(0, 0));
+            std::complex<double> dbl(_pSparse->getFirst());
             pD = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pD = new Double(_pSparse->get(0, 0));
+            pD = new Double(_pSparse->getFirst());
         }
 
         InternalType* pIT = GenericDotTimes(_pDouble, pD);
@@ -1336,12 +1336,12 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
 
         if (_pSparse->isComplex())
         {
-            std::complex<double> dbl(_pSparse->getImg(0, 0));
+            std::complex<double> dbl(_pSparse->getFirst());
             pD = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pD = new Double(_pSparse->get(0, 0));
+            pD = new Double(_pSparse->getFirst());
         }
 
         InternalType* pIT = GenericDotTimes(_pDouble, pD);

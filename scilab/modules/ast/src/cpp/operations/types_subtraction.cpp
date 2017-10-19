@@ -2239,13 +2239,13 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         pOut->setComplex(bComplex1 || bComplex2);
         if (bComplex2)
         {
-            std::complex<double> dbl = _pR->getImg(0, 0);
+            std::complex<double> dbl = _pR->getFirst();
             pOut->set(0, dbl.real() - pOut->getFirst());
             pOut->setImg(0, pOut->getImgFirst() - dbl.imag());
         }
         else
         {
-            pOut->set(0, pOut->getFirst() - _pL->get(0, 0));
+            pOut->set(0, pOut->getFirst() - _pL->getFirst());
         }
 
         return pOut;
@@ -2314,7 +2314,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
             double* pReal = pOut->get();
             double* pImg = pOut->getImg();
             int size = pOut->getSize();
-            std::complex<double> dbl = _pR->getImg(0, 0);
+            std::complex<double> dbl = _pR->getFirst();
             for (int i = 0 ; i < size ; i++)
             {
                 pReal[i] -= dbl.real();
@@ -2326,7 +2326,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
             double* pReal = pOut->get();
             int size = pOut->getSize();
             // FIXME: Sparse has no "getScalar_"
-            double dblTmp = _pR->get(0);
+            double dblTmp = _pR->getFirst();
             for (int i = 0 ; i < size ; i++)
             {
                 pReal[i] -= dblTmp;
@@ -2399,13 +2399,13 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
         pOut->setComplex(bComplexOut);
         if (bComplex1)
         {
-            std::complex<double> dbl = _pL->getImg(0, 0);
+            std::complex<double> dbl = _pL->getFirst();
             pOut->set(0, pOut->getFirst() - dbl.real());
             pOut->setImg(0, dbl.imag() - pOut->getImgFirst());
         }
         else
         {
-            pOut->set(0, _pL->get(0, 0) - pOut->getFirst());
+            pOut->set(0, _pL->getFirst() - pOut->getFirst());
         }
 
         return pOut;
@@ -2476,7 +2476,7 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
             int size = pOut->getSize();
             for (int i = 0 ; i < size ; i++)
             {
-                std::complex<double> dbl = _pL->getImg(0, 0);
+                std::complex<double> dbl = _pL->getFirst();
                 pReal[i] = dbl.real() - pReal[i];
                 pImg[i] = dbl.imag() - pImg[i];
             }
@@ -2487,7 +2487,7 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
             int size = pOut->getSize();
             for (int i = 0 ; i < size ; i++)
             {
-                pReal[i] = _pL->get(0, 0) - pReal[i];
+                pReal[i] = _pL->getFirst() - pReal[i];
             }
         }
 

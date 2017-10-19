@@ -694,7 +694,7 @@ InternalType* or_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Sparse
     SparseBool* pOut = NULL;
     if (_pL->isScalar())
     {
-        if (_pL->get(0, 0))
+        if (_pL->getFirst())
         {
             pOut = new SparseBool(_pR->getRows(), _pR->getCols());
             int iCols = pOut->getCols();
@@ -719,7 +719,7 @@ InternalType* or_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Sparse
 
     if (_pR->isScalar())
     {
-        if (_pR->get(0, 0))
+        if (_pR->getFirst())
         {
             pOut = new SparseBool(_pL->getRows(), _pL->getCols());
             int iCols = pOut->getCols();

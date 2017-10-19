@@ -1228,7 +1228,7 @@ InternalType* dotdiv_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
     if (_pL->isScalar())
     {
         Sparse* pOut = NULL;
-        std::complex<double> c(_pL->getImg(0, 0));
+        std::complex<double> c(_pL->getFirst());
         Double* pL = NULL;
         if (c.imag())
         {
@@ -1246,7 +1246,7 @@ InternalType* dotdiv_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
     if (_pR->isScalar())
     {
         Sparse* pOut = NULL;
-        std::complex<double> c(_pR->getImg(0, 0));
+        std::complex<double> c(_pR->getFirst());
         Double* pR = NULL;
         if (c.imag())
         {
@@ -1331,12 +1331,12 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
 
         if (_pR->isComplex())
         {
-            std::complex<double> dbl(_pR->getImg(0, 0));
+            std::complex<double> dbl(_pR->getFirst());
             pD = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pD = new Double(_pR->get(0, 0));
+            pD = new Double(_pR->getFirst());
         }
 
         InternalType* pIT = GenericDotRDivide(_pL, pD);
@@ -1509,12 +1509,12 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
 
         if (_pL->isComplex())
         {
-            std::complex<double> dbl(_pL->getImg(0, 0));
+            std::complex<double> dbl(_pL->getFirst());
             pD = new Double(dbl.real(), dbl.imag());
         }
         else
         {
-            pD = new Double(_pL->get(0, 0));
+            pD = new Double(_pL->getFirst());
         }
 
         InternalType* pIT = GenericDotLDivide(_pR, pD);
