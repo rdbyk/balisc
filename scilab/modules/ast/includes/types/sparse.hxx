@@ -615,6 +615,11 @@ struct EXTERN_AST SparseBool : GenericType
     void whoAmI() SPARSE_CONST;
 
     bool* get();
+    bool getFirst() SPARSE_CONST
+    {
+        return get(0);
+    }
+
     bool get(int r, int c) SPARSE_CONST;
     bool get(int _iIndex) SPARSE_CONST
     {
