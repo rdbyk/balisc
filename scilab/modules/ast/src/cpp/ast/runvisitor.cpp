@@ -967,7 +967,7 @@ void RunVisitorT<T>::visitprivate(const IntSelectExp &e)
     //    if (!pDbl->isComplex() && pDbl->getSize() == 1)
     //    {
     //        int64_t val;
-    //        if (analysis::tools::asInteger<int64_t>(pDbl->get(0), val))
+    //        if (analysis::tools::asInteger<int64_t>(pDbl->getFirst(), val))
     //        {
     //            Exp * exp = e.getExp(val);
     //            found = true;
