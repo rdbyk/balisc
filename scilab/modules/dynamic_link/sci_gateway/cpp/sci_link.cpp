@@ -79,7 +79,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         }
 
         types::String* pSFlag = in[2]->getAs<types::String>();
-        wchar_t* pwstFlag = pSFlag->get(0);
+        wchar_t* pwstFlag = pSFlag->getFirst();
         if (wcscmp(pwstFlag, L"f") == 0 || wcscmp(pwstFlag, L"c") == 0)
         {
             if (wcscmp(pwstFlag, L"c") == 0)
@@ -120,7 +120,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            iIDSharedLib = (int)pD->get(0);
+            iIDSharedLib = (int)pD->getFirst();
         }
         else if (in[0]->isString())
         {
@@ -131,7 +131,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            if (wcscmp(pS->get(0), L"show") == 0)
+            if (wcscmp(pS->getFirst(), L"show") == 0)
             {
                 //show option
                 displayDynLibInfo();
@@ -140,7 +140,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
             }
 
             //library name
-            pwstLibName = pS->get(0);
+            pwstLibName = pS->getFirst();
         }
         else
         {

@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        iLib = (int)pDId->get(0);
+        iLib = (int)pDId->getFirst();
     }
 
 
@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
     }
 
     types::String* pSLibName = in[0]->getAs<types::String>();
-    bool bFind = isLink(pSLibName->get(0), &iLib);
+    bool bFind = isLink(pSLibName->getFirst(), &iLib);
 
     out.push_back(new types::Bool(bFind));
     if (_iRetCount == 2)
