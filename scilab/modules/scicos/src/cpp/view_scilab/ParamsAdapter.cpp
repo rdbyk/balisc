@@ -142,7 +142,7 @@ struct title
             return false;
         }
 
-        char* Title = wide_string_to_UTF8(current->get(0));
+        char* Title = wide_string_to_UTF8(current->getFirst());
         title = std::string(Title);
         FREE(Title);
 
@@ -280,7 +280,7 @@ struct tf
         std::vector<double> tol;
         controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
 
-        tol[0] = current->get(0);
+        tol[0] = current->getFirst();
 
         controller.setObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
         return true;

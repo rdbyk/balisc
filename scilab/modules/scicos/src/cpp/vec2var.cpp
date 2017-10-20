@@ -519,7 +519,7 @@ static bool readElement(const double* const input, const int iType, const int iD
         //    // ... and copy it in 'pStruct'
         //    for (int i = 0; i < header->getSize(); ++i)
         //    {
-        //        pStruct->get(0)->addField(header->get(i));
+        //        pStruct->getFirst()->addField(header->get(i));
         //    }
 
         //    for (int i = 1; i < iDims + 1; ++i)
@@ -538,7 +538,7 @@ static bool readElement(const double* const input, const int iType, const int iD
         //            delete pStruct;
         //            return false;
         //        }
-        //        pStruct->get(0)->set(header->get(i - 1), element);
+        //        pStruct->getFirst()->set(header->get(i - 1), element);
         //    }
 
         //    header->killMe();

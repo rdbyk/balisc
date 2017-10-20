@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_validvar(types::typed_list &in, int _iRetCount,
     }
 
 
-    if (symbol::Context::getInstance()->isValidVariableName(pS->get(0)))
+    if (symbol::Context::getInstance()->isValidVariableName(pS->getFirst()))
     {
         iValid = 1;
     }

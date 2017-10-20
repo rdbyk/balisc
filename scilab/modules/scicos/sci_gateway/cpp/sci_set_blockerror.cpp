@@ -78,13 +78,13 @@ types::Function::ReturnValue sci_set_blockerror(types::typed_list &in, int _iRet
         Scierror(999, _("%s: Wrong size for input argument #%d : A real scalar expected.\n"), funname.data(), 1);
         return types::Function::Error;
     }
-    if (pIn->get(0) != floor(pIn->get(0)))
+    if (pIn->getFirst() != floor(pIn->getFirst()))
     {
         Scierror(999, _("%s: Wrong value for input argument #%d : An integer value expected.\n"), funname.data(), 1);
         return types::Function::Error;
     }
 
-    set_block_error(static_cast<int>(pIn->get(0)));
+    set_block_error(static_cast<int>(pIn->getFirst()));
 
     return types::Function::OK;
 }

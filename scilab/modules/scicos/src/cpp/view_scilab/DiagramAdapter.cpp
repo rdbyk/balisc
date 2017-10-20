@@ -151,24 +151,24 @@ struct objs
     {
         types::String* header = modelElement->getFieldNames();
 
-        if (header->get(0) == Deleted)
+        if (header->getFirst() == Deleted)
         {
             a = nullptr;
             o = nullptr;
         }
-        else if (header->get(0) == Text)
+        else if (header->getFirst() == Text)
         {
             TextAdapter* adapter = allocAndSet<ANNOTATION, TextAdapter, model::Annotation>(modelElement, controller);
             a = adapter;
             o = adapter->getAdaptee();
         }
-        else if (header->get(0) == Block)
+        else if (header->getFirst() == Block)
         {
             BlockAdapter* adapter = allocAndSet<BLOCK, BlockAdapter, model::Block>(modelElement, controller);
             a = adapter;
             o = adapter->getAdaptee();
         }
-        else if (header->get(0) == Link)
+        else if (header->getFirst() == Link)
         {
             LinkAdapter* adapter = allocAndSet<LINK, LinkAdapter, model::Link>(modelElement, controller);
             a = adapter;
@@ -452,7 +452,7 @@ struct version
             }
             model::Diagram* adaptee = static_cast<model::Diagram*>(adaptor.getAdaptee());
 
-            char* c_str = wide_string_to_UTF8(current->get(0));
+            char* c_str = wide_string_to_UTF8(current->getFirst());
             std::string version (c_str);
             FREE(c_str);
 

@@ -260,7 +260,7 @@ static void encode(types::List* input, std::vector<double> &ret)
 //        var2vec(fields, ret);
 
 //        // Now extract the fields' content, assuming this is not a multidimensional struct
-//        types::SingleStruct* content = input->get(0);
+//        types::SingleStruct* content = input->getFirst();
 //        for (int i = 0; i < iElements; ++i)
 //        {
 //            var2vec(content->get(fields->get(i)), ret);

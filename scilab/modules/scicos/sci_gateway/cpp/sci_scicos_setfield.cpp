@@ -93,7 +93,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
         return types::Function::Error;
     }
 
-    std::wstring field = field_name->get(0);
+    std::wstring field = field_name->getFirst();
     types::InternalType* value = in[1];
     types::InternalType* adaptor = in[2];
 

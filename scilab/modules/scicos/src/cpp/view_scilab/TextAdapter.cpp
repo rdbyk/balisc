@@ -135,7 +135,7 @@ struct graphics
         }
         std::vector<double> origField;
         controller.getObjectProperty(adaptee, ANNOTATION, GEOMETRY, origField);
-        origField[0] = currentFieldDouble->get(0);
+        origField[0] = currentFieldDouble->getFirst();
         origField[1] = currentFieldDouble->get(1);
         controller.setObjectProperty(adaptee, ANNOTATION, GEOMETRY, origField);
 
@@ -158,7 +158,7 @@ struct graphics
         }
         std::vector<double> szField;
         controller.getObjectProperty(adaptee, ANNOTATION, GEOMETRY, szField);
-        szField[2] = currentFieldDouble->get(0);
+        szField[2] = currentFieldDouble->getFirst();
         szField[3] = currentFieldDouble->get(1);
         controller.setObjectProperty(adaptee, ANNOTATION, GEOMETRY, szField);
 
@@ -235,7 +235,7 @@ struct graphics
                 return false;
             }
 
-            char* c_str = wide_string_to_UTF8(currentFieldString->get(0));
+            char* c_str = wide_string_to_UTF8(currentFieldString->getFirst());
             std::string styleField (c_str);
             FREE(c_str);
             controller.setObjectProperty(adaptee, ANNOTATION, STYLE, styleField);
