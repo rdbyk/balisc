@@ -89,8 +89,9 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             }
             else
             {
-                if (set(index, *pRealData) != NULL)
+                if (has(index))
                 {
+                    set_(index, *pRealData);
                     return this;
                 }
             }
@@ -142,11 +143,12 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 {
                     for (int i : indexes)
                     {
-                        if (set(i, *pRealData) == NULL)
+                        if (!has(i))
                         {
                             status = false;
                             break;
                         }
+                        set_(i, *pRealData);
                     }
                 }
             }
@@ -170,11 +172,12 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 {
                     for (int i : indexes)
                     {
-                        if (set(i, *pRealData) == NULL)
+                        if (!has(i))
                         {
                             status = false;
                             break;
                         }
+                        set_(i, *pRealData);
                         ++pRealData;
                     }
                 }

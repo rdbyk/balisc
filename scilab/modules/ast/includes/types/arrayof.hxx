@@ -234,6 +234,11 @@ public :
         }
     }
 
+    virtual bool has(int _iPos)
+    {
+        return (_iPos < m_iSize);
+    }
+
     virtual void set_(int _iPos, const T _data)
     {
         deleteData(m_pRealData[_iPos]);
