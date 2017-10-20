@@ -610,7 +610,7 @@ void String::set_(int _iPos, const wchar_t* _pwstData)
 
 String* String::set(int _iPos, const wchar_t* _pwstData)
 {
-    if (m_pRealData == NULL || _iPos >= m_iSize)
+    if (_iPos >= m_iSize)
     {
         return NULL;
     }
@@ -641,11 +641,6 @@ void String::set_(const wchar_t* const* _pwstData)
 
 String* String::set(const wchar_t* const* _pwstData)
 {
-    if (m_pRealData == NULL)
-    {
-        return NULL;
-    }
-
     String* s = copyAs<String>();
     s->set_(_pwstData);
     return s;
