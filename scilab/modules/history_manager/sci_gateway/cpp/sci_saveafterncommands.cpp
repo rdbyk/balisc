@@ -48,7 +48,7 @@ types::Function::ReturnValue sci_saveafterncommands(types::typed_list &in, int _
             HistoryManager::getInstance()->setDefaultFilename();
             pstFilename = HistoryManager::getInstance()->getFilename();
         }
-        int iLine = (int)in[0]->getAs<types::Double>()->get(0);
+        int iLine = (int)in[0]->getAs<types::Double>()->getFirst();
         HistoryManager::getInstance()->setAfterHowManyLinesHistoryIsSaved(iLine);
         FREE(pstFilename);
         pstFilename = NULL;

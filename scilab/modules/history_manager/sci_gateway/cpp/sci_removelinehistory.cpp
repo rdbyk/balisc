@@ -39,26 +39,26 @@ types::Function::ReturnValue sci_removelinehistory(types::typed_list &in, int _i
         types::Double* pDbl = in[0]->getAs<types::Double>();
         int size = HistoryManager::getInstance()->getNumberOfLines() - 1;
 
-        if ((pDbl->get(0) < 0) || (pDbl->get(0) > size))
+        if ((pDbl->getFirst() < 0) || (pDbl->getFirst() > size))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"), "removelinehistory", 1, 0, size);
             return types::Function::Error;
         }
-        char* pcLigne = HistoryManager::getInstance()->getNthLine(pDbl->get(0));
+        char* pcLigne = HistoryManager::getInstance()->getNthLine(pDbl->getFirst());
         if (HistoryManager::getInstance()->isBeginningSessionLine(pcLigne))
         {
             do
             {
-                HistoryManager::getInstance()->deleteNthLine(pDbl->get(0));
+                HistoryManager::getInstance()->deleteNthLine(pDbl->getFirst());
                 FREE(pcLigne);
-                pcLigne = HistoryManager::getInstance()->getNthLine(pDbl->get(0));
+                pcLigne = HistoryManager::getInstance()->getNthLine(pDbl->getFirst());
                 size = HistoryManager::getInstance()->getNumberOfLines();
             }
-            while ((!HistoryManager::getInstance()->isBeginningSessionLine(pcLigne)) && (pDbl->get(0) < size));
+            while ((!HistoryManager::getInstance()->isBeginningSessionLine(pcLigne)) && (pDbl->getFirst() < size));
         }
         else
         {
-            HistoryManager::getInstance()->deleteNthLine(pDbl->get(0));
+            HistoryManager::getInstance()->deleteNthLine(pDbl->getFirst());
         }
         FREE(pcLigne);
     }

@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
 
-        pwstFilename = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
+        pwstFilename = expandPathVariableW(in[0]->getAs<types::String>()->getFirst());
         if (pwstFilename)
         {
             char* pstFilename = wide_string_to_UTF8(pwstFilename);

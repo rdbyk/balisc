@@ -52,7 +52,7 @@ types::Function::ReturnValue sci_gethistory(types::typed_list &in, int _iRetCoun
         }
 
         types::Double* pDbl = in[0]->getAs<types::Double>();
-        char* pstLine = HistoryManager::getInstance()->getNthLine((int)pDbl->get(0));
+        char* pstLine = HistoryManager::getInstance()->getNthLine((int)pDbl->getFirst());
         if (pstLine)
         {
             out.push_back(new types::String(pstLine));
@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_gethistory(types::typed_list &in, int _iRetCoun
         }
         else
         {
-            Scierror(999, _("%s: An error occurred: Get line %d failed.\n"), "gethistory", pDbl->get(0));
+            Scierror(999, _("%s: An error occurred: Get line %d failed.\n"), "gethistory", pDbl->getFirst());
             return types::Function::Error;
         }
     }

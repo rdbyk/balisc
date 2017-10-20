@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_historysize(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
 
-        if (wcscmp(pS->get(0), L"max"))
+        if (wcscmp(pS->getFirst(), L"max"))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" expected.\n"), "historysize", 1, "max");
             return types::Function::Error;
@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_historysize(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
 
-        if (HistoryManager::getInstance()->setNumberOfLinesMax((int)pD->get(0)) == FALSE)
+        if (HistoryManager::getInstance()->setNumberOfLinesMax((int)pD->getFirst()) == FALSE)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "historysize", 1);
             return types::Function::Error;

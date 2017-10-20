@@ -42,7 +42,7 @@ types::Function::ReturnValue sci_saveconsecutivecommands(types::typed_list &in, 
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "saveconsecutivecommands", 1);
             return types::Function::Error;
         }
-        BOOL bSave = (BOOL)in[0]->getAs<types::Bool>()->get(0);
+        BOOL bSave = (BOOL)in[0]->getAs<types::Bool>()->getFirst();
         HistoryManager::getInstance()->setSaveConsecutiveDuplicateLines(bSave);
     }
     else
