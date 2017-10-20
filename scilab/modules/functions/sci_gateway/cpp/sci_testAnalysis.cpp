@@ -58,13 +58,13 @@ types::Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCo
         }
         if (i > 1)
         {
-            symbol::Symbol sym(arg->getAs<types::String>()->get(0));
+            symbol::Symbol sym(arg->getAs<types::String>()->getFirst());
             args->emplace_back(new ast::SimpleVar(loc, sym));
         }
         ++i;
     }
 
-    symbol::Symbol sym(in[0]->getAs<types::String>()->get(0));
+    symbol::Symbol sym(in[0]->getAs<types::String>()->getFirst());
     ast::SimpleVar * var = new ast::SimpleVar(loc, sym);
     ast::CallExp ce(loc, *var, *args);
 
@@ -76,26 +76,26 @@ types::Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCo
     analysis::TIType & t = analysis.getResult().getType();
     types::Struct * pOut = new types::Struct(1, 1);
     pOut->addField(L"type");
-    pOut->get(0)->set(L"type", new types::String(analysis::TIType::toString(t.type).c_str()));
+    pOut->getFirst()->set(L"type", new types::String(analysis::TIType::toString(t.type).c_str()));
 
     pOut->addField(L"rows");
     if (t.rows.isConstant())
     {
-        pOut->get(0)->set(L"rows", new types::Double(t.rows.getConstant()));
+        pOut->getFirst()->set(L"rows", new types::Double(t.rows.getConstant()));
     }
     else
     {
-        pOut->get(0)->set(L"rows", new types::Double(analysis::tools::NaN()));
+        pOut->getFirst()->set(L"rows", new types::Double(analysis::tools::NaN()));
     }
 
     pOut->addField(L"cols");
     if (t.cols.isConstant())
     {
-        pOut->get(0)->set(L"cols", new types::Double(t.cols.getConstant()));
+        pOut->getFirst()->set(L"cols", new types::Double(t.cols.getConstant()));
     }
     else
     {
-        pOut->get(0)->set(L"cols", new types::Double(analysis::tools::NaN()));
+        pOut->getFirst()->set(L"cols", new types::Double(analysis::tools::NaN()));
     }
     out.push_back(pOut);
 

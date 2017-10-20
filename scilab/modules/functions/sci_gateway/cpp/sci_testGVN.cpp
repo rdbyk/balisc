@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_testGVN(types::typed_list &in, int _iRetCount, 
     }
 
     Parser parser;
-    parser.parse(in[0]->getAs<types::String>()->get(0));
+    parser.parse(in[0]->getAs<types::String>()->getFirst());
     if (parser.getExitStatus() != Parser::Succeded)
     {
         char* pst = wide_string_to_UTF8(parser.getErrorMessage());
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_testGVN(types::typed_list &in, int _iRetCount, 
     for (const auto & p : maps)
     {
         pOut->addField(p.first);
-        pOut->get(0)->set(p.first, new types::Double((double)p.second));
+        pOut->getFirst()->set(p.first, new types::Double((double)p.second));
     }
 
     out.push_back(pOut);

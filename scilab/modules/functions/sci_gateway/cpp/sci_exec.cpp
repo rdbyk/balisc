@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             //errcatch
             types::String* pS = in[1]->getAs<types::String>();
-            if (os_wcsicmp(pS->get(0), L"errcatch") == 0)
+            if (os_wcsicmp(pS->getFirst(), L"errcatch") == 0)
             {
                 bErrCatch = true;
             }
@@ -158,7 +158,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         int iParsePathLen = 0;
         types::String* pS = in[0]->getAs<types::String>();
 
-        pwstFile = expandPathVariableW(pS->get(0));
+        pwstFile = expandPathVariableW(pS->getFirst());
         pstFile = wide_string_to_UTF8(pwstFile);
         stFile = pstFile;
         file = new std::ifstream(pstFile);
