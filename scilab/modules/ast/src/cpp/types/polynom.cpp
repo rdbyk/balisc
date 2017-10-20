@@ -104,11 +104,6 @@ void Polynom::set_(int _iPos, SinglePoly* _pS)
 
 Polynom* Polynom::set(int _iPos, SinglePoly* _pS)
 {
-    if (_iPos >= m_iSize)
-    {
-        return NULL;
-    }
-
     Polynom* p = copyAs<Polynom>();
     p->set_(_iPos, _pS);
     return p;
