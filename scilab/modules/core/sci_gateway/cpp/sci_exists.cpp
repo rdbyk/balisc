@@ -79,7 +79,7 @@ types::Function::ReturnValue sci_exists(types::typed_list &in, int _iRetCount, t
     const wchar_t *psScope = L"all"; // Default option is "all"
     if (in.size() == 2)
     {
-        psScope = in[1]->getAs<types::String>()->get(0);
+        psScope = in[1]->getAs<types::String>()->getFirst();
     }
 
     pStrIn  = in[0]->getAs<types::String>();
@@ -142,7 +142,7 @@ types::Function::ReturnValue sci_isdef(types::typed_list &in, int _iRetCount, ty
     const wchar_t *psScope = L"all"; // Default option is "all"
     if (in.size() == 2)
     {
-        psScope = in[1]->getAs<types::String>()->get(0);
+        psScope = in[1]->getAs<types::String>()->getFirst();
     }
 
     pStrIn  = in[0]->getAs<types::String>();

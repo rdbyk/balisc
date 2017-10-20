@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
 
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
 
-    std::wstring command(((types::String*)in[0])->get(0));
+    std::wstring command(((types::String*)in[0])->getFirst());
     switch (getCommand(command))
     {
         case AbortCommand:
@@ -138,12 +138,12 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
                 //do not check name
                 //we can set breakpoint before function declaration
                 //for embedded function for example
-                pwstFunctionName = ((types::String*)in[1])->get(0);
+                pwstFunctionName = ((types::String*)in[1])->getFirst();
             }
 
             if (iRhs > 2)
             {
-                wchar_t* pwstLineNumber = ((types::String*)in[2])->get(0);
+                wchar_t* pwstLineNumber = ((types::String*)in[2])->getFirst();
                 wchar_t* pwstEnd = NULL;
                 iLine = wcstol(pwstLineNumber, &pwstEnd, 10);
                 if (pwstEnd == NULL || *pwstEnd != 0)
@@ -155,7 +155,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
 
             if (iRhs > 3)
             {
-                pwstCondition = ((types::String*)in[3])->get(0);
+                pwstCondition = ((types::String*)in[3])->getFirst();
                 bp = new debugger::Breakpoint(pwstFunctionName, iLine, pwstCondition);
             }
             else
@@ -198,7 +198,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             if (iRhs == 2)
             {
                 wchar_t* pEnd = NULL;
-                int iBp = (int)wcstol(((types::String*)in[1])->get(0), &pEnd, 10);
+                int iBp = (int)wcstol(((types::String*)in[1])->getFirst(), &pEnd, 10);
                 if (pEnd == NULL || *pEnd != 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "disable", 1);
@@ -232,7 +232,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             if (iRhs == 2)
             {
                 wchar_t* pEnd = NULL;
-                int iBp = (int)wcstol(((types::String*)in[1])->get(0), &pEnd, 10);
+                int iBp = (int)wcstol(((types::String*)in[1])->getFirst(), &pEnd, 10);
                 if (pEnd == NULL || *pEnd != 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "disable", 1);
@@ -266,7 +266,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             if (iRhs == 2)
             {
                 wchar_t* pEnd = NULL;
-                int iBp = (int)wcstol(((types::String*)in[1])->get(0), &pEnd, 10);
+                int iBp = (int)wcstol(((types::String*)in[1])->getFirst(), &pEnd, 10);
                 if (pEnd == NULL || *pEnd != 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "enable", 1);
@@ -419,7 +419,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             if (iRhs > 1)
             {
                 wchar_t* pEnd = NULL;
-                int iBp = (int)wcstol(((types::String*)in[1])->get(0), &pEnd, 10);
+                int iBp = (int)wcstol(((types::String*)in[1])->getFirst(), &pEnd, 10);
                 if (pEnd == NULL || *pEnd != 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "disable", 1);

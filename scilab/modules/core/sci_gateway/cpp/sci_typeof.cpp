@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    if (wcscmp(in[1]->getAs<types::String>()->get(0, 0), OPTION) == 0)
+    if (wcscmp(in[1]->getAs<types::String>()->getFirst(), OPTION) == 0)
     {
         out.push_back(new types::String(in[0]->getShortTypeStr().c_str()));
         return types::Function::OK;

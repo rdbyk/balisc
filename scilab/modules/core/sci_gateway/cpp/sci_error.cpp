@@ -126,14 +126,14 @@ types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        if (pDbl->get(0) <= 0)
+        if (pDbl->getFirst() <= 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), "error", iPosDouble);
             return types::Function::Error;
         }
 
-        char* pst = wide_string_to_UTF8(pStr->get(0));
-        Scierror((int)pDbl->get(0), "%s\n", pst);
+        char* pst = wide_string_to_UTF8(pStr->getFirst());
+        Scierror((int)pDbl->getFirst(), "%s\n", pst);
         FREE(pst);
     }
 

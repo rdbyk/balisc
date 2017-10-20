@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_inspectorShowItem(types::typed_list &in, int _i
             return types::Function::Error;
         }
 
-        int iPos = (int)pD->get(0) - 1;
+        int iPos = (int)pD->getFirst() - 1;
         out.push_back(new types::String(types::Inspector::showItem(iPos).c_str()));
     }
     return types::Function::OK;

@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_clearglobal(types::typed_list &in, int _iRetCou
 
         for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
         {
-            symbol::Context::getInstance()->removeGlobal(symbol::Symbol((*inIterator)->getAs<types::String>()->get(0, 0)));
+            symbol::Context::getInstance()->removeGlobal(symbol::Symbol((*inIterator)->getAs<types::String>()->getFirst()));
         }
     }
     return types::Function::OK;

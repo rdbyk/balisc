@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
 
     if (in.size() == 2)
     {
-        if (wcscmp(in[1]->getAs<types::String>()->get(0), L"string") == 0)
+        if (wcscmp(in[1]->getAs<types::String>()->getFirst(), L"string") == 0)
         {
             bStringMode = true;
         }

@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_exit(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        dExit = pD->get(0);
+        dExit = pD->getFirst();
         if (dExit != (int) dExit)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "exit", 1);

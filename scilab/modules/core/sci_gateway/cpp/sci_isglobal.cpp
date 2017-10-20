@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        if (symbol::Context::getInstance()->isGlobalVisible(symbol::Symbol(pS->get(0))))
+        if (symbol::Context::getInstance()->isGlobalVisible(symbol::Symbol(pS->getFirst())))
         {
             out.push_back(new types::Bool(1));
         }

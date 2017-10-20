@@ -49,7 +49,7 @@ types::Function::ReturnValue sci_funptr(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    wchar_t* pwcsName = pS1->get(0);
+    wchar_t* pwcsName = pS1->getFirst();
 
     symbol::Context* pCtx = symbol::Context::getInstance();
 
