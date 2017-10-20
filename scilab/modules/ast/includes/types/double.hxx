@@ -301,11 +301,6 @@ public :
 
     virtual Double* set(double* _pdata)
     {
-        if (m_pRealData == NULL)
-        {
-            return NULL;
-        }
-
         Double* d = copyAs<Double>();
         d->set_(_pdata);
         return d;
@@ -321,11 +316,6 @@ public :
 
     virtual Double* set(const double* _pdata)
     {
-        if (m_pRealData == NULL)
-        {
-            return NULL;
-        }
-
         Double* d = copyAs<Double>();
         d->set_(_pdata);
         return d;
