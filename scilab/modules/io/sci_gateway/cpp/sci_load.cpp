@@ -49,7 +49,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
     }
 
     String *pS = pIT->getAs<types::String>();
-    wchar_t* pwstPathLib = expandPathVariableW(pS->get(0));
+    wchar_t* pwstPathLib = expandPathVariableW(pS->getFirst());
     char* pstPath = wide_string_to_UTF8(pwstPathLib);
     if (FileExist(pstPath))
     {
@@ -67,7 +67,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
         else
         {
             int err = 0;
-            Library* lib = loadlib(pS->get(0), &err);
+            Library* lib = loadlib(pS->getFirst(), &err);
             FREE(pstPath);
 
             switch (err)
@@ -77,7 +77,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
                     break;
                 case 1:
                 {
-                    char* pstPath = wide_string_to_UTF8(pS->get(0));
+                    char* pstPath = wide_string_to_UTF8(pS->getFirst());
                     Scierror(999, _("%s: %s is not a valid module file.\n"), fname.data(), pstPath);
                     FREE(pstPath);
                     return Function::Error;
