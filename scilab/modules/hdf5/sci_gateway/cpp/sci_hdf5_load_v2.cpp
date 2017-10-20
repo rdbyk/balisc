@@ -1570,7 +1570,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
                 return false;
             }
 
-            pIT = pList->get(0);
+            pIT = pList->getFirst();
             ppSStruct[0]->set(pwcsName, pIT);
             FREE(pcName);
         }
@@ -1601,7 +1601,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
                 return false;
             }
 
-            types::List* pListData = pList->get(0)->getAs<types::List>();
+            types::List* pListData = pList->getFirst()->getAs<types::List>();
             for (int iWriteData = 0; iWriteData < pStruct->getSize(); ++iWriteData)
             {
                 ppSStruct[iWriteData]->set(pwcsName, pListData->get(iWriteData));
@@ -1780,7 +1780,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
         return false;
     }
 
-    types::List* pListData = pList->get(0)->getAs<types::List>();
+    types::List* pListData = pList->getFirst()->getAs<types::List>();
     for (int iWriteData = 0; iWriteData < pCell->getSize(); ++iWriteData)
     {
         pCell->set(iWriteData, pListData->get(iWriteData));
