@@ -156,7 +156,7 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = dblRef < _pDouble2->get_(i);
+            pb[i] = dblRef < _pDouble2->get(i);
         }
 
         *_pOut = pB;
@@ -171,7 +171,7 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pDouble1->get_(i) < dblRef;
+            pb[i] = _pDouble1->get(i) < dblRef;
         }
 
         *_pOut = pB;
@@ -200,7 +200,7 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
     for (int i = 0 ; i < pB->getSize() ; i++)
     {
-        pb[i] = _pDouble1->get_(i) < _pDouble2->get_(i);
+        pb[i] = _pDouble1->get(i) < _pDouble2->get(i);
     }
 
     *_pOut = pB;
@@ -371,7 +371,7 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = dblRef <= _pDouble2->get_(i);
+            pb[i] = dblRef <= _pDouble2->get(i);
         }
 
         *_pOut = pB;
@@ -387,7 +387,7 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pDouble1->get_(i) <= dblRef;
+            pb[i] = _pDouble1->get(i) <= dblRef;
         }
 
         *_pOut = pB;
@@ -416,7 +416,7 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
 
     for (int i = 0 ; i < pB->getSize() ; i++)
     {
-        pb[i] = _pDouble1->get_(i) <= _pDouble2->get_(i);
+        pb[i] = _pDouble1->get(i) <= _pDouble2->get(i);
     }
 
     *_pOut = pB;
@@ -480,7 +480,7 @@ static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = x < _pR->get_(i);
+            pb[i] = x < _pR->get(i);
         }
 
         *_pOut = pB;
@@ -496,7 +496,7 @@ static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pL->get_(i) < x;
+            pb[i] = _pL->get(i) < x;
         }
 
         *_pOut = pB;
@@ -524,7 +524,7 @@ static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
 
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        pb[i] = _pL->get_(i) < _pR->get_(i);
+        pb[i] = _pL->get(i) < _pR->get(i);
     }
 
     *_pOut = pB;
@@ -586,7 +586,7 @@ static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = x <= _pR->get_(i);
+            pb[i] = x <= _pR->get(i);
         }
 
         *_pOut = pB;
@@ -602,7 +602,7 @@ static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pL->get_(i) <= x;
+            pb[i] = _pL->get(i) <= x;
         }
 
         *_pOut = pB;
@@ -630,7 +630,7 @@ static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
 
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        pb[i] = _pL->get_(i) <= _pR->get_(i);
+        pb[i] = _pL->get(i) <= _pR->get(i);
     }
 
     *_pOut = pB;

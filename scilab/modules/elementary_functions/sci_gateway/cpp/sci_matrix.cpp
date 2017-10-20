@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
 
         for (int i = 0; i < iDims; i++)
         {
-            piSizes[i] = static_cast<int>(pDblNewSize->get_(i));
+            piSizes[i] = static_cast<int>(pDblNewSize->get(i));
             if (piSizes[i] == -1)
             {
                 if (iLeastOne == -1)

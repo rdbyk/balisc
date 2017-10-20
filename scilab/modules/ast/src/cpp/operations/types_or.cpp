@@ -453,7 +453,7 @@ void isValueTrue(T* _pL, types::Bool** _pOut)
 {
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        if (_pL->get_(i) == 0)
+        if (_pL->get(i) == 0)
         {
             //call non shortcut opearion
             *_pOut = NULL;
@@ -478,9 +478,9 @@ void isValueTrue(Double* _pL, Bool** _pOut)
 
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        if (_pL->get_(i) == 0)
+        if (_pL->get(i) == 0)
         {
-            if ( !_pL->isComplex() || (_pL->getImg_(i) == 0) )
+            if ( !_pL->isComplex() || (_pL->getImg(i) == 0) )
             {
                 // Any value is false, call non shortcut operation
                 *_pOut = NULL;

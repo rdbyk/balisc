@@ -108,7 +108,7 @@ Cell::Cell(Cell *_oCellCopyMe)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        set_(i, _oCellCopyMe->get_(i)->clone());
+        set_(i, _oCellCopyMe->get(i)->clone());
     }
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -303,7 +303,7 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                 _piDims[1] = j;
 
                 int iPos = getIndex(_piDims);
-                InternalType* pIT = get_(iPos);
+                InternalType* pIT = get(iPos);
 
                 if (pIT->isAssignable())
                 {
@@ -342,7 +342,7 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                 _piDims[0] = i;
                 _piDims[1] = j;
                 int iPos = getIndex(_piDims);
-                InternalType* pIT = get_(iPos);
+                InternalType* pIT = get(iPos);
 
                 ostr << L"  [";
                 if (pIT->isAssignable())
@@ -416,7 +416,7 @@ bool Cell::operator==(const InternalType& it)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        if (get_(i) != pC->get_(i))
+        if (get(i) != pC->get(i))
         {
             return false;
         }
@@ -442,7 +442,7 @@ List* Cell::extractCell(typed_list* _pArgs)
     Cell* pCell = pIT->getAs<Cell>();
     for (int i = 0 ; i < pCell->getSize() ; i++)
     {
-        pList->append(pCell->get_(i));
+        pList->append(pCell->get(i));
     }
     pCell->killMe();
     return pList;

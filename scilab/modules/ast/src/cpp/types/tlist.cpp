@@ -76,7 +76,7 @@ bool TList::exists(const std::wstring& _sKey)
     //first field is the tlist type
     for (int i = 1 ; i < pS->getSize() ; i++)
     {
-        if (wcscmp(pS->get_(i), _sKey.c_str()) == 0)
+        if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
         {
             return true;
         }
@@ -118,7 +118,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
             String * pString = arg->getAs<types::String>();
             for (int i = 0; i < pString->getSize(); ++i)
             {
-                stFields.push_back(pString->get_(i));
+                stFields.push_back(pString->get(i));
             }
 
             _out = extractStrings(stFields);
@@ -232,7 +232,7 @@ int TList::getIndexFromString(const std::wstring& _sKey)
     //first field is the tlist type
     for (int i = 1 ; i < pS->getSize() ; i++)
     {
-        if (wcscmp(pS->get_(i), _sKey.c_str()) == 0)
+        if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
         {
             return i;
         }

@@ -1149,7 +1149,7 @@ InternalType* sub_I_M(T *_pL, U *_pR)
         std::fill(piIndex, piIndex + iDims, i);
 
         int index = _pR->getIndex(piIndex);
-        sub(dblLeft, _pR->get_(index), pOut->get() + index);
+        sub(dblLeft, _pR->get(index), pOut->get() + index);
     }
 
     delete[] piIndex;
@@ -1472,11 +1472,11 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
             double* p1I = p1Coef->getImg();
             for (int i = 0 ; i < _pR->getSize() ; i++)
             {
-                SinglePoly* p2Coef   = _pR->get_(i);
+                SinglePoly* p2Coef   = _pR->get(i);
                 double* p2R          = p2Coef->get();
                 double* p2I          = p2Coef->getImg();
 
-                SinglePoly* pOutCoef = pOut->get_(i);
+                SinglePoly* pOutCoef = pOut->get(i);
                 pOutCoef->setComplex(isOutComplex);
                 double* pOutR        = pOutCoef->get();
                 double* pOutI        = pOutCoef->getImg();
@@ -1505,10 +1505,10 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         {
             for (int i = 0 ; i < _pR->getSize() ; i++)
             {
-                SinglePoly* p2Coef   = _pR->get_(i);
+                SinglePoly* p2Coef   = _pR->get(i);
                 double* p2R          = p2Coef->get();
 
-                SinglePoly* pOutCoef = pOut->get_(i);
+                SinglePoly* pOutCoef = pOut->get(i);
                 double* pOutR        = pOutCoef->get();
 
                 for (int j = 0 ; j < pRankOut[i] + 1 ; j++)
@@ -1560,11 +1560,11 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
             double *p2I             = p2Coef->getImg();
             for (int i = 0 ; i < _pL->getSize() ; i++)
             {
-                SinglePoly *p1Coef      = _pL->get_(i);
+                SinglePoly *p1Coef      = _pL->get(i);
                 double *p1R             = p1Coef->get();
                 double *p1I             = p1Coef->getImg();
 
-                SinglePoly *pOutCoef    = pOut->get_(i);
+                SinglePoly *pOutCoef    = pOut->get(i);
                 pOutCoef->setComplex(isOutComplex);
                 double *pOutR           = pOutCoef->get();
                 double *pOutI           = pOutCoef->getImg();
@@ -1593,10 +1593,10 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         {
             for (int i = 0 ; i < _pL->getSize() ; i++)
             {
-                SinglePoly *p1Coef      = _pL->get_(i);
+                SinglePoly *p1Coef      = _pL->get(i);
                 double *p1R             = p1Coef->get();
 
-                SinglePoly *pOutCoef    = pOut->get_(i);
+                SinglePoly *pOutCoef    = pOut->get(i);
                 double *pOutR           = pOutCoef->get();
 
                 for (int j = 0 ; j < pRankOut[i] + 1 ; j++)
@@ -1660,11 +1660,11 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     //Result P1(i) - P2(i)
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        SinglePoly* pOutCoef = pOut->get_(i);
+        SinglePoly* pOutCoef = pOut->get(i);
         pOutCoef->setComplex(isOutComplex);
 
-        double *p1R     = _pL->get_(i)->get();
-        double *p2R     = _pR->get_(i)->get();
+        double *p1R     = _pL->get(i)->get();
+        double *p2R     = _pR->get(i)->get();
         double *pOutR   = pOutCoef->get();
         int iMin        = std::min(pRank1[i], pRank2[i]);
         int iMax        = std::max(pRank1[i], pRank2[i]);
@@ -1694,8 +1694,8 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         if (isOutComplex)
         {
-            double *p1I     = _pL->get_(i)->getImg();
-            double *p2I     = _pR->get_(i)->getImg();
+            double *p1I     = _pL->get(i)->getImg();
+            double *p2I     = _pR->get(i)->getImg();
             double *pOutI   = pOutCoef->getImg();
 
             for (int j = 0 ; j < iMin + 1 ; j++)
@@ -1881,7 +1881,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         double* pInDblI = _pR->getImg();
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pSPOut   = pOut->get_(i);
+            SinglePoly *pSPOut   = pOut->get(i);
             double *pOutPolyR    = pSPOut->get();
             double *pOutPolyI    = pSPOut->getImg();
 
@@ -1895,7 +1895,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         pOut->setComplex(true);
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pSPOut   = pOut->get_(i);
+            SinglePoly *pSPOut   = pOut->get(i);
             double *pOutPolyR    = pSPOut->get();
             double *pOutPolyI    = pSPOut->getImg();
 
@@ -1907,7 +1907,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
     {
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pSPOut = pOut->get_(i);
+            SinglePoly *pSPOut = pOut->get(i);
             double *pOutPolyR  = pSPOut->get();
 
             pOutPolyR[0] -= pInDblR[i];
@@ -2048,7 +2048,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
             SinglePoly *pInPoly  = _pR->getFirst();
-            SinglePoly *pOutPoly = pOut->get_(i);
+            SinglePoly *pOutPoly = pOut->get(i);
             double *pInPolyR     = pInPoly->get();
             double *pOutPolyR    = pOutPoly->get();
 
@@ -2065,7 +2065,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
                 SinglePoly *pInPoly  = _pR->getFirst();
-                SinglePoly *pOutPoly = pOut->get_(i);
+                SinglePoly *pOutPoly = pOut->get(i);
                 double *pInPolyI     = pInPoly->getImg();
                 double *pOutPolyI    = pOutPoly->getImg();
 
@@ -2098,7 +2098,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         {
             for (int i = 0 ; i < iSize ; i++)
             {
-                SinglePoly *pSPOut   = pOut->get_(i);
+                SinglePoly *pSPOut   = pOut->get(i);
                 double *pOutPolyR    = pSPOut->get();
                 double *pOutPolyI    = pSPOut->getImg();
 
@@ -2111,7 +2111,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
             pOut->setComplex(true);
             for (int i = 0 ; i < iSize ; i++)
             {
-                SinglePoly *pSPOut   = pOut->get_(i);
+                SinglePoly *pSPOut   = pOut->get(i);
                 double *pOutPolyR    = pSPOut->get();
                 double *pOutPolyI    = pSPOut->getImg();
 
@@ -2123,7 +2123,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         {
             for (int i = 0 ; i < iSize ; i++)
             {
-                SinglePoly *pSPOut = pOut->get_(i);
+                SinglePoly *pSPOut = pOut->get(i);
                 double *pOutPolyR  = pSPOut->get();
 
                 pOutPolyR[0] += pInDblR[0];
@@ -2167,7 +2167,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
     {
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pSPOut   = pOut->get_(i);
+            SinglePoly *pSPOut   = pOut->get(i);
             double *pOutPolyR    = pSPOut->get();
             double *pOutPolyI    = pSPOut->getImg();
 
@@ -2180,7 +2180,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         pOut->setComplex(true);
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pSPOut   = pOut->get_(i);
+            SinglePoly *pSPOut   = pOut->get(i);
             double *pOutPolyR    = pSPOut->get();
             double *pOutPolyI    = pSPOut->getImg();
 
@@ -2192,7 +2192,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
     {
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pSPOut = pOut->get_(i);
+            SinglePoly *pSPOut = pOut->get(i);
             double *pOutPolyR  = pSPOut->get();
 
             pOutPolyR[0] += pInDblR[i];
@@ -2359,8 +2359,8 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
                 std::complex<double> dbl = _pR->getImg(iRow, iCol);
-                pOut->set(iRow, iCol, pOut->get_(iRow, iCol) - dbl.real());
-                pOut->setImg(iRow, iCol, pOut->getImg_(iRow, iCol) - dbl.imag());
+                pOut->set(iRow, iCol, pOut->get(iRow, iCol) - dbl.real());
+                pOut->setImg(iRow, iCol, pOut->getImg(iRow, iCol) - dbl.imag());
             }
         }
         else
@@ -2369,7 +2369,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
             {
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
-                pOut->set(iRow, iCol, pOut->get_(iRow, iCol) - _pR->get(iRow, iCol));
+                pOut->set(iRow, iCol, pOut->get(iRow, iCol) - _pR->get(iRow, iCol));
             }
         }
 

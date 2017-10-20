@@ -118,15 +118,15 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
 
         for (int i = 0; i < pPolyIn->getSize(); i++)
         {
-            int rank = pPolyIn->get_(i)->getRank();
+            int rank = pPolyIn->get(i)->getRank();
             types::SinglePoly* pSP = new types::SinglePoly(&dataReal, &dataImg, rank);
 
             if (pPolyIn->isComplex())
             {
                 for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = pPolyIn->get_(i)->getImg()[j] * -1;
-                    dataImg[j]  = pPolyIn->get_(i)->get()[j];
+                    dataReal[j] = pPolyIn->get(i)->getImg()[j] * -1;
+                    dataImg[j]  = pPolyIn->get(i)->get()[j];
                 }
             }
             else
@@ -134,7 +134,7 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
                 for (int j = 0; j < rank + 1; j++)
                 {
                     dataReal[j] = 0;
-                    dataImg[j]  = pPolyIn->get_(i)->get()[j];
+                    dataImg[j]  = pPolyIn->get(i)->get()[j];
                 }
             }
 

@@ -150,7 +150,7 @@ InternalType* SingleStruct::insert(typed_list* _pArgs, InternalType* _pSource)
     String* pstKey = (*_pArgs)[0]->getAs<String>();
     for (int i = 0 ; i < pstKey->getSize() ; ++i)
     {
-        set(pstKey->get_(i), _pSource);
+        set(pstKey->get(i), _pSource);
     }
 
     return this;

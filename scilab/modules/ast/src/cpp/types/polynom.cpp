@@ -222,7 +222,7 @@ void Polynom::setComplex(bool _bComplex)
     {
         for (int i = 0 ; i < getSize() ; i++)
         {
-            get_(i)->setComplex(_bComplex);
+            get(i)->setComplex(_bComplex);
         }
     }
 }
@@ -307,7 +307,7 @@ Double* Polynom::evaluate(Double* _pdblValue)
                     double OutR = 0;
                     double OutI = 0;
 
-                    SinglePoly *pPoly = get_(iPolyRow, iPolyCol);
+                    SinglePoly *pPoly = get(iPolyRow, iPolyCol);
                     if (pReturn->isComplex())
                     {
                         pPoly->evaluate(pR[iCol * iRows + iRow], pI[iCol * iRows + iRow], &OutR, &OutI);
@@ -547,11 +547,11 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             int iPos = getIndex(_piDims);
             if (_bComplex)
             {
-                get_(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
             }
             else
             {
-                get_(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
             }
 
             if (listExpR.size() > 1)
@@ -594,11 +594,11 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
                     int iPos = getIndex(_piDims);
                     if (_bComplex)
                     {
-                        get_(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
+                        get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
                     }
                     else
                     {
-                        get_(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+                        get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
                     }
 
                     if (listCoefR.size() > 1)
@@ -668,11 +668,11 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             int iPos = getIndex(_piDims);
             if (_bComplex)
             {
-                get_(iPos)->toStringImg( getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringImg( getVariableName(), &listExpR, &listCoefR);
             }
             else
             {
-                get_(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
             }
 
             if (listCoefR.size() > 1)
@@ -747,11 +747,11 @@ std::wstring Polynom::getRowString(int* _piDims, int /*_iDims*/, bool _bComplex)
         int iPos = getIndex(_piDims);
         if (_bComplex)
         {
-            get_(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
+            get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
         }
         else
         {
-            get_(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+            get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
         }
 
         if (iLen != 0 && static_cast<int>(listExpR.front().size()) + iLen >= iLineLen - 1)
@@ -821,11 +821,11 @@ std::wstring Polynom::getColString(int* _piDims, int /*_iDims*/, bool _bComplex)
         int iPos = getIndex(_piDims);
         if (_bComplex)
         {
-            get_(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
+            get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
         }
         else
         {
-            get_(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+            get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
         }
 
         for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; ++it_Coef, ++it_Exp)
@@ -924,8 +924,8 @@ bool Polynom::operator==(const InternalType& it)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        SinglePoly* p1 = get_(i);
-        SinglePoly* p2 = pM->get_(i);
+        SinglePoly* p1 = get(i);
+        SinglePoly* p2 = pM->get(i);
 
         if (*p1 != *p2)
         {

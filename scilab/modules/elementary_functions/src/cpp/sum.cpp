@@ -184,8 +184,8 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
             // perform operations
             for (int i = 0; i < pIn->getSize(); i++)
             {
-                double* dblRealIn = pIn->get_(i)->get();
-                double* dblImgIn = pIn->get_(i)->getImg();
+                double* dblRealIn = pIn->get(i)->get();
+                double* dblImgIn = pIn->get(i)->getImg();
                 for (int iRankN = 0; iRankN < piRanks[i] + 1; iRankN++)
                 {
                     dblRealOut[iRankN] += dblRealIn[iRankN];
@@ -198,7 +198,7 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
             // perform operations
             for (int i = 0; i < pIn->getSize(); i++)
             {
-                double* dblRealIn = pIn->get_(i)->get();
+                double* dblRealIn = pIn->get(i)->get();
                 for (int iRankN = 0; iRankN < piRanks[i] + 1; iRankN++)
                 {
                     dblRealOut[iRankN] += dblRealIn[iRankN];
@@ -280,10 +280,10 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
                 int iIndex = pOut->getIndex(piIndex);
 
                 // make the sum for each ranks
-                double* dblRealIn = pIn->get_(i)->get();
-                double* dblRealOut = pOut->get_(iIndex)->get();
-                double* dblImgIn = pIn->get_(i)->getImg();
-                double* dblImgOut = pOut->get_(iIndex)->getImg();
+                double* dblRealIn = pIn->get(i)->get();
+                double* dblRealOut = pOut->get(iIndex)->get();
+                double* dblImgIn = pIn->get(i)->getImg();
+                double* dblImgOut = pOut->get(iIndex)->getImg();
                 for (int iRankN = 0; iRankN < piRanks[i] + 1; iRankN++)
                 {
                     dblRealOut[iRankN] += dblRealIn[iRankN];
@@ -303,8 +303,8 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
                 int iIndex = pOut->getIndex(piIndex);
 
                 // make sum on each ranks
-                double* dblRealIn = pIn->get_(i)->get();
-                double* dblRealOut = pOut->get_(iIndex)->get();
+                double* dblRealIn = pIn->get(i)->get();
+                double* dblRealOut = pOut->get(iIndex)->get();
                 for (int iRankN = 0; iRankN < piRanks[i] + 1; iRankN++)
                 {
                     dblRealOut[iRankN] += dblRealIn[iRankN];

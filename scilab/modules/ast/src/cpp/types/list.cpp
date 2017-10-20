@@ -175,7 +175,7 @@ InternalType* List::extract(typed_list* _pArgs)
 
     for (int i = 0 ; i < iSeqCount ; i++)
     {
-        int idx = (int)pArg[0]->getAs<Double>()->get_(i);
+        int idx = (int)pArg[0]->getAs<Double>()->get(i);
         if (idx > getSize() || idx < 1)
         {
             delete outList;
@@ -332,11 +332,7 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
 
 InternalType* List::get(const int _iIndex)
 {
-    if (_iIndex >= 0 && _iIndex < (int)m_plData->size())
-    {
-        return (*m_plData)[_iIndex];
-    }
-    return NULL;
+    return (*m_plData)[_iIndex];
 }
 
 InternalType* List::getFirst()

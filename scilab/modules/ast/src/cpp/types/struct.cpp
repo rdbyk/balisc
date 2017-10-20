@@ -98,7 +98,7 @@ Struct::Struct(Struct *_oStructCopyMe)
     create(_oStructCopyMe->getDimsArray(), _oStructCopyMe->getDims(), &pIT, NULL);
     for (int i = 0 ; i < getSize() ; i++)
     {
-        pIT[i] = _oStructCopyMe->get_(i)->clone();
+        pIT[i] = _oStructCopyMe->get(i)->clone();
         pIT[i]->IncreaseRef();
     }
 #ifndef NDEBUG
@@ -171,7 +171,7 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
             String * pString = arg->getAs<types::String>();
             for (int i = 0; i < pString->getSize(); ++i)
             {
-                std::wstring wstField(pString->get_(i));
+                std::wstring wstField(pString->get(i));
                 if (this->exists(wstField))
                 {
                     wstFields.push_back(wstField);
@@ -345,7 +345,7 @@ bool Struct::operator==(const InternalType& it)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        if (*get_(i) != *pStr->get_(i))
+        if (*get(i) != *pStr->get(i))
         {
             return false;
         }
@@ -437,7 +437,7 @@ Struct* Struct::addField(const std::wstring& _sKey)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        get_(i)->addField(_sKey);
+        get(i)->addField(_sKey);
     }
 
     return this;
@@ -453,7 +453,7 @@ Struct* Struct::addFieldFront(const std::wstring& _sKey)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        get_(i)->addFieldFront(_sKey);
+        get(i)->addFieldFront(_sKey);
     }
 
     return this;
@@ -486,7 +486,7 @@ bool Struct::toString(std::wostringstream& ostr)
 
         for (int i = 0 ; i < pwstFields->getSize() ; i++)
         {
-            std::wstring wstField(pwstFields->get_(i));
+            std::wstring wstField(pwstFields->get(i));
             InternalType* pIT = pSS->get(wstField);
 
             //                ostr << L"  " << wstField << ": ";
@@ -513,7 +513,7 @@ bool Struct::toString(std::wostringstream& ostr)
         ostr <<  L"fields:" << L"\n";
         for (int i = 0 ; i < pwstFields->getSize() ; i++)
         {
-            ostr << L"    " << pwstFields->get_(i) << L"\n";
+            ostr << L"    " << pwstFields->get(i) << L"\n";
         }
         pwstFields->killMe();
     }
@@ -603,7 +603,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
 
     for (int i = 0 ; i < iSeqCount ; i++)
     {
-        int iIndex = (int)pIndex->get_(i);
+        int iIndex = (int)pIndex->get(i);
 
         if (iIndex == 1)
         {
@@ -702,7 +702,7 @@ Struct* Struct::resize(int* _piDims, int _iDims)
         {
             for (int iterStruct = 0; iterStruct < getSize(); iterStruct++)
             {
-                get_(iterStruct)->addField(pFields->get_(iterField));
+                get(iterStruct)->addField(pFields->get(iterField));
             }
         }
 

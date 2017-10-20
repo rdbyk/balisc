@@ -964,8 +964,8 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
                 std::complex<double> dbl = sp->getImg(iRow, iCol);
-                pRes->set(iRow, iCol, pRes->get_(iRow, iCol) + dbl.real());
-                pRes->setImg(iRow, iCol, pRes->getImg_(iRow, iCol) + dbl.imag());
+                pRes->set(iRow, iCol, pRes->get(iRow, iCol) + dbl.real());
+                pRes->setImg(iRow, iCol, pRes->getImg(iRow, iCol) + dbl.imag());
             }
         }
         else
@@ -974,7 +974,7 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
             {
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
-                pRes->set(iRow, iCol, pRes->get_(iRow, iCol) + sp->get(iRow, iCol));
+                pRes->set(iRow, iCol, pRes->get(iRow, iCol) + sp->get(iRow, iCol));
             }
         }
         *pDRes = pRes;
@@ -1034,8 +1034,8 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
                 std::complex<double> dbl = sp->getImg(iRow, iCol);
-                pRes->set(iRow, iCol, pRes->get_(iRow, iCol) + dbl.real());
-                pRes->setImg(iRow, iCol, pRes->getImg_(iRow, iCol) + dbl.imag());
+                pRes->set(iRow, iCol, pRes->get(iRow, iCol) + dbl.real());
+                pRes->setImg(iRow, iCol, pRes->getImg(iRow, iCol) + dbl.imag());
             }
         }
         else
@@ -1044,7 +1044,7 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
             {
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
-                pRes->set(iRow, iCol, pRes->get_(iRow, iCol) + sp->get(iRow, iCol));
+                pRes->set(iRow, iCol, pRes->get(iRow, iCol) + sp->get(iRow, iCol));
             }
         }
 
@@ -1429,7 +1429,7 @@ InternalType* add_IC_MC(T *_pL, U *_pR)
 
         int index = _pR->getIndex(piIndex);
 
-        add(_pL->getFirst(), _pL->getImgFirst(), _pR->get_(index), _pR->getImg_(index), pOut->get() + index, pOut->getImg() + index);
+        add(_pL->getFirst(), _pL->getImgFirst(), _pR->get(index), _pR->getImg(index), pOut->get() + index, pOut->getImg() + index);
     }
 
     delete[] piIndex;
@@ -1614,8 +1614,8 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
     int* sizeOut = new int[size];
     for (int i = 0 ; i < size ; ++i)
     {
-        wchar_t* pwstL = _pL->get_(i);
-        wchar_t* pwstR = _pR->get_(i);
+        wchar_t* pwstL = _pL->get(i);
+        wchar_t* pwstR = _pR->get(i);
         int sizeL = (int)wcslen(pwstL);
         int sizeR = (int)wcslen(pwstR);
 
@@ -1642,7 +1642,7 @@ InternalType* add_S_M<String, String, String>(String* _pL, String* _pR)
 
     for (int i = 0 ; i < size ; ++i)
     {
-        wchar_t* pwstR = _pR->get_(i);
+        wchar_t* pwstR = _pR->get(i);
         int sizeR = (int)wcslen(pwstR);
 
         sizeOut[i] = sizeL + sizeR + 1;
@@ -1668,7 +1668,7 @@ InternalType* add_M_S<String, String, String>(String* _pL, String* _pR)
 
     for (int i = 0 ; i < size ; ++i)
     {
-        wchar_t* pwstL = _pL->get_(i);
+        wchar_t* pwstL = _pL->get(i);
         int sizeL = (int)wcslen(pwstL);
 
         sizeOut[i] = sizeL + sizeR + 1;
@@ -1834,11 +1834,11 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         double *p1I = pCoef1->getImg();
         for (int i = 0 ; i < _pR->getSize() ; i++)
         {
-            SinglePoly *pCoef2 = _pR->get_(i);
+            SinglePoly *pCoef2 = _pR->get(i);
             double *p2R = pCoef2->get();
             double *p2I = pCoef2->getImg();
 
-            SinglePoly *pCoefR = pOut->get_(i);
+            SinglePoly *pCoefR = pOut->get(i);
             double *pRR = pCoefR->get();
             double *pRI = pCoefR->getImg();
 
@@ -1912,11 +1912,11 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         for (int i = 0 ; i < _pL->getSize() ; i++)
         {
-            SinglePoly *pCoef1 = _pL->get_(i);
+            SinglePoly *pCoef1 = _pL->get(i);
             double *p1R = pCoef1->get();
             double *p1I = pCoef1->getImg();
 
-            SinglePoly *pCoefR = pOut->get_(i);
+            SinglePoly *pCoefR = pOut->get(i);
             double *pRR = pCoefR->get();
             double *pRI = pCoefR->getImg();
 
@@ -2028,9 +2028,9 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         for (int i = 0 ; i < _pL->getSize() ; i++)
         {
             iAddScilabPolynomToScilabPolynom(
-                _pL->get_(i)->get(), pRank1[i] + 1,
-                _pR->get_(i)->get(), pRank2[i] + 1,
-                pOut->get_(i)->get(), pRank[i] + 1);
+                _pL->get(i)->get(), pRank1[i] + 1,
+                _pR->get(i)->get(), pRank2[i] + 1,
+                pOut->get(i)->get(), pRank[i] + 1);
         }
     }
     else if (bComplex1 == false && bComplex2 == true)
@@ -2038,9 +2038,9 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         for (int i = 0 ; i < _pL->getSize() ; i++)
         {
             iAddScilabPolynomToComplexPoly(
-                _pL->get_(i)->get(), pRank1[i] + 1,
-                _pR->get_(i)->get(), _pR->get_(i)->getImg(), pRank2[i] + 1,
-                pOut->get_(i)->get(), pOut->get_(i)->getImg(), pRank[i] + 1);
+                _pL->get(i)->get(), pRank1[i] + 1,
+                _pR->get(i)->get(), _pR->get(i)->getImg(), pRank2[i] + 1,
+                pOut->get(i)->get(), pOut->get(i)->getImg(), pRank[i] + 1);
         }
     }
     else if (bComplex1 == true && bComplex2 == false)
@@ -2048,9 +2048,9 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         for (int i = 0 ; i < _pL->getSize() ; i++)
         {
             iAddScilabPolynomToComplexPoly(
-                _pR->get_(i)->get(), pRank2[i] + 1,
-                _pL->get_(i)->get(), _pL->get_(i)->getImg(), pRank1[i] + 1,
-                pOut->get_(i)->get(), pOut->get_(i)->getImg(), pRank[i] + 1);
+                _pR->get(i)->get(), pRank2[i] + 1,
+                _pL->get(i)->get(), _pL->get(i)->getImg(), pRank1[i] + 1,
+                pOut->get(i)->get(), pOut->get(i)->getImg(), pRank[i] + 1);
         }
     }
     else if (bComplex1 == true && bComplex2 == true)
@@ -2058,9 +2058,9 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         for (int i = 0 ; i < _pL->getSize() ; i++)
         {
             iAddComplexPolyToComplexPoly(
-                _pL->get_(i)->get(), _pL->get_(i)->getImg(), pRank1[i] + 1,
-                _pR->get_(i)->get(), _pR->get_(i)->getImg(), pRank2[i] + 1,
-                pOut->get_(i)->get(), pOut->get_(i)->getImg(), pRank[i] + 1);
+                _pL->get(i)->get(), _pL->get(i)->getImg(), pRank1[i] + 1,
+                _pR->get(i)->get(), _pR->get(i)->getImg(), pRank2[i] + 1,
+                pOut->get(i)->get(), pOut->get(i)->getImg(), pRank[i] + 1);
         }
     }
 
@@ -2123,7 +2123,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
             SinglePoly *pInPoly  = _pR->getFirst();
-            SinglePoly *pOutPoly = pOut->get_(i);
+            SinglePoly *pOutPoly = pOut->get(i);
             double *pInPolyR     = pInPoly->get();
             double *pOutPolyR    = pOutPoly->get();
 
@@ -2140,7 +2140,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
                 SinglePoly *pInPoly  = _pR->getFirst();
-                SinglePoly *pOutPoly = pOut->get_(i);
+                SinglePoly *pOutPoly = pOut->get(i);
                 double *pInPolyI     = pInPoly->getImg();
                 double *pOutPolyI    = pOutPoly->getImg();
 
@@ -2164,7 +2164,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         {
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
-                SinglePoly *pSPOut   = pOut->get_(i);
+                SinglePoly *pSPOut   = pOut->get(i);
                 double *pOutPolyR    = pSPOut->get();
                 double *pOutPolyI    = pSPOut->getImg();
 
@@ -2177,7 +2177,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
             pOut->setComplex(true);
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
-                SinglePoly *pSPOut   = pOut->get_(i);
+                SinglePoly *pSPOut   = pOut->get(i);
                 double *pOutPolyR    = pSPOut->get();
                 double *pOutPolyI    = pSPOut->getImg();
 
@@ -2189,7 +2189,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         {
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
-                SinglePoly *pSPOut = pOut->get_(i);
+                SinglePoly *pSPOut = pOut->get(i);
                 double *pOutPolyR  = pSPOut->get();
 
                 pOutPolyR[0] += pInDblR[0];
@@ -2225,7 +2225,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
     {
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pSPOut   = pOut->get_(i);
+            SinglePoly *pSPOut   = pOut->get(i);
             double *pOutPolyR    = pSPOut->get();
             double *pOutPolyI    = pSPOut->getImg();
 
@@ -2238,7 +2238,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         pOut->setComplex(true);
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pSPOut   = pOut->get_(i);
+            SinglePoly *pSPOut   = pOut->get(i);
             double *pOutPolyR    = pSPOut->get();
             double *pOutPolyI    = pSPOut->getImg();
 
@@ -2250,7 +2250,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
     {
         for (int i = 0 ; i < pOut->getSize() ; i++)
         {
-            SinglePoly *pSPOut = pOut->get_(i);
+            SinglePoly *pSPOut = pOut->get(i);
             double *pOutPolyR  = pSPOut->get();
 
             pOutPolyR[0] += pInDblR[i];
@@ -2442,8 +2442,8 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
                 std::complex<double> dbl = _pL->getImg(iRow, iCol);
-                pOut->set(iRow, iCol, pOut->get_(iRow, iCol) + dbl.real());
-                pOut->setImg(iRow, iCol, pOut->getImg_(iRow, iCol) + dbl.imag());
+                pOut->set(iRow, iCol, pOut->get(iRow, iCol) + dbl.real());
+                pOut->setImg(iRow, iCol, pOut->getImg(iRow, iCol) + dbl.imag());
             }
         }
         else
@@ -2452,7 +2452,7 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
             {
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
-                pOut->set(iRow, iCol, pOut->get_(iRow, iCol) + _pL->get(iRow, iCol));
+                pOut->set(iRow, iCol, pOut->get(iRow, iCol) + _pL->get(iRow, iCol));
             }
         }
 
@@ -2512,8 +2512,8 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
                 std::complex<double> dbl = _pL->getImg(iRow, iCol);
-                pOut->set(iRow, iCol, pOut->get_(iRow, iCol) + dbl.real());
-                pOut->setImg(iRow, iCol, pOut->getImg_(iRow, iCol) + dbl.imag());
+                pOut->set(iRow, iCol, pOut->get(iRow, iCol) + dbl.real());
+                pOut->setImg(iRow, iCol, pOut->getImg(iRow, iCol) + dbl.imag());
             }
         }
         else
@@ -2522,7 +2522,7 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
             {
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
-                pOut->set(iRow, iCol, pOut->get_(iRow, iCol) + _pL->get(iRow, iCol));
+                pOut->set(iRow, iCol, pOut->get(iRow, iCol) + _pL->get(iRow, iCol));
             }
         }
 

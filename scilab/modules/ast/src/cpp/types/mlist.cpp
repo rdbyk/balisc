@@ -43,7 +43,7 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
             String * pString = arg->getAs<types::String>();
             for (int i = 0; i < pString->getSize(); ++i)
             {
-                stFields.push_back(pString->get_(i));
+                stFields.push_back(pString->get(i));
             }
 
             _out = extractStrings(stFields);

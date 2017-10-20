@@ -108,7 +108,7 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
     {
         for (int i = 0; i < psInput->getSize() ; ++i)
         {
-            wchar_t* pwstTemp = psInput->get_(i);
+            wchar_t* pwstTemp = psInput->get(i);
             std::wstring warning = _W("WARNING: %ls\n");
             size_t iSize = (wcslen(pwstTemp) + warning.size() + 1);
 

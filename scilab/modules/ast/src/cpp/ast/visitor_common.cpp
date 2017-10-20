@@ -330,7 +330,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     {
                         for (int j = 0; j < cols; j++)
                         {
-                            pPResult->set_(iCurRow + i, iCurCol + j, pPSource->get_(i, j));
+                            pPResult->set_(iCurRow + i, iCurCol + j, pPSource->get(i, j));
                         }
                     }
 
@@ -354,11 +354,11 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                         {
                             for (int j = 0 ; j < cols; j++)
                             {
-                                types::SinglePoly* pSPOut = pPolyOut->get_(iCurRow + i, iCurCol + j);
+                                types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
                                 pSPOut->setRank(0);
-                                double pDblR = pD->get_(i, j);
-                                double pDblI = pD->getImg_(i, j);
+                                double pDblR = pD->get(i, j);
+                                double pDblI = pD->getImg(i, j);
                                 pSPOut->setCoef(&pDblR, &pDblI);
                             }
                         }
@@ -372,10 +372,10 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                         {
                             for (int j = 0 ; j < cols; j++)
                             {
-                                types::SinglePoly* pSPOut = pPolyOut->get_(iCurRow + i, iCurCol + j);
+                                types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
                                 pSPOut->setRank(0);
-                                double pDbl = pD->get_(i, j);
+                                double pDbl = pD->get(i, j);
                                 pSPOut->setCoef(&pDbl, NULL);
                             }
                         }
@@ -411,8 +411,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             {
                                 for (int j = 0; j < cols; j++)
                                 {
-                                    double dbl = poSource->get_(i, j);
-                                    double dblImg = poSource->getImg_(i, j);
+                                    double dbl = poSource->get(i, j);
+                                    double dblImg = poSource->getImg(i, j);
                                     if (dbl != 0 || dblImg != 0)
                                     {
                                         spResult->set(i + iCurRow, j + iCurCol, std::complex<double>(dbl, dblImg));
@@ -429,7 +429,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             {
                                 for (int j = 0; j < cols; j++)
                                 {
-                                    double dbl = poSource->get_(i, j);
+                                    double dbl = poSource->get(i, j);
                                     if (dbl != 0)
                                     {
                                         spResult->set(i + iCurRow, j + iCurCol, std::complex<double>(dbl, 0));
@@ -447,7 +447,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                         {
                             for (int j = 0; j < cols; j++)
                             {
-                                double dbl = poSource->get_(i, j);
+                                double dbl = poSource->get(i, j);
                                 if (dbl != 0)
                                 {
                                     spResult->set(i + iCurRow, j + iCurCol, dbl);
@@ -473,7 +473,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     {
                         for (int j = 0; j < cols; j++)
                         {
-                            bool bValue = poSource->get_(i, j) != 0;
+                            bool bValue = poSource->get(i, j) != 0;
                             if (bValue)
                             {
                                 spResult->set(i + iCurRow, j + iCurCol, true);
@@ -1413,7 +1413,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             // extract each elements of a(x)
                             for (int iCell = 0; iCell < pCell->getSize(); iCell++)
                             {
-                                types::InternalType* pIT = pCell->get_(iCell);
+                                types::InternalType* pIT = pCell->get(iCell);
                                 if ((*iterFields)->getExp() == NULL)
                                 {
                                     // a{x}(y)
@@ -1982,9 +1982,9 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 int size = pP->getSize();
                 for (int idx = 0; idx < size; idx++)
                 {
-                    double dblR = pDest->get_(idx);
-                    double dblI = pDest->getImg_(idx);
-                    pP->get_(idx)->setCoef(&dblR, &dblI);
+                    double dblR = pDest->get(idx);
+                    double dblI = pDest->getImg(idx);
+                    pP->get(idx)->setCoef(&dblR, &dblI);
                 }
             }
             else
@@ -1992,8 +1992,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 int size = pP->getSize();
                 for (int idx = 0; idx < size; idx++)
                 {
-                    double dblR = pDest->get_(idx);
-                    pP->get_(idx)->setCoef(&dblR, NULL);
+                    double dblR = pDest->get(idx);
+                    pP->get(idx)->setCoef(&dblR, NULL);
                 }
             }
 
@@ -2074,7 +2074,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     pStruct->addField(pS->getFirst());
                     for (int i = 0; i < size; i++)
                     {
-                        pStruct->get_(i)->set(pS->getFirst(), _pInsert);
+                        pStruct->get(i)->set(pS->getFirst(), _pInsert);
                     }
                 }
                 pRet = pStruct;
@@ -2094,13 +2094,13 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                         // insert fields of pStruct in pStructInsert
                         for (int i = pStrFieldsName->getSize(); i > 0; i--)
                         {
-                            if (pStructInsert->exists(pStrFieldsName->get_(i - 1)) == false)
+                            if (pStructInsert->exists(pStrFieldsName->get(i - 1)) == false)
                             {
-                                pStructInsert->addFieldFront(pStrFieldsName->get_(i - 1));
+                                pStructInsert->addFieldFront(pStrFieldsName->get(i - 1));
                             }
                             else
                             {
-                                std::wstring pwcsField = pStrFieldsName->get_(i - 1);
+                                std::wstring pwcsField = pStrFieldsName->get(i - 1);
                                 types::List* pLExtract = pStructInsert->extractFieldWithoutClone(pwcsField);
                                 
                                 int size = pLExtract->getSize();
@@ -2137,9 +2137,9 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     int size = pStrInsertFieldsName->getSize();
                     for (int i = 0; i < size; i++)
                     {
-                        if (pStructRet->exists(pStrInsertFieldsName->get_(i)) == false)
+                        if (pStructRet->exists(pStrInsertFieldsName->get(i)) == false)
                         {
-                            pStructRet->addField(pStrInsertFieldsName->get_(i));
+                            pStructRet->addField(pStrInsertFieldsName->get(i));
                         }
                     }
 
