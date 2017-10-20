@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
                 return types::Function::Error;
             }
 
-            iInc = (int)in[3]->getAs<types::Double>()->get(0);
+            iInc = (int)in[3]->getAs<types::Double>()->getFirst();
 
             //check third input parameter : dim
             if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->isScalar() == false)
@@ -81,7 +81,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
                 return types::Function::Error;
             }
 
-            iDimLength = (int)in[2]->getAs<types::Double>()->get(0);
+            iDimLength = (int)in[2]->getAs<types::Double>()->getFirst();
             iDimCount = 3; //any value > 2 (used as a flag)
 
         case 2 :
@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
                 return types::Function::Error;
             }
 
-            iWay = (int)in[1]->getAs<types::Double>()->get(0);
+            iWay = (int)in[1]->getAs<types::Double>()->getFirst();
             if (iWay != -1 && iWay != 1)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "fft", 2, "-1 1");

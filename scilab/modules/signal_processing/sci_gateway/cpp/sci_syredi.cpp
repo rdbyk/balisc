@@ -113,7 +113,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    iType = (filter_type)(int)in[0]->getAs<types::Double>()->get(0);
+    iType = (filter_type)(int)in[0]->getAs<types::Double>()->getFirst();
 
     //check 2nd input parameter : approximation type ( 1 int )
     pDblAppro = in[1]->getAs<types::Double>();
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    iAppro = (design_type)(int)in[1]->getAs<types::Double>()->get(0);
+    iAppro = (design_type)(int)in[1]->getAs<types::Double>()->getFirst();
 
     //check 3rd input parameter : cuttof frequencies ( 4-row vector )
     pDblCutOff = in[2]->getAs<types::Double>();
@@ -159,7 +159,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    dblDeltaP = pDblDeltaP->get(0);
+    dblDeltaP = pDblDeltaP->getFirst();
 
     //check 5th input parameter : ripple in stopband ( 0 < deltas < 1 )
     pDblDeltaS = in[4]->getAs<types::Double>();
@@ -169,7 +169,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    dblDeltaS = pDblDeltaS->get(0);
+    dblDeltaS = pDblDeltaS->getFirst();
 
 
     //alloc temporary variables

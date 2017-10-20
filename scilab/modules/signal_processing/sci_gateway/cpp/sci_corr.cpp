@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isString())
     {
         types::String* pS = in[0]->getAs<types::String>();
-        if (pS->getSize() == 1 && pS->get(0)[0] == L'f')
+        if (pS->getSize() == 1 && pS->getFirst()[0] == L'f')
         {
             //[cov,mean]=corr('fft',xmacro,[ymacro],n,sect)
 
@@ -81,7 +81,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            iOutSize = (int)in[iPos]->getAs<types::Double>()->get(0);
+            iOutSize = (int)in[iPos]->getAs<types::Double>()->getFirst();
             iSect = iOutSize * 2;
 
             //get parameter n
@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            iTotalSize = (int)in[iPos]->getAs<types::Double>()->get(0);
+            iTotalSize = (int)in[iPos]->getAs<types::Double>()->getFirst();
 
             Signalprocessingfunctions* spFunctionsManager = new Signalprocessingfunctions(L"corr");
             Signalprocessing::addSignalprocessingfunctions(spFunctionsManager);
@@ -165,7 +165,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
 
             return types::Function::OK;
         }
-        else if (pS->getSize() == 1 && pS->get(0)[0] == L'u')
+        else if (pS->getSize() == 1 && pS->getFirst()[0] == L'u')
         {
             types::Double* pDblIn1 = NULL;
             types::Double* pDblIn2 = NULL;
@@ -417,7 +417,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        iCorrelation = (int)in[iPos]->getAs<types::Double>()->get(0);
+        iCorrelation = (int)in[iPos]->getAs<types::Double>()->getFirst();
 
         if (in.size() == 3)
         {

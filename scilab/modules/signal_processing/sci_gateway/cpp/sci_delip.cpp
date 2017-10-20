@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_delip(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    double pdblCK = in[1]->getAs<types::Double>()->get(0);
+    double pdblCK = in[1]->getAs<types::Double>()->getFirst();
     if (pdblCK < -1 || pdblCK > 1)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "delip", 2, "-1", "1");
