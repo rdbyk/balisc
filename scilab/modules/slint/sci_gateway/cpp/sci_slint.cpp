@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             {
                 if (in[1]->getAs<types::Bool>()->getSize() == 1)
                 {
-                    printResults = in[1]->getAs<types::Bool>()->get(0) == 0 ? false : true;
+                    printResults = in[1]->getAs<types::Bool>()->getFirst() == 0 ? false : true;
                 }
                 else
                 {
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
             {
                 if (in[2]->getAs<types::Bool>()->getSize() == 1)
                 {
-                    printResults = in[2]->getAs<types::Bool>()->get(0) == 0 ? false : true;
+                    printResults = in[2]->getAs<types::Bool>()->getFirst() == 0 ? false : true;
                 }
                 else
                 {
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
         {
             if (conf->getSize() == 1)
             {
-                slint::XMLConfig::getOptions(conf->get(0), options);
+                slint::XMLConfig::getOptions(conf->getFirst(), options);
             }
             else
             {
@@ -152,23 +152,23 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
 
         if (outFile)
         {
-            if (conf && conf->getSize() >= 2 && (std::wstring(conf->get(0)) == L"cnes"))
+            if (conf && conf->getSize() >= 2 && (std::wstring(conf->getFirst()) == L"cnes"))
             {
                 const slint::CNES::ToolConfiguration tc = slint::CNES::ToolConfiguration::createFromXml(conf->get(1));
-                const std::wstring out(outFile->get(0));
+                const std::wstring out(outFile->getFirst());
                 const std::size_t pos = out.find_last_of(L'.');
                 if (pos != std::string::npos && out.substr(pos) == L".csv")
                 {
-                    results = new slint::CNES::CNESCsvResult(tc, conf, options.getId(), outFile->get(0));
+                    results = new slint::CNES::CNESCsvResult(tc, conf, options.getId(), outFile->getFirst());
                 }
                 else
                 {
-                    results = new slint::CNES::CNESXmlResult(tc, conf, options.getId(), outFile->get(0));
+                    results = new slint::CNES::CNESXmlResult(tc, conf, options.getId(), outFile->getFirst());
                 }
             }
             else
             {
-                results = new slint::SLintXmlResult(outFile->get(0));
+                results = new slint::SLintXmlResult(outFile->getFirst());
             }
         }
         else
