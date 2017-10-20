@@ -56,8 +56,8 @@ types::Function::ReturnValue sci_system_setproperty(types::typed_list &in, int _
         return types::Function::Error;
     }
 
-    char* pstProperty        = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
-    char* pstValue           = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+    char* pstProperty        = wide_string_to_UTF8(in[0]->getAs<types::String>()->getFirst());
+    char* pstValue           = wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
     char* pstPreviousValue   = system_setproperty(pstProperty, pstValue);
 
     FREE(pstProperty);
