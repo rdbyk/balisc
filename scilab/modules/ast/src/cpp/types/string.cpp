@@ -683,10 +683,9 @@ String* String::set(const char* const* _pstrData)
 
 wchar_t** String::allocData(int _iSize)
 {
-    wchar_t** pStr = nullptr;
     try
     {
-        pStr = new wchar_t*[_iSize]();
+        return new wchar_t*[_iSize]();
     }
     catch (std::bad_alloc & /*e*/)
     {
@@ -694,7 +693,6 @@ wchar_t** String::allocData(int _iSize)
         os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
         throw ast::InternalError(message);
     }
-    return pStr;
 }
 
 ast::Exp* String::getExp(const Location& loc)
