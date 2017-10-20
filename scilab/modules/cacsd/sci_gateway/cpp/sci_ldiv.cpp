@@ -205,7 +205,7 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    iK = (int)pDbl->get(0);
+    iK = (int)pDbl->getFirst();
 
     /*** perform operations ***/
     types::Double* pDblOut = new types::Double(iRows * iK, iCols);

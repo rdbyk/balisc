@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        types::SinglePoly* pSPCoefY = pPolyY->get(0);
+        types::SinglePoly* pSPCoefY = pPolyY->getFirst();
         iVol1 = pSPCoefY->getSize();
         pdblY = pSPCoefY->get();
     }
@@ -128,7 +128,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
     }
 
     pPolyDen->getRank(&iRankDen);
-    pdblDen = pPolyDen->get(0)->get();
+    pdblDen = pPolyDen->getFirst()->get();
     C2F(idegre)(pdblDen, &iRankDen, &iRankDen);
     int iSize = iRankDen + 1;
     double dblScal = 1.0 / pdblDen[iRankDen];
@@ -142,7 +142,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
     }
 
     types::Double* pDblN = in[2]->getAs<types::Double>();
-    iN = (int)pDblN->get(0);
+    iN = (int)pDblN->getFirst();
     if (iN < 1)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: More or equal to %d expected.\n"), "arl2_ius", 3, 1);
@@ -167,7 +167,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
                 return types::Function::Error;
             }
 
-            if (wcscmp(pStrAll->get(0), L"all") != 0)
+            if (wcscmp(pStrAll->getFirst(), L"all") != 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'all' expected.\n"), "arl2_ius", 4);
                 return types::Function::Error;
@@ -178,7 +178,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
         else if (in[3]->isDouble()) // get imp
         {
             types::Double* pDblImp = in[3]->getAs<types::Double>();
-            C2F(arl2c).info = (int)pDblImp->get(0);
+            C2F(arl2c).info = (int)pDblImp->getFirst();
             if (C2F(arl2c).info < 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: Positive value expected.\n"), "arl2_ius", 4);
@@ -201,7 +201,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
         }
 
         types::Double* pDblImp = in[3]->getAs<types::Double>();
-        C2F(arl2c).info = (int)pDblImp->get(0);
+        C2F(arl2c).info = (int)pDblImp->getFirst();
         if (C2F(arl2c).info < 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Positive value expected.\n"), "arl2_ius", 4);
@@ -222,7 +222,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        if (wcscmp(pStrAll->get(0), L"all") != 0)
+        if (wcscmp(pStrAll->getFirst(), L"all") != 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: 'all' expected.\n"), "arl2_ius", 5);
             return types::Function::Error;
@@ -389,7 +389,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
         // retrun denominator
         int iRank = iN + 1;
         types::Polynom* pPolyDenOut = new types::Polynom(pPolyDen->getVariableName(), 1, 1, &iRank);
-        double* pdblDenOut = pPolyDenOut->get(0)->get();
+        double* pdblDenOut = pPolyDenOut->getFirst()->get();
         C2F(dcopy)(&iRank, pDblDenTemp, &iOne, pdblDenOut, &iOne);
         out.push_back(pPolyDenOut);
 
@@ -397,7 +397,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
         if (_iRetCount > 1)
         {
             types::Polynom* pPolyNumOut = new types::Polynom(pPolyDen->getVariableName(), 1, 1, &iN);
-            double* pdblNumOut = pPolyNumOut->get(0)->get();
+            double* pdblNumOut = pPolyNumOut->getFirst()->get();
             C2F(dcopy)(&iN, pdblNum, &iOne, pdblNumOut, &iOne);
             out.push_back(pPolyNumOut);
         }

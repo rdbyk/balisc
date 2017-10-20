@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    dTol = pDblTol->get(0);
+    dTol = pDblTol->getFirst();
 
     /*** perform operations ***/
     types::Double* pDblQ = new types::Double(iRowsX, iRowsX);
