@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        wstrFlag = in[2]->getAs<types::String>()->get(0);
+        wstrFlag = in[2]->getAs<types::String>()->getFirst();
         if (wstrFlag != L"roots" && wstrFlag != L"coeff" && wstrFlag != L"r" && wstrFlag != L"c")
         {
             Scierror(999, _("%s: Wrong value for input argument #%d : ""%s"" or ""%s"" expected.\n"), "poly", 3, "roots", "coeff");
@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    std::wstring wstrName = pStrName->get(0);
+    std::wstring wstrName = pStrName->getFirst();
     size_t badpos = wstrName.find_first_not_of(L"$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
     if (badpos != std::wstring::npos)
     {
@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
             *iRank = 0;
             types::Polynom* pPolyOut = new types::Polynom(wstrName, 1, 1, iRank);
             delete[] iRank;
-            double* pdblCoef = pPolyOut->get(0)->get();
+            double* pdblCoef = pPolyOut->getFirst()->get();
             *pdblCoef = 1;
             out.push_back(pPolyOut);
             return types::Function::OK;
@@ -136,13 +136,13 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         int *iRanks = new int[1];
         *iRanks = iSize;
         pPolyOut = new types::Polynom(wstrName, 2, piDimsArray, iRanks);
-        double* pdblCoefReal = pPolyOut->get(0)->get();
+        double* pdblCoefReal = pPolyOut->getFirst()->get();
         if (pDblIn->isComplex())
         {
             double dblEps = nc_eps_machine();
             pPolyOut->setComplex(true);
             double* pdblInImg   = pDblIn->getImg();
-            double* pdblCoefImg = pPolyOut->get(0)->getImg();
+            double* pdblCoefImg = pPolyOut->getFirst()->getImg();
             C2F(wprxc)(iRanks, pdblInReal, pdblInImg, pdblCoefReal, pdblCoefImg);
             bool bSetCplx = false;
             for (int k = 0; k < *iRanks; k++)

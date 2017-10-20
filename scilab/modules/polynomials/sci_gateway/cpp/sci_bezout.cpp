@@ -85,8 +85,8 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
             }
 
             wstrName    = pPolyIn->getVariableName();
-            pdblIn[i]   = pPolyIn->get(0)->get();
-            piDegree[i] = pPolyIn->get(0)->getRank();
+            pdblIn[i]   = pPolyIn->getFirst()->get();
+            piDegree[i] = pPolyIn->getFirst()->getRank();
         }
     }
 

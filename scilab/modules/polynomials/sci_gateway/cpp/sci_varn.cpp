@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_varn(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        std::wstring wstrName = pStrName->get(0);
+        std::wstring wstrName = pStrName->getFirst();
         // search blank
         size_t blankpos = wstrName.find_first_of(L" ");
         if ((int)blankpos != -1)

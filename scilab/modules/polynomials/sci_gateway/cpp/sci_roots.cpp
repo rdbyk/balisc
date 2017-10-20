@@ -80,7 +80,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        wstrAlgo = pStrAlgo->get(0);
+        wstrAlgo = pStrAlgo->getFirst();
         if (wstrAlgo != L"e" && wstrAlgo != L"f")
         {
             Scierror(999, _("%s: Wrong value for input argument #%d : ""%s"" or ""%s"" expected.\n"), "roots", 2, "e", "f");
@@ -122,12 +122,12 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         }
 
         iSize      = pPolyIn->getMaxRank() + 1;
-        pdblInReal = pPolyIn->get(0)->get();
+        pdblInReal = pPolyIn->getFirst()->get();
 
         if (pPolyIn->isComplex())
         {
             bComplex = true;
-            pdblInImg = pPolyIn->get(0)->getImg();
+            pdblInImg = pPolyIn->getFirst()->getImg();
         }
     }
     else

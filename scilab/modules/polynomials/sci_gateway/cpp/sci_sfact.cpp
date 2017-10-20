@@ -66,10 +66,10 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
 
     if (pPolyIn->isScalar())
     {
-        double* pdblCoef = pPolyIn->get(0)->get();
+        double* pdblCoef = pPolyIn->getFirst()->get();
 
         // check symmetry
-        int iDegree = pPolyIn->get(0)->getRank();
+        int iDegree = pPolyIn->getFirst()->getRank();
         int iDegD2  = (int)(iDegree / 2);
         int n       = 1 + iDegD2;
 

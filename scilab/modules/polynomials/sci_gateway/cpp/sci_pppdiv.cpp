@@ -93,11 +93,11 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
 
             wstrName = pPolyIn->getVariableName();
             piSize[i] = pPolyIn->getMaxRank() + 1;
-            pdblInR[i] = pPolyIn->get(0)->get();
+            pdblInR[i] = pPolyIn->getFirst()->get();
             if (pPolyIn->isComplex())
             {
                 pbComplex[i] = true;
-                pdblInI[i] = pPolyIn->get(0)->getImg();
+                pdblInI[i] = pPolyIn->getFirst()->getImg();
             }
         }
         else
