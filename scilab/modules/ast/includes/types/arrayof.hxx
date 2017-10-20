@@ -247,11 +247,6 @@ public :
 
     virtual ArrayOf<T>* set(int _iPos, const T _data)
     {
-        if (_iPos >= m_iSize)
-        {
-            return NULL;
-        }
-
         ArrayOf<T>* a = copyAs<ArrayOf<T>>();
         a->set_(_iPos, _data);
         return a;
@@ -346,11 +341,6 @@ public :
 
     ArrayOf<T>* setImg(int _iPos, T _data)
     {
-        if (_iPos >= m_iSize)
-        {
-            return NULL;
-        }
-
         m_pImgData[_iPos] = copyValue(_data);
         return this;
     }
