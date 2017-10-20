@@ -332,11 +332,7 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
 
 InternalType* List::get(const int _iIndex)
 {
-    if (_iIndex >= 0 && _iIndex < (int)m_plData->size())
-    {
-        return (*m_plData)[_iIndex];
-    }
-    return NULL;
+    return (*m_plData)[_iIndex];
 }
 
 InternalType* List::getFirst()
