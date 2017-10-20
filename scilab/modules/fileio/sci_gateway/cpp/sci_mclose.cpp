@@ -48,19 +48,19 @@ types::Function::ReturnValue sci_mclose(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            if (FileManager::isOpened(pS->get(0)))
+            if (FileManager::isOpened(pS->getFirst()))
             {
-                int iFileID = FileManager::getFileID(pS->get(0));
+                int iFileID = FileManager::getFileID(pS->getFirst());
                 if (iFileID == -1)
                 {
-                    char* pst = wide_string_to_UTF8(pS->get(0));
+                    char* pst = wide_string_to_UTF8(pS->getFirst());
                     Scierror(999, _("%s: File not found: '%s'.\n"), "mclose", pst);
                     FREE(pst);
                     return types::Function::Error;
                 }
                 iRet = mclose(iFileID);
             }
-            else if (os_wcsicmp(pS->get(0), L"all") == 0)
+            else if (os_wcsicmp(pS->getFirst(), L"all") == 0)
             {
                 iRet = mcloseAll();
             }
@@ -79,7 +79,7 @@ types::Function::ReturnValue sci_mclose(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            int iVal = static_cast<int>(pD->get(0));
+            int iVal = static_cast<int>(pD->getFirst());
             switch (iVal)
             {
                 case 0: // stderr

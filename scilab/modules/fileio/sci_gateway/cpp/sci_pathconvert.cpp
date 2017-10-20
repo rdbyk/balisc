@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
 
-        wchar_t* pwstType = in[3]->getAs<types::String>()->get(0);
+        wchar_t* pwstType = in[3]->getAs<types::String>()->getFirst();
         if (wcscmp(pwstType, WINDOWS_TYPE) == 0)
         {
             PType = WINDOWS_STYLE;

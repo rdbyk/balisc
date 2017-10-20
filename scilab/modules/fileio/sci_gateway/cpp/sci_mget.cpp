@@ -55,14 +55,14 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     }
 
     types::Double* pDoubleTest = in[0]->getAs<types::Double>();
-    if ((pDoubleTest->get(0) != (int)pDoubleTest->get(0)) || (pDoubleTest->get(0) < 0))
+    if ((pDoubleTest->getFirst() != (int)pDoubleTest->getFirst()) || (pDoubleTest->getFirst() < 0))
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), "mget", 1);
         FREE(pstType);
         return types::Function::Error;
     }
 
-    iSize = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
+    iSize = static_cast<int>(in[0]->getAs<types::Double>()->getFirst());
 
     if (in.size() >= 2)
     {
@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
         }
 
         FREE(pstType);
-        pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
     }
 
     if (in.size() == 3)
@@ -87,7 +87,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        iFile = static_cast<int>(in[2]->getAs<types::Double>()->get(0));
+        iFile = static_cast<int>(in[2]->getAs<types::Double>()->getFirst());
     }
 
     switch (iFile)

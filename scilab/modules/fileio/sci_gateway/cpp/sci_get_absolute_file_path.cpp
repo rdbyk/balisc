@@ -49,7 +49,7 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
         return types::Function::Error;
     }
 
-    wcsFileName = in[0]->getAs<types::String>()->get(0);
+    wcsFileName = in[0]->getAs<types::String>()->getFirst();
     wcsFilesOpened = FileManager::getFilenames();
 
     size_t len_wcsFileName = wcslen(wcsFileName);

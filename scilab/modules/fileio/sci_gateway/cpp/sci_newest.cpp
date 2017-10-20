@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
                 Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "newest", iNbrString + 1);
                 return types::Function::Error;
             }
-            pwcsStringInput[iNbrString] = in[iNbrString]->getAs<types::String>()->get(0);
+            pwcsStringInput[iNbrString] = in[iNbrString]->getAs<types::String>()->getFirst();
         }
 
         if (in[1]->getAs<types::String>()->isScalar() == false)

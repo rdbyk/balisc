@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        pstFilename = expandPathVariableW(pS1->get(0));
+        pstFilename = expandPathVariableW(pS1->getFirst());
 
         if (in.size() >= 2)
         {
@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            pstMode = pS2->get(0);
+            pstMode = pS2->getFirst();
 
             if (in.size() >= 3)
             {

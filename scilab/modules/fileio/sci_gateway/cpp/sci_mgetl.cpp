@@ -63,22 +63,22 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        if (in[1]->getAs<types::Double>()->get(0) != (int)in[1]->getAs<types::Double>()->get(0))
+        if (in[1]->getAs<types::Double>()->getFirst() != (int)in[1]->getAs<types::Double>()->getFirst())
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "mgetl", 2);
             return types::Function::Error;
         }
 
-        iLinesExcepted = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
+        iLinesExcepted = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
     }
 
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 1)
     {
-        iFileID = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
+        iFileID = static_cast<int>(in[0]->getAs<types::Double>()->getFirst());
     }
     else if (in[0]->isString() && in[0]->getAs<types::String>()->getSize() == 1)
     {
-        wchar_t *expandedFileName = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
+        wchar_t *expandedFileName = expandPathVariableW(in[0]->getAs<types::String>()->getFirst());
 
         iErr = mopen(expandedFileName, L"rt", 0, &iFileID);
 

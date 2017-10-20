@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mfscanf", 1);
             return types::Function::Error;
         }
-        iNiter = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
+        iNiter = static_cast<int>(in[0]->getAs<types::Double>()->getFirst());
     }
 
     if (in[size - 2]->isDouble() == false || in[size - 2]->getAs<types::Double>()->isScalar() == false || in[size - 2]->getAs<types::Double>()->isComplex())
@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    iFile = static_cast<int>(in[size - 2]->getAs<types::Double>()->get(0));
+    iFile = static_cast<int>(in[size - 2]->getAs<types::Double>()->getFirst());
     switch (iFile)
     {
         case 0: // stderr
@@ -102,7 +102,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             break;
     }
 
-    wcsFormat = in[size - 1]->getAs<types::String>()->get(0);
+    wcsFormat = in[size - 1]->getAs<types::String>()->getFirst();
     StringConvertW(wcsFormat);
 
     types::File* pFile = FileManager::getFile(iFile);
