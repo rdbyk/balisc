@@ -276,11 +276,6 @@ public :
 
     virtual Double* set(int _iPos, const double _data)
     {
-        if (_iPos >= m_iSize)
-        {
-            return NULL;
-        }
-
         Double* d = copyAs<Double>();
         d->set_(_iPos, _data);
         return d;
