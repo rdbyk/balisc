@@ -271,7 +271,7 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         types::String* propertiesStr = properties->getAs<types::String>();
 
         // Checking the index validity
-        int index = pIndex->get(0);
+        int index = pIndex->getFirst();
         if (floor(index) != index)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "getfield", 1);
