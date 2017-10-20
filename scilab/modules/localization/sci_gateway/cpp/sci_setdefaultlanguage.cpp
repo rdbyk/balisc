@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _
         Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "setdefaultlanguage" , 1);
         return types::Function::Error;
     }
-    wchar_t *newlang = getLanguageFromAlias(in[0]->getAs<types::String>()->get(0));
+    wchar_t *newlang = getLanguageFromAlias(in[0]->getAs<types::String>()->getFirst());
 
     if ( !isValidLanguage(newlang) )
     {

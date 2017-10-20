@@ -128,7 +128,7 @@ static types::Function::ReturnValue allocate(types::typed_list &in, int /*_iRetC
      * allocate the right adapter then try to set fields values
      */
 
-    const view_scilab::Adapters::adapters_index_t adapter_index = view_scilab::Adapters::instance().lookup_by_typename(type_name->get(0));
+    const view_scilab::Adapters::adapters_index_t adapter_index = view_scilab::Adapters::instance().lookup_by_typename(type_name->getFirst());
     types::InternalType* returnType;
     switch (adapter_index)
     {
@@ -203,7 +203,7 @@ static types::Function::ReturnValue allocate(types::typed_list &in, int /*_iRetC
             }
             break;
         default:
-            Scierror(999, _("%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"), funame.data(), 1, type_name->get(0));
+            Scierror(999, _("%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"), funame.data(), 1, type_name->getFirst());
             return types::Function::Error;
     }
     out.push_back(returnType);

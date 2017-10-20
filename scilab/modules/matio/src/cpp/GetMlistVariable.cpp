@@ -47,7 +47,7 @@ matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfi
 
 matvar_t* GetMListMatVar(types::MList* pMist, const char* name, int matfile_version)
 {
-    char* pcName = wide_string_to_UTF8(pMist->getFieldNames()->get(0));
+    char* pcName = wide_string_to_UTF8(pMist->getFieldNames()->getFirst());
     Scierror(999, _("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMListMatVar", pcName);
     FREE(pcName);
     return NULL;

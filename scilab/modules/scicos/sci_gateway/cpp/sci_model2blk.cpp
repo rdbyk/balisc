@@ -231,7 +231,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
     if (pIT->isList())
     {
         l = pIT->getAs<types::List>();
-        il_sim = l->get(0)->getAs<types::Double>();
+        il_sim = l->getFirst()->getAs<types::Double>();
         d = l->get(1)->getAs<types::Double>();
         Block.type = static_cast<int>(d->get()[0]);
     }
@@ -250,7 +250,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
     else if (il_sim->isString())
     {
         types::String* funStr = il_sim->getAs<types::String>();
-        wchar_t* w_str = funStr->get(0);
+        wchar_t* w_str = funStr->getFirst();
         char* c_str = wide_string_to_UTF8(w_str);
         void* f = funnum2(c_str); // Search associated function number of function name
         // Block is defined by a C or Fortran function

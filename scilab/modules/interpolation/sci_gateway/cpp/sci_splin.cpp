@@ -122,7 +122,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        wchar_t* wcsType = in[2]->getAs<types::String>()->get(0);
+        wchar_t* wcsType = in[2]->getAs<types::String>()->getFirst();
 
         if (wcscmp(wcsType, L"not_a_knot") == 0)
         {
@@ -190,7 +190,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
     }
 
     // verify y(1) = y(n) for periodic splines
-    if ((iType == 3 || iType == 5) && pDblY->get(0) != pDblY->get(pDblY->getSize() - 1))
+    if ((iType == 3 || iType == 5) && pDblY->getFirst() != pDblY->get(pDblY->getSize() - 1))
     {
         Scierror(999, _("%s: Wrong value for periodic spline %s: Must be equal to %s.\n"), "spline", "y(1)", "y(n)");
         return types::Function::Error;
@@ -220,7 +220,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
 
             if (iType == 2)
             {
-                pDblOut->set(0, pDblDer->get(0));
+                pDblOut->set(0, pDblDer->getFirst());
                 pDblOut->set(iSize - 1, pDblDer->get(1));
             }
 

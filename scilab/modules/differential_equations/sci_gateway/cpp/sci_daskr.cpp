@@ -253,7 +253,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                     FREE(YSize);
                     return types::Function::Error;
                 }
-                ng = (int)pDblNg->get(0);
+                ng = (int)pDblNg->getFirst();
             }
             else if (pDblHd == NULL && bFuncF == true)
             {
@@ -358,7 +358,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
             if (bOK == false)
             {
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                char* pst = wide_string_to_UTF8(pStr->getFirst());
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "daskr", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
@@ -393,10 +393,10 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             }
 
             // functions can be passed in a list
-            if (pList->get(0)->isString())
+            if (pList->getFirst()->isString())
             {
                 // list(string,...  function case
-                types::String* pStr = pList->get(0)->getAs<types::String>();
+                types::String* pStr = pList->getFirst()->getAs<types::String>();
                 bool bOK = false;
                 sizeOfpdYData = *YSize;
 
@@ -428,7 +428,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
                 if (bOK == false)
                 {
-                    char* pst = wide_string_to_UTF8(pStr->get(0));
+                    char* pst = wide_string_to_UTF8(pStr->getFirst());
                     Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "daskr", iPos + 1, pst);
                     FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
@@ -478,13 +478,13 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 FREE(pdYDataTemp);
                 FREE(sizeTemp);
             }
-            else if (pList->get(0)->isCallable())
+            else if (pList->getFirst()->isCallable())
             {
                 // list(macro,...  function case
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -493,7 +493,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 else if (bFuncJac == false && pDblNg == NULL)
                 {
                     bFuncJac = true;
-                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -502,7 +502,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 else if (bFuncG == false && pDblNg)
                 {
                     bFuncG = true;
-                    deFunctionsManager.setGFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setGArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -511,7 +511,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 else if (bFuncG && bFuncPsol == false)
                 {
                     bFuncPsol = true;
-                    deFunctionsManager.setPsolFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setPsolFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setPsolArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -520,14 +520,14 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 else if (bFuncPsol && bFuncPjac == false)
                 {
                     bFuncPjac = true;
-                    deFunctionsManager.setPjacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setPjacFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setPjacArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
             }
-            else if (pList->get(0)->isDouble() && bFuncF == true)
+            else if (pList->getFirst()->isDouble() && bFuncF == true)
             {
                 // list(double,... then this list is the info argument
                 if (pList->getSize() != 14)
@@ -561,22 +561,22 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 }
 
                 //  --   subvariable tstop(info) --
-                types::Double* pDblTemp = pList->get(0)->getAs<types::Double>();
+                types::Double* pDblTemp = pList->getFirst()->getAs<types::Double>();
                 if (pDblTemp->getSize() != 0)
                 {
                     info[3] = 1;
-                    tstop = pDblTemp->get(0);
+                    tstop = pDblTemp->getFirst();
                 }
 
                 //  --   subvariable imode(info) --
-                info[2] = (int)pList->get(1)->getAs<types::Double>()->get(0);
+                info[2] = (int)pList->get(1)->getAs<types::Double>()->getFirst();
 
                 //  --   subvariable band(info) --
                 pDblTemp = pList->get(2)->getAs<types::Double>();
                 if (pDblTemp->getSize() == 2)
                 {
                     info[5] = 1;
-                    ml = (int)pDblTemp->get(0);
+                    ml = (int)pDblTemp->getFirst();
                     mu = (int)pDblTemp->get(1);
                     deFunctionsManager.setMl(ml);
                     deFunctionsManager.setMu(mu);
@@ -596,7 +596,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 if (pDblTemp->getSize() != 0)
                 {
                     info[6] = 1;
-                    maxstep = pDblTemp->get(0);
+                    maxstep = pDblTemp->getFirst();
                 }
 
                 //  --   subvariable stepin(info) --
@@ -604,15 +604,15 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 if (pDblTemp->getSize() != 0)
                 {
                     info[7] = 1;
-                    stepin = pDblTemp->get(0);
+                    stepin = pDblTemp->getFirst();
                 }
 
                 //  --   subvariable nonneg(info) --
-                info[9]  = (int)pList->get(5)->getAs<types::Double>()->get(0);
+                info[9]  = (int)pList->get(5)->getAs<types::Double>()->getFirst();
 
                 //  --   subvariable consistent(info) --
                 pDblTemp = pList->get(6)->getAs<types::Double>();
-                if (pDblTemp->isEmpty() || (pDblTemp->isScalar() && pDblTemp->get(0) == 0))
+                if (pDblTemp->isEmpty() || (pDblTemp->isScalar() && pDblTemp->getFirst() == 0))
                 {
                     // info(11) is then [] or [0]
                     info[10] = 0;
@@ -633,7 +633,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 pDblE7 = pDblTemp;
 
                 //  --   subvariable iteration(info) --
-                if (pList->get(7)->getAs<types::Double>()->get(0) == 1)
+                if (pList->get(7)->getAs<types::Double>()->getFirst() == 1)
                 {
                     info[11] = 1;
                 }
@@ -650,14 +650,14 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 {
                     // info then looks like list(..., [maxl kmp nrmax epli],...)
                     info[12] = 1;
-                    maxl  = (int)pDblTemp->get(0);
+                    maxl  = (int)pDblTemp->getFirst();
                     kmp   = (int)pDblTemp->get(1);
                     nrmax = (int)pDblTemp->get(2);
                     epli  = pDblTemp->get(3);
                 }
 
                 //  --   subvariable justConsistentComp(info) --
-                dTemp = pList->get(9)->getAs<types::Double>()->get(0);
+                dTemp = pList->get(9)->getAs<types::Double>()->getFirst();
                 if (dTemp)
                 {
                     // Check that info(11) = 1, meaning that the provided initial values
@@ -669,7 +669,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 }
 
                 //  --   subvariable psolJac(info) --
-                dTemp = pList->get(10)->getAs<types::Double>()->get(0);
+                dTemp = pList->get(10)->getAs<types::Double>()->getFirst();
                 if (dTemp)
                 {
                     info[14] = 1;
@@ -697,7 +697,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 {
                     // info then looks like list(..., [mxnit mxnj lsoff stptol epinit],...)
                     info[16] = 1;
-                    mxnit   = (int)pDblTemp->get(0);
+                    mxnit   = (int)pDblTemp->getFirst();
                     mxnj    = (int)pDblTemp->get(1);
                     mxnh    = (int)pDblTemp->get(2);
                     lsoff   = (int)pDblTemp->get(3);
@@ -706,7 +706,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 }
 
                 //  --   subvariable verbosity(info) --
-                dTemp = pList->get(13)->getAs<types::Double>()->get(0);
+                dTemp = pList->get(13)->getAs<types::Double>()->getFirst();
                 if (dTemp == 1 || dTemp == 2)
                 {
                     info[17] = (int)dTemp;
@@ -771,7 +771,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     }
 
     // *** Initialization. ***
-    double t0    = pDblT0->get(0);
+    double t0    = pDblT0->getFirst();
     int idid     = 0;
     int maxord   = 5;
 
@@ -787,7 +787,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         if (pDblAtol->isScalar())
         {
             atol  = (double*)MALLOC(sizeof(double));
-            *atol = pDblAtol->get(0);
+            *atol = pDblAtol->getFirst();
         }
         else
         {
@@ -806,7 +806,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         if (pDblRtol->isScalar())
         {
             rtol  = (double*)MALLOC(sizeof(double));
-            *rtol = pDblRtol->get(0);
+            *rtol = pDblRtol->getFirst();
         }
         else
         {

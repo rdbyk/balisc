@@ -72,11 +72,11 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        if (in[2]->getAs<types::String>()->get(0)[0] == WCHAR_R)
+        if (in[2]->getAs<types::String>()->getFirst()[0] == WCHAR_R)
         {
             bRegExp = true;
         }
-        else if (in[2]->getAs<types::String>()->get(0)[0] == WCHAR_S)
+        else if (in[2]->getAs<types::String>()->getFirst()[0] == WCHAR_S)
         {
             bRegExp = false;
         }

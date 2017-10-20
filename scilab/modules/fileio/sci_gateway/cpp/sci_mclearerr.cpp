@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_mclearerr(types::typed_list &in, int _iRetCount
             return types::Function::Error;
         }
 
-        iFile = (int)in[0]->getAs<types::Double>()->get(0);
+        iFile = (int)in[0]->getAs<types::Double>()->getFirst();
     }
 
     types::File* pF = FileManager::getFile(iFile);

@@ -47,8 +47,8 @@ types::Function::ReturnValue sci_ilib_verbose(types::typed_list &in, int _iRetCo
         return types::Function::Error;
     }
 
-    int iLevel = (int) in[0]->getAs<types::Double>()->get(0);
-    if ((double)iLevel !=  in[0]->getAs<types::Double>()->get(0))
+    int iLevel = (int) in[0]->getAs<types::Double>()->getFirst();
+    if ((double)iLevel !=  in[0]->getAs<types::Double>()->getFirst())
     {
         //not really a int
         Scierror(999, _("%s: Wrong value for input argument #%d: A int expected.\n"), "ilib_verbose", 1);

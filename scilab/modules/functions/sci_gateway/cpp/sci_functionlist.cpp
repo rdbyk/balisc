@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        pstLibName = pS->get(0);
+        pstLibName = pS->getFirst();
     }
     else
     {

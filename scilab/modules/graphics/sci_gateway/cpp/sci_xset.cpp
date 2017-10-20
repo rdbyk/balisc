@@ -90,7 +90,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    pwcsWhat = pStr->get(0);
+    pwcsWhat = pStr->getFirst();
 
     if (ConfigGraphicVariable::bPropertyFound(pwcsWhat) == false)
     {
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            ConfigGraphicVariable::setFPF(pStrValue->get(0));
+            ConfigGraphicVariable::setFPF(pStrValue->getFirst());
         }
         break;
         case 2 : // auto clear
@@ -165,7 +165,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             int bAutoClear = 0;
-            if (wcscmp(pStrValue->get(0), L"on") == 0)
+            if (wcscmp(pStrValue->getFirst(), L"on") == 0)
             {
                 bAutoClear = 1;
             }
@@ -199,7 +199,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             {
                 for (int i = 0; i < 4 ; i++)
                 {
-                    dvalues[i] = in[i + 1]->getAs<types::Double>()->get(0);
+                    dvalues[i] = in[i + 1]->getAs<types::Double>()->getFirst();
                 }
             }
 
@@ -233,7 +233,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            int markSize = (int)in[1]->getAs<types::Double>()->get(0);
+            int markSize = (int)in[1]->getAs<types::Double>()->getFirst();
             int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
 
             iSubwinUID = getOrCreateDefaultSubwin();
@@ -251,8 +251,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            int markStyle = (int) in[1]->getAs<types::Double>()->get(0);
-            int markSize = (int) in[2]->getAs<types::Double>()->get(0);
+            int markStyle = (int) in[1]->getAs<types::Double>()->getFirst();
+            int markSize = (int) in[2]->getAs<types::Double>()->getFirst();
             int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
             int markMode = 1;
 
@@ -272,7 +272,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
                 return types::Function::Error;
             }
-            double fontSize = in[1]->getAs<types::Double>()->get(0);
+            double fontSize = in[1]->getAs<types::Double>()->getFirst();
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
         }
         break;
@@ -408,7 +408,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            int hiddenColor = (int) in[1]->getAs<types::Double>()->get(0);
+            int hiddenColor = (int) in[1]->getAs<types::Double>()->getFirst();
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
         }
         break;
@@ -422,8 +422,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            int fontStyle = (int) in[1]->getAs<types::Double>()->get(0);
-            double fontSize = in[2]->getAs<types::Double>()->get(0);
+            int fontStyle = (int) in[1]->getAs<types::Double>()->getFirst();
+            double fontSize = in[2]->getAs<types::Double>()->getFirst();
 
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
@@ -441,7 +441,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             // Find if window already exists, if not create a new one
-            int iID = (int)in[1]->getAs<types::Double>()->get(0);
+            int iID = (int)in[1]->getAs<types::Double>()->getFirst();
             int iFigureUID = getFigureFromIndex(iID);
             int iAxesUID = 0;
             int* piAxesUID = &iAxesUID;
@@ -469,7 +469,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            int iColor = (int) in[1]->getAs<types::Double>()->get(0);
+            int iColor = (int) in[1]->getAs<types::Double>()->getFirst();
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_COLOR__, &iColor, jni_int, 1);
         }
         break;
@@ -483,7 +483,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            int iColor = (int) in[1]->getAs<types::Double>()->get(0);
+            int iColor = (int) in[1]->getAs<types::Double>()->getFirst();
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_BACKGROUND__, &iColor, jni_int, 1);
         }
         break;
@@ -497,7 +497,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            sciSetLineWidth(getOrCreateDefaultSubwin(), (int)in[1]->getAs<types::Double>()->get(0));
+            sciSetLineWidth(getOrCreateDefaultSubwin(), (int)in[1]->getAs<types::Double>()->getFirst());
         }
         break;
         case 19 : // line style
@@ -510,7 +510,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            int lineStyle = (int) in[1]->getAs<types::Double>()->get(0);
+            int lineStyle = (int) in[1]->getAs<types::Double>()->getFirst();
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
         }
         break;
@@ -524,7 +524,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            int lineStyle = (int) in[1]->getAs<types::Double>()->get(0);
+            int lineStyle = (int) in[1]->getAs<types::Double>()->getFirst();
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
         }
         break;
@@ -538,7 +538,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            int iAutoResizeMode = (int)in[1]->getAs<types::Double>()->get(0);
+            int iAutoResizeMode = (int)in[1]->getAs<types::Double>()->getFirst();
             setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTORESIZE__, &iAutoResizeMode, jni_bool, 1);
         }
         break;
@@ -555,7 +555,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 
             getOrCreateDefaultSubwin();
 
-            figurePosition[0] = (int)in[1]->getAs<types::Double>()->get(0);
+            figurePosition[0] = (int)in[1]->getAs<types::Double>()->getFirst();
             figurePosition[1] = (int)in[1]->getAs<types::Double>()->get(1);
             setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
         }
@@ -572,10 +572,10 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            figureSize[0] = (int)in[1]->getAs<types::Double>()->get(0);
+            figureSize[0] = (int)in[1]->getAs<types::Double>()->getFirst();
             if (in.size() == 3)
             {
-                figureSize[1] = (int)in[2]->getAs<types::Double>()->get(0);
+                figureSize[1] = (int)in[2]->getAs<types::Double>()->getFirst();
             }
 
             /* Xwindows limits dimensions to 2^16 */
@@ -604,8 +604,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             int viewport[4] = {0, 0, 0, 0};
-            viewport[0] = (int)in[1]->getAs<types::Double>()->get(0);
-            viewport[1] = (int)in[2]->getAs<types::Double>()->get(0);
+            viewport[0] = (int)in[1]->getAs<types::Double>()->getFirst();
+            viewport[1] = (int)in[2]->getAs<types::Double>()->getFirst();
 
             getOrCreateDefaultSubwin();
             setGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, viewport, jni_int_vector, 2);
@@ -625,7 +625,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             int iZero = 0;
             int iOne = 1;
 
-            if (in[1]->getAs<types::Double>()->get(0) == 0)
+            if (in[1]->getAs<types::Double>()->getFirst() == 0)
             {
                 setGraphicObjectProperty(iSubwinUID, __GO_LINE_MODE__, &iZero, jni_bool, 1);
             }

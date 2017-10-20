@@ -61,8 +61,8 @@ types::Function::ReturnValue sci_funcprot(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    iFuncprotMode = (int)pDblIn->get(0);
-    if (pDblIn->get(0) != (double)iFuncprotMode)
+    iFuncprotMode = (int)pDblIn->getFirst();
+    if (pDblIn->getFirst() != (double)iFuncprotMode)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "funcprot", 1);
         return types::Function::Error;

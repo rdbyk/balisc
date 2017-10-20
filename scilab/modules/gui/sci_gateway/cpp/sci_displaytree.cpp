@@ -72,13 +72,13 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
     }
 
     // Get first element as a string
-    if (pIn->get(0)->isString() == false)
+    if (pIn->getFirst()->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for element #%d of input argument #%d : string expected.\n"), funname.data(), 1, 1);
         return types::Function::Error;
     }
 
-    types::String* strItem1 = pIn->get(0)->getAs<types::String>();
+    types::String* strItem1 = pIn->getFirst()->getAs<types::String>();
     if (strItem1->getSize() < 1)
     {
         Scierror(999, _("%s: Wrong size for element #%d of input argument #%d : At least %d element expected.\n"), funname.data(), 1, 1, 1);
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
     }
 
     // Check tree structure
-    if (wcscmp(strItem1->get(0), TREE_REF_NAME) != 0)
+    if (wcscmp(strItem1->getFirst(), TREE_REF_NAME) != 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A Tree expected.\n"), funname.data(), 1);
         return types::Function::Error;
@@ -100,14 +100,14 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
     }
 
     types::Struct* node = pIn->get(1)->getAs<types::Struct>();
-    types::String* fields = node->get(0)->getFieldNames();
+    types::String* fields = node->getFirst()->getFieldNames();
     if (fields->getSize() < 3)
     {
         Scierror(999, _("%s: Wrong size for element #%d of input argument #%d : At least %d element expected.\n"), funname.data(), 2, 1, 3);
         return types::Function::Error;
     }
 
-    if (fields->get(0) != Label || fields->get(1) != Icon || fields->get(2) != Callback)
+    if (fields->getFirst() != Label || fields->get(1) != Icon || fields->get(2) != Callback)
     {
         Scierror(999, _("%s: Wrong fields for element #%d of input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 2, 1, "label", "icon", "callback");
         return types::Function::Error;
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
     types::InternalType* temp = nullptr;
 
     // Get label name
-    temp = node->get(0)->get(Label);
+    temp = node->getFirst()->get(Label);
     if (temp->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : string expected.\n"), funname.data(), 1, 2, 1);
@@ -137,12 +137,12 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    char* cstr = wide_string_to_UTF8(strLabel->get(0));
+    char* cstr = wide_string_to_UTF8(strLabel->getFirst());
     StructList.push_back(std::string(cstr));
     FREE(cstr);
 
     // Get icon name
-    temp = node->get(0)->get(Icon);
+    temp = node->getFirst()->get(Icon);
     if (temp->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : string expected.\n"), funname.data(), 2, 2, 1);
@@ -156,12 +156,12 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    cstr = wide_string_to_UTF8(strIcon->get(0));
+    cstr = wide_string_to_UTF8(strIcon->getFirst());
     StructList.push_back(std::string(cstr));
     FREE(cstr);
 
     // Get callback name
-    temp = node->get(0)->get(Callback);
+    temp = node->getFirst()->get(Callback);
     if (temp->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : string expected.\n"), funname.data(), 3, 2, 1);
@@ -175,7 +175,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    cstr = wide_string_to_UTF8(strCallback->get(0));
+    cstr = wide_string_to_UTF8(strCallback->getFirst());
     StructList.push_back(std::string(cstr));
     FREE(cstr);
 

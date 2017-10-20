@@ -125,7 +125,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                                         if (pIT == NULL ||
                                                 pIT->isBool() == false ||
                                                 ((types::Bool*)pIT)->isScalar() == false ||
-                                                ((types::Bool*)pIT)->get(0) == 0)
+                                                ((types::Bool*)pIT)->getFirst() == 0)
                                         {
                                             pCtx->scope_end();
                                             //not a boolean, not scalar or false

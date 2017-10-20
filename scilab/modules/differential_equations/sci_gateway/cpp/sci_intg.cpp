@@ -82,7 +82,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    pdA = pDblA->get(0);
+    pdA = pDblA->getFirst();
 
     if (ISNAN(pdA) || C2F(vfinite)(&iOne , &pdA) == false)
     {
@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    pdB = pDblB->get(0);
+    pdB = pDblB->getFirst();
 
     if (ISNAN(pdB) || C2F(vfinite)(&iOne , &pdB) == false)
     {
@@ -140,7 +140,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
         if (bOK == false)
         {
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            char* pst = wide_string_to_UTF8(pStr->getFirst());
             Scierror(50, _("%s: Subroutine not found: %s\n"), "intg", pst);
             FREE(pst);
             DifferentialEquation::removeDifferentialEquationFunctions();
@@ -158,9 +158,9 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        if (pList->get(0)->isCallable())
+        if (pList->getFirst()->isCallable())
         {
-            deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
+            deFunctionsManager.setFFunction(pList->getFirst()->getAs<types::Callable>());
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
                 deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -198,7 +198,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        pdEpsR = pDblEpsR->get(0);
+        pdEpsR = pDblEpsR->getFirst();
     }
 
     if (in.size() == 5)
@@ -218,7 +218,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
-        pdEpsA = pDblEpsA->get(0);
+        pdEpsA = pDblEpsA->getFirst();
     }
 
     // *** Create working table. ***

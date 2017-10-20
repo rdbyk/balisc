@@ -162,7 +162,7 @@ wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* _var)
 
         BOOL bConvLong = FALSE;
         types::String* pS = pIT->getAs<types::String>();
-        return getlongpathnameW( pS->get(0), &bConvLong);
+        return getlongpathnameW( pS->getFirst(), &bConvLong);
     }
     return NULL;
 }

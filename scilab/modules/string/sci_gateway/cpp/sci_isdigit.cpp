@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    wcstrIn = pStrIn->get(0);
+    wcstrIn = pStrIn->getFirst();
     int* pbResult = (int*)IsDigitW(wcstrIn, &iResultSize);
     if (pbResult == NULL)
     {

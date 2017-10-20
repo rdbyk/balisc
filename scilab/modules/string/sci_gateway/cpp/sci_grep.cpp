@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        if (pS->get(0)[0] == 'r')
+        if (pS->getFirst()[0] == 'r')
         {
             bRegularExpression = true;
         }

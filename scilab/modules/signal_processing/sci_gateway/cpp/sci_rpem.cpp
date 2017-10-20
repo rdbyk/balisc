@@ -175,7 +175,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
                 Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "rpem", 6);
                 return types::Function::Error;
             }
-            c = in[5]->getAs<types::Double>()->get(0);
+            c = in[5]->getAs<types::Double>()->getFirst();
         }
         case 5: /* [kappa, mu, nu] */
         {

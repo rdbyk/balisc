@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        wchar_t* pwst = pS->get(0);
+        wchar_t* pwst = pS->getFirst();
         if (wcscmp(pwst, e_type_format) == 0)
         {
             iType = 0;
@@ -113,8 +113,8 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
             }
             case 1:
             {
-                double dLen = pD->get(0);
-                iLen = (int)pD->get(0);
+                double dLen = pD->getFirst();
+                iLen = (int)pD->getFirst();
 
                 if (dLen != (double)iLen)
                 {
@@ -154,7 +154,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            wchar_t* pwst = pS->get(0);
+            wchar_t* pwst = pS->getFirst();
             if (wcscmp(pwst, e_type_format) == 0)
             {
                 iType = 0;
@@ -185,8 +185,8 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            double dLen = pD->get(0);
-            iLen = (int)pD->get(0);
+            double dLen = pD->getFirst();
+            iLen = (int)pD->getFirst();
 
             if (dLen != (double)iLen)
             {
@@ -210,8 +210,8 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            double dLen = pD->get(0);
-            iLen = (int)pD->get(0);
+            double dLen = pD->getFirst();
+            iLen = (int)pD->getFirst();
 
             if (dLen != (double)iLen)
             {
@@ -234,7 +234,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
                     return types::Function::Error;
                 }
 
-                wchar_t* pwst = pS->get(0);
+                wchar_t* pwst = pS->getFirst();
                 if (wcscmp(pwst, e_type_format) == 0)
                 {
                     iType = 0;
@@ -259,8 +259,8 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
                     return types::Function::Error;
                 }
 
-                double dType = pD->get(0);
-                iType = (int)pD->get(0);
+                double dType = pD->getFirst();
+                iType = (int)pD->getFirst();
 
                 if (dType != (double)iType)
                 {

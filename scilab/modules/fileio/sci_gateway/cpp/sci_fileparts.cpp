@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
             return types::Function::Error;
         }
 
-        wchar_t* pParts = in[1]->getAs<types::String>()->get(0);
+        wchar_t* pParts = in[1]->getAs<types::String>()->getFirst();
         if (wcscmp(pParts, FILEPARTS_PATH_SELECTOR) == 0)
         {
             iPartialPart = PathPart;

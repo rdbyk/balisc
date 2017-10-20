@@ -63,12 +63,12 @@ types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, t
 
     if (in.size() == 1)
     {
-        pwstSeps    = in[0]->getAs<types::String>()->get(0);
+        pwstSeps    = in[0]->getAs<types::String>()->getFirst();
     }
     else
     {
         pwstString = StringModule::setToken(in[0]->getAs<types::String>()->get()[0]);
-        pwstSeps    = in[1]->getAs<types::String>()->get(0);
+        pwstSeps    = in[1]->getAs<types::String>()->getFirst();
         pwstState   = NULL;
 
         if (pwstString[0] == L'\0')

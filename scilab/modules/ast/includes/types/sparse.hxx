@@ -1,8 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
+ * Copyright Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -106,6 +105,7 @@ struct EXTERN_AST Sparse : GenericType
     }
 
     double* get();
+    double getFirst() const;
     double get(int r, int c) const;
     double get(int _iIndex) const
     {
@@ -113,6 +113,7 @@ struct EXTERN_AST Sparse : GenericType
     }
 
     std::complex<double>* getImg();
+    std::complex<double> getImgFirst() const;
     std::complex<double> getImg(int r, int c) const;
     std::complex<double> getImg(int _iIndex) const
     {
@@ -614,6 +615,11 @@ struct EXTERN_AST SparseBool : GenericType
     void whoAmI() SPARSE_CONST;
 
     bool* get();
+    bool getFirst() SPARSE_CONST
+    {
+        return get(0);
+    }
+
     bool get(int r, int c) SPARSE_CONST;
     bool get(int _iIndex) SPARSE_CONST
     {

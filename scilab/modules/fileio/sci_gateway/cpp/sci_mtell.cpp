@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        iFile = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
+        iFile = static_cast<int>(in[0]->getAs<types::Double>()->getFirst());
     }
 
     switch (iFile)

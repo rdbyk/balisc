@@ -116,6 +116,7 @@ public :
     }
 
     virtual InternalType*           get(const int _iIndex);
+    virtual InternalType* getFirst();
     virtual void set_(const int _iIndex, InternalType* _pIT);
     virtual List*                   set(const int _iIndex, InternalType* _pIT);
 

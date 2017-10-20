@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    iSizeToRead = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
+    iSizeToRead = static_cast<int>(in[0]->getAs<types::Double>()->getFirst());
 
     if (in.size() == 2)
     {
@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mgetstr", 2);
             return types::Function::Error;
         }
-        iFile = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
+        iFile = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
     }
     switch (iFile)
     {

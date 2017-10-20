@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_system_getproperty(types::typed_list &in, int _
         return types::Function::Error;
     }
 
-    char* pstProperty = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+    char* pstProperty = wide_string_to_UTF8(in[0]->getAs<types::String>()->getFirst());
     char* pstValue = system_getproperty(pstProperty, "unknown");
     types::String* pS = new types::String(pstValue);
     out.push_back(pS);

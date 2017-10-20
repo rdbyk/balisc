@@ -49,13 +49,13 @@ types::Function::ReturnValue sci_convstr(types::typed_list &in, int _iRetCount, 
     if (in.size() == 2 && in[1]->isString() == true)
     {
         types::String *pInConvertMode = in[1]->getAs<types::String>();
-        if (pInConvertMode->getSize() != 1 || wcslen(pInConvertMode->get(0)) != 1)
+        if (pInConvertMode->getSize() != 1 || wcslen(pInConvertMode->getFirst()) != 1)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), "convstr", 2);
             return types::Function::Error;
         }
 
-        wchar_t wcConvertMode = pInConvertMode->get(0)[0];
+        wchar_t wcConvertMode = pInConvertMode->getFirst()[0];
         if (wcConvertMode == L'l' || wcConvertMode == L'L' )
         {
             iConvertMode = -1;

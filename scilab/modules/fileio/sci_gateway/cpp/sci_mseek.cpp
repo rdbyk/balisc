@@ -61,17 +61,17 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    iWhere = static_cast<long long>(in[0]->getAs<types::Double>()->get(0));
+    iWhere = static_cast<long long>(in[0]->getAs<types::Double>()->getFirst());
 
     if (in.size() == 2)
     {
         if (in[1]->isDouble() && in[1]->getAs<types::Double>()->isScalar() && in[1]->getAs<types::Double>()->isComplex() == false)
         {
-            iFile = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
+            iFile = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
         }
         else if (in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
         {
-            wcsFlag = in[1]->getAs<types::String>()->get(0);
+            wcsFlag = in[1]->getAs<types::String>()->getFirst();
         }
         else
         {
@@ -93,8 +93,8 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        iFile = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
-        wcsFlag = in[2]->getAs<types::String>()->get(0);
+        iFile = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
+        wcsFlag = in[2]->getAs<types::String>()->getFirst();
     }
 
     switch (iFile)

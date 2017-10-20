@@ -76,17 +76,17 @@ void Signalprocessingfunctions::execFunctionDgetx(double* x, int* siz, int* iss)
     }
     else if (m_pStringDgetxDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgetxDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgetxDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgetxDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgetxDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((dgetx_f_t)(func->functionPtr))(x, siz, iss);
     }
     else if (m_pStringDgetxStatic)// function static
     {
-        ((dgetx_f_t)m_staticFunctionMap[m_pStringDgetxStatic->get(0)])(x, siz, iss);
+        ((dgetx_f_t)m_staticFunctionMap[m_pStringDgetxStatic->getFirst()])(x, siz, iss);
     }
     else
     {
@@ -137,17 +137,17 @@ void Signalprocessingfunctions::execFunctionDgety(double* y, int* siz, int* iss)
     }
     else if (m_pStringDgetxDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgetyDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgetyDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgetyDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgetyDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((dgety_f_t)(func->functionPtr))(y, siz, iss);
     }
     else if (m_pStringDgetyStatic)// function static
     {
-        ((dgety_f_t)m_staticFunctionMap[m_pStringDgetyStatic->get(0)])(y, siz, iss);
+        ((dgety_f_t)m_staticFunctionMap[m_pStringDgetyStatic->getFirst()])(y, siz, iss);
     }
     else
     {

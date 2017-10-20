@@ -172,7 +172,7 @@ types::Function::ReturnValue sci_data2sig(types::typed_list &in, int _iRetCount,
     }
     // The 'time' vector will have as many lines as the last dimension of 'A'
     const int lastDim = pDims[iDims - 1];
-    B->get(0)->set(Values, A);
+    B->getFirst()->set(Values, A);
 
 
     // Time
@@ -199,7 +199,7 @@ types::Function::ReturnValue sci_data2sig(types::typed_list &in, int _iRetCount,
             B->killMe();
             return types::Function::Error;
         }
-        defaultStep = step->get(0);
+        defaultStep = step->getFirst();
     }
 
     types::Double* timeValues = new types::Double(lastDim, 1);
@@ -207,7 +207,7 @@ types::Function::ReturnValue sci_data2sig(types::typed_list &in, int _iRetCount,
     {
         timeValues->set(i, i * defaultStep);
     }
-    B->get(0)->set(Time, timeValues);
+    B->getFirst()->set(Time, timeValues);
 
 
     out.push_back(B);

@@ -131,7 +131,7 @@ int API_PROTO(getFields)(scilabEnv env, scilabVar var, wchar_t***  fields)
     }
 #endif
 
-    std::unordered_map<std::wstring, int> fieldsMap = s->get(0)->getFields();
+    std::unordered_map<std::wstring, int> fieldsMap = s->getFirst()->getFields();
     *fields = new wchar_t*[fieldsMap.size()];
     int iter = 0;
     for (const auto & field : fieldsMap)

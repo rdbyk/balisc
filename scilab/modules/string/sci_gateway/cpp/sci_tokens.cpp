@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "tokens", 1);
         return types::Function::Error;
     }
-    if ((pString->get(0))[0] == L'\0')
+    if ((pString->getFirst())[0] == L'\0')
     {
         types::Double* pOutDouble = types::Double::Empty();
         out.push_back(pOutDouble);
@@ -118,7 +118,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
 
     // perfom operation
     int dimsArray[2] = {0, 1};
-    wchar_t** Output_Strings = stringTokens(pString->get(0), seps, &dimsArray[0]);
+    wchar_t** Output_Strings = stringTokens(pString->getFirst(), seps, &dimsArray[0]);
     FREE(seps);
     if (Output_Strings == NULL)
     {

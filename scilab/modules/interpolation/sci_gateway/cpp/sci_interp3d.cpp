@@ -119,7 +119,7 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        wchar_t* wcsType = in[4]->getAs<types::String>()->get(0);
+        wchar_t* wcsType = in[4]->getAs<types::String>()->getFirst();
 
         if (wcscmp(wcsType, L"C0") == 0)
         {
@@ -154,7 +154,7 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
     // *** Perform operation. ***
     pDblFp = new types::Double(pDblXYZ[0]->getRows(), pDblXYZ[0]->getCols());
 
-    order[0] = static_cast<int>(pDblOrder->get(0));
+    order[0] = static_cast<int>(pDblOrder->getFirst());
     order[1] = static_cast<int>(pDblOrder->get(1));
     order[2] = static_cast<int>(pDblOrder->get(2));
 

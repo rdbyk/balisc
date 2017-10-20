@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, 
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mputstr", 2);
             return types::Function::Error;
         }
-        iFile = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
+        iFile = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
     }
 
     switch (iFile)

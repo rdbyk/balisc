@@ -79,7 +79,7 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
 
         if (in[1]->isString())
         {
-            char *pStr =  wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+            char *pStr =  wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
             size_t len = balisc_strlen(pStr);
             switch (pStr[0])
             {
@@ -122,8 +122,8 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
                 return types::Function::Error;
             }
 
-            opt = static_cast<int>(pdblIn->get(0));
-            if (opt != pdblIn->get(0))
+            opt = static_cast<int>(pdblIn->getFirst());
+            if (opt != pdblIn->getFirst())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "and", 2);
                 return types::Function::Error;

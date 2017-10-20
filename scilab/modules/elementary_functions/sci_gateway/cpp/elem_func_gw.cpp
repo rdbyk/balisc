@@ -176,7 +176,7 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
             {
                 case types::InternalType::ScilabDouble:
                 {
-                    double dValue = in[i]->getAs<types::Double>()->getScalar_();
+                    double dValue = in[i]->getAs<types::Double>()->getFirst();
                     if (dValue >= INT_MAX)
                     {
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
@@ -206,7 +206,7 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                     break;
                 case types::InternalType::ScilabInt64:
                 {
-                    long long llValue = in[i]->getAs<types::Int64>()->getScalar_();
+                    long long llValue = in[i]->getAs<types::Int64>()->getFirst();
                     if (llValue >= INT_MAX)
                     {
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
@@ -218,7 +218,7 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                 }
                 case types::InternalType::ScilabUInt64:
                 {
-                    unsigned long long ullValue = in[i]->getAs<types::UInt64>()->getScalar_();
+                    unsigned long long ullValue = in[i]->getAs<types::UInt64>()->getFirst();
                     if (ullValue >= INT_MAX)
                     {
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);

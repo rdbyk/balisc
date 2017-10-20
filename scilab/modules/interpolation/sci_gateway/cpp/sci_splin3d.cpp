@@ -125,7 +125,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        pdOrder[0] = static_cast<int>(pDblOrder->get(0));
+        pdOrder[0] = static_cast<int>(pDblOrder->getFirst());
         pdOrder[1] = static_cast<int>(pDblOrder->get(1));
         pdOrder[2] = static_cast<int>(pDblOrder->get(2));
 
@@ -166,7 +166,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
             max = temp;
         }
 
-        pDblXYZMinMax->set(i * 2, pDblXYZ[i]->get(0));
+        pDblXYZMinMax->set(i * 2, pDblXYZ[i]->getFirst());
         pDblXYZMinMax->set(i * 2 + 1, pDblXYZ[i]->get(xyzSize[i] - 1));
     }
 

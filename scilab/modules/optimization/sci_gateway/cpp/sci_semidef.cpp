@@ -170,7 +170,7 @@ types::Function::ReturnValue sci_semidef(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    dNu      = pDblOpt->get(0);
+    dNu      = pDblOpt->getFirst();
     dAbstol  = pDblOpt->get(1);
     dReltol  = pDblOpt->get(2);
     dTv      = pDblOpt->get(3);

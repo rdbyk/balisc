@@ -113,7 +113,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        wchar_t* wcsString = in[2]->getAs<types::String>()->getScalar_();
+        wchar_t* wcsString = in[2]->getAs<types::String>()->getFirst();
 
         if (wcscmp(wcsString, L"c") == 0)
         {

@@ -60,16 +60,16 @@ types::Function::ReturnValue sci_covWrite(types::typed_list &in, int _iRetCount,
         if (coverage::CoverModule * cm = coverage::CoverModule::getInstance())
         {
             // we write the current CoverModule instance
-            const std::wstring type(in[0]->getAs<types::String>()->get(0));
+            const std::wstring type(in[0]->getAs<types::String>()->getFirst());
             if (type == L"binary")
             {
                 cm->collect();
-                cm->save(in[1]->getAs<types::String>()->get(0));
+                cm->save(in[1]->getAs<types::String>()->getFirst());
             }
             else if (type == L"html")
             {
                 cm->collect();
-                cm->toHTML(in[1]->getAs<types::String>()->get(0));
+                cm->toHTML(in[1]->getAs<types::String>()->getFirst());
             }
         }
         else
@@ -85,13 +85,13 @@ types::Function::ReturnValue sci_covWrite(types::typed_list &in, int _iRetCount,
             Scierror(999, _("%s: Wrong type for input argument #%d: A scalar string expected.\n"), "covWrite" , 3);
             return types::Function::Error;
         }
-        const std::wstring type(in[0]->getAs<types::String>()->get(0));
+        const std::wstring type(in[0]->getAs<types::String>()->getFirst());
         if (type != L"html")
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: html output only.\n"), "covWrite" , 1);
             return types::Function::Error;
         }
-        coverage::CoverModule::toHTML(in[1]->getAs<types::String>()->get(0), in[2]->getAs<types::String>()->get(0));
+        coverage::CoverModule::toHTML(in[1]->getAs<types::String>()->getFirst(), in[2]->getAs<types::String>()->getFirst());
     }
 
     return types::Function::OK;

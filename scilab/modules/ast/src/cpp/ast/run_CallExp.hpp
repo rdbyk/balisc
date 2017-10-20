@@ -469,7 +469,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
 
             if (pList->getSize() == 1)
             {
-                types::InternalType* ret = pList->get(0);
+                types::InternalType* ret = pList->getFirst();
                 setResult(ret);
 
                 ret->IncreaseRef();

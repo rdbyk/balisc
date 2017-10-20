@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         }
 
         types::String* pString2 = in[1]->getAs<types::String>();
-        std::wstring pwstr(pString2->get(0));
+        std::wstring pwstr(pString2->getFirst());
 
         if (pwstr != L"." && pwstr != L",")
         {

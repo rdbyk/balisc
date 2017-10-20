@@ -152,7 +152,7 @@ struct sim
                 return false;
             }
 
-            char* c_str = wide_string_to_UTF8(current->get(0));
+            char* c_str = wide_string_to_UTF8(current->getFirst());
             std::string name(c_str);
             FREE(c_str);
 
@@ -171,19 +171,19 @@ struct sim
                 get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for field %s.%s : %d expected.\n"), "model", "sim", 2);
                 return false;
             }
-            if (current->get(0)->getType() != types::InternalType::ScilabString || current->get(1)->getType() != types::InternalType::ScilabDouble)
+            if (current->getFirst()->getType() != types::InternalType::ScilabString || current->get(1)->getType() != types::InternalType::ScilabDouble)
             {
                 get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : String matrix expected.\n"), "model", "sim");
                 return false;
             }
 
-            types::String* Name = current->get(0)->getAs<types::String>();
+            types::String* Name = current->getFirst()->getAs<types::String>();
             if (Name->getSize() != 1)
             {
                 get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "model", "sim(1)", 1, 1);
                 return false;
             }
-            char* c_str = wide_string_to_UTF8(Name->get(0));
+            char* c_str = wide_string_to_UTF8(Name->getFirst());
             std::string name(c_str);
             FREE(c_str);
 
@@ -193,7 +193,7 @@ struct sim
                 get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "model", "sim(2)", 1, 1);
                 return false;
             }
-            double api = Api->get(0);
+            double api = Api->getFirst();
             if (floor(api) != api)
             {
                 get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Round number expected.\n"), "model", "sim(2)");
@@ -1066,7 +1066,7 @@ struct blocktype
             return false;
         }
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
+        char* c_str = wide_string_to_UTF8(current->getFirst());
         std::string type (c_str);
         FREE(c_str);
 
@@ -1126,7 +1126,7 @@ struct dep_ut
         }
 
         std::vector<int> dep_ut (2);
-        dep_ut[0] = current->get(0);
+        dep_ut[0] = current->getFirst();
         dep_ut[1] = current->get(1);
 
         controller.setObjectProperty(adaptee, BLOCK, SIM_DEP_UT, dep_ut);
@@ -1215,7 +1215,7 @@ struct label
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
+        char* c_str = wide_string_to_UTF8(current->getFirst());
         std::string description(c_str);
         FREE(c_str);
 
@@ -1388,7 +1388,7 @@ struct uid
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
+        char* c_str = wide_string_to_UTF8(current->getFirst());
         std::string uid(c_str);
         FREE(c_str);
 

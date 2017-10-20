@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_tlist_or_mlist(types::typed_list &in, int _piRe
     types::String* pS = in[0]->getAs<types::String>();
 
     //check for rational type
-    if (pS->getSize() > 0 && wcscmp(pS->get(0), L"r") == 0)
+    if (pS->getSize() > 0 && wcscmp(pS->getFirst(), L"r") == 0)
     {
         Scierror(999, _("%s: Can not create a %s with input argument #%d.\n"), pstrFunName, pstrFunName, 1);
         FREE(pstrFunName);

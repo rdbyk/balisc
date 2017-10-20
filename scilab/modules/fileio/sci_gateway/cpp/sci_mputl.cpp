@@ -52,18 +52,18 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
 
     if (in[1]->isDouble() && in[1]->getAs<types::Double>()->getSize() == 1)
     {
-        iFileID = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
+        iFileID = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
     }
     else if (in[1]->isString() && in[1]->getAs<types::String>()->getSize() == 1)
     {
-        wchar_t *expandedFileName = expandPathVariableW(in[1]->getAs<types::String>()->get(0));
+        wchar_t *expandedFileName = expandPathVariableW(in[1]->getAs<types::String>()->getFirst());
 
         iErr = mopen(expandedFileName, L"wt", 0, &iFileID);
         FREE(expandedFileName);
 
         if (iErr)
         {
-            char* pst = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+            char* pst = wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
             switch (iErr)
             {
                 case MOPEN_NO_MORE_LOGICAL_UNIT:

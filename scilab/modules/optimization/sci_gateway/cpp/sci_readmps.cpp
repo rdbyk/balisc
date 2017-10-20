@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    dLowBnd = pDblBounds->get(0);
+    dLowBnd = pDblBounds->getFirst();
     dUpBnd  = pDblBounds->get(1);
 
     if (in.size() == 3)
@@ -135,7 +135,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        iMaxM   = (int)pDblMaxSizes->get(0);
+        iMaxM   = (int)pDblMaxSizes->getFirst();
         iMaxN   = (int)pDblMaxSizes->get(1);
         iMaxNza = (int)pDblMaxSizes->get(2);
     }
@@ -378,7 +378,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
 
 int openMPSFile(types::String* _pStrFilename, int* _piMode, int* _lunit)
 {
-    char* pstFilename = wide_string_to_UTF8(_pStrFilename->get(0));
+    char* pstFilename = wide_string_to_UTF8(_pStrFilename->getFirst());
     int iErr = C2F(clunit)(_lunit, pstFilename, _piMode, (int)strlen(pstFilename));
     if (iErr)
     {

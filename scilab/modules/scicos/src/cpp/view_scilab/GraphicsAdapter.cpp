@@ -105,7 +105,7 @@ struct orig
         std::vector<double> geom;
         controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
 
-        geom[0] = current->get(0);
+        geom[0] = current->getFirst();
         geom[1] = current->get(1);
 
         controller.setObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
@@ -149,7 +149,7 @@ struct sz
         std::vector<double> geom;
         controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
 
-        geom[2] = current->get(0);
+        geom[2] = current->getFirst();
         geom[3] = current->get(1);
 
         controller.setObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
@@ -468,7 +468,7 @@ struct id
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
+        char* c_str = wide_string_to_UTF8(current->getFirst());
         std::string id(c_str);
         FREE(c_str);
 
@@ -586,7 +586,7 @@ struct style
                 return false;
             }
 
-            char* c_str = wide_string_to_UTF8(current->get(0));
+            char* c_str = wide_string_to_UTF8(current->getFirst());
             std::string style(c_str);
             FREE(c_str);
 

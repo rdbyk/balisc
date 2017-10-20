@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_libraryinfo(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(pS->get(0)));
+    types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(pS->getFirst()));
     if (pIT == nullptr || pIT->isLibrary() == false)
     {
         char* libname = wide_string_to_UTF8(pS->get()[0]);

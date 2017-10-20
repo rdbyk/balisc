@@ -61,14 +61,14 @@ types::Function::ReturnValue sci_chol(types::typed_list &in, int _iRetCount, typ
     }
     else if (pDbl->getRows() == -1) // manage eye case
     {
-        if (pDbl->get(0) <= 0)
+        if (pDbl->getFirst() <= 0)
         {
             /* Matrix must be positive definite */
             Scierror(29, _("%s: Matrix is not positive definite.\n"), "chol");
             return types::Function::Error;
         }
 
-        types::Double* result = new types::Double(sqrt(pDbl->get(0)));
+        types::Double* result = new types::Double(sqrt(pDbl->getFirst()));
         out.push_back(result);
         return types::Function::OK;
     }

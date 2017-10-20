@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        if (wcscmp(pStrSorted->get(0), L"sorted") == 0)
+        if (wcscmp(pStrSorted->getFirst(), L"sorted") == 0)
         {
             bSorted = true;
         }
@@ -101,7 +101,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        wcsWhat = pStrWhat->get(0);
+        wcsWhat = pStrWhat->getFirst();
     }
 
     if (wcsWhat == L"local" || wcsWhat == L"get")

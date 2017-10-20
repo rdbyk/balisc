@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
      */
 
     // "refCounters" will return reference counters per object, per kind
-    if (std::wstring(L"refCounters") == strLevel->get(0))
+    if (std::wstring(L"refCounters") == strLevel->getFirst())
     {
         Controller controller;
 
@@ -118,7 +118,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
      * default usage: log level setting
      */
 
-    enum LogLevel logLevel = LoggerView::indexOf(strLevel->get(0));
+    enum LogLevel logLevel = LoggerView::indexOf(strLevel->getFirst());
     if (logLevel < 0)
     {
         std::wstringstream buffer;
@@ -166,7 +166,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
         }
 
         LoggerView* logger = get_or_allocate_logger();
-        logger->log(logLevel, strMsg->get(0));
+        logger->log(logLevel, strMsg->getFirst());
 
         if (_iRetCount == 1)
         {

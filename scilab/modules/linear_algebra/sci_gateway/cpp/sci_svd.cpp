@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
                 return types::Function::Error;
             }
             types::String* pStr = in[1]->getAs<types::String>();
-            if ((wcslen(pStr->get(0)) == 1) && (pStr->get(0)[0] == L'e'))
+            if ((wcslen(pStr->getFirst()) == 1) && (pStr->getFirst()[0] == L'e'))
             {
                 economy = 1;
             }
@@ -163,7 +163,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         {
             if ((in.size() == 2) && (in[1]->isDouble()))
             {
-                tol = in[1]->getAs<types::Double>()->get(0);
+                tol = in[1]->getAs<types::Double>()->getFirst();
             }
             pRk = new types::Double(1, 1, false);
         }

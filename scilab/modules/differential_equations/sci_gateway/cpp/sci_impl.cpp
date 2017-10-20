@@ -100,7 +100,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isString())
     {
         pStrType = in[0]->getAs<types::String>();
-        wcsType = pStrType->get(0);
+        wcsType = pStrType->getFirst();
         iPos++;
     }
 
@@ -322,7 +322,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
             if (bOK == false)
             {
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                char* pst = wide_string_to_UTF8(pStr->getFirst());
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "impl", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
@@ -353,9 +353,9 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            if (pList->get(0)->isString())
+            if (pList->getFirst()->isString())
             {
-                types::String* pStr = pList->get(0)->getAs<types::String>();
+                types::String* pStr = pList->getFirst()->getAs<types::String>();
                 bool bOK = false;
 
                 if (bFuncF == false)
@@ -385,7 +385,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
                 if (bOK == false)
                 {
-                    char* pst = wide_string_to_UTF8(pStr->get(0));
+                    char* pst = wide_string_to_UTF8(pStr->getFirst());
                     Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "impl", iPos + 1, pst);
                     FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
@@ -433,12 +433,12 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 free(pdYDataTemp);
                 free(sizeTemp);
             }
-            else if (pList->get(0)->isCallable())
+            else if (pList->getFirst()->isCallable())
             {
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -447,7 +447,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 else if (bFuncG == false)
                 {
                     bFuncG = true;
-                    deFunctionsManager.setGFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setGArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -456,7 +456,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 else if (bFuncJac == false)
                 {
                     bFuncJac = true;
-                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -501,7 +501,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     }
 
     // *** Initialization. ***
-    double t0   = pDblT0->get(0);
+    double t0   = pDblT0->getFirst();
     int itol    = 1;
     int iopt    = 0;
     int istate  = 1;
@@ -540,7 +540,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
         if (pDblRtol->isScalar())
         {
             rtol = (double*)malloc(sizeof(double));
-            *rtol = pDblRtol->get(0);
+            *rtol = pDblRtol->getFirst();
         }
         else
         {
@@ -559,7 +559,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
         if (pDblAtol->isScalar())
         {
             atol = (double*)malloc(sizeof(double));
-            *atol = pDblAtol->get(0);
+            *atol = pDblAtol->getFirst();
         }
         else
         {

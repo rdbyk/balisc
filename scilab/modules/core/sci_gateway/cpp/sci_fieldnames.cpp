@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
     {
         // We only need list capabilities to retrieve first argument as List.
         types::List *pInList = in[0]->getAs<types::List>();
-        pIT = pInList->get(0);
+        pIT = pInList->getFirst();
 
         if (pIT == nullptr || pIT->isString() == false)
         {

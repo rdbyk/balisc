@@ -139,10 +139,10 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
         else if (arg->isPoly())
         {
             Polynom* pPoly = arg->getAs<Polynom>();
-            SinglePoly* pSinglePoly = pPoly->getScalar_();
+            SinglePoly* pSinglePoly = pPoly->getFirst();
 
             int iMaxDim = 0;
-            double dblParse = -1 * pSinglePoly->getScalar_();
+            double dblParse = -1 * pSinglePoly->getFirst();
             int iSize = getSize();
 
             if (pSinglePoly->getRank() < 2 && dblParse >= 0 && dblParse < (double)iSize)
@@ -275,7 +275,7 @@ std::wstring TList::getTypeStr() const
         return L"";
     }
 
-    return getFieldNames()->getScalar_();
+    return getFieldNames()->getFirst();
 }
 
 std::wstring TList::getShortTypeStr() const
@@ -339,7 +339,7 @@ bool TList::toString(std::wostringstream& ostr)
     if (getSize() != 0 &&
             (*m_plData)[0]->isString() &&
             (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
-            wcscmp((*m_plData)[0]->getAs<types::String>()->getScalar_(), L"lss") == 0)
+            wcscmp((*m_plData)[0]->getAs<types::String>()->getFirst(), L"lss") == 0)
     {
         wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
         int iPosition = 1;

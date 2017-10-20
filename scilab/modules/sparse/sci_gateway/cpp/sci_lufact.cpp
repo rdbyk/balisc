@@ -82,7 +82,7 @@ types::Function::ReturnValue sci_lufact(types::typed_list &in, int _iRetCount, t
             reltol = pDblPrec->get(1);
         }
 
-        abstol = pDblPrec->get(0);
+        abstol = pDblPrec->getFirst();
     }
 
     if (in[0]->isSparse() == false)

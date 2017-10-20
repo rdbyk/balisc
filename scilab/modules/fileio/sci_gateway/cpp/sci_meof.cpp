@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        iFile = (int)in[0]->getAs<types::Double>()->get(0);
+        iFile = (int)in[0]->getAs<types::Double>()->getFirst();
         switch (iFile)
         {
             case 0: // stderr

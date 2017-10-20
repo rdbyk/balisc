@@ -52,7 +52,7 @@ types::Function::ReturnValue sci_strrev(types::typed_list &in, int _iRetCount, t
     }
 
     pString = in[0]->getAs<types::String>();
-    // wchar_t* pwstStr = in[0]->getAs<types::String>()->get(0);
+    // wchar_t* pwstStr = in[0]->getAs<types::String>()->getFirst();
 
     OutputStrings = strings_strrev(pString->get(), pString->getSize());
 

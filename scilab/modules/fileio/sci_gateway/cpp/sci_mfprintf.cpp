@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
     }
 
     // checking ID of file
-    iFile = static_cast<int>(pFileId->get(0));
+    iFile = static_cast<int>(pFileId->getFirst());
 
     if (FileManager::getFile(iFile) == NULL)
     {
@@ -145,7 +145,7 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
 
     // Checking input string to write in file
     int iNewLine = 0;
-    wcsInput = pFileStr->get(0);
+    wcsInput = pFileStr->getFirst();
     wcsStringToWrite = scilab_sprintf("mfprintf", wcsInput, in, &nbrOfLines, &iNewLine);
 
     if (wcsStringToWrite == NULL)

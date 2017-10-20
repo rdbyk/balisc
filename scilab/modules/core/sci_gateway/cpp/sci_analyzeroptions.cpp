@@ -64,8 +64,8 @@ types::Function::ReturnValue sci_analyzeroptions(types::typed_list &in, int _iRe
             return types::Function::Error;
         }
 
-        int iAnalizerOptions = (int)pDblIn->get(0);
-        if (pDblIn->get(0) != (double)iAnalizerOptions)
+        int iAnalizerOptions = (int)pDblIn->getFirst();
+        if (pDblIn->getFirst() != (double)iAnalizerOptions)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "mode", 1);
             return types::Function::Error;

@@ -55,19 +55,19 @@ types::Function::ReturnValue sci_oldEmptyBehaviour(types::typed_list &in, int _i
     }
 
     /* "on" "off" "query" */
-    if (wcscmp(psInput->get(0), L"on") == 0)
+    if (wcscmp(psInput->getFirst(), L"on") == 0)
     {
         ConfigVariable::setOldEmptyBehaviour(TRUE);
         return types::Function::OK;
     }
 
-    if (wcscmp(psInput->get(0), L"off") == 0)
+    if (wcscmp(psInput->getFirst(), L"off") == 0)
     {
         ConfigVariable::setOldEmptyBehaviour(FALSE);
         return types::Function::OK;
     }
 
-    if (wcscmp(psInput->get(0), L"query") == 0)
+    if (wcscmp(psInput->getFirst(), L"query") == 0)
     {
         if (ConfigVariable::getOldEmptyBehaviour())
         {

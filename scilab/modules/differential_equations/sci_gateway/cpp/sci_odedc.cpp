@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     if (in[0]->isString())
     {
         pStrType = in[0]->getAs<types::String>();
-        wcsType = pStrType->get(0);
+        wcsType = pStrType->getFirst();
         iPos++;
     }
 
@@ -209,7 +209,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    if (pDblNd->get(0) > pDblY0->getSize())
+    if (pDblNd->getFirst() > pDblY0->getSize())
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Value must not exceeds dimension of argument %d.\n"), "odedc", iPos + 1, iPos);
         return types::Function::Error;
@@ -264,7 +264,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     pDblT = in[iPos]->getAs<types::Double>();
 
     // size of continuous part
-    sizeYc = pDblY0->getSize() - (int)pDblNd->get(0);
+    sizeYc = pDblY0->getSize() - (int)pDblNd->getFirst();
     if (sizeYc < 0)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Value of nd exceeds dimension of y0.\n"), "odedc", 2);
@@ -274,7 +274,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     // get next inputs
     DifferentialEquationFunctions deFunctionsManager(L"odedc");
     DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
-    deFunctionsManager.setOdedcYDSize((int)pDblNd->get(0));
+    deFunctionsManager.setOdedcYDSize((int)pDblNd->getFirst());
     deFunctionsManager.setOdeYRows(pDblY0->getRows());
     deFunctionsManager.setOdeYCols(pDblY0->getCols());
 
@@ -429,7 +429,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
             if (bOK == false)
             {
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                char* pst = wide_string_to_UTF8(pStr->getFirst());
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "odedc", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
@@ -460,9 +460,9 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            if (pList->get(0)->isString())
+            if (pList->getFirst()->isString())
             {
-                types::String* pStr = pList->get(0)->getAs<types::String>();
+                types::String* pStr = pList->getFirst()->getAs<types::String>();
                 bool bOK = false;
 
                 if (bFuncF == false)
@@ -492,7 +492,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
                 if (bOK == false)
                 {
-                    char* pst = wide_string_to_UTF8(pStr->get(0));
+                    char* pst = wide_string_to_UTF8(pStr->getFirst());
                     Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "odedc", iPos + 1, pst);
                     FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
@@ -541,12 +541,12 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 FREE(pdYDataTemp);
                 FREE(sizeTemp);
             }
-            else if (pList->get(0)->isCallable())
+            else if (pList->getFirst()->isCallable())
             {
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -555,7 +555,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
                 {
                     bFuncJac = true;
-                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -564,7 +564,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 else if (bFuncG == false && meth == 3)
                 {
                     bFuncG = true;
-                    deFunctionsManager.setGFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setGArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -658,7 +658,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         if (pDblOdeOptions->getSize() == 12)
         {
             iopt    = 1;
-            itask   = (int)pDblOdeOptions->get(0);
+            itask   = (int)pDblOdeOptions->getFirst();
             jt      = (int)pDblOdeOptions->get(5);
             ml      = (int)pDblOdeOptions->get(10);
             mu      = (int)pDblOdeOptions->get(11);
@@ -729,7 +729,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         if (pDblRtol->isScalar())
         {
             rtol = (double*)MALLOC(sizeof(double));
-            *rtol = pDblRtol->get(0);
+            *rtol = pDblRtol->getFirst();
         }
         else
         {
@@ -755,7 +755,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         if (pDblAtol->isScalar())
         {
             atol = (double*)MALLOC(sizeof(double));
-            *atol = pDblAtol->get(0);
+            *atol = pDblAtol->getFirst();
         }
         else
         {
@@ -824,11 +824,11 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             //             lmat   = neq**2 + 2              if jt = 1 or 2,
             //             lmat   = (2*ml + mu + 1)*neq + 2 if jt = 4 or 5.
 
-            lrn = 3 * (int)pDblNg->get(0);
+            lrn = 3 * (int)pDblNg->getFirst();
             lrs = lrn;
             dStructTabSize = 246 - 241;
             iStructTabSize = 59 - 50;
-            jroot = (int*)MALLOC((int)pDblNg->get(0) * sizeof(int));
+            jroot = (int*)MALLOC((int)pDblNg->getFirst() * sizeof(int));
         }
         case 0: // lsoda
         {
@@ -1050,8 +1050,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     // *** Perform operation. ***
     double nhpass   = 0;
     double delta    = 0;
-    double tleft    = pDblT0->get(0);
-    double tright   = pDblT0->get(0);
+    double tleft    = pDblT0->getFirst();
+    double tright   = pDblT0->getFirst();
     double hf       = 0;
     double tf       = 0;
 
@@ -1087,7 +1087,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         {
             if (bIntegrateContPart == false)
             {
-                hf = std::min(pDblT0->get(0) + (nhpass + delta) * pDblStdel->get(0), pDblT->get(iLastT));
+                hf = std::min(pDblT0->getFirst() + (nhpass + delta) * pDblStdel->getFirst(), pDblT->get(iLastT));
             }
 
             if (fabs(tleft - hf) < 1.0e-12) // update discrete part
@@ -1176,7 +1176,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                         case 3: // lsodar
                         {
                             strMeth = "lsodar";
-                            int ng = (int)pDblNg->get(0);
+                            int ng = (int)pDblNg->getFirst();
                             C2F(lsodar)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt, ode_g, &ng, jroot);
                             break;
                         }
@@ -1283,7 +1283,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     //              specified by itask.  see jroot.
 
                     sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "odedc", tleft);
-                    for (int k = 0; k < pDblNg->get(0); k++)
+                    for (int k = 0; k < pDblNg->getFirst(); k++)
                     {
                         sciprint("\t%d", jroot[k]);
                     }
@@ -1315,7 +1315,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
         for (int i = 0; i < pDblT->getSize(); i++)
         {
-            hf = pDblT0->get(0) + (nhpass + delta) * pDblStdel->get(0);
+            hf = pDblT0->getFirst() + (nhpass + delta) * pDblStdel->getFirst();
             tf = pDblT->get(i);
 
             if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
@@ -1370,7 +1370,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     case 3: // lsodar
                     {
                         strMeth = "lsodar";
-                        int ng = (int)pDblNg->get(0);
+                        int ng = (int)pDblNg->getFirst();
                         C2F(lsodar)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt, ode_g, &ng, jroot);
                         break;
                     }
@@ -1548,7 +1548,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 //              specified by itask.  see jroot.
 
                 sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "odedc", tleft);
-                for (int k = 0; k < pDblNg->get(0); k++)
+                for (int k = 0; k < pDblNg->getFirst(); k++)
                 {
                     sciprint("\t%d", jroot[k]);
                 }
@@ -1620,7 +1620,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         int sizeOfRd = 1;
         int k = 0;
 
-        for (int i = 0; i < pDblNg->get(0); i++)
+        for (int i = 0; i < pDblNg->getFirst(); i++)
         {
             if (jroot[i])
             {
@@ -1631,7 +1631,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         types::Double* pDblRd = new types::Double(1, sizeOfRd);
         //rd: The first entry contains the stopping time.
         pDblRd->set(0, C2F(lsr001).tlast);
-        for (int i = 0; i < pDblNg->get(0); i++)
+        for (int i = 0; i < pDblNg->getFirst(); i++)
         {
             if (jroot[i])
             {

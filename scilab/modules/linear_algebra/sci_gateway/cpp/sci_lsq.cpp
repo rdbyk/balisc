@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        dblTol = in[2]->getAs<types::Double>()->get(0);
+        dblTol = in[2]->getAs<types::Double>()->getFirst();
         pdTol = &dblTol;
     }
 

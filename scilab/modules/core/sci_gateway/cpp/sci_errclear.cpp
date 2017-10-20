@@ -60,8 +60,8 @@ types::Function::ReturnValue sci_errclear(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        int iScilabError = (int)pDblIn->get(0);
-        if (pDblIn->get(0) != (double)iScilabError)
+        int iScilabError = (int)pDblIn->getFirst();
+        if (pDblIn->getFirst() != (double)iScilabError)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "errclear", 1);
             return types::Function::Error;

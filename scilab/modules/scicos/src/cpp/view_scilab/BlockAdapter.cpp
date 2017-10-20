@@ -101,7 +101,7 @@ struct gui
             return false;
         }
 
-        wchar_t* w_name = current->get(0);
+        wchar_t* w_name = current->getFirst();
         char* name = wide_string_to_UTF8(w_name);
         std::string stName(name);
         FREE(name);

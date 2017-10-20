@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_simpMode(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        ConfigVariable::setSimpMode(pBIn->get(0));
+        ConfigVariable::setSimpMode(pBIn->getFirst());
     }
     else // if (in.size() == 0) get simp mode
     {

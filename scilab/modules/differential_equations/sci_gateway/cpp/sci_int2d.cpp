@@ -145,7 +145,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
         if (bOK == false)
         {
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            char* pst = wide_string_to_UTF8(pStr->getFirst());
             Scierror(50, _("%s: Subroutine not found: %s\n"), "int2d", pst);
             FREE(pst);
             DifferentialEquation::removeDifferentialEquationFunctions();
@@ -163,9 +163,9 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        if (pList->get(0)->isCallable())
+        if (pList->getFirst()->isCallable())
         {
-            deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
+            deFunctionsManager.setFFunction(pList->getFirst()->getAs<types::Callable>());
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
                 deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -212,7 +212,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
         if (getWarningMode())
         {
-            if (pDblParams->get(0) < 0.0e0)
+            if (pDblParams->getFirst() < 0.0e0)
             {
                 sciprint(_("%ls: Warning: Wrong value for the first element of argument #%d: The default value will be used.\n"), L"int2d", 4);
             }
@@ -228,7 +228,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
             }
         }
 
-        tol      = pDblParams->get(0) < 0.0e0 ? tol : pDblParams->get(0);
+        tol      = pDblParams->getFirst() < 0.0e0 ? tol : pDblParams->getFirst();
         iclose   = (int)pDblParams->get(1);
         maxtri   = pDblParams->get(2) < 1 ? maxtri : (int)pDblParams->get(2);
         mevals   = pDblParams->get(3) < 1 ? mevals : (int)pDblParams->get(3);

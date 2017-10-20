@@ -267,7 +267,7 @@ int getMListType(int * mlist, void * pvApiCtx)
         return -1;
     }
 
-    wchar_t* pwstType = pS->get(0);
+    wchar_t* pwstType = pS->getFirst();
     int iLen = (int)wcslen(pwstType);
 
     if (wcsncmp(pwstType, L"XML", 3) == 0)

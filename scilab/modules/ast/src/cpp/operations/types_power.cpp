@@ -167,19 +167,19 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
 
             if (bComplex1 == false && bComplex2 == false)
             {
-                iPowerRealScalarByRealScalar(_pDouble1->getScalar_(), _pDouble2->getScalar_(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
+                iPowerRealScalarByRealScalar(_pDouble1->getFirst(), _pDouble2->getFirst(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
-                iPowerRealScalarByComplexScalar(_pDouble1->getScalar_(), _pDouble2->getScalar_(), _pDouble2->getImgScalar_(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+                iPowerRealScalarByComplexScalar(_pDouble1->getFirst(), _pDouble2->getFirst(), _pDouble2->getImgFirst(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
-                iPowerComplexScalarByRealScalar(_pDouble1->getScalar_(), _pDouble1->getImgScalar_(), _pDouble2->getScalar_(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+                iPowerComplexScalarByRealScalar(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->getFirst(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
             }
             else if (bComplex1 == true && bComplex2 == true)
             {
-                iPowerComplexScalarByComplexScalar(_pDouble1->getScalar_(), _pDouble1->getImgScalar_(), _pDouble2->getScalar_(), _pDouble2->getImgScalar_(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+                iPowerComplexScalarByComplexScalar(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->getFirst(), _pDouble2->getImgFirst(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
             }
 
             if (iComplex == 0)
@@ -197,28 +197,28 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
             if (bComplex1 == false && bComplex2 == false)
             {
                 iPowerRealScalarByRealMatrix(
-                    _pDouble1->getScalar_(),
+                    _pDouble1->getFirst(),
                     _pDouble2->get(), 1, _pDouble2->getSize(),
                     (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
                 iPowerRealScalarByComplexMatrix(
-                    _pDouble1->getScalar_(),
+                    _pDouble1->getFirst(),
                     _pDouble2->get(), _pDouble2->getImg(), 1, _pDouble2->getSize(),
                     (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
                 iPowerComplexScalarByRealMatrix(
-                    _pDouble1->getScalar_(), _pDouble1->getImgScalar_(),
+                    _pDouble1->getFirst(), _pDouble1->getImgFirst(),
                     _pDouble2->get(), 1, _pDouble2->getSize(),
                     (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
             }
             else if (bComplex1 == true && bComplex2 == true)
             {
                 iPowerComplexScalarByComplexMatrix(
-                    _pDouble1->getScalar_(), _pDouble1->getImgScalar_(),
+                    _pDouble1->getFirst(), _pDouble1->getImgFirst(),
                     _pDouble2->get(), _pDouble2->getImg(), 1, _pDouble2->getSize(),
                     (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
             }
@@ -251,7 +251,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
                 {
                     iPowerRealScalarByRealScalar(
                         _pDouble1->get_(i),
-                        _pDouble2->getScalar_(),
+                        _pDouble2->getFirst(),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i], &iComplex);
                 }
             }
@@ -261,7 +261,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
                 {
                     iPowerRealScalarByComplexScalar(
                         _pDouble1->get_(i),
-                        _pDouble2->getScalar_(), _pDouble2->getImgScalar_(),
+                        _pDouble2->getFirst(), _pDouble2->getImgFirst(),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
             }
@@ -271,7 +271,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
                 {
                     iPowerComplexScalarByRealScalar(
                         _pDouble1->get_(i), _pDouble1->getImg_(i),
-                        _pDouble2->getScalar_(),
+                        _pDouble2->getFirst(),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
             }
@@ -281,7 +281,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
                 {
                     iPowerComplexScalarByComplexScalar(
                         _pDouble1->get_(i), _pDouble1->getImg_(i),
-                        _pDouble2->getScalar_(), _pDouble2->getImgScalar_(),
+                        _pDouble2->getFirst(), _pDouble2->getImgFirst(),
                         &(*_pDoubleOut)->get()[i], &(*_pDoubleOut)->getImg()[i]);
                 }
             }
@@ -309,14 +309,14 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
             {
                 iRet = iPowerRealSquareMatrixByRealScalar(
                            _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
-                           _pDouble2->getScalar_(),
+                           _pDouble2->getFirst(),
                            (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
             }
             else if (bComplex1 == true)
             {
                 iRet = iPowerComplexSquareMatrixByRealScalar(
                            _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
-                           _pDouble2->getScalar_(),
+                           _pDouble2->getFirst(),
                            (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
             }
 
@@ -513,10 +513,10 @@ int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
     Double* ppDblGet = NULL;
     for (int i = 0; i < iSize; i++)
     {
-        if ((pDblSp[i]->getScalar_() != 0) || (pDblSp[i]->getImgScalar_() != 0))
+        if ((pDblSp[i]->getFirst() != 0) || (pDblSp[i]->getImgFirst() != 0))
         {
             DotPowerDoubleByDouble(pDblSp[i], pDbl[i], &ppDblGet);
-            std::complex<double> cplx(ppDblGet->getScalar_(), ppDblGet->getImgScalar_());
+            std::complex<double> cplx(ppDblGet->getFirst(), ppDblGet->getImgFirst());
             pSpTemp->set(iPositVal[i], cplx, false);
         }
     }
@@ -678,8 +678,8 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
 
         if (_pDouble1->isComplex())
         {
-            double dblR1 = _pDouble1->getScalar_();
-            double dblI1 = _pDouble1->getImgScalar_();
+            double dblR1 = _pDouble1->getFirst();
+            double dblI1 = _pDouble1->getImgFirst();
 
             if (_pDouble2->isComplex())
             {
@@ -706,7 +706,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         }
         else
         {
-            double dblR1 = _pDouble1->getScalar_();
+            double dblR1 = _pDouble1->getFirst();
             if (_pDouble2->isComplex())
             {
                 iResultComplex = 1;
@@ -738,10 +738,10 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         *_pDoubleOut = new Double(_pDouble1->getDims() , _pDouble1->getDimsArray(), true);
         if (_pDouble1->isComplex())
         {
-            double dblR2 = _pDouble2->getScalar_();
+            double dblR2 = _pDouble2->getFirst();
             if (_pDouble2->isComplex())
             {
-                double dblI2 = _pDouble2->getImgScalar_();
+                double dblI2 = _pDouble2->getImgFirst();
                 iResultComplex = 1;
                 for (int i = 0 ; i < _pDouble1->getSize() ; i++)
                 {
@@ -753,7 +753,7 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
             }
             else
             {
-                double dblR2 = _pDouble2->getScalar_();
+                double dblR2 = _pDouble2->getFirst();
                 iResultComplex = 1;
                 for (int i = 0 ; i < _pDouble1->getSize() ; i++)
                 {
@@ -766,10 +766,10 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         }
         else
         {
-            double dblR2 = _pDouble2->getScalar_();
+            double dblR2 = _pDouble2->getFirst();
             if (_pDouble2->isComplex())
             {
-                double dblI2 = _pDouble2->getImgScalar_();
+                double dblI2 = _pDouble2->getImgFirst();
                 iResultComplex = 1;
                 for (int i = 0 ; i < _pDouble1->getSize() ; i++)
                 {

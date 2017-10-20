@@ -209,7 +209,7 @@ struct id
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        char* c_str = wide_string_to_UTF8(current->get(0));
+        char* c_str = wide_string_to_UTF8(current->getFirst());
         std::string description(c_str);
         FREE(c_str);
 
@@ -254,7 +254,7 @@ struct thick
         }
 
         std::vector<double> thick (2);
-        thick[0] = current->get(0);
+        thick[0] = current->getFirst();
         thick[1] = current->get(1);
 
         controller.setObjectProperty(adaptee, LINK, THICK, thick);
@@ -296,12 +296,12 @@ struct ct
         {
             return false;
         }
-        if (floor(current->get(0)) != current->get(0) || floor(current->get(1)) != current->get(1))
+        if (floor(current->getFirst()) != current->getFirst() || floor(current->get(1)) != current->get(1))
         {
             return false;
         }
 
-        int color = static_cast<int>(current->get(0));
+        int color = static_cast<int>(current->getFirst());
         int kind  = static_cast<int>(current->get(1));
 
         controller.setObjectProperty(adaptee, LINK, COLOR, color);
@@ -691,7 +691,7 @@ bool is_valid(types::Double* o)
 
     if (o->getSize() == 2 || o->getSize() == 3)
     {
-        if (floor(o->get(0)) != o->get(0) || floor(o->get(1)) != o->get(1))
+        if (floor(o->getFirst()) != o->getFirst() || floor(o->get(1)) != o->get(1))
         {
             return false; // Block and Port numbers must be integer values
         }
@@ -763,7 +763,7 @@ struct from
         link_t from_content {0, 0, Start};
         if (current->getSize() >= 2)
         {
-            from_content.block = static_cast<int>(current->get(0));
+            from_content.block = static_cast<int>(current->getFirst());
             from_content.port = static_cast<int>(current->get(1));
             // By default, 'kind' designates an output (set to 0)
 
@@ -840,7 +840,7 @@ struct to
         link_t to_content {0, 0, End};
         if (current->getSize() >= 2)
         {
-            to_content.block = static_cast<int>(current->get(0));
+            to_content.block = static_cast<int>(current->getFirst());
             to_content.port = static_cast<int>(current->get(1));
             // By default, 'kind' designates an input (set to 1)
 

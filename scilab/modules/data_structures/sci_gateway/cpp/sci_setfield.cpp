@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
 
         types::TList* pT = pL->getAs<types::TList>();
 
-        std::wstring stField = pS->get(0);
+        std::wstring stField = pS->getFirst();
         types::TList* pRet = pT->set(stField, pData);
         if (pRet == nullptr)
         {

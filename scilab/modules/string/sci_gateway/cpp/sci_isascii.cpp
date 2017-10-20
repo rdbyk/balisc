@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_isascii(types::typed_list &in, int _iRetCount, 
         }
 
         // concatenate all strings
-        std::wstring s(pIn->get(0));
+        std::wstring s(pIn->getFirst());
         for (int i = 1; i < pIn->getSize(); i++)
         {
             s += std::wstring(pIn->get(i));

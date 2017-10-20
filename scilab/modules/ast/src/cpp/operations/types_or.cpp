@@ -574,7 +574,7 @@ template<class T, class U, class O>
 InternalType* or_S_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    bit_or(_pL->getScalar_(), (size_t)_pR->getSize(), _pR->get(), pOut->get());
+    bit_or(_pL->getFirst(), (size_t)_pR->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -582,7 +582,7 @@ template<class T, class U, class O>
 InternalType* or_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    bit_or(_pL->get(), (size_t)_pL->getSize(), _pR->getScalar_(), pOut->get());
+    bit_or(_pL->get(), (size_t)_pL->getSize(), _pR->getFirst(), pOut->get());
     return pOut;
 }
 
@@ -590,7 +590,7 @@ template<class T, class U, class O>
 InternalType* or_S_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    bit_or(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
+    bit_or(_pL->getFirst(), _pR->getFirst(), pOut->get());
     return pOut;
 }
 
@@ -667,7 +667,7 @@ template<class T, class U, class O>
 InternalType* or_int_S_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    int_or(_pL->getScalar_(), (size_t)_pR->getSize(), _pR->get(), pOut->get());
+    int_or(_pL->getFirst(), (size_t)_pR->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -675,7 +675,7 @@ template<class T, class U, class O>
 InternalType* or_int_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    int_or(_pL->get(), (size_t)_pL->getSize(), _pR->getScalar_(), pOut->get());
+    int_or(_pL->get(), (size_t)_pL->getSize(), _pR->getFirst(), pOut->get());
     return pOut;
 }
 
@@ -683,7 +683,7 @@ template<class T, class U, class O>
 InternalType* or_int_S_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    int_or(_pL->getScalar_(), _pR->getScalar_(), pOut->get());
+    int_or(_pL->getFirst(), _pR->getFirst(), pOut->get());
     return pOut;
 }
 
@@ -694,7 +694,7 @@ InternalType* or_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Sparse
     SparseBool* pOut = NULL;
     if (_pL->isScalar())
     {
-        if (_pL->get(0, 0))
+        if (_pL->getFirst())
         {
             pOut = new SparseBool(_pR->getRows(), _pR->getCols());
             int iCols = pOut->getCols();
@@ -719,7 +719,7 @@ InternalType* or_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Sparse
 
     if (_pR->isScalar())
     {
-        if (_pR->get(0, 0))
+        if (_pR->getFirst())
         {
             pOut = new SparseBool(_pL->getRows(), _pL->getCols());
             int iCols = pOut->getCols();

@@ -149,7 +149,7 @@ void PrintVisitor::visit (const StringExp &e)
         }
         if (pStr->getSize() == 1)
         {
-            std::wstring wstr(pStr->get(0, 0));
+            std::wstring wstr(pStr->getFirst());
             printString(wstr);
         }
         else
@@ -272,7 +272,7 @@ void PrintVisitor::visit (const BoolExp  &e)
             }
             if (pBool->getSize() == 1)
             {
-                *ostr << (pBool->get(0, 0) ? SCI_TRUE : SCI_FALSE);
+                *ostr << (pBool->getFirst() ? SCI_TRUE : SCI_FALSE);
             }
             else
             {

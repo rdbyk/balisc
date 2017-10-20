@@ -53,14 +53,14 @@ types::Function::ReturnValue sci_historymanager(types::typed_list &in, int _iRet
         }
 
         pStr = in[0]->getAs<types::String>();
-        if (wcscmp(pStr->get(0), L"on") == 0)
+        if (wcscmp(pStr->getFirst(), L"on") == 0)
         {
             char* pstCommentBeginSession = getCommentDateSession(FALSE);
             HistoryManager::getInstance()->appendLine(pstCommentBeginSession);
             out.push_back(new types::String(L"on"));
             FREE(pstCommentBeginSession);
         }
-        else if (wcscmp(pStr->get(0), L"off") == 0)
+        else if (wcscmp(pStr->getFirst(), L"off") == 0)
         {
             HistoryManager::killInstance();
             out.push_back(new types::String(L"off"));

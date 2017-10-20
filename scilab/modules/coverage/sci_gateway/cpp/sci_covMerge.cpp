@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_covMerge(types::typed_list &in, int _iRetCount,
         paths.emplace_back(strs->get(i));
     }
 
-    coverage::CoverModule::merge(paths, in[1]->getAs<types::String>()->get(0));
+    coverage::CoverModule::merge(paths, in[1]->getAs<types::String>()->getFirst());
 
     return types::Function::OK;
 }

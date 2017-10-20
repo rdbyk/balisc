@@ -45,11 +45,11 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
         }
 
         types::String* pMode = in[1]->getAs<types::String>();
-        if (os_wcsicmp(pMode->get(0), L"add") == 0)
+        if (os_wcsicmp(pMode->getFirst(), L"add") == 0)
         {
             bAdd = true;
         }
-        else if (os_wcsicmp(pMode->get(0), L"remove") == 0)
+        else if (os_wcsicmp(pMode->getFirst(), L"remove") == 0)
         {
             bAdd = false;
         }
@@ -74,11 +74,11 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
 
         if (bAdd)
         {
-            ConfigVariable::addReferenceModule(pS->get(0));
+            ConfigVariable::addReferenceModule(pS->getFirst());
         }
         else
         {
-            ConfigVariable::removeReferenceModule(pS->get(0));
+            ConfigVariable::removeReferenceModule(pS->getFirst());
         }
     }
     else

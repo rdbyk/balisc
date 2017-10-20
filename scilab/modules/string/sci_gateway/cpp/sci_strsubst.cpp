@@ -49,11 +49,11 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "strsubst", 4);
         }
 
-        if (in[3]->getAs<types::String>()->get(0)[0] == WCHAR_R)
+        if (in[3]->getAs<types::String>()->getFirst()[0] == WCHAR_R)
         {
             bRegExp = true;
         }
-        else if (in[3]->getAs<types::String>()->get(0)[0] == WCHAR_S)
+        else if (in[3]->getAs<types::String>()->getFirst()[0] == WCHAR_S)
         {
             bRegExp = false;
         }

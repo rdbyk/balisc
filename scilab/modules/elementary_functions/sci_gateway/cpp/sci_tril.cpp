@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        iOffset = (int)pDblOffset->getScalar_();
+        iOffset = (int)pDblOffset->getFirst();
     }
 
     // perform operation

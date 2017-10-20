@@ -82,7 +82,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
+        char* pstFilename = wide_string_to_UTF8(pSPath->getFirst());
         int iErr = C2F(clunit)(&iID, pstFilename, piMode, (int)balisc_strlen(pstFilename));
 
         if (iErr == 240)
@@ -112,7 +112,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        iID = (int)pDId->get(0);
+        iID = (int)pDId->getFirst();
         if (iID == -1)
         {
             iID = FileManager::getCurrentFile();
@@ -143,7 +143,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
         }
 
         //checkformat
-        pstFormat = wide_string_to_UTF8(pSFormat->get(0));
+        pstFormat = wide_string_to_UTF8(pSFormat->getFirst());
 
         itTypeOfData = checkformat(pstFormat);
         if (itTypeOfData == types::InternalType::ScilabNull)
@@ -204,8 +204,8 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    int iRows = (int)pIn1->get(0);
-    int iCols = (int)pIn2->get(0);
+    int iRows = (int)pIn1->getFirst();
+    int iCols = (int)pIn2->getFirst();
 
     //test dims
     if ( (iCols <= 0) || (iRows == 0))
@@ -343,7 +343,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
                         if (error != 2)
                         {
                             // on empty file, data are not set
-                            if (pS->get(0) == NULL)
+                            if (pS->getFirst() == NULL)
                             {
                                 out.push_back(types::Double::Empty());
                             }

@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     }
 
     pStrPath = in[0]->getAs<types::String>();
-    filename_IN = expandPathVariableW(pStrPath->get(0));
+    filename_IN = expandPathVariableW(pStrPath->getFirst());
 
     // *** Perform operation. ***
     if (filename_IN)

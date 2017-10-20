@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        dEps = pDblEps->getScalar_();
+        dEps = pDblEps->getFirst();
     }
 
     if (in[0]->isDouble())

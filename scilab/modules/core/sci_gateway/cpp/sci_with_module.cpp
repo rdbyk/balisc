@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
         return types::Function::Error;
     }
 
-    wchar_t* pwstModuleName = pStr->get(0);
+    wchar_t* pwstModuleName = pStr->getFirst();
 
     types::Bool* pOut = new types::Bool(0);
     std::list<std::wstring> sModuleList = ConfigVariable::getModuleList();

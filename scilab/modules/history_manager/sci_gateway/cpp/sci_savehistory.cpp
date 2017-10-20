@@ -48,7 +48,7 @@ types::Function::ReturnValue sci_savehistory(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
 
-        wchar_t* pwscsPath = in[0]->getAs<types::String>()->get(0);
+        wchar_t* pwscsPath = in[0]->getAs<types::String>()->getFirst();
         wchar_t* pwcsLine = expandPathVariableW(pwscsPath);
         if (pwcsLine)
         {

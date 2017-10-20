@@ -130,11 +130,11 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
     if (iOrientation == 0) // all
     {
         // set first element
-        pOut->set_(0, pIn->getScalar_());
+        pOut->set_(0, pIn->getFirst());
 
-        iLastSize    = pOut->getScalar_()->getSize();
-        pdblLastReal = pOut->getScalar_()->get();
-        pdblLastImg  = pOut->getScalar_()->getImg();
+        iLastSize    = pOut->getFirst()->getSize();
+        pdblLastReal = pOut->getFirst()->get();
+        pdblLastImg  = pOut->getFirst()->getImg();
 
         // compute next elements
         if (bComplex)

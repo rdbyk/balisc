@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_createdir(types::typed_list &in, int _iRetCount
         return types::Function::Error;
     }
 
-    wchar_t* pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
+    wchar_t* pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->getFirst());
     int iRet = 0;
     if (!isdirW(pwstPath))
     {

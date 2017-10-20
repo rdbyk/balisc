@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_ieee(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        pdblIeee = in[0]->getAs<types::Double>()->get(0);
+        pdblIeee = in[0]->getAs<types::Double>()->getFirst();
 
         if (pdblIeee < 0 || pdblIeee > 2)
         {

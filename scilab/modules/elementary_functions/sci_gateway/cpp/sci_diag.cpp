@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        iStartPos = static_cast<int>(pDbl->getScalar_());
+        iStartPos = static_cast<int>(pDbl->getFirst());
     }
 
     switch (in[0]->getType())

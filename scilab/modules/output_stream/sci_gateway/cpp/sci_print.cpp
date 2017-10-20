@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_print(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        wchar_t *expandedFileName = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
+        wchar_t *expandedFileName = expandPathVariableW(in[0]->getAs<types::String>()->getFirst());
 
         int iErr = mopen(expandedFileName, L"wt", 0, &fid);
 

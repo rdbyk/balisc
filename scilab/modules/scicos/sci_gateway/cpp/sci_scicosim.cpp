@@ -195,7 +195,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     // Make a copy of 'il_state' in a global variabe
     set_il_state(il_state_input);
 
-    types::String* header_state = il_state_input->get(0)->getAs<types::String>();
+    types::String* header_state = il_state_input->getFirst()->getAs<types::String>();
     il_state->append(header_state->clone());
 
     /*2 : state.x      */
@@ -385,7 +385,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    types::String* header_sim = il_sim_input->get(0)->getAs<types::String>();
+    types::String* header_sim = il_sim_input->getFirst()->getAs<types::String>();
     il_sim->append(header_sim->clone());
 
     /*2  : sim.funs*/
@@ -1134,23 +1134,23 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     const std::wstring linear (L"linear");
     const std::wstring Kinsol (L"Kinsol");
     int flag;
-    if (il_str->get(0) == start)
+    if (il_str->getFirst() == start)
     {
         flag = 1;
     }
-    else if (il_str->get(0) == run)
+    else if (il_str->getFirst() == run)
     {
         flag = 2;
     }
-    else if (il_str->get(0) == finish)
+    else if (il_str->getFirst() == finish)
     {
         flag = 3;
     }
-    else if (il_str->get(0) == linear)
+    else if (il_str->getFirst() == linear)
     {
         flag = 4;
     }
-    else if (il_str->get(0) == Kinsol)
+    else if (il_str->getFirst() == Kinsol)
     {
         flag = 5;
     }
@@ -1360,7 +1360,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 return types::Function::Error;
             }
 
-            wchar_t* w_str = funStr->get(0);
+            wchar_t* w_str = funStr->getFirst();
             char* c_str = wide_string_to_UTF8(w_str);
             if (strcmp(c_str, "ifthel") == 0)
             {

@@ -122,7 +122,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            iOrientation = static_cast<int>(pDbl->getScalar_());
+            iOrientation = static_cast<int>(pDbl->getFirst());
 
             if (iOrientation <= 0)
             {
@@ -150,7 +150,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            wchar_t* wcsString = pStr->getScalar_();
+            wchar_t* wcsString = pStr->getFirst();
 
             if (wcscmp(wcsString, L"*") == 0)
             {
@@ -257,7 +257,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        wchar_t* wcsString = pStr->getScalar_();
+        wchar_t* wcsString = pStr->getFirst();
 
         if (wcscmp(wcsString, L"native") == 0)
         {

@@ -190,7 +190,7 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
                 InternalType * pIT = _out[0];
                 if (pIT->isList() && pIT->getAs<List>()->getSize() == 1)
                 {
-                    out.push_back(pIT->getAs<List>()->get(0));
+                    out.push_back(pIT->getAs<List>()->getFirst());
                     return true;
                 }
             }
@@ -306,7 +306,7 @@ String* Struct::getFieldNames()
 {
     if (getSize() != 0)
     {
-        return getScalar_()->getFieldNames();
+        return getFirst()->getFieldNames();
     }
     else
     {
@@ -318,7 +318,7 @@ bool Struct::exists(const std::wstring& _sKey)
 {
     if (getSize() != 0)
     {
-        return getScalar_()->exists(_sKey);
+        return getFirst()->exists(_sKey);
     }
     else
     {
@@ -477,7 +477,7 @@ bool Struct::toString(std::wostringstream& ostr)
     }
     else if (getSize() == 1)
     {
-        SingleStruct* pSS =  getScalar_();
+        SingleStruct* pSS =  getFirst();
         String* pwstFields =  pSS->getFieldNames();
         if (pwstFields->getSize() == 0)
         {
@@ -562,7 +562,7 @@ InternalType * Struct::extractField(const std::wstring & wstField)
     {
         if (getSize() == 1)
         {
-            return getScalar_()->get(wstField);
+            return getFirst()->get(wstField);
         }
         else
         {
@@ -645,14 +645,14 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
         {
             break;
         }
-        else if (iIndex > (int)getScalar_()->getNumFields() + 2)
+        else if (iIndex > (int)getFirst()->getNumFields() + 2)
         {
             break;
         }
         else if (getSize() == 1)
         {
             //return elements
-            const std::vector<InternalType*> & pData = getScalar_()->getData();
+            const std::vector<InternalType*> & pData = getFirst()->getData();
             ResultList.push_back(pData[iIndex - 3]->clone());
         }
         else

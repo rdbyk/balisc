@@ -165,7 +165,7 @@ void Inspector::displayMemleak()
                     if (pi->isString())
                     {
                         types::String* pS = pi->getAs<types::String>();
-                        std::wcerr << pS->get(0) << std::endl;
+                        std::wcerr << pS->getFirst() << std::endl;
                     }
                 }
             }

@@ -425,7 +425,7 @@ Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx)
 
 Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims)
 {
-    create2(static_cast<int>(dims.get(0)), static_cast<int>(dims.get(1)), src, idx);
+    create2(static_cast<int>(dims.getFirst()), static_cast<int>(dims.get(1)), src, idx);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -742,6 +742,18 @@ double  Sparse::get(int _iRows, int _iCols) const
     return getReal(_iRows, _iCols);
 }
 
+double Sparse::getFirst() const
+{
+    if (matrixReal)
+    {
+        return matrixReal->coeff(0, 0);
+    }
+    else
+    {
+        return matrixCplx->coeff(0, 0).real();
+    }
+}
+
 double Sparse::getReal(int _iRows, int _iCols) const
 {
     double res = 0;
@@ -764,6 +776,18 @@ std::complex<double>* Sparse::getImg()
     }
 
     return nullptr;
+}
+
+std::complex<double> Sparse::getImgFirst() const
+{
+    if (matrixCplx)
+    {
+        return matrixCplx->coeff(0, 0);
+    }
+    else
+    {
+        return std::complex<double>(matrixReal->coeff(0, 0), 0.0);
+    }
 }
 
 std::complex<double> Sparse::getImg(int _iRows, int _iCols) const
@@ -1644,11 +1668,11 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
             {
                 if (_pSource->isComplex())
                 {
-                    set(iRow, iCol, _pSource->getImg(0, 0), false);
+                    set(iRow, iCol, _pSource->getImgFirst(), false);
                 }
                 else
                 {
-                    set(iRow, iCol, _pSource->get(0, 0), false);
+                    set(iRow, iCol, _pSource->getFirst(), false);
                 }
             }
             else
@@ -1678,11 +1702,11 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
             {
                 if (_pSource->isComplex())
                 {
-                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->getImg(0, 0), false);
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->getImgFirst(), false);
                 }
                 else
                 {
-                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->get(0, 0), false);
+                    set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->getFirst(), false);
                 }
             }
             else
@@ -2681,8 +2705,8 @@ SparseBool* Sparse::newLessThan(Sparse &o)
     types::SparseBool* ret = new types::SparseBool(row, col);
     if (isScalar() && o.isScalar())
     {
-        double l = get(0, 0);
-        double r = o.get(0, 0);
+        double l = getFirst();
+        double r = o.getFirst();
         ret->set(0, 0, l < r, false);
     }
     else if (isScalar())
@@ -2692,7 +2716,7 @@ SparseBool* Sparse::newLessThan(Sparse &o)
         o.outputRowCol(rowcolR.data());
 
         //compare all items of R with R[0]
-        double l = get(0, 0);
+        double l = getFirst();
         if (l < 0)
         {
             //set true
@@ -2711,7 +2735,7 @@ SparseBool* Sparse::newLessThan(Sparse &o)
         std::vector<int> rowcolL(nnzL * 2, 0);
         outputRowCol(rowcolL.data());
 
-        double r = o.get(0, 0);
+        double r = o.getFirst();
         if (r > 0)
         {
             ret->setTrue(true);
@@ -2778,8 +2802,8 @@ SparseBool* Sparse::newLessOrEqual(Sparse &o)
     types::SparseBool* ret = new types::SparseBool(row, col);
     if (isScalar() && o.isScalar())
     {
-        double l = get(0, 0);
-        double r = o.get(0, 0);
+        double l = getFirst();
+        double r = o.getFirst();
         ret->set(0, 0, l <= r, false);
     }
     else if (isScalar())
@@ -2789,7 +2813,7 @@ SparseBool* Sparse::newLessOrEqual(Sparse &o)
         o.outputRowCol(rowcolR.data());
 
         //compare all items of R with R[0]
-        double l = get(0, 0);
+        double l = getFirst();
         if (l <= 0)
         {
             //set true
@@ -2808,7 +2832,7 @@ SparseBool* Sparse::newLessOrEqual(Sparse &o)
         std::vector<int> rowcolL(nnzL * 2, 0);
         outputRowCol(rowcolL.data());
 
-        double r = o.get(0, 0);
+        double r = o.getFirst();
         if (r > 0)
         {
             ret->setTrue(true);
@@ -2869,14 +2893,14 @@ SparseBool* Sparse::newEqualTo(Sparse &o)
     {
         if (isComplex() || o.isComplex())
         {
-            std::complex<double> l = getImg(0, 0);
-            std::complex<double> r = o.getImg(0, 0);
+            std::complex<double> l = getImgFirst();
+            std::complex<double> r = o.getImgFirst();
             ret->set(0, 0, l == r, false);
         }
         else
         {
-            double l = get(0, 0);
-            double r = o.get(0, 0);
+            double l = getFirst();
+            double r = o.getFirst();
             ret->set(0, 0, l == r, false);
         }
     }
@@ -2889,7 +2913,7 @@ SparseBool* Sparse::newEqualTo(Sparse &o)
         //compare all items of R with R[0]
         if (isComplex() || o.isComplex())
         {
-            std::complex<double> l = getImg(0, 0);
+            std::complex<double> l = getImgFirst();
             for (int i = 0; i < nnzR; ++i)
             {
                 std::complex<double> r = o.getImg(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
@@ -2898,7 +2922,7 @@ SparseBool* Sparse::newEqualTo(Sparse &o)
         }
         else
         {
-            double l = get(0, 0);
+            double l = getFirst();
             for (int i = 0; i < nnzR; ++i)
             {
                 double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
@@ -2914,7 +2938,7 @@ SparseBool* Sparse::newEqualTo(Sparse &o)
 
         if (isComplex() || o.isComplex())
         {
-            std::complex<double> r = o.getImg(0, 0);
+            std::complex<double> r = o.getImgFirst();
             for (int i = 0; i < nnzL; ++i)
             {
                 std::complex<double> l = getImg(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
@@ -2923,7 +2947,7 @@ SparseBool* Sparse::newEqualTo(Sparse &o)
         }
         else
         {
-            double r = get(0, 0);
+            double r = getFirst();
             for (int i = 0; i < nnzL; ++i)
             {
                 double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
@@ -3137,7 +3161,7 @@ SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)
 **/
 SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims)
 {
-    create2(static_cast<int>(dims.get(0)), static_cast<int>(dims.get(1)), src, idx);
+    create2(static_cast<int>(dims.getFirst()), static_cast<int>(dims.get(1)), src, idx);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -3421,7 +3445,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
 
             if (_pSource->isScalar())
             {
-                set(iRow, iCol, _pSource->get(0, 0), false);
+                set(iRow, iCol, _pSource->getFirst(), false);
             }
             else
             {
@@ -3441,7 +3465,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
         {
             if (_pSource->isScalar())
             {
-                set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->get(0, 0), false);
+                set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, _pSource->getFirst(), false);
             }
             else
             {
@@ -3571,7 +3595,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
             int iCol = static_cast<int>(pIdx[i] - 1) / getRows();
             if (pSource->isScalar())
             {
-                set(iRow, iCol, pSource->get(0) != 0, false);
+                set(iRow, iCol, pSource->getFirst() != 0, false);
             }
             else
             {
@@ -3589,7 +3613,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             if (pSource->isScalar())
             {
-                set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, pSource->get(0) != 0, false);
+                set((int)pIdxRow[i % iRowSize] - 1, (int)pIdxCol[i / iRowSize] - 1, pSource->getFirst() != 0, false);
             }
             else
             {
@@ -4342,8 +4366,8 @@ SparseBool* SparseBool::newEqualTo(SparseBool& o)
 
     if (isScalar() && o.isScalar())
     {
-        bool l = get(0, 0);
-        bool r = o.get(0, 0);
+        bool l = getFirst();
+        bool r = o.getFirst();
         ret->set(0, 0, l == r, false);
     }
     else if (isScalar())
@@ -4353,7 +4377,7 @@ SparseBool* SparseBool::newEqualTo(SparseBool& o)
         o.outputRowCol(rowcolR.data());
 
         //compare all items of R with R[0]
-        bool l = get(0, 0);
+        bool l = getFirst();
         for (int i = 0; i < nnzR; ++i)
         {
             bool r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
@@ -4366,7 +4390,7 @@ SparseBool* SparseBool::newEqualTo(SparseBool& o)
         std::vector<int> rowcolL(nnzL * 2, 0);
         outputRowCol(rowcolL.data());
 
-        bool r = get(0, 0);
+        bool r = getFirst();
         for (int i = 0; i < nnzL; ++i)
         {
             bool l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);

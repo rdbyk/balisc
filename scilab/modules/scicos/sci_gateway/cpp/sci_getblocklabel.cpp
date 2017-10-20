@@ -80,7 +80,7 @@ types::Function::ReturnValue sci_getblocklabel(types::typed_list &in, int _iRetC
             Scierror(999, _("%s: Wrong size for input argument #%d : A scalar expected.\n"), funname.data(), 1);
             return types::Function::Error;
         }
-        blockNumber = static_cast<int>(BlockNumber->get(0));
+        blockNumber = static_cast<int>(BlockNumber->getFirst());
     }
 
     int labelSize;

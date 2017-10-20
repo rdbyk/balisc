@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    ncomp = (int)pDblN->get(0);
+    ncomp = (int)pDblN->getFirst();
 
     if (ncomp > 20)
     {
@@ -156,7 +156,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    aleft = pDblXLow->get(0);
+    aleft = pDblXLow->getFirst();
     iPos++;
 
     // aright
@@ -176,7 +176,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    aright = pDblXUp->get(0);
+    aright = pDblXUp->getFirst();
     iPos++;
 
     // zeta
@@ -466,7 +466,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
             if (bOK == false)
             {
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                char* pst = wide_string_to_UTF8(pStr->getFirst());
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "bvode", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
@@ -486,11 +486,11 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            if (pList->get(0)->isCallable())
+            if (pList->getFirst()->isCallable())
             {
                 if (i == 10) // fsub
                 {
-                    deFunctionsManager.setFsubFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFsubFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setFsubArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -498,7 +498,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
                 }
                 else if (i == 11) // dfsub
                 {
-                    deFunctionsManager.setDfsubFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setDfsubFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setDfsubArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -506,7 +506,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
                 }
                 else if (i == 12) // gsub
                 {
-                    deFunctionsManager.setGsubFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGsubFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setGsubArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -514,7 +514,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
                 }
                 else if (i == 13) // dgsub
                 {
-                    deFunctionsManager.setDgsubFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setDgsubFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setDgsubArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -522,7 +522,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
                 }
                 else if (i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
                 {
-                    deFunctionsManager.setGuessFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGuessFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setGuessArgs(pList->get(iter)->getAs<types::InternalType>());

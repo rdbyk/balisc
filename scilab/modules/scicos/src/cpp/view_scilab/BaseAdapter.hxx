@@ -258,7 +258,7 @@ public:
             return false;
         }
         // Make sure it is the same type as the Adapter
-        if (header->get(0) != Adaptor::getSharedTypeStr())
+        if (header->getFirst() != Adaptor::getSharedTypeStr())
         {
             get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for header of field %s: %s expected.\n"), Adaptor::getSharedTypeStr().c_str(), Adaptor::getSharedTypeStr().c_str());
             return false;
@@ -454,7 +454,7 @@ private:
         {
             types::String* pStr = (*_pArgs)[0]->getAs<types::String>();
             types::InternalType* pOut = NULL;
-            extract(std::wstring(pStr->get(0)), pOut);
+            extract(std::wstring(pStr->getFirst()), pOut);
             return pOut;
         }
         else
@@ -463,7 +463,7 @@ private:
             {
                 types::Double* index = (*_pArgs)[0]->getAs<types::Double>();
 
-                if (index->get(0) == 1)
+                if (index->getFirst() == 1)
                 {
                     // When _pArgs is '1', return the list of the property names of the Adaptor
 
@@ -500,7 +500,7 @@ private:
                 Controller controller;
 
                 types::String* pStr = (*_pArgs)[i]->getAs<types::String>();
-                std::wstring name = pStr->get(0);
+                std::wstring name = pStr->getFirst();
 
                 Adaptor* work;
                 if (getAdaptee()->refCount() > 0)

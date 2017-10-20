@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    wchar_t* pwcsNewName = pS1->getScalar_();
+    wchar_t* pwcsNewName = pS1->getFirst();
 
     //check is a valid name
     if (isValidName(pwcsNewName) == false)
@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    wchar_t* pwcsName = pS2->getScalar_();
+    wchar_t* pwcsName = pS2->getFirst();
 
     types::Function* pFunc = NULL;
     symbol::Context* pCtx = symbol::Context::getInstance();

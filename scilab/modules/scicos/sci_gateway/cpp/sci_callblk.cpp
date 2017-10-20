@@ -141,7 +141,7 @@ types::Function::ReturnValue sci_callblk(types::typed_list &in, int _iRetCount, 
     }
 
     tl = pIT->getAs<types::TList>();
-    pIT = tl->get(0);
+    pIT = tl->getFirst();
 
     if (pIT->isString() == false)
     {

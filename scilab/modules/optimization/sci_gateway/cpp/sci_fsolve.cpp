@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
     else if (in[1]->isString())
     {
         types::String* pStr = in[1]->getAs<types::String>();
-        char* pst = wide_string_to_UTF8(pStr->get(0));
+        char* pst = wide_string_to_UTF8(pStr->getFirst());
         bool bOK = opFunctionsManager.setFsolveFctFunction(pStr);
 
         if (bOK == false)
@@ -114,10 +114,10 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        if (pList->get(0)->isString())
+        if (pList->getFirst()->isString())
         {
-            types::String* pStr = pList->get(0)->getAs<types::String>();
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            types::String* pStr = pList->getFirst()->getAs<types::String>();
+            char* pst = wide_string_to_UTF8(pStr->getFirst());
             bool bOK = opFunctionsManager.setFsolveFctFunction(pStr);
 
             if (bOK == false)
@@ -130,9 +130,9 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
 
             FREE(pst);
         }
-        else if (pList->get(0)->isCallable())
+        else if (pList->getFirst()->isCallable())
         {
-            types::Callable* pCall = pList->get(0)->getAs<types::Callable>();
+            types::Callable* pCall = pList->getFirst()->getAs<types::Callable>();
             opFunctionsManager.setFsolveFctFunction(pCall);
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
@@ -165,7 +165,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
         else if (in[2]->isString())
         {
             types::String* pStr = in[2]->getAs<types::String>();
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            char* pst = wide_string_to_UTF8(pStr->getFirst());
             bool bOK = opFunctionsManager.setFsolveJacFunction(pStr);
 
             if (bOK == false)
@@ -189,10 +189,10 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            if (pList->get(0)->isString())
+            if (pList->getFirst()->isString())
             {
-                types::String* pStr = pList->get(0)->getAs<types::String>();
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                types::String* pStr = pList->getFirst()->getAs<types::String>();
+                char* pst = wide_string_to_UTF8(pStr->getFirst());
                 bool bOK = opFunctionsManager.setFsolveJacFunction(pStr);
 
                 if (bOK == false)
@@ -206,9 +206,9 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 bJac = true;
                 FREE(pst);
             }
-            else if (pList->get(0)->isCallable())
+            else if (pList->getFirst()->isCallable())
             {
-                types::Callable* pCall = pList->get(0)->getAs<types::Callable>();
+                types::Callable* pCall = pList->getFirst()->getAs<types::Callable>();
                 opFunctionsManager.setFsolveJacFunction(pCall);
                 for (int iter = 1; iter < pList->getSize(); iter++)
                 {
@@ -238,7 +238,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            dTol = pDblTol->get(0);
+            dTol = pDblTol->getFirst();
         }
         else
         {

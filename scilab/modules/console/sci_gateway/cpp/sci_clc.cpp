@@ -43,7 +43,7 @@ types::Function::ReturnValue sci_clc(types::typed_list &in, int _iRetCount, type
             Scierror(999, _("%s: Wrong type for input argument #%d: A double scalar expected.\n"), "clc", 1);
             return types::Function::Error;
         }
-        nblines = (int)in[0]->getAs<types::Double>()->get(0);
+        nblines = (int)in[0]->getAs<types::Double>()->getFirst();
         if (nblines < 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: A positive double expected\n"), "clc", 1);

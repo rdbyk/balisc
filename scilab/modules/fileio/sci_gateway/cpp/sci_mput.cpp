@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
         }
 
         FREE(pstType);
-        pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
 
     }
 
@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        iFile = static_cast<int>(in[2]->getAs<types::Double>()->get(0));
+        iFile = static_cast<int>(in[2]->getAs<types::Double>()->getFirst());
     }
 
     switch (iFile)

@@ -320,9 +320,9 @@ void PrettyPrintVisitor::visit(const DoubleExp & e)
         if (pIT->isImplicitList())
         {
             types::ImplicitList * pIL = static_cast<types::ImplicitList *>(pIT);
-            stream << static_cast<types::Double *>(pIL->getStart())->get(0) << L":"
-                   << static_cast<types::Double *>(pIL->getStep())->get(0) << L":"
-                   << static_cast<types::Double *>(pIL->getEnd())->get(0);
+            stream << static_cast<types::Double *>(pIL->getStart())->getFirst() << L":"
+                   << static_cast<types::Double *>(pIL->getStep())->getFirst() << L":"
+                   << static_cast<types::Double *>(pIL->getEnd())->getFirst();
         }
         else
         {

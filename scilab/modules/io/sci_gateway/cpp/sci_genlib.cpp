@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "genlib", 1);
         return types::Function::Error;
     }
-    pstLibName = pS->get(0);
+    pstLibName = pS->getFirst();
 
     //param 2, library path
     if (in.size() > 1)
@@ -176,7 +176,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         bVerbose = p->get()[0] == 1;
     }
 
-    wchar_t* pstFile = pS->get(0);
+    wchar_t* pstFile = pS->getFirst();
     pstParsePath = pathconvertW(pstFile, TRUE, TRUE, AUTO_STYLE);
 
     if (in.size() == 1)

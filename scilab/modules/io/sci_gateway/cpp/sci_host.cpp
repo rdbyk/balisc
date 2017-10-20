@@ -43,7 +43,7 @@ types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    wchar_t* pstCommand = pIT->getAs<types::String>()->get(0);
+    wchar_t* pstCommand = pIT->getAs<types::String>()->getFirst();
 
     int stat = 0;
     systemcW(pstCommand, &stat);

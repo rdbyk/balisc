@@ -60,28 +60,28 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
     if (psInput->getSize() == 1)
     {
         /* "on" "off" "query" "stop" */
-        if (wcscmp(psInput->get_(0), L"on") == 0)
+        if (wcscmp(psInput->getFirst(), L"on") == 0)
         {
             setWarningMode(TRUE);
             setWarningStop(FALSE);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->get_(0), L"off") == 0)
+        if (wcscmp(psInput->getFirst(), L"off") == 0)
         {
             setWarningMode(FALSE);
             setWarningStop(FALSE);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->get_(0), L"stop") == 0)
+        if (wcscmp(psInput->getFirst(), L"stop") == 0)
         {
             setWarningMode(TRUE);
             setWarningStop(TRUE);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->get_(0), L"query") == 0)
+        if (wcscmp(psInput->getFirst(), L"query") == 0)
         {
             if (getWarningMode())
             {

@@ -237,7 +237,7 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
         return NULL;
     }
 
-    int idx = (int)pArg[0]->getAs<Double>()->getScalar_();
+    int idx = (int)pArg[0]->getAs<Double>()->getFirst();
     if (_pSource->isListDelete())
     {
         //delete item
@@ -337,6 +337,11 @@ InternalType* List::get(const int _iIndex)
         return (*m_plData)[_iIndex];
     }
     return NULL;
+}
+
+InternalType* List::getFirst()
+{
+    return (*m_plData)[0];
 }
 
 void List::set_(const int _iIndex, InternalType* _pIT)

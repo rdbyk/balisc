@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_inspectorGetUnreferencedItem(types::typed_list 
         return types::Function::Error;
     }
 
-    int iPos = (int)pD->get(0) - 1;
+    int iPos = (int)pD->getFirst() - 1;
 
     out.push_back(types::Inspector::getUnreferencedItem(iPos));
     return types::Function::OK;

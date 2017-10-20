@@ -141,7 +141,7 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            piSizes[i - 1] = static_cast<int>(pDblNewSize->getScalar_());
+            piSizes[i - 1] = static_cast<int>(pDblNewSize->getFirst());
             if (piSizes[i - 1] == -1)
             {
                 if (iLeastOne == -1)

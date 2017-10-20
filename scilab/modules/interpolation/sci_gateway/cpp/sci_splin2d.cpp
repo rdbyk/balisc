@@ -144,7 +144,7 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        wchar_t* wcsType = in[3]->getAs<types::String>()->get(0);
+        wchar_t* wcsType = in[3]->getAs<types::String>()->getFirst();
 
         if (wcscmp(wcsType, L"not_a_knot") == 0)
         {

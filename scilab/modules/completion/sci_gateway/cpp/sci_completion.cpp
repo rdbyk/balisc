@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
-    pcSomechars = wide_string_to_UTF8(pStrSomechars->get(0));
+    pcSomechars = wide_string_to_UTF8(pStrSomechars->getFirst());
 
     if (in.size() == 1)
     {
@@ -113,7 +113,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
             return types::Function::Error;
         }
 
-        wchar_t* wcsDictionary = pStrDictionary->get(0);
+        wchar_t* wcsDictionary = pStrDictionary->getFirst();
         if ( wcscmp(wcsDictionary, L"functions") == 0 )
         {
             out.push_back(doCompletion(pcSomechars, &completionOnFunctions));

@@ -89,9 +89,9 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        iValueThree = (int)pDblIn->get(0);
+        iValueThree = (int)pDblIn->getFirst();
 
-        if ( (double)iValueThree != pDblIn->get(0))
+        if ( (double)iValueThree != pDblIn->getFirst())
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "strsplit", 3);
             return types::Function::Error;
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
             }
 
             strsplit_error ierr = STRSPLIT_NO_ERROR;
-            wchar_t **results = strsplit(pStrIn->get(0), pDbl->get(), pDbl->getSize(), &ierr);
+            wchar_t **results = strsplit(pStrIn->getFirst(), pDbl->get(), pDbl->getSize(), &ierr);
 
             switch (ierr)
             {

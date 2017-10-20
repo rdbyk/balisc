@@ -139,7 +139,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
                 return types::Function::Error;
             }
 
-            if (pDims->get(0) * pDims->get(1) == 0)
+            if (pDims->getFirst() * pDims->get(1) == 0)
             {
                 out.push_back(types::Double::Empty());
                 return types::Function::OK;
