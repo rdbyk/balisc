@@ -302,11 +302,7 @@ public :
 
     inline T get(int _iPos)
     {
-        if (m_pRealData)
-        {
-            return m_pRealData[_iPos];
-        }
-        return T();
+        return m_pRealData[_iPos];
     }
 
     inline T get(int _iRows, int _iCols)
@@ -406,11 +402,7 @@ public :
 
     inline T getImg(int _iPos)
     {
-        if (m_pImgData)
-        {
-            return m_pImgData[_iPos];
-        }
-        return T();
+        return m_pImgData[_iPos];
     }
 
     inline T getImg(int _iRows, int _iCols)
