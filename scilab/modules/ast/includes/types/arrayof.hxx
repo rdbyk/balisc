@@ -314,17 +314,6 @@ public :
         return get(_iCols * getRows() + _iRows);
     }
 
-    // unsafe "get" functions
-    inline T get_(int _iPos)
-    {
-        return m_pRealData[_iPos];
-    }
-
-    inline T get_(int _iRows, int _iCols)
-    {
-        return get_(_iCols * getRows() + _iRows);
-    }
-
     // specialized "get" for scalars (first element)
     // wo/ any safety checks!!!
     inline T getFirst()
@@ -427,17 +416,6 @@ public :
     inline T getImg(int _iRows, int _iCols)
     {
         return getImg(_iCols * getRows() + _iRows);
-    }
-
-    // unsafe "getImg" functions
-    inline T getImg_(int _iPos)
-    {
-        return m_pImgData[_iPos];
-    }
-
-    inline T getImg_(int _iRows, int _iCols)
-    {
-        return getImg_(_iCols * getRows() + _iRows);
     }
 
     virtual ArrayOf<T>* insert(typed_list* _pArgs, InternalType* _pSource);
