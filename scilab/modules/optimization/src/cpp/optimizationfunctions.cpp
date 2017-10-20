@@ -113,17 +113,17 @@ void OptimizationFunctions::execCostf(int *ind, int *n, double *x, double *f, do
     }
     else if (m_pStringOptimCostfFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringOptimCostfFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringOptimCostfFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringOptimCostfFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringOptimCostfFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((costf_t)(func->functionPtr))(ind, n, x, f, g, ti, tr, td);
     }
     else if (m_pStringOptimCostfFunctionStatic)
     {
-        ((costf_t)m_staticFunctionMap[m_pStringOptimCostfFunctionStatic->get(0)])(ind, n, x, f, g, ti, tr, td);
+        ((costf_t)m_staticFunctionMap[m_pStringOptimCostfFunctionStatic->getFirst()])(ind, n, x, f, g, ti, tr, td);
     }
     else
     {
@@ -142,17 +142,17 @@ void OptimizationFunctions::execFsolveFct(int* n, double* x, double* v, int* ifl
     }
     else if (m_pStringFsolveFctFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveFctFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveFctFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveFctFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveFctFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((fct_t)(func->functionPtr))(n, x, v, iflag);
     }
     else if (m_pStringFsolveFctFunctionStatic)
     {
-        ((fct_t)m_staticFunctionMap[m_pStringFsolveFctFunctionStatic->get(0)])(n, x, v, iflag);
+        ((fct_t)m_staticFunctionMap[m_pStringFsolveFctFunctionStatic->getFirst()])(n, x, v, iflag);
     }
     else
     {
@@ -169,10 +169,10 @@ void OptimizationFunctions::execFsolveJac(int* n, double* x, double* v, double* 
     }
     else if (m_pStringFsolveJacFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveJacFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveJacFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveJacFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         // c or fortran jac fuction are the same proto as fct
@@ -181,7 +181,7 @@ void OptimizationFunctions::execFsolveJac(int* n, double* x, double* v, double* 
     else if (m_pStringFsolveJacFunctionStatic)
     {
         // c or fortran jac fuction are the same proto as fct
-        ((fct_t)m_staticFunctionMap[m_pStringFsolveJacFunctionStatic->get(0)])(n, x, jac, iflag);
+        ((fct_t)m_staticFunctionMap[m_pStringFsolveJacFunctionStatic->getFirst()])(n, x, jac, iflag);
     }
     else
     {
@@ -200,17 +200,17 @@ void OptimizationFunctions::execLsqrsolveFct(int* m, int* n, double* x, double* 
     }
     else if (m_pStringFsolveFctFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveFctFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveFctFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveFctFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveFctFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((lsqrfct_t)(func->functionPtr))(m, n, x, v, iflag);
     }
     else if (m_pStringFsolveFctFunctionStatic)
     {
-        ((lsqrfct_t)m_staticFunctionMap[m_pStringFsolveFctFunctionStatic->get(0)])(m, n, x, v, iflag);
+        ((lsqrfct_t)m_staticFunctionMap[m_pStringFsolveFctFunctionStatic->getFirst()])(m, n, x, v, iflag);
     }
     else
     {
@@ -227,10 +227,10 @@ void OptimizationFunctions::execLsqrsolveJac(int* m, int* n, double* x, double* 
     }
     else if (m_pStringFsolveJacFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveJacFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveJacFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveJacFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         // c or fortran jac fuction are the same proto as fct
@@ -239,7 +239,7 @@ void OptimizationFunctions::execLsqrsolveJac(int* m, int* n, double* x, double* 
     else if (m_pStringFsolveJacFunctionStatic)
     {
         // c or fortran jac fuction are the same proto as fct
-        ((lsqrjac_ext_t)m_staticFunctionMap[m_pStringFsolveJacFunctionStatic->get(0)])(m, n, x, jac, ldjac, iflag);
+        ((lsqrjac_ext_t)m_staticFunctionMap[m_pStringFsolveJacFunctionStatic->getFirst()])(m, n, x, jac, ldjac, iflag);
     }
     else
     {
@@ -271,14 +271,14 @@ void OptimizationFunctions::setOptimCostfFunction(types::Callable* _func)
 
 bool OptimizationFunctions::setOptimCostfFunction(types::String* _func)
 {
-    if (ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->getFirst()))
     {
         m_pStringOptimCostfFunctionDyn = _func;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringOptimCostfFunctionStatic = _func;
             return true;
@@ -300,14 +300,14 @@ void OptimizationFunctions::setFsolveFctFunction(types::Callable* _func)
 
 bool OptimizationFunctions::setFsolveFctFunction(types::String* _func)
 {
-    if (ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->getFirst()))
     {
         m_pStringFsolveFctFunctionDyn = _func;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringFsolveFctFunctionStatic = _func;
             return true;
@@ -328,14 +328,14 @@ void OptimizationFunctions::setFsolveJacFunction(types::Callable* _func)
 
 bool OptimizationFunctions::setFsolveJacFunction(types::String* _func)
 {
-    if (ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->getFirst()))
     {
         m_pStringFsolveJacFunctionDyn = _func;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringFsolveJacFunctionStatic = _func;
             return true;
@@ -448,7 +448,7 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
         throw ast::InternalError(errorMsg);
     }
 
-    *f = pDblOut->get(0);
+    *f = pDblOut->getFirst();
 
     out[0]->DecreaseRef();
     if (out[0]->isDeletable())
@@ -508,7 +508,7 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
         throw ast::InternalError(errorMsg);
     }
 
-    *ind = (int)pDblOut->get(0);
+    *ind = (int)pDblOut->getFirst();
 
     out[2]->DecreaseRef();
     if (out[2]->isDeletable())
