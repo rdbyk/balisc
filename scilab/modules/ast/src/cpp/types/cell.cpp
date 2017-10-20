@@ -141,11 +141,7 @@ bool Cell::transpose(InternalType *& out)
 
 Cell* Cell::set(int _iRows, int _iCols, InternalType* _pIT)
 {
-    if (_iRows < getRows() && _iCols < getCols())
-    {
-        return set(_iCols * getRows() + _iRows, _pIT);
-    }
-    return NULL;
+    return set(_iCols * getRows() + _iRows, _pIT);
 }
 
 void Cell::set_(int _iRows, int _iCols, const InternalType* _pIT)
@@ -155,20 +151,11 @@ void Cell::set_(int _iRows, int _iCols, const InternalType* _pIT)
 
 Cell* Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
 {
-    if (_iRows < getRows() && _iCols < getCols())
-    {
-        return set(_iCols * getRows() + _iRows, _pIT);
-    }
-    return NULL;
+    return set(_iCols * getRows() + _iRows, _pIT);
 }
 
 Cell* Cell::set(int _iIndex, InternalType* _pIT)
 {
-    if (_iIndex >= m_iSize)
-    {
-        return NULL;
-    }
-
     // corner case when inserting twice
     if (m_pRealData[_iIndex] == _pIT)
     {
@@ -194,11 +181,6 @@ void Cell::set_(int _iIndex, const InternalType* _pIT)
 
 Cell* Cell::set(int _iIndex, const InternalType* _pIT)
 {
-    if (_iIndex >= m_iSize)
-    {
-        return NULL;
-    }
-
     Cell* c = copyAs<Cell>();
     c->set_(_iIndex, _pIT);
     return c;
