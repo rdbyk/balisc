@@ -73,7 +73,7 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
 
 
     char* pcName = NULL;
-    iLen = wcslen(pStr->get(0));
+    iLen = wcslen(pStr->getFirst());
 
     for (int i = 1; i < pStr->getSize(); ++i)
     {
