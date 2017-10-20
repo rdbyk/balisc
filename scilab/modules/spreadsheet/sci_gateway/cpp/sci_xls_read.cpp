@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_xls_read(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    iId = static_cast<int>(pDblId->get(0));
+    iId = static_cast<int>(pDblId->getFirst());
 
     // sheetpos
     if (in[1]->isDouble() == false)
@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_xls_read(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    iSheetpos = static_cast<int>(pDblSheetpos->get(0));
+    iSheetpos = static_cast<int>(pDblSheetpos->getFirst());
 
     xls_read(&iId, &iSheetpos, &data, &ind, &rows, &cols, &iErr);
     switch (iErr)
