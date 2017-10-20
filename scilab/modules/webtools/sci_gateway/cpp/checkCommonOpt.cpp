@@ -41,7 +41,7 @@ int checkCommonOpt(void* _curl, types::optional_list &opt, const char* fname)
                 return 1;
             }
 
-            wchar_t* pCert = o.second->getAs<types::String>()->get(0);
+            wchar_t* pCert = o.second->getAs<types::String>()->getFirst();
             if(wcscmp(pCert, L"none") == 0)
             {
                 curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -61,7 +61,7 @@ int checkCommonOpt(void* _curl, types::optional_list &opt, const char* fname)
                 return 1;
             }
 
-            if(o.second->getAs<types::Bool>()->get(0) == 1)
+            if(o.second->getAs<types::Bool>()->getFirst() == 1)
             {
                 curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
             }
@@ -74,7 +74,7 @@ int checkCommonOpt(void* _curl, types::optional_list &opt, const char* fname)
                 return 1;
             }
 
-            char* pAuth = wide_string_to_UTF8(o.second->getAs<types::String>()->get(0));
+            char* pAuth = wide_string_to_UTF8(o.second->getAs<types::String>()->getFirst());
             curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
             curl_easy_setopt(curl, CURLOPT_USERPWD, pAuth);
             FREE(pAuth);

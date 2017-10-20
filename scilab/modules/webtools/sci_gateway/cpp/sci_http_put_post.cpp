@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_http_put_post(types::typed_list &in, types::opt
         return types::Function::Error;
     }
 
-    char* pcURL = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+    char* pcURL = wide_string_to_UTF8(in[0]->getAs<types::String>()->getFirst());
     curl_easy_setopt(curl, CURLOPT_URL, pcURL);
     FREE(pcURL);
 
@@ -106,8 +106,8 @@ types::Function::ReturnValue sci_http_put_post(types::typed_list &in, types::opt
                 return types::Function::Error;
             }
 
-            if( (wcscmp(o.second->getAs<types::String>()->get(0), L"JSON") == 0) ||
-                (wcscmp(o.second->getAs<types::String>()->get(0), L"json") == 0))
+            if( (wcscmp(o.second->getAs<types::String>()->getFirst(), L"JSON") == 0) ||
+                (wcscmp(o.second->getAs<types::String>()->getFirst(), L"json") == 0))
             {
                 isJson = true;
             }
@@ -119,7 +119,7 @@ types::Function::ReturnValue sci_http_put_post(types::typed_list &in, types::opt
         // get data
         if(in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
         {
-            pcData = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+            pcData = wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
         }
         else
         {

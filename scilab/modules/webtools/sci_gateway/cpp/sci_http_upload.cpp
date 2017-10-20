@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_http_upload(types::typed_list &in, types::optio
         return types::Function::Error;
     }
 
-    char* pcURL = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+    char* pcURL = wide_string_to_UTF8(in[0]->getAs<types::String>()->getFirst());
     curl_easy_setopt(curl, CURLOPT_URL, pcURL);
     FREE(pcURL);
 
@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_http_upload(types::typed_list &in, types::optio
         return types::Function::Error;
     }
 
-    char* pcVarName = wide_string_to_UTF8(in[2]->getAs<types::String>()->get(0));
+    char* pcVarName = wide_string_to_UTF8(in[2]->getAs<types::String>()->getFirst());
 
     struct curl_httppost *formpost = NULL;
     struct curl_httppost *lastptr  = NULL;
@@ -132,8 +132,8 @@ types::Function::ReturnValue sci_http_upload(types::typed_list &in, types::optio
         }
 
         types::Struct* pStruct = in[3]->getAs<types::Struct>();
-        std::unordered_map<std::wstring, int> fieldsMap = pStruct->get(0)->getFields();
-        std::vector<types::InternalType*> pITData = pStruct->get(0)->getData();
+        std::unordered_map<std::wstring, int> fieldsMap = pStruct->getFirst()->getFields();
+        std::vector<types::InternalType*> pITData = pStruct->getFirst()->getData();
         for (const auto & field : fieldsMap)
         {
             char* pcFieldName = wide_string_to_UTF8(field.first.data());
@@ -181,7 +181,7 @@ types::Function::ReturnValue sci_http_upload(types::typed_list &in, types::optio
                 return types::Function::Error;
             }
 
-            wchar_t* pMeth = o.second->getAs<types::String>()->get(0);
+            wchar_t* pMeth = o.second->getAs<types::String>()->getFirst();
             if(wcscmp(pMeth, L"PUT") == 0)
             {
                 curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
