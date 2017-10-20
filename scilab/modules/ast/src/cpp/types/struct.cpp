@@ -205,20 +205,12 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
 
 Struct* Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
 {
-    if (_iRows < getRows() && _iCols < getCols())
-    {
-        return set(_iCols * getRows() + _iRows, _pIT);
-    }
-    return NULL;
+    return set(_iCols * getRows() + _iRows, _pIT);
 }
 
 Struct* Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
 {
-    if (_iRows < getRows() && _iCols < getCols())
-    {
-        return set(_iCols * getRows() + _iRows, _pIT);
-    }
-    return NULL;
+    return set(_iCols * getRows() + _iRows, _pIT);
 }
 
 Struct* Struct::set(int _iIndex, SingleStruct* _pIT)
@@ -230,31 +222,27 @@ Struct* Struct::set(int _iIndex, SingleStruct* _pIT)
         return pIT;
     }
 
-    if (_iIndex < getSize())
+    if (m_bDisableCloneInCopyValue && m_pRealData[_iIndex] == _pIT)
     {
-        if (m_bDisableCloneInCopyValue && m_pRealData[_iIndex] == _pIT)
-        {
-            return this;
-        }
-
-        InternalType* pOld = m_pRealData[_iIndex];
-
-        m_pRealData[_iIndex] = copyValue(_pIT);
-        if (m_bDisableCloneInCopyValue == false)
-        {
-            //only in clone mode
-            m_pRealData[_iIndex]->IncreaseRef();
-        }
-
-        if (pOld != NULL)
-        {
-            pOld->DecreaseRef();
-            pOld->killMe();
-        }
-
         return this;
     }
-    return NULL;
+
+    InternalType* pOld = m_pRealData[_iIndex];
+
+    m_pRealData[_iIndex] = copyValue(_pIT);
+    if (m_bDisableCloneInCopyValue == false)
+    {
+        //only in clone mode
+        m_pRealData[_iIndex]->IncreaseRef();
+    }
+
+    if (pOld != NULL)
+    {
+        pOld->DecreaseRef();
+        pOld->killMe();
+    }
+
+    return this;
 }
 
 Struct* Struct::set(int _iIndex, const SingleStruct* _pIT)
@@ -266,21 +254,17 @@ Struct* Struct::set(int _iIndex, const SingleStruct* _pIT)
         return pIT;
     }
 
-    if (_iIndex < getSize())
+    InternalType* pOld = m_pRealData[_iIndex];
+
+    m_pRealData[_iIndex] = const_cast<SingleStruct*>(_pIT)->clone();
+
+    if (pOld != NULL)
     {
-        InternalType* pOld = m_pRealData[_iIndex];
-
-        m_pRealData[_iIndex] = const_cast<SingleStruct*>(_pIT)->clone();
-
-        if (pOld != NULL)
-        {
-            pOld->DecreaseRef();
-            pOld->killMe();
-        }
-
-        return this;
+        pOld->DecreaseRef();
+        pOld->killMe();
     }
-    return NULL;
+
+    return this;
 }
 
 Struct* Struct::set(SingleStruct** _pIT)
@@ -294,10 +278,7 @@ Struct* Struct::set(SingleStruct** _pIT)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        if (set(i, _pIT[i]) == NULL)
-        {
-            return NULL;
-        }
+        set(i, _pIT[i]);
     }
     return this;
 }
