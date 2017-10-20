@@ -242,7 +242,7 @@ public :
 
     virtual ArrayOf<T>* set(int _iPos, const T _data)
     {
-        if (m_pRealData == NULL || _iPos >= m_iSize)
+        if (_iPos >= m_iSize)
         {
             return NULL;
         }
@@ -273,11 +273,6 @@ public :
 
     virtual ArrayOf<T>* set(T* _pdata)
     {
-        if (m_pRealData == NULL)
-        {
-            return NULL;
-        }
-
         ArrayOf<T>* a = copyAs<ArrayOf<T>>();
         a->set_(_pdata);
         return a;
@@ -285,11 +280,6 @@ public :
 
     virtual ArrayOf<T>* set(const T* _pdata)
     {
-        if (m_pRealData == NULL)
-        {
-            return NULL;
-        }
-
         ArrayOf<T>* a = copyAs<ArrayOf<T>>();
         a->set_(_pdata);
         return a;
@@ -351,7 +341,7 @@ public :
 
     ArrayOf<T>* setImg(int _iPos, T _data)
     {
-        if (m_pImgData == NULL || _iPos >= m_iSize)
+        if (_iPos >= m_iSize)
         {
             return NULL;
         }
@@ -367,11 +357,6 @@ public :
 
     ArrayOf<T>* setImg(T* _pdata)
     {
-        if (m_pImgData == NULL)
-        {
-            return NULL;
-        }
-
         for (int i = 0 ; i < m_iSize ; i++)
         {
             m_pImgData[i] = copyValue(_pdata[i]);
@@ -382,11 +367,6 @@ public :
 
     ArrayOf<T>* setImg(const T* _pdata)
     {
-        if (m_pImgData == NULL)
-        {
-            return NULL;
-        }
-
         for (int i = 0 ; i < m_iSize ; i++)
         {
             m_pImgData[i] = copyValue(_pdata[i]);

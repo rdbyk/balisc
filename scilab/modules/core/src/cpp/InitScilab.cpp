@@ -109,7 +109,8 @@ static void Add_Nan(void);
 static void Add_Inf(void);
 static void Add_io(void);
 static void Add_All_Variables(void);
-static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg, bool _bComplex);
+static void Add_Double_Constant(const std::wstring& _szName, double _dblReal);
+static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg);
 static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdblReal);
 static void Add_Boolean_Constant(const std::wstring& _szName, bool _bBool);
 static void Add_String_Constant(const std::wstring& _szName, const char *_pstString);
@@ -1123,7 +1124,7 @@ static void Add_Nan(void)
     double dbl1 = -1.0;
     double dbl0 = fabs(dbl1 - dbl1);
 
-    Add_Double_Constant(L"%nan", dbl0 / dbl0, 0, false);
+    Add_Double_Constant(L"%nan", dbl0 / dbl0);
 }
 
 static void Add_Inf(void)
@@ -1131,7 +1132,7 @@ static void Add_Inf(void)
     double dbl1 = 1.0;
     double dbl0 = dbl1 - dbl1;
 
-    Add_Double_Constant(L"%inf", dbl1 / dbl0, 0, false);
+    Add_Double_Constant(L"%inf", dbl1 / dbl0);
 }
 
 static void Add_gui(void)
@@ -1146,22 +1147,22 @@ static void Add_fftw(void)
 
 static void Add_pi(void)
 {
-    Add_Double_Constant(L"%pi", M_PI, 0, false);
+    Add_Double_Constant(L"%pi", M_PI);
 }
 
 static void Add_eps(void)
 {
-    Add_Double_Constant(L"%eps", NumericConstants::eps_machine, 0, false);
+    Add_Double_Constant(L"%eps", NumericConstants::eps_machine);
 }
 
 static void Add_e(void)
 {
-    Add_Double_Constant(L"%e", 2.71828182845904530, 0, false);
+    Add_Double_Constant(L"%e", 2.71828182845904530);
 }
 
 static void Add_i(void)
 {
-    Add_Double_Constant(L"%i", 0, 1, true);
+    Add_Double_Constant(L"%i", 0, 1);
 }
 
 static void Add_s(void)
@@ -1202,9 +1203,16 @@ static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVar);
 }
 
-static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg, bool _bComplex)
+static void Add_Double_Constant(const std::wstring& _szName, double _dblReal)
 {
-    types::Double * pVal = new types::Double(1, 1, _bComplex);
+    types::Double * pVal = new types::Double(1, 1, false);
+    pVal->set(0, 0, _dblReal);
+    symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVal);
+}
+
+static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg)
+{
+    types::Double * pVal = new types::Double(1, 1, true);
     pVal->set(0, 0, _dblReal);
     pVal->setImg(0, 0, _dblImg);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVal);
