@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_isalphanum(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
-    wcstrIn = pStrIn->get(0);
+    wcstrIn = pStrIn->getFirst();
     int* pbResult = (int*)isalphanumW(wcstrIn, &iResultSize);
     if (pbResult == NULL)
     {

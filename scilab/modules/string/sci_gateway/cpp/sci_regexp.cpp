@@ -76,14 +76,14 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
         Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "regexp", 1);
         return types::Function::Error;
     }
-    pwstInput = in[0]->getAs<types::String>()->get(0);
+    pwstInput = in[0]->getAs<types::String>()->getFirst();
 
     if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "regexp", 2);
         return types::Function::Error;
     }
-    pwstPattern = in[1]->getAs<types::String>()->get(0);
+    pwstPattern = in[1]->getAs<types::String>()->getFirst();
 
     if (in.size() == 3)
     {
@@ -93,7 +93,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        if (in[2]->getAs<types::String>()->get(0)[0] != WSTR_ONCE)
+        if (in[2]->getAs<types::String>()->getFirst()[0] != WSTR_ONCE)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: '%s' expected.\n"), "regexp", 3, "o");
             return types::Function::Error;

@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
         return types::Function::OK;
     }
 
-    values = isletterW(pString->get(0), &dimsArray[1]);
+    values = isletterW(pString->getFirst(), &dimsArray[1]);
 
     if (dimsArray[1] > 0)
     {

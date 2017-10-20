@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
 
     if (in.size() == 3)
     {
-        wchar_t wcMode = in[2]->getAs<types::String>()->get(0)[0];
+        wchar_t wcMode = in[2]->getAs<types::String>()->getFirst()[0];
         switch (wcMode)
         {
             case L'r' :
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        pwstToInsert = in[1]->getAs<types::String>()->get(0);
+        pwstToInsert = in[1]->getAs<types::String>()->getFirst();
     }
 
     types::String* pS = in[0]->getAs<types::String>();
@@ -112,7 +112,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
             wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
             
             wchar_t* dst = pwstOut;
-            wchar_t* src = pS->get(0);
+            wchar_t* src = pS->getFirst();
             while (*src != L'\0')
             {
                 *dst++ = *src++;

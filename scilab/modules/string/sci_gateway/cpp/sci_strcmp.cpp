@@ -75,13 +75,13 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
 
     if (in.size() == 3)
     {
-        if (in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false || wcslen(in[2]->getAs<types::String>()->get(0)) != 1)
+        if (in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false || wcslen(in[2]->getAs<types::String>()->getFirst()) != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Char expected.\n"), "strcmp", 3);
             return types::Function::Error;
         }
 
-        pwcChar3 = in[2]->getAs<types::String>()->get(0);
+        pwcChar3 = in[2]->getAs<types::String>()->getFirst();
         if ( (pwcChar3[0] != CHAR_I) && (pwcChar3[0] != CHAR_S))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "strcmp", 3, "'i' (stricmp)", "'s' (strcmp)");
