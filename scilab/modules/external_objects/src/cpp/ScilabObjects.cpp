@@ -799,7 +799,7 @@ int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)
         return EXTERNAL_INVALID;
     }
 
-    wchar_t* pwstMlistType = pStrFieldNames->get(0);
+    wchar_t* pwstMlistType = pStrFieldNames->getFirst();
     if (wcslen(pwstMlistType) == strlen("_EClass") && wcscmp(pwstMlistType, L"_EClass") == 0)
     {
         return EXTERNAL_CLASS;
