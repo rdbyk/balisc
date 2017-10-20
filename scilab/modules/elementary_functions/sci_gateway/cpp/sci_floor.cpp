@@ -102,13 +102,13 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0; i < pPolyIn->getSize(); i++)
             {
-                int rank = pPolyIn->get_(i)->getRank();
+                int rank = pPolyIn->get(i)->getRank();
                 types::SinglePoly* pSP = new types::SinglePoly(&dataReal, &dataImg, rank);
 
                 for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = std::floor(pPolyIn->get_(i)->get()[j]);
-                    dataImg[j]  = std::floor(pPolyIn->get_(i)->getImg()[j]);
+                    dataReal[j] = std::floor(pPolyIn->get(i)->get()[j]);
+                    dataImg[j]  = std::floor(pPolyIn->get(i)->getImg()[j]);
                 }
 
                 pPolyOut->set_(i, pSP);
@@ -120,12 +120,12 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0; i < pPolyIn->getSize(); i++)
             {
-                int rank = pPolyIn->get_(i)->getRank();
+                int rank = pPolyIn->get(i)->getRank();
                 types::SinglePoly* pSP = new types::SinglePoly(&dataReal, rank);
 
                 for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = std::floor(pPolyIn->get_(i)->get()[j]);
+                    dataReal[j] = std::floor(pPolyIn->get(i)->get()[j]);
                 }
 
                 pPolyOut->set_(i, pSP);

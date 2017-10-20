@@ -97,7 +97,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
 
     for (int i = 1; i < pDblSearch->getSize(); i++)
     {
-        if (pDblSearch->get_(i - 1) >= pDblSearch->get_(i))
+        if (pDblSearch->get(i - 1) >= pDblSearch->get(i))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: A strictly increasing order expected.\n"), "dsearch", 2);
             return types::Function::Error;

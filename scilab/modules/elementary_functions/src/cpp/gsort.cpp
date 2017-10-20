@@ -518,7 +518,7 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
                 for (int j = 0; j < iItem; j++)
                 {
                     iPos = i * iOffset2 + j * iOffset1;
-                    wchar_t* pWcsData = pIn->get_(iPos);
+                    wchar_t* pWcsData = pIn->get(iPos);
                     V.push_back(std::pair<int, wchar_t*>(j, pWcsData));
                 }
 

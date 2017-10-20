@@ -138,9 +138,9 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
         {
             for (int i = 1; i < pIn->getSize(); i++)
             {
-                pdblReal = pIn->get_(i)->get();
-                pdblImg  = pIn->get_(i)->getImg();
-                iRank    = pIn->get_(i)->getRank();
+                pdblReal = pIn->get(i)->get();
+                pdblImg  = pIn->get(i)->getImg();
+                iRank    = pIn->get(i)->getRank();
 
                 iOutRank = std::max(iRank, iLastRank);
                 iMin     = std::min(iRank, iLastRank);
@@ -170,8 +170,8 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                 }
 
                 pOut->set_(i, pSP);
-                pdblLastReal = pOut->get_(i)->get();
-                pdblLastImg = pOut->get_(i)->getImg();
+                pdblLastReal = pOut->get(i)->get();
+                pdblLastImg = pOut->get(i)->getImg();
                 iLastRank = iOutRank;
                 delete pSP;
             }
@@ -180,8 +180,8 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
         {
             for (int i = 1; i < pIn->getSize(); i++)
             {
-                pdblReal = pIn->get_(i)->get();
-                iRank    = pIn->get_(i)->getRank();
+                pdblReal = pIn->get(i)->get();
+                iRank    = pIn->get(i)->getRank();
 
                 iOutRank = std::max(iRank, iLastRank);
                 iMin     = std::min(iRank, iLastRank);
@@ -208,7 +208,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                 }
 
                 pOut->set_(i, pSP);
-                pdblLastReal = pOut->get_(i)->get();
+                pdblLastReal = pOut->get(i)->get();
                 iLastRank = iOutRank;
                 delete pSP;
             }
@@ -230,20 +230,20 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
-                    pOut->set_(i, pIn->get_(i));
+                    pOut->set_(i, pIn->get(i));
                 }
 
                 for (int k = 1; k < iSizeOfDimN; k++) // make the cumsum for the next values
                 {
                     for (int i = (iIncrement * k) + j; i < (iIncrement * (k + 1)) + j; i++)
                     {
-                        iLastRank    = pOut->get_(i - iIncrement)->getRank();
-                        pdblLastReal = pOut->get_(i - iIncrement)->get();
-                        pdblLastImg  = pOut->get_(i - iIncrement)->getImg();
+                        iLastRank    = pOut->get(i - iIncrement)->getRank();
+                        pdblLastReal = pOut->get(i - iIncrement)->get();
+                        pdblLastImg  = pOut->get(i - iIncrement)->getImg();
 
-                        iRank    = pIn->get_(i)->getRank();
-                        pdblReal = pIn->get_(i)->get();
-                        pdblImg  = pIn->get_(i)->getImg();
+                        iRank    = pIn->get(i)->getRank();
+                        pdblReal = pIn->get(i)->get();
+                        pdblImg  = pIn->get(i)->getImg();
 
                         iOutRank = std::max(iRank, iLastRank);
                         iMin     = std::min(iRank, iLastRank);
@@ -283,18 +283,18 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
-                    pOut->set_(i, pIn->get_(i));
+                    pOut->set_(i, pIn->get(i));
                 }
 
                 for (int k = 1; k < iSizeOfDimN; k++) // make the cumsum for the next values
                 {
                     for (int i = (iIncrement * k) + j; i < (iIncrement * (k + 1)) + j; i++)
                     {
-                        iLastRank    = pOut->get_(i - iIncrement)->getRank();
-                        pdblLastReal = pOut->get_(i - iIncrement)->get();
+                        iLastRank    = pOut->get(i - iIncrement)->getRank();
+                        pdblLastReal = pOut->get(i - iIncrement)->get();
 
-                        iRank    = pIn->get_(i)->getRank();
-                        pdblReal = pIn->get_(i)->get();
+                        iRank    = pIn->get(i)->getRank();
+                        pdblReal = pIn->get(i)->get();
 
                         iOutRank = std::max(iRank, iLastRank);
                         iMin     = std::min(iRank, iLastRank);

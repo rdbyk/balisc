@@ -119,14 +119,14 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
             {
                 for (int i = 0 ; i < pOut->getSize() ; i++)
                 {
-                    pOut->get_(i)->set(wstField, pCell->getFirst());
+                    pOut->get(i)->set(wstField, pCell->getFirst());
                 }
             }
             else
             {
                 for (int i = 0 ; i < pOut->getSize() ; i++)
                 {
-                    pOut->get_(i)->set(wstField, pCell->get_(i));
+                    pOut->get(i)->set(wstField, pCell->get(i));
                 }
             }
         }
@@ -135,7 +135,7 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
             //others
             for (int i = 0 ; i < pOut->getSize() ; i++)
             {
-                pOut->get_(i)->set(wstField, pData);
+                pOut->get(i)->set(wstField, pData);
             }
         }
     }

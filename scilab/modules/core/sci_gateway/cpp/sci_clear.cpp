@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, ty
         types::String* pStr = pIT->getAs<types::String>();
         for (int i = 0; i < pStr->getSize(); i++)
         {
-            symbol::Symbol sym = symbol::Symbol(pStr->get_(i));
+            symbol::Symbol sym = symbol::Symbol(pStr->get(i));
             if (ctx->isprotected(sym) == false)
             {
                 ctx->remove(sym);

@@ -175,7 +175,7 @@ InternalType* List::extract(typed_list* _pArgs)
 
     for (int i = 0 ; i < iSeqCount ; i++)
     {
-        int idx = (int)pArg[0]->getAs<Double>()->get_(i);
+        int idx = (int)pArg[0]->getAs<Double>()->get(i);
         if (idx > getSize() || idx < 1)
         {
             delete outList;
