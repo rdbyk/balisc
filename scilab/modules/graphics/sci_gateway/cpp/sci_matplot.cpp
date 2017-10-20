@@ -228,7 +228,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
             return types::Function::Error;
         }
 
-        strf =  wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        strf =  wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
         bFREE = true;
         if (in.size() > 2)
         {
@@ -309,7 +309,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 continue;
             }
 
-            strf =  wide_string_to_UTF8(o.second->getAs<types::String>()->get(0));
+            strf =  wide_string_to_UTF8(o.second->getAs<types::String>()->getFirst());
             bFREE = true;
         }
         else

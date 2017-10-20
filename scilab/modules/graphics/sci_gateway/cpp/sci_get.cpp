@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        double pdbll1 = pDbll1->get(0);
+        double pdbll1 = pDbll1->getFirst();
         if (pdbll1 != 0)
         {
             Overload::generateNameAndCall(L"get", in, _iRetCount, out);
@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        char* pstr = wide_string_to_UTF8(pStr->get(0));
+        char* pstr = wide_string_to_UTF8(pStr->getFirst());
         void* pvPropScreen = GetScreenProperty(NULL, pstr);
 
         if (pvPropScreen == NULL) /* Return property */
@@ -134,7 +134,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         if (in.size() == 1)
         {
             //get path from handle
-            int uic = getObjectFromHandle((long)pH->get(0));
+            int uic = getObjectFromHandle((long)pH->getFirst());
             char* path = get_path(uic);
             if (path[0] == '\0')
             {
@@ -163,7 +163,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        llH = pH->get(0);
+        llH = pH->getFirst();
     }
     else if (p1->isString())
     {
@@ -180,7 +180,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             return types::Function::Error;
         }
 
-        wchar_t* pstProperty = pS->get(0);
+        wchar_t* pstProperty = pS->getFirst();
 
         if (wcscmp(pstProperty, L"default_figure")  &&
                 wcscmp(pstProperty, L"default_axes")    &&
@@ -190,7 +190,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
                 wcscmp(pstProperty, L"hdl")             &&
                 wcscmp(pstProperty, L"figures_id"))
         {
-            char* pstProperty = wide_string_to_UTF8(pS->get(0));
+            char* pstProperty = wide_string_to_UTF8(pS->getFirst());
             int uid = search_path(pstProperty);
             FREE(pstProperty);
 
@@ -229,7 +229,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         return Overload::call(L"%" + p1->getShortTypeStr() + L"_get", in, _iRetCount, out);
     }
 
-    char* pstProperty = wide_string_to_UTF8(pS->get(0));
+    char* pstProperty = wide_string_to_UTF8(pS->getFirst());
 
     if (llH)
     {

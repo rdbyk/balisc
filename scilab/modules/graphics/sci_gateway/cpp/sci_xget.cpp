@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    pwcsWhat = pStr->get(0);
+    pwcsWhat = pStr->getFirst();
 
     if (ConfigGraphicVariable::bPropertyFound(pwcsWhat) == false)
     {
@@ -110,7 +110,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        dValue = pDbl->get(0);
+        dValue = pDbl->getFirst();
     }
 
     switch (ConfigGraphicVariable::getPropertyValue(pwcsWhat))
