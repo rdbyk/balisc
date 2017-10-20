@@ -215,7 +215,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                     FREE(YSize);
                     return types::Function::Error;
                 }
-                ng = (int)pDblNg->get(0);
+                ng = (int)pDblNg->getFirst();
             }
             else if (pDblHd == NULL && bFuncF == true)
             {
@@ -300,7 +300,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
 
             if (bOK == false)
             {
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                char* pst = wide_string_to_UTF8(pStr->getFirst());
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "dasrt", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
@@ -334,9 +334,9 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            if (pList->get(0)->isString())
+            if (pList->getFirst()->isString())
             {
-                types::String* pStr = pList->get(0)->getAs<types::String>();
+                types::String* pStr = pList->getFirst()->getAs<types::String>();
                 bool bOK = false;
 
                 if (bFuncF == false)
@@ -366,7 +366,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
 
                 if (bOK == false)
                 {
-                    char* pst = wide_string_to_UTF8(pStr->get(0));
+                    char* pst = wide_string_to_UTF8(pStr->getFirst());
                     Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "dasrt", iPos + 1, pst);
                     FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
@@ -416,12 +416,12 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                 FREE(pdYDataTemp);
                 FREE(sizeTemp);
             }
-            else if (pList->get(0)->isCallable())
+            else if (pList->getFirst()->isCallable())
             {
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -430,7 +430,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                 else if (bFuncJac == false && pDblNg == NULL)
                 {
                     bFuncJac = true;
-                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -439,14 +439,14 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                 else if (bFuncG == false && pDblNg)
                 {
                     bFuncG = true;
-                    deFunctionsManager.setGFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setGArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
             }
-            else if (pList->get(0)->isDouble() && bFuncF == true)
+            else if (pList->getFirst()->isDouble() && bFuncF == true)
             {
                 if (pList->getSize() != 7)
                 {
@@ -478,20 +478,20 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                     }
                 }
 
-                types::Double* pDblTemp = pList->get(0)->getAs<types::Double>();
+                types::Double* pDblTemp = pList->getFirst()->getAs<types::Double>();
                 if (pDblTemp->getSize() != 0)
                 {
                     info[3] = 1;
-                    tstop = pDblTemp->get(0);
+                    tstop = pDblTemp->getFirst();
                 }
 
-                info[2] = (int)pList->get(1)->getAs<types::Double>()->get(0);
+                info[2] = (int)pList->get(1)->getAs<types::Double>()->getFirst();
 
                 pDblTemp = pList->get(2)->getAs<types::Double>();
                 if (pDblTemp->getSize() == 2)
                 {
                     info[5] = 1;
-                    ml = (int)pDblTemp->get(0);
+                    ml = (int)pDblTemp->getFirst();
                     mu = (int)pDblTemp->get(1);
                     deFunctionsManager.setMl(ml);
                     deFunctionsManager.setMu(mu);
@@ -510,18 +510,18 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                 if (pDblTemp->getSize() != 0)
                 {
                     info[6] = 1;
-                    maxstep = pDblTemp->get(0);
+                    maxstep = pDblTemp->getFirst();
                 }
 
                 pDblTemp = pList->get(4)->getAs<types::Double>();
                 if (pDblTemp->getSize() != 0)
                 {
                     info[7] = 1;
-                    stepin = pDblTemp->get(0);
+                    stepin = pDblTemp->getFirst();
                 }
 
-                info[9]  = (int)pList->get(5)->getAs<types::Double>()->get(0);
-                if (pList->get(6)->getAs<types::Double>()->get(0) == 1)
+                info[9]  = (int)pList->get(5)->getAs<types::Double>()->getFirst();
+                if (pList->get(6)->getAs<types::Double>()->getFirst() == 1)
                 {
                     info[10] = 1;
                 }
@@ -585,7 +585,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
     }
 
     // *** Initialization. ***
-    double t0   = pDblT0->get(0);
+    double t0   = pDblT0->getFirst();
     double rpar = 0;
     int ipar    = 0;
     int idid    = 0;
@@ -600,7 +600,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
         if (pDblAtol->isScalar())
         {
             atol  = (double*)MALLOC(sizeof(double));
-            *atol = pDblAtol->get(0);
+            *atol = pDblAtol->getFirst();
         }
         else
         {
@@ -619,7 +619,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
         if (pDblRtol->isScalar())
         {
             rtol  = (double*)MALLOC(sizeof(double));
-            *rtol = pDblRtol->get(0);
+            *rtol = pDblRtol->getFirst();
         }
         else
         {

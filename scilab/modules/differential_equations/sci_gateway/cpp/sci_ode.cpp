@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
     if (in[0]->isString())
     {
         pStrType = in[0]->getAs<types::String>();
-        wcsType = pStrType->get(0);
+        wcsType = pStrType->getFirst();
         iPos++;
     }
 
@@ -396,7 +396,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
             if (bOK == false)
             {
-                char* pst = wide_string_to_UTF8(pStr->get(0));
+                char* pst = wide_string_to_UTF8(pStr->getFirst());
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "ode", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
@@ -427,9 +427,9 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 return types::Function::Error;
             }
 
-            if (pList->get(0)->isString())
+            if (pList->getFirst()->isString())
             {
-                types::String* pStr = pList->get(0)->getAs<types::String>();
+                types::String* pStr = pList->getFirst()->getAs<types::String>();
                 bool bOK = false;
 
                 if (bFuncF == false)
@@ -459,7 +459,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
                 if (bOK == false)
                 {
-                    char* pst = wide_string_to_UTF8(pStr->get(0));
+                    char* pst = wide_string_to_UTF8(pStr->getFirst());
                     Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "ode", iPos + 1, pst);
                     FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
@@ -507,12 +507,12 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 FREE(pdYDataTemp);
                 FREE(sizeTemp);
             }
-            else if (pList->get(0)->isCallable())
+            else if (pList->getFirst()->isCallable())
             {
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -521,7 +521,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
                 {
                     bFuncJac = true;
-                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -530,7 +530,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 else if (bFuncG == false && meth == 3)
                 {
                     bFuncG = true;
-                    deFunctionsManager.setGFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGFunction(pList->getFirst()->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager.setGArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -624,7 +624,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         if (pDblOdeOptions->getSize() == 12)
         {
             iopt    = 1;
-            itask   = (int)pDblOdeOptions->get(0);
+            itask   = (int)pDblOdeOptions->getFirst();
             jt      = (int)pDblOdeOptions->get(5);
             ml      = (int)pDblOdeOptions->get(10);
             mu      = (int)pDblOdeOptions->get(11);
@@ -678,7 +678,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         if (pDblRtol->isScalar())
         {
             rtol = (double*)MALLOC(sizeof(double));
-            *rtol = pDblRtol->get(0);
+            *rtol = pDblRtol->getFirst();
         }
         else
         {
@@ -704,7 +704,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         if (pDblAtol->isScalar())
         {
             atol = (double*)MALLOC(sizeof(double));
-            *atol = pDblAtol->get(0);
+            *atol = pDblAtol->getFirst();
         }
         else
         {
@@ -774,11 +774,11 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             //             lmat   = neq**2 + 2              if jt = 1 or 2,
             //             lmat   = (2*ml + mu + 1)*neq + 2 if jt = 4 or 5.
 
-            lrn = 3 * (int)pDblNg->get(0);
+            lrn = 3 * (int)pDblNg->getFirst();
             lrs = lrn;
             dStructTabSize = 246 - 241;
             iStructTabSize = 59 - 50;
-            jroot = (int*)MALLOC((int)pDblNg->get(0) * sizeof(int));
+            jroot = (int*)MALLOC((int)pDblNg->getFirst() * sizeof(int));
         }
         case 0: // lsoda
         {
@@ -1022,7 +1022,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
     // *** Perform operation. ***
     int err = 0;
-    double t0 = pDblT0->get(0);
+    double t0 = pDblT0->getFirst();
     bool bOneStep = false;
 
     if (itask == 5 || itask == 3 || itask == 2)
@@ -1060,7 +1060,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     case 3: // lsodar
                     {
                         strMeth = "lsodar";
-                        int ng = (int)pDblNg->get(0);
+                        int ng = (int)pDblNg->getFirst();
                         C2F(lsodar)(ode_f, YSize, pdYData, &t0, &t, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt, ode_g, &ng, jroot);
                         break;
                     }
@@ -1171,7 +1171,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 if (getWarningMode())
                 {
                     sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
-                    for (int k = 0; k < pDblNg->get(0); k++)
+                    for (int k = 0; k < pDblNg->getFirst(); k++)
                     {
                         sciprint("\t%d", jroot[k]);
                     }
@@ -1283,7 +1283,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     case 3: // lsodar
                     {
                         strMeth = "lsodar";
-                        int ng = (int)pDblNg->get(0);
+                        int ng = (int)pDblNg->getFirst();
                         C2F(lsodar)(ode_f, YSize, pdYData, &t0, &t, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jt, ode_g, &ng, jroot);
                         break;
                     }
@@ -1419,7 +1419,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 if (getWarningMode())
                 {
                     sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
-                    for (int k = 0; k < pDblNg->get(0); k++)
+                    for (int k = 0; k < pDblNg->getFirst(); k++)
                     {
                         sciprint("\t%d", jroot[k]);
                     }
@@ -1512,7 +1512,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         int sizeOfRd = 1;
         int k = 0;
 
-        for (int i = 0; i < pDblNg->get(0); i++)
+        for (int i = 0; i < pDblNg->getFirst(); i++)
         {
             if (jroot[i])
             {
@@ -1530,7 +1530,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             pDblRd = new types::Double(1, sizeOfRd);
             //rd: The first entry contains the stopping time.
             pDblRd->set(0, C2F(lsr001).tlast);
-            for (int i = 0; i < pDblNg->get(0); i++)
+            for (int i = 0; i < pDblNg->getFirst(); i++)
             {
                 if (jroot[i])
                 {

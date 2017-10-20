@@ -216,17 +216,17 @@ void DifferentialEquationFunctions::execDasrtG(int* ny, double* t, double* y, in
     }
     else if (m_pStringGFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((dasrt_g_t)(func->functionPtr))(ny, t, y, ng, gout, rpar, ipar);
     }
     else if (m_pStringGFunctionStatic)
     {
-        ((dasrt_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->get(0)])(ny, t, y, ng, gout, rpar, ipar);
+        ((dasrt_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->getFirst()])(ny, t, y, ng, gout, rpar, ipar);
     }
     else
     {
@@ -244,17 +244,17 @@ void DifferentialEquationFunctions::execDasslF(double* t, double* y, double* ydo
     }
     else if (m_pStringFFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((dassl_f_t)(func->functionPtr))(t, y, ydot, delta, ires, rpar, ipar);
     }
     else if (m_pStringFFunctionStatic)
     {
-        ((dassl_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(t, y, ydot, delta, ires, rpar, ipar);
+        ((dassl_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->getFirst()])(t, y, ydot, delta, ires, rpar, ipar);
     }
     else
     {
@@ -272,17 +272,17 @@ void DifferentialEquationFunctions::execDasslJac(double* t, double* y, double* y
     }
     else if (m_pStringJacFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringJacFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((dassl_jac_t)(func->functionPtr))(t, y, ydot, pd, cj, rpar, ipar);
     }
     else if (m_pStringJacFunctionStatic)
     {
-        ((dassl_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->get(0)])(t, y, ydot, pd, cj, rpar, ipar);
+        ((dassl_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->getFirst()])(t, y, ydot, pd, cj, rpar, ipar);
     }
     else
     {
@@ -303,10 +303,10 @@ void DifferentialEquationFunctions::execDaskrPjac(double* res, int* ires, int* n
     }
     else if (m_pStringPjacFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringPjacFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringPjacFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringPjacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringPjacFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((daskr_pjac_t)(func->functionPtr))(res, ires, neq, t, y, ydot, rewt, savr,
@@ -314,7 +314,7 @@ void DifferentialEquationFunctions::execDaskrPjac(double* res, int* ires, int* n
     }
     else if (m_pStringPjacFunctionStatic)
     {
-        ((daskr_pjac_t)m_staticFunctionMap[m_pStringPjacFunctionStatic->get(0)])(res, ires, neq, t, y, ydot, rewt, savr,
+        ((daskr_pjac_t)m_staticFunctionMap[m_pStringPjacFunctionStatic->getFirst()])(res, ires, neq, t, y, ydot, rewt, savr,
                 wk, h, cj, wp, iwp, ier, rpar, ipar);
     }
     else
@@ -336,10 +336,10 @@ void DifferentialEquationFunctions::execDaskrPsol(int* neq, double* t, double* y
     }
     else if (m_pStringPsolFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringPsolFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringPsolFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringPsolFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringPsolFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((daskr_psol_t)(func->functionPtr))(neq, t, y, ydot, savr, wk, cj, wght,
@@ -347,7 +347,7 @@ void DifferentialEquationFunctions::execDaskrPsol(int* neq, double* t, double* y
     }
     else if (m_pStringPsolFunctionStatic)
     {
-        ((daskr_psol_t)m_staticFunctionMap[m_pStringPsolFunctionStatic->get(0)])(neq, t, y, ydot, savr, wk, cj, wght,
+        ((daskr_psol_t)m_staticFunctionMap[m_pStringPsolFunctionStatic->getFirst()])(neq, t, y, ydot, savr, wk, cj, wght,
                 wp, iwp, b, eplin, ier, rpar, ipar);
     }
     else
@@ -366,17 +366,17 @@ void DifferentialEquationFunctions::execImplF(int* neq, double* t, double* y, do
     }
     else if (m_pStringFFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((impl_f_t)(func->functionPtr))(neq, t, y, s, r, ires);
     }
     else if (m_pStringFFunctionStatic)
     {
-        ((impl_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(neq, t, y, s, r, ires);
+        ((impl_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->getFirst()])(neq, t, y, s, r, ires);
     }
     else
     {
@@ -394,17 +394,17 @@ void DifferentialEquationFunctions::execImplG(int* neq, double* t, double* y, do
     }
     else if (m_pStringGFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((impl_g_t)(func->functionPtr))(neq, t, y, ml, mu, p, nrowp);
     }
     else if (m_pStringGFunctionStatic)
     {
-        ((impl_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->get(0)])(neq, t, y, ml, mu, p, nrowp);
+        ((impl_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->getFirst()])(neq, t, y, ml, mu, p, nrowp);
     }
     else
     {
@@ -422,17 +422,17 @@ void DifferentialEquationFunctions::execImplJac(int* neq, double* t, double* y, 
     }
     else if (m_pStringJacFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringJacFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((impl_jac_t)(func->functionPtr))(neq, t, y, s, ml, mu, p, nrowp);
     }
     else if (m_pStringJacFunctionStatic)
     {
-        ((impl_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->get(0)])(neq, t, y, s, ml, mu, p, nrowp);
+        ((impl_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->getFirst()])(neq, t, y, s, ml, mu, p, nrowp);
     }
     else
     {
@@ -450,17 +450,17 @@ void DifferentialEquationFunctions::execBvodeGuess(double *x, double *z, double 
     }
     else if (m_pStringGuessFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGuessFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGuessFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGuessFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGuessFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
     }
     else if (m_pStringGuessFunctionStatic)
     {
-        ((bvode_ddd_t)m_staticFunctionMap[m_pStringGuessFunctionStatic->get(0)])(x, z, d);
+        ((bvode_ddd_t)m_staticFunctionMap[m_pStringGuessFunctionStatic->getFirst()])(x, z, d);
     }
     else
     {
@@ -478,17 +478,17 @@ void DifferentialEquationFunctions::execBvodeDfsub(double *x, double *z, double 
     }
     else if (m_pStringDfsubFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDfsubFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDfsubFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDfsubFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDfsubFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
     }
     else if (m_pStringDfsubFunctionStatic)// function static
     {
-        ((bvode_ddd_t)m_staticFunctionMap[m_pStringDfsubFunctionStatic->get(0)])(x, z, d);
+        ((bvode_ddd_t)m_staticFunctionMap[m_pStringDfsubFunctionStatic->getFirst()])(x, z, d);
     }
     else
     {
@@ -506,17 +506,17 @@ void DifferentialEquationFunctions::execBvodeFsub(double *x, double *z, double *
     }
     else if (m_pStringFsubFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsubFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsubFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsubFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsubFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
     }
     else if (m_pStringFsubFunctionStatic) // function static
     {
-        ((bvode_ddd_t)m_staticFunctionMap[m_pStringFsubFunctionStatic->get(0)])(x, z, d);
+        ((bvode_ddd_t)m_staticFunctionMap[m_pStringFsubFunctionStatic->getFirst()])(x, z, d);
     }
     else
     {
@@ -534,17 +534,17 @@ void DifferentialEquationFunctions::execBvodeDgsub(int *i, double *z, double *g)
     }
     else if (m_pStringDgsubFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgsubFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgsubFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgsubFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgsubFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((bvode_idd_t)(func->functionPtr))(i, z, g);
     }
     else if (m_pStringDgsubFunctionStatic) // function static
     {
-        ((bvode_idd_t)m_staticFunctionMap[m_pStringDgsubFunctionStatic->get(0)])(i, z, g);
+        ((bvode_idd_t)m_staticFunctionMap[m_pStringDgsubFunctionStatic->getFirst()])(i, z, g);
     }
     else
     {
@@ -562,17 +562,17 @@ void DifferentialEquationFunctions::execBvodeGsub(int *i, double *z, double *g)
     }
     else if (m_pStringGsubFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGsubFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGsubFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGsubFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGsubFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((bvode_idd_t)(func->functionPtr))(i, z, g);
     }
     else if (m_pStringGsubFunctionStatic) // function static
     {
-        ((bvode_idd_t)m_staticFunctionMap[m_pStringGsubFunctionStatic->get(0)])(i, z, g);
+        ((bvode_idd_t)m_staticFunctionMap[m_pStringGsubFunctionStatic->getFirst()])(i, z, g);
     }
     else
     {
@@ -590,10 +590,10 @@ void DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, 
     }
     else if (m_pStringFFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
 
@@ -601,7 +601,7 @@ void DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, 
     }
     else if (m_pStringFFunctionStatic) // function static
     {
-        ((feval_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(nn, x1, x2, xres, itype);
+        ((feval_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->getFirst()])(nn, x1, x2, xres, itype);
     }
     else
     {
@@ -619,17 +619,17 @@ void DifferentialEquationFunctions::execInt3dF(double* x, int* numfun, double* f
     }
     else if (m_pStringFFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((int3d_f_t)(func->functionPtr))(x, numfun, funvls);
     }
     else if (m_pStringFFunctionStatic) // function static
     {
-        ((int3d_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(x, numfun, funvls);
+        ((int3d_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->getFirst()])(x, numfun, funvls);
     }
     else
     {
@@ -647,17 +647,17 @@ double DifferentialEquationFunctions::execInt2dF(double* x, double* y)
     }
     else if (m_pStringFFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         return ((int2d_f_t)(func->functionPtr))(x, y);
     }
     else if (m_pStringFFunctionStatic) // function static
     {
-        return ((int2d_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(x, y);
+        return ((int2d_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->getFirst()])(x, y);
     }
     else
     {
@@ -675,17 +675,17 @@ double DifferentialEquationFunctions::execIntgF(double* x)
     }
     else if (m_pStringFFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         return ((intg_f_t)(func->functionPtr))(x);
     }
     else if (m_pStringFFunctionStatic) // function static
     {
-        return ((intg_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(x);
+        return ((intg_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->getFirst()])(x);
     }
     else
     {
@@ -703,10 +703,10 @@ void DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, doubl
     }
     else if (m_pStringFFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
 
@@ -723,11 +723,11 @@ void DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, doubl
     {
         if (m_wstrCaller == L"ode")
         {
-            ((ode_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(n, t, y, yout);
+            ((ode_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->getFirst()])(n, t, y, yout);
         }
         else // if (m_wstrCaller == L"odedc")
         {
-            ((odedc_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(&m_odedcFlag, n, &m_odedcYDSize, t, y, yout);
+            ((odedc_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->getFirst()])(&m_odedcFlag, n, &m_odedcYDSize, t, y, yout);
         }
     }
     else
@@ -746,17 +746,17 @@ void DifferentialEquationFunctions::execFunctionJac(int *n, double *t, double *y
     }
     else if (m_pStringJacFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringJacFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((func_jac_t)(func->functionPtr))(n, t, y, ml, mu, J, nrpd);
     }
     else if (m_pStringJacFunctionStatic) // function static
     {
-        ((func_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->get(0)])(n, t, y, ml, mu, J, nrpd);
+        ((func_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->getFirst()])(n, t, y, ml, mu, J, nrpd);
     }
     else
     {
@@ -774,17 +774,17 @@ void DifferentialEquationFunctions::execFunctionG(int* n, double* t, double* y, 
     }
     else if (m_pStringGFunctionDyn)
     {
-        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
+        ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->getFirst());
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGFunctionDyn->getFirst());
             throw ast::InternalError(errorMsg);
         }
         ((func_g_t)(func->functionPtr))(n, t, y, ng, gout);
     }
     else if (m_pStringGFunctionStatic)// function static
     {
-        ((func_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->get(0)])(n, t, y, ng, gout);
+        ((func_g_t)m_staticFunctionMap[m_pStringGFunctionStatic->getFirst()])(n, t, y, ng, gout);
     }
     else
     {
@@ -862,14 +862,14 @@ void DifferentialEquationFunctions::setPjacFunction(types::Callable* _pJacFunc)
 //set function f, jac, g, psol, pjac as types::String
 bool DifferentialEquationFunctions::setFFunction(types::String* _odeFFunc)
 {
-    if (ConfigVariable::getEntryPoint(_odeFFunc->get(0)))
+    if (ConfigVariable::getEntryPoint(_odeFFunc->getFirst()))
     {
         m_pStringFFunctionDyn = _odeFFunc;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_odeFFunc->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_odeFFunc->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringFFunctionStatic = _odeFFunc;
             return true;
@@ -880,14 +880,14 @@ bool DifferentialEquationFunctions::setFFunction(types::String* _odeFFunc)
 
 bool DifferentialEquationFunctions::setJacFunction(types::String* _odeJacFunc)
 {
-    if (ConfigVariable::getEntryPoint(_odeJacFunc->get(0)))
+    if (ConfigVariable::getEntryPoint(_odeJacFunc->getFirst()))
     {
         m_pStringJacFunctionDyn = _odeJacFunc;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_odeJacFunc->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_odeJacFunc->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringJacFunctionStatic = _odeJacFunc;
             return true;
@@ -898,14 +898,14 @@ bool DifferentialEquationFunctions::setJacFunction(types::String* _odeJacFunc)
 
 bool DifferentialEquationFunctions::setGFunction(types::String* _odeGFunc)
 {
-    if (ConfigVariable::getEntryPoint(_odeGFunc->get(0)))
+    if (ConfigVariable::getEntryPoint(_odeGFunc->getFirst()))
     {
         m_pStringGFunctionDyn = _odeGFunc;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_odeGFunc->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_odeGFunc->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringGFunctionStatic = _odeGFunc;
             return true;
@@ -916,14 +916,14 @@ bool DifferentialEquationFunctions::setGFunction(types::String* _odeGFunc)
 
 bool DifferentialEquationFunctions::setPsolFunction(types::String* _pSolFunc)
 {
-    if (ConfigVariable::getEntryPoint(_pSolFunc->get(0)))
+    if (ConfigVariable::getEntryPoint(_pSolFunc->getFirst()))
     {
         m_pStringPsolFunctionDyn = _pSolFunc;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_pSolFunc->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_pSolFunc->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringPsolFunctionStatic = _pSolFunc;
             return true;
@@ -934,14 +934,14 @@ bool DifferentialEquationFunctions::setPsolFunction(types::String* _pSolFunc)
 
 bool DifferentialEquationFunctions::setPjacFunction(types::String* _pJacFunc)
 {
-    if (ConfigVariable::getEntryPoint(_pJacFunc->get(0)))
+    if (ConfigVariable::getEntryPoint(_pJacFunc->getFirst()))
     {
         m_pStringPjacFunctionDyn = _pJacFunc;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_pJacFunc->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_pJacFunc->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringPjacFunctionStatic = _pJacFunc;
             return true;
@@ -1005,14 +1005,14 @@ void DifferentialEquationFunctions::setGuessFunction(types::Callable* _func)
 // bvode set function as types::String gsub, dgsub, fsub, dfsub, guess
 bool DifferentialEquationFunctions::setGsubFunction(types::String* _func)
 {
-    if (ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->getFirst()))
     {
         m_pStringGsubFunctionDyn = _func;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringGsubFunctionStatic = _func;
             return true;
@@ -1023,14 +1023,14 @@ bool DifferentialEquationFunctions::setGsubFunction(types::String* _func)
 
 bool DifferentialEquationFunctions::setDgsubFunction(types::String* _func)
 {
-    if (ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->getFirst()))
     {
         m_pStringDgsubFunctionDyn = _func;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringDgsubFunctionStatic = _func;
             return true;
@@ -1041,14 +1041,14 @@ bool DifferentialEquationFunctions::setDgsubFunction(types::String* _func)
 
 bool DifferentialEquationFunctions::setFsubFunction(types::String* _func)
 {
-    if (ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->getFirst()))
     {
         m_pStringFsubFunctionDyn = _func;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringFsubFunctionStatic = _func;
             return true;
@@ -1059,14 +1059,14 @@ bool DifferentialEquationFunctions::setFsubFunction(types::String* _func)
 
 bool DifferentialEquationFunctions::setDfsubFunction(types::String* _func)
 {
-    if (ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->getFirst()))
     {
         m_pStringDfsubFunctionDyn = _func;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringDfsubFunctionStatic = _func;
             return true;
@@ -1077,14 +1077,14 @@ bool DifferentialEquationFunctions::setDfsubFunction(types::String* _func)
 
 bool DifferentialEquationFunctions::setGuessFunction(types::String* _func)
 {
-    if (ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->getFirst()))
     {
         m_pStringGuessFunctionDyn = _func;
         return true;
     }
     else
     {
-        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->getFirst()) != m_staticFunctionMap.end())
         {
             m_pStringGuessFunctionStatic = _func;
             return true;
@@ -1565,7 +1565,7 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
         throw ast::InternalError(errorMsg);
     }
 
-    double res = pDblOut->get(0);
+    double res = pDblOut->getFirst();
     if (out[0]->isDeletable())
     {
         delete out[0];
@@ -1660,7 +1660,7 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
         throw ast::InternalError(errorMsg);
     }
 
-    double res = pDblOut->get(0);
+    double res = pDblOut->getFirst();
     if (out[0]->isDeletable())
     {
         delete out[0];
@@ -1861,13 +1861,13 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
     if (pDblOut->isComplex())
     {
         *itype = 1;
-        xres[0] = pDblOut->get(0);
-        xres[1] = pDblOut->getImg(0);
+        xres[0] = pDblOut->getFirst();
+        xres[1] = pDblOut->getImgFirst();
     }
     else
     {
         *itype = 0;
-        xres[0] = pDblOut->get(0);
+        xres[0] = pDblOut->getFirst();
     }
 
     if (out[0]->isDeletable())
@@ -1965,7 +1965,7 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
         throw ast::InternalError(errorMsg);
     }
 
-    *g = pDblOut->get(0);
+    *g = pDblOut->getFirst();
     if (out[0]->isDeletable())
     {
         delete out[0];
@@ -2785,7 +2785,7 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
     }
 
     C2F(dcopy)(&m_odeYRows, pDblOutDelta->get(), &one, delta, &one);
-    *ires = (int)pDblOutIres->get(0);
+    *ires = (int)pDblOutIres->getFirst();
 
     if (out[0]->isDeletable())
     {
@@ -3206,7 +3206,7 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
         iwp[i] = (int)pdblIwp[i];
     }
 
-    *ier = (int)(pDblOutIer->get(0));
+    *ier = (int)(pDblOutIer->getFirst());
 
     // delete output macro result
     out[0]->DecreaseRef();
@@ -3358,7 +3358,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
 
     // copy output macro results in output variables
     C2F(dcopy)(neq, pDblOutB->get(), &one, b, &one);
-    *ier = (int)(pDblOutIer->get(0));
+    *ier = (int)(pDblOutIer->getFirst());
 
     // free output arguments
     out[0]->DecreaseRef();

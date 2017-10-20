@@ -157,7 +157,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
 
         if (bOK == false)
         {
-            char* pst = wide_string_to_UTF8(pStr->get(0));
+            char* pst = wide_string_to_UTF8(pStr->getFirst());
             Scierror(50, _("%s: Subroutine not found: %s\n"), "int3d", pst);
             FREE(pst);
             DifferentialEquation::removeDifferentialEquationFunctions();
@@ -175,9 +175,9 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        if (pList->get(0)->isCallable())
+        if (pList->getFirst()->isCallable())
         {
-            deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
+            deFunctionsManager.setFFunction(pList->getFirst()->getAs<types::Callable>());
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
                 deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
@@ -220,7 +220,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
-        nf = (int)pDblNf->get(0);
+        nf = (int)pDblNf->getFirst();
 
         if (nf < 1)
         {
@@ -266,7 +266,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
             }
         }
 
-        minpts = pDblParams->get(0) < 0 ? minpts : (int)pDblParams->get(0);
+        minpts = pDblParams->getFirst() < 0 ? minpts : (int)pDblParams->getFirst();
         maxpts = pDblParams->get(1) < 0 ? maxpts : (int)pDblParams->get(1);
         epsabs = pDblParams->get(2) < 0.0 ? epsabs : pDblParams->get(2);
         epsrel = pDblParams->get(3) < 0.0 ? epsrel : pDblParams->get(3);
