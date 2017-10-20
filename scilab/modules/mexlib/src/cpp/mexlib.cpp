@@ -1051,52 +1051,52 @@ double mxGetScalar(const mxArray *ptr)
         case types::InternalType::ScilabDouble:
         {
             types::Double *pD = pIT->getAs<types::Double>();
-            return pD->get(0);
+            return pD->getFirst();
         }
         case types::InternalType::ScilabBool:
         {
             types::Bool *pB = pIT->getAs<types::Bool>();
-            return (double)pB->get(0);
+            return (double)pB->getFirst();
         }
         case types::InternalType::ScilabInt8:
         {
             types::Int8 *pI = pIT->getAs<types::Int8>();
-            return (double)pI->get(0);
+            return (double)pI->getFirst();
         }
         case types::InternalType::ScilabUInt8:
         {
             types::UInt8 *pI = pIT->getAs<types::UInt8>();
-            return (double)pI->get(0);
+            return (double)pI->getFirst();
         }
         case types::InternalType::ScilabInt16:
         {
             types::Int16 *pI = pIT->getAs<types::Int16>();
-            return (double)pI->get(0);
+            return (double)pI->getFirst();
         }
         case types::InternalType::ScilabUInt16:
         {
             types::UInt16 *pI = pIT->getAs<types::UInt16>();
-            return (double)pI->get(0);
+            return (double)pI->getFirst();
         }
         case types::InternalType::ScilabInt32:
         {
             types::Int32 *pI = pIT->getAs<types::Int32>();
-            return (double)pI->get(0);
+            return (double)pI->getFirst();
         }
         case types::InternalType::ScilabUInt32:
         {
             types::UInt32 *pI = pIT->getAs<types::UInt32>();
-            return (double)pI->get(0);
+            return (double)pI->getFirst();
         }
         case types::InternalType::ScilabInt64:
         {
             types::Int64 *pI = pIT->getAs<types::Int64>();
-            return (double)pI->get(0);
+            return (double)pI->getFirst();
         }
         case types::InternalType::ScilabUInt64:
         {
             types::UInt64 *pI = pIT->getAs<types::UInt64>();
-            return (double)pI->get(0);
+            return (double)pI->getFirst();
         }
         default:
             return 0;
@@ -1322,7 +1322,7 @@ mxChar *mxGetChars(mxArray *array_ptr)
     {
         return NULL;
     }
-    wchar_t *chars = ((types::String *)array_ptr->ptr)->get(0);
+    wchar_t *chars = ((types::String *)array_ptr->ptr)->getFirst();
     return (mxChar *)wide_string_to_UTF8(chars);
 }
 
@@ -1843,7 +1843,7 @@ double mxGetInf(void)
     types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%inf"));
     if (pITInf && pITInf->isDouble())
     {
-        return pITInf->getAs<types::Double>()->get(0);
+        return pITInf->getAs<types::Double>()->getFirst();
     }
 
     return -1;
@@ -1854,7 +1854,7 @@ double mxGetNaN(void)
     types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%nan"));
     if (pITInf)
     {
-        return pITInf->getAs<types::Double>()->get(0);
+        return pITInf->getAs<types::Double>()->getFirst();
     }
 
     return -1;
@@ -1865,7 +1865,7 @@ double mxGetEps(void)
     types::InternalType *pITEps = symbol::Context::getInstance()->get(symbol::Symbol(L"%eps"));
     if (pITEps && pITEps->isDouble())
     {
-        return pITEps->getAs<types::Double>()->get(0);
+        return pITEps->getAs<types::Double>()->getFirst();
     }
 
     return -1;
