@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_xcosPalGenerateIcon(types::typed_list &in, int 
         Scierror(999, _("%s: Argument #%d: Scalar (1 element) expected.\n"), funname, 2);
         return types::Function::Error;
     }
-    std::string iconPath = scilab::UTF8::toUTF8(path->get(0));
+    std::string iconPath = scilab::UTF8::toUTF8(path->getFirst());
 
     /* Call the java implementation */
     set_loaded_status(XCOS_CALLED);
