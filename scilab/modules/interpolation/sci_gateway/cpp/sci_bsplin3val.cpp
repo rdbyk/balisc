@@ -117,7 +117,7 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
-    if (    pDblDer->get(0) != floor(pDblDer->get(0)) || pDblDer->get(0) < 0.0
+    if (    pDblDer->getFirst() != floor(pDblDer->getFirst()) || pDblDer->getFirst() < 0.0
             || pDblDer->get(1) != floor(pDblDer->get(1)) || pDblDer->get(1) < 0.0
             || pDblDer->get(2) != floor(pDblDer->get(2)) || pDblDer->get(2) < 0.0)
     {
@@ -129,12 +129,12 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
     pDblDfp = new types::Double(pDblXYZ[0]->getRows(), pDblXYZ[0]->getCols());
 
     int der[3];
-    der[0] = static_cast<int>(pDblDer->get(0));
+    der[0] = static_cast<int>(pDblDer->getFirst());
     der[1] = static_cast<int>(pDblDer->get(1));
     der[2] = static_cast<int>(pDblDer->get(2));
 
     int order[3];
-    order[0] = static_cast<int>(pDblOrder->get(0));
+    order[0] = static_cast<int>(pDblOrder->getFirst());
     order[1] = static_cast<int>(pDblOrder->get(1));
     order[2] = static_cast<int>(pDblOrder->get(2));
 

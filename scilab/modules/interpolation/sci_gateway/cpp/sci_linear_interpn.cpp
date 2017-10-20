@@ -160,7 +160,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
             return types::Function::Error;
         }
 
-        wchar_t* wcsType = in[2 * n + 1]->getAs<types::String>()->get(0);
+        wchar_t* wcsType = in[2 * n + 1]->getAs<types::String>()->getFirst();
 
         if (wcscmp(wcsType, L"C0") == 0)
         {

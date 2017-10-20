@@ -163,7 +163,7 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        wchar_t* wcsType = in[5]->getAs<types::String>()->get(0);
+        wchar_t* wcsType = in[5]->getAs<types::String>()->getFirst();
 
         if (wcscmp(wcsType, L"C0") == 0)
         {
