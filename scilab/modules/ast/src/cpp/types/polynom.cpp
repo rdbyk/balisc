@@ -104,7 +104,7 @@ void Polynom::set_(int _iPos, SinglePoly* _pS)
 
 Polynom* Polynom::set(int _iPos, SinglePoly* _pS)
 {
-    if (m_pRealData == NULL || _iPos >= m_iSize)
+    if (_iPos >= m_iSize)
     {
         return NULL;
     }
