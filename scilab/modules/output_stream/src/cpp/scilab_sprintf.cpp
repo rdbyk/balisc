@@ -582,13 +582,13 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     std::wstring pInf = InfString;
 
                     types::InternalType* it = in[tok->pos];
-                    if (it->isDouble() && std::isnan(it->getAs<types::Double>()->get(0)))
+                    if (it->isDouble() && std::isnan(it->getAs<types::Double>()->getFirst()))
                     {
                         pwstStr = const_cast<wchar_t*>(NaN.c_str());
                     }
-                    else if (it->isDouble() && std::isfinite(it->getAs<types::Double>()->get(0)) == false)
+                    else if (it->isDouble() && std::isfinite(it->getAs<types::Double>()->getFirst()) == false)
                     {
-                        if (std::signbit(it->getAs<types::Double>()->get(0)))
+                        if (std::signbit(it->getAs<types::Double>()->getFirst()))
                         {
                             pwstStr = const_cast<wchar_t*>(nInf.c_str());
                         }
