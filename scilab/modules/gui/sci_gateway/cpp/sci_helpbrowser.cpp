@@ -99,15 +99,15 @@ types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCou
     char* pstKey    = NULL;
     if (in.size() == 2)
     {
-        pstLang = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        pstLang = wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
         launchHelpBrowser(helpAdr, iHelpAdrSize, pstLang);
     }
 
     if (in.size() == 4)
     {
-        pstLang = wide_string_to_UTF8(in[2]->getAs<types::String>()->get(0));
-        pstKey = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
-        int iFullText = in[3]->getAs<types::Bool>()->get(0);
+        pstLang = wide_string_to_UTF8(in[2]->getAs<types::String>()->getFirst());
+        pstKey = wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
+        int iFullText = in[3]->getAs<types::Bool>()->getFirst();
         searchKeyword(helpAdr, iHelpAdrSize, pstKey, pstLang, (BOOL) iFullText);
     }
 

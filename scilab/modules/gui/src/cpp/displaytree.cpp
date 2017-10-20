@@ -58,18 +58,18 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
         }
 
         // Get first element as a string
-        if (tlist->get(0)->isString() == false)
+        if (tlist->getFirst()->isString() == false)
         {
             return false;
         }
-        types::String* strItem1 = tlist->get(0)->getAs<types::String>();
+        types::String* strItem1 = tlist->getFirst()->getAs<types::String>();
         if (strItem1->getSize() < 1)
         {
             return false;
         }
 
         // Check tree structure
-        if (wcscmp(strItem1->get(0), TREE_REF_NAME) != 0)
+        if (wcscmp(strItem1->getFirst(), TREE_REF_NAME) != 0)
         {
             return false;
         }
@@ -81,7 +81,7 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
         }
 
         types::Struct* node = tlist->get(1)->getAs<types::Struct>();
-        types::String* fields = node->get(0)->getFieldNames();
+        types::String* fields = node->getFirst()->getFieldNames();
         if (fields->getSize() < 3)
         {
             return false;
@@ -99,7 +99,7 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
         types::InternalType* temp = nullptr;
 
         // Get label name
-        temp = node->get(0)->get(Label);
+        temp = node->getFirst()->get(Label);
         if (temp->isString() == false)
         {
             return false;
@@ -111,12 +111,12 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
             return false;
         }
 
-        cstr = wide_string_to_UTF8(strLabel->get(0));
+        cstr = wide_string_to_UTF8(strLabel->getFirst());
         _pvStructList.push_back(std::string(cstr));
         FREE(cstr);
 
         // Get icon name
-        temp = node->get(0)->get(Icon);
+        temp = node->getFirst()->get(Icon);
         if (temp->isString() == false)
         {
             return false;
@@ -128,12 +128,12 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
             return false;
         }
 
-        cstr = wide_string_to_UTF8(strIcon->get(0));
+        cstr = wide_string_to_UTF8(strIcon->getFirst());
         _pvStructList.push_back(std::string(cstr));
         FREE(cstr);
 
         // Get callback name
-        temp = node->get(0)->get(Callback);
+        temp = node->getFirst()->get(Callback);
         if (temp->isString() == false)
         {
             return false;
@@ -145,7 +145,7 @@ bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& 
             return false;
         }
 
-        cstr = wide_string_to_UTF8(strCallback->get(0));
+        cstr = wide_string_to_UTF8(strCallback->getFirst());
         _pvStructList.push_back(std::string(cstr));
         FREE(cstr);
 
