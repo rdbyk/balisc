@@ -102,7 +102,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
 
     if (pDblScalar != NULL)
     {
-        rMax = pDblScalar->get(0);
+        rMax = pDblScalar->getFirst();
     }
     else
     {

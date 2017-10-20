@@ -113,7 +113,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
             /* /!\ original code did not check that string is "e" so any [matrix of] string is accepted as "e" ! */
             /*
             types::String* pStr = in[1]->getAs<types::String>();
-            if((wcslen(pStr->get(0)) == 1) && (pStr->get(0)[0] == L'e'))
+            if((wcslen(pStr->getFirst()) == 1) && (pStr->getFirst()[0] == L'e'))
             */
 
             if (_iRetCount == 4)
@@ -127,7 +127,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         else if (in[1]->isDouble() == true)
         {
             /* /!\ original code do not check anything (real && 1x1 matrix)*/
-            dTol = in[1]->getAs<types::Double>()->get(0);
+            dTol = in[1]->getAs<types::Double>()->getFirst();
         }
         else
         {

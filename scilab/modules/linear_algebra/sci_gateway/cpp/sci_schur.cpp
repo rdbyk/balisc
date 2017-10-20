@@ -108,8 +108,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         else if (in[1]->isString())
         {
             pStr = in[1]->getAs<types::String>();
-            bIsRealStr = !wcscmp(pStr->get(0), L"r") || !wcscmp(pStr->get(0), L"real");
-            bIsComplexStr = !wcscmp(pStr->get(0), L"comp") || !wcscmp(pStr->get(0), L"complex");
+            bIsRealStr = !wcscmp(pStr->getFirst(), L"r") || !wcscmp(pStr->getFirst(), L"real");
+            bIsComplexStr = !wcscmp(pStr->getFirst(), L"comp") || !wcscmp(pStr->getFirst(), L"complex");
 
             if (bIsComplexStr)
             {
@@ -289,7 +289,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (pStr)
             {
-                wchar_t* pst = pStr->get(0);
+                wchar_t* pst = pStr->getFirst();
                 bIsContinuStr = !wcscmp(pst, L"c") ||
                                 !wcscmp(pst, L"cont") ||
                                 !wcscmp(pst, L"zb02ow") || // two matrix, complex case
@@ -306,10 +306,10 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 
                 if (bIsContinuStr == false && bIsDiscreteStr == false)
                 {
-                    pStrFunction = ConfigVariable::getEntryPoint(pStr->get(0));
+                    pStrFunction = ConfigVariable::getEntryPoint(pStr->getFirst());
                     if (pStrFunction == NULL)
                     {
-                        char* pst = wide_string_to_UTF8(pStr->get(0));
+                        char* pst = wide_string_to_UTF8(pStr->getFirst());
                         Scierror(999, _("%s: Subroutine not found: %s\n"), "schur", pst);
                         FREE(pst);
                         return types::Function::Error;

@@ -92,13 +92,13 @@ int schur_dgees(double* _real, double* _img)
     if (out[0]->isDouble())
     {
         types::Double* pDblOut = out[0]->getAs<types::Double>();
-        iRet = pDblOut->get(0) == 0 ? 0 : 1;
+        iRet = pDblOut->getFirst() == 0 ? 0 : 1;
         pDblOut->killMe();
     }
     else if (out[0]->isBool())
     {
         types::Bool* pBoolOut = out[0]->getAs<types::Bool>();
-        iRet = pBoolOut->get(0) == 0 ? 0 : 1;
+        iRet = pBoolOut->getFirst() == 0 ? 0 : 1;
         pBoolOut->killMe();
     }
 
@@ -178,13 +178,13 @@ int schur_dgges(double* _real, double* _img, double* _beta)
     if (out[0]->isDouble())
     {
         types::Double* pDblOut = out[0]->getAs<types::Double>();
-        iRet = pDblOut->get(0) == 0 ? 0 : 1;
+        iRet = pDblOut->getFirst() == 0 ? 0 : 1;
         pDblOut->killMe();
     }
     else if (out[0]->isBool())
     {
         types::Bool* pBoolOut = out[0]->getAs<types::Bool>();
-        iRet = pBoolOut->get(0) == 0 ? 0 : 1;
+        iRet = pBoolOut->getFirst() == 0 ? 0 : 1;
         pBoolOut->killMe();
     }
 
@@ -251,13 +251,13 @@ int schur_zgees(doublecomplex* _complex)
     if (out[0]->isDouble())
     {
         types::Double* pDblOut = out[0]->getAs<types::Double>();
-        iRet = pDblOut->get(0) == 0 ? 0 : 1;
+        iRet = pDblOut->getFirst() == 0 ? 0 : 1;
         pDblOut->killMe();
     }
     else if (out[0]->isBool())
     {
         types::Bool* pBoolOut = out[0]->getAs<types::Bool>();
-        iRet = pBoolOut->get(0) == 0 ? 0 : 1;
+        iRet = pBoolOut->getFirst() == 0 ? 0 : 1;
         pBoolOut->killMe();
     }
 
@@ -343,13 +343,13 @@ int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
     if (out[0]->isDouble())
     {
         types::Double* pDblOut = out[0]->getAs<types::Double>();
-        iRet = pDblOut->get(0) == 0 ? 0 : 1;
+        iRet = pDblOut->getFirst() == 0 ? 0 : 1;
         pDblOut->killMe();
     }
     else if (out[0]->isBool())
     {
         types::Bool* pBoolOut = out[0]->getAs<types::Bool>();
-        iRet = pBoolOut->get(0) == 0 ? 0 : 1;
+        iRet = pBoolOut->getFirst() == 0 ? 0 : 1;
         pBoolOut->killMe();
     }
 
