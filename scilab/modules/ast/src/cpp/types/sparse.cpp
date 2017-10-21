@@ -849,13 +849,6 @@ bool Sparse::toString(std::wostringstream& ostr)
 
 Sparse* Sparse::resize(int _iNewRows, int _iNewCols)
 {
-    typedef Sparse* (Sparse::*resize_t)(int, int);
-    Sparse* pIT = checkRef(this, (resize_t)&Sparse::resize, _iNewRows, _iNewCols);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iNewRows <= getRows() && _iNewCols <= getCols())
     {
         //nothing to do: hence we do NOT fail
@@ -3290,13 +3283,6 @@ SparseBool* SparseBool::clone(void)
 
 SparseBool* SparseBool::resize(int _iNewRows, int _iNewCols)
 {
-    typedef SparseBool* (SparseBool::*resize_t)(int, int);
-    SparseBool* pIT = checkRef(this, (resize_t)&SparseBool::resize, _iNewRows, _iNewCols);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iNewRows <= getRows() && _iNewCols <= getCols())
     {
         //nothing to do: hence we do NOT fail
