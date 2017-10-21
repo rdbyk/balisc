@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, typ
     wchar_t** pwstOut = partfunctionW(pS->get(), pS->getRows(), pS->getCols(), piIndex, pD->getSize());
     delete[] piIndex;
     types::String* pOut = new types::String(pS->getRows(), pS->getCols());
-    pOut->set_(pwstOut);
+    pOut->set(pwstOut);
     freeArrayOfWideString(pwstOut, pOut->getSize());
     out.push_back(pOut);
     return types::Function::OK;

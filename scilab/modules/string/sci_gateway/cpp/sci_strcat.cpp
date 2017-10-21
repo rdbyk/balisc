@@ -148,7 +148,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
             }
             *dst = L'\0';
             
-            pOut->set_(0, pwstOut);
+            pOut->set(0, pwstOut);
             FREE(pwstOut);
         }
         break;
@@ -208,7 +208,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 }
                 *dst = L'\0';
                 
-                pOut->set_(i, pwstOut);
+                pOut->set(i, pwstOut);
                 FREE(pwstOut);
             }
             break;
@@ -269,7 +269,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 }
                 *dst = L'\0';
                 
-                pOut->set_(i, pwstOut);
+                pOut->set(i, pwstOut);
                 FREE(pwstOut);
             }
             break;

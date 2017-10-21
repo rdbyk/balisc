@@ -53,7 +53,7 @@ public :
     /*data management*/
     double*                     getReal() const;
     double                      getReal(int _iRows, int _iCols);
-    bool                        setInt(int* _piReal); //to translate int to double matrix
+    void setInt(int* _piReal); //to translate int to double matrix
 
     // fill array with zeros or ones
     void setZeros();
@@ -269,24 +269,17 @@ public :
 
     virtual ast::Exp*           getExp(const Location& loc);
 
-    virtual void set_(int _iPos, const double _data)
+    virtual void set(int _iPos, const double _data)
     {
         m_pRealData[_iPos] = _data;
     }
 
-    virtual Double* set(int _iPos, const double _data)
+    virtual void set(int _iRows, int _iCols, const double _data)
     {
-        Double* d = copyAs<Double>();
-        d->set_(_iPos, _data);
-        return d;
+        m_pRealData[_iCols * getRows() + _iRows] = _data;
     }
 
-    virtual Double* set(int _iRows, int _iCols, const double _data)
-    {
-        return set(_iCols * m_iRows + _iRows, _data);
-    }
-
-    virtual void set_(double* _pdata)
+    virtual void set(double* _pdata)
     {
         for (int i = 0; i < m_iSize; i++)
         {
@@ -294,26 +287,12 @@ public :
         }
     }
 
-    virtual Double* set(double* _pdata)
-    {
-        Double* d = copyAs<Double>();
-        d->set_(_pdata);
-        return d;
-    }
-
-    virtual void set_(const double* _pdata)
+    virtual void set(const double* _pdata)
     {
         for (int i = 0; i < m_iSize; i++)
         {
             m_pRealData[i] = _pdata[i];
         }
-    }
-
-    virtual Double* set(const double* _pdata)
-    {
-        Double* d = copyAs<Double>();
-        d->set_(_pdata);
-        return d;
     }
 
     virtual bool isNativeType() override

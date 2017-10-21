@@ -214,7 +214,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
         if (iOccurs == 0)
         {
             pS = new types::String(1, 1);
-            pS->set_(0, L"");
+            pS->set(0, L"");
         }
         else
         {
@@ -224,7 +224,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
                 wchar_t* pwstTemp = new wchar_t[piEnd[i] - piStart[i] + 1];
                 wcsncpy(pwstTemp, pwstInput + piStart[i], piEnd[i] - piStart[i]);
                 pwstTemp[piEnd[i] - piStart[i]] = 0;
-                pS->set_(i, pwstTemp);
+                pS->set(i, pwstTemp);
                 delete[] pwstTemp;
             }
         }
@@ -255,11 +255,11 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
                 {
                     if (i < piCapturedStringCount[j])
                     {
-                        pS->set_(index, pwstCapturedString[j][i]);
+                        pS->set(index, pwstCapturedString[j][i]);
                     }
                     else
                     {
-                        pS->set_(index, L"");
+                        pS->set(index, L"");
                     }
 
                     index++;

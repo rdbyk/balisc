@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*/
+ */
 
 #include "gatewaystruct.hxx"
 #include "cell.hxx"
@@ -116,16 +116,10 @@ scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, s
         return STATUS_ERROR;
     }
 #endif
-    int i = c->getIndex(index);
-    bool bset = c->set(i, (types::InternalType*)val) != nullptr;
-#ifdef __API_SCILAB_SAFE__
-    if (bset == false)
-    {
-        scilab_setInternalError(env, L"setCellValue", _W("unable to set data"));
-        return STATUS_ERROR;
-    }
-#endif
-    return bset ? STATUS_OK : STATUS_ERROR;
+
+    c->set(c->getIndex(index), (types::InternalType*)val);
+
+    return STATUS_OK;
 }
 
 scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar val)
@@ -139,14 +133,8 @@ scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, in
         return STATUS_ERROR;
     }
 #endif
-    int i = c->getIndex(index);
-    bool bset = c->set(i, (types::InternalType*)val) != nullptr;
-#ifdef __API_SCILAB_SAFE__
-    if (bset == false)
-    {
-        scilab_setInternalError(env, L"setCell2dValue", _W("unable to set data"));
-        return STATUS_ERROR;
-    }
-#endif
-    return bset ? STATUS_OK : STATUS_ERROR;
+
+    c->set(c->getIndex(index), (types::InternalType*)val);
+
+    return STATUS_OK;
 }

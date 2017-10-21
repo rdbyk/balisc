@@ -174,7 +174,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
                     }
                 }
 
-                pPolyOut->set_(i, pSP);
+                pPolyOut->set(i, pSP);
                 delete pSP;
                 pSP = NULL;
             }
@@ -200,7 +200,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
                     }
                 }
 
-                pPolyOut->set_(i, pSP);
+                pPolyOut->set(i, pSP);
                 delete pSP;
                 pSP = NULL;
             }

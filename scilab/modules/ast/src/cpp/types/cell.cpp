@@ -108,7 +108,7 @@ Cell::Cell(Cell *_oCellCopyMe)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        set_(i, _oCellCopyMe->get(i)->clone());
+        set(i, _oCellCopyMe->get(i)->clone());
     }
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -139,36 +139,42 @@ bool Cell::transpose(InternalType *& out)
     return false;
 }
 
-Cell* Cell::set(int _iRows, int _iCols, InternalType* _pIT)
+void Cell::set(int _iRows, int _iCols, InternalType* _pIT)
 {
-    return set(_iCols * getRows() + _iRows, _pIT);
+    set(_iCols * getRows() + _iRows, _pIT);
 }
 
-void Cell::set_(int _iRows, int _iCols, const InternalType* _pIT)
+void Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
 {
-    set_(_iCols * getRows() + _iRows, _pIT);
+    set(_iCols * getRows() + _iRows, _pIT);
 }
 
-Cell* Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
-{
-    return set(_iCols * getRows() + _iRows, _pIT);
-}
-
-Cell* Cell::set(int _iIndex, InternalType* _pIT)
+void Cell::set(int _iIndex, InternalType* _pIT)
 {
     // corner case when inserting twice
     if (m_pRealData[_iIndex] == _pIT)
     {
-        return this;
+        return;
     }
 
-    Cell* c = copyAs<Cell>();
-    c->set_(_iIndex, _pIT);
-    return c;
+    if (m_pRealData[_iIndex] != NULL)
+    {
+        m_pRealData[_iIndex]->DecreaseRef();
+        m_pRealData[_iIndex]->killMe();
+    }
+
+    _pIT->IncreaseRef();
+    m_pRealData[_iIndex] = _pIT;
 }
 
-void Cell::set_(int _iIndex, const InternalType* _pIT)
+void Cell::set(int _iIndex, const InternalType* _pIT)
 {
+    // corner case when inserting twice
+    if (m_pRealData[_iIndex] == _pIT)
+    {
+        return;
+    }
+
     if (m_pRealData[_iIndex] != NULL)
     {
         m_pRealData[_iIndex]->DecreaseRef();
@@ -179,14 +185,7 @@ void Cell::set_(int _iIndex, const InternalType* _pIT)
     m_pRealData[_iIndex] = const_cast<InternalType*>(_pIT);
 }
 
-Cell* Cell::set(int _iIndex, const InternalType* _pIT)
-{
-    Cell* c = copyAs<Cell>();
-    c->set_(_iIndex, _pIT);
-    return c;
-}
-
-void Cell::set_(InternalType** _pIT)
+void Cell::set(InternalType** _pIT)
 {
     for (int i = 0; i < m_iSize; i++)
     {
@@ -199,13 +198,6 @@ void Cell::set_(InternalType** _pIT)
         _pIT[i]->IncreaseRef();
         m_pRealData[i] = _pIT[i];
     }
-}
-
-Cell* Cell::set(InternalType** _pIT)
-{
-    Cell* c = copyAs<Cell>();
-    c->set_(_pIT);
-    return c;
 }
 
 /**
@@ -433,7 +425,7 @@ List* Cell::extractCell(typed_list* _pArgs)
 Cell* Cell::insertCell(typed_list* _pArgs, InternalType* _pSource)
 {
     Cell* pCell = new Cell(1, 1);
-    pCell->set_(0, _pSource);
+    pCell->set(0, _pSource);
     Cell* pOut = insert(_pArgs, pCell)->getAs<Cell>();
     pCell->killMe();
     return pOut;
@@ -442,7 +434,7 @@ Cell* Cell::insertCell(typed_list* _pArgs, InternalType* _pSource)
 Cell* Cell::insertNewCell(typed_list* _pArgs, InternalType* _pSource)
 {
     Cell* pCell = new Cell(1, 1);
-    pCell->set_(0, _pSource);
+    pCell->set(0, _pSource);
     Cell* pOut = pCell->insertNew(_pArgs)->getAs<Cell>();
     return pOut;
 }

@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
                 }
             }
 
-            pPolyOut->set_(i, pSP);
+            pPolyOut->set(i, pSP);
             delete pSP;
             pSP = NULL;
         }

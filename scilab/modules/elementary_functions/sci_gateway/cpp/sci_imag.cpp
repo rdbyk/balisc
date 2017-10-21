@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
                     dataReal[j] = pPolyIn->get(i)->getImg()[j];
                 }
 
-                pPolyOut->set_(i, pSP);
+                pPolyOut->set(i, pSP);
                 delete pSP;
                 pSP = NULL;
             }

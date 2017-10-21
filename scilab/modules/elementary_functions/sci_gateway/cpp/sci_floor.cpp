@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
                     dataImg[j]  = std::floor(pPolyIn->get(i)->getImg()[j]);
                 }
 
-                pPolyOut->set_(i, pSP);
+                pPolyOut->set(i, pSP);
                 delete pSP;
                 pSP = NULL;
             }
@@ -128,7 +128,7 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
                     dataReal[j] = std::floor(pPolyIn->get(i)->get()[j]);
                 }
 
-                pPolyOut->set_(i, pSP);
+                pPolyOut->set(i, pSP);
                 delete pSP;
                 pSP = NULL;
             }

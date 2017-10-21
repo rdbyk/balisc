@@ -183,7 +183,7 @@ InternalType* List::extract(typed_list* _pArgs)
             break;
         }
         InternalType* pIT = (*m_plData)[idx - 1];
-        outList->set_(i, pIT);
+        outList->set(i, pIT);
     }
 
     //free pArg content
@@ -340,7 +340,7 @@ InternalType* List::getFirst()
     return (*m_plData)[0];
 }
 
-void List::set_(const int _iIndex, InternalType* _pIT)
+void List::set(const int _iIndex, InternalType* _pIT)
 {
     while ((int)m_plData->size() < _iIndex)
     {
@@ -370,18 +370,6 @@ void List::set_(const int _iIndex, InternalType* _pIT)
             pOld->killMe();
         }
     }
-}
-
-List* List::set(const int _iIndex, InternalType* _pIT)
-{
-    if (_iIndex < 0)
-    {
-        return NULL;
-    }
-
-    List* l = copyAs<List>();
-    l->set_(_iIndex, _pIT);
-    return l;
 }
 
 bool List::operator==(const InternalType& it)

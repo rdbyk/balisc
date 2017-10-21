@@ -289,7 +289,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         m_pDblArgIn = (Double*)m_pDblArgIn->clone();
         m_pDblArgIn->IncreaseRef();
     }
-    m_pDblArgIn->set_(0, static_cast<double>(in.size()));
+    m_pDblArgIn->set(0, static_cast<double>(in.size()));
 
     if (m_pDblArgOut->getRef() > 1)
     {
@@ -297,7 +297,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         m_pDblArgOut = (Double*)m_pDblArgOut->clone();
         m_pDblArgOut->IncreaseRef();
     }
-    m_pDblArgOut->set_(0, _iRetCount);
+    m_pDblArgOut->set(0, _iRetCount);
 
     pContext->put(m_Nargin, m_pDblArgIn);
     pContext->put(m_Nargout, m_pDblArgOut);

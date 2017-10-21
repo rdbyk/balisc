@@ -59,7 +59,7 @@ types::InternalType* diag(types::Polynom* pIn,  int iStartPos)
         for (int i = 0; i < iSize; i++)
         {
             iPos = (i + iStartCol) * iRows + (i + iStartRow);
-            pPolyOut->set_(i, pIn->get(iPos));
+            pPolyOut->set(i, pIn->get(iPos));
         }
     }
     else // pIn is a vector
@@ -86,7 +86,7 @@ types::InternalType* diag(types::Polynom* pIn,  int iStartPos)
         for (int i = 0; i < iSizeOfVector; i++)
         {
             iPos = (i + iStartCol) * iSize + (i + iStartRow);
-            pPolyOut->set_(iPos, pIn->get(i));
+            pPolyOut->set(iPos, pIn->get(i));
         }
     }
 
@@ -130,7 +130,7 @@ types::InternalType* diag(types::String* pIn,  int iStartPos)
         for (int i = 0; i < iSize; i++)
         {
             iPos = (i + iStartCol) * iRows + (i + iStartRow);
-            pStrOut->set_(i, pIn->get(iPos));
+            pStrOut->set(i, pIn->get(iPos));
         }
     }
     else // pIn is a vector
@@ -151,13 +151,13 @@ types::InternalType* diag(types::String* pIn,  int iStartPos)
 
         for (int i = 0; i < iSize * iSize; i++)
         {
-            pStrOut->set_(i, L"");
+            pStrOut->set(i, L"");
         }
 
         for (int i = 0; i < iSizeOfVector; i++)
         {
             iPos = (i + iStartCol) * iSize + (i + iStartRow);
-            pStrOut->set_(iPos, pIn->get(i));
+            pStrOut->set(iPos, pIn->get(i));
         }
     }
 

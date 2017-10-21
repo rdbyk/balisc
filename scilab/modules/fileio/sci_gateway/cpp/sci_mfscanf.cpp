@@ -190,7 +190,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 types::String* ps = new types::String(rowcount, 1);
                 for (int j = 0; j < rowcount; j++)
                 {
-                    ps->set_(j, data[i + ncol * j].s);
+                    ps->set(j, data[i + ncol * j].s);
                 }
 
                 IT.push_back(ps);
@@ -257,7 +257,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 {
                     for (int j = 0; j < sizeOfString; j++)
                     {
-                        pString->set_(i * sizeOfString + j, IT[i]->getAs<types::String>()->get(j));
+                        pString->set(i * sizeOfString + j, IT[i]->getAs<types::String>()->get(j));
                     }
 
                     IT[i]->killMe();
@@ -305,12 +305,12 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
 
                                 for (int k = 0; k < ITTemp.back()->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set_(k, ITTemp.back()->getAs<types::String>()->get(k));
+                                    pType->set(k, ITTemp.back()->getAs<types::String>()->get(k));
                                 }
 
                                 for (int k = 0; k < IT[i]->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set_(iRows * iCols + k, IT[i]->getAs<types::String>()->get(k));
+                                    pType->set(iRows * iCols + k, IT[i]->getAs<types::String>()->get(k));
                                 }
 
                                 IT[i]->killMe();

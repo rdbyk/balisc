@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_sciargs(types::typed_list &in, int _iRetCount, 
     }
 
     types::String* pS = new types::String(iCount, 1);
-    pS->set_(pwstCmdLineArgs);
+    pS->set(pwstCmdLineArgs);
     out.push_back(pS);
     freeArrayOfWideString(pwstCmdLineArgs, iCount);
     return types::Function::OK;

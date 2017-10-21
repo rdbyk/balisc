@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
             int iOption = 0;
             wchar_t** pwstOption = getScilabVersionOptions(&iOption);
             types::String* pOut2 = new types::String(1, iOption);
-            pOut2->set_(pwstOption);
+            pOut2->set(pwstOption);
             out.push_back(pOut2);
             freeArrayOfWideString(pwstOption, iOption);
         }

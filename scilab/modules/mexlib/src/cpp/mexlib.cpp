@@ -1,11 +1,11 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *  Copyright (C) 2017 - Gsoc 2017 - Siddhartha Gairola
+ * Copyright (C) 2017 - Gsoc 2017 - Siddhartha Gairola
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -1199,47 +1199,58 @@ void mxSetData(mxArray *array_ptr, void *data_ptr)
 {
     if (mxIsChar(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::String *)array_ptr->ptr)->set((wchar_t **)data_ptr);
+        array_ptr->ptr = (int*)((types::String*)array_ptr->ptr)->copyAs<types::String>();
+        ((types::String*)array_ptr->ptr)->set((wchar_t**)data_ptr);
     }
     else if (mxIsDouble(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::Double *)array_ptr->ptr)->set((double *)data_ptr);
+        array_ptr->ptr = (int*)((types::Double*)array_ptr->ptr)->copyAs<types::Double>();
+        ((types::Double*)array_ptr->ptr)->set((double*)data_ptr);
     }
     else if (mxIsInt8(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::Int8 *)array_ptr->ptr)->set((char *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int8*)array_ptr->ptr)->copyAs<types::Int8>();
+        ((types::Int8 *)array_ptr->ptr)->set((char*)data_ptr);
     }
     else if (mxIsInt16(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::Int16 *)array_ptr->ptr)->set((short *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int16*)array_ptr->ptr)->copyAs<types::Int16>();
+        ((types::Int16*)array_ptr->ptr)->set((short*)data_ptr);
     }
     else if (mxIsInt32(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::Int32 *)array_ptr->ptr)->set((int *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int32*)array_ptr->ptr)->copyAs<types::Int32>();
+        ((types::Int32*)array_ptr->ptr)->set((int*)data_ptr);
     }
     else if (mxIsInt64(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::Int64 *)array_ptr->ptr)->set((long long *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int64*)array_ptr->ptr)->copyAs<types::Int64>();
+        ((types::Int64*)array_ptr->ptr)->set((long long*)data_ptr);
     }
     else if (mxIsLogical(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::Bool *)array_ptr->ptr)->set((int *)data_ptr);
+        array_ptr->ptr = (int*)((types::Bool*)array_ptr->ptr)->copyAs<types::Bool>();
+        ((types::Bool*)array_ptr->ptr)->set((int*)data_ptr);
     }
     else if (mxIsUint8(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::UInt8 *)array_ptr->ptr)->set((unsigned char *)data_ptr);
+        array_ptr->ptr = (int*)((types::UInt8*)array_ptr->ptr)->copyAs<types::UInt8>();
+        ((types::UInt8 *)array_ptr->ptr)->set((unsigned char*)data_ptr);
     }
     else if (mxIsUint16(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::UInt16 *)array_ptr->ptr)->set((unsigned short *)data_ptr);
+        array_ptr->ptr = (int*)((types::UInt16*)array_ptr->ptr)->copyAs<types::UInt16>();
+        ((types::UInt16*)array_ptr->ptr)->set((unsigned short*)data_ptr);
     }
     else if (mxIsUint32(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::UInt32 *)array_ptr->ptr)->set((unsigned int *)data_ptr);
+        array_ptr->ptr = (int*)((types::UInt32*)array_ptr->ptr)->copyAs<types::UInt32>();
+        ((types::UInt32*)array_ptr->ptr)->set((unsigned int*)data_ptr);
     }
     else if (mxIsUint64(array_ptr))
     {
-        array_ptr->ptr = (int*)((types::UInt64 *)array_ptr->ptr)->set((unsigned long long *) data_ptr);
+        array_ptr->ptr = (int*)((types::UInt64*)array_ptr->ptr)->copyAs<types::UInt64>();
+        ((types::UInt64*)array_ptr->ptr)->set((unsigned long long*) data_ptr);
     }
 }
 
@@ -1586,7 +1597,8 @@ mxArray *mxGetCell(const mxArray *ptr, int lindex)
 
 void mxSetCell(mxArray *array_ptr, int lindex, mxArray *value)
 {
-    array_ptr->ptr = (int*)((types::Cell *)array_ptr->ptr)->set(lindex, (types::InternalType *)value->ptr);
+    array_ptr->ptr = (int*)((types::Cell *)array_ptr->ptr)->copyAs<types::Cell>();
+    ((types::Cell*)array_ptr->ptr)->set(lindex, (types::InternalType*)value->ptr);
 }
 
 int mxGetNzmax(const mxArray *ptr)

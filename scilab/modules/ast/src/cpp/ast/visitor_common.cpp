@@ -311,7 +311,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                         double *pI = poDest->getImg();
                         for (int i = 0 ; i < iSize; i++)
                         {
-                            pSP[i]->set_(0, pR[i]);
+                            pSP[i]->set(0, pR[i]);
                             pSP[i]->setImg(0, pI[i]);
                         }
                     }
@@ -319,7 +319,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     {
                         for (int i = 0 ; i < iSize; i++)
                         {
-                            pSP[i]->set_(0, pR[i]);
+                            pSP[i]->set(0, pR[i]);
                         }
                     }
                     
@@ -330,7 +330,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     {
                         for (int j = 0; j < cols; j++)
                         {
-                            pPResult->set_(iCurRow + i, iCurCol + j, pPSource->get(i, j));
+                            pPResult->set(iCurRow + i, iCurCol + j, pPSource->get(i, j));
                         }
                     }
 
@@ -1100,7 +1100,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         int iNewSize = pEH->getSizeFromArgs();
                         if (pTL->getSize() < iNewSize)
                         {
-                            pTL = pTL->set(iNewSize - 1, new types::ListUndefined());
+                            pTL = pTL->copyAs<types::TList>();
+                            pTL->set(iNewSize - 1, new types::ListUndefined());
                             pEH->setCurrent(pTL);
                         }
 
@@ -1256,7 +1257,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             int iNewSize = pEH->getSizeFromArgs();
                             if (pL->getSize() < iNewSize)
                             {
-                                pL = pL->set(iNewSize - 1, new types::ListUndefined());
+                                pL = pL->copyAs<types::List>();
+                                pL->set(iNewSize - 1, new types::ListUndefined());
                                 pEH->setCurrent(pL);
                             }
 
@@ -1714,7 +1716,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         types::TList* pTL = pParent->getAs<types::TList>();
                         if (pParentArgs)
                         {
-                            pTL = pTL->set(pEH->getWhereReinsert(), pEH->getCurrent());
+                            pTL = pTL->copyAs<types::TList>();
+                            pTL->set(pEH->getWhereReinsert(), pEH->getCurrent());
                             pEHParent->setCurrent(pTL);
                             evalFields.pop_back();
                             delete pEH;
@@ -1724,7 +1727,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         {
                             if (pTL->exists(pEH->getExpAsString()))
                             {
-                                pTL = pTL->set(pEH->getExpAsString(), pEH->getCurrent());
+                                pTL = pTL->copyAs<types::TList>();
+                                pTL->set(pEH->getExpAsString(), pEH->getCurrent());
                                 pEHParent->setCurrent(pTL);
                                 evalFields.pop_back();
                                 delete pEH;
@@ -1741,7 +1745,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         if (pEHParent->isCellExp() && pEH->getWhereReinsert() != -1)
                         {
                             // a{x}.b => reinsert b in a{x}
-                            pCell->set_(pEH->getWhereReinsert(), pEH->getCurrent());
+                            pCell->set(pEH->getWhereReinsert(), pEH->getCurrent());
                             pEHParent->setReinsertion();
                             evalFields.pop_back();
                             delete pEH;
@@ -2180,7 +2184,9 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 
                     if (pTL->exists(pS->getFirst()))
                     {
-                        pRet = pTL->set(pS->getFirst(), _pInsert);
+                        pTL = pTL->copyAs<types::TList>();
+                        pTL->set(pS->getFirst(), _pInsert);
+                        pRet = pTL;
                     }
                     else
                     {

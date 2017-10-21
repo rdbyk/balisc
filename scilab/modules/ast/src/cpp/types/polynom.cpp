@@ -82,7 +82,7 @@ void Polynom::createPoly(const std::wstring& _szVarName, int _iDims, const int* 
 #endif
 }
 
-void Polynom::set_(int _iPos, SinglePoly* _pS)
+void Polynom::set(int _iPos, SinglePoly* _pS)
 {
     if (m_pRealData[_iPos])
     {
@@ -102,36 +102,17 @@ void Polynom::set_(int _iPos, SinglePoly* _pS)
     }
 }
 
-Polynom* Polynom::set(int _iPos, SinglePoly* _pS)
-{
-    Polynom* p = copyAs<Polynom>();
-    p->set_(_iPos, _pS);
-    return p;
-}
-
-void Polynom::set_(int _iRows, int _iCols, SinglePoly* _pS)
-{
-    return set_(_iCols * getRows() + _iRows, _pS);
-}
-
-Polynom* Polynom::set(int _iRows, int _iCols, SinglePoly* _pS)
+void Polynom::set(int _iRows, int _iCols, SinglePoly* _pS)
 {
     return set(_iCols * getRows() + _iRows, _pS);
 }
 
-void Polynom::set_(SinglePoly** _pS)
+void Polynom::set(SinglePoly** _pS)
 {
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        set_(i, _pS[i]);
+        set(i, _pS[i]);
     }
-}
-
-Polynom* Polynom::set(SinglePoly** _pS)
-{
-    Polynom* p = copyAs<Polynom>();
-    p->set_(_pS);
-    return p;
 }
 
 void Polynom::setCoef(int _iRows, int _iCols, Double *_pdblCoef)
@@ -227,7 +208,7 @@ Polynom* Polynom::clone()
     Polynom* pMP = new Polynom(getVariableName(), getDims(), getDimsArray());
     for (int i = 0 ; i < getSize() ; i++)
     {
-        pMP->set_(i, m_pRealData[i]);
+        pMP->set(i, m_pRealData[i]);
     }
 
     return pMP;

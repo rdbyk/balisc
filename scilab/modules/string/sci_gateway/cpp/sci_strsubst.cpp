@@ -114,7 +114,7 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
         pwstOutput = wcssubst(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace);
     }
 
-    pOut->set_(pwstOutput);
+    pOut->set(pwstOutput);
     freeArrayOfWideString(pwstOutput, pOut->getSize());
     out.push_back(pOut);
     return types::Function::OK;

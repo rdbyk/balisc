@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         types::String* pSFunctionNames = new types::String(1, (int)FunctionsList.size());
         for (int i = 0 ; i < FunctionsList.size(); i++)
         {
-            pSFunctionNames->set_(FunctionsList.size() - i - 1, FunctionsList[i].c_str());
+            pSFunctionNames->set(FunctionsList.size() - i - 1, FunctionsList[i].c_str());
         }
 
         out.push_back(pSFunctionNames);

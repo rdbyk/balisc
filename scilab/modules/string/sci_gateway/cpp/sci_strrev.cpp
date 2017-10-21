@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_strrev(types::typed_list &in, int _iRetCount, t
     OutputStrings = strings_strrev(pString->get(), pString->getSize());
 
     pOutString = new types::String(pString->getDims(), pString->getDimsArray());
-    pOutString->set_(OutputStrings);
+    pOutString->set(OutputStrings);
     freeArrayOfWideString(OutputStrings, pString->getSize());
     out.push_back(pOutString);
     return types::Function::OK;

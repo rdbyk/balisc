@@ -134,7 +134,7 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
                 {
                     types::SinglePoly* pSP = new types::SinglePoly();
                     pSP->setComplex(true);
-                    pPolyOut->set_(i * iRows + j, pSP);
+                    pPolyOut->set(i * iRows + j, pSP);
                     delete pSP;
                 }
             }
@@ -147,7 +147,7 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
                 for (int j = 0; j < iSize; j++)
                 {
                     types::SinglePoly* pSP = new types::SinglePoly();
-                    pPolyOut->set_(i * iRows + j, pSP);
+                    pPolyOut->set(i * iRows + j, pSP);
                     delete pSP;
                 }
             }

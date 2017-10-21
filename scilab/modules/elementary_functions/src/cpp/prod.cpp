@@ -249,7 +249,7 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         types::Double* pDblRanks = new types::Double(pIn->getDims(), pIn->getDimsArray());
         for (int i = 0; i < pDblRanks->getSize(); i++)
         {
-            pDblRanks->set_(i, static_cast<double>(piRanks[i]));
+            pDblRanks->set(i, static_cast<double>(piRanks[i]));
         }
 
         // create output max ranks

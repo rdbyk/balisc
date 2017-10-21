@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*/
+ */
 
 #include "gatewaystruct.hxx"
 #include "graphichandle.hxx"
@@ -112,15 +112,9 @@ scilabStatus API_PROTO(setHandleArray)(scilabEnv env, scilabVar var, const long 
     }
 #endif
 
-    bool bset = h->set(vals) != nullptr;
-#ifdef __API_SCILAB_SAFE__
-    if (bset == false)
-    {
-        scilab_setInternalError(env, L"setHandleArray", _W("unable to set data"));
-        return STATUS_ERROR;
-    }
-#endif
-    return bset ? STATUS_OK : STATUS_ERROR;
+    h->set(vals);
+
+    return STATUS_OK;
 }
 
 scilabStatus API_PROTO(getHandle)(scilabEnv env, scilabVar var, long long* vals)

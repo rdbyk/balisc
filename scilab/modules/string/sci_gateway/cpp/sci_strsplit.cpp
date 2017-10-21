@@ -130,7 +130,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
                 case STRSPLIT_NO_ERROR:
                 {
                     types::String* pStrOut = new types::String(pDbl->getSize() + 1, 1);
-                    pStrOut->set_(results);
+                    pStrOut->set(results);
 
                     freeArrayOfWideString(results, pDbl->getSize() + 1);
                     out.push_back(pStrOut);

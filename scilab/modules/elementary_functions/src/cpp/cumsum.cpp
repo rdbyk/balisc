@@ -127,7 +127,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
     if (iOrientation == 0) // all
     {
         // set first element
-        pOut->set_(0, pIn->getFirst());
+        pOut->set(0, pIn->getFirst());
 
         iLastRank    = pOut->getFirst()->getRank();
         pdblLastReal = pOut->getFirst()->get();
@@ -169,7 +169,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                     }
                 }
 
-                pOut->set_(i, pSP);
+                pOut->set(i, pSP);
                 pdblLastReal = pOut->get(i)->get();
                 pdblLastImg = pOut->get(i)->getImg();
                 iLastRank = iOutRank;
@@ -207,7 +207,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                     }
                 }
 
-                pOut->set_(i, pSP);
+                pOut->set(i, pSP);
                 pdblLastReal = pOut->get(i)->get();
                 iLastRank = iOutRank;
                 delete pSP;
@@ -230,7 +230,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
-                    pOut->set_(i, pIn->get(i));
+                    pOut->set(i, pIn->get(i));
                 }
 
                 for (int k = 1; k < iSizeOfDimN; k++) // make the cumsum for the next values
@@ -271,7 +271,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                                 pdIData[j] = pdblLastImg[j];
                             }
                         }
-                        pOut->set_(i, pSP);
+                        pOut->set(i, pSP);
                         delete pSP;
                     }
                 }
@@ -283,7 +283,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
-                    pOut->set_(i, pIn->get(i));
+                    pOut->set(i, pIn->get(i));
                 }
 
                 for (int k = 1; k < iSizeOfDimN; k++) // make the cumsum for the next values
@@ -319,7 +319,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                                 pdRData[j] = pdblLastReal[j];
                             }
                         }
-                        pOut->set_(i, pSP);
+                        pOut->set(i, pSP);
                         delete pSP;
                     }
                 }
