@@ -993,7 +993,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     }
 
                     // resize current struct
-                    pStruct = pStruct->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                    pStruct = pStruct->copyAs<types::Struct>()->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
                     pEH->setCurrent(pStruct);
                 }
 
@@ -1445,7 +1445,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 }
 
                                 // resize current Cell
-                                pCell = pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
+                                pCell = pCell->copyAs<types::Cell>()->resize(pEH->getArgsDimsArray(), pEH->getArgsDims());
                                 pEH->setCurrent(pCell);
                             }
 
@@ -1471,7 +1471,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 }
 
                                 // resize current Cell
-                                pCell = pCell->resize(pEH->getArgsDimsArray(), pEH->getArgsDims())->getAs<types::Cell>();
+                                pCell = pCell->copyAs<types::Cell>()->resize(pEH->getArgsDimsArray(), pEH->getArgsDims())->getAs<types::Cell>();
                                 pEH->setCurrent(pCell);
                             }
 
