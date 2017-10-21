@@ -1423,13 +1423,6 @@ ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
 template <typename T>
 ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
 {
-    typedef ArrayOf<T>* (ArrayOf<T>::*resize_t)(int*, int);
-    ArrayOf<T>* pIT = checkRef(this, (resize_t)&ArrayOf::resize, _piDims, _iDims);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     if (_iDims == m_iDims && memcmp(m_piDims, _piDims, sizeof(int) * m_iDims) == 0)
     {
         //nothing to do
