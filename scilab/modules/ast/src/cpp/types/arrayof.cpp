@@ -338,20 +338,8 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         }
     }
 
-    //before resize, check input dimension
-    if (bNeedToResize)
-    {
-        ArrayOf<T>* pTemp = resize(piNewDims, iNewDims);
-        if (pTemp == NULL)
-        {
-            delete[] piCountDim;
-            delete[] piMaxDim;
-            //free pArg content
-            cleanIndexesArguments(_pArgs, &pArg);
-            return NULL;
-        }
-    }
-    else
+    // no resize => new dims = old dims
+    if (!bNeedToResize)
     {
         piNewDims = m_piDims;
         iNewDims = m_iDims;
