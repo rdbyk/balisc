@@ -91,18 +91,13 @@ public :
     void                    setZeros();
     Polynom*                insert(typed_list* _pArgs, InternalType* _pSource);
 
-    void set_(int _iPos, SinglePoly* _pS);
-    void set_(int _iRows, int _iCols, SinglePoly* _pS);
-    void set_(SinglePoly** _pS);
-
-    Polynom*                set(int _iPos, SinglePoly* _pS);
-    Polynom*                set(int _iRows, int _iCols, SinglePoly* _pS);
-    Polynom*                set(SinglePoly** _pS);
+    void set(int _iPos, SinglePoly* _pS);
+    void set(int _iRows, int _iCols, SinglePoly* _pS);
+    void set(SinglePoly** _pS);
 
     std::wstring            getRowString(int* _piDims, int _iDims, bool _bComplex);
     std::wstring            getColString(int* _piDims, int _iDims, bool _bComplex);
     std::wstring            getMatrixString(int* _piDims, int _iDims, bool _bComplex);
-
 
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);

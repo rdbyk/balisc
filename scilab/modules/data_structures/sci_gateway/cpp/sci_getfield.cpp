@@ -287,10 +287,10 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         {
             // Return the properties
             types::String* ret = new types::String(1, 1 + propertiesStr->getSize());
-            ret->set_(0, pUT->getTypeStr().c_str());
+            ret->set(0, pUT->getTypeStr().c_str());
             for (int i = 0; i < propertiesStr->getSize(); ++i)
             {
-                ret->set_(i + 1, propertiesStr->get(i));
+                ret->set(i + 1, propertiesStr->get(i));
             }
             out.push_back(ret);
         }

@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_getshortpathname(types::typed_list &in, int _iR
         }
 
         wchar_t* pwstPath = pathconvertW(tmp, flagtrail, FALSE, AUTO_STYLE);
-        pOut1->set_(i, pwstPath);
+        pOut1->set(i, pwstPath);
         FREE(pwstPath);
         FREE(tmp);
     }

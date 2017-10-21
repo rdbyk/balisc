@@ -262,16 +262,12 @@ double Double::getReal(int _iRows, int _iCols)
     return get(_iRows, _iCols);
 }
 
-bool Double::setInt(int* _piReal)
+void Double::setInt(int* _piReal)
 {
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        if (!set(i, static_cast<double>(_piReal[i])))
-        {
-            return false;
-        }
+        set(i, static_cast<double>(_piReal[i]));
     }
-    return true;
 }
 
 void Double::whoAmI()

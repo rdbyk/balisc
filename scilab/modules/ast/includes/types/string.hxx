@@ -48,19 +48,13 @@ public :
 
     void                    whoAmI();
 
-    virtual void set_(int _iPos, const wchar_t* _pwstData);
-    virtual void set_(int _iRows, int _iCols, const wchar_t* _pwstData);
-    virtual void set_(const wchar_t* const* _pwstData);
-    virtual void set_(const char* const* _pstrData);
-    virtual void set_(int _iPos, const char* _pcData);
+    virtual void set(int _iPos, const wchar_t* _pwstData);
+    virtual void set(int _iRows, int _iCols, const wchar_t* _pwstData);
+    virtual void set(const wchar_t* const* _pwstData);
 
-    virtual String*         set(int _iPos, const wchar_t* _pwstData);
-    virtual String*         set(int _iRows, int _iCols, const wchar_t* _pwstData);
-    virtual String*         set(const wchar_t* const* _pwstData);
-
-    virtual String*         set(int _iPos, const char* _pcData);
-    virtual String*         set(int _iRows, int _iCols, const char* _pcData);
-    virtual String*         set(const char* const* _pstrData);
+    virtual void set(int _iPos, const char* _pcData);
+    virtual void set(int _iRows, int _iCols, const char* _pcData);
+    virtual void set(const char* const* _pstrData);
 
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);

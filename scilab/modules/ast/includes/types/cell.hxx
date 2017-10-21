@@ -68,14 +68,11 @@ public :
     */
     Cell*               clone();
 
-    void set_(int _iRows, int _iCols, const InternalType* _pIT);
-    void set_(int _iIndex, const InternalType* _pIT);
-    void set_(InternalType** _pIT);
-    Cell*               set(int _iRows, int _iCols, InternalType* _pIT);
-    Cell*               set(int _iRows, int _iCols, const InternalType* _pIT);
-    Cell*               set(int _iIndex, InternalType* _pIT);
-    Cell*               set(int _iIndex, const InternalType* _pIT);
-    Cell*               set(InternalType** _pIT);
+    void set(int _iRows, int _iCols, InternalType* _pIT);
+    void set(int _iRows, int _iCols, const InternalType* _pIT);
+    void set(int _iIndex, InternalType* _pIT);
+    void set(int _iIndex, const InternalType* _pIT);
+    void set(InternalType** _pIT);
 
     bool                operator==(const InternalType& it);
     bool                operator!=(const InternalType& it);

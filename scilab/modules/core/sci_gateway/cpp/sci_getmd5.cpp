@@ -128,7 +128,7 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
             FREE(real_path);
         }
 
-        pOutput->set_(i, pstMD5);
+        pOutput->set(i, pstMD5);
         FREE(pstMD5);
     }
 

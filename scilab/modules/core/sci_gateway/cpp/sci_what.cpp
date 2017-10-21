@@ -84,12 +84,12 @@ types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, typ
     {
         // Scilab functions in first output argument
         types::String* pOutStringFct = new types::String(sizeFct, 1);
-        pOutStringFct->set_(pOutStringFctTmp);
+        pOutStringFct->set(pOutStringFctTmp);
         out.push_back(pOutStringFct);
 
         // Scilab commands in second output argument
         types::String* pOutStringCmd = new types::String(sizeCmd, 1);
-        pOutStringCmd->set_(pOutStringCmdTmp);
+        pOutStringCmd->set(pOutStringCmdTmp);
         out.push_back(pOutStringCmd);
     }
 

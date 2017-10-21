@@ -110,10 +110,10 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
         int nProp = ((types::String*) pProperties)->getSize();
 
         pIT = new types::String(nProp + 1, 1);
-        ((types::String*) pIT)->set_(0, subType.data());
+        ((types::String*) pIT)->set(0, subType.data());
         for (int i = 0; i < nProp; ++i)
         {
-            ((types::String*) pIT)->set_(i + 1, ((types::String*)pProperties)->get(i));
+            ((types::String*) pIT)->set(i + 1, ((types::String*)pProperties)->get(i));
         }
     }
 

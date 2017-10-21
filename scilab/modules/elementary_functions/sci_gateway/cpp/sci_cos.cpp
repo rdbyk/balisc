@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, type
             for (int i = 0 ; i < nonZeros ; i++)
             {
                 int iPos = (pCols[i] - 1) * pSparseIn->getRows() + (pRows[i] - 1);
-                pDblOut->set_(iPos, std::cos(pNonZeroR[i]));
+                pDblOut->set(iPos, std::cos(pNonZeroR[i]));
             }
         }
 

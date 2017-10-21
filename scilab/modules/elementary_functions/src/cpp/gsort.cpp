@@ -528,10 +528,10 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
                 for (it = V.begin(); it != V.end(); ++it, j++)
                 {
                     iPosSet = i * iOffset2 + j * iOffset1;
-                    pOut->set_(iPosSet, (*it).second);
+                    pOut->set(iPosSet, (*it).second);
                     if (pDblInd)
                     {
-                        pDblInd->set_(iPosSet, static_cast<double>((*it).first + 1));
+                        pDblInd->set(iPosSet, static_cast<double>((*it).first + 1));
                     }
                 }
                 V.clear();
@@ -587,7 +587,7 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
                 for (int i = 0; i < pIn->getSize(); i++)
                 {
                     iPos = (i % iCols) * iRows + (i / iCols);
-                    pOut->set_(iPos, pwstOut[i]);
+                    pOut->set(iPos, pwstOut[i]);
                 }
 
                 delete[] pwstOut;
@@ -654,12 +654,12 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstr
             for (int i = 0; i < iItem; i++)
             {
                 iPosSet = i * iOffset1 + j * iOffset2;
-                pOut->set_(iPosSet, ((*it).second.first)[i]);
+                pOut->set(iPosSet, ((*it).second.first)[i]);
             }
 
             if (pDblInd)
             {
-                pDblInd->set_(j, static_cast<double>((*it).first + 1));
+                pDblInd->set(j, static_cast<double>((*it).first + 1));
             }
         }
         V.clear();

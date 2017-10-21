@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
         // put lines in output
         for (int i = 0; i < (int)vectLines.size(); i++)
         {
-            StrLastError->set_(i, vectLines[i].c_str());
+            StrLastError->set(i, vectLines[i].c_str());
         }
 
         vectLines.clear();

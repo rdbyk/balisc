@@ -178,11 +178,11 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         {
             if (pwstStop)
             {
-                pOutString->set_(i, pwstStop);
+                pOutString->set(i, pwstStop);
             }
             else
             {
-                pOutString->set_(i, L"");
+                pOutString->set(i, L"");
             }
         }
     }

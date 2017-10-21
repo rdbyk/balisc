@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount
     else
     {
         pOut = new types::String(2, dimsArray);
-        pOut->set_(0, L"");
+        pOut->set(0, L"");
     }
 
     out.push_back(pOut);

@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
                         data[j] = hypot(pPolyIn->get(i)->get()[j], pPolyIn->get(i)->getImg()[j]);
                     }
 
-                    pPolyOut->set_(i, pSP);
+                    pPolyOut->set(i, pSP);
                     delete pSP;
                     pSP = NULL;
                 }
@@ -108,7 +108,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
                         data[j] = std::fabs(pPolyIn->get(i)->get()[j]);
                     }
 
-                    pPolyOut->set_(i, pSP);
+                    pPolyOut->set(i, pSP);
                     delete pSP;
                     pSP = NULL;
                 }

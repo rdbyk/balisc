@@ -110,7 +110,7 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
             wcsncpy(wcOutput, pString->get(i), sizeOfCopy);
             wcOutput[sizeOfCopy] = L'\0';
 
-            pOutString->set_(i, wcOutput);
+            pOutString->set(i, wcOutput);
             FREE(wcOutput);
             wcOutput = NULL;
         }

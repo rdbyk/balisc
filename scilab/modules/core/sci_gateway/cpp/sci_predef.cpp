@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_predef(types::typed_list &in, int _iRetCount, t
         wchar_t** ws = pS->get();
         for (auto var : lst)
         {
-            pS->set_(i++, var.c_str());
+            pS->set(i++, var.c_str());
         }
 
         out.push_back(pS);

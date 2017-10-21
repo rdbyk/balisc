@@ -129,7 +129,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     else
     {
         pOutString  = new types::String(2, dimsArray);
-        pOutString->set_(Output_Strings);
+        pOutString->set(Output_Strings);
 
         for (int i = 0 ; i < dimsArray[0] ; i++)
         {

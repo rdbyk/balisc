@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount,
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
         wchar_t* base = basenameW(pS->get(i), (BOOL)iExpand);
-        pOut->set_(i, base);
+        pOut->set(i, base);
         FREE(base);
     }
 

@@ -59,7 +59,7 @@ String::String(const wchar_t* _pwstData)
     static int piDims[] = {1, 1};
     wchar_t** pwsData = NULL;
     create(piDims, 2, &pwsData, NULL);
-    set_(0, _pwstData);
+    set(0, _pwstData);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -71,7 +71,7 @@ String::String(const char *_pstData)
     wchar_t** pwsData = NULL;
     create(piDims, 2, &pwsData, NULL);
     wchar_t* data = to_wide_string(const_cast<char*>(_pstData));
-    set_(0, data);
+    set(0, data);
     FREE(data);
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -95,7 +95,7 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
     create(piDims, 2, &pwsData, NULL);
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        set_(i, _pstData[i]);
+        set(i, _pstData[i]);
     }
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -105,7 +105,7 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
 String* String::clone()
 {
     String *pstClone = new String(getDims(), getDimsArray());
-    pstClone->set_(m_pRealData);
+    pstClone->set(m_pRealData);
     return pstClone;
 }
 
@@ -602,35 +602,18 @@ void String::deleteData(wchar_t* data)
     }
 }
 
-void String::set_(int _iPos, const wchar_t* _pwstData)
+void String::set(int _iPos, const wchar_t* _pwstData)
 {
     deleteString(_iPos);
     m_pRealData[_iPos] = copyValue(_pwstData);
 }
 
-String* String::set(int _iPos, const wchar_t* _pwstData)
+void String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
 {
-    if (m_pRealData == NULL || _iPos >= m_iSize)
-    {
-        return NULL;
-    }
-
-    String* s = copyAs<String>();
-    s->set_(_iPos, _pwstData);
-    return s;
+    set(_iCols * getRows() + _iRows, _pwstData);
 }
 
-void String::set_(int _iRows, int _iCols, const wchar_t* _pwstData)
-{
-    set_(_iCols * getRows() + _iRows, _pwstData);
-}
-
-String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
-{
-    return set(_iCols * getRows() + _iRows, _pwstData);
-}
-
-void String::set_(const wchar_t* const* _pwstData)
+void String::set(const wchar_t* const* _pwstData)
 {
     for (int i = 0; i < m_iSize; ++i)
     {
@@ -639,59 +622,31 @@ void String::set_(const wchar_t* const* _pwstData)
     }
 }
 
-String* String::set(const wchar_t* const* _pwstData)
-{
-    if (m_pRealData == NULL)
-    {
-        return NULL;
-    }
-
-    String* s = copyAs<String>();
-    s->set_(_pwstData);
-    return s;
-}
-
-void  String::set_(int _iPos, const char* _pcData)
+void  String::set(int _iPos, const char* _pcData)
 {
     wchar_t* w = to_wide_string(_pcData);
-    set_(_iPos, w);
+    set(_iPos, w);
     FREE(w);
 }
 
-String* String::set(int _iPos, const char* _pcData)
+void String::set(int _iRows, int _iCols, const char* _pcData)
 {
-    wchar_t* w = to_wide_string(_pcData);
-    String* ret = set(_iPos, w);
-    FREE(w);
-    return ret;
+    set(_iCols * getRows() + _iRows, _pcData);
 }
 
-String* String::set(int _iRows, int _iCols, const char* _pcData)
-{
-    return set(_iCols * getRows() + _iRows, _pcData);
-}
-
-void String::set_(const char* const* _pstrData)
+void String::set(const char* const* _pstrData)
 {
     for (int i = 0; i < m_iSize; ++i)
     {
-        set_(i, _pstrData[i]);
+        set(i, _pstrData[i]);
     }
-}
-
-String* String::set(const char* const* _pstrData)
-{
-    String* s = copyAs<String>();
-    s->set_(_pstrData);
-    return s;
 }
 
 wchar_t** String::allocData(int _iSize)
 {
-    wchar_t** pStr = nullptr;
     try
     {
-        pStr = new wchar_t*[_iSize]();
+        return new wchar_t*[_iSize]();
     }
     catch (std::bad_alloc & /*e*/)
     {
@@ -699,7 +654,6 @@ wchar_t** String::allocData(int _iSize)
         os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
         throw ast::InternalError(message);
     }
-    return pStr;
 }
 
 ast::Exp* String::getExp(const Location& loc)

@@ -72,7 +72,9 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
         types::TList* pT = pL->getAs<types::TList>();
 
         std::wstring stField = pS->getFirst();
-        types::TList* pRet = pT->set(stField, pData);
+        types::TList* pRet = pT->copyAs<types::TList>();
+        pRet->set(stField, pData);
+
         if (pRet == nullptr)
         {
             Scierror(999, _("%s: Invalid index.\n"), "setfield");

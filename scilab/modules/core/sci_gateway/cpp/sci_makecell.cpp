@@ -163,7 +163,7 @@ types::Function::ReturnValue sci_makecell(types::typed_list &in, int _iRetCount,
         int idx2dStart = (i / i2dSize) * i2dSize;
         int idx2dRowMajor = (((i - idx2dStart) % piDimsArray[1]) * piDimsArray[0]) + ((i - idx2dStart) / piDimsArray[1]);
         int idx = idx2dRowMajor + idx2dStart;
-        pC->set_(idx , in[i + 1]);
+        pC->set(idx , in[i + 1]);
     }
 
     delete[] piDimsArray;

@@ -65,7 +65,7 @@ static void getMacroString(types::Macro* _pM, types::InternalType** _pOut, types
     }
 
     types::String* pBody = new types::String(iLines, 1);
-    pBody->set_(0, L" ");
+    pBody->set(0, L" ");
     //second loop to assign lines to output data
     int iOffset = 0;
     int iIndex = 1;
@@ -77,13 +77,13 @@ static void getMacroString(types::Macro* _pM, types::InternalType** _pOut, types
             wchar_t* pwst = new wchar_t[iLen + 1];
             wcsncpy(pwst, pwstBody + iOffset, iLen);
             pwst[iLen] = L'\0';
-            pBody->set_(iIndex++, pwst);
+            pBody->set(iIndex++, pwst);
             delete[] pwst;
             iOffset = i + 1;
         }
     }
 
-    pBody->set_(iIndex, L" ");
+    pBody->set(iIndex, L" ");
     *_pBody = pBody;
 
     //get inputs
@@ -100,7 +100,7 @@ static void getMacroString(types::Macro* _pM, types::InternalType** _pOut, types
         std::list<symbol::Variable*>::iterator itIn = pIn->begin();
         for (int i = 0 ; i < pIn->size() ; i++, ++itIn)
         {
-            pSIn->set_(i, (*itIn)->getSymbol().getName().c_str());
+            pSIn->set(i, (*itIn)->getSymbol().getName().c_str());
         }
 
         *_pIn = pSIn;
@@ -119,7 +119,7 @@ static void getMacroString(types::Macro* _pM, types::InternalType** _pOut, types
         std::list<symbol::Variable*>::iterator itOut = pOut->begin();
         for (int i = 0 ; i < pOut->size() ; i++, ++itOut)
         {
-            pSOut->set_(i, (*itOut)->getSymbol().getName().c_str());
+            pSOut->set(i, (*itOut)->getSymbol().getName().c_str());
         }
 
         *_pOut = pSOut;
@@ -233,7 +233,7 @@ types::Function::ReturnValue intString(T* pInt, types::typed_list &out)
     {
         std::wostringstream ostr;
         DoubleComplexMatrix2String(&ostr, (double)pInt->get(i), 0);
-        pstOutput->set_(i, ostr.str().c_str());
+        pstOutput->set(i, ostr.str().c_str());
     }
 
     out.push_back(pstOutput);
@@ -249,7 +249,7 @@ types::Function::ReturnValue booleanString(types::Bool* pB, types::typed_list &o
     int iSize = pB->getSize();
     for (int i = 0 ; i < iSize ; i++)
     {
-        pstOutput->set_(i, pb[i] == 0 ? L"F" : L"T");
+        pstOutput->set(i, pb[i] == 0 ? L"F" : L"T");
     }
 
     out.push_back(pstOutput);
@@ -282,7 +282,7 @@ types::Function::ReturnValue doubleString(types::Double* pDbl, types::typed_list
         {
             std::wostringstream ostr;
             DoubleComplexMatrix2String(&ostr, pdblReal[i], pdblImg[i]);
-            pstOutput->set_(i, ostr.str().c_str());
+            pstOutput->set(i, ostr.str().c_str());
         }
     }
     else
@@ -292,7 +292,7 @@ types::Function::ReturnValue doubleString(types::Double* pDbl, types::typed_list
         {
             std::wostringstream ostr;
             DoubleComplexMatrix2String(&ostr, pdblReal[i], dblImg);
-            pstOutput->set_(i, ostr.str().c_str());
+            pstOutput->set(i, ostr.str().c_str());
         }
     }
     out.push_back(pstOutput);
@@ -386,7 +386,7 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
             types::String* pSt = new types::String((int)vect.size(), 1);
             for (int i = 0 ; i < vect.size(); i++)
             {
-                pSt->set_(i, vect[i].c_str());
+                pSt->set(i, vect[i].c_str());
             }
 
             out.push_back(pSt);
@@ -497,11 +497,11 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
             std::list<std::wstring> macros;
             int size = pL->getMacrosName(macros);
             types::String* pS = new types::String(size + 1, 1);
-            pS->set_(0, path.c_str());
+            pS->set(0, path.c_str());
             int i = 1;
             for (auto it : macros)
             {
-                pS->set_(i++, it.c_str());
+                pS->set(i++, it.c_str());
             }
 
             out.push_back(pS);

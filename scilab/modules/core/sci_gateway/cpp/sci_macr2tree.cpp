@@ -68,12 +68,12 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     //create a tlist "program"
     types::TList* l = new types::TList();
     types::String* s = new types::String(1, 6);
-    s->set_(0, L"program");
-    s->set_(1, L"name");
-    s->set_(2, L"outputs");
-    s->set_(3, L"inputs");
-    s->set_(4, L"statements");
-    s->set_(5, L"nblines");
+    s->set(0, L"program");
+    s->set(1, L"name");
+    s->set(2, L"outputs");
+    s->set(3, L"inputs");
+    s->set(4, L"statements");
+    s->set(5, L"nblines");
 
     //header
     l->append(s);
@@ -113,10 +113,10 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
 
     types::TList* funcall = new types::TList();
     types::String* sf = new types::String(1, 4);
-    sf->set_(0, L"funcall");
-    sf->set_(1, L"rhs");
-    sf->set_(2, L"name");
-    sf->set_(3, L"lhsnb");
+    sf->set(0, L"funcall");
+    sf->set(1, L"rhs");
+    sf->set(2, L"name");
+    sf->set(3, L"lhsnb");
 
     funcall->append(sf);
     funcall->append(types::Double::Empty());

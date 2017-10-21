@@ -283,14 +283,14 @@ std::wstring TList::getShortTypeStr() const
     return getTypeStr();
 }
 
-TList* TList::set(const std::wstring& _sKey, InternalType* _pIT)
+void TList::set(const std::wstring& _sKey, InternalType* _pIT)
 {
-    return List::set(getIndexFromString(_sKey), _pIT)->getAs<TList>();
+    List::set(getIndexFromString(_sKey), _pIT);
 }
 
-TList* TList::set(const int _iIndex, InternalType* _pIT)
+void TList::set(const int _iIndex, InternalType* _pIT)
 {
-    return List::set(_iIndex, _pIT)->getAs<TList>();
+    List::set(_iIndex, _pIT);
 }
 
 String* TList::getFieldNames() const

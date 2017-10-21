@@ -47,14 +47,14 @@ void max(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
         // Init output matrix
         for (int i = 0; i < iSize; i++)
         {
-            pOut->set_(i, vectIn[iInit]->get(i));
+            pOut->set(i, vectIn[iInit]->get(i));
         }
 
         if (pDblIndex)
         {
             for (int i = 0; i < pDblIndex->getSize(); i++)
             {
-                pDblIndex->set_(i, 1);
+                pDblIndex->set(i, 1);
             }
 
             for (int i = 0; i < iSize; i++)
@@ -70,8 +70,8 @@ void max(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
                     dValue = vectIn[iter]->get(iPos);
                     if (pOut->get(i) < dValue || ISNAN(pOut->get(i)))
                     {
-                        pOut->set_(i, dValue);
-                        pDblIndex->set_(i, iter + 1);
+                        pOut->set(i, dValue);
+                        pDblIndex->set(i, iter + 1);
                     }
                 }
             }
@@ -91,7 +91,7 @@ void max(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
                     dValue = vectIn[iter]->get(iPos);
                     if (pOut->get(i) < dValue || ISNAN(pOut->get(i)))
                     {
-                        pOut->set_(i, dValue);
+                        pOut->set(i, dValue);
                     }
                 }
             }
@@ -113,12 +113,12 @@ void max(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
                 }
             }
 
-            pOut->set_(0, dMax);
+            pOut->set(0, dMax);
             if (pDblIndex)
             {
                 if (pDblIndex->isScalar())
                 {
-                    pDblIndex->set_(0, iIndex + 1);
+                    pDblIndex->set(0, iIndex + 1);
                 }
                 else
                 {
@@ -126,7 +126,7 @@ void max(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
                     types::getIndexesWithDims(iIndex, piIndexes, iDimsArray, iDims);
                     for (int i = 0; i < pDblIndex->getSize(); i++)
                     {
-                        pDblIndex->set_(i, piIndexes[i] + 1);
+                        pDblIndex->set(i, piIndexes[i] + 1);
                     }
                     delete[] piIndexes;
                 }
@@ -148,11 +148,11 @@ void max(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
                 for (int i = j; i < iIncrement + j; i++)
                 {
                     // init pOut with the first values of the dim N
-                    pOut->set_(iIncrOut, vectIn[0]->get(i));
+                    pOut->set(iIncrOut, vectIn[0]->get(i));
 
                     if (pDblIndex)
                     {
-                        pDblIndex->set_(iIncrOut, 1);
+                        pDblIndex->set(iIncrOut, 1);
                     }
 
                     for (int k = 1; k < iSizeOfDimN; k++)
@@ -160,10 +160,10 @@ void max(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
                         dValue = vectIn[0]->get(k * iIncrement + i);
                         if (pOut->get(iIncrOut) < dValue || ISNAN(pOut->get(iIncrOut)))
                         {
-                            pOut->set_(iIncrOut, dValue);
+                            pOut->set(iIncrOut, dValue);
                             if (pDblIndex)
                             {
-                                pDblIndex->set_(iIncrOut, k + 1);
+                                pDblIndex->set(iIncrOut, k + 1);
                             }
                         }
                     }

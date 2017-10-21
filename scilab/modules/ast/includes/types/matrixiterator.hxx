@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Bernard HUGUENEY
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 #ifndef MATRIXITERATORS_HXX
 #define MATRIXITERATORS_HXX
 
@@ -129,36 +129,45 @@ template<typename S, typename V> bool set(S &, int, int, V)
 
 template<> bool set(types::Double & d, int r, int c, double v)
 {
-    return d.set(r, c, v);
+    d.set(r, c, v);
+    return true;
 }
 template<> bool set(types::Double & d, int r, int c, std::complex<double> v)
 {
-    return d.set(r, c, v.real()) && d.setImg(r, c, v.imag());
+    d.set(r, c, v.real());
+    d.setImg(r, c, v.imag());
+    return true;
 }
 
 template<> bool set(types::Sparse & s, int r, int c, double v)
 {
-    return s.set(r, c, v);
+    s.set(r, c, v);
+    return true;
 }
 template<> bool set(types::Sparse & s, int r, int c, std::complex<double> v)
 {
-    return s.set(r, c, v);
+    s.set(r, c, v);
+    return true;
 }
 template<> bool set(types::Bool & d, int r, int c, bool v)
 {
-    return d.set(r, c, v);
+    d.set(r, c, v);
+    return true;
 }
 template<> bool set(types::SparseBool & d, int r, int c, bool v)
 {
-    return d.set(r, c, v);
+    d.set(r, c, v);
+    return true;
 }
 template<> bool set(types::Bool & d, int r, int c, int v)
 {
-    return d.set(r, c, v);
+    d.set(r, c, v);
+    return true;
 }
 template<> bool set(types::SparseBool & d, int r, int c, int v)
 {
-    return d.set(r, c, v != 0);
+    d.set(r, c, v != 0);
+    return true;
 }
 
 template<> bool set(types::Sparse::RealSparse_t& s, int r, int c, double v)

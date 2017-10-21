@@ -203,103 +203,58 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
     return ArrayOf<SingleStruct*>::invoke(in, opt, _iRetCount, out, e);
 }
 
-Struct* Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
+void Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
 {
-    if (_iRows < getRows() && _iCols < getCols())
-    {
-        return set(_iCols * getRows() + _iRows, _pIT);
-    }
-    return NULL;
+    set(_iCols * getRows() + _iRows, _pIT);
 }
 
-Struct* Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
+void Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
 {
-    if (_iRows < getRows() && _iCols < getCols())
-    {
-        return set(_iCols * getRows() + _iRows, _pIT);
-    }
-    return NULL;
+    set(_iCols * getRows() + _iRows, _pIT);
 }
 
-Struct* Struct::set(int _iIndex, SingleStruct* _pIT)
+void Struct::set(int _iIndex, SingleStruct* _pIT)
 {
-    typedef Struct* (Struct::*set_t)(int, SingleStruct*);
-    Struct* pIT = checkRef(this, (set_t)&Struct::set, _iIndex, _pIT);
-    if (pIT != this)
+    if (m_bDisableCloneInCopyValue && m_pRealData[_iIndex] == _pIT)
     {
-        return pIT;
+        return;
     }
 
-    if (_iIndex < getSize())
+    InternalType* pOld = m_pRealData[_iIndex];
+
+    m_pRealData[_iIndex] = copyValue(_pIT);
+    if (m_bDisableCloneInCopyValue == false)
     {
-        if (m_bDisableCloneInCopyValue && m_pRealData[_iIndex] == _pIT)
-        {
-            return this;
-        }
-
-        InternalType* pOld = m_pRealData[_iIndex];
-
-        m_pRealData[_iIndex] = copyValue(_pIT);
-        if (m_bDisableCloneInCopyValue == false)
-        {
-            //only in clone mode
-            m_pRealData[_iIndex]->IncreaseRef();
-        }
-
-        if (pOld != NULL)
-        {
-            pOld->DecreaseRef();
-            pOld->killMe();
-        }
-
-        return this;
+        //only in clone mode
+        m_pRealData[_iIndex]->IncreaseRef();
     }
-    return NULL;
+
+    if (pOld != NULL)
+    {
+        pOld->DecreaseRef();
+        pOld->killMe();
+    }
 }
 
-Struct* Struct::set(int _iIndex, const SingleStruct* _pIT)
+void Struct::set(int _iIndex, const SingleStruct* _pIT)
 {
-    typedef Struct* (Struct::*set_t)(int, const SingleStruct*);
-    Struct* pIT = checkRef(this, (set_t)&Struct::set, _iIndex, _pIT);
-    if (pIT != this)
+    InternalType* pOld = m_pRealData[_iIndex];
+
+    m_pRealData[_iIndex] = const_cast<SingleStruct*>(_pIT)->clone();
+
+    if (pOld != NULL)
     {
-        return pIT;
+        pOld->DecreaseRef();
+        pOld->killMe();
     }
-
-    if (_iIndex < getSize())
-    {
-        InternalType* pOld = m_pRealData[_iIndex];
-
-        m_pRealData[_iIndex] = const_cast<SingleStruct*>(_pIT)->clone();
-
-        if (pOld != NULL)
-        {
-            pOld->DecreaseRef();
-            pOld->killMe();
-        }
-
-        return this;
-    }
-    return NULL;
 }
 
-Struct* Struct::set(SingleStruct** _pIT)
+void Struct::set(SingleStruct** _pIT)
 {
-    typedef Struct* (Struct::*set_t)(SingleStruct**);
-    Struct* pIT = checkRef(this, (set_t)&Struct::set, _pIT);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     for (int i = 0 ; i < getSize() ; i++)
     {
-        if (set(i, _pIT[i]) == NULL)
-        {
-            return NULL;
-        }
+        set(i, _pIT[i]);
     }
-    return this;
 }
 
 String* Struct::getFieldNames()
@@ -553,7 +508,7 @@ InternalType * Struct::extractField(const std::wstring & wstField)
         Int32 * pDims = new Int32(1, getDims());
         for (int j = 0 ; j < getDims() ; j++)
         {
-            pDims->set_(j, getDimsArray()[j]);
+            pDims->set(j, getDimsArray()[j]);
         }
 
         return pDims;
@@ -615,7 +570,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
                 pFields = new String(1, pS->getSize() + 2);
                 for (int j = 0; j < pS->getSize(); j++)
                 {
-                    pFields->set_(2 + j, pS->get(j));
+                    pFields->set(2 + j, pS->get(j));
                 }
 
                 pS->killMe();
@@ -625,8 +580,8 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
                 pFields = new String(1, 2);
             }
 
-            pFields->set_(0, L"st");
-            pFields->set_(1, L"dims");
+            pFields->set(0, L"st");
+            pFields->set(1, L"dims");
 
             ResultList.push_back(pFields);
         }
@@ -636,7 +591,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
             Int32* pDims = new Int32(1, getDims());
             for (int j = 0 ; j < getDims() ; j++)
             {
-                pDims->set_(j, getDimsArray()[j]);
+                pDims->set(j, getDimsArray()[j]);
             }
 
             ResultList.push_back(pDims);

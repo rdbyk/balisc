@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                 types::String* ps = new types::String(iNiter, 1);
                 for (int j = 0; j < iNiter; j++)
                 {
-                    ps->set_(j, data[i + ncol * j].s);
+                    ps->set(j, data[i + ncol * j].s);
                 }
                 pIT.push_back(ps);
                 uiFormatUsed |= (1 << 1);
@@ -202,7 +202,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                 {
                     for (int j = 0; j < sizeOfString; j++)
                     {
-                        pString->set_(i * sizeOfString + j, pIT[i]->getAs<types::String>()->get(j));
+                        pString->set(i * sizeOfString + j, pIT[i]->getAs<types::String>()->get(j));
                     }
                 }
                 out.push_back(pString);
@@ -245,11 +245,11 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
                                 for (int k = 0; k < pITTemp.back()->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set_(k, pITTemp.back()->getAs<types::String>()->get(k));
+                                    pType->set(k, pITTemp.back()->getAs<types::String>()->get(k));
                                 }
                                 for (int k = 0; k < pIT[i]->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set_(iRows * iCols + k, pIT[i]->getAs<types::String>()->get(k));
+                                    pType->set(iRows * iCols + k, pIT[i]->getAs<types::String>()->get(k));
                                 }
                                 pITTemp.pop_back();
                                 pITTemp.push_back(pType);

@@ -150,7 +150,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     int i = 0;
     for (auto it : lstVar)
     {
-        pStrOut->set_(i++, it.c_str());
+        pStrOut->set(i++, it.c_str());
     }
 
     out.push_back(pStrOut);

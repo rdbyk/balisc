@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
 
             for (int i = 0; it != l.end() ; ++it, ++i)
             {
-                pOut->set_(i, (*it).c_str());
+                pOut->set(i, (*it).c_str());
             }
 
             out.push_back(pOut);
