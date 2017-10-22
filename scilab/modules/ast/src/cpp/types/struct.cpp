@@ -639,13 +639,6 @@ Struct* Struct::resize(int _iNewRows, int _iNewCols)
 
 Struct* Struct::resize(int* _piDims, int _iDims)
 {
-    typedef Struct* (Struct::*resize_t)(int*, int);
-    Struct* pIT = checkRef(this, (resize_t)&Struct::resize, _piDims, _iDims);
-    if (pIT != this)
-    {
-        return pIT;
-    }
-
     m_bDisableCloneInCopyValue = true;
     Struct* pSRes = ArrayOf<SingleStruct*>::resize(_piDims, _iDims)->getAs<Struct>();
     m_bDisableCloneInCopyValue = false;

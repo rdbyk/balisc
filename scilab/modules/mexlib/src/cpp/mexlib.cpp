@@ -1007,7 +1007,7 @@ void mxSetM(mxArray *ptr, int M)
 
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
-    types::InternalType* res = pGT->resize(M, pGT->getCols());
+    types::InternalType* res = pGT->copyAs<types::GenericType>()->resize(M, pGT->getCols());
     ptr->ptr = (int*)res;
 }
 
@@ -1033,7 +1033,7 @@ void mxSetN(mxArray *ptr, int N)
 
     types::GenericType * pGT = pIT->getAs<types::GenericType>();
 
-    types::InternalType* res = pGT->resize(pGT->getRows(), N);
+    types::InternalType* res = pGT->copyAs<types::GenericType>()->resize(pGT->getRows(), N);
     ptr->ptr = (int*)res;
 }
 
