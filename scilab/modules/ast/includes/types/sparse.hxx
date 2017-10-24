@@ -81,16 +81,16 @@ struct EXTERN_AST Sparse : GenericType
     void finalize();
 
     /*data management member function defined for compatibility with the Double API*/
-    Sparse* set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
-    Sparse* set(int _iIndex, double _dblReal, bool _bFinalize = true)
+    void set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
+    void set(int _iIndex, double _dblReal, bool _bFinalize = true)
     {
-        return set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal, _bFinalize);
+        set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal, _bFinalize);
     }
 
-    Sparse* set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
-    Sparse* set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
+    void set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
+    void set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
     {
-        return set(_iIndex % m_iRows, _iIndex / m_iRows, v, _bFinalize);
+        set(_iIndex % m_iRows, _iIndex / m_iRows, v, _bFinalize);
     }
     /*
       set non zero values to 1.
@@ -626,10 +626,10 @@ struct EXTERN_AST SparseBool : GenericType
         return get(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
-    SparseBool* set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
-    SparseBool* set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
+    void set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
+    void set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
     {
-        return set(_iIndex % m_iRows, _iIndex / m_iRows, b, _bFinalize);
+        set(_iIndex % m_iRows, _iIndex / m_iRows, b, _bFinalize);
     }
 
     void fill(Bool& dest, int r = 0, int c = 0) SPARSE_CONST;
