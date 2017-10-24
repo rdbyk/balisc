@@ -301,7 +301,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             for (int i = 0; i < iDims - 1; i++)
             {
                 //indexes are always doubles
-                double* pIdx = getDoubleArrayFromDouble(pArg[i]);
+                double* pIdx = pArg[i]->getAs<Double>()->get();
                 //InternalType* pVar = pArg[i];
                 //double* pIdx = static_cast<double*>(pVar->getAs<Double>()->get());
                 int iSize = pArg[i]->getAs<ArrayOf>()->getSize();
@@ -320,7 +320,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
             //check last dim
             int iMaxLastDim = getVarMaxDim(iDims - 1, iDims);
-            double* pIdx = getDoubleArrayFromDouble(pArg[pArg.size() - 1]);
+            double* pIdx = pArg[pArg.size() - 1]->getAs<Double>()->get();
             //InternalType* pVar = pArg[pArg.size() - 1];
             //double* pIdx = static_cast<double*>(pVar->getAs<Double>()->get());
             int iSize = pArg[pArg.size() - 1]->getAs<GenericType>()->getSize();
@@ -805,7 +805,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         if (iIndexSize >= iDimToCheck)
         {
             //size is good, now check datas
-            double* pIndexes = getDoubleArrayFromDouble(pArg[i]);
+            double* pIndexes = pArg[i]->getAs<Double>()->get();
             for (int j = 0; j < iDimToCheck; j++)
             {
                 bool bFind = false;
@@ -854,7 +854,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
 
     //find index to keep
     int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();
-    double* piNotEntireIndex = getDoubleArrayFromDouble(pArg[iNotEntire]);
+    double* piNotEntireIndex = pArg[iNotEntire]->getAs<Double>()->get();
     int iKeepSize = getVarMaxDim(iNotEntire, iDims);
 
     int iNewDimSize = iKeepSize;

@@ -1735,7 +1735,7 @@ GenericType* Sparse::remove(typed_list* _pArgs)
         if (iIndexSize >= iDimToCheck)
         {
             //size is good, now check datas
-            double* pIndexes = getDoubleArrayFromDouble(pArg[i]);
+            double* pIndexes = pArg[i]->getAs<Double>()->get();
             for (int j = 0; j < iDimToCheck; j++)
             {
                 bool bFind = false;
@@ -1784,7 +1784,7 @@ GenericType* Sparse::remove(typed_list* _pArgs)
 
     //find index to keep
     int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();
-    double* piNotEntireIndex = getDoubleArrayFromDouble(pArg[iNotEntire]);
+    double* piNotEntireIndex = pArg[iNotEntire]->getAs<Double>()->get();
     int iKeepSize = getVarMaxDim(iNotEntire, iDims);
     bool* pbKeep = new bool[iKeepSize];
 
@@ -3627,7 +3627,7 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
         if (iIndexSize >= iDimToCheck)
         {
             //size is good, now check datas
-            double* pIndexes = getDoubleArrayFromDouble(pArg[i]);
+            double* pIndexes = pArg[i]->getAs<Double>()->get();
             for (int j = 0; j < iDimToCheck; j++)
             {
                 bool bFind = false;
@@ -3676,7 +3676,7 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
 
     //find index to keep
     int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();
-    double* piNotEntireIndex = getDoubleArrayFromDouble(pArg[iNotEntire]);
+    double* piNotEntireIndex = pArg[iNotEntire]->getAs<Double>()->get();
     int iKeepSize = getVarMaxDim(iNotEntire, iDims);
     bool* pbKeep = new bool[iKeepSize];
 

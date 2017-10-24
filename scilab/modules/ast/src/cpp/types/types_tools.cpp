@@ -985,11 +985,6 @@ int getIntValueFromDouble(InternalType* _pIT, int _iPos)
     return static_cast<int>(_pIT->getAs<Double>()->get(_iPos));
 }
 
-double* getDoubleArrayFromDouble(InternalType* _pIT)
-{
-    return _pIT->getAs<Double>()->get();
-}
-
 Double* createDoubleVector(int _iSize)
 {
     int piDims[] = {1, _iSize};

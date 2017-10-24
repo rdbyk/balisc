@@ -37,7 +37,6 @@ EXTERN_AST types::Function::ReturnValue VariableToString(types::InternalType* pI
 EXTERN_AST int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex);
 EXTERN_AST Double* createDoubleVector(int _iSize);
 EXTERN_AST int getIntValueFromDouble(InternalType* _pIT, int _iPos);
-EXTERN_AST double* getDoubleArrayFromDouble(InternalType* _pIT);
 EXTERN_AST bool checkArgValidity(typed_list& _pArg);
 }
 
