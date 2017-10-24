@@ -1007,8 +1007,6 @@ template <typename T>
 GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 {
     ArrayOf<T>* pOut = NULL;
-    int iDims = (int)_pArgs->size();
-    typed_list pArg;
 
     int index;
     if (getScalarIndex(this, _pArgs, &index))
@@ -1147,7 +1145,8 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         return pOut;
     }
 
-
+    typed_list pArg;
+    int iDims = (int)_pArgs->size();
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
 
