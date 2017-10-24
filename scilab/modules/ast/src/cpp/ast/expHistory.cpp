@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -133,62 +133,59 @@ void ExpHistory::setDeleteCurrent(bool bDelete)
 
 void ExpHistory::computeArgs()
 {
-    if (m_pArgs)
+    m_iArgsDims = (int)m_pArgs->size();
+
+    // compute indexes
+    m_piArgsDimsArray  = new int[m_iArgsDims];
+
+    types::typed_list* pNewArgs = new types::typed_list();
+    types::checkIndexesArguments(m_pITCurrent, m_pArgs, pNewArgs, m_piArgsDimsArray, NULL);
+
+    // Delete pArgs only if i'm the owner
+    // else it will be deleted by the expHistory
+    // which are the flag m_pArgsOwner = true
+    if (m_pArgsOwner)
     {
-        m_iArgsDims = (int)m_pArgs->size();
+        delete m_pArgs;
+    }
 
-        // compute indexes
-        m_piArgsDimsArray  = new int[m_iArgsDims];
+    m_pArgs = pNewArgs;
+    m_pArgsOwner = true;
 
-        types::typed_list* pNewArgs = new types::typed_list();
-        types::checkIndexesArguments(m_pITCurrent, m_pArgs, pNewArgs, m_piArgsDimsArray, NULL);
-
-        // Delete pArgs only if i'm the owner
-        // else it will be deleted by the expHistory
-        // which are the flag m_pArgsOwner = true
-        if (m_pArgsOwner)
+    int* piDimsArray = m_pITCurrent->getAs<types::GenericType>()->getDimsArray();
+    if (m_iArgsDims == 1)
+    {
+        if (m_pITCurrent->getAs<types::GenericType>()->getDims() == 2)
         {
-            delete m_pArgs;
-        }
-
-        m_pArgs = pNewArgs;
-        m_pArgsOwner = true;
-
-        int* piDimsArray = m_pITCurrent->getAs<types::GenericType>()->getDimsArray();
-        if (m_iArgsDims == 1)
-        {
-            if (m_pITCurrent->getAs<types::GenericType>()->getDims() == 2)
+            if (piDimsArray[1] == 1 ||
+                    (piDimsArray[0] == 0 && piDimsArray[1] == 0))
             {
-                if (piDimsArray[1] == 1 ||
-                        (piDimsArray[0] == 0 && piDimsArray[1] == 0))
-                {
-                    int iTemp = m_piArgsDimsArray[0];
-                    delete[] m_piArgsDimsArray;
-                    m_piArgsDimsArray = new int[2];
-                    m_iArgsDims = 2;
-                    m_piArgsDimsArray[0] = iTemp;
-                    m_piArgsDimsArray[1] = 1;
-                }
-                else if (piDimsArray[0] == 1)
-                {
-                    int iTemp = m_piArgsDimsArray[0];
-                    delete[] m_piArgsDimsArray;
-                    m_piArgsDimsArray = new int[2];
-                    m_iArgsDims = 2;
-                    m_piArgsDimsArray[0] = 1;
-                    m_piArgsDimsArray[1] = iTemp;
-                }
+                int iTemp = m_piArgsDimsArray[0];
+                delete[] m_piArgsDimsArray;
+                m_piArgsDimsArray = new int[2];
+                m_iArgsDims = 2;
+                m_piArgsDimsArray[0] = iTemp;
+                m_piArgsDimsArray[1] = 1;
+            }
+            else if (piDimsArray[0] == 1)
+            {
+                int iTemp = m_piArgsDimsArray[0];
+                delete[] m_piArgsDimsArray;
+                m_piArgsDimsArray = new int[2];
+                m_iArgsDims = 2;
+                m_piArgsDimsArray[0] = 1;
+                m_piArgsDimsArray[1] = iTemp;
             }
         }
-        else
+    }
+    else
+    {
+        const int size = std::min(m_iArgsDims, m_pITCurrent->getAs<types::GenericType>()->getDims());
+        for (int i = 0; i < size; i++)
         {
-            const int size = std::min(m_iArgsDims, m_pITCurrent->getAs<types::GenericType>()->getDims());
-            for (int i = 0; i < size; i++)
+            if (piDimsArray[i] > m_piArgsDimsArray[i])
             {
-                if (piDimsArray[i] > m_piArgsDimsArray[i])
-                {
-                    m_piArgsDimsArray[i] = piDimsArray[i];
-                }
+                m_piArgsDimsArray[i] = piDimsArray[i];
             }
         }
     }
