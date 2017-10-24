@@ -876,7 +876,6 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
 {
     if (pIT->hasToString() == false)
     {
-        types::Function::ReturnValue ret = types::Function::Error;
         //call overload %type_p
         types::typed_list in;
         types::typed_list out;
@@ -886,7 +885,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
 
         try
         {
-            ret = Overload::generateNameAndCall(L"p", in, 1, out);
+            types::Function::ReturnValue ret = Overload::generateNameAndCall(L"p", in, 1, out);
             pIT->DecreaseRef();
             return ret;
         }
