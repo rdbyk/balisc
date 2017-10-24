@@ -22,7 +22,33 @@ under current [**_Scilab 6.x_**](http://www.scilab.org/en/development/nightly_bu
 
    0.139977
 ```
+
 Please, don't take this example too seriously, it is just an extreme example chosen for pedagogic reasons. *Scilab is a very powerful and comprehensive tool*.
+
+### Try some of Scilab's Benchmarks
+
+Scilab 6.X is shipped with a sparse set of benchmarks only for some its modules. You may run them as follows:
+
+```scilab
+--> [n,t]=bench_run(<Benchmark>); sum(t)/1000
+...
+ ans  =
+   <Time in s>
+```
+We have done that, and got the following results:
+
+|              | **"core"** | **"string"** | "**elementary_functions**" |
+|:------------:|:----------:|:------------:|:--------------------------:|
+| Scilab 6.X   | 39.146098  | 94.049148    | 41.409981                  |
+| **Balisc**   | 30.495997  | 54.280835    | 26.429697                  |
+| _Difference_ | _- 22 %_   | _- 42 %_     | _- 36 %_                   |
+
+Please note, that the "**elementary_functions**" benchmark is not the same as that of Scilab 6.X (cf. `balisc/scilab/modules/elementary_functions/tests/benchmarks/`).
+
+Furthermore, take these results just as an indicator, that **_Balisc might perform significantly better_** than Scilab 6.X.
+
+**_Your mileage may vary!_** Things are currently **_really_** in an **_experimental_** and **_work-in-progress state_**! 
+ 
 ## Compilation with GCC for Linux x86_64
 You may want to follow the the instructions [Compilation of Scilab](https://wiki.scilab.org/Compilation%20of%20Scilab) (probably not up-to-date), or follow the **_procedure described below_**, which assumes, that you have installed all required non-Java stuff on your
 system ([Dependencies of Scilab 5.X](https://wiki.scilab.org/Dependencies%20of%20Scilab%205.X), probably not up-to-date).
