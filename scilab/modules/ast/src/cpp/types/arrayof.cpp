@@ -376,10 +376,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         //std::cout << "[";
         for (int j = 0; j < argSize; j++)
         {
-            piCoord[j] = getIntValueFromDouble(pArg[j], piIndex[j]) - 1;
-            //InternalType* pVar = pArg[j];
-            //piCoord[j] = static_cast<int>(pVar->getAs<Double>()->get(piIndex[j]) - 1);
-            //std::cout << piCoord[j] << " ";
+            piCoord[j] = static_cast<int>(pArg[j]->getAs<Double>()->get(piIndex[j])) - 1;
         }
 
         //std::cout << "]" << std::endl;
@@ -1300,10 +1297,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         //std::cout << "[";
         for (int j = 0; j < (int)_pArgs->size(); j++)
         {
-            piCoord[j] = getIntValueFromDouble(pArg[j], piIndex[j]) - 1;
-            //InternalType* pVar = pArg[i];
-            //piCoord[j] = static_cast<int>(pVar->getAs<Double>()->get(piIndex[j]) - 1);
-            //std::cout << piCoord[j] << " ";
+            piCoord[j] = static_cast<int>(pArg[j]->getAs<Double>()->get(piIndex[j])) - 1;
 
             // try to access somewhere wrong.
             if (piCoord[j] < 0)
