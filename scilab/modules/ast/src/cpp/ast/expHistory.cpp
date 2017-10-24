@@ -97,13 +97,7 @@ ast::SimpleVar* ExpHistory::getExp()
 
 std::wstring ExpHistory::getExpAsString()
 {
-    std::wstring wcsExp = L"";
-    if (m_pExp)
-    {
-        wcsExp = m_pExp->getSymbol().getName();
-    }
-
-    return wcsExp;
+    return m_pExp ? m_pExp->getSymbol().getName() : L"";
 }
 
 void ExpHistory::setArgs(types::typed_list* _pArgs)
