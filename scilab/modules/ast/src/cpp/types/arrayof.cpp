@@ -48,7 +48,7 @@ static int get_max_size(int* _piDims, int _iDims)
 template <typename T>
 GenericType* ArrayOf<T>::createEmpty()
 {
-    return createEmptyDouble();
+    return Double::Empty();
 }
 
 template <typename T>
@@ -529,7 +529,7 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
         delete[] piCountDim;
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
-        return createEmptyDouble();
+        return Double::Empty();
     }
 
     if (iSeqCount < 0)

@@ -550,7 +550,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
-        ResultList.push_back(createEmptyDouble());
+        ResultList.push_back(Double::Empty());
         return ResultList;
     }
 

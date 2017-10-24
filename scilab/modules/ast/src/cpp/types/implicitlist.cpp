@@ -635,7 +635,7 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
-        return createEmptyDouble();
+        return Double::Empty();
     }
 
     if (iDims == 1 && iSeqCount == 1)

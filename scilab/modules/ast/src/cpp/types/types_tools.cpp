@@ -980,11 +980,6 @@ int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
     return 0;
 }
 
-Double* createEmptyDouble()
-{
-    return Double::Empty();
-}
-
 int getIntValueFromDouble(InternalType* _pIT, int _iPos)
 {
     return static_cast<int>(_pIT->getAs<Double>()->get(_iPos));

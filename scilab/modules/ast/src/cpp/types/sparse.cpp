@@ -995,7 +995,7 @@ GenericType* Sparse::insertNew(typed_list* _pArgs)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
-        return createEmptyDouble();
+        return Double::Empty();
     }
 
     if (iSeqCount < 0)
@@ -3837,7 +3837,7 @@ GenericType* SparseBool::insertNew(typed_list* _pArgs)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
-        return createEmptyDouble();
+        return Double::Empty();
     }
 
     if (iSeqCount < 0)
