@@ -259,21 +259,22 @@ bool getScalarImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vecto
     }
 
     index.reserve(4);
+
     if (pIT->isColon())
     {
-        index.push_back(1);
-        index.push_back(1);
-        index.push_back(_pRef->getSize());
+        index[0] = 1;
+        index[1] = 1;
+        index[2] = _pRef->getSize();
         //use to know we have a real ":" to shape return matrix in col vector
-        index.push_back(0);
+        index[3] = 0;
     }
     else
     {
         ImplicitList* pIL = pIT->getAs<ImplicitList>();
         int sizeRef = _pRef->getSize();
-        index.push_back(evalute(pIL->getStart(), sizeRef));
-        index.push_back(evalute(pIL->getStep(), sizeRef));
-        index.push_back(evalute(pIL->getEnd(), sizeRef));
+        index[0] = evalute(pIL->getStart(), sizeRef);
+        index[1] = evalute(pIL->getStep(), sizeRef);
+        index[2] = evalute(pIL->getEnd(), sizeRef);
     }
 
     return true;
