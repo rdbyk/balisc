@@ -37,7 +37,7 @@ void getIndexes(T* val, std::vector<int>& vec)
     int size = val->getSize();
     for (int i = 0; i < size; ++i)
     {
-        vec.push_back(static_cast<int>(p[i]));
+        vec[i] = static_cast<int>(p[i]);
     }
 }
 
