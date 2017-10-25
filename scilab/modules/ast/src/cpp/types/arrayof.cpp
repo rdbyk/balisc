@@ -194,9 +194,8 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
     bool bNeedToResize = false;
     int iDims = (int)_pArgs->size();
-    int iDimsOrigine = m_iDims;
-    typed_list pArg;
 
+    typed_list pArg;
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
 
