@@ -338,11 +338,8 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     if (bNeedToResize)
     {
         resize(piNewDims, iNewDims);
-    }
-    else
-    {
-        piNewDims = m_piDims;
-        iNewDims = m_iDims;
+        delete[] piNewDims;
+        piNewDims = NULL;
     }
 
     //update complexity
@@ -381,11 +378,6 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         int iPos = getIndexWithDims(piCoord, piViewDims, iDims);
         if (iPos < 0)
         {
-            if (bNeedToResize)
-            {
-                delete[] piNewDims;
-            }
-
             delete[] piMaxDim;
             delete[] piCountDim;
             delete[] piIndex;
@@ -426,11 +418,6 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
         //update index
         piIndex[0]++;
-    }
-
-    if (bNeedToResize)
-    {
-        delete[] piNewDims;
     }
 
     delete[] piMaxDim;
