@@ -192,17 +192,10 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         }
     }
 
-    bool bNeedToResize = false;
-    int iDims = (int)_pArgs->size();
-
     typed_list pArg;
+    int iDims = (int)_pArgs->size();
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
-
-    //on case of resize
-    int* piNewDims = NULL;
-    int iNewDims = 0;
-    ArrayOf* pSource = _pSource->getAs<ArrayOf>();
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
@@ -214,6 +207,8 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         cleanIndexesArguments(_pArgs, &pArg);
         return this;
     }
+
+    ArrayOf* pSource = _pSource->getAs<ArrayOf>();
 
     //only scalar can be used to ".=" operation
     if (iSeqCount != pSource->getSize() && pSource->isScalar() == false)
@@ -228,6 +223,11 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         pArg.back()->killMe();
         pArg.pop_back();
     }
+
+    // check if resize is needed
+    bool bNeedToResize = false;
+    int* piNewDims = NULL;
+    int iNewDims = 0;
 
     if (iDims >= m_iDims)
     {
