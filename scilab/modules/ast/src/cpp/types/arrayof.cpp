@@ -204,8 +204,6 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     int iNewDims = 0;
     ArrayOf* pSource = _pSource->getAs<ArrayOf>();
 
-    bool bIsColon = false;
-
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
@@ -413,31 +411,10 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         }
         else
         {
-            if (bIsColon)
+            set(iPos, pRealData[i]);
+            if (pImgData != NULL && bComplex)
             {
-                int iPas = 1;
-                for (int j = 0; j < iDimsOrigine; j++)
-                {
-                    iPas *= m_piDims[j];
-                }
-
-                for (int iPost = iPos; iPost < this->getSize(); iPost += iPas)
-                {
-                    set(iPost, pRealData[i]);
-                    if (pImgData != NULL && bComplex)
-                    {
-                        setImg(iPost, pImgData[i]);
-                    }
-                    i++;
-                }
-            }
-            else
-            {
-                set(iPos, pRealData[i]);
-                if (pImgData != NULL && bComplex)
-                {
-                    setImg(iPos, pImgData[i]);
-                }
+                setImg(iPos, pImgData[i]);
             }
         }
 
