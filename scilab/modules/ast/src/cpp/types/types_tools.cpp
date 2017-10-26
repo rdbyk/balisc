@@ -876,7 +876,6 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
 {
     if (pIT->hasToString() == false)
     {
-        types::Function::ReturnValue ret = types::Function::Error;
         //call overload %type_p
         types::typed_list in;
         types::typed_list out;
@@ -886,7 +885,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
 
         try
         {
-            ret = Overload::generateNameAndCall(L"p", in, 1, out);
+            types::Function::ReturnValue ret = Overload::generateNameAndCall(L"p", in, 1, out);
             pIT->DecreaseRef();
             return ret;
         }
@@ -978,21 +977,6 @@ int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
         }
     }
     return 0;
-}
-
-Double* createEmptyDouble()
-{
-    return Double::Empty();
-}
-
-int getIntValueFromDouble(InternalType* _pIT, int _iPos)
-{
-    return static_cast<int>(_pIT->getAs<Double>()->get(_iPos));
-}
-
-double* getDoubleArrayFromDouble(InternalType* _pIT)
-{
-    return _pIT->getAs<Double>()->get();
 }
 
 Double* createDoubleVector(int _iSize)
