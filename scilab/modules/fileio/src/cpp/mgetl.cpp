@@ -15,9 +15,6 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#include <iostream>
-#include <fstream>
-
 extern "C"
 {
 #include "mgetl.h"
@@ -25,7 +22,6 @@ extern "C"
 #include "charEncoding.h"
 #include "sci_malloc.h"
 #include "strcmp.h"
-#include "sciprint.h"
 }
 #include "filemanager.hxx"
 
@@ -36,7 +32,12 @@ extern "C"
 #include <Windows.h>
 #endif
 
-static const unsigned char UTF8_BOM[] = {0xEF, 0xBB, 0xBF, 0x00};
+#ifdef BUFFER_SIZE
+#undef BUFFER_SIZE
+#endif
+#define BUFFER_SIZE 4096
+
+static const unsigned char UTF8_BOM[] = { 0xEF, 0xBB, 0xBF, 0x00 };
 
 int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
 {
@@ -62,7 +63,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
     // check file is not empty
     if (ftell(fd) == 0)
     {
-        char cValues[4] = {0x00, 0x00, 0x00, 0x00};
+        char cValues[4] = { 0x00, 0x00, 0x00, 0x00 };
         if (fgets(cValues, 4 * sizeof(char), fd) != NULL)
         {
             // skip BOM
@@ -73,158 +74,101 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
         }
     }
 
-    int orig = ftell(fd);
-
-#ifndef _MSC_VER
-    //must reopen the file
-    std::wstring wname = pFile->getFilename();
-    char* name = wide_string_to_UTF8(wname.data());
-    std::ifstream ifs(name);
-    FREE(name);
-#else
-    std::ifstream ifs(fd);
-#endif
-    //seek to same position
-    ifs.seekg(orig);
-
-    std::list<std::string> lst;
-    std::string str;
-
-    if (1)
+    if (iLineCount > 0)
     {
-        bool lineReach = false;
-        std::string previous;
-        size_t offset = 0;
-        while (lst.size() < iLineCount && ifs.eof() == false)
+        *pwstLines = (wchar_t**)MALLOC(iLineCount * sizeof(wchar_t*));
+        if (*pwstLines == NULL)
         {
-            int delimiter_size = 1;
-            size_t sp = previous.size();
-#define MAX_READ_LEN 262144
-            char buf[MAX_READ_LEN + 1] = {0};
-            ifs.read(buf, MAX_READ_LEN);
-            size_t s = strlen(buf);
-            //extract lines
-            char* ptr = buf;
-            for (int i = 0; i < s; ++i)
-            {
-                if (buf[i] == '\n')
-                {
-                    //delimit line
-                    buf[i] = '\0';
-                    if(buf[i - 1] == '\r')
-                    {
-                        buf[i - 1] = '\0';
-                        delimiter_size = 2;
-                    }
-
-                    //add line to list
-                    if (sp)
-                    {
-                        previous += ptr;
-                        lst.push_back(previous);
-#ifdef _MSC_VER
-                        offset += previous.size() + 2;
-#else
-                        offset += previous.size() + delimiter_size;
-#endif
-                        previous.clear();
-                    }
-                    else
-                    {
-                        lst.emplace_back(ptr);
-#ifdef _MSC_VER
-                        offset += strlen(ptr) + 2;
-#else
-                        offset += strlen(ptr) + delimiter_size;
-#endif
-                    }
-
-                    //move ptr to first next line char
-                    ptr = buf + i + 1;
-
-                    if (iLineCount != -1 && lst.size() >= iLineCount)
-                    {
-                        //rewind
-#ifndef _MSC_VER
-                        auto t = ifs.tellg();
-#else
-                        std::fpos_t t = ifs.tellg().seekpos();
-#endif
-                        if (t <= 0)
-                        {
-                            ifs.clear();
-                        }
-
-                        ifs.seekg(orig + offset, std::ios::beg);
-                        lineReach = true;
-                        break;
-                    }
-                }
-            }
-
-            if (ptr == buf)
-            {
-                //long line
-                previous += buf;
-            }
-            else if (lineReach == false)
-            {
-                int offset = (int)(buf + s - ptr);
-                if (offset)
-                {
-                    if (!ifs.eof())
-                    {
-                        //some data stay in buf, rewind file to begin of this data and read it again
-                        ifs.seekg(-offset, std::ios::cur);
-                    }
-                    else
-                    {
-                        //some data stay in buf but oef is reached, add ptr data in list
-                        std::string str(ptr);
-                        lst.push_back(str);
-                    }
-                }
-            }
-        }
-
-        if (previous.size())
-        {
-            lst.push_back(previous);
-            previous.clear();
-        }
-    }
-    else
-    {
-        while (lst.size() < iLineCount && std::getline(ifs, str))
-        {
-            lst.push_back(str);
+            return -1;
         }
     }
 
-    int nbLinesOut = (int)lst.size();
-    if (nbLinesOut == 0)
+    // allocate initial reading buffer, it will grow depending on line size
+    int iBufferSize = BUFFER_SIZE;
+    char *pstBuffer = (char *) malloc(iBufferSize * sizeof(char));
+    if (pstBuffer == NULL)
     {
-        return 0;
-    }
-
-    *pwstLines = (wchar_t**)MALLOC(nbLinesOut * sizeof(wchar_t**));
-    if (*pwstLines == NULL)
-    {
+        freeArrayOfWideString(*pwstLines, iLineCount);
+        *pwstLines = NULL;
         return -1;
     }
 
-    for (int i = 0; i < nbLinesOut; ++i)
+    int iReadLineCount = 0;
+    while (fgets(pstBuffer, iBufferSize * sizeof(char), fd) != NULL)
     {
-        std::string s = lst.front();
-        (*pwstLines)[i] = to_wide_string(s.data());
-        lst.pop_front();
+        iReadLineCount++;
+        *pwstLines = (wchar_t**)REALLOC(*pwstLines, iReadLineCount * sizeof(wchar_t*));
+        if (*pwstLines == NULL)
+        {
+            free(pstBuffer);
+            return -1;
+        }
+
+        // is the line complete in the buffer (= zero terminal found) ?
+        int len = strnlen(pstBuffer, iBufferSize);
+        int totalLen = len;
+        if (len >= iBufferSize - 1)
+        {
+            // no, there is another data to read for this line
+            // allocate a temporary buffer for reading it
+            char *pstBufferTmp = (char*) malloc(BUFFER_SIZE * sizeof(char));
+            if (pstBufferTmp == NULL)
+            {
+                freeArrayOfWideString(*pwstLines, iReadLineCount);
+                *pwstLines = NULL;
+                free(pstBuffer);
+                return -1;
+            }
+            char *pstNewBuffer = pstBuffer;
+            // loop until line is complete
+            do
+            {
+                // reallocate a new bigger buffer for the line
+                iBufferSize += BUFFER_SIZE;
+                pstNewBuffer = (char*) REALLOC(pstNewBuffer, iBufferSize * sizeof(char));
+                if (pstNewBuffer == NULL)
+                {
+                    freeArrayOfWideString(*pwstLines, iReadLineCount);
+                    *pwstLines = NULL;
+                    free(pstBufferTmp);
+                    return -1;
+                }
+
+                // read the remaining data and copy it in the new buffer
+                if (fgets(pstBufferTmp, BUFFER_SIZE * sizeof(char), fd) != NULL)
+                {
+                    len = strnlen(pstBufferTmp, BUFFER_SIZE);
+                    totalLen += len;
+                    strncat(pstNewBuffer, pstBufferTmp, BUFFER_SIZE);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (len >= BUFFER_SIZE - 1);
+
+            free(pstBufferTmp);
+            // the bigger buffer becomes the current buffer
+            pstBuffer = pstNewBuffer;
+        }
+        if ((totalLen > 0) && (pstBuffer[totalLen - 1] == '\n'))
+        {
+            pstBuffer[totalLen - 1] = '\0';
+            if ((totalLen > 1) && (pstBuffer[totalLen - 2] == '\r'))
+            {
+                pstBuffer[totalLen - 2] = '\0';
+            }
+        }
+        // add the line in the array
+        (*pwstLines)[iReadLineCount - 1] = to_wide_string(pstBuffer);
+
+        if ((iLineCount > 0) && (iReadLineCount >= iLineCount))
+        {
+            break;
+        }
     }
 
-#ifndef _MSC_VER
-    auto pos = ifs.tellg();
-    fseek(fd, pos, SEEK_SET);
-    ifs.close();
-#endif
-
-    return nbLinesOut;
+    free(pstBuffer);
+    return iReadLineCount;
 }
