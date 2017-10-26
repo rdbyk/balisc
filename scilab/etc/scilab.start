@@ -165,4 +165,4 @@ if ~(isnan(0*%inf)&&isnan(%inf*0))
   warning("This issue is probably caused the BLAS libary you are using!");
 end
 // ====================================================================
-clear ans
+clear ans main_menubar_cb  getPreferencesValue

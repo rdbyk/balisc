@@ -12,7 +12,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="evstr" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="evstr" xml:lang="ru">
     <refnamediv>
         <refname>evstr</refname>
         <refpurpose>вычисление выражений</refpurpose>
@@ -20,48 +23,38 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            H = evstr(Z)
-            [H, ierr] = evstr(Z)
+            H = evstr(M)
+            H = evstr(list(M, subExpr))
+            [H, ierr] = evstr(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
-            <varlistentry>
-                <term>Z</term>
-                <listitem>
-                    <para>
-                        матрица символьных строк <varname>M</varname> или
-                        <code>list(M,Subexp)</code>
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>M</term>
-                            <listitem>
-                                <para>матрица символьных строк.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>Subexp</term>
-                            <listitem>
-                                <para>вектор символьных строк.</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>H</term>
-                <listitem>
-                    <para>матрица.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ierr</term>
-                <listitem>
-                    <para>целое число, указатель ошибки.</para>
-                </listitem>
-            </varlistentry>
+          <varlistentry>
+              <term>M</term>
+              <listitem>
+                <para>матрица символьных строк.</para>
+              </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>subExpr</term>
+            <listitem>
+              <para>вектор символьных строк.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>H</term>
+            <listitem>
+              <para>матрица.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>ierr</term>
+            <listitem>
+              <para>целое число, указатель ошибки.</para>
+            </listitem>
+          </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -79,7 +72,7 @@
             но возвращается номер ошибки в <varname>ierr</varname>.
         </para>
         <para>
-            Если <varname>Z</varname> - список, то <varname>Subexp</varname> -
+            Если указан список, то <varname>subExpr</varname>
             вектор символьных строк, который определяет подвыражения, которые
             вычисляются до вычисления <varname>M</varname>. К этим
             подвыражениям следует обращаться как <literal>%(k)</literal> в
@@ -97,22 +90,26 @@
         <para>
             <literal>Inf</literal> будет интерпретироваться как <constant>%inf</constant>.
         </para>
+        <warning>
+            <varname>Z</varname> не должно содержать знаков продолжения (..).
+        </warning>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example">
-            a = 1; b = 2;
-            Z = ['a', 'b'] ;
-            evstr(Z)
-            Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
-            evstr(Z)
+        <programlisting role="example"><![CDATA[
+a = 1; b = 2;
+Z = ['a', 'b'] ;
+evstr(Z)
+Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
 
-            evstr('NaN'), evstr('Inf')
-            //Вариант с двумя возвращаемыми значениями
-            [H, ierr] = evstr(Z) // ошибки нет
-            Z = ['a', 'b', 'c'] ;// переменная c не определена
-            [H, ierr] = evstr(Z) // error 4: Неизвестная переменная: c
-        </programlisting>
+evstr('NaN'), evstr('Inf')
+
+//Вариант с двумя возвращаемыми значениями
+[H, ierr] = evstr(Z) // ошибки нет
+Z = ['a', 'b', 'c'] ;// переменная c не определена
+[H, ierr] = evstr(Z) // error 4: Неизвестная переменная: c
+]]>     </programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -120,6 +117,34 @@
             <member>
                 <link linkend="execstr">execstr</link>
             </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
+            </member>
+            <member>
+                <link linkend="strtod">strtod</link>
+            </member>
+            <member>
+                <link linkend="brackets">конкатенация</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.3.0</revnumber>
+                <revdescription>
+                <literal>"Nan"</literal> and <literal>"NaN"</literal> are now parsed as <literal>%nan</literal>.
+                <literal>"Inf"</literal> and <literal>"INF"</literal> are now parsed as <literal>%inf</literal>.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                  Simple comments are now supported in almost all possible input expressions,
+                  whatever is the shape of <literal>M</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

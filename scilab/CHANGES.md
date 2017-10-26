@@ -42,6 +42,8 @@ Compilation
    - autoconf 2.69
    - libtool 2.4.6 (patched for Mac Os X)
 
+* Migration to Microsoft Visual Studio 2017 and Intel Composer 2018
+
 
 Dependencies
 ------------
@@ -52,6 +54,7 @@ Packaging & Supported Operating Systems
 
 * Scilab embedded JVM is Java 8. To run or compile Scilab you need at least:
   - Windows:
+     - Windows 10 (Desktop)
      - Windows 8 (Desktop)
      - Windows 7
      - Windows Vista SP2
@@ -67,7 +70,7 @@ Packaging & Supported Operating Systems
 
     For more information, please consult: [What are the system requirements for Java?](http://java.com/en/download/help/sysreq.xml)
 
-* [SSE2](https://en.wikipedia.org/wiki/SSE2), Streaming SIMD Extensions 2 support is mandatory.
+* [SSE2](https://en.wikipedia.org/wiki/SSE2), Streaming SIMD Extensions 2 support is now mandatory to run Scilab on Linux i686.
 
 
 Feature changes and additions
@@ -80,7 +83,7 @@ Feature changes and additions
   - PVS-Studio inspections blog report
   - Coverity scan weekly source analysis
 
-
+  
 Help pages:
 -----------
 
@@ -93,9 +96,6 @@ Data Structures
 
 Xcos
 ----
-
-* scicos_log() support options parameters to retrieve model statistics.
-* Added two new blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` which are `CSCOPE` & `CMSCOPE` blocks (resp) with additional feature of autoscaling of graph. It takes a parameter (1 for Yes or 0 for No) for scaling or no-scaling.
 
 
 API modification
@@ -115,12 +115,6 @@ Removed Functions
 
 Known issues
 ------------
-
-* Scilab 6.0.0 is the first release of a completly rewritten interpreter engine. If you discover
-strange behaviors or unexpected results do not hesitate to [report](https://bugzilla.scilab.org) them.
-* Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to
-the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
-
 
 Bug Fixes
 ---------
@@ -183,6 +177,7 @@ Bug Fixes
 * [#15199](http://bugzilla.scilab.org/show_bug.cgi?id=15199): Scilab crash when using fsolve for functions containing other functions.
 * [#15205](http://bugzilla.scilab.org/show_bug.cgi?id=15205): `get_scicos_version` returned the previous version.
 * [#15207](http://bugzilla.scilab.org/show_bug.cgi?id=15207): `xcos(scs_m)` did not work for sub-systems.
+
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`

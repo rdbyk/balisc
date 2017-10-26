@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-* Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
+ * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include "randlib_gw.hxx"
 #include "function.hxx"
@@ -89,6 +89,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
     }
 
+
     if (pStrMethod == NULL)
     {
         for (int i = 0; i < in.size(); i++)
@@ -112,7 +113,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     itab[1] = 1;
 
     wchar_t* wcsMeth = pStrMethod->getFirst();
-    int iNumInputArg = 5;
+    int iNumInputArg = 2;
+
     if (wcscmp(wcsMeth, L"bet") == 0) // beta
     {
         meth = 1;
@@ -127,7 +129,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     }
     else if (wcscmp(wcsMeth, L"chi") == 0) // chisquare
     {
-        iNumInputArg = 4;
+        iNumInputArg = 1;
         meth = 4;
     }
     else if (wcscmp(wcsMeth, L"nch") == 0) // non central chisquare
@@ -136,7 +138,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     }
     else if (wcscmp(wcsMeth, L"exp") == 0) // exponential
     {
-        iNumInputArg = 4;
+        iNumInputArg = 1;
         meth = 6;
     }
     else if (wcscmp(wcsMeth, L"f") == 0) // F variance ratio
@@ -145,7 +147,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     }
     else if (wcscmp(wcsMeth, L"nf") == 0) // non central F variance ratio
     {
-        iNumInputArg = 6;
+        iNumInputArg = 3;
         meth = 8;
     }
     else if (wcscmp(wcsMeth, L"gam") == 0) // gamma
@@ -158,37 +160,37 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     }
     else if (wcscmp(wcsMeth, L"mn") == 0) // multivariate gaussian (multivariate normal)
     {
-        iNumInputArg = 4;
+        iNumInputArg = 2;
         meth = 11;
     }
     else if (wcscmp(wcsMeth, L"geom") == 0) // geometric
     {
-        iNumInputArg = 4;
+        iNumInputArg = 1;
         meth = 12;
     }
     else if (wcscmp(wcsMeth, L"markov") == 0) // markov
     {
-        iNumInputArg = 4;
+        iNumInputArg = 2;
         meth = 13;
     }
     else if (wcscmp(wcsMeth, L"mul") == 0) // multinomial
     {
-        iNumInputArg = 4;
+        iNumInputArg = 2;
         meth = 14;
     }
     else if (wcscmp(wcsMeth, L"poi") == 0) // Poisson
     {
-        iNumInputArg = 4;
+        iNumInputArg = 1;
         meth = 15;
     }
     else if (wcscmp(wcsMeth, L"prm") == 0) // random permutations
     {
-        iNumInputArg = 3;
+        iNumInputArg = 1;
         meth = 16;
     }
     else if (wcscmp(wcsMeth, L"def") == 0) // uniform (def)
     {
-        iNumInputArg = 3;
+        iNumInputArg = 0;
         meth = 17;
     }
     else if (wcscmp(wcsMeth, L"unf") == 0) // uniform (unf)
@@ -201,22 +203,22 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     }
     else if (wcscmp(wcsMeth, L"lgi") == 0) // uniform (lgi)
     {
-        iNumInputArg = 3;
+        iNumInputArg = 0;
         meth = 20;
     }
     else if (wcscmp(wcsMeth, L"getgen") == 0) // getgen
     {
-        iNumInputArg = 1;
+        iNumInputArg = 0;
         meth = 21;
     }
     else if (wcscmp(wcsMeth, L"setgen") == 0) // setgen
     {
-        iNumInputArg = 2;
+        iNumInputArg = 1;
         meth = 22;
     }
     else if (wcscmp(wcsMeth, L"getsd") == 0) // getsd
     {
-        iNumInputArg = 1;
+        iNumInputArg = 0;
         meth = 23;
     }
     else if (wcscmp(wcsMeth, L"setsd") == 0) // setsd
@@ -224,51 +226,51 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         switch (current_base_gen)
         {
             case MT:
-                iNumInputArg = 2;
+                iNumInputArg = 1;
                 break;
             case KISS:
-                iNumInputArg = 5;
+                iNumInputArg = 4;
                 break;
             case CLCG2:
-                iNumInputArg = 3;
+                iNumInputArg = 2;
                 break;
             case CLCG4:
-                iNumInputArg = 5;
+                iNumInputArg = 4;
                 break;
             case URAND:
-                iNumInputArg = 2;
+                iNumInputArg = 1;
                 break;
         }
         meth = 24;
     }
     else if (wcscmp(wcsMeth, L"phr2sd") == 0) // phr2sd
     {
-        iNumInputArg = 2;
+        iNumInputArg = 1;
         meth = 25;
     }
     else if (wcscmp(wcsMeth, L"setcgn") == 0) // setcgn
     {
-        iNumInputArg = 2;
+        iNumInputArg = 1;
         meth = 26;
     }
     else if (wcscmp(wcsMeth, L"getcgn") == 0) // getcgn
     {
-        iNumInputArg = 1;
+        iNumInputArg = 0;
         meth = 27;
     }
     else if (wcscmp(wcsMeth, L"initgn") == 0) // initgn
     {
-        iNumInputArg = 2;
+        iNumInputArg = 1;
         meth = 28;
     }
     else if (wcscmp(wcsMeth, L"setall") == 0) // setall
     {
-        iNumInputArg = 5;
+        iNumInputArg = 4;
         meth = 29;
     }
     else if (wcscmp(wcsMeth, L"advnst") == 0) // advnst
     {
-        iNumInputArg = 2;
+        iNumInputArg = 1;
         meth = 30;
     }
     else
@@ -384,6 +386,12 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
+        if (in.size() - iPos != iNumInputArg)
+        {
+            Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "grand", iPos + iNumInputArg);
+            delete[] itab;
+            return types::Function::Error;
+        }
 
         for (int i = iPos; i < in.size(); i++)
         {
@@ -1602,7 +1610,7 @@ void sci_grand_prm(int iNumIter, U *pIn, types::InternalType** pOut)
     {
         for (int i = 0; i < pOut[0]->getAs<U>()->getSize(); i++)
         {
-            pOut[0]->getAs<U>()->set(i , pIn->get(static_cast<int>(pDblOut->get(i))));
+            pOut[0]->getAs<U>()->set(i, pIn->get(static_cast<int>(pDblOut->get(i))));
             pOut[0]->getAs<U>()->setImg(i, pIn->getImg(static_cast<int>(pDblOut->get(i))));
         }
     }
