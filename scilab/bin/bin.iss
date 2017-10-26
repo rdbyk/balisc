@@ -22,6 +22,12 @@ Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\msvcr71.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
 
+;Visual C++ 2017 redist libraries
+Source: bin\msvcp140.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\vcruntime140.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\vccorlib140.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\concrt140.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
 ;Visual C++ 2013 redist libraries
 Source: bin\msvcp120.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\msvcr120.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -67,6 +73,7 @@ Source: bin\lapack.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: bin\WScilex-cli.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -80,3 +87,4 @@ Source: bin\hdf5_hldll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ; batch files
 Source: bin\scinotes.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\xcos.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\scilab.bat; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

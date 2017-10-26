@@ -239,9 +239,6 @@
     <ClInclude Include="includes\gw_fileio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\isdir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\mclose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -339,6 +336,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\mputi.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\isdir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

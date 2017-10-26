@@ -26,7 +26,7 @@
 
 namespace types
 {
-bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e)
+bool MList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -48,13 +48,15 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
 
             _out = extractStrings(stFields);
 
-            List* pList = _out->getAs<types::List>();
-            for (int i = 0; i < pList->getSize(); i++)
+            if (_out)
             {
-                out.push_back(pList->get(i));
+                List* pList = _out->getAs<types::List>();
+                for (int i = 0; i < pList->getSize(); i++)
+                {
+                    out.push_back(pList->get(i));
+                }
+                delete pList;
             }
-
-            delete pList;
         }
 
         if (!out.empty())
@@ -71,11 +73,11 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
 
     try
     {
-        ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out);
+        ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, _iRetCount, out);
     }
     catch (ast::InternalError & /*se*/)
     {
-        ret = Overload::call(L"%l_e", in, 1, out);
+        ret = Overload::call(L"%l_e", in, _iRetCount, out);
     }
 
     // Remove this from "in" for keep "in" unchanged.
