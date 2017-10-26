@@ -37,11 +37,11 @@ Scilab 6.X is shipped with a sparse set of benchmarks only for some its modules.
 ```
 We have done that, and got the following results:
 
-|              | **"core"** | **"string"** | "**elementary_functions**" |
-|:------------:|:----------:|:------------:|:--------------------------:|
-| Scilab 6.X   | 39.146098  | 94.049148    | 41.409981                  |
-| **Balisc**   | 30.495997  | 54.280835    | 26.429697                  |
-| _Difference_ | _- 22 %_   | _- 42 %_     | _- 36 %_                   |
+|              | **"core"** | **"string"** | "**elementary_functions**" | "**fileio**" |
+|:------------:|:----------:|:------------:|:--------------------------:|:------------:|
+| Scilab 6.X   | 39.146098  | 94.049148    | 41.409981                  | 44.978054    |
+| **Balisc**   | 30.495997  | 54.280835    | 26.429697                  |  8.904948    |
+| _Difference_ | _- 22 %_   | _- 42 %_     | _- 36 %_                   | _- 80 %_     |
 
 Please note, that the "**elementary_functions**" benchmark is not the same as that of Scilab 6.X (cf. `balisc/scilab/modules/elementary_functions/tests/benchmarks/`).
 
