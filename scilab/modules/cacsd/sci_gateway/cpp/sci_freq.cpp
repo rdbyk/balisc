@@ -13,6 +13,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <complex>
 #include "cacsd_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -293,7 +295,9 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
 
                 if (iComplex)
                 {
-                    C2F(wdiv)(&dVr, &dVi, &dUr, &dUi, pdblRTemp, pdblITemp);
+                    std::complex<double> tmp = std::complex<double>(dVr, dVi) / std::complex<double>(dUr, dUi);
+                    *pdblRTemp = tmp.real();
+                    *pdblITemp = tmp.imag();
                 }
                 else
                 {
