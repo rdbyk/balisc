@@ -15,6 +15,7 @@
 /*--------------------------------------------------------------------------*/
 
 #include <cmath>
+#include <algorithm>
 #include "clean.hxx"
 
 extern "C"
@@ -28,7 +29,7 @@ void clean(double* pdblReal, double* pdblImg, int iSize, double dEpsA, double dE
     if (pdblImg)
     {
         double dNorm = wasums(iSize, pdblReal, pdblImg);
-        double dEps = Max(dEpsA, dEpsR * dNorm);
+        double dEps = std::max(dEpsA, dEpsR * dNorm);
         for (int i = 0 ; i < iSize ; i++)
         {
             if (std::abs(pdblImg[i]) <= dEps)
@@ -46,7 +47,7 @@ void clean(double* pdblReal, double* pdblImg, int iSize, double dEpsA, double dE
     {
         int iOne = 1;
         double dNorm = C2F(dasum)(&iSize, pdblReal, &iOne);
-        double dEps = Max(dEpsA, dEpsR * dNorm);
+        double dEps = std::max(dEpsA, dEpsR * dNorm);
         for (int i = 0 ; i < iSize ; i++)
         {
             if (std::abs(pdblReal[i]) <= dEps)

@@ -15,6 +15,8 @@
  *
  */
 
+#include <algorithm>
+
 extern "C"
 {
 #include <string.h>
@@ -49,7 +51,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
     char* param1 = NULL;
     char* param2 = NULL;
 
-    nbInputArgument(pvApiCtx) = Max(0, nbInputArgument(pvApiCtx));
+    nbInputArgument(pvApiCtx) = std::max(0, nbInputArgument(pvApiCtx));
     CheckInputArgument(pvApiCtx, 0, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
