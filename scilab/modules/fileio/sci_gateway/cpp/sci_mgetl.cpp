@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,7 +38,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
     int iFileID = 0;
     int iErr = 0;
     bool bCloseFile = false;
-    int iLinesExcepted = -1;
+    int iLinesExpected = -1;
     int iLinesRead = -1;
     wchar_t** wcReadedStrings   = NULL;
 
@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        iLinesExcepted = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
+        iLinesExpected = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
     }
 
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 1)
@@ -134,12 +134,12 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            if ((iLinesExcepted > 0) && (iFileID == 5))
+            if ((iLinesExpected > 0) && (iFileID == 5))
             {
-                iLinesExcepted = 1;
+                iLinesExpected = 1;
             }
 
-            iLinesRead = mgetl(iFileID, iLinesExcepted, &wcReadedStrings);
+            iLinesRead = mgetl(iFileID, iLinesExpected, &wcReadedStrings);
 
             if (iLinesRead < 0)
             {
