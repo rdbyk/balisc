@@ -139,11 +139,6 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
             }
 
             iLinesRead = mgetl(iFileID, iLinesExpected, &wcReadStrings);
-
-            if (iLinesRead < 0)
-            {
-                break;
-            }
         }
     }
 
