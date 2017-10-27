@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2012-2014 - DIGITEO - cedric delamarre
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012-2014 - DIGITEO - cedric delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __DIAG_H__
 #define __DIAG_H__
@@ -45,12 +45,12 @@ types::InternalType* diag(bigT* pIn,  int iStartPos)
     {
         if (iStartPos < 0)
         {
-            iSize = Max(0, Min(iRows + iStartPos, iCols));
+            iSize = std::max(0, std::min(iRows + iStartPos, iCols));
             iStartRow = -iStartPos;
         }
         else
         {
-            iSize = Max(0, Min(iRows, iCols - iStartPos));
+            iSize = std::max(0, std::min(iRows, iCols - iStartPos));
             iStartCol = iStartPos;
         }
 
@@ -89,7 +89,7 @@ types::InternalType* diag(bigT* pIn,  int iStartPos)
     }
     else // pIn is a vector
     {
-        int iSizeOfVector = Max(iRows, iCols);
+        int iSizeOfVector = std::max(iRows, iCols);
         if (iStartPos < 0)
         {
             iSize = iSizeOfVector - iStartPos;

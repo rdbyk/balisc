@@ -35,7 +35,6 @@ extern "C"
 {
 #include "dynamiclibrary.h"
 #include "dynlib_ast.h"
-#include "core_math.h"
 }
 
 // Minimal values for iConsoleLines & iConsoleWidth
@@ -178,7 +177,7 @@ private :
 public :
     static void setConsoleWidth(int _iConsoleWidth)
     {
-        m_iConsoleWidth = Max(ICONSOLEWIDTH_MIN, _iConsoleWidth);
+        m_iConsoleWidth = std::max(ICONSOLEWIDTH_MIN, _iConsoleWidth);
     }
     
     static int getConsoleWidth(void)
@@ -193,7 +192,7 @@ private :
 public :
     static void setConsoleLines(int _iConsoleLines)
     {
-        m_iConsoleLines = Max(ICONSOLELINES_MIN, _iConsoleLines);
+        m_iConsoleLines = std::max(ICONSOLELINES_MIN, _iConsoleLines);
     }
 
     static int getConsoleLines(void)

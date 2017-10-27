@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <vector>
 #include <string>
@@ -1256,10 +1256,10 @@ static void updateXYDataBounds(double rect[6], int axes = -1)
         double * dataBounds = NULL;
         getGraphicObjectProperty(axes, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
-        rect[0] = Min(rect[0], dataBounds[0]);
-        rect[1] = Max(rect[1], dataBounds[1]);
-        rect[2] = Min(rect[2], dataBounds[2]);
-        rect[3] = Max(rect[3], dataBounds[3]);
+        rect[0] = std::min(rect[0], dataBounds[0]);
+        rect[1] = std::max(rect[1], dataBounds[1]);
+        rect[2] = std::min(rect[2], dataBounds[2]);
+        rect[3] = std::max(rect[3], dataBounds[3]);
         rect[4] = dataBounds[4];
         rect[5] = dataBounds[5];
     }
