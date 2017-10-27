@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -36,11 +36,10 @@ extern "C"
 types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFileID = 0;
-    int iErr = 0;
     bool bCloseFile = false;
-    int iLinesExcepted = -1;
+    int iLinesExpected = -1;
     int iLinesRead = -1;
-    wchar_t** wcReadedStrings   = NULL;
+    wchar_t** wcReadStrings = NULL;
 
     if (in.size() < 1 || in.size() > 2)
     {
@@ -69,7 +68,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        iLinesExcepted = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
+        iLinesExpected = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
     }
 
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 1)
@@ -80,7 +79,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
     {
         wchar_t *expandedFileName = expandPathVariableW(in[0]->getAs<types::String>()->getFirst());
 
-        iErr = mopen(expandedFileName, L"rt", 0, &iFileID);
+        int iErr = mopen(expandedFileName, L"rt", 0, &iFileID);
 
         if (iErr)
         {
@@ -134,33 +133,28 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            if ((iLinesExcepted > 0) && (iFileID == 5))
+            if ((iLinesExpected > 0) && (iFileID == 5))
             {
-                iLinesExcepted = 1;
+                iLinesExpected = 1;
             }
 
-            iLinesRead = mgetl(iFileID, iLinesExcepted, &wcReadedStrings);
-
-            if (iLinesRead < 0)
-            {
-                break;
-            }
+            iLinesRead = mgetl(iFileID, iLinesExpected, &wcReadStrings);
         }
     }
 
-    if (wcReadedStrings && iLinesRead > 0)
+    if (wcReadStrings && iLinesRead > 0)
     {
         types::String *pS = new types::String(iLinesRead, 1);
-        pS->set(wcReadedStrings);
+        pS->set(wcReadStrings);
         out.push_back(pS);
-        freeArrayOfWideString(wcReadedStrings, iLinesRead);
+        freeArrayOfWideString(wcReadStrings, iLinesRead);
     }
     else
     {
         out.push_back(types::Double::Empty());
-        if (wcReadedStrings)
+        if (wcReadStrings)
         {
-            FREE(wcReadedStrings);
+            FREE(wcReadStrings);
         }
     }
 
