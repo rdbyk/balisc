@@ -36,11 +36,10 @@ extern "C"
 types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFileID = 0;
-    int iErr = 0;
     bool bCloseFile = false;
     int iLinesExpected = -1;
     int iLinesRead = -1;
-    wchar_t** wcReadStrings   = NULL;
+    wchar_t** wcReadStrings = NULL;
 
     if (in.size() < 1 || in.size() > 2)
     {
@@ -80,7 +79,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
     {
         wchar_t *expandedFileName = expandPathVariableW(in[0]->getAs<types::String>()->getFirst());
 
-        iErr = mopen(expandedFileName, L"rt", 0, &iFileID);
+        int iErr = mopen(expandedFileName, L"rt", 0, &iFileID);
 
         if (iErr)
         {
