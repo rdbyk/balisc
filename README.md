@@ -37,17 +37,20 @@ Scilab 6.X is shipped with a sparse set of benchmarks only for some its modules.
 ```
 We have done that, and got the following results:
 
-|              | **"core"** | **"string"** | "**elementary_functions**" | "**fileio**" |
-|:------------:|:----------:|:------------:|:--------------------------:|:------------:|
-| Scilab 6.X   | 39.146098  | 94.049148    | 41.409981                  | 44.978054    |
-| **Balisc**   | 30.495997  | 54.280835    | 26.429697                  |  8.904948    |
-| _Difference_ | _- 22 %_   | _- 42 %_     | _- 36 %_                   | _- 80 %_     |
+| Benchmark | Scilab 6.X | _Balisc_ | _Difference_ |
+| ---------:| ----------:| --------:| ------------:|
+| "ast" | 6.89 | 5.83 | _- 15 %_ |
+| "core" | 39.14 | 30.49 | _- 22 %_ |
+| "elementary_functions" | 41.41| 26.43 | _- 36 %_ |
+| "fileio" | 44.98 | 8.90 | _- 80 %_ |
+| "string" | 94.05 | 54.28 | _- 42 %_ |
+| "time" | 94.65 | 85.51 | _- 9 %_ |
 
 Please note, that the "**elementary_functions**" benchmark is not the same as that of Scilab 6.X (cf. `balisc/scilab/modules/elementary_functions/tests/benchmarks/`).
 
 Furthermore, take these results just as an indicator, that **_Balisc might perform significantly better_** than Scilab 6.X.
 
-**_Your mileage may vary!_** Things are currently **_really_** in an **_experimental_** and **_work-in-progress state_**! 
+**_Your mileage may vary!_** Things are currently **_really_** in an **_experimental_** and **_work-in-progress state!_**
  
 ## Compilation with GCC for Linux x86_64
 You may want to follow the the instructions [Compilation of Scilab](https://wiki.scilab.org/Compilation%20of%20Scilab) (probably not up-to-date), or follow the **_procedure described below_**, which assumes, that you have installed all required non-Java stuff on your
