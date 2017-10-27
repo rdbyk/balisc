@@ -40,7 +40,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
     bool bCloseFile = false;
     int iLinesExpected = -1;
     int iLinesRead = -1;
-    wchar_t** wcReadedStrings   = NULL;
+    wchar_t** wcReadStrings   = NULL;
 
     if (in.size() < 1 || in.size() > 2)
     {
@@ -139,7 +139,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
                 iLinesExpected = 1;
             }
 
-            iLinesRead = mgetl(iFileID, iLinesExpected, &wcReadedStrings);
+            iLinesRead = mgetl(iFileID, iLinesExpected, &wcReadStrings);
 
             if (iLinesRead < 0)
             {
@@ -148,19 +148,19 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    if (wcReadedStrings && iLinesRead > 0)
+    if (wcReadStrings && iLinesRead > 0)
     {
         types::String *pS = new types::String(iLinesRead, 1);
-        pS->set(wcReadedStrings);
+        pS->set(wcReadStrings);
         out.push_back(pS);
-        freeArrayOfWideString(wcReadedStrings, iLinesRead);
+        freeArrayOfWideString(wcReadStrings, iLinesRead);
     }
     else
     {
         out.push_back(types::Double::Empty());
-        if (wcReadedStrings)
+        if (wcReadStrings)
         {
-            FREE(wcReadedStrings);
+            FREE(wcReadStrings);
         }
     }
 
