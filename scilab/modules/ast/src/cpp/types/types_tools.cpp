@@ -258,20 +258,22 @@ bool getScalarImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vecto
         return false;
     }
 
-    index.reserve(4);
-
     if (pIT->isColon())
     {
+        // an "index" of size 4 tells the caller that the implicit index
+        // was a ":" colon, and he will accordingly shape the result as
+        // column vector
+        index.resize(4);
         index[0] = 1;
         index[1] = 1;
         index[2] = _pRef->getSize();
-        //use to know we have a real ":" to shape return matrix in col vector
-        index[3] = 0;
+        //index[3] = 0; // useless, cf. above
     }
     else
     {
         ImplicitList* pIL = pIT->getAs<ImplicitList>();
         int sizeRef = _pRef->getSize();
+        index.resize(3);
         index[0] = evalute(pIL->getStart(), sizeRef);
         index[1] = evalute(pIL->getStep(), sizeRef);
         index[2] = evalute(pIL->getEnd(), sizeRef);
