@@ -105,6 +105,16 @@ API modification
 Obsolete functions or features
 ------------------------------
 
+* `maxfiles` is now obsolete.
+* `isoview(xmin,xmax,ymin,ymax)` is deprecated. Please use `isoview("on"), replot(..)` instead.
+* `eval3d` will be removed from Scilab 6.1. Please use `ndgrid` instead.
+* `strcmpi` is deprecated. Please use `strcmp(..,"i")`instead.
+* `square` will be removed from Scilab 6.1. Please use `gcf().axes_size` and `replot` instead.
+* `nanmin` is obsolete and will be removed in Scilab 6.1. Please use `min` instead.
+* `nanmax` is obsolete and will be removed in Scilab 6.1. Please use `max` instead.
+* `xgetech` is obsolete and will be removed in Scilab 6.1. Please use `gca` instead.
+* `lstsize` is obsolete and will be removed in Scilab 6.1. Please use `size` instead.
+
 
 Removed Functions
 -----------------
