@@ -42,7 +42,7 @@ We have done that, and got the following results:
 | "ast" | 6.89 | 5.83 | _- 15 %_ |
 | "core" | 39.14 | 30.49 | _- 22 %_ |
 | "elementary_functions" | 41.41| 26.43 | _- 36 %_ |
-| "fileio" | 44.98 | 8.90 | _- 80 %_ |
+| "fileio" | 44.98 | 5.89 | _- 87 %_ |
 | "string" | 94.05 | 54.28 | _- 42 %_ |
 | "time" | 94.65 | 85.51 | _- 9 %_ |
 
