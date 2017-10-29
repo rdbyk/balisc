@@ -17,6 +17,9 @@
 
 extern "C"
 {
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "mgetl.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
@@ -25,19 +28,19 @@ extern "C"
 }
 #include "filemanager.hxx"
 
-#include <string.h>
-#include <stdio.h>
-
-#ifdef _MSC_VER
-#include <Windows.h>
-#endif
-
-#ifdef BUFFER_SIZE
-#undef BUFFER_SIZE
-#endif
-#define BUFFER_SIZE 4096
-
 static const unsigned char UTF8_BOM[] = { 0xEF, 0xBB, 0xBF, 0x00 };
+
+static void remove_linebreak(char* line, size_t n)
+{
+    if (n && line[--n] == '\n')
+    {
+        line[n] = '\0';
+        if (n && line[--n] == '\r')
+        {
+            line[n] = '\0';
+        }
+    }
+}
 
 int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
 {
@@ -81,94 +84,44 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
         {
             return -1;
         }
-    }
 
-    // allocate initial reading buffer, it will grow depending on line size
-    int iBufferSize = BUFFER_SIZE;
-    char *pstBuffer = (char *) malloc(iBufferSize * sizeof(char));
-    if (pstBuffer == NULL)
-    {
-        freeArrayOfWideString(*pwstLines, iLineCount);
-        *pwstLines = NULL;
-        return -1;
-    }
+        char *line = NULL;
+        size_t len = 0;
+        ssize_t nread;
+        int iReadLineCount = 0;
 
-    int iReadLineCount = 0;
-    while (fgets(pstBuffer, iBufferSize * sizeof(char), fd) != NULL)
-    {
-        iReadLineCount++;
-        *pwstLines = (wchar_t**)REALLOC(*pwstLines, iReadLineCount * sizeof(wchar_t*));
-        if (*pwstLines == NULL)
+        while (iReadLineCount < iLineCount && (nread = getline(&line, &len, fd)) != -1)
         {
-            free(pstBuffer);
-            return -1;
+            remove_linebreak(line, nread);
+            (*pwstLines)[iReadLineCount++] = to_wide_string(line);
         }
 
-        // is the line complete in the buffer (= zero terminal found) ?
-        int len = strnlen(pstBuffer, iBufferSize);
-        int totalLen = len;
-        if (len >= iBufferSize - 1)
+        free(line);
+        return iReadLineCount;
+    }
+    else
+    {
+        char *line = NULL;
+        size_t len = 0;
+        ssize_t nread;
+        int iReadLineCount = 0;
+
+        while ((nread = getline(&line, &len, fd)) != -1)
         {
-            // no, there is another data to read for this line
-            // allocate a temporary buffer for reading it
-            char *pstBufferTmp = (char*) malloc(BUFFER_SIZE * sizeof(char));
-            if (pstBufferTmp == NULL)
+            wchar_t **pwstLinesNew = (wchar_t**)REALLOC(*pwstLines, (iReadLineCount + 1) * sizeof(wchar_t*));
+            if (pwstLinesNew == NULL)
             {
-                freeArrayOfWideString(*pwstLines, iReadLineCount);
-                *pwstLines = NULL;
-                free(pstBuffer);
+                free(*pwstLines);
+                free(line);
                 return -1;
             }
-            char *pstNewBuffer = pstBuffer;
-            // loop until line is complete
-            do
-            {
-                // reallocate a new bigger buffer for the line
-                iBufferSize += BUFFER_SIZE;
-                pstNewBuffer = (char*) REALLOC(pstNewBuffer, iBufferSize * sizeof(char));
-                if (pstNewBuffer == NULL)
-                {
-                    freeArrayOfWideString(*pwstLines, iReadLineCount);
-                    *pwstLines = NULL;
-                    free(pstBufferTmp);
-                    return -1;
-                }
+            *pwstLines = pwstLinesNew;
 
-                // read the remaining data and copy it in the new buffer
-                if (fgets(pstBufferTmp, BUFFER_SIZE * sizeof(char), fd) != NULL)
-                {
-                    len = strnlen(pstBufferTmp, BUFFER_SIZE);
-                    totalLen += len;
-                    strncat(pstNewBuffer, pstBufferTmp, BUFFER_SIZE);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            while (len >= BUFFER_SIZE - 1);
+            remove_linebreak(line, nread);
+            (*pwstLines)[iReadLineCount++] = to_wide_string(line);
+        }
 
-            free(pstBufferTmp);
-            // the bigger buffer becomes the current buffer
-            pstBuffer = pstNewBuffer;
-        }
-        if ((totalLen > 0) && (pstBuffer[totalLen - 1] == '\n'))
-        {
-            pstBuffer[totalLen - 1] = '\0';
-            if ((totalLen > 1) && (pstBuffer[totalLen - 2] == '\r'))
-            {
-                pstBuffer[totalLen - 2] = '\0';
-            }
-        }
-        // add the line in the array
-        (*pwstLines)[iReadLineCount - 1] = to_wide_string(pstBuffer);
-
-        if ((iLineCount > 0) && (iReadLineCount >= iLineCount))
-        {
-            break;
-        }
+        free(line);
+        return iReadLineCount;
     }
-
-    free(pstBuffer);
-    return iReadLineCount;
 }
