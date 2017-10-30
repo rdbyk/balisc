@@ -489,20 +489,24 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 pCurrentArg = pIT->clone()->getAs<Double>();
             }
 
-            //check valid values neg or complex
+            // check for valid index values
+            // non-complex and real positive (non-negative for lists)
             if (pCurrentArg->isComplex())
             {
                 pCurrentArg->killMe();
+                pCurrentArg = NULL;
             }
             else
             {
                 int size = pCurrentArg->getSize();
-                double* dbl = pCurrentArg->get();
+                double* idx = pCurrentArg->get();
+                double min_idx = _pRef && _pRef->isList() ? 0 : 1;
                 for (int j = 0; j < size; ++j)
                 {
-                    if (dbl[j] < 0)
+                    if (idx[j] < min_idx)
                     {
                         pCurrentArg->killMe();
+                        pCurrentArg = NULL;
                         break;
                     }
                 }
