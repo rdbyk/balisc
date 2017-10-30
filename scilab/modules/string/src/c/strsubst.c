@@ -448,23 +448,16 @@ wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wch
     }
     else
     {
-        for (i = 0 ; i < iOccurs ; i++)
+        wchar_t* pwstTemp = wcpncpy(pwstOutput, _pwstInput, piStart[0]);
+        pwstTemp = wcpcpy(pwstTemp, _pwstReplace);
+
+        for (i = 1 ; i < iOccurs ; i++)
         {
-            if (i == 0)
-            {
-                //copy start of original string
-                wcsncpy(pwstOutput, _pwstInput, piStart[i]);
-            }
-            else
-            {
-                //copy start of original string
-                wcsncpy(pwstOutput + wcslen(pwstOutput), _pwstInput + piStart[i - 1] + iSearch, piStart[i] - (iSearch + piStart[i - 1]));
-            }
-            //copy replace string
-            wcscpy(pwstOutput + wcslen(pwstOutput), _pwstReplace);
+            pwstTemp = wcpncpy(pwstTemp, _pwstInput + piStart[i - 1] + iSearch, piStart[i] - (iSearch + piStart[i - 1]));
+            pwstTemp = wcpcpy(pwstTemp, _pwstReplace);
         }
-        //copy end of original string
-        wcscpy(pwstOutput + wcslen(pwstOutput), _pwstInput + piStart[iOccurs - 1] + iSearch);
+
+        wcpcpy(pwstTemp, _pwstInput + piStart[iOccurs - 1] + iSearch);
     }
 
     FREE(piStart);

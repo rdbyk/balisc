@@ -10,17 +10,27 @@ We don't know, but you may try running this
 
 ```scilab
 A=string(rand(1000,1000));
-tic;strcat(A);toc
+tic;B=strcat(A);toc
+```
+
+first, and then
+
+```scilab
+tic;strsubst(B,"3","X");toc
 ```
 
 under current [**_Scilab 6.x_**](http://www.scilab.org/en/development/nightly_builds/master). In the meantime, you might think about compiling **_Balisc_** by yourself (cf. below) and executing the very same instuctions on your freshly built **_Balisc_**. This could confront you with a result like this.
 
 ```scilab
 --> A=string(rand(1000,1000));
---> tic;strcat(A);toc
+--> tic;B=strcat(A);toc
  ans  =
 
-   0.139977
+   0.063398
+--> tic;strsubst(B,"3","X");toc
+ ans  =
+
+   0.095663
 ```
 
 Please, don't take this example too seriously, it is just an extreme example chosen for pedagogic reasons. *Scilab is a very powerful and comprehensive tool*.
