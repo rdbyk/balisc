@@ -236,7 +236,7 @@ wchar_t **wcssubst(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _
         for (i = 0 ; i < _iInputSize ; i++)
         {
             const wchar_t* pwst = _pwstInput[i];
-            if (wcslen(pwst) == 0)
+            if (pwst[0] == L'\0')
             {
                 pwstOutput[i] = os_wcsdup(L"");
             }
