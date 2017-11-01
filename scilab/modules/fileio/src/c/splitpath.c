@@ -94,7 +94,7 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 
     if (duplicate_path)
     {
-        if (wcslen(duplicate_path) > 2)
+        if (duplicate_path[0] != L'\0' && duplicate_path[1] != L'\0')  /* wcslen(duplicate_path) > 2 */
         {
             if (duplicate_path[0] && duplicate_path[1] == L':' && ( (duplicate_path[2] == L'\\') || (duplicate_path[2] == L'/') ) )
             {
@@ -167,7 +167,7 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
     }
 
     /* swap name & extension if no name */
-    if (name && name[0] == 0 && ext && wcslen(ext) > 0)
+    if (name && name[0] == 0 && ext && ext[0] != L'\0')
     {
         wcscpy(name, ext);
         ext[0] = L'\0';
