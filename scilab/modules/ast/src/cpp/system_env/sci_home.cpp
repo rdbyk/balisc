@@ -380,7 +380,7 @@ static bool isAbsolutePath(const wchar_t* path)
 void defineSCIHOME()
 {
     wchar_t* sci_home = getSCIHOMEW();
-    if (wcscmp(sci_home, L"") == 0)
+    if (sci_home[0] == L'\0')
     {
         FREE(sci_home);
         sci_home = computeSCIHOMEW();
