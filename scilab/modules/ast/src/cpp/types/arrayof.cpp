@@ -818,16 +818,26 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     int iKeepSize = getVarMaxDim(iNotEntire, iDims);
 
     int iNewDimSize = iKeepSize;
+
+    bool* pbKeep = new bool[iKeepSize];
+    std::fill_n(pbKeep, iKeepSize, true);
     for (int i = 0; i < iNotEntireSize; i++)
     {
         int idx = (int)piNotEntireIndex[i] - 1;
 
-        //don't care of value out of bounds
+        // ignore out-of-range index
         if (idx < iKeepSize)
         {
-            --iNewDimSize;
+            // ignore already handled index
+            if (pbKeep[idx])
+            {
+                pbKeep[idx] = false;
+                --iNewDimSize;
+            }
         }
     }
+    delete[] pbKeep;
+
 
     int* piNewDims = new int[iDims];
     for (int i = 0; i < iDims; i++)
