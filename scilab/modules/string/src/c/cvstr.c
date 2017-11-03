@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Cong WU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,19 +28,6 @@ int C2F(cvstr)(int * n, int * line, char * str, int * job, unsigned long str_len
     if (*job == 0)
     {
         C2F(asciitocode)(n, line, str, &cx1, str_len);
-    }
-    else
-    {
-        C2F(codetoascii)(n, line, str, str_len);
-    }
-    return 0;
-}
-/*--------------------------------------------------------------------------*/
-int C2F(cvstr1)(int *n, int * line, char * str, int * job,	unsigned long  str_len)
-{
-    if (*job == 0)
-    {
-        C2F(asciitocode)(n, line, str, &c_n1, str_len);
     }
     else
     {

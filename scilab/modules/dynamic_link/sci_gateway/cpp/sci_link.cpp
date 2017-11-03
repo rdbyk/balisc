@@ -80,14 +80,11 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
         types::String* pSFlag = in[2]->getAs<types::String>();
         wchar_t* pwstFlag = pSFlag->getFirst();
-        if (wcscmp(pwstFlag, L"f") == 0 || wcscmp(pwstFlag, L"c") == 0)
+        if (pwstFlag[0] == L'c' && pwstFlag[1] == L'\0')
         {
-            if (wcscmp(pwstFlag, L"c") == 0)
-            {
-                bFortran = FALSE;
-            }
+            bFortran = FALSE;
         }
-        else
+        else if (pwstFlag[0] != L'f' || pwstFlag[1] != L'\0')
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "link", 3, "f", "c");
             return types::Function::Error;

@@ -695,13 +695,13 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
                 /* len_inum_string-- */
             }
 
-            if (wcscmp(inum_string, L"+") == 0)
+            if (inum_string[0] == L'+' && inum_string[1] == L'\0')
             {
                 FREE(inum_string);
                 inum_string = os_wcsdup(L"+1");
             }
 
-            if (wcscmp(inum_string, L"-") == 0)
+            if (inum_string[0] == L'-' && inum_string[1] == L'\0')
             {
                 FREE(inum_string);
                 inum_string = os_wcsdup(L"-1");
@@ -724,13 +724,13 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
                 inum_string[len_inum_string - 2] = '\0';
             }
 
-            if (wcscmp(inum_string, L"+") == 0)
+            if (inum_string[0] == L'+' && inum_string[1] == L'\0')
             {
                 FREE(inum_string);
                 inum_string = os_wcsdup(L"+1");
             }
 
-            if (wcscmp(inum_string, L"-") == 0)
+            if (inum_string[0] == L'-' && inum_string[1] == L'\0')
             {
                 FREE(inum_string);
                 inum_string = os_wcsdup(L"-1");
@@ -743,7 +743,7 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
         }
         rnum_string = leftstringW(modifiedTxt, lnum);
 
-        if (wcscmp(inum_string, L"") == 0)
+        if (inum_string[0] == L'\0')
         {
             *imag = stringToDoubleW(rnum_string, bConvertByNAN, &ierrDouble);
             ierr = (stringToComplexError)(ierrDouble);

@@ -192,8 +192,7 @@ char *searchEnv(const char *name, const char *env_var)
 {
     char *buffer = NULL;
     char fullpath[PATH_MAX];
-
-    strcpy(fullpath, "");
+    fullpath[0] = '\0';
 
 #if _MSC_VER
     {

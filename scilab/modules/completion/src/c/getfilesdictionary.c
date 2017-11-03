@@ -150,7 +150,7 @@ static void mysplitpath(char *composite,  char *path,  char *fname)
         }
         else
         {
-            strcpy(path, "");
+            path[0] = '\0';
             strcpy(fname, composite);
         }
     }
