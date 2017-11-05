@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_log10(types::typed_list &in, int _iRetCount, ty
     
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "log10", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "log10", 1);
         return types::Function::Error;
     }
 
