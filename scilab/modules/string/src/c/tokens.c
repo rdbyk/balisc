@@ -22,8 +22,6 @@
 #include "tokens.h"
 #include "os_string.h"
 #include "os_wcstok.h"
-
-
 /*------------------------------------------------------------------------*/
 wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs)
 {
@@ -40,37 +38,17 @@ wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs)
             wchar_t *pwstState = NULL;
             wchar_t *pwstWork = os_wcsdup(str);
 
-            //compute size of outputs array
             for(i = 0, pwstToken = os_wcstok(pwstWork, delim, &pwstState);
                 pwstToken != NULL;
                 pwstToken = os_wcstok(NULL, delim, &pwstState), i++)
             {
-                ;
-            }
-
-            if (i == 0)
-            {
-                FREE(pwstWork);
-                return NULL;
-            }
-            else
-            {
-                *sizeOutputs = i;
-            }
-
-            //alloc output array
-            Outputs = (wchar_t**)MALLOC(sizeof(wchar_t*) * *sizeOutputs);
-
-            wcscpy(pwstWork, str);        
-                
-            for(i = 0, pwstToken = os_wcstok(pwstWork, delim, &pwstState);
-                pwstToken != NULL;
-                pwstToken = os_wcstok(NULL, delim, &pwstState), i++)
-            {
+                Outputs = (wchar_t**)REALLOC(Outputs, sizeof(wchar_t*) * (i + 1));
                 Outputs[i] = os_wcsdup(pwstToken);
             }
 
             FREE(pwstWork);
+
+            *sizeOutputs = i;
         }
     }
     return Outputs;
