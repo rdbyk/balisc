@@ -211,10 +211,10 @@ bool ImplicitList::compute()
         return true;
     }
 
-    m_iSize = -1;
     if (isComputable() == true)
     {
         m_iSize = 0;
+
         if (m_eOutType == ScilabDouble)
         {
             m_pDblStart = m_poStart->getAs<Double>();
@@ -233,6 +233,7 @@ bool ImplicitList::compute()
             {
                 if (isnan(dblStep) || isnan(dblRange) || std::signbit(dblStep) == std::signbit(dblRange))
                 {
+                    // return nan
                     m_iSize = -1;
                 }
 
@@ -247,12 +248,21 @@ bool ImplicitList::compute()
                 return true;
             }
 
+            // zero range a:b:a => return a
+            if (dblRange == 0)
+            {
+                m_iSize = 1;
+                return true;
+            }
+
             // compute list size
             m_iSize = std::ceil(dblRange / dblStep);
-
-            if (m_iSize < 0)
+            if (m_iSize <= 0)
             {
+                // return []
                 m_iSize = 0;
+                m_bComputed = true;
+                return true;
             }
             else if (std::fabs(m_iSize * dblStep) <= fabs(dblRange))
             {
@@ -296,6 +306,7 @@ bool ImplicitList::compute()
     }
     else
     {
+        m_iSize = -1;
         return false;
     }
 }
