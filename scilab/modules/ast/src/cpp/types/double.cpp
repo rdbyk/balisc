@@ -838,12 +838,12 @@ bool Double::operator==(const InternalType& it)
     else if (pdbl->getImg())
     {
         double *pdblImg = pdbl->getImg();
-        return std::all_of(pdblImg, pdblImg + m_iSize, [](int i){ return i == 0; });
+        return std::all_of(pdblImg, pdblImg + m_iSize, [](double d){ return d == 0.0; });
     }
     //complex check all img values == 0
     else if (getImg())
     {
-        return std::all_of(m_pImgData, m_pImgData + m_iSize, [](int i){ return i == 0; });
+        return std::all_of(m_pImgData, m_pImgData + m_iSize, [](double d){ return d == 0.0; });
     }
 
     return true;
