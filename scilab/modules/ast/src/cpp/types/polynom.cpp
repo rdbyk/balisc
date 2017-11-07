@@ -918,7 +918,14 @@ bool Polynom::operator!=(const InternalType& it)
 
 SinglePoly* Polynom::getNullValue()
 {
-    return new SinglePoly();
+    SinglePoly* pSP = new SinglePoly();
+
+    if (isComplex())
+    {
+        pSP->setComplex(true);
+    }
+
+    return pSP;
 }
 
 Polynom* Polynom::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
