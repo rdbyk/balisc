@@ -122,24 +122,38 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
     }
     else if (in[0]->isPoly()) // polynom
     {
-        types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
-        int iRows = pPolyIn->getRows();
-        int iCols = pPolyIn->getCols();
-        int* piRanks = new int[iRows * iCols];
-        memset(piRanks, 0x00, iRows * iCols * sizeof(int));
-        types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), iRows, iCols, piRanks);
-        delete[] piRanks;
-        pPolyOut->setZeros();
+        types::Polynom* pPolyOut = in[0]->getAs<types::Polynom>()->clone()->getAs<types::Polynom>();
+        int iRows = pPolyOut->getRows();
+        int iCols = pPolyOut->getCols();
 
-        for (int i = 0 ; i < iCols ; i++)
+        if (pPolyOut->isComplex())
         {
-            int iSize = std::min(std::max(i + 1 - iOffset, 0), iRows);
-            for (int j = 0; j < iSize; j++)
+            for (int i = 0; i < iCols; i++)
             {
-                int iPos = i * iRows + j;
-                pPolyOut->set(iPos, pPolyIn->get(iPos));
+                int iSize = std::min(std::max(i + 1 - iOffset, 0), iRows);
+                for (int j = iSize; j < iRows; j++)
+                {
+                    types::SinglePoly* pSP = new types::SinglePoly();
+                    pSP->setComplex(true);
+                    pPolyOut->set(i * iRows + j, pSP);
+                    delete pSP;
+                }
             }
         }
+        else
+        {
+            for (int i = 0; i < iCols; i++)
+            {
+                int iSize = std::min(std::max(i + 1 - iOffset, 0), iRows);
+                for (int j = iSize; j < iRows; j++)
+                {
+                    types::SinglePoly* pSP = new types::SinglePoly();
+                    pPolyOut->set(i * iRows + j, pSP);
+                    delete pSP;
+                }
+            }
+        }
+
 
         out.push_back(pPolyOut);
     }
