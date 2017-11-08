@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -98,7 +98,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return NULL;
         }
-        if (strlen(returnedValue) == 0)
+        if (returnedValue[0] == '\0')
         {
             FREE(returnedValue);
             returnedValue = os_strdup(defaultValue);

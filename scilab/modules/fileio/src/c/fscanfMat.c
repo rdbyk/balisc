@@ -442,7 +442,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
 
     if (strstr(str, sep) == NULL)
     {
-        if ((int)balisc_strlen(str) > 0)
+        if (str[0] != '\0')
         {
             if (isValidLineWithOnlyOneNumber(str))
             {
@@ -804,7 +804,7 @@ static BOOL isValidLineWithOnlyOneNumber(char *line)
     {
         char *pEnd = NULL;
         strtod(line, &pEnd);
-        if ((pEnd) && ((int)balisc_strlen(pEnd) == 0))
+        if (pEnd && pEnd[0] == '\0')
         {
             return TRUE;
         }

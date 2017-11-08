@@ -270,7 +270,7 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
     types::typed_list tlReturnedValues;
 
     wchar_t* pwstName = NULL;
-    if (_pstName == NULL || strlen(_pstName) == 0)
+    if (_pstName == NULL || _pstName[0] == '\0')
     {
         pwstName = to_wide_string(pStr->m_pstName);
     }

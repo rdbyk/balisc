@@ -262,7 +262,7 @@ BOOL LanguageIsOK(const wchar_t *lang)
 {
     int i = 0;
 
-    if (wcslen(lang) == 0)
+    if (lang[0] == L'\0')
     {
         /* Empty language declaration... it is the default
         * language from the system */

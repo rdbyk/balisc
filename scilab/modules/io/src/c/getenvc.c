@@ -207,7 +207,7 @@ char *searchEnv(const char *name, const char *env_var)
 
         _wsearchenv(wname, wenv_var, wfullpath);
 
-        if (wcslen(wfullpath) > 0)
+        if (wfullpath[0] != L'\0')
         {
             buffer = wide_string_to_UTF8(wfullpath);
         }
@@ -217,7 +217,7 @@ char *searchEnv(const char *name, const char *env_var)
     }
 #else
     searchenv_others(name, env_var, fullpath);
-    if (balisc_strlen(fullpath) > 0)
+    if (fullpath[0] != '\0')
     {
         buffer = os_strdup(fullpath);
     }
@@ -242,14 +242,14 @@ wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv)
     {
         _wsearchenv(_pwstName, _pwstEnv, pwstFullpath);
 
-        if (wcslen(pwstFullpath) > 0)
+        if (pwstFullpath[0] != L'\0')
         {
             pwstRet = os_wcsdup(pwstFullpath);
         }
     }
 #else
     searchenv_others(pstName, pstEnv, pstFullpath);
-    if (balisc_strlen(pstFullpath) > 0)
+    if (pstFullpath[0] != '\0')
     {
         pwstRet = to_wide_string(pstFullpath);
     }
