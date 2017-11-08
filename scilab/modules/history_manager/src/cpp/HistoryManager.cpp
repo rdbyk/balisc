@@ -304,7 +304,7 @@ BOOL HistoryManager::appendLine(char* _pstLine)
             i--;
         }
 
-        if (strlen(pstCleanedLine) == 0)
+        if (pstCleanedLine[0] == '\0')
         {
             FREE(pstCleanedLine);
             return TRUE;

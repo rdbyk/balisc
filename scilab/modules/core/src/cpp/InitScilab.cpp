@@ -637,7 +637,7 @@ void* scilabReadAndExecCommand(void* param)
         }
 
         // empty command
-        if (command == NULL || balisc_strlen(command) == 0)
+        if (command == NULL || command[0] == '\0')
         {
             continue;
         }

@@ -180,7 +180,7 @@ void mput2 (FILE *fa, int swap, double *res, int n, char *type, int *ierr)
 void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
 {
     *ierr = 0;
-    if (strlen(type) == 0)
+    if (type[0] == '\0')
     {
         if (getWarningMode())
         {

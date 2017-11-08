@@ -244,7 +244,7 @@ void mget2(FILE *fa, int swap, double *res, int n, const char *type, int *ierr)
 void C2F(mget) (int *fd, double *res, int *n, const char *type, int *ierr)
 {
     *ierr = 0;
-    if (balisc_strlen(type) == 0)
+    if (type[0] == '\0')
     {
         sciprint(_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"), "mget", 4, type);
         *ierr = 2;

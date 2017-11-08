@@ -86,7 +86,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
                         attrib = attrib->next;
                     }
 
-                    if ( (libraryPath) && (strlen(libraryPath) > 0) )
+                    if ( (libraryPath) && (libraryPath[0] != '\0') )
                     {
 #define KEYWORDSCILAB "$SCILAB"
                         char *FullLibrarypath = NULL;

@@ -214,7 +214,7 @@ static BOOL AppendModules(char *xmlfilename)
                         attrib = attrib->next;
                     }
 
-                    if ( (name) && (balisc_strlen(name) > 0) && (activate) )
+                    if ( (name) && (name[0] != '\0') && (activate) )
                     {
                         if ( VerifyModule(name) )
                         {

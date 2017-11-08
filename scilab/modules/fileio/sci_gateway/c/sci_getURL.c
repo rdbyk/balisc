@@ -21,7 +21,6 @@
 #include "sci_malloc.h"
 #include "dlManager.h"
 #include "localization.h"
-#include "strlen.h"
 /* ==================================================================== */
 static void freeAllocatedStrings(char** url, char** dest, char** username, char** password, char** content, char** filePath);
 /* ==================================================================== */
@@ -129,25 +128,25 @@ int sci_getURL(char *fname, void* pvApiCtx)
     }
 
     //Set to NULL if 0 length strings
-    if (url != NULL && balisc_strlen(url) == 0)
+    if (url != NULL && url[0] == '\0')
     {
         FREE(url);
         url = NULL;
     }
 
-    if (dest != NULL && balisc_strlen(dest) == 0)
+    if (dest != NULL && dest[0] == '\0')
     {
         FREE(dest);
         dest = NULL;
     }
 
-    if (username != NULL && balisc_strlen(username) == 0)
+    if (username != NULL && username[0] == '\0')
     {
         FREE(username);
         username = NULL;
     }
 
-    if (password != NULL && balisc_strlen(password) == 0)
+    if (password != NULL && password[0] == '\0')
     {
         FREE(password);
         password = NULL;
