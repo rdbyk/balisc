@@ -2314,7 +2314,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
             double* pReal = pOut->get();
             double* pImg = pOut->getImg();
             int size = pOut->getSize();
-            std::complex<double> dbl = _pR->getFirst();
+            std::complex<double> dbl = _pR->getImgFirst();
             for (int i = 0 ; i < size ; i++)
             {
                 pReal[i] -= dbl.real();
@@ -2325,7 +2325,6 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         {
             double* pReal = pOut->get();
             int size = pOut->getSize();
-            // FIXME: Sparse has no "getScalar_"
             double dblTmp = _pR->getFirst();
             for (int i = 0 ; i < size ; i++)
             {
