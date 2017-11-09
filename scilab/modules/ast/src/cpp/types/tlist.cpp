@@ -218,7 +218,9 @@ bool TList::extract(const std::wstring & name, InternalType *& out)
 
 InternalType* TList::getField(const std::wstring& _sKey)
 {
-    return List::get(getIndexFromString(_sKey));
+    int i = getIndexFromString(_sKey);
+
+    return (i < getSize()) ? List::get(i) : NULL;
 }
 
 int TList::getIndexFromString(const std::wstring& _sKey)
