@@ -2073,9 +2073,9 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 else
                 {
                     /* Add a field */
-                    int size = pStruct->getSize();
                     pStruct = pStruct->copyAs<types::Struct>();
                     pStruct->addField(pS->getFirst());
+                    int size = pStruct->getSize();
                     for (int i = 0; i < size; i++)
                     {
                         pStruct->get(i)->set(pS->getFirst(), _pInsert);
