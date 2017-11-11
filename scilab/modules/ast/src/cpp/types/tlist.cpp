@@ -192,9 +192,10 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
 
 bool TList::extract(const std::wstring & name, InternalType *& out)
 {
-    if (exists(name))
+    int i = getIndexFromString(name);
+    if (i != -1)
     {
-        out = getField(name);
+        out = i < getSize() ? List::get(i) : NULL;
         return true;
     }
 
