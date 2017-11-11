@@ -685,6 +685,7 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 template <typename T>
 void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
 {
+    _poSource->IncreaseRef();
     ArrayOf * pGT = _poSource->getAs<ArrayOf>();
     int iRows = pGT->getRows();
     int iCols = pGT->getCols();
@@ -702,6 +703,7 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     }
     else if (isComplex())
     {
+        pGT = pGT->copyAs<ArrayOf>(); 
         pGT->setComplex(true);
     }
 
@@ -729,6 +731,11 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
             }
         }
     }
+
+    pGT->killMe();
+    _poSource->DecreaseRef();
+
+    return this;
 }
 
 template <typename T>

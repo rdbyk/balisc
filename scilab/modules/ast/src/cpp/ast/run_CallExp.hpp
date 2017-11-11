@@ -132,6 +132,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     }
     catch (ScilabException &)
     {
+        cleanIn(inTmp, outTmp);
         CoverageInstance::stopChrono((void*)&e);
         throw;
     }
@@ -143,6 +144,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     if(pIT == NULL)
     {
         clearResult();
+        cleanIn(inTmp, outTmp);
         std::wostringstream os;
         os << _W("Cannot extract from nothing.") << std::endl;
         CoverageInstance::stopChrono((void*)&e);
@@ -157,6 +159,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     if (pIT->getInvokeNbOut() != -1 && pIT->getInvokeNbOut() < iRetCount)
     {
         clearResult();
+        cleanIn(inTmp, outTmp);
         std::wostringstream os;
         os << _W("Wrong number of output arguments.\n") << std::endl;
         CoverageInstance::stopChrono((void*)&e);

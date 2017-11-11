@@ -487,6 +487,12 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
             default:
                 break;
         }
+
+        if(poResult && isNew)
+        {
+            poResult->killMe();
+        }
+
         // call overload
         return NULL;
     }
@@ -553,8 +559,15 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 poResult->getAs<types::GraphicHandle>()->append(iCurRow, iCurCol, _poSource);
                 break;
             default:
+            {
+                if(poResult && isNew)
+                {
+                    poResult->killMe();
+                }
+
                 // call overload
                 return NULL;
+            }
         }
         return poResult;
     }

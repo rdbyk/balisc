@@ -82,6 +82,103 @@ Feature changes and additions
 * Memory invalid accesses have been greatly reduced thanks to :
   - PVS-Studio inspections blog report
   - Coverity scan weekly source analysis
+* Addition or subtraction with an empty matrix now returns an empty matrix.
+* `scatter/scatter3` plot with different mark colors is now available.
+* `parulacolormap` is now available.
+* `name2rgb` can now handle a single string and a matrix of strings.
+* `isoview`, `isoview on`, `isoview off`, `isoview(idGraphics, "on"|"off")` are now supported.
+* `twinkle` and `twinkle(n)` are now supported: by default, the current element `gce` blinks.
+* `replot` has been upgraded:
+  - a bound set to `%inf` now gets the position of the most marginal object,
+  - `replot` can now be used to reframe axes to all their contents,
+  - option `tigh_limits` added,
+  - Any handle having some Axes as direct children -- as uicontrol-frame -- is now supported.
+* `householder` can now return the reflection matrix, and has a demo.
+* `ndgrid` can now works with any types of homogeneous data
+* `permute` now supports arrays of rationals.
+* `bench_run` can now return its results and/or record them in a file
+* `typeof(.., "overload")` allows now to get the overloading type-code of an object
+* `sign` can now handle a sparse matrix.
+* `sleep(..,'s')` allows now to specify the duration in seconds.
+* `real`, `imag`, `conj` and `isreal` now accept rational fractions.
+* A call stack limit has been introduced. Default maximum depth is setup to `1000`
+and can be changed by `recursionlimit` or through the Preferences interface.
+* The floating point exception mode `ieee` is now set to `2` by default: floating
+point exceptions now produce `Inf` or `Nan`, and do not cause any error.
+The previous behavior can be recalled by simply calling: `ieee(0)`.
+* Datatips:
+  - The property `z_component = 'on|off'` is renamed to `display_components = 'xyz'`.
+  It is now possible to choose which components to display, and in which order.
+  The `.z_component` property will be ignored in former `*.scg` files.
+  - A new `detached_position` property is available to display the datatip away from but linked to
+  its anchor on the curve.
+  - A new `Polyline.datatip_display_mode` property now allows to display each datatip of the curve
+  only on `mouseover` its anchor or only on `mouseclick`.
+* Valgrind error detection added to `test_run` (on Linux only).
+* `amell` now:
+  - checks if its parameters are real numbers,
+  - throws an error if the second parameter is not a scalar.
+* The use of I/O console is now allowed with the following functions: `mget`,
+`mgetl`, `mgetstr`, `mput`, `mputl` and `mputstr`.
+* `mclearerr` now returns a flag indicating the file identifier validity.
+* `fileinfo` can now take a row vector as input.
+* `msprintf` does not return an error message anymore when there are too many
+input arguments (more values that format needs).
+* `deletefile` can delete multiple files at once.
+* `exec` of macro executes the body in the current scope, but the prototype must have zero
+input and output arguments.
+* `error`: an error number in input is deprecated.
+* `impl`: Recall `impl` with the same parameters as in its previous stop is now available.
+* `ode`: `y0` is restricted to a column vector.
+* `pppdiv`: Returns a scalar of type 'constant' when the rank is 0.
+* `pdiv`: Returns a matrix of type 'constant' when all the rank are 0.
+* `test_run` can now take `[]` as argument to be used on console; for instance: `test_run string [] no_check_ref`.
+* `typeof(:)` and `typeof(n:$)` now return `"implicitlist"` instead of respectively `"constant"` and `"size implicit"`.
+* `linspace(a, b, n<=0)` now returns `[]` instead of b.
+* `strange([])` now returns `%nan` instead of `[]`, as all other functions for statistical dispersion.
+* `stdev(x, dir>ndims(x))` now yields an error instead of returning `zeros(x)`.
+* `mean` and `stdev` can now be overloaded.
+* `write`: Writing string or string matrix in a file does not add blank space before each value.
+* `bitor`, `bitxor` and `bitand` are upgraded:
+   - positive signed encoded integers are now accepted.
+   - inputs with new `int64` or `uint64` encodings are now accepted.
+   - operands with mixed types or/and inttypes are now accepted.
+   - distributive input scalars as in `bit###(scalar, array)` or `bit###(array, scalar)` are now accepted.
+   - results with decimal-encoded integers > 2^32 are now correct.
+   - decimal-encoded integers > 2^52 are now supported up to the biggest 1.80D+308.
+   - `bitxor` is now vectorized and fast.
+* `resize_matrix`: Its conversion option is extended to the new `int64` and `uint64` integer types.
+* Interactively setting a common zoom box on multiple neighbouring or overlaying axes, and with
+bounds selected out of the axes areas is now restored, after the Scilab 5.4 regression.
+* Scroll to zoom:
+  - Scrolling over overlaying axes now zooms all of them together.
+  - Pressing CTRL while scrolling now zooms all axes in the current figure.
+* `MPI_Create_comm` creates a new communicator from MPI_COMM_WORLD using MPI world ranks.
+* The `grand` non-free `fsultra` generator is no longer available.
+* The original `rpoly` algorithm is removed in favor of a C++11 implementation
+* When `Axes.view=="2d"`, the rotation is now impossible.
+* The zero-pole-gain (zpk) representation is now available for linear dynamical systems.
+* On a figure, the contextual menu now proposes an entry `Label -> Title` to interactively set the title of any axes.
+* `getPreferencesValue` can now read a tag having multiple occurrences, and accepts the path to a preferences file instead of its XML handle.
+* The function `stripblanks` now supports an option to remove trailing or leading spaces or both.
+* `atomsSetConfig` does not update cache.
+* `lqi` function added to compute "linear quadratic integral compensator".
+* A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected
+  in a dynamical list set from Scinotes favorite and most recent directories.
+* The console `File => Open a file` menu allows now to open *.xcos *.zcos *.scg or lib files with
+   the proper Scilab component, and other files with the proper OS application.
+   All files were formerly opened in Scinotes and could make it frozen.
+* `size` can now be overloadable for tlist lists, as it already could for mlist lists.
+* `gcd` now accepts `int64` and `uint64` integers. The input can now be any array instead of a row.
+* `gcd` and `lcm` of integers now return always a positive result.
+* `cat` has been rewritten. It is now fast and can process heavy arrays at high dimensions.
+* `fplot3d1` remove warning messages when it was called without option.
+* `whereis` has been upgraded:
+  - It can now be used for builtin functions.
+  - When the same function name is registered in several libraries, `whereis` now returns all of them instead of only the last loaded one.
+  - For unregistered user-defined macros, `"script"` is now returned instead of `[]`.
+* `mgetl` speed have been improved for files with a lot of lines.
+* `ndgrid(x)` now accepts only one input `x`, with by default `y=x`.
 
   
 Help pages:
@@ -142,6 +239,9 @@ Bug Fixes
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
 * [#11756](http://bugzilla.scilab.org/show_bug.cgi?id=11756): In the categories of the ATOMS GUI, actually available modules might be not listed.
 * [#12771](http://bugzilla.scilab.org/show_bug.cgi?id=12771): xcosPalGenerateAllIcons help example was broken.
+* [#12792](http://bugzilla.scilab.org/show_bug.cgi?id=12792): `save(filename, "undefinedVariable")` created an empty useless file.
+* [#12862](http://bugzilla.scilab.org/show_bug.cgi?id=12862): `intsplin` no longer integrated the imaginary part of given ordinates.
+* [#13014](http://bugzilla.scilab.org/show_bug.cgi?id=13014): `optim_ga`: update the Efficiency inner variable.
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
 * [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
 * [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
@@ -168,13 +268,16 @@ Bug Fixes
 * [#15052](http://bugzilla.scilab.org/show_bug.cgi?id=15052): `getpid` wasn't available anymore
 * [#15053](http://bugzilla.scilab.org/show_bug.cgi?id=15053): `_str2code` was removed with no proper equivalence and made `mfile2sci` failing.
 * [#15054](http://bugzilla.scilab.org/show_bug.cgi?id=15054): The callbacks of `wfir_gui()` were not prioritary.
-* [#15057](http://bugzilla.scilab.org/show_bug.cgi?id=15057): Matplot .data assignation did not take care of >2 dimension
+* [#15057](http://bugzilla.scilab.org/show_bug.cgi?id=15057): `Matplot` `.data` assignation did not take care of >2 dimension
+* [#15058](http://bugzilla.scilab.org/show_bug.cgi?id=15058): With integers, `gcd` and `lcm` could return a negative result, depending on the order of negative components.
 * [#15060](http://bugzilla.scilab.org/show_bug.cgi?id=15060): `fplot3d` did not draw because of an addition with an empty matrix which now returns an empty matrix.
 * [#15063](http://bugzilla.scilab.org/show_bug.cgi?id=15063): `fort` wasn't properly removed.
 * [#15072](http://bugzilla.scilab.org/show_bug.cgi?id=15072): The context was stored as a root diagram attribute instead of being stored on each Superblock layer.
 * [#15079](http://bugzilla.scilab.org/show_bug.cgi?id=15079): When all children of a graphic handle have not the same number of sub-children, any vectorized extraction or insertion in subchildren failed.
-* [#15107](http://bugzilla.scilab.org/show_bug.cgi?id=15107): failed to build with ocaml 4.04.0.
-* [#15117](http://bugzilla.scilab.org/show_bug.cgi?id=15117): Imbricated optim/leastsq/lsqrsolve/fsolve calls either crashed or returned errors
+* [#15089](http://bugzilla.scilab.org/show_bug.cgi?id=15089): The `getcolor` GUI cleared and used the current figure.
+* [#15106](http://bugzilla.scilab.org/show_bug.cgi?id=15106): Operation without operand crashed Scilab.
+* [#15107](http://bugzilla.scilab.org/show_bug.cgi?id=15107): Scilab failed to build with ocaml 4.04.0.
+* [#15117](http://bugzilla.scilab.org/show_bug.cgi?id=15117): Imbricated calls to `optim` / `leastsq` / `lsqrsolve` / `fsolve` either crashed or returned errors.
 * [#15119](http://bugzilla.scilab.org/show_bug.cgi?id=15119): Inequality comparisons between complex-encoded real numbers failed.
 * [#15121](http://bugzilla.scilab.org/show_bug.cgi?id=15121): getOptionals() fails to recognize some options.
 * [#15137](http://bugzilla.scilab.org/show_bug.cgi?id=15137): ilib_build cannot build a library with more than 999 function entries in Scilab 6
@@ -187,6 +290,22 @@ Bug Fixes
 * [#15199](http://bugzilla.scilab.org/show_bug.cgi?id=15199): Scilab crash when using fsolve for functions containing other functions.
 * [#15205](http://bugzilla.scilab.org/show_bug.cgi?id=15205): `get_scicos_version` returned the previous version.
 * [#15207](http://bugzilla.scilab.org/show_bug.cgi?id=15207): `xcos(scs_m)` did not work for sub-systems.
+* [#15223](http://bugzilla.scilab.org/show_bug.cgi?id=15223): `call` crashed in some cases.
+* [#15228](http://bugzilla.scilab.org/show_bug.cgi?id=15228): `get` error message fixed.
+* [#15236](http://bugzilla.scilab.org/show_bug.cgi?id=15236): The `isglobal` help page was inaccurate. Examples were erroneous.
+* [#15239](http://bugzilla.scilab.org/show_bug.cgi?id=15239): The console properties `.tag` and `.userdata` were not displayed nor documented.
+* [#15243](http://bugzilla.scilab.org/show_bug.cgi?id=15243): `grand(nr, nc, "uin", vmin)` crashed Scilab.
+* [#15246](http://bugzilla.scilab.org/show_bug.cgi?id=15246): `chsolve` called a `blkslv` missing function.
+* [#15249](http://bugzilla.scilab.org/show_bug.cgi?id=15249): `findobj("toto")` yielded an error instead of returning [].
+* [#15260](http://bugzilla.scilab.org/show_bug.cgi?id=15260): `sci2exp` was broken for cells, structures, and all types of hypermatrix.
+* [#15261](http://bugzilla.scilab.org/show_bug.cgi?id=15261): Insertion in struct felt with wrong default value.
+* [#15266](http://bugzilla.scilab.org/show_bug.cgi?id=15266): Wrong default out_mode in `linear_interpn`.
+* [#15273](http://bugzilla.scilab.org/show_bug.cgi?id=15273): The documented order of `eval_cshep2d` second derivatives was wrong.
+* [#15282](http://bugzilla.scilab.org/show_bug.cgi?id=15282): `help_from_sci` could set an xml:id starting with the forbidden `%` character.
+* [#15285](http://bugzilla.scilab.org/show_bug.cgi?id=15285): `resize_matrix` did not manage conversion into `int64` and `uint64`.
+* [#15300](http://bugzilla.scilab.org/show_bug.cgi?id=15300): Distributive assignments like `a=(1,2)` crashed Scilab.
+* [#15301](http://bugzilla.scilab.org/show_bug.cgi?id=15301): Sequence constructor `:` failed when a bound was an outputless funtion call.
+* [#15308](http://bugzilla.scilab.org/show_bug.cgi?id=15308): Unlike `evstr(["1 2";"3 4"])`, `evstr(["1;2" "3;4"])` was not accepted.
 
 
 ### Bugs fixed in 6.0.0:
