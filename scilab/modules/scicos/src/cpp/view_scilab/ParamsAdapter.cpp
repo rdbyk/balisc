@@ -191,7 +191,7 @@ struct tol
         std::copy(tol.begin() + 1, tol.end(), stdext::checked_array_iterator<double*>( data, 7 ));
 #else
         std::copy(tol.begin() + 1, tol.end(), data);
-
+#endif
         return o;
     }
 
