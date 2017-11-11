@@ -612,7 +612,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 for (int i = 0; i < pStr->getSize(); i++)
                 {
                     wchar_t* pFieldName = pStr->get(i);
-                    int iIndex = pTL->getIndexFromString(pFieldName);
+                    int iIndex = pTL->getFieldIndex(pFieldName);
                     if (iIndex == -1)
                     {
                         bUndefine = true;

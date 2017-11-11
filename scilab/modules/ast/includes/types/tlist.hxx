@@ -51,7 +51,7 @@ public :
 
     bool                            exists(const std::wstring& _sKey);
     InternalType*                   getField(const std::wstring& _sKey);
-    int                             getIndexFromString(const std::wstring& _sKey);
+    int getFieldIndex(const std::wstring& _sKey);
     void set(const std::wstring& _sKey, InternalType* _pIT);
     void set(const int _iIndex, InternalType* _pIT);
 

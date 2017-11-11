@@ -66,22 +66,7 @@ TList* TList::clone()
 
 bool TList::exists(const std::wstring& _sKey)
 {
-    if (getSize() < 1)
-    {
-        return false;
-    }
-
-    String* pS = getFieldNames();
-
-    //first field is the tlist type
-    for (int i = 1 ; i < pS->getSize() ; i++)
-    {
-        if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
-        {
-            return true;
-        }
-    }
-    return false;
+    return getFieldIndex(_sKey) != -1;
 }
 
 bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, const ast::Exp & e)
@@ -207,9 +192,10 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
 
 bool TList::extract(const std::wstring & name, InternalType *& out)
 {
-    if (exists(name))
+    int i = getFieldIndex(name);
+    if (i != -1)
     {
-        out = getField(name);
+        out = i < getSize() ? List::get(i) : NULL;
         return true;
     }
 
@@ -218,12 +204,12 @@ bool TList::extract(const std::wstring & name, InternalType *& out)
 
 InternalType* TList::getField(const std::wstring& _sKey)
 {
-    int i = getIndexFromString(_sKey);
+    int i = getFieldIndex(_sKey);
 
     return (i < getSize()) ? List::get(i) : NULL;
 }
 
-int TList::getIndexFromString(const std::wstring& _sKey)
+int TList::getFieldIndex(const std::wstring& _sKey)
 {
     if (getSize() < 1)
     {
@@ -231,8 +217,9 @@ int TList::getIndexFromString(const std::wstring& _sKey)
     }
 
     String* pS = getFieldNames();
-    //first field is the tlist type
-    for (int i = 1 ; i < pS->getSize() ; i++)
+    int i = pS->getSize();
+    // first field is the tlist type
+    while (--i > 0)
     {
         if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
         {
@@ -244,29 +231,38 @@ int TList::getIndexFromString(const std::wstring& _sKey)
 
 InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
 {
-    int i = 0;
     List* pLResult = new List();
+
+    int* index = new int[_stFields.size()];
+
+    int i = 0;
     std::list<std::wstring>::const_iterator it;
-    for (it = _stFields.begin() ; it != _stFields.end() ; ++it)
+    for (it = _stFields.begin(); it != _stFields.end(); ++it, ++i)
     {
-        if (exists(*it) == false)
+        index[i] = getFieldIndex(*it);
+
+        if (index[i] == -1)
         {
+            // non-existant field
+            delete index;
             return pLResult;
         }
     }
 
-    for (it = _stFields.begin() ; it != _stFields.end() ; ++it, i++)
+    for (i = 0; i < _stFields.size(); ++i)
     {
-        InternalType* pIT = getField(*it);
-        if (pIT == NULL)
+        if (index[i] >= getSize())
         {
+            // no corresponding field value
+            delete index;
             delete pLResult;
             return NULL;
         }
 
-        pLResult->set(i, pIT);
+        pLResult->set(i, List::get(index[i]));
     }
 
+    delete index;
     return pLResult;
 }
 
@@ -287,7 +283,7 @@ std::wstring TList::getShortTypeStr() const
 
 void TList::set(const std::wstring& _sKey, InternalType* _pIT)
 {
-    List::set(getIndexFromString(_sKey), _pIT);
+    List::set(getFieldIndex(_sKey), _pIT);
 }
 
 void TList::set(const int _iIndex, InternalType* _pIT)

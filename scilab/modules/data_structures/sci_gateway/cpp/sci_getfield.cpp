@@ -175,7 +175,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
                 case types::InternalType::ScilabType::ScilabString:
                 {
                     std::wstring wField(pIndex->getAs<types::String>()->get(i));
-                    iIndex = pL->getAs<types::TList>()->getIndexFromString(wField);
+                    iIndex = pL->getAs<types::TList>()->getFieldIndex(wField);
                     // The type (the first field) is not counted
                     iIndex++;
                 }
