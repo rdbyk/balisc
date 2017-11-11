@@ -66,7 +66,7 @@ TList* TList::clone()
 
 bool TList::exists(const std::wstring& _sKey)
 {
-    return getIndexFromString(_sKey) != -1;
+    return getFieldIndex(_sKey) != -1;
 }
 
 bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, const ast::Exp & e)
@@ -192,7 +192,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
 
 bool TList::extract(const std::wstring & name, InternalType *& out)
 {
-    int i = getIndexFromString(name);
+    int i = getFieldIndex(name);
     if (i != -1)
     {
         out = i < getSize() ? List::get(i) : NULL;
@@ -204,12 +204,12 @@ bool TList::extract(const std::wstring & name, InternalType *& out)
 
 InternalType* TList::getField(const std::wstring& _sKey)
 {
-    int i = getIndexFromString(_sKey);
+    int i = getFieldIndex(_sKey);
 
     return (i < getSize()) ? List::get(i) : NULL;
 }
 
-int TList::getIndexFromString(const std::wstring& _sKey)
+int TList::getFieldIndex(const std::wstring& _sKey)
 {
     if (getSize() < 1)
     {
@@ -239,7 +239,7 @@ InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
     std::list<std::wstring>::const_iterator it;
     for (it = _stFields.begin(); it != _stFields.end(); ++it, ++i)
     {
-        index[i] = getIndexFromString(*it);
+        index[i] = getFieldIndex(*it);
 
         if (index[i] == -1)
         {
@@ -283,7 +283,7 @@ std::wstring TList::getShortTypeStr() const
 
 void TList::set(const std::wstring& _sKey, InternalType* _pIT)
 {
-    List::set(getIndexFromString(_sKey), _pIT);
+    List::set(getFieldIndex(_sKey), _pIT);
 }
 
 void TList::set(const int _iIndex, InternalType* _pIT)

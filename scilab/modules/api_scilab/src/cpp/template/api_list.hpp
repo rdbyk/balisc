@@ -145,7 +145,7 @@ scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const wchar_
     }
 #endif
 
-    if (l->getIndexFromString(field) < 0)
+    if (l->getFieldIndex(field) < 0)
     {
         //field does not, append it at last position
         types::String* fields = l->getFieldNames();
@@ -199,7 +199,7 @@ scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const wchar_
     }
 #endif
 
-    if (l->getIndexFromString(field) < 0)
+    if (l->getFieldIndex(field) < 0)
     {
         //field does not, append it at last position
         types::String* fields = l->getFieldNames();
