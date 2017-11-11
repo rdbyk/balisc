@@ -66,22 +66,7 @@ TList* TList::clone()
 
 bool TList::exists(const std::wstring& _sKey)
 {
-    if (getSize() < 1)
-    {
-        return false;
-    }
-
-    String* pS = getFieldNames();
-
-    //first field is the tlist type
-    for (int i = 1 ; i < pS->getSize() ; i++)
-    {
-        if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
-        {
-            return true;
-        }
-    }
-    return false;
+    return getIndexFromString(_sKey) != -1;
 }
 
 bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, const ast::Exp & e)
