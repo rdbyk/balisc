@@ -231,8 +231,9 @@ int TList::getIndexFromString(const std::wstring& _sKey)
     }
 
     String* pS = getFieldNames();
-    //first field is the tlist type
-    for (int i = 1 ; i < pS->getSize() ; i++)
+    int i = pS->getSize();
+    // first field is the tlist type
+    while (--i > 0)
     {
         if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
         {
