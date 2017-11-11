@@ -734,8 +734,6 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
 
     pGT->killMe();
     _poSource->DecreaseRef();
-
-    return this;
 }
 
 template <typename T>
