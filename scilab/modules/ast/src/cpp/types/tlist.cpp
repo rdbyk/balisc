@@ -231,29 +231,38 @@ int TList::getIndexFromString(const std::wstring& _sKey)
 
 InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
 {
-    int i = 0;
     List* pLResult = new List();
+
+    int* index = new int[_stFields.size()];
+
+    int i = 0;
     std::list<std::wstring>::const_iterator it;
-    for (it = _stFields.begin() ; it != _stFields.end() ; ++it)
+    for (it = _stFields.begin(); it != _stFields.end(); ++it, ++i)
     {
-        if (exists(*it) == false)
+        index[i] = getIndexFromString(*it);
+
+        if (index[i] == -1)
         {
+            // non-existant field
+            delete index;
             return pLResult;
         }
     }
 
-    for (it = _stFields.begin() ; it != _stFields.end() ; ++it, i++)
+    for (i = 0; i < _stFields.size(); ++i)
     {
-        InternalType* pIT = getField(*it);
-        if (pIT == NULL)
+        if (index[i] >= getSize())
         {
+            // no corresponding field value
+            delete index;
             delete pLResult;
             return NULL;
         }
 
-        pLResult->set(i, pIT);
+        pLResult->set(i, List::get(index[i]));
     }
 
+    delete index;
     return pLResult;
 }
 
