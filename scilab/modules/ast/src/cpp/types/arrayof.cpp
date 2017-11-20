@@ -685,7 +685,6 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 template <typename T>
 void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
 {
-    _poSource->IncreaseRef();
     ArrayOf * pGT = _poSource->getAs<ArrayOf>();
     int iRows = pGT->getRows();
     int iCols = pGT->getCols();
@@ -696,27 +695,37 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
         return;
     }
 
-    //Update complexity if necessary
-    if (pGT->isComplex())
+    if (pGT->isComplex() && !isComplex())
     {
         setComplex(true);
-    }
-    else if (isComplex())
-    {
-        pGT = pGT->copyAs<ArrayOf>(); 
-        pGT->setComplex(true);
     }
 
     if (m_pImgData)
     {
-        for (int i = 0; i < iRows; i++)
+        if (pGT->m_pImgData)
         {
-            int r = _iRows + i;
-            for (int j = 0; j < iCols; j++)
+            for (int i = 0; i < iRows; i++)
             {
-                int c = _iCols + j;
-                set(r, c, pGT->get(i, j));
-                setImg(r, c, pGT->getImg(i, j));
+                int r = _iRows + i;
+                for (int j = 0; j < iCols; j++)
+                {
+                    int c = _iCols + j;
+                    set(r, c, pGT->get(i, j));
+                    setImg(r, c, pGT->getImg(i, j));
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < iRows; i++)
+            {
+                int r = _iRows + i;
+                for (int j = 0; j < iCols; j++)
+                {
+                    int c = _iCols + j;
+                    set(r, c, pGT->get(i, j));
+                    setImg(r, c, getNullValue());
+                }
             }
         }
     }
@@ -731,9 +740,6 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
             }
         }
     }
-
-    pGT->killMe();
-    _poSource->DecreaseRef();
 }
 
 template <typename T>
