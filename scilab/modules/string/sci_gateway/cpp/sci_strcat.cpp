@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 iMode = 2;
                 break;
             default :
-                Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "strcat", 3, "c", "r");
+                Scierror(999, _("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"), "strcat", 3, "c", "r");
                 return types::Function::Error;
         }
     }
@@ -101,12 +101,12 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
             int iLen = 1;
             for (int i = 0; i < pS->getSize(); i++)
             {
-                iLen += (int)wcslen(s[i]);
+                iLen += (int)wcslen(pS->get(i));
             }
 
             if (pwstToInsert != NULL)
             {
-                iLen += insertLen * (size - 1);
+                iLen += (int)wcslen(pwstToInsert) * (pS->getSize() - 1);
             }
 
             wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
@@ -160,12 +160,12 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 int iLen = 1;
                 for (int j = 0 ; j < pS->getRows() ; j++)
                 {
-                    iLen += (int)wcslen(s[i * rows + j]);
+                    iLen += (int)wcslen(pS->get(j, i));
                 }
 
                 if (pwstToInsert != NULL)
                 {
-                    iLen += insertLen * (rows - 1);
+                    iLen += (int)wcslen(pwstToInsert) * (pS->getRows() - 1);
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
@@ -190,7 +190,6 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                         {
                             *dst++ = *src++;
                         }
-                        
                     }
                 }
                 else
@@ -221,12 +220,12 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 int iLen = 1;
                 for (int j = 0 ; j < pS->getCols() ; j++)
                 {
-                    iLen += (int)wcslen(s[j * rows + i]);
+                    iLen += (int)wcslen(pS->get(i, j));
                 }
 
                 if (pwstToInsert != NULL)
                 {
-                    iLen += insertLen * (cols - 1);
+                    iLen += (int)wcslen(pwstToInsert) * (pS->getCols() - 1);
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
