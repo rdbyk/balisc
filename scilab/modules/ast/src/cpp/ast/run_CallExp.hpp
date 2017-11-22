@@ -207,8 +207,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             if (pIT->hasInvokeOption())
             {
-                opt[vectOptName[iterOptName]] = inTmp[iterIn];
-
                 //in case of macro/macrofile, we have to shift input param
                 //so add NULL item in in list to keep initial order
                 if (pIT->isMacro() || pIT->isMacroFile())
@@ -216,8 +214,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     in.push_back(new types::ListInsert(new types::String(vectOptName[iterOptName].data())));
                 }
 
-                iterOptName++;
-                iterIn++;
+                opt[vectOptName[iterOptName++]] = inTmp[iterIn++];
             }
             else
             {
@@ -228,9 +225,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
 
         // default case
-        for (int i = 0; i < vectNbResult[iLoop]; i++, iterIn++)
+        for (int i = 0; i < vectNbResult[iLoop]; i++)
         {
-            in.push_back(inTmp[iterIn]);
+            in.push_back(inTmp[iterIn++]);
         }
     }
 
