@@ -97,7 +97,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
         case 0 : //"*"
         {
             pOut = new types::String(1, 1);
-            
+
             int iLen = 1;
             for (int i = 0; i < pS->getSize(); i++)
             {
@@ -110,7 +110,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
             }
 
             wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-            
+
             wchar_t* dst = pwstOut;
             wchar_t* src = pS->getFirst();
             while (*src != L'\0')
@@ -131,7 +131,6 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                     {
                         *dst++ = *src++;
                     }
-                    
                 }
             }
             else
@@ -147,7 +146,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 }
             }
             *dst = L'\0';
-            
+
             pOut->set(0, pwstOut);
             FREE(pwstOut);
         }
@@ -170,7 +169,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-                
+
                 wchar_t* dst = pwstOut;
                 wchar_t* src = pS->get(0, i);
                 while (*src != L'\0')
@@ -191,7 +190,6 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                         {
                             *dst++ = *src++;
                         }
-                        
                     }
                 }
                 else
@@ -216,7 +214,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
         case 2 : //"c"
         {
             pOut = new types::String(pS->getRows(), 1);
-            
+
             for (int i = 0; i < pS->getRows(); i++)
             {
                 int iLen = 1;
@@ -231,7 +229,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 }
 
                 wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-                
+
                 wchar_t* dst = pwstOut;
                 wchar_t* src = pS->get(i, 0);
                 while (*src != L'\0')
