@@ -34,7 +34,7 @@ EXTERN_AST int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims)
 EXTERN_AST types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName);
 
 //commom function
-EXTERN_AST int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex);
+EXTERN_AST int computeTuples(int* _piCountDim, int _iCurrentDim, int* _piIndex);
 EXTERN_AST Double* createDoubleVector(int _iSize);
 EXTERN_AST bool checkArgValidity(typed_list& _pArg);
 }

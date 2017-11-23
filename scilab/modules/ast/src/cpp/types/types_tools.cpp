@@ -955,7 +955,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
 }
 
 //n-uplet in french
-int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
+int computeTuples(int* _piCountDim, int _iCurrentDim, int* _piIndex)
 {
     //if bRet == 1, previous dims has reach max value.
     int iRet = 0;
@@ -971,7 +971,7 @@ int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
     }
     else
     {
-        iRet = computeTuples(_piCountDim, _iDims, _iCurrentDim - 1, _piIndex);
+        iRet = computeTuples(_piCountDim, _iCurrentDim - 1, _piIndex);
         if (iRet)
         {
             _piIndex[_iCurrentDim]++;

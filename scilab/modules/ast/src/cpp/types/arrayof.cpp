@@ -365,7 +365,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
     for (int i = 0; i < iSeqCount; i++)
     {
-        computeTuples(piCountDim, argSize, argSize - 1, piIndex);
+        computeTuples(piCountDim, argSize - 1, piIndex);
 
         //std::cout << "[";
         for (int j = 0; j < argSize; j++)
@@ -1276,7 +1276,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
     for (int i = 0; i < iSeqCount; i++)
     {
         //increment last dimension
-        computeTuples(piCountDim, (int)_pArgs->size(), (int)_pArgs->size() - 1, piIndex);
+        computeTuples(piCountDim, (int)_pArgs->size() - 1, piIndex);
 
         //std::cout << "[";
         for (int j = 0; j < (int)_pArgs->size(); j++)
