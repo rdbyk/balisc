@@ -19,6 +19,8 @@
 
 #include "macro.hxx"
 #include "list.hxx"
+#include "listinsert.hxx"
+#include "string.hxx"
 #include "context.hxx"
 #include "symbol.hxx"
 #include "scilabWrite.hxx"
@@ -171,6 +173,9 @@ bool Macro::toString(std::wostringstream& ostr)
 
 Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
+    int iInputArgsActual = (int)in.size();
+    int iInputArgsExpected = (int)m_inputArgs->size();
+    int iOutputArgs = (int)m_outputArgs->size();
     bool bVarargout = false;
     ReturnValue RetVal = Callable::OK;
     symbol::Context *pContext = symbol::Context::getInstance();
@@ -185,63 +190,56 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // but not more execpts with varargin
 
     // varargin management
-    if (m_inputArgs->size() > 0 && m_inputArgs->back()->getSymbol().getName() == L"varargin")
+    if (iInputArgsExpected && m_inputArgs->back()->getSymbol().getName() == L"varargin")
     {
-        int iVarPos = static_cast<int>(in.size());
-        if (iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
+        List* pL = new List();
+        int iVarPos = iInputArgsActual;
+        if (iVarPos > iInputArgsExpected - 1)
         {
-            iVarPos = static_cast<int>(m_inputArgs->size()) - 1;
+            iVarPos = iInputArgsExpected - 1;
         }
 
-        int cur = iVarPos;
-        int opt_offset = 0;
-        //add all standard variable in function context but not varargin
+        //add variables in context or varargin list
         std::list<symbol::Variable*>::iterator itName = m_inputArgs->begin();
-        typed_list::const_iterator itValue = in.begin();
-        while (cur > 0)
+        for (int i = 0; i < iInputArgsActual; ++i)
         {
-            if (*itValue)
+            if (in[i]->isListInsert())
             {
-                pContext->put(*itName, *itValue);
-            }
-            else
-            {
-                opt_offset++;
-            }
-
-            cur--;
-            ++itName;
-            ++itValue;
-        }
-
-        //create varargin only if previous variable are assigned
-        optional_list::const_iterator it = opt.begin();
-        std::advance(it, opt_offset);
-        if (in.size() >= m_inputArgs->size() - 1)
-        {
-            //create and fill varargin
-            List* pL = new List();
-            while (itValue != in.end())
-            {
-                if (*itValue != NULL)
+                //named
+                std::wstring var(in[i]->getAs<ListInsert>()->getInsert()->getAs<String>()->get()[0]);
+                if (i < iVarPos)
                 {
-                    pL->append(*itValue);
+                    pContext->put(symbol::Symbol(var), opt[var]);
+                    ++itName;
                 }
                 else
                 {
-                    pL->append(it->second);
-                    opt[it->first] = nullptr;
-                    it++;
+                    //varargin
+                    pL->append(opt[var]);
                 }
-
-                itValue++;
             }
-            pContext->put(m_Varargin, pL);
+            else
+            {
+                //context
+                if (i < iVarPos)
+                {
+                    pContext->put(*itName, in[i]);
+                    ++itName;
+                }
+                else
+                {
+                    //varargin
+                    pL->append(in[i]);
+                }
+            }
         }
+
+        //add varargin to macro scope
+        pContext->put(m_Varargin, pL);
     }
-    else if (in.size() > m_inputArgs->size())
+    else if (iInputArgsActual > iInputArgsExpected)
     {
-        if (m_inputArgs->size() == 0)
+        if (iInputArgsExpected == 0)
         {
             Scierror(999, _("Wrong number of input arguments: This function has no input argument.\n"));
         }
@@ -268,14 +266,14 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 pContext->put(*i, *j);
             }
         }
-    }
 
-    //add optional paramter in current scope
-    for (const auto& it : opt)
-    {
-        if (it.second)
+        //add optional parameters in current scope
+        for (const auto& it : opt)
         {
-            pContext->put(symbol::Symbol(it.first), it.second);
+            if (it.second)
+            {
+                pContext->put(symbol::Symbol(it.first), it.second);
+            }
         }
     }
 
@@ -284,7 +282,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // varargout is a list
     // varargout can containt more items than caller need
     // varargout must containt at leat caller needs
-    if (m_outputArgs->size() >= 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
+    if (iOutputArgs && m_outputArgs->back()->getSymbol().getName() == L"varargout")
     {
         bVarargout = true;
         List* pL = new List();
@@ -297,15 +295,15 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     if (m_pDblArgIn->getRef() > 1)
     {
         m_pDblArgIn->DecreaseRef();
-        m_pDblArgIn = (Double*)m_pDblArgIn->clone();
+        m_pDblArgIn = m_pDblArgIn->clone();
         m_pDblArgIn->IncreaseRef();
     }
-    m_pDblArgIn->set(0, static_cast<double>(in.size()));
+    m_pDblArgIn->set(0, static_cast<double>(iInputArgsActual));
 
     if (m_pDblArgOut->getRef() > 1)
     {
         m_pDblArgOut->DecreaseRef();
-        m_pDblArgOut = (Double*)m_pDblArgOut->clone();
+        m_pDblArgOut = m_pDblArgOut->clone();
         m_pDblArgOut->IncreaseRef();
     }
     m_pDblArgOut->set(0, _iRetCount);
@@ -342,14 +340,13 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
 
     //nb excepted output without varargout
-    int iRet = std::min((int)m_outputArgs->size() - (bVarargout ? 1 : 0), _iRetCount);
+    int iRet = std::min(iOutputArgs - (bVarargout ? 1 : 0), _iRetCount);
 
     //normal output management
     //for (std::list<symbol::Variable*>::iterator i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
     for (auto arg : *m_outputArgs)
     {
-        iRet--;
-        if (iRet < 0)
+        if (--iRet < 0)
         {
             break;
         }
@@ -450,12 +447,14 @@ int Macro::getNbInputArgument(void)
 
 int Macro::getNbOutputArgument(void)
 {
-    if (m_outputArgs->size() >= 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
+    int iOutputArgs = (int)m_outputArgs->size();
+
+    if (iOutputArgs && m_outputArgs->back()->getSymbol().getName() == L"varargout")
     {
         return -1;
     }
 
-    return (int)m_outputArgs->size();
+    return iOutputArgs;
 }
 
 bool Macro::operator==(const InternalType& it)
