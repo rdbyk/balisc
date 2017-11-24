@@ -60,7 +60,7 @@ wchar_t* getSCIHOMEW(void)
 char* getSCIHOME(void)
 {
     std::wstring tmpSCIHOME = ConfigVariable::getSCIHOME();
-    if (tmpSCIHOME == L"")
+    if (tmpSCIHOME.empty())
     {
         tmpSCIHOME = L"empty_SCIHOME";
     }

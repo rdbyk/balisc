@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -389,7 +389,7 @@ void CoverModule::toHTML(const std::wstring & outputDir)
     wchar_t * _outputDir = expandPathVariableW((wchar_t *)outputDir.c_str());
     createdirectoryW(_outputDir);
 
-    if (results.size() == 1 && results.begin()->first == L"" && results.begin()->second.size() == 1 && results.begin()->second.begin()->first == L"")
+    if (results.size() == 1 && results.begin()->first.empty() && results.begin()->second.size() == 1 && results.begin()->second.begin()->first.empty())
     {
         for (const auto & p : macros)
         {

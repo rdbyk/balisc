@@ -159,7 +159,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                     }
                     catch (const InternalError& ie)
                     {
-                        if (ConfigVariable::getLastErrorFunction() == L"")
+                        if (ConfigVariable::getLastErrorFunction().empty())
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
                             ConfigVariable::setLastErrorLine(e.getLocation().first_line);

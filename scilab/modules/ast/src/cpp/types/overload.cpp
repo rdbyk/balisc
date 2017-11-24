@@ -160,7 +160,7 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
         ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
         if (pCall)
         {
-            if (ConfigVariable::getLastErrorFunction() == L"")
+            if (ConfigVariable::getLastErrorFunction().empty())
             {
                 ConfigVariable::setLastErrorFunction(pCall->getName());
                 ConfigVariable::setLastErrorLine(ie.GetErrorLocation().first_line);
