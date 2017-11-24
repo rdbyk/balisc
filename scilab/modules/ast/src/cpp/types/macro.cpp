@@ -55,7 +55,7 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputAr
     m_pDblArgOut->IncreaseRef(); //never delete
 
     m_body->setReturnable();
-    m_stPath = L"";
+    m_stPath.clear();
 }
 
 Macro::~Macro()

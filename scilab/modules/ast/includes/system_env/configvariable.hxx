@@ -292,10 +292,10 @@ public :
     {
         //if (m_bLastErrorCall == false)
         {
-            m_wstError          = L"";
+            m_wstError.clear();
             m_iError            = 0;
             m_iErrorLine        = 0;
-            m_wstErrorFunction  = L"";
+            m_wstErrorFunction.clear();
         }
         m_bLastErrorCall = false;
     }

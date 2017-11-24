@@ -656,7 +656,7 @@ DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstrin
     m_wstModule             = _wstModule;
     m_wstEntryPoint         = _wstEntryPointName;
     m_pLoadDeps             = _pLoadDeps;
-    m_wstLoadDepsName       = L"";
+    m_wstLoadDepsName.clear();
     m_bCloseLibAfterCall    = _bCloseLibAfterCall;
     m_iType                 = _iType;
     m_pFunc                 = NULL;
@@ -778,7 +778,7 @@ Callable::ReturnValue DynamicFunction::Init()
     }
 
     /*Load gateway*/
-    if (m_wstName != L"")
+    if (!m_wstName.empty())
     {
         char* pstEntryPoint = wide_string_to_UTF8(m_wstEntryPoint.c_str());
         switch (m_iType)

@@ -102,7 +102,7 @@ bool FuncManager::GetModules()
     std::wstring szModulesFilename;
 
     std::wstring szPath = ConfigVariable::getSCIPath();
-    if (szPath == L"")
+    if (szPath.empty())
     {
         std::wcout << L"The SCI environment variable is not set." << std::endl;
         return false;
@@ -236,7 +236,7 @@ bool FuncManager::AppendModules()
 bool FuncManager::VerifyModule(wchar_t* _pszModuleName)
 {
     std::wstring SciPath = ConfigVariable::getSCIPath();
-    if (SciPath == L"")
+    if (SciPath.empty())
     {
         std::wcout << L"The SCI environment variable is not set." << std::endl;
         return false;

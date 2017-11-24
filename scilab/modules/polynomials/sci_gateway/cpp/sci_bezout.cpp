@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
         else // polynom
         {
             types::Polynom* pPolyIn = in[i]->getAs<types::Polynom>();
-            if (wstrName != L"" && wstrName != pPolyIn->getVariableName())
+            if (!wstrName.empty() && wstrName != pPolyIn->getVariableName())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "bezout", i + 1, wstrName.c_str());
                 return types::Function::Error;
@@ -106,7 +106,7 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     types::SinglePoly* pSP = new types::SinglePoly(&pdblSP, np - 1);
     memcpy(pdblSP, pdblOut + ipb[0] - 1, np * sizeof(double));
 
-    if (wstrName == L"")
+    if (wstrName.empty())
     {
         wstrName = L"s";
     }
