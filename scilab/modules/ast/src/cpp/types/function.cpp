@@ -656,7 +656,7 @@ DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstrin
     m_wstModule             = _wstModule;
     m_wstEntryPoint         = _wstEntryPointName;
     m_pLoadDeps             = _pLoadDeps;
-    m_wstLoadDepsName       = L"";
+    m_wstLoadDepsName.clear();
     m_bCloseLibAfterCall    = _bCloseLibAfterCall;
     m_iType                 = _iType;
     m_pFunc                 = NULL;

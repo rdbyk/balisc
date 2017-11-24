@@ -826,7 +826,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
             where.m_file_name.replace(pos, pos + 4, L".sci");
             if (FileExistW(const_cast<wchar_t*>(where.m_file_name.c_str())) == false)
             {
-                where.m_file_name = L"";
+                where.m_file_name.clear();
             }
         }
     }

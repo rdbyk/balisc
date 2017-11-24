@@ -29,10 +29,10 @@ File::File()
     m_fileDesc = NULL;
     m_iSwap = 0;
     m_pstMode.reserve(3);
-    m_pstMode = L"";
+    m_pstMode.clear();
     m_iFortranMode = -1; // see clunit.f
     m_iType = 0; // 1 : fortran open   2 : c open   3 : std::err std::out std::in
-    m_stFilename = L"";
+    m_stFilename.clear();
 }
 
 File::~File()
@@ -101,7 +101,7 @@ void File::setFileModeAsInt(int _iMode)
     int iPlus  = (int)((_iMode - iMode * 100) / 10);
     int iBin   = _iMode - iMode * 100 - iPlus * 10;
 
-    m_pstMode = L"";
+    m_pstMode.clear();
 
     switch (iMode)
     {
