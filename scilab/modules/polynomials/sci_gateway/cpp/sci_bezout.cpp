@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
         else // polynom
         {
             types::Polynom* pPolyIn = in[i]->getAs<types::Polynom>();
-            if (wstrName != L"" && wstrName != pPolyIn->getVariableName())
+            if (!wstrName.empty() && wstrName != pPolyIn->getVariableName())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "bezout", i + 1, wstrName.c_str());
                 return types::Function::Error;

@@ -778,7 +778,7 @@ Callable::ReturnValue DynamicFunction::Init()
     }
 
     /*Load gateway*/
-    if (m_wstName != L"")
+    if (!m_wstName.empty())
     {
         char* pstEntryPoint = wide_string_to_UTF8(m_wstEntryPoint.c_str());
         switch (m_iType)

@@ -820,7 +820,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
         iLenName = std::max((int)where.m_name.length(), iLenName);
 
         // in case of bin file, the file path and line is displayed only if the associated .sci file exists
-        if (where.m_file_name != L"" && where.m_file_name.find(L".bin") != std::wstring::npos)
+        if (!where.m_file_name.empty() && where.m_file_name.find(L".bin") != std::wstring::npos)
         {
             std::size_t pos = where.m_file_name.find_last_of(L".");
             where.m_file_name.replace(pos, pos + 4, L".sci");
@@ -891,7 +891,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
         ostr.width(iLenName);
         ostr << where.m_name;
 
-        if (where.m_file_name != L"")
+        if (!where.m_file_name.empty())
         {
             // -1 because the first line of a function dec is : "function myfunc()"
             ostr << L"( " << where.m_file_name << L" " << _W("line") << L" " << where.m_macro_first_line + where.m_line - 1 << L" )";
