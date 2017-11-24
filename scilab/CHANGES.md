@@ -256,11 +256,30 @@ Bug Fixes
 ### Bugs fixed in 6.0.1:
 * [#4276](http://bugzilla.scilab.org/show_bug.cgi?id=4276): `strsubst` replaced the first occurence in regex mode.
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
+* [#5381](http://bugzilla.scilab.org/show_bug.cgi?id=5381): For UTF-8 inputs, `msprintf`, `mprintf` and `mfprintf` shortened the output.
+* [#5602](http://bugzilla.scilab.org/show_bug.cgi?id=5602): Assigning a component of a list in a cells array replaced the whole list.
+* [#5611](http://bugzilla.scilab.org/show_bug.cgi?id=5611): It was not possible to delete the row or column of a cells array.
+* [#6607](http://bugzilla.scilab.org/show_bug.cgi?id=6607): `clear S; S(1:2,1:3).a = 1` yielded an error.
+* [#6608](http://bugzilla.scilab.org/show_bug.cgi?id=6608): Field and data insertion in an array of structures might fail.
+* [#6813](http://bugzilla.scilab.org/show_bug.cgi?id=6813): `makecell` used to create a N>2-D hyperarray yielded an error.
+* [#6911](http://bugzilla.scilab.org/show_bug.cgi?id=6911): `help_from_sci` did not accept numerical HTML entities like `&#969;` in heading comments.
+* [#7652](http://bugzilla.scilab.org/show_bug.cgi?id=7652): Inserting `list("")` in a cells array could be erroneous.
+* [#8297](http://bugzilla.scilab.org/show_bug.cgi?id=8297): `cat` slowness was exponential, crippling, and made it useless.
+* [#8669](http://bugzilla.scilab.org/show_bug.cgi?id=8669): After `A=rand(3,3)`, some legal insertions in `A(*,*,:)` failed. Non regression tests added.
+* [#8842](http://bugzilla.scilab.org/show_bug.cgi?id=8842): Assigning the pointer of a builtin function to a new structure failed.
+* [#9297](http://bugzilla.scilab.org/show_bug.cgi?id=9297): Assigning a mlist to a structure's field failed.
+* [#9519](http://bugzilla.scilab.org/show_bug.cgi?id=9519): The console menu `File -> Open a file` opened any file in Scinotes. Binary files like .zcos blocked Scinotes.
+* [#9838](http://bugzilla.scilab.org/show_bug.cgi?id=9838): `evstr` poorly supported simple comments in input expressions.
+* [#10270](http://bugzilla.scilab.org/show_bug.cgi?id=10270): `execstr(["%val=[int16(1)";"]"])` needed entering twice <enter> to be actually performed.
+* [#11196](http://bugzilla.scilab.org/show_bug.cgi?id=11196): Some recursive extractions from a mlist failed.
+* [#11251](http://bugzilla.scilab.org/show_bug.cgi?id=11251): `execstr` could kill the variables stack.
+* [#11530](http://bugzilla.scilab.org/show_bug.cgi?id=11530): Raise (help, scinotes, ...) windows when iconified ( recall or startup )
 * [#11756](http://bugzilla.scilab.org/show_bug.cgi?id=11756): In the categories of the ATOMS GUI, actually available modules might be not listed.
 * [#12771](http://bugzilla.scilab.org/show_bug.cgi?id=12771): xcosPalGenerateAllIcons help example was broken.
 * [#12792](http://bugzilla.scilab.org/show_bug.cgi?id=12792): `save(filename, "undefinedVariable")` created an empty useless file.
 * [#12862](http://bugzilla.scilab.org/show_bug.cgi?id=12862): `intsplin` no longer integrated the imaginary part of given ordinates.
 * [#13014](http://bugzilla.scilab.org/show_bug.cgi?id=13014): `optim_ga`: update the Efficiency inner variable.
+* [#13277](http://bugzilla.scilab.org/show_bug.cgi?id=13277): `execstr("clear")` did not clear any variables in the current scope.
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
 * [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
 * [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
