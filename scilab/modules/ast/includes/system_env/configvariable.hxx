@@ -440,32 +440,14 @@ public:
         return m_iPromptMode;
     }
 
-    static void setPrintInput(bool val)
-    {
-        // cf. https://graphics.stanford.edu/~seander/bithacks.html
-        m_iPrintMode ^= (-val ^ m_iPrintMode) & PrintMode::INPUT;
-    }
-
     static bool isPrintInput(void)
     {
         return m_iPrintMode & PrintMode::INPUT;
     }
 
-    static void setPrintOutput(bool val)
-    {
-        // cf. https://graphics.stanford.edu/~seander/bithacks.html
-        m_iPrintMode ^= (-val ^ m_iPrintMode) & PrintMode::OUTPUT;
-    }
-
     static bool isPrintOutput(void)
     {
         return m_iPrintMode & PrintMode::OUTPUT;
-    }
-
-    static void setPrintInteractive(bool val)
-    {
-        // cf. https://graphics.stanford.edu/~seander/bithacks.html
-        m_iPrintMode ^= (-val ^ m_iPrintMode) & PrintMode::INTERACTIVE;
     }
 
     static bool isPrintInteractive(void)
