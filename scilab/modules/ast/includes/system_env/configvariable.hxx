@@ -451,12 +451,6 @@ public:
         return m_iPrintMode & PrintMode::INPUT;
     }
 
-    static bool togglePrintInput(void)
-    {
-        m_iPrintMode ^= PrintMode::INPUT;
-        return m_iPrintMode & PrintMode::INPUT;
-    }
-
     static void setPrintOutput(bool val)
     {
         // cf. https://graphics.stanford.edu/~seander/bithacks.html
@@ -465,12 +459,6 @@ public:
 
     static bool isPrintOutput(void)
     {
-        return m_iPrintMode & PrintMode::OUTPUT;
-    }
-
-    static bool togglePrintOutput(void)
-    {
-        m_iPrintMode ^= PrintMode::OUTPUT;
         return m_iPrintMode & PrintMode::OUTPUT;
     }
 
@@ -485,12 +473,6 @@ public:
         return m_iPrintMode & PrintMode::INTERACTIVE;
     }
 
-    static bool togglePrintInteractive(void)
-    {
-        m_iPrintMode ^= PrintMode::INTERACTIVE;
-        return m_iPrintMode & PrintMode::INTERACTIVE;
-    }
-
     static void setPrintCompact(bool val)
     {
         // cf. https://graphics.stanford.edu/~seander/bithacks.html
@@ -501,13 +483,6 @@ public:
     {
         return m_iPrintMode & PrintMode::COMPACT;
     }
-
-    static bool togglePrintCompact(void)
-    {
-        m_iPrintMode ^= PrintMode::COMPACT;
-        return m_iPrintMode & PrintMode::COMPACT;
-    }
-
 
     // Pause level
 private :
