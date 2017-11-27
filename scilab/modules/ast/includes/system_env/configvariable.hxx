@@ -420,12 +420,19 @@ public :
 
 private :
     static int m_iPromptMode;
-    static bool m_printInput;
-    static bool m_printOutput;
-    static bool m_printCompact;
-    static bool m_printInteractive;
 
-public :
+    static int m_iPrintMode;
+    const static int m_iPromptToPrintMode[];
+
+public:
+    enum PrintMode : unsigned int
+    {
+        INPUT       = 1 << 0,
+        OUTPUT      = 1 << 1,
+        COMPACT     = 1 << 2,
+        INTERACTIVE = 1 << 3
+    };
+
     static void setPromptMode(int _iPromptMode);
     
     static int getPromptMode(void)
@@ -435,66 +442,70 @@ public :
 
     static void setPrintInput(bool val)
     {
-        m_printInput = val;
+        // cf. https://graphics.stanford.edu/~seander/bithacks.html
+        m_iPrintMode ^= (-val ^ m_iPrintMode) & PrintMode::INPUT;
     }
 
     static bool isPrintInput(void)
     {
-        return m_printInput;
+        return m_iPrintMode & PrintMode::INPUT;
     }
 
     static bool togglePrintInput(void)
     {
-        m_printInput = !m_printInput;
-        return m_printInput;
+        m_iPrintMode ^= PrintMode::INPUT;
+        return m_iPrintMode & PrintMode::INPUT;
     }
 
     static void setPrintOutput(bool val)
     {
-        m_printOutput = val;
+        // cf. https://graphics.stanford.edu/~seander/bithacks.html
+        m_iPrintMode ^= (-val ^ m_iPrintMode) & PrintMode::OUTPUT;
     }
 
     static bool isPrintOutput(void)
     {
-        return m_printOutput;
+        return m_iPrintMode & PrintMode::OUTPUT;
     }
 
     static bool togglePrintOutput(void)
     {
-        m_printOutput = !m_printOutput;
-        return m_printOutput;
+        m_iPrintMode ^= PrintMode::OUTPUT;
+        return m_iPrintMode & PrintMode::OUTPUT;
     }
 
     static void setPrintInteractive(bool val)
     {
-        m_printInteractive = val;
+        // cf. https://graphics.stanford.edu/~seander/bithacks.html
+        m_iPrintMode ^= (-val ^ m_iPrintMode) & PrintMode::INTERACTIVE;
     }
 
     static bool isPrintInteractive(void)
     {
-        return m_printInteractive;
+        return m_iPrintMode & PrintMode::INTERACTIVE;
     }
 
     static bool togglePrintInteractive(void)
     {
-        m_printInteractive = !m_printInteractive;
-        return m_printInteractive;
+        m_iPrintMode ^= PrintMode::INTERACTIVE;
+        return m_iPrintMode & PrintMode::INTERACTIVE;
     }
 
     static void setPrintCompact(bool val)
     {
-        m_printCompact = val;
+        // cf. https://graphics.stanford.edu/~seander/bithacks.html
+        m_iPrintMode ^= (-val ^ m_iPrintMode) & PrintMode::COMPACT;
     }
 
     static bool isPrintCompact(void)
     {
-        return m_printCompact;
+        return m_iPrintMode & PrintMode::COMPACT;
     }
 
     static bool togglePrintCompact(void)
     {
-        m_printCompact = !m_printCompact;
-        return m_printCompact;
+        m_iPrintMode ^= PrintMode::COMPACT;
+        return m_iPrintMode & PrintMode::COMPACT;
     }
 
 
