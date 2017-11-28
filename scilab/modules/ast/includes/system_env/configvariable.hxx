@@ -420,12 +420,19 @@ public :
 
 private :
     static int m_iPromptMode;
-    static bool m_printInput;
-    static bool m_printOutput;
-    static bool m_printCompact;
-    static bool m_printInteractive;
 
-public :
+    static int m_iPrintMode;
+    const static int m_iPromptToPrintMode[];
+
+public:
+    enum PrintMode : unsigned int
+    {
+        INPUT       = 1 << 0,
+        OUTPUT      = 1 << 1,
+        COMPACT     = 1 << 2,
+        INTERACTIVE = 1 << 3
+    };
+
     static void setPromptMode(int _iPromptMode);
     
     static int getPromptMode(void)
@@ -433,92 +440,50 @@ public :
         return m_iPromptMode;
     }
 
-    static void setPrintInput(bool val)
-    {
-        m_printInput = val;
-    }
-
     static bool isPrintInput(void)
     {
-        return m_printInput;
-    }
-
-    static bool togglePrintInput(void)
-    {
-        m_printInput = !m_printInput;
-        return m_printInput;
-    }
-
-    static void setPrintOutput(bool val)
-    {
-        m_printOutput = val;
+        return m_iPrintMode & PrintMode::INPUT;
     }
 
     static bool isPrintOutput(void)
     {
-        return m_printOutput;
-    }
-
-    static bool togglePrintOutput(void)
-    {
-        m_printOutput = !m_printOutput;
-        return m_printOutput;
-    }
-
-    static void setPrintInteractive(bool val)
-    {
-        m_printInteractive = val;
+        return m_iPrintMode & PrintMode::OUTPUT;
     }
 
     static bool isPrintInteractive(void)
     {
-        return m_printInteractive;
-    }
-
-    static bool togglePrintInteractive(void)
-    {
-        m_printInteractive = !m_printInteractive;
-        return m_printInteractive;
+        return m_iPrintMode & PrintMode::INTERACTIVE;
     }
 
     static void setPrintCompact(bool val)
     {
-        m_printCompact = val;
+        // cf. https://graphics.stanford.edu/~seander/bithacks.html
+        m_iPrintMode ^= (-val ^ m_iPrintMode) & PrintMode::COMPACT;
     }
 
     static bool isPrintCompact(void)
     {
-        return m_printCompact;
+        return m_iPrintMode & PrintMode::COMPACT;
     }
-
-    static bool togglePrintCompact(void)
-    {
-        m_printCompact = !m_printCompact;
-        return m_printCompact;
-    }
-
 
     // Pause level
 private :
-    static int m_iPauseLevel;
     static std::list<int> m_listScope;
 
 public :
     static void IncreasePauseLevel()
     {
-        m_iPauseLevel++;
         m_listScope.push_back(symbol::Context::getInstance()->getScopeLevel());
     }
 
     static void DecreasePauseLevel()
     {
-        m_iPauseLevel--;
         m_listScope.pop_back();
     }
 
     static int getPauseLevel()
     {
-        return m_iPauseLevel;
+        return m_listScope.size();
     }
 
     static int getActivePauseLevel()

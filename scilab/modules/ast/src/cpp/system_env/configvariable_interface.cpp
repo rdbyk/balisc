@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "configvariable.hxx"
 #include "debugmanager.hxx"
@@ -80,66 +80,6 @@ void setConsoleLines(int _iConsoleLines)
 int getConsoleLines(void)
 {
     return ConfigVariable::getConsoleLines();
-}
-
-int getPromptMode(void)
-{
-    return static_cast<int>(ConfigVariable::getPromptMode());
-}
-
-void setPromptMode(int _iMode)
-{
-    ConfigVariable::setPromptMode(_iMode);
-}
-
-int isPrintInput()
-{
-    return ConfigVariable::isPrintInput() ? 1 : 0;
-}
-
-void setPrintInput(int val)
-{
-    ConfigVariable::setPrintInput(val ? true : false);
-}
-
-int isPrintOutput()
-{
-    return ConfigVariable::isPrintOutput() ? 1 : 0;
-}
-
-void setPrintOutput(int val)
-{
-    ConfigVariable::setPrintOutput(val ? true : false);
-}
-
-int isPrintCompact()
-{
-    return ConfigVariable::isPrintCompact() ? 1 : 0;
-}
-
-void setPrintCompact(int val)
-{
-    ConfigVariable::setPrintCompact(val ? true : false);
-}
-
-int isPrintInteractive()
-{
-    return ConfigVariable::isPrintInteractive() ? 1 : 0;
-}
-
-void setPrintInteractive(int val)
-{
-    ConfigVariable::setPrintInteractive(val ? true : false);
-}
-
-int isSilentError(void)
-{
-    return ConfigVariable::isSilentError() ? 1 : 0;
-}
-
-void setSilentError(int _iSilent)
-{
-    ConfigVariable::setSilentError(_iSilent ? true : false);
 }
 
 int getieee()

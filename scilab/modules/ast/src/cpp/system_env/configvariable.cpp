@@ -219,84 +219,70 @@ bool ConfigVariable::m_iSilentError = false;
 
 /* Prompt Mode */
 int ConfigVariable::m_iPromptMode = 0;
-bool ConfigVariable::m_printInput = true;
-bool ConfigVariable::m_printOutput = true;
-bool ConfigVariable::m_printInteractive = false;
-bool ConfigVariable::m_printCompact = false;
 
-/*
-mode        input   output      compact     interactive
------------------------------------------------
--1              0       0           0           0
-0               0       1           1           0
-1               1       1           1           0
-2               0       1           0           0
-3               1       1           0           0
-4               1       1           1           1
-7               1       1           0           1
-*/
+// Prompt  Print Mode
+// mode    (bits: input,output,compact,interactive)
+//--------------------------------------------------
+//  -1      0000
+//   0      0110
+//   1      1110
+//   2      0100
+//   3      1100
+//   4      1111
+//   7      1101
+
+int ConfigVariable::m_iPrintMode = ConfigVariable::PrintMode::INPUT | ConfigVariable::PrintMode::OUTPUT;
+
+const int ConfigVariable::m_iPromptToPrintMode[] =
+{
+    // Prompt Mode
+    // -1
+    ConfigVariable::PrintMode::COMPACT,
+    // 0
+    ConfigVariable::PrintMode::OUTPUT |
+    ConfigVariable::PrintMode::COMPACT,
+    // 1 = 5
+    ConfigVariable::PrintMode::INPUT |
+    ConfigVariable::PrintMode::OUTPUT |
+    ConfigVariable::PrintMode::COMPACT,
+    // 2
+    ConfigVariable::PrintMode::OUTPUT,
+    // 3
+    ConfigVariable::PrintMode::INPUT |
+    ConfigVariable::PrintMode::OUTPUT,
+    // 4
+    ConfigVariable::PrintMode::INPUT |
+    ConfigVariable::PrintMode::OUTPUT |
+    ConfigVariable::PrintMode::COMPACT |
+    ConfigVariable::PrintMode::INTERACTIVE,
+    // 5 = 1
+    ConfigVariable::PrintMode::INPUT |
+    ConfigVariable::PrintMode::OUTPUT |
+    ConfigVariable::PrintMode::COMPACT,
+    // 6 = 7
+    ConfigVariable::PrintMode::INPUT |
+    ConfigVariable::PrintMode::OUTPUT |
+    ConfigVariable::PrintMode::INTERACTIVE,
+    // 7 = 6
+    ConfigVariable::PrintMode::INPUT |
+    ConfigVariable::PrintMode::OUTPUT |
+    ConfigVariable::PrintMode::INTERACTIVE
+};
 
 void ConfigVariable::setPromptMode(int _iPromptMode)
 {
-    m_iPromptMode = _iPromptMode;
-    switch (_iPromptMode)
-    {
-        default:
-        case -1:
-            ConfigVariable::setPrintInput(false);
-            ConfigVariable::setPrintOutput(false);
-            ConfigVariable::setPrintCompact(true);
-            ConfigVariable::setPrintInteractive(false);
-            break;
-        case 0:
-            ConfigVariable::setPrintInput(false);
-            ConfigVariable::setPrintOutput(true);
-            ConfigVariable::setPrintCompact(true);
-            ConfigVariable::setPrintInteractive(false);
-            break;
-        case 5:
-        case 1:
-            ConfigVariable::setPrintInput(true);
-            ConfigVariable::setPrintOutput(true);
-            ConfigVariable::setPrintCompact(true);
-            ConfigVariable::setPrintInteractive(false);
-            break;
-        case 2:
-            ConfigVariable::setPrintInput(false);
-            ConfigVariable::setPrintOutput(true);
-            ConfigVariable::setPrintCompact(false);
-            ConfigVariable::setPrintInteractive(false);
-            break;
-        case 3:
-            ConfigVariable::setPrintInput(true);
-            ConfigVariable::setPrintOutput(true);
-            ConfigVariable::setPrintCompact(false);
-            ConfigVariable::setPrintInteractive(false);
-            break;
-        case 4:
-            ConfigVariable::setPrintInput(true);
-            ConfigVariable::setPrintOutput(true);
-            ConfigVariable::setPrintCompact(true);
-            ConfigVariable::setPrintInteractive(true);
-            break;
-        case 6:
-        case 7:
-            ConfigVariable::setPrintInput(true);
-            ConfigVariable::setPrintOutput(true);
-            ConfigVariable::setPrintCompact(false);
-            ConfigVariable::setPrintInteractive(true);
-            break;
-    }
+    int i = _iPromptMode;
+
+    m_iPromptMode = i;
+    // map prompt mode (-1 .. 7) to index of print mode array (0 .. 8)
+    // if index is out of range (0 .. 8), then we use 0 as default
+    m_iPrintMode = m_iPromptToPrintMode[(unsigned int)(++i) <= 8 ? i : 0];
 }
-/*
-** \}
-*/
 
 /*
 ** Prompt Mode
 ** \{
 */
-int ConfigVariable::m_iPauseLevel = 0;
 std::list<int> ConfigVariable::m_listScope;
 /*
 ** \}

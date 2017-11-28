@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __CONFIGVARIABLE_INTERFACE_H__
 #define __CONFIGVARIABLE_INTERFACE_H__
@@ -43,19 +43,6 @@ EXTERN_AST void setConsoleWidth(int _iConsoleWidth);
 EXTERN_AST int getConsoleWidth(void);
 EXTERN_AST void setConsoleLines(int _iConsoleLines);
 EXTERN_AST int getConsoleLines(void);
-
-EXTERN_AST int getPromptMode(void);
-EXTERN_AST void setPromptMode(int _iMode);
-EXTERN_AST int isSilentError(void);
-EXTERN_AST void setSilentError(int _iSilent);
-EXTERN_AST int isPrintInput();
-EXTERN_AST void setPrintInput(int);
-EXTERN_AST int isPrintOutput();
-EXTERN_AST void setPrintOutput(int);
-EXTERN_AST int isPrintCompact();
-EXTERN_AST void setPrintCompact(int);
-EXTERN_AST int isPrintInteractive();
-EXTERN_AST void setPrintInteractive(int);
 
 EXTERN_AST int getieee(void);
 EXTERN_AST void setieee(int);
