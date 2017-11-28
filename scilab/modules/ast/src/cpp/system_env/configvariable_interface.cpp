@@ -93,16 +93,6 @@ void setPromptMode(int _iMode)
     ConfigVariable::setPromptMode(_iMode);
 }
 
-int isSilentError(void)
-{
-    return ConfigVariable::isSilentError() ? 1 : 0;
-}
-
-void setSilentError(int _iSilent)
-{
-    ConfigVariable::setSilentError(_iSilent ? true : false);
-}
-
 int getieee()
 {
     return ConfigVariable::getIeee();

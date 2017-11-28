@@ -25,7 +25,6 @@ extern "C"
 #include "Scierror.h"
 #include "os_string.h"
 #include "localization.h"
-#include "configvariable_interface.h"
 #include "api_internal_common.h"
 }
 
@@ -73,7 +72,7 @@ int printError(SciErr* _psciErr, int _iLastMsg)
 
     SciStoreError(_psciErr->iErr);
 
-    if (ConfigVariable::isPrintOutput() && isSilentError() == 0)
+    if (ConfigVariable::isPrintOutput() && !ConfigVariable::isSilentError())
     {
         if (_iLastMsg)
         {
