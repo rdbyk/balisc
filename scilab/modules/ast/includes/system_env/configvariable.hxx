@@ -468,25 +468,22 @@ public:
 
     // Pause level
 private :
-    static int m_iPauseLevel;
     static std::list<int> m_listScope;
 
 public :
     static void IncreasePauseLevel()
     {
-        m_iPauseLevel++;
         m_listScope.push_back(symbol::Context::getInstance()->getScopeLevel());
     }
 
     static void DecreasePauseLevel()
     {
-        m_iPauseLevel--;
         m_listScope.pop_back();
     }
 
     static int getPauseLevel()
     {
-        return m_iPauseLevel;
+        return m_listScope.size();
     }
 
     static int getActivePauseLevel()

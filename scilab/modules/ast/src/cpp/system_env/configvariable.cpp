@@ -283,7 +283,6 @@ void ConfigVariable::setPromptMode(int _iPromptMode)
 ** Prompt Mode
 ** \{
 */
-int ConfigVariable::m_iPauseLevel = 0;
 std::list<int> ConfigVariable::m_listScope;
 /*
 ** \}
