@@ -37,7 +37,7 @@ static BOOL dispWarningLevelPrompt = TRUE;
 void setPreviousLevel(int pause)
 {
     //debugger prompt first !
-    if (ConfigVariable::isEnableDebug())
+    if (isEnableDebug())
     {
         if (isDebugInterrupted())
         {
