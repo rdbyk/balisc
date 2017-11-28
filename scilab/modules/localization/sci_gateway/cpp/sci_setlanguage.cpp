@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,6 +17,7 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "bool.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -25,7 +26,6 @@ extern "C"
 #include "localization.h"
 #include "charEncoding.h"
 #include "defaultlanguage.h"
-#include "configvariable_interface.h"
 #include "setgetlanguage.h"
 }
 
@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_setlanguage(types::typed_list &in, int _piRetCo
 
     if (!LanguageIsOK(param) && (newlanguage == NULL))
     {
-        if (getWarningMode())
+        if (ConfigVariable::getWarningMode())
         {
             sciprint(_("%ls: Unsupported language '%ls'.\n"), L"setlanguage", param);
         }
@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_setlanguage(types::typed_list &in, int _piRetCo
     }
     else
     {
-        if (getWarningMode())
+        if (ConfigVariable::getWarningMode())
         {
             sciprint(_("Unsupported language '%ls'.\n"), param);
             sciprint(_("Switching to default language : '%ls'.\n"), SCILABDEFAULTLANGUAGE);
