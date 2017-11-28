@@ -18,6 +18,7 @@
 #include <string.h>
 #include "file.hxx"
 #include "filemanager.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -25,7 +26,6 @@ extern "C"
 #include "mopen.h"
 #include "sciprint.h"
 #include "charEncoding.h"
-#include "configvariable_interface.h"
 #include "isdir.h"
 #include "localization.h"
 #include "os_wfopen.h"
@@ -35,7 +35,7 @@ int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int*
 {
     int lenChar = 0, testRep = 1;
 
-    if (getWarningMode() && FileManager::isOpened(_pstFilename))
+    if (ConfigVariable::getWarningMode() && FileManager::isOpened(_pstFilename))
     {
         char* pst = wide_string_to_UTF8(_pstFilename);
         sciprint(_("Warning: file '%s' already opened in Scilab.\n"), pst);
