@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
@@ -81,16 +80,6 @@ void setConsoleLines(int _iConsoleLines)
 int getConsoleLines(void)
 {
     return ConfigVariable::getConsoleLines();
-}
-
-int getPromptMode(void)
-{
-    return static_cast<int>(ConfigVariable::getPromptMode());
-}
-
-void setPromptMode(int _iMode)
-{
-    ConfigVariable::setPromptMode(_iMode);
 }
 
 int getieee()
