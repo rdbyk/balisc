@@ -15,6 +15,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "filemanager.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -23,7 +24,6 @@ extern "C"
 #include "core_math.h" /* Min Max */
 #include "sciprint.h"
 #include "localization.h"
-#include "configvariable_interface.h"
 #include "charEncoding.h"
 
     extern int C2F(clunit)(int* , const char*, int*, int);
@@ -89,7 +89,7 @@ int mclose(int _iID)
     }
     else
     {
-        if (getWarningMode())
+        if (ConfigVariable::getWarningMode())
         {
             sciprint(_("%s: Cannot close file whose descriptor is %d: File is not active.\n"), "mclose", _iID);
         }
