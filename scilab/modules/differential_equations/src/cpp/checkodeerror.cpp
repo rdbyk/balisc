@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,17 +10,17 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 
 #include "checkodeerror.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
 #include "sciprint.h"
 #include "localization.h"
-#include "configvariable_interface.h"
 }
 // return 0 = ok, return 1 = error, return 2 = warning
 int checkOdeError(int meth, int istate)
@@ -104,7 +104,7 @@ int checkOdeError(int meth, int istate)
             {
                 case 3:
                 {
-                    if (getWarningMode())
+                    if (ConfigVariable::getWarningMode())
                     {
                         sciprint(_("Integration was not completed because relative error tolerance was too small. rerr has been increased appropriately for continuing.\n"));
                     }
@@ -112,7 +112,7 @@ int checkOdeError(int meth, int istate)
                 }
                 case 4:
                 {
-                    if (getWarningMode())
+                    if (ConfigVariable::getWarningMode())
                     {
                         sciprint(_("Integration was not completed because more than 3000 derivative evaluations were needed. This is approximately 500 steps.\n"));
                     }
@@ -185,7 +185,7 @@ int checkError(int idid, std::string strName)
         }
         case -1 : //A large amount of work has been expended (About 500 steps)
         {
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("Too many steps necessary to reach next required time discretization point. Change discretisation of time vector t or decrease accuracy.\n"));
             }
@@ -202,7 +202,7 @@ int checkError(int idid, std::string strName)
             //a zero component in ATOL and the corresponding computed solution
             //component is zero. Thus, a pure relative error test is impossible
             //for this component.
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("Atol and computed test value are zero.\n"));
             }
@@ -217,7 +217,7 @@ int checkError(int idid, std::string strName)
         }
         case -6 : //Repeated error test failures on the last attempted step.
         {
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("A singularity in the solution may be present.\n"));
             }
@@ -225,7 +225,7 @@ int checkError(int idid, std::string strName)
         }
         case -7 : //The corrector could not converge.
         {
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("May be inaccurate or ill-conditioned JACOBIAN.\n"));
             }
@@ -239,7 +239,7 @@ int checkError(int idid, std::string strName)
         case -9 : //The corrector could not converge.
         {
             //There were repeated error test failures in this step.
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("Either ill-posed problem or discontinuity or singularity encountered.\n"));
             }
@@ -247,7 +247,7 @@ int checkError(int idid, std::string strName)
         }
         case -10 :
         {
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("External 'res' return many times with ires=-1.\n"));
             }
@@ -284,7 +284,7 @@ int checkError(int idid, std::string strName)
             //explaining the trouble and control is returned
             //to the calling program. For example, this occurs
             //when invalid input is detected.
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("%s encountered trouble.\n"), strName.c_str());
             }
