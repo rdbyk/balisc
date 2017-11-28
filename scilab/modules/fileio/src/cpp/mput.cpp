@@ -16,6 +16,8 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "filemanager.hxx"
+#include "configvariable.hxx"
+
 extern "C"
 {
 #ifndef _MSC_VER
@@ -29,7 +31,6 @@ extern "C"
 #include "islittleendian.h"
 #include "convert_tools.h"
 #include "localization.h"
-#include "configvariable_interface.h"
 #include "charEncoding.h"
 #include "strlen.h"
 }
@@ -114,7 +115,7 @@ extern "C"
       swap = (islittleendian()==1) ? 0 : 1;				\
     MPUT(Type); break;							\
     default:								\
-      if ( getWarningMode() ) sciprint(_("%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"),"mput",4,type," ","b","l"); \
+      if (ConfigVariable::getWarningMode()) sciprint(_("%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"),"mput",4,type," ","b","l"); \
       *ierr=1;return;							\
     }
 /*--------------------------------------------------------------------------*/
@@ -182,7 +183,7 @@ void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
     *ierr = 0;
     if (type[0] == '\0')
     {
-        if (getWarningMode())
+        if (ConfigVariable::getWarningMode())
         {
             sciprint(_("%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"), "mput", 4, type);
         }
@@ -196,7 +197,7 @@ void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
         mput2(pFile->getFiledesc(), pFile->getFileSwap(), res, *n, type, ierr);
         if (*ierr > 0)
         {
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"), "mput", 4, type);
             }
@@ -204,7 +205,7 @@ void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
     }
     else
     {
-        if (getWarningMode())
+        if (ConfigVariable::getWarningMode())
         {
             sciprint(_("%s: No input file associated to logical unit %d.\n"), "mput", *fd);
         }
