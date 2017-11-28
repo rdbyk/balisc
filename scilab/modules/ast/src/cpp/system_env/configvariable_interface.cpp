@@ -93,26 +93,6 @@ void setPromptMode(int _iMode)
     ConfigVariable::setPromptMode(_iMode);
 }
 
-int isPrintInput()
-{
-    return ConfigVariable::isPrintInput() ? 1 : 0;
-}
-
-int isPrintOutput()
-{
-    return ConfigVariable::isPrintOutput() ? 1 : 0;
-}
-
-int isPrintCompact()
-{
-    return ConfigVariable::isPrintCompact() ? 1 : 0;
-}
-
-int isPrintInteractive()
-{
-    return ConfigVariable::isPrintInteractive() ? 1 : 0;
-}
-
 int isSilentError(void)
 {
     return ConfigVariable::isSilentError() ? 1 : 0;

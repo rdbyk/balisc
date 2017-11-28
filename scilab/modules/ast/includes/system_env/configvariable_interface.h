@@ -48,10 +48,6 @@ EXTERN_AST int getPromptMode(void);
 EXTERN_AST void setPromptMode(int _iMode);
 EXTERN_AST int isSilentError(void);
 EXTERN_AST void setSilentError(int _iSilent);
-EXTERN_AST int isPrintInput();
-EXTERN_AST int isPrintOutput();
-EXTERN_AST int isPrintCompact();
-EXTERN_AST int isPrintInteractive();
 
 EXTERN_AST int getieee(void);
 EXTERN_AST void setieee(int);
