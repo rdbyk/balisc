@@ -15,6 +15,7 @@
 
 #include "types_divide.hxx"
 #include "types_finite.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -22,7 +23,6 @@ extern "C"
 #include "sciprint.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "configvariable_interface.h"
 #include "elem_common.h"
 }
 
@@ -98,7 +98,7 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
             case 3 :
                 throw ast::InternalError(_W("Division by zero...\n"));
             case 4 :
-                if (getWarningMode())
+                if (ConfigVariable::getWarningMode())
                 {
                     sciprint(_("Warning : Division by zero...\n"));
                 }
