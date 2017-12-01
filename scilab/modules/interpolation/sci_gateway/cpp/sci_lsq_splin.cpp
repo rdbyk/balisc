@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,20 +10,20 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 
 #include "interpolation_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "configvariable_interface.h"
 #include "interpolation_functions.h"
 #include "interpolation.h"
 #include "basic_functions.h" // vDset
@@ -160,7 +160,7 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
         Scierror(999, _("%s: Not enough points for the fit.\n"), "lsq_plin");
         return types::Function::Error;
     }
-    else if (ierr == 1 && getWarningMode())
+    else if (ierr == 1 && ConfigVariable::getWarningMode())
     {
         sciprint(_("%ls: Warning: Rank deficiency of the least square matrix.\n"), "lsq_splin");
     }

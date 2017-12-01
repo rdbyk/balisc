@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,6 +19,7 @@
 #include "bool.hxx"
 
 #include "scilabWrite.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -28,7 +29,6 @@ extern "C"
 #include "charEncoding.h"
 #include "setgetlanguage.h"
 #include "os_string.h"
-#include "configvariable_interface.h"
 #ifdef _MSC_VER
 #include "LanguagePreferences_Windows.h"
 #endif
@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _
     ** No need to set default language except under Windows.
     ** Will return FALSE
     */
-    if (getWarningMode())
+    if (ConfigVariable::getWarningMode())
     {
         sciprint(_("%ls: This feature is only supported on Windows.\n"), L"setdefaultlanguage");
     }
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _
 
     if ( !isValidLanguage(newlang) )
     {
-        if ( getWarningMode() )
+        if (ConfigVariable::getWarningMode())
         {
             sciprint(_("Unsupported language '%ls'.\n"), newlang);
         }
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _
             }
             else
             {
-                if ( getWarningMode() )
+                if (ConfigVariable::getWarningMode())
                 {
                     sciprint("\n");
                     sciprint(_("The language for menus cannot be changed on a running console.\n"));

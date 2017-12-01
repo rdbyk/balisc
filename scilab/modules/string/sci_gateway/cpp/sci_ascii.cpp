@@ -25,6 +25,7 @@
 #include "string.hxx"
 #include "double.hxx"
 #include "int.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -33,7 +34,6 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "configvariable_interface.h"
 #include "strlen.h"
 }
 
@@ -128,7 +128,7 @@ types::String* TypeToString(T* _pI)
     char* pcText = new char[len + 1];
     Y* p = _pI->get();
 
-    bool bWarning = getWarningMode() == 0;
+    bool bWarning = !ConfigVariable::getWarningMode();
     for (int i = 0; i < len; i++)
     {
         if (bWarning == false && p[i] > MAX_ASCII)

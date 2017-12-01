@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 
 #include "differential_equations_gw.hxx"
@@ -21,6 +21,7 @@
 #include "list.hxx"
 #include "callable.hxx"
 #include "differentialequationfunctions.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -29,7 +30,6 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "scifunctions.h"
-#include "configvariable_interface.h"
 #include "sciprint.h"
 }
 
@@ -255,7 +255,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        if (getWarningMode())
+        if (ConfigVariable::getWarningMode())
         {
             for (int i = 0; i < 4; i++)
             {
@@ -273,7 +273,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
 
         if (pDblParams->get(2) == 0.0 && pDblParams->get(3) == 0.0)
         {
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("%ls: Warning: Wrong value for the element %d and %d of argument #%d: The default value will be used.\n"), L"int3d", 3, 4, 6);
             }
@@ -345,7 +345,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
     {
         if (ifail == 1)
         {
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("%ls: Warning: maxpts was too small to obtain the required accuracy.\n"), L"int3d");
             }

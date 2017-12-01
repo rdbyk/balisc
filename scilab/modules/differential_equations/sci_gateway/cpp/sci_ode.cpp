@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 
 #include "differential_equations_gw.hxx"
@@ -24,6 +24,7 @@
 #include "runvisitor.hxx"
 #include "context.hxx"
 #include "checkodeerror.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -31,7 +32,6 @@ extern "C"
 #include "Scierror.h"
 #include "scifunctions.h"
 #include "elem_common.h"
-#include "configvariable_interface.h"
 #include "sciprint.h"
 #include "common_structure.h"
 #include "sci_malloc.h"
@@ -654,14 +654,14 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         jt = 1;
     }
 
-    if (bFuncJac && (jt == 2 || jt == 5) && getWarningMode())
+    if (bFuncJac && (jt == 2 || jt == 5) && ConfigVariable::getWarningMode())
     {
         sciprint(_("%s: Warning: Jacobian is given, but not used.\n"), "ode");
     }
 
     if (bFuncJac == false && (jt == 1 || jt == 4))
     {
-        if (getWarningMode())
+        if (ConfigVariable::getWarningMode())
         {
             sciprint(_("%s: Warning: No Jacobian external given, but one is required by %ODEOPTIONS(6) value. Jacobian will be estimated.\n"), "ode");
         }
@@ -744,7 +744,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
     if (mxordn > 12 || mxords > 5 || mxordn < 1 || mxords < 1)
     {
-        if (getWarningMode())
+        if (ConfigVariable::getWarningMode())
         {
             sciprint(_("%s: Warning: Wrong value for maximum stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
         }
@@ -1028,7 +1028,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
     if (itask == 5 || itask == 3 || itask == 2)
     {
         bOneStep = true;
-        if (getWarningMode() && pDblT->isScalar() == false)
+        if (ConfigVariable::getWarningMode() && pDblT->isScalar() == false)
         {
             sciprint(_("itask = %d: At most one value of t is allowed, the last element of t is used.\n"), itask);
         }
@@ -1156,7 +1156,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
             if (err == 2) // warning case
             {
-                if (getWarningMode())
+                if (ConfigVariable::getWarningMode())
                 {
                     sciprint(_("Integration was stopped at t = %lf.\n"), t0);
                 }
@@ -1168,7 +1168,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 // istate == 3  means the integration was successful, and one or more
                 //              roots were found before satisfying the stop condition
                 //              specified by itask.  see jroot.
-                if (getWarningMode())
+                if (ConfigVariable::getWarningMode())
                 {
                     sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
                     for (int k = 0; k < pDblNg->getFirst(); k++)
@@ -1394,7 +1394,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
             if (err == 2) // warning case
             {
-                if (getWarningMode())
+                if (ConfigVariable::getWarningMode())
                 {
                     sciprint(_("Integration was stopped at t = %lf.\n"), t0);
                 }
@@ -1416,7 +1416,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 //              roots were found before satisfying the stop condition
                 //              specified by itask.  see jroot.
 
-                if (getWarningMode())
+                if (ConfigVariable::getWarningMode())
                 {
                     sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
                     for (int k = 0; k < pDblNg->getFirst(); k++)

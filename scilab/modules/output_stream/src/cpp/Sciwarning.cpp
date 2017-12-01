@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Scilab Enterprises - 2015 - Pierre-Aime Agnel
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,19 +14,19 @@
  */
 
 #include "scilabexception.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
 #include "sciprint.h"
 #include "Sciwarning.h"
-#include "configvariable_interface.h"
 }
 
 
 int Sciwarning(const char *msg, ...)
 {
     int retval = 0;
-    if (getWarningMode())
+    if (ConfigVariable::getWarningMode())
     {
         //print warning message
         va_list ap;
@@ -34,7 +34,7 @@ int Sciwarning(const char *msg, ...)
         scivprint(msg, ap);
         va_end(ap);
 
-        if (getWarningStop())
+        if (ConfigVariable::getWarningStop())
         {
             // Configuration variable WarningStop is set to true
             // Warning becomes an error and throws the ast exception

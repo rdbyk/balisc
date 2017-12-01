@@ -19,10 +19,10 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "scilabWrite.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
-#include "configvariable_interface.h"
 #include "charEncoding.h"
 #include "sciprint.h"
 #include "getos.h"
@@ -59,33 +59,35 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
 
     if (psInput->getSize() == 1)
     {
+        wchar_t* arg = psInput->getFirst();
+
         /* "on" "off" "query" "stop" */
-        if (wcscmp(psInput->getFirst(), L"on") == 0)
+        if (wcscmp(arg, L"on") == 0)
         {
-            setWarningMode(TRUE);
-            setWarningStop(FALSE);
+            ConfigVariable::setWarningMode(true);
+            ConfigVariable::setWarningStop(false);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->getFirst(), L"off") == 0)
+        if (wcscmp(arg, L"off") == 0)
         {
-            setWarningMode(FALSE);
-            setWarningStop(FALSE);
+            ConfigVariable::setWarningMode(false);
+            ConfigVariable::setWarningStop(false);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->getFirst(), L"stop") == 0)
+        if (wcscmp(arg, L"stop") == 0)
         {
-            setWarningMode(TRUE);
-            setWarningStop(TRUE);
+            ConfigVariable::setWarningMode(true);
+            ConfigVariable::setWarningStop(true);
             return types::Function::OK;
         }
 
-        if (wcscmp(psInput->getFirst(), L"query") == 0)
+        if (wcscmp(arg, L"query") == 0)
         {
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
-                if (getWarningStop())
+                if (ConfigVariable::getWarningStop())
                 {
                     // WarningMode and WarningStop => warning stop mode active
                     out.push_back(new types::String(L"stop"));
@@ -104,7 +106,7 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         }
     }
 
-    if (getWarningMode())
+    if (ConfigVariable::getWarningMode())
     {
         for (int i = 0; i < psInput->getSize() ; ++i)
         {
@@ -120,7 +122,7 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
             FREE(pwstToPrint);
         }
 
-        if (getWarningStop())
+        if (ConfigVariable::getWarningStop())
         {
             Sciwarning("");
         }

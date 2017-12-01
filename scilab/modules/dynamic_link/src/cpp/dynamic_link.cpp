@@ -25,7 +25,6 @@ extern "C"
 #include <stdlib.h>
 #include "dynamic_link.h"
 #include "sci_malloc.h" /* MALLOC */
-#include "configvariable_interface.h"
 #include "sciprint.h"
 #include "addinter.h"
 #include "localization.h"
@@ -63,7 +62,7 @@ int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPoint
 
     if (iLibID == -1)
     {
-        if ( getWarningMode() )
+        if ( ConfigVariable::getWarningMode() )
         {
 #ifdef _MSC_VER
             if (isDllW(_pwstLibraryName))

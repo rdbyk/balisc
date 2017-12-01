@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,14 +11,15 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 
 #include "linear_algebra_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -26,7 +27,6 @@ extern "C"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "invert_matrix.h"
-#include "configvariable_interface.h"
 #include "doublecomplex.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -90,7 +90,7 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
 
         if (ret == -1)
         {
-            if (getWarningMode())
+            if (ConfigVariable::getWarningMode())
             {
                 sciprint(_("Warning :\n"));
                 sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);

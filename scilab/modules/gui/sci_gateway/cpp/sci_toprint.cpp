@@ -18,6 +18,7 @@
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
 #include "GiwsException.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -32,7 +33,6 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
 #include "loadOnUseClassPath.h"
-#include "configvariable_interface.h"
 #include "FigureList.h"
 #include "strcmp.h"
 }
@@ -111,7 +111,7 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
                 }
                 else
                 {
-                    if (getWarningMode())
+                    if (ConfigVariable::getWarningMode())
                     {
                         sciprint(_("%s: The file %s does not exist.\n"), fname, fullName);
                     }
