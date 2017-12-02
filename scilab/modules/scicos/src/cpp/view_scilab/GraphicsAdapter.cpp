@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -273,10 +273,17 @@ types::InternalType* cached_ports_get(std::map<ScicosID, std::vector<int> >& cac
     double* data;
     types::Double* ret = new types::Double(static_cast<int>(ports.size()), 1, &data);
 
+#ifdef _MSC_VER
+    std::transform(ports.begin(), ports.end(), stdext::checked_array_iterator<double*>(data, ports.size()), [](int p)
+    {
+        return p;
+    });
+#else
     std::transform(ports.begin(), ports.end(), data, [](int p)
     {
         return p;
     });
+#endif
 
     return ret;
 }

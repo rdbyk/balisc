@@ -74,27 +74,7 @@ public:
     static props_t fields;
 
     property(const std::wstring& prop, getter_t g, setter_t s) : original_index(fields.size()), name(prop), get(g), set(s) {};
-    property(const property& p) :
-        original_index(p.original_index),
-        name(p.name),
-        get(p.get),
-        set(p.set)
-    {};
     ~property() {};
-    property(property&& p) :
-        original_index(std::move(p.original_index)),
-        name(std::move(p.name)),
-        get(std::move(p.get)),
-        set(std::move(p.set))
-    {};
-    property<Adaptor>& operator= (property<Adaptor>&& p)
-    {
-        original_index = std::move(p.original_index);
-        name = std::move(p.name);
-        get = std::move(p.get);
-        set = std::move(p.set);
-        return *this;
-    };
 
     size_t original_index;
     std::wstring name;
@@ -535,7 +515,7 @@ private:
 
     types::UserType* insert(types::typed_list* _pArgs, types::InternalType* _pSource) override final
     {
-        for (size_t i = 0; i < _pArgs->size(); i++)
+        for (size_t i = 0; i < _pArgs->size(); ++i)
         {
             if ((*_pArgs)[i]->isString())
             {
