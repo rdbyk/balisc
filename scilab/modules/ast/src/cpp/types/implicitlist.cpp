@@ -264,7 +264,7 @@ bool ImplicitList::compute()
                 m_bComputed = true;
                 return true;
             }
-            else if (std::fabs(m_iSize * dblStep) <= fabs(dblRange))
+            else if (std::fabs(m_iSize * dblStep) <= std::nextafter(std::fabs(dblRange), HUGE_VAL))
             {
                 ++m_iSize;
             }
