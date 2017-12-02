@@ -27,7 +27,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
-#include "mlist.hxx"
+#include "tlist.hxx"
 #include "user.hxx"
 
 #include "Controller.hxx"
@@ -55,6 +55,12 @@ namespace view_scilab
 {
 namespace
 {
+
+const std::wstring modelica (L"modelica");
+const std::wstring model (L"model");
+const std::wstring inputs (L"inputs");
+const std::wstring outputs (L"outputs");
+const std::wstring parameters (L"parameters");
 
 types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Controller& controller, object_properties_t p)
 {
@@ -337,7 +343,12 @@ struct state
 
         double* data;
         types::Double* o = new types::Double((int)state.size(), 1, &data);
+
+#ifdef _MSC_VER
+        std::copy(state.begin(), state.end(), stdext::checked_array_iterator<double*>(data, state.size()));
+#else
         std::copy(state.begin(), state.end(), data);
+#endif
         return o;
     }
 
@@ -380,7 +391,12 @@ struct dstate
 
         double* data;
         types::Double* o = new types::Double((int)dstate.size(), 1, &data);
+
+#ifdef _MSC_VER
+        std::copy(dstate.begin(), dstate.end(), stdext::checked_array_iterator<double*>(data, dstate.size()));
+#else
         std::copy(dstate.begin(), dstate.end(), data);
+#endif
         return o;
     }
 
@@ -560,7 +576,7 @@ types::String* decode(std::vector<int>::iterator& prop_it)
 
         // increment the value iterator by the number of element
         const size_t numberOfElem = static_cast<size_t>(*prop_it) - static_cast<size_t>(*(prop_it - 1)) ;
-        ++prop_it;
+        prop_it++;
         strData += numberOfElem;
     }
 
@@ -606,7 +622,7 @@ bool encode(std::vector<int>& prop_content, types::String* v)
     }
 
     // free all the string, after being copied
-    for (std::vector<char*>::iterator it = utf8.begin(); it != utf8.end(); ++it)
+    for (std::vector<char*>::iterator it = utf8.begin(); it != utf8.end(); it++)
     {
         FREE(*it);
     }
@@ -870,7 +886,12 @@ struct rpar
 
             double *data;
             types::Double* o = new types::Double((int)rpar.size(), 1, &data);
+#ifdef _MSC_VER
+            std::copy(rpar.begin(), rpar.end(), stdext::checked_array_iterator<double*>(data, rpar.size()));
+#else
             std::copy(rpar.begin(), rpar.end(), data);
+#endif
+            return o;
         }
         else // SuperBlock, return the contained diagram (allocating it on demand)
         {
@@ -956,7 +977,12 @@ struct ipar
 
         double *data;
         types::Double* o = new types::Double((int)ipar.size(), 1, &data);
+
+#ifdef _MSC_VER
+        std::transform(ipar.begin(), ipar.end(), stdext::checked_array_iterator<double*>(data, ipar.size()), toDouble);
+#else
         std::transform(ipar.begin(), ipar.end(), data, toDouble);
+#endif
         return o;
     }
 
@@ -1224,7 +1250,12 @@ struct nzcross
 
         double *data;
         types::Double* o = new types::Double((int)nzcross.size(), 1, &data);
+
+#ifdef _MSC_VER
+        std::transform(nzcross.begin(), nzcross.end(), stdext::checked_array_iterator<double*>(data, nzcross.size()), toDouble);
+#else
         std::transform(nzcross.begin(), nzcross.end(), data, toDouble);
+#endif
         return o;
     }
 
@@ -1274,7 +1305,12 @@ struct nmode
 
         double *data;
         types::Double* o = new types::Double((int)nmode.size(), 1, &data);
+
+#ifdef _MSC_VER
+        std::transform(nmode.begin(), nmode.end(), stdext::checked_array_iterator<double*>(data, nmode.size()), toDouble);
+#else
         std::transform(nmode.begin(), nmode.end(), data, toDouble);
+#endif
         return o;
     }
 
