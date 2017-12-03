@@ -435,7 +435,7 @@ int Variables::getVarsToVariableBrowser(std::list<Variable*>& lst)
     return static_cast<int>(lst.size());
 }
 
-int Variables::getCurrentScope(std::list<std::wstring>& lst, int level, bool sorted)
+int Variables::getCurrentScope(std::list<std::pair<std::wstring, int>>& lst, int level, bool sorted)
 {
     for (auto var : vars)
     {
@@ -443,8 +443,14 @@ int Variables::getCurrentScope(std::list<std::wstring>& lst, int level, bool sor
         {
             if (var.second->top()->m_iLevel == level)
             {
+                std::wstring wstrVarName(var.first.getName());
+                int iSize, iSizePlusType;
+
                 types::InternalType* pIT = var.second->top()->m_pIT;
-                lst.push_back(var.first.getName());
+                if (pIT->getMemory(&iSize, &iSizePlusType))
+                {
+                    lst.emplace_back(wstrVarName, iSizePlusType);
+                }
             }
         }
     }

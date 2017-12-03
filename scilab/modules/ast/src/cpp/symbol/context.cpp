@@ -603,9 +603,9 @@ int Context::getVarsToVariableBrowser(std::list<Variable*>& lst)
     return static_cast<int>(lst.size());
 }
 
-int Context::getCurrentScope(std::list<std::wstring>& lst, bool sorted)
+int Context::getCurrentScope(std::list<std::pair<std::wstring, int>>& lst, bool bSorted)
 {
-    return variables.getCurrentScope(lst, m_iLevel, sorted);
+    return variables.getCurrentScope(lst, m_iLevel, bSorted);
 }
 
 void Context::updateProtection(bool protect)
