@@ -271,14 +271,7 @@ void Diary::setPrefixIoModeFilter(diary_prefix_time_filter mode)
 /*--------------------------------------------------------------------------*/
 bool compareDiary(const Diary& first, const Diary& second)
 {
-    if (first.getID() < second.getID())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return first.getID() < second.getID();
 }
 
 /*--------------------------------------------------------------------------*/
