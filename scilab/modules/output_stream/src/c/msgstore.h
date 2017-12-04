@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - AS
  * Copyright (C) DIGITEO - 2010 - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,30 +24,6 @@
 /* only used from fortran */
 /* see lasterror.h */
 
-/**
-* TODO : comment
-* @param n
-*/
-OUTPUT_STREAM_IMPEXP int C2F(linestore)(int *n);
-
-/**
-* TODO : comment
-* @param str
-* @param n
-* @param length str (required by fortran)
-*/
-OUTPUT_STREAM_IMPEXP int C2F(funnamestore)(char *str, int *n, int lenstr);
-
-/**
-* TODO : comment
-* @param str
-* @param n
-*/
-OUTPUT_STREAM_IMPEXP int C2F(msgstore)(char *str, int *n);
-
-/**
-* TODO : comment
-*/
 OUTPUT_STREAM_IMPEXP int GetLastErrorCode(void);
 
 #endif /* __MSGSTORE_H__ */
