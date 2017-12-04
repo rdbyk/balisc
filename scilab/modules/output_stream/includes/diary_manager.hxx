@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #ifndef __DIARY_MANAGER_HXX__
 #define __DIARY_MANAGER_HXX__
@@ -156,26 +156,12 @@ OUTPUT_STREAM_IMPEXP int diarySetFilterMode(int _iId, diary_filter mode);
 OUTPUT_STREAM_IMPEXP int diarySetPrefixMode(int ID_diary, diary_prefix_time_format iPrefixMode);
 
 /*
-* get prefix mode
-* @param[in] ID
-* @return prefix mode
-*/
-OUTPUT_STREAM_IMPEXP int diaryGetPrefixMode(int ID_diary);
-
-/*
 * set prefix IO mode filter
 * @param[in] ID
 * @param[in] mode
 * @return 0 (OK) 1 (NOK)
 */
 OUTPUT_STREAM_IMPEXP int diarySetPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode);
-
-/*
-* get prefix IO mode filter
-* @param[in] ID
-* @return mode
-*/
-OUTPUT_STREAM_IMPEXP diary_prefix_time_filter diaryGetPrefixIoModeFilter(int ID_diary);
 
 #endif /* __DIARY_MANAGER_HXX__ */
 /*--------------------------------------------------------------------------*/

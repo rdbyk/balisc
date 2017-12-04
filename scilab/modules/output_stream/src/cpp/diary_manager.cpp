@@ -306,15 +306,6 @@ int diarySetPrefixMode(int ID_diary, diary_prefix_time_format iPrefixMode)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryGetPrefixMode(int ID_diary)
-{
-    if (SCIDIARY)
-    {
-        return SCIDIARY->getPrefixMode(ID_diary);
-    }
-    return -1;
-}
-/*--------------------------------------------------------------------------*/
 int diarySetPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode)
 {
     if (SCIDIARY)
@@ -323,14 +314,5 @@ int diarySetPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode)
         return 0;
     }
     return 1;
-}
-/*--------------------------------------------------------------------------*/
-diary_prefix_time_filter diaryGetPrefixIoModeFilter(int ID_diary)
-{
-    if (SCIDIARY)
-    {
-        return SCIDIARY->getPrefixIoModeFilter(ID_diary);
-    }
-    return PREFIX_FILTER_ERROR;
 }
 /*--------------------------------------------------------------------------*/
