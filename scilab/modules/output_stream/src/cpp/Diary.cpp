@@ -128,14 +128,14 @@ void Diary::write(const std::wstring& _wstr, bool bInput)
 
         if (fileDiary.good())
         {
-            char *line = NULL;
-            std::wstring wst = _wstr;
 #ifdef _MSC_VER
+            std::wstring wst = _wstr;
             /* carriage return for Windows */
             wst = replace(wst, std::wstring(L"\n"), std::wstring(L"\r\n"));
             wst = replace(wst, std::wstring(L"\r\r"), std::wstring(L"\r"));
+            char* line = wide_string_to_UTF8(wst.data());
 #endif
-            line = wide_string_to_UTF8(wst.data());
+            char* line = wide_string_to_UTF8(_wstr.data());
 
             if (bInput)         // input
             {
