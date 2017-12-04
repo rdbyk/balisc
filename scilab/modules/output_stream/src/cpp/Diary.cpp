@@ -33,8 +33,6 @@ Diary::Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename)
     std::wstring fullfilename = getUniqueFilename(_wfilename);
     if (autorename)
     {
-        fullfilename = getUniqueFilename(_wfilename);
-
         wchar_t* ws = getFullFilenameW(fullfilename.data());
         fullfilename = ws;
         FREE(ws);
@@ -52,14 +50,7 @@ Diary::Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename)
     IoModeFilter = DIARY_FILTER_INPUT_AND_OUTPUT;   // default command & input
     PrefixIoModeFilter = PREFIX_FILTER_NONE;    // no prefix
 
-    if (_mode == 0)
-    {
-        wofstream_mode = std::ios::trunc | std::ios::binary;
-    }
-    else
-    {
-        wofstream_mode = std::ios::app | std::ios::binary;
-    }
+    wofstream_mode = std::ios::binary | (_mode == 0 ? std::ios::trunc : std::ios::app);
 
 #ifdef _MSC_VER
     std::wofstream fileDiary(fullfilename, wofstream_mode);
@@ -128,20 +119,20 @@ void Diary::write(const std::wstring& _wstr, bool bInput)
 
         if (fileDiary.good())
         {
-            char *line = NULL;
-            std::wstring wst = _wstr;
 #ifdef _MSC_VER
+            std::wstring wst = _wstr;
             /* carriage return for Windows */
             wst = replace(wst, std::wstring(L"\n"), std::wstring(L"\r\n"));
             wst = replace(wst, std::wstring(L"\r\r"), std::wstring(L"\r"));
+            char* line = wide_string_to_UTF8(wst.data());
 #endif
-            line = wide_string_to_UTF8(wst.data());
+            char* line = wide_string_to_UTF8(_wstr.data());
 
             if (bInput)         // input
             {
-                if ((IoModeFilter == DIARY_FILTER_INPUT_AND_OUTPUT) || (IoModeFilter == DIARY_FILTER_ONLY_INPUT))
+                if (IoModeFilter & (DIARY_FILTER_INPUT_AND_OUTPUT | DIARY_FILTER_ONLY_INPUT))
                 {
-                    if ((PrefixIoModeFilter == PREFIX_FILTER_INPUT_AND_OUTPUT) || (PrefixIoModeFilter == PREFIX_FILTER_ONLY_INPUT))
+                    if (PrefixIoModeFilter & (PREFIX_FILTER_INPUT_AND_OUTPUT | PREFIX_FILTER_ONLY_INPUT))
                     {
                         char *timeInfo = wide_string_to_UTF8((wchar_t *) getDiaryDate(PrefixTimeFormat).c_str());
 
@@ -160,9 +151,9 @@ void Diary::write(const std::wstring& _wstr, bool bInput)
             }
             else                // output
             {
-                if ((IoModeFilter == DIARY_FILTER_INPUT_AND_OUTPUT) || (IoModeFilter == DIARY_FILTER_ONLY_OUTPUT))
+                if (IoModeFilter & (DIARY_FILTER_INPUT_AND_OUTPUT | DIARY_FILTER_ONLY_OUTPUT))
                 {
-                    if ((PrefixIoModeFilter == PREFIX_FILTER_INPUT_AND_OUTPUT) || (PrefixIoModeFilter == PREFIX_FILTER_ONLY_OUTPUT))
+                    if (PrefixIoModeFilter & (PREFIX_FILTER_INPUT_AND_OUTPUT | PREFIX_FILTER_ONLY_OUTPUT))
                     {
                         char *timeInfo = wide_string_to_UTF8((wchar_t *) getDiaryDate(PrefixTimeFormat).c_str());
 
@@ -219,12 +210,6 @@ bool Diary::setSuspendWrite(bool bWith)
 }
 
 /*--------------------------------------------------------------------------*/
-bool Diary::getSuspendWrite(void)
-{
-    return suspendwrite;
-}
-
-/*--------------------------------------------------------------------------*/
 std::wstring Diary::replace(const std::wstring& text, const std::wstring& s, const std::wstring& replacement)
 {
     std::wstring::size_type pos = 0;
@@ -242,12 +227,6 @@ std::wstring Diary::replace(const std::wstring& text, const std::wstring& s, con
         pos += replacement.length();
     }
     return ret;
-}
-
-/*--------------------------------------------------------------------------*/
-diary_filter Diary::getIOMode(void)
-{
-    return IoModeFilter;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -269,28 +248,9 @@ void Diary::setPrefixIoModeFilter(diary_prefix_time_filter mode)
 }
 
 /*--------------------------------------------------------------------------*/
-diary_prefix_time_format Diary::getPrefixMode(void)
-{
-    return PrefixTimeFormat;
-}
-
-/*--------------------------------------------------------------------------*/
-diary_prefix_time_filter Diary::getPrefixIoModeFilter(void)
-{
-    return PrefixIoModeFilter;
-}
-
-/*--------------------------------------------------------------------------*/
 bool compareDiary(const Diary& first, const Diary& second)
 {
-    if (first.getID() < second.getID())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return first.getID() < second.getID();
 }
 
 /*--------------------------------------------------------------------------*/

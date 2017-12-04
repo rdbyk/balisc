@@ -1,9 +1,8 @@
-/*--------------------------------------------------------------------------*/
 /*
-* ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) DIGITEO - 2009 - Allan CORNET
-*
+ * ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #ifndef __DIARYLIST_HXX__
 #define __DIARYLIST_HXX__
@@ -60,24 +59,17 @@ public:
     /* test if exists a diary by filename */
     bool exists(const std::wstring& _wfilename);
 
-    /* set & get Resume mode */
+    /* set Resume mode */
     void setSuspendWrite(bool bWith);
-    bool *getSuspendWrite(int *sizeboolArray);
-
     void setSuspendWrite(int ID_diary, bool bWith);
-    bool getSuspendWrite(int ID_diary);
 
     /* get ID by filename */
     int getID(const std::wstring& _wfilename);
 
-    /* set & get mode */
+    /* set modes */
     void setFilterMode(int ID_diary, diary_filter mode);
-
     void setPrefixMode(int ID_diary, diary_prefix_time_format iPrefixMode);
-    diary_prefix_time_format getPrefixMode(int ID_diary);
-
     void setPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode);
-    diary_prefix_time_filter getPrefixIoModeFilter(int ID_diary);
 
 private:
     /* list of diary */
