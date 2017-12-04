@@ -64,7 +64,7 @@ public:
     std::wstring getFilename(void);
 
     /*
-    * get & set IO mode
+    * set IO mode
     */
     void setIOMode(diary_filter _mode);
 
@@ -84,17 +84,17 @@ public:
     void writeln(const std::wstring& _wstr, bool bInput);
 
     /*
-    * get & set Resume mode
+    * set Resume mode
     */
     bool setSuspendWrite(bool bWith);
 
     /*
-    * get & set Prefix mode
+    * set Prefix mode
     */
     void setPrefixMode(diary_prefix_time_format iPrefixTimeFormat);
 
     /*
-    * get & set IO mode filter
+    * set IO mode filter
     */
     void setPrefixIoModeFilter(diary_prefix_time_filter mode);
 };

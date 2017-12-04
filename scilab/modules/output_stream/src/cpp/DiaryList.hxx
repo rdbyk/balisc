@@ -59,14 +59,14 @@ public:
     /* test if exists a diary by filename */
     bool exists(const std::wstring& _wfilename);
 
-    /* set & get Resume mode */
+    /* set Resume mode */
     void setSuspendWrite(bool bWith);
     void setSuspendWrite(int ID_diary, bool bWith);
 
     /* get ID by filename */
     int getID(const std::wstring& _wfilename);
 
-    /* set & get mode */
+    /* set modes */
     void setFilterMode(int ID_diary, diary_filter mode);
     void setPrefixMode(int ID_diary, diary_prefix_time_format iPrefixMode);
     void setPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode);
