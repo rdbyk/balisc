@@ -52,14 +52,7 @@ Diary::Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename)
     IoModeFilter = DIARY_FILTER_INPUT_AND_OUTPUT;   // default command & input
     PrefixIoModeFilter = PREFIX_FILTER_NONE;    // no prefix
 
-    if (_mode == 0)
-    {
-        wofstream_mode = std::ios::trunc | std::ios::binary;
-    }
-    else
-    {
-        wofstream_mode = std::ios::app | std::ios::binary;
-    }
+    wofstream_mode = std::ios::binary | (_mode == 0 ? std::ios::trunc : std::ios::app);
 
 #ifdef _MSC_VER
     std::wofstream fileDiary(fullfilename, wofstream_mode);
