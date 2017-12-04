@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #ifndef _WIN64
@@ -20,6 +20,7 @@
 #endif
 /*--------------------------------------------------------------------------*/
 #include <sstream>
+#include "DiaryModesEnum.hxx"
 #include "getDiaryDate.hxx"
 /*--------------------------------------------------------------------------*/
 extern "C"
@@ -40,14 +41,14 @@ std::wstring getDiaryDate(int format_mode)
 
     switch (format_mode)
     {
-        case 0:
+        case PREFIX_TIME_FORMAT_UNIX_EPOCH:
         default: // UNIX TIMESTAMP
         {
             StrStream << (unsigned int)tDate;
             wstrdate = StrStream.str();
         }
         break;
-        case 1: // http://en.wikipedia.org/wiki/ISO_8601 YYYY-MM-DD hh:mm:ss
+        case PREFIX_TIME_FORMAT_ISO_8601: // http://en.wikipedia.org/wiki/ISO_8601 YYYY-MM-DD hh:mm:ss
         {
             struct tm *nowstruct = localtime(&tDate);
 

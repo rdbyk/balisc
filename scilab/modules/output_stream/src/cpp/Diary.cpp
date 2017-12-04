@@ -139,9 +139,9 @@ void Diary::write(const std::wstring& _wstr, bool bInput)
 
             if (bInput)         // input
             {
-                if ((IoModeFilter == DIARY_FILTER_INPUT_AND_OUTPUT) || (IoModeFilter == DIARY_FILTER_ONLY_INPUT))
+                if (IoModeFilter & (DIARY_FILTER_INPUT_AND_OUTPUT | DIARY_FILTER_ONLY_INPUT))
                 {
-                    if ((PrefixIoModeFilter == PREFIX_FILTER_INPUT_AND_OUTPUT) || (PrefixIoModeFilter == PREFIX_FILTER_ONLY_INPUT))
+                    if (PrefixIoModeFilter & (PREFIX_FILTER_INPUT_AND_OUTPUT | PREFIX_FILTER_ONLY_INPUT))
                     {
                         char *timeInfo = wide_string_to_UTF8((wchar_t *) getDiaryDate(PrefixTimeFormat).c_str());
 
@@ -160,9 +160,9 @@ void Diary::write(const std::wstring& _wstr, bool bInput)
             }
             else                // output
             {
-                if ((IoModeFilter == DIARY_FILTER_INPUT_AND_OUTPUT) || (IoModeFilter == DIARY_FILTER_ONLY_OUTPUT))
+                if (IoModeFilter & (DIARY_FILTER_INPUT_AND_OUTPUT | DIARY_FILTER_ONLY_OUTPUT))
                 {
-                    if ((PrefixIoModeFilter == PREFIX_FILTER_INPUT_AND_OUTPUT) || (PrefixIoModeFilter == PREFIX_FILTER_ONLY_OUTPUT))
+                    if (PrefixIoModeFilter & (PREFIX_FILTER_INPUT_AND_OUTPUT | PREFIX_FILTER_ONLY_OUTPUT))
                     {
                         char *timeInfo = wide_string_to_UTF8((wchar_t *) getDiaryDate(PrefixTimeFormat).c_str());
 
