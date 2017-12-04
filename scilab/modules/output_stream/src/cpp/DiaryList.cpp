@@ -1,9 +1,8 @@
-/*--------------------------------------------------------------------------*/
 /*
-* ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) DIGITEO - 2009 - Allan CORNET
-*
+ * ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include "DiaryList.hxx"
 
@@ -288,20 +287,6 @@ void DiaryList::setPrefixMode(int ID_diary, diary_prefix_time_format iPrefixMode
     }
 }
 /*--------------------------------------------------------------------------*/
-diary_prefix_time_format DiaryList::getPrefixMode(int ID_diary)
-{
-    std::list<Diary>::iterator iter;
-
-    for ( iter = LSTDIARY.begin(); iter != LSTDIARY.end(); iter++)
-    {
-        if (iter->getID() == ID_diary)
-        {
-            return iter->getPrefixMode();
-        }
-    }
-    return PREFIX_TIME_FORMAT_ERROR;
-}
-/*--------------------------------------------------------------------------*/
 void DiaryList::setPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode)
 {
     std::list<Diary>::iterator iter;
@@ -315,19 +300,3 @@ void DiaryList::setPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mod
         }
     }
 }
-/*--------------------------------------------------------------------------*/
-diary_prefix_time_filter DiaryList::getPrefixIoModeFilter(int ID_diary)
-{
-    std::list<Diary>::iterator iter;
-
-    for ( iter = LSTDIARY.begin(); iter != LSTDIARY.end(); iter++)
-    {
-        if (iter->getID() == ID_diary)
-        {
-            return iter->getPrefixIoModeFilter();
-        }
-    }
-    return PREFIX_FILTER_ERROR;
-}
-/*--------------------------------------------------------------------------*/
-
