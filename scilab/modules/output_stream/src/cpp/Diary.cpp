@@ -33,8 +33,6 @@ Diary::Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename)
     std::wstring fullfilename = getUniqueFilename(_wfilename);
     if (autorename)
     {
-        fullfilename = getUniqueFilename(_wfilename);
-
         wchar_t* ws = getFullFilenameW(fullfilename.data());
         fullfilename = ws;
         FREE(ws);
