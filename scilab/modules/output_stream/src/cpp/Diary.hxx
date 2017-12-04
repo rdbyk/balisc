@@ -67,7 +67,6 @@ public:
     * get & set IO mode
     */
     void setIOMode(diary_filter _mode);
-    diary_filter getIOMode(void);
 
     /*
     * get ID of this diary

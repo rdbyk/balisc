@@ -238,12 +238,6 @@ std::wstring Diary::replace(const std::wstring& text, const std::wstring& s, con
 }
 
 /*--------------------------------------------------------------------------*/
-diary_filter Diary::getIOMode(void)
-{
-    return IoModeFilter;
-}
-
-/*--------------------------------------------------------------------------*/
 void Diary::setIOMode(diary_filter _mode)
 {
     IoModeFilter = _mode;
