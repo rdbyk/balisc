@@ -212,12 +212,6 @@ bool Diary::setSuspendWrite(bool bWith)
 }
 
 /*--------------------------------------------------------------------------*/
-bool Diary::getSuspendWrite(void)
-{
-    return suspendwrite;
-}
-
-/*--------------------------------------------------------------------------*/
 std::wstring Diary::replace(const std::wstring& text, const std::wstring& s, const std::wstring& replacement)
 {
     std::wstring::size_type pos = 0;

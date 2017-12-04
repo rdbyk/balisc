@@ -87,7 +87,6 @@ public:
     * get & set Resume mode
     */
     bool setSuspendWrite(bool bWith);
-    bool getSuspendWrite(void);
 
     /*
     * get & set Prefix mode

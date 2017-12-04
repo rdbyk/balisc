@@ -61,10 +61,7 @@ public:
 
     /* set & get Resume mode */
     void setSuspendWrite(bool bWith);
-    bool *getSuspendWrite(int *sizeboolArray);
-
     void setSuspendWrite(int ID_diary, bool bWith);
-    bool getSuspendWrite(int ID_diary);
 
     /* get ID by filename */
     int getID(const std::wstring& _wfilename);

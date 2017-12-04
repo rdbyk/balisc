@@ -196,27 +196,6 @@ void DiaryList::setSuspendWrite(bool bWith)
     }
 }
 /*--------------------------------------------------------------------------*/
-bool *DiaryList::getSuspendWrite(int *sizeboolArray)
-{
-    bool *bSuspend = NULL;
-    *sizeboolArray = 0;
-
-    LSTDIARY.sort(compareDiary);
-
-    *sizeboolArray = (int)LSTDIARY.size();
-    if (*sizeboolArray > 0)
-    {
-        int i = 0;
-        bSuspend = new bool[*sizeboolArray];
-        std::list<Diary>::iterator iter;
-        for ( iter = LSTDIARY.begin(); iter != LSTDIARY.end(); iter++)
-        {
-            bSuspend[i++] = iter->getSuspendWrite();
-        }
-    }
-    return bSuspend;
-}
-/*--------------------------------------------------------------------------*/
 void DiaryList::setSuspendWrite(int  ID_diary, bool bWith)
 {
     std::list<Diary>::iterator iter;
@@ -228,20 +207,6 @@ void DiaryList::setSuspendWrite(int  ID_diary, bool bWith)
             iter->setSuspendWrite(bWith);
         }
     }
-}
-/*--------------------------------------------------------------------------*/
-bool DiaryList::getSuspendWrite(int  ID_diary)
-{
-    std::list<Diary>::iterator iter;
-
-    for ( iter = LSTDIARY.begin(); iter != LSTDIARY.end(); iter++)
-    {
-        if (iter->getID() == ID_diary)
-        {
-            return iter->getSuspendWrite();
-        }
-    }
-    return false;
 }
 /*--------------------------------------------------------------------------*/
 int DiaryList::getID(const std::wstring& _wfilename)
