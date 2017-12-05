@@ -1,17 +1,17 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 
 #include "functions_gw.hxx"
@@ -69,14 +69,23 @@ types::Function::ReturnValue sci_libraryinfo(types::typed_list &in, int _iRetCou
 
     std::list<std::wstring> names;
     int size = lib->getMacrosName(names);
-    types::String* pNames = new types::String(size, 1);
-    int i = 0;
-    for (auto name : names)
-    {
-        pNames->set(i++, name.c_str());
-    }
 
-    out.push_back(pNames);
+    if (size)
+    {
+        types::String* pNames = new types::String(size, 1);
+
+        int i = 0;
+        for (auto name : names)
+        {
+            pNames->set(i++, name.c_str());
+        }
+
+        out.push_back(pNames);
+    }
+    else
+    {
+        out.push_back(types::Double::Empty());
+    }
 
     if (_iRetCount == 2)
     {
