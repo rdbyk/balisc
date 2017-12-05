@@ -26,24 +26,36 @@ static const int nbrCommands = 29;
 /*--------------------------------------------------------------------------*/
 static char *CommandWords[] =
 {
-    "if", "else",
-    "for", "while",
-    "end", "select",
-    "case", "quit",
-    "return", "help",
-    "what", "who",
-    "pause", "clear",
-    "resume", "then",
-    "do", "apropos",
-    "abort", "break",
-    "elseif", "pwd",
-    "function", "endfunction",
-    "clc", "continue",
-    "try", "catch",
-    "exit"
+    "abort",
+    "apropos",
+    "break",
+    "case",
+    "catch",
+    "clc",
+    "clear",
+    "continue",
+    "do",
+    "else",
+    "elseif",
+    "end",
+    "endfunction",
+    "exit",
+    "function",
+    "for",
+    "help",
+    "if",
+    "pause",
+    "pwd",
+    "quit",
+    "resume",
+    "return",
+    "select",
+    "then",
+    "try",
+    "what",
+    "while",
+    "who"
 };
-/*--------------------------------------------------------------------------*/
-static void SortStrings(char **Strs, int SizeOfStrs);
 /*--------------------------------------------------------------------------*/
 char **getcommandkeywords(int *sizearray)
 {
@@ -59,8 +71,6 @@ char **getcommandkeywords(int *sizearray)
             keywords[i] = os_strdup(CommandWords[i]);
         }
         *sizearray =  nbrCommands;
-
-        SortStrings(keywords, *sizearray);
     }
     else
     {
@@ -68,29 +78,5 @@ char **getcommandkeywords(int *sizearray)
     }
 
     return keywords;
-}
-/*--------------------------------------------------------------------------*/
-static void SortStrings(char **Strs, int SizeOfStrs)
-{
-    int fin, i;
-    for (fin = SizeOfStrs - 1; fin > 0; fin--)
-    {
-        int Sorted = FALSE;
-        for (i = 0; i < fin; i++)
-        {
-            if (balisc_strcmp(Strs[i], Strs[i + 1]) > 0)
-            {
-                char *tmp;
-                memcpy(&tmp, Strs + i, sizeof(char *));
-                memcpy(Strs + i, Strs + (i + 1), sizeof(char *));
-                memcpy(Strs + (i + 1), &tmp, sizeof(char *));
-                Sorted = TRUE;
-            }
-        }
-        if (!Sorted)
-        {
-            break;
-        }
-    }
 }
 /*--------------------------------------------------------------------------*/
