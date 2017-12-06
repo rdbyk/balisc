@@ -182,7 +182,6 @@ am__objects_2 = src/fortran/isort1.lo src/fortran/spt.lo \
 	src/fortran/ordmmd.lo src/fortran/blkfc1.lo \
 	src/fortran/blkfct.lo src/fortran/blkslv.lo \
 	src/fortran/inpnv.lo src/fortran/symfct.lo
-
 am_libscisparse_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscisparse_algo_la_OBJECTS = $(am_libscisparse_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
