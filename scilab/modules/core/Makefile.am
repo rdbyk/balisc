@@ -1,7 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
-#
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -36,7 +36,6 @@ CORE_C_SOURCES = \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
     src/c/saveCWDInPreferences.c \
-    src/c/getmaxMALLOC.c \
     src/c/sci_mem_alloc.c \
     src/c/hashtable/hashtable.c \
     src/c/hashtable/hashtable_utility.c \
