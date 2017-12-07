@@ -36,7 +36,7 @@
 extern "C"
 {
 #include "findfiles.h"
-#include "configvariable_interface.h"
+#include "configvariable_interface.h" /* FIXME: enum scilabMode */
 #include "os_string.h"
 #include "strcmp.h"
 }
