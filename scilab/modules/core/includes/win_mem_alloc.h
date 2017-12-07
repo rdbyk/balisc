@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2005 - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -53,20 +53,9 @@ void MyVirtualFree2(void *lpAddress, char *file, int line);
 #endif
 #define CALLOC(x,y) MyHeapAlloc(((x)*(y)),__FILE__,__LINE__)
 
-
 #ifdef REALLOC
 #undef REALLOC
 #endif
 #define REALLOC(x,y) MyHeapRealloc(x, y,__FILE__,__LINE__)
-
-#ifdef SCISTACKMALLOC
-#undef SCISTACKMALLOC
-#endif
-#define SCISTACKMALLOC(x) MyVirtualAlloc((unsigned long)x,__FILE__,__LINE__)
-
-#ifdef SCISTACKFREE
-#undef SCISTACKFREE
-#endif
-#define SCISTACKFREE(x) if (x  != NULL) MyVirtualFree((char *) x,__FILE__,__LINE__);
 
 #endif /* __WIN_MEM_ALLOC__ */
