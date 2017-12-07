@@ -16,6 +16,7 @@
  */
 
 #include <algorithm>
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -27,7 +28,7 @@ extern "C"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "sciprint.h"
-#include "configvariable_interface.h"
+#include "configvariable_interface.h" /* FIXME: enum scilabMode */
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
@@ -55,7 +56,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
     CheckInputArgument(pvApiCtx, 0, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if ( getScilabMode() != SCILAB_NWNI )
+    if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
         /*--------------------*/
         /* clipboard("paste") */
