@@ -3,8 +3,8 @@
  * Copyright (C) DIGITEO - 2009-2010 - Vincent COUVERT <vincent.couvert@scilab.org>
  * Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
  * Copyright (C) DIGITEO - 2010 - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,6 +18,7 @@
 #include "Xcos.hxx"
 #include "GiwsException.hxx"
 #include "loadStatus.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -28,7 +29,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
-#include "configvariable_interface.h"
+#include "configvariable_interface.h" /* FIXME: enum scilabMode */
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
@@ -40,7 +41,7 @@ int sci_closeXcosFromScilab(char *fname, void* pvApiCtx)
     CheckLhs(0, 1);
 
     // only if xcos was already opened and with supported mode
-    if ((getScilabMode() != SCILAB_NWNI) && get_loaded_status() == XCOS_CALLED)
+    if ((ConfigVariable::getScilabMode() != SCILAB_NWNI) && get_loaded_status() == XCOS_CALLED)
     {
         try
         {
