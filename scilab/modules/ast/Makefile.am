@@ -33,7 +33,6 @@ src/cpp/ast/consoledebugger.cpp \
 src/cpp/ast/debuggervisitor.cpp \
 src/cpp/ast/debugmanager.cpp \
 src/cpp/ast/prettyprintvisitor.cpp \
-src/cpp/operations/interface_addition.cpp \
 src/cpp/operations/operations.cpp \
 src/cpp/operations/types_addition.cpp \
 src/cpp/operations/types_and.cpp \
@@ -398,7 +397,6 @@ includes/exps/var.hxx \
 includes/exps/whileexp.hxx \
 includes/operations/doublecomplex.h \
 includes/operations/generic_operations.hxx \
-includes/operations/interface_addition.h \
 includes/operations/invert_matrix.h \
 includes/operations/matrix_addition.h \
 includes/operations/matrix_division.h \
