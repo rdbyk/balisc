@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) ENPC
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,27 +40,8 @@
 /* Where the system properties are */
 #define XMLSYSTEMPROPERTIES "%s/modules/jvm/etc/jvm-property.xml"
 
-/* Where is the gateway file of a module */
-#define FORMATGATEWAYFILENAME "%s/modules/%s/sci_gateway/%s_gateway.xml"
-
 /* Where is the version file of a module */
 #define FORMATVERSIONFILENAME  "%s/modules/%s/version.xml"
-
-
-/* Where is the Scilab startup script */
-#define DEFAULTSCILABSTARTUP "SCI/etc/scilab.start"
-
-/* What is the default Scilab StackSize ? */
-#define DEFAULTSTACKSIZE 1000000
-
-/* default Scilab global StackSize  */
-#if defined(_MSC_VER) && defined(_WIN64)
-/* On Windows x64 initial global stacksize must be bigger :( */
-#define DEFAULTGSTACKSIZE DEFAULTSTACKSIZE
-#else
-#define DEFAULTGSTACKSIZE 1000
-#endif
-
 
 //#define DefaultScilabQuit "SCI/etc/scilab.quit"
 //static char DefaultSCIenv[]="../..";
