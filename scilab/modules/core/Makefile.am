@@ -22,7 +22,6 @@ CORE_C_SOURCES = \
     src/c/version.c \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
-    src/c/getcommandlineargs.c \
     src/c/commandwords.c \
     src/c/freeArrayOfString.c \
     src/c/getstaticdebuginfo.c \
@@ -230,7 +229,6 @@ includes/BOOL.h \
 includes/core_math.h \
 includes/exit_status.hxx \
 includes/freeArrayOfString.h \
-includes/getcommandlineargs.h \
 includes/getmemory.h \
 includes/getos.h \
 includes/getversion.h \

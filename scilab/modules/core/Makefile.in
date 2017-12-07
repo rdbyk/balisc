@@ -204,7 +204,6 @@ am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-version.lo \
 	src/c/libscicore_algo_la-GetXmlFileEncoding.lo \
 	src/c/libscicore_algo_la-islittleendian.lo \
-	src/c/libscicore_algo_la-getcommandlineargs.lo \
 	src/c/libscicore_algo_la-commandwords.lo \
 	src/c/libscicore_algo_la-freeArrayOfString.lo \
 	src/c/libscicore_algo_la-getstaticdebuginfo.lo \
@@ -766,7 +765,6 @@ CORE_C_SOURCES = \
     src/c/version.c \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
-    src/c/getcommandlineargs.c \
     src/c/commandwords.c \
     src/c/freeArrayOfString.c \
     src/c/getstaticdebuginfo.c \
@@ -925,7 +923,6 @@ includes/BOOL.h \
 includes/core_math.h \
 includes/exit_status.hxx \
 includes/freeArrayOfString.h \
-includes/getcommandlineargs.h \
 includes/getmemory.h \
 includes/getos.h \
 includes/getversion.h \
@@ -1122,8 +1119,6 @@ src/c/libscicore_algo_la-version.lo: src/c/$(am__dirstamp) \
 src/c/libscicore_algo_la-GetXmlFileEncoding.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-islittleendian.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-getcommandlineargs.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-commandwords.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
@@ -1508,7 +1503,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-commandwords.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfString.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getcommandlineargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getdynamicdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getmodules.Plo@am__quote@
@@ -1635,13 +1629,6 @@ src/c/libscicore_algo_la-islittleendian.lo: src/c/islittleendian.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/islittleendian.c' object='src/c/libscicore_algo_la-islittleendian.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-islittleendian.lo `test -f 'src/c/islittleendian.c' || echo '$(srcdir)/'`src/c/islittleendian.c
-
-src/c/libscicore_algo_la-getcommandlineargs.lo: src/c/getcommandlineargs.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-getcommandlineargs.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-getcommandlineargs.Tpo -c -o src/c/libscicore_algo_la-getcommandlineargs.lo `test -f 'src/c/getcommandlineargs.c' || echo '$(srcdir)/'`src/c/getcommandlineargs.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-getcommandlineargs.Tpo src/c/$(DEPDIR)/libscicore_algo_la-getcommandlineargs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getcommandlineargs.c' object='src/c/libscicore_algo_la-getcommandlineargs.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-getcommandlineargs.lo `test -f 'src/c/getcommandlineargs.c' || echo '$(srcdir)/'`src/c/getcommandlineargs.c
 
 src/c/libscicore_algo_la-commandwords.lo: src/c/commandwords.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-commandwords.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-commandwords.Tpo -c -o src/c/libscicore_algo_la-commandwords.lo `test -f 'src/c/commandwords.c' || echo '$(srcdir)/'`src/c/commandwords.c
