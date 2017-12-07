@@ -923,7 +923,6 @@ libscicore_la_include_HEADERS = \
 includes/backtrace_print.h \
 includes/BOOL.h \
 includes/core_math.h \
-includes/existfunction.h \
 includes/exit_status.hxx \
 includes/freeArrayOfString.h \
 includes/getcommandlineargs.h \
