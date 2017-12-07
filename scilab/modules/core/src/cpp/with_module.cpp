@@ -18,9 +18,7 @@
 
 extern "C"
 {
-#include <string.h>
 #include "with_module.h"
-#include "getmodules.h"
 }
 /*--------------------------------------------------------------------------*/
 BOOL with_module(wchar_t* _pwstModule)
