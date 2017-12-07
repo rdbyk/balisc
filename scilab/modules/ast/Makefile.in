@@ -222,9 +222,8 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/symbol/symbol.cpp src/cpp/symbol/variables.cpp \
 	src/cpp/system_env/configvariable.cpp \
 	src/cpp/system_env/configvariable_interface.cpp \
-	src/cpp/system_env/context_get.cpp \
-	src/cpp/system_env/dynamic_module.cpp \
-	src/cpp/system_env/home.cpp src/cpp/system_env/lasterror.cpp \
+	src/cpp/system_env/context_get.cpp src/cpp/system_env/home.cpp \
+	src/cpp/system_env/lasterror.cpp \
 	src/cpp/system_env/sci_home.cpp \
 	src/cpp/system_env/sci_path.cpp \
 	src/cpp/system_env/sci_tmpdir.cpp \
@@ -425,7 +424,6 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/system_env/libsciast_la-configvariable.lo \
 	src/cpp/system_env/libsciast_la-configvariable_interface.lo \
 	src/cpp/system_env/libsciast_la-context_get.lo \
-	src/cpp/system_env/libsciast_la-dynamic_module.lo \
 	src/cpp/system_env/libsciast_la-home.lo \
 	src/cpp/system_env/libsciast_la-lasterror.lo \
 	src/cpp/system_env/libsciast_la-sci_home.lo \
@@ -1033,9 +1031,8 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/symbol/symbol.cpp src/cpp/symbol/variables.cpp \
 	src/cpp/system_env/configvariable.cpp \
 	src/cpp/system_env/configvariable_interface.cpp \
-	src/cpp/system_env/context_get.cpp \
-	src/cpp/system_env/dynamic_module.cpp \
-	src/cpp/system_env/home.cpp src/cpp/system_env/lasterror.cpp \
+	src/cpp/system_env/context_get.cpp src/cpp/system_env/home.cpp \
+	src/cpp/system_env/lasterror.cpp \
 	src/cpp/system_env/sci_home.cpp \
 	src/cpp/system_env/sci_path.cpp \
 	src/cpp/system_env/sci_tmpdir.cpp \
@@ -1365,7 +1362,6 @@ includes/symbol/variables.hxx \
 includes/system_env/configvariable.hxx \
 includes/system_env/configvariable_interface.h \
 includes/system_env/context_get.h \
-includes/system_env/dynamic_module.h \
 includes/system_env/home.h \
 includes/system_env/lasterror.h \
 includes/system_env/sci_home.h \
@@ -1746,9 +1742,6 @@ src/cpp/system_env/libsciast_la-configvariable_interface.lo:  \
 	src/cpp/system_env/$(am__dirstamp) \
 	src/cpp/system_env/$(DEPDIR)/$(am__dirstamp)
 src/cpp/system_env/libsciast_la-context_get.lo:  \
-	src/cpp/system_env/$(am__dirstamp) \
-	src/cpp/system_env/$(DEPDIR)/$(am__dirstamp)
-src/cpp/system_env/libsciast_la-dynamic_module.lo:  \
 	src/cpp/system_env/$(am__dirstamp) \
 	src/cpp/system_env/$(DEPDIR)/$(am__dirstamp)
 src/cpp/system_env/libsciast_la-home.lo:  \
@@ -2509,7 +2502,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-configvariable_interface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-context_get.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-coverage_instance.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-home.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-lasterror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-numericconstants.Plo@am__quote@
@@ -2932,13 +2924,6 @@ src/cpp/system_env/libsciast_la-context_get.lo: src/cpp/system_env/context_get.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/system_env/context_get.cpp' object='src/cpp/system_env/libsciast_la-context_get.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/system_env/libsciast_la-context_get.lo `test -f 'src/cpp/system_env/context_get.cpp' || echo '$(srcdir)/'`src/cpp/system_env/context_get.cpp
-
-src/cpp/system_env/libsciast_la-dynamic_module.lo: src/cpp/system_env/dynamic_module.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/system_env/libsciast_la-dynamic_module.lo -MD -MP -MF src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Tpo -c -o src/cpp/system_env/libsciast_la-dynamic_module.lo `test -f 'src/cpp/system_env/dynamic_module.cpp' || echo '$(srcdir)/'`src/cpp/system_env/dynamic_module.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Tpo src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/system_env/dynamic_module.cpp' object='src/cpp/system_env/libsciast_la-dynamic_module.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/system_env/libsciast_la-dynamic_module.lo `test -f 'src/cpp/system_env/dynamic_module.cpp' || echo '$(srcdir)/'`src/cpp/system_env/dynamic_module.cpp
 
 src/cpp/system_env/libsciast_la-home.lo: src/cpp/system_env/home.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/system_env/libsciast_la-home.lo -MD -MP -MF src/cpp/system_env/$(DEPDIR)/libsciast_la-home.Tpo -c -o src/cpp/system_env/libsciast_la-home.lo `test -f 'src/cpp/system_env/home.cpp' || echo '$(srcdir)/'`src/cpp/system_env/home.cpp

@@ -61,7 +61,6 @@ src/cpp/symbol/variables.cpp \
 src/cpp/system_env/configvariable.cpp \
 src/cpp/system_env/configvariable_interface.cpp \
 src/cpp/system_env/context_get.cpp \
-src/cpp/system_env/dynamic_module.cpp \
 src/cpp/system_env/home.cpp \
 src/cpp/system_env/lasterror.cpp \
 src/cpp/system_env/sci_home.cpp \
@@ -435,7 +434,6 @@ includes/symbol/variables.hxx \
 includes/system_env/configvariable.hxx \
 includes/system_env/configvariable_interface.h \
 includes/system_env/context_get.h \
-includes/system_env/dynamic_module.h \
 includes/system_env/home.h \
 includes/system_env/lasterror.h \
 includes/system_env/sci_home.h \
