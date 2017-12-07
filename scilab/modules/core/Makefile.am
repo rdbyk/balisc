@@ -14,7 +14,6 @@
 CORE_C_SOURCES = \
     src/c/csignal.c \
     src/c/md5.c \
-    src/c/getmodules.c \
     src/c/getmemory.c \
     src/c/isanan.c \
     src/c/returnanan.c \
@@ -22,7 +21,6 @@ CORE_C_SOURCES = \
     src/c/version.c \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
-    src/c/getcommandlineargs.c \
     src/c/commandwords.c \
     src/c/freeArrayOfString.c \
     src/c/getstaticdebuginfo.c \
@@ -35,7 +33,6 @@ CORE_C_SOURCES = \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
     src/c/saveCWDInPreferences.c \
-    src/c/sci_mem_alloc.c \
     src/c/hashtable/hashtable.c \
     src/c/hashtable/hashtable_utility.c \
     src/c/InitializePreferences.c
@@ -228,10 +225,8 @@ libscicore_la_include_HEADERS = \
 includes/backtrace_print.h \
 includes/BOOL.h \
 includes/core_math.h \
-includes/existfunction.h \
 includes/exit_status.hxx \
 includes/freeArrayOfString.h \
-includes/getcommandlineargs.h \
 includes/getmemory.h \
 includes/getos.h \
 includes/getversion.h \
