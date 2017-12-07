@@ -199,7 +199,6 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/ast/consoledebugger.cpp \
 	src/cpp/ast/debuggervisitor.cpp src/cpp/ast/debugmanager.cpp \
 	src/cpp/ast/prettyprintvisitor.cpp \
-	src/cpp/operations/interface_addition.cpp \
 	src/cpp/operations/operations.cpp \
 	src/cpp/operations/types_addition.cpp \
 	src/cpp/operations/types_and.cpp \
@@ -398,7 +397,6 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/ast/libsciast_la-debuggervisitor.lo \
 	src/cpp/ast/libsciast_la-debugmanager.lo \
 	src/cpp/ast/libsciast_la-prettyprintvisitor.lo \
-	src/cpp/operations/libsciast_la-interface_addition.lo \
 	src/cpp/operations/libsciast_la-operations.lo \
 	src/cpp/operations/libsciast_la-types_addition.lo \
 	src/cpp/operations/libsciast_la-types_and.lo \
@@ -1012,7 +1010,6 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/ast/consoledebugger.cpp \
 	src/cpp/ast/debuggervisitor.cpp src/cpp/ast/debugmanager.cpp \
 	src/cpp/ast/prettyprintvisitor.cpp \
-	src/cpp/operations/interface_addition.cpp \
 	src/cpp/operations/operations.cpp \
 	src/cpp/operations/types_addition.cpp \
 	src/cpp/operations/types_and.cpp \
@@ -1330,7 +1327,6 @@ includes/exps/var.hxx \
 includes/exps/whileexp.hxx \
 includes/operations/doublecomplex.h \
 includes/operations/generic_operations.hxx \
-includes/operations/interface_addition.h \
 includes/operations/invert_matrix.h \
 includes/operations/matrix_addition.h \
 includes/operations/matrix_division.h \
@@ -1339,7 +1335,6 @@ includes/operations/matrix_multiplication.h \
 includes/operations/matrix_power.h \
 includes/operations/matrix_right_division.h \
 includes/operations/matrix_transpose.h \
-includes/operations/operation_f.h \
 includes/operations/operations.hxx \
 includes/operations/types_addition.hxx \
 includes/operations/types_and.hxx \
@@ -1653,9 +1648,6 @@ src/cpp/operations/$(am__dirstamp):
 src/cpp/operations/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/operations/$(DEPDIR)
 	@: > src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
-src/cpp/operations/libsciast_la-interface_addition.lo:  \
-	src/cpp/operations/$(am__dirstamp) \
-	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
 src/cpp/operations/libsciast_la-operations.lo:  \
 	src/cpp/operations/$(am__dirstamp) \
 	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
@@ -2488,7 +2480,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-shortcutvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-treevisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-visitor_common.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-interface_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_and.Plo@am__quote@
@@ -2745,13 +2736,6 @@ src/cpp/ast/libsciast_la-prettyprintvisitor.lo: src/cpp/ast/prettyprintvisitor.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ast/prettyprintvisitor.cpp' object='src/cpp/ast/libsciast_la-prettyprintvisitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/ast/libsciast_la-prettyprintvisitor.lo `test -f 'src/cpp/ast/prettyprintvisitor.cpp' || echo '$(srcdir)/'`src/cpp/ast/prettyprintvisitor.cpp
-
-src/cpp/operations/libsciast_la-interface_addition.lo: src/cpp/operations/interface_addition.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-interface_addition.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-interface_addition.Tpo -c -o src/cpp/operations/libsciast_la-interface_addition.lo `test -f 'src/cpp/operations/interface_addition.cpp' || echo '$(srcdir)/'`src/cpp/operations/interface_addition.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/operations/$(DEPDIR)/libsciast_la-interface_addition.Tpo src/cpp/operations/$(DEPDIR)/libsciast_la-interface_addition.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/operations/interface_addition.cpp' object='src/cpp/operations/libsciast_la-interface_addition.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-interface_addition.lo `test -f 'src/cpp/operations/interface_addition.cpp' || echo '$(srcdir)/'`src/cpp/operations/interface_addition.cpp
 
 src/cpp/operations/libsciast_la-operations.lo: src/cpp/operations/operations.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-operations.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-operations.Tpo -c -o src/cpp/operations/libsciast_la-operations.lo `test -f 'src/cpp/operations/operations.cpp' || echo '$(srcdir)/'`src/cpp/operations/operations.cpp
