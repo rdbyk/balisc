@@ -34,7 +34,6 @@ extern "C"
 #include "sci_malloc.h"
 #include "os_string.h"
 #include "lasterror.h"
-#include "dynamic_module.h"
 #include "functions_manager.h"
 }
 
@@ -709,7 +708,7 @@ Callable::ReturnValue DynamicFunction::Init()
         return Error;
     }
 
-    DynLibHandle hLib = getDynModule(m_wstLibName.c_str());
+    DynLibHandle hLib = ConfigVariable::getDynModule(m_wstLibName.c_str());
     if (hLib == 0)
     {
         char* pstLibName = wide_string_to_UTF8(m_wstLibName.c_str());
@@ -765,7 +764,7 @@ Callable::ReturnValue DynamicFunction::Init()
 #endif
         }
         FREE(pstLibName);
-        addDynModule(m_wstLibName.c_str(), hLib);
+        ConfigVariable::addDynModule(m_wstLibName.c_str(), hLib);
 
         /*Load deps*/
         if (m_wstLoadDepsName.empty() == false && m_pLoadDeps == NULL)
