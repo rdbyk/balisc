@@ -66,7 +66,6 @@
 #include "blocks.h"
 #include "core_math.h"
 #include "storeCommand.h"
-#include "syncexec.h"
 #include "realtime.h"
 #include "sci_malloc.h"
 #include "ezxml.h"
@@ -1729,7 +1728,6 @@ static void cossim(double *told)
             int iUnused;
             GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
-            //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
             FREE(CommandToUnstack);
         }
         if (C2F(coshlt).halt != 0)
@@ -2911,7 +2909,6 @@ static void cossimdaskr(double *told)
             int iUnused;
             GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
-            //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
             FREE(CommandToUnstack);
         }
         if (C2F(coshlt).halt != 0)
@@ -3099,7 +3096,6 @@ L30:
                             int iUnused;
                             GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
                             CommandLength = (int)strlen(CommandToUnstack);
-                            //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
                             FREE(CommandToUnstack);
                         }
                         if (C2F(coshlt).halt != 0)
@@ -3451,7 +3447,6 @@ L30:
                     int iUnused;
                     GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
                     CommandLength = (int)strlen(CommandToUnstack);
-                    //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
                     FREE(CommandToUnstack);
                 }
 
@@ -7127,7 +7122,6 @@ static int CallKinsol(double *told)
                 int iUnused;
                 GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
                 CommandLength = (int)strlen(CommandToUnstack);
-                //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
                 FREE(CommandToUnstack);
             }
 
