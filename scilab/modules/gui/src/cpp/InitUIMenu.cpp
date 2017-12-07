@@ -3,8 +3,8 @@
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
  * Copyright (C) 2008 - Yung-Jang Lee
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,6 +17,8 @@
 
 #include "InitUIMenu.hxx"
 #include "CallScilabBridge.hxx"
+#include "configvariable.hxx"
+
 extern "C"
 {
 #include "sci_types.h"
@@ -34,7 +36,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
-#include "configvariable_interface.h"
+#include "configvariable_interface.h" /* FIXME: enum scilabMode */
 #include "createGraphicObject.h"
 }
 
@@ -69,7 +71,7 @@ int setMenuParent(int iObjUID, void* pvData, int valueType, int nbRow, int nbCol
     }
 
     /* Check parent type */
-    if (getScilabMode() == SCILAB_STD)
+    if (ConfigVariable::getScilabMode() == SCILAB_STD)
     {
         /* Figure, uimenu or Console can be the parent */
         if ((valueType != sci_handles) && (valueType != sci_matrix))

@@ -17,17 +17,14 @@
 #include "context.hxx"
 #include "configvariable.hxx"
 
-
 extern "C"
 {
 #include "loadOnUseClassPath.h"
 #include "Scierror.h"
-
     //XML API
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 #include "sci_malloc.h"
-#include "configvariable_interface.h"
 }
 
 vectGateway loadGatewaysName(const std::wstring& _wstModuleName)

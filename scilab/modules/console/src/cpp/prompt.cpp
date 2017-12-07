@@ -21,7 +21,6 @@ extern "C"
 {
 #include "prompt.h"
 #include "sciprint.h"
-#include "configvariable_interface.h"
 #include "localization.h"
 #include "sci_malloc.h"
 #include "os_string.h"

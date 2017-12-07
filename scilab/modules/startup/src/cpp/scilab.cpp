@@ -31,7 +31,6 @@ extern "C"
 #endif
 #include "InitScilab.h"
 #include "charEncoding.h"
-#include "configvariable_interface.h"
 #include "scilabRead.h"
 #include "ConsoleRead.h"
 #include "version.h"
