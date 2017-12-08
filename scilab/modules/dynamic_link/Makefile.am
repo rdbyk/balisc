@@ -1,12 +1,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
-
 DYNAMIC_LINK_C_SOURCES = \
     src/c/dl_genErrorMessage.c \
-    src/c/GetFunctionByName.c \
     src/c/ilib_verbose.c \
     src/c/dynamiclibrary_others.c
 

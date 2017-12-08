@@ -16,6 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -178,7 +179,6 @@ libscidynamic_link_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 =  \
 	src/c/libscidynamic_link_algo_la-dl_genErrorMessage.lo \
-	src/c/libscidynamic_link_algo_la-GetFunctionByName.lo \
 	src/c/libscidynamic_link_algo_la-ilib_verbose.lo \
 	src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo
 am__objects_2 = src/cpp/libscidynamic_link_algo_la-dynamic_link.lo \
@@ -592,7 +592,6 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 DYNAMIC_LINK_C_SOURCES = \
     src/c/dl_genErrorMessage.c \
-    src/c/GetFunctionByName.c \
     src/c/ilib_verbose.c \
     src/c/dynamiclibrary_others.c
 
@@ -853,8 +852,6 @@ src/c/$(DEPDIR)/$(am__dirstamp):
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscidynamic_link_algo_la-dl_genErrorMessage.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscidynamic_link_algo_la-GetFunctionByName.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscidynamic_link_algo_la-ilib_verbose.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo:  \
@@ -961,7 +958,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_ilib_verbose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_ulink.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidynamic_link_algo_la-GetFunctionByName.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidynamic_link_algo_la-dl_genErrorMessage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary_others.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidynamic_link_algo_la-ilib_verbose.Plo@am__quote@
@@ -998,13 +994,6 @@ src/c/libscidynamic_link_algo_la-dl_genErrorMessage.lo: src/c/dl_genErrorMessage
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/dl_genErrorMessage.c' object='src/c/libscidynamic_link_algo_la-dl_genErrorMessage.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscidynamic_link_algo_la-dl_genErrorMessage.lo `test -f 'src/c/dl_genErrorMessage.c' || echo '$(srcdir)/'`src/c/dl_genErrorMessage.c
-
-src/c/libscidynamic_link_algo_la-GetFunctionByName.lo: src/c/GetFunctionByName.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscidynamic_link_algo_la-GetFunctionByName.lo -MD -MP -MF src/c/$(DEPDIR)/libscidynamic_link_algo_la-GetFunctionByName.Tpo -c -o src/c/libscidynamic_link_algo_la-GetFunctionByName.lo `test -f 'src/c/GetFunctionByName.c' || echo '$(srcdir)/'`src/c/GetFunctionByName.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscidynamic_link_algo_la-GetFunctionByName.Tpo src/c/$(DEPDIR)/libscidynamic_link_algo_la-GetFunctionByName.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/GetFunctionByName.c' object='src/c/libscidynamic_link_algo_la-GetFunctionByName.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscidynamic_link_algo_la-GetFunctionByName.lo `test -f 'src/c/GetFunctionByName.c' || echo '$(srcdir)/'`src/c/GetFunctionByName.c
 
 src/c/libscidynamic_link_algo_la-ilib_verbose.lo: src/c/ilib_verbose.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscidynamic_link_algo_la-ilib_verbose.lo -MD -MP -MF src/c/$(DEPDIR)/libscidynamic_link_algo_la-ilib_verbose.Tpo -c -o src/c/libscidynamic_link_algo_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
