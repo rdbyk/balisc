@@ -3,8 +3,8 @@
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,39 +27,11 @@
  */
 BOOL setlanguage(const wchar_t *lang);
 
-
 /**
  * returns current language
  * @return
  */
 wchar_t *getlanguage(void);
-
-/**
- * returns current alias
- * example : en_US --> en
- * @return
- */
-const wchar_t *getlanguagealias(void);
-
-/**
- * return internal code associated with a language
- * @return
- */
-int getcurrentlanguagecode(void);
-
-/**
- * returns language of code
- * @param code
- * @return
- */
-const wchar_t *getlanguagefromcode(int code);
-
-/**
- * get code of a language
- * @param language
- * @return
- */
-int getcodefromlanguage(const wchar_t *language);
 
 /**
 * try to convert strlanguage (alias) to a good language string
@@ -83,7 +55,6 @@ BOOL LanguageIsOK(const wchar_t *lang);
  */
 BOOL needtochangelanguage(const wchar_t *language);
 
-
 /**
  * Export the locale to the system
  *
@@ -103,7 +74,6 @@ void setdefaultlanguage(const char * lang);
  * @return the default language
  */
 const char * getdefaultlanguage();
-
 
 #endif /* __SETGETLANGUAGE_H__ */
 /*--------------------------------------------------------------------------*/

@@ -66,7 +66,6 @@ static int  CURRENTLANGUAGECODE = SCILABDEFAULTLANGUAGECODE;
 /*--------------------------------------------------------------------------*/
 static int FindLanguageCode(const wchar_t *lang);
 static BOOL setlanguagecode(const wchar_t *lang);
-static const wchar_t *FindAlias(const wchar_t *lang);
 static const wchar_t *GetLanguageFromAlias(const wchar_t *langAlias);
 /*--------------------------------------------------------------------------*/
 BOOL setlanguage(const wchar_t *lang)
@@ -234,30 +233,6 @@ wchar_t *getlanguage(void)
     return os_wcsdup(CURRENTLANGUAGESTRING);
 }
 /*--------------------------------------------------------------------------*/
-int getcurrentlanguagecode(void)
-{
-    return CURRENTLANGUAGECODE;
-}
-/*--------------------------------------------------------------------------*/
-const wchar_t *getlanguagefromcode(int code)
-{
-    int i = 0;
-
-    for (i = 0 ; i < NumberLanguages ; i++)
-    {
-        if (LANGUAGE_COUNTRY_TAB[i].code == code)
-        {
-            return LANGUAGE_COUNTRY_TAB[i].alphacode;
-        }
-    }
-    return NULL;
-}
-/*--------------------------------------------------------------------------*/
-int getcodefromlanguage(const wchar_t *language)
-{
-    return FindLanguageCode(language);
-}
-/*--------------------------------------------------------------------------*/
 BOOL LanguageIsOK(const wchar_t *lang)
 {
     int i = 0;
@@ -305,19 +280,6 @@ static BOOL setlanguagecode(const wchar_t *lang)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-static const wchar_t *FindAlias(const wchar_t *lang)
-{
-    int i = 0;
-    for (i = 0 ; i < NumberLanguagesAlias ; i++)
-    {
-        if (wcscmp(LANGUAGE_LOCALE_ALIAS[i].alphacode, lang) == 0)
-        {
-            return LANGUAGE_LOCALE_ALIAS[i].alias;
-        }
-    }
-    return NULL;
-}
-/*--------------------------------------------------------------------------*/
 static const wchar_t *GetLanguageFromAlias(const wchar_t *langAlias)
 {
     int i = 0;
@@ -329,11 +291,6 @@ static const wchar_t *GetLanguageFromAlias(const wchar_t *langAlias)
         }
     }
     return NULL;
-}
-/*--------------------------------------------------------------------------*/
-const wchar_t *getlanguagealias(void)
-{
-    return FindAlias(CURRENTLANGUAGESTRING);
 }
 /*--------------------------------------------------------------------------*/
 BOOL needtochangelanguage(const wchar_t *language)
