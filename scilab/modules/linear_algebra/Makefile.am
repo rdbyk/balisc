@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -8,7 +9,6 @@ LINEAR_ALGEBRA_CPP_SOURCES = \
     src/cpp/schurSelect.cpp
 
 LINEAR_ALGEBRA_C_SOURCES = \
-    src/c/schurtable.c \
     src/c/issymmetric.c \
     src/c/lu.c \
     src/c/qr.c \

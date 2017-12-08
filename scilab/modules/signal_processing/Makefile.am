@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -7,7 +8,6 @@ SIGNAL_PROCESSING_CPP_SOURCES = \
     src/cpp/signalprocessingfunctions.cpp
 
 SIGNAL_PROCESSING_C_SOURCES = \
-    src/c/corrtable.c \
     src/c/conv2.c
 
 SIGNAL_PROCESSING_FORTRAN_SOURCES = \
