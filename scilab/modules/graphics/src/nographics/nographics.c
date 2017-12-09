@@ -4,8 +4,8 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -193,12 +193,6 @@ StringMatrix *computeDefaultTicsLabels(int pobjUID)
 }
 
 /*--------------------------------------------------------------------------*/
-void rotate2D(double from[2], double center[2], double angle, double dest[2])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 void stringArrayCopy(char *dest[], char *src[], int nbElement)
 {
 
@@ -253,71 +247,11 @@ int sciSetXorMode(int pobj, int value)
 }
 
 /*--------------------------------------------------------------------------*/
-void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void setToIdentity(double mat4D[4][4])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void vectAdd3D(const double v1[3], const double v2[3], double res[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 int ConstructPolyline(int pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
                       int closed, int n1, int plot, int *foreground, int *background,
                       int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
     return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL isPointInTriangle(const double point[2], const double a[2], const double b[2], const double c[2])
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-void vectSubstract2D(const double vect1[2], const double vect2[], double res[2])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void scalarMult2D(const double v[2], const double scalar, double res[2])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void vectAdd2D(const double v1[2], const double v2[2], double res[2])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void vectSubstract3D(const double v1[3], const double v2[3], double res[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void normalize3D(double vect[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void scalarMult3D(const double v[3], double scalar, double res[3])
-{
-
 }
 
 /*--------------------------------------------------------------------------*/
