@@ -77,83 +77,15 @@ char **getDictionarySetProperties(int *sizearray)
 }
 
 /*--------------------------------------------------------------------------*/
-unsigned long getHandleFromStack(size_t stackPointer)
-{
-    return (unsigned long)(-1);
-}
-
-/*--------------------------------------------------------------------------*/
 int callSetProperty(void* _pvCtx, int pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char * propertyName)
 {
     return -1;
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitScreenPosition(int pobj, int pposx, int pposy)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-char *getStringFromStack(size_t stackPointer)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-double *getDoubleMatrixFromStack(size_t stackPointer)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-double getDoubleFromStack(size_t stackPointer)
-{
-    return 0.;
-}
-
-/*--------------------------------------------------------------------------*/
 int getFigureFromIndex(int figNum)
 {
     return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-char **getStringMatrixFromStack(size_t stackPointer)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int allocateText(int pparentsubwinUID,
-                 char **text,
-                 int nbRow,
-                 int nbCol,
-                 double x,
-                 double y,
-                 BOOL autoSize,
-                 double userSize[2],
-                 int centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciInitBackground(int pobj, int colorindex)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciInitMarkBackground(int pobj, int colorindex)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciInitMarkForeground(int pobj, int colorindex)
-{
-    return -1;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -236,12 +168,6 @@ BOOL isFigureModel(int pObjUID)
 
 /*--------------------------------------------------------------------------*/
 int getPixelModeIndex(const char *modeName)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciSetXorMode(int pobj, int value)
 {
     return -1;
 }
