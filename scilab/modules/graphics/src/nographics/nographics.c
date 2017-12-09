@@ -113,12 +113,6 @@ void deleteMatrix(sciMatrix * mat)
 }
 
 /*--------------------------------------------------------------------------*/
-char *getStrMatElement(const StringMatrix * mat, int row, int col)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 StringMatrix *computeDefaultTicsLabels(int pobjUID)
 {
     return NULL;
