@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1998-2001 - ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,6 +28,11 @@
 
 #define spINSIDE_SPARSE
 #include "../../sparse/includes/spConfig.h"
+
+#define DOT_PROD_2D(v1,v2) (((v1)[0]) * ((v2)[0]) + ((v1)[1]) * ((v2)[1]))
+#define NORM_2D(v) (sqrt(DOT_PROD_2D((v),(v))))
+#define DOT_PROD_3D(v1,v2) (((v1)[0]) * ((v2)[0]) + ((v1)[1]) * ((v2)[1]) + ((v1)[2]) * ((v2)[2]))
+#define NORM_3D(v) (sqrt(DOT_PROD_3D((v),(v))))
 
 double Mini(const double vect[], int n)
 {
