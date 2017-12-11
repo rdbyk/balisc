@@ -18,11 +18,15 @@
 
 #define MODULE_NAME L"data_structures"
 
+using symbol::Context;
+using types::Function;
+
 int DataStructuresModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"setfield", &sci_setfield, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rlist", &sci_rlist, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"definedfields", &sci_definedfields, MODULE_NAME));
+    Context* pCtx = Context::getInstance();
+    pCtx->addFunction(Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
+    pCtx->addFunction(Function::createFunction(L"setfield", &sci_setfield, MODULE_NAME));
+    pCtx->addFunction(Function::createFunction(L"rlist", &sci_rlist, MODULE_NAME));
+    pCtx->addFunction(Function::createFunction(L"definedfields", &sci_definedfields, MODULE_NAME));
     return 1;
 }
