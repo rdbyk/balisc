@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +16,8 @@ function x=%s_or(a,flag)
     //!
     if argn(2)==1 then flag="*",end
     if flag=="*" then
-        x=find(abs(a)>0,1)<>[]
+        if a==[] then x=%f,return,end
+        x=find(abs(a)~=0,1)<>[]
     else
         if a==[] then x=[],return,end
         x=sum(bool2s(a),flag)>=1
