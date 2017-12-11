@@ -508,7 +508,6 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/libscigraphics_algo_la-DefaultCommandArg.lo \
 	src/c/libscigraphics_algo_la-Axes.lo \
 	src/c/libscigraphics_algo_la-sciMatrix.lo \
-	src/c/libscigraphics_algo_la-DrawObjects.lo \
 	src/c/libscigraphics_algo_la-GetProperty.lo \
 	src/c/libscigraphics_algo_la-Contour.lo \
 	src/c/libscigraphics_algo_la-SetProperty.lo \
@@ -1361,7 +1360,6 @@ GRAPHICS_C_SOURCES = \
     src/c/DefaultCommandArg.c \
     src/c/Axes.c \
     src/c/sciMatrix.c \
-    src/c/DrawObjects.c \
     src/c/GetProperty.c \
     src/c/Contour.c \
     src/c/SetProperty.c \
@@ -2732,8 +2730,6 @@ src/c/libscigraphics_algo_la-Axes.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-sciMatrix.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscigraphics_algo_la-DrawObjects.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-GetProperty.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-Contour.lo: src/c/$(am__dirstamp) \
@@ -3160,7 +3156,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-DefaultCommandArg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-DestroyObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-DllmainGraphics.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-DrawObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-FeC.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-Format.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-GetCommandArg.Plo@am__quote@
@@ -5825,13 +5820,6 @@ src/c/libscigraphics_algo_la-sciMatrix.lo: src/c/sciMatrix.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sciMatrix.c' object='src/c/libscigraphics_algo_la-sciMatrix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-sciMatrix.lo `test -f 'src/c/sciMatrix.c' || echo '$(srcdir)/'`src/c/sciMatrix.c
-
-src/c/libscigraphics_algo_la-DrawObjects.lo: src/c/DrawObjects.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-DrawObjects.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-DrawObjects.Tpo -c -o src/c/libscigraphics_algo_la-DrawObjects.lo `test -f 'src/c/DrawObjects.c' || echo '$(srcdir)/'`src/c/DrawObjects.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscigraphics_algo_la-DrawObjects.Tpo src/c/$(DEPDIR)/libscigraphics_algo_la-DrawObjects.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/DrawObjects.c' object='src/c/libscigraphics_algo_la-DrawObjects.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-DrawObjects.lo `test -f 'src/c/DrawObjects.c' || echo '$(srcdir)/'`src/c/DrawObjects.c
 
 src/c/libscigraphics_algo_la-GetProperty.lo: src/c/GetProperty.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-GetProperty.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-GetProperty.Tpo -c -o src/c/libscigraphics_algo_la-GetProperty.lo `test -f 'src/c/GetProperty.c' || echo '$(srcdir)/'`src/c/GetProperty.c

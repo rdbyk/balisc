@@ -25,7 +25,6 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "sciCall.h"
-#include "DrawObjects.h"
 #include "GetProperty.h"
 #include "localization.h"
 #include "Scierror.h"

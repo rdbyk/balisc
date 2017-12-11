@@ -33,7 +33,6 @@ extern "C"
 {
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "DrawObjects.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "Sciwarning.h"

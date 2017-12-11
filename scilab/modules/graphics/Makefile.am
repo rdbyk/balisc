@@ -357,7 +357,6 @@ GRAPHICS_C_SOURCES = \
     src/c/DefaultCommandArg.c \
     src/c/Axes.c \
     src/c/sciMatrix.c \
-    src/c/DrawObjects.c \
     src/c/GetProperty.c \
     src/c/Contour.c \
     src/c/SetProperty.c \

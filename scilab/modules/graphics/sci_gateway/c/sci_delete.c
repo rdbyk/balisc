@@ -27,7 +27,6 @@
 #include "DestroyObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
-#include "DrawObjects.h"
 #include "Interaction.h"
 #include "localization.h"
 #include "Scierror.h"

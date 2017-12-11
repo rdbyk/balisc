@@ -31,7 +31,6 @@
 #include "isanan.h"
 
 #include "SetProperty.h"
-#include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "Axes.h"
 #include "BasicAlgos.h"
