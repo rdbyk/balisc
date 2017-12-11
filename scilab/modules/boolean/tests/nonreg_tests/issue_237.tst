@@ -1,0 +1,15 @@
+// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for issue 237 -->
+//
+// <-- Github URL -->
+// https://github.com/rdbyk/balisc/issues/237
+//
+// <-- Short Description -->
+// Wrong Interpretation of a %nan Value by "or" function
+
+assert_checkequal(or(%nan), %t);
+assert_checkequal(or(%nan,"r"), %t);
+assert_checkequal(or(%nan,"c"), %t);
