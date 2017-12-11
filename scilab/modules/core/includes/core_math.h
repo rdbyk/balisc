@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -57,9 +57,7 @@
 #define Max(x,y)	(((x)>(y))?(x):(y))
 #endif
 
-#define PI0 (int *) 0
 #define PD0 (double *) 0
-#define SMDOUBLE 1.e-200 /* Smalest number to avoid dividing by zero */
 
 /* angle conversion */
 #define PI_OVER_180  0.01745329251994329576913914624236578987393

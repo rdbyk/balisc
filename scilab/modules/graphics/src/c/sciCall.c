@@ -27,7 +27,6 @@
 
 #include "SetProperty.h"
 #include "GetProperty.h"
-#include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "BasicAlgos.h"
 #include "math_graphics.h"

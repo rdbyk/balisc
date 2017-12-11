@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -60,18 +60,6 @@ sciMatrix * newMatrix(int nbRow, int nbCol)
     return newMat;
 }
 /*----------------------------------------------------------------------------------*/
-sciMatrix * newCompleteMatrix(void ** dataMat, int nbRow, int nbCol)
-{
-    /* create the matrix */
-    sciMatrix * newMat = emptyMatrix();
-
-    newMat->data  = dataMat;
-    newMat->nbRow = nbRow  ;
-    newMat->nbCol = nbCol  ;
-
-    return newMat;
-}
-/*----------------------------------------------------------------------------------*/
 void deleteMatrix(sciMatrix * mat)
 {
     int i = 0;
@@ -87,63 +75,5 @@ void deleteMatrix(sciMatrix * mat)
     mat->nbRow = 0;
 
     FREE(mat);
-}
-/*----------------------------------------------------------------------------------*/
-void desallocateMatrix(sciMatrix * mat)
-{
-    mat->nbCol = 0;
-    mat->nbRow = 0;
-    mat->data  = NULL;
-    FREE(mat);
-}
-/*----------------------------------------------------------------------------------*/
-void * getMatElement(const sciMatrix * mat, int row, int col)
-{
-    /* the matrix is stored by column like in scilab */
-
-    return mat->data[row + col * mat->nbRow];
-}
-/*----------------------------------------------------------------------------------*/
-void setMatElement(sciMatrix * mat, int row, int col, void * newValue)
-{
-    mat->data[row + col * mat->nbRow] = newValue;
-}
-/*----------------------------------------------------------------------------------*/
-void changeMatElement(sciMatrix * mat, int row, int col, void * newValue)
-{
-    if (mat->data[row + col * mat->nbRow] != NULL)
-    {
-        FREE(mat->data[row + col * mat->nbRow]);
-    }
-    mat->data[row + col * mat->nbRow] = newValue;
-}
-/*----------------------------------------------------------------------------------*/
-void copyMatElement(      sciMatrix     * mat      ,
-                          int             row      ,
-                          int             col      ,
-                          const void          * copyValue,
-                          int             valueSize)
-{
-    /* copy the value */
-    void * newValue = MALLOC(valueSize);
-    memcpy(newValue, copyValue, valueSize);
-
-    /* change the current one */
-    changeMatElement(mat, row, col, newValue);
-}
-/*----------------------------------------------------------------------------------*/
-int getMatNbRow(const sciMatrix * mat)
-{
-    return mat->nbRow ;
-}
-/*----------------------------------------------------------------------------------*/
-int getMatNbCol(const sciMatrix * mat)
-{
-    return mat->nbCol ;
-}
-/*----------------------------------------------------------------------------------*/
-void ** getMatData(const sciMatrix * mat)
-{
-    return mat->data ;
 }
 /*----------------------------------------------------------------------------------*/

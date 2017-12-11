@@ -4,8 +4,8 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -77,83 +77,15 @@ char **getDictionarySetProperties(int *sizearray)
 }
 
 /*--------------------------------------------------------------------------*/
-unsigned long getHandleFromStack(size_t stackPointer)
-{
-    return (unsigned long)(-1);
-}
-
-/*--------------------------------------------------------------------------*/
 int callSetProperty(void* _pvCtx, int pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char * propertyName)
 {
     return -1;
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitScreenPosition(int pobj, int pposx, int pposy)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-char *getStringFromStack(size_t stackPointer)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-double *getDoubleMatrixFromStack(size_t stackPointer)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-double getDoubleFromStack(size_t stackPointer)
-{
-    return 0.;
-}
-
-/*--------------------------------------------------------------------------*/
 int getFigureFromIndex(int figNum)
 {
     return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-char **getStringMatrixFromStack(size_t stackPointer)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int allocateText(int pparentsubwinUID,
-                 char **text,
-                 int nbRow,
-                 int nbCol,
-                 double x,
-                 double y,
-                 BOOL autoSize,
-                 double userSize[2],
-                 int centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciInitBackground(int pobj, int colorindex)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciInitMarkBackground(int pobj, int colorindex)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int sciInitMarkForeground(int pobj, int colorindex)
-{
-    return -1;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -181,21 +113,9 @@ void deleteMatrix(sciMatrix * mat)
 }
 
 /*--------------------------------------------------------------------------*/
-char *getStrMatElement(const StringMatrix * mat, int row, int col)
-{
-    return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
 StringMatrix *computeDefaultTicsLabels(int pobjUID)
 {
     return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-void rotate2D(double from[2], double center[2], double angle, double dest[2])
-{
-
 }
 
 /*--------------------------------------------------------------------------*/
@@ -217,18 +137,6 @@ BOOL sciisTextEmpty(int iIdentifier)
 }
 
 /*--------------------------------------------------------------------------*/
-int getMatNbCol(const sciMatrix * mat)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int getMatNbRow(const sciMatrix * mat)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 char **getStrMatData(const StringMatrix * mat)
 {
     return NULL;
@@ -247,77 +155,11 @@ int getPixelModeIndex(const char *modeName)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetXorMode(int pobj, int value)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-void mat4DMult(const double mat4D[4][4], const double vect3D[3], double res[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void setToIdentity(double mat4D[4][4])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void vectAdd3D(const double v1[3], const double v2[3], double res[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 int ConstructPolyline(int pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
                       int closed, int n1, int plot, int *foreground, int *background,
                       int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
     return NULL;
-}
-
-/*--------------------------------------------------------------------------*/
-BOOL isPointInTriangle(const double point[2], const double a[2], const double b[2], const double c[2])
-{
-    return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-void vectSubstract2D(const double vect1[2], const double vect2[], double res[2])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void scalarMult2D(const double v[2], const double scalar, double res[2])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void vectAdd2D(const double v1[2], const double v2[2], double res[2])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void vectSubstract3D(const double v1[3], const double v2[3], double res[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void normalize3D(double vect[3])
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-void scalarMult3D(const double v[3], double scalar, double res[3])
-{
-
 }
 
 /*--------------------------------------------------------------------------*/
@@ -333,21 +175,7 @@ int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgra
 }
 
 /*--------------------------------------------------------------------------*/
-// FIXME : Kill me
-void intArrayCopy(int dest[], const int src[], int nbElement)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 void doubleArrayCopy(double dest[], const double src[], int nbElement)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
-// FIXME : Kill me
-void setDoubleArraySingleValue(double dest[], double value, int nbElement)
 {
 
 }
