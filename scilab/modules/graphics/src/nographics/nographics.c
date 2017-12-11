@@ -137,18 +137,6 @@ BOOL sciisTextEmpty(int iIdentifier)
 }
 
 /*--------------------------------------------------------------------------*/
-int getMatNbCol(const sciMatrix * mat)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-int getMatNbRow(const sciMatrix * mat)
-{
-    return -1;
-}
-
-/*--------------------------------------------------------------------------*/
 char **getStrMatData(const StringMatrix * mat)
 {
     return NULL;

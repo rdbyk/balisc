@@ -28,7 +28,7 @@
 /*----------------------------------------------------------------------------------*/
 char ** getStrMatData(const StringMatrix * mat)
 {
-    return (char **) getMatData(mat);
+    return (char **) mat->data;
 }
 /*----------------------------------------------------------------------------------*/
 void copyStrMatElement(StringMatrix * mat, int row, int col, const char * copyStr)
