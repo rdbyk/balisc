@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,17 +18,15 @@
 
 #define MODULE_NAME L"data_structures"
 
-extern "C"
-{
-#include "gw_data_structures1.h"
-#include "gw_data_structures2.h"
-}
+using symbol::Context;
+using types::Function;
 
 int DataStructuresModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"setfield", &sci_setfield, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rlist", &sci_rlist, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"definedfields", &sci_definedfields, MODULE_NAME));
+    Context* pCtx = Context::getInstance();
+    pCtx->addFunction(Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
+    pCtx->addFunction(Function::createFunction(L"setfield", &sci_setfield, MODULE_NAME));
+    pCtx->addFunction(Function::createFunction(L"rlist", &sci_rlist, MODULE_NAME));
+    pCtx->addFunction(Function::createFunction(L"definedfields", &sci_definedfields, MODULE_NAME));
     return 1;
 }
