@@ -28,6 +28,23 @@ as the "What's new" page of the help, by simply typing `help` in Scilab console.
 
 In summary, the main new features are:
 * Webtools utilities added for HTTP protocol, JSON data usage
+* New language parser and interpreter, ensuring:
+  - Support for bigger data sets, thanks to dynamic memory usage. No need for `stacksize` anymore.
+  - Better performance for some objects (cells and structs).
+  - Clearer, less ambiguous, language syntax.
+  - Executor reuse for specialization and custom engines.
+  - Xcos also uses the new re-written Scilab engine.
+* New code productivity features: full-featured debugger, profiler / coverage tool, and "lint"-like commands.
+* Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.
+* Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0
+It is still also available under the terms of the CeCILL v2.1.
+* A `tbx_make()` function is added to build a toolbox following the toolbox directory structure convention
+* ATOMS builder functions are now less dependent on the script files in the macros, `help`, `etc`, `src` and `sci_gateway` directories. These functions will do nothing (but warn the user) if they find no target to build:
+  - `tbx_builder_macros`: compiles the `.sci` files present in `macros/` directory into the toolbox library. If `buildmacros.sce` or `builder.sce` script in `macros/` are present, executes them instead;
+  - `tbx_builder_help`: compiles the help for each language (`la_LA`) directories in `help/`. If `builder_help` script is present in help, executes it instead;
+  - `tbx_build_loader`: builds a default loader that mimics the skeleton `.start` files. If a `.start` file is found in `etc/` builds a loader calling this script;
+  - `tbx_builder_src`: scans the subdirectories under `src` for builder files and executes them
+  - `tbx_builder_gateway`: scans the subdirectories under `sci_gateway` for builder files and executes them
 
 
 Installation
@@ -169,6 +186,7 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
    the proper Scilab component, and other files with the proper OS application.
    All files were formerly opened in Scinotes and could make it frozen.
 * `size` can now be overloadable for tlist lists, as it already could for mlist lists.
+* For arrays of cells or structures, `length` now returns their number of elements.
 * `gcd` now accepts `int64` and `uint64` integers. The input can now be any array instead of a row.
 * `gcd` and `lcm` of integers now return always a positive result.
 * `cat` has been rewritten. It is now fast and can process heavy arrays at high dimensions.
@@ -190,8 +208,9 @@ Help pages:
   `scilab|scilex`, `flipdim`, `Matplot_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
-`and`, `&,&&`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`,
-`bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`, `whereis`, `mode`
+ `and`, `&,&&`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
+ `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`,
+ `whereis`, `mode`, `%onprompt`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -208,6 +227,24 @@ Help pages:
 
 Data Structures
 ---------------
+
+* cells and structs are now native types, hence improving performances.
+* cells:
+  - insertion and extraction must be done via `()` or `{}.`
+  - `.dims` and `.entries` fields have been removed, please use `size` and `()` instead.
+  - `length()` of a cells array is now the number of its primary components (without recursive
+     counting). It is equivalent to `size( ,"*")`. It was formerly always equal to 3. It is now
+	 consistent with the definition for all types of Scilab arrays.
+* struct
+  - `.dims` field has been removed, please use size instead.
+  - `length()` of a structures array is now the number of its primary components (without recursive
+     counting). It is equivalent to `size( ,"*")`. It was formerly equal to its number of
+	 fields + 2. It is now consistent with the definition for all types of Scilab arrays.
+* hypermatrix:
+  - hypermatrices are natively managed (without `mlist` overloading).
+  - `typeof` now returns the actual data type like `constant`, `string`, ... instead of `hypermat`
+  - `type` now returns the actual data type like `1, 10, ...` instead of `17` (`mlist`).
+  - `.dims` and `.entries` fields have been removed. Please use `size` and `()` instead.
 
 
 Xcos
@@ -255,6 +292,7 @@ Bug Fixes
 
 
 ### Bugs fixed in 6.0.1:
+* [#2441](http://bugzilla.scilab.org/show_bug.cgi?id=2441): `%onprompt()` could be defined only at the top execution level.
 * [#4276](http://bugzilla.scilab.org/show_bug.cgi?id=4276): `strsubst` replaced the first occurence in regex mode.
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
 * [#5381](http://bugzilla.scilab.org/show_bug.cgi?id=5381): For UTF-8 inputs, `msprintf`, `mprintf` and `mfprintf` shortened the output.
@@ -270,6 +308,7 @@ Bug Fixes
 * [#8842](http://bugzilla.scilab.org/show_bug.cgi?id=8842): Assigning the pointer of a builtin function to a new structure failed.
 * [#9297](http://bugzilla.scilab.org/show_bug.cgi?id=9297): Assigning a mlist to a structure's field failed.
 * [#9519](http://bugzilla.scilab.org/show_bug.cgi?id=9519): The console menu `File -> Open a file` opened any file in Scinotes. Binary files like .zcos blocked Scinotes.
+* [#9617](http://bugzilla.scilab.org/show_bug.cgi?id=9617): Xcos run-time version check was too conservative.
 * [#9838](http://bugzilla.scilab.org/show_bug.cgi?id=9838): `evstr` poorly supported simple comments in input expressions.
 * [#10270](http://bugzilla.scilab.org/show_bug.cgi?id=10270): `execstr(["%val=[int16(1)";"]"])` needed entering twice <enter> to be actually performed.
 * [#11196](http://bugzilla.scilab.org/show_bug.cgi?id=11196): Some recursive extractions from a mlist failed.
@@ -288,6 +327,7 @@ Bug Fixes
 * [#13277](http://bugzilla.scilab.org/show_bug.cgi?id=13277): `execstr("clear")` did not clear any variables in the current scope.
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
 * [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
+* [#13979](http://bugzilla.scilab.org/show_bug.cgi?id=13979): A variable whose name is longer than 24 characters could not be cleared.
 * [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): `input()` was broken: \n was introduced before prompting; multiple prompts occurred; the output value could be missing; "%" "\n" "\t" were no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): `whereami`: wrong information (line numbers).
@@ -306,6 +346,18 @@ Bug Fixes
 * [#14910](http://bugzilla.scilab.org/show_bug.cgi?id=14910): The `plot()` example was displayed in overlay to the existing graphics.
 * [#14978](http://bugzilla.scilab.org/show_bug.cgi?id=15006): ode help page still contained 'root' which has been replaced by 'roots'.
 * [#15008](http://bugzilla.scilab.org/show_bug.cgi?id=15008): scilab crash in using operator AND (&, &&) or OR (| ||) with a string.
+* [#14703](http://bugzilla.scilab.org/show_bug.cgi?id=14703): `clear linspace, type(linspace)` returned 11 instead of 13.
+* [#14883](http://bugzilla.scilab.org/show_bug.cgi?id=14883): `whereis` did not support builtin functions.
+* [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): `Matplot` save/load failed.
+* [#14896](http://bugzilla.scilab.org/show_bug.cgi?id=15272): Using `set` with multiple properties, only the first one was set.
+* [#14901](http://bugzilla.scilab.org/show_bug.cgi?id=14901): WScilex.exe was stopped immediately when launched from Java.
+* [#14903](http://bugzilla.scilab.org/show_bug.cgi?id=14903): `plot2d` crashed if a current figure has no axes.
+* [#14910](http://bugzilla.scilab.org/show_bug.cgi?id=14910): The `plot()` example was displayed in overlay to the existing graphics.
+* [#14922](http://bugzilla.scilab.org/show_bug.cgi?id=14922): The `%onprompt()` special function was not documented.
+* [#14925](http://bugzilla.scilab.org/show_bug.cgi?id=14925): `jdeff`: `invoke_lu()` deleted/corrupted the called java method after an error occured.
+* [#14981](http://bugzilla.scilab.org/show_bug.cgi?id=14981): Some vertical concatenations of cells and further cells extractions crash Scilab.
+* [#15006](http://bugzilla.scilab.org/show_bug.cgi?id=15006): `ode` help page still contained 'root' which has been replaced by 'roots'.
+* [#15008](http://bugzilla.scilab.org/show_bug.cgi?id=15008): scilab crashed when using operator AND (&, &&) or OR (| ||) with a string.
 * [#15010](http://bugzilla.scilab.org/show_bug.cgi?id=15010): Coselica did not simulate on Scilab 6.
 * [#15015](http://bugzilla.scilab.org/show_bug.cgi?id=15015): Xcos blocks using the `ascii` didn't work
 * [#15019](http://bugzilla.scilab.org/show_bug.cgi?id=15019): Add 'csci6' in the calling of ilib_build in 'Getting started with API_Scilab' help page.
@@ -334,6 +386,12 @@ Bug Fixes
 * [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in try/catch expression
 * [#15144](http://bugzilla.scilab.org/show_bug.cgi?id=15144): `mean` and `stdev` could not be overloaded.
 * [#15184](http://bugzilla.scilab.org/show_bug.cgi?id=15184): error management when calling operator overload fixed.
+* [#15146](http://bugzilla.scilab.org/show_bug.cgi?id=15146): `lasterror` crashed Scilab when last error message is empty.
+* [#15148](http://bugzilla.scilab.org/show_bug.cgi?id=15148): `link` did not return any error for a wrong flag argument value.
+* [#15149](http://bugzilla.scilab.org/show_bug.cgi?id=15149): Files saved as ZCOS were corrupted.
+* [#15170](http://bugzilla.scilab.org/show_bug.cgi?id=15170): `getd` created and returned a variable `k` that could overwrite a loaded one.
+* [#15183](http://bugzilla.scilab.org/show_bug.cgi?id=15183): `ndgrid(x)` with by default `y=x` was not accepted.
+* [#15184](http://bugzilla.scilab.org/show_bug.cgi?id=15184): `(1+%i) < 2` crashed Scilab.
 * [#15185](http://bugzilla.scilab.org/show_bug.cgi?id=15185): "Region to Superblock" did not restore broken links.
 * [#15188](http://bugzilla.scilab.org/show_bug.cgi?id=15188): Failed to load hdf5_is_file function.
 * [#15199](http://bugzilla.scilab.org/show_bug.cgi?id=15199): Scilab crash when using fsolve for functions containing other functions.
@@ -356,10 +414,15 @@ Bug Fixes
 * [#15300](http://bugzilla.scilab.org/show_bug.cgi?id=15300): Distributive assignments like `a=(1,2)` crashed Scilab.
 * [#15301](http://bugzilla.scilab.org/show_bug.cgi?id=15301): Sequence constructor `:` failed when a bound was an outputless funtion call.
 * [#15302](http://bugzilla.scilab.org/show_bug.cgi?id=15302): `load` crashed when inputs arguments are not strings.
+* [#15303](http://bugzilla.scilab.org/show_bug.cgi?id=15303): Some properties written in capital letter in set function crashed Scilab.
 * [#15306](http://bugzilla.scilab.org/show_bug.cgi?id=15306): After the behavior of `||` was changed, its help page was not up to date.
 * [#15308](http://bugzilla.scilab.org/show_bug.cgi?id=15308): Unlike `evstr(["1 2";"3 4"])`, `evstr(["1;2" "3;4"])` was not accepted.
+* [#15328](http://bugzilla.scilab.org/show_bug.cgi?id=15328): OpenJDK 9 was not supported for custom builds.
 * [#15337](http://bugzilla.scilab.org/show_bug.cgi?id=15337): There was a mistake in the definition of the l_p norm of a vector in the `norm` page.
 * [#15339](http://bugzilla.scilab.org/show_bug.cgi?id=15339): `uigetfont()` returned garbage on user cancellation.
+* [#15340](http://bugzilla.scilab.org/show_bug.cgi?id=15340): Scilab did not build against lucene 6.1.0.
+* [#15342](http://bugzilla.scilab.org/show_bug.cgi?id=15342): `replot()` and `Reframe to contents` failed on graphics with xstring objects.
+
 
 
 ### Bugs fixed in 6.0.0:

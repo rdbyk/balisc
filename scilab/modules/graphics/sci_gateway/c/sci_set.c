@@ -168,9 +168,9 @@ int sci_set(char *fname, void *pvApiCtx)
                 }
                 break;
             case sci_strings :
-                if (balisc_strcmp(pstProperty, "tics_labels") == 0 || balisc_strcmp(pstProperty, "auto_ticks") == 0 ||
-                        balisc_strcmp(pstProperty, "axes_visible") == 0 || balisc_strcmp(pstProperty, "axes_reverse") == 0 ||
-                        balisc_strcmp(pstProperty, "text") == 0 || balisc_strcmp(pstProperty, "ticks_format") == 0)
+                if (stricmp(pstProperty, "tics_labels") == 0 || stricmp(pstProperty, "auto_ticks") == 0 ||
+                        stricmp(pstProperty, "axes_visible") == 0 || stricmp(pstProperty, "axes_reverse") == 0 ||
+                        stricmp(pstProperty, "text") == 0 || stricmp(pstProperty, "ticks_format") == 0)
                 {
                     isMatrixOfString = 1;
                     if (getAllocatedMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, (char***)&pvData))
@@ -390,9 +390,9 @@ int sci_set(char *fname, void *pvApiCtx)
                     sciErr = getMatrixOfHandle(pvApiCtx, piAddr3, &iRows3, &iCols3, (long long**)&pvData);
                     break;
                 case sci_strings :
-                    if (balisc_strcmp(pstProperty, "tics_labels") != 0 && balisc_strcmp(pstProperty, "auto_ticks") != 0 && balisc_strcmp(pstProperty, "tight_limits") != 0 &&
-                            balisc_strcmp(pstProperty, "axes_visible") != 0 && balisc_strcmp(pstProperty, "axes_reverse") != 0 &&
-                            balisc_strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
+                    if (stricmp(pstProperty, "tics_labels") != 0 && stricmp(pstProperty, "auto_ticks") != 0 && stricmp(pstProperty, "tight_limits") != 0 &&
+                            stricmp(pstProperty, "axes_visible") != 0 && stricmp(pstProperty, "axes_reverse") != 0 &&
+                            stricmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
                             stricmp(pstProperty, "tooltipstring") != 0 && stricmp(pstProperty, "ticks_format") != 0) /* Added for uicontrols */
                     {
                         if (isScalar(pvApiCtx, piAddr3) == 0)
