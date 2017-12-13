@@ -1,20 +1,20 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-* Please note that piece of code will be rewrited for the Scilab 6 family
-* However, the API (profile of the functions in the header files) will be
-* still available and supported in Scilab 6.
-*/
+ *
+ * Please note that piece of code will be rewrited for the Scilab 6 family
+ * However, the API (profile of the functions in the header files) will be
+ * still available and supported in Scilab 6.
+ */
 
 #include <string.h>
 #include <stdlib.h>
@@ -31,7 +31,6 @@ extern "C"
 #include "api_internal_double.h"
 #include "localization.h"
 #include "elem_common.h"
-#include "sci_tools.h"
     extern int C2F(entier)(int *n, double *d__, int *s);
     extern int C2F(icopy)(int *, int *, int *, int *, int *);
 }
