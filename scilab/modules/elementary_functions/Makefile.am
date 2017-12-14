@@ -218,7 +218,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
     sci_gateway/c/sci_nearfloat.c \
-    sci_gateway/c/sci_isequalbitwise.c \
     sci_gateway/c/sci_base2dec.c \
     sci_gateway/c/sci_dec2base.c
 

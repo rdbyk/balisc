@@ -20,10 +20,6 @@
 #include "dynlib_elementary_functions.h"
 #include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-ELEMENTARY_FUNCTIONS_IMPEXP int gw_elementary_functions(void);
-/*--------------------------------------------------------------------------*/
-//int sci_spones(char *fname, unsigned long fname_len);
-int sci_isequalbitwise(char *fname, unsigned long fname_len);
 
 STACK_GATEWAY_PROTOTYPE(sci_nearfloat);
 STACK_GATEWAY_PROTOTYPE(sci_number_properties);
