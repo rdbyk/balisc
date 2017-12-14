@@ -68,16 +68,6 @@
 #define scilab_round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 #define EPSILON 1.0e-13
 
-
-/**
-  if we suppose that the x transmited is in the range of integers
-  we could also use :
-  #define inint(x) (( x > 0 ) ? ((int) (x + 0.5)) : ((int) (x - 0.5));
- **/
-
-#define linint(x) ((int)  floor(x + 0.5 ))
-#define inint(x) ((int) floor(x + 0.5 ))
-
 #if (defined(sun) && defined(SYSV))
 #include <ieeefp.h>
 #endif
