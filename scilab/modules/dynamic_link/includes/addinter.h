@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,28 +18,6 @@
 
 #include <wchar.h>
 #include "dynlib_dynamic_link.h"
-#include "machine.h"
-
-/**
-* the first dynamic interface is at position 500+1
-*/
-#define DynInterfStart 500
-
-#define NumberMaxFunctionsByGateway 1000
-
-#define MAXDYNINTERF 50 /* default value compatibility scilab 4.x */
-/* !!! WARNING !!! */
-/* On Windows , AddInterfaceToScilab based on LoadLibrary C function */
-/* you cannot load more than 80 dynamic libraries at the same time. */
-/* Scilab will return a error (code Windows 1114) in this case.*/
-/* A dynamic link library (DLL) initialization routine failed. */
-
-
-/**
-* Remove interface in scilab
-* @param[in] id of interface
-*/
-DYNAMIC_LINK_IMPEXP void RemoveInterf(int id);
 
 /**
 * Add a interface in Scilab
