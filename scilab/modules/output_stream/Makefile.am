@@ -33,7 +33,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_print.cpp
 
 OUTPUT_STREAM_C_SOURCES = \
-	src/c/erro.c \
 	src/c/Scierror.c \
 	src/c/msgstore.c \
 	src/c/msgs.c \
