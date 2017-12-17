@@ -35,7 +35,6 @@ GATEWAY_CPP_SOURCES = \
 OUTPUT_STREAM_C_SOURCES = \
 	src/c/Scierror.c \
 	src/c/msgstore.c \
-	src/c/msgs.c \
 	src/c/msgstxt.c \
 	src/c/sciprint.c \
 	src/c/error.c
