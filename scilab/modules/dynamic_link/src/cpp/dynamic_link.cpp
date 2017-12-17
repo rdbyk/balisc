@@ -44,9 +44,6 @@ extern "C"
 
 static void Underscores(BOOL _bFortran, wchar_t* _pwstEntryPointName, wchar_t* _pwstTrailingName);
 
-typedef void (*function) ();
-
-
 int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPointName, int _iEntryPointSize, BOOL _bFortran , int *_piErr)
 {
     int iLibID = -1;
@@ -210,7 +207,7 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     pEP->iLibIndex = _iLibID;
     hDynLib = (DynLibHandle)  ConfigVariable::getDynamicLibrary(_iLibID)->hLib;
     char* pstEntryPointName = wide_string_to_UTF8(pwstEntryPointName);
-    pEP->functionPtr = (function) GetDynLibFuncPtr(hDynLib, pstEntryPointName);
+    pEP->functionPtr = (ConfigVariable::dynlib_ptr)GetDynLibFuncPtr(hDynLib, pstEntryPointName);
     FREE(pstEntryPointName);
     if (pEP->functionPtr == NULL)
     {
@@ -222,7 +219,6 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
         FREE(pEP);
         return -5;
     }
-
 
     if (0 /*debug mode*/)
     {
