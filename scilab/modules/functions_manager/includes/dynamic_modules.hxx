@@ -19,32 +19,19 @@
 #include <vector>
 #include "function.hxx"
 
-struct GatewayStr
-{
-    GatewayStr()
-    {
-        wstName.clear();
-        wstFunction.clear();
-        iType = types::Function::EntryPointOldC;
-    }
-
-    std::wstring wstName;
-    std::wstring wstFunction;
-    types::Function::FunctionType iType;
-};
-
-typedef std::vector<GatewayStr> vectGateway;
-
 class GenericModule
 {
 protected :
 public :
     GenericModule() {};
     ~GenericModule() {};
+
     static int Unload()
     {
         return 1;
     }
+    static int Load(const wchar_t wcsPath[], const wchar_t wcsModule[], dynlib_name_format iFormat, types::Function::LOAD_DEPS pLoadDeps = NULL);
+    static int Load(const wchar_t wcsModule[], dynlib_name_format iFormat, types::Function::LOAD_DEPS pLoadDeps = NULL);
 };
 
 class ScinotesModule : public GenericModule

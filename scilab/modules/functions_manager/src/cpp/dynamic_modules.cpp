@@ -27,6 +27,22 @@ extern "C"
 #include "sci_malloc.h"
 }
 
+struct GatewayStr
+{
+    GatewayStr()
+    {
+        wstName.clear();
+        wstFunction.clear();
+        iType = types::Function::EntryPointOldC;
+    }
+
+    std::wstring wstName;
+    std::wstring wstFunction;
+    types::Function::FunctionType iType;
+};
+
+typedef std::vector<GatewayStr> vectGateway;
+
 vectGateway loadGatewaysName(const std::wstring& _wstModuleName)
 {
     vectGateway vect;
@@ -107,6 +123,29 @@ vectGateway loadGatewaysName(const std::wstring& _wstModuleName)
     return vect;
 }
 
+// GenericModule
+int GenericModule::Load(const wchar_t wcsPath[], const wchar_t wcsModule[], dynlib_name_format iFormat, types::Function::LOAD_DEPS pLoadDeps)
+{
+    std::wstring wstPath(wcsPath);
+    std::wstring wstModuleName(wcsModule);
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), iFormat);
+    vectGateway vect = loadGatewaysName(wstPath);
+    symbol::Context* pCtx = symbol::Context::getInstance();
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        pCtx->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, pLoadDeps, wstModuleName));
+    }
+
+    FREE(pwstLibName);
+    return 1;
+}
+
+int GenericModule::Load(const wchar_t wcsModule[], dynlib_name_format iFormat, types::Function::LOAD_DEPS pLoadDeps)
+{
+    return GenericModule::Load(wcsModule, wcsModule, iFormat, pLoadDeps);
+}
+
 //Scinotes module
 bool ScinotesModule::loadedDep = false;
 int ScinotesModule::LoadDeps(const std::wstring& /*_functionName*/)
@@ -122,85 +161,39 @@ int ScinotesModule::LoadDeps(const std::wstring& /*_functionName*/)
 
 int ScinotesModule::Load()
 {
-    std::wstring wstModuleName = L"scinotes";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    return GenericModule::Load(L"scinotes", DYNLIB_NAME_FORMAT_2, &ScinotesModule::LoadDeps);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"scinotes", DYNLIB_NAME_FORMAT_3, &ScinotesModule::LoadDeps);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &ScinotesModule::LoadDeps, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 //Functions module
 int FunctionsModule::Load()
 {
-    std::wstring wstPath = L"functions";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"functions_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"functions", L"functions_gw", DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"functions";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"functions", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int StatisticsModule::Load()
 {
-    std::wstring wstPath = L"statistics";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"statistics_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"statistics", L"statistics_gw", DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"statistics";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"statistics", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int SignalProcessingModule::Load()
 {
-    std::wstring wstPath = L"signal_processing";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"signal_processing_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"signal_processing", L"signal_processing_gw", DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"signal_processing";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"signal_processing", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int HelptoolsModule::LoadDeps(const std::wstring& /*_functionName*/)
@@ -217,339 +210,162 @@ int HelptoolsModule::LoadDeps(const std::wstring& /*_functionName*/)
 bool HelptoolsModule::loadedDep = false;
 int HelptoolsModule::Load()
 {
-    std::wstring wstModuleName = L"helptools";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"helptools", DYNLIB_NAME_FORMAT_1, &HelptoolsModule::LoadDeps);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"helptools", DYNLIB_NAME_FORMAT_3, &HelptoolsModule::LoadDeps);
 #endif
-
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &HelptoolsModule::LoadDeps, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int MatioModule::Load()
 {
-    std::wstring wstPath = L"matio";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"matio_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"matio", L"matio_gw", DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"matio";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"matio", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int Hdf5Module::Load()
 {
-    std::wstring wstModuleName = L"hdf5";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"hdf5", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"hdf5", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int ActionBindingModule::Load()
 {
-    std::wstring wstPath = L"action_binding";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"action_binding_gw";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    return GenericModule::Load(L"action_binding", L"action_binding_gw", DYNLIB_NAME_FORMAT_2);
 #else
-    std::wstring wstModuleName = L"action_binding";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"action_binding", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstPath));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int SpreadsheetModule::Load()
 {
-    std::wstring wstModuleName = L"spreadsheet";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"spreadsheet", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"spreadsheet", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int InterpolationModule::Load()
 {
-    std::wstring wstPath = L"interpolation";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"interpolation";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"interpolation", DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"interpolation";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"interpolation", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int SoundModule::Load()
 {
-    std::wstring wstPath = L"sound";
 #ifdef _MSC_VER
-    std::wstring wstModuleName = L"sound";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"sound", DYNLIB_NAME_FORMAT_1);
 #else
-    std::wstring wstModuleName = L"sound";
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"sound", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstPath);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int RandlibModule::Load()
 {
-    std::wstring wstModuleName = L"randlib";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"randlib", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"randlib", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int UmfpackModule::Load()
 {
-    std::wstring wstModuleName = L"umfpack";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"umfpack", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"umfpack", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int OptimizationModule::Load()
 {
-    std::wstring wstModuleName = L"optimization";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"optimization", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"optimization", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int SpecialFunctionsModule::Load()
 {
-    std::wstring wstModuleName = L"special_functions";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"special_functions", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"special_functions", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int GraphicExportModule::Load()
 {
-    std::wstring wstModuleName = L"graphic_export";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    return GenericModule::Load(L"graphic_export", DYNLIB_NAME_FORMAT_2);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"graphic_export", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int ArnoldiModule::Load()
 {
-    std::wstring wstModuleName = L"arnoldi";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"arnoldi", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"arnoldi", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int CallScilabModule::Load()
 {
-    std::wstring wstModuleName = L"call_scilab";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"call_scilab", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"call_scilab", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int CompletionModule::Load()
 {
-    std::wstring wstModuleName = L"completion";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    return GenericModule::Load(L"completion", DYNLIB_NAME_FORMAT_2);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"completion", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int XmlModule::Load()
 {
-    std::wstring wstModuleName = L"xml";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"xml", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"xml", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int ScicosModule::Load()
 {
     std::wstring wstModuleName = L"scicos";
-    const wchar_t* wstLibName = wstModuleName.c_str();
+
     if (getScilabMode() == SCILAB_NWNI)
     {
-        wstLibName = L"scicos-cli";
+        wstModuleName += L"-cli";
     }
+
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"scicos", wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"scicos", wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 bool XcosModule::loadedDep = false;
@@ -566,99 +382,47 @@ int XcosModule::LoadDeps(const std::wstring& _functionName)
 
 int XcosModule::Load()
 {
-    const std::wstring wstModuleName = L"xcos";
-    const wchar_t*  wstLibName = wstModuleName.c_str();
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_2);
+    return GenericModule::Load(L"xcos", DYNLIB_NAME_FORMAT_2, &XcosModule::LoadDeps);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"xcos", DYNLIB_NAME_FORMAT_3, &XcosModule::LoadDeps);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &XcosModule::LoadDeps, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int MPIModule::Load()
 {
-    std::wstring wstModuleName = L"mpi";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"mpi", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"mpi", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int ExternalObjectsModule::Load()
 {
-    std::wstring wstModuleName = L"external_objects";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"external_objects", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"external_objects", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int ExternalObjectsJavaModule::Load()
 {
-    std::wstring wstModuleName = L"external_objects_java";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"external_objects_java", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"external_objects_java", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int SlintModule::Load()
 {
-    std::wstring wstModuleName = L"slint";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"slint", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"slint", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 bool GraphicsModule::loadedDep = false;
@@ -675,22 +439,11 @@ int GraphicsModule::LoadDeps(const std::wstring& /*_functionName*/)
 
 int GraphicsModule::Load()
 {
-    std::wstring wstModuleName = L"graphics";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"graphics", DYNLIB_NAME_FORMAT_1, &GraphicsModule::LoadDeps);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"graphics", DYNLIB_NAME_FORMAT_3, &GraphicsModule::LoadDeps);
 #endif
-
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &GraphicsModule::LoadDeps, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 
@@ -712,119 +465,54 @@ int GuiModule::LoadDeps(const std::wstring& _functionName)
 }
 int GuiModule::Load()
 {
-    std::wstring wstModuleName = L"gui";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    return GenericModule::Load(L"gui", DYNLIB_NAME_FORMAT_2, &GuiModule::LoadDeps);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"gui", DYNLIB_NAME_FORMAT_3, &GuiModule::LoadDeps);
 #endif
-
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &GuiModule::LoadDeps, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int JvmModule::Load()
 {
-    std::wstring wstModuleName = L"jvm";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(L"libjvm", DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"jvm", L"libjvm", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"jvm", DYNLIB_NAME_FORMAT_3);
 #endif
-
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int UiDataModule::Load()
 {
-    std::wstring wstModuleName = L"ui_data";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    return GenericModule::Load(L"ui_data", DYNLIB_NAME_FORMAT_2);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"ui_data", DYNLIB_NAME_FORMAT_3);
 #endif
-
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int TclsciModule::Load()
 {
-    std::wstring wstModuleName = L"tclsci";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"tclsci", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"tclsci", DYNLIB_NAME_FORMAT_3);
 #endif
-
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int HistoryBrowserModule ::Load()
 {
-    std::wstring wstModuleName = L"history_browser";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"history_browser", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"history_browser", DYNLIB_NAME_FORMAT_3);
 #endif
-
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
 
 int WebtoolsModule::Load()
 {
-    std::wstring wstModuleName = L"webtools";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    return GenericModule::Load(L"webtools", DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    return GenericModule::Load(L"webtools", DYNLIB_NAME_FORMAT_3);
 #endif
-    vectGateway vect = loadGatewaysName(wstModuleName);
-
-    for (int i = 0 ; i < (int)vect.size() ; i++)
-    {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
-    }
-
-    FREE(pwstLibName);
-    return 1;
 }
