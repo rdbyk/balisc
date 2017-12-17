@@ -29,12 +29,4 @@
  */
 OUTPUT_STREAM_IMPEXP int C2F(msgs)(int *n, int *ierr);
 
-/*
- * print a message
- * @param n int message number see modules/output_stream/src/c/msgs.c
- * for the list of messages
- * some message append a buffer to the message (@see printToBuffer)
- */
-OUTPUT_STREAM_IMPEXP void Msgs(int n, int ierr);
-
 #endif /* __MSGS_H__ */
