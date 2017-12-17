@@ -288,7 +288,7 @@ extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 extern int C2F(dcopy)(int *, double *, int *, double *, int *);
 extern int C2F(dgefa)(double *A, int *lead_dim_A, int *n, int *ipivots, int *info);
 extern int C2F(dgesl)(double *A, int *lead_dim_A, int *n, int *ipivots, double *B, int *job);
-extern int C2F(msgs)();
+//extern int C2F(msgs)();
 extern void C2F(clearscicosimport)();
 /*--------------------------------------------------------------------------*/
 void putevs(double *t, int *evtnb, int *ierr1);
@@ -418,7 +418,9 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             if (ni + no > 11)
             {
                 /*     hard coded maxsize in callf.c */
-                C2F(msgs)(&c__90, &c__0);
+                // FIXME
+                //C2F(msgs)(&c__90, &c__0);
+                sciprint("\n");
                 C2F(curblk).kfun = i;
                 *ierr = i + 1005;
                 return 0;
@@ -429,7 +431,9 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             /*     hard coded maxsize in scicos.h */
             if (ni + no > SZ_SIZE)
             {
-                C2F(msgs)(&c__90, &c__0);
+                // FIXME
+                //C2F(msgs)(&c__90, &c__0);
+                sciprint("\n");
                 C2F(curblk).kfun = i;
                 *ierr = i + 1005;
                 return 0;
@@ -456,7 +460,9 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             }
             if (mxtb > TB_SIZE)
             {
-                C2F(msgs)(&c__91, &c__0);
+                // FIXME
+                //C2F(msgs)(&c__91, &c__0);
+                sciprint("\n");
                 C2F(curblk).kfun = i;
                 *ierr = i + 1005;
                 return 0;

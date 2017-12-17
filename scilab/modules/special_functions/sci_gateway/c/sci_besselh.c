@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,7 +18,7 @@
 #include "api_scilab.h"
 #include "gw_special_functions.h"
 #include "Scierror.h"
-#include "msgs.h"
+#include "sciprint.h"
 #include "zbeshv.h"
 #include "sci_malloc.h"
 #include "localization.h"
@@ -235,7 +235,7 @@ int sci_besselh(char *fname, void* pvApiCtx)
 
     if (ierr == 2)
     {
-        // FIX ME
+        // FIXME
         //        if ( C2F(errgst).ieee == 0)
         //        {
         //            ierr = 69;
@@ -251,11 +251,13 @@ int sci_besselh(char *fname, void* pvApiCtx)
     {
         /* inaccurate result */
         ierr = 4;
-        C2F(msgs)(&ierr, &un);
+        // FIXME
+        // C2F(msgs)(&ierr, &un);
+        sciprint("\n");
     }
     else if (ierr == 4 || ierr == 5)
     {
-        // FIX ME
+        // FIXME
         //        if ( C2F(errgst).ieee == 0)
         //        {
         //            ierr = 69;

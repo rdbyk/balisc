@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,8 +30,6 @@ extern "C" {
  * @param ...
  */
 void sciprint(const char *fmt, ...);
-//void sciprintW(wchar_t* fmt, ...);
-
 
 /**
 * Print: works as sciprint
@@ -42,9 +39,7 @@ void sciprint(const char *fmt, ...);
 * @param[in] va_list
 * @return nb characters
 */
-
 int scivprint(const char* fmt, va_list args);
-//int scivprintW(wchar_t* fmt, va_list args);
 
 #ifdef __cplusplus
 }
