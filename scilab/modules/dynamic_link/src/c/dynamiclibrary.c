@@ -1,10 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007-2008 - INRIA - Allan CORNET
- * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
- * Copyright (C) 2015 - Scilab Enterprises - Clement DAVID
- *
+ * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,12 +12,68 @@
  * along with this program.
  *
  */
-#include "dynamiclibrary_others.h"
-#include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
+#include "dynamiclibrary.h"
+#include "sci_malloc.h"
 #include "machine.h"
 #include "os_string.h"
-#include "sci_malloc.h"
+
+#ifdef _MSC_VER
+
+#include "charEncoding.h"
+
+/*---------------------------------------------------------------------------*/
+DynLibHandle LoadDynLibraryW(wchar_t *libname)
+{
+    return (DynLibHandle) LoadLibraryW(libname);
+}
+/*---------------------------------------------------------------------------*/
+DynLibHandle LoadDynLibrary(char *libname)
+{
+    return (DynLibHandle) LoadLibrary(libname);
+}
+/*---------------------------------------------------------------------------*/
+BOOL FreeDynLibrary(DynLibHandle hInstance)
+{
+    return (BOOL) FreeLibrary((HMODULE) hInstance);
+}
+/*---------------------------------------------------------------------------*/
+DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const char *funcName)
+{
+    DynLibFuncPtr retFuncPtr = NULL ;
+
+    if (hInstance)
+    {
+        retFuncPtr = GetProcAddress(hInstance, funcName);
+    }
+
+    return retFuncPtr;
+}
+/*---------------------------------------------------------------------------*/
+char * GetLastDynLibError(void)
+{
+    static char buffer[512];
+    DWORD dw = GetLastError();
+    DWORD source = 0;
+
+    if (dw == 0)
+    {
+        strcpy(buffer, "Unknown Error");
+    }
+    else if (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM |
+                           FORMAT_MESSAGE_IGNORE_INSERTS, &source, dw, 0,
+                           buffer, 512, NULL) == 0)
+    {
+        strcpy(buffer, "Unknown Error");
+    }
+
+    return buffer;
+}
+/*---------------------------------------------------------------------------*/
+
+#else
+
 #include "localization.h"
 /*---------------------------------------------------------------------------*/
 #ifdef VALGRIND_ENABLE
@@ -74,6 +128,9 @@ DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const char *funcName)
     return NULL;
 }
 /*---------------------------------------------------------------------------*/
+
+#endif
+
 wchar_t* buildModuleDynLibraryNameW(const wchar_t* _pwstModuleName, dynlib_name_format _iType)
 {
     wchar_t *pwstDynlibname = NULL;
