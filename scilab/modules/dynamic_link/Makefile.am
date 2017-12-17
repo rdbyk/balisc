@@ -7,7 +7,7 @@
 DYNAMIC_LINK_C_SOURCES = \
     src/c/dl_genErrorMessage.c \
     src/c/ilib_verbose.c \
-    src/c/dynamiclibrary_others.c
+    src/c/dynamiclibrary.c
 
 DYNAMIC_LINK_CPP_SOURCES = \
     src/cpp/dynamic_link.cpp \
@@ -53,8 +53,7 @@ noinst_LTLIBRARIES = libscidynamic_link-algo.la libscidynamic_link.la
 endif
 
 libscidynamic_link_la_includedir=$(pkgincludedir)
-libscidynamic_link_la_include_HEADERS = includes/dynamiclibrary_others.h \
-includes/dynamiclibrary.h
+libscidynamic_link_la_include_HEADERS = includes/dynamiclibrary.h
 
 libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(DYNAMIC_LINK_CPP_SOURCES)
 libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)

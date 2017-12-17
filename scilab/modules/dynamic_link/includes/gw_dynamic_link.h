@@ -21,12 +21,7 @@
 #include "dynlib_dynamic_link_gw.h"
 #include "c_gateway_prototype.h"
 
-/*--------------------------------------------------------------------------*/
-/* Declaration of all the profile function declared and */
-/* used in sci_gateway */
-/*--------------------------------------------------------------------------*/
-DYNAMIC_LINK_GW_IMPEXP int sci_fort(char *fname, unsigned long fname_len);
-DYNAMIC_LINK_GW_IMPEXP  C_GATEWAY_PROTOTYPE(sci_call);
+DYNAMIC_LINK_GW_IMPEXP C_GATEWAY_PROTOTYPE(sci_call);
 
 #endif /* __GW_DYNAMIC_LINK__ */
 /*--------------------------------------------------------------------------*/

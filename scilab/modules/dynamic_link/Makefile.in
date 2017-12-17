@@ -180,7 +180,7 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 =  \
 	src/c/libscidynamic_link_algo_la-dl_genErrorMessage.lo \
 	src/c/libscidynamic_link_algo_la-ilib_verbose.lo \
-	src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo
+	src/c/libscidynamic_link_algo_la-dynamiclibrary.lo
 am__objects_2 = src/cpp/libscidynamic_link_algo_la-dynamic_link.lo \
 	src/cpp/libscidynamic_link_algo_la-addinter.lo
 am_libscidynamic_link_algo_la_OBJECTS = $(am__objects_1) \
@@ -593,7 +593,7 @@ yacc_present = @yacc_present@
 DYNAMIC_LINK_C_SOURCES = \
     src/c/dl_genErrorMessage.c \
     src/c/ilib_verbose.c \
-    src/c/dynamiclibrary_others.c
+    src/c/dynamiclibrary.c
 
 DYNAMIC_LINK_CPP_SOURCES = \
     src/cpp/dynamic_link.cpp \
@@ -635,9 +635,7 @@ libscidynamic_link_la_CPPFLAGS = \
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscidynamic_link-algo.la libscidynamic_link.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscidynamic_link-algo.la
 libscidynamic_link_la_includedir = $(pkgincludedir)
-libscidynamic_link_la_include_HEADERS = includes/dynamiclibrary_others.h \
-includes/dynamiclibrary.h
-
+libscidynamic_link_la_include_HEADERS = includes/dynamiclibrary.h
 libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(DYNAMIC_LINK_CPP_SOURCES)
 libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscidynamic_link_algo_la_CPPFLAGS = $(libscidynamic_link_la_CPPFLAGS)
@@ -854,7 +852,7 @@ src/c/libscidynamic_link_algo_la-dl_genErrorMessage.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscidynamic_link_algo_la-ilib_verbose.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo:  \
+src/c/libscidynamic_link_algo_la-dynamiclibrary.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp
@@ -959,7 +957,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_ulink.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidynamic_link_algo_la-dl_genErrorMessage.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary_others.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidynamic_link_algo_la-ilib_verbose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscidynamic_link_algo_la-addinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscidynamic_link_algo_la-dynamic_link.Plo@am__quote@
@@ -1002,12 +1000,12 @@ src/c/libscidynamic_link_algo_la-ilib_verbose.lo: src/c/ilib_verbose.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscidynamic_link_algo_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
 
-src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo: src/c/dynamiclibrary_others.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo -MD -MP -MF src/c/$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary_others.Tpo -c -o src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo `test -f 'src/c/dynamiclibrary_others.c' || echo '$(srcdir)/'`src/c/dynamiclibrary_others.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary_others.Tpo src/c/$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary_others.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/dynamiclibrary_others.c' object='src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscidynamic_link_algo_la-dynamiclibrary.lo: src/c/dynamiclibrary.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscidynamic_link_algo_la-dynamiclibrary.lo -MD -MP -MF src/c/$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary.Tpo -c -o src/c/libscidynamic_link_algo_la-dynamiclibrary.lo `test -f 'src/c/dynamiclibrary.c' || echo '$(srcdir)/'`src/c/dynamiclibrary.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary.Tpo src/c/$(DEPDIR)/libscidynamic_link_algo_la-dynamiclibrary.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/dynamiclibrary.c' object='src/c/libscidynamic_link_algo_la-dynamiclibrary.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo `test -f 'src/c/dynamiclibrary_others.c' || echo '$(srcdir)/'`src/c/dynamiclibrary_others.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscidynamic_link_algo_la-dynamiclibrary.lo `test -f 'src/c/dynamiclibrary.c' || echo '$(srcdir)/'`src/c/dynamiclibrary.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
