@@ -41,9 +41,7 @@ OUTPUT_STREAM_C_SOURCES = \
 
 OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/fmttyp.f \
-	src/fortran/fmt.f \
-	src/fortran/dmdspf.f \
-	src/fortran/formatnumber.f
+	src/fortran/dmdspf.f
 
 
 libscioutput_stream_la_CPPFLAGS= \
