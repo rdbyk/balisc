@@ -40,7 +40,6 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/error.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = \
-	src/fortran/wmdsp.f \
 	src/fortran/fmttyp.f \
 	src/fortran/fmt.f \
 	src/fortran/dmdspf.f \
