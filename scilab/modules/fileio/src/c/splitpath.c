@@ -70,9 +70,8 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
 
         begin_duplicate_path = duplicate_path;
 
-        int len_duplicate_path = wcslen(duplicate_path);
         
-        for (i = 0; i < len_duplicate_path; i++)
+        for (i = 0; duplicate_path[i] != '\0'; ++i)
         {
 #ifdef _MSC_VER
             if (duplicate_path[i] == L'/')
