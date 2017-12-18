@@ -30,8 +30,6 @@ extern "C"
 #include "islittleendian.h"
 #include "convert_tools.h"
 #include "localization.h"
-#include "charEncoding.h"
-#include "sci_malloc.h"
 #include "strlen.h"
 }
 /*--------------------------------------------------------------------------*/
