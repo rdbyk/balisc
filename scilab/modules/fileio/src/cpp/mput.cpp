@@ -31,7 +31,6 @@ extern "C"
 #include "islittleendian.h"
 #include "convert_tools.h"
 #include "localization.h"
-#include "charEncoding.h"
 #include "strlen.h"
 }
 /*--------------------------------------------------------------------------*/

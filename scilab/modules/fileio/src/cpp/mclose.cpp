@@ -20,11 +20,8 @@
 extern "C"
 {
 #include "mclose.h"
-#include "delfile.h"
-#include "core_math.h" /* Min Max */
 #include "sciprint.h"
 #include "localization.h"
-#include "charEncoding.h"
 
     extern int C2F(clunit)(int* , const char*, int*, int);
 }
