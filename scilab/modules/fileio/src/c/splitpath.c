@@ -48,10 +48,9 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
     /* pathconvert hardcoded */
     if (path)
     {
-        int i = 0;
-
         if (bExpand)
         {
+            // expand path variables & normalize slashes
             duplicate_path = expandPathVariableW((wchar_t*)path);
         }
         else
@@ -60,6 +59,24 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
             if (duplicate_path)
             {
                 wcscpy(duplicate_path, path);
+
+                // normalize slashes
+                wchar_t* d = duplicate_path;
+                while (*d)
+                {
+#ifdef _MSC_VER
+                    if (*d == L'/')
+                    {
+                        *d= L'\\';
+                    }
+#else
+                    if (*d == L'\\')
+                    {
+                        *d = L'/';
+                    }
+#endif
+                    ++d;
+                }
             }
         }
 
@@ -69,22 +86,6 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
         }
 
         begin_duplicate_path = duplicate_path;
-
-        
-        for (i = 0; duplicate_path[i] != '\0'; ++i)
-        {
-#ifdef _MSC_VER
-            if (duplicate_path[i] == L'/')
-            {
-                duplicate_path[i] = L'\\';
-            }
-#else
-            if (duplicate_path[i] == L'\\')
-            {
-                duplicate_path[i] = L'/';
-            }
-#endif
-        }
     }
     else
     {
