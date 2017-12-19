@@ -179,23 +179,22 @@ wchar_t *convertFileSeparators(wchar_t *wcStr)
 {
     if (wcStr)
     {
+        wchar_t* d = wcStr;
+        while (*d)
+        {
 #ifdef _MSC_VER
-        for (int k = 0; wcStr[k] != L'\0'; ++k)
-        {
-            if (wcStr[k] == L'/')
+            if (*d == L'/')
             {
-                wcStr[k] = L'\\';
+                *d= L'\\';
             }
-        }
 #else
-        for (int k = 0; wcStr[k] != L'\0'; ++k)
-        {
-            if (wcStr[k] == L'\\')
+            if (*d == L'\\')
             {
-                wcStr[k] = L'/';
+                *d = L'/';
             }
-        }
 #endif
+            ++d;
+        }
     }
     return wcStr;
 }
