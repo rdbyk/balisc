@@ -13,17 +13,10 @@
  *
  */
 
-#ifdef _MSC_VER
-#ifndef MAX_PATH_SHORT
-#define MAX_PATH_SHORT 260
-#endif
-//Only for windows
-#pragma warning(disable : 4996) //It's not beautifull but that works !
-#endif
-
 #include <iostream>
 
 #ifdef _MSC_VER
+
 #define NOMINMAX
 #include "windows.h"
 #define putenv _putenv
@@ -33,8 +26,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
-
-#define  DIRMODE	0777
 
 #endif
 
@@ -53,8 +44,29 @@ extern "C"
 #include "strlen.h"
 }
 
-static void SetScilabVariables(void);
+/* DIR_SEPARATOR : Under Windows by default is \ */
+#ifdef _MSC_VER
+#define DIR_SEPARATOR "\\"
+#define DIR_SEPARATORW L"\\"
+#else
+#define DIR_SEPARATOR "/"
+#define DIR_SEPARATORW L"/"
+#endif
 
+#define UNIX_SEPARATOR '/'
+#define WINDOWS_SEPARATOR '\\'
+
+static void SetScilabVariables(void);
+static void convertSlash(const char *path_in, char *path_out, BOOL slashToAntislash);
+static void Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
+static BOOL IsTheGoodShell(void);
+static BOOL Set_Shell(void);
+static void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
+#ifdef _MSC_VER
+static void SciEnvForWindows(void);
+#else
+static int SciEnvForOthers(void);
+#endif
 
 /*--------------------------------------------------------------------------*/
 /**
@@ -225,19 +237,18 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 #endif
 
 /*--------------------------------------------------------------------------*/
-BOOL AntislashToSlash(const char *pathwindows, char *pathunix)
+void AntislashToSlash(const char *pathwindows, char *pathunix)
 {
-    return convertSlash(pathwindows, pathunix, FALSE);
+    convertSlash(pathwindows, pathunix, FALSE);
 }
 /*--------------------------------------------------------------------------*/
-BOOL SlashToAntislash(const char *pathunix, char *pathwindows)
+void SlashToAntislash(const char *pathunix, char *pathwindows)
 {
-    return convertSlash(pathunix, pathwindows, TRUE);
+    convertSlash(pathunix, pathwindows, TRUE);
 }
 /*--------------------------------------------------------------------------*/
-BOOL convertSlash(const char *path_in, char *path_out, BOOL slashToAntislash)
+void convertSlash(const char *path_in, char *path_out, BOOL slashToAntislash)
 {
-    BOOL ret = FALSE;
     if ( (path_in) && (path_out) )
     {
         int i = 0;
@@ -246,22 +257,18 @@ BOOL convertSlash(const char *path_in, char *path_out, BOOL slashToAntislash)
         {
             if ( slashToAntislash )
             {
-                if (path_in[i] == UNIX_SEPATATOR)
+                if (path_in[i] == UNIX_SEPARATOR)
                 {
-                    path_out[i] = WINDOWS_SEPATATOR;
-                    ret = TRUE;
+                    path_out[i] = WINDOWS_SEPARATOR;
                 }
             }
             else
             {
-                if (path_in[i] == WINDOWS_SEPATATOR)
+                if (path_in[i] == WINDOWS_SEPARATOR)
                 {
-                    path_out[i] = UNIX_SEPATATOR;
-                    ret =  TRUE;
+                    path_out[i] = UNIX_SEPARATOR;
                 }
             }
         }
     }
-
-    return ret;
 }
