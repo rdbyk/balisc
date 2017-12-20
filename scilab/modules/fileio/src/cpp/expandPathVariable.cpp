@@ -33,19 +33,27 @@ struct VARIABLEALIAS
 {
     const wchar_t *Alias;
     const wchar_t *VariableName;
+    size_t AliasLength;
     symbol::Variable* var;
 };
 /*--------------------------------------------------------------------------*/
+#define ALIASLENGTH(x) (sizeof(x) / sizeof(wchar_t) - 1)
+#ifdef _MSC_VER
 #define NB_ALIAS 7
+#else
+#define NB_ALIAS 6
+#endif
 static struct VARIABLEALIAS VARIABLES_words[NB_ALIAS] =
 {
-    {L"SCIHOME", L"SCIHOME", NULL},
-    {L"WSCI", L"WSCI", NULL},
-    {L"SCI", L"SCI", NULL},
-    {L"~", L"home", NULL},
-    {L"HOME", L"home", NULL},
-    {L"home", L"home", NULL},
-    {L"TMPDIR", L"TMPDIR", NULL}
+    {L"SCIHOME", L"SCIHOME", ALIASLENGTH(L"SCIHOME"), NULL},
+#ifdef _MSC_VER
+    {L"WSCI", L"WSCI", ALIASLENGTH(L"WSCI"), NULL},
+#endif
+    {L"SCI", L"SCI", ALIASLENGTH(L"SCI"), NULL},
+    {L"~", L"home", ALIASLENGTH(L"~"), NULL},
+    {L"HOME", L"home", ALIASLENGTH(L"HOME"), NULL},
+    {L"home", L"home", ALIASLENGTH(L"home"), NULL},
+    {L"TMPDIR", L"TMPDIR", ALIASLENGTH(L"TMPDIR"), NULL}
 };
 /*--------------------------------------------------------------------------*/
 static wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* var);
@@ -73,7 +81,7 @@ wchar_t *expandPathVariableW(const wchar_t *wcstr)
                 }
             }
 
-            lenAlias = (int)wcslen(VARIABLES_words[i].Alias);
+            lenAlias = (int)VARIABLES_words[i].AliasLength;
 
             if (lenStr > lenAlias)
             {
@@ -81,7 +89,7 @@ wchar_t *expandPathVariableW(const wchar_t *wcstr)
                 if (wcBegin)
                 {
                     wcsncpy(wcBegin, wcstr, lenAlias);
-                    wcBegin[lenAlias] = 0;
+                    wcBegin[lenAlias] = '\0';
 
                     if (wcscmp(wcBegin, VARIABLES_words[i].Alias) == 0 )
                     {
@@ -91,7 +99,7 @@ wchar_t *expandPathVariableW(const wchar_t *wcstr)
                             if (newBegin)
                             {
                                 int lengthnewBegin = (int)wcslen(newBegin);
-                                wcexpanded = (wchar_t *)MALLOC(sizeof(wchar_t) * (lengthnewBegin + (int)wcslen(&wcstr[lenAlias]) + 1));
+                                wcexpanded = (wchar_t *)MALLOC(sizeof(wchar_t) * (lengthnewBegin + (lenStr - lenAlias + 1)));
                                 if (wcexpanded)
                                 {
                                     wcscat(wcpcpy(wcexpanded, newBegin), &wcstr[lenAlias]);
@@ -113,7 +121,7 @@ wchar_t *expandPathVariableW(const wchar_t *wcstr)
         }
 
         /* Variables not founded returns a copy of input */
-        wcexpanded = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcstr) + 1));
+        wcexpanded = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)lenStr + 1));
         if (wcexpanded)
         {
             wcscpy(wcexpanded, wcstr);
