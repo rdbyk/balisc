@@ -1,8 +1,8 @@
 /*
-* ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
-*
+ * ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include <wctype.h>
 #include "pathconvert.h"
@@ -20,6 +20,7 @@
 #include "splitpath.h"
 #include "charEncoding.h"
 #include "BOOL.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define CYGWINSTART L"/cygdrive/"
 /*--------------------------------------------------------------------------*/
@@ -51,8 +52,7 @@ wchar_t *pathconvertW(const wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, Pa
         }
         else
         {
-            expandedPath = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(wcpath) + 1));
-            wcscpy(expandedPath, wcpath);
+            expandedPath = os_wcsdup(wcpath);
         }
 
         if (PTypelocal == WINDOWS_STYLE)
