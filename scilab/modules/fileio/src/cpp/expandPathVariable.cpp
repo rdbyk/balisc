@@ -28,8 +28,6 @@ extern "C"
 #include "os_string.h"
 }
 
-
-
 /*--------------------------------------------------------------------------*/
 struct VARIABLEALIAS
 {
@@ -177,25 +175,23 @@ void resetVariableValueDefinedInScilab(void)
 /*--------------------------------------------------------------------------*/
 wchar_t *convertFileSeparators(wchar_t *wcStr)
 {
-    if (wcStr)
+    wchar_t* d = wcStr;
+    while (*d)
     {
-        wchar_t* d = wcStr;
-        while (*d)
-        {
 #ifdef _MSC_VER
-            if (*d == L'/')
-            {
-                *d= L'\\';
-            }
-#else
-            if (*d == L'\\')
-            {
-                *d = L'/';
-            }
-#endif
-            ++d;
+        if (*d == L'/')
+        {
+            *d= L'\\';
         }
+#else
+        if (*d == L'\\')
+        {
+            *d = L'/';
+        }
+#endif
+        ++d;
     }
+
     return wcStr;
 }
 /*--------------------------------------------------------------------------*/
