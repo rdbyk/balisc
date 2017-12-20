@@ -20,6 +20,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_PREFIX L"SCI"
 /*--------------------------------------------------------------------------*/
@@ -35,8 +36,7 @@ int sci_tempname(char *fname, void* pvApiCtx)
 
     if (Rhs == 0)
     {
-        wcprefix = (wchar_t *)MALLOC(sizeof(wchar_t) * (/* wcslen(DEFAULT_PREFIX) */ + 3 + 1));
-        wcscpy(wcprefix, DEFAULT_PREFIX);
+        wcprefix = os_wcsdup(DEFAULT_PREFIX);
     }
     else
     {
