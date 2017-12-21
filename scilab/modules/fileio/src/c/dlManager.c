@@ -102,15 +102,13 @@ static char *getFileNameFromURL(char *url)
 
     if (c->path == NULL || strstr(c->path, "/") == 0 || balisc_strcmp(c->path, "/") == 0)
     {
-        filename = (char *)MALLOC((balisc_strlen(DEFAULT_FILENAME) + 1) * sizeof(char));
-        strcpy(filename, DEFAULT_FILENAME);
+        filename = os_strdup(DEFAULT_FILENAME);
     }
     else
     {
         char bname[PATH_MAX] = {0};
         strncpy(bname, basename(c->path), sizeof(bname));
-        filename = (char *)MALLOC((balisc_strlen(bname) + 1) * sizeof(char));
-        strcpy(filename, bname);
+        filename = os_strdup(bname);
     }
     return filename;
 
