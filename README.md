@@ -3,7 +3,8 @@
 - detects **_SIMD extensions_** (SSE2/SSE4/AVX/...) and uses it (currently, just a little bit)
 - improves **_run-time performance_** of various functions in `string`, `elementary_functions`, ... modules
 - tries **_cleaning_** and **_simplification_** of code base (huge on-going task)
-- will drop MSVC support and switch to MINGW/MSYS2 (not finally decided, just thinking about it)
+- _**dropped MSVC**_ support and will switch to _**MINGW/MSYS2**_ for Windows support (in the long run)
+- currently runs on  _**Linux 64bit only**_, but is _**fully compatible**_ with current _**Scilab 6.x**_
 - ...
 ## Is it for me?
 We don't know, but you may try running this
