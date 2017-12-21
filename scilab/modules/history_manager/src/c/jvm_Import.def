@@ -1,8 +1,0 @@
-	LIBRARY    libjvm.dll
-
-
-EXPORTS
-;libjvm
-getScilabJavaVM
-loadOnUseClassPath
-;
