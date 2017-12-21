@@ -77,11 +77,11 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 
     if (rp == NULL)
     {
-        char * tofind;
-        char * toadd;
-        char * _Path_tmp;
-        char * _Path_start;
-        char * _FullPath_start;
+        char * tofind = NULL;
+        char * toadd = NULL;
+        char * _Path_tmp = NULL;
+        char * _Path_start = NULL;
+        char * _FullPath_start = NULL;
         char* pstWorkingPath = NULL;
 
         //if argument is a relative path, add currentdir at start
@@ -97,16 +97,12 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
         }
         else
         {
-            pstWorkingPath = strdup(_Path);
+            pstWorkingPath = os_strdup(_Path);
         }
 
-        _Path_tmp = (char *)MALLOC(sizeof(char) * (lenPath + 1));
-        _Path_start = (char *)MALLOC(sizeof(char) * (lenPath + 1));
-        _FullPath_start = (char *)MALLOC(sizeof(char) * (lenFullPath + 1));
-
         //First case(1): fullpath(TMPDIR+"/a/b/c"), second case(2): fullpath("a/b/c") or third case(3): fullpath("../a/b")
-        strcpy(_Path_start, pstWorkingPath); // _Path_start=TMPDIR+"/a/b/c" (1) or _Path_start="a/b/c" (2) or _Path_start="../a/b/c" (3)
-        strcpy(_FullPath_start, _FullPath); // _Fullpath_Start=TMPDIR+"/a" (1) or _FullPath_start=SCI+"/a" (2) or _FullPath_start=../SCI+"/a" (3)
+        _Path_start = os_strdup(pstWorkingPath); // _Path_start=TMPDIR+"/a/b/c" (1) or _Path_start="a/b/c" (2) or _Path_start="../a/b/c" (3)
+        _FullPath_start = os_strdup(_FullPath); // _Fullpath_Start=TMPDIR+"/a" (1) or _FullPath_start=SCI+"/a" (2) or _FullPath_start=../SCI+"/a" (3)
         strtok(_Path_start, "/"); // _Path_start=/tmp  (1) or _Path_start="a" (2) or _Path_start="a/b/c" (3)
         strtok(_FullPath_start, "/"); // _FullPath_start=/tmp (1) or _FullPath_start=/home (2) and (3)
 
@@ -124,17 +120,17 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 #endif
         else if (strcmp(_Path, _FullPath) != 0) // For case: fullpath("a/b/c") (2) or fullpath("../a/b/c") (3)
         {
-            strcpy(_Path_tmp, pstWorkingPath); //_Path_tmp="a/b/c" (2) or _Path_tmp="../a/b/c" (3)
+            _Path_tmp = os_strdup(pstWorkingPath); //_Path_tmp="a/b/c" (2) or _Path_tmp="../a/b/c" (3)
             strtok(_Path_tmp, "./"); // _Path_tmp becomes a (2) or ../a (3)
             toadd = strsub(pstWorkingPath, _Path_tmp, ""); // to add = "/b/c"
             strcat(_FullPath, toadd); //_FullPath=_Fullpath+toadd
             FREE(toadd);
+            FREE(_Path_tmp);
         }
 
         FREE(pstWorkingPath);
         FREE(_FullPath_start);
         FREE(_Path_start);
-        FREE(_Path_tmp);
     }
 
     lenFullPath = (int)balisc_strlen(_FullPath);
