@@ -96,8 +96,7 @@ wchar_t **getdrivesW(int *nbDrives)
 #else
     (*nbDrives)++;
     DrivesList = (wchar_t**)MALLOC(sizeof(wchar_t*) * (*nbDrives));
-    DrivesList[*nbDrives - 1] = (wchar_t*)MALLOC(sizeof(wchar_t) * (/* wcslen(L"/") */ 1 + 1));
-    wcscpy(DrivesList[*nbDrives - 1], L"/");
+    DrivesList[*nbDrives - 1] = os_wcsdup(L"/");
 #endif
 
     return DrivesList;
