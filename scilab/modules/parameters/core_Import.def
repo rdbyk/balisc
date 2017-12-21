@@ -1,7 +1,0 @@
-LIBRARY    core.dll
-
-
-EXPORTS
-freeArrayOfString
-MyHeapAlloc
-MyHeapFree

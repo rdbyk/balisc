@@ -1,8 +1,0 @@
-	LIBRARY    core.dll
-
-
-EXPORTS
-;core
-returnanan_
-isanan_
-MyHeapFree

@@ -1,5 +1,0 @@
-LIBRARY    preferences.dll
-
-
-EXPORTS
-getPrefAttributesValues

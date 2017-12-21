@@ -1,9 +1,0 @@
-LIBRARY    linpack_f.dll
-
-
-EXPORTS
-;
-dgbfa_
-dgefa_
-dgesl_
-icopy_

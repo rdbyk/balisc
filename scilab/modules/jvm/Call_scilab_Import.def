@@ -1,6 +1,0 @@
-LIBRARY    call_scilab.dll
-
-
-EXPORTS
-IsFromJava
-
