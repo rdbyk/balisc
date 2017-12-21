@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,10 +15,10 @@
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <windows.h>
+#include "sci_malloc.h"
 #endif
 #include <string.h>
 #include "getlongpathname.h"
-#include "sci_malloc.h"
 #include "charEncoding.h"
 #include "os_string.h"
 /*--------------------------------------------------------------------------*/
@@ -30,6 +30,7 @@
 /*--------------------------------------------------------------------------*/
 char *getlongpathname(const char *shortpathname, BOOL *convertok)
 {
+#ifdef _MSC_VER
     char *LongName = NULL;
     wchar_t *wcshortpathname = to_wide_string(shortpathname);
     if (wcshortpathname)
@@ -54,13 +55,18 @@ char *getlongpathname(const char *shortpathname, BOOL *convertok)
         *convertok = FALSE;
     }
     return LongName;
+#else
+    char* LongName = os_strdup(shortpathname);
+    *convertok = FALSE;
+    return LongName;
+#endif
 }
 /*--------------------------------------------------------------------------*/
 wchar_t *getlongpathnameW(const wchar_t *wcshortpathname, BOOL *convertok)
 {
+#ifdef _MSC_VER
     wchar_t *wcLongName = NULL;
 
-#ifdef _MSC_VER
     /* first we try to call to know path length */
     int length = GetLongPathNameW(wcshortpathname, NULL, 0);
     if (length <= 0 )
@@ -92,16 +98,13 @@ wchar_t *getlongpathnameW(const wchar_t *wcshortpathname, BOOL *convertok)
         /* FAILED */
         *convertok = FALSE;
     }
+    return wcLongName;
 #else
     /* Linux */
-    int len = (int)wcslen(wcshortpathname) + 1;
-    wcLongName = (wchar_t*)MALLOC(len * sizeof(wchar_t));
-    if (wcLongName)
-    {
-        wcscpy(wcLongName, wcshortpathname);
-    }
+    /* do nothing, just return a copy */
+    wchar_t *wcLongName = os_wcsdup(wcshortpathname);
     *convertok = FALSE;
-#endif
     return wcLongName;
+#endif
 }
 /*--------------------------------------------------------------------------*/

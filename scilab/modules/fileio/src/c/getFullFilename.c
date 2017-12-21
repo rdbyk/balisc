@@ -74,14 +74,7 @@ wchar_t *getFullFilenameW(const wchar_t* FilenameInput)
             }
         }
 
-        wcTmp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        if (wcTmp)
-        {
-            get_full_pathW(wcTmp, (const wchar_t*)wcPath, PATH_MAX * 2);
-            wcscpy(wcPath, wcTmp);
-            FREE(wcTmp);
-            wcTmp = NULL;
-        }
+        get_full_pathW(wcPath, (const wchar_t*)wcPath, PATH_MAX * 2);
 
         lenPath = (int)wcslen(wcPath);
         if (lenPath - 1 >= 0)

@@ -18,34 +18,14 @@
 #include "sci_malloc.h"
 #include "charEncoding.h"
 #include "os_string.h"
-#include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h> /* GetShortPathNameW */
+#include "sci_malloc.h"
 #ifndef MAX_PATH_SHORT
 #define MAX_PATH_SHORT 260
 #endif
 #endif
-/*--------------------------------------------------------------------------*/
-int C2F(getshortpathname)(char *pathname, int *len)
-{
-    if (pathname)
-    {
-        BOOL bConvert = FALSE;
-        char *result = NULL;
-        pathname[*len] = 0;
-        result = getshortpathname(pathname, &bConvert);
-        if (result)
-        {
-            strcpy(pathname, result);
-            *len = (int)balisc_strlen(result);
-            FREE(result);
-            result = NULL;
-            return 1;
-        }
-    }
-    return 0;
-}
 /*--------------------------------------------------------------------------*/
 char *getshortpathname(const char *longpathname, BOOL *convertok)
 {
@@ -99,12 +79,8 @@ char *getshortpathname(const char *longpathname, BOOL *convertok)
         }
 #else
         /* Linux */
-        int length = (int)balisc_strlen(longpathname) + 1;
-        ShortName = (char*)MALLOC((length) * sizeof(char));
-        if (ShortName)
-        {
-            strcpy(ShortName, longpathname);
-        }
+        /* do nothing, just return a copy */
+        ShortName = os_strdup(longpathname);
         *convertok = FALSE;
 #endif
     }

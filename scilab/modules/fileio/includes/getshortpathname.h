@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,9 +30,6 @@
 * used for Windows
 */
 FILEIO_IMPEXP char *getshortpathname(const char *longpathname, BOOL *convertok);
-
-FILEIO_IMPEXP int C2F(getshortpathname)(char *pathname, int *len);
-
 FILEIO_IMPEXP wchar_t* getshortpathnameW(const wchar_t* _pwstLongPathName, BOOL* _pbOK);
 
 #endif /* __GETSHORTPATHNAME_H__ */

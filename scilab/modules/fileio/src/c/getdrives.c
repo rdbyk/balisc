@@ -20,6 +20,7 @@
 #endif
 #include "getdrives.h"
 #include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char **getdrives(int *nbDrives)
 {
@@ -55,8 +56,7 @@ char **getdrives(int *nbDrives)
 #else
     (*nbDrives)++;
     DrivesList = (char**)MALLOC(sizeof(char*) * (*nbDrives));
-    DrivesList[*nbDrives - 1] = (char*)MALLOC(sizeof(char) * (/* strlen("/") */ 1 + 1));
-    strcpy(DrivesList[*nbDrives - 1], "/");
+    DrivesList[*nbDrives - 1] = os_strdup("/");
 #endif
 
     return DrivesList;
@@ -96,8 +96,7 @@ wchar_t **getdrivesW(int *nbDrives)
 #else
     (*nbDrives)++;
     DrivesList = (wchar_t**)MALLOC(sizeof(wchar_t*) * (*nbDrives));
-    DrivesList[*nbDrives - 1] = (wchar_t*)MALLOC(sizeof(wchar_t) * (/* wcslen(L"/") */ 1 + 1));
-    wcscpy(DrivesList[*nbDrives - 1], L"/");
+    DrivesList[*nbDrives - 1] = os_wcsdup(L"/");
 #endif
 
     return DrivesList;
