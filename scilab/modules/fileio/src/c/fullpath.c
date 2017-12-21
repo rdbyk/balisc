@@ -28,6 +28,7 @@
 #include "strsubst.h"
 #include "scicurdir.h"
 #include "expandPathVariable.h"
+#include "os_string.h"
 #include "strlen.h"
 #include "strcmp.h"
 /*--------------------------------------------------------------------------*/
