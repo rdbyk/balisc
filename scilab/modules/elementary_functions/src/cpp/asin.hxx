@@ -22,14 +22,9 @@
 
 #include "double.hxx"
 
-extern "C"
-{
-#include "dynlib_elementary_functions.h"
-}
-
 namespace balisc
 {
-ELEMENTARY_FUNCTIONS_IMPEXP types::Double* asin(types::Double* x);
+types::Double* asin(types::Double* x);
 }
 
 #endif // __ASIN_H__

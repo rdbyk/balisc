@@ -25,22 +25,21 @@
 #ifndef __GW_SCICOS__
 #define __GW_SCICOS__
 /*--------------------------------------------------------------------------*/
-#include "dynlib_scicos.h"
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
 /* interface for the previous function Table */
-SCICOS_IMPEXP int gw_scicos(void);
+int gw_scicos(void);
 
 /*--------------------------------------------------------------------------*/
-SCICOS_IMPEXP int sci_sctree(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_ftree2(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_ftree3(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_ftree4(char *fname, void* pvApiCtx);
+int sci_sctree(char *fname, void* pvApiCtx);
+int sci_ftree2(char *fname, void* pvApiCtx);
+int sci_ftree3(char *fname, void* pvApiCtx);
+int sci_ftree4(char *fname, void* pvApiCtx);
 
 /* it was in a separate gateway */
-//SCICOS_IMPEXP int sci_model2blk(char *fname, void* pvApiCtx);
-//SCICOS_IMPEXP int sci_callblk(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_loadScicos(char *fname, void* pvApiCtx);
+//int sci_model2blk(char *fname, void* pvApiCtx);
+//int sci_callblk(char *fname, void* pvApiCtx);
+int sci_loadScicos(char *fname, void* pvApiCtx);
 
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SCICOS__ */

@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void sinh_blk(scicos_block *block, int flag)
+void sinh_blk(scicos_block *block, int flag)
 {
 
     if (flag == 1)

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,19 +12,11 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 #ifndef __GETFILEDESC_H__
 #define __GETFILEDESC_H__
 
-#include "dynlib_fileio.h"
 #include "machine.h"
 
-/**
-* returns the first available position in Files descriptor Table
-* @param fd (id)
-* @param[out] fd (-1 error)
-*/
-FILEIO_IMPEXP void C2F(getfiledesc)(int *fd);
+void C2F(getfiledesc)(int *fd);
 
 #endif /* __GETFILEDESC_H__ */
-/*--------------------------------------------------------------------------*/

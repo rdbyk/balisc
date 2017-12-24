@@ -177,7 +177,6 @@ libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 
 #### fileio : include files ####
 libscifileio_la_includedir=$(pkgincludedir)
-libscifileio_la_include_HEADERS = includes/getFullFilename.h \
-includes/dynlib_fileio.h
+libscifileio_la_include_HEADERS = includes/getFullFilename.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -21,14 +21,12 @@
 #ifndef __BALISC_STRCMP_H__
 #define __BALISC_STRCMP_H__
 
-#include "dynlib_string.h"
-
 #if defined(__SSE4_2__)
 
 int sse42_strcmp(const char* s1, const char* s2);
 #define balisc_strcmp sse42_strcmp
 
-STRING_IMPEXP int balisc_strcmp(const char* s1, const char* s2);
+int balisc_strcmp(const char* s1, const char* s2);
 
 #else
 

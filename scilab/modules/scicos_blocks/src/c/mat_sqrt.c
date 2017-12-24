@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void mat_sqrt(scicos_block *block, int flag)
+void mat_sqrt(scicos_block *block, int flag)
 {
     int i = 0;
     int mu = GetInPortRows(block, 1);

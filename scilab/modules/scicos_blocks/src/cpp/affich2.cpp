@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010 - DIGITEO - Clément DAVID
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,7 +22,6 @@
 extern "C"
 {
 #include "machine.h"
-#include "dynlib_scicos_blocks.h"
 #include "sci_malloc.h"
 #include "scicos_block4.h"
 #include "scicos.h"
@@ -30,13 +29,13 @@ extern "C"
 #include "os_string.h"
 
     double C2F(sciround) (double *x);
-    SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag);
+    void affich2(scicos_block * block, int flag);
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos_block;
 
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
+void affich2(scicos_block * block, int flag)
 {
     int i;
     int j;

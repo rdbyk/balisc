@@ -22,7 +22,6 @@
 #include <stdio.h>
 #include <math.h>
 #include "core_math.h"
-#include "dynlib_scicos_blocks.h"
 #include "scicos.h"
 /*--------------------------------------------------------------------------*/
 /*------------------------------------------------
@@ -34,7 +33,7 @@
  *     Scicos block simulator
  *     returns Absolute value of the input
  *------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void absblk(int *flag, int *nevprt, double *t, double *xd,
+void absblk(int *flag, int *nevprt, double *t, double *xd,
                                  double *x, int *nx, double *z, int *nz,
                                  double *tvec, int *ntvec, double *rpar,
                                  int *nrpar, int *ipar, int *nipar, double *u,
@@ -47,7 +46,7 @@ SCICOS_BLOCKS_IMPEXP void absblk(int *flag, int *nevprt, double *t, double *xd,
     }
 }
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void C2F(absblk)(int *flag, int *nevprt, double *t, double *xd,
+void C2F(absblk)(int *flag, int *nevprt, double *t, double *xd,
                                       double *x, int *nx, double *z, int *nz,
                                       double *tvec, int *ntvec, double *rpar,
                                       int *nrpar, int *ipar, int *nipar, double *u,

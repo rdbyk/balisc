@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,12 +14,12 @@
  * This code is also published under the GPL v3 license.
  *
  */
+
 #ifndef __STRINGTODOUBLE_H__
 #define __STRINGTODOUBLE_H__
 
-#include "dynlib_string.h"
-#include "BOOL.h"
 #include <wchar.h>
+#include "BOOL.h"
 
 #define NanString "Nan"
 #define NanStringW L"Nan"
@@ -85,13 +85,11 @@ stringToDoubleError;
  * @param ierr
  * @return <ReturnValue>
  */
-STRING_IMPEXP double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
-STRING_IMPEXP double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
+double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
+double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
 
 #ifdef __cplusplus
 }
 #endif
 
-
 #endif /* __STRINGTODOUBLE_H__ */
-// =============================================================================

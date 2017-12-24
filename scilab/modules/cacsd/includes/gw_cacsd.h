@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,6 @@
 #define __GW_CACSD__
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
-#include "dynlib_cacsd.h"
 #include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 // use in mex gateways

@@ -1,10 +1,10 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
- *  Copyright (C) 2008-2008 - INRIA - Allan CORNET
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ * Copyright (C) 2008-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,8 +22,6 @@
 
 #ifndef __THREAD_WRAPPER_H__
 #define __THREAD_WRAPPER_H__
-
-#include "dynlib_threads.h"
 
 /*
 ** WINDOWS
@@ -63,39 +61,39 @@ typedef pthread_cond_t                  __threadSignal;
 #define __StaticInitThreadSignal        PTHREAD_COND_INITIALIZER
 #endif
 
-THREADS_IMPEXP void __InitLock(__threadLock *lockName);
+void __InitLock(__threadLock *lockName);
 
-THREADS_IMPEXP void __Lock(__threadLock *lockName);
+void __Lock(__threadLock *lockName);
 
-THREADS_IMPEXP void __UnLock(__threadLock *lockName);
+void __UnLock(__threadLock *lockName);
 
-THREADS_IMPEXP void __InitSignalLock(__threadSignalLock *lockName);
+void __InitSignalLock(__threadSignalLock *lockName);
 
-THREADS_IMPEXP void __LockSignal(__threadSignalLock *lockName);
+void __LockSignal(__threadSignalLock *lockName);
 
-THREADS_IMPEXP void __UnLockSignal(__threadSignalLock *lockName);
+void __UnLockSignal(__threadSignalLock *lockName);
 
-THREADS_IMPEXP void __InitSignal(__threadSignal *signalName);
+void __InitSignal(__threadSignal *signalName);
 
-THREADS_IMPEXP void __Signal(__threadSignal *signalName);
+void __Signal(__threadSignal *signalName);
 
-THREADS_IMPEXP void __Wait(__threadSignal *signalName, __threadSignalLock *lockName);
+void __Wait(__threadSignal *signalName, __threadSignalLock *lockName);
 
-THREADS_IMPEXP void __CreateThread(__threadId *threadId, __threadKey *threadKey, void * (*functionName) (void *));
+void __CreateThread(__threadId *threadId, __threadKey *threadKey, void * (*functionName) (void *));
 
-THREADS_IMPEXP void __CreateThreadWithParams(__threadId *threadId, __threadKey *threadKey, void * (*functionName) (void *), void *params);
+void __CreateThreadWithParams(__threadId *threadId, __threadKey *threadKey, void * (*functionName) (void *), void *params);
 
-THREADS_IMPEXP void __WaitThreadDie(__threadId threadId);
+void __WaitThreadDie(__threadId threadId);
 
-THREADS_IMPEXP void __Terminate(__threadId threadId);
+void __Terminate(__threadId threadId);
 
-THREADS_IMPEXP __threadId __GetCurrentThreadId();
+__threadId __GetCurrentThreadId();
 
-THREADS_IMPEXP __threadKey __GetCurrentThreadKey();
+__threadKey __GetCurrentThreadKey();
 
-THREADS_IMPEXP void __SuspendThread(__threadId ThreadId);
+void __SuspendThread(__threadId ThreadId);
 
-THREADS_IMPEXP void __ResumeThread(__threadId ThreadId);
+void __ResumeThread(__threadId ThreadId);
 
 #endif /* !__THREAD_WRAPPER_H__ */
 

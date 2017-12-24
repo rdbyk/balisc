@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,24 +17,18 @@
 
 #include "BOOL.h"
 #include <wchar.h>
-#include "dynlib_string.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-STRING_IMPEXP BOOL isNum(const char *pStr);
-
-STRING_IMPEXP BOOL *isNumMatrix(const char **pStrs, int nbRows, int nbCols);
-
-STRING_IMPEXP BOOL isNumW(const wchar_t *pStr);
-
-STRING_IMPEXP BOOL *isNumMatrixW(const wchar_t **pStrs, int nbRows, int nbCols);
+BOOL isNum(const char *pStr);
+BOOL *isNumMatrix(const char **pStrs, int nbRows, int nbCols);
+BOOL isNumW(const wchar_t *pStr);
+BOOL *isNumMatrixW(const wchar_t **pStrs, int nbRows, int nbCols);
 
 #ifdef __cplusplus
 }
 #endif
 
-
 #endif /* __CSV_ISNUM_H__ */
-// =============================================================================

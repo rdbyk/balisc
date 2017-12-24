@@ -22,11 +22,11 @@
 #include <math.h>
 #include "scicos.h"
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 #define matmul2(y1,u1,u2,mu,nu)  {for (i=0;i<mu*nu;i++) y1[i]=u1[i]*u2[i];}
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matmul2_m(scicos_block *block, int flag)
+void matmul2_m(scicos_block *block, int flag)
 {
     if (flag == 1)
     {

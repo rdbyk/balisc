@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,8 +18,6 @@
 
 #include <stdlib.h>
 
-#include "dynlib_gui.h"
-
 /**
  * Set ShowHiddenHandles property of the console
  *
@@ -30,7 +28,7 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the set has been correcty done
  */
-GUI_IMPEXP int SetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+int SetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
 /**
  * Set ShowHiddenProperties property of the console
@@ -42,7 +40,7 @@ GUI_IMPEXP int SetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID, void* _pvD
  * @param nbCol number of columns of the value on stack
  * @return true if the set has been correcty done
  */
-GUI_IMPEXP int SetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+int SetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
 /**
  * Set UseDeprecatedSkin property of the console
@@ -54,6 +52,6 @@ GUI_IMPEXP int SetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID, void* _
  * @param nbCol number of columns of the value on stack
  * @return true if the set has been correcty done
  */
-GUI_IMPEXP int SetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+int SetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* !__SETCONSOLESHOWHIDDENHANDLES_H__ */

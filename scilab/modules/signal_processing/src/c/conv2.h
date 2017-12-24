@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - INRIA - Serge Steer
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,7 +19,6 @@
 
 #ifndef __CONV2_H__
 #define __CONV2_H__
-#include "dynlib_signal_processing.h"
 
 /**
  * computes 2-D convolution for separable kernel in real case
@@ -31,7 +30,7 @@
  * edgN is an integer
  * T is a real vector of length nA
  */
-SIGNAL_PROCESSING_IMPEXP void conv2_separable_R(double *R, int nR,
+void conv2_separable_R(double *R, int nR,
         double *C, int nC,
         double *A, int mA, int nA,
         double *Out, int mOut, int nOut,
@@ -47,7 +46,7 @@ SIGNAL_PROCESSING_IMPEXP void conv2_separable_R(double *R, int nR,
  * edgN is an integer
  * Tr and Ti are real vectors of length nA
  */
-SIGNAL_PROCESSING_IMPEXP void conv2_separable_C(double *Rr, double *Ri, int nR,
+void conv2_separable_C(double *Rr, double *Ri, int nR,
         double *Cr, double *Ci, int nC,
         double *Ar, double *Ai, int mA, int nA,
         double *Outr, double *Outi, int mOut, int nOut,
@@ -61,7 +60,7 @@ SIGNAL_PROCESSING_IMPEXP void conv2_separable_C(double *Rr, double *Ri, int nR,
  * edgM is an integer
  * edgN is an integer
  */
-SIGNAL_PROCESSING_IMPEXP void conv2_R(double *A, int mA, int nA,
+void conv2_R(double *A, int mA, int nA,
                                       double *B, int mB, int nB,
                                       double *Out, int mOut, int nOut,
                                       int edgM, int edgN);
@@ -74,9 +73,8 @@ SIGNAL_PROCESSING_IMPEXP void conv2_R(double *A, int mA, int nA,
  * edgM is an integer
  * edgN is an integer
  */
-SIGNAL_PROCESSING_IMPEXP void conv2_C(double *Ar, double *Ai, int mA, int nA,
+void conv2_C(double *Ar, double *Ai, int mA, int nA,
                                       double *Br, double *Bi, int mB, int nB,
                                       double *Outr, double *Outi, int mOut, int nOut,
                                       int edgM, int edgN);
 #endif /* __CONV2_H__ */
-

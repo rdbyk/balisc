@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,14 +10,11 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef AST_VISITOR_COMMON_HXX
 #define AST_VISITOR_COMMON_HXX
-
-
-#define ENABLE_EXTERNAL_TYPER
 
 #include "internal.hxx"
 #include "struct.hxx"
@@ -26,10 +23,6 @@
 #include "symbol.hxx"
 #include <list>
 #include "expHistory.hxx"
-#include "dynlib_ast.h"
-#define bsiz	4096
-
-//void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
 
 types::InternalType* AddElementToVariable(
     types::InternalType* _poDest,
@@ -62,8 +55,8 @@ types::InternalType* callOverload(const std::wstring& strType, types::InternalTy
 
 types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs, types::InternalType* _pVar, types::InternalType* _pInsert);
 
-EXTERN_AST void callOnPrompt(void);
-EXTERN_AST ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg = std::wstring(L""));
+void callOnPrompt(void);
+ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg = std::wstring(L""));
 
 void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
 std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer);

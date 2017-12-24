@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012-2014 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,6 @@
 #define __XMLNODELIST_HXX__
 
 #include "XMLList.hxx"
-#include "dynlib_xml_scilab.h"
 #include "xml.h"
 
 namespace org_modules_xml
@@ -31,7 +30,7 @@ class XMLDocument;
  *
  * Class to wrap the list of the children of a node
  */
-class XML_SCILAB_IMPEXP XMLNodeList: public XMLList
+class XMLNodeList: public XMLList
 {
 
     const XMLDocument & doc;
@@ -156,7 +155,6 @@ private:
      * @return the correspionding node
      */
     xmlNode *getListNode(int index);
-
 };
 }
 

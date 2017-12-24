@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,7 +22,6 @@
 #include <memory>
 #include <stack>
 #include <vector>
-
 #include "visitor.hxx"
 #include "prettyprintvisitor.hxx"
 #include "execvisitor.hxx"
@@ -43,12 +42,11 @@
 #include "data/PolymorphicMacroCache.hxx"
 #include "gvn/ConstraintManager.hxx"
 #include "logging/Logger.hxx"
-#include "dynlib_ast.h"
 
 namespace analysis
 {
 
-class EXTERN_AST AnalysisVisitor : public ast::Visitor, public Chrono
+class AnalysisVisitor : public ast::Visitor, public Chrono
 {
 
 public:

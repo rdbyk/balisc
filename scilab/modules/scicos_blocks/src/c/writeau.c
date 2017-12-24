@@ -27,9 +27,9 @@
 #include "mput.h"
 #include "localization.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void writeau(int *flag, int *nevprt,
+void writeau(int *flag, int *nevprt,
                                   double *t, double xd[],
                                   double x[], int *nx,
                                   double z[], int *nz,

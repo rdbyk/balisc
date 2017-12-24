@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT (java version)
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,14 +16,13 @@
 #ifndef __MESSAGEBOXOPTIONS_H__
 #define __MESSAGEBOXOPTIONS_H__
 
-#include "dynlib_gui.h"
 /**
  * Verify the argument string is "modal" or "non-modal"
  *
  * @param option the string to test
  * @return 1 is the string matches "modal" or "non-modal"
  */
-GUI_IMPEXP int isModalOption(char *option);
+int isModalOption(char *option);
 
 /**
  * Verify the argument string is an icon name
@@ -32,6 +31,6 @@ GUI_IMPEXP int isModalOption(char *option);
  * @param option the string to test
  * @return 1 is the string matches an icon name
  */
-GUI_IMPEXP int isIconName(char *name);
+int isIconName(char *name);
 
 #endif /* ! __MESSAGEBOXOPTIONS_H__ */

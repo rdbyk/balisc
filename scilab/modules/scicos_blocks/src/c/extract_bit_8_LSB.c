@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void extract_bit_8_LSB(scicos_block *block, int flag)
+void extract_bit_8_LSB(scicos_block *block, int flag)
 {
     int i = 0;
     char *y = NULL, *u = NULL, ref = 0, n = 0;

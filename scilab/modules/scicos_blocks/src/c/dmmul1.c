@@ -20,13 +20,13 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
-#include "dynlib_scicos_blocks.h"
+
 /* Table of constant values */
 /*--------------------------------------------------------------------------*/
 extern int C2F(dmmul1)(double *a, int *na, double *b, int *nb, double *c__,
                        int *nc, int *l, int *m, int *n); /* in elementary_functions */
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP int dmmul1(double *a, int *na, double *b, int *nb, double *c__,
+int dmmul1(double *a, int *na, double *b, int *nb, double *c__,
                                 int *nc, int *l, int *m, int *n)
 {
     return C2F(dmmul1)(a, na, b, nb, c__, nc, l, m, n);

@@ -22,9 +22,8 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void bit_clear_16(scicos_block *block, int flag)
+void bit_clear_16(scicos_block *block, int flag)
 {
     int m = 0, n = 0, i = 0;
     short *opar = NULL;

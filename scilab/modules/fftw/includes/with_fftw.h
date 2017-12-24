@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,20 +18,18 @@
 
 #include "machine.h" /* C2F */
 #include "BOOL.h"
-#include "dynlib_fftw.h"
 
 /**
 * check if it is with FFTW
 * @param rep 1 (WITH) or 0 (WITHOUT)
 * @return 0
 */
-FTTW_SCILAB_IMPEXP int C2F(withfftw)(int *rep);
+int C2F(withfftw)(int *rep);
 
 /**
 * check if it is with FFTW
 * @return TRUE or FALSE
 */
-FTTW_SCILAB_IMPEXP BOOL withfftw(void);
+BOOL withfftw(void);
 
 #endif /* __WITH_FFTW_H__ */
-/*--------------------------------------------------------------------------*/

@@ -25,7 +25,7 @@
 #include "scicos_evalhermite.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 /*    Masoud Najafi, January 2008 */
 /*    Copyright INRIA
@@ -42,7 +42,7 @@
 /*--------------------------------------------------------------------------*/
 static int FindIndex(int, double , int , int , double *, int);
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void lookup_c(scicos_block *block, int flag)
+void lookup_c(scicos_block *block, int flag)
 {
     double a = 0., b = 0., c = 0., y1 = 0., y2 = 0., t1 = 0., t2 = 0.;
     int** work = (int**) block->work;

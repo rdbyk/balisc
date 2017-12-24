@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,12 +12,12 @@
  * along with this program.
  *
  */
+
 #ifndef __INTIALIZEGUI_H__
 #define __INTIALIZEGUI_H__
-#include "BOOL.h"
-#include "dynlib_gui.h"
 
-GUI_IMPEXP BOOL InitializeGUI(BOOL);
+#include "BOOL.h"
+
+BOOL InitializeGUI(BOOL);
 
 #endif /* __INTIALIZEGUI_H__ */
-/*--------------------------------------------------------------------------*/

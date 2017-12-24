@@ -26,15 +26,14 @@
 #ifndef __SCI_INTERACTION__
 #define __SCI_INTERACTION__
 
-#include "dynlib_graphics.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP int Objmove(int iObjUID, double d[], int m, BOOL opt); /* INTERACTION */
+int Objmove(int iObjUID, double d[], int m, BOOL opt); /* INTERACTION */
 
 /**
  * Put the figure in top of other windows.
  * @pram pFigure figure corresponding to the window
  */
-GRAPHICS_IMPEXP void showWindow(int iFigureUID);
+void showWindow(int iFigureUID);
 
 #endif /* __SCI_INTERACTION__ */

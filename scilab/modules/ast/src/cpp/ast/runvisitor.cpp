@@ -2020,7 +2020,7 @@ void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
 #include "run_OpExp.hpp"
 #include "run_AssignExp.hpp"
 
-template EXTERN_AST class ast::RunVisitorT<ast::ExecVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::StepVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::TimedVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::DebuggerVisitor>;
+template class ast::RunVisitorT<ast::ExecVisitor>;
+template class ast::RunVisitorT<ast::StepVisitor>;
+template class ast::RunVisitorT<ast::TimedVisitor>;
+template class ast::RunVisitorT<ast::DebuggerVisitor>;

@@ -19,9 +19,9 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#include "dynlib_scicos_blocks.h"
 
-SCICOS_BLOCKS_IMPEXP void prod(int *flag, int *nevprt,
+
+void prod(int *flag, int *nevprt,
                                double *t, double xd[],
                                double x[], int *nx,
                                double z[], int *nz,

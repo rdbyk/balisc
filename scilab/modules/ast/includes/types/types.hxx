@@ -32,7 +32,7 @@ namespace types
 /*
 ** Type
 */
-class EXTERN_AST GenericType : public InternalType
+class GenericType : public InternalType
 {
 protected :
     int                         m_iRows;

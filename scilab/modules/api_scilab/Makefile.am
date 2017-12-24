@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2009 - Digiteo - Allan CORNET
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -100,7 +101,6 @@ includes/api_stack_string.h \
 includes/api_stack_handle.h \
 includes/api_stack_optional.h \
 includes/api_scilab.h \
-includes/dynlib_api_scilab.h \
 includes/api_boolean.h \
 includes/api_cell.h \
 includes/api_common.h \

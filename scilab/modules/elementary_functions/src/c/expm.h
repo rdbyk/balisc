@@ -15,8 +15,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_common.h"
-#include "dynlib_elementary_functions.h"
-
 /*--------------------------------------------------------------------------*/
 
 #if _LCC_ & FORDLL
@@ -44,14 +42,14 @@ typedef struct
     int ndng;
 } DCOEFF_struct;
 
-ELEMENTARY_FUNCTIONS_IMPEXP DCOEFF_struct C2F(dcoeff);
+DCOEFF_struct C2F(dcoeff);
 
 #endif
 
 double dblGetMatrixInfiniteNorm(double *_pdblReal, double *_pdblImg, int _iRows, int _iCols);
 
-ELEMENTARY_FUNCTIONS_IMPEXP int dexpms2(double *_pdblReal, double *_pdblReturnReal, int _iLeadDim);
+int dexpms2(double *_pdblReal, double *_pdblReturnReal, int _iLeadDim);
 
-ELEMENTARY_FUNCTIONS_IMPEXP int zexpms2(double *_pdblReal, double *_pdblImg,
+int zexpms2(double *_pdblReal, double *_pdblImg,
                                         double *_pdblReturnReal, double *_pdblReturnImg,
                                         int _iLeadDim);

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,7 @@
  */
 #ifndef __CLUNI0_H__
 #define __CLUNI0_H__
-#include "dynlib_fileio.h"
+
 #include "machine.h"
 
 /**
@@ -31,6 +31,6 @@
  * @param lout length of out_name
  * @return 0
  */
-FILEIO_IMPEXP int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout);
+int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout);
 
 #endif /* __CLUNI0_H__ */

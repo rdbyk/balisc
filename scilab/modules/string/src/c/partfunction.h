@@ -16,8 +16,6 @@
 #ifndef __PARTFUNCTION_H__
 #define __PARTFUNCTION_H__
 
-#include "dynlib_string.h"
-
-STRING_IMPEXP wchar_t **partfunctionW(wchar_t** _pwstStringInput, int _iRows, int _iCols, int *_piVectInput, int _iVectSize);
+wchar_t **partfunctionW(wchar_t** _pwstStringInput, int _iRows, int _iCols, int *_piVectInput, int _iVectSize);
 
 #endif /* __PARTFUNCTION_H__ */

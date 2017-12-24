@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) DIGITEO - 2009 - Allan CORNET
+//  Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -72,16 +73,15 @@ BLOCKS_H = [
 "#define __SCICOS_BLOCKS_H__";
 "";
 "#include ""machine.h""";
-"#include ""dynlib_scicos_blocks.h""";
 "#include ""scicos.h""";
 "";
 "/******* Please do not edit *************/";
 ""];
 
 BLOCKS_H = [BLOCKS_H;
-"SCICOS_BLOCKS_IMPEXP void C2F(" + BLOCKS_FORTRAN + ")(ARGS_scicos);" ;
-"SCICOS_BLOCKS_IMPEXP void " + BLOCKS_C + "(ARGS_scicos);" ;
-"SCICOS_BLOCKS_IMPEXP void " + BLOCKS_CPP + "(ARGS_scicos);" ;
+"void C2F(" + BLOCKS_FORTRAN + ")(ARGS_scicos);" ;
+"void " + BLOCKS_C + "(ARGS_scicos);" ;
+"void " + BLOCKS_CPP + "(ARGS_scicos);" ;
 ""];
 
 SIZE_BLOCKS_C = size(BLOCKS_C,"*") + 1;

@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,16 +17,14 @@
 #define __GETGRAPHICOBJECTPROPERTY_H__
 
 #include <stdlib.h>
-
 #include "returnType.h"
-#include "dynlib_graphic_objects.h"
 #include "CurrentObject.h"
 
 /*
 ** Retrieve Graphic object property from Model.
 ** Specify type expected as parameter for JNI.
 */
-GRAPHIC_OBJECTS_IMPEXP void getGraphicObjectProperty(int iID, const int _iName, enum _ReturnType_ _returnType, void **_pvData);
+void getGraphicObjectProperty(int iID, const int _iName, enum _ReturnType_ _returnType, void **_pvData);
 
 /**
  * @brief release a Graphic object property from the Model.
@@ -40,6 +38,6 @@ GRAPHIC_OBJECTS_IMPEXP void getGraphicObjectProperty(int iID, const int _iName, 
  * @param _returnType the property type descriptor
  * @param numElements size of the _pvData argument
  */
-GRAPHIC_OBJECTS_IMPEXP void releaseGraphicObjectProperty(const int _iName, void * _pvData, enum _ReturnType_ _returnType, int numElements);
+void releaseGraphicObjectProperty(const int _iName, void * _pvData, enum _ReturnType_ _returnType, int numElements);
 
 #endif /* !__GETGRAPHICOBJECTPROPERTY_H__ */

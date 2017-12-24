@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDRU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,8 +17,7 @@
 #define __BASOUT_H__
 
 #include "machine.h" /* C2F */
-#include "dynlib_output_stream.h"
 
-OUTPUT_STREAM_IMPEXP int C2F(basout)(int *io, int *lunit, char *string, long int nbcharacters);
+int C2F(basout)(int *io, int *lunit, char *string, long int nbcharacters);
 
 #endif /* __BASOUT_H__ */

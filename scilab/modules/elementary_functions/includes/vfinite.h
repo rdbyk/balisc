@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,10 +18,8 @@
 
 #include "machine.h"
 #include "doublecomplex.h"
-#include "dynlib_elementary_functions.h"
 
-
-ELEMENTARY_FUNCTIONS_IMPEXP int C2F(vfinite)(int *n, double *v);
-ELEMENTARY_FUNCTIONS_IMPEXP int C2F(vfiniteComplex)(int *n, doublecomplex *v);
+int C2F(vfinite)(int *n, double *v);
+int C2F(vfiniteComplex)(int *n, doublecomplex *v);
 
 #endif /* !__VFINITE__ */

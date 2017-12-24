@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void cumsumz_r(scicos_block *block, int flag)
+void cumsumz_r(scicos_block *block, int flag)
 {
     double *ur = NULL;
     double *ui = NULL;

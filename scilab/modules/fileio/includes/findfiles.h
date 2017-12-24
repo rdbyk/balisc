@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,13 +12,11 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #ifndef __FINDFILES_H__
 #define __FINDFILES_H__
 
 #include <wchar.h>
-
-#include "dynlib_fileio.h"
 #include "BOOL.h"
 
 /**
@@ -30,8 +28,7 @@
 * @return all the files except '.' & '..'
 */
 
-FILEIO_IMPEXP char** findfiles(const char* path, const char* filespec, int *sizeListReturned, BOOL warning);
-FILEIO_IMPEXP wchar_t** findfilesW(const wchar_t* path, const wchar_t* filespec, int *sizeListReturned, BOOL warning);
+char** findfiles(const char* path, const char* filespec, int *sizeListReturned, BOOL warning);
+wchar_t** findfilesW(const wchar_t* path, const wchar_t* filespec, int *sizeListReturned, BOOL warning);
 
 #endif /* __FINDFILES_H__ */
-/*--------------------------------------------------------------------------*/

@@ -22,9 +22,8 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void bit_clear_32(scicos_block *block, int flag)
+void bit_clear_32(scicos_block *block, int flag)
 {
     int n = 0, m = 0, i = 0;
     SCSINT32_COP *opar = NULL;

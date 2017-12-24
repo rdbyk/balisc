@@ -22,9 +22,9 @@
 #include <memory.h>
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void whileiterator(scicos_block *block, int flag)
+void whileiterator(scicos_block *block, int flag)
 {
     void *y = NULL, *z = NULL;
     int so = 0;

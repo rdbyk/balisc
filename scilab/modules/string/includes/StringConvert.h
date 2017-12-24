@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) DIGITEO - 2009
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - 2009
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +16,6 @@
 #ifndef __STRINGCONVERT_H__
 #define __STRINGCONVERT_H__
 
-#include "dynlib_string.h"
 #include <wchar.h>
 
 /**
@@ -24,7 +23,7 @@
 * @param[in/out] string to convert
 * @return number of \n found
 */
-STRING_IMPEXP int StringConvert(char *str);
-STRING_IMPEXP int StringConvertW(wchar_t *str);
+int StringConvert(char *str);
+int StringConvertW(wchar_t *str);
 
 #endif /* __STRINGCONVERT_H__ */

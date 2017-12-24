@@ -37,7 +37,7 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "localization.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 //extern int C2F(namstr)(int* id, int* i, int* j, int* k);
 /*--------------------------------------------------------------------------*/
@@ -90,8 +90,8 @@ typedef struct
     void *workt;
 } towork_struct ;
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag);
-SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
+void tows_c(scicos_block *block, int flag);
+void tows_c(scicos_block *block, int flag)
 /* Copyright INRIA */
 /* Put a typed vector in a Scilab file.
 * Independant platform.

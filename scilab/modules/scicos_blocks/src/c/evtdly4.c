@@ -24,14 +24,14 @@
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
-#include "dynlib_scicos_blocks.h"
+
 
 /*--------------------------------------------------------------------------*/
 /*    Copyright INRIA
  *    Scicos block simulator
  *    event delay with discrete counter
  */
-SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block, int flag)
+void evtdly4(scicos_block *block, int flag)
 {
     double t = 0.;
     time_counter_t** work = (time_counter_t**) block->work;

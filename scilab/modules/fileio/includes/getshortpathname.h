@@ -12,14 +12,13 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #ifndef __GETSHORTPATHNAME_H__
 #define __GETSHORTPATHNAME_H__
 
-#include "dynlib_fileio.h"
 #include "machine.h" /* C2F */
-#include "BOOL.h" /* BOOL */
-#include <wchar.h> /* wchar_t */
+#include "BOOL.h"
+#include <wchar.h>
 
 /**
 * Retrieves the short path form of the specified path
@@ -29,8 +28,7 @@
 * on Linux returns same path name
 * used for Windows
 */
-FILEIO_IMPEXP char *getshortpathname(const char *longpathname, BOOL *convertok);
-FILEIO_IMPEXP wchar_t* getshortpathnameW(const wchar_t* _pwstLongPathName, BOOL* _pbOK);
+char *getshortpathname(const char *longpathname, BOOL *convertok);
+wchar_t* getshortpathnameW(const wchar_t* _pwstLongPathName, BOOL* _pbOK);
 
 #endif /* __GETSHORTPATHNAME_H__ */
-/*--------------------------------------------------------------------------*/

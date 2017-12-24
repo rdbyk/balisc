@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,7 +19,6 @@
 #define __JAVAOPTIONSSETTER_HXX__
 
 #include "ScilabOptionsSetter.hxx"
-#include "dynlib_external_objects_java_scilab.h"
 
 using namespace org_modules_external_objects;
 
@@ -28,7 +27,7 @@ namespace org_scilab_modules_external_objects_java
 
 class JavaOptionsHelper;
 
-class EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP JavaOptionsSetter : public ScilabOptionsSetter
+class JavaOptionsSetter : public ScilabOptionsSetter
 {
 
 public:

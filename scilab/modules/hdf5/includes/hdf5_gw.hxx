@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,16 +18,11 @@
 
 #include "cpp_gateway_prototype.hxx"
 
-extern "C"
-{
-#include "dynlib_hdf5_scilab.h"
-}
-
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_save, HDF5_SCILAB_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_load, HDF5_SCILAB_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_load_v3, HDF5_SCILAB_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_listvar, HDF5_SCILAB_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_listvar_v3, HDF5_SCILAB_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_file_version, HDF5_SCILAB_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_save);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_load);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_load_v3);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_listvar);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_listvar_v3);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_hdf5_file_version);
 
 #endif /* !__HDF5_GW_HXX__ */

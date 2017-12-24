@@ -20,9 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void selector(int *flag, int *nevprt,
+void selector(int *flag, int *nevprt,
                                    double *t, double xd[],
                                    double x[], int *nx,
                                    double z[], int *nz,

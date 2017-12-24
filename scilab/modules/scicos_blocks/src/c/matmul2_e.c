@@ -25,9 +25,9 @@
 #include "scicos_block4.h"
 #include "scicos_print.h"
 #include "localization.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matmul2_e(scicos_block *block, int flag)
+void matmul2_e(scicos_block *block, int flag)
 {
     if (flag == 1)
     {

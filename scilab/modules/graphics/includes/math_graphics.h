@@ -22,7 +22,6 @@
 #define __SCIMATH_H__
 
 #include <stdlib.h>
-#include "dynlib_graphics.h"
 #include "BOOL.h"
 #include "core_math.h"
 
@@ -42,9 +41,8 @@
 #endif
 #endif
 
-GRAPHICS_IMPEXP double Mini(const double vect[], int n);
-GRAPHICS_IMPEXP double Maxi(const double vect[], int n);
-GRAPHICS_IMPEXP void MiniMaxi(const double vect[], int n, double * const min, double * const max);
+double Mini(const double vect[], int n);
+double Maxi(const double vect[], int n);
+void MiniMaxi(const double vect[], int n, double * const min, double * const max);
 
 #endif /* SCI_MATH.HG */
-

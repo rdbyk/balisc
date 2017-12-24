@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void cstblk4_m(scicos_block *block, int flag)
+void cstblk4_m(scicos_block *block, int flag)
 {
     /* Copyright INRIA
 

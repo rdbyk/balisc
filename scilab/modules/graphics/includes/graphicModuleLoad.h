@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,16 +21,14 @@
 #ifndef _GRAPHIC_MODULE_CLOSE_H_
 #define _GRAPHIC_MODULE_CLOSE_H_
 
-#include "dynlib_graphics.h"
-
 /**
  * Routine creating all needed objects for the module
  */
-GRAPHICS_IMPEXP void loadGraphicModule(void);
+void loadGraphicModule(void);
 
 /**
  * Closing function freeing all memory used by the graphic module
  */
-GRAPHICS_IMPEXP void closeGraphicModule(void);
+void closeGraphicModule(void);
 
 #endif /* _GRAPHIC_MODULE_CLOSE_H_ */

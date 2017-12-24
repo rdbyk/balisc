@@ -22,9 +22,9 @@
 #include <math.h>
 #include "scicos.h"
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void relational_op(scicos_block *block, int flag)
+void relational_op(scicos_block *block, int flag)
 {
     int i = 0;
     int m = GetInPortRows(block, 1);

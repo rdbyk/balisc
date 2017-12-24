@@ -36,7 +36,7 @@
 
 namespace types
 {
-class EXTERN_AST Polynom : public ArrayOf<SinglePoly*>
+class Polynom : public ArrayOf<SinglePoly*>
 {
 public :
     Polynom();

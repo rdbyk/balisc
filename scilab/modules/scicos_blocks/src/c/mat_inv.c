@@ -29,7 +29,7 @@
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(dgetrf) (int *m, int *n, double *a, int *
                         lda, int *ipiv, int *info);
@@ -44,7 +44,7 @@ typedef struct
 } mat_inv_struct;
 
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void mat_inv(scicos_block * block, int flag)
+void mat_inv(scicos_block * block, int flag)
 {
     double *u = NULL;
     double *y = NULL;

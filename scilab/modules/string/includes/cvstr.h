@@ -17,7 +17,6 @@
 #define __CVSTR_H__
 
 #include "machine.h" /* C2F */
-#include "dynlib_string.h"
 
 /**
 * converts from ascii to Scilab internal coding
@@ -29,7 +28,7 @@
 * @return 1: code-->ascii
 * @return 0: ascii-->code
 */
-STRING_IMPEXP int C2F(cvstr)(int * n, int * line, char * str, int * job, unsigned long str_len);
+int C2F(cvstr)(int * n, int * line, char * str, int * job, unsigned long str_len);
 
 /**
 * converts from Scilab internal coding to ascii
@@ -39,7 +38,7 @@ STRING_IMPEXP int C2F(cvstr)(int * n, int * line, char * str, int * job, unsigne
 * @param str_len : length of str
 * @return 0
 */
-STRING_IMPEXP int C2F(codetoascii)(int *n, int * line, char * str, unsigned long str_len);
+int C2F(codetoascii)(int *n, int * line, char * str, unsigned long str_len);
 
 /**
 * converts from ascii to Scilab internal coding
@@ -52,7 +51,6 @@ STRING_IMPEXP int C2F(codetoascii)(int *n, int * line, char * str, unsigned long
 * @param str_len : length of str
 * @return 0
 */
-STRING_IMPEXP int C2F(asciitocode)(int * n, int * line, char * str, int * flagx, unsigned long  str_len);
+int C2F(asciitocode)(int * n, int * line, char * str, int * flagx, unsigned long  str_len);
 
 #endif /* __CVSTR_H__ */
-/*--------------------------------------------------------------------------*/

@@ -20,9 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void cumsum_c(scicos_block *block, int flag)
+void cumsum_c(scicos_block *block, int flag)
 {
     double *u = NULL;
     double *y = NULL;

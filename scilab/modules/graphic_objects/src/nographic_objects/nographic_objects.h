@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,18 +12,9 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
-#include "dynlib_graphic_objects.h"
+
 #include "BOOL.h"
-/*--------------------------------------------------------------------------*/
-/**
- * This function is a wrapper / fake when Scilab is compiled without xpad
- *
- * @return 0
- */
-GRAPHIC_OBJECTS_IMPEXP int gw_graphic_objects(void);
 
-GRAPHIC_OBJECTS_IMPEXP BOOL sciHasFigures(void);
-
-GRAPHIC_OBJECTS_IMPEXP BOOL sciIsExistingFigure(int figNum);
-/*--------------------------------------------------------------------------*/
+int gw_graphic_objects(void);
+BOOL sciHasFigures(void);
+BOOL sciIsExistingFigure(int figNum);

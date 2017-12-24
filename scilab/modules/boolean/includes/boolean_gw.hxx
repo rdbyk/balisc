@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,19 +18,14 @@
 
 #include "cpp_gateway_prototype.hxx"
 
-extern "C"
-{
-#include "dynlib_boolean_gw.h"
-}
-
 class BooleanModule
 {
 private :
     BooleanModule() {};
     ~BooleanModule() {};
 public :
-    BOOLEAN_GW_IMPEXP static int Load();
-    BOOLEAN_GW_IMPEXP static int Unload()
+    static int Load();
+    static int Unload()
     {
         return 1;
     }

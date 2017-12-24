@@ -28,7 +28,6 @@
 #define FADDEEVA_HH 1
 
 #include <complex>
-#include "dynlib_elementary_functions.h"
 
 namespace Faddeeva
 {

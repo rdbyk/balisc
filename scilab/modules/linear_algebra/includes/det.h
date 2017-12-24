@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,9 +12,10 @@
  * along with this program.
  *
  */
+
 #ifndef DET_H
 #define DET_H
-#include "dynlib_linear_algebra.h"
+
 /*
  * computes the determinant of a real or complex square matrix, performing MALLOCation of temp variables as needed.
  * Cf. http://www.scilab.org/product/man/det.html
@@ -33,7 +34,6 @@
  * @return error code : 0 for success, -1 for MALLOC failure, other values from LAPACK [z|g]etrf.
  *
  */
-
-LINEAR_ALGEBRA_IMPEXP int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg, int* piExponent);
+int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg, int* piExponent);
 
 #endif

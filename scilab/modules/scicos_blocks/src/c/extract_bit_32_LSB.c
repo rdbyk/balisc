@@ -22,9 +22,9 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void extract_bit_32_LSB(scicos_block *block, int flag)
+void extract_bit_32_LSB(scicos_block *block, int flag)
 {
     int i = 0;
     SCSINT32_COP *y, *u, ref, n;

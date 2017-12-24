@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void ramp(scicos_block *block, int flag)
+void ramp(scicos_block *block, int flag)
 {
     double dt = 0.;
     if (flag == 1)

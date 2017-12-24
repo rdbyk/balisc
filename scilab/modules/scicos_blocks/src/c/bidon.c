@@ -20,9 +20,8 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void bidon(scicos_block *block, int flag)
+void bidon(scicos_block *block, int flag)
 /*------------------------------------------------
  *     Scicos block simulator
  *     does nothing

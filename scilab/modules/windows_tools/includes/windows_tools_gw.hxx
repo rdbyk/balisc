@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,12 +16,8 @@
 #ifndef __WINDOWS_TOOLS_GW_HXX__
 #define __WINDOWS_TOOLS_GW_HXX__
 
-
-#include "dynlib_windows_tools.h"
 #include "cpp_gateway_prototype.hxx"
-
 #include "context.hxx"
-
 
 class WindowsToolsModule
 {
@@ -30,8 +26,8 @@ private :
     ~WindowsToolsModule() {};
 
 public :
-    WINDOWS_TOOLS_IMPEXP static int Load();
-    WINDOWS_TOOLS_IMPEXP static int Unload()
+    static int Load();
+    static int Unload()
     {
         return 1;
     }
@@ -46,4 +42,5 @@ CPP_GATEWAY_PROTOTYPE(sci_findfileassociation);
 CPP_GATEWAY_PROTOTYPE(sci_mcisendstring);
 CPP_GATEWAY_PROTOTYPE(sci_istssession);
 CPP_GATEWAY_PROTOTYPE(sci_getsystemmetrics);
+
 #endif /* !__WINDOWS_TOOLS_GW_HXX__ */

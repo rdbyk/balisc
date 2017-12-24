@@ -26,9 +26,9 @@
 #include "scicos_block4.h"
 #include "localization.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void summation_ui32e(scicos_block *block, int flag)
+void summation_ui32e(scicos_block *block, int flag)
 {
     if ((flag == 1) | (flag == 6))
     {

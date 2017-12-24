@@ -27,16 +27,16 @@ bool getArgsDims(typed_list* _pArgsIn, std::vector<int>& dims); //only for inser
 bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>& index, std::vector<int>& dims);
 bool getScalarImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<double>& index);
 
-EXTERN_AST int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list* _pArgsOut, int* _piMaxDim, int* _piCountDim);
-EXTERN_AST void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew);
-EXTERN_AST void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims);
-EXTERN_AST int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims);
-EXTERN_AST types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName);
+int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list* _pArgsOut, int* _piMaxDim, int* _piCountDim);
+void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew);
+void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims);
+int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims);
+types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName);
 
 //commom function
-EXTERN_AST int computeTuples(int* _piCountDim, int _iCurrentDim, int* _piIndex);
-EXTERN_AST Double* createDoubleVector(int _iSize);
-EXTERN_AST bool checkArgValidity(typed_list& _pArg);
+int computeTuples(int* _piCountDim, int _iCurrentDim, int* _piIndex);
+Double* createDoubleVector(int _iSize);
+bool checkArgValidity(typed_list& _pArg);
 }
 
 #endif /* !__TYPES_TOOLS_HXX__ */

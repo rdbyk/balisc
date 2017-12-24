@@ -24,9 +24,9 @@
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void  switch2_m(scicos_block *block, int flag)
+void  switch2_m(scicos_block *block, int flag)
 {
     int i = 0, phase = 0, ipar = 0, mu = 0, nu = 0, so = 0;
     int *iparptrs = NULL;

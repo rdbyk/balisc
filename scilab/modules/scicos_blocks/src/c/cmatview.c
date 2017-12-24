@@ -17,7 +17,7 @@
 #include <math.h>
 #include <string.h>
 
-#include "dynlib_scicos_blocks.h"
+
 #include "scoUtils.h"
 
 #include "sci_malloc.h"
@@ -136,7 +136,7 @@ static BOOL setDefaultValues(scicos_block * block, int iGrayplotUID);
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, scicos_flag flag)
+void cmatview(scicos_block * block, scicos_flag flag)
 {
     int iFigureUID;
 

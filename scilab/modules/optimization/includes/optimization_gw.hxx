@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,15 +18,10 @@
 
 #include "cpp_gateway_prototype.hxx"
 
-extern "C"
-{
-#include "dynlib_optimization.h"
-}
-
-CPP_OPT_GATEWAY_PROTOTYPE_EXPORT(sci_optim, OPTIMIZATION_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_fsolve, OPTIMIZATION_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_lsqrsolve, OPTIMIZATION_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_semidef, OPTIMIZATION_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_readmps, OPTIMIZATION_IMPEXP);
+CPP_OPT_GATEWAY_PROTOTYPE_EXPORT(sci_optim);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_fsolve);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_lsqrsolve);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_semidef);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_readmps);
 
 #endif /* !__OPTIMIZATION_GW_HXX__ */

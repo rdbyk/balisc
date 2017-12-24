@@ -3,8 +3,8 @@
  * Copyright (C) INRIA - Cong WU
  * Copyright (C) INRIA - 2008 - Allan CORNET
  * Copyright (C) Digiteo - 2011 - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@
  *
  */
 
-/*------------------------------------------------------------------------*/
 #ifndef __TOKENS_H__
 #define __TOKENS_H__
 
@@ -28,9 +27,7 @@
 * @return matrix of string tokens
 */
 #include <wchar.h>
-#include "dynlib_string.h"
 
-STRING_IMPEXP wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs);
+wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs);
 
 #endif /* __TOKENS_H__ */
-/*------------------------------------------------------------------------*/

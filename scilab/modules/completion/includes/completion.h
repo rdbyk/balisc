@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,15 +16,13 @@
 #ifndef __COMPLETION_H__
 #define __COMPLETION_H__
 
-#include "dynlib_completion.h"
-
 /**
  * completion function on all types for scilab
  * @param[in] somechars first characters of a word
  * @param[out] sizeArrayReturned
  * @return an array of chars
  */
-COMPLETION_IMPEXP char **completion(const char *somechars, int *sizeArrayReturned);
+char **completion(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on Functions for scilab
@@ -32,7 +30,7 @@ COMPLETION_IMPEXP char **completion(const char *somechars, int *sizeArrayReturne
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnFunctions(const char *somechars, int *sizeArrayReturned);
+char **completionOnFunctions(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on command words for scilab
@@ -40,7 +38,7 @@ COMPLETION_IMPEXP char **completionOnFunctions(const char *somechars, int *sizeA
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnCommandWords(const char *somechars, int *sizeArrayReturned);
+char **completionOnCommandWords(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on Macros in libraries for scilab
@@ -48,7 +46,7 @@ COMPLETION_IMPEXP char **completionOnCommandWords(const char *somechars, int *si
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnMacros(const char *somechars, int *sizeArrayReturned);
+char **completionOnMacros(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on Variables for scilab
@@ -56,7 +54,7 @@ COMPLETION_IMPEXP char **completionOnMacros(const char *somechars, int *sizeArra
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnVariables(const char *somechars, int *sizeArrayReturned);
+char **completionOnVariables(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on Variables for scilab
@@ -65,7 +63,7 @@ COMPLETION_IMPEXP char **completionOnVariables(const char *somechars, int *sizeA
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayReturned);
+char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on files for scilab
@@ -73,7 +71,7 @@ COMPLETION_IMPEXP char **completionOnVariablesWithoutMacros(const char *somechar
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnFiles(const char *somechars, int *sizeArrayReturned);
+char **completionOnFiles(const char *somechars, int *sizeArrayReturned);
 
 /**
 * completion function on files for scilab
@@ -81,7 +79,7 @@ COMPLETION_IMPEXP char **completionOnFiles(const char *somechars, int *sizeArray
 * @param[in] the part
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnFields(char *lineBeforeCaret, char *pattern, int *sizeArrayReturned);
+char **completionOnFields(char *lineBeforeCaret, char *pattern, int *sizeArrayReturned);
 
 /**
 * completion handle graphics properties for scilab
@@ -89,6 +87,6 @@ COMPLETION_IMPEXP char **completionOnFields(char *lineBeforeCaret, char *pattern
 * @param[out] sizeArrayReturned
 * @return an array of chars
 */
-COMPLETION_IMPEXP char **completionOnHandleGraphicsProperties(const char *somechars, int *sizeArrayReturned);
-/*--------------------------------------------------------------------------*/
+char **completionOnHandleGraphicsProperties(const char *somechars, int *sizeArrayReturned);
+
 #endif /* __COMPLETION_H__ */

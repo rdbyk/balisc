@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "scicos.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 /*------------------------------------------------
  *     Scicos block simulator
@@ -33,7 +33,7 @@
  *     Scicos block simulator
  *
  *------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void cosblk(int *flag, int *nevprt, double *t,
+void cosblk(int *flag, int *nevprt, double *t,
                                  double *xd, double *x, int *nx, double *z,
                                  int *nz, double *tvec, int *ntvec,
                                  double *rpar, int *nrpar, int *ipar,
@@ -47,7 +47,7 @@ SCICOS_BLOCKS_IMPEXP void cosblk(int *flag, int *nevprt, double *t,
     }
 }
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void C2F(cosblk)(int *flag, int *nevprt, double *t,
+void C2F(cosblk)(int *flag, int *nevprt, double *t,
                                       double *xd, double *x, int *nx, double *z,
                                       int *nz, double *tvec, int *ntvec,
                                       double *rpar, int *nrpar, int *ipar,

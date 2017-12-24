@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,11 +12,10 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #ifndef __CREATETEMPFILENAME_H__
 #define __CREATETEMPFILENAME_H__
 
-#include "dynlib_fileio.h"
 #include "charEncoding.h"
 #include "BOOL.h"
 
@@ -27,9 +26,8 @@
 * @param[in] bShortFormat
 * @return a unique filename
 */
-FILEIO_IMPEXP char *createtempfilename(const char *prefix, BOOL bShortFormat);
+char *createtempfilename(const char *prefix, BOOL bShortFormat);
 
-FILEIO_IMPEXP wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat);
+wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat);
 
 #endif /* __CREATETEMPFILENAME_H__ */
-/*--------------------------------------------------------------------------*/

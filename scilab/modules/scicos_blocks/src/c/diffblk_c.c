@@ -21,14 +21,14 @@
 /*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 /*     February 2008 */
 /* Scicos block simulator */
 /*--------------------------------------------------------------------------*/
 #define NX      block->nx
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void diffblk_c(scicos_block *block, int flag)
+void diffblk_c(scicos_block *block, int flag)
 {
     double *y = NULL, *u = NULL;
     int i = 0;

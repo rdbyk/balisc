@@ -23,7 +23,7 @@
 #include "scicos_block4.h"
 #include "scicos_indexfinder.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 #define InterpExtrapBlin  1
 #define InterpEndValue    2
@@ -34,7 +34,7 @@
 /*--------------------------------------------------------------------------*/
 double computeZ2(double *X, double *Y, double *Z, int nx, int ny, int method, double x, double y);
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void lookup2d(scicos_block *block, int flag)
+void lookup2d(scicos_block *block, int flag)
 {
     double *y = NULL, *u1 = NULL, *u2 = NULL;
     double *X = NULL, *Y = NULL, *Z = NULL;

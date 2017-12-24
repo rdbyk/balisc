@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void  satur(scicos_block *block, int flag)
+void  satur(scicos_block *block, int flag)
 {
     /* rpar[0]:upper limit,  rpar[1]:lower limit */
     if (flag == 1)

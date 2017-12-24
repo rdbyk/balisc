@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent LIARD
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@
 #ifndef _STRING_MATRIX_
 #define _STRING_MATRIX_
 
-#include "dynlib_statistics.h"
 /**
  * End-developer oriented string matrix
  */
@@ -46,12 +45,12 @@ void destroy_string_matrix(struct string_matrix *mat);
  * @param[in] arg is the index of the argument on the scilab function call line
  * @return pointer on string_matrix structure holding the strings
  */
-STATISTICS_IMPEXP char *create_string(void* pvApiCtx, int arg);
+char *create_string(void* pvApiCtx, int arg);
 
 /**
  * Free string
  * @param[in] str string to be freed
  */
-STATISTICS_IMPEXP void destroy_string(char *str);
+void destroy_string(char *str);
 
 #endif /* _STRING_MATRIX_ */

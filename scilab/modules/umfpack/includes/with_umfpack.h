@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRu
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,6 @@
 #define __WITH_UMFPACK_H__
 
 #include "machine.h" /* C2F */
-#include "dynlib_umfpack.h"
 #include "BOOL.h"
 
 /**
@@ -25,13 +24,12 @@
 * @param rep 1 (WITH) or 0 (WITHOUT)
 * @return 0
 */
-UMFPACK_IMPEXP int C2F(withumfpack)(int *rep);
+int C2F(withumfpack)(int *rep);
 
 /**
 * check if it is with UMFPACK
 * @return TRUE or FALSE
 */
-UMFPACK_IMPEXP BOOL withumfpack(void);
+BOOL withumfpack(void);
 
 #endif /* __WITH_UMFPACK_H__ */
-/*--------------------------------------------------------------------------*/

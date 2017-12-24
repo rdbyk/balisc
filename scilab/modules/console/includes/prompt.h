@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Sylvestre LEDRU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,6 @@
 #define _PROMPT_H_
 
 #include "machine.h"            /* C2F */
-#include "dynlib_console.h"
 
 /* Define prompts of Scilab */
 #ifdef SCIPROMPT
@@ -37,18 +36,10 @@
 #endif
 #define SCIPROMPT_INTERRUPT "-%d-> "
 
-#define PROMPT_SIZE_MAX 64
+void setPreviousLevel(int pause);
+const char* GetCurrentPrompt();
+void SetTemporaryPrompt(const char* tempPrompt);
+const char* GetTemporaryPrompt(void);
+void ClearTemporaryPrompt(void);
 
-/*--------------------------------------------------------------------------*/
-CONSOLE_IMPEXP void setPreviousLevel(int pause);
-
-CONSOLE_IMPEXP const char* GetCurrentPrompt();
-
-CONSOLE_IMPEXP void SetTemporaryPrompt(const char* tempPrompt);
-
-CONSOLE_IMPEXP const char* GetTemporaryPrompt(void);
-
-CONSOLE_IMPEXP void ClearTemporaryPrompt(void);
-
-/*--------------------------------------------------------------------------*/
 #endif /* _PROMPT_H_ */

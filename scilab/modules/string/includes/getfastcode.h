@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Sylvestre LEDRU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,12 +12,11 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #ifndef __GETFASTCODE_H__
 #define __GETFASTCODE_H__
 
 #include "machine.h"
-#include "dynlib_string.h"
 
 /**
 * converts from ascii to Scilab internal coding
@@ -28,20 +26,20 @@
 * @return internal code
 * getfastcode uses convertAsciiCodeToScilabCode
 */
-STRING_IMPEXP int C2F(getfastcode)(unsigned char *c, unsigned long c_len);
+int C2F(getfastcode)(unsigned char *c, unsigned long c_len);
 
 /**
 * converts from ascii to Scilab internal coding
 * @param[in] ascii char
 * @return scilab code
 */
-STRING_IMPEXP int convertAsciiCodeToScilabCode(unsigned char scilab_char);
+int convertAsciiCodeToScilabCode(unsigned char scilab_char);
 
 /**
 * converts Scilab internal coding to ascii code
 * @param[in] scilab_code
 * @return ascii_code [0 255]
 */
-STRING_IMPEXP unsigned char convertScilabCodeToAsciiCode(int scilab_code);
+unsigned char convertScilabCodeToAsciiCode(int scilab_code);
 
 #endif /* __GETFASTCODE_H__ */

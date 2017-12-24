@@ -22,11 +22,11 @@
 #include <math.h>
 #include "scicos.h"
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 #define matbscal_n(y1,u1,u2,mu,nu)  {for (i=0;i<mu*nu;i++) y1[i]=u1[i]*u2[0];}
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matbyscal(scicos_block *block, int flag)
+void matbyscal(scicos_block *block, int flag)
 {
     if (flag == 1)
     {

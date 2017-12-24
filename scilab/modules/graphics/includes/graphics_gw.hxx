@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,12 +17,12 @@
 #define __GRAPHICS_GW_HXX__
 
 #include "cpp_gateway_prototype.hxx"
-#include "dynlib_graphics.h"
 
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_get, GRAPHICS_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xget, GRAPHICS_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xset, GRAPHICS_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_winsid, GRAPHICS_IMPEXP);
-CPP_OPT_GATEWAY_PROTOTYPE_EXPORT(sci_matplot, GRAPHICS_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matplot1, GRAPHICS_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_get);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xget);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xset);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_winsid);
+CPP_OPT_GATEWAY_PROTOTYPE_EXPORT(sci_matplot);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matplot1);
+
 #endif /* !__GUI_GW_HXX__ */

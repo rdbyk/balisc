@@ -23,7 +23,7 @@
 
 namespace types
 {
-class EXTERN_AST TList : public List
+class TList : public List
 {
 public :
     TList();

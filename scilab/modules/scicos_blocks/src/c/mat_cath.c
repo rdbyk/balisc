@@ -24,9 +24,9 @@
 #include "scicos_block4.h"
 #include "matz_cath.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void mat_cath(scicos_block *block, int flag)
+void mat_cath(scicos_block *block, int flag)
 {
     int mu = 0, nu = 0, nin = 0, so = 0, pointerposition = 0, ot = 0, i = 0;
     ot = GetOutType(block, 1);

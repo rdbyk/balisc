@@ -34,7 +34,6 @@
 extern "C"
 {
 #include "dynamiclibrary.h"
-#include "dynlib_ast.h"
 }
 
 // Minimal values for iConsoleLines & iConsoleWidth
@@ -48,7 +47,7 @@ class ThreadId;
 class Callable;
 }
 
-class EXTERN_AST ConfigVariable
+class ConfigVariable
 {
     //module list
 private :

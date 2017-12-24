@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,7 +18,6 @@
 #define __CREATEMATLABVARIABLE_H__
 
 #include "matfile_manager.h"
-#include "dynlib_matio.h"
 
 /*
  * Create a Scilab variable on stack from a Matlab variable
@@ -33,7 +32,7 @@
  *
  * @return TRUE if the variable has been written without problem
  */
-MATIO_IMPEXP int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 
 /*
@@ -70,7 +69,7 @@ extern "C" {
  *
  * @return TRUE if the variable has been written without problem
  */
-MATIO_IMPEXP int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex, int * rank, int *dims, matvar_t *matVariable, int * parent, int item_position);
+int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, int *iscomplex, int * rank, int *dims, matvar_t *matVariable, int * parent, int item_position);
 
 /*
 * Create a Scilab Cell variable on stack from a Matlab variable
@@ -83,7 +82,7 @@ MATIO_IMPEXP int CreateHyperMatrixVariable(void *pvApiCtx, int iVar, int type, i
 *
 * @return TRUE if the variable has been written without problem
 */
-MATIO_IMPEXP int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 /*
 * Create a Scilab Struct variable on stack from a Matlab variable
@@ -96,7 +95,7 @@ MATIO_IMPEXP int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVaria
 *
 * @return TRUE if the variable has been written without problem
 */
-MATIO_IMPEXP int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
+int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position);
 
 #ifdef __cplusplus
 }

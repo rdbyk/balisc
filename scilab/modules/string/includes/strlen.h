@@ -21,8 +21,6 @@
 #ifndef __BALISC_STRLEN_H__
 #define __BALISC_STRLEN_H__
 
-#include "dynlib_string.h"
-
 #if defined(__SSE4_1__) || defined(__SSE4_2__)
 
 #if defined(__SSE4_1__)
@@ -37,7 +35,7 @@ size_t sse42_strlen(const char* s);
 
 #endif
 
-STRING_IMPEXP size_t balisc_strlen(const char* s);
+size_t balisc_strlen(const char* s);
 
 #else
 

@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,31 +10,29 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ * 
+ */
 
 #ifndef __SCI_PATH_H__
 #define __SCI_PATH_H__
 
 #include <wchar.h>
 
-#include "dynlib_ast.h"
+wchar_t* getSCIW(void);
+char* getSCI(void);
 
-EXTERN_AST wchar_t* getSCIW(void);
-EXTERN_AST char* getSCI(void);
+void setSCIW(const wchar_t* _sci_path);
+void setSCI(const char* _sci_path);
 
-EXTERN_AST void setSCIW(const wchar_t* _sci_path);
-EXTERN_AST void setSCI(const char* _sci_path);
+wchar_t* computeSCIW();
+char* computeSCI();
 
-EXTERN_AST wchar_t* computeSCIW();
-EXTERN_AST char* computeSCI();
+wchar_t* getenvSCIW(void);
+char* getenvSCI(void);
 
-EXTERN_AST wchar_t* getenvSCIW(void);
-EXTERN_AST char* getenvSCI(void);
+void putenvSCIW(const wchar_t* _sci_path);
+void putenvSCI(const char* _sci_path);
 
-EXTERN_AST void putenvSCIW(const wchar_t* _sci_path);
-EXTERN_AST void putenvSCI(const char* _sci_path);
-
-EXTERN_AST void defineSCI();
+void defineSCI();
 
 #endif // ! __SCI_PATH_H__

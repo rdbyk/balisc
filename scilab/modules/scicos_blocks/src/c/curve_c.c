@@ -25,7 +25,7 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_evalhermite.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 /*    Masoud Najafi, August 2007 */
 /*    Copyright INRIA
@@ -39,7 +39,7 @@
 #define Periodic block->ipar[2]
 #define T        rpar[nPoints-1]-rpar[0]
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void curve_c(scicos_block *block, int flag)
+void curve_c(scicos_block *block, int flag)
 {
     double t = 0., a = 0., b = 0., c = 0., y1 = 0., y2 = 0., t1 = 0., t2 = 0.;
     int** work = (int**) block->work;

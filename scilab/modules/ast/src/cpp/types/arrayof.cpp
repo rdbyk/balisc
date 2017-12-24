@@ -22,11 +22,6 @@
 #include "exp.hxx"
 #include "types_tools.hxx"
 
-extern "C"
-{
-#include "dynlib_ast.h"
-}
-
 namespace types
 {
 
@@ -1682,17 +1677,17 @@ int ArrayOf<T>::getInvokeNbOut()
 
 
 // used to allow definition of ArrayOf methode in this cpp file.
-template class EXTERN_AST ArrayOf < char >;
-template class EXTERN_AST ArrayOf < unsigned char >;
-template class EXTERN_AST ArrayOf < short >;
-template class EXTERN_AST ArrayOf < unsigned short >;
-template class EXTERN_AST ArrayOf < int >;
-template class EXTERN_AST ArrayOf < unsigned int >;
-template class EXTERN_AST ArrayOf < long long >;
-template class EXTERN_AST ArrayOf < unsigned long long >;
-template class EXTERN_AST ArrayOf < double >;
-template class EXTERN_AST ArrayOf < wchar_t* >;
-template class EXTERN_AST ArrayOf < SinglePoly* >;
-template class EXTERN_AST ArrayOf < SingleStruct* >;
-template class EXTERN_AST ArrayOf < InternalType* >; // Cell
+template class ArrayOf < char >;
+template class ArrayOf < unsigned char >;
+template class ArrayOf < short >;
+template class ArrayOf < unsigned short >;
+template class ArrayOf < int >;
+template class ArrayOf < unsigned int >;
+template class ArrayOf < long long >;
+template class ArrayOf < unsigned long long >;
+template class ArrayOf < double >;
+template class ArrayOf < wchar_t* >;
+template class ArrayOf < SinglePoly* >;
+template class ArrayOf < SingleStruct* >;
+template class ArrayOf < InternalType* >; // Cell
 }

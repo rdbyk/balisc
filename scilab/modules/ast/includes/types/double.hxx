@@ -31,7 +31,7 @@
 
 namespace types
 {
-class EXTERN_AST Double : public ArrayOf<double>
+class Double : public ArrayOf<double>
 {
 public :
     virtual						~Double();

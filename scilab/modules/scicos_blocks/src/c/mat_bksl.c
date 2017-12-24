@@ -28,7 +28,7 @@
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
-#include "dynlib_scicos_blocks.h"
+
 #include "numericconstants_interface.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(dgetrf)(int *m, int *n, double *a, int *
@@ -58,7 +58,7 @@ typedef struct
     double *LXB;
 } mat_bksl_struct ;
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void mat_bksl(scicos_block *block, int flag)
+void mat_bksl(scicos_block *block, int flag)
 {
     double *u1 = NULL;
     double *u2 = NULL;

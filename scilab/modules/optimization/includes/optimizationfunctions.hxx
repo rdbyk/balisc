@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2013 - DIGITEO - Cedric DELAMARRE
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,7 +18,6 @@
 
 #include <vector>
 #include <map>
-#include "dynlib_optimization.h"
 #include "string.hxx"
 #include "callable.hxx"
 
@@ -45,7 +44,7 @@ extern "C"
 
 }
 
-class OPTIMIZATION_IMPEXP OptimizationFunctions
+class OptimizationFunctions
 {
 
 public :
@@ -108,7 +107,7 @@ private :
 
 };
 
-class OPTIMIZATION_IMPEXP Optimization
+class Optimization
 {
     // differential equation functions
 private :
@@ -120,5 +119,6 @@ public :
     static OptimizationFunctions* getOptimizationFunctions();
 
 };
+
 #endif /* !__OPTIMIZATIONS_HXX__ */
 

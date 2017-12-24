@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,7 +19,6 @@
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "cpp_gateway_prototype.hxx"
-#include "dynlib_time_gw.h"
 
 class TimeModule
 {
@@ -27,8 +26,8 @@ private :
     TimeModule() {};
     ~TimeModule() {};
 public :
-    EXTERN_TIME_GW static int Load();
-    EXTERN_TIME_GW static int Unload()
+    static int Load();
+    static int Unload()
     {
         return 1;
     }
@@ -36,6 +35,5 @@ public :
 
 CPP_GATEWAY_PROTOTYPE(sci_tic);
 CPP_GATEWAY_PROTOTYPE(sci_toc);
-
 
 #endif /* !__TIME_GW_HXX__ */

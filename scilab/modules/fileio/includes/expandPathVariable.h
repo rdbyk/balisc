@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,14 +10,13 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #ifndef __EXPANDPATHVARIABLE_H__
 #define __EXPANDPATHVARIABLE_H__
 
 #include <wchar.h>
-#include "dynlib_fileio.h"
 
 /**
 * expanded variables are:
@@ -36,19 +35,19 @@ extern "C"
 * @param[in] string where to find a variable and expand
 * @return string with expanded variable
 */
-FILEIO_IMPEXP char *expandPathVariable(const char* str);
+char *expandPathVariable(const char* str);
 
 /**
 * expand in_name to produce out_name (wide string)
 * @param[in] wide string where to find a variable and expand
 * @return wide string with expanded variable
 */
-FILEIO_IMPEXP wchar_t *expandPathVariableW(const wchar_t *wcstr);
+wchar_t *expandPathVariableW(const wchar_t *wcstr);
 
 /**
 * set NULL to all scilab "Variable" (ie: SCI, SCIHOME, ....)
 */
-FILEIO_IMPEXP void resetVariableValueDefinedInScilab(void);
+void resetVariableValueDefinedInScilab(void);
 
 #ifdef __cplusplus
 }

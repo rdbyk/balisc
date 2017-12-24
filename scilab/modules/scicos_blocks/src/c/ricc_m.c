@@ -26,7 +26,7 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(riccsl)(char* TRANA, int* N, double* A, int* LDA, char* UPLO, double* C, int* LDC, double* D, int* LDD, double* X, int* LDX, double* WR, double* WI, double* RCOND, double* FERR, double* WORK, int* LWORK, int* IWORK, int* BWORK, int* INFO);
 extern int C2F(riccms)(char* TRANA, int* N, double* A, int* LDA, char* UPLO, double* C, int* LDC, double* D, int* LDD, double* X, int* LDX, double* WR, double* WI, double* RCOND, double* FERR, double* WORK, int* LWORK, int* IWORK, int* INFO);
@@ -45,7 +45,7 @@ typedef struct
     double *Ferr;
 } ricc_struct ;
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void ricc_m(scicos_block *block, int flag)
+void ricc_m(scicos_block *block, int flag)
 {
     double *u1 = NULL;
     double *u2 = NULL;

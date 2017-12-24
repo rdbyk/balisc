@@ -29,7 +29,7 @@
 
 namespace types
 {
-class EXTERN_AST Cell : public ArrayOf<InternalType*>
+class Cell : public ArrayOf<InternalType*>
 {
 public :
     ~Cell();

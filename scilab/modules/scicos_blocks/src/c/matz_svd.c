@@ -27,7 +27,7 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(zgesvd)(char *jobu, char *jobvt, int *m, int *n,
                        double *a, int *lda, double *s, double *u,
@@ -47,7 +47,7 @@ typedef struct
     double *rwork;
 } mat_sdv_struct ;
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matz_svd(scicos_block *block, int flag)
+void matz_svd(scicos_block *block, int flag)
 {
     double *ur = NULL, *ui = NULL;
     double *y1r = NULL, *y2r = NULL, *y3r = NULL;

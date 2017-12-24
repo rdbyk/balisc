@@ -10,14 +10,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
-#include "stdio.h"
-#include "PATH_MAX.h"
-
-#include "dynlib_ast.h"
-
-EXTERN_AST void AntislashToSlash(const char *pathwindows, char *pathunix);
-EXTERN_AST void SlashToAntislash(const char *pathwindows, char *pathunix);
-EXTERN_AST void SetScilabEnvironment(void);
+void AntislashToSlash(const char *pathwindows, char *pathunix);
+void SlashToAntislash(const char *pathwindows, char *pathunix);
+void SetScilabEnvironment(void);

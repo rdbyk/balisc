@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,7 +24,6 @@
 #include "MultivariatePolynomial.hxx"
 #include "OpValue.hxx"
 #include "symbol.hxx"
-#include "dynlib_ast.h"
 
 namespace analysis
 {
@@ -41,7 +40,7 @@ namespace analysis
  * For information, the GVN::Value are stored in unordered_map (or multimap) or list.
  *
  */
-class EXTERN_AST GVN
+class GVN
 {
 
 public:
@@ -208,7 +207,7 @@ public:
     /**
      * \brief Overload of the operator << for GVN
      */
-    EXTERN_AST friend std::wostream & operator<<(std::wostream & out, const GVN & gvn);
+    friend std::wostream & operator<<(std::wostream & out, const GVN & gvn);
 
 private:
 

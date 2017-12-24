@@ -5,8 +5,8 @@
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,7 +30,6 @@
 #ifndef __SCI_BUILD__
 #define __SCI_BUILD__
 
-#include "dynlib_graphics.h"
 #include "BOOL.h"
 
 /** @name Text Alignment
@@ -62,16 +61,16 @@ sciTypeOf3D;
  * If a current figure exists : return it
  * Otherwise create a new one.
  */
-GRAPHICS_IMPEXP int getOrCreateDefaultSubwin(void);
-GRAPHICS_IMPEXP int ConstructText(int iParentsubwinUID, char **text, int nbRow, int nbCol, double x,
+int getOrCreateDefaultSubwin(void);
+int ConstructText(int iParentsubwinUID, char **text, int nbRow, int nbCol, double x,
                                   double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background,
                                   BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align);
-GRAPHICS_IMPEXP int ConstructLegend(int iParentsubwinUID, char *text[], int* tabofhandles, int nblegends);   /* BUILD */
-GRAPHICS_IMPEXP int ConstructPolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz, int closed, int n1, int plot, int *foreground, int *background, int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);    /* BUILD */
-GRAPHICS_IMPEXP int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d, double *pvecx, double *pvecy, double *pvecz, double *zcol, int izcol, int dimzx, int dimzy, int *flag, double *ebox, int flagcolor, int *isfac, int *m1, int *n1, int *m2, int *n2, int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
-GRAPHICS_IMPEXP int ConstructGrayplot(int iParentsubwinUID, double *vx, double *vy, double *vz, int nx, int ny, int type);  /* BUILD */
-GRAPHICS_IMPEXP int ConstructImplot(int iParentsubwinUID, double * rect, unsigned char *vz, int nx, int ny, int plottype);  /* BUILD */
-GRAPHICS_IMPEXP int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pnoeud, double *pfun, int Nnode, int Ntr, int Nvertex, double *zminmax, int *colminmax, int *colout, BOOL with_mesh);   /* BUILD */
-GRAPHICS_IMPEXP int ConstructLight(char* fname, int iSubwin, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color);
+int ConstructLegend(int iParentsubwinUID, char *text[], int* tabofhandles, int nblegends);   /* BUILD */
+int ConstructPolyline(int iParentsubwinUID, double *pvecx, double *pvecy, double *pvecz, int closed, int n1, int plot, int *foreground, int *background, int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded);    /* BUILD */
+int ConstructSurface(int iParentsubwinUID, sciTypeOf3D typeof3d, double *pvecx, double *pvecy, double *pvecz, double *zcol, int izcol, int dimzx, int dimzy, int *flag, double *ebox, int flagcolor, int *isfac, int *m1, int *n1, int *m2, int *n2, int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
+int ConstructGrayplot(int iParentsubwinUID, double *vx, double *vy, double *vz, int nx, int ny, int type);  /* BUILD */
+int ConstructImplot(int iParentsubwinUID, double * rect, unsigned char *vz, int nx, int ny, int plottype);  /* BUILD */
+int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pnoeud, double *pfun, int Nnode, int Ntr, int Nvertex, double *zminmax, int *colminmax, int *colout, BOOL with_mesh);   /* BUILD */
+int ConstructLight(char* fname, int iSubwin, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color);
 
 #endif /* __SCI_BUILD__ */

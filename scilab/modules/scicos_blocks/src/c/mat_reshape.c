@@ -20,9 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void mat_reshape(scicos_block *block, int flag)
+void mat_reshape(scicos_block *block, int flag)
 {
     double *u1 = GetRealInPortPtrs(block, 1);
     double *y = GetRealOutPortPtrs(block, 1);

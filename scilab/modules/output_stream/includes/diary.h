@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,15 +10,14 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #ifndef __DIARY_H__
 #define __DIARY_H__
 
 #include <wchar.h>
 #include "BOOL.h"
-#include "dynlib_output_stream.h"
 
 #ifdef  __cplusplus
 extern "C" {
@@ -29,14 +28,14 @@ extern "C" {
 * @param[in] string to write
 * @param[in] string is a input
 */
-OUTPUT_STREAM_IMPEXP int diaryWrite(const wchar_t *wstr, BOOL bInput);
+int diaryWrite(const wchar_t *wstr, BOOL bInput);
 
 /*
 * same as diaryWrite but add carriage return
 * @param[in] string to write
 * @param[in] string is a input
 */
-OUTPUT_STREAM_IMPEXP int diaryWriteln(const wchar_t *wstr, BOOL bInput);
+int diaryWriteln(const wchar_t *wstr, BOOL bInput);
 
 #ifdef  __cplusplus
 }

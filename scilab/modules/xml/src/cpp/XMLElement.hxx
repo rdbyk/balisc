@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,6 @@
 #define __XMLELEMENT_HXX__
 
 #include <string>
-#include "dynlib_xml_scilab.h"
 #include "XMLRemovable.hxx"
 
 #include "xml.h"
@@ -37,7 +36,7 @@ class XMLAttr;
  * Class to wrap a xmlNode
  * @see http://xmlsoft.org/html/libxml-tree.html#xmlNode
  */
-class XML_SCILAB_IMPEXP XMLElement: public XMLObject, public XMLRemovable
+class XMLElement: public XMLObject, public XMLRemovable
 {
     bool allocated;
     xmlNode *node;

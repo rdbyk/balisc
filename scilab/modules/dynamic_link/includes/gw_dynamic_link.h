@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,14 +13,11 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #ifndef __GW_DYNAMIC_LINK__
 #define __GW_DYNAMIC_LINK__
 
-#include "dynlib_dynamic_link_gw.h"
 #include "c_gateway_prototype.h"
 
-DYNAMIC_LINK_GW_IMPEXP C_GATEWAY_PROTOTYPE(sci_call);
+C_GATEWAY_PROTOTYPE(sci_call);
 
 #endif /* __GW_DYNAMIC_LINK__ */
-/*--------------------------------------------------------------------------*/

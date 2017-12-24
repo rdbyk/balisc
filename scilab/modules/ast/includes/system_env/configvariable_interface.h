@@ -18,9 +18,6 @@
 
 #include <string.h>
 #include <wchar.h>
-#include "dynlib_ast.h"
-
-#define VERBOSE_ERROR       0
 
 typedef enum
 {
@@ -30,48 +27,48 @@ typedef enum
     SCILAB_NWNI /* Scilab in command line without any graphics. What not mandataroy here */
 } scilabMode;
 
-EXTERN_AST int getSimpMode(void);
-EXTERN_AST void setSimpMode(int);
-EXTERN_AST int getStartProcessing();
-EXTERN_AST int getEndProcessing();
+int getSimpMode(void);
+void setSimpMode(int);
+int getStartProcessing();
+int getEndProcessing();
 
-EXTERN_AST void setFormatSize(int _iFormatSize);
-EXTERN_AST int getFormatSize(void);
-EXTERN_AST void setFormatMode(int _iFormatMode);
-EXTERN_AST int getFormatMode(void);
-EXTERN_AST void setConsoleWidth(int _iConsoleWidth);
-EXTERN_AST int getConsoleWidth(void);
-EXTERN_AST void setConsoleLines(int _iConsoleLines);
-EXTERN_AST int getConsoleLines(void);
+void setFormatSize(int _iFormatSize);
+int getFormatSize(void);
+void setFormatMode(int _iFormatMode);
+int getFormatMode(void);
+void setConsoleWidth(int _iConsoleWidth);
+int getConsoleWidth(void);
+void setConsoleLines(int _iConsoleLines);
+int getConsoleLines(void);
 
-EXTERN_AST int getieee(void);
-EXTERN_AST void setieee(int);
+int getieee(void);
+void setieee(int);
 
-EXTERN_AST scilabMode getScilabMode(void);
-EXTERN_AST void setScilabMode(scilabMode newmode);
-EXTERN_AST const char * getScilabModeString(void);
+scilabMode getScilabMode(void);
+void setScilabMode(scilabMode newmode);
+const char * getScilabModeString(void);
 
-EXTERN_AST int getWarningMode(void);
-EXTERN_AST void setWarningMode(int _iMode);
-EXTERN_AST int getWarningStop(void);
-EXTERN_AST void setWarningStop(int _iMode);
+int getWarningMode(void);
+void setWarningMode(int _iMode);
+int getWarningStop(void);
+void setWarningStop(int _iMode);
 
-EXTERN_AST int checkReferenceModule(const wchar_t* _module);
-EXTERN_AST void addReferenceModule(const wchar_t* _module);
-EXTERN_AST void removeReferenceModule(const wchar_t* _module);
+int checkReferenceModule(const wchar_t* _module);
+void addReferenceModule(const wchar_t* _module);
+void removeReferenceModule(const wchar_t* _module);
 
-EXTERN_AST int getForceQuit();
+int getForceQuit();
 
-EXTERN_AST int getEntryPointPosition(wchar_t* _pwstEntryPointName);
+int getEntryPointPosition(wchar_t* _pwstEntryPointName);
 typedef void(*dynlib_ptr)();
-EXTERN_AST dynlib_ptr getEntryPointFromPosition(int position);
+dynlib_ptr getEntryPointFromPosition(int position);
 
-EXTERN_AST int isEnableDebug();
-EXTERN_AST int isDebugInterrupted();
+int isEnableDebug();
+int isDebugInterrupted();
 
-EXTERN_AST int isExecutionBreak();
-EXTERN_AST void setExecutionBreak();
-EXTERN_AST void resetExecutionBreak();
+int isExecutionBreak();
+void setExecutionBreak();
+void resetExecutionBreak();
 
-EXTERN_AST int setRecursionLimit(int);
+int setRecursionLimit(int);
 #endif /* !__CONFIGVARIABLE_INTERFACE_H__ */

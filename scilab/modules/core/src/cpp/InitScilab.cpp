@@ -69,6 +69,7 @@ extern "C"
 #include "scicurdir.h"
 #include "FileBrowserChDir.h"
 #include "InitializePreferences.h"
+#include "sciprint.h"
 #include "strlen.h"
 
 #ifdef _MSC_VER

@@ -21,9 +21,9 @@
 /* Copyright INRIA */
 /*--------------------------------------------------------------------------*/
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void relay(int *flag, int *nevprt,
+void relay(int *flag, int *nevprt,
                                 double *t, double xd[],
                                 double x[], int *nx,
                                 double z[], int *nz,

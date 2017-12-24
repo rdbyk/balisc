@@ -154,8 +154,6 @@ libscistring_la_include_HEADERS = \
 includes/complex_array.h \
 includes/convstr.h \
 includes/cvstr.h \
-includes/dynlib_string_gw.h \
-includes/dynlib_string.h \
 includes/getfastcode.h \
 includes/os_string.h \
 includes/os_wcstok.h \

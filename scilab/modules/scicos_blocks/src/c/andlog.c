@@ -19,10 +19,6 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#include <stdio.h>
-#include <math.h>
-#include "dynlib_scicos_blocks.h"
-#include "core_math.h"
 #include "scicos.h"
 /*--------------------------------------------------------------------------*/
 /*------------------------------------------------
@@ -36,7 +32,7 @@
  *     if event input exists synchronuously, output is 1 else -1
  *------------------------------------------------*/
 
-SCICOS_BLOCKS_IMPEXP void andlog(int *flag, int *nevprt, double *t, double *xd,
+void andlog(int *flag, int *nevprt, double *t, double *xd,
                                  double *x, int *nx, double *z, int *nz,
                                  double *tvec, int *ntvec, double *rpar,
                                  int *nrpar, int  *ipar, int  *nipar, double *u,
@@ -48,7 +44,7 @@ SCICOS_BLOCKS_IMPEXP void andlog(int *flag, int *nevprt, double *t, double *xd,
     }
 }
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void C2F(andlog)(int *flag, int *nevprt, double *t, double *xd,
+void C2F(andlog)(int *flag, int *nevprt, double *t, double *xd,
                                       double *x, int *nx, double *z, int *nz,
                                       double *tvec, int *ntvec, double *rpar,
                                       int *nrpar, int  *ipar, int  *nipar, double *u,

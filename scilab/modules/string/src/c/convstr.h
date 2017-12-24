@@ -13,14 +13,9 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #ifndef __CONVSTR_H__
 #define __CONVSTR_H__
 
-#include "dynlib_string.h"
-
-STRING_IMPEXP void convstr(wchar_t **Input_Matrix, wchar_t **Output_Matrix, char typ, int Number_Input);
+void convstr(wchar_t **Input_Matrix, wchar_t **Output_Matrix, char typ, int Number_Input);
 
 #endif /* __CONVSTR_H__ */
-/*--------------------------------------------------------------------------*/
-

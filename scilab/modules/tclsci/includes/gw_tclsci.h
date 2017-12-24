@@ -1,10 +1,10 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2005-2008 - INRIA - Allan CORNET
- *  Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
- *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005-2008 - INRIA - Allan CORNET
+ * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,27 +14,25 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #ifndef __GW_TCLSCI__
 #define __GW_TCLSCI__
-/*--------------------------------------------------------------------------*/
-#include "dynlib_tclsci.h"
+
 #include "c_gateway_prototype.h"
-/*--------------------------------------------------------------------------*/
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_EvalStr);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_ExistInterp);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_GetVar);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_DoOneEvent);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_EvalFile);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_SetVar);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_ExistVar);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_ExistArray);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_opentk);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_GetVersion);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_UnsetVar);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_UpVar);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_CreateSlave);
-TCLSCI_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_TCL_DeleteInterp);
-/*--------------------------------------------------------------------------*/
+
+STACK_GATEWAY_PROTOTYPE(sci_TCL_EvalStr);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_ExistInterp);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_GetVar);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_DoOneEvent);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_EvalFile);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_SetVar);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_ExistVar);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_ExistArray);
+STACK_GATEWAY_PROTOTYPE(sci_opentk);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_GetVersion);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_UnsetVar);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_UpVar);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_CreateSlave);
+STACK_GATEWAY_PROTOTYPE(sci_TCL_DeleteInterp);
+
 #endif /*  __GW_TCLSCI__ */
-/*--------------------------------------------------------------------------*/

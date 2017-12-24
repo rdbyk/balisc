@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2009 - Digiteo - Vincent LIARD
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +16,6 @@
 #ifndef __CDFBASE_H__
 #define __CDFBASE_H__
 
-#include "dynlib_statistics.h"
 /* see cdff.f line 97 */
 #define INFINITY_FOR_CDF 1.0e300
 #define ZERO_FOR_CDF 1.0e-300
@@ -59,8 +58,7 @@ struct cdf_descriptor
  * @param[in] fname scilab caller function name
  * @param[in] cdf's description, @see struct cdf_descriptor
  */
-STATISTICS_IMPEXP int cdf_generic(char *fname, void* pvApiCtx, struct cdf_descriptor *cdf);
-
+int cdf_generic(char *fname, void* pvApiCtx, struct cdf_descriptor *cdf);
 
 /**
  * Number of elements of an elttype-typed array

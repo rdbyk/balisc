@@ -1,10 +1,9 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET <bruno.jofret@inria.fr>
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,9 +25,6 @@
 
 #ifndef __ISSYMMETRIC__
 #define __ISSYMMETRIC__
-#include "dynlib_linear_algebra.h"
-
-
 
 #define SYMMETRIC	1
 #define NOT_SYMMETRIC	0
@@ -37,6 +33,6 @@
 ** Check whether or not a Matrix is Symmetric.
 */
 
-LINEAR_ALGEBRA_IMPEXP int isSymmetric(double* _pdblReal, double* _pdblImg, int _iIsComplex, int _iRows, int _iCols);
+int isSymmetric(double* _pdblReal, double* _pdblImg, int _iIsComplex, int _iRows, int _iCols);
 
 #endif /* !__ISSYMMETRIC__ */

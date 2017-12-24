@@ -26,7 +26,7 @@
 #include "scicos_free.h"
 #include "scicos_malloc.h"
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(zgeev)(char *jobvl, char *jobvr, int *n,
                       double *a, int *lda, double *w, double *vl,
@@ -49,7 +49,7 @@ typedef struct
     double *rwork1;
 } mat_vpv_struct ;
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matz_vpv(scicos_block *block, int flag)
+void matz_vpv(scicos_block *block, int flag)
 {
     double *ur = NULL, *ui = NULL;
     double *y1r = NULL, *y1i = NULL, *y2r = NULL, *y2i = NULL;

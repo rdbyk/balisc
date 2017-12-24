@@ -20,9 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matz_sumc(scicos_block *block, int flag)
+void matz_sumc(scicos_block *block, int flag)
 {
     int j = 0;
     int mu = GetInPortRows(block, 1);
