@@ -24,9 +24,8 @@
 #include "scicos_block.h"
 #include "scicos_free.h"
 #include "scicos_malloc.h"
-#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void backlash(scicos_block *block, int flag)
+void backlash(scicos_block *block, int flag)
 {
     double* rw = NULL, t  = 0.;
     double** work = (double**) block->work;

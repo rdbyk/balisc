@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,26 +14,23 @@
  *
  */
 
-/*------------------------------------------------------------------------*/
 #ifndef __GETCOMMENTDATESESSION_H__
 #define __GETCOMMENTDATESESSION_H__
-/*------------------------------------------------------------------------*/
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-/*------------------------------------------------------------------------*/
-#include "dynlib_history_manager.h"
-#include "BOOL.h" /* BOOL */
+
+#include "BOOL.h"
 #include <wchar.h>
-/*------------------------------------------------------------------------*/
+
 #define SESSION_PRAGMA_BEGIN    "// -- "
 #define SESSION_PRAGMA_END      " -- //"
-/*------------------------------------------------------------------------*/
-HISTORY_MANAGER_IMPEXP char *getCommentDateSession(BOOL longFormat);
-/*------------------------------------------------------------------------*/
+
+char *getCommentDateSession(BOOL longFormat);
+
 #ifdef __cplusplus
 }
 #endif
-/*------------------------------------------------------------------------*/
+
 #endif /* __GETCOMMENTDATESESSION_H__ */
-/*------------------------------------------------------------------------*/

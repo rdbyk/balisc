@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
- *  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
- *
+ * Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,7 +21,6 @@
 extern "C"
 {
 #include "api_scilab.h"
-#include "dynlib_scicos_blocks.h"
 #include "expandPathVariable.h"
 #include "scicos_block4.h"
 #include "scicos_evalhermite.h"
@@ -33,7 +32,7 @@ extern "C"
 
 #include "localization.h"
 
-    SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag);
+    void fromws_c(scicos_block* block, int flag);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -77,7 +76,7 @@ static int Mytridiagldltsolve(double* &dA, double* &lA, double* &B, int N)
 using namespace org_scilab_modules_xcos_block;
 
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
+void fromws_c(scicos_block* block, int flag)
 {
     /* Retrieve dimensions of output port */
     int my    = GetOutPortRows(block, 1); /* Number of rows of the output */

@@ -22,17 +22,12 @@
 
 #include "double.hxx"
 
-extern "C"
-{
-#include "dynlib_elementary_functions.h"
-}
-
 namespace balisc
 {
-ELEMENTARY_FUNCTIONS_IMPEXP types::Double* atan_real(types::Double* x);
-ELEMENTARY_FUNCTIONS_IMPEXP bool atan_singularity(types::Double* x);
-ELEMENTARY_FUNCTIONS_IMPEXP types::Double* atan_complex(types::Double* x);
-ELEMENTARY_FUNCTIONS_IMPEXP types::Double* atan2(types::Double* x1, types::Double* x2);
+types::Double* atan_real(types::Double* x);
+bool atan_singularity(types::Double* x);
+types::Double* atan_complex(types::Double* x);
+types::Double* atan2(types::Double* x1, types::Double* x2);
 }
 
 #endif // __ATAN_H__

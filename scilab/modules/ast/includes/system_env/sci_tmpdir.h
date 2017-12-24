@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,32 +10,30 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __SCI_TMPDIR_H__
 #define __SCI_TMPDIR_H__
 
 #include <wchar.h>
 
-#include "dynlib_ast.h"
+wchar_t* getTMPDIRW(void);
+char* getTMPDIR(void);
 
-EXTERN_AST wchar_t* getTMPDIRW(void);
-EXTERN_AST char* getTMPDIR(void);
+void setTMPDIRW(const wchar_t* _sci_tmpdir);
+void setTMPDIR(const char* _sci_tmpdir);
 
-EXTERN_AST void setTMPDIRW(const wchar_t* _sci_tmpdir);
-EXTERN_AST void setTMPDIR(const char* _sci_tmpdir);
+wchar_t* computeTMPDIRW();
+char* computeTMPDIR();
 
-EXTERN_AST wchar_t* computeTMPDIRW();
-EXTERN_AST char* computeTMPDIR();
+wchar_t* getenvTMPDIRW(void);
+char* getenvTMPDIR(void);
 
-EXTERN_AST wchar_t* getenvTMPDIRW(void);
-EXTERN_AST char* getenvTMPDIR(void);
+void putenvTMPDIRW(const wchar_t* _sci_tmpdir);
+void putenvTMPDIR(const char* _sci_tmpdir);
 
-EXTERN_AST void putenvTMPDIRW(const wchar_t* _sci_tmpdir);
-EXTERN_AST void putenvTMPDIR(const char* _sci_tmpdir);
-
-EXTERN_AST void defineTMPDIR();
-EXTERN_AST void clearTMPDIR();
+void defineTMPDIR();
+void clearTMPDIR();
 
 #endif // ! __SCI_TMPDIR_H__

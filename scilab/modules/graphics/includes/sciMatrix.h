@@ -23,8 +23,6 @@
 #ifndef _SCI_MATRIX_H_
 #define _SCI_MATRIX_H_
 
-#include "dynlib_graphics.h"
-
 /*----------------------------------------------------------------------------------*/
 /**
  * a matrix on void pointers
@@ -37,8 +35,8 @@ typedef struct
 }
 sciMatrix;
 
-GRAPHICS_IMPEXP sciMatrix * emptyMatrix(void);
-GRAPHICS_IMPEXP sciMatrix * newMatrix(int nbRow, int nbCol);
-GRAPHICS_IMPEXP void deleteMatrix(sciMatrix * mat);
+sciMatrix * emptyMatrix(void);
+sciMatrix * newMatrix(int nbRow, int nbCol);
+void deleteMatrix(sciMatrix * mat);
 
 #endif /* _SCI_MATRIX_H_ */

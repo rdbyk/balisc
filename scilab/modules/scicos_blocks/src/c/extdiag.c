@@ -22,9 +22,9 @@
 #include "core_math.h"
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void extdiag(scicos_block *block, int flag)
+void extdiag(scicos_block *block, int flag)
 {
     double *u1 = NULL;
     double *y = NULL;

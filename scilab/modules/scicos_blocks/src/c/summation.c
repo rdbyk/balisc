@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void summation(scicos_block *block, int flag)
+void summation(scicos_block *block, int flag)
 {
     int j = 0, k = 0;
 

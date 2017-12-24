@@ -23,7 +23,7 @@
 #include "sci_malloc.h"
 #include "machine.h"
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
+
 #include "scicos_free.h"
 #include "scicos_malloc.h"
 /*--------------------------------------------------------------------------*/
@@ -32,7 +32,7 @@ extern int C2F(dmmul)(double *a, int *na, double *b, int *nb, double *c__,
 extern int C2F(dmmul1)(double *a, int *na, double *b, int *nb, double *c__,
                        int *nc, int *l, int *m, int *n);
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void dsslti4(scicos_block *block, int flag)
+void dsslti4(scicos_block *block, int flag)
 {
     /* Copyright INRIA
 

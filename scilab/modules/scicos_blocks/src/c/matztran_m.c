@@ -21,11 +21,11 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(mtran)(double* a, int* na, double* b, int* nb, int* m, int* n);
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matztran_m(scicos_block *block, int flag)
+void matztran_m(scicos_block *block, int flag)
 {
     int nu = GetInPortRows(block, 1);
     int mu = GetInPortCols(block, 1);

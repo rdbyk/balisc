@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 /**
  * @file JavaInteraction.h
@@ -26,12 +26,10 @@
 extern "C" {
 #endif
 
-#include "dynlib_renderer.h"
-
 /**
  * Start interactive zoom on given figure
  */
-RENDERER_IMPEXP void startInteractiveZoom(int iObjUID);
+void startInteractiveZoom(int iObjUID);
 
 /**
  * Call rubber box on a figure
@@ -39,8 +37,8 @@ RENDERER_IMPEXP void startInteractiveZoom(int iObjUID);
  * @param initialRect if not null, specify the initial rectangle to use
  * @return [usedButton x y z l L h]
  */
-RENDERER_IMPEXP double *javaClickRubberBox(int iObjUID, double *initialRect, int iRectSize);
-RENDERER_IMPEXP double *javaDragRubberBox(int iObjUID);
+double *javaClickRubberBox(int iObjUID, double *initialRect, int iRectSize);
+double *javaDragRubberBox(int iObjUID);
 
 #ifdef __cplusplus
 }

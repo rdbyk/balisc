@@ -1,24 +1,22 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
  * This file was originally licensed under the terms of the CeCILL v2.1,
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
+
 #ifndef __MGETL_H__
 #define __MGETL_H__
 
-#include "dynlib_fileio.h"
-
-#include <stddef.h>
+#include <wchar.h>
 
 /**
  * @fn int mgetl(FILE *fd, int iLineCount, wchar_t ***pwstLines)
@@ -31,7 +29,6 @@
  *
  * @return the number of lines read, -1 if an error occured
 **/
-FILEIO_IMPEXP int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines);
+int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines);
 
 #endif /* __MGETL_H__ */
-/*--------------------------------------------------------------------------*/

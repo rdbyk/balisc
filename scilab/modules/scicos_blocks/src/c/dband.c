@@ -24,7 +24,7 @@
 #include <stdlib.h>
 #include "core_math.h"
 #include "scicos.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 /*------------------------------------------------
  *     Scicos block simulator
@@ -39,7 +39,7 @@
  *     DB(i)=rpar(i)
  *------------------------------------------------*/
 
-SCICOS_BLOCKS_IMPEXP void dband (int *flag, int *nevprt, double*t, double*xd,
+void dband (int *flag, int *nevprt, double*t, double*xd,
                                  double *x, int *nx, double*z, int *nz,
                                  double *tvec, int *ntvec, double *rpar,
                                  int *nrpar, int *ipar, int *nipar, double*u,
@@ -60,7 +60,7 @@ SCICOS_BLOCKS_IMPEXP void dband (int *flag, int *nevprt, double*t, double*xd,
     }
 }
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void C2F(dband) (int *flag, int *nevprt, double*t, double*xd,
+void C2F(dband) (int *flag, int *nevprt, double*t, double*xd,
                                       double *x, int *nx, double*z, int *nz,
                                       double *tvec, int *ntvec, double *rpar,
                                       int *nrpar, int *ipar, int *nipar, double*u,

@@ -22,11 +22,11 @@
 #include <math.h>
 #include "sci_malloc.h"
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
+
 #include "scicos_free.h"
 #include "scicos_malloc.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void deriv(scicos_block *block, int flag)
+void deriv(scicos_block *block, int flag)
 {
     double** work = (double**) block->work;
     double* rw = NULL;

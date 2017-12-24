@@ -36,7 +36,7 @@
 namespace types
 {
 template<typename T>
-class EXTERN_AST Int : public ArrayOf<T>
+class Int : public ArrayOf<T>
 {
 public :
 

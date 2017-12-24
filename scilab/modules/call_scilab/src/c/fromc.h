@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,28 +12,15 @@
  * along with this program.
  *
  */
+
 #ifndef __FROMC__
 #define __FROMC__
 
 #include <stdio.h>
 #include <string.h>
-#include "dynlib_call_scilab.h"
 #include "BOOL.h"
 
-/**
- * @TODO add comment
- *
- * @param void
- */
-CALL_SCILAB_IMPEXP void SetFromCToON(void);
-
-/**
- * @TODO add comment
- *
- * @param void
- * @return <ReturnValue>
- */
-CALL_SCILAB_IMPEXP int IsFromC(void);
+void SetFromCToON(void);
+int IsFromC(void);
 
 #endif /*FROMC*/
-/*--------------------------------------------------------------------------*/

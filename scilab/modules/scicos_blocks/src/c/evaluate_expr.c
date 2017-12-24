@@ -32,7 +32,7 @@
 #include "core_math.h"
 #include "scicos_block.h"
 #include "machine.h" /* isinf */
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 #if _MSC_VER
 /*
@@ -57,7 +57,7 @@ double atanh(double x)
 }
 #endif
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block, int flag)
+void evaluate_expr(scicos_block *block, int flag)
 {
     static double stack [1000];
     static int count = 0, bottom = 0, nzcr = 0, i = 0, phase = 0;

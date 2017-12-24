@@ -12,10 +12,9 @@
  * along with this program.
  *
  */
+
 #ifndef __COMPLEX_ARRAY_H__
 #define __COMPLEX_ARRAY_H__
-
-#include "dynlib_string.h"
 
 typedef struct
 {
@@ -29,14 +28,12 @@ typedef struct
 extern "C" {
 #endif
 
-STRING_IMPEXP complexArray *createComplexArrayEmpty(int nbSize);
-STRING_IMPEXP int cleanImagPartComplexArray(complexArray *pComplexArray);
-STRING_IMPEXP void freeComplexArray(complexArray *pComplexArray);
+complexArray *createComplexArrayEmpty(int nbSize);
+int cleanImagPartComplexArray(complexArray *pComplexArray);
+void freeComplexArray(complexArray *pComplexArray);
 
 #ifdef __cplusplus
 }
 #endif
 
-
 #endif /* __CSV_COMPLEX_H__ */
-

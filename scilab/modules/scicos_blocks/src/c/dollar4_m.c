@@ -25,14 +25,14 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
     int s;
 } dol_struct ;
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void dollar4_m(scicos_block *block, int flag)
+void dollar4_m(scicos_block *block, int flag)
 {
     /* c     Copyright INRIA
 

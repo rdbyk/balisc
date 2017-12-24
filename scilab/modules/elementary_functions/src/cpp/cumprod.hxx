@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2012 - DIGITEO - cedric delamarre
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - DIGITEO - cedric delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __CUMPROD_H__
 #define __CUMPROD_H__
@@ -19,12 +19,7 @@
 #include "double.hxx"
 #include "polynom.hxx"
 
-extern "C"
-{
-#include "dynlib_elementary_functions.h"
-}
-
-ELEMENTARY_FUNCTIONS_IMPEXP int cumprod(types::Double* pIn,  int iOrientation, types::Double* pOut);
-ELEMENTARY_FUNCTIONS_IMPEXP int cumprod(types::Polynom* pIn,  int iOrientation, types::Polynom* pOut);
+int cumprod(types::Double* pIn,  int iOrientation, types::Double* pOut);
+int cumprod(types::Polynom* pIn,  int iOrientation, types::Polynom* pOut);
 
 #endif /* __CUMPROD_H__ */

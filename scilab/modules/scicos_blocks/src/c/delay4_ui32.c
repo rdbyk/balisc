@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void delay4_ui32(scicos_block *block, int flag)
+void delay4_ui32(scicos_block *block, int flag)
 {
     /* Copyright INRIA
 

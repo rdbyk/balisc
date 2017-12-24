@@ -22,9 +22,9 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void gainblk_ui16s(scicos_block *block, int flag)
+void gainblk_ui16s(scicos_block *block, int flag)
 {
     if ((flag == 1) | (flag == 6))
     {

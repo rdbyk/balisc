@@ -1,7 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-#
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -221,7 +221,6 @@ includes/scicos_free.h \
 includes/scicos_malloc.h \
 includes/scicos_math.h \
 includes/scicos_print.h \
-includes/dynlib_scicos.h \
 includes/import.h
 
 

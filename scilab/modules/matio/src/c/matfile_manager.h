@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +13,7 @@
  *
  */
 
-#include "matio.h" /* mat_t */
-#include "dynlib_matio.h"
+#include "matio.h"
 
 #define MATFILEMANAGER_ADDFILE  0
 #define MATFILEMANAGER_DELFILE  1
@@ -28,5 +27,4 @@
  * @param fileIndex the file index in the table of files openend
  * @param matfile a pointer to the matfile entity to close
  */
-MATIO_IMPEXP void matfile_manager(int action, int *fileIndex, mat_t **matfile);
-
+void matfile_manager(int action, int *fileIndex, mat_t **matfile);

@@ -26,7 +26,6 @@
 
 extern "C"
 {
-#include "dynlib_ast.h"
 #include "configvariable_interface.h"
 }
 
@@ -59,7 +58,7 @@ class InternalType;
 typedef std::vector<InternalType *> typed_list;
 typedef std::unordered_map<std::wstring, InternalType *> optional_list;
 
-class EXTERN_AST InternalType
+class InternalType
 {
 public :
     enum ScilabType

@@ -22,10 +22,10 @@
 #include "scicos_block4.h"
 #include "machine.h" /* C2F */
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 #include "dmmul.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void gainblk(scicos_block *block, int flag)
+void gainblk(scicos_block *block, int flag)
 {
     int i = 0;
 

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,9 +12,10 @@
  * along with this program.
  *
  */
+
 #ifndef __SVD_H__
 #define __SVD_H__
-#include "dynlib_linear_algebra.h"
+
 /*
  * perform singular value decomposition (cf. http://www.scilab.org/product/man/svd.html ), MALLOCating temporary buffers as needed.
  *
@@ -38,5 +39,6 @@
  * @return 0 success, -1 MALLOC failure >0 Lapack convergence problems
  *
  */
-LINEAR_ALGEBRA_IMPEXP int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, double tol, double* pSV, double* pU, double* pS, double* pV, double* pRk);
+int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, double tol, double* pSV, double* pU, double* pS, double* pV, double* pRk);
+
 #endif /* !__SVD_H__ */

@@ -22,9 +22,9 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void counter(scicos_block *block, int flag)
+void counter(scicos_block *block, int flag)
 {
     double *y = NULL, *z = NULL;
     int *ipar = NULL;

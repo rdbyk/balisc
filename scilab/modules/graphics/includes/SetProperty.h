@@ -6,8 +6,8 @@
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - Paul Griffiths
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,37 +30,27 @@
  *      and -1 if an error occurred.
  --------------------------------------------------------------------------*/
 
-
 #ifndef __SCI_SET_PROPERTY__
 #define __SCI_SET_PROPERTY__
 
-#include "dynlib_graphics.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP int sciSetLineWidth (int iObj, double linewidth) ;  /* SET */
-
-GRAPHICS_IMPEXP int sciSetLineStyle (int iObj, int linestyle) ; /* SET */
-
-GRAPHICS_IMPEXP int sciSetMarkSize (int iObj, int *markSizes, int numMarkSizes); /* SET */
+int sciSetLineWidth (int iObj, double linewidth) ;  /* SET */
+int sciSetLineStyle (int iObj, int linestyle) ; /* SET */
+int sciSetMarkSize (int iObj, int *markSizes, int numMarkSizes); /* SET */
 
 /* Text Functions */
-GRAPHICS_IMPEXP int sciSetText (int iObj, char ** text, int nbRow, int nbCol) ; /* SET */
+int sciSetText (int iObj, char ** text, int nbRow, int nbCol) ; /* SET */
 
 /* GMODE */
-GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
+int sciSetDefaultValues (void); /* SET */
 
 
 /* Window Functions */
-GRAPHICS_IMPEXP int sciSetSelectedSubWin (int iSubwinobj); /* SET */
-
-GRAPHICS_IMPEXP int sciSetPoint(int iObj, double *tab, int *numrow, int *numcol); /* SET */
-
-GRAPHICS_IMPEXP BOOL sciCheckColorIndex(int iObj, int colorIndex);
-
-GRAPHICS_IMPEXP int sciSetMarkOffset(int iObjUID, int offset);
-
-GRAPHICS_IMPEXP int sciSetMarkStride(int iObjUID, int stride);
-
-/*---------------------------------------------------------------------------*/
+int sciSetSelectedSubWin (int iSubwinobj); /* SET */
+int sciSetPoint(int iObj, double *tab, int *numrow, int *numcol); /* SET */
+BOOL sciCheckColorIndex(int iObj, int colorIndex);
+int sciSetMarkOffset(int iObjUID, int offset);
+int sciSetMarkStride(int iObjUID, int stride);
 
 #endif /* __SCI_SET_PROPERTY__ */

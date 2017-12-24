@@ -17,7 +17,6 @@
 #define __POLYNOMIALS_GW_HXX__
 
 #include "cpp_gateway_prototype.hxx"
-#include "dynlib_polynomials_gw.h"
 
 class PolynomialsModule
 {
@@ -25,8 +24,8 @@ private :
     PolynomialsModule() {};
     ~PolynomialsModule() {};
 public :
-    EXTERN_POLYNOMIALS_GW static int Load();
-    EXTERN_POLYNOMIALS_GW static int Unload()
+    static int Load();
+    static int Unload()
     {
         return 1;
     }

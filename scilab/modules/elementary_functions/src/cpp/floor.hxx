@@ -22,14 +22,9 @@
 
 #include "double.hxx"
 
-extern "C"
-{
-#include "dynlib_elementary_functions.h"
-}
-
 namespace balisc
 {
-ELEMENTARY_FUNCTIONS_IMPEXP types::Double* floor(types::Double* x);
+types::Double* floor(types::Double* x);
 }
 
 #endif // __FLOOR_H__

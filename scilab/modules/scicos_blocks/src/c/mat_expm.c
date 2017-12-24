@@ -27,7 +27,7 @@
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(dexpm1)(int* ia, int* n, double* a, double* ea, int* iea, double* w, int* iw, int* ierr);
 /*--------------------------------------------------------------------------*/
@@ -37,7 +37,7 @@ typedef struct
     double *dwork;
 } mat_exp_struct ;
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void mat_expm(scicos_block *block, int flag)
+void mat_expm(scicos_block *block, int flag)
 {
     double *u = NULL;
     double *y = NULL;

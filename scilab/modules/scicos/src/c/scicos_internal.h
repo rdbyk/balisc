@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Scilab Enterprises - 2013 - Clement DAVID
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -35,12 +35,12 @@ void makescicosimport(double *x, int *nx,
                       double *t0, double *tf, double *Atol, double *rtol, double *ttol, double *deltat, double *hmax,
                       int *xprop, double *xd);
 
-extern SCICOS_IMPEXP COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
-extern SCICOS_IMPEXP RTFACTOR_struct C2F(rtfactor);
-extern SCICOS_IMPEXP SOLVER_struct C2F(cmsolver);
-extern SCICOS_IMPEXP CURBLK_struct C2F(curblk);
-extern SCICOS_IMPEXP COSDEBUG_struct C2F(cosdebug);
-extern SCICOS_IMPEXP COSHLT_struct C2F(coshlt);
-extern SCICOS_IMPEXP DBCOS_struct C2F(dbcos);
-extern SCICOS_IMPEXP COSTOL_struct C2F(costol);
-extern SCICOS_IMPEXP COSERR_struct coserr;
+extern COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
+extern RTFACTOR_struct C2F(rtfactor);
+extern SOLVER_struct C2F(cmsolver);
+extern CURBLK_struct C2F(curblk);
+extern COSDEBUG_struct C2F(cosdebug);
+extern COSHLT_struct C2F(coshlt);
+extern DBCOS_struct C2F(dbcos);
+extern COSTOL_struct C2F(costol);
+extern COSERR_struct coserr;

@@ -12,14 +12,12 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #ifndef __GW_ELEMENTARIES_FUNCTIONS__
 #define __GW_ELEMENTARIES_FUNCTIONS__
-/*--------------------------------------------------------------------------*/
+
 #include "machine.h"
-#include "dynlib_elementary_functions.h"
 #include "c_gateway_prototype.h"
-/*--------------------------------------------------------------------------*/
 
 STACK_GATEWAY_PROTOTYPE(sci_nearfloat);
 STACK_GATEWAY_PROTOTYPE(sci_number_properties);
@@ -30,5 +28,3 @@ C_GATEWAY_PROTOTYPE(sci_isvector);
 C_GATEWAY_PROTOTYPE(sci_issquare);
 
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
-/*--------------------------------------------------------------------------*/
-

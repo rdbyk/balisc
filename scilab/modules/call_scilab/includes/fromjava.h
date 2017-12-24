@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,26 +12,13 @@
  * along with this program.
  *
  */
+
 #ifndef __FROMJAVA__
 #define __FROMJAVA__
 
 #include "BOOL.h"
-#include "dynlib_call_scilab.h"
 
-/**
- * <long-description>
- *
- * @param void
- */
-CALL_SCILAB_IMPEXP void SetFromJavaToON(void);
-
-/**
- * <long-description>
- *
- * @param void
- * @return <ReturnValue>
- */
-CALL_SCILAB_IMPEXP BOOL IsFromJava(void);
+void SetFromJavaToON(void);
+BOOL IsFromJava(void);
 
 #endif /*FROMJAVA*/
-/*--------------------------------------------------------------------------*/

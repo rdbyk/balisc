@@ -19,7 +19,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "dynlib_elementary_functions.h"
 #include "BOOL.h"
 #include "elem_common.h"
 
@@ -28,19 +27,19 @@
 #define BY_ALL			0
 #define	BY_MTLB			-1
 
-ELEMENTARY_FUNCTIONS_IMPEXP double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
+double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
 
-ELEMENTARY_FUNCTIONS_IMPEXP void vDadd(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut);
-ELEMENTARY_FUNCTIONS_IMPEXP void vDless(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut);
-ELEMENTARY_FUNCTIONS_IMPEXP void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
-ELEMENTARY_FUNCTIONS_IMPEXP void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
-ELEMENTARY_FUNCTIONS_IMPEXP void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
+void vDadd(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut);
+void vDless(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut);
+void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
+void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
+void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 
-ELEMENTARY_FUNCTIONS_IMPEXP double durands(int *_iVal);
-ELEMENTARY_FUNCTIONS_IMPEXP int nint(double _iVal);
+double durands(int *_iVal);
+int nint(double _iVal);
 
-ELEMENTARY_FUNCTIONS_IMPEXP void franck_matrix(int _iSize, double *_pData);
-ELEMENTARY_FUNCTIONS_IMPEXP void hilb_matrix(int _iSize, double *_pData);
-ELEMENTARY_FUNCTIONS_IMPEXP void magic_matrix(int _iSize, double *_pData);
+void franck_matrix(int _iSize, double *_pData);
+void hilb_matrix(int _iSize, double *_pData);
+void magic_matrix(int _iSize, double *_pData);
 
 #endif //__BASIC_FUNCTION__

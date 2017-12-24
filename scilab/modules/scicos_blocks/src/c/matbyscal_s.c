@@ -22,9 +22,9 @@
 #include <math.h>
 #include "scicos.h"
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matbyscal_s(scicos_block *block, int flag)
+void matbyscal_s(scicos_block *block, int flag)
 {
     if (flag == 1)
     {

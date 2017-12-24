@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __MCLOSE_H__
 #define __MCLOSE_H__
-#include "dynlib_fileio.h"
 #include "machine.h"
 
 /*--------------------------------------------------------------------------*/
@@ -28,9 +27,9 @@
 * the current file if *id = -1
 * all opened file if *id = -2
 */
-FILEIO_IMPEXP void C2F(mclose) (int *fd, double *res);
-FILEIO_IMPEXP int mclose(int _iID);
-FILEIO_IMPEXP int mcloseAll();
-FILEIO_IMPEXP int mcloseCurrentFile();
+void C2F(mclose) (int *fd, double *res);
+int mclose(int _iID);
+int mcloseAll();
+int mcloseCurrentFile();
 #endif /* __MCLOSE_H__ */
 /*--------------------------------------------------------------------------*/

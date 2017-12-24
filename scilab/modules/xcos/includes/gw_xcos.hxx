@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,13 +17,11 @@
 #define GW_XCOS_HXX_
 
 #include "cpp_gateway_prototype.hxx"
-#include "dynlib_xcos.h"
 
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_Xcos, XCOS_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xcosCellCreated, XCOS_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xcosUpdateBlock, XCOS_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xcosDiagramToScilab, XCOS_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xcosPalGenerateIcon, XCOS_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_Xcos);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xcosCellCreated);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xcosUpdateBlock);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xcosDiagramToScilab);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xcosPalGenerateIcon);
 
 #endif /* GW_XCOS_HXX_ */
-

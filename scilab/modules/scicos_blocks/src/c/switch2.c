@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void  switch2(scicos_block *block, int flag)
+void  switch2(scicos_block *block, int flag)
 {
     int i = 0, j = 0, phase = 0;
     if (flag == 1)

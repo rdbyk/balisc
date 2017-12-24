@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,15 +18,11 @@
 
 #include <list>
 #include <string>
-#include "dynlib_fileio.h"
-
 #include "file.hxx"
 
-class FILEIO_IMPEXP FileManager
+class FileManager
 {
-    //static attributes instantiation
 public :
-    /*commom attributes and function for all File*/
     static int                  getFileMaxID();
     static bool                 isOpened(const std::wstring& _stFilename);
     static int                  getFileID(const std::wstring& _stFilename);
@@ -47,7 +43,7 @@ public :
 private :
     typedef std::vector<types::File*>  vectFile;
     static vectFile             m_fileList;
-    static int                  m_iCurrentFile;     //memorize current using file
+    static int                  m_iCurrentFile;
 };
 
 #endif /* __FILEMANAGER_HXX__ */

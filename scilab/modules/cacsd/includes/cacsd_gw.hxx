@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __CACSD_GW_HXX__
 #define __CACSD_GW_HXX__
@@ -20,7 +20,6 @@
 
 extern "C"
 {
-#include "dynlib_cacsd.h"
 #include "gw_cacsd.h"
 }
 
@@ -31,8 +30,8 @@ private:
     ~CacsdModule() {};
 
 public:
-    CACSD_IMPEXP static int Load();
-    CACSD_IMPEXP static int Unload()
+    static int Load();
+    static int Unload()
     {
         return 1;
     }

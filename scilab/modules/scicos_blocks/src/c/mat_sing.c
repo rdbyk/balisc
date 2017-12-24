@@ -27,7 +27,7 @@
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(dgesvd)(char *jobu, char *jobvt, int *m, int *n,
                        double *a, int *lda, double *s, double *u, int *
@@ -46,7 +46,7 @@ typedef struct
     double *dwork;
 } mat_sing_struct ;
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void mat_sing(scicos_block *block, int flag)
+void mat_sing(scicos_block *block, int flag)
 {
     double *u = NULL;
     double *y = NULL;

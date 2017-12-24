@@ -20,9 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void invblk4(scicos_block *block, int flag)
+void invblk4(scicos_block *block, int flag)
 {
     /* Copyright INRIA
 

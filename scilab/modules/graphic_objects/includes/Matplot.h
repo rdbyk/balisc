@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,8 +15,6 @@
 
 #ifndef MATPLOT_H
 #define MATPLOT_H
-
-#include "dynlib_graphic_objects.h"
 
 typedef enum
 {
@@ -98,6 +96,6 @@ typedef enum
  * @param[in] imagetype the image type
  * @return an int
  */
-GRAPHIC_OBJECTS_IMPEXP int buildMatplotType(DataType datatype, DataOrder dataorder, ImageType imagetype);
+int buildMatplotType(DataType datatype, DataOrder dataorder, ImageType imagetype);
 
 #endif // MATPLOT_H

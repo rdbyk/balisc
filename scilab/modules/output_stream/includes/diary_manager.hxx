@@ -19,31 +19,26 @@
 #include <wchar.h>
 #include "DiaryModesEnum.hxx"
 
-extern "C"
-{
-#include "dynlib_output_stream.h"
-}
-
-OUTPUT_STREAM_IMPEXP wchar_t *getDiaryFilename(int _Id);
-OUTPUT_STREAM_IMPEXP wchar_t **getDiaryFilenames(int *array_size);
-OUTPUT_STREAM_IMPEXP int *getDiaryIDs(int *array_size);
-OUTPUT_STREAM_IMPEXP double *getDiaryIDsAsDouble(int *array_size);
-OUTPUT_STREAM_IMPEXP int diaryCloseAll(void);
-OUTPUT_STREAM_IMPEXP int diaryClose(int _iId);
-OUTPUT_STREAM_IMPEXP int diaryClose(wchar_t *filename);
-OUTPUT_STREAM_IMPEXP int diaryPauseAll(void);
-OUTPUT_STREAM_IMPEXP int diaryPause(int _iId);
-OUTPUT_STREAM_IMPEXP int diaryPause(wchar_t *filename);
-OUTPUT_STREAM_IMPEXP int diaryResumeAll(void);
-OUTPUT_STREAM_IMPEXP int diaryResume(int _iId);
-OUTPUT_STREAM_IMPEXP int diaryResume(wchar_t *filename);
-OUTPUT_STREAM_IMPEXP int diaryExists(int _iId);
-OUTPUT_STREAM_IMPEXP int diaryExists(wchar_t *filename);
-OUTPUT_STREAM_IMPEXP int diaryNew(wchar_t *filename, bool autorename);
-OUTPUT_STREAM_IMPEXP int diaryAppend(wchar_t *filename);
-OUTPUT_STREAM_IMPEXP int diarySetFilterMode(int _iId, diary_filter mode);
-OUTPUT_STREAM_IMPEXP int diarySetPrefixMode(int ID_diary, diary_prefix_time_format iPrefixMode);
-OUTPUT_STREAM_IMPEXP int diarySetPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode);
+wchar_t *getDiaryFilename(int _Id);
+wchar_t **getDiaryFilenames(int *array_size);
+int *getDiaryIDs(int *array_size);
+double *getDiaryIDsAsDouble(int *array_size);
+int diaryCloseAll(void);
+int diaryClose(int _iId);
+int diaryClose(wchar_t *filename);
+int diaryPauseAll(void);
+int diaryPause(int _iId);
+int diaryPause(wchar_t *filename);
+int diaryResumeAll(void);
+int diaryResume(int _iId);
+int diaryResume(wchar_t *filename);
+int diaryExists(int _iId);
+int diaryExists(wchar_t *filename);
+int diaryNew(wchar_t *filename, bool autorename);
+int diaryAppend(wchar_t *filename);
+int diarySetFilterMode(int _iId, diary_filter mode);
+int diarySetPrefixMode(int ID_diary, diary_prefix_time_format iPrefixMode);
+int diarySetPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode);
 
 #endif /* __DIARY_MANAGER_HXX__ */
 /*--------------------------------------------------------------------------*/

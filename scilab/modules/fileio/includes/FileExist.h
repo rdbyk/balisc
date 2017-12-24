@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,21 +17,20 @@
 #define __FILEEXIST_H__
 
 #include <wchar.h>
-#include "dynlib_fileio.h"
-#include "BOOL.h" /* BOOL */
+#include "BOOL.h"
 
 /**
 * verify if filename is a valid file
 * @param filename a string
 * @return TRUE or FALSE
 */
-FILEIO_IMPEXP BOOL FileExist(const char *filename);
+BOOL FileExist(const char *filename);
 
 /**
 * verify if filename is a valid file
 * @param filename a wide string
 * @return TRUE or FALSE
 */
-FILEIO_IMPEXP BOOL FileExistW(const wchar_t *wcfilename);
+BOOL FileExistW(const wchar_t *wcfilename);
 /*--------------------------------------------------------------------------*/
 #endif /* __FILEEXIST_H__ */

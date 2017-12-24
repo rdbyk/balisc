@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2009 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,10 +12,10 @@
  * along with this program.
  *
  */
+
 #ifndef LSQ_H
 #define LSQ_H
 
-#include "dynlib_linear_algebra.h"
 /*
  * Linear least square problems. cf. http://www.scilab.org/product/man/lsq.html
  * Calls Lapack [d|z]gelsy routines after performing memory allocations
@@ -38,8 +38,6 @@
  * @param piRank int* out: effective rank of input matrix. if NULL, the result is not returned.
  *
  */
-
-LINEAR_ALGEBRA_IMPEXP int iLsqM(double* pMatrix, int iRows, int iCols, double* pRhs, int iNRhs, int complexArgs, double* pResult, double* pTreshold, int* piRank);
-
+int iLsqM(double* pMatrix, int iRows, int iCols, double* pRhs, int iNRhs, int complexArgs, double* pResult, double* pTreshold, int* piRank);
 
 #endif

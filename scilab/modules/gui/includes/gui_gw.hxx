@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,9 +17,8 @@
 #define __GUI_GW_HXX__
 
 #include "cpp_gateway_prototype.hxx"
-#include "dynlib_gui.h"
 
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_displaytree, GUI_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_helpbrowser, GUI_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_displaytree);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_helpbrowser);
 
 #endif /* !__GUI_GW_HXX__ */

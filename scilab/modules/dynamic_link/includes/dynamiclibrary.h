@@ -17,7 +17,6 @@
 
 #include <wchar.h>
 #include "BOOL.h"
-#include "dynlib_dynamic_link.h"
 
 typedef int(*PROC_GATEWAY) (void);
 
@@ -59,14 +58,14 @@ typedef FARPROC DynLibFuncPtr;
 * @param name of dynamic library
 * @return Handle to the loaded library
 */
-DYNAMIC_LINK_IMPEXP DynLibHandle LoadDynLibrary(char *libname);
-DYNAMIC_LINK_IMPEXP DynLibHandle LoadDynLibraryW(wchar_t *libname);
+DynLibHandle LoadDynLibrary(char *libname);
+DynLibHandle LoadDynLibraryW(wchar_t *libname);
 
 /**
 * return last dynamic linking error
 * @return a string
 */
-DYNAMIC_LINK_IMPEXP char * GetLastDynLibError(void);
+char * GetLastDynLibError(void);
 
 #endif /* _WIN32 // guard against mis-compilation */
 
@@ -101,7 +100,7 @@ typedef void * DynLibFuncPtr;
 * @param Handle to the loaded library
 * @return BOOL If the function succeeds, the return value is nonzero
 */
-DYNAMIC_LINK_IMPEXP BOOL FreeDynLibrary(DynLibHandle hInstance);
+BOOL FreeDynLibrary(DynLibHandle hInstance);
 
 /**
 * Retrieves the address of an exported function
@@ -109,7 +108,7 @@ DYNAMIC_LINK_IMPEXP BOOL FreeDynLibrary(DynLibHandle hInstance);
 * @param string that specifies the function
 * @return
 */
-DYNAMIC_LINK_IMPEXP DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const char *funcName);
+DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const char *funcName);
 
 /**
 * Build name of dynamic library based on module name
@@ -117,8 +116,8 @@ DYNAMIC_LINK_IMPEXP DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const
 * @param[in] generated dynamic lib name type
 * @return name of dynamic library
 */
-DYNAMIC_LINK_IMPEXP wchar_t* buildModuleDynLibraryNameW(const wchar_t* _pwstModuleName, dynlib_name_format _iType);
-DYNAMIC_LINK_IMPEXP char* buildModuleDynLibraryName(const char* _pstModuleName, dynlib_name_format _iType);
+wchar_t* buildModuleDynLibraryNameW(const wchar_t* _pwstModuleName, dynlib_name_format _iType);
+char* buildModuleDynLibraryName(const char* _pstModuleName, dynlib_name_format _iType);
 
 #endif /* __DYNAMICLIBRARY_H__ */
 /*---------------------------------------------------------------------------*/

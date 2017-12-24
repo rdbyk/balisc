@@ -27,9 +27,8 @@
 #include "scicos.h"
 #include "core_math.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block, int flag)
+void assignment(scicos_block *block, int flag)
 {
     int my = 0, ny = 0, so = 0;
     double *out0 = NULL;

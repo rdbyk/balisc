@@ -27,11 +27,11 @@
 #include "mget.h"
 #include "sci_malloc.h"
 #include "localization.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 static int worldsize(char type[4]);
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void readc(int *flag, int *nevprt,
+void readc(int *flag, int *nevprt,
                                 double *t, double xd[],
                                 double x[], int *nx,
                                 double z[], int *nz,

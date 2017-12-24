@@ -20,10 +20,10 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "scicos.h"
-#include "dynlib_scicos_blocks.h"
+
 #include "scicos_block4.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void scicosexit(scicos_block *block, int flag)
+void scicosexit(scicos_block *block, int flag)
 {
     if (flag == 1)
     {

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,19 +18,14 @@
 #include "machine.h"        // C2F
 #include "localization.h"   // Translations
 #include "doublecomplex.h"  // Type doublecomplex
-#include "dynlib_linear_algebra.h"
 
-LINEAR_ALGEBRA_IMPEXP double normString (double *A, int iRows, int iCols, char *flag);
-
-LINEAR_ALGEBRA_IMPEXP double normStringC (doublecomplex *A, int iRows, int iCols, char *flag);
-
-LINEAR_ALGEBRA_IMPEXP double normP (double *A, int iRows, int iCols, double p);
-
-LINEAR_ALGEBRA_IMPEXP double normPC (doublecomplex *A, int iRows, int iCols, double p);
+double normString (double *A, int iRows, int iCols, char *flag);
+double normStringC (doublecomplex *A, int iRows, int iCols, char *flag);
+double normP (double *A, int iRows, int iCols, double p);
+double normPC (doublecomplex *A, int iRows, int iCols, double p);
 
 #ifdef _MSC_VER
-LINEAR_ALGEBRA_IMPEXP int la_isinf(double dbl);
+int la_isinf(double dbl);
 #else
 #define la_isinf isinf
 #endif
-

@@ -23,9 +23,9 @@
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void  integralz_func(scicos_block *block, int flag)
+void  integralz_func(scicos_block *block, int flag)
 {
     int i = 0;
     double *ur = NULL, *ui = NULL;

@@ -3,8 +3,8 @@
  * Copyright (C) 2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,8 +22,6 @@
 #include <vector>
 #include <string>
 #include <sstream>
-
-#include "dynlib_gui.h"
 #include "list.hxx"
 
 #define TREE_REF_NAME L"uitree"
@@ -32,6 +30,6 @@ static const std::wstring Label(L"label");
 static const std::wstring Icon(L"icon");
 static const std::wstring Callback(L"callback");
 
-GUI_IMPEXP bool parseListItem(types::List* pIn, int icountItem, std::vector<std::string> &_pvStructList, const std::string& _szLevel);
+bool parseListItem(types::List* pIn, int icountItem, std::vector<std::string> &_pvStructList, const std::string& _szLevel);
 
 #endif /* __DISPLAYTREE__ */

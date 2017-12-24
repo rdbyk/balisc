@@ -25,17 +25,12 @@
 #include "variables.hxx"
 #include "libraries.hxx"
 
-extern "C"
-{
-#include "dynlib_ast.h"
-}
-
 namespace symbol
 {
 
 /** \brief Define class Context.
 */
-class EXTERN_AST Context
+class Context
 {
 public:
     typedef std::map<Symbol, Variable*> VarList;

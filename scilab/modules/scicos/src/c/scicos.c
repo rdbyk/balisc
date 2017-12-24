@@ -72,7 +72,6 @@
 
 #include "sciblk2.h"
 #include "sciblk4.h"
-#include "dynlib_scicos.h"
 
 #include "configvariable_interface.h" /* getEntryPointPosition() and getEntryPointFromPosition() */
 
@@ -100,7 +99,7 @@ typedef struct
 				   when updating mode variables during initialization */
 } *UserData;
 
-SCICOS_IMPEXP SCSPTR_struct C2F(scsptr);
+SCSPTR_struct C2F(scsptr);
 
 enum Solver
 {
@@ -234,15 +233,15 @@ static int AJacobian_block = 0;
 * multiple declaration of the variable and linkers were complaining about duplicate
 * symbols
 */
-SCICOS_IMPEXP COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
-SCICOS_IMPEXP RTFACTOR_struct C2F(rtfactor);
-SCICOS_IMPEXP SOLVER_struct C2F(cmsolver);
-SCICOS_IMPEXP CURBLK_struct C2F(curblk);
-SCICOS_IMPEXP COSDEBUG_struct C2F(cosdebug);
-SCICOS_IMPEXP COSHLT_struct C2F(coshlt);
-SCICOS_IMPEXP DBCOS_struct C2F(dbcos);
-SCICOS_IMPEXP COSTOL_struct C2F(costol);
-SCICOS_IMPEXP COSERR_struct coserr;
+COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
+RTFACTOR_struct C2F(rtfactor);
+SOLVER_struct C2F(cmsolver);
+CURBLK_struct C2F(curblk);
+COSDEBUG_struct C2F(cosdebug);
+COSHLT_struct C2F(coshlt);
+DBCOS_struct C2F(dbcos);
+COSTOL_struct C2F(costol);
+COSERR_struct coserr;
 /*--------------------------------------------------------------------------*/
 static void FREE_blocks();
 static void cosini(double *told);

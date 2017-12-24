@@ -24,9 +24,9 @@
 #include "core_math.h"
 #include "dmmul.h"
 #include "scicos.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void gain(int *flag, int *nevprt, double *t,
+void gain(int *flag, int *nevprt, double *t,
                                double*xd, double*x, int*nx, double *z, int *nz,
                                double *tvec, int *ntvec, double *rpar,
                                int *nrpar, int *ipar, int *nipar, double *u,
@@ -36,7 +36,7 @@ SCICOS_BLOCKS_IMPEXP void gain(int *flag, int *nevprt, double *t,
     dmmul(rpar, ny, u, nu, y, ny, ny, nu, &one);
 }
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void C2F(gain)(int *flag, int *nevprt, double *t,
+void C2F(gain)(int *flag, int *nevprt, double *t,
                                     double*xd, double*x, int*nx, double *z, int *nz,
                                     double *tvec, int *ntvec, double *rpar,
                                     int *nrpar, int *ipar, int *nipar, double *u,

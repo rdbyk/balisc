@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,8 +18,6 @@
 #define __GETMATLABVARIABLE_H__
 
 #include "matfile_manager.h"
-#include "dynlib_matio.h"
-
 #include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -39,7 +37,7 @@
  *
  * @return Matlab variable (See MATIO library)
  */
-MATIO_IMPEXP matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Integer variable from stack
@@ -86,8 +84,8 @@ extern "C" {
  *
  * @return Matlab variable (See MATIO library)
  */
-// MATIO_IMPEXP matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
-MATIO_IMPEXP matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+// matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
+matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 
 /*
@@ -102,7 +100,7 @@ MATIO_IMPEXP matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *n
  *
  * @return Matlab variable (See MATIO library)
  */
-MATIO_IMPEXP matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 #ifdef __cplusplus
 }

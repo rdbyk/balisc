@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Allan CORNET
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -111,8 +112,7 @@ libscihistory_manager_la_include_HEADERS = \
     includes/gw_history_manager.h \
     includes/HistoryManager.h \
     includes/InitializeHistoryManager.h \
-    includes/TerminateHistoryManager.h \
-    includes/dynlib_history_manager.h
+    includes/TerminateHistoryManager.h
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/HistoryManagement.i

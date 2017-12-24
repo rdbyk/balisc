@@ -22,14 +22,9 @@
 
 #include "double.hxx"
 
-extern "C"
-{
-#include "dynlib_elementary_functions.h"
-}
-
 namespace balisc
 {
-ELEMENTARY_FUNCTIONS_IMPEXP types::Double* sqrt(types::Double* x);
+types::Double* sqrt(types::Double* x);
 }
 
 #endif // __SQRT_H__

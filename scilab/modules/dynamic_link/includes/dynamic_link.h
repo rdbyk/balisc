@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,8 +18,7 @@
 #ifndef __DYNAMIC_LINK_H__
 #define __DYNAMIC_LINK_H__
 
-#include <wchar.h> /* wchar_t */
-#include "dynlib_dynamic_link.h"
+#include <wchar.h>
 #include "dynamiclibrary.h"
 #include "BOOL.h"
 
@@ -29,21 +28,21 @@
 * return value is == -1 if the LoadDynLibrary failed
 * @param loaded_file
 */
-DYNAMIC_LINK_IMPEXP int Sci_dlopen(wchar_t* _pwstDynLibPath);
+int Sci_dlopen(wchar_t* _pwstDynLibPath);
 
 /**
 * unload a shared library by calling FreeDynLibrary
 * return value is == 0 if the FreeDynLibrary failed
 * @param loaded_file
 */
-DYNAMIC_LINK_IMPEXP int Sci_dlclose(DynLibHandle _hLib);
+int Sci_dlclose(DynLibHandle _hLib);
 
 /**
 * This routine load the entryname ename
 * from shared lib ishared
 * @return TRUE or FALSE
 */
-DYNAMIC_LINK_IMPEXP int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran);
+int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran);
 
 /**
 * call link for scilab
@@ -55,7 +54,6 @@ DYNAMIC_LINK_IMPEXP int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOO
 * @param _piErr                 : Error Id
 * @return id                    : Dynamic Library ID
 */
-DYNAMIC_LINK_IMPEXP int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPointName, int _iEntryPointSize, BOOL _bFortran , int *_piErr);
+int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPointName, int _iEntryPointSize, BOOL _bFortran , int *_piErr);
 
 #endif /* __DYNAMIC_LINK_H__ */
-/*-----------------------------------------------------------------------------------*/

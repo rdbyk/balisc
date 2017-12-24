@@ -1,4 +1,3 @@
-#
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006-2008 - Sylvestre Ledru
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
@@ -6,8 +5,8 @@
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # Copyright (C) DIGITEO - 2011 - Allan CORNET
 # Copyright (C) DIGITEO - 2011 - Antoine ELIAS
-#
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,8 +14,6 @@
 # and continues to be available under such terms.
 # For more information, see the COPYING file which you should have received
 # along with this program.
-#
-
 
 #### Target ######
 modulename=console
@@ -213,8 +210,6 @@ includes/cliPrompt.h \
 includes/console_gw.hxx \
 includes/ConsolePrintf.h \
 includes/ConsoleRead.h \
-includes/dynlib_console_gw.h \
-includes/dynlib_console.h \
 includes/getKey.h \
 includes/getNbrLine.h \
 includes/gotoFunctions.h \

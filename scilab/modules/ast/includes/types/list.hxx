@@ -21,7 +21,7 @@
 
 namespace types
 {
-class EXTERN_AST List : public Container
+class List : public Container
 {
 public :
     List();

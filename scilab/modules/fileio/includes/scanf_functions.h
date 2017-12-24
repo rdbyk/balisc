@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Sylvestre LEDRU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,26 +12,18 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #ifndef __SCAN_FUNCTIONS_H__
 #define __SCAN_FUNCTIONS_H__
 
 #include "do_xxscanf.h"
-#include "dynlib_fileio.h"
 
-/**
-* @TODO add comments
-*/
-FILEIO_IMPEXP void Free_Scan (int rowcount,
+void Free_Scan (int rowcount,
                               int ncol,
                               sfdir *type_s,
                               entry **data);
 
-/**
-* @TODO add comments
-*/
-FILEIO_IMPEXP int Store_Scan (int *nrow,
+int Store_Scan (int *nrow,
                               int *ncol,
                               sfdir *type_s,
                               sfdir *type,

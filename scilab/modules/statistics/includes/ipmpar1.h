@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2009 - Digiteo - Vincent LIARD
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,8 +18,6 @@
 #ifndef  __IPMPAR1_H__
 #define __IPMPAR1_H__
 
-#include "dynlib_statistics.h"
-
 #include "machine.h"
 
 /**
@@ -28,6 +26,6 @@
  * Should be replaced with appropriate compile-time value
  * @return largest machine's integer
  */
-STATISTICS_IMPEXP int C2F(largestint)(void);
+int C2F(largestint)(void);
 
 #endif /* __IPMPAR1_H__ */

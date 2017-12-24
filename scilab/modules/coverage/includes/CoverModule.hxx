@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,19 +25,17 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-
 #include "Counter.hxx"
 #include "InstrumentVisitor.hxx"
 #include "CoverMacroInfo.hxx"
 #include "CoverResult.hxx"
 #include "MacroLoc.hxx"
-#include "dynlib_coverage.h"
 #include "UTF8.hxx"
 
 namespace coverage
 {
 
-class COVERAGE_IMPEXP CoverModule
+class CoverModule
 {
 
     std::vector<Counter> counters;

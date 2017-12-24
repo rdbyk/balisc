@@ -21,19 +21,14 @@
 #include "double.hxx"
 #include "complex"
 
-extern "C"
-{
-#include "dynlib_elementary_functions_gw.h"
-}
-
 class ElemFuncModule
 {
 private :
     ElemFuncModule() {};
     ~ElemFuncModule() {};
 public :
-    EXTERN_EF_GW static int Load();
-    EXTERN_EF_GW static int Unload()
+    static int Load();
+    static int Unload()
     {
         return 1;
     }

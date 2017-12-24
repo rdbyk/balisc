@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,8 +15,6 @@
 
 #ifndef __GETSCILABPREFERENCES_H__
 #define __GETSCILABPREFERENCES_H__
-
-#include "dynlib_preferences_scilab.h"
 
 typedef struct
 {
@@ -55,12 +53,12 @@ typedef struct
 #define STARTUP_DIR_DEFAULT_XPATH (const xmlChar*)"//general/body/startup/@default"
 #define STARTUP_DIR_PREVIOUS_XPATH (const xmlChar*)"//general/body/startup/@previous"
 
-PREFERENCES_SCILAB_IMPEXP const ScilabPreferences * getScilabPreferences(void);
-PREFERENCES_SCILAB_IMPEXP void reloadScilabPreferences(void);
-PREFERENCES_SCILAB_IMPEXP void clearScilabPreferences(void);
-PREFERENCES_SCILAB_IMPEXP char * getPrefAttributeValue(const char * xpath, const char * attribute);
-PREFERENCES_SCILAB_IMPEXP char ** getPrefAttributesValues(const char * xpath, const char ** attributes, const unsigned int attrLen);
-PREFERENCES_SCILAB_IMPEXP void setAttributesValues(const char * xpath, const char ** attributes, const unsigned int kvLen);
-PREFERENCES_SCILAB_IMPEXP void setPrefAttributesValues(const char * xpath, const char ** kv, const unsigned int kvLen);
+const ScilabPreferences * getScilabPreferences(void);
+void reloadScilabPreferences(void);
+void clearScilabPreferences(void);
+char * getPrefAttributeValue(const char * xpath, const char * attribute);
+char ** getPrefAttributesValues(const char * xpath, const char ** attributes, const unsigned int attrLen);
+void setAttributesValues(const char * xpath, const char ** attributes, const unsigned int kvLen);
+void setPrefAttributesValues(const char * xpath, const char ** kv, const unsigned int kvLen);
 
 #endif // __GETSCILABPREFERENCES_H__

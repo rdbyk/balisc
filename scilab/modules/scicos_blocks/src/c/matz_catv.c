@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include "matz_catv.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matz_catv(scicos_block * block, int flag)
+void matz_catv(scicos_block * block, int flag)
 {
     int nu = GetInPortCols(block, 1);
     double *yr = GetRealOutPortPtrs(block, 1);

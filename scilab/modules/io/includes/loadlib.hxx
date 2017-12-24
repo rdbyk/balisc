@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,13 +10,12 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __LOADLIB_H__
 #define __LOADLIB_H__
 
-#include "dynlib_io.h"
 #include "library.hxx"
 
 struct MacroInfo
@@ -32,6 +31,7 @@ struct MacroInfo
 };
 
 typedef std::unordered_map<std::wstring, MacroInfo> MacroInfoList;
-IO_IMPEXP types::Library* loadlib(const std::wstring& _wstXML, int* ierr, bool _isFile = true, bool _bAddInContext = true);
-IO_IMPEXP int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring& libname);
+types::Library* loadlib(const std::wstring& _wstXML, int* ierr, bool _isFile = true, bool _bAddInContext = true);
+int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring& libname);
+
 #endif /* !__LOADLIB_H__ */

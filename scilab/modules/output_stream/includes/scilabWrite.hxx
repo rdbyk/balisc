@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,8 +18,6 @@
 
 #define SPACES_LIST L"      "
 
-#include "dynlib_output_stream.h"
-
 #ifdef __cplusplus
 extern "C"
 {
@@ -27,18 +25,18 @@ extern "C"
 
 typedef void (*SCILAB_OUTPUT_METHOD)(const char *text);
 
-OUTPUT_STREAM_IMPEXP void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer);
+void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer);
 
-OUTPUT_STREAM_IMPEXP void scilabWrite(const char* _pstText);
+void scilabWrite(const char* _pstText);
 
-OUTPUT_STREAM_IMPEXP void scilabWriteW(const wchar_t* _pwstText);
+void scilabWriteW(const wchar_t* _pwstText);
 
-OUTPUT_STREAM_IMPEXP void scilabError(const char* _pstText);
-OUTPUT_STREAM_IMPEXP void scilabErrorW(const wchar_t* _pwstText);
+void scilabError(const char* _pstText);
+void scilabErrorW(const wchar_t* _pwstText);
 
 /* functions write in "console" without take care of mode*/
-OUTPUT_STREAM_IMPEXP void scilabForcedWriteW(const wchar_t* _pwsText);
-OUTPUT_STREAM_IMPEXP void scilabForcedWrite(const char* _pstText);
+void scilabForcedWriteW(const wchar_t* _pwsText);
+void scilabForcedWrite(const char* _pstText);
 
 #ifdef __cplusplus
 }

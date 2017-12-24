@@ -20,7 +20,6 @@
 #include <list>
 #include <vector>
 #include <string>
-
 #include <algorithm>
 #include <limits.h>
 
@@ -28,8 +27,6 @@ extern "C"
 {
 #include "getScilabJavaVM.h"
 }
-
-#include "dynlib_graphic_objects.h"
 
 //disable warnings about exports STL items
 #pragma warning (disable : 4251)
@@ -59,7 +56,7 @@ struct PathItem
     PathItem() : tag(""), uid(0), parent(0) {}
 };
 
-class GRAPHIC_OBJECTS_IMPEXP ScilabView
+class ScilabView
 {
 private :
     ScilabView() {}

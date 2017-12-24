@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matmul_ui8s(scicos_block *block, int flag)
+void matmul_ui8s(scicos_block *block, int flag)
 {
     if ((flag == 1) | (flag == 6))
     {

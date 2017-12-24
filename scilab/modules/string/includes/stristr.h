@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,14 +10,11 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
-/*--------------------------------------------------------------------------*/
 #ifndef __STRISTR_H__
 #define __STRISTR_H__
-
-#include "dynlib_string.h"
 
 /**
 * strstr case insensitive
@@ -25,7 +22,6 @@
 * @param[in] string to search
 * @return result
 */
-STRING_IMPEXP char *stristr(const char *psz, const char *tofind);
+char *stristr(const char *psz, const char *tofind);
 
 #endif /* __STRISTR_H__ */
-/*--------------------------------------------------------------------------*/

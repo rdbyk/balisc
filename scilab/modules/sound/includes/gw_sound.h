@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,16 +13,10 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #ifndef __GW_SOUND__
 #define __GW_SOUND__
-/*--------------------------------------------------------------------------*/
-#include "dynlib_sound.h"
-/*--------------------------------------------------------------------------*/
-SOUND_IMPEXP int gw_sound(void);
-/*--------------------------------------------------------------------------*/
-SOUND_IMPEXP int sci_beep(char *fname, void* pvApiCtx);
-SOUND_IMPEXP int sci_PlaySound(char *fname, void* pvApiCtx);
-/*--------------------------------------------------------------------------*/
+
+int sci_beep(char *fname, void* pvApiCtx);
+int sci_PlaySound(char *fname, void* pvApiCtx);
+
 #endif /*  __GW_SOUND__ */
-/*--------------------------------------------------------------------------*/

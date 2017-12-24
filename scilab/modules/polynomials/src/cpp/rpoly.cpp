@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2016 - Scilab Enterprises - Clement DAVID
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,10 +14,8 @@
  */
 
 extern "C" {
-#include "dynlib_polynomials.h"
 #include "machine.h"            /* C2F */
-
-    POLYNOMIALS_IMPEXP int C2F(rpoly)(double* op, int* degree, double* zeror, double* zeroi, int* fail);
+    int C2F(rpoly)(double* op, int* degree, double* zeror, double* zeroi, int* fail);
 }
 
 #include "find_polynomial_roots_jenkins_traub.h"
@@ -38,7 +36,7 @@ extern "C" {
  *               zeros found.
  *             3 if degree>100
  */
-POLYNOMIALS_IMPEXP int C2F(rpoly)(double* op, int* degree, double* zeror, double* zeroi, int* fail)
+int C2F(rpoly)(double* op, int* degree, double* zeror, double* zeroi, int* fail)
 {
     if (*degree > 100)
     {

@@ -26,7 +26,7 @@
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(zgetrf)(int *m, int *n, double *a,
                        int *lda, int *ipiv, int *info);
@@ -42,7 +42,7 @@ typedef struct
     double *wrk;
 } mat_det_struct ;
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void matz_det(scicos_block *block, int flag)
+void matz_det(scicos_block *block, int flag)
 {
     double *ur = NULL;
     double *yr = NULL;

@@ -16,14 +16,13 @@
 
 /*------------------------------------------------------------------------*/
 /* file: BasicAlgos.h                                                     */
-
 /* desc : Several basic algorithms which can be used in several places in */
 /*        the code.                                                       */
 /*------------------------------------------------------------------------*/
 
 #ifndef _BASIC_ALGOS_H_
 #define _BASIC_ALGOS_H_
-#include "dynlib_graphics.h"
+
 #include "BOOL.h"
 
 /**
@@ -31,8 +30,7 @@
  * @param[in] x array of size n.
  * @return The stricly posistive minimum of x if exists, a negative value otherwise
  */
-GRAPHICS_IMPEXP double sciFindStPosMin(const double x[], int n);
-
+double sciFindStPosMin(const double x[], int n);
 
 /**
  * check the strict monotony of a vector
@@ -41,27 +39,26 @@ GRAPHICS_IMPEXP double sciFindStPosMin(const double x[], int n);
  *          0 if not monotonous
  * @param nbElement must be greater than 2.
  */
-GRAPHICS_IMPEXP int checkMonotony(const double vector[], int nbElement);
+int checkMonotony(const double vector[], int nbElement);
 
 /**
  * copy an array into an other
  */
-GRAPHICS_IMPEXP void doubleArrayCopy(double dest[], const double src[], int nbElement);
+void doubleArrayCopy(double dest[], const double src[], int nbElement);
 
 /**
  * copy a char * array into an other
  */
-GRAPHICS_IMPEXP BOOL stringArrayCopy(char * dest[], char * src[], int nbElement);
+BOOL stringArrayCopy(char * dest[], char * src[], int nbElement);
 
 /**
  * free an array of strings
  */
-GRAPHICS_IMPEXP void destroyStringArray(char * src[], int nbStrings);
+void destroyStringArray(char * src[], int nbStrings);
 
 /**
  * allocate a string array and set all its element to NULL
  */
-GRAPHICS_IMPEXP char ** createStringArray(int nbElement);
-/*--------------------------------------------------------------------------*/
+char ** createStringArray(int nbElement);
 
 #endif /* _BASIC_ALGOS_H_ */

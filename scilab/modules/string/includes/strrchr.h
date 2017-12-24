@@ -21,14 +21,12 @@
 #ifndef __BALISC_STRRCHR_H__
 #define __BALISC_STRRCHR_H__
 
-#include "dynlib_string.h"
-
 #if defined(__SSE4_2__)
 
 char* sse42_strrchr(const char* s, int c);
 #define balisc_strrchr sse42_strrchr
 
-STRING_IMPEXP char* balisc_strrchr(const char* s, int c);
+char* balisc_strrchr(const char* s, int c);
 
 #else
 

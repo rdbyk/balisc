@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2012-2012 - Scilab Enterprises - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012-2012 - Scilab Enterprises - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,8 +17,7 @@
 #define __MATZ_CATV_H__
 
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
 
-SCICOS_BLOCKS_IMPEXP void matz_catv(scicos_block * block, int flag);
+void matz_catv(scicos_block * block, int flag);
 
 #endif /* !__MATZ_CATV_H__ */

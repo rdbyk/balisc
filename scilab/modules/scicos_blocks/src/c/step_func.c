@@ -21,9 +21,9 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void  step_func(scicos_block *block, int flag)
+void  step_func(scicos_block *block, int flag)
 {
     int i;
     if (flag == 1 && block->nevprt == 1)

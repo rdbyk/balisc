@@ -26,7 +26,6 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "dynlib_elementary_functions_gw.h"
 }
 
 #include "sin.hxx"

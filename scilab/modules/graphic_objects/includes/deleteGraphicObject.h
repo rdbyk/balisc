@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,18 +16,16 @@
 #ifndef __DELETEGRAPHICOBJECT_H__
 #define __DELETEGRAPHICOBJECT_H__
 
-#include "dynlib_graphic_objects.h"
-
 /*
 ** Ask Controller to delete a graphic object
 ** referenced by the given _sId.
 */
-GRAPHIC_OBJECTS_IMPEXP void deleteGraphicObject(int iUID);
+void deleteGraphicObject(int iUID);
 
 /*
 ** Ask Controller to delete a data object
 ** referenced by the given _sId.
 */
-GRAPHIC_OBJECTS_IMPEXP void deleteDataObject(int iUID);
+void deleteDataObject(int iUID);
 
 #endif /* !__DELETEGRAPHICOBJECT_H__ */

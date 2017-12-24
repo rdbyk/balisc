@@ -24,11 +24,11 @@
 #include "scicos_print.h"
 #include "scicos_block.h"
 #include "localization.h"
-#include "dynlib_scicos_blocks.h"
+
 #include "scicos_free.h"
 #include "scicos_malloc.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void time_delay(scicos_block *block, int flag)
+void time_delay(scicos_block *block, int flag)
 {
     /*  rpar[0]=delay, rpar[1]=init value, ipar[0]=buffer length */
     double** work = (double**) block->work;

@@ -20,7 +20,7 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#include "dynlib_scicos_blocks.h"
+
 #include "assert.h"
 
 /**
@@ -30,7 +30,7 @@
 static void check_size(int insz[], int nin, int outsz[]);
 #endif
 
-SCICOS_BLOCKS_IMPEXP void sum(int *flag, int *nevprt, double *t, double xd[],
+void sum(int *flag, int *nevprt, double *t, double xd[],
                               double x[], int *nx, double z[], int *nz,
                               double tvec[], int *ntvec, double rpar[],
                               int *nrpar, int ipar[], int *nipar,

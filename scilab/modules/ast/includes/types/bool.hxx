@@ -29,7 +29,7 @@
 
 namespace types
 {
-class EXTERN_AST Bool : public ArrayOf<int>
+class Bool : public ArrayOf<int>
 {
 public :
     static Bool* True()

@@ -20,13 +20,8 @@
 #include "polynom.hxx"
 #include "string.hxx"
 
-extern "C"
-{
-#include "dynlib_elementary_functions.h"
-}
-
-ELEMENTARY_FUNCTIONS_IMPEXP types::InternalType* diag(types::Polynom* pIn,  int iStartPos);
-ELEMENTARY_FUNCTIONS_IMPEXP types::InternalType* diag(types::String* pIn,  int iStartPos);
+types::InternalType* diag(types::Polynom* pIn,  int iStartPos);
+types::InternalType* diag(types::String* pIn,  int iStartPos);
 
 template<class bigT, class littleT>
 types::InternalType* diag(bigT* pIn,  int iStartPos)

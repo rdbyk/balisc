@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2011 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,11 +18,6 @@
 
 #include "cpp_gateway_prototype.hxx"
 
-extern "C"
-{
-#include "dynlib_output_stream_gw.h"
-}
-
 class OutputStreamModule
 {
 private :
@@ -30,8 +25,8 @@ private :
     ~OutputStreamModule() {};
 
 public :
-    OUTPUT_STREAM_IMPEXP_GW static int Load();
-    OUTPUT_STREAM_IMPEXP_GW static int Unload()
+    static int Load();
+    static int Unload()
     {
         return 1;
     }

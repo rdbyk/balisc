@@ -22,7 +22,6 @@
 #ifndef _SCI_STRING_MATRIX_H_
 #define _SCI_STRING_MATRIX_H_
 
-#include "dynlib_graphics.h"
 #include "sciMatrix.h"
 
 /*----------------------------------------------------------------------------------*/
@@ -37,11 +36,11 @@ typedef sciMatrix StringMatrix;
 /**
  * get the pointer on the array of string. May be used for faster access to the data.
  */
-GRAPHICS_IMPEXP char ** getStrMatData( const StringMatrix * mat);
+char ** getStrMatData( const StringMatrix * mat);
 
 /**
  * desalocate the (row,col) current string and copy the new one.
  */
-GRAPHICS_IMPEXP void copyStrMatElement(StringMatrix * mat, int row, int col, const char * copyStr);
+void copyStrMatElement(StringMatrix * mat, int row, int col, const char * copyStr);
 
 #endif /* _SCI_STRING_MATRIX_H_ */

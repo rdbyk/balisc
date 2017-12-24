@@ -1,8 +1,8 @@
 /*
  * Scilab (http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste SILVY
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,9 +23,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include "dynlib_api_scilab.h"
-
 
 /**
  * create an empty matrix in the scilab stack in order to see it in the console.

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +23,6 @@
 #include "ScilabAbstractMemoryAllocator.hxx"
 #include "ScilabAbstractOptionsSetter.hxx"
 #include "ScilabStream.hxx"
-#include "dynlib_external_objects_scilab.h"
 
 extern "C" {
 #include "sci_malloc.h"
@@ -32,7 +31,7 @@ extern "C" {
 namespace org_modules_external_objects
 {
 
-class EXTERNAL_OBJECTS_SCILAB_IMPEXP ScilabGateway
+class ScilabGateway
 {
 
 public:

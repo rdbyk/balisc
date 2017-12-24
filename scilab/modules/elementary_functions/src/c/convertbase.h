@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,11 +12,9 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #ifndef __CONVERTBASE_H__
 #define __CONVERTBASE_H__
-
-#include "dynlib_elementary_functions.h"
 
 typedef enum
 {
@@ -35,7 +33,7 @@ typedef enum
 * @param[out] int if 0 no error
 * @return converted value (decimal)
 */
-ELEMENTARY_FUNCTIONS_IMPEXP double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err);
+double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err);
 
 /**
 * Convert decimal to base N number in string
@@ -45,7 +43,6 @@ ELEMENTARY_FUNCTIONS_IMPEXP double convertBase2Dec(const char *pStr, int numberb
 * @param[out] error value
 * @return a matrix of string of size mn
 */
-ELEMENTARY_FUNCTIONS_IMPEXP char **convertMatrixOfDec2Base(const double* dValues, int mn, int numberbase, unsigned int nbDigits, error_convertbase *err);
+char **convertMatrixOfDec2Base(const double* dValues, int mn, int numberbase, unsigned int nbDigits, error_convertbase *err);
 
 #endif /* __CONVERTBASE_H__ */
-/*--------------------------------------------------------------------------*/

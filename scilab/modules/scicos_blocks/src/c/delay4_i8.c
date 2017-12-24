@@ -20,9 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void delay4_i8(scicos_block *block, int flag)
+void delay4_i8(scicos_block *block, int flag)
 {
     /* Copyright INRIA
 

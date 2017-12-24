@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,7 @@
 
 #ifndef QR_H
 #define QR_H
-#include "dynlib_linear_algebra.h"
+
 /*
   Performs memory allocations and computes QR decomposition (calling iQr)
  * in :
@@ -33,6 +33,7 @@
  * @param pdblRank double*  NULL if rank does not need to be computed, otherwise pointer to memory where rank will be stored
  * @return if the operation successed (true) or not (false)
  */
-LINEAR_ALGEBRA_IMPEXP int iQrM(double* pData, int iRows, int iCols, int /*bool*/ complexArg, int iRowsToCompute, double dblTol
+int iQrM(double* pData, int iRows, int iCols, int /*bool*/ complexArg, int iRowsToCompute, double dblTol
                                , double* pdblQ, double* pdblR, double* pdblE, double* pdblRank);
+
 #endif

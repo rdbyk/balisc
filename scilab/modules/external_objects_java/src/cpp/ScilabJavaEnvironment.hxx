@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,7 +24,6 @@
 
 extern "C"
 {
-#include "dynlib_external_objects_java_scilab.h"
 #include <jni.h>
 #ifdef _MSC_VER
     //#include <Windows.h>
@@ -53,7 +52,7 @@ using namespace org_modules_external_objects;
 namespace org_scilab_modules_external_objects_java
 {
 
-class EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP ScilabJavaEnvironment : public ScilabAbstractEnvironment
+class ScilabJavaEnvironment : public ScilabAbstractEnvironment
 {
     static const std::string environmentName;
     static int envId;

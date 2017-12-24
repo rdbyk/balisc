@@ -5,8 +5,8 @@
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,8 +27,6 @@
 #ifndef __HANDLE_MANAGEMENT_H__
 #define __HANDLE_MANAGEMENT_H__
 
-#include "dynlib_graphic_objects.h"
-
 /**
  * @brief Get the handle for an UID.
  *
@@ -38,7 +36,7 @@
  * @param any uid
  * @return a handle mapped to the uid
  */
-GRAPHIC_OBJECTS_IMPEXP long getHandle(int iUID);
+long getHandle(int iUID);
 
 /**
  * @brief Get the uid of an handle.
@@ -46,6 +44,6 @@ GRAPHIC_OBJECTS_IMPEXP long getHandle(int iUID);
  * @param a valid handle
  * @return a reference to an existing uid or null if invalid.
  */
-GRAPHIC_OBJECTS_IMPEXP int getObjectFromHandle(long handle);
+int getObjectFromHandle(long handle);
 
 #endif /* !__HANDLE_MANAGEMENT_H__ */

@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +23,6 @@
 #ifndef _GET_COMMAND_ARG_H_
 #define _GET_COMMAND_ARG_H_
 
-#include "dynlib_graphics.h"
 #include "api_scilab.h"
 #include "BOOL.h"
 
@@ -38,7 +37,7 @@
  * @param style
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_style_arg(void* _pvCtx, char *fname, int pos, int n1, rhs_opts opts[], int ** style);
+int get_style_arg(void* _pvCtx, char *fname, int pos, int n1, rhs_opts opts[], int ** style);
 
 /**
  * @TODO add comment
@@ -49,7 +48,7 @@ GRAPHICS_IMPEXP int get_style_arg(void* _pvCtx, char *fname, int pos, int n1, rh
  * @param rect
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_rect_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double ** rect);
+int get_rect_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double ** rect);
 
 /**
  * @TODO add comment
@@ -60,7 +59,7 @@ GRAPHICS_IMPEXP int get_rect_arg(void* _pvCtx, char *fname, int pos, rhs_opts op
  * @param strf
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** strf);
+int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** strf);
 
 /**
  * @TODO add comment
@@ -71,7 +70,7 @@ GRAPHICS_IMPEXP int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts op
  * @param legend
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** legend);
+int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** legend);
 
 /**
  * @TODO add comment
@@ -82,7 +81,7 @@ GRAPHICS_IMPEXP int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts 
  * @param labels
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** labels);
+int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** labels);
 
 /**
  * @TODO add comment
@@ -93,7 +92,7 @@ GRAPHICS_IMPEXP int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts 
  * @param flagNax
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_nax_arg(void* _pvCtx, int pos, rhs_opts opts[], int ** nax, BOOL * flagNax);
+int get_nax_arg(void* _pvCtx, int pos, rhs_opts opts[], int ** nax, BOOL * flagNax);
 
 /**
  * @TODO add comment
@@ -104,7 +103,7 @@ GRAPHICS_IMPEXP int get_nax_arg(void* _pvCtx, int pos, rhs_opts opts[], int ** n
  * @param zminmax
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_zminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double ** zminmax);
+int get_zminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double ** zminmax);
 
 /**
  * @TODO add comment
@@ -115,7 +114,7 @@ GRAPHICS_IMPEXP int get_zminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts
  * @param colminmax
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_colminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int ** colminmax);
+int get_colminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int ** colminmax);
 
 /**
  * @TODO add comment
@@ -126,7 +125,7 @@ GRAPHICS_IMPEXP int get_colminmax_arg(void* _pvCtx, char *fname, int pos, rhs_op
  * @param colout
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_colout_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int ** colout);
+int get_colout_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int ** colout);
 
 /**
  * @TODO add comment
@@ -137,7 +136,7 @@ GRAPHICS_IMPEXP int get_colout_arg(void* _pvCtx, char *fname, int pos, rhs_opts 
  * @param withMesh
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_with_mesh_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], BOOL * withMesh);
+int get_with_mesh_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], BOOL * withMesh);
 
 /**
  * @TODO add comment
@@ -148,7 +147,7 @@ GRAPHICS_IMPEXP int get_with_mesh_arg(void* _pvCtx, char *fname, int pos, rhs_op
  * @param logFlags
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** logFlags);
+int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** logFlags);
 
 /**
  * @TODO add comment
@@ -161,7 +160,7 @@ GRAPHICS_IMPEXP int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opt
  * @param  rhs_opts opts[]
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_optional_double_arg(void* _pvCtx, char * fname, int pos, char * name, double ** value, int sz, rhs_opts opts[]);
+int get_optional_double_arg(void* _pvCtx, char * fname, int pos, char * name, double ** value, int sz, rhs_opts opts[]);
 
 /**
  * @TODO add comment
@@ -174,6 +173,6 @@ GRAPHICS_IMPEXP int get_optional_double_arg(void* _pvCtx, char * fname, int pos,
  * @param  rhs_opts opts[]
  * @return <ReturnValue>
  */
-GRAPHICS_IMPEXP int get_optional_int_arg(void* _pvCtx, char * fname, int pos, char * name, int ** value, int sz, rhs_opts opts[]);
+int get_optional_int_arg(void* _pvCtx, char * fname, int pos, char * name, int ** value, int sz, rhs_opts opts[]);
 
 #endif /* _GET_COMMAND_ARG_H_ */

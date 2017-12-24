@@ -20,9 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "scicos_block.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void multiplex(scicos_block *block, int flag)
+void multiplex(scicos_block *block, int flag)
 {
     int i = 0, j = 0, k = 0;
 

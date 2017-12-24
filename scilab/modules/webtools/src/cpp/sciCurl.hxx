@@ -1,7 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *
- *  Copyright (C) 2017 - ESI-Group - Cedric DELAMARRE
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2017 - ESI-Group - Cedric DELAMARRE
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,15 +17,9 @@
 
 #include <curl/curl.h>
 #include <sys/stat.h>
-
 #include "internal.hxx"
 
-extern "C"
-{
-#include "dynlib_webtools.h"
-}
-
-class WEBTOOLS_IMPEXP SciCurl
+class SciCurl
 {
 public:
     static SciCurl* getInstance(void);

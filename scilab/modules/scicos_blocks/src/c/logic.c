@@ -22,9 +22,9 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void logic(scicos_block *block, int flag)
+void logic(scicos_block *block, int flag)
 {
     char *u = NULL, *y = NULL;
     char inp, num;

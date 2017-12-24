@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,13 +13,11 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #ifndef __STRINGSCOMPARE_H__
 #define __STRINGSCOMPARE_H__
 
-#include "BOOL.h"
 #include <wchar.h>
-#include "dynlib_string.h"
+#include "BOOL.h"
 
 /**
 * Compare strings matrix
@@ -31,7 +28,6 @@
 * @param[in] BOOL to do stricmp
 * @return a int matrix (result of strcmp)
 */
-STRING_IMPEXP int * stringsCompare(wchar_t **Input_String_One, int dim_One, wchar_t **Input_String_Two, int dim_Two, BOOL dostricmp);
+int* stringsCompare(wchar_t **Input_String_One, int dim_One, wchar_t **Input_String_Two, int dim_Two, BOOL dostricmp);
 
 #endif /* __STRINGSCOMPARE_H__ */
-/*--------------------------------------------------------------------------*/

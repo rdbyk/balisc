@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) - 2013 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,6 @@
  */
 
 #include <stdio.h>
-#include "dynlib_fileio.h"
 
 #ifndef __CONVERT_TOOLS_H__
 #define __CONVERT_TOOLS_H__
@@ -42,17 +41,17 @@ int swap_int(int _val);
 char swap_char(char _val);
 long long swap_long_long(long long _val);
 
-FILEIO_IMPEXP int writeInt(int _val, FILE* _pF, int _iEndian);
-FILEIO_IMPEXP int writeLongLong(long long _val, FILE* _pF, int _iEndian);
-FILEIO_IMPEXP int writeShort(short _val, FILE* _pF, int _iEndian);
-FILEIO_IMPEXP int writeChar(char _val, FILE* _pF, int _iEndian);
+int writeInt(int _val, FILE* _pF, int _iEndian);
+int writeLongLong(long long _val, FILE* _pF, int _iEndian);
+int writeShort(short _val, FILE* _pF, int _iEndian);
+int writeChar(char _val, FILE* _pF, int _iEndian);
 
-FILEIO_IMPEXP int readInt(FILE* _pF, int _iEndian, unsigned int* val);
-FILEIO_IMPEXP int readLongLong(FILE* _pF, int _iEndian, unsigned long long* val);
-FILEIO_IMPEXP int readShort(FILE* _pF, int _iEndian, unsigned short* val);
-FILEIO_IMPEXP int readChar(FILE* _pF, int _iEndian, unsigned char* val);
+int readInt(FILE* _pF, int _iEndian, unsigned int* val);
+int readLongLong(FILE* _pF, int _iEndian, unsigned long long* val);
+int readShort(FILE* _pF, int _iEndian, unsigned short* val);
+int readChar(FILE* _pF, int _iEndian, unsigned char* val);
 
-FILEIO_IMPEXP int checkEndian(char _endian);
-FILEIO_IMPEXP int checkType(char _type);
+int checkEndian(char _endian);
+int checkType(char _type);
 
 #endif /* !__CONVERT_TOOLS_H__ */

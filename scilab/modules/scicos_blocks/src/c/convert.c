@@ -26,9 +26,9 @@
 #include "scicos_print.h"
 #include "localization.h"
 #include "sci_malloc.h"
-#include "dynlib_scicos_blocks.h"
+
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
+void convert(scicos_block *block, int flag)
 {
     int m = 0, n = 0, i = 0;
     int *ipar = NULL;
