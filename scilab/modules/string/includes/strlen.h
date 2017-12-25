@@ -25,11 +25,13 @@
 
 #if defined(__SSE4_1__)
 
+#include <stddef.h>
 size_t sse41_strlen(const char* s);
 #define balisc_strlen sse41_strlen
 
 #else /* __SSE4_2__ */
 
+#include <stddef.h>
 size_t sse42_strlen(const char* s);
 #define balisc_strlen sse42_strlen
 
