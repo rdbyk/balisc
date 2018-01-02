@@ -16,6 +16,7 @@
 #include <wchar.h>
 #include "context.hxx"
 #include "string.hxx"
+#include "filesep.h"
 #include "expandPathVariable.h"
 
 extern "C"
@@ -57,7 +58,6 @@ static struct VARIABLEALIAS VARIABLES_words[NB_ALIAS] =
 };
 /*--------------------------------------------------------------------------*/
 static wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* var);
-static wchar_t *convertFileSeparators(wchar_t *wcStr);
 /*--------------------------------------------------------------------------*/
 wchar_t *expandPathVariableW(const wchar_t *wcstr)
 {
@@ -77,7 +77,8 @@ wchar_t *expandPathVariableW(const wchar_t *wcstr)
                 wchar_t *wcexpanded = getVariableValueDefinedInScilab(&VARIABLES_words[i]);
                 if (wcexpanded)
                 {
-                    return convertFileSeparators(wcexpanded);
+                    FileSep::Normalize(wcexpanded);
+                    return wcexpanded;
                 }
             }
 
@@ -107,7 +108,8 @@ wchar_t *expandPathVariableW(const wchar_t *wcstr)
                                     wcBegin = NULL;
                                     free(newBegin);
                                     newBegin = NULL;
-                                    return convertFileSeparators(wcexpanded);
+                                    FileSep::Normalize(wcexpanded);
+                                    return wcexpanded;
                                 }
                                 FREE(newBegin);
                                 newBegin = NULL;
@@ -121,12 +123,9 @@ wchar_t *expandPathVariableW(const wchar_t *wcstr)
         }
 
         /* Variables not founded returns a copy of input */
-        wcexpanded = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)lenStr + 1));
-        if (wcexpanded)
-        {
-            wcscpy(wcexpanded, wcstr);
-            return convertFileSeparators(wcexpanded);
-        }
+        wcexpanded = os_wcsdup(wcstr);
+        FileSep::Normalize(wcexpanded);
+        return wcexpanded;
     }
     return wcexpanded;
 }
@@ -179,27 +178,5 @@ void resetVariableValueDefinedInScilab(void)
     {
         VARIABLES_words[i].var = NULL;
     }
-}
-/*--------------------------------------------------------------------------*/
-wchar_t *convertFileSeparators(wchar_t *wcStr)
-{
-    wchar_t* d = wcStr;
-    while (*d)
-    {
-#ifdef _MSC_VER
-        if (*d == L'/')
-        {
-            *d= L'\\';
-        }
-#else
-        if (*d == L'\\')
-        {
-            *d = L'/';
-        }
-#endif
-        ++d;
-    }
-
-    return wcStr;
 }
 /*--------------------------------------------------------------------------*/

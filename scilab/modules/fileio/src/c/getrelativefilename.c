@@ -22,6 +22,8 @@
 #include "PATH_MAX.h"
 #include "strsubst.h"
 #include "strlen.h"
+#include "os_string.h"
+#include "filesep.h"
 /* ================================================================================== */
 static inline char *normalizeFileSeparator(const char *path);
 static inline wchar_t *normalizeFileSeparatorW(const wchar_t *path);
@@ -272,17 +274,15 @@ wchar_t* getrelativefilenameW(wchar_t *currentDirectory, wchar_t *absoluteFilena
 /* ================================================================================== */
 char *normalizeFileSeparator(const char *path)
 {
-#define WINDOWS_FILESEPARATOR "\\"
-#define OTHERS_FILESEPARATOR "/"
-
-    char *normalizedPath = NULL;
-    if (path)
+    char *normalizedPath = os_strdup(path);
+    if (normalizedPath != -1)
     {
-#ifdef _MSC_VER
-        normalizedPath = strsub((char*)path, OTHERS_FILESEPARATOR, DIR_SEPARATOR);
-#else
-        normalizedPath = strsub((char*)path, WINDOWS_FILESEPARATOR, DIR_SEPARATOR);
-#endif
+        FileSep_Normalize(normalizedPath);
+        return normalizedPath;
+    }
+    else
+    {
+        return NULL;
     }
     return normalizedPath;
 }

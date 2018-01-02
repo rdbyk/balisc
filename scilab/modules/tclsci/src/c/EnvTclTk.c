@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <windows.h>
 #include <stdio.h>
@@ -24,8 +24,8 @@
 #include "setenvtcl.h"
 #include "GlobalTclInterp.h"
 #include "localization.h"
-#include "setenvvar.h"
 #include "configvariable_interface.h"
+#include "filesep.h"
 /*--------------------------------------------------------------------------*/
 extern void	TclSetLibraryPath(Tcl_Obj * pathPtr);
 /*--------------------------------------------------------------------------*/
@@ -61,16 +61,9 @@ BOOL SetTclTkEnvironment(char *DefaultPath)
     Tcl_DString encodingName;
 
     char ShortPath[PATH_MAX];
-    char *CopyOfDefaultPath = NULL;
 
     Tcl_Obj *pathPtr = NULL;
     Tcl_Obj *objPtr = NULL;
-
-    CopyOfDefaultPath = MALLOC(((int)strlen(DefaultPath) + 1) * sizeof(char));
-    if (CopyOfDefaultPath == NULL)
-    {
-        return FALSE;
-    }
 
     if (getScilabMode() == SCILAB_STD)
     {
@@ -82,20 +75,14 @@ BOOL SetTclTkEnvironment(char *DefaultPath)
     Tcl_GetVersion(&tcl_major, &tcl_minor, &tcl_patchLevel, &tcl_type);
 
     GetShortPathName(DefaultPath, ShortPath, PATH_MAX);
-    AntislashToSlash(ShortPath, CopyOfDefaultPath);
-    sprintf (TCL_LIBRARY_PATH, TCL_LIBRARY_FORMAT, CopyOfDefaultPath, tcl_major, tcl_minor);
-    sprintf (TK_LIBRARY_PATH, TK_LIBRARY_FORMAT, CopyOfDefaultPath, tcl_major, tcl_minor);
+    FileSep_Unix(ShortPath);
+    sprintf (TCL_LIBRARY_PATH, TCL_LIBRARY_FORMAT, ShortPath, tcl_major, tcl_minor);
+    sprintf (TK_LIBRARY_PATH, TK_LIBRARY_FORMAT, ShortPath, tcl_major, tcl_minor);
     sprintf (TCL_DEFAULT_ENCODING_DIR,
              TCL_DEFAULT_ENCODING_DIR_FORMAT,
-             CopyOfDefaultPath,
+             ShortPath,
              tcl_major,
              tcl_minor);
-
-    if (CopyOfDefaultPath)
-    {
-        FREE(CopyOfDefaultPath);
-        CopyOfDefaultPath = NULL;
-    }
 
     /* TCL_LIBRARY initialization */
     SetEnvironmentVariable(TCL_LIBRARY, TCL_LIBRARY_PATH);

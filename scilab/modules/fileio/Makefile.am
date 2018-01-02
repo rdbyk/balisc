@@ -92,6 +92,7 @@ GATEWAY_CPP_SOURCES = \
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
 	src/cpp/filemanager_interface.cpp \
+	src/cpp/filesep.cpp \
 	src/cpp/mopen.cpp \
 	src/cpp/mclose.cpp \
 	src/cpp/mput.cpp \

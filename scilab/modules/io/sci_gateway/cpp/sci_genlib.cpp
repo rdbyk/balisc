@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,20 +10,14 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifdef _MSC_VER
 #pragma warning(disable : 4996) //It's not beautifull but that works !
 #endif
 
 #define DEFAULT_ENCODING "UTF-8"
-
-#ifdef _MSC_VER
-#define FILE_SEPARATOR L"\\"
-#else
-#define FILE_SEPARATOR L"/"
-#endif
 
 //XML API
 #include <libxml/xpath.h>
@@ -43,7 +37,6 @@
 
 extern "C"
 {
-#include "setenvvar.h"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "PATH_MAX.h"

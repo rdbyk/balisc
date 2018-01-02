@@ -14,11 +14,10 @@
  */
 
 #include <stdlib.h>
-
 #include "configvariable.hxx"
-
 #include "string.hxx"
 #include "context.hxx"
+#include "filesep.h"
 
 extern "C"
 {
@@ -29,7 +28,6 @@ extern "C"
 #include "PATH_MAX.h"
 #include "setenvc.h"
 #include "getenvc.h"
-#include "setenvvar.h"
 #include "getshortpathname.h"
 #include "getlongpathname.h"
 #include "strlen.h"
@@ -56,52 +54,33 @@ void setSCIW(const wchar_t* _sci_path)
 /*--------------------------------------------------------------------------*/
 void setSCI(const char* _sci_path)
 {
-    //
     BOOL bConvertOK = FALSE;
     char* ShortPath = getshortpathname(_sci_path, &bConvertOK);
-    char* LongPath = getlongpathname(_sci_path, &bConvertOK);
-
 
     //SCI
-    char *pstSlash = new char[balisc_strlen(_sci_path) + 1];
-    AntislashToSlash(ShortPath, pstSlash);
-    wchar_t* pwstSCI = to_wide_string(pstSlash);
+    FileSep::Unix(ShortPath);
+    wchar_t* pwstSCI = to_wide_string(ShortPath);
+    FREE(ShortPath);
     types::String *pSSCI = new types::String(pwstSCI);
+    FREE(pwstSCI);
     symbol::Context::getInstance()->put(symbol::Symbol(L"SCI"), pSSCI);
 
     //WSCI
-    wchar_t* pwstWSCI = NULL;
 #ifdef _MSC_VER
-    char *pstBackSlash = NULL;
-    pstBackSlash = new char[strlen(LongPath) + 1];
-    SlashToAntislash(LongPath, pstBackSlash);
-    pwstWSCI = to_wide_string(pstBackSlash);
+    char* LongPath = getlongpathname(_sci_path, &bConvertOK);
+    FileSep::Win64(LongPath);
+    wchar_t* pwstWSCI = to_wide_string(LongPath);
+    FREE(LongPath);
     types::String *pSWSCI = new types::String(pwstWSCI);
     symbol::Context::getInstance()->put(symbol::Symbol(L"WSCI"), pSWSCI);
-    delete[] pstBackSlash;
 #else
-    pwstWSCI = to_wide_string(_sci_path);
+    wchar_t* pwstWSCI = to_wide_string(_sci_path);
 #endif
 
     std::wstring wst(pwstWSCI);
     ConfigVariable::setSCIPath(wst);
 
     FREE(pwstWSCI);
-    FREE(pwstSCI);
-    if (pstSlash)
-    {
-        delete[] pstSlash;
-    }
-
-    if (ShortPath)
-    {
-        FREE(ShortPath);
-    }
-
-    if (LongPath)
-    {
-        FREE(LongPath);
-    }
 }
 /*--------------------------------------------------------------------------*/
 void putenvSCIW(const wchar_t* _sci_path)
@@ -114,21 +93,13 @@ void putenvSCIW(const wchar_t* _sci_path)
 /*--------------------------------------------------------------------------*/
 void putenvSCI(const char* _sci_path)
 {
-    char *ShortPath = NULL;
-    char *CopyOfDefaultPath = NULL;
-
     /* to be sure that it's unix 8.3 format */
     /* c:/progra~1/scilab-5.0 */
     BOOL bConvertOK = FALSE;
-    ShortPath = getshortpathname(_sci_path, &bConvertOK);
+    char* ShortPath = getshortpathname(_sci_path, &bConvertOK);
 
-    CopyOfDefaultPath = new char[balisc_strlen(_sci_path) + 1];
-    //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
-    AntislashToSlash(ShortPath, CopyOfDefaultPath);
-
+    FileSep::Unix(ShortPath);
     setenvc("SCI", ShortPath);
-
-    delete[] CopyOfDefaultPath;
     FREE(ShortPath);
 }
 /*--------------------------------------------------------------------------*/

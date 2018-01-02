@@ -207,6 +207,7 @@ am__objects_1 = src/c/libscifileio_algo_la-FileExist.lo \
 	src/c/libscifileio_algo_la-convert_tools.lo
 am__objects_2 = src/cpp/libscifileio_algo_la-expandPathVariable.lo \
 	src/cpp/libscifileio_algo_la-filemanager_interface.lo \
+	src/cpp/libscifileio_algo_la-filesep.lo \
 	src/cpp/libscifileio_algo_la-mopen.lo \
 	src/cpp/libscifileio_algo_la-mclose.lo \
 	src/cpp/libscifileio_algo_la-mput.lo \
@@ -752,6 +753,7 @@ GATEWAY_CPP_SOURCES = \
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
 	src/cpp/filemanager_interface.cpp \
+	src/cpp/filesep.cpp \
 	src/cpp/mopen.cpp \
 	src/cpp/mclose.cpp \
 	src/cpp/mput.cpp \
@@ -1061,6 +1063,8 @@ src/cpp/libscifileio_algo_la-expandPathVariable.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscifileio_algo_la-filemanager_interface.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscifileio_algo_la-filesep.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscifileio_algo_la-mopen.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscifileio_algo_la-mclose.lo: src/cpp/$(am__dirstamp) \
@@ -1350,6 +1354,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-expandPathVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager_interface.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-filesep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiledesc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-getfileinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiletype.Plo@am__quote@
@@ -1705,6 +1710,13 @@ src/cpp/libscifileio_algo_la-filemanager_interface.lo: src/cpp/filemanager_inter
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/filemanager_interface.cpp' object='src/cpp/libscifileio_algo_la-filemanager_interface.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscifileio_algo_la-filemanager_interface.lo `test -f 'src/cpp/filemanager_interface.cpp' || echo '$(srcdir)/'`src/cpp/filemanager_interface.cpp
+
+src/cpp/libscifileio_algo_la-filesep.lo: src/cpp/filesep.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscifileio_algo_la-filesep.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscifileio_algo_la-filesep.Tpo -c -o src/cpp/libscifileio_algo_la-filesep.lo `test -f 'src/cpp/filesep.cpp' || echo '$(srcdir)/'`src/cpp/filesep.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscifileio_algo_la-filesep.Tpo src/cpp/$(DEPDIR)/libscifileio_algo_la-filesep.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/filesep.cpp' object='src/cpp/libscifileio_algo_la-filesep.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscifileio_algo_la-filesep.lo `test -f 'src/cpp/filesep.cpp' || echo '$(srcdir)/'`src/cpp/filesep.cpp
 
 src/cpp/libscifileio_algo_la-mopen.lo: src/cpp/mopen.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscifileio_algo_la-mopen.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscifileio_algo_la-mopen.Tpo -c -o src/cpp/libscifileio_algo_la-mopen.lo `test -f 'src/cpp/mopen.cpp' || echo '$(srcdir)/'`src/cpp/mopen.cpp
