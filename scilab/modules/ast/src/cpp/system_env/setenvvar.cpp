@@ -44,28 +44,13 @@ extern "C"
 #include "strlen.h"
 }
 
-/* DIR_SEPARATOR : Under Windows by default is \ */
-#ifdef _MSC_VER
-#define DIR_SEPARATOR "\\"
-#define DIR_SEPARATORW L"\\"
-#else
-#define DIR_SEPARATOR "/"
-#define DIR_SEPARATORW L"/"
-#endif
-
-#define UNIX_SEPARATOR '/'
-#define WINDOWS_SEPARATOR '\\'
-
 static void SetScilabVariables(void);
-static void convertSlash(const char *path_in, char *path_out, BOOL slashToAntislash);
 static void Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
 static BOOL IsTheGoodShell(void);
 static BOOL Set_Shell(void);
 static void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
 #ifdef _MSC_VER
 static void SciEnvForWindows(void);
-#else
-static int SciEnvForOthers(void);
 #endif
 
 /*--------------------------------------------------------------------------*/
@@ -235,40 +220,3 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 
 }
 #endif
-
-/*--------------------------------------------------------------------------*/
-void AntislashToSlash(const char *pathwindows, char *pathunix)
-{
-    convertSlash(pathwindows, pathunix, FALSE);
-}
-/*--------------------------------------------------------------------------*/
-void SlashToAntislash(const char *pathunix, char *pathwindows)
-{
-    convertSlash(pathunix, pathwindows, TRUE);
-}
-/*--------------------------------------------------------------------------*/
-void convertSlash(const char *path_in, char *path_out, BOOL slashToAntislash)
-{
-    if ( (path_in) && (path_out) )
-    {
-        int i = 0;
-        strcpy(path_out, path_in);
-        for (i = 0; i < (int)balisc_strlen(path_out); i++)
-        {
-            if ( slashToAntislash )
-            {
-                if (path_in[i] == UNIX_SEPARATOR)
-                {
-                    path_out[i] = WINDOWS_SEPARATOR;
-                }
-            }
-            else
-            {
-                if (path_in[i] == WINDOWS_SEPARATOR)
-                {
-                    path_out[i] = UNIX_SEPARATOR;
-                }
-            }
-        }
-    }
-}

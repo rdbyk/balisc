@@ -15,9 +15,9 @@
 
 
 #include "configvariable.hxx"
-
 #include "string.hxx"
 #include "context.hxx"
+#include "filesep.h"
 
 extern "C"
 {
@@ -30,7 +30,6 @@ extern "C"
 #include "version.h"
 #include "setenvc.h"
 #include "getenvc.h"
-#include "setenvvar.h"
 #include "getshortpathname.h"
 #include "strlen.h"
 #include "sciprint.h"
@@ -283,20 +282,13 @@ static void putenvSCIHOMEW(const wchar_t* _sci_home)
 
 static void putenvSCIHOME(const char* _sci_home)
 {
-    char *ShortPath = NULL;
-    char *CopyOfDefaultPath = NULL;
-
     /* to be sure that it's unix 8.3 format */
     /* c:/progra~1/scilab-5.0 */
     BOOL bConvertOK = FALSE;
-    ShortPath = getshortpathname(_sci_home, &bConvertOK);
+    char* ShortPath = getshortpathname(_sci_home, &bConvertOK);
 
-    CopyOfDefaultPath = new char[balisc_strlen(_sci_home) + 1];
-    AntislashToSlash(ShortPath, CopyOfDefaultPath);
-
+    FileSep::Unix(ShortPath);
     setenvc("SCIHOME", ShortPath);
-
-    delete[] CopyOfDefaultPath;
     FREE(ShortPath);
 }
 /*--------------------------------------------------------------------------*/

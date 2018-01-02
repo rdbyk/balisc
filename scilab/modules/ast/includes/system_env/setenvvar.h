@@ -13,6 +13,4 @@
  *
  */
 
-void AntislashToSlash(const char *pathwindows, char *pathunix);
-void SlashToAntislash(const char *pathwindows, char *pathunix);
 void SetScilabEnvironment(void);

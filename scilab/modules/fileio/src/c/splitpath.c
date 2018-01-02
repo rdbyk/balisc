@@ -19,6 +19,8 @@
 #include "PATH_MAX.h"
 #include "sci_malloc.h"
 #include "expandPathVariable.h"
+#include "os_string.h"
+#include "filesep.h"
 /*--------------------------------------------------------------------------*/
 void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, wchar_t* name, wchar_t* ext)
 {
@@ -52,37 +54,22 @@ void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, w
         {
             // expand path variables & normalize slashes
             duplicate_path = expandPathVariableW((wchar_t*)path);
+
+            if (duplicate_path == NULL)
+            {
+                return;
+            }
         }
         else
         {
-            duplicate_path = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(path) + 1));
-            if (duplicate_path)
+            duplicate_path = os_wcsdup(path);
+
+            if (duplicate_path == -1)
             {
-                wcscpy(duplicate_path, path);
-
-                // normalize slashes
-                wchar_t* d = duplicate_path;
-                while (*d)
-                {
-#ifdef _MSC_VER
-                    if (*d == L'/')
-                    {
-                        *d= L'\\';
-                    }
-#else
-                    if (*d == L'\\')
-                    {
-                        *d = L'/';
-                    }
-#endif
-                    ++d;
-                }
+                return;
             }
-        }
 
-        if (duplicate_path == NULL)
-        {
-            return;
+            FileSep_Normalize_W(duplicate_path);
         }
 
         begin_duplicate_path = duplicate_path;

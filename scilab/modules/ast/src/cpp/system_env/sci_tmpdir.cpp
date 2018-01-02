@@ -23,11 +23,11 @@
 #include <unistd.h> /* getpid, readlink & mkdtemp */
 #endif
 
-
 #include "configvariable.hxx"
 #include "string.hxx"
 #include "context.hxx"
 #include "parser.hxx"
+#include "filesep.h"
 
 extern "C"
 {
@@ -84,21 +84,13 @@ void putenvTMPDIRW(const wchar_t* _sci_tmpdir)
 /*--------------------------------------------------------------------------*/
 void putenvTMPDIR(const char *_sci_tmpdir)
 {
-    char *ShortPath = NULL;
-    char *CopyOfDefaultPath = NULL;
-
     /* to be sure that it's unix 8.3 format */
     /* c:/progra~1/scilab-5.0 */
     BOOL bConvertOK = FALSE;
-    ShortPath = getshortpathname(_sci_tmpdir, &bConvertOK);
-    //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
+    char* ShortPath = getshortpathname(_sci_tmpdir, &bConvertOK);
 
-    CopyOfDefaultPath = new char[balisc_strlen(_sci_tmpdir) + 1];
-    AntislashToSlash(ShortPath, CopyOfDefaultPath);
-
+    FileSep::Unix(ShortPath);
     setenvc("TMPDIR", ShortPath);
-
-    delete[] CopyOfDefaultPath;
     FREE(ShortPath);
 }
 

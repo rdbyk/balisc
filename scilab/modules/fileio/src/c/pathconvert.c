@@ -21,6 +21,7 @@
 #include "charEncoding.h"
 #include "BOOL.h"
 #include "os_string.h"
+#include "filesep.h"
 /*--------------------------------------------------------------------------*/
 #define CYGWINSTART L"/cygdrive/"
 /*--------------------------------------------------------------------------*/
@@ -93,22 +94,13 @@ wchar_t *pathconvertW(const wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, Pa
                 }
             }
 
-            for (i = 0; i < (int)wcslen(convertedPath); i++)
+            if (PTypelocal == WINDOWS_STYLE)
             {
-                if (PTypelocal == WINDOWS_STYLE)
-                {
-                    if (convertedPath[i] == L'/')
-                    {
-                        convertedPath[i] = L'\\';
-                    }
-                }
-                else
-                {
-                    if (convertedPath[i] == L'\\')
-                    {
-                        convertedPath[i] = L'/';
-                    }
-                }
+                FileSep_Win64_W(convertedPath);
+            }
+            else
+            {
+                FileSep_Unix_W(convertedPath);
             }
         }
     }
