@@ -467,6 +467,7 @@ GATEWAY_C_SOURCES = \
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_get.cpp \
+    sci_gateway/cpp/sci_gcf.cpp \
     sci_gateway/cpp/sci_xget.cpp \
     sci_gateway/cpp/sci_xset.cpp \
     sci_gateway/cpp/sci_matplot.cpp \
