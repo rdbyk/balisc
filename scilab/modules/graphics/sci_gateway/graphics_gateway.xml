@@ -26,6 +26,7 @@
     <gateway name="sci_gca"             function="gca"              type="1" />
     <gateway name="sci_gce"             function="gce"              type="1" />
     <gateway name="sci_gcf"             function="gcf"              type="1" />
+    <gateway name="sci_gdf"             function="gdf"              type="1" />
     <gateway name="sci_get"             function="get"              type="1" />
     <gateway name="sci_xget"            function="xget"             type="1" />
     <gateway name="sci_xset"            function="xset"             type="1" />
