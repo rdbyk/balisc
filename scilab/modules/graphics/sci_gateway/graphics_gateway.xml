@@ -29,6 +29,7 @@
     <gateway name="sci_gda"             function="gda"              type="1" />
     <gateway name="sci_gdf"             function="gdf"              type="1" />
     <gateway name="sci_get"             function="get"              type="1" />
+    <gateway name="sci_scf"             function="scf"              type="1" />
     <gateway name="sci_xget"            function="xget"             type="1" />
     <gateway name="sci_xset"            function="xset"             type="1" />
     <gateway name="sci_winsid"          function="winsid"           type="1" />
