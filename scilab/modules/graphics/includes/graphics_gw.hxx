@@ -18,6 +18,7 @@
 
 #include "cpp_gateway_prototype.hxx"
 
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_gca);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_gcf);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_get);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xget);
