@@ -175,7 +175,7 @@ char* computeSCI()
         return NULL;
     }
 
-    os_makepath(SciPathName, drive, dir, NULL, NULL);
+    _makepath_s(SciPathName, drive, dir, NULL, NULL);
 
     for (int i = 0 ; i < static_cast<int>(strlen(SciPathName)) ; i++)
     {
