@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -223,30 +223,24 @@ static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
     if (wcFullFilename)
     {
         size_t size_wcFullFilename = sizeof(wchar_t) * (wcslen(wcFullFilename) + 1);
-        
-        wchar_t *wcdrv = (wchar_t *)MALLOC(size_wcFullFilename);
-        wchar_t *wcdir = (wchar_t *)MALLOC(size_wcFullFilename);
+
         wchar_t *wcname = (wchar_t *)MALLOC(size_wcFullFilename);
         wchar_t *wcext = (wchar_t *)MALLOC(size_wcFullFilename);
 
         wcfilename = (wchar_t *)MALLOC(size_wcFullFilename);
 
-        if (wcdrv == NULL || wcdir == NULL || wcname == NULL || wcext == NULL || wcfilename == NULL)
+        if (wcname == NULL || wcext == NULL || wcfilename == NULL)
         {
-            FREE(wcdrv);
-            FREE(wcdir);
             FREE(wcname);
             FREE(wcext);
             FREE(wcfilename);
             return NULL;
         }
 
-        splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
+        splitpathW(wcFullFilename, FALSE, NULL, NULL, wcname, wcext);
 
         wcscat(wcpcpy(wcfilename, wcname), wcext);
 
-        FREE(wcdrv);
-        FREE(wcdir);
         FREE(wcname);
         FREE(wcext);
     }
