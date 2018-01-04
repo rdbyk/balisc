@@ -3,7 +3,7 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -51,24 +51,17 @@ types::Function::ReturnValue sci_fileext(types::typed_list &in, int _iRetCount, 
     types::String* pS = in[0]->getAs<types::String>();
     types::String* pOut = new types::String(pS->getRows(), pS->getCols());
 
-
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
         wchar_t* pwstIn = pS->get(i);
         size_t size_pwstIn = wcslen(pwstIn) + 1;
 
-        wchar_t* pwstDrive      = new wchar_t[size_pwstIn];
-        wchar_t* pwstDirectory  = new wchar_t[size_pwstIn];
-        wchar_t* pwstName       = new wchar_t[size_pwstIn];
-        wchar_t* pwstExtension  = new wchar_t[size_pwstIn];
+        wchar_t* pwstExtension = new wchar_t[size_pwstIn];
 
-        splitpathW(pwstIn, FALSE, pwstDrive, pwstDirectory, pwstName, pwstExtension);
+        splitpathW(pwstIn, FALSE, NULL, NULL, NULL, pwstExtension);
         pOut->set(i, pwstExtension);
 
-        delete[] pwstDirectory;
-        delete[] pwstDrive;
         delete[] pwstExtension;
-        delete[] pwstName;
     }
 
     out.push_back(pOut);
