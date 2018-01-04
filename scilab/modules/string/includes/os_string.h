@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __OS_STRING_H__
 #define __OS_STRING_H__
@@ -29,9 +29,6 @@
 #define wcsicmp         _wcsicmp
 #define wcsnicmp        _wcsnicmp
 #define os_strcpy       strcpy_s
-#define os_splitpath    _splitpath_s
-#define os_wsplitpath   _wsplitpath_s
-#define os_makepath     _makepath_s
 
 #else
 
@@ -81,9 +78,6 @@ static inline int macOSwcscasecmp(const wchar_t *_pwcsS1, const wchar_t *_pwcsS2
 #define wcsicmp         wcscasecmp
 #define wcsnicmp        wcsncasecmp
 #define os_strcpy       strcpy
-#define os_splitpath    _splitpath
-#define os_wsplitpath   _wsplitpath
-#define os_makepath     _makepath
 
 #else //linux or MinGw
 
@@ -109,9 +103,6 @@ wchar_t *_sciwcsdup(const wchar_t *_pwcsSource);
 #define wcsicmp         wcscasecmp
 #define wcsnicmp        wcsncasecmp
 #define os_strcpy       strcpy
-#define os_splitpath    _splitpath
-#define os_wsplitpath   _wsplitpath
-#define os_makepath     _makepath
 
 #endif //if __APPLE__
 #endif //if _MSC_VER
