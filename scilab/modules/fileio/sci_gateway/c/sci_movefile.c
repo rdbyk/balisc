@@ -187,30 +187,23 @@ static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename)
     if (wcFullFilename)
     {
         size_t size_wcFullFilename = sizeof(wchar_t) * (wcslen(wcFullFilename) + 1);
-        
-        wchar_t *wcdrv = (wchar_t *)MALLOC(size_wcFullFilename);
-        wchar_t *wcdir = (wchar_t *)MALLOC(size_wcFullFilename);
+
         wchar_t *wcname = (wchar_t *)MALLOC(size_wcFullFilename);
         wchar_t *wcext = (wchar_t *)MALLOC(size_wcFullFilename);
 
         wcfilename = (wchar_t *) MALLOC(size_wcFullFilename);
 
-        if (wcdrv == NULL || wcdir == NULL || wcname == NULL || wcext == NULL || wcfilename == NULL)
+        if (wcname == NULL || wcext == NULL || wcfilename == NULL)
         {
-            FREE(wcdrv);
-            FREE(wcdir);
             FREE(wcname);
             FREE(wcext);
             FREE(wcfilename);
             return NULL;
         }
 
-        splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
-
+        splitpathW(wcFullFilename, FALSE, NULL, NULL, wcname, wcext);
         wcscat(wcpcpy(wcfilename, wcname), wcext);
 
-        FREE(wcdrv);
-        FREE(wcdir);
         FREE(wcname);
         FREE(wcext);
     }
