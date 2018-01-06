@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -51,6 +51,7 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"exp", &sci_exp, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"expm", &sci_expm, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"eye", &sci_eye, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fix", &sci_int, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"floor", &sci_floor, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"frexp", &sci_frexp, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"gsort", &sci_gsort, MODULE_NAME));
