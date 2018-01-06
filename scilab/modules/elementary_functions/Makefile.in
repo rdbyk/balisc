@@ -272,8 +272,7 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/dclmat.lo src/fortran/ortran.lo \
 	src/fortran/bdiag.lo src/fortran/dmmul.lo src/fortran/wsqrt.lo \
 	src/fortran/rat.lo src/fortran/old_pythag.lo
-am__objects_6 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
-	src/cpp/libscielementary_functions_algo_la-cumsum.lo \
+am__objects_6 = src/cpp/libscielementary_functions_algo_la-cumsum.lo \
 	src/cpp/libscielementary_functions_algo_la-cumprod.lo \
 	src/cpp/libscielementary_functions_algo_la-diag.lo \
 	src/cpp/libscielementary_functions_algo_la-gsort.lo \
@@ -786,7 +785,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
-    src/cpp/getmode.cpp \
     src/cpp/cumsum.cpp \
     src/cpp/cumprod.cpp \
     src/cpp/diag.cpp \
@@ -1660,8 +1658,6 @@ src/cpp/$(am__dirstamp):
 src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/$(DEPDIR)
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscielementary_functions_algo_la-getmode.lo:  \
-	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-cumsum.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-cumprod.lo:  \
@@ -2012,7 +2008,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-diag.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-exp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-floor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-getmode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-gsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-log10.Plo@am__quote@
@@ -2180,13 +2175,6 @@ sci_gateway/c/libscielementary_functions_la-sci_dec2base.lo: sci_gateway/c/sci_d
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
-
-src/cpp/libscielementary_functions_algo_la-getmode.lo: src/cpp/getmode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-getmode.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-getmode.Tpo -c -o src/cpp/libscielementary_functions_algo_la-getmode.lo `test -f 'src/cpp/getmode.cpp' || echo '$(srcdir)/'`src/cpp/getmode.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-getmode.Tpo src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-getmode.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/getmode.cpp' object='src/cpp/libscielementary_functions_algo_la-getmode.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-getmode.lo `test -f 'src/cpp/getmode.cpp' || echo '$(srcdir)/'`src/cpp/getmode.cpp
 
 src/cpp/libscielementary_functions_algo_la-cumsum.lo: src/cpp/cumsum.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-cumsum.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-cumsum.Tpo -c -o src/cpp/libscielementary_functions_algo_la-cumsum.lo `test -f 'src/cpp/cumsum.cpp' || echo '$(srcdir)/'`src/cpp/cumsum.cpp

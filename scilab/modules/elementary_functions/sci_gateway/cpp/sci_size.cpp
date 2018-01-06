@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,15 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include <algorithm>
 
 #include "elem_func_gw.hxx"
 #include "types.hxx"
+#include "internal.hxx"
+#include "double.hxx"
 #include "string.hxx"
 #include "container.hxx"
-#include "getmode.hxx"
 #include "overload.hxx"
 #include "context.hxx"
 
@@ -32,43 +32,52 @@ extern "C"
 #include "os_string.h"
 }
 
-/*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using types::Container;
+using types::Double;
+using types::Function;
+using types::GenericType;
+using types::InternalType;
+using types::String;
+using types::typed_list;
+
+static int getMode(InternalType* in);
+
+Function::ReturnValue sci_size(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() < 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), "size", 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     switch (in[0]->getType())
     {
         // Dedicated case for lists.
-        case types::InternalType::ScilabMList:
+        case InternalType::ScilabMList:
         {
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_size";
             Overload::call(wstFuncName, in, _iRetCount, out);
             break;
         }
-        case types::InternalType::ScilabTList:
+        case InternalType::ScilabTList:
         {
             // calls the overload if it exists.
             std::wstring wstFuncName = L"%"  + in[0]->getTypeStr() + L"_size";
-            types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
+            InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
             if (pIT)
             {
                 return Overload::call(wstFuncName, in, _iRetCount, out);
             }
         }
-        case types::InternalType::ScilabList:
+        case InternalType::ScilabList:
         {
             if (in.size() > 1)
             {
                 Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "size", 1);
-                return types::Function::Error;
+                return Function::Error;
             }
 
-            types::Double* pD = new types::Double(in[0]->getAs<types::Container>()->getSize());
+            Double* pD = new Double(in[0]->getAs<Container>()->getSize());
             out.push_back(pD);
             break;
         }
@@ -85,7 +94,7 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
             if (in.size() > 2)
             {
                 Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "size", 1, 2);
-                return types::Function::Error;
+                return Function::Error;
             }
 
             if (in.size() == 2)
@@ -93,18 +102,20 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
                 if (_iRetCount == 2)
                 {
                     Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "size", 1);
-                    return types::Function::Error;
+                    return Function::Error;
                 }
-                iMode = getMode(in, 1, 0);
+
+                iMode = getMode(in[1]);
+
                 if (iMode == -2)
                 {
-                    return types::Function::Error;
+                    return Function::Error;
                 }
 
             }
 
-            int iDims = in[0]->getAs<types::GenericType>()->getDims();
-            int* piDims = in[0]->getAs<types::GenericType>()->getDimsArray();
+            int iDims = in[0]->getAs<GenericType>()->getDims();
+            int* piDims = in[0]->getAs<GenericType>()->getDimsArray();
 
             if (_iRetCount == 1)
             {
@@ -122,7 +133,7 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
                         break;
                 }
 
-                types::Double* pD = new types::Double(iRowsOut, iColsOut);
+                Double* pD = new Double(iRowsOut, iColsOut);
 
                 double* pdbl = pD->getReal();
 
@@ -135,14 +146,14 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
                         }
                         break;
                     case 0 : //"*"
-                        pdbl[0] = in[0]->getAs<types::GenericType>()->getSize();
+                        pdbl[0] = in[0]->getAs<GenericType>()->getSize();
                         break;
                     default : //"r"
                         if (iMode > iDims)
                         {
                             pdbl[0] = 1;
                             out.push_back(pD);
-                            return types::Function::OK;
+                            return Function::OK;
                         }
 
                         iColsOut = 1;
@@ -155,7 +166,7 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
             {
                 for (int i = 0 ; i < std::min(_iRetCount, iDims) ; i++)
                 {
-                    types::Double* pD = new types::Double(piDims[i]);
+                    Double* pD = new Double(piDims[i]);
                     out.push_back(pD);
                 }
 
@@ -165,7 +176,7 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
                 {
                     for (int i = iDims ; i < _iRetCount ; i++)
                     {
-                        types::Double* pD = new types::Double(1);
+                        Double* pD = new Double(1);
                         out.push_back(pD);
                     }
                 }
@@ -173,6 +184,80 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
             break;
         }
     }
-    return types::Function::OK;
+    return Function::OK;
 }
-/*--------------------------------------------------------------------------*/
+
+int getMode(InternalType* in)
+{
+    int iMode = 0;
+
+    if (in->isString())
+    {
+        String* pS = in->getAs<String>();
+
+        if (pS->getSize() != 1)
+        {
+            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", 2, 1, 1);
+        }
+
+        wchar_t * w = pS->getFirst();
+
+        if (w[0] && w[1] == L'\0')
+        {
+            switch (w[0])
+            {
+                case 'r':
+                    iMode = 1;
+                    break;
+                case 'c':
+                    iMode = 2;
+                    break;
+                case '*':
+                    iMode = 0;
+                    break;
+                default:
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), "size", 2, "*" , "r", "c");
+                    iMode = -2;
+                    break;
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), "size", 2, "*" , "r", "c");
+            iMode = -2;
+        }
+    }
+    else if (in->isDouble() && in->getAs<Double>()->isComplex() == false)
+    {
+        Double* pD = in->getAs<Double>();
+
+        if (pD->getSize() != 1)
+        {
+            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", 2, 1, 1);
+            iMode = -2;
+        }
+        else
+        {
+            iMode = static_cast<int>(pD->getReal()[0]);
+
+            if (pD->getReal()[0] != static_cast<double>(iMode))
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "size", 2);
+                iMode = -2;
+            }
+
+            if (iMode <= 0)
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "size", 2);
+                iMode = -2;
+            }
+        }
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: string or scalar expected.\n"), "size", 2);
+        iMode = -2;
+    }
+
+    return iMode;
+}

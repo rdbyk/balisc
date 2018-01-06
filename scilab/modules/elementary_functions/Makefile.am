@@ -17,7 +17,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
-    src/cpp/getmode.cpp \
     src/cpp/cumsum.cpp \
     src/cpp/cumprod.cpp \
     src/cpp/diag.cpp \
