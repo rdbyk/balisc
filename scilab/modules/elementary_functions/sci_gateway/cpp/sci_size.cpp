@@ -18,6 +18,7 @@
 
 #include "elem_func_gw.hxx"
 #include "types.hxx"
+#include "internal.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "container.hxx"
@@ -31,7 +32,7 @@ extern "C"
 #include "os_string.h"
 }
 
-static int getMode(types::typed_list &in);
+static int getMode(types::InternalType* in);
 
 types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -96,7 +97,7 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
                     return types::Function::Error;
                 }
 
-                iMode = getMode(in);
+                iMode = getMode(in[1]);
 
                 if (iMode == -2)
                 {
@@ -178,13 +179,13 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
     return types::Function::OK;
 }
 
-int getMode(types::typed_list &in)
+int getMode(types::InternalType* in)
 {
     int iMode = 0;
 
-    if (in[1]->isString())
+    if (in->isString())
     {
-        types::String* pS = in[1]->getAs<types::String>();
+        types::String* pS = in->getAs<types::String>();
 
         if (pS->getSize() != 1)
         {
@@ -208,9 +209,9 @@ int getMode(types::typed_list &in)
                 break;
         }
     }
-    else if (in[1]->isDouble() && in[1]->getAs<types::Double>()->isComplex() == false)
+    else if (in->isDouble() && in->getAs<types::Double>()->isComplex() == false)
     {
-        types::Double* pD = in[1]->getAs<types::Double>();
+        types::Double* pD = in->getAs<types::Double>();
 
         if (pD->getSize() != 1)
         {
