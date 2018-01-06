@@ -192,21 +192,31 @@ int getMode(types::InternalType* in)
             Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", 2, 1, 1);
         }
 
-        switch (pS->getFirst()[0])
+        wchar_t * w = pS->getFirst();
+
+        if (w[0] && w[1] == L'\0')
         {
-            case 'r' :
-                iMode = 1;
-                break;
-            case 'c' :
-                iMode = 2;
-                break;
-            case '*' :
-                iMode = 0;
-                break;
-            default :
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), "size", 2, "*" , "r", "c");
-                iMode = -2;
-                break;
+            switch (w[0])
+            {
+                case 'r':
+                    iMode = 1;
+                    break;
+                case 'c':
+                    iMode = 2;
+                    break;
+                case '*':
+                    iMode = 0;
+                    break;
+                default:
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), "size", 2, "*" , "r", "c");
+                    iMode = -2;
+                    break;
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), "size", 2, "*" , "r", "c");
+            iMode = -2;
         }
     }
     else if (in->isDouble() && in->getAs<types::Double>()->isComplex() == false)
