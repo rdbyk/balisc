@@ -31,7 +31,7 @@ extern "C"
 #include "os_string.h"
 }
 
-static int getMode(types::typed_list &in, int _iProcess, int _iRef);
+static int getMode(types::typed_list &in);
 
 types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -95,7 +95,9 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
                     Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "size", 1);
                     return types::Function::Error;
                 }
-                iMode = getMode(in, 1, 0);
+
+                iMode = getMode(in);
+
                 if (iMode == -2)
                 {
                     return types::Function::Error;
@@ -176,15 +178,15 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
     return types::Function::OK;
 }
 
-int getMode(types::typed_list &in, int _iProcess, int _iRef)
+int getMode(types::typed_list &in)
 {
     int iMode = 0;
-    if (in[_iProcess]->isString())
+    if (in[1]->isString())
     {
-        types::String* pS = in[_iProcess]->getAs<types::String>();
+        types::String* pS = in[1]->getAs<types::String>();
         if (pS->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
+            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", 1 + 1, 1, 1);
         }
 
         switch (pS->getFirst()[0])
@@ -202,17 +204,17 @@ int getMode(types::typed_list &in, int _iProcess, int _iRef)
                 iMode = -1;
                 break;
             default :
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "size", _iProcess + 1, "m" , "*" , "r", "c");
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "size", 1 + 1, "m" , "*" , "r", "c");
                 iMode = -2;
                 break;
         }
     }
     else if (in[1]->isDouble() && in[1]->getAs<types::Double>()->isComplex() == false)
     {
-        types::Double* pD = in[_iProcess]->getAs<types::Double>();
+        types::Double* pD = in[1]->getAs<types::Double>();
         if (pD->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
+            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", 1 + 1, 1, 1);
             iMode = -2;
         }
         else
@@ -241,11 +243,11 @@ int getMode(types::typed_list &in, int _iProcess, int _iRef)
     if (iMode == -1)
     {
         iMode = 0;
-        if (in[_iRef]->getAs<types::GenericType>()->getRows() > 1)
+        if (in[0]->getAs<types::GenericType>()->getRows() > 1)
         {
             iMode = 1;
         }
-        else if (in[_iRef]->getAs<types::GenericType>()->getCols() > 1)
+        else if (in[0]->getAs<types::GenericType>()->getCols() > 1)
         {
             iMode = 2;
         }
