@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,16 +20,14 @@ function str = blanks(n)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer expected.\n"),"blanks",1));
     end
 
-    if and(size(n)<>[1 1]) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"blanks",1));
+    if size(n,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"),"blanks",1));
     end
 
-    if n>0 then
-        str = part(" ",ones(1,n));
-    elseif n==0
-        str = "";
-    else
+    if n<0 then
         error(msprintf(gettext("%s: Wrong values for input argument #%d: An non-negative integer expected.\n"),"blanks",1));
+    else
+        str = part(" ",ones(1,n));
     end
 
 endfunction
