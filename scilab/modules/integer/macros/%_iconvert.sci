@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function x = %_iconvert(a,typeToConvert,converter)
+function x = %_iconvert(a,typeToConvert)
 
     if type(a) == 1 & isreal(a) == %f then
         error(msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"), "iconvert", 1));
