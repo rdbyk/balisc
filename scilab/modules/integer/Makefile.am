@@ -5,8 +5,6 @@
 # This file is distributed under the same license as the Scilab package.
 
 GATEWAY_CPP_SOURCES = \
-    src/cpp/DllmainInteger_gw.cpp \
-    src/cpp/iconvert_converter.cpp \
     sci_gateway/cpp/integer_gw.cpp \
     sci_gateway/cpp/sci_inttype.cpp \
     sci_gateway/cpp/sci_double.cpp \
