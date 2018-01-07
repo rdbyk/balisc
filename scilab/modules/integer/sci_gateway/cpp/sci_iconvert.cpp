@@ -23,18 +23,21 @@ extern "C"
 #include "localization.h"
 }
 
-types::Function::ReturnValue sci_iconvert(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using types::Function;
+using types::typed_list;
+
+Function::ReturnValue sci_iconvert(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "iconvert", 2);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "iconvert", 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     if (in[0]->isInt() == false && in[0]->isDouble() == false && in[0]->isBool() == false)
