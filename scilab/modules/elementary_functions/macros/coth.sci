@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,19 +11,15 @@
 // along with this program.
 
 function t=coth(x)
-    //Syntax : t=coth(x)
-    //
-    // hyperbolic co-tangent of x
-
-    rhs = argn(2);
-
-    if rhs <> 1 then
+    if argn(2) <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"coth",1));
     end
 
     if type(x)<>1 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"coth",1));
     end
+
     t=exp(x);
-    t=(t-ones(x)./t).\(t+ones(x)./t);
+    t2=ones(x)./t;
+    t=(t-t2).\(t+t2);
 endfunction
