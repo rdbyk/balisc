@@ -3,8 +3,8 @@
  * Copyright (C) INRIA 2007 - Cong WU
  * Copyright (C) INRIA 2008 - Allan CORNET
  * Copyright (C) DIGITEO 2009 - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,132 +15,88 @@
  *
  */
 
-/* desc : For usual or polynomial matrix  n  is the int equal to
-   number of rows times number of columns of  M . (Also valid for  M
-   a boolean matrix)
-
-   For matrices made of character strings (and in particular for a
-   character string)  length  returns in  n  the length of entries of
-   the matrix of character strings  M .
-
-   The length of a list is the number of elements in the list
-   (also given by  size ).
-
-   length('123')  is  3 .  length([1,2;3,4])  is  4 .                     */
-/*------------------------------------------------------------------------*/
-
 #include "function.hxx"
 #include "string.hxx"
 #include "mlist.hxx"
 #include "double.hxx"
-#include "funcmanager.hxx"
+#include "internal.hxx"
 #include "string_gw.hxx"
 #include "context.hxx"
 #include "overload.hxx"
 
 extern "C"
 {
-#include "core_math.h"
 #include "localization.h"
 #include "Scierror.h"
 }
 
-/*----------------------------------------------------------------------------*/
-/* get length */
-static types::Double* lengthStrings(types::String* _pS);
-static types::Double* lengthMatrix(types::GenericType* _pG);
-static types::Double* lengthList(types::List* _pL);
-/* !!! WARNING !!! : Read comments about length on sparse matrix */
-//static Double lengthSparse(Sparse* _pS);
-/*----------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_length(types::typed_list &in, int _iRetCount, types::typed_list &out)
-{
-    types::Double* pOut = NULL;
+using types::Double;
+using types::Function;
+using types::GenericType;
+using types::InternalType;
+using types::List;
+using types::MList;
+using types::String;
+using types::typed_list;
 
+static Double* lengthStrings(String* _pS);
+
+Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out)
+{
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "length", 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
-    if (in[0]->isString())
+    InternalType* in0 = in[0];
+
+    if (in0->isString())
     {
-        pOut = lengthStrings(in[0]->getAs<types::String>());
+        out.push_back(lengthStrings(in0->getAs<String>()));
+        return Function::OK;
     }
-    else if (in[0]->isMList())
+    else if (in0->isList())
     {
-        //build overload name and check if function exists.
-        types::MList* pML = in[0]->getAs<types::MList>();
-        std::wstring wst = L"%" + pML->getShortTypeStr() + L"_length";
-        symbol::Context* pCtx = symbol::Context::getInstance();
-        types::InternalType* pFunc = pCtx->get(symbol::Symbol(wst));
-        if (pFunc && pFunc->isCallable())
+        if (in0->isMList())
         {
-            //call overload
-            Overload::generateNameAndCall(L"length", in, _iRetCount, out);
-            return types::Function::OK;
+            MList* pML = in0->getAs<MList>();
+            std::wstring wstFuncName = L"%" + pML->getShortTypeStr() + L"_length";
+            symbol::Context* pCtx = symbol::Context::getInstance();
+            InternalType* pFunc = pCtx->get(symbol::Symbol(wstFuncName));
+
+            if (pFunc && pFunc->isCallable())
+            {
+                Overload::call(wstFuncName, in, _iRetCount, out);
+                return Function::OK;
+            }
         }
 
-        //MList without overloading, manage like a list
-        pOut = lengthList(in[0]->getAs<types::List>());
+        out.push_back(new Double(static_cast<double>(in0->getAs<List>()->getSize())));
+        return Function::OK;
     }
-    else if (in[0]->isList())
+    else if (in0->isGenericType())
     {
-        pOut = lengthList(in[0]->getAs<types::List>());
-    }
-    else if (in[0]->isGenericType())
-    {
-        pOut = lengthMatrix(in[0]->getAs<types::GenericType>());
+        out.push_back(new Double(static_cast<double>(in0->getAs<GenericType>()->getSize())));
+        return Function::OK;
     }
     else
     {
         Scierror(999, _("%s: Wrong type for input argument(s).\n"), "length");
-        return types::Function::Error;
+        return Function::Error;
     }
-
-    out.push_back(pOut);
-    return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-static types::Double* lengthStrings(types::String* _pS)
-{
-    if (_pS == NULL)
-    {
-        return types::Double::Empty();
-    }
 
-    types::Double* pD = new types::Double(_pS->getDims(), _pS->getDimsArray());
-    wchar_t** pwst  = _pS->get();
-    double* pdbl    = pD->get();
+Double* lengthStrings(String* _pS)
+{
+    Double* pD = new Double(_pS->getDims(), _pS->getDimsArray());
+    wchar_t** pwst = _pS->get();
+    double* pdbl = pD->get();
 
     for (int i = 0 ; i < _pS->getSize() ; i++)
     {
         pdbl[i] = static_cast<double>(wcslen(pwst[i]));
     }
+
     return pD;
 }
-/*--------------------------------------------------------------------------*/
-static types::Double* lengthMatrix(types::GenericType* _pG)
-{
-    if (_pG == NULL)
-    {
-        return types::Double::Empty();
-    }
-
-    return new types::Double(static_cast<double>(_pG->getSize()));
-}
-/*--------------------------------------------------------------------------*/
-static types::Double* lengthList(types::List* _pL)
-{
-    if (_pL == NULL)
-    {
-        return types::Double::Empty();
-    }
-
-    return new types::Double(static_cast<double>(_pL->getSize()));
-}
-/*--------------------------------------------------------------------------*/
-//static Double lengthSparse(Sparse* _pS)
-//{
-//}
-/*--------------------------------------------------------------------------*/
