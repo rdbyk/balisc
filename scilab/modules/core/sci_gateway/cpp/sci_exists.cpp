@@ -3,7 +3,7 @@
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,156 +25,100 @@ extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
-#include "strcmp.h"
 }
 
-enum ScopeRange
-{
-    Local,
-    NoLocal,
-    All,
-    UnknownRange
-};
+using symbol::Context;
+using symbol::Symbol;
+using types::Bool;
+using types::Double;
+using types::Function;
+using types::String;
+using types::typed_list;
 
-static ScopeRange getScopeFromOption(const wchar_t *_psScope)
-{
-    if (wcscmp(_psScope, L"all") == 0 || wcscmp(_psScope, L"a") == 0)
-    {
-        return All;
-    }
-    if (wcscmp(_psScope, L"local") == 0 || wcscmp(_psScope, L"l") == 0)
-    {
-        return Local;
-    }
-    if (wcscmp(_psScope, L"nolocal") == 0 || wcscmp(_psScope, L"n") == 0)
-    {
-        return NoLocal;
-    }
+#define FNAME_EXISTS 0
+#define FNAME_ISDEF  1
 
-    return UnknownRange;
-}
+static const char* fname[] = {"exists", "isdef"};
 
-types::Function::ReturnValue sci_exists(types::typed_list &in, int _iRetCount, types::typed_list &out)
+template <typename T, typename U, int W>
+Function::ReturnValue exists(typed_list &in, int _iRetCount, typed_list &out)
 {
-    types::String* pStrIn       = NULL;
+    String* pStrIn = NULL;
 
     if (in.size() != 1 && in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "exists", 1, 2);
-        return types::Function::Error;
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), fname[W], 1, 2);
+        return Function::Error;
     }
 
     if (!in[0]->isString())
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), "exists", 1);
-        return types::Function::Error;
+        Scierror(999, _("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), fname[W], 1);
+        return Function::Error;
     }
 
-    if (in.size() == 2 && (!in[1]->isString() || in[1]->getAs<types::String>()->getSize() != 1))
+    if (in.size() == 2 && (!in[1]->isString() || in[1]->getAs<String>()->getSize() != 1))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "exists", 2);
-        return types::Function::Error;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname[W], 2);
+        return Function::Error;
     }
 
-    const wchar_t *psScope = L"all"; // Default option is "all"
+    pStrIn  = in[0]->getAs<String>();
+
+    T* pOut = new T(pStrIn->getDims(), pStrIn->getDimsArray());
+    U* p = pOut->get();
+    Context* ctx = Context::getInstance();
+
     if (in.size() == 2)
     {
-        psScope = in[1]->getAs<types::String>()->getFirst();
+        const wchar_t* psScope = in[1]->getAs<String>()->getFirst();
+
+        if (wcscmp(psScope, L"all") == 0 || wcscmp(psScope, L"a") == 0)
+        {
+            for (int i = 0; i < pStrIn->getSize(); i++)
+            {
+                p[i] = ctx->get(Symbol(pStrIn->get(i))) != NULL;
+            }
+        }
+        else if (wcscmp(psScope, L"local") == 0 || wcscmp(psScope, L"l") == 0)
+        {
+            for (int i = 0; i < pStrIn->getSize(); i++)
+            {
+                p[i] = ctx->getCurrentLevel(Symbol(pStrIn->get(i))) != NULL;
+            }
+        }
+        else if (wcscmp(psScope, L"nolocal") == 0 || wcscmp(psScope, L"n") == 0)
+        {
+            for (int i = 0; i < pStrIn->getSize(); i++)
+            {
+                p[i] = ctx->getAllButCurrentLevel(Symbol(pStrIn->get(i))) != NULL;
+            }
+        }
+        else
+        {
+            Scierror(36, _("%s: Wrong input argument %d.\n"), fname[W], 2);
+            return Function::Error;
+        }
     }
-
-    pStrIn  = in[0]->getAs<types::String>();
-
-    types::Double* pDblOut = new types::Double(pStrIn->getDims(), pStrIn->getDimsArray());
-    double* pd = pDblOut->get();
-    symbol::Context* ctx = symbol::Context::getInstance();
-
-    switch (getScopeFromOption(psScope))
+    else
     {
-        case All:
-            for (int i = 0; i < pStrIn->getSize(); i++)
-            {
-                pd[i] = ctx->get(symbol::Symbol(pStrIn->get(i))) != NULL;
-            }
-            break;
-        case Local:
-            for (int i = 0; i < pStrIn->getSize(); i++)
-            {
-                pd[i] = ctx->getCurrentLevel(symbol::Symbol(pStrIn->get(i))) != NULL;
-            }
-            break;
-        case NoLocal:
-            for (int i = 0; i < pStrIn->getSize(); i++)
-            {
-                pd[i] = ctx->getAllButCurrentLevel(symbol::Symbol(pStrIn->get(i))) != NULL;
-            }
-            break;
-        default :
-            Scierror(36, _("%s: Wrong input argument %d.\n"), "exists", 2);
-            return types::Function::Error;
+        // default is "All"
+        for (int i = 0; i < pStrIn->getSize(); i++)
+        {
+            p[i] = ctx->get(Symbol(pStrIn->get(i))) != NULL;
+        }
     }
 
-    out.push_back(pDblOut);
-    return types::Function::OK;
+    out.push_back(pOut);
+    return Function::OK;
 }
 
-types::Function::ReturnValue sci_isdef(types::typed_list &in, int _iRetCount, types::typed_list &out)
+Function::ReturnValue sci_exists(typed_list &in, int _iRetCount, typed_list &out)
 {
-    types::String* pStrIn       = NULL;
+    return exists<Double, double, FNAME_EXISTS>(in, _iRetCount, out);
+}
 
-    if (in.size() != 1 && in.size() != 2)
-    {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "isdef", 1, 2);
-        return types::Function::Error;
-    }
-
-    if (!in[0]->isString())
-    {
-        Scierror(999, _("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), "isdef", 1);
-        return types::Function::Error;
-    }
-
-    if (in.size() == 2 && (!in[1]->isString() || in[1]->getAs<types::String>()->getSize() != 1))
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "isdef", 2);
-        return types::Function::Error;
-    }
-
-    const wchar_t *psScope = L"all"; // Default option is "all"
-    if (in.size() == 2)
-    {
-        psScope = in[1]->getAs<types::String>()->getFirst();
-    }
-
-    pStrIn  = in[0]->getAs<types::String>();
-    types::Bool* pBOut = new types::Bool(pStrIn->getDims(), pStrIn->getDimsArray());
-    int* pb = pBOut->get();
-    symbol::Context* ctx = symbol::Context::getInstance();
-
-    switch (getScopeFromOption(psScope))
-    {
-        case All:
-            for (int i = 0; i < pStrIn->getSize(); i++)
-            {
-                pb[i] = ctx->get(symbol::Symbol(pStrIn->get(i))) != NULL;
-            }
-            break;
-        case Local:
-            for (int i = 0; i < pStrIn->getSize(); i++)
-            {
-                pb[i] = ctx->getCurrentLevel(symbol::Symbol(pStrIn->get(i))) != NULL;
-            }
-            break;
-        case NoLocal:
-            for (int i = 0; i < pStrIn->getSize(); i++)
-            {
-                pb[i] = ctx->getAllButCurrentLevel(symbol::Symbol(pStrIn->get(i))) != NULL;
-            }
-            break;
-        default :
-            Scierror(36, _("%s: Wrong input argument %d.\n"), "isdef", 2);
-            return types::Function::Error;
-    }
-
-    out.push_back(pBOut);
-    return types::Function::OK;
+Function::ReturnValue sci_isdef(typed_list &in, int _iRetCount, typed_list &out)
+{
+    return exists<Bool, int, FNAME_ISDEF>(in, _iRetCount, out);
 }
