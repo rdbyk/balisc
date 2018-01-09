@@ -25,7 +25,6 @@ extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
-#include "strcmp.h"
 }
 
 using symbol::Context;
@@ -35,32 +34,6 @@ using types::Double;
 using types::Function;
 using types::String;
 using types::typed_list;
-
-enum ScopeRange
-{
-    Local,
-    NoLocal,
-    All,
-    UnknownRange
-};
-
-static ScopeRange getScopeFromOption(const wchar_t *_psScope)
-{
-    if (wcscmp(_psScope, L"all") == 0 || wcscmp(_psScope, L"a") == 0)
-    {
-        return All;
-    }
-    if (wcscmp(_psScope, L"local") == 0 || wcscmp(_psScope, L"l") == 0)
-    {
-        return Local;
-    }
-    if (wcscmp(_psScope, L"nolocal") == 0 || wcscmp(_psScope, L"n") == 0)
-    {
-        return NoLocal;
-    }
-
-    return UnknownRange;
-}
 
 #define FNAME_EXISTS 0
 #define FNAME_ISDEF  1
@@ -100,29 +73,31 @@ Function::ReturnValue exists(typed_list &in, int _iRetCount, typed_list &out)
     {
         const wchar_t* psScope = in[1]->getAs<String>()->getFirst();
 
-        switch (getScopeFromOption(psScope))
+        if (wcscmp(psScope, L"all") == 0 || wcscmp(psScope, L"a") == 0)
         {
-            case All:
-                for (int i = 0; i < pStrIn->getSize(); i++)
-                {
-                    p[i] = ctx->get(Symbol(pStrIn->get(i))) != NULL;
-                }
-                break;
-            case Local:
-                for (int i = 0; i < pStrIn->getSize(); i++)
-                {
-                    p[i] = ctx->getCurrentLevel(Symbol(pStrIn->get(i))) != NULL;
-                }
-                break;
-            case NoLocal:
-                for (int i = 0; i < pStrIn->getSize(); i++)
-                {
-                    p[i] = ctx->getAllButCurrentLevel(Symbol(pStrIn->get(i))) != NULL;
-                }
-                break;
-            default :
-                Scierror(36, _("%s: Wrong input argument %d.\n"), fname[W], 2);
-                return Function::Error;
+            for (int i = 0; i < pStrIn->getSize(); i++)
+            {
+                p[i] = ctx->get(Symbol(pStrIn->get(i))) != NULL;
+            }
+        }
+        else if (wcscmp(psScope, L"local") == 0 || wcscmp(psScope, L"l") == 0)
+        {
+            for (int i = 0; i < pStrIn->getSize(); i++)
+            {
+                p[i] = ctx->getCurrentLevel(Symbol(pStrIn->get(i))) != NULL;
+            }
+        }
+        else if (wcscmp(psScope, L"nolocal") == 0 || wcscmp(psScope, L"n") == 0)
+        {
+            for (int i = 0; i < pStrIn->getSize(); i++)
+            {
+                p[i] = ctx->getAllButCurrentLevel(Symbol(pStrIn->get(i))) != NULL;
+            }
+        }
+        else
+        {
+            Scierror(36, _("%s: Wrong input argument %d.\n"), fname[W], 2);
+            return Function::Error;
         }
     }
     else
