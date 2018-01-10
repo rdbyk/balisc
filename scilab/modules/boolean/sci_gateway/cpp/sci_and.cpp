@@ -4,7 +4,7 @@
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,21 +29,12 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "vect_and.h"
-#include "sci_malloc.h"
-#include "strlen.h"
 }
-/*--------------------------------------------------------------------------*/
-/* SCILAB function : and */
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-
-    int m1 = 0, n1 = 0;
     int opt = 0;
     int *pBoolValuesOne = NULL;
-    int *pBoolResult = NULL;
-
-    int *piAddressVarOne = NULL;
 
     if ((in.size() < 1) || (in.size() > 2))
     {
@@ -59,7 +50,7 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
-        //hypermatrix are manage in external macro
+        // hypermatrices are managed in external macro
         return Overload::call(L"%hm_and", in, _iRetCount, out);
     }
 
@@ -79,8 +70,9 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
 
         if (in[1]->isString())
         {
-            char *pStr =  wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
-            size_t len = balisc_strlen(pStr);
+            wchar_t *pStr = in[1]->getAs<types::String>()->getFirst();
+            bool bNotLengthOne = pStr[0] == L'\0' || pStr[1];
+
             switch (pStr[0])
             {
                 case 'r':
@@ -101,13 +93,11 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
                 default:
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-                    FREE(pStr);
                     return types::Function::Error;
                 }
             }
 
-            FREE(pStr);
-            if (len != 1)
+            if (bNotLengthOne)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
                 return types::Function::Error;
@@ -166,4 +156,3 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
     out.push_back(pboolOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
