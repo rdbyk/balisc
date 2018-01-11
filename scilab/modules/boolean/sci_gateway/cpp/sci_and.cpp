@@ -31,7 +31,14 @@ extern "C"
 #include "vect_and.h"
 }
 
-types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using types::Bool;
+using types::Double;
+using types::Function;
+using types::GenericType;
+using types::String;
+using types::typed_list;
+
+Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
 {
     int opt = 0;
     int *pBoolValuesOne = NULL;
@@ -39,16 +46,16 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
     if ((in.size() < 1) || (in.size() > 2))
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "and", 1, 2);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "and", 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
-    if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->getDims() > 2)
+    if (in[0]->isGenericType() && in[0]->getAs<GenericType>()->getDims() > 2)
     {
         // hypermatrices are managed in external macro
         return Overload::call(L"%hm_and", in, _iRetCount, out);
@@ -62,15 +69,15 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
 
     if (in.size() == 2)
     {
-        if (in[1]->getAs<types::GenericType>()->isScalar() == false)
+        if (in[1]->getAs<GenericType>()->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "and", 2);
-            return types::Function::Error;
+            return Function::Error;
         }
 
         if (in[1]->isString())
         {
-            wchar_t *pStr = in[1]->getAs<types::String>()->getFirst();
+            wchar_t *pStr = in[1]->getAs<String>()->getFirst();
             bool bNotLengthOne = pStr[0] == L'\0' || pStr[1];
 
             switch (pStr[0])
@@ -93,40 +100,40 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
                 default:
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-                    return types::Function::Error;
+                    return Function::Error;
                 }
             }
 
             if (bNotLengthOne)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-                return types::Function::Error;
+                return Function::Error;
             }
         }
         else if (in[1]->isDouble())
         {
-            types::Double *pdblIn = in[1]->getAs<types::Double>();
+            Double *pdblIn = in[1]->getAs<Double>();
             if (pdblIn->isComplex())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-                return types::Function::Error;
+                return Function::Error;
             }
 
             opt = static_cast<int>(pdblIn->getFirst());
             if (opt != pdblIn->getFirst())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "and", 2);
-                return types::Function::Error;
+                return Function::Error;
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "and", 2);
-            return types::Function::Error;
+            return Function::Error;
         }
     }
 
-    types::Bool *pboolIn = in[0]->getAs<types::Bool>();
+    Bool *pboolIn = in[0]->getAs<Bool>();
     int rowIn = pboolIn->getRows();
     int colIn = pboolIn->getCols();
     pBoolValuesOne = pboolIn->get();
@@ -137,7 +144,7 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
     if (opt > 2)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     switch (opt)
@@ -150,9 +157,9 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
             break;
     }
 
-    types::Bool *pboolOut = new types::Bool(rowOut, colOut);
+    Bool *pboolOut = new Bool(rowOut, colOut);
     vect_and(pBoolValuesOne, rowIn, colIn, pboolOut->get(), opt);
 
     out.push_back(pboolOut);
-    return types::Function::OK;
+    return Function::OK;
 }
