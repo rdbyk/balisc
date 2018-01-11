@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA
-* Copyright (C) DIGITEO - 2012 - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) DIGITEO - 2012 - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,18 +11,23 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
+
 #include "BOOL.h"
+#include "usewmemcmp.h"
 #include "vect_or.h"
-/*--------------------------------------------------------------------------*/
+
 void vect_or(const int *v, int m, int n, int *r, int opt)
 {
     switch (opt)
     {
         case OR_ON_ALL:
         {
+#ifdef USE_WMEMCMP
+            wchar_t* vv = (wchar_t*)v;
+            r[0] = *vv == TRUE || wmemcmp(vv, v + 1, m * n - 1) != 0;
+#else
             int k = 0;
             r[0] = FALSE;
             for (k = 0; k < m * n; k++)
@@ -33,6 +38,7 @@ void vect_or(const int *v, int m, int n, int *r, int opt)
                     break;
                 }
             }
+#endif /* USE_WMEMCMP */
         }
         break;
         case OR_BY_ROWS:
@@ -40,6 +46,11 @@ void vect_or(const int *v, int m, int n, int *r, int opt)
             int k = 0;
             for (k = 0; k < n; k++)
             {
+#ifdef USE_WMEMCMP
+                wchar_t* vr = (wchar_t*)(v + k * m);
+                wchar_t* vvr = vr;
+                r[k] = *vvr == TRUE || wmemcmp(vvr, vr + 1, m - 1) != 0;
+#else
                 int l = 0;
                 int i = k * m;
                 r[k] = FALSE;
@@ -51,6 +62,7 @@ void vect_or(const int *v, int m, int n, int *r, int opt)
                         break;
                     }
                 }
+#endif /* USE_WMEMCMP */
             }
         }
         break;
@@ -76,4 +88,3 @@ void vect_or(const int *v, int m, int n, int *r, int opt)
         break;
     }
 }
-/*--------------------------------------------------------------------------*/
