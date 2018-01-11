@@ -87,11 +87,6 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
                     opt = AND_BY_ROWS;
                     break;
                 }
-                case '*':
-                {
-                    opt = AND_ON_ALL;
-                    break;
-                }
                 case 'c':
                 {
                     opt = AND_BY_COLUMNS;

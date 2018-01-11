@@ -87,11 +87,6 @@ Function::ReturnValue sci_or(typed_list &in, int _iRetCount, typed_list &out)
                     opt = OR_BY_ROWS;
                 }
                 break;
-                case '*':
-                {
-                    opt = OR_ON_ALL;
-                }
-                break;
                 case 'c':
                 {
                     opt = OR_BY_COLUMNS;
