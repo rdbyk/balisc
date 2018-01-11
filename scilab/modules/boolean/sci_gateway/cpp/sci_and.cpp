@@ -51,7 +51,7 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
 
     if (_iRetCount > 1)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "and", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "and", 1);
         return Function::Error;
     }
 
