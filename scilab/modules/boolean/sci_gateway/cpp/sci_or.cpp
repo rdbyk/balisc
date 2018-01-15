@@ -28,8 +28,12 @@ extern "C"
 #include <string.h>
 #include "Scierror.h"
 #include "localization.h"
-#include "vect_or.h"
+#include "usewmemcmp.h"
 }
+
+static void or_all(const int *v, int m, int n, int *r);
+static void or_rows(const int *v, int m, int n, int *r);
+static void or_cols(const int *v, int m, int n, int *r);
 
 using types::Bool;
 using types::Double;
@@ -40,9 +44,6 @@ using types::typed_list;
 
 Function::ReturnValue sci_or(typed_list &in, int _iRetCount, typed_list &out)
 {
-    int opt = 0;
-    int* pBoolValuesOne = NULL;
-
     if ((in.size() < 1) || (in.size() > 2))
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "or", 1, 2);
@@ -67,7 +68,15 @@ Function::ReturnValue sci_or(typed_list &in, int _iRetCount, typed_list &out)
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    if (in.size() == 2)
+    if (in.size() == 1)
+    {
+        Bool *pboolOut = new Bool(1, 1);
+        Bool *pboolIn = in[0]->getAs<Bool>();
+        or_all(pboolIn->get(), pboolIn->getRows(), pboolIn->getCols(), pboolOut->get());
+        out.push_back(pboolOut);
+        return Function::OK;
+    }
+    else if (in.size() == 2)
     {
         if (in[1]->getAs<GenericType>()->isScalar() == false)
         {
@@ -77,6 +86,10 @@ Function::ReturnValue sci_or(typed_list &in, int _iRetCount, typed_list &out)
 
         if (in[1]->isString())
         {
+            Bool *pboolIn = in[0]->getAs<Bool>();
+            int iRows = pboolIn->getRows();
+            int iCols = pboolIn->getCols();
+
             wchar_t *pStr = in[1]->getAs<String>()->getFirst();
             bool bNotLengthOne = pStr[0] == L'\0' || pStr[1];
 
@@ -84,45 +97,72 @@ Function::ReturnValue sci_or(typed_list &in, int _iRetCount, typed_list &out)
             {
                 case 'r':
                 {
-                    opt = OR_BY_ROWS;
+                    Bool *pboolOut = new Bool(1, iCols);
+                    or_rows(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
                 }
-                break;
                 case 'c':
                 {
-                    opt = OR_BY_COLUMNS;
+                    Bool *pboolOut = new Bool(iRows, 1);
+                    or_cols(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
                 }
-                break;
                 default:
                 {
-                    Scierror(44, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
                     return Function::Error;
                 }
-                break;
             }
 
             if (bNotLengthOne)
             {
-                Scierror(44, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
                 return Function::Error;
             }
-
         }
         else if (in[1]->isDouble())
         {
             Double *pdblIn = in[1]->getAs<Double>();
-
             if (pdblIn->isComplex())
             {
-                Scierror(44, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
                 return Function::Error;
-
             }
 
-            opt = static_cast<int>(pdblIn->getFirst());
+            int opt = static_cast<int>(pdblIn->getFirst());
             if (opt != pdblIn->getFirst())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "or", 2);
                 return Function::Error;
+            }
+
+            Bool *pboolIn = in[0]->getAs<Bool>();
+            int iRows = pboolIn->getRows();
+            int iCols = pboolIn->getCols();
+
+            switch (opt)
+            {
+                case 1:
+                {
+                    Bool *pboolOut = new Bool(1, iCols);
+                    or_rows(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
+                }
+                case 2:
+                {
+                    Bool *pboolOut = new Bool(iRows, 1);
+                    or_cols(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
+                }
+                default:
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
+                    return Function::Error;
+                }
             }
         }
         else
@@ -131,34 +171,78 @@ Function::ReturnValue sci_or(typed_list &in, int _iRetCount, typed_list &out)
             return Function::Error;
         }
     }
+}
 
-    Bool *pboolIn = in[0]->getAs<Bool>();
-    int rowIn = pboolIn->getRows();
-    int colIn = pboolIn->getCols();
-    pBoolValuesOne = pboolIn->get();
+void or_all(const int *v, int m, int n, int *r)
+{
+#ifdef USE_WMEMCMP
+    wchar_t* vv = (wchar_t*)v;
 
-    int rowOut = 1;
-    int colOut = 1;
+    r[0] = *vv == TRUE || wmemcmp(vv, (wchar_t*)v + 1, m * n - 1) != 0;
+#else
+    int k = 0;
 
-    if (opt > 2)
+    r[0] = FALSE;
+
+    for (k = 0; k < m * n; k++)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
-        return Function::Error;
+        if (v[k])
+        {
+            r[0] = TRUE;
+            break;
+        }
     }
+#endif /* USE_WMEMCMP */
+}
 
-    switch (opt)
+void or_rows(const int *v, int m, int n, int *r)
+{
+    int k = 0;
+
+    for (k = 0; k < n; k++)
     {
-        case OR_BY_ROWS:
-            colOut = colIn;
-            break;
-        case OR_BY_COLUMNS:
-            rowOut = rowIn;
-            break;
+#ifdef USE_WMEMCMP
+        wchar_t* vr = (wchar_t*)(v + k * m);
+        wchar_t* vvr = vr;
+
+        r[k] = *vvr == TRUE || wmemcmp(vvr, vr + 1, m - 1) != 0;
+#else
+        int l = 0;
+        int i = k * m;
+
+        r[k] = FALSE;
+
+        for (l = 0; l < m; l++)
+        {
+            if (v[i++])
+            {
+                r[k] = TRUE;
+                break;
+            }
+        }
+#endif /* USE_WMEMCMP */
     }
+}
 
-    Bool *pboolOut = new Bool(rowOut, colOut);
-    vect_or(pBoolValuesOne, rowIn, colIn, pboolOut->get(), opt);
+void or_cols(const int *v, int m, int n, int *r)
+{
+    int l = 0;
 
-    out.push_back(pboolOut);
-    return Function::OK;
+    for (l = 0; l < m; l++)
+    {
+        int k = 0;
+        int i = l;
+
+        r[l] = FALSE;
+
+        for (k = 0; k < n; k++)
+        {
+            if (v[i])
+            {
+                r[l] = TRUE;
+                break;
+            }
+            i += m;
+        }
+    }
 }

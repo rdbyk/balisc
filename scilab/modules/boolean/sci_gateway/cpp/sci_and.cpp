@@ -28,7 +28,7 @@ extern "C"
 #include <string.h>
 #include "Scierror.h"
 #include "localization.h"
-#include "vect_and.h"
+#include "usewmemcmp.h"
 }
 
 using types::Bool;
@@ -38,11 +38,12 @@ using types::GenericType;
 using types::String;
 using types::typed_list;
 
+static void and_all(const int *v, int m, int n, int *r);
+static void and_rows(const int *v, int m, int n, int *r);
+static void and_cols(const int *v, int m, int n, int *r);
+
 Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
 {
-    int opt = 0;
-    int *pBoolValuesOne = NULL;
-
     if ((in.size() < 1) || (in.size() > 2))
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "and", 1, 2);
@@ -67,7 +68,15 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    if (in.size() == 2)
+    if (in.size() == 1)
+    {
+        Bool *pboolOut = new Bool(1, 1);
+        Bool *pboolIn = in[0]->getAs<Bool>();
+        and_all(pboolIn->get(), pboolIn->getRows(), pboolIn->getCols(), pboolOut->get());
+        out.push_back(pboolOut);
+        return Function::OK;
+    }
+    else if (in.size() == 2)
     {
         if (in[1]->getAs<GenericType>()->isScalar() == false)
         {
@@ -77,6 +86,10 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
 
         if (in[1]->isString())
         {
+            Bool *pboolIn = in[0]->getAs<Bool>();
+            int iRows = pboolIn->getRows();
+            int iCols = pboolIn->getCols();
+
             wchar_t *pStr = in[1]->getAs<String>()->getFirst();
             bool bNotLengthOne = pStr[0] == L'\0' || pStr[1];
 
@@ -84,13 +97,17 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
             {
                 case 'r':
                 {
-                    opt = AND_BY_ROWS;
-                    break;
+                    Bool *pboolOut = new Bool(1, iCols);
+                    and_rows(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
                 }
                 case 'c':
                 {
-                    opt = AND_BY_COLUMNS;
-                    break;
+                    Bool *pboolOut = new Bool(iRows, 1);
+                    and_cols(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
                 }
                 default:
                 {
@@ -114,11 +131,38 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
                 return Function::Error;
             }
 
-            opt = static_cast<int>(pdblIn->getFirst());
+            int opt = static_cast<int>(pdblIn->getFirst());
             if (opt != pdblIn->getFirst())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "and", 2);
                 return Function::Error;
+            }
+
+            Bool *pboolIn = in[0]->getAs<Bool>();
+            int iRows = pboolIn->getRows();
+            int iCols = pboolIn->getCols();
+
+            switch (opt)
+            {
+                case 1:
+                {
+                    Bool *pboolOut = new Bool(1, iCols);
+                    and_rows(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
+                }
+                case 2:
+                {
+                    Bool *pboolOut = new Bool(iRows, 1);
+                    and_cols(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
+                }
+                default:
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
+                    return Function::Error;
+                }
             }
         }
         else
@@ -127,34 +171,78 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
             return Function::Error;
         }
     }
+}
 
-    Bool *pboolIn = in[0]->getAs<Bool>();
-    int rowIn = pboolIn->getRows();
-    int colIn = pboolIn->getCols();
-    pBoolValuesOne = pboolIn->get();
+void and_all(const int *v, int m, int n, int *r)
+{
+#ifdef USE_WMEMCMP
+    wchar_t* vv = (wchar_t*)v;
 
-    int rowOut = 1;
-    int colOut = 1;
+    r[0] = *vv == TRUE && wmemcmp(vv, (wchar_t*)v + 1, m * n - 1) == 0;
+#else
+    int k = 0;
 
-    if (opt > 2)
+    r[0] = TRUE;
+
+    for (k = 0; k < m * n; k++)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-        return Function::Error;
+        if (!v[k])
+        {
+            r[0] = FALSE;
+            break;
+        }
     }
+#endif /* USE_WMEMCMP */
+}
 
-    switch (opt)
+void and_rows(const int *v, int m, int n, int *r)
+{
+    int k = 0;
+
+    for (k = 0; k < n; k++)
     {
-        case 1:
-            colOut = colIn;
-            break;
-        case 2 :
-            rowOut = rowIn;
-            break;
+#ifdef USE_WMEMCMP
+        wchar_t* vr = (wchar_t*)(v + k * m);
+        wchar_t* vvr = vr;
+
+        r[k] = *vvr == TRUE && wmemcmp(vvr, vr + 1, m - 1) == 0;
+#else
+        int l = 0;
+        int i = k * m;
+
+        r[k] = TRUE;
+
+        for (l = 0; l < m; l++)
+        {
+            if (!v[i++])
+            {
+                r[k] = FALSE;
+                break;
+            }
+        }
+#endif /* USE_WMEMCMP */
     }
+}
 
-    Bool *pboolOut = new Bool(rowOut, colOut);
-    vect_and(pBoolValuesOne, rowIn, colIn, pboolOut->get(), opt);
+void and_cols(const int *v, int m, int n, int *r)
+{
+    int l = 0;
 
-    out.push_back(pboolOut);
-    return Function::OK;
+    for (l = 0; l < m; l++)
+    {
+        int k = 0;
+        int i = l;
+
+        r[l] = TRUE;
+
+        for (k = 0; k < n; k++)
+        {
+            if (!v[i])
+            {
+                r[l] = FALSE;
+                break;
+            }
+            i += m;
+        }
+    }
 }
