@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include "boolean_gw.hxx"
 #include "function.hxx"
@@ -29,7 +28,7 @@ extern "C"
 }
 
 static void getCoordFromIndex(int _iIndex, int* _piIndexes, int* _piDims, int _iDims);
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iMax = -1;
@@ -62,7 +61,6 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isGenericType() == false)
     {
-        //call overload for other types
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
@@ -75,13 +73,31 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         types::Bool* pB = in[0]->getAs<types::Bool>();
         int size = pB->getSize();
         int* p = pB->get();
-        iMax = iMax == -1 ? size : std::min(iMax, size);
-        for (int i = 0 ; i < size && iValues < iMax ; i++)
+
+        if (iMax < 0)
         {
-            if (p[i])
+            for (int i = 0; i < size; i++)
             {
-                piIndex[iValues] = i;
-                iValues++;
+                if (p[i])
+                {
+                    piIndex[iValues++] = i;
+                }
+            }
+        }
+        else
+        {
+            iMax = std::min(iMax, size);
+
+            for (int i = 0; i < size; i++)
+            {
+                if (p[i])
+                {
+                    piIndex[iValues++] = i;
+                    if (iValues >= iMax)
+                    {
+                        break;
+                    }
+                }
             }
         }
     }
@@ -141,7 +157,6 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     {
         delete[] piIndex;
 
-        //call overload for other types
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
@@ -253,4 +268,3 @@ static void getCoordFromIndex(int _iIndex, int* _piIndexes, int* _piDims, int _i
         iMul *= _piDims[i];
     }
 }
-/*--------------------------------------------------------------------------*/
