@@ -4,7 +4,7 @@
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,38 +28,37 @@ extern "C"
 #include <string.h>
 #include "Scierror.h"
 #include "localization.h"
-#include "vect_and.h"
-#include "sci_malloc.h"
-#include "strlen.h"
+#include "usewmemcmp.h"
 }
-/*--------------------------------------------------------------------------*/
-/* SCILAB function : and */
-/*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, types::typed_list &out)
+
+using types::Bool;
+using types::Double;
+using types::Function;
+using types::GenericType;
+using types::String;
+using types::typed_list;
+
+static void and_all(const int *v, int m, int n, int *r);
+static void and_rows(const int *v, int m, int n, int *r);
+static void and_cols(const int *v, int m, int n, int *r);
+
+Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
 {
-
-    int m1 = 0, n1 = 0;
-    int opt = 0;
-    int *pBoolValuesOne = NULL;
-    int *pBoolResult = NULL;
-
-    int *piAddressVarOne = NULL;
-
     if ((in.size() < 1) || (in.size() > 2))
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "and", 1, 2);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "and", 1);
-        return types::Function::Error;
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "and", 1);
+        return Function::Error;
     }
 
-    if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->getDims() > 2)
+    if (in[0]->isGenericType() && in[0]->getAs<GenericType>()->getDims() > 2)
     {
-        //hypermatrix are manage in external macro
+        // hypermatrices are managed in external macro
         return Overload::call(L"%hm_and", in, _iRetCount, out);
     }
 
@@ -69,101 +68,181 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    if (in.size() == 2)
+    if (in.size() == 1)
     {
-        if (in[1]->getAs<types::GenericType>()->isScalar() == false)
+        Bool *pboolOut = new Bool(1, 1);
+        Bool *pboolIn = in[0]->getAs<Bool>();
+        and_all(pboolIn->get(), pboolIn->getRows(), pboolIn->getCols(), pboolOut->get());
+        out.push_back(pboolOut);
+        return Function::OK;
+    }
+    else if (in.size() == 2)
+    {
+        if (in[1]->getAs<GenericType>()->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "and", 2);
-            return types::Function::Error;
+            return Function::Error;
         }
 
         if (in[1]->isString())
         {
-            char *pStr =  wide_string_to_UTF8(in[1]->getAs<types::String>()->getFirst());
-            size_t len = balisc_strlen(pStr);
+            Bool *pboolIn = in[0]->getAs<Bool>();
+            int iRows = pboolIn->getRows();
+            int iCols = pboolIn->getCols();
+
+            wchar_t *pStr = in[1]->getAs<String>()->getFirst();
+            bool bNotLengthOne = pStr[0] == L'\0' || pStr[1];
+
             switch (pStr[0])
             {
                 case 'r':
                 {
-                    opt = AND_BY_ROWS;
-                    break;
-                }
-                case '*':
-                {
-                    opt = AND_ON_ALL;
-                    break;
+                    Bool *pboolOut = new Bool(1, iCols);
+                    and_rows(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
                 }
                 case 'c':
                 {
-                    opt = AND_BY_COLUMNS;
-                    break;
+                    Bool *pboolOut = new Bool(iRows, 1);
+                    and_cols(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
                 }
                 default:
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-                    FREE(pStr);
-                    return types::Function::Error;
+                    return Function::Error;
                 }
             }
 
-            FREE(pStr);
-            if (len != 1)
+            if (bNotLengthOne)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-                return types::Function::Error;
+                return Function::Error;
             }
         }
         else if (in[1]->isDouble())
         {
-            types::Double *pdblIn = in[1]->getAs<types::Double>();
+            Double *pdblIn = in[1]->getAs<Double>();
             if (pdblIn->isComplex())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-                return types::Function::Error;
+                return Function::Error;
             }
 
-            opt = static_cast<int>(pdblIn->getFirst());
+            int opt = static_cast<int>(pdblIn->getFirst());
             if (opt != pdblIn->getFirst())
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "and", 2);
-                return types::Function::Error;
+                return Function::Error;
+            }
+
+            Bool *pboolIn = in[0]->getAs<Bool>();
+            int iRows = pboolIn->getRows();
+            int iCols = pboolIn->getCols();
+
+            switch (opt)
+            {
+                case 1:
+                {
+                    Bool *pboolOut = new Bool(1, iCols);
+                    and_rows(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
+                }
+                case 2:
+                {
+                    Bool *pboolOut = new Bool(iRows, 1);
+                    and_cols(pboolIn->get(), iRows, iCols, pboolOut->get());
+                    out.push_back(pboolOut);
+                    return Function::OK;
+                }
+                default:
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
+                    return Function::Error;
+                }
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "and", 2);
-            return types::Function::Error;
+            return Function::Error;
         }
     }
-
-    types::Bool *pboolIn = in[0]->getAs<types::Bool>();
-    int rowIn = pboolIn->getRows();
-    int colIn = pboolIn->getCols();
-    pBoolValuesOne = pboolIn->get();
-
-    int rowOut = 1;
-    int colOut = 1;
-
-    if (opt > 2)
-    {
-        Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "and", 2);
-        return types::Function::Error;
-    }
-
-    switch (opt)
-    {
-        case 1:
-            colOut = colIn;
-            break;
-        case 2 :
-            rowOut = rowIn;
-            break;
-    }
-
-    types::Bool *pboolOut = new types::Bool(rowOut, colOut);
-    vect_and(pBoolValuesOne, rowIn, colIn, pboolOut->get(), opt);
-
-    out.push_back(pboolOut);
-    return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
+
+void and_all(const int *v, int m, int n, int *r)
+{
+#ifdef USE_WMEMCMP
+    wchar_t* vv = (wchar_t*)v;
+
+    r[0] = *vv == TRUE && wmemcmp(vv, (wchar_t*)v + 1, m * n - 1) == 0;
+#else
+    int k = 0;
+
+    r[0] = TRUE;
+
+    for (k = 0; k < m * n; k++)
+    {
+        if (!v[k])
+        {
+            r[0] = FALSE;
+            break;
+        }
+    }
+#endif /* USE_WMEMCMP */
+}
+
+void and_rows(const int *v, int m, int n, int *r)
+{
+    int k = 0;
+
+    for (k = 0; k < n; k++)
+    {
+#ifdef USE_WMEMCMP
+        wchar_t* vr = (wchar_t*)(v + k * m);
+        wchar_t* vvr = vr;
+
+        r[k] = *vvr == TRUE && wmemcmp(vvr, vr + 1, m - 1) == 0;
+#else
+        int l = 0;
+        int i = k * m;
+
+        r[k] = TRUE;
+
+        for (l = 0; l < m; l++)
+        {
+            if (!v[i++])
+            {
+                r[k] = FALSE;
+                break;
+            }
+        }
+#endif /* USE_WMEMCMP */
+    }
+}
+
+void and_cols(const int *v, int m, int n, int *r)
+{
+    int l = 0;
+
+    for (l = 0; l < m; l++)
+    {
+        int k = 0;
+        int i = l;
+
+        r[l] = TRUE;
+
+        for (k = 0; k < n; k++)
+        {
+            if (!v[i])
+            {
+                r[l] = FALSE;
+                break;
+            }
+            i += m;
+        }
+    }
+}

@@ -1,15 +1,12 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
 
 BOOLEAN_CPP_SOURCES = \
     src/cpp/boolean_gw.cpp
-
-BOOLEAN_C_SOURCES = \
-    src/c/vect_or.c \
-    src/c/vect_and.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_bool2s.cpp \
