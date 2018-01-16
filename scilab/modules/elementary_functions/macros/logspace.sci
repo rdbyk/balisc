@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,8 +17,7 @@ function y=logspace(d1, d2, n)
     // then the points are between 10^d1 and pi.
     // logspace(d1, d2, n) generates n points.
 
-    rhs = argn(2);
-    if rhs < 2 then
+    if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"logspace", 2));
     end
     if size(d1,2)<>1 then
@@ -29,7 +28,7 @@ function y=logspace(d1, d2, n)
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"logspace",1,2));
     end
 
-    if rhs == 2 then
+    if nargin == 2 then
         n = 50;
     else
         if type(n)<>1|size(n,"*")<>1 then
