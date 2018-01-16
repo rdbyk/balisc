@@ -2,8 +2,8 @@
 // Copyright (C) 1998 - INRIA
 // Copyright (C) DIGITEO - 2011-2012 - Allan CORNET
 // Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,8 +14,7 @@
 
 function answ = isempty(m)
 
-    rhs = argn(2);
-    if rhs <> 1 then
+    if nargin <> 1 then
         msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
         error(msprintf(msg, "isempty", 1))
     end
