@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA, Serge Steer
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,11 +13,7 @@
 
 function y = asech(x)
 
-    //Inverse hyperbolic secant
-    //asech(x)=  arccosh(1 ./ x)= i*csgn(i*(1−1 ./ x))*asec(x)=csgn(i*(1 − 1 ./ x))*(%pi/2*(i+acsch(i*x)))
-
-    rhs = argn(2);
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"asech", 1));
     end
     
@@ -26,4 +22,5 @@ function y = asech(x)
     end
 
     y = acosh(ones(x)./x);
+
 endfunction

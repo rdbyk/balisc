@@ -2,8 +2,8 @@
 // Copyright (C) INRIA, Serge Steer
 // Copyright (C) - 2010 - DIGITEO - Michael Baudin
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,10 +13,8 @@
 // along with this program.
 
 function z = atand(x,y)
-    //Inverse tangent, result in degrees.
 
-    rhs = argn(2);
-    if rhs < 1 then
+    if nargin < 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"atand", 1));
     end
 
@@ -24,7 +22,7 @@ function z = atand(x,y)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"atand",1));
     end
 
-    if argn(2)==2 then
+    if nargin==2 then
         if type(y) <> 1 | ~isreal(y) then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"atand",2));
         end
@@ -32,5 +30,5 @@ function z = atand(x,y)
     else
         z = 180/%pi*atan(x);
     end
-endfunction
 
+endfunction
