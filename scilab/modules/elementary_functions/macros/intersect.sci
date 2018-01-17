@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Serge Steer
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,8 +14,7 @@
 function [x_out, ka_out, kb_out] = intersect(a_in, b_in, orient)
     // returns the vector of common values of two vectors
 
-    rhs = argn(2);
-    if rhs < 2 then
+    if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "intersect", 2));
     end
 
@@ -25,7 +24,7 @@ function [x_out, ka_out, kb_out] = intersect(a_in, b_in, orient)
         kb_out = [];
         return
     end
-    if argn(2)<3 then
+    if nargin < 3 then
         //remove duplicate values in a_in and b_in
         [a, ka] = unique(matrix(a_in, 1, -1));
         [b, kb] = unique(matrix(b_in, 1, -1));
@@ -43,7 +42,7 @@ function [x_out, ka_out, kb_out] = intersect(a_in, b_in, orient)
             kb_out = [];
         else
             x_out = x(keq); //the intersection values in increasing order
-            if argn(1) > 1 then //build the output index
+            if nargout > 1 then //build the output index
                 // each duplicated value appear twice  and only twice and in
                 // consecutive positions keq(i) and keq(i)+1 in the sorted array x
                 kab = kab([keq keq+1]);
@@ -80,7 +79,7 @@ function [x_out, ka_out, kb_out] = intersect(a_in, b_in, orient)
         else
             x_out = x(keq,:); //the intersection values in increasing order
 
-            if argn(1)>1 then //build the output index
+            if nargout > 1 then //build the output index
 
                 // each duplicated value appear twice  and only twice and in
                 // consecutive positions keq(i) and keq(i)+1 in the sorted array x
@@ -118,7 +117,7 @@ function [x_out, ka_out, kb_out] = intersect(a_in, b_in, orient)
         else
             x_out =x(:,keq); //the intersection values in increasing order
 
-            if argn(1)>1 then //build the output index
+            if nargout > 1 then //build the output index
 
                 // each duplicated value appear twice  and only twice and in
                 // consecutive positions keq(i) and keq(i)+1 in the sorted array x
