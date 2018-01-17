@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Samuel GOUGEON
 // Copyright (C) 2009 - Université du Maine - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -125,24 +125,23 @@ function [nb, loc] = members(A, S, varargin)
     //   N = N.', H = H.'
     //   [nb, loc] = members(N, H, "cols", "shuffle")
 
-    [lhs, rhs] = argn();
     nb = [];
-    if rhs == 0 then
+    if nargin == 0 then
         head_comments("members");
         return
     end
-    if rhs < 2 then
+    if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): at least %d expected.\n"), "members", 2));
     end
     if A == [] then
-        if lhs > 1 then
+        if nargout > 1 then
             loc = [];
         end
         return
     end
     if  S == []  then
         nb = zeros(A);
-        if lhs > 1 then
+        if nargout > 1 then
             loc = zeros(A);
         end
         return
@@ -169,7 +168,7 @@ function [nb, loc] = members(A, S, varargin)
     direction = "";
     shuffle = %f;
     shuffle_temp = %f;
-    if  rhs > 2 then
+    if  nargin > 2 then
         i = 2;
         for option=varargin
             i = i + 1;
@@ -231,7 +230,7 @@ function [nb, loc] = members(A, S, varargin)
             nb = I;
             nb(k) = nbS(I(k));
             nb = matrix(nb, size(A));
-            if lhs > 1 then
+            if nargout > 1 then
                 loc = I;
                 loc(k) = kS(I(k));
                 if last then
@@ -311,7 +310,7 @@ function [nb, loc] = members(A, S, varargin)
 
                 tmp = bool2s(A2==S2);
                 nb(i:j) = sum(tmp, "c");
-                if lhs > 1 then
+                if nargout > 1 then
                     tmp = tmp.* ( (1:LS) .*. ones(j-i+1, 1) );
                     loc(i:j) = max(tmp, "c");
                 end
@@ -326,7 +325,7 @@ function [nb, loc] = members(A, S, varargin)
 
             // Final operations on the overall result(s)
             nb = matrix(nb, sA);
-            if lhs > 1
+            if nargout > 1
                 if ~last
                     k = loc~=0;
                     if ~isempty(loc(k))

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) - 2013 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,11 @@
 // along with this program.
 
 function %_unwrap(typexample)
-    if argn(2)==0 then
+
+    if nargin==0 then
         typexample = ""
     end
+
     if convstr(typexample)~="2d" then
         // 1-D EXAMPLES
         // -----------
@@ -155,4 +157,5 @@ function %_unwrap(typexample)
         sda();
         drawnow()
     end
+
 endfunction

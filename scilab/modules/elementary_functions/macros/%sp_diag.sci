@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,10 +11,10 @@
 // along with this program.
 
 function d=%sp_diag(a,k)
-    // %sp_diag - implement diag function for sparse matrix, rational matrix ,..
 
-    [lhs,rhs]=argn(0)
-    if rhs==1 then k=0,end
+    if nargin==1 then
+        k=0
+    end
 
     [ij,v,sz]=spget(a)
     m=sz(1);n=sz(2)

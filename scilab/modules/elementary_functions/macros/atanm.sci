@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,16 +11,8 @@
 // along with this program.
 
 function x=atanm(a)
-    //   atanm - computes the matrix arctangent
-    //%SYNTAX
-    //   x=atanm(a)
-    //%PARAMETERS
-    //   a   : square  matrix
-    //   x   : square  matrix
 
-    rhs = argn(2);
-
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"atanm",1));
     end
 
@@ -28,7 +20,10 @@ function x=atanm(a)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"atanm",1));
     end
 
-    if a==[] then x=[],return,end
+    if a==[] then
+        x=[]
+        return
+    end
 
     [m,n]=size(a);
     if m<>n then
@@ -44,6 +39,8 @@ function x=atanm(a)
 
     x=t*diag(atan(diag(x)))/t;
 
-    if and(imag(a)==0) then x=real(x),end
+    if and(imag(a)==0) then
+        x=real(x)
+    end
 
 endfunction

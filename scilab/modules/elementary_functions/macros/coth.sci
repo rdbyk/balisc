@@ -11,7 +11,8 @@
 // along with this program.
 
 function t=coth(x)
-    if argn(2) <> 1 then
+
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"coth",1));
     end
 
@@ -22,4 +23,5 @@ function t=coth(x)
     t=exp(x);
     t2=ones(x)./t;
     t=(t-t2).\(t+t2);
+
 endfunction

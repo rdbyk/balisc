@@ -10,6 +10,8 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
+// TODO: replace argn by nargin, nargout
+
 function [m, k] = %sp_max(varargin)
     [lhs, rhs] = argn(0);
 

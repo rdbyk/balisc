@@ -2,8 +2,8 @@
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2013 - Samuel GOUGEON : restriction to decimal numbers removed
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,19 +14,7 @@
 
 function y = flipdim(x, dim, sb)
 
-    // FLIPDIM function
-    // Given x, a scalar/vector/matrix of any type, two integers dim and sb, this function flips the x components by blocks along the dimension number dim (x and y have the same size).
-    // -Inputs :
-    //  x : a scalar/vector/array
-    //  dim : a positive integer
-    //  sb : size of the block to permute
-    // -Output :
-    //  y : a scalar/vector/array
-    //
-    // F.Belahcene
-
-    rhs = argn(2);
-    if rhs < 2 then
+    if nargin < 2 then
         msg = _("%s: Wrong number of input argument(s): %d to %d expected.\n");
         error(msprintf(msg, "flipdim", 2, 3));
     end
@@ -38,7 +26,7 @@ function y = flipdim(x, dim, sb)
         msg = _("%s: Wrong type for input argument #%d: A positive integer expected.\n");
         error(msprintf(msg, "flipdim", 2));
     end
-    if rhs >= 3 then
+    if nargin >= 3 then
         if size(sb, "*") <> 1 then
             msg = _("%s: Wrong size for input argument #%d: A positive integer expected.\n")
             error(msprintf(msg, "flipdim", 3));

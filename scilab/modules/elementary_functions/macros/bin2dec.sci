@@ -3,8 +3,8 @@
 // Copyright (C) 2006 - INRIA - Pierre MARECHAL
 // Copyright (C) 2011 - DIGITEO - Pierre MARECHAL
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,30 +13,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-// =============================================================================
-//
-// BIN2dec function
-// Given str a binary string, this function returns the decimal number whose the
-// binary representation is given by str
-//
-// -Input :
-//    str : a string (or a vector/matrix of strings), containing only characters
-//         '1' and '0'
-// -Output :
-//    y : a scalar/vector/matrix
-//
-// F.Belahcene
-
-// check the type of input argument
-
-// 2006-06-26 : Modified by Pierre MARECHAL
-// Check length of given string ( must be 47 bits or less )
-// =============================================================================
-
 function y = bin2dec(str)
 
-    rhs = argn(2);
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"bin2dec", 1));
     end
 

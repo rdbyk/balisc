@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) 2013, 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,24 +13,11 @@
 
 function y = permute(x, dims)
 
-    // This function returns an array y which results of the x permutation
-    // Input :
-    // -x a (multi-dimensionnnal) array of cells, or doubles or strings, ...
-    // -dims a vector which contains the permutation order
-    // Output :
-    // -y the result of the x permutation
-    // History:
-    // 2013 - S. GOUGEON : processing rewritten, fixing http://bugzilla.scilab.org/5205
-    // 2016 - S. GOUGEON : extension to rationals
-
-    // CHECKING ARGUMENTS
-    // ------------------
-    if argn(2) <> 2 then
+    if nargin <> 2 then
         msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
         error(msprintf(msg, "permute", 2));
     end
 
-    // Case x is empty
     if isempty(x) then
         y = x
         return
@@ -43,7 +30,6 @@ function y = permute(x, dims)
         error(msprintf(msg, "permute", 2, ndims(x)-1));
     end
 
-    // ---------------- PROCESSING --------------------
     // Existing indices
     s = size(x)
     p = size(x, "*")

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,47 +13,36 @@
 
 function  y=complex(varargin)
 
-    // COMPLEX function
-    // Given the real part and the imaginary part this function constructs the complex form : y=complex(a,b) returns y=a+b*i
-    // Inputs :
-    //  a, b : real scalars/vectors/matrices
-    // output :
-    // y : complex form
-
-    [lhs,rhs]=argn(0)
-    if ( rhs<1 | rhs>2 ) then
+    if nargin < 1 | nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"complex",1,2));
     end
 
-    // Get input arguments
     a = varargin(1)
-    if ( rhs == 1 ) then
+    if nargin == 1 then
         b = zeros(a)
     else
         b = varargin(2)
     end
-    //
-    // Check type of input arguments
-    if ( typeof(a)<>"constant" ) then
+
+    if typeof(a) <> "constant"  then
         error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"),"complex",1));
     end
-    if ( typeof(b)<>"constant" ) then
+
+    if typeof(b) <> "constant" then
         error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"),"complex",2));
     end
-    //
-    // Check size
-    if ( size(a,"*") <> 1 & size(b,"*") <> 1 & size(a)<>size(b) ) then
+
+    if size(a,"*") <> 1 & size(b,"*") <> 1 & size(a)<>size(b) then
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"complex",1,2));
     end
-    //
-    // Check content of input arguments
-    if ( ~isreal(a) ) then
+
+    if ~isreal(a) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"complex",1));
     end
-    if ( ~isreal(b) ) then
+    if ~isreal(b) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"complex",2));
     end
 
-    // Proceed...
     y = a+imult(b);
+
 endfunction

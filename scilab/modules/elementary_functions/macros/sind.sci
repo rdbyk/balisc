@@ -2,8 +2,8 @@
 // Copyright (C) INRIA, Serge Steer
 // Copyright (C) DIGITEO - 2010 - Michael Baudin
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,10 +14,7 @@
 
 function x = sind(x)
 
-    //Sine of x in degrees with exact values for integer multiples of 90
-
-    rhs = argn(2);
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sind", 1));
     end
 
@@ -34,4 +31,5 @@ function x = sind(x)
         x(m == 2) = -sin(%pi/180 * x(m == 2));
         x(m == 3) = -cos(%pi/180 * x(m == 3));
     end
+
 endfunction

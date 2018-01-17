@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,13 +15,12 @@ function [x,ka,kb] = union(a, b, orient)
     // returns the union of  unique components of  vector a and b
     // author Serge Steer INRIA
 
-    rhs = argn(2);
-    if rhs < 2 then
+    if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "union", 2));
     end
 
-    if rhs < 3 then
-        if argn(1)==1 then
+    if nargin < 3 then
+        if nargout==1 then
             x=unique([a(:);b(:)])
             x=x';
         else
@@ -34,7 +33,7 @@ function [x,ka,kb] = union(a, b, orient)
         end
     else
         if  orient==1|orient=="r" then
-            if argn(1)==1 then
+            if nargout==1 then
                 x=unique([a;b],"r")
             else
                 kab=[1:size(a,"r"), -(1:size(b,"r"))]
@@ -44,7 +43,7 @@ function [x,ka,kb] = union(a, b, orient)
                 kb=-kab(kab<0)
             end
         elseif orient==2|orient=="c" then
-            if argn(1)==1 then
+            if nargout==1 then
                 x=unique([a b],"c")
             else
                 kab=[1:size(a,"c"), -(1:size(b,"c"))]

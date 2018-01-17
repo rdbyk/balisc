@@ -20,14 +20,14 @@ function y = primes(x)
     // output :
     // y : a vector of reals (positives)
 
-    if argn(2) <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "primes", 1));
     end
 
     if type(x) <> 1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"),"primes"));
-    elseif prod(size(x,"*")) <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"),"primes"));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"),"primes", 1));
+    elseif size(x,"*") <> 1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"),"primes", 1));
     elseif x < 1
         y = [];
     else

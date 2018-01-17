@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,16 +13,7 @@
 
 function y = perms(x)
 
-    // PERMS function
-    // Given a vector x (size: 1*n or n*1), this function returns all the permutations of x (i.e n! permutations)
-    // Inputs :
-    //  x : scalars/vectors
-    // output :
-    // y : matrix
-    // F.Belahcene
-
-    [lhs, rhs] = argn(0);
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"perms", 1));
     end
 
@@ -42,4 +33,3 @@ function y = perms(x)
     end
 
 endfunction
-

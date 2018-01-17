@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,19 +13,14 @@
 
 function ind=vectorfind(m,v,job)
 
-    rhs = argn(2);
-
-    // Check number of inputs, at least 2 needed
-    if rhs < 2 then
+    if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "vectorfind", 2, 3));
     end
 
-    // Set default value for job if not given
     if rhs == 2 then
         job = "r";
     end
 
-    // Check that m and v have the same type
     if typeof(m) <> typeof(v) then
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same type expected.\n"), "vectorfind", 1, 2));
     end
@@ -59,5 +54,5 @@ function ind=vectorfind(m,v,job)
     else
         error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"vectorfind",3,"r[ow]","c[olumn]"));
     end
-endfunction
 
+endfunction

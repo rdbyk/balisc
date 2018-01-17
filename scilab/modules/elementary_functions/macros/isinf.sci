@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,9 +13,7 @@
 
 function r = isinf(x)
 
-    rhs = argn(2);
-
-    if rhs <> 1 then
+    if nargin <> 1 then
         msg = _("%s: Wrong number of input argument(s): %d expected.\n")
         error(msprintf(msg, "isinf", 1))
     end
