@@ -2,8 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) Scilab Enterprises - 2011 - Calixte DENIZET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,18 +13,12 @@
 // along with this program.
 
 function a = toeplitz(c, r)
-    //a=toeplitz(c,r)  returns the Toepliz matrix whose first row
-    //is r and first column is c .( r(1) = c(1) is assumed).
-    //
-    //r and  c can be constant, polynomial or character string matrices.
-    //!
 
-    [lhs, rhs] = argn(0);
-    if rhs < 1 then
+    if nargin < 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "toeplitz", 1));
     end
 
-    if rhs == 1 then
+    if nargin == 1 then
         r = c(:);
     end
 
@@ -45,4 +39,5 @@ function a = toeplitz(c, r)
     index = ones(1, nr) .*. ((nc - 1):-1:0)' + (1:nr) .*. ones(nc, 1);
     b = [c($:-1:2) r];
     a = matrix(b(index), nc, nr);
+
 endfunction

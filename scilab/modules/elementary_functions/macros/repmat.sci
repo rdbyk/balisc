@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) - 2011 -  INRIA, Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -8,10 +9,10 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function B = repmat(A,varargin)
-    //ajouter test sur les type des elements de varargin
-    rhs = argn(2);
-    if rhs < 2 then
+
+    if nargin < 2 then
         error(msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"), "repmat", 2))
     end
 
@@ -105,7 +106,7 @@ function B = repmat(A,varargin)
         if nda > 2 | (size(varargin(1),"*") <> 1 & size(varargin(1)) <3) then // Works if A is hypermat but not for int8,int16 matrix
             B=A(I(:));
         else // Works for int8, int16... matrix but not for hypermat
-            if rhs ==2 then
+            if nargin ==2 then
                 if size(varargin(1),"*") <> 1 then // case repmat(A,size)
                     varargin_temp=varargin;
                     if size(varargin(1),1) <> 1 & size(varargin(1),2) == 1 then
@@ -153,5 +154,5 @@ function B = repmat(A,varargin)
             end
         end
     end
-endfunction
 
+endfunction
