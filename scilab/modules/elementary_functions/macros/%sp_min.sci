@@ -10,9 +10,10 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [m, k] = %sp_min(varargin)
+// TODO: TODO: replace argn by nargin, nargout
 
-    [lhs, rhs] = [nargout, nargin];
+function [m, k] = %sp_min(varargin)
+    [lhs, rhs] = argn(0);
 
     elements = varargin;
     error_list = %f;
@@ -284,5 +285,4 @@ function [m, k] = %sp_min(varargin)
             end
         end
     end
-
 endfunction
