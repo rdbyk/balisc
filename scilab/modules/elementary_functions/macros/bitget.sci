@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Farid BELAHCENE
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,34 +13,9 @@
 
 function y = bitget(x,pos)
 
-    // BITGET function
-    // Given an unsigned integer x, this function returns an unsigned integer
-    // (0 or 1) which is the bit number 'pos' from the representation binary of x
-    // if x=uint8(19) and pos=2 then bitget returns the 2th bit of the binary form of 19 ('10011') which is 1
-    // -Inputs :
-    //  x : an unsigned integer
-    // pos : a positive integer between 1 and the bitmax of the x type
-    //
-    // -Output :
-    //  y : an unsigned integer
-    //
-    // F.Belahcene
-
-    // P. Marechal, 5 Feb 2008
-    //   - Add argument check
-
-    // Check input arguments
-    // =========================================================================
-
-    // check number input argument
-
-    rhs = argn(2);
-
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"bitget",2));
     end
-
-    // case empty matrix
 
     if isempty(x)
         if ~isempty(pos) & prod(size(pos))<>1
@@ -52,13 +27,11 @@ function y = bitget(x,pos)
     end
 
     // check size
-
     if (size(x,"*")>1) & (size(pos,"*")>1) & (or(size(x)<>size(pos))) then
         error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"bitget"));
     end
 
     // check type
-
     if    (type(x)==1  & (x-floor(x)<>0 | x<0)) ..
         | (type(x)==8  & (inttype(x)<10)) ..
         | (type(x)<>1  & type(x)<>8) then
@@ -74,7 +47,6 @@ function y = bitget(x,pos)
     end
 
     // check pos value
-
     select inttype(x)
     case 0  then posmax = 52;
     case 11 then posmax = 8;
@@ -88,9 +60,6 @@ function y = bitget(x,pos)
 
     // Algorithm
     // =========================================================================
-
-
-
     if type(x)==8 then
 
         select inttype(x)
@@ -114,7 +83,6 @@ function y = bitget(x,pos)
     else
 
         // type == 1
-
         if size(pos,"*") == 1;
             pos  = ones(x)  * pos;
         end

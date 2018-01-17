@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Farid BELAHCENE
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,35 +13,9 @@
 
 function y = bitcmp(x,n)
 
-    // BITCMP function
-    //
-    // Given an unsigned integer x, this function returns the unsigned integer
-    // which is the integer corresponding to the complementary of the binary
-    // form of x
-    //
-    // If the bits number of the x binary representation is less than the
-    // bitmax number (8,16 or 32) then the bits '1' are added to the
-    // complementary in order to have bitmax number (8, 16 or 32) for the
-    // complementary
-    //
-    // for example for the type uint8 (bitmax=8), the complementary of '1101' is not '0010' but '11110010'
-    // The integer n sets the bits max number
-    // -Inputs :
-    //  x : an unsigned integer
-    //  n : a positive integer between 1 and the bitmax of the x type
-    //
-    // -Output :
-    //  y : an unsigned integer
-    //
-    // P. Marechal, 5 Feb 2008
-    //   - Add argument check
-
-    // check number input argument
-    rhs = argn(2);
-
-    if rhs == 0 then
+    if nargin == 0 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"bitcmp",1));
-    elseif (type(x) == 1) & (rhs == 1) then
+    elseif (type(x) == 1) & (nargin == 1) then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"bitcmp",2));
     end
 
@@ -54,7 +28,7 @@ function y = bitcmp(x,n)
         error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitcmp",1));
     end
 
-    if  (rhs == 2) & ( ..
+    if  (nargin == 2) & ( ..
         (type(n)==1  & (n-floor(n)<>0 | x<0)) ..
         | (type(n)==8  & (inttype(n)<10)) ..
         | (type(n)<>1  & type(n)<>8) ..
@@ -64,7 +38,6 @@ function y = bitcmp(x,n)
     end
 
     // check n value
-
     select inttype(x)
     case 0  then nmax = 52;
     case 11 then nmax = 8;
@@ -72,7 +45,7 @@ function y = bitcmp(x,n)
     case 14 then nmax = 32;
     end
 
-    if rhs>1 then
+    if nargin > 1 then
 
         if (n>nmax) | (n<1) then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"bitcmp",2,1,nmax));
@@ -96,7 +69,7 @@ function y = bitcmp(x,n)
 
     if type(x)==8 then
         y = ~x;
-        if rhs > 1 then
+        if nargin > 1 then
             select inttype(x)
             case 11 then y = y & uint8(  2^n - 1);
             case 12 then y = y & uint16( 2^n - 1);

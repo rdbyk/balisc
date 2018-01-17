@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,19 +12,7 @@
 
 function y = bitset(x,pos,v)
 
-    // INRIA 2008 - Pierre MARECHAL
-    //
-    // BITSET function
-    // Set bit at specified position
-
-    // Check input arguments
-    // =========================================================================
-
-    // check number input argument
-
-    rhs = argn(2);
-
-    if rhs < 2 then
+    if nargin < 2 then
         msg = _("%s: Wrong number of input argument(s): At least %d expected.\n")
         error(msprintf(msg, "bitset", 2));
     end
@@ -41,10 +29,10 @@ function y = bitset(x,pos,v)
     end
 
     // check v value
-    if rhs == 3 & or(v <> 0 & v <> 1) then
+    if nargin == 3 & or(v <> 0 & v <> 1) then
         msg = _("%s: Wrong value for input argument #%d: 0 or 1 expected.\n")
         error(msprintf(msg, "bitset",3));
-    elseif rhs == 2 then
+    elseif nargin == 2 then
         v = ones(x);
     end
 
