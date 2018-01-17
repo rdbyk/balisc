@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
-
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,16 +12,8 @@
 // along with this program.
 
 function x=cosm(a)
-    //   cosm - computes the matrix cosine
-    //%SYNTAX
-    //   x=cosm(a)
-    //%PARAMETERS
-    //   a   : square hermitian or diagonalizable matrix
-    //   x   : square hermitian matrix
 
-    rhs = argn(2);
-
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cosm",1));
     end
 
@@ -34,7 +26,10 @@ function x=cosm(a)
         error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"cosm",1));
     end
 
-    if a==[] then x=[],return,end
+    if a==[] then
+        x=[]
+        return
+    end
 
     if norm(imag(a),1)==0 then
         x=real(expm(%i*a))
