@@ -3,8 +3,8 @@
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2013 - Samuel GOUGEON :  : bugs 12373 & 13002
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,8 +17,7 @@ function i = pmodulo(n, m)
     //i=pmodulo(n,m) the "positive modulo" of m et n.
     //i=n-floor(n./m).*m
 
-    [lhs, rhs] = argn(0);
-    if rhs <> 2 then
+    if nargin <> 2 then
         msg = _("%s: Wrong number of input argument(s): %d expected.\n")
         error(msprintf(msg, "pmodulo", 2))
     end
