@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 //
 // Copyright (C) 2017 - Samuel GOUGEON : cat() rewritten: http://bugzilla.scilab.org/8297
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,8 +17,7 @@ function  y = cat(dim, varargin)
     //           not defined. Must be all of the same sizes, except along dim.
     // y : concatenated array
 
-    rhs = argn(2);
-    if rhs < 2 then
+    if nargin < 2 then
         msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
         error(msprintf(msg,"cat", 1));
     end
