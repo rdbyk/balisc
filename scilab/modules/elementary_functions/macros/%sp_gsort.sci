@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2009 - Allan CORNET
 // Copyrifht (C) 2012 - Scilab Enterprises - Adeline CARNIS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,10 +12,9 @@
 // along with this program.
 
 function [A, k] = %sp_gsort(A, optsort, directionsort)
-    rhs = argn(2);
-    lhs = argn(1);
+
     // arguments by default in gsort
-    select rhs
+    select nargin
     case 1
         optsort = "g";
         directionsort = "d";
@@ -49,7 +48,7 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
         // first input argument
         if strcmp(optsort, "r") == 0 |strcmp(optsort, "lr") == 0 | v == [] then
             A = A;
-            if lhs == 2 then
+            if nargout == 2 then
                 if strcmp(optsort, "lr") == 0 | ij == [] then
                     k = 1;
                 else
@@ -59,7 +58,7 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
             end
         else
             dif = mn(2) - length(v);
-            if lhs == 1 then
+            if nargout == 1 then
                 v = gsort(v', optsort, directionsort);
             else
                 [v, k] = gsort(v', optsort, directionsort);
@@ -107,7 +106,7 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
         // first input argument
         if strcmp(optsort, "c") == 0 | strcmp(optsort, "lc") == 0 | v == [] then
             A = A;
-            if lhs == 2 then
+            if nargout == 2 then
                 if strcmp(optsort, "lc") == 0 | ij == [] then
                     k = 1;
                 else
@@ -118,7 +117,7 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
         else
 
             dif = mn(1) - length(v);
-            if lhs == 1 then
+            if nargout == 1 then
                 v = gsort(v, optsort, directionsort);
             else
                 [v, k] = gsort(v, optsort, directionsort);
@@ -169,4 +168,5 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
             A = sparse(ij, v, mn);
         end
     end
+
 endfunction
