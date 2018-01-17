@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013, 2016, 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function mat = resize_matrix(mat, varargin)
 
@@ -21,11 +20,9 @@ function mat = resize_matrix(mat, varargin)
     //     resize_matrix(M, .. , resType, padding )
     //     resize_matrix(M, .. ,   ""   , padding )
 
-    [lhs, rhs] = argn(0)
-
     // EXAMPLES
     // --------
-    if rhs == 0 then
+    if nargin == 0 then
         M = grand(4, 3, "uin", -9, 9)
         disp(_("RESIZING a matrix of DECIMALS:"))
         disp("M = ")
@@ -84,7 +81,7 @@ function mat = resize_matrix(mat, varargin)
 
     // ARGUMENTS ANALYSIS & CHECKING
     // -----------------------------
-    if rhs==1 | rhs > 5 then
+    if nargin==1 | nargin > 5 then
         msg = _("%s: Wrong number of input argument(s): %d to %d expected.\n")
         error(msprintf(msg, "resize_matrix", 2, 5))
     end
@@ -100,7 +97,7 @@ function mat = resize_matrix(mat, varargin)
     if ~isscalar(arg) then
         newsizes = arg
     else
-        if rhs>2 then
+        if nargin>2 then
             varg2 = varargin(2)
             if type(varg2)~=1 | ~isscalar(varg2) then
                 msg = _("%s: Wrong input argument #%d: An integer value expected.\n")
