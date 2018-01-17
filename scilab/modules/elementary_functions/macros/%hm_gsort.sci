@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyrifht (C) 2012 - Scilab Enterprises - Cedric Delamarre
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,10 +11,9 @@
 // along with this program.
 
 function [S, k] = %hm_gsort(A, optsort, directionsort)
-    rhs = argn(2);
-    lhs = argn(1);
+
     // arguments by default in gsort
-    select rhs
+    select nargin
     case 1
         optsort = "g";
         directionsort = "d";
@@ -38,7 +37,7 @@ function [S, k] = %hm_gsort(A, optsort, directionsort)
         end
     end
 
-    if(lhs == 1) // without output indices, gsort is faster.
+    if(nargout == 1) // without output indices, gsort is faster.
         if optsort == "g"
             S = gsort(A(:), optsort, directionsort);
             S = matrix(S, size(A));
@@ -92,4 +91,5 @@ function [S, k] = %hm_gsort(A, optsort, directionsort)
             k = matrix(k, sizesInd);
         end
     end
+
 endfunction
