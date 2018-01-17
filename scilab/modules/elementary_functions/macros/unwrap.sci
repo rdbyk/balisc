@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) - 2013 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,7 +22,6 @@ function [retval, K] = unwrap(a, varargin)
 
     // Initializations
     // --------------
-    [lhs,rhs] = argn(0);
     transposed = %f
     unfold = %f     // unfold (1D) instead of unwrap (1D|2D)
     jump = 2*%pi
@@ -32,7 +31,7 @@ function [retval, K] = unwrap(a, varargin)
 
     // EXAMPLES
     // --------
-    if rhs==0 then
+    if nargin==0 then
         %_unwrap()      // display 1D examples
         halt(_("Press return to display 2D examples"))
         %_unwrap("2D")  // display 2D examples
@@ -44,7 +43,7 @@ function [retval, K] = unwrap(a, varargin)
         msg = _("%s: Wrong type for input argument #%d: Real expected.\n")
         error(msprintf(msg, "unwrap",1))
     end
-    if rhs>1
+    if nargin>1
         if typeof(varargin(1))=="string" then
             if varargin(1)=="unfold" then
                 unfold = %t
@@ -61,7 +60,7 @@ function [retval, K] = unwrap(a, varargin)
                 jump = abs(jump(1))
             end
         end
-        if ~unfold & rhs>=3 then
+        if ~unfold & nargin>=3 then
             direc = varargin(2)
             if typeof(direc)~="string" then
                 msg = _("%s: Wrong type for input argument #%d: String expected.\n")
@@ -192,4 +191,5 @@ function [retval, K] = unwrap(a, varargin)
     if transposed then
         retval = retval.'
     end
+
 endfunction
