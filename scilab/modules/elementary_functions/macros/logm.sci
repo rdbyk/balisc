@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,17 +12,8 @@
 // along with this program.
 
 function x=logm(a)
-    //   logm - log(A)
-    //%SYNTAX
-    //   X=logm(A)
-    //%PARAMETERS
-    //   A   : square hermitian or diagonalizable matrix
-    //   X   : square matrix
-    //%DESCRIPTION
-    //computes X=logm(A), matrix log of A
 
-    rhs = argn(2);
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"logm", 1));
     end
 
@@ -76,4 +67,5 @@ function x=logm(a)
         end
         x = (u * diag(w1)) * inv(u);
     end
+
 endfunction
