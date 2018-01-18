@@ -4,7 +4,7 @@
  * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -2279,6 +2279,27 @@ template<class T, class U, class O>
 InternalType* compequal_E_E(T *_pL, U *_pR)
 {
     return new Bool(true);
+}
+
+// Bool == []
+template<>
+InternalType* compequal_M_E<Bool, Double, Bool>(Bool* _pL, Double* _pR)
+{
+    return new Bool(_pL->getSize() <= 0);
+}
+
+// Double == []
+template<>
+InternalType* compequal_M_E<Double, Double, Bool>(Double* _pL, Double* _pR)
+{
+    return new Bool(_pL->getSize() <= 0);
+}
+
+// String == []
+template<>
+InternalType* compequal_M_E<String, String, Bool>(String* _pL, String* _pR)
+{
+    return new Bool(_pL->getSize() <= 0);
 }
 
 //B == x

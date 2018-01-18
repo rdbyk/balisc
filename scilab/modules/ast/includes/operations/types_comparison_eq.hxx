@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *  Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -103,6 +103,12 @@ DECLARE_COMPARISON_EQUAL_PROTO(compequal_UT_UT);
 
 
 #undef DECLARE_COMPARISON_EQUAL_PROTO
+
+template<> types::InternalType* compequal_M_E<types::Bool, types::Double, types::Bool>(types::Bool* _pL, types::Double* _pR);
+
+template<> types::InternalType* compequal_M_E<types::Double, types::Double, types::Bool>(types::Double* _pL, types::Double* _pR);
+
+template<> types::InternalType* compequal_M_E<types::String, types::String, types::Bool>(types::String* _pL, types::String* _pR);
 
 template<> types::InternalType* compequal_M_M<types::Sparse, types::Sparse, types::SparseBool>(types::Sparse* _pL, types::Sparse* _pR);
 
