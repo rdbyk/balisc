@@ -3,7 +3,7 @@
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -96,7 +96,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
             (*pwstLines)[iReadLineCount++] = to_wide_string(line);
         }
 
-        free(line);
+        FREE(line);
         return iReadLineCount;
     }
     else
@@ -111,8 +111,8 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
             wchar_t **pwstLinesNew = (wchar_t**)REALLOC(*pwstLines, (iReadLineCount + 1) * sizeof(wchar_t*));
             if (pwstLinesNew == NULL)
             {
-                free(*pwstLines);
-                free(line);
+                FREE(*pwstLines);
+                FREE(line);
                 return -1;
             }
             *pwstLines = pwstLinesNew;
@@ -121,7 +121,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
             (*pwstLines)[iReadLineCount++] = to_wide_string(line);
         }
 
-        free(line);
+        FREE(line);
         return iReadLineCount;
     }
 }
