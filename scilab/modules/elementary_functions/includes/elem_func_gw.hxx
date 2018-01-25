@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -73,6 +73,7 @@ CPP_GATEWAY_PROTOTYPE(sci_log10);
 CPP_GATEWAY_PROTOTYPE(sci_log1p);
 CPP_GATEWAY_PROTOTYPE(sci_max);
 CPP_GATEWAY_PROTOTYPE(sci_min);
+CPP_GATEWAY_PROTOTYPE(sci_ndims);
 CPP_GATEWAY_PROTOTYPE(sci_rat);
 CPP_GATEWAY_PROTOTYPE(sci_triu);
 CPP_GATEWAY_PROTOTYPE(sci_tril);
