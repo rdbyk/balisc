@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -109,7 +109,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
     {
         types::Sparse *pL = _pLeftOperand->getAs<types::Sparse>();
         Double *pR = _pRightOperand->getAs<Double>();
-        int iResult = DotPowerSpaseByDouble(pL, pR, &pResult);
+        int iResult = DotPowerSparseByDouble(pL, pR, &pResult);
         if (iResult)
         {
             throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
@@ -428,7 +428,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
     return 0;
 }
 
-int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
+int DotPowerSparseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
 {
     if (_pDouble->isEmpty())
     {
