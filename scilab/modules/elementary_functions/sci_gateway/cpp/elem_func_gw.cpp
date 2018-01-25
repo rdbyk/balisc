@@ -67,6 +67,7 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"matrix", &sci_matrix, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"max", &sci_max, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"min", &sci_min, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ndims", &sci_ndims, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"nearfloat", &sci_nearfloat, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"number_properties", &sci_number_properties, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ones", &sci_ones, MODULE_NAME));
