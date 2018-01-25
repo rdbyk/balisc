@@ -14,18 +14,14 @@
 // along with this program.
 
 function i = pmodulo(n, m)
-    //i=pmodulo(n,m) the "positive modulo" of m et n.
-    //i=n-floor(n./m).*m
 
     if nargin <> 2 then
         msg = _("%s: Wrong number of input argument(s): %d expected.\n")
         error(msprintf(msg, "pmodulo", 2))
     end
 
-    mt = type(m($))
-    nt = type(n($))
-
-    // -----------------------  Checking arguments --------------------------
+    mt = type(m)
+    nt = type(n)
 
     if or(type(n)==[15 16]) | and(nt <> [1 2 8]) | (nt==1 & ~isreal(n)) then
         msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
@@ -42,39 +38,36 @@ function i = pmodulo(n, m)
         error(msprintf(msg, "pmodulo"))
     end
 
-    // --------------------------  Processing ----------------------------
-
-    if isempty(m)
+    if m == []
         i = n;
         return;
     end
+
     if  nt==2 then
         [i,q] = pdiv(n, m)
     else
-        ms = size(m)
-        ns = size(n)
-        m = m(:)
-        n = n(:)
         m = abs(m)  // else returns i<0 for m<0 : http://bugzilla.scilab.org/12373
-        if length(n)>1 & length(m)>1 & or(ns<>ms) then
+        lm = length(m)
+
+        if length(n)>1 & lm>1 & or(size(n)<>size(m)) then
             msg = _("%s: Wrong size for input arguments: Same size expected.\n")
             error(msprintf(msg, "pmodulo"))
         end
+
         i = n - floor(n ./ m) .* m
         k = find(i<0)           // this may occur for encoded integers
-        if length(m)>1 then
-            if ~isempty(k)
+
+        if lm>1 then
+            if k <> []
                 i(k) = i(k) + m(k)
             end
-            i = iconvert(i, inttype(n))
-            i = matrix(i, ms)
         else
-            if ~isempty(k)
+            if k <> []
                 i(k) = i(k) + m
             end
-            i = iconvert(i, inttype(n))
-            i = matrix(i, ns)
         end
+
+        i = iconvert(i, inttype(n))
     end
 
 endfunction
