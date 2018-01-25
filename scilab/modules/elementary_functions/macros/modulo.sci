@@ -20,9 +20,8 @@ function i = modulo(n, m)
         error(msprintf(msg, "modulo", 2))
     end
 
-    mt = type(m($))
-    nt = type(n($))
-    // -----------------------  Checking arguments --------------------------
+    mt = type(m)
+    nt = type(n)
 
     if or(type(n)==[15 16]) | and(nt <> [1 2 8]) | (nt==1 & ~isreal(n))
         msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
@@ -39,29 +38,17 @@ function i = modulo(n, m)
         error(msprintf(msg, "modulo", 1, 2))
     end
 
-    // --------------------------  Processing ----------------------------
-
-    if isempty(m)
+    if m == []
         i = n;
         return
     end
+
     if or(mt==[1 8]) & mt==nt then
-        ms = size(m)
-        ns = size(n)
-        m = m(:)
-        n = n(:)
-        if length(n)>1 & length(m)>1 & or(ns <> ms) then
+        if length(n)>1 & length(m)>1 & or(size(n) <> size(m)) then
             msg = _("%s: Wrong size for input arguments: Same size expected.\n")
             error(msprintf(msg, "modulo"))
         end
-        i = n - int(n ./ m) .* m
-        i = iconvert(i, inttype(n))
-        if length(m)>1 then
-            s = ms
-        else
-            s = ns
-        end
-        i = matrix(i, s)
+        i = iconvert(n - int(n ./ m) .* m, inttype(n))
     else
         [i,q] = pdiv(n, m)
     end
