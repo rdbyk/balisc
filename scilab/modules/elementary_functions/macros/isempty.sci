@@ -21,27 +21,22 @@ function answ = isempty(m)
 
     m_type = type(m);
 
-    if( (m_type >= 11) & (m_type <= 13) | (m_type >= 128) ) then
-        msg = gettext("%s: Wrong type for input argument #%d.\n")
-        error(msprintf(msg, "isempty", 1))
-    end
-
     select m_type
     case 1
         answ = m == [];
     case 10
         // matrix of character string
-        answ = ( max(length(m)) == 0 );
+        answ = and(m == "");
 
     case 15
         // list
-        answ = %t;
-        for i = 1:size(m),
-            answ = answ & (type(m(i))==0 || isempty(m(i)))
-            if ~answ
+        answ = %t
+        for e = m
+            if ~(type(e)==0 || isempty(e))
+                answ = %f
                 break
             end
-        end;
+        end
 
     case 16
         // typed list
@@ -50,8 +45,9 @@ function answ = isempty(m)
         else
             answ = %t;
             for i = 2:size(m)
-                answ = answ & (type(m(i))==0 || isempty(m(i)))
-                if ~answ
+                e = m(i)
+                if ~(type(e)==0 || isempty(e))
+                    answ = %f
                     break
                 end
             end
@@ -59,26 +55,26 @@ function answ = isempty(m)
 
     case 17
         // mlist
-        answ = %t
         if typeof(m)=="ce"      // array of cells
             if size(m,"*")==1
-                answ = answ & isempty(m{1})
+                answ = isempty(m{1})
             else
-                n = size(m,"*")
-                for i = 1:n
-                    answ = answ & isempty(m(i))
-                    if ~answ
+                answ = %t
+                for i = 1:size(m,"*")
+                    if ~isempty(m(i))
+                        answ = %f
                         break
                     end
                 end
             end
 
         elseif typeof(m)=="st"    // array of structures
+            answ = %t
             fn = fieldnames(m)
             if size(m, "*")>0 && fn~=[]
                 for f = fn(:)'
-                    answ = answ & isempty(m(f))
-                    if ~answ
+                    if ~isempty(m(f))
+                        answ = %f
                         break
                     end
                 end
@@ -88,7 +84,10 @@ function answ = isempty(m)
         end
 
     else
-        if type(m)~=0
+        if( (m_type >= 11) & (m_type <= 13) | (m_type >= 128) ) then
+            msg = gettext("%s: Wrong type for input argument #%d.\n")
+            error(msprintf(msg, "isempty", 1))
+        elseif m_type~=0
             answ = size(m,"*")==0
         else
             answ = %t
