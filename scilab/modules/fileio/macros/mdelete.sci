@@ -32,8 +32,9 @@ function mdelete(filename)
     if k == [] then
         file_path = "./";
     else
-        file_path = part(filename,1:k($));
-        filename  = part(filename,k($)+1:length(filename));
+        k = k(length(k));
+        file_path = part(filename,1:k);
+        filename = part(filename,k+1:length(filename));
     end
 
     if getos() == "Windows" then
