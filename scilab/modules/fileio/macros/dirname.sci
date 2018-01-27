@@ -28,9 +28,9 @@ function [files]= dirname(files,flag,flagexpand)
 
     for i=1:size(files,"*")
         fname = files(i)
-        pref_pos = strindex(fname,sep);
-        if pref_pos <> [] then
-            fname = part(fname,1:pref_pos($)-1);
+        k = strindex(fname,sep);
+        if k <> [] then
+            fname = part(fname,1:k(length(k))-1);
         else
             fname = "."; //emptystr();
         end
@@ -38,4 +38,3 @@ function [files]= dirname(files,flag,flagexpand)
     end
 
 endfunction
-
