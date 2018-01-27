@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,8 @@
 // along with this program.
 
 function dispfiles(unit)
-    [lhs,rhs]=argn()
-    if rhs==0 then
+
+    if nargin==0 then
         [units,typ,nams,mod,swap]=file()
     else
         units=[],typ=[],nams=[],mod=[],swap=[]
@@ -28,6 +28,7 @@ function dispfiles(unit)
 
     n=size(units,"*")
     info=emptystr(n,1)
+
     for k=1:n
         if units(k)==5 then nams(k)="Input",end
         if units(k)==6 then nams(k)="Output",end
@@ -70,12 +71,16 @@ function dispfiles(unit)
             if swap(k)<>0 then info(k)=info(k)+"swap=on";end
         end
     end
+
     tab=["File name" "Unit" "Type" "Options";
     nams(:) string(units(:)) typ(:) info]
     t=emptystr(n+1,1)+"|"
+
     for k=1:size(tab,2)
         t=t+part(tab(:,k),1:max(length(tab(:,k))))+"|"
     end
+
     t=[t(1);"|"+part("-",ones(1,max(length(t))-2))+"|";t(2:$)]
     write(%io(2),t,"(a)")
+
 endfunction
