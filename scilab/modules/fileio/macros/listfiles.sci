@@ -98,7 +98,7 @@ function files= listfiles(paths,flag,flagexpand)
                     if k==[] then
                         with_dir=%f;
                     else
-                        dirs=part(dirs,1:k($));
+                        dirs=part(dirs,1:k(length(k)));
                         with_dir=%t;
                     end
                 end
