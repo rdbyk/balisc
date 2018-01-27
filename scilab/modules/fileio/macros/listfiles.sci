@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007 - INRIA - Allan CORNET
 // Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,22 +11,22 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
 function files= listfiles(paths,flag,flagexpand)
 
-    // list the files in a set of directories
-    // files= listfiles(paths [,flag,flagexpand])
-    // paths           : a string matrix giving a set of pathnames (eventually ended by a pattern built with  * )
-    // flag,flagexpand : boolean optional parameters. (default value  %t ).
-    // files           : a string matrix
+    if nargin < 1  then
+        paths="./"
+    end
 
-    [lhs,rhs]=argn(0)
-    if rhs < 1  then paths="./" ; end
-    if rhs <= 1 then flag = %t ; end
-    if rhs <= 2 then flagexpand = %t ; end
+    if nargin <= 1 then
+        flag = %t
+    end
+
+    if nargin <= 2 then
+        flagexpand = %t
+    end
+
     files=[];
 
-    // Stripblanks paths
     paths = stripblanks(paths);
 
     // list files of the current directory
@@ -64,13 +64,18 @@ function files= listfiles(paths,flag,flagexpand)
             end
         else
             // It is a file
-            if path == "" then path="./",end;
+            if path == "" then
+                path="./"
+            end
+
             if getos() == "Windows" // Don't want this case under Linux/Unix
                 // Windows will return the file toto even if you provided toto.*
                 if extension == "" then extension=".*",end;
             end
 
-            if fname == "" then fname="*",end;
+            if fname == "" then
+                fname="*"
+            end
         end
 
         filesi=findfiles(path,fname+extension);
