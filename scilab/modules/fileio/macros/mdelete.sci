@@ -43,10 +43,8 @@ function mdelete(filename)
         lst_files = listfiles(file_path+filename);
     end
 
-    if lst_files<>[] then
-        for i=1:size(lst_files,"*")
-            deletefile(lst_files(i));
-        end
+    if lst_files <> [] then
+        deletefile(lst_files);
     end
 
 endfunction
