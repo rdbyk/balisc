@@ -2,8 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
 // Copyright (C) 2016, 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -53,8 +53,9 @@ function [%val, %ierr] = evstr(%str)
         //
         %t1 = strcat(%str, ",", "c")+";"
         %t1(1) = "%val=[" + %t1(1);
-        %t1($) = part(%t1($), 1:length(%t1($)) - 1)+";";
-        %t1($+1)="]";
+        %$ = size(%t1, '*');
+        %t1(%$) = part(%t1(%$), 1:length(%t1(%$)) - 1)+";";
+        %t1(%$+1)="]";
         if nargout == 2 then
             %ierr = execstr(%t1, "errcatch");
         else
