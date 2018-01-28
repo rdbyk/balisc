@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Vincent COUVERT
 // Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,12 @@
 
 function f = fullfile(varargin)
 
-    // Build a full filename from parts
-
     if size(varargin) < 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fullfile",1));
     end
 
     fs = ["/" "\"];
     f  = varargin(1);
-    is_fempty = %f;
 
     if ~isempty(f) then
         if type(f) <> 10 then
@@ -32,11 +29,10 @@ function f = fullfile(varargin)
             error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", 1));
         end
         f = stripblanks(f);
-    else
-        is_fempty = %t;
     end
 
     nbParameters =  size(varargin)
+
     for k = 2 : nbParameters
         arg = varargin(k);
         if isempty(arg)
