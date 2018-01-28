@@ -65,7 +65,7 @@ function f = fullfile(varargin)
             elseif or(part(f, length(f))==fs) || or(part(arg, 1)==fs)
                 f = f + stripblanks(arg);
             else
-                f = f + pathconvert("/") + stripblanks(arg);
+                f = f + filesep() + stripblanks(arg);
             end
         end
     end
