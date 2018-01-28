@@ -15,7 +15,6 @@
 
 function [%val, %ierr] = evstr(%str)
 
-    [lhs, rhs] = argn(0);
     %val = [];
     %ierr =  0;
 
@@ -23,7 +22,7 @@ function [%val, %ierr] = evstr(%str)
 
     case 10 then
         // matrix of character strings
-        if isempty(%str) then
+        if %str == [] then
             %val = [];
             return;
         end
@@ -58,7 +57,7 @@ function [%val, %ierr] = evstr(%str)
         %t1(1) = "%val=[" + %t1(1);
         %t1($) = part(%t1($), 1:length(%t1($)) - 1)+";";
         %t1($+1)="]";
-        if lhs == 2 then
+        if nargout == 2 then
             %ierr = execstr(%t1, "errcatch");
         else
             execstr(%t1)
@@ -69,7 +68,7 @@ function [%val, %ierr] = evstr(%str)
         %sexp = %str(2),
         %nstr = prod(size(%sexp));
         % = list();
-        if lhs == 2 then
+        if nargout == 2 then
             for %k_ = 1:%nstr,
                 [%w, %ierr] = evstr(%sexp(%k_));
                 %(%k_) = %w;
