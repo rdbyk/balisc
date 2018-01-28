@@ -31,9 +31,7 @@ function [%val, %ierr] = evstr(%str)
         vars = ["Nan"  "NaN"  "Inf"  "INF"]
         vals = ["%nan" "%nan" "%inf" "%inf"]
         tmp = ~isdef(vars)
-        if tmp~=[]
-            execstr(vars(tmp)+"="+vals(tmp))
-        end
+        execstr(vars(tmp)+"="+vals(tmp))
 
         // Removing comments:
         regExp = "_(?<!\:)//[^\""\'']*$_";
@@ -89,9 +87,9 @@ function [%val, %ierr] = evstr(%str)
         // real or complex constant matrix
         %val = %str;
     else
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of character strings or list expected.\n"), "evstr", 1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of character strings or list expected.\n"), "evstr", 1));
     end
     if exists("%val", "local") == 0 then
-        error(msprintf(gettext("%s: Given expression has no value.\n"), "evstr"));
+        error(msprintf(_("%s: Given expression has no value.\n"), "evstr"));
     end
 endfunction
