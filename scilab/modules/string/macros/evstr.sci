@@ -2,8 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
 // Copyright (C) 2016, 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@
 
 function [%val, %ierr] = evstr(%str)
 
-    [lhs, rhs] = argn(0);
     %val = [];
     %ierr =  0;
 
@@ -23,7 +22,7 @@ function [%val, %ierr] = evstr(%str)
 
     case 10 then
         // matrix of character strings
-        if isempty(%str) then
+        if %str == [] then
             %val = [];
             return;
         end
@@ -32,9 +31,7 @@ function [%val, %ierr] = evstr(%str)
         vars = ["Nan"  "NaN"  "Inf"  "INF"]
         vals = ["%nan" "%nan" "%inf" "%inf"]
         tmp = ~isdef(vars)
-        if tmp~=[]
-            execstr(vars(tmp)+"="+vals(tmp))
-        end
+        execstr(vars(tmp)+"="+vals(tmp))
 
         // Removing comments:
         regExp = "_(?<!\:)//[^\""\'']*$_";
@@ -56,9 +53,10 @@ function [%val, %ierr] = evstr(%str)
         //
         %t1 = strcat(%str, ",", "c")+";"
         %t1(1) = "%val=[" + %t1(1);
-        %t1($) = part(%t1($), 1:length(%t1($)) - 1)+";";
-        %t1($+1)="]";
-        if lhs == 2 then
+        %$ = size(%t1, '*');
+        %t1(%$) = part(%t1(%$), 1:length(%t1(%$)) - 1)+";";
+        %t1(%$+1)="]";
+        if nargout == 2 then
             %ierr = execstr(%t1, "errcatch");
         else
             execstr(%t1)
@@ -69,7 +67,7 @@ function [%val, %ierr] = evstr(%str)
         %sexp = %str(2),
         %nstr = prod(size(%sexp));
         % = list();
-        if lhs == 2 then
+        if nargout == 2 then
             for %k_ = 1:%nstr,
                 [%w, %ierr] = evstr(%sexp(%k_));
                 %(%k_) = %w;
@@ -90,9 +88,9 @@ function [%val, %ierr] = evstr(%str)
         // real or complex constant matrix
         %val = %str;
     else
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of character strings or list expected.\n"), "evstr", 1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of character strings or list expected.\n"), "evstr", 1));
     end
     if exists("%val", "local") == 0 then
-        error(msprintf(gettext("%s: Given expression has no value.\n"), "evstr"));
+        error(msprintf(_("%s: Given expression has no value.\n"), "evstr"));
     end
 endfunction

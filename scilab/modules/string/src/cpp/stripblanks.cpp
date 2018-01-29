@@ -1,20 +1,22 @@
-/*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Siddhartha Gairola
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
- *
- */
-/*--------------------------------------------------------------------------*/
+// Balisc (https://github.com/rdbyk/balisc/)
+//
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+// 02110-1301, USA.
+
 #include "stripblanks.hxx"
 
 extern "C"
@@ -23,83 +25,85 @@ extern "C"
 #include "os_string.h"
 }
 
-/*--------------------------------------------------------------------------*/
-#define BLANK_CHARACTER L' '
-#define TAB_CHARACTER L'\t'
-/*--------------------------------------------------------------------------*/
-static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos);
-/*--------------------------------------------------------------------------*/
-types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB, int flag)
+using types::String;
+
+String * stripblanks(String *InputStrings, bool bRemoveTAB, int flag)
 {
-    types::String *pOutputStrings = InputStrings->clone();
-    //flag = -1 to remove leading spaces, flag = 1 to remove trailing spaces, flag = 0 to remove both.
+    bool bRemoveLeading = flag == -1 || flag == 0;
+    bool bRemoveTrailing = flag == 1 || flag == 0;
+
+    String *pOutputStrings = new String(InputStrings->getDims(), InputStrings->getDimsArray());
+
     if (pOutputStrings)
     {
-        for (int x = 0; x < InputStrings->getSize(); x++)
+        for (int i = 0; i < InputStrings->getSize(); ++i)
         {
-            wchar_t* pStr = InputStrings->get(x);
-            int iInputStartIndex = 0;
-            int iInputLength = static_cast<int>(wcslen(pStr));
-            int iInputEndIndex = iInputLength;
+            wchar_t* pwstUnStripped = os_wcsdup(InputStrings->get(i));
+            wchar_t* pwstStripped = pwstUnStripped;
 
-            /* search character ' ' or TAB from end of the string */
-            if (flag == 1 || flag == 0)
+            if (bRemoveTAB)
             {
-                for (int i = iInputLength - 1; i >= 0; i--)
+                if (bRemoveLeading)
                 {
-                    if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
+                    while(iswspace((wint_t)*pwstStripped))
                     {
-                        iInputEndIndex--;
+                        ++pwstStripped;
                     }
-                    else
+
+                    if(*pwstStripped == L'\0')
                     {
-                        break;
+                        pOutputStrings->set(i, pwstStripped);
+                        FREE(pwstUnStripped);
+                        continue;
                     }
+                }
+
+                if (bRemoveTrailing)
+                {
+                    wchar_t* pwstStrippedEnd = pwstStripped + wcslen(pwstStripped) - 1;
+
+                    while(pwstStrippedEnd > pwstStripped && iswspace((wint_t)*pwstStrippedEnd))
+                    {
+                        --pwstStrippedEnd;
+                    }
+
+                    *(pwstStrippedEnd + 1) = L'\0';
+                }
+            }
+            else
+            {
+                if (bRemoveLeading)
+                {
+                    while(*pwstStripped == L' ')
+                    {
+                        ++pwstStripped;
+                    }
+
+                    if(*pwstStripped == L'\0')
+                    {
+                        pOutputStrings->set(i, pwstStripped);
+                        FREE(pwstUnStripped);
+                        continue;
+                    }
+                }
+
+                if (bRemoveTrailing)
+                {
+                    wchar_t* pwstStrippedEnd = pwstStripped + wcslen(pwstStripped) - 1;
+
+                    while(pwstStrippedEnd > pwstStripped && *pwstStrippedEnd == L' ')
+                    {
+                        --pwstStrippedEnd;
+                    }
+
+                    *(pwstStrippedEnd + 1) = L'\0';
                 }
             }
 
-            /* search character ' ' or TAB from beginning of the string */
-            if (flag == -1 || flag == 0)
-            {
-                for (int i = 0; i < iInputLength; i++)
-                {
-                    if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
-                    {
-                        iInputStartIndex++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-
-            wchar_t* pwstReplace = subwcs(pStr, iInputStartIndex, iInputEndIndex);
-            pOutputStrings->set(x, pwstReplace);
-            FREE(pwstReplace);
+            pOutputStrings->set(i, pwstStripped);
+            FREE(pwstUnStripped);
         }
     }
 
     return pOutputStrings;
 }
-/*--------------------------------------------------------------------------*/
-static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos)
-{
-    int iLen = _iEndPos - _iStartPos;
-    wchar_t* pwstBuf = NULL;
-
-    //bad len or empty string
-    if (iLen < 0 || _pstStr[0] == L'\0')
-    {
-        return os_wcsdup(L"");
-    }
-
-    pwstBuf = (wchar_t*)MALLOC(sizeof(wchar_t) * (iLen + 1)); //+1 for null termination
-    if (pwstBuf)
-    {
-        wcsncpy(pwstBuf, _pstStr + _iStartPos, iLen);   /*Put a part of str into stbuf*/
-        pwstBuf[iLen] = L'\0';
-    }
-    return pwstBuf;
-}
-/*------------------------------------------------------------------------*/
