@@ -17,6 +17,6 @@ function r = iscolumn(v)
     end
 
     s = size(v)
-    r = s(1)>=1 & length(find(s(2:$)>1))==0
+    r = s(1)>=1 & length(find(s(2:length(s))>1))==0
 
 endfunction

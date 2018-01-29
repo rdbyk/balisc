@@ -17,7 +17,7 @@ function r = isrow(v)
     end
 
     s = size(v)
-    s2 = s(find(s(2:$)>=1))
+    s2 = s(find(s(2:length(s))>=1))
     r = s(1)==1 & (length(s2)==1 | prod(s2)==1)
 
 endfunction

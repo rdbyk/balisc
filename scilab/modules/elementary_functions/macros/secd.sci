@@ -19,19 +19,19 @@ function x = secd(x)
     end
 
     // Secant argument in degree
-    if type(x) <> 1 | ~isreal(x) then
+    if type(x) <> 1 || ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"secd",1));
     end
 
-    if ~isempty(x)
+    if x <> []
         n = round(x/90);
-        x = x - n*90;
+        x = %pi/180 * (x - n*90);
         m = pmodulo(n, 4);
-        x(m==0) = 1 ./ cos(%pi/180*x(m==0));
-        x(m==1&x<>0) = -1 ./ sin(%pi/180*x(m==1&x<>0));
+        x(m==0) = 1 ./ cos(x(m==0));
+        x(m==1&x<>0) = -1 ./ sin(x(m==1&x<>0));
         x(m==1&x==0) = -%inf;
-        x(m==2) = -1 ./ cos(%pi/180*x(m==2));
-        x(m==3&x<>0) = 1 ./ sin(%pi/180*x(m==3&x<>0));
+        x(m==2) = -1 ./ cos(x(m==2));
+        x(m==3&x<>0) = 1 ./ sin(x(m==3&x<>0));
         x(m==3&x==0) = %inf;
     end
 
