@@ -18,18 +18,18 @@ function x = cscd(x)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cscd", 1));
     end
 
-    if type(x) <> 1 | ~isreal(x) then
+    if type(x) <> 1 || ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "cscd", 1));
     end
 
-    if ~isempty(x)
+    if x <> []
         n = round(x/90);
-        x = x - n*90;
+        x = %pi/180 * (x - n*90);
         m = pmodulo(n,4);
-        x(m==0) = 1 ./ sin(%pi/180*x(m==0));
-        x(m==1) = 1 ./ cos(%pi/180*x(m==1));
-        x(m==2) = -1 ./ sin(%pi/180*x(m==2));
-        x(m==3) = -1 ./ cos(%pi/180*x(m==3));
+        x(m==0) = 1 ./ sin(x(m==0));
+        x(m==1) = 1 ./ cos(x(m==1));
+        x(m==2) = -1 ./ sin(x(m==2));
+        x(m==3) = -1 ./ cos(x(m==3));
     end
 
 endfunction
