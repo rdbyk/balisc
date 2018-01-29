@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Vincent COUVERT
 // Copyright (C) DIGITEO - 2010-2012 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,30 +13,26 @@
 
 function f = fullfile(varargin)
 
-    // Build a full filename from parts
-
     if size(varargin) < 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fullfile",1));
+        error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"), "fullfile",1));
     end
 
     fs = ["/" "\"];
     f  = varargin(1);
-    is_fempty = %f;
 
     if ~isempty(f) then
         if type(f) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", 1));
+            error(msprintf(_("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", 1));
         end
 
         if size(f,"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", 1));
+            error(msprintf(_("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", 1));
         end
         f = stripblanks(f);
-    else
-        is_fempty = %t;
     end
 
     nbParameters =  size(varargin)
+
     for k = 2 : nbParameters
         arg = varargin(k);
         if isempty(arg)
@@ -48,28 +44,28 @@ function f = fullfile(varargin)
             // check arg is a scalar string
             // and set f as arg
             if type(arg) <> 10 then
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", k));
+                error(msprintf(_("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", k));
             end
 
-            if (size(arg,"*") <> 1) & (k <> nbParameters) then
-                error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", k));
+            if (size(arg,"*") <> 1) && (k <> nbParameters) then
+                error(msprintf(_("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", k));
             end
             f = arg;
         else //arg and f are not empty
             if type(arg) <> 10 then
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", k));
+                error(msprintf(_("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", k));
             end
 
-            if (size(arg,"*") <> 1) & (k <> nbParameters) then
-                error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", k));
+            if (size(arg,"*") <> 1) && (k <> nbParameters) then
+                error(msprintf(_("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", k));
             end
 
-            if or(part(f, length(f)) == fs) & or(part(arg, 1) == fs)
+            if or(part(f, length(f)) == fs) && or(part(arg, 1) == fs)
                 f = f + stripblanks(part(arg, 2:length(arg)));
-            elseif or(part(f, length(f))==fs) | or(part(arg, 1)==fs)
+            elseif or(part(f, length(f))==fs) || or(part(arg, 1)==fs)
                 f = f + stripblanks(arg);
             else
-                f = f + pathconvert("/") + stripblanks(arg);
+                f = f + filesep() + stripblanks(arg);
             end
         end
     end

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,14 +11,14 @@
 // along with this program.
 
 function [files]= dirname(files,flag,flagexpand)
-    // return the dirnames of files
-    // if flag == %t files are first converted
-    // according to getos() == 'Windows'. if flagexpand is also true
-    // HOME SCI or ~ are also expanded.
-    // the returned directory names are not terminated by sep
-    [lhs,rhs]=argn(0)
-    if rhs <= 1 then flag = %t ; end
-    if rhs <= 2 then flagexpand = %t ; end
+
+    if nargin <= 1 then
+        flag = %t
+    end
+
+    if nargin <= 2 then
+        flagexpand = %t
+    end
 
     if flag == %t then
         files = pathconvert(files,%f,flagexpand);
@@ -28,13 +28,13 @@ function [files]= dirname(files,flag,flagexpand)
 
     for i=1:size(files,"*")
         fname = files(i)
-        pref_pos = strindex(fname,sep);
-        if pref_pos <> [] then
-            fname = part(fname,1:pref_pos($)-1);
+        k = strindex(fname,sep);
+        if k <> [] then
+            fname = part(fname,1:k(length(k))-1);
         else
             fname = "."; //emptystr();
         end
         files(i)= fname;
     end
-endfunction
 
+endfunction

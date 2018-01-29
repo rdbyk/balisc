@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,7 @@ function L=dir(str)
     mask = int32(61440);
     dirtype = 16384;
 
-    if argn(2) == 1 then
+    if nargin == 1 then
         if type(str) <> 10 then
             error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "dir", 1));
         end
@@ -43,7 +43,7 @@ function L=dir(str)
         end
 
         dt = zeros(n, 1);
-        bytes = zeros(n, 1);
+        bytes = dt;
         isd(n, 1) = %f;
 
         for k=1:n
@@ -53,7 +53,7 @@ function L=dir(str)
                 [x,ierr] = fileinfo(basepath + "/" + files(k));
             end
 
-            if x == [] & ierr== -1 then
+            if x == [] && ierr== -1 then
                 [x,ierr] = fileinfo(files(k));
             end
 
@@ -62,8 +62,9 @@ function L=dir(str)
                 bytes(k) = x(1);
                 isd(k)   = (double(int32(x(2)) & mask) == dirtype);
             end
-        end //for
-    end //if n==0
+        end
+    end
 
     L = tlist(["dir", "name", "date", "bytes", "isdir"], files, dt, bytes, isd);
+
 endfunction
