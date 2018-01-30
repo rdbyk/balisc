@@ -3,7 +3,7 @@
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -109,6 +109,7 @@ static void Add_fftw(void);
 static void Add_Nan(void);
 static void Add_Inf(void);
 static void Add_io(void);
+static void Add_balisc(void);
 static void Add_All_Variables(void);
 static void Add_Double_Constant(const std::wstring& _szName, double _dblReal);
 static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg);
@@ -1126,6 +1127,7 @@ static void Add_All_Variables(void)
     Add_Nan();
     Add_Inf();
     Add_io();
+    Add_balisc();
 }
 
 static void Add_Nan(void)
@@ -1201,6 +1203,11 @@ static void Add_io(void)
     pd[0] = 5;
     pd[1] = 6;
     symbol::Context::getInstance()->put(symbol::Symbol(L"%io"), pVal);
+}
+
+static void Add_balisc(void)
+{
+    Add_Boolean_Constant(L"%balisc", true);
 }
 
 static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdbl)
