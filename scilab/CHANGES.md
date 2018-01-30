@@ -123,7 +123,7 @@ Help pages:
 -----------
 
 * overhauled / rewritten: `bitget`, `edit`
-* fixed / improved:  `bench_run` `M_SWITCH`
+* fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`
 
 User Interface improvements:
 ----------------------------
@@ -168,7 +168,7 @@ Bug Fixes
 ### Bugs fixed in 6.1.0:
 * [#2694](http://bugzilla.scilab.org/show_bug.cgi?id=2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#7724](http://bugzilla.scilab.org/show_bug.cgi?id=7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
-* [#7765](http://bugzilla.scilab.org/show_bug.cgi?id=7765): `champ1()` is useless. `champ().colored` is available for a long time. 
+* [#7765](http://bugzilla.scilab.org/show_bug.cgi?id=7765): `champ1()` is useless. `champ().colored` is available for a long time.
 * [#7967](http://bugzilla.scilab.org/show_bug.cgi?id=7967): The tricky size `[ny,nx]` of `meshgrid(x,y)` results and usages with graphics was not enough documented.
 * [#8307](http://bugzilla.scilab.org/show_bug.cgi?id=8307): `list2vec()` and `vec2list()` were located in the [optimization] module instead of in [data_structures], and were missing in the `See also` section of `list()`.
 * [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
@@ -201,6 +201,7 @@ Bug Fixes
 * [#15271](http://bugzilla.scilab.org/show_bug.cgi?id=15271): `bitget` needed to be upgraded.
 * [#15321](http://bugzilla.scilab.org/show_bug.cgi?id=15321): `lu()` was leaking memory.
 * [#15368](http://bugzilla.scilab.org/show_bug.cgi?id=15368): `freson()` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.
+* [#15392](http://bugzilla.scilab.org/show_bug.cgi?id=15392): `comet` and `comet3d` did not allow specifying colors with colors names.
 * [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
 * [#15451](http://bugzilla.scilab.org/show_bug.cgi?id=15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf'
@@ -244,7 +245,7 @@ Bug Fixes
 * [#16111](http://bugzilla.scilab.org/show_bug.cgi?id=16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](http://bugzilla.scilab.org/show_bug.cgi?id=16118): `%s <> (1+%s)` returned %F.
 * [#16139](http://bugzilla.scilab.org/show_bug.cgi?id=16139): `auread()` and `auwrite()` kept the sound file open and locked when returning on errors. They poorly handled the default .au sound file extension.
-* [#16143](http://bugzilla.scilab.org/show_bug.cgi?id=16143): `clc(n)` cleared n+1 lines instead of n>0. Thus, it was not possible to clear only one line. 
+* [#16143](http://bugzilla.scilab.org/show_bug.cgi?id=16143): `clc(n)` cleared n+1 lines instead of n>0. Thus, it was not possible to clear only one line.
 * [#16144](http://bugzilla.scilab.org/show_bug.cgi?id=16144): Addition of sparse matrices gave incorrect results.
 * [#16152](http://bugzilla.scilab.org/show_bug.cgi?id=16152): For sparse or boolean sparse matrix `s`, `s([])` returned `[]` instead of `sparse([])`.
 * [#16158](http://bugzilla.scilab.org/show_bug.cgi?id=16158): When a multicolumn array of rationals was displayed wide column per column, columns #2:$ were replaced with its column #2.
