@@ -29,32 +29,23 @@ function [N,S] = weekday(D,form)
     leap_year    = [0,31,60,91,121,152,182,213,244,274,305,335,366];
     week_numbers = [7,1,2,3,4,5,6];
 
-    week_strings_short = [gettext("Sat"), ..
-    gettext("Sun"), ..
-    gettext("Mon"), ..
-    gettext("Tue"), ..
-    gettext("Wed"), ..
-    gettext("Thu"), ..
-    gettext("Fri")];
-
-    week_strings_long = [gettext("Saturday"), ..
-    gettext("Sunday")    , ..
-    gettext("Monday")    , ..
-    gettext("Tuesday")   , ..
-    gettext("Wednesday") , ..
-    gettext("Thursday")  , ..
-    gettext("Friday")    , ..
-    gettext("Jan")];
-
-
-    if nargin==2 then
-        if form == "long" then
-            week_strings = week_strings_long;
-        else
-            week_strings = week_strings_short;
-        end
+    if nargin==2 && form == "long" then
+        week_strings = [gettext("Saturday"), ..
+                        gettext("Sunday")    , ..
+                        gettext("Monday")    , ..
+                        gettext("Tuesday")   , ..
+                        gettext("Wednesday") , ..
+                        gettext("Thursday")  , ..
+                        gettext("Friday")    , ..
+                        gettext("Jan")];
     else
-        week_strings = week_strings_short;
+        week_strings = [gettext("Sat"), ..
+                        gettext("Sun"), ..
+                        gettext("Mon"), ..
+                        gettext("Tue"), ..
+                        gettext("Wed"), ..
+                        gettext("Thu"), ..
+                        gettext("Fri")];
     end
 
 
@@ -87,12 +78,13 @@ function [N,S] = weekday(D,form)
 
     M = int(D/29);
     idx_leap_year = isLeapYear(Y);
+    not_idx_leap_year = ~idx_leap_year;
 
     if M(idx_leap_year) <> []
         month_day_mat(idx_leap_year)  = leap_year(M(idx_leap_year)+1);
     end
-    if M(~idx_leap_year) <> []
-        month_day_mat(~idx_leap_year) = common_year(M(~idx_leap_year)+1);
+    if M(not_idx_leap_year) <> []
+        month_day_mat(not_idx_leap_year) = common_year(M(not_idx_leap_year)+1);
     end
 
     if M( D>month_day_mat ) <> [] then
@@ -102,8 +94,9 @@ function [N,S] = weekday(D,form)
     if M(idx_leap_year) <> []
         month_day_mat(idx_leap_year)  = leap_year(M(idx_leap_year));
     end
-    if M(~idx_leap_year) <> []
-        month_day_mat(~idx_leap_year) = common_year(M(~idx_leap_year));
+
+    if M(not_idx_leap_year) <> []
+        month_day_mat(not_idx_leap_year) = common_year(M(not_idx_leap_year));
     end
 
     d = D - month_day_mat;
