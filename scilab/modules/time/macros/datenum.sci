@@ -1,8 +1,7 @@
-//------------------------------------------------------------------------
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Pierre MARECHAL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,16 +10,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-//
-// Convert to serial date number
-//------------------------------------------------------------------------
-
 function n=datenum(varargin)
 
-    lhs=argn(1);
-    rhs=argn(2);
-
-    select rhs
+    select nargin
     case 0
         Date = getdate();
 
@@ -34,10 +26,7 @@ function n=datenum(varargin)
         break
 
     case 1
-
         DateIn = varargin(1);
-
-        // Checks
 
         if type(DateIn)<> 1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"datenum",1));
@@ -81,12 +70,9 @@ function n=datenum(varargin)
         break
 
     case 3
-
-        YearIn  = varargin(1);
+        YearIn = varargin(1);
         MonthIn = varargin(2);
-        DayIn   = varargin(3);
-
-        // checks
+        DayIn = varargin(3);
 
         if (type(YearIn)<> 1) | (type(MonthIn)<> 1) | (type(DayIn)<> 1) then
             error(msprintf(gettext("%s: Wrong type for input arguments.\n"),"datenum"));
@@ -104,21 +90,18 @@ function n=datenum(varargin)
             error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"datenum",3,1,31));
         end
 
-        [nr,nc]  = size(YearIn);
-        n        = ymdhmns_to_scalar(YearIn,MonthIn,DayIn,zeros(nr,nc),zeros(nr,nc),zeros(nr,nc));
+        [nr,nc] = size(YearIn);
+        n = ymdhmns_to_scalar(YearIn,MonthIn,DayIn,zeros(nr,nc),zeros(nr,nc),zeros(nr,nc));
 
         break
 
     case 6
-
-        YearIn  = varargin(1);
+        YearIn = varargin(1);
         MonthIn = varargin(2);
-        DayIn   = varargin(3);
-        HourIn  = varargin(4);
-        MinIn   = varargin(5);
-        SecIn   = varargin(6);
-
-        // checks
+        DayIn = varargin(3);
+        HourIn = varargin(4);
+        MinIn = varargin(5);
+        SecIn = varargin(6);
 
         if  (type(YearIn) <> 1) | ..
             (type(MonthIn)<> 1) | ..
@@ -164,13 +147,14 @@ function n=datenum(varargin)
         error(msprintf(gettext("%s: Wrong number of input argument.\n"),"datenum"));
     end
 
-
 endfunction
 
 
 function scalaire=ymdhmns_to_scalar (annee,mois,jour,heure,mn,seconde)
 
     decimal_part = (seconde*(1/(24*3600)))+(mn*(1/(24*60)))+(heure*(1/24));
+
+    is_leap_year = isLeapYear(annee);
 
     // convert of month and day
     integer_part = jour + floor((mois * 3057 - 3007) / 100);
@@ -179,16 +163,16 @@ function scalaire=ymdhmns_to_scalar (annee,mois,jour,heure,mn,seconde)
     integer_part = integer_part + ((mois < 3) - 1);
 
     // On retranche encore 1 si le mois est au dela de février et année non bissextile
-    integer_part = integer_part + (((mois < 3)|(isLeapYear(annee))) -1);
+    integer_part = integer_part + (((mois < 3)|(is_leap_year)) -1);
 
     // Convertion des année
-    leap_year_case     = annee * 365 + (annee / 4) - floor(annee / 100) + floor(annee / 400);
+    leap_year_case = annee * 365 + (annee / 4) - floor(annee / 100) + floor(annee / 400);
     not_leap_year_case = annee * 365 + floor(annee/4) + 1 - floor(annee / 100) + floor(annee / 400);
 
-    leap_year_case(~isLeapYear(annee))    = 0;
-    not_leap_year_case(isLeapYear(annee)) = 0;
+    leap_year_case(~is_leap_year) = 0;
+    not_leap_year_case(is_leap_year) = 0;
 
-    integer_part       = integer_part + leap_year_case + not_leap_year_case;
+    integer_part = integer_part + leap_year_case + not_leap_year_case;
 
     scalaire = integer_part+decimal_part;
 
