@@ -1,8 +1,8 @@
 //------------------------------------------------------------------------
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005 - INRIA - Pierre MARECHAL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,19 +11,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-//
-// Return day of week
-// Maurice Kraitchik Algorithm
-//------------------------------------------------------------------------
-
 function [N,S] = weekday(D,form)
 
-    lhs=argn(1);
-    rhs=argn(2);
-
-    // checkings
-
-    if rhs < 1 | rhs > 2 then
+    if nargin < 1 | nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"weekday",1,2));
     end
 
@@ -31,11 +21,9 @@ function [N,S] = weekday(D,form)
         error(msprintf(gettext("%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"),"weekday",1));
     end
 
-    if (rhs==2) & (form <> "long") & (form <> "short") then
+    if (nargin==2) & (form <> "long") & (form <> "short") then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"weekday",2,"long","short"));
     end
-
-    // some definitions
 
     common_year  = [0,31,59,90,120,151,181,212,243,273,304,334,365];
     leap_year    = [0,31,60,91,121,152,182,213,244,274,305,335,366];
@@ -59,7 +47,7 @@ function [N,S] = weekday(D,form)
     gettext("Jan")];
 
 
-    if rhs==2 then
+    if nargin==2 then
         if form == "long" then
             week_strings = week_strings_long;
         else
@@ -70,7 +58,7 @@ function [N,S] = weekday(D,form)
     end
 
 
-    // Algorithm
+    // Maurice Kraitchik Algorithm
 
     [nr,nc]  = size(D);
 
