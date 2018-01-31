@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -121,6 +121,10 @@
                 <td>Double-click</td>
                 <td>select current word.</td>
             </tr>
+            <tr>
+                <td>:&lt;xyz&gt;/td>
+                <td>recall last history entry beginning with &lt;xyz&gt;.</td>
+            </tr>
         </informaltable>
     </refsection>
     <refnamediv>
@@ -189,5 +193,18 @@
                 <td>move right one word.</td>
             </tr>
         </informaltable>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>recall last history entry feature was documented and modified to use : instead of !</listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

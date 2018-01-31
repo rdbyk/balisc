@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - Artenum - Sebastien JOURDAIN
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -69,15 +69,17 @@ public class ValidationAction extends AbstractConsoleAction {
             // Command to execute
             cmdToExecute = inputParsingManager.getCommandLine();
 
-            // Special case: line begins with a !
-            if ((cmdToExecute.length() > 0) && (cmdToExecute.charAt(0) == '!')) {
+            // Special case: line begins with a :
+            if ((cmdToExecute.length() > 0) && (cmdToExecute.charAt(0) == ':')) {
                 // Cast HistoryManager to SciHistoryManager
                 // because searchBackward will not to be implemented in all not-generic console
                 ((SciHistoryManager) configuration.getHistoryManager()).setTmpEntry(cmdToExecute.substring(1));
                 histEntry = ((SciHistoryManager) configuration.getHistoryManager()).getPreviousEntry(cmdToExecute.substring(1));
+                configuration.getInputCommandView().reset();
                 if (histEntry != null) {
-                    configuration.getInputCommandView().reset();
                     configuration.getInputCommandView().append(histEntry);
+                } else {
+                    configuration.getInputCommandView().append(cmdToExecute.substring(1));
                 }
                 return;
             }
