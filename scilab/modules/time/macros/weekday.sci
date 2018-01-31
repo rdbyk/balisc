@@ -58,11 +58,11 @@ function [N,S] = weekday(D,form)
         leap_year   = leap_year';
     end
 
-    month_day_mat   = ones(nr,nc);
+    month_day_mat = ones(nr,nc);
 
-    m               = ones(nr,nc);
-    y               = ones(nr,nc);
-    d               = ones(nr,nc);
+    m = month_day_mat;
+    y = month_day_mat;
+    d = month_day_mat;
 
     Y        = floor(D/365.2425);
     temp     = D - (365.0*Y + ceil(0.25*Y)- ceil(0.01*Y) + ceil(0.0025*Y));
