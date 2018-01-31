@@ -104,16 +104,20 @@ function [N,S] = weekday(D,form)
     m(M==1) = 13;
     m(M==2) = 14;
 
-    if Y( M==1 | M==2 ) <> [] then
-        y( M==1 | M==2 ) = Y( M==1 | M==2 ) - 1;
+    M_is_1_or_2 = M==1 | M==2;
+
+    if Y( M_is_1_or_2 ) <> [] then
+        y( M_is_1_or_2 ) = Y( M_is_1_or_2 ) - 1;
     end
     
-    if M( M<>1 & M<>2 ) <> [] then
-        m( M<>1 & M<>2 ) = M( M<>1 & M<>2 );
+    M_neq_1_and_2 = M<>1 & M<>2;
+
+    if M( M_neq_1_and_2 ) <> [] then
+        m( M_neq_1_and_2 ) = M( M_neq_1_and_2 );
     end
 
-    if Y( M<>1 & M<>2 ) <> [] then
-        y( M<>1 & M<>2 ) = Y( M<>1 & M<>2 );
+    if Y( M_neq_1_and_2 ) <> [] then
+        y( M_neq_1_and_2 ) = Y( M_neq_1_and_2 );
     end
 
     n =  modulo(  (d + floor(2*m) + floor(3*(m+1)/5) + y + floor(y/4) - floor(y/100) + floor(y/400) + 2)  ,  7  );
