@@ -29,25 +29,26 @@ function [N,S] = weekday(D,form)
     leap_year    = [0,31,60,91,121,152,182,213,244,274,305,335,366];
     week_numbers = [7,1,2,3,4,5,6];
 
-    if nargin==2 && form == "long" then
-        week_strings = [gettext("Saturday"), ..
-                        gettext("Sunday")    , ..
-                        gettext("Monday")    , ..
-                        gettext("Tuesday")   , ..
-                        gettext("Wednesday") , ..
-                        gettext("Thursday")  , ..
-                        gettext("Friday")    , ..
-                        gettext("Jan")];
-    else
-        week_strings = [gettext("Sat"), ..
-                        gettext("Sun"), ..
-                        gettext("Mon"), ..
-                        gettext("Tue"), ..
-                        gettext("Wed"), ..
-                        gettext("Thu"), ..
-                        gettext("Fri")];
+    if nargout == 2 then
+        if nargin==2 && form == "long" then
+            week_strings = [gettext("Saturday"), ..
+                            gettext("Sunday")    , ..
+                            gettext("Monday")    , ..
+                            gettext("Tuesday")   , ..
+                            gettext("Wednesday") , ..
+                            gettext("Thursday")  , ..
+                            gettext("Friday")    , ..
+                            gettext("Jan")];
+        else
+            week_strings = [gettext("Sat"), ..
+                            gettext("Sun"), ..
+                            gettext("Mon"), ..
+                            gettext("Tue"), ..
+                            gettext("Wed"), ..
+                            gettext("Thu"), ..
+                            gettext("Fri")];
+        end
     end
-
 
     // Maurice Kraitchik Algorithm
 
@@ -123,6 +124,9 @@ function [N,S] = weekday(D,form)
     n =  modulo(  (d + floor(2*m) + floor(3*(m+1)/5) + y + floor(y/4) - floor(y/100) + floor(y/400) + 2)  ,  7  );
 
     N = matrix( week_numbers(n+1) , nr, nc );
-    S = matrix( week_strings(n+1) , nr, nc );
+
+    if nargout == 2 then
+        S = matrix( week_strings(n+1) , nr, nc );
+    end
 
 endfunction
