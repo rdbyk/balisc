@@ -28,7 +28,7 @@ function y=factorial(n)
     else
         n(n==0)=1
         ntemp=cumprod(1:max(n))
-        y=matrix(ntemp(n(:)),size(n))
+        y=matrix(ntemp(n),size(n))
     end
 
 endfunction
