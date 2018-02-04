@@ -51,7 +51,10 @@ Function::ReturnValue sci_clearglobal(typed_list &in, int _iRetCount, typed_list
             }
         }
 
-        pCtx->removeGlobalAll();
+        for (auto g : gVars)
+        {
+            pCtx->removeGlobal(Symbol(g));
+        }
     }
     else
     {
