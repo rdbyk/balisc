@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,6 +15,7 @@
 
 #include "function.hxx"
 #include "context.hxx"
+#include "double.hxx"
 #include "string.hxx"
 #include "core_gw.hxx"
 
@@ -24,54 +25,69 @@ extern "C"
 #include "Scierror.h"
 }
 
-#define FORBIDDEN_CHARS L" */\\.,;:^@><!=+-&|()~\n\t'\""
+using types::Double;
+using types::Function;
+using types::InternalType;
+using types::String;
+using types::typed_list;
+using symbol::Context;
+using symbol::Symbol;
 
-types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, types::typed_list &out)
+static const char fname[] = "global";
+
+Function::ReturnValue sci_global(typed_list &in, int _iRetCount, typed_list &out)
 {
-    //check input arguments
+    Context* pCtx = Context::getInstance();
+
     for (int i = 0 ; i < in.size() ; i++)
     {
         if (in[i]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "global", i + 1);
-            return types::Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, i + 1);
+            return Function::Error;
         }
 
-        if (in[i]->getAs<types::String>()->getSize() != 1)
+        if (in[i]->getAs<String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "global", i + 1);
-            return types::Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, i + 1);
+            return Function::Error;
+        }
+
+        wchar_t* wcsVarName = in[i]->getAs<String>()->getFirst();
+
+        if (pCtx->isValidVariableName(wcsVarName) == false)
+        {
+            char* pstrVarName = wide_string_to_UTF8(wcsVarName);
+            Scierror(999, _("%s: Wrong value for argument #%d: %s\n"), fname, i + 1, pstrVarName);
+            FREE(pstrVarName);
+            return Function::Error;
+        }
+
+        if (pCtx->isprotected(Symbol(wcsVarName)))
+        {
+            Scierror(999, _("%s: Redefining permanent variable.\n"), fname);
+            return Function::Error;
         }
     }
 
-    //check output arguments
     if (_iRetCount > 1)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: At most %d expected.\n"), "global", 1);
-        return types::Function::Error;
+        Scierror(999, _("%s: Wrong number of output arguments: At most %d expected.\n"), fname, 1);
+        return Function::Error;
     }
-
-    symbol::Context* pCtx = symbol::Context::getInstance();
 
     for (int i = 0 ; i < in.size() ; i++)
     {
-        wchar_t* wcsVarName = in[i]->getAs<types::String>()->getFirst();
-        if (symbol::Context::getInstance()->isValidVariableName(wcsVarName) == false)
-        {
-            char* pstrVarName = wide_string_to_UTF8(wcsVarName);
-            Scierror(999, _("%s : Wrong value for argument #%d: %s\n"), "global", i + 1, pstrVarName);
-            FREE(pstrVarName);
-            return types::Function::Error;
-        }
+        wchar_t* wcsVarName = in[i]->getAs<String>()->getFirst();
 
-        symbol::Symbol pstVar(symbol::Symbol(const_cast<wchar_t*>(wcsVarName)));
+        Symbol pstVar(Symbol(const_cast<wchar_t*>(wcsVarName)));
 
         if (pCtx->isGlobalVisible(pstVar))
         {
             continue;
         }
 
-        types::InternalType* pIT = NULL;
+        InternalType* pIT = NULL;
 
         if (pCtx->isGlobal(pstVar))
         {
@@ -83,19 +99,20 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
             pCtx->setGlobal(pstVar);
         }
 
-        //set global variable visible in current scope
+        // set global variable visible in current scope
         pCtx->setGlobalVisible(pstVar, true);
 
         if (pIT)
         {
-            //assign local value to new global variable
+            // assign local value to new global variable
             pCtx->put(pstVar, pIT);
         }
         else
         {
-            pCtx->put(pstVar, types::Double::Empty());
+            pCtx->put(pstVar, Double::Empty());
         }
 
     }
-    return types::Function::OK;
+
+    return Function::OK;
 }
