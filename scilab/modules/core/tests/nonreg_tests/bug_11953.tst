@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -15,13 +16,13 @@
 // <-- Short Description -->
 // Scilab crashes when global("") is entered.
 
-errmsg = msprintf(gettext("%s : Wrong value for argument #%d: %s\n"), "global", 1, "");
+errmsg = msprintf(gettext("%s: Wrong value for argument #%d: %s\n"), "global", 1, "");
 assert_checkerror("global("""")",errmsg);
-errmsg = msprintf(gettext("%s : Wrong value for argument #%d: %s\n"), "global", 2, "");
+errmsg = msprintf(gettext("%s: Wrong value for argument #%d: %s\n"), "global", 2, "");
 assert_checkerror("global(""a"","""")",errmsg);
-errmsg = msprintf(gettext("%s : Wrong value for argument #%d: %s\n"), "global", 3, "");
+errmsg = msprintf(gettext("%s: Wrong value for argument #%d: %s\n"), "global", 3, "");
 assert_checkerror("global(""a"",""b"","""")",errmsg);
 
 l=list("a", "b","c", "");
-errmsg = msprintf(gettext("%s : Wrong value for argument #%d: %s\n"), "global", 4, "");
+errmsg = msprintf(gettext("%s: Wrong value for argument #%d: %s\n"), "global", 4, "");
 assert_checkerror("global(l(:))",errmsg);
