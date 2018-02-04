@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@
 
 #include "core_gw.hxx"
 #include "function.hxx"
-#include "callable.hxx"
 #include "context.hxx"
 #include "string.hxx"
 
@@ -23,35 +22,60 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "charEncoding.h"
 }
 
-types::Function::ReturnValue sci_clearglobal(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using types::Function;
+using types::String;
+using types::typed_list;
+using symbol::Context;
+using symbol::Symbol;
+
+static const char fname[] = "clearglobal";
+
+Function::ReturnValue sci_clearglobal(typed_list &in, int _iRetCount, typed_list &out)
 {
-    types::typed_list::iterator inIterator;
-    int iWrongType = 1;
+    Context *pCtx = Context::getInstance();
 
     if (in.size() == 0)
     {
-        symbol::Context::getInstance()->removeGlobalAll();
+        std::list<std::wstring> gVars;
+
+        pCtx->getGlobalNameForWho(gVars, false);
+
+        for (auto g : gVars)
+        {
+            if (pCtx->isprotected(Symbol(g)))
+            {
+                Scierror(999, _("%s: Redefining permanent variable.\n"), fname);
+                return Function::Error;
+            }
+        }
+
+        pCtx->removeGlobalAll();
     }
     else
     {
-        // First check if all arguments are Single Strings.
-        for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
+        for (int i = 0; i < in.size(); ++i)
         {
-            if (!(*inIterator)->isString() || (*inIterator)->getAs<types::String>()->getSize() != 1)
+            if (in[i]->isString() == false || in[i]->getAs<String>()->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "clearglobal", iWrongType);
-                return types::Function::Error;
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, i + 1);
+                return Function::Error;
             }
-            iWrongType++;
+
+            wchar_t* wcsVarName = in[i]->getAs<String>()->getFirst();
+
+            if (pCtx->isprotected(Symbol(wcsVarName)))
+            {
+                Scierror(999, _("%s: Redefining permanent variable.\n"), fname);
+                return Function::Error;
+            }
         }
 
-        for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
+        for (int i = 0; i < in.size(); ++i)
         {
-            symbol::Context::getInstance()->removeGlobal(symbol::Symbol((*inIterator)->getAs<types::String>()->getFirst()));
+            pCtx->removeGlobal(Symbol(in[i]->getAs<String>()->getFirst()));
         }
     }
-    return types::Function::OK;
+    return Function::OK;
 }
