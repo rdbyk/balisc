@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2009-2009 - DIGITEO - Bernard HUGUENEY
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2009 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,23 +28,28 @@ extern void C2F(dlaswp)(int const* n, double* a, int const* ldA, int const* k1, 
 int iLuM(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pdblEData )
 {
     int ret;
-    int* piPivot;
     int* piWork = NULL;
     int iMinRowsCols;
     double* pdblWork = NULL;
     iMinRowsCols = Min( iRows, iCols);
-    piPivot = (int*) MALLOC(iMinRowsCols * sizeof(int));
+    int* piPivot = (int*) MALLOC(iMinRowsCols * sizeof(int));
+
     if (pdblEData == NULL) /* must allocate more tmp memory when not computing E */
     {
         piWork = (int*) MALLOC(iRows * sizeof(int));
         pdblWork = (double*) MALLOC(iRows * iMinRowsCols * ( complexArg ? sizeof(doublecomplex) : sizeof(double)));
     }
+
     ret = iLu(pData, iRows, iCols, complexArg, pdblLData, pdblUData, pdblEData, piPivot, piWork, pdblWork);
+
+    FREE(piPivot);
+
     if (pdblEData == NULL)
     {
         FREE( piWork);
         FREE( pdblWork );
     }
+
     return ret;
 }
 int iLu(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pdblEData

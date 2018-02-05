@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,9 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
 
 #include "linear_algebra_gw.hxx"
 #include "function.hxx"
@@ -26,7 +25,6 @@ extern "C"
 #include "lu.h"
 #include "doublecomplex.h"
 }
-/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -57,7 +55,41 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
+    pDbl = in[0]->getAs<types::Double>();
+
+    if (pDbl->getCols() == 0 || pDbl->getRows() == 0)
+    {
+        out.push_back(types::Double::Empty());
+        out.push_back(types::Double::Empty());
+
+        if (_iRetCount == 3)
+        {
+            out.push_back(types::Double::Empty());
+        }
+
+        return types::Function::OK;
+    }
+
+    if (pDbl->getRows() == -1 || pDbl->getCols() == -1) // Rhs(1)=k*eye() => Lhs(1)=eye()
+    {
+        // Lhs(2)=k*eye(), Lhs(3)=eye()
+        pDblL = new types::Double(-1, -1, pDbl->isComplex());
+        pDblL->set(0, 1);
+
+        out.push_back(pDblL);
+        out.push_back(pDbl);
+
+        if (_iRetCount == 3)
+        {
+            pDblE = new types::Double(-1, -1, pDbl->isComplex());
+            pDblE->set(0, 1);
+            out.push_back(pDblE);
+        }
+
+        return types::Function::OK;
+    }
+
+    pDbl = pDbl->clone()->getAs<types::Double>();
 
     if (pDbl->isComplex())
     {
@@ -73,34 +105,8 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         pData = pDbl->getReal();
     }
 
-    if ((pDbl->getCols() == 0) || (pDbl->getRows() == 0))
-    {
-        out.push_back(types::Double::Empty());
-        out.push_back(types::Double::Empty());
-        if (_iRetCount == 3)
-        {
-            out.push_back(types::Double::Empty());
-        }
-        return types::Function::OK;
-    }
-
-    if ((pDbl->getRows() == -1) || (pDbl->getCols() == -1)) // Rhs(1)=k*eye() => Lhs(1)=eye()
-    {
-        // Lhs(2)=k*eye(), Lhs(3)=eye()
-        pDblL = new types::Double(-1, -1, pDbl->isComplex());
-        pDblL->set(0, 1);
-        out.push_back(pDblL);
-        out.push_back(pDbl);
-        if (_iRetCount == 3)
-        {
-            pDblE = new types::Double(-1, -1, pDbl->isComplex());
-            pDblE->set(0, 1);
-            out.push_back(pDblE);
-        }
-        return types::Function::OK;
-    }
-
     iMinRowsCols = std::min(pDbl->getRows(), pDbl->getCols());
+
     pDblL = new types::Double(pDbl->getRows(), iMinRowsCols, pDbl->isComplex());
     pDblU = new types::Double(iMinRowsCols, pDbl->getCols(), pDbl->isComplex());
 
@@ -130,6 +136,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         delete pDblL;
         delete pDblU;
         delete pDblE;
+        delete pDbl;
         return types::Function::Error;
     }
 
@@ -139,15 +146,14 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         FREE((doublecomplex*)pdL);
         vGetPointerFromDoubleComplex((doublecomplex*)pdU, pDblU->getSize(), pDblU->getReal(), pDblU->getImg());
         FREE((doublecomplex*)pdU);
-    }
-
-    if (pDbl->isComplex())
-    {
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
 
+    delete pDbl; // because of cloning, cf. above
+
     out.push_back(pDblL);
     out.push_back(pDblU);
+
     if (_iRetCount == 3)
     {
         out.push_back(pDblE);
@@ -155,5 +161,3 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-
