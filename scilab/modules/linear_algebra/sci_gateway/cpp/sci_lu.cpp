@@ -93,10 +93,12 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
 
     if (pDbl->isComplex())
     {
+        // this allocates memory!
         pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         if (!pData)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), "lu");
+            vFreeDoubleComplexFromPointer((doublecomplex*)pData);
             return types::Function::Error;
         }
     }
@@ -131,12 +133,13 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
     if (iRet != 0)
     {
         Scierror(999, _("%s: LAPACK error n°%d.\n"), "lu", iRet);
+        vFreeDoubleComplexFromPointer((doublecomplex*)pData);
         FREE((doublecomplex*)pdL);
         FREE((doublecomplex*)pdU);
         delete pDblL;
         delete pDblU;
         delete pDblE;
-        delete pDbl;
+        delete pDbl; // because of cloning, cf. above
         return types::Function::Error;
     }
 

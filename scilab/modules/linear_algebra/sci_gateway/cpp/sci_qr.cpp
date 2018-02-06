@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
 
 #include "linear_algebra_gw.hxx"
 #include "function.hxx"
@@ -27,7 +26,6 @@ extern "C"
 #include "qr.h"
 #include "doublecomplex.h"
 }
-/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -60,21 +58,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
-
-    if (pDbl->isComplex())
-    {
-        pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
-        if (!pData)
-        {
-            Scierror(999, _("%s: Cannot allocate more memory.\n"), "qr");
-            return types::Function::Error;
-        }
-    }
-    else
-    {
-        pData = pDbl->getReal();
-    }
+    pDbl = in[0]->getAs<types::Double>();
 
     if ((pDbl->getCols() == 0) || (pDbl->getRows() == 0))
     {
@@ -136,6 +120,24 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         }
     }
 
+    pDbl = pDbl->clone()->getAs<types::Double>();
+
+    if (pDbl->isComplex())
+    {
+        // this allocates memory!
+        pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
+        if (!pData)
+        {
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), "qr");
+            vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+            return types::Function::Error;
+        }
+    }
+    else
+    {
+        pData = pDbl->getReal();
+    }
+
     pDblQ = new types::Double(pDbl->getRows(), iRowsToCompute, pDbl->isComplex());
     pDblR = new types::Double(iRowsToCompute, pDbl->getCols(), pDbl->isComplex());
 
@@ -165,6 +167,28 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
     if (iRet != 0)
     {
         Scierror(999, _("%s: LAPACK error n°%d.\n"), "qr", iRet);
+
+        if (pDbl->isComplex())
+        {
+            FREE(pdR);
+            FREE(pdQ);
+            vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+        }
+
+        if (_iRetCount >= 3)
+        {
+            delete pDblE;
+        }
+
+        if (_iRetCount >= 4)
+        {
+            delete pDblRk;
+        }
+
+        delete pDblR;
+        delete pDblQ;
+        delete pDbl; // because of cloning, cf. above
+
         return types::Function::Error;
     }
 
@@ -172,17 +196,15 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
     {
         vGetPointerFromDoubleComplex((doublecomplex*)pdQ, pDblQ->getSize(), pDblQ->getReal(), pDblQ->getImg());
         vFreeDoubleComplexFromPointer((doublecomplex*)pdQ);
-
         vGetPointerFromDoubleComplex((doublecomplex*)pdR, pDblR->getSize(), pDblR->getReal(), pDblR->getImg());
         vFreeDoubleComplexFromPointer((doublecomplex*)pdR);
-    }
-
-    if (pDbl->isComplex())
-    {
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
 
+    delete pDbl; // because of cloning, cf. above
+
     out.push_back(pDblQ);
+
     if (_iRetCount >= 2)
     {
         out.push_back(pDblR);
@@ -200,5 +222,3 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-
