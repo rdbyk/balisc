@@ -1,15 +1,20 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2012 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- CLI SHELL MODE -->
-r = 1:5;
-c = [1 6:9];
-toe = [1 6 7 8 9;
-2 1 6 7 8;
-3 2 1 6 7;
-4 3 2 1 6;
-5 4 3 2 1];
-assert_checkequal(toeplitz(r, c), toe);
+// <-- NO CHECK REF -->
+//
+// <-- Non-regression test for bug 15395 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/15395
+//
+// <-- Short Description -->
+// ones(2,3,2) / %z yielded an error
+
+o = ones(2,3,2);
+assert_checkequal(o/%z, rlist(o, o*%z));

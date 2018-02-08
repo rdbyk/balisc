@@ -82,7 +82,7 @@ libscipolynomials_algo_la_CPPFLAGS = $(libscipolynomials_la_CPPFLAGS)
 CHECK_SRC= ) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipolynomials_la_CPPFLAGS)
 
-libscipolynomials_la_LIBADD = libscipolynomials-algo.la
+libscipolynomials_la_LIBADD = libscipolynomials-algo.la $(FLIBS)
 
 #### Target ######
 modulename=polynomials
