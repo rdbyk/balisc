@@ -1,20 +1,20 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Serge Steer
+// Copyright (C) 2018 - Nimish Kapoor
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 //
-// <-- Non-regression test for bug 3323 -->
+// <-- Non-regression test for bug 15142 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/3323
+// https://bugzilla.scilab.org/show_bug.cgi?id=15142
 //
 // <-- Short Description -->
-//   In ss2tf.sci, it is claimed that one may enter the second argument, rmax, as "b".
-z=poly(0,'z');
-h=[1,1/z;1/(z^2+1),z/(z^2-2)];
-if norm(coeff((clean(ss2tf(tf2ss(h),'b'))-h).num),1) >100*%eps then pause,end
+// mopen(): wrong err value
+
+[fd, err] = mopen('fake-file.txt', 'r')
+assert_checkequal(err,-2);

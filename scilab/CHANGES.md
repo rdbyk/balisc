@@ -233,13 +233,13 @@ Help pages:
 * Support to `id` attribute added for the `<tr>` tag.
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_root`, `plot2d`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
-  `scilab|scilex`, `flipdim`, `Matplot_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
+  `scilab|scilex`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
-  `colordef`, `matrix`, `coffg`
+  `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`,
- `whereis`, `mode`, `%onprompt`
+ `whereis`, `mode`, `%onprompt`, `toeplitz`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -323,6 +323,8 @@ Obsolete functions or features
 * `lstsize` is obsolete and will be removed in Scilab 6.1. Please use `size` instead.
 * `eval` is obsolete and will be removed in Scilab 6.1. Please use `evstr` instead.
 * `dgettext` is obsolete and will be removed in Scilab 6.1. Please use `gettext(domain, text)` instead.
+* `denom` is obsolete and will be removed in Scilab 6.1. Please use the `.den` rational attribute instead.
+* `numer` is obsolete and will be removed in Scilab 6.1. Please use the `.num` rational attribute instead.
 
 
 Removed Functions
@@ -351,6 +353,7 @@ Known issues
 * [#6608](http://bugzilla.scilab.org/show_bug.cgi?id=6608): Field and data insertion in an array of structures might fail.
 * [#6813](http://bugzilla.scilab.org/show_bug.cgi?id=6813): `makecell` used to create a N>2-D hyperarray yielded an error.
 * [#6911](http://bugzilla.scilab.org/show_bug.cgi?id=6911): `help_from_sci` did not accept numerical HTML entities like `&#969;` in heading comments.
+* [#6973](http://bugzilla.scilab.org/show_bug.cgi?id=6973): It was impossible to view figures of several demos in a stable docked panel.
 * [#7652](http://bugzilla.scilab.org/show_bug.cgi?id=7652): Inserting `list("")` in a cells array could be erroneous.
 * [#8140](http://bugzilla.scilab.org/show_bug.cgi?id=8140): Editing parameters of the EXPRESSION Xcos block changed Scilab's IEEE mode.
 * [#8297](http://bugzilla.scilab.org/show_bug.cgi?id=8297): `cat` slowness was exponential, crippling, and made it useless.
@@ -361,6 +364,7 @@ Known issues
 * [#9617](http://bugzilla.scilab.org/show_bug.cgi?id=9617): Xcos run-time version check was too conservative.
 * [#9838](http://bugzilla.scilab.org/show_bug.cgi?id=9838): `evstr` poorly supported simple comments in input expressions.
 * [#10270](http://bugzilla.scilab.org/show_bug.cgi?id=10270): `execstr(["%val=[int16(1)";"]"])` needed entering twice <enter> to be actually performed.
+* [#10407](http://bugzilla.scilab.org/show_bug.cgi?id=10407): The macro `acf()` of the CACSD module was used nowhere and not documented. It is removed. 
 * [#10467](http://bugzilla.scilab.org/show_bug.cgi?id=10467): `execstr` inside a `try/end` with a `catch` killed the stack.
 * [#11196](http://bugzilla.scilab.org/show_bug.cgi?id=11196): Some recursive extractions from a mlist failed.
 * [#11251](http://bugzilla.scilab.org/show_bug.cgi?id=11251): `execstr` could kill the variables stack.
@@ -444,17 +448,21 @@ Known issues
 * [#15058](http://bugzilla.scilab.org/show_bug.cgi?id=15058): With integers, `gcd` and `lcm` could return a negative result, depending on the order of negative components.
 * [#15060](http://bugzilla.scilab.org/show_bug.cgi?id=15060): `fplot3d` did not draw because of an addition with an empty matrix which now returns an empty matrix.
 * [#15063](http://bugzilla.scilab.org/show_bug.cgi?id=15063): `fort` wasn't properly removed.
+* [#15066](http://bugzilla.scilab.org/show_bug.cgi?id=15066): Undo did not update ports positions
+* [#15070](http://bugzilla.scilab.org/show_bug.cgi?id=15070): `bitset` failed when the bit position is specified as encoded integer.
 * [#15072](http://bugzilla.scilab.org/show_bug.cgi?id=15072): The context was stored as a root diagram attribute instead of being stored on each Superblock layer.
 * [#15079](http://bugzilla.scilab.org/show_bug.cgi?id=15079): When all children of a graphic handle have not the same number of sub-children, any vectorized extraction or insertion in subchildren failed.
 * [#15089](http://bugzilla.scilab.org/show_bug.cgi?id=15089): The `getcolor` GUI cleared and used the current figure.
 * [#15106](http://bugzilla.scilab.org/show_bug.cgi?id=15106): Operation without operand crashed Scilab.
 * [#15107](http://bugzilla.scilab.org/show_bug.cgi?id=15107): Scilab failed to build with ocaml 4.04.0.
+* [#15111](http://bugzilla.scilab.org/show_bug.cgi?id=15111): Summation block symbol displayed minus sign instead of plus sign.
 * [#15117](http://bugzilla.scilab.org/show_bug.cgi?id=15117): Imbricated calls to `optim` / `leastsq` / `lsqrsolve` / `fsolve` either crashed or returned errors.
 * [#15119](http://bugzilla.scilab.org/show_bug.cgi?id=15119): Inequality comparisons between complex-encoded real numbers failed.
-* [#15121](http://bugzilla.scilab.org/show_bug.cgi?id=15121): getOptionals() fails to recognize some options.
-* [#15137](http://bugzilla.scilab.org/show_bug.cgi?id=15137): ilib_build cannot build a library with more than 999 function entries in Scilab 6
-* [#15138](http://bugzilla.scilab.org/show_bug.cgi?id=15138): Scilab crashes at start on Windows
-* [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in try/catch expression
+* [#15121](http://bugzilla.scilab.org/show_bug.cgi?id=15121): `getOptionals` fails to recognize some options.
+* [#15137](http://bugzilla.scilab.org/show_bug.cgi?id=15137): `ilib_build` could not build a library with more than 999 function entries in Scilab 6
+* [#15138](http://bugzilla.scilab.org/show_bug.cgi?id=15138): Scilab crashed at startup on Windows.
+* [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in `try` / `catch` expression
+* [#15142](http://bugzilla.scilab.org/show_bug.cgi?id=15142): `mopen()` wrong err value
 * [#15144](http://bugzilla.scilab.org/show_bug.cgi?id=15144): `mean` and `stdev` could not be overloaded.
 * [#15184](http://bugzilla.scilab.org/show_bug.cgi?id=15184): error management when calling operator overload fixed.
 * [#15146](http://bugzilla.scilab.org/show_bug.cgi?id=15146): `lasterror` crashed Scilab when last error message is empty.
@@ -480,6 +488,7 @@ Known issues
 * [#15261](http://bugzilla.scilab.org/show_bug.cgi?id=15261): Insertion in struct felt with wrong default value.
 * [#15266](http://bugzilla.scilab.org/show_bug.cgi?id=15266): Wrong default out_mode in `linear_interpn`.
 * [#15273](http://bugzilla.scilab.org/show_bug.cgi?id=15273): The documented order of `eval_cshep2d` second derivatives was wrong.
+* [#15278](http://bugzilla.scilab.org/show_bug.cgi?id=15278): Moving Xcos blocks reverted rotation and flip/mirror properties
 * [#15282](http://bugzilla.scilab.org/show_bug.cgi?id=15282): `help_from_sci` could set an xml:id starting with the forbidden `%` character.
 * [#15285](http://bugzilla.scilab.org/show_bug.cgi?id=15285): `resize_matrix` did not manage conversion into `int64` and `uint64`.
 * [#15300](http://bugzilla.scilab.org/show_bug.cgi?id=15300): Distributive assignments like `a=(1,2)` crashed Scilab.
@@ -493,8 +502,12 @@ Known issues
 * [#15339](http://bugzilla.scilab.org/show_bug.cgi?id=15339): `uigetfont()` returned garbage on user cancellation.
 * [#15340](http://bugzilla.scilab.org/show_bug.cgi?id=15340): Scilab did not build against lucene 6.1.0.
 * [#15342](http://bugzilla.scilab.org/show_bug.cgi?id=15342): `replot()` and `Reframe to contents` failed on graphics with xstring objects.
+* [#15347](http://bugzilla.scilab.org/show_bug.cgi?id=15347): `toeplitz` failed with rationals.
 * [#15354](http://bugzilla.scilab.org/show_bug.cgi?id=15354): `invr(%s^2)` returned 0 instead of `1/%s^2`. For any scalar number, polynomial or rational `a`, `coffg(a)` returned `0` instead of `1`. `coffg([])` yielded an error. `invr` and `coffg` had no unitary tests. The `coffg` help page was inaccurate and unclear.
+* [#15360](http://bugzilla.scilab.org/show_bug.cgi?id=15360): `numer()` and `denom()` were almost useless, unused, and with more handy replacements. They are declared obsolete to be removed in Scilab 6.1.0.
+* [#15370](http://bugzilla.scilab.org/show_bug.cgi?id=15370): `bezout()` mishandled its output arguments.
 * [#15375](http://bugzilla.scilab.org/show_bug.cgi?id=15375): A .zcos file opened as a palette was greyed out.
+* [#15395](http://bugzilla.scilab.org/show_bug.cgi?id=15395): `ones(2,3,2) / %z` yielded an error..
 
 
 
@@ -839,4 +852,3 @@ Known issues
 * [#14685](http://bugzilla.scilab.org/show_bug.cgi?id=14685): datavec produced an invalid index error.
 * [#14980](http://bugzilla.scilab.org/show_bug.cgi?id=14980): The datatip display of the root locus arcs is broken.
 * [#14992](http://bugzilla.scilab.org/show_bug.cgi?id=14992): `readgateway` has been removed, use `whereis` instead.
-
