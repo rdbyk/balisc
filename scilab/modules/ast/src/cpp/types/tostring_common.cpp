@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,31 +30,8 @@ extern "C"
 #define POINT_SIZE 1
 #define EXPOSANT_SIZE 2         //exposant symbol + exposant sign
 
-//template <typename T>
-//void GetIntFormat(T _TVal, int *_piWidth)
-//{
-// *_piWidth = (int)(log10((double)_abs64(_TVal)) + 1);
-//}
-
-//template <typename T>
-//void AddIntValue(ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
-//{
-// if(bPrintPlusSign == true)
-// {
-//  *_postr << (_TVal < 0 ? MINUS_STRING_INT : PLUS_STRING);
-// }
-// else
-// {
-//  *_postr << (_TVal < 0 ? MINUS_STRING_INT : NO_SIGN);
-// }
-//
-// configureStream(_postr, _iWidth, 0, ' ');
-//
-// if(bPrintOne == true || _TVal != 1)
-// {
-//  *_postr << right << _abs64(_TVal);
-// }
-//}
+#define isRealZero(x) (fabs(static_cast<double>(x)) <= nc_eps())
+#define isEqual(x,y) (fabs((double)x - (double)y) <= nc_eps())
 
 void addSign(std::wostringstream * _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
 {
@@ -503,8 +480,8 @@ void printDoubleValue(std::wostringstream& ostr, double val)
 void printComplexValue(std::wostringstream& ostr, double val_r, double val_i)
 {
     DoubleFormat dfR, dfI;
-    getDoubleFormat(ZeroIsZero(val_r), &dfR);
-    getDoubleFormat(ZeroIsZero(val_i), &dfI);
+    getDoubleFormat(val_r, &dfR);
+    getDoubleFormat(val_i, &dfI);
     ostr << SPACE_BETWEEN_TWO_VALUES;
-    addDoubleComplexValue(&ostr, ZeroIsZero(val_r), ZeroIsZero(val_i), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
+    addDoubleComplexValue(&ostr, val_r, val_i, dfR.iWidth + dfI.iWidth, &dfR, &dfI);
 }

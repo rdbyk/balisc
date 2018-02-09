@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "cacsd_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -23,13 +23,13 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "elem_common.h"
+#include "numericconstants_interface.h"
 
     extern void C2F(residu)(double*, int*, double*, int*, double*, int*, double*, double*, int*);
     extern void C2F(wesidu)(double*, double*, int*, double*, double*, int*,
                             double*, double*, int*, double*, double*, double*, int*);
 }
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iRows[3]             = {0, 0, 0};
@@ -252,4 +252,3 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
     out.push_back(pDblOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

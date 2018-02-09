@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __COMMON_H__
 #define __COMMON_H__
@@ -36,18 +36,6 @@
 
 #include "doublecomplex.h"
 #include "numericconstants_interface.h"
-
-#ifdef __cplusplus
-#define isRealZero(x)						(fabs(static_cast<double>(x)) <= nc_eps())
-#define ZeroIsZero(x)						(fabs(static_cast<double>(x)) <= nc_eps() ? 0 : static_cast<double>(x))
-#else
-#define isZero(x)							(fabs((double)x) <= nc_eps())
-#define ZeroIsZero(x)						(fabs((double)x) <= nc_eps() ? 0 : (double)x)
-#endif
-
-#define getUnderflowThreshold()				nc_double_min()
-#define getOverflowThreshold()				nc_double_max()
-#define isEqual(x,y)						fabs((double)x - (double)y) <= nc_eps()
 
 extern double C2F(dlamch) (const char *_pszCommand, unsigned long int);
 extern int C2F(dgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,

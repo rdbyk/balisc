@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -409,7 +409,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
                 DoubleFormat df;
                 // Get the size of the column to print
-                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                getDoubleFormat(m_pRealData[iPos], &df);
                 iLen = static_cast<int>(ostemp.str().size()) + SIZE_BETWEEN_TWO_VALUES + df.iSignLen + df.iWidth;
                 if (iLen >= iLineLen - 1 && iLastVal != i)
                 {
@@ -430,7 +430,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 }
 
                 ostemp << SPACE_BETWEEN_TWO_VALUES;
-                addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
+                addDoubleValue(&ostemp, m_pRealData[iPos], &df);
             }
 
             if (iLastVal != 0)
@@ -452,7 +452,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 int iPos = getIndex(_piDims);
 
                 DoubleFormat dfR, dfI;
-                getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalLen, &dfR, &dfI);
+                getComplexFormat(m_pRealData[iPos], m_pImgData[iPos], &iTotalLen, &dfR, &dfI);
                 iLen = static_cast<int>(ostemp.str().size()) + SIZE_BETWEEN_TWO_VALUES + iTotalLen;
                 if (iLen >= iLineLen - 1 && iLastVal != i)
                 {
@@ -473,7 +473,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 }
 
                 ostemp << SPACE_BETWEEN_TWO_VALUES;
-                addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iTotalLen, &dfR, &dfI);
+                addDoubleComplexValue(&ostemp, m_pRealData[iPos], m_pImgData[iPos], iTotalLen, &dfR, &dfI);
             }
 
             if (iLastVal != 0)
@@ -505,7 +505,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat df;
-                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                    getDoubleFormat(m_pRealData[iPos], &df);
                     piSize[iCols1] = std::max(piSize[iCols1], df.iWidth);
                 }
             }
@@ -541,12 +541,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             int iPos = getIndex(_piDims);
 
                             DoubleFormat df;
-                            getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                            getDoubleFormat(m_pRealData[iPos], &df);
 
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
 
                             df.iWidth = piSize[iCols2];
-                            addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
+                            addDoubleValue(&ostemp, m_pRealData[iPos], &df);
                         }
                         ostemp << L"\n";
                     }
@@ -594,11 +594,11 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat df;
-                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                    getDoubleFormat(m_pRealData[iPos], &df);
 
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
                     df.iWidth = piSize[iCols2];
-                    addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
+                    addDoubleValue(&ostemp, m_pRealData[iPos], &df);
                 }
                 ostemp << L"\n";
             }
@@ -622,7 +622,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat dfR, dfI;
-                    getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
+                    getComplexFormat(m_pRealData[iPos], m_pImgData[iPos], &iTotalWidth, &dfR, &dfI);
 
                     iTotalWidth += (dfR.iWidth == 0 ? 0 : SIGN_LENGTH) + (dfI.iWidth == 0 ? 0 : SIGN_LENGTH + 1);
                     if (iTotalWidth > piSize[iCols1])
@@ -665,10 +665,10 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             int iPos = getIndex(_piDims);
 
                             DoubleFormat dfR, dfI;
-                            getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
+                            getComplexFormat(m_pRealData[iPos], m_pImgData[iPos], &iTotalWidth, &dfR, &dfI);
 
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
-                            addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
+                            addDoubleComplexValue(&ostemp, m_pRealData[iPos], m_pImgData[iPos], piSize[iCols2], &dfR, &dfI);
                         }
                         ostemp << L"\n";
                     }
@@ -717,10 +717,10 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat dfR, dfI;
-                    getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
+                    getComplexFormat(m_pRealData[iPos], m_pImgData[iPos], &iTotalWidth, &dfR, &dfI);
 
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
-                    addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
+                    addDoubleComplexValue(&ostemp, m_pRealData[iPos], m_pImgData[iPos], piSize[iCols2], &dfR, &dfI);
                 }
                 ostemp << L"\n";
             }
