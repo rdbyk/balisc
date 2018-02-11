@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2012 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,22 +12,18 @@
 // along with this program.
 
 function [m, n, nx] = %r_size(x, flag)
-    // only to be called by size function for dynamical systems
-    //!
-    m = 0;
-    n = 0;
-    [lhs,rhs] = argn(0)
-    x1 = x(1);
-    if lhs == 1 then
-        if rhs == 1 then
-            execstr("m = size(x(''num''));","errcatch");
+
+    if nargout == 1 then
+        if nargin == 1 then
+            m = size(x.num);
         else
-            execstr("m = size(x(''num''), flag);","errcatch");
+            m = size(x.num, flag);
         end
-    elseif lhs == 2 then
-        if rhs <> 1 then
+    elseif nargout == 2 then
+        if nargin <> 1 then
             error(41)
         end
-        execstr("[m, n] = size(x(''num''));","errcatch");
+        [m, n] = size(x.num);
     end
+
 endfunction

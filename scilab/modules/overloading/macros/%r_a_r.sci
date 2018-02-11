@@ -11,46 +11,54 @@
 // along with this program.
 
 function f = %r_a_r(s1, s2)
+
     if ndims(s1)<2 & ndims(s2)<2 then
         [s1,s2] = sysconv(s1,s2)
     end
-    [num1,den1] = s1(["num","den"])
-    [num2,den2] = s2(["num","den"])
+
+    num1 = s1.num
+    den1 = s1.den
+    num2 = s2.num
+    den2 = s2.den
     sz1 = size(num1)
     sz2 = size(num2)
 
-    if and(sz1>=0)&and(sz2>=0) then
-        num1 = num1(:)
-        den1 = den1(:)
-        num2 = num2(:)
-        den2 = den2(:)
+    if and(sz1>=0) && and(sz2>=0) then
+        num1 = matrix(num1, length(num1), 1)
+        den1 = matrix(den1, length(den1), 1)
+        num2 = matrix(num2, length(num2), 1)
+        den2 = matrix(den2, length(den2), 1)
 
-        if prod(sz1)==1 & prod(sz2)>1 then
+        if prod(sz1)==1 && prod(sz2)>1 then
             den1 = den1(ones(den2))
             num1 = num1(ones(num2))
             sz1 = sz2
-        elseif prod(sz2)==1 & prod(sz1)>1 then
+        elseif prod(sz2)==1 && prod(sz1)>1 then
             den2 = den2(ones(den1))
             num2 = num2(ones(num1))
             sz2 = sz1
         end
+
         if and(sz1<>sz2) then
             msg = _("%s: Inconsistent addition.\n")
             error(msprintf(msg, "%r_a_r"))
         end
+
         for l = 1:prod(sz1)
             [den,fact] = lcm([den1(l); den2(l)])
             num1(l) = [num1(l),num2(l)]*fact
             den1(l) = den
         end
+
         [num1,den1] = simp(num1,den1)
         f = rlist(matrix(num1,sz1),matrix(den1,sz1),s1.dt)
     else
-        if size(sz1,"*")>2|size(sz2,"*")>2 then
+        if size(sz1,"*")>2 || size(sz2,"*")>2 then
             msg = _("%s: Inconsistent addition.\n")
             error(msprintf(msg, "%r_a_r"))
         end
-        if or(sz1<0) & or(sz2<0) then
+
+        if or(sz1<0) && or(sz2<0) then
             // both are eye*x
             [den1,fact] = lcm([den1; den2])
             [num1,den1] = simp([num1, num2]*fact, den1)
@@ -77,7 +85,9 @@ function f = %r_a_r(s1, s2)
             f = rlist(num1, den1, s1.dt)
         end
     end
+
     if simp_mode()
         f = simp(f)
     end
+
 endfunction
