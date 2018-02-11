@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,19 +10,19 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-// STILL CALLED in 6.0.0-b2
-
 function x = %hm_and(m,d)
-    if argn(2)==1 | d=="*" then
-        x=and(m(:));
+
+    if nargin==1 | d=="*" then
+        x=and(matrix(m,length(m),1));
         return
     end
 
     dims = size(m);
+
     if d=="m" then
         d=find(dims>1,1)
         if d==[] then
-            x=and(m(:));
+            x=and(matrix(m,length(m),1));
             return
         end
     end
@@ -33,22 +33,24 @@ function x = %hm_and(m,d)
     ind=(0:p1:p2-1)';// selection for building one vector
     deb=(1:p1);
     I=ind*ones(deb)+ones(ind)*deb
-
     ind=(0:p2:prod(dims)-1);
     I=ones(ind).*.I+ind.*.ones(I)
-
     x=and(matrix(m(I),dims(d),-1),1);
 
     dims(d)=1
+
     while  dims($)==1 then
         dims($)=[];
     end
+
     if d==N then
         dims=dims(1:$);
     else
         dims(d)=1;
     end
+
     if dims<>[]
         x=matrix(x, dims);
     end
+
 endfunction
