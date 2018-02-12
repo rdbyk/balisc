@@ -3,7 +3,7 @@
  * Copyright (C) INRIA - Cong WU , Allan CORNET
  * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
  * along with this program.
  *
  */
-/*------------------------------------------------------------------------*/
+
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
 #include "function.hxx"
@@ -29,10 +29,10 @@ extern "C"
 #include "pcre_private.h"
 #include "freeArrayOfString.h"
 }
-/*-------------------------------------------------------------------------------------*/
+
 #define WCHAR_R L'r'
 #define WCHAR_S L's'
-/*-------------------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bRegExp = false;
@@ -92,6 +92,13 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
+    if (in[1]->getAs<types::String>()->getFirst()[0] == L'\0')
+    {
+        // replace nothing
+        out.push_back(in[0]);
+        return types::Function::OK;
+    }
+
     types::String* pS = in[0]->getAs<types::String>();
 
     types::String* pOut = new types::String(pS->getRows(), pS->getCols());
@@ -119,4 +126,3 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*-------------------------------------------------------------------------------------*/
