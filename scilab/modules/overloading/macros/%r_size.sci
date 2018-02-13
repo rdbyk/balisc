@@ -24,7 +24,7 @@ function varargout = %r_size(x, flag)
         end
         varargout = list(m)
     else
-        if nargout > 1 then
+        if nargin > 1 then
             msg = _("%s: Wrong number of output arguments: %d expected.\n");
             error(msprintf(msg, "%r_size", 1));
         end
