@@ -10,14 +10,14 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [d]=%b_triu(a,k)
+function d=%b_triu(a,k)
 
     if nargin==1 then
         k=0
     end
 
     o = ones(a);
-    d = %f(o)
+    d = o < 0 // %f(o)
     i = find(triu(o,k))
     d(i) = a(i)
 

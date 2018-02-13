@@ -17,7 +17,7 @@ function [d]=%b_tril(a,k)
     end
 
     o = ones(a);
-    d = %f(o)
+    d = o < 0 // %f(o)
     i = find(tril(o,k))
     d(i) = a(i)
 
