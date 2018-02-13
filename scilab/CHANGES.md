@@ -45,6 +45,22 @@ It is still also available under the terms of the CeCILL v2.1.
   - `tbx_builder_gateway`: scans the subdirectories under `sci_gateway` for builder files and executes them
 
 
+Windows starting changes:
+
+options -nw and -nwni are no longer supported by binaries ( WScilex.exe, WScilex-cli.exe and Scilex.exe )
+Each binary already matches an execution  mode
+ -> WScilex.exe starts Scilab with GUI
+ -> Wscilex-cli.exe starts Scilab without GUI but with Java
+ -> Scilex.exe starts Scilab without GUI and without Java.
+ 
+A batch file `Scilab.bat ` has been added to select the right binary depending on the option flag.
+scilab       -> WScilex.exe
+scilab -nw   -> WScilex-cli.exe
+scilab -nwni -> Scilex.exe
+
+others flags are forwarded to binaries as before.
+
+
 Installation
 ------------
 
@@ -209,7 +225,7 @@ input and output arguments.
 * `atomsSetConfig` does not update cache.
 * `lqi` function added to compute "linear quadratic integral compensator".
 * A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected in a dynamical list set from Scinotes favorite and most recent directories.
-* The console `File => Open a file` menu allows now to open *.xcos *.zcos *.scg or lib files with the proper Scilab component, and other files with the proper OS application. All files were opened in Scinotes and could freeze it.
+* The console `File => Open a file` menu allows now to open xcos, zcos, scg or lib files with the proper Scilab component, and other files with the proper OS application. All files were opened in Scinotes and could freeze it.
 * `size` is now overloadable for `tlist` lists, as it already could for `mlist` lists.
 * For arrays of cells or structures, `length` now returns their number of elements.
 * `gcd` now accepts `int64` and `uint64` integers. The input can now be an array instead of a row vector.
@@ -222,8 +238,8 @@ input and output arguments.
   - For unregistered user-defined macros, `"script"` is now returned instead of `[]`.
 * `mgetl` speed has been improved for files with a lot of lines.
 * `ndgrid(x)` now accepts only one input `x`, with by default `y=x`.
+* `banner()` updated with ESI Group a 2017-2018 copyright.
 
-  
 Help pages:
 -----------
 
@@ -233,13 +249,13 @@ Help pages:
 * Support to `id` attribute added for the `<tr>` tag.
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_root`, `plot2d`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
-  `scilab|scilex`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
+  `scilab`, `flipdim`, `Matplot_properties`, `text_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`, `evstr`,
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
   `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `isglobal`,
- `whereis`, `mode`, `%onprompt`, `toeplitz`
+ `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -284,6 +300,7 @@ Scilab 5.5.2 is able to open the newly saved files, but the ports have to be rep
 Added to the CVode package, it also benefits from the CVode root finding feature.
 * Added a new link style (`Optimal`) for automatically finding the optimal route.
 * Automatically reposition split blocks for better-looking layout.
+* `EXPBLK_m (a^u)` and `POWBLK_f (u^a)` icons now show the value of the `a` parameter. The `AUTOMAT` icon now shows `Nmodes` and `Nstates` values. The `SineVoltage` icon now shows the frequency value.
 * Block modifications:
   - `INVBLK`: add a divide by zero parameter to ignore the error
   - `PRODUCT`: add a divide by zero parameter to ignore the error
@@ -296,7 +313,7 @@ Added to the CVode package, it also benefits from the CVode root finding feature
   - dynamic palette with the last used blocks
   - zoom using CTRL(+), CTRL(-) and CTRL(mouse wheel)
   - load SVG icons
-* Deleted obsolete WFILE_f block, please use WRITEC_f instead.
+* Deleted obsolete `WFILE_f` block, please use `WRITEC_f` instead.
 
 
 API modification
@@ -347,8 +364,10 @@ Known issues
 * [#4276](http://bugzilla.scilab.org/show_bug.cgi?id=4276): `strsubst` replaced the first occurence in regex mode.
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
 * [#5381](http://bugzilla.scilab.org/show_bug.cgi?id=5381): For UTF-8 inputs, `msprintf`, `mprintf` and `mfprintf` shortened the output.
+* [#5567](http://bugzilla.scilab.org/show_bug.cgi?id=5567): `bar(.., colors)` used with grouped or stacked subsets, only a unique common meaningless color could be specified. Only a restricted list of 10 colors names could be used. Some arguments checking were wrong.
 * [#5602](http://bugzilla.scilab.org/show_bug.cgi?id=5602): Assigning a component of a list in a cells array replaced the whole list.
 * [#5611](http://bugzilla.scilab.org/show_bug.cgi?id=5611): It was not possible to delete the row or column of a cells array.
+* [#6155](http://bugzilla.scilab.org/show_bug.cgi?id=6155): Pages of `param3d()` and `param3d1()` deserved being fixed, improved and merged in a single page.
 * [#6607](http://bugzilla.scilab.org/show_bug.cgi?id=6607): `clear S; S(1:2,1:3).a = 1` yielded an error.
 * [#6608](http://bugzilla.scilab.org/show_bug.cgi?id=6608): Field and data insertion in an array of structures might fail.
 * [#6813](http://bugzilla.scilab.org/show_bug.cgi?id=6813): `makecell` used to create a N>2-D hyperarray yielded an error.
@@ -357,6 +376,7 @@ Known issues
 * [#7652](http://bugzilla.scilab.org/show_bug.cgi?id=7652): Inserting `list("")` in a cells array could be erroneous.
 * [#8140](http://bugzilla.scilab.org/show_bug.cgi?id=8140): Editing parameters of the EXPRESSION Xcos block changed Scilab's IEEE mode.
 * [#8297](http://bugzilla.scilab.org/show_bug.cgi?id=8297): `cat` slowness was exponential, crippling, and made it useless.
+* [#8629](http://bugzilla.scilab.org/show_bug.cgi?id=8629): On the help page of the Xcos Sinks palette, blocks screenshots were stacked and not hyperlinked to their page.
 * [#8669](http://bugzilla.scilab.org/show_bug.cgi?id=8669): After `A=rand(3,3)`, some legal insertions in `A(*,*,:)` failed. Non regression tests added.
 * [#8842](http://bugzilla.scilab.org/show_bug.cgi?id=8842): Assigning the pointer of a builtin function to a new structure failed.
 * [#9297](http://bugzilla.scilab.org/show_bug.cgi?id=9297): Assigning a mlist to a structure's field failed.
@@ -387,6 +407,7 @@ Known issues
 * [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
 * [#13962](http://bugzilla.scilab.org/show_bug.cgi?id=13962): Preselecting a groupnamed radiobutton was impossible after having created it already once.
 * [#13979](http://bugzilla.scilab.org/show_bug.cgi?id=13979): A variable whose name is longer than 24 characters could not be cleared.
+* [#13984](http://bugzilla.scilab.org/show_bug.cgi?id=13984): For a set of curves, `plot(.., "color", colors..)` was not vectorized for colors specifications. Moreover, only 10 basic named colors were accepted, instead of the full list of predefined colors names.
 * [#14221](http://bugzilla.scilab.org/show_bug.cgi?id=14221): `msprintf` and `mprintf` ignored row-wise processing with `%%`.
 * [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): `input()` was broken: \n was introduced before prompting; multiple prompts occurred; the output value could be missing; "%" "\n" "\t" were no longer supported in messages...
@@ -412,6 +433,7 @@ Known issues
 * [#14978](http://bugzilla.scilab.org/show_bug.cgi?id=15006): ode help page still contained 'root' which has been replaced by 'roots'.
 * [#15008](http://bugzilla.scilab.org/show_bug.cgi?id=15008): scilab crash in using operator AND (&, &&) or OR (| ||) with a string.
 * [#14703](http://bugzilla.scilab.org/show_bug.cgi?id=14703): `clear linspace, type(linspace)` returned 11 instead of 13.
+* [#14749](http://bugzilla.scilab.org/show_bug.cgi?id=14749): The icon of the Xcos `POWBLK_f` and `EXPBLK_m` blocks displayed "u^a" and "a^u" instead of the actual a value.
 * [#14883](http://bugzilla.scilab.org/show_bug.cgi?id=14883): `whereis` did not support builtin functions.
 * [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): `Matplot` save/load failed.
 * [#14896](http://bugzilla.scilab.org/show_bug.cgi?id=14896): Using `set` with multiple properties, only the first one was set.
@@ -421,7 +443,7 @@ Known issues
 * [#14922](http://bugzilla.scilab.org/show_bug.cgi?id=14922): The `%onprompt()` special function was not documented.
 * [#14925](http://bugzilla.scilab.org/show_bug.cgi?id=14925): `jdeff`: `invoke_lu()` deleted/corrupted the called java method after an error occured.
 * [#14981](http://bugzilla.scilab.org/show_bug.cgi?id=14981): Some vertical concatenations of cells and further cells extractions crash Scilab.
-* [#14984](http://bugzilla.scilab.org/show_bug.cgi?id=14984): Blocks screenshots could not be scaled nor aligned in palettes pages.
+* [#14984](http://bugzilla.scilab.org/show_bug.cgi?id=14984): In palettes pages, blocks screenshots were not aligned nor hyperlinked.
 * [#15006](http://bugzilla.scilab.org/show_bug.cgi?id=15006): `ode` help page still contained 'root' which has been replaced by 'roots'.
 * [#15008](http://bugzilla.scilab.org/show_bug.cgi?id=15008): scilab crashed when using operator AND (&, &&) or OR (| ||) with a string.
 * [#15010](http://bugzilla.scilab.org/show_bug.cgi?id=15010): Coselica did not simulate on Scilab 6.
@@ -505,9 +527,16 @@ Known issues
 * [#15347](http://bugzilla.scilab.org/show_bug.cgi?id=15347): `toeplitz` failed with rationals.
 * [#15354](http://bugzilla.scilab.org/show_bug.cgi?id=15354): `invr(%s^2)` returned 0 instead of `1/%s^2`. For any scalar number, polynomial or rational `a`, `coffg(a)` returned `0` instead of `1`. `coffg([])` yielded an error. `invr` and `coffg` had no unitary tests. The `coffg` help page was inaccurate and unclear.
 * [#15360](http://bugzilla.scilab.org/show_bug.cgi?id=15360): `numer()` and `denom()` were almost useless, unused, and with more handy replacements. They are declared obsolete to be removed in Scilab 6.1.0.
+* [#15363](http://bugzilla.scilab.org/show_bug.cgi?id=15363): `h2norm()` could no longer be applied to undefined time domain systems, and made the residu() right example failing.
+* [#15368](http://bugzilla.scilab.org/show_bug.cgi?id=15368): `freson()` wrongly returned [] (no peak frequency detected) for some continuous time linear systems.
 * [#15370](http://bugzilla.scilab.org/show_bug.cgi?id=15370): `bezout()` mishandled its output arguments.
 * [#15375](http://bugzilla.scilab.org/show_bug.cgi?id=15375): A .zcos file opened as a palette was greyed out.
+* [#15379](http://bugzilla.scilab.org/show_bug.cgi?id=15379): `zeros(A)` was not documented as equivalent to `mtlb_zeros(size(A))`.
+* [#15380](http://bugzilla.scilab.org/show_bug.cgi?id=15380): `argn()` documentation was somewhat unclear and uncomplete.
 * [#15395](http://bugzilla.scilab.org/show_bug.cgi?id=15395): `ones(2,3,2) / %z` yielded an error..
+* [#15396](http://bugzilla.scilab.org/show_bug.cgi?id=15396): `[m,n,p] = size(hr)` yielded an error with an hypermatrix hr of rationals.
+* [#15402](http://bugzilla.scilab.org/show_bug.cgi?id=15402): The `range()` page was not fixed against the bug 1904 for the french and portuguese versions.
+* [#15405](http://bugzilla.scilab.org/show_bug.cgi?id=15405): Accessing int64 hdf5 values crashed scilab.
 
 
 
