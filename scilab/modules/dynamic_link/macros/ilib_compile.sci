@@ -43,7 +43,7 @@ function libn = ilib_compile(lib_name, ..
         files = [];
     else
         if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
-            error(999, msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_compile", 3));
+            error(msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_compile", 3));
         end
     end
 
@@ -137,7 +137,7 @@ function libn = ilib_compile(lib_name, ..
 
         global cppCompilation;
         if cppCompilation then
-            cflags = cflags + " --std=c++11";
+            cflags = cflags + " -std=c++11";
         end
         clearglobal cppCompilation;
 
