@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,13 +12,13 @@
 
 function d=%c_tril(a,k)
 
-    [lhs,rhs]=argn(0)
-    if rhs==1 then k=0,end
+    if nargin==1 then
+        k=0
+    end
 
-    [m,n]=size(a)
-    i=find(tril(ones(a),k))
-    a=matrix(a,m*n,1)
-    d=emptystr(m*n,1)
-    d(i)=a(i)
-    d=matrix(d,m,n)
+    o = ones(a);
+    d = emptystr(o)
+    i = find(tril(o,k))
+    d(i) = a(i)
+
 endfunction
