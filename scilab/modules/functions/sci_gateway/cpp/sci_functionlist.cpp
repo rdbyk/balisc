@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,31 +19,50 @@
 #include "functions_gw.hxx"
 #include "string.hxx"
 
-/*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types::typed_list &out)
+extern "C"
 {
-    symbol::Context* pContext = symbol::Context::getInstance();
-    ;
+#include "localization.h"
+#include "Scierror.h"
+}
+
+using types::Double;
+using types::Function;
+using types::InternalType;
+using types::String;
+using types::typed_list;
+using symbol::Symbol;
+using symbol::Context;
+
+static const char fname[] = "funclist";
+
+Function::ReturnValue sci_funclist(typed_list &in, int _iRetCount, typed_list &out)
+{
+    Context* pContext = Context::getInstance();
+
     if (in.size() > 1)
     {
-        return types::Function::Error;
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 0, 1);
+        return Function::Error;
     }
 
     std::wstring pstLibName;
+
     if (in.size() == 1)
     {
-        types::InternalType* pIT = in[0];
+        InternalType* pIT = in[0];
 
         if (pIT->isString() == false)
         {
-            return types::Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+            return Function::Error;
         }
 
-        types::String *pS = pIT->getAs<types::String>();
+        String *pS = pIT->getAs<String>();
 
         if (pS->getSize() != 1)
         {
-            return types::Function::Error;
+            Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 1);
+            return Function::Error;
         }
 
         pstLibName = pS->getFirst();
@@ -53,19 +72,26 @@ types::Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount,
         pstLibName.clear();
     }
 
-    std::list<symbol::Symbol> funcList;
+    std::list<Symbol> funcList;
     int size = pContext->getFunctionList(funcList, pstLibName);
 
-    types::String *pS = new types::String(size, 1);
-
-    std::list<symbol::Symbol>::iterator it;
-    int i = 0;
-    for (auto it : funcList)
+    if (size)
     {
-        pS->set(i++, 0, it.getName().c_str());
+        String *pS = new String(size, 1);
+        std::list<Symbol>::iterator it;
+
+        int i = 0;
+        for (auto it : funcList)
+        {
+            pS->set(i++, 0, it.getName().c_str());
+        }
+
+        out.push_back(pS);
+    }
+    else
+    {
+        out.push_back(Double::Empty());
     }
 
-    out.push_back(pS);
-    return types::Function::OK;
+    return Function::OK;
 }
-/*--------------------------------------------------------------------------*/
