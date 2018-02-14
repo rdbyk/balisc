@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -128,7 +128,7 @@ bool getArgsDims(typed_list* _pArgsIn, std::vector<int>& dims)
         if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
         {
             int ind = static_cast<int>(getIndex(in));
-            if (ind == 0)
+            if (ind <= 0)
             {
                 return false;
             }
@@ -208,7 +208,7 @@ bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
         {
             int ind = static_cast<int>(getIndex(in));
 
-            if (ind == 0 || (dimsIn != 1 && ind > pdims[i]))
+            if (ind <= 0 || (dimsIn != 1 && ind > pdims[i]))
             {
                 return false;
             }
@@ -305,7 +305,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
         {
             int idx = static_cast<int>(getIndex(in));
-            if (idx == 0)
+            if (idx <= 0)
             {
                 return false;
             }
