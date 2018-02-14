@@ -52,7 +52,7 @@ Each binary already matches an execution  mode
  -> WScilex.exe starts Scilab with GUI
  -> Wscilex-cli.exe starts Scilab without GUI but with Java
  -> Scilex.exe starts Scilab without GUI and without Java.
- 
+
 A batch file `Scilab.bat ` has been added to select the right binary depending on the option flag.
 scilab       -> WScilex.exe
 scilab -nw   -> WScilex-cli.exe
@@ -384,7 +384,7 @@ Known issues
 * [#9617](http://bugzilla.scilab.org/show_bug.cgi?id=9617): Xcos run-time version check was too conservative.
 * [#9838](http://bugzilla.scilab.org/show_bug.cgi?id=9838): `evstr` poorly supported simple comments in input expressions.
 * [#10270](http://bugzilla.scilab.org/show_bug.cgi?id=10270): `execstr(["%val=[int16(1)";"]"])` needed entering twice <enter> to be actually performed.
-* [#10407](http://bugzilla.scilab.org/show_bug.cgi?id=10407): The macro `acf()` of the CACSD module was used nowhere and not documented. It is removed. 
+* [#10407](http://bugzilla.scilab.org/show_bug.cgi?id=10407): The macro `acf()` of the CACSD module was used nowhere and not documented. It is removed.
 * [#10467](http://bugzilla.scilab.org/show_bug.cgi?id=10467): `execstr` inside a `try/end` with a `catch` killed the stack.
 * [#11196](http://bugzilla.scilab.org/show_bug.cgi?id=11196): Some recursive extractions from a mlist failed.
 * [#11251](http://bugzilla.scilab.org/show_bug.cgi?id=11251): `execstr` could kill the variables stack.
@@ -404,12 +404,15 @@ Known issues
 * [#13277](http://bugzilla.scilab.org/show_bug.cgi?id=13277): `execstr("clear")` did not clear any variables in the current scope.
 * [#13581](http://bugzilla.scilab.org/show_bug.cgi?id=13581): The example of `inistate()` help page did not work on Windows 64bit.
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
+* [#13796](http://bugzilla.scilab.org/show_bug.cgi?id=13796): `tbx_generate_pofile` missed registering `_()` and `gettext()` references. In `en_US.po`, commented paths were absolute. Literal '' were copied in msgid without simplification.
 * [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
 * [#13962](http://bugzilla.scilab.org/show_bug.cgi?id=13962): Preselecting a groupnamed radiobutton was impossible after having created it already once.
 * [#13979](http://bugzilla.scilab.org/show_bug.cgi?id=13979): A variable whose name is longer than 24 characters could not be cleared.
 * [#13984](http://bugzilla.scilab.org/show_bug.cgi?id=13984): For a set of curves, `plot(.., "color", colors..)` was not vectorized for colors specifications. Moreover, only 10 basic named colors were accepted, instead of the full list of predefined colors names.
 * [#14221](http://bugzilla.scilab.org/show_bug.cgi?id=14221): `msprintf` and `mprintf` ignored row-wise processing with `%%`.
 * [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
+* [#14305](http://bugzilla.scilab.org/show_bug.cgi?id=14305): unused `%i_d_i` was still distributed.
+* [#14371](http://bugzilla.scilab.org/show_bug.cgi?id=14371): Scilab crashed when a block is edited.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): `input()` was broken: \n was introduced before prompting; multiple prompts occurred; the output value could be missing; "%" "\n" "\t" were no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): `whereami`: wrong information (line numbers).
 * [#14424](http://bugzilla.scilab.org/show_bug.cgi?id=14424): There were some troubles with `input`.
@@ -533,11 +536,14 @@ Known issues
 * [#15375](http://bugzilla.scilab.org/show_bug.cgi?id=15375): A .zcos file opened as a palette was greyed out.
 * [#15379](http://bugzilla.scilab.org/show_bug.cgi?id=15379): `zeros(A)` was not documented as equivalent to `mtlb_zeros(size(A))`.
 * [#15380](http://bugzilla.scilab.org/show_bug.cgi?id=15380): `argn()` documentation was somewhat unclear and uncomplete.
+* [#15388](http://bugzilla.scilab.org/show_bug.cgi?id=15388): Dynamic link did not work on MACOSX 10,12.
 * [#15395](http://bugzilla.scilab.org/show_bug.cgi?id=15395): `ones(2,3,2) / %z` yielded an error..
 * [#15396](http://bugzilla.scilab.org/show_bug.cgi?id=15396): `[m,n,p] = size(hr)` yielded an error with an hypermatrix hr of rationals.
 * [#15402](http://bugzilla.scilab.org/show_bug.cgi?id=15402): The `range()` page was not fixed against the bug 1904 for the french and portuguese versions.
 * [#15405](http://bugzilla.scilab.org/show_bug.cgi?id=15405): Accessing int64 hdf5 values crashed scilab.
-
+* [#15413](http://bugzilla.scilab.org/show_bug.cgi?id=15413): Deleting some ranges (rows, columns, pages, ..) in a structures array failed.
+* [#15418](http://bugzilla.scilab.org/show_bug.cgi?id=15418): With `colordef('black')` and colordef('none')`, black title and labels were invisible on the black background.
+* [#15420](http://bugzilla.scilab.org/show_bug.cgi?id=15420): insertion at negative index did not trigger an error.
 
 
 ### Bugs fixed in 6.0.0:
