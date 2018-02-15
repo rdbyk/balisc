@@ -1207,7 +1207,7 @@ static void Add_io(void)
 
 static void Add_balisc(void)
 {
-    Add_Boolean_Constant(L"%balisc", true);
+    Add_Double_Constant(L"%balisc", 0);
 }
 
 static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdbl)
