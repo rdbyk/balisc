@@ -1,9 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,6 +37,7 @@ extern "C"
 {
 #include "sci_malloc.h"
 #include "Scierror.h"
+#include "Sciwarning.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "os_string.h"
@@ -51,54 +51,81 @@ extern "C"
 #include "strcmp.h"
 }
 
-/*--------------------------------------------------------------------------*/
+using types::Bool;
+using types::Callable;
+using types::Cell;
+using types::Double;
+using types::Function;
+using types::GraphicHandle;
+using types::Int8;
+using types::Int16;
+using types::Int32;
+using types::Int64;
+using types::InternalType;
+using types::List;
+using types::Macro;
+using types::MacroFile;
+using types::Polynom;
+using types::SinglePoly;
+using types::SingleStruct;
+using types::Sparse;
+using types::SparseBool;
+using types::String;
+using types::Struct;
+using types::UInt8;
+using types::UInt16;
+using types::UInt32;
+using types::UInt64;
+using types::UserType;
+using types::typed_list;
+using symbol::Context;
+using symbol::Symbol;
+
 static bool isVarExist(int _iFile, const char* _pstVarName);
 static int extractVarNameList(int* pvCtx, int _iStart, int _iEnd, char** _pstNameList);
 
-int export_data(int parent, const std::string& name, types::InternalType* data);
-static int export_double(int parent, const std::string& name, types::Double* data);
-static int export_string(int parent, const std::string& name, types::String* data);
-static int export_boolean(int parent, const std::string& name, types::Bool* data);
-static int export_list(int parent, const std::string& name, types::List* data);
-static int export_struct(int parent, const std::string& name, types::Struct* data, const char* type = g_SCILAB_CLASS_STRUCT);
+int export_data(int parent, const std::string& name, InternalType* data);
+static int export_double(int parent, const std::string& name, Double* data);
+static int export_string(int parent, const std::string& name, String* data);
+static int export_boolean(int parent, const std::string& name, Bool* data);
+static int export_list(int parent, const std::string& name, List* data);
+static int export_struct(int parent, const std::string& name, Struct* data, const char* type = g_SCILAB_CLASS_STRUCT);
 template <class T> static int export_int(int parent, const std::string& name, int type, const char* prec, T* data);
-static int export_poly(int parent, const std::string& name, types::Polynom* data);
-static int export_sparse(int parent, const std::string& name, types::Sparse* data);
-static int export_cell(int parent, const std::string& name, types::Cell* data);
-static int export_macro(int parent, const std::string& name, types::Macro* data);
-static int export_usertype(int parent, const std::string& name, types::UserType* data);
+static int export_poly(int parent, const std::string& name, Polynom* data);
+static int export_sparse(int parent, const std::string& name, Sparse* data);
+static int export_cell(int parent, const std::string& name, Cell* data);
+static int export_macro(int parent, const std::string& name, Macro* data);
+static int export_usertype(int parent, const std::string& name, UserType* data);
 
-static int export_boolean_sparse(int parent, const std::string& name, types::SparseBool* data);
-static int export_handles(int parent, const std::string& name, types::GraphicHandle* data);
+static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data);
+static int export_handles(int parent, const std::string& name, GraphicHandle* data);
 static int export_void(int parent, const std::string& name);
 static int export_undefined(int parent, const std::string& name);
 
-/*--------------------------------------------------------------------------*/
-static const std::string fname("save");
-/*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount, types::typed_list &out)
+static const char fname[] = "save";
+
+Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &out)
 {
     int iH5File = 0;
     bool bAppendMode = false;
     int rhs = static_cast<int>(in.size());
     std::string filename;
-    std::map<std::string, types::InternalType*> vars;
-    symbol::Context* ctx = symbol::Context::getInstance();
+    std::map<std::string, InternalType*> vars;
+    Context* ctx = Context::getInstance();
 
-    /* Check the number of input argument */
     if (in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): at least %d expected.\n"), fname.data(), 2);
-        return types::Function::Error;
+        Scierror(999, _("%s: Wrong number of input argument(s): at least %d expected.\n"), fname, 2);
+        return Function::Error;
     }
 
-    if (in[0]->getId() != types::InternalType::IdScalarString)
+    if (in[0]->getId() != InternalType::IdScalarString)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname.data(), 1);
-        return types::Function::Error;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, 1);
+        return Function::Error;
     }
 
-    wchar_t* wfilename = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
+    wchar_t* wfilename = expandPathVariableW(in[0]->getAs<String>()->get()[0]);
     char* cfilename = wide_string_to_UTF8(wfilename);
     filename = cfilename;
     FREE(wfilename);
@@ -113,17 +140,31 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
 
         if (size == 0)
         {
-            return types::Function::OK;
+            return Function::OK;
         }
 
         for (const auto & wvar : lst)
         {
-            types::InternalType* pIT = ctx->getAtLevel(symbol::Symbol(wvar), SCOPE_CONSOLE);
+            InternalType* pIT = ctx->getAtLevel(Symbol(wvar), SCOPE_CONSOLE);
 
-            //do not save macrofile
+            // ignore macrofiles, functions, and libraries
             if (pIT->isMacroFile() || pIT->isFunction() || pIT->isLibrary())
             {
                 continue;
+            }
+
+            if (pIT->isHandle())
+            {
+                GraphicHandle* pGH = pIT->getAs<GraphicHandle>();
+
+                int i = pGH->getSize();
+                while (--i >= 0 && getObjectFromHandle(pGH->get(i)));
+
+                if (i >= 0)
+                {
+                    Sciwarning(_("WARNING: %s: invalid graphic handle is ignored.\n"), fname);
+                    continue;
+                }
             }
 
             char* cvar = wide_string_to_UTF8(wvar.data());
@@ -138,24 +179,38 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
     {
         for (int i = 1; i < rhs; ++i)
         {
-            if (in[i]->getId() != types::InternalType::IdScalarString)
+            if (in[i]->getId() != InternalType::IdScalarString)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname.data(), i+1);
-                return types::Function::Error;
+                Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, i+1);
+                return Function::Error;
             }
 
-            wchar_t* wvar = in[i]->getAs<types::String>()->get()[0];
+            wchar_t* wvar = in[i]->getAs<String>()->get()[0];
             if (wcscmp(wvar, L"-append") == 0)
             {
                 bAppendMode = true;
                 continue;
             }
 
-            types::InternalType* pIT = ctx->get(symbol::Symbol(wvar));
+            InternalType* pIT = ctx->get(Symbol(wvar));
             if (pIT == NULL)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname.data(), i + 1);
-                return types::Function::Error;
+                Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
+                return Function::Error;
+            }
+
+            if (pIT->isHandle())
+            {
+                GraphicHandle* pGH = pIT->getAs<GraphicHandle>();
+
+                int i = pGH->getSize();
+                while (--i >= 0 && getObjectFromHandle(pGH->get(i)));
+
+                if (i >= 0)
+                {
+                    Sciwarning(_("WARNING: %s: invalid graphic handle is ignored.\n"), fname);
+                    continue;
+                }
             }
 
             char* cvar = wide_string_to_UTF8(wvar);
@@ -166,10 +221,9 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
             vars[var] = pIT;
         }
     }
-    //check append option
+
     if (bAppendMode)
     {
-        // open hdf5 file
         iH5File = openHDF5File(filename.data(), bAppendMode);
         if (iH5File < 0)
         {
@@ -182,8 +236,8 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
             {
                 //to update version must be the same
                 closeHDF5File(iH5File);
-                Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname.data(), SOD_FILE_VERSION, iVersion);
-                return types::Function::Error;
+                Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname, SOD_FILE_VERSION, iVersion);
+                return Function::Error;
             }
         }
     }
@@ -197,14 +251,14 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
     {
         if (iH5File == -2)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" is a directory"), fname.data(), 1, filename.data());
+            Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" is a directory"), fname, 1, filename.data());
         }
         else
         {
-            Scierror(999, _("%s: Cannot open file %s.\n"), fname.data() , filename.data());
+            Scierror(999, _("%s: Cannot open file %s.\n"), fname , filename.data());
         }
 
-        return types::Function::Error;
+        return Function::Error;
     }
 
     // export data
@@ -217,15 +271,15 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
                 if (deleteHDF5Var(iH5File, var.first.data()))
                 {
                     closeHDF5File(iH5File);
-                    Scierror(999, _("%s: Unable to delete existing variable \"%s\".\n"), fname.data(), var.first.data());
-                    return types::Function::Error;
+                    Scierror(999, _("%s: Unable to delete existing variable \"%s\".\n"), fname, var.first.data());
+                    return Function::Error;
                 }
             }
             else
             {
                 closeHDF5File(iH5File);
-                Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'\nUse -append option to replace existing variable.\n"), fname.data(), var.first.data(), filename.data());
-                return types::Function::Error;
+                Scierror(999, _("%s: Variable \'%s\' already exists in file \'%s\'\nUse -append option to replace existing variable.\n"), fname, var.first.data(), filename.data());
+                return Function::Error;
             }
         }
 
@@ -234,8 +288,8 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
         {
             closeHDF5File(iH5File);
             deleteafile(filename.data());
-            Scierror(999, _("%s: Unable to export variable \'%s\' in file \'%s\'.\n"), fname.data(), var.first.data(), filename.data());
-            return types::Function::Error;
+            Scierror(999, _("%s: Unable to export variable \'%s\' in file \'%s\'.\n"), fname, var.first.data(), filename.data());
+            return Function::Error;
         }
     }
 
@@ -243,22 +297,22 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
     if (updateScilabVersion(iH5File) < 0)
     {
         closeHDF5File(iH5File);
-        Scierror(999, _("%s: Unable to update Scilab version in \"%s\"."), fname.data(), filename.data());
-        return types::Function::Error;
+        Scierror(999, _("%s: Unable to update Scilab version in \"%s\"."), fname, filename.data());
+        return Function::Error;
     }
 
     if (updateFileVersion(iH5File) < 0)
     {
         closeHDF5File(iH5File);
-        Scierror(999, _("%s: Unable to update HDF5 format version in \"%s\"."), fname.data(), filename.data());
-        return types::Function::Error;
+        Scierror(999, _("%s: Unable to update HDF5 format version in \"%s\"."), fname, filename.data());
+        return Function::Error;
     }
 
     //close hdf5 file
     closeHDF5File(iH5File);
-    return types::Function::OK;
+    return Function::OK;
 }
-/*--------------------------------------------------------------------------*/
+
 static bool isVarExist(int _iFile, const char* _pstVarName)
 {
     //check if variable already exists
@@ -284,85 +338,85 @@ static bool isVarExist(int _iFile, const char* _pstVarName)
 
     return false;
 }
-/*--------------------------------------------------------------------------*/
-int export_data(int parent, const std::string& name, types::InternalType* data)
+
+int export_data(int parent, const std::string& name, InternalType* data)
 {
     int dataset = -1;
     switch (data->getType())
     {
-        case types::InternalType::ScilabDouble:
-            dataset = export_double(parent, name, data->getAs<types::Double>());
+        case InternalType::ScilabDouble:
+            dataset = export_double(parent, name, data->getAs<Double>());
             break;
-        case types::InternalType::ScilabString:
-            dataset = export_string(parent, name, data->getAs<types::String>());
+        case InternalType::ScilabString:
+            dataset = export_string(parent, name, data->getAs<String>());
             break;
-        case types::InternalType::ScilabBool:
-            dataset = export_boolean(parent, name, data->getAs<types::Bool>());
+        case InternalType::ScilabBool:
+            dataset = export_boolean(parent, name, data->getAs<Bool>());
             break;
-        case types::InternalType::ScilabTList:
-        case types::InternalType::ScilabList:
-        case types::InternalType::ScilabMList:
-            dataset = export_list(parent, name, data->getAs<types::List>());
+        case InternalType::ScilabTList:
+        case InternalType::ScilabList:
+        case InternalType::ScilabMList:
+            dataset = export_list(parent, name, data->getAs<List>());
             break;
-        case types::InternalType::ScilabInt8:
-            dataset = export_int(parent, name, H5T_NATIVE_INT8, "8", data->getAs<types::Int8>());
+        case InternalType::ScilabInt8:
+            dataset = export_int(parent, name, H5T_NATIVE_INT8, "8", data->getAs<Int8>());
             break;
-        case types::InternalType::ScilabInt16:
-            dataset = export_int(parent, name, H5T_NATIVE_INT16, "16", data->getAs<types::Int16>());
+        case InternalType::ScilabInt16:
+            dataset = export_int(parent, name, H5T_NATIVE_INT16, "16", data->getAs<Int16>());
             break;
-        case types::InternalType::ScilabInt32:
-            dataset = export_int(parent, name, H5T_NATIVE_INT32, "32", data->getAs<types::Int32>());
+        case InternalType::ScilabInt32:
+            dataset = export_int(parent, name, H5T_NATIVE_INT32, "32", data->getAs<Int32>());
             break;
-        case types::InternalType::ScilabInt64:
-            dataset = export_int(parent, name, H5T_NATIVE_INT64, "64", data->getAs<types::Int64>());
+        case InternalType::ScilabInt64:
+            dataset = export_int(parent, name, H5T_NATIVE_INT64, "64", data->getAs<Int64>());
             break;
-        case types::InternalType::ScilabUInt8:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT8, "u8", data->getAs<types::UInt8>());
+        case InternalType::ScilabUInt8:
+            dataset = export_int(parent, name, H5T_NATIVE_UINT8, "u8", data->getAs<UInt8>());
             break;
-        case types::InternalType::ScilabUInt16:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT16, "u16", data->getAs<types::UInt16>());
+        case InternalType::ScilabUInt16:
+            dataset = export_int(parent, name, H5T_NATIVE_UINT16, "u16", data->getAs<UInt16>());
             break;
-        case types::InternalType::ScilabUInt32:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT32, "u32", data->getAs<types::UInt32>());
+        case InternalType::ScilabUInt32:
+            dataset = export_int(parent, name, H5T_NATIVE_UINT32, "u32", data->getAs<UInt32>());
             break;
-        case types::InternalType::ScilabUInt64:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT64, "u64", data->getAs<types::UInt64>());
+        case InternalType::ScilabUInt64:
+            dataset = export_int(parent, name, H5T_NATIVE_UINT64, "u64", data->getAs<UInt64>());
             break;
-        case types::InternalType::ScilabStruct:
-            dataset = export_struct(parent, name, data->getAs<types::Struct>());
+        case InternalType::ScilabStruct:
+            dataset = export_struct(parent, name, data->getAs<Struct>());
             break;
-        case types::InternalType::ScilabPolynom:
-            dataset = export_poly(parent, name, data->getAs<types::Polynom>());
+        case InternalType::ScilabPolynom:
+            dataset = export_poly(parent, name, data->getAs<Polynom>());
             break;
-        case types::InternalType::ScilabSparse:
-            dataset = export_sparse(parent, name, data->getAs<types::Sparse>());
+        case InternalType::ScilabSparse:
+            dataset = export_sparse(parent, name, data->getAs<Sparse>());
             break;
-        case types::InternalType::ScilabSparseBool :
-            dataset = export_boolean_sparse(parent, name, data->getAs<types::SparseBool>());
+        case InternalType::ScilabSparseBool :
+            dataset = export_boolean_sparse(parent, name, data->getAs<SparseBool>());
             break;
-        case types::InternalType::ScilabCell:
-            dataset = export_cell(parent, name, data->getAs<types::Cell>());
+        case InternalType::ScilabCell:
+            dataset = export_cell(parent, name, data->getAs<Cell>());
             break;
-        case types::InternalType::ScilabVoid:
+        case InternalType::ScilabVoid:
             dataset = export_void(parent, name);
             break;
-        case types::InternalType::ScilabListUndefinedOperation:
+        case InternalType::ScilabListUndefinedOperation:
             dataset = export_undefined(parent, name);
             break;
-        case types::InternalType::ScilabMacro:
-            dataset = export_macro(parent, name, data->getAs<types::Macro>());
+        case InternalType::ScilabMacro:
+            dataset = export_macro(parent, name, data->getAs<Macro>());
             break;
-        case types::InternalType::ScilabMacroFile:
+        case InternalType::ScilabMacroFile:
         {
-            types::MacroFile* pMF = data->getAs<types::MacroFile>();
+            MacroFile* pMF = data->getAs<MacroFile>();
             dataset = export_macro(parent, name, pMF->getMacro());
             break;
         }
-        case types::InternalType::ScilabHandle:
-            dataset = export_handles(parent, name, data->getAs<types::GraphicHandle>());
+        case InternalType::ScilabHandle:
+            dataset = export_handles(parent, name, data->getAs<GraphicHandle>());
             break;
-        case types::InternalType::ScilabUserType:
-            dataset = export_usertype(parent, name, data->getAs<types::UserType>());
+        case InternalType::ScilabUserType:
+            dataset = export_usertype(parent, name, data->getAs<UserType>());
             break;
         default:
         {
@@ -373,21 +427,20 @@ int export_data(int parent, const std::string& name, types::InternalType* data)
     return dataset;
 }
 
-/*--------------------------------------------------------------------------*/
-static int export_list(int parent, const std::string& name, types::List* data)
+static int export_list(int parent, const std::string& name, List* data)
 {
     int size = data->getSize();
 
     const char* type = nullptr;
     switch (data->getType())
     {
-        case types::InternalType::ScilabMList:
+        case InternalType::ScilabMList:
             type = g_SCILAB_CLASS_MLIST;
             break;
-        case types::InternalType::ScilabTList:
+        case InternalType::ScilabTList:
             type = g_SCILAB_CLASS_TLIST;
             break;
-        case types::InternalType::ScilabList:
+        case InternalType::ScilabList:
             type = g_SCILAB_CLASS_LIST;
             break;
         default:
@@ -412,8 +465,8 @@ static int export_list(int parent, const std::string& name, types::List* data)
     }
     return dset;
 }
-/*--------------------------------------------------------------------------*/
-static int export_double(int parent, const std::string& name, types::Double* data)
+
+static int export_double(int parent, const std::string& name, Double* data)
 {
     int dataset = -1;
 
@@ -428,14 +481,14 @@ static int export_double(int parent, const std::string& name, types::Double* dat
 
     return dataset;
 }
-/*--------------------------------------------------------------------------*/
+
 template <class T>
 static int export_int(int parent, const std::string& name, int type, const char* prec, T* data)
 {
     return writeIntegerMatrix6(parent, name.data(), type, prec, data->getDims(), data->getDimsArray(), data->get());
 }
-/*--------------------------------------------------------------------------*/
-static int export_string(int parent, const std::string& name, types::String* data)
+
+static int export_string(int parent, const std::string& name, String* data)
 {
     int size = data->getSize();
     wchar_t** s = data->get();
@@ -457,13 +510,13 @@ static int export_string(int parent, const std::string& name, types::String* dat
 
     return dset;
 }
-/*--------------------------------------------------------------------------*/
-static int export_boolean(int parent, const std::string& name, types::Bool* data)
+
+static int export_boolean(int parent, const std::string& name, Bool* data)
 {
     return writeBooleanMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get());
 }
-/*--------------------------------------------------------------------------*/
-static int export_struct(int parent, const std::string& name, types::Struct* data, const char* type)
+
+static int export_struct(int parent, const std::string& name, Struct* data, const char* type)
 {
     //create a group with struct name
     int dset = openList6(parent, name.data(), type);
@@ -494,7 +547,7 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
         return -1;
     }
 
-    types::String* fields = data->getFieldNames();
+    String* fields = data->getFieldNames();
     int fieldCount = fields->getSize();
     wchar_t** pfields = fields->get();
 
@@ -509,7 +562,7 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
         for (int j = 0; j < size; ++j)
         {
             //get data
-            types::InternalType* val = data->get(j)->get(pfields[i]);
+            InternalType* val = data->get(j)->get(pfields[i]);
             //create ref name
             std::string refname(cfield);
             refname += "_" + std::to_string(j);
@@ -548,18 +601,18 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
 
     return dset;
 }
-/*--------------------------------------------------------------------------*/
+
 static int export_void(int parent, const std::string& name)
 {
     return writeVoid6(parent, name.data());
 }
-/*--------------------------------------------------------------------------*/
+
 static int export_undefined(int parent, const std::string& name)
 {
     return writeUndefined6(parent, name.data());
 }
-/*--------------------------------------------------------------------------*/
-static int export_poly(int parent, const std::string& name, types::Polynom* data)
+
+static int export_poly(int parent, const std::string& name, Polynom* data)
 {
     //create a group with struct name
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_POLY);
@@ -591,12 +644,12 @@ static int export_poly(int parent, const std::string& name, types::Polynom* data
     bool complex = data->isComplex();
     int size = data->getSize();
     std::vector<hobj_ref_t> vrefs(size);
-    types::SinglePoly** ss = data->get();
+    SinglePoly** ss = data->get();
     //fill main group with struct field name
     for (int j = 0; j < size; ++j)
     {
         //get data
-        types::SinglePoly* val = ss[j];
+        SinglePoly* val = ss[j];
         //export data in refs group
         std::vector<int> ssdims = {1, val->getSize()};
         std::string polyname(std::to_string(j));
@@ -630,8 +683,8 @@ static int export_poly(int parent, const std::string& name, types::Polynom* data
 
     return dset;
 }
-/*--------------------------------------------------------------------------*/
-static int export_sparse(int parent, const std::string& name, types::Sparse* data)
+
+static int export_sparse(int parent, const std::string& name, Sparse* data)
 {
     int nnz = static_cast<int>(data->nonZeros());
     int row = data->getRows();
@@ -711,8 +764,8 @@ static int export_sparse(int parent, const std::string& name, types::Sparse* dat
     return dset;
 
 }
-/*--------------------------------------------------------------------------*/
-static int export_boolean_sparse(int parent, const std::string& name, types::SparseBool* data)
+
+static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data)
 {
     int nnz = static_cast<int>(data->nbTrue());
     int row = data->getRows();
@@ -760,8 +813,8 @@ static int export_boolean_sparse(int parent, const std::string& name, types::Spa
 
     return dset;
 }
-/*--------------------------------------------------------------------------*/
-static int export_cell(int parent, const std::string& name, types::Cell* data)
+
+static int export_cell(int parent, const std::string& name, Cell* data)
 {
     //create a group with cell name
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_CELL);
@@ -781,7 +834,7 @@ static int export_cell(int parent, const std::string& name, types::Cell* data)
     }
 
     int size = data->getSize();
-    types::InternalType** it = data->get();
+    InternalType** it = data->get();
     std::vector<hobj_ref_t> vrefs(size);
     for (int i = 0; i < size; ++i)
     {
@@ -803,7 +856,7 @@ static int export_cell(int parent, const std::string& name, types::Cell* data)
     return dset;
 }
 
-static int export_handles(int parent, const std::string& name, types::GraphicHandle* data)
+static int export_handles(int parent, const std::string& name, GraphicHandle* data)
 {
     //create a group with cell name
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_HANDLE);
@@ -844,7 +897,7 @@ static int export_handles(int parent, const std::string& name, types::GraphicHan
     return dset;
 }
 
-static int export_macro(int parent, const std::string& name, types::Macro* data)
+static int export_macro(int parent, const std::string& name, Macro* data)
 {
     int dims[2];
 
@@ -902,24 +955,24 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     return dset;
 }
 
-static int export_usertype(int parent, const std::string& name, types::UserType* data)
+static int export_usertype(int parent, const std::string& name, UserType* data)
 {
-    types::InternalType* it = data->save();
+    InternalType* it = data->save();
     if (it == nullptr)
     {
-        types::typed_list in;
+        typed_list in;
         in.push_back(data);
 
-        types::typed_list out;
+        typed_list out;
         //overload
         // rational case
         std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_save";
 
         try
         {
-            types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
+            Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
 
-            if (ret != types::Callable::OK)
+            if (ret != Callable::OK)
             {
                 return -1;
             }
@@ -950,15 +1003,15 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
     }
 
     //create a struct around "usertype" to be able to restore it.
-    types::Struct* str = new types::Struct(1, 1);
-    types::SingleStruct* ss = str->get()[0];
+    Struct* str = new Struct(1, 1);
+    SingleStruct* ss = str->get()[0];
 
     //add fields
     ss->addField(L"type");
     ss->addField(L"data");
 
     //assign values to new fields
-    ss->set(L"type", new types::String(data->getShortTypeStr().data()));
+    ss->set(L"type", new String(data->getShortTypeStr().data()));
     ss->set(L"data", it);
 
     int ret = export_struct(parent, name, str, g_SCILAB_CLASS_USERTYPE);
