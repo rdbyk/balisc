@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime Agnel
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime Agnel
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,33 +24,29 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 }
-/*--------------------------------------------------------------------------*/
+
+static const char fname[] = "oldEmptyBehaviour";
+
 types::Function::ReturnValue sci_oldEmptyBehaviour(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String *psInput = NULL;
 
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "oldEmptyBehaviour", 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount != 1)
-    {
-        Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "oldEmptyBehaviour", 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "oldEmptyBehaviour", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     psInput = in[0]->getAs<types::String>();
     if (psInput->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Single string expected.\n"), "oldEmptyBehaviour", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Single string expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -83,8 +79,7 @@ types::Function::ReturnValue sci_oldEmptyBehaviour(types::typed_list &in, int _i
     }
 
     // String input is different than "on", "off" or "query"
-    Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"), "oldEmptyBehaviour", 1, "\"on\", \"off\", \"query\"");
+    Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"), fname, 1, "\"on\", \"off\", \"query\"");
 
     return types::Function::Error;
 }
-/*--------------------------------------------------------------------------*/

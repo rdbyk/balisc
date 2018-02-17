@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO- Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,19 +25,22 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 }
-/*--------------------------------------------------------------------------*/
+
+static const char fname[] = "lasterror";
+
 types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bClearError = true;
+
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "lasterror", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), fname, 0, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 4)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "lasterror", 1, 4);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 4);
         return types::Function::Error;
     }
 
@@ -45,7 +48,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
     {
         if (in[0]->isBool() == false || in[0]->getAs<types::Bool>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), "lasterror", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), fname, 1);
             return types::Function::Error;
         }
         bClearError = in[0]->getAs<types::Bool>()->get()[0] == 1; //convert int to bool
@@ -125,4 +128,3 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
     ConfigVariable::setLastErrorCall();
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

@@ -4,7 +4,7 @@
  * Copyright (C) 2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "funcmanager.hxx"
 #include "core_gw.hxx"
 #include "string.hxx"
@@ -30,26 +30,24 @@ extern "C"
 #include "with_module.h"
 #include "freeArrayOfString.h"
 }
-/*--------------------------------------------------------------------------*/
+
 #define VERSION_STRING L"string_info"
-/*--------------------------------------------------------------------------*/
-static int getversion_no_rhs(char *fname, void* pvApiCtx);
-static int getversion_one_rhs(char *fname, void* pvApiCtx);
-static int getversion_two_rhs(char *fname, void* pvApiCtx);
-/*--------------------------------------------------------------------------*/
+
+static const char fname[] = "getversion";
+
 types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "getversion", 0, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 0, 2);
         return types::Function::Error;
     }
 
     if (in.size() == 0)
     {
-        if (_iRetCount != 1 && _iRetCount != 2)
+        if (_iRetCount > 2)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getversion", 1, 2);
+            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 2);
             return types::Function::Error;
         }
 
@@ -73,13 +71,13 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
     {
         if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "getversion", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
             return types::Function::Error;
         }
 
         if (_iRetCount != 1)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getversion", 1);
+            Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), fname, 1);
             return types::Function::Error;
         }
 
@@ -90,7 +88,7 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
             int *version = getModuleVersion(pwstModule, &versionSize);
             if (version == NULL)
             {
-                Scierror(999, _("%s: Wrong file version.xml %s.\n"), "getversion", pwstModule);
+                Scierror(999, _("%s: Wrong file version.xml %s.\n"), fname, pwstModule);
                 return types::Function::Error;
             }
 
@@ -104,13 +102,13 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
     {
         if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "getversion", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
             return types::Function::Error;
         }
 
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "getversion", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -131,4 +129,3 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

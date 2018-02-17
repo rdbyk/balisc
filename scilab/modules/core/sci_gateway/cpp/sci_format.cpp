@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "configvariable.hxx"
@@ -25,7 +25,6 @@ extern "C"
 #include "Scierror.h"
 }
 
-/*--------------------------------------------------------------------------*/
 #define e_type_format L"e"
 #define v_type_format L"v"
 #define _e_type_format "e"
@@ -36,6 +35,8 @@ extern "C"
 #define mode_variable 1
 #define mode_e 0
 
+static const char fname[] = "format";
+
 types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iType = -1;
@@ -43,13 +44,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
 
     if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "format", 0, 2);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "format", 0, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), fname, 0, 2);
         return types::Function::Error;
     }
 
@@ -69,7 +64,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
         types::String *pS = in[0]->getAs<types::String>();
         if (pS->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, _e_type_format, _v_type_format);
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, _e_type_format, _v_type_format);
             return types::Function::Error;
         }
 
@@ -84,7 +79,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, _e_type_format, _v_type_format);
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, _e_type_format, _v_type_format);
             return types::Function::Error;
         }
     }
@@ -101,13 +96,13 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
 
                 if (dType != (double)iType)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "format", 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 1);
                     return types::Function::Error;
                 }
 
                 if (iType != 0 && iType != 1)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "format", 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 1);
                     return types::Function::Error;
                 }
             }
@@ -118,20 +113,20 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
 
                 if (dLen != (double)iLen)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "format", 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 1);
                     return types::Function::Error;
                 }
 
                 if (iLen < 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: A positive value expected.\n"), "format", 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: A positive value expected.\n"), fname, 1);
                     return types::Function::Error;
                 }
                 break;
             }
             default:
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "format", 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
                 return types::Function::Error;
             }
         }
@@ -141,7 +136,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
         //first argument
         if (in[0]->isString() == false && in[0]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected."), "format", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected."), fname, 1);
             return types::Function::Error;
         }
 
@@ -150,7 +145,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
             types::String *pS = in[0]->getAs<types::String>();
             if (pS->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, _e_type_format, _v_type_format);
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, _e_type_format, _v_type_format);
                 return types::Function::Error;
             }
 
@@ -165,7 +160,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
             }
             else
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 1, _e_type_format, _v_type_format);
+                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, _e_type_format, _v_type_format);
                 return types::Function::Error;
             }
 
@@ -173,7 +168,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
             //second argument
             if (in[1]->isDouble() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected."), "format", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected."), fname, 2);
                 return types::Function::Error;
             }
 
@@ -181,7 +176,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
             if (pD->isScalar() == false)
             {
                 //set length
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "format", 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
                 return types::Function::Error;
             }
 
@@ -190,13 +185,13 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
 
             if (dLen != (double)iLen)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "format", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
                 return types::Function::Error;
             }
 
             if (iLen < 0)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive value expected.\n"), "format", 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A positive value expected.\n"), fname, 1);
                 return types::Function::Error;
             }
         }
@@ -206,7 +201,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
             if (pD->isScalar() == false)
             {
                 //set length
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "format", 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
                 return types::Function::Error;
             }
 
@@ -215,13 +210,13 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
 
             if (dLen != (double)iLen)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "format", 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 1);
                 return types::Function::Error;
             }
 
             if (iLen < 0)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive value expected.\n"), "format", 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A positive value expected.\n"), fname, 1);
                 return types::Function::Error;
             }
 
@@ -230,7 +225,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
                 types::String *pS = in[1]->getAs<types::String>();
                 if (pS->isScalar() == false)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, _e_type_format, _v_type_format);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 2, _e_type_format, _v_type_format);
                     return types::Function::Error;
                 }
 
@@ -245,7 +240,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, _e_type_format, _v_type_format);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 2, _e_type_format, _v_type_format);
                     return types::Function::Error;
                 }
             }
@@ -255,7 +250,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
                 if (pD->isScalar() == false)
                 {
                     //set length
-                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "format", 2);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
                     return types::Function::Error;
                 }
 
@@ -264,26 +259,26 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
 
                 if (dType != (double)iType)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "format", 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
                     return types::Function::Error;
                 }
 
                 if (iType != 0 && iType != 1)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "format", 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
                     return types::Function::Error;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), "format", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), fname, 2);
                 return types::Function::Error;
             }
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), "format", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -325,7 +320,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
     {
         if (iLen < format_MIN || iLen > format_MAX)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"), "format", 1, format_MIN, format_MAX);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"), fname, 1, format_MIN, format_MAX);
             return types::Function::Error;
         }
 
@@ -337,7 +332,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
         //iType == 0
         if (iLen < format_e_MIN || iLen > format_MAX)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"), "format", 1, format_e_MIN, format_MAX);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"), fname, 1, format_e_MIN, format_MAX);
             return types::Function::Error;
         }
 

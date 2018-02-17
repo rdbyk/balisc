@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,32 +29,28 @@ extern "C"
 #include "expandPathVariable.h"
 }
 
+static const char fname[] = "getmd5";
+
 types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bStringMode = false;
     char* pstPath = NULL;
 
-    if (_iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getmd5", 1);
-        return types::Function::Error;
-    }
-
     if (in.size() != 1 && in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "getmd5", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), "getmd5", 1);
+        Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (in.size() == 2 && in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), "getmd5", 2);
+        Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), fname, 2);
         return types::Function::Error;
     }
 
@@ -66,7 +62,7 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" expected.\n"), "getmd5", 2, "string");
+            Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" expected.\n"), fname, 2, "string");
             return types::Function::Error;
         }
     }
@@ -99,7 +95,7 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
             /* bug 4469 */
             if (isdirW(real_path))
             {
-                Scierror(999, _("%s: The file %s does not exist.\n"), "getmd5", pstPath);
+                Scierror(999, _("%s: The file %s does not exist.\n"), fname, pstPath);
                 FREE(pstPath);
                 delete pOutput;
                 FREE(real_path);
@@ -117,7 +113,7 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
             }
             else
             {
-                Scierror(999, _("%s: The file %s does not exist.\n"), "getmd5", pstPath);
+                Scierror(999, _("%s: The file %s does not exist.\n"), fname, pstPath);
                 FREE(pstPath);
                 delete pOutput;
                 FREE(real_path);
@@ -135,4 +131,3 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
     out.push_back(pOutput);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
