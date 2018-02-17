@@ -306,9 +306,10 @@ libscielementary_functions_algo_la_OBJECTS =  \
 	$(am_libscielementary_functions_algo_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscielementary_functions_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscielementary_functions_algo_la_rpath =
+am__DEPENDENCIES_1 =
 libscielementary_functions_la_DEPENDENCIES =  \
 	libdummy-elementary_functions.la \
-	libscielementary_functions-algo.la
+	libscielementary_functions-algo.la $(am__DEPENDENCIES_1)
 am__objects_7 = sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_testmatrix.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo \

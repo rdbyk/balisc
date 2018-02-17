@@ -222,7 +222,9 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libscioptimization_la_DEPENDENCIES = libscioptimization-algo.la
+am__DEPENDENCIES_1 =
+libscioptimization_la_DEPENDENCIES = libscioptimization-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_5 = sci_gateway/cpp/libscioptimization_la-sci_optim.lo \
 	sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo \
 	sci_gateway/cpp/libscioptimization_la-sci_semidef.lo \

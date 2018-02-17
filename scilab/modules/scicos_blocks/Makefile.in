@@ -185,7 +185,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
-libsciscicos_blocks_algo_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
+libsciscicos_blocks_algo_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libsciscicos_blocks_algo_la-absblk.lo \
 	src/c/libsciscicos_blocks_algo_la-absolute_value.lo \
@@ -546,7 +547,7 @@ libsciscicos_blocks_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(libsciscicos_blocks_algo_la_LDFLAGS) $(LDFLAGS) -o $@
 libsciscicos_blocks_cli_la_DEPENDENCIES = $(am__append_3) \
-	$(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__libsciscicos_blocks_cli_la_SOURCES_DIST = src/cpp/HelpersCLI.cpp
 am__objects_6 = src/cpp/libsciscicos_blocks_cli_la-HelpersCLI.lo
 @XCOS_TRUE@am__objects_7 = $(am__objects_6)
@@ -558,7 +559,7 @@ libsciscicos_blocks_cli_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(libsciscicos_blocks_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 libsciscicos_blocks_la_DEPENDENCIES = $(am__append_5) \
-	$(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__libsciscicos_blocks_la_SOURCES_DIST = src/cpp/HelpersJNI.cpp \
 	src/jni/AfficheBlock.cpp
 am__objects_8 = src/cpp/libsciscicos_blocks_la-HelpersJNI.lo \

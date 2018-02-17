@@ -207,7 +207,9 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @MAINTAINER_MODE_FALSE@am_libscioutput_stream_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscioutput_stream_algo_la_rpath =
-libscioutput_stream_la_DEPENDENCIES = libscioutput_stream-algo.la
+am__DEPENDENCIES_1 =
+libscioutput_stream_la_DEPENDENCIES = libscioutput_stream-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_4 = sci_gateway/cpp/libscioutput_stream_la-sci_diary.lo \
 	sci_gateway/cpp/libscioutput_stream_la-sci_disp.lo \
 	sci_gateway/cpp/libscioutput_stream_la-output_stream_gw.lo \
