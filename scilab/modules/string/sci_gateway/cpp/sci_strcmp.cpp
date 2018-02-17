@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,6 +33,8 @@ extern "C"
 #define CHAR_I 'i'
 #define CHAR_S 's'
 
+static const char fname[] = "strcmp";
+
 types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pOutDouble   = NULL;
@@ -43,33 +45,28 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 2 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "strcmp", 2, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 2, 3);
         return types::Function::Error;
     }
-    if (_iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strcmp", 1);
-        return types::Function::Error;
-    }
+
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcmp", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         return types::Function::Error;
     }
+
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcmp", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
         return types::Function::Error;
     }
 
     pString1 = in[0]->getAs<types::String>();
     pString2 = in[1]->getAs<types::String>();
 
-
-
     if (pString1->getSize() != pString2->getSize() && pString2->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "strcmp", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
         return types::Function::Error;
     }
 
@@ -77,14 +74,14 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
     {
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false || wcslen(in[2]->getAs<types::String>()->getFirst()) != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Char expected.\n"), "strcmp", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Char expected.\n"), fname, 3);
             return types::Function::Error;
         }
 
         pwcChar3 = in[2]->getAs<types::String>()->getFirst();
         if ( (pwcChar3[0] != CHAR_I) && (pwcChar3[0] != CHAR_S))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "strcmp", 3, "'i' (stricmp)", "'s' (strcmp)");
+            Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), fname, 3, "'i' (stricmp)", "'s' (strcmp)");
             return types::Function::Error;
         }
 
@@ -104,11 +101,9 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
     }
     else
     {
-        Scierror(999, _("%s : No more memory.\n"), "strcmp");
+        Scierror(999, _("%s : No more memory.\n"), fname);
     }
-
 
     out.push_back(pOutDouble);
     return types::Function::OK;
 }
-

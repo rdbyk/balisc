@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,6 +29,8 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 
+static const char fname[] = "strsplit";
+
 types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pStrIn = NULL;
@@ -36,13 +38,13 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "strsplit", 1, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 3);
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1 && _iRetCount != 2)
+    if (_iRetCount > 2)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "strsplit", 1, 2);
+        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
@@ -61,7 +63,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "strsplit", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -69,7 +71,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
     if (pStrIn->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), "strsplit", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -77,7 +79,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
     {
         if (in[2]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A double expected.\n"), "strsplit", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A double expected.\n"), fname, 3);
             return types::Function::Error;
         }
 
@@ -85,7 +87,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
         if (pDblIn->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar double expected.\n"), "strsplit", 3);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar double expected.\n"), fname, 3);
             return types::Function::Error;
         }
 
@@ -93,13 +95,13 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
         if ( (double)iValueThree != pDblIn->getFirst())
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "strsplit", 3);
+            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 3);
             return types::Function::Error;
         }
 
         if ((iValueThree < 1) && (iValueThree != -1))
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A positive value expected.\n"), "strsplit", 3);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A positive value expected.\n"), fname, 3);
             return types::Function::Error;
         }
     }
@@ -112,13 +114,13 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
             if (_iRetCount == 2)
             {
-                Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "strsplit", 1);
+                Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
                 return types::Function::Error;
             }
 
             if (pDbl->getRows() != 1 && pDbl->getCols() != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A Scalar or vector expected.\n"), "strsplit", 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A Scalar or vector expected.\n"), fname, 2);
                 return types::Function::Error;
             }
 
@@ -140,28 +142,28 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
                 case STRSPLIT_INCORRECT_VALUE_ERROR:
                 {
                     freeArrayOfWideString(results, pDbl->getSize() + 1);
-                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "strsplit", 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
                     return types::Function::Error;
                 }
                 break;
                 case STRSPLIT_INCORRECT_ORDER_ERROR:
                 {
                     freeArrayOfWideString(results, pDbl->getSize() + 1);
-                    Scierror(999, _("%s: Elements of %dth argument must be in increasing order.\n"), "strsplit", 2);
+                    Scierror(999, _("%s: Elements of %dth argument must be in increasing order.\n"), fname, 2);
                     return types::Function::Error;
                 }
                 break;
                 case STRSPLIT_MEMORY_ALLOCATION_ERROR:
                 {
                     freeArrayOfWideString(results, pDbl->getSize() + 1);
-                    Scierror(999, _("%s: Memory allocation error.\n"), "strsplit");
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return types::Function::Error;
                 }
                 break;
                 default:
                 {
                     freeArrayOfWideString(results, pDbl->getSize() + 1);
-                    Scierror(999, _("%s: error.\n"), "strsplit");
+                    Scierror(999, _("%s: error.\n"), fname);
                     return types::Function::Error;
                 }
                 break;
@@ -181,7 +183,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
                         int iLen = (int)wcslen(pwcsStr[i]);
                         if (iLen > 2 && pwcsStr[i][0] == L'/' && pwcsStr[i][iLen - 1] == L'/')
                         {
-                            Scierror(999, _("%s: Wrong value for input argument #%d: a string expected, not a regexp pattern.\n"), "strsplit", 2);
+                            Scierror(999, _("%s: Wrong value for input argument #%d: a string expected, not a regexp pattern.\n"), fname, 2);
                             return types::Function::Error;
                         }
                     }
@@ -190,11 +192,10 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A double or string expected.\n"), "strsplit", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A double or string expected.\n"), fname, 2);
             return types::Function::Error;
         }
     }
 
     return Overload::call(L"%_strsplit", in, _iRetCount, out);
 }
-/*-------------------------------------------------------------------------------------*/

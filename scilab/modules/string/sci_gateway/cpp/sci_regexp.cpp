@@ -3,7 +3,7 @@
  * Copyright (C) 2008 - INRIA - Cong WU
  * Copyright (C) 2008 - 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,9 +14,6 @@
  *
  */
 
-/* desc : search position of a character string in an other string
-using regular expression .                                      */
-/*------------------------------------------------------------------------*/
 #include "function.hxx"
 #include "context.hxx"
 #include "string.hxx"
@@ -35,11 +32,13 @@ extern "C"
 #include "os_string.h"
 #include "freeArrayOfString.h"
 }
-/*------------------------------------------------------------------------*/
+
 #define WCHAR_S L's'
 #define WCHAR_R L'r'
 #define WSTR_ONCE L'o'
-/*------------------------------------------------------------------------*/
+
+static const char fname[] = "regexp";
+
 types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t wcType          = WCHAR_S;
@@ -60,27 +59,26 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 2 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "regexp", 2, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 3);
         return types::Function::Error;
     }
 
-    // check output parameters
-    if (_iRetCount < 1 || _iRetCount > 4)
+    if (_iRetCount > 4)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "regexp", 1, 4);
+        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 4);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "regexp", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return types::Function::Error;
     }
     pwstInput = in[0]->getAs<types::String>()->getFirst();
 
     if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "regexp", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return types::Function::Error;
     }
     pwstPattern = in[1]->getAs<types::String>()->getFirst();
@@ -89,13 +87,13 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
     {
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "regexp", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             return types::Function::Error;
         }
 
         if (in[2]->getAs<types::String>()->getFirst()[0] != WSTR_ONCE)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: '%s' expected.\n"), "regexp", 3, "o");
+            Scierror(999, _("%s: Wrong type for input argument #%d: '%s' expected.\n"), fname, 3, "o");
             return types::Function::Error;
         }
         wcType = WSTR_ONCE;
@@ -146,7 +144,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
         }
         else if (iPcreStatus != NO_MATCH)
         {
-            pcre_error("regexp", iPcreStatus);
+            pcre_error(fname, iPcreStatus);
             delete[] piStart;
             delete[] piEnd;
             for (int i = 0; i < iOccurs; i++)
@@ -281,4 +279,3 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
     delete[] piEnd;
     return types::Function::OK;
 }
-/*-----------------------------------------------------------------------------------*/

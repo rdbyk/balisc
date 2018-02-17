@@ -13,12 +13,6 @@
  *
  */
 
-/* desc : Let  s[k]  stands for the  k  character of Input_StringMatrixings
-  ( or the  white space character if  k >length(s) ).
-  part  returns  c , a matrix of character Input_StringMatrixings, such that
-  c(i,j)  is the Input_StringMatrixing  "s[v(1)]...s[v(n)]"  (  s=mp(i,j)  ).
-                                                                          */
-
 #include "string_gw.hxx"
 #include "funcmanager.hxx"
 #include "function.hxx"
@@ -42,17 +36,13 @@ using types::typed_list;
 
 static wchar_t **partfunctionW(wchar_t** _pwstStringInput, const int _iSize, const int *_piVectInput, const int _iVectSize);
 
+static const char fname[] = "part";
+
 Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 2)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "part", 2);
-        return Function::Error;
-    }
-
-    if (_iRetCount != -1 && _iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "part", 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 2);
         return Function::Error;
     }
 
@@ -81,7 +71,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
     if (pD->isVector() == false && pD->isEmpty() == false)
     {
         //non vector
-        Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), "part", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 2);
         return Function::Error;
     }
 
@@ -91,7 +81,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
         piIndex[i] = static_cast<int>(pD->getReal()[i]);
         if (piIndex[i] < 1)
         {
-            Scierror(36, _("%s: Wrong values for input argument #%d: Must be >= 1.\n"), "part", 2);
+            Scierror(36, _("%s: Wrong values for input argument #%d: Must be >= 1.\n"), fname, 2);
             delete[] piIndex;
             return Function::Error;
         }
@@ -110,15 +100,13 @@ wchar_t **partfunctionW(wchar_t** _pwstStringInput, const int _iSize, const int 
 {
     wchar_t** pwstParts = (wchar_t**)MALLOC(sizeof(wchar_t*) * (_iSize));
 
-    int i;
-    for (i = 0 ; i < _iSize ; i++)
+    for (int i = 0; i < _iSize; i++)
     {
         int len_StringInput_i = wcslen(_pwstStringInput[i]);
 
         pwstParts[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (_iVectSize + 1));
 
-        int j;
-        for (j = 0 ; j < _iVectSize ; j++)
+        for (int j = 0 ; j < _iVectSize ; j++)
         {
             if (_piVectInput[j] > len_StringInput_i)
             {
@@ -129,7 +117,9 @@ wchar_t **partfunctionW(wchar_t** _pwstStringInput, const int _iSize, const int 
                 pwstParts[i][j] = _pwstStringInput[i][_piVectInput[j] - 1];
             }
         }
+
         pwstParts[i][_iVectSize] = L'\0';
     }
+
     return pwstParts;
 }

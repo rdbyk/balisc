@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,6 +28,7 @@ extern "C"
 #include "Scierror.h"
 }
 
+static const char fname[] = "strspn";
 
 types::Function::ReturnValue sci_strspn(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -35,34 +36,31 @@ types::Function::ReturnValue sci_strspn(types::typed_list &in, int _iRetCount, t
     types::String* pString      = NULL;
     types::String* pStrSample   = NULL;
     int j                       = 0;
+
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strspn", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 2);
         return types::Function::Error;
     }
-    if (_iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strspn", 1);
-        return types::Function::Error;
-    }
+
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strspn", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         return types::Function::Error;
     }
+
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strspn", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
         return types::Function::Error;
     }
 
     pString     = in[0]->getAs<types::String>();
     pStrSample  = in[1]->getAs<types::String>();
 
-
     if (pString->getSize() != pStrSample->getSize() && pStrSample->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "strspn", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
         return types::Function::Error;
     }
 
@@ -81,4 +79,3 @@ types::Function::ReturnValue sci_strspn(types::typed_list &in, int _iRetCount, t
     out.push_back(pOutDouble);
     return types::Function::OK;
 }
-
