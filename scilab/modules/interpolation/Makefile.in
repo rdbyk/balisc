@@ -186,7 +186,9 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libsciinterpolation_la_DEPENDENCIES = libsciinterpolation-algo.la
+am__DEPENDENCIES_1 =
+libsciinterpolation_la_DEPENDENCIES = libsciinterpolation-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_3 =  \
 	sci_gateway/cpp/libsciinterpolation_la-sci_lsq_splin.lo \
 	sci_gateway/cpp/libsciinterpolation_la-sci_interp.lo \
@@ -648,7 +650,7 @@ CHECK_SRC = $(INTERPOLATION_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libsciinterpolation_la_CFLAGS)
 libsciinterpolation_la_LIBADD = \
 	libsciinterpolation-algo.la \
-	$(FLIBS)
+	 $(FLIBS)
 
 
 #### Target ######

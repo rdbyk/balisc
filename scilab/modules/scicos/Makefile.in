@@ -297,7 +297,7 @@ libsciscicos_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(libsciscicos_algo_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
 libsciscicos_cli_la_DEPENDENCIES = libsciscicos-algo.la \
-	$(am__append_2)
+	$(am__DEPENDENCIES_1) $(am__append_2)
 am__libsciscicos_cli_la_SOURCES_DIST =  \
 	sci_gateway/cpp/sci_scicos_debug.cpp \
 	sci_gateway/cpp/sci_scicos_debug_count.cpp \
@@ -380,7 +380,8 @@ libsciscicos_cli_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(libsciscicos_cli_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
 @XCOS_TRUE@am_libsciscicos_cli_la_rpath = -rpath $(pkglibdir)
-libsciscicos_la_DEPENDENCIES = libsciscicos-algo.la $(am__append_3)
+libsciscicos_la_DEPENDENCIES = libsciscicos-algo.la \
+	$(am__DEPENDENCIES_1) $(am__append_3)
 am__libsciscicos_la_SOURCES_DIST =  \
 	sci_gateway/cpp/sci_scicos_debug.cpp \
 	sci_gateway/cpp/sci_scicos_debug_count.cpp \
@@ -1097,8 +1098,9 @@ libsciscicos_algo_la_LIBADD = \
 		$(RT_LIB) \
 		$(LIBXML_LIBS)
 
-libsciscicos_cli_la_LIBADD = libsciscicos-algo.la $(am__append_2) $(FLIBS)
-libsciscicos_la_LIBADD = libsciscicos-algo.la $(am__append_3) $(FLIBS)
+libsciscicos_cli_la_LIBADD = libsciscicos-algo.la $(FLIBS) \
+	$(am__append_2)
+libsciscicos_la_LIBADD = libsciscicos-algo.la $(FLIBS) $(am__append_3)
 
 # For the code check (splint)
 CHECK_SRC = $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)

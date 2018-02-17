@@ -193,7 +193,9 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @MAINTAINER_MODE_FALSE@am_libscipolynomials_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscipolynomials_algo_la_rpath =
-libscipolynomials_la_DEPENDENCIES = libscipolynomials-algo.la
+am__DEPENDENCIES_1 =
+libscipolynomials_la_DEPENDENCIES = libscipolynomials-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_3 =  \
 	sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo \
 	sci_gateway/cpp/libscipolynomials_la-sci_poly.lo \

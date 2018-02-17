@@ -209,7 +209,9 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libscistatistics_la_DEPENDENCIES = libscistatistics-algo.la
+am__DEPENDENCIES_1 =
+libscistatistics_la_DEPENDENCIES = libscistatistics-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_3 = sci_gateway/c/libscistatistics_la-sci_cdfchi.lo \
 	sci_gateway/c/libscistatistics_la-sci_cdft.lo \
 	sci_gateway/c/libscistatistics_la-sci_cdfgam.lo \
