@@ -36,21 +36,14 @@ using types::GenericType;
 using types::InternalType;
 using types::typed_list;
 
-static const char fname[] = "ndims";
-
 Function::ReturnValue sci_ndims(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "ndims", 1);
         return Function::Error;
     }
 
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), fname, 1);
-        return Function::Error;
-    }
     switch (in[0]->getType())
     {
         case InternalType::ScilabMList:

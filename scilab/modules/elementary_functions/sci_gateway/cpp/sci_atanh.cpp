@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,12 +10,10 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
 
 #include <complex>
-
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -30,11 +28,8 @@ extern "C"
 #include "sciprint.h"
 }
 
-/*
-clear a;nb = 2500;a = rand(nb, nb);tic();atanh(a);toc
-clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();atanh(a);toc
-*/
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "atanh";
+
 types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDblIn = NULL;
@@ -42,13 +37,7 @@ types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "atanh", 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "atanh", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -77,14 +66,14 @@ types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, ty
                             delete[] pInI;
                         }
 
-                        Scierror(78, _("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "atanh", 1);
+                        Scierror(78, _("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), fname, 1);
                         return types::Function::Error;
                     }
 
                     if (ConfigVariable::getIeee() == 1 && ConfigVariable::getWarningMode() && bAlreadyDisp == false)
                     {
                         bAlreadyDisp = true;
-                        sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "atanh", 1);
+                        sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), fname, 1);
                     }
                 }
                 else if (dAbsIn > 1 && bComplex == false)
@@ -102,11 +91,8 @@ types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, ty
 
         if (bComplex)
         {
-            // using scilab 5 macro atanh is faster than std::atanh (08/2015)
-            // see comment a the begins of this gateway
             for (int i = 0; i < iSize; i++)
             {
-                //zcoss(-pInI[i], pInR[i], &pOutR[i], &pOutI[i]);
                 std::complex<double> c(pInR[i], pInI[i]);
                 std::complex<double> d = std::atanh(c);
 
@@ -136,4 +122,3 @@ types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, ty
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

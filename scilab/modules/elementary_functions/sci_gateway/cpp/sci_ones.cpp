@@ -4,8 +4,8 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2014 - Scilab Enterprises - Anais Aubert
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
@@ -28,7 +28,6 @@ extern "C"
 #include "charEncoding.h"
 }
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pOut = NULL;
@@ -66,4 +65,3 @@ types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, typ
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

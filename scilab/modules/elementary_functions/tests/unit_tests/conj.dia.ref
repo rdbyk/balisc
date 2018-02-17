@@ -2,6 +2,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
 // Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2018 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+//
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
@@ -42,4 +44,4 @@ errmsg1=msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "co
 assert_checkerror("conj()", errmsg1, 77);
 assert_checkerror("conj(A,2)", errmsg1, 77);
 errmsg2=msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "conj", 1);
-assert_checkerror("[res1, res2]=conj(A)", errmsg2, 78);
+assert_checkerror("[res1, res2]=conj(A)", errmsg2, 999);

@@ -4,7 +4,7 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -33,7 +32,8 @@ extern "C"
 #include "basic_functions.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "sum";
+
 types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDblIn = NULL;
@@ -48,18 +48,11 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "sum", 1, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 3);
         return types::Function::Error;
     }
 
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "sum", 1);
-        return types::Function::Error;
-    }
-
-
-    //call overload for non manage types
+    // call overload for types not handled here
     if (in[0]->isDouble() == false && in[0]->isInt() == false && in[0]->isPoly() == false && in[0]->isBool() == false)
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sum";
@@ -80,7 +73,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pDbl->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), fname, 2);
                 return types::Function::Error;
             }
 
@@ -88,7 +81,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (iOrientation <= 0)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), fname, 2);
                 return types::Function::Error;
             }
         }
@@ -98,7 +91,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pStr->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), fname, 2);
                 return types::Function::Error;
             }
 
@@ -152,13 +145,13 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
                     pstrExpected = "\"*\",\"r\",\"c\",\"m\"";
                 }
 
-                Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum", 2, pstrExpected);
+                Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, 2, pstrExpected);
                 return types::Function::Error;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"), "sum", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"), fname, 2);
             return types::Function::Error;
         }
     }
@@ -167,7 +160,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     {
         if (in[2]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "sum", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             return types::Function::Error;
         }
 
@@ -175,7 +168,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
         if (pStr->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 3);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), fname, 3);
             return types::Function::Error;
         }
 
@@ -191,7 +184,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "sum", 3, "\"native\"", "\"double\"");
+            Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), fname, 3, "\"native\"", "\"double\"");
             return types::Function::Error;
         }
     }
@@ -438,4 +431,3 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

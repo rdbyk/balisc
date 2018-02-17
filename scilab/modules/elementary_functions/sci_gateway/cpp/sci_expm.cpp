@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -25,7 +25,8 @@ extern "C"
 #include "expm.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "expm";
+
 types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDblIn = NULL;
@@ -33,13 +34,7 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "expm", 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "expm", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -64,7 +59,7 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
 
     if (pDblIn->getCols() != pDblIn->getRows())
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : A square matrix expected.\n"), "expm", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A square matrix expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -82,4 +77,3 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
     out.push_back(pDblOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

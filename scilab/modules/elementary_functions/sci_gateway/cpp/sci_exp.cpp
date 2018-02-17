@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,10 +12,8 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include <complex>
-
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -30,23 +28,11 @@ extern "C"
 #include "localization.h"
 }
 
-/*
-clear a;nb = 2500;a = rand(nb, nb);tic();exp(a);toc
-clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();exp(a);toc
-*/
-
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_exp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "exp", 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "exp", 1);
         return types::Function::Error;
     }
 
@@ -100,4 +86,3 @@ types::Function::ReturnValue sci_exp(types::typed_list &in, int _iRetCount, type
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 }
-/*--------------------------------------------------------------------------*/

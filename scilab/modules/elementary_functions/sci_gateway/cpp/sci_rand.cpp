@@ -3,7 +3,7 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2014 - Scilab Enterprises - Anais Aubert
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include "elem_func_gw.hxx"
 #include "function.hxx"
@@ -37,10 +36,7 @@ static const wchar_t g_pwstTypeNormal[] = {L"normal"};
 static int setRandType(wchar_t _wcType);
 static double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
-/*
-clear a;nb = 2500;a = rand(nb, nb);tic();rand(a);toc
-clear a;nb = 2500;a = rand(nb, nb);a = a + a * %i;tic();rand(a);toc
-*/
+static const char fname[] = "rand";
 
 types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -64,7 +60,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         types::String* pS = in[0]->getAs<types::String>();
         if (pS->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "rand", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
             return types::Function::Error;
         }
 
@@ -75,7 +71,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             //info
             if (iSizeIn > 1)
             {
-                Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "rand", 1);
+                Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
                 return types::Function::Error;
             }
 
@@ -100,7 +96,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             {
                 if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
                 {
-                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "rand", 2);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
                     return types::Function::Error;
                 }
 
@@ -109,7 +105,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "rand", 2);
+                Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 2);
                 return types::Function::Error;
             }
         }
@@ -127,7 +123,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             types::String* pS = in[iSizeIn - 1]->getAs<types::String>();
             if (pS->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "rand", iSizeIn);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, iSizeIn);
                 return types::Function::Error;
             }
 
@@ -144,7 +140,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         int* piDims = NULL;
         bool alloc = false;
 
-        bool ret = getDimsFromArguments(args, "rand", &iDims, &piDims, &alloc);
+        bool ret = getDimsFromArguments(args, fname, &iDims, &piDims, &alloc);
         if (ret == false)
         {
             switch (iDims)
@@ -155,7 +151,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
                 case 1:
                 {
                     //call overload
-                    return Overload::generateNameAndCall(L"rand", in, _iRetCount, out);
+                    return Overload::generateNameAndCall(L"rat", in, _iRetCount, out);
                 }
             }
 
@@ -197,7 +193,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
+
 static double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
 {
     static int siInit = TRUE;
@@ -246,4 +242,3 @@ static int setRandType(wchar_t _wcType)
     }
     return 0;
 }
-/*--------------------------------------------------------------------------*/

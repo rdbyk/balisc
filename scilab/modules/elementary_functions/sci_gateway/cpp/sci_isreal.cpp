@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -26,7 +26,8 @@ extern "C"
 #include "localization.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "isreal";
+
 types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     double dEps = 0;
@@ -34,13 +35,7 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "isreal", 1, 2);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isreal", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
@@ -48,7 +43,7 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
     {
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "isreal", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -56,7 +51,7 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
 
         if ((pDblEps->isScalar() == false) || pDblEps->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "isreal", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -166,4 +161,3 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
