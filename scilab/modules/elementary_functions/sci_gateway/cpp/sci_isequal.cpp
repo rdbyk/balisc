@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,34 +12,33 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "bool.hxx"
 #include "function.hxx"
 
-types::Function::ReturnValue sci_isequal(types::typed_list &in, int _iRetCount, types::typed_list &out)
+extern "C"
 {
-    bool bResult = true;
-    if (in.size() <= 1 || _iRetCount != 1)
-    {
-        return types::Function::Error;
-    }
-
-    for (int i = 1 ; i < static_cast<int>(in.size()); i++)
-    {
-        types::InternalType* pIn2 = in[i];
-        types::InternalType* pIn1 = in[i - 1];
-
-        if (*pIn1 != *pIn2)
-        {
-            bResult = false;
-            break;
-        }
-    }
-
-    types::Bool* pBool = new types::Bool(bResult);
-
-    out.push_back(pBool);
-    return types::Function::OK;
+#include "Scierror.h"
+#include "localization.h"
 }
-/*--------------------------------------------------------------------------*/
+
+using types::Bool;
+using types::Function;
+using types::typed_list;
+
+Function::ReturnValue sci_isequal(typed_list &in, int _iRetCount, typed_list &out)
+{
+    if (in.size() <= 1)
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): more than %d expected.\n"), "isequal", 1);
+        return Function::Error;
+    }
+
+    int n = static_cast<int>(in.size());
+
+    while(--n > 0 && *(in[n]) == *(in[0]));
+
+    out.push_back(new Bool(n == 0));
+    return Function::OK;
+}
