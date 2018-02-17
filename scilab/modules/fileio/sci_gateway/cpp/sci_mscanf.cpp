@@ -5,7 +5,7 @@
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "fileio_gw.hxx"
 #include "string.hxx"
 #include "scilabWrite.hxx"
@@ -34,6 +34,8 @@ extern "C"
 #include "scanf_functions.h"
 #include "scilabRead.h"
 }
+
+static const char fname[] = "mscanf";
 
 types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -56,7 +58,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
     if (size < 1 || size > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mscanf", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
@@ -64,7 +66,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     {
         if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mscanf", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), fname, 1);
             return types::Function::Error;
         }
         iNiter = static_cast<int>(in[0]->getAs<types::Double>()->getFirst());
@@ -76,7 +78,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
     if (in[size - 1]->isString() == false || in[size - 1]->getAs<types::String>()->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mscanf", size);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, size);
         return types::Function::Error;
     }
 
@@ -116,12 +118,12 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
             {
                 case DO_XXPRINTF_MISMATCH:
                     Free_Scan(rowcount, ncol, type_s, &data);
-                    Scierror(999, _("%s: Data mismatch.\n"), "mscanf");
+                    Scierror(999, _("%s: Data mismatch.\n"), fname);
                     return types::Function::Error;
 
                 case DO_XXPRINTF_MEM_LACK:
                     Free_Scan(rowcount, ncol, type_s, &data);
-                    Scierror(999, _("%s: No more memory.\n"), "mscanf");
+                    Scierror(999, _("%s: No more memory.\n"), fname);
                     return types::Function::Error;
             }
         }
@@ -294,4 +296,3 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     Free_Scan(rowcount, ncol, type_s, &data);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
