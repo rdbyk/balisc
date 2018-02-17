@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "string_gw.hxx"
 #include "function.hxx"
@@ -27,6 +27,8 @@ extern "C"
 #include "isdigit.h"
 }
 
+static const char fname[] = "isdigit";
+
 types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pStrIn   = NULL;
@@ -36,19 +38,13 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
 
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "isdigit", 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount != 1)
-    {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "isdigit", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "isdigit", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -56,7 +52,7 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
 
     if (pStrIn->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar String expected.\n"), "isdigit", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar String expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -75,4 +71,3 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
 
     return types::Function::OK;
 }
-/*-------------------------------------------------------------------------------------*/

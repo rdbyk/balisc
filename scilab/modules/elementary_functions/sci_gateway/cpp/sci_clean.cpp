@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,10 +12,8 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include <complex>
-
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -30,7 +28,8 @@ extern "C"
 #include "localization.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "clean";
+
 types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDblOut      = NULL;
@@ -51,13 +50,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "clean", 1, 3);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "clean", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 3);
         return types::Function::Error;
     }
 
@@ -108,7 +101,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 3);
             if (in[0]->isSparse())
             {
                 delete pSparseOut;
@@ -126,7 +119,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 3);
             if (in[0]->isSparse())
             {
                 delete pSparseOut;
@@ -147,7 +140,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     {
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 2);
             if (in[0]->isSparse())
             {
                 delete pSparseOut;
@@ -165,7 +158,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "clean", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 2);
             if (in[0]->isSparse())
             {
                 delete pSparseOut;
@@ -235,4 +228,3 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

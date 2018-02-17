@@ -13,7 +13,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "overload.hxx"
 
@@ -24,7 +24,7 @@ extern "C"
 #include "localization.h"
 #include "charEncoding.h"
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pOut = NULL;
@@ -66,4 +66,3 @@ types::Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, type
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

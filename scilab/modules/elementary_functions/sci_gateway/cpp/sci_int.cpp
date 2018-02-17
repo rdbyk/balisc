@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -26,22 +26,12 @@ extern "C"
 #include "localization.h"
 #include "core_math.h"
 }
-/*
-clear a;nb = 2500;a = rand(nb, nb) * 500;tic();int(a);toc
-clear a;nb = 2500;a = rand(nb, nb) * 500; a = a + a *%i;tic();int(a);toc
-*/
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "int", 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "int", 1);
         return types::Function::Error;
     }
 
@@ -220,4 +210,3 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

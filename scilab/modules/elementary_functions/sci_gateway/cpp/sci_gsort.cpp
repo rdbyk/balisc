@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -27,7 +27,8 @@ extern "C"
 #include "localization.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "gsort";
+
 types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDblInd = NULL;
@@ -37,13 +38,13 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "gsort", 1, 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 3);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "gsort", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
@@ -52,14 +53,14 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "gsort", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), fname, 3);
             return types::Function::Error;
         }
 
         wstrWay = in[2]->getAs<types::String>()->getFirst();
         if (wstrWay != L"i" && wstrWay != L"d")
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"), "gsort", 3);
+            Scierror(999, _("%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"), fname, 3);
             return types::Function::Error;
         }
     }
@@ -68,7 +69,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "gsort", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -80,7 +81,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
                 wstrProcess != L"lc" &&
                 wstrProcess != L"lr")
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"), "gsort", 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"), fname, 2);
             return types::Function::Error;
         }
     }
@@ -202,4 +203,3 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

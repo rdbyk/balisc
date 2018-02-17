@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Charlotte HECQUET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -47,7 +47,8 @@ void printVarList(const char* title, const char* const* vars, int size)
     sciprint("\n");
 }
 
-const char fname[] = "what";
+static const char fname[] = "what";
+
 types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     char **pOutStringFctTmp = NULL;
@@ -55,39 +56,31 @@ types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, typ
     char **pOutStringCmdTmp = NULL;
     int sizeCmd = 0;
 
-    // Check input arguments
     if (in.size() != 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 0);
         return types::Function::Error;
     }
 
-    // Check output arguments
-    if (_iRetCount != 1 && _iRetCount != 2)
+    if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
-    // Retrieve list of functions and list of keywords
     pOutStringFctTmp = getFunctionsName(&sizeFct);
     pOutStringCmdTmp = getcommandkeywords(&sizeCmd);
 
     if (_iRetCount == 1)
     {
-        // Print functions
         printVarList("Internal Functions", pOutStringFctTmp, sizeFct);
-        // Print keywords
         printVarList("Commands", pOutStringCmdTmp, sizeCmd);
     }
     else
     {
-        // Scilab functions in first output argument
         types::String* pOutStringFct = new types::String(sizeFct, 1);
         pOutStringFct->set(pOutStringFctTmp);
         out.push_back(pOutStringFct);
-
-        // Scilab commands in second output argument
         types::String* pOutStringCmd = new types::String(sizeCmd, 1);
         pOutStringCmd->set(pOutStringCmdTmp);
         out.push_back(pOutStringCmd);

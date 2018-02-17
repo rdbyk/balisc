@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,10 +12,8 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include <algorithm>
-
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -32,7 +30,6 @@ extern "C"
 
 template<class T> types::InternalType* tril_const(T* _pL, int iOffset);
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iOffset = 0;
@@ -40,12 +37,6 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
     if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "tril", 1, 2);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "tril", 1);
         return types::Function::Error;
     }
 
@@ -163,7 +154,6 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
 
 template<class T> types::InternalType* tril_const(T* _pL, int iOffset)
 {

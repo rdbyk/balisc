@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include "data_structures_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
@@ -26,18 +25,11 @@ extern "C"
 #include "localization.h"
 }
 
-/*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_rlist(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() == 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): At most %d expected.\n"), "rlist", 2);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "rlist", 1);
         return types::Function::Error;
     }
 

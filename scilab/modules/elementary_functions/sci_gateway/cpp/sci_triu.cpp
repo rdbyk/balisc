@@ -3,7 +3,7 @@
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,10 +13,8 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include <algorithm>
-
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -33,7 +31,6 @@ extern "C"
 
 template<class T> types::InternalType* triu_const(T *_pL, int iOffset);
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iOffset = 0;
@@ -43,13 +40,6 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "triu", 1, 2);
         return types::Function::Error;
     }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "triu", 1);
-        return types::Function::Error;
-    }
-
 
     if (in[0]->isGenericType() == false)
     {
@@ -165,7 +155,6 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
 
 template<class T> types::InternalType* triu_const(T *_pL, int iOffset)
 {

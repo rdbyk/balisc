@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include "core_gw.hxx"
 #include "configvariable.hxx"
@@ -26,22 +25,15 @@ extern "C"
 #include "localization.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "mode";
+
 types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::InternalType *pIT = NULL;
 
-    /* Check the number of input argument */
     if (in.size() > 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "mode" , 0, 1);
-        return types::Function::Error;
-    }
-
-    /* Check the number of output argument */
-    if (_iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "mode", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname , 0, 1);
         return types::Function::Error;
     }
 
@@ -53,7 +45,7 @@ types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, typ
     {
         if (in[0]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "mode", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 1);
             return types::Function::Error;
         }
 
@@ -61,14 +53,14 @@ types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, typ
 
         if (pDblIn->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "mode", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
             return types::Function::Error;
         }
 
         int iScilabMode = (int)pDblIn->getFirst();
         if (pDblIn->getFirst() != (double)iScilabMode)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "mode", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 1);
             return types::Function::Error;
         }
 

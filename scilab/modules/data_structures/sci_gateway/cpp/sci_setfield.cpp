@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Antoine Elias
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include "data_structures_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
@@ -28,22 +27,15 @@ extern "C"
 #include "localization.h"
 #include "freeArrayOfString.h"
 }
+static const char fname[] = "setfield";
 
-/*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "setfield", 3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 3);
         return types::Function::Error;
     }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "setfield", 1);
-        return types::Function::Error;
-    }
-
 
     types::InternalType* pIndex = in[0];
     types::InternalType* pData = in[1];
@@ -55,7 +47,7 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
 
     if (pL->isList() == false && pL->isMList() == false && pL->isTList() == false)
     {
-        Scierror(999, _("%s:  Wrong type for input argument #%d: List expected.\n"), "setfield", 3);
+        Scierror(999, _("%s:  Wrong type for input argument #%d: List expected.\n"), fname, 3);
         return types::Function::Error;
     }
 
@@ -65,7 +57,7 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
         types::String* pS = pIndex->getAs<types::String>();
         if ((pL->isMList() == false && pL->isTList() == false) || pS->getSize() != 1)
         {
-            Scierror(999, _("%s: Not implemented in scilab...\n"), "setfield");
+            Scierror(999, _("%s: Not implemented in scilab...\n"), fname);
             return types::Function::Error;
         }
 
@@ -77,7 +69,7 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
 
         if (pRet == nullptr)
         {
-            Scierror(999, _("%s: Invalid index.\n"), "setfield");
+            Scierror(999, _("%s: Invalid index.\n"), fname);
             return types::Function::Error;
         }
 
@@ -91,7 +83,7 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
         types::InternalType* pRet = pL->insert(&Args, pData);
         if (pRet == nullptr)
         {
-            Scierror(999, _("%s: Invalid index.\n"), "setfield");
+            Scierror(999, _("%s: Invalid index.\n"), fname);
             return types::Function::Error;
         }
 
@@ -100,4 +92,3 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
 
     return types::Function::OK;
 }
-/*-----------------------------------------------------------------------------------*/

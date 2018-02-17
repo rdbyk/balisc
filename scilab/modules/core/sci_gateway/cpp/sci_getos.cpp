@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@
 
 #include "core_gw.hxx"
 #include "function.hxx"
-#include "context.hxx"
 #include "string.hxx"
 
 extern "C"
@@ -25,64 +24,53 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 }
-/*--------------------------------------------------------------------------*/
+
+static const char fname[] = "getos";
 
 types::Function::ReturnValue sci_getos(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    char *OperatingSystem = getOSFullName();
-
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getos", 0);
-        FREE(OperatingSystem);
-        OperatingSystem = NULL;
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 0);
         return types::Function::Error;
     }
 
-    if (_iRetCount != 2 && _iRetCount != 1 && _iRetCount != -1)
+    if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getos", 1, 2);
-        FREE(OperatingSystem);
-        OperatingSystem = NULL;
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
+
+    char *OperatingSystem = getOSFullName();
 
     if (OperatingSystem)
     {
         types::String* pS1 = new types::String(OperatingSystem);
         out.push_back(pS1);
-        if (OperatingSystem)
-        {
-            FREE(OperatingSystem);
-            OperatingSystem = NULL;
-        }
-
+        FREE(OperatingSystem);
 
         if (_iRetCount == 2)
         {
             char *Release = getOSRelease();
+
             if (Release)
             {
                 types::String* pS2 = new types::String(Release);
                 out.push_back(pS2);
-                if (Release)
-                {
-                    FREE(Release);
-                    Release = NULL;
-                }
+                FREE(Release);
             }
             else
             {
-                Scierror(999, _("%s: No more memory.\n"), "getos");
+                Scierror(999, _("%s: No more memory.\n"), fname);
                 return types::Function::Error;
             }
         }
     }
     else
     {
-        Scierror(999, _("%s: No more memory.\n"), "getos");
+        Scierror(999, _("%s: No more memory.\n"), fname);
         return types::Function::Error;
     }
+
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

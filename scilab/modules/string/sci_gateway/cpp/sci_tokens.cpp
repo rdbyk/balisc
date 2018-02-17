@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,6 +33,8 @@ extern "C"
 
 #include <sciprint.h>
 
+static const char fname[] = "tokens";
+
 types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pOutString   = NULL;
@@ -43,16 +45,10 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
 
     if (in.size() > 2 || in.size() == 0)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "tokens", 1, 2);
-        return types::Function::Error;
-    }
-    if (_iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "tokens", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
-    // first arg
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
         out.push_back(types::Double::Empty());
@@ -61,15 +57,17 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "tokens", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         return types::Function::Error;
     }
+
     pString = in[0]->getAs<types::String>();
     if (pString->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "tokens", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
         return types::Function::Error;
     }
+
     if ((pString->getFirst())[0] == L'\0')
     {
         types::Double* pOutDouble = types::Double::Empty();
@@ -77,19 +75,18 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
         return types::Function::OK;
     }
 
-    // second arg
     if (in.size() == 2)
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "tokens", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
             return types::Function::Error;
         }
         pCharSample = in[1]->getAs<types::String>();
 
         if (pCharSample->getSize() == 0)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "tokens", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
             return types::Function::Error;
         }
         sizeSeps = pCharSample->getSize();
@@ -99,7 +96,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
             int iLen = (int)wcslen(pCharSample->get(i));
             if (iLen > 1 || iLen < 0)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "tokens", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), fname, 2);
                 delete pOutString;
                 FREE(seps);
                 return types::Function::Error;
@@ -107,7 +104,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
             seps[i] = pCharSample->get(i)[0];
         }
     }
-    else // default delimiters are ' ' and Tabulation
+    else // default delimiters are ' ' and tabulator
     {
         sizeSeps = 2;
         seps = (wchar_t*)MALLOC((sizeSeps + 1) * sizeof(wchar_t));
@@ -120,9 +117,9 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     int dimsArray[2] = {0, 1};
     wchar_t** Output_Strings = stringTokens(pString->getFirst(), seps, &dimsArray[0]);
     FREE(seps);
+
     if (Output_Strings == NULL)
     {
-        //return empty matrix
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
@@ -141,4 +138,3 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     out.push_back(pOutString);
     return types::Function::OK;
 }
-

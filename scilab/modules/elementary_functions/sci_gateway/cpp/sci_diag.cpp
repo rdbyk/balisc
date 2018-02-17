@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2014 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -26,25 +26,16 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
-/*
-clear a; nb = 2500; a = rand(nb, nb); tic(); diag(a); toc
-clear a; nb = 2500; a = rand(nb, nb); a = a + a *%i; tic(); diag(a); toc
-*/
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "diag";
+
 types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iStartPos = 0;
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "diag", 1, 2);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "diag", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
@@ -64,7 +55,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
     {
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "diag", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -72,7 +63,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "diag", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -126,4 +117,3 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

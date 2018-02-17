@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,6 +24,7 @@
 extern "C"
 {
 #include "Scierror.h"
+#include "localization.h"
 }
 
 template <class T>
@@ -38,6 +39,8 @@ int get_dimsarray(T* _pIn, int _iSize, int* _pOut)
     return iProd;
 }
 
+static const char fname[] = "makecell";
+
 types::Function::ReturnValue sci_makecell(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iProd = 0;
@@ -46,17 +49,10 @@ types::Function::ReturnValue sci_makecell(types::typed_list &in, int _iRetCount,
 
     if (in.size() < 2)
     {
-        Scierror(999, _("%s: Wrong size for input arguments: more than %d expected.\n"), "makecell", 2);
+        Scierror(999, _("%s: Wrong size for input arguments: more than %d expected.\n"), fname, 2);
         return types::Function::Error;
     }
 
-    if (_iRetCount > 1)
-    {
-        Scierror(999, _("%s: Wrong size for output arguments: %d expected.\n"), "makecell", 1);
-        return types::Function::Error;
-    }
-
-    //check data type
     switch (in[0]->getType())
     {
         case types::InternalType::ScilabDouble :
@@ -133,25 +129,23 @@ types::Function::ReturnValue sci_makecell(types::typed_list &in, int _iRetCount,
         }
         default :
         {
-            Scierror(999, _("%s: Wrong input arguments: Dimensions given as first argument do not match specified cell contents.\n"), "makecell");
+            Scierror(999, _("%s: Wrong input arguments: Dimensions given as first argument do not match specified cell contents.\n"), fname);
             return types::Function::Error;
         }
     }
 
-    //check vector format
     types::GenericType* pGT = in[0]->getAs<types::GenericType>();
     if (pGT->isScalar() || (pGT->getRows() != 1 && pGT->getCols() != 1))
     {
         delete[] piDimsArray;
-        Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), "makecell", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
-    //check input parameters count
     if (iProd != (in.size() - 1))
     {
         delete[] piDimsArray;
-        Scierror(999, _("%s: Wrong input arguments: Dimensions given as first argument do not match specified cell contents.\n"), "makecell");
+        Scierror(999, _("%s: Wrong input arguments: Dimensions given as first argument do not match specified cell contents.\n"), fname);
         return types::Function::Error;
     }
 

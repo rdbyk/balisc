@@ -3,7 +3,7 @@
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "function.hxx"
 #include "string.hxx"
 #include "funcmanager.hxx"
@@ -34,12 +34,13 @@ enum PartialPart
     ExtensionPart,
     AllPart = -1
 };
-/*--------------------------------------------------------------------------*/
+
 #define FILEPARTS_PATH_SELECTOR L"path"
 #define FILEPARTS_FNAME_SELECTOR L"fname"
 #define FILEPARTS_EXTENSION_SELECTOR L"extension"
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "fileparts";
+
 types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     PartialPart iPartialPart = AllPart;
@@ -51,25 +52,25 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "fileparts", 1, 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
     if (in.size() == 2 && _iRetCount != 1 && _iRetCount != -1)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "fileparts", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (in.size() == 1 && _iRetCount > 3)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "fileparts", 1, 3);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 3);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "fileparts", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -79,13 +80,13 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "fileparts", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
         if (in[1]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "fileparts", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -104,7 +105,7 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "fileparts", 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -206,4 +207,3 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

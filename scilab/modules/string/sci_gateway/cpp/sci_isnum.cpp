@@ -3,8 +3,8 @@
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,6 +30,7 @@ extern "C"
 #include "BOOL.h"
 }
 
+static const char fname[] = "isnum";
 
 types::Function::ReturnValue sci_isnum(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -40,19 +41,13 @@ types::Function::ReturnValue sci_isnum(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "isnum", 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isnum", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "isnum", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -67,4 +62,3 @@ types::Function::ReturnValue sci_isnum(types::typed_list &in, int _iRetCount, ty
     out.push_back(pOutBool);
     return types::Function::OK;
 }
-// =============================================================================

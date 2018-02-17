@@ -34,13 +34,7 @@ Function::ReturnValue sci_iconvert(typed_list &in, int _iRetCount, typed_list &o
         return Function::Error;
     }
 
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "iconvert", 1);
-        return Function::Error;
-    }
-
-    if (in[0]->isInt() == false && in[0]->isDouble() == false && in[0]->isBool() == false)
+    if (!(in[0]->isInt() || in[0]->isDouble() || in[0]->isBool()))
     {
         // call overload
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_iconvert";

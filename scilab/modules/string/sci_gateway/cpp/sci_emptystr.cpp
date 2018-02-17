@@ -1,8 +1,8 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2017 - Scilab Enterprises - Antoine ELIAS
-*
+* Copyright (C) 2017 - Scilab Enterprises - Antoine ELIAS
 * Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 *
 * This file is hereby licensed under the terms of the GNU GPL v2.0,
 * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
 * along with this program.
 *
 */
-/*--------------------------------------------------------------------------*/
+
 #include <string>
 #include "string_gw.hxx"
 #include "function.hxx"
@@ -20,26 +20,19 @@
 #include "string.hxx"
 #include "list.hxx"
 #include "overload.hxx"
-/*--------------------------------------------------------------------------*/
+
 extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
 }
 
-static const std::string fname("emptystr");
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "emptystr";
+
 types::Function::ReturnValue sci_emptystr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* ret = nullptr;
     int iRhs = static_cast<int>(in.size());
-
-    // check output parameters
-    if (_iRetCount != 1 && _iRetCount != -1)
-    {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname.data(), 1);
-        return types::Function::Error;
-    }
 
     switch (iRhs)
     {
@@ -72,13 +65,13 @@ types::Function::ReturnValue sci_emptystr(types::typed_list &in, int _iRetCount,
         {
             if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), fname.data(), 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), fname, 1);
                 return types::Function::Error;
             }
 
             if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), fname.data(), 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), fname, 2);
                 return types::Function::Error;
             }
 
@@ -109,5 +102,4 @@ types::Function::ReturnValue sci_emptystr(types::typed_list &in, int _iRetCount,
 
     out.push_back(ret);
     return types::Function::OK;
-
 }

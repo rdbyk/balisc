@@ -15,7 +15,6 @@
  */
 
 #include <algorithm>
-
 #include "elem_func_gw.hxx"
 #include "types.hxx"
 #include "internal.hxx"

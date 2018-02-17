@@ -70,12 +70,6 @@ Function::ReturnValue sci_global(typed_list &in, int _iRetCount, typed_list &out
         }
     }
 
-    if (_iRetCount > 1)
-    {
-        Scierror(999, _("%s: Wrong number of output arguments: At most %d expected.\n"), fname, 1);
-        return Function::Error;
-    }
-
     for (int i = 0 ; i < in.size() ; i++)
     {
         wchar_t* wcsVarName = in[i]->getAs<String>()->getFirst();

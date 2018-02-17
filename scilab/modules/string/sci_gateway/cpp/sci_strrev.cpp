@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,37 +29,29 @@ extern "C"
 #include "stringsstrrev.h"
 }
 
+static const char fname[] = "strrev";
+
 types::Function::ReturnValue sci_strrev(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::String* pString      = NULL;
-    types::String* pOutString   = NULL;
-    wchar_t **OutputStrings     = NULL;
-
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strrev", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
-    if (_iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strrev", 1);
-        return types::Function::Error;
-    }
+
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"), "strrev", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
-    pString = in[0]->getAs<types::String>();
-    // wchar_t* pwstStr = in[0]->getAs<types::String>()->getFirst();
+    types::String* pString = in[0]->getAs<types::String>();
+    wchar_t **OutputStrings = strings_strrev(pString->get(), pString->getSize());
+    types::String* pOutString = new types::String(pString->getDims(), pString->getDimsArray());
 
-    OutputStrings = strings_strrev(pString->get(), pString->getSize());
-
-    pOutString = new types::String(pString->getDims(), pString->getDimsArray());
     pOutString->set(OutputStrings);
     freeArrayOfWideString(OutputStrings, pString->getSize());
+
     out.push_back(pOutString);
     return types::Function::OK;
 }
-
