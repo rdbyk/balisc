@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,44 +19,38 @@
 #include "os_string.h"
 #include "strcmp.h"
 
-/*--------------------------------------------------------------------------*/
-/* if you update command.f , please update this file too ... */
-/*--------------------------------------------------------------------------*/
-static const int nbrCommands = 29;
-/*--------------------------------------------------------------------------*/
+/* The following 19 mandatory keywords are defined in
+ *
+ * ../../../modules/ast/src/cpp/parse/bison/parsescilab.yy
+ *
+ * and sorted in lexigraphically ascending order.
+ */
+
+static const int nbrCommands = 19;
+
 static char *CommandWords[] =
 {
-    "abort",
-    "apropos",
-    "break",
     "case",
     "catch",
-    "clc",
-    "clear",
     "continue",
     "do",
     "else",
     "elseif",
     "end",
     "endfunction",
-    "exit",
     "function",
     "for",
-    "help",
     "if",
-    "pause",
-    "pwd",
-    "quit",
+    "otherwise",
     "resume",
     "return",
     "select",
+    "switch",
     "then",
     "try",
-    "what",
-    "while",
-    "who"
+    "while"
 };
-/*--------------------------------------------------------------------------*/
+
 char **getcommandkeywords(int *sizearray)
 {
     char **keywords = NULL;
@@ -79,4 +73,3 @@ char **getcommandkeywords(int *sizearray)
 
     return keywords;
 }
-/*--------------------------------------------------------------------------*/
