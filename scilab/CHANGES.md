@@ -152,6 +152,7 @@ Known issues
 * [#14988](http://bugzilla.scilab.org/show_bug.cgi?id=14988): The example of Xcos diagram on the DERIV help page was distorted.
 * [#14989](http://bugzilla.scilab.org/show_bug.cgi?id=14989): The example of Xcos diagram on the INTEGRAL_m help page was distorted.
 * [#14990](http://bugzilla.scilab.org/show_bug.cgi?id=14990): The example of Xcos diagram on the NEGTOPOS_f help page was distorted.
+* [#15263](http://bugzilla.scilab.org/show_bug.cgi?id=15263): Assignments in an array of structures often overwrote some untargeted elements.
 * [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
 * [#15423](http://bugzilla.scilab.org/show_bug.cgi?id=15423): `tbx_make(myModule,sections)` executed the existing builder (if any), instead of targeting only selected module sections. Otherwise, tbx_make(myModule, "help"|"macros") yielded an error, and tbx_make(myModule,"localization") never built it.
 * [#15440](http://bugzilla.scilab.org/show_bug.cgi?id=15440): Scilab debug help page linked to Xcos debug.
