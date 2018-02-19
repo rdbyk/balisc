@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,6 +31,8 @@
 #endif
 #endif
 #include "context.hxx"
+#include "double.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -43,6 +45,7 @@ extern "C"
 #include "freeArrayOfString.h"
 #include "os_string.h"
 #include "api_scilab.h"
+#include "strlen.h"
 }
 
 #define N_A             "N/A"
@@ -371,30 +374,83 @@ static char * getListName(char * variableName)
 
 static char * valueToDisplay(types::InternalType* pIT, int variableType, int nbRows, int nbCols)
 {
-    // 4 is the dimension max to which display the content
-    if (nbRows * nbCols <= 4 && variableType == sci_matrix)
-    {
-        types::Double* pD = pIT->getAs<types::Double>();
-        // Small double value, display it
-        double* pdblReal = nullptr;
-        double* pdblImg = nullptr;
-        pdblReal = pD->get();
+    // FIXME: Redesign and rewrite this function in clean way ...
 
-        if (pD->isComplex())
+    if (pIT->isDouble() && pIT->getAs<types::Double>()->getDims() <= 2 && pIT->getAs<types::Double>()->getSize() <= 4)
+    {
+        // Double 2D matrix with up to 4 elements
+        types::Double* pD = pIT->getAs<types::Double>();
+        return os_strdup(formatMatrix(pD->getRows(), pD->getCols(), pD->get(), pD->getImg()).c_str());
+    }
+    else if (pIT->isBool() &&  pIT->getAs<types::Bool>()->getSize() == 1)
+    {
+        // Bool scalar
+        if (pIT->getAs<types::Bool>()->getFirst())
         {
-            pdblImg = pD->getImg();
+            return os_strdup("%t");
+        }
+        else
+        {
+            return os_strdup("%f");
+        }
+    }
+    else if (pIT->isString() &&  pIT->getAs<types::String>()->getSize() == 1)
+    {
+        // single String
+        // In case of a large string (> 20 characters), we truncate it
+        // and append "..."
+
+        wchar_t ws[21];
+
+        wcsncpy(ws, pIT->getAs<types::String>()->getFirst(), 20);
+        if (ws[19] != L'\0')
+        {
+            ws[20] = L'\0';
         }
 
+        char* s = wide_string_to_UTF8(ws);
+        char* qs = (char *)MALLOC((balisc_strlen(s) + 4 + 1)* sizeof(char));
 
-        return os_strdup(formatMatrix(nbRows, nbCols, pdblReal, pdblImg).c_str());
+        if (ws[19] == L'\0')
+        {
+            sprintf(qs, "\"%s\"", s);
+        }
+        else
+        {
+            sprintf(qs, "\"%s...", s);
+        }
+
+        FREE(s);
+        return qs;
     }
     else
     {
-        char *sizeStr = NULL;
-        // 11 =strlen("2147483647")+1 (1 for security)
-        sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
-        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-        return sizeStr;
+        if (pIT->isGenericType()) // FIXME: Is this check needed?
+        {
+            // size of arrays "n1 x n2 x .. x nd"
+            types::GenericType* pG = pIT->getAs<types::GenericType>();
+            int n = pG->getDims();
+            int* d = pG->getDimsArray();
+            char* s = (char *)MALLOC(12 * n * sizeof(char));
+
+            char* ss = s;
+            for (int i = 0; i < n - 1; ++i)
+            {
+                ss += sprintf(ss, "%dx", d[i]);
+            }
+            ss += sprintf(ss, "%d", d[n-1]);
+
+            return s;
+        }
+        else
+        {
+            // FIXME: is this dead code?
+            char *sizeStr = NULL;
+            // 11 =strlen("2147483647")+1 (1 for security)
+            sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
+            sprintf(sizeStr, "%dx%d", nbRows, nbCols);
+            return sizeStr;
+        }
     }
 }
 
