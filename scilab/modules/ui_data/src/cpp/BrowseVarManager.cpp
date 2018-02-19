@@ -483,22 +483,24 @@ std::string addDouble(double dbl)
 }
 std::string formatMatrix(int nbRows, int nbCols, double *pdblReal, double *pdblImg)
 {
-    int i, j ;
     if (nbRows * nbCols == 1)
     {
         std::ostringstream os;
         std::string formated = addDouble(pdblReal[0]);
+
         if (pdblImg)
         {
             double img = pdblImg[0];
-            if (img > 0)
-            {
-                formated += PLUS_STR;
-            }
-            else
+
+            if (std::signbit(img))
             {
                 formated += MINUS_STR;
             }
+            else
+            {
+                formated += PLUS_STR;
+            }
+
             formated += addDouble(std::fabs(img));
             formated += I_STR;
         }
@@ -506,23 +508,23 @@ std::string formatMatrix(int nbRows, int nbCols, double *pdblReal, double *pdblI
     }
 
     std::string formated = LBRACKET_STR;
-    for (j = 0 ; j < nbRows ; j++)
+
+    for (int j = 0 ; j < nbRows ; j++)
     {
-        for (i = 0 ; i < nbCols ; i++)
+        for (int i = 0 ; i < nbCols ; i++)
         {
-            /* Display the formated matrix ... the way the user
-             * expect */
             formated += addDouble(pdblReal[i * nbRows + j]);
             if (pdblImg)
             {
                 double img = pdblImg[i * nbRows + j];
-                if (img > 0)
+
+                if (std::signbit(img))
                 {
-                    formated += PLUS_STR;
+                    formated += MINUS_STR;
                 }
                 else
                 {
-                    formated += MINUS_STR;
+                    formated += PLUS_STR;
                 }
 
                 formated += addDouble(std::fabs(img));
