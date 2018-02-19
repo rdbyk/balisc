@@ -36,6 +36,26 @@ under current [**_Scilab 6.x_**](http://www.scilab.org/en/development/nightly_bu
 
 Please, don't take this example too seriously, it is just an extreme example chosen for pedagogic reasons. *Scilab is a very powerful and comprehensive tool*.
 
+#### You want to Protect Just One Variable?
+With the unique functions `protect`, `unprotect`, and `isprotected` of **_Balisc_**, you might do this 
+```scilab
+--> x=123;y=456;
+--> protect("x")
+--> x=0
+Redefining permanent variable.
+--> y=1
+ y  = 
+   1.
+--> isprotected(["x" "y"])
+ ans  =
+  T F
+--> unprotect("x")
+--> x=0
+ x  = 
+   0.
+```
+Please note, these functions have been added very recently (cf. [#366](https://github.com/rdbyk/balisc/pull/366)), thus they are not tested very well and might need some polishing. However, can you do the same thing using `predef` in current Scilab 6.x?
+
 ### Try some of Scilab's Benchmarks
 
 Scilab 6.X is shipped with a sparse set of benchmarks only for some its modules. You may run them as follows:
