@@ -335,88 +335,26 @@ void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _d
 {
     std::wostringstream ostemp;
 
-    /*
-     * if R && !C -> R
-     * if R && C -> R + Ci
-     * if !R && !C -> 0
-     * if(!R && C -> Ci
-     */
+    // real part
+    DoubleFormat df;
 
-    // *_postr << "|%" << _iTotalWitdh << "%|";
-    if (_dblR == 0)
+    df.iPrec = _pDFR->iPrec;
+    df.bExp = _pDFR->bExp;
+
+    addDoubleValue(&ostemp, _dblR, &df);
+
+    // imaginary part
+    df.iPrec = _pDFI->iPrec;
+    df.bExp = _pDFI->bExp;
+    df.bPrintPlusSign = true;
+    df.bPrintComplexPlusSpace = true;
+    df.bPrintOne = false;
+
+    addDoubleValue(&ostemp, _dblI, &df);
+    ostemp << std::left << SYMBOL_I;
+    if (_dblI == 1)
     {
-        //no real part
-        if (_dblI == 0)
-        {
-            //no imaginary part
-
-            //0
-            DoubleFormat df;
-
-            addDoubleValue(&ostemp, 0, &df);
-        }
-        else
-        {
-            //imaginary part
-
-            //I
-            DoubleFormat df;
-
-            df.iWidth = 0;
-            df.iPrec = _pDFI->iPrec;
-            df.bExp = _pDFI->bExp;
-            df.bPrintPlusSign = false;
-            df.bPrintOne = false;
-            addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << std::left << SYMBOL_I;
-            if (_dblI == 1)
-            {
-                addSpaces(&ostemp, 1);
-            }
-
-        }
-    }
-    else
-    {
-        //real part
-        if (_dblI == 0)
-        {
-            //no imaginary part
-
-            //R
-            DoubleFormat df;
-
-            df.iWidth = 0;
-            df.iPrec = _pDFR->iPrec;
-            df.bExp = _pDFR->bExp;
-            addDoubleValue(&ostemp, _dblR, &df);
-        }
-        else
-        {
-            //imaginary part
-
-            //R
-            DoubleFormat df;
-
-            df.iPrec = _pDFR->iPrec;
-            df.bExp = _pDFR->bExp;
-
-            addDoubleValue(&ostemp, _dblR, &df);
-
-            //I
-            df.iPrec = _pDFI->iPrec;
-            df.bExp = _pDFI->bExp;
-            df.bPrintPlusSign = true;
-            df.bPrintComplexPlusSpace = true;
-            df.bPrintOne = false;
-
-            addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << std::left << SYMBOL_I;
-            if (_dblI == 1)
-            {
-                addSpaces(&ostemp, 2);
-            }
-        }
+        addSpaces(&ostemp, 2);
     }
 
     configureStream(_postr, _iTotalWidth, 0, ' ');
