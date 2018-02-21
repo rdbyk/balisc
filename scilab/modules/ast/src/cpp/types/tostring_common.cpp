@@ -37,17 +37,17 @@ void addSign(std::wostringstream * _postr, double _dblVal, bool _bPrintPlusSign,
 {
     if (_bPrintPlusSign == true)
     {
-        *_postr << (_dblVal < 0 ? MINUS_STRING : PLUS_STRING);
+        *_postr << (std::signbit(_dblVal) ? MINUS_STRING : PLUS_STRING);
     }
     else
     {
         if (_bPaddSign)
         {
-            *_postr << (_dblVal < 0 ? MINUS_STRING : NO_SIGN);
+            *_postr << (std::signbit(_dblVal) ? MINUS_STRING : NO_SIGN);
         }
         else
         {
-            *_postr << (_dblVal < 0 ? MINUS_STRING : L"");
+            *_postr << (std::signbit(_dblVal) ? MINUS_STRING : L"");
         }
     }
 }
