@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - INRIA - Antoine ELIAS <antoine.elias@scilab.org>
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,16 +20,16 @@
 #include "elem_common.h"
 #include "matrix_multiplication.h"
 
-int iMultiComplexMatrixByComplexMatrix(
+void iMultiComplexMatrixByComplexMatrix(
     double *_pdblReal1,		double *_pdblImg1,	int _iRows1, int _iCols1,
     double *_pdblReal2,		double *_pdblImg2,	int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut)
 {
-    double dblOne		= 1;
-    double dblMinusOne	= -1;
-    double dblZero		= 0;
+    double dblOne = 1;
+    double dblMinusOne = -1;
+    double dblZero = 0;
 
-    int iRowsOut	= _iRows1;
+    int iRowsOut = _iRows1;
 
     //Cr <-  1*Ar*Br + 0*Cr
     F2C(dgemm)("N", "N", &iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblReal1	, &_iRows1, _pdblReal2	, &_iRows2, &dblZero	, _pdblRealOut	, &iRowsOut);
@@ -39,65 +39,59 @@ int iMultiComplexMatrixByComplexMatrix(
     F2C(dgemm)("N", "N", &iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblReal1	, &_iRows1, _pdblImg2	, &_iRows2, &dblZero	, _pdblImgOut	, &iRowsOut);
     //Ci <-  1*Ai*Br + 1*Ci
     F2C(dgemm)("N", "N", &iRowsOut, &_iCols2, &_iCols1, &dblOne		, _pdblImg1		, &_iRows1, _pdblReal2	, &_iRows2, &dblOne		, _pdblImgOut	, &iRowsOut);
-
-    return 0;
 }
 
-int iMultiRealMatrixByRealMatrix(
+void iMultiRealMatrixByRealMatrix(
     double *_pdblReal1,	int _iRows1, int _iCols1,
     double *_pdblReal2,	int _iRows2, int _iCols2,
     double *_pdblRealOut)
 {
-    double dblOne		= 1;
-    double dblZero		= 0;
+    double dblOne = 1;
+    double dblZero = 0;
 
     C2F(dgemm)("n", "n", &_iRows1, &_iCols2, &_iCols1, &dblOne,
                _pdblReal1 , &_iRows1 ,
                _pdblReal2, &_iRows2, &dblZero,
                _pdblRealOut , &_iRows1);
-    return 0;
 }
 
-int iMultiRealMatrixByComplexMatrix(
+void iMultiRealMatrixByComplexMatrix(
     double *_pdblReal1,		int _iRows1, int _iCols1,
     double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut)
 {
-    double dblOne		= 1;
-    double dblZero		= 0;
+    double dblOne = 1;
+    double dblZero = 0;
     iMultiRealMatrixByRealMatrix(_pdblReal1, _iRows1, _iCols1, _pdblReal2, _iRows2,  _iCols2, _pdblRealOut);
     C2F(dgemm)("n", "n", &_iRows1, &_iCols2, &_iCols1, &dblOne,
                _pdblReal1 , &_iRows1 ,
                _pdblImg2, &_iRows2, &dblZero,
                _pdblImgOut , &_iRows1);
-
-    return 0;
 }
 
-int iMultiComplexMatrixByRealMatrix(
+void iMultiComplexMatrixByRealMatrix(
     double *_pdblReal1,		double *_pdblImg1,	int _iRows1, int _iCols1,
     double *_pdblReal2,							int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut)
 {
-    double dblOne		= 1;
-    double dblZero		= 0;
+    double dblOne = 1;
+    double dblZero = 0;
     iMultiRealMatrixByRealMatrix(_pdblReal1, _iRows1, _iCols1, _pdblReal2, _iRows2,  _iCols2, _pdblRealOut);
     C2F(dgemm)("n", "n", &_iRows1, &_iCols2, &_iCols1, &dblOne,
                _pdblImg1 , &_iRows1 ,
                _pdblReal2, &_iRows2, &dblZero,
                _pdblImgOut , &_iRows1);
-    return 0;
 }
 
 
-int iMultiRealScalarByRealMatrix(
+void iMultiRealScalarByRealMatrix(
     double _dblReal1,
     double *_pdblReal2,	int _iRows2, int _iCols2,
     double *_pdblRealOut)
 {
 #if !defined(__SSE2__)
-    int iOne	= 1;
-    int iSize2	= _iRows2 * _iCols2;
+    int iOne = 1;
+    int iSize2 = _iRows2 * _iCols2;
 
     memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
     C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
@@ -117,18 +111,16 @@ int iMultiRealScalarByRealMatrix(
         _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
     }
 #endif
-
-    return 0;
 }
 
-int iMultiRealScalarByComplexMatrix(
+void iMultiRealScalarByComplexMatrix(
     double _dblReal1,
     double *_pdblReal2,	double *_pdblImg2, int _iRows2, int _iCols2,
     double *_pdblRealOut, double *_pdblImgOut)
 {
 #if !defined(__SSE2__)
-    int iOne	= 1;
-    int iSize2	= _iRows2 * _iCols2;
+    int iOne = 1;
+    int iSize2 = _iRows2 * _iCols2;
     
     memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
     memmove(_pdblImgOut, _pdblImg2, sizeof(double) * iSize2);
@@ -155,17 +147,16 @@ int iMultiRealScalarByComplexMatrix(
         _pdblImgOut[i] = _dblReal1 * _pdblImg2[i];
     }
 #endif
-    return 0;
 }
 
-int iMultiComplexScalarByRealMatrix(
+void iMultiComplexScalarByRealMatrix(
     double _dblReal1,		double _dblImg1,
     double *_pdblReal2,		int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut)
 {
 #if !defined(__SSE2__)
-    int iOne	= 1;
-    int iSize2	= _iRows2 * _iCols2;
+    int iOne = 1;
+    int iSize2 = _iRows2 * _iCols2;
     
     memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
     memmove(_pdblImgOut, _pdblReal2, sizeof(double) * iSize2);
@@ -192,38 +183,34 @@ int iMultiComplexScalarByRealMatrix(
         _pdblImgOut[i] = _dblImg1 * _pdblReal2[i];
     }
 #endif
-    return 0;
 }
 
-int iMultiComplexScalarByComplexMatrix(
+void iMultiComplexScalarByComplexMatrix(
     double _dblReal1,		double _dblImg1,
     double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut)
 {
-    int iOne	= 1;
-    int iSize2	= _iRows2 * _iCols2;
-    doublecomplex *pDataIn1 =
-        oGetDoubleComplexFromPointer(&_dblReal1, &_dblImg1, 1);
-    doublecomplex *pDataIn2 =
-        oGetDoubleComplexFromPointer(_pdblReal2, _pdblImg2, _iRows2 * _iCols2);
+    int i = 0;
 
-    C2F(zscal)(&iSize2, pDataIn1, pDataIn2, &iOne);
+    for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    {
+        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
+        _pdblRealOut[i] -= _dblImg1 * _pdblImg2[i];
 
-    vGetPointerFromDoubleComplex(pDataIn2, iSize2, _pdblRealOut, _pdblImgOut);
-    vFreeDoubleComplexFromPointer(pDataIn2);
-    vFreeDoubleComplexFromPointer(pDataIn1);
-    return 0;
+        _pdblImgOut[i] = _dblImg1 * _pdblReal2[i];
+        _pdblImgOut[i] += _dblReal1 * _pdblImg2[i];
+    }
 }
 
 
 /* (a1 + a2 * %s + ... ) * (a1 + a2 * %s + ... )*/
-int iMultiScilabPolynomByScilabPolynom(
+void iMultiScilabPolynomByScilabPolynom(
     double *_pdblReal1,	int _iRank1,
     double *_pdblReal2,	int _iRank2,
     double *_pdblRealOut, int _iRankOut)
 {
-    int i1		= 0;
-    int i2		= 0;
+    int i1 = 0;
+    int i2 = 0;
     double dblMult = 0.0;
     double dblAdd = 0.0;
 
@@ -245,20 +232,20 @@ int iMultiScilabPolynomByScilabPolynom(
             }
         }
     }
-    return 0;
 }
 
 /* ((a1 +ib1) + (a2+ib2) * %s + ... ) (a1 + a2 * %s + ... ) */
-int iMultiComplexPolyByScilabPolynom(
+void iMultiComplexPolyByScilabPolynom(
     double *_pdblReal1,	double *_pdblImg1, int _iRank1,
     double *_pdblReal2,	int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut)
 {
-    int i1		= 0;
-    int i2		= 0;
+    int i1 = 0;
+    int i2 = 0;
 
     memset(_pdblRealOut	, 0x00, _iRankOut * sizeof(double));
     memset(_pdblImgOut	, 0x00, _iRankOut * sizeof(double));
+
     for (i1 = 0 ; i1 < _iRank1 ; i1++)
     {
         for (i2 = 0 ; i2 < _iRank2 ; i2++)
@@ -267,33 +254,32 @@ int iMultiComplexPolyByScilabPolynom(
             _pdblImgOut[i1 + i2]	+= _pdblImg1[i1] * _pdblReal2[i2];
         }
     }
-    return 0;
 }
 
 /* (a1 + a2 * %s + ... ) * ((a1 +ib1) + (a2+ib2) * %s + ... )*/
-int iMultiScilabPolynomByComplexPoly(
+void iMultiScilabPolynomByComplexPoly(
     double *_pdblReal1,	int _iRank1,
     double *_pdblReal2,	double *_pdblImg2, int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut)
 {
-    return iMultiComplexPolyByScilabPolynom(
+    iMultiComplexPolyByScilabPolynom(
                _pdblReal2, _pdblImg2, _iRank2,
                _pdblReal1, _iRank1,
                _pdblRealOut, _pdblImgOut, _iRankOut);
-
 }
 
 /* ((a1 +ib1) + (a2+ib2) * %s + ... ) * ((a1 +ib1) + (a2+ib2) * %s + ... ) */
-int iMultiComplexPolyByComplexPoly(
+void iMultiComplexPolyByComplexPoly(
     double *_pdblReal1,	double *_pdblImg1, int _iRank1,
     double *_pdblReal2,	double *_pdblImg2, int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut)
 {
-    int i1		= 0;
-    int i2		= 0;
+    int i1 = 0;
+    int i2 = 0;
 
     memset(_pdblRealOut	, 0x00, _iRankOut * sizeof(double));
     memset(_pdblImgOut	, 0x00, _iRankOut * sizeof(double));
+
     for (i1 = 0 ; i1 < _iRank1 ; i1++)
     {
         for (i2 = 0 ; i2 < _iRank2 ; i2++)
@@ -302,10 +288,9 @@ int iMultiComplexPolyByComplexPoly(
             _pdblImgOut[i1 + i2]	+= _pdblImg1[i1] * _pdblReal2[i2]		+ _pdblImg2[i2] * _pdblReal1[i1];
         }
     }
-    return 0;
 }
 
-int iDotMultiplyRealMatrixByRealMatrix(
+void iDotMultiplyRealMatrixByRealMatrix(
     double* _pdblReal1,
     double* _pdblReal2,
     double* _pdblRealOut, int _iRowsOut, int _iColsOut)
@@ -316,10 +301,9 @@ int iDotMultiplyRealMatrixByRealMatrix(
     {
         _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
     }
-    return 0;
 }
 
-int iDotMultiplyRealMatrixByComplexMatrix(
+void iDotMultiplyRealMatrixByComplexMatrix(
     double* _pdblReal1,
     double* _pdblReal2, double* _pdblImg2,
     double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
@@ -331,10 +315,9 @@ int iDotMultiplyRealMatrixByComplexMatrix(
         _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
         _pdblImgOut[i] = _pdblReal1[i] * _pdblImg2[i];
     }
-    return 0;
 }
 
-int iDotMultiplyComplexMatrixByRealMatrix(
+void iDotMultiplyComplexMatrixByRealMatrix(
     double* _pdblReal1, double* _pdblImg1,
     double* _pdblReal2,
     double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
@@ -346,10 +329,9 @@ int iDotMultiplyComplexMatrixByRealMatrix(
         _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
         _pdblImgOut[i] = _pdblImg1[i] * _pdblReal2[i];
     }
-    return 0;
 }
 
-int iDotMultiplyComplexMatrixByComplexMatrix(
+void iDotMultiplyComplexMatrixByComplexMatrix(
     double* _pdblReal1, double* _pdblImg1,
     double* _pdblReal2, double* _pdblImg2,
     double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
@@ -364,5 +346,4 @@ int iDotMultiplyComplexMatrixByComplexMatrix(
         _pdblImgOut[i] = _pdblImg1[i] * _pdblReal2[i];
         _pdblImgOut[i] += _pdblReal1[i] * _pdblImg2[i];
     }
-    return 0;
 }

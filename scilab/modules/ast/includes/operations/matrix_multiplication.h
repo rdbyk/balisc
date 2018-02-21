@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,84 +16,83 @@
 #ifndef __MATRIX_MULT__
 #define __MATRIX_MULT__
 
-int iMultiComplexMatrixByComplexMatrix(
+void iMultiComplexMatrixByComplexMatrix(
     double *_pdblReal1,		double *_pdblImg1, int _iRows1, int _iCols1,
     double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut);
 
-int iMultiRealMatrixByRealMatrix(
+void iMultiRealMatrixByRealMatrix(
     double *_pdblReal1,	int _iRows1, int _iCols1,
     double *_pdblReal2,	int _iRows2, int _iCols2,
     double *_pdblRealOut);
 
-int iMultiRealMatrixByComplexMatrix(
+void iMultiRealMatrixByComplexMatrix(
     double *_pdblReal1,		int _iRows1, int _iCols1,
     double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut);
 
-int iMultiComplexMatrixByRealMatrix(
+void iMultiComplexMatrixByRealMatrix(
     double *_pdblReal1,		double *_pdblImg1,	int _iRows1, int _iCols1,
     double *_pdblReal2,		int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut);
 
-int iMultiRealScalarByRealMatrix(
+void iMultiRealScalarByRealMatrix(
     double _dblReal1,
     double *_pdblReal2,	int _iRows2, int _iCols2,
     double *_pdblRealOut);
 
-int iMultiRealScalarByComplexMatrix(
+void iMultiRealScalarByComplexMatrix(
     double _dblReal1,
     double *_pdblReal2,	double *_pdblImg2, int _iRows2, int _iCols2,
     double *_pdblRealOut, double *_pdblImgOut);
 
-int iMultiComplexScalarByRealMatrix(
+void iMultiComplexScalarByRealMatrix(
     double _dblReal1,		double _dblImg1,
     double *_pdblReal2,		int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut);
 
-int iMultiComplexScalarByComplexMatrix(
+void iMultiComplexScalarByComplexMatrix(
     double _dblReal1,		double _dblImg1,
     double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut);
 
-
 /*polynomial multiplications*/
-int iMultiScilabPolynomByScilabPolynom(
+void iMultiScilabPolynomByScilabPolynom(
     double *_pdblReal1,	int _iRank1,
     double *_pdblReal2,	int _iRank2,
     double *_pdblRealOut, int _iRankOut);
 
-int iMultiComplexPolyByScilabPolynom(
+void iMultiComplexPolyByScilabPolynom(
     double *_pdblReal1,	double *_pdblImg1, int _iRank1,
     double *_pdblReal2,	int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
 
-int iMultiScilabPolynomByComplexPoly(
+void iMultiScilabPolynomByComplexPoly(
     double *_pdblReal1,	int _iRank1,
     double *_pdblReal2,	double *_pdblImg2, int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
 
-int iMultiComplexPolyByComplexPoly(
+void iMultiComplexPolyByComplexPoly(
     double *_pdblReal1,	double *_pdblImg1, int _iRank1,
     double *_pdblReal2,	double *_pdblImg2, int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
 
-int iDotMultiplyRealMatrixByRealMatrix(
+void iDotMultiplyRealMatrixByRealMatrix(
     double* _pdblReal1,
     double* _pdblReal2,
     double* _pdblRealOut, int _iRowsOut, int _iColsOut);
 
-int iDotMultiplyRealMatrixByComplexMatrix(
+void iDotMultiplyRealMatrixByComplexMatrix(
     double* _pdblReal1,
     double* _pdblReal2, double* _pdblImg2,
     double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
 
-int iDotMultiplyComplexMatrixByRealMatrix(
+void iDotMultiplyComplexMatrixByRealMatrix(
     double* _pdblReal1, double* _pdblImg1,
     double* _pdblReal2,
     double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
 
-int iDotMultiplyComplexMatrixByComplexMatrix(
+void iDotMultiplyComplexMatrixByComplexMatrix(
     double* _pdblReal1, double* _pdblImg1,
     double* _pdblReal2, double* _pdblImg2,
     double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
