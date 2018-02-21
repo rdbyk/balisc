@@ -31,23 +31,22 @@ extern "C"
 #define EXPOSANT_SIZE 2         //exposant symbol + exposant sign
 
 #define isRealZero(x) (fabs(static_cast<double>(x)) <= nc_eps())
-#define isEqual(x,y) (fabs((double)x - (double)y) <= nc_eps())
 
 void addSign(std::wostringstream * _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
 {
     if (_bPrintPlusSign == true)
     {
-        *_postr << (_dblVal < 0 ? MINUS_STRING : PLUS_STRING);
+        *_postr << (std::signbit(_dblVal) ? MINUS_STRING : PLUS_STRING);
     }
     else
     {
         if (_bPaddSign)
         {
-            *_postr << (_dblVal < 0 ? MINUS_STRING : NO_SIGN);
+            *_postr << (std::signbit(_dblVal) ? MINUS_STRING : NO_SIGN);
         }
         else
         {
-            *_postr << (_dblVal < 0 ? MINUS_STRING : L"");
+            *_postr << (std::signbit(_dblVal) ? MINUS_STRING : L"");
         }
     }
 }
@@ -310,7 +309,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         // and write a negative number, dblEnt is at most one digit
         os_swprintf(pwstOutput, 32, pwstFormat, (int)dblEnt, (long long int)dblDec, (int)dblTemp);
     }
-    else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
+    else if ((_pDF->bPrintOne == true) || std::fabs(_dblVal) != 1.0)
     {
         //do not print if _bPrintOne == false && _dblVal == 1
         if (_pDF->bPrintPoint)
@@ -332,104 +331,30 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     *_postr << pwstOutput;
 }
 
-/*
-void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
-{
-    addSign(_postr, _dblVal, bPrintPlusSign, bPaddSign);
-    configureStream(_postr, _iWidth, _iPrec, ' ');
-
-    if(bPrintOne == true || isEqual(_dblVal, 1) == false)
-    {
-        NEWprintDoubleVar(_postr, _dblVal, _iWidth, _iPrec);
-    }
-}
-*/
 void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _dblI, int _iTotalWidth, DoubleFormat * _pDFR, DoubleFormat * _pDFI)
 {
     std::wostringstream ostemp;
 
-    /*
-     * if R && !C -> R
-     * if R && C -> R + Ci
-     * if !R && !C -> 0
-     * if(!R && C -> Ci
-     */
+    // real part
+    DoubleFormat df;
 
-    // *_postr << "|%" << _iTotalWitdh << "%|";
-    if (_dblR == 0)
+    df.iPrec = _pDFR->iPrec;
+    df.bExp = _pDFR->bExp;
+
+    addDoubleValue(&ostemp, _dblR, &df);
+
+    // imaginary part
+    df.iPrec = _pDFI->iPrec;
+    df.bExp = _pDFI->bExp;
+    df.bPrintPlusSign = true;
+    df.bPrintComplexPlusSpace = true;
+    df.bPrintOne = false;
+
+    addDoubleValue(&ostemp, _dblI, &df);
+    ostemp << std::left << SYMBOL_I;
+    if (_dblI == 1)
     {
-        //no real part
-        if (_dblI == 0)
-        {
-            //no imaginary part
-
-            //0
-            DoubleFormat df;
-
-            addDoubleValue(&ostemp, 0, &df);
-        }
-        else
-        {
-            //imaginary part
-
-            //I
-            DoubleFormat df;
-
-            df.iWidth = 0;
-            df.iPrec = _pDFI->iPrec;
-            df.bExp = _pDFI->bExp;
-            df.bPrintPlusSign = false;
-            df.bPrintOne = false;
-            addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << std::left << SYMBOL_I;
-            if (_dblI == 1)
-            {
-                addSpaces(&ostemp, 1);
-            }
-
-        }
-    }
-    else
-    {
-        //real part
-        if (_dblI == 0)
-        {
-            //no imaginary part
-
-            //R
-            DoubleFormat df;
-
-            df.iWidth = 0;
-            df.iPrec = _pDFR->iPrec;
-            df.bExp = _pDFR->bExp;
-            addDoubleValue(&ostemp, _dblR, &df);
-        }
-        else
-        {
-            //imaginary part
-
-            //R
-            DoubleFormat df;
-
-            df.iPrec = _pDFR->iPrec;
-            df.bExp = _pDFR->bExp;
-
-            addDoubleValue(&ostemp, _dblR, &df);
-
-            //I
-            df.iPrec = _pDFI->iPrec;
-            df.bExp = _pDFI->bExp;
-            df.bPrintPlusSign = true;
-            df.bPrintComplexPlusSpace = true;
-            df.bPrintOne = false;
-
-            addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << std::left << SYMBOL_I;
-            if (_dblI == 1)
-            {
-                addSpaces(&ostemp, 2);
-            }
-        }
+        addSpaces(&ostemp, 2);
     }
 
     configureStream(_postr, _iTotalWidth, 0, ' ');
