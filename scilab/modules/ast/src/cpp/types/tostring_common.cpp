@@ -31,7 +31,6 @@ extern "C"
 #define EXPOSANT_SIZE 2         //exposant symbol + exposant sign
 
 #define isRealZero(x) (fabs(static_cast<double>(x)) <= nc_eps())
-#define isEqual(x,y) (fabs((double)x - (double)y) <= nc_eps())
 
 void addSign(std::wostringstream * _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
 {
@@ -310,7 +309,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         // and write a negative number, dblEnt is at most one digit
         os_swprintf(pwstOutput, 32, pwstFormat, (int)dblEnt, (long long int)dblDec, (int)dblTemp);
     }
-    else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
+    else if ((_pDF->bPrintOne == true) || std::fabs(_dblVal) != 1.0)
     {
         //do not print if _bPrintOne == false && _dblVal == 1
         if (_pDF->bPrintPoint)
@@ -332,18 +331,6 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     *_postr << pwstOutput;
 }
 
-/*
-void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
-{
-    addSign(_postr, _dblVal, bPrintPlusSign, bPaddSign);
-    configureStream(_postr, _iWidth, _iPrec, ' ');
-
-    if(bPrintOne == true || isEqual(_dblVal, 1) == false)
-    {
-        NEWprintDoubleVar(_postr, _dblVal, _iWidth, _iPrec);
-    }
-}
-*/
 void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _dblI, int _iTotalWidth, DoubleFormat * _pDFR, DoubleFormat * _pDFI)
 {
     std::wostringstream ostemp;
