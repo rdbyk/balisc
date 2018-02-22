@@ -40,28 +40,35 @@ Double* abs(Double* x)
         double* xr = x->get();
         double* xi = x->getImg();
         double* yr = y->get();
-        
+
         for (int i = 0; i < n; i++)
         {
             double a = fabs(xr[i]);
             double b = fabs(xi[i]);
-
-            if (a <= b)
+            
+            if (isinf(a) && isinf(b))
             {
-                yr[i] = b;
-
-                if (a)
-                {
-                    yr[i] *= sqrt(1 + pow(a / b, 2));
-                }
+                yr[i] = INFINITY;
             }
             else
             {
-                yr[i] = a;
-
-                if (b)
+                if (a <= b)
                 {
-                    yr[i] *= sqrt(1 + pow(b / a, 2));
+                    yr[i] = b;
+
+                    if (a)
+                    {
+                        yr[i] *= sqrt(1 + pow(a / b, 2));
+                    }
+                }
+                else
+                {
+                    yr[i] = a;
+
+                    if (b)
+                    {
+                        yr[i] *= sqrt(1 + pow(b / a, 2));
+                    }
                 }
             }
         }
