@@ -294,17 +294,16 @@ void iDotMultiplyRealMatrixByRealMatrix(double* A, double* B, double* X, int n)
     }
 }
 
-void iDotMultiplyRealMatrixByComplexMatrix(
-    double* _pdblReal1,
-    double* _pdblReal2, double* _pdblImg2,
-    double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
+void iDotMultiplyRealMatrixByComplexMatrix(double* A, double* C, double* D,
+                                           double* X, double* Y, int n)
 {
-    int i = 0;
+    // X + Y*i = A * (C + D*i)
 
-    for (i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+    int i;
+    for (i = 0; i < n; ++i)
     {
-        _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
-        _pdblImgOut[i] = _pdblReal1[i] * _pdblImg2[i];
+        X[i] = A[i] * C[i];
+        Y[i] = A[i] * D[i];
     }
 }
 
