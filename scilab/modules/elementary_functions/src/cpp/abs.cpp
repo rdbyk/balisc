@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -40,38 +40,28 @@ Double* abs(Double* x)
         double* xr = x->get();
         double* xi = x->getImg();
         double* yr = y->get();
-
+        
+#if !defined(balisc_hypot_m128d)
         for (int i = 0; i < n; i++)
         {
-            double a = fabs(xr[i]);
-            double b = fabs(xi[i]);
-            
-            if (isinf(a) && isinf(b))
-            {
-                yr[i] = INFINITY;
-            }
-            else
-            {
-                if (a <= b)
-                {
-                    yr[i] = b;
-
-                    if (a)
-                    {
-                        yr[i] *= sqrt(1 + pow(a / b, 2));
-                    }
-                }
-                else
-                {
-                    yr[i] = a;
-
-                    if (b)
-                    {
-                        yr[i] *= sqrt(1 + pow(b / a, 2));
-                    }
-                }
-            }
+            yr[i] = ::balisc_hypot_d(xr[i], xi[i]);
         }
+#else
+        int n2 = n - 1;
+                    
+        switch (n & 0x1)
+        {
+            case 1:
+                yr[n2] = ::balisc_hypot_d(xr[n2], xi [n2]);
+            default:
+                for (int i = 0; i < n2; i++)
+                {
+                    __m128d a = ::balisc_hypot_m128d(*((__m128d*)&(xr[i])), *((__m128d*)&(xi[i])));
+                    yr[i] = a[0];
+                    yr[++i] = a[1];
+                }
+        }
+#endif
         
         return y;
     }
