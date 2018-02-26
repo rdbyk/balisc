@@ -191,7 +191,7 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
-            iMultiComplexScalarByRealMatrix(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->get(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+            iMultiComplexScalarByRealMatrix(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->get(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble2->getSize());
         }
         else //if(bComplex1 == true && bComplex2 == true)
         {
@@ -216,7 +216,7 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         else if (bComplex1 == false && bComplex2 == true)
         {
             //Real Matrix by Scalar Complex
-            iMultiComplexScalarByRealMatrix(_pDouble2->getFirst(), _pDouble2->getImgFirst(), _pDouble1->get(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+            iMultiComplexScalarByRealMatrix(_pDouble2->getFirst(), _pDouble2->getImgFirst(), _pDouble1->get(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
@@ -301,7 +301,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
-            iMultiComplexScalarByRealMatrix(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->get(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+            iMultiComplexScalarByRealMatrix(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->get(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble2->getSize());
         }
         else //if(bComplex1 == true && bComplex2 == true)
         {
@@ -322,7 +322,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
         else if (bComplex1 == false && bComplex2 == true)
         {
             //Real Matrix by Scalar Complex
-            iMultiComplexScalarByRealMatrix(_pDouble2->getFirst(), _pDouble2->getImgFirst(), _pDouble1->get(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+            iMultiComplexScalarByRealMatrix(_pDouble2->getFirst(), _pDouble2->getImgFirst(), _pDouble1->get(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
@@ -414,7 +414,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
-                iMultiComplexScalarByRealMatrix(_pDouble->getFirst(), _pDouble->getImgFirst(), pRealIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
+                iMultiComplexScalarByRealMatrix(_pDouble->getFirst(), _pDouble->getImgFirst(), pRealIn, pRealOut, pImgOut, pPolyIn->getSize());
             }
             else if (bComplex1 == true && bComplex2 == true)
             {
@@ -463,7 +463,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
-                iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
+                iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, pRealOut, pImgOut, pPolyIn->getSize());
             }
             else if (bComplex1 == true && bComplex2 == true)
             {
@@ -572,7 +572,7 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
-                iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
+                iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, pRealOut, pImgOut, pPolyIn->getSize());
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
@@ -618,7 +618,7 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
-                iMultiComplexScalarByRealMatrix(_pDouble->getFirst(), _pDouble->getImgFirst(), pRealIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
+                iMultiComplexScalarByRealMatrix(_pDouble->getFirst(), _pDouble->getImgFirst(), pRealIn, pRealOut, pImgOut, pPolyIn->getSize());
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
@@ -683,7 +683,7 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
                 {
                     //Real Matrix by Scalar Complex
                     double* pdblMultImg = new double[iSize];
-                    iMultiComplexScalarByRealMatrix(_pDouble->get(iRow2, iCol2), _pDouble->getImg(iRow2, iCol2), pSPIn->get(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
+                    iMultiComplexScalarByRealMatrix(_pDouble->get(iRow2, iCol2), _pDouble->getImg(iRow2, iCol2), pSPIn->get(), pdblMult, pdblMultImg, pSPIn->getSize());
                     add(pSPOut->get(), pSPOut->getImg(), (long long)iSize, pdblMult, pdblMultImg, pSPOut->get(), pSPOut->getImg());
                     delete[] pdblMultImg;
                 }
