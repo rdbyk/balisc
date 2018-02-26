@@ -14,6 +14,7 @@
  */
 
 #include <string.h> // for memset function
+#include <complex.h>
 #if defined(__SSE2__)
 #include <emmintrin.h>
 #endif
@@ -84,124 +85,111 @@ void iMultiComplexMatrixByRealMatrix(
 }
 
 
-void iMultiRealScalarByRealMatrix(
-    double _dblReal1,
-    double *_pdblReal2,	int _iRows2, int _iCols2,
-    double *_pdblRealOut)
+void iMultiRealScalarByRealMatrix(double a, double* B, double* X, int n)
 {
+    // X =  a * B
 #if !defined(__SSE2__)
     int iOne = 1;
-    int iSize2 = _iRows2 * _iCols2;
+    int iSize2 = n;
 
-    memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
-    C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
+    memmove(X, B, sizeof(double) * iSize2);
+    C2F(dscal)(&iSize2, &a, X, &iOne);
 #else
-    int n = _iRows2 * _iCols2;
-
     int i = 0;
     for ( ; i < n - 1; i += 2)
     {
-        __m128d a = _mm_mul_pd(_mm_load1_pd(&_dblReal1), *((__m128d*)&(_pdblReal2[i])));
-        _pdblRealOut[i] = a[0];
-        _pdblRealOut[i+1] = a[1];
+        __m128d tmp = _mm_mul_pd(_mm_load1_pd(&a), *((__m128d*)&(B[i])));
+        X[i] = tmp[0];
+        X[i+1] = tmp[1];
     }
 
     if (n & 0x1)
     {
-        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
+        X[i] = a * B[i];
     }
 #endif
 }
 
-void iMultiRealScalarByComplexMatrix(
-    double _dblReal1,
-    double *_pdblReal2,	double *_pdblImg2, int _iRows2, int _iCols2,
-    double *_pdblRealOut, double *_pdblImgOut)
+void iMultiRealScalarByComplexMatrix(double a, double* C, double* D,
+                                     double* X, double* Y, int n)
 {
+    // X + Y*i = a * (C + D*i)
 #if !defined(__SSE2__)
     int iOne = 1;
-    int iSize2 = _iRows2 * _iCols2;
+    int iSize2 = n;
     
-    memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
-    memmove(_pdblImgOut, _pdblImg2, sizeof(double) * iSize2);
-    C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
-    C2F(dscal)(&iSize2, &_dblReal1, _pdblImgOut, &iOne);
+    memmove(X, C, sizeof(double) * iSize2);
+    memmove(Y, D, sizeof(double) * iSize2);
+    C2F(dscal)(&iSize2, &a, X, &iOne);
+    C2F(dscal)(&iSize2, &a, Y, &iOne);
 #else
-    int n = _iRows2 * _iCols2;
-
     int i = 0;
     for ( ; i < n - 1; i += 2)
     {
-        __m128d a = _mm_load1_pd(&_dblReal1);
-        __m128d re = _mm_mul_pd(a, *((__m128d*)&(_pdblReal2[i])));
-        _pdblRealOut[i] = re[0];
-        _pdblRealOut[i+1] = re[1];
-        __m128d im = _mm_mul_pd(a, *((__m128d*)&(_pdblImg2[i])));
-        _pdblImgOut[i] = im[0];
-        _pdblImgOut[i+1] = im[1];
+        __m128d aa = _mm_load1_pd(&a);
+        __m128d re = _mm_mul_pd(aa, *((__m128d*)&(C[i])));
+        X[i] = re[0];
+        X[i+1] = re[1];
+        __m128d im = _mm_mul_pd(aa, *((__m128d*)&(D[i])));
+        Y[i] = im[0];
+        Y[i+1] = im[1];
     }
 
     if (n & 0x1)
     {
-        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
-        _pdblImgOut[i] = _dblReal1 * _pdblImg2[i];
+        X[i] = a * C[i];
+        Y[i] = a * D[i];
     }
 #endif
 }
 
-void iMultiComplexScalarByRealMatrix(
-    double _dblReal1,		double _dblImg1,
-    double *_pdblReal2,		int _iRows2, int _iCols2,
-    double *_pdblRealOut,	double *_pdblImgOut)
+void iMultiComplexScalarByRealMatrix(double a, double b, double* C,
+                                     double* X, double* Y, int n)
 {
+    // X + Y*i = (a + b*i) * C
 #if !defined(__SSE2__)
     int iOne = 1;
-    int iSize2 = _iRows2 * _iCols2;
+    int iSize2 = n;
     
-    memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
-    memmove(_pdblImgOut, _pdblReal2, sizeof(double) * iSize2);
-    C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
-    C2F(dscal)(&iSize2, &_dblImg1,	_pdblImgOut, &iOne);
+    memmove(X, C, sizeof(double) * iSize2);
+    memmove(Y, C, sizeof(double) * iSize2);
+    C2F(dscal)(&iSize2, &a, X, &iOne);
+    C2F(dscal)(&iSize2, &b,	Y, &iOne);
 #else
-    int n = _iRows2 * _iCols2;
 
     int i = 0;
     for ( ; i < n - 1; i += 2)
     {
-        __m128d a = *((__m128d*)&(_pdblReal2[i]));
-        __m128d re = _mm_mul_pd(a, _mm_load1_pd(&_dblReal1));
-        _pdblRealOut[i] = re[0];
-        _pdblRealOut[i+1] = re[1];
-        __m128d im = _mm_mul_pd(a, _mm_load1_pd(&_dblImg1));
-        _pdblImgOut[i] = im[0];
-        _pdblImgOut[i+1] = im[1];
+        __m128d aa = *((__m128d*)&(C[i]));
+        __m128d re = _mm_mul_pd(aa, _mm_load1_pd(&a));
+        X[i] = re[0];
+        X[i+1] = re[1];
+        __m128d im = _mm_mul_pd(aa, _mm_load1_pd(&b));
+        Y[i] = im[0];
+        Y[i+1] = im[1];
     }
 
     if (n & 0x1)
     {
-        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
-        _pdblImgOut[i] = _dblImg1 * _pdblReal2[i];
+        X[i] = a * C[i];
+        Y[i] = b * C[i];
     }
 #endif
 }
 
-void iMultiComplexScalarByComplexMatrix(
-    double _dblReal1,		double _dblImg1,
-    double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
-    double *_pdblRealOut,	double *_pdblImgOut)
+void iMultiComplexScalarByComplexMatrix(double a, double b, double* C, double* D,
+                                        double* X, double* Y, int n)
 {
-    int i = 0;
+    // X + Y*i = (a + b*i) * (C + D*i)
 
-    for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    int i;
+    for (i = 0; i < n; ++i)
     {
-        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
-        _pdblRealOut[i] -= _dblImg1 * _pdblImg2[i];
-
-        _pdblImgOut[i] = _dblImg1 * _pdblReal2[i];
-        _pdblImgOut[i] += _dblReal1 * _pdblImg2[i];
+        double complex z = (a + b*I) * (C[i] + D[i]*I);
+        X[i] = creal(z);
+        Y[i] = cimag(z);
     }
 }
-
 
 /* (a1 + a2 * %s + ... ) * (a1 + a2 * %s + ... )*/
 void iMultiScilabPolynomByScilabPolynom(
@@ -290,60 +278,40 @@ void iMultiComplexPolyByComplexPoly(
     }
 }
 
-void iDotMultiplyRealMatrixByRealMatrix(
-    double* _pdblReal1,
-    double* _pdblReal2,
-    double* _pdblRealOut, int _iRowsOut, int _iColsOut)
+void iDotMultiplyRealMatrixByRealMatrix(double* A, double* B, double* X, int n)
 {
-    int i = 0;
+    // X = A .* B
 
-    for (i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+    int i;
+    for (i = 0; i < n; ++i)
     {
-        _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
+        X[i] = A[i] * B[i];
     }
 }
 
-void iDotMultiplyRealMatrixByComplexMatrix(
-    double* _pdblReal1,
-    double* _pdblReal2, double* _pdblImg2,
-    double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
+void iDotMultiplyRealMatrixByComplexMatrix(double* A, double* C, double* D,
+                                           double* X, double* Y, int n)
 {
-    int i = 0;
+    // X + Y*i = A * (C + D*i)
 
-    for (i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+    int i;
+    for (i = 0; i < n; ++i)
     {
-        _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
-        _pdblImgOut[i] = _pdblReal1[i] * _pdblImg2[i];
+        X[i] = A[i] * C[i];
+        Y[i] = A[i] * D[i];
     }
 }
 
-void iDotMultiplyComplexMatrixByRealMatrix(
-    double* _pdblReal1, double* _pdblImg1,
-    double* _pdblReal2,
-    double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
+void iDotMultiplyComplexMatrixByComplexMatrix(double* A, double* B, double* C, double* D,
+                                              double* X, double* Y, int n)
 {
-    int i = 0;
+    // X + Y*i = (A + B*i) * (C + D*i)
 
-    for (i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+    int i;
+    for (i = 0; i < n; ++i)
     {
-        _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
-        _pdblImgOut[i] = _pdblImg1[i] * _pdblReal2[i];
-    }
-}
-
-void iDotMultiplyComplexMatrixByComplexMatrix(
-    double* _pdblReal1, double* _pdblImg1,
-    double* _pdblReal2, double* _pdblImg2,
-    double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
-{
-    int i = 0;
-
-    for (i = 0 ; i < _iRowsOut * _iColsOut ; i++)
-    {
-        _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
-        _pdblRealOut[i] -= _pdblImg1[i] * _pdblImg2[i];
-
-        _pdblImgOut[i] = _pdblImg1[i] * _pdblReal2[i];
-        _pdblImgOut[i] += _pdblReal1[i] * _pdblImg2[i];
+        double complex z = (A[i] + B[i]*I) * (C[i] + D[i]*I);
+        X[i] = creal(z);
+        Y[i] = cimag(z);
     }
 }

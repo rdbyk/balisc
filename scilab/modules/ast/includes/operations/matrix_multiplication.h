@@ -36,25 +36,10 @@ void iMultiComplexMatrixByRealMatrix(
     double *_pdblReal2,		int _iRows2, int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut);
 
-void iMultiRealScalarByRealMatrix(
-    double _dblReal1,
-    double *_pdblReal2,	int _iRows2, int _iCols2,
-    double *_pdblRealOut);
-
-void iMultiRealScalarByComplexMatrix(
-    double _dblReal1,
-    double *_pdblReal2,	double *_pdblImg2, int _iRows2, int _iCols2,
-    double *_pdblRealOut, double *_pdblImgOut);
-
-void iMultiComplexScalarByRealMatrix(
-    double _dblReal1,		double _dblImg1,
-    double *_pdblReal2,		int _iRows2, int _iCols2,
-    double *_pdblRealOut,	double *_pdblImgOut);
-
-void iMultiComplexScalarByComplexMatrix(
-    double _dblReal1,		double _dblImg1,
-    double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
-    double *_pdblRealOut,	double *_pdblImgOut);
+void iMultiRealScalarByRealMatrix(double a, double* B, double* X, int n);
+void iMultiRealScalarByComplexMatrix(double a, double* C, double* D, double* X, double* Y, int n);
+void iMultiComplexScalarByRealMatrix(double a, double b, double* C,double* X, double* Y, int n);
+void iMultiComplexScalarByComplexMatrix(double a, double b, double* C, double* D, double* X, double* Y, int n);
 
 /*polynomial multiplications*/
 void iMultiScilabPolynomByScilabPolynom(
@@ -77,24 +62,8 @@ void iMultiComplexPolyByComplexPoly(
     double *_pdblReal2,	double *_pdblImg2, int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
 
-void iDotMultiplyRealMatrixByRealMatrix(
-    double* _pdblReal1,
-    double* _pdblReal2,
-    double* _pdblRealOut, int _iRowsOut, int _iColsOut);
-
-void iDotMultiplyRealMatrixByComplexMatrix(
-    double* _pdblReal1,
-    double* _pdblReal2, double* _pdblImg2,
-    double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
-
-void iDotMultiplyComplexMatrixByRealMatrix(
-    double* _pdblReal1, double* _pdblImg1,
-    double* _pdblReal2,
-    double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
-
-void iDotMultiplyComplexMatrixByComplexMatrix(
-    double* _pdblReal1, double* _pdblImg1,
-    double* _pdblReal2, double* _pdblImg2,
-    double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
+void iDotMultiplyRealMatrixByRealMatrix(double* A, double* B, double* X, int n);
+void iDotMultiplyRealMatrixByComplexMatrix(double* A, double* C, double* D, double* X, double* Y, int n);
+void iDotMultiplyComplexMatrixByComplexMatrix(double* A, double* B, double* C, double* D, double* X, double* Y, int n);
 
 #endif /* __MATRIX_MULT__ */
