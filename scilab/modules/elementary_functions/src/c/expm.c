@@ -134,10 +134,7 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
             pdblMatrixRealA, pdblMatrixImgA, _iLeadDim, _iLeadDim,
             pdblMatrixRealcA, pdblMatrixImgcA);
     else
-        iMultiRealScalarByRealMatrix(
-            dblCst,
-            pdblMatrixRealA, _iLeadDim, _iLeadDim,
-            pdblMatrixRealcA);
+        iMultiRealScalarByRealMatrix(dblCst, pdblMatrixRealA, pdblMatrixRealcA, iSquare);
 
     //E = Eye + cA
     vDadd(iSquare, pdblMatrixRealEye, pdblMatrixRealcA, 1, 1, _pdblReturnReal);
@@ -194,10 +191,7 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
                 pdblMatrixRealX, pdblMatrixImgX, _iLeadDim, _iLeadDim,
                 pdblMatrixRealcX, pdblMatrixImgcX);
         else
-            iMultiRealScalarByRealMatrix(
-                dblCst,
-                pdblMatrixRealX, _iLeadDim, _iLeadDim,
-                pdblMatrixRealcX);
+            iMultiRealScalarByRealMatrix(dblCst, pdblMatrixRealX, pdblMatrixRealcX, iSquare);
 
         //E = E + cX
         vDadd(iSquare, _pdblReturnReal, pdblMatrixRealcX, 1, 1, _pdblReturnReal);

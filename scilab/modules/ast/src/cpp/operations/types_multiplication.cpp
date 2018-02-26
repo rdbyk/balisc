@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -183,7 +183,7 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
 
         if (bComplex1 == false && bComplex2 == false)
         {
-            iMultiRealScalarByRealMatrix(_pDouble1->getFirst(), _pDouble2->get(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get());
+            iMultiRealScalarByRealMatrix(_pDouble1->getFirst(), _pDouble2->get(), (*_pDoubleOut)->get(), _pDouble2->getSize());
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
@@ -211,7 +211,7 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         if (bComplex1 == false && bComplex2 == false)
         {
             //Real Matrix by Real Scalar
-            iMultiRealScalarByRealMatrix(_pDouble2->getFirst(), _pDouble1->get(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get());
+            iMultiRealScalarByRealMatrix(_pDouble2->getFirst(), _pDouble1->get(), (*_pDoubleOut)->get(), _pDouble1->getSize());
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
@@ -293,7 +293,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
         (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), _pDouble1->isComplex() | _pDouble2->isComplex());
         if (bComplex1 == false && bComplex2 == false)
         {
-            iMultiRealScalarByRealMatrix(_pDouble1->getFirst(), _pDouble2->get(), _pDouble2->getSize(), 1, (*_pDoubleOut)->get());
+            iMultiRealScalarByRealMatrix(_pDouble1->getFirst(), _pDouble2->get(), (*_pDoubleOut)->get(), _pDouble2->getSize());
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
@@ -317,7 +317,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
         if (bComplex1 == false && bComplex2 == false)
         {
             //Real Matrix by Real Scalar
-            iMultiRealScalarByRealMatrix(_pDouble2->getFirst(), _pDouble1->get(), _pDouble1->getSize(), 1, (*_pDoubleOut)->get());
+            iMultiRealScalarByRealMatrix(_pDouble2->getFirst(), _pDouble1->get(), (*_pDoubleOut)->get(), _pDouble1->getSize());
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
@@ -406,7 +406,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
 
             if (bComplex1 == false && bComplex2 == false)
             {
-                iMultiRealScalarByRealMatrix(_pDouble->getFirst(), pRealIn, 1, pPolyIn->getSize(), pRealOut);
+                iMultiRealScalarByRealMatrix(_pDouble->getFirst(), pRealIn, pRealOut, pPolyIn->getSize());
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
@@ -455,7 +455,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
 
             if (bComplex1 == false && bComplex2 == false)
             {
-                iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, 1, pPolyIn->getSize(), pRealOut);
+                iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, pRealOut, pPolyIn->getSize());
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
@@ -568,7 +568,7 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
 
             if (bComplex1 == false && bComplex2 == false)
             {
-                iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, 1, pPolyIn->getSize(), pRealOut);
+                iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, pRealOut, pPolyIn->getSize());
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
@@ -614,7 +614,7 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
 
             if (bComplex1 == false && bComplex2 == false)
             {
-                iMultiRealScalarByRealMatrix(_pDouble->getFirst(), pRealIn, 1, pPolyIn->getSize(), pRealOut);
+                iMultiRealScalarByRealMatrix(_pDouble->getFirst(), pRealIn, pRealOut, pPolyIn->getSize());
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
@@ -676,7 +676,7 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
                 if (bComplex1 == false && bComplex2 == false)
                 {
                     //Real Matrix by Real Scalar
-                    iMultiRealScalarByRealMatrix(_pDouble->get(iRow2, iCol2), pSPIn->get(), iSize, 1, pdblMult);
+                    iMultiRealScalarByRealMatrix(_pDouble->get(iRow2, iCol2), pSPIn->get(), pdblMult, iSize);
                     add(pSPOut->get(), (long long)iSize, pdblMult, pSPOut->get());
                 }
                 else if (bComplex1 == false && bComplex2 == true)

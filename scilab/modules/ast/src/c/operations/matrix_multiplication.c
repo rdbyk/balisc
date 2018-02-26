@@ -84,31 +84,27 @@ void iMultiComplexMatrixByRealMatrix(
 }
 
 
-void iMultiRealScalarByRealMatrix(
-    double _dblReal1,
-    double *_pdblReal2,	int _iRows2, int _iCols2,
-    double *_pdblRealOut)
+void iMultiRealScalarByRealMatrix(double a, double* B, double* X, int n)
 {
+    // X =  a * B
 #if !defined(__SSE2__)
     int iOne = 1;
-    int iSize2 = _iRows2 * _iCols2;
+    int iSize2 = n;
 
-    memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
-    C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
+    memmove(X, B, sizeof(double) * iSize2);
+    C2F(dscal)(&iSize2, &a, X, &iOne);
 #else
-    int n = _iRows2 * _iCols2;
-
     int i = 0;
     for ( ; i < n - 1; i += 2)
     {
-        __m128d a = _mm_mul_pd(_mm_load1_pd(&_dblReal1), *((__m128d*)&(_pdblReal2[i])));
-        _pdblRealOut[i] = a[0];
-        _pdblRealOut[i+1] = a[1];
+        __m128d tmp = _mm_mul_pd(_mm_load1_pd(&a), *((__m128d*)&(B[i])));
+        X[i] = tmp[0];
+        X[i+1] = tmp[1];
     }
 
     if (n & 0x1)
     {
-        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
+        X[i] = a * B[i];
     }
 #endif
 }
