@@ -56,6 +56,25 @@ Redefining permanent variable.
 ```
 Please note, these functions have been added very recently (cf. [#366](https://github.com/rdbyk/balisc/pull/366)), thus they are not tested very well and might need some polishing. However, can you do the same thing using `predef` in current Scilab 6.x?
 
+#### You are working with Complex Numbers and Expect Consistent Results?
+With **_Balisc_** your calculations will yield _complex infinity_ and _undefined_ results consistently with respect to the
+complex plane. Therefore, a result with a `Nan` real _and_ a `Nan` imaginary part is _undefined_ and a result with at least one `Inf` part corresponds to _complex infinity_.
+```scilab
+--> 0/(0+0*%i)
+ ans  =
+   Nan + Nani
+--> (0+0*%i)/(0+0*%i)
+ ans  =
+   Nan + Nani
+--> 1/(0+0*%i)
+ ans  =
+   Inf + Nani
+--> (1+0*%i)/(0+0*%i)
+ ans  =
+   Inf + Nani
+```
+Please note, this is just how nowadays the complex arithmetics, provided by a decent C/C++ compiler, works. These rectifications have been added very recently (cf. [#390](https://github.com/rdbyk/balisc/pull/390)).
+
 ### Try some of Scilab's Benchmarks
 
 Scilab 6.X is shipped with a sparse set of benchmarks only for some its modules. You may run them as follows:
