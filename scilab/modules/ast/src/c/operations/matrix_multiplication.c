@@ -110,38 +110,35 @@ void iMultiRealScalarByRealMatrix(double a, double* B, double* X, int n)
 #endif
 }
 
-void iMultiRealScalarByComplexMatrix(
-    double _dblReal1,
-    double *_pdblReal2,	double *_pdblImg2, int _iRows2, int _iCols2,
-    double *_pdblRealOut, double *_pdblImgOut)
+void iMultiRealScalarByComplexMatrix(double a, double* C, double* D,
+                                     double* X, double* Y, int n)
 {
+    // X + Y*i = a * (C + D*i)
 #if !defined(__SSE2__)
     int iOne = 1;
-    int iSize2 = _iRows2 * _iCols2;
+    int iSize2 = n;
     
-    memmove(_pdblRealOut, _pdblReal2, sizeof(double) * iSize2);
-    memmove(_pdblImgOut, _pdblImg2, sizeof(double) * iSize2);
-    C2F(dscal)(&iSize2, &_dblReal1, _pdblRealOut, &iOne);
-    C2F(dscal)(&iSize2, &_dblReal1, _pdblImgOut, &iOne);
+    memmove(X, C, sizeof(double) * iSize2);
+    memmove(Y, D, sizeof(double) * iSize2);
+    C2F(dscal)(&iSize2, &a, X, &iOne);
+    C2F(dscal)(&iSize2, &a, Y, &iOne);
 #else
-    int n = _iRows2 * _iCols2;
-
     int i = 0;
     for ( ; i < n - 1; i += 2)
     {
-        __m128d a = _mm_load1_pd(&_dblReal1);
-        __m128d re = _mm_mul_pd(a, *((__m128d*)&(_pdblReal2[i])));
-        _pdblRealOut[i] = re[0];
-        _pdblRealOut[i+1] = re[1];
-        __m128d im = _mm_mul_pd(a, *((__m128d*)&(_pdblImg2[i])));
-        _pdblImgOut[i] = im[0];
-        _pdblImgOut[i+1] = im[1];
+        __m128d aa = _mm_load1_pd(&a);
+        __m128d re = _mm_mul_pd(aa, *((__m128d*)&(C[i])));
+        X[i] = re[0];
+        X[i+1] = re[1];
+        __m128d im = _mm_mul_pd(aa, *((__m128d*)&(D[i])));
+        Y[i] = im[0];
+        Y[i+1] = im[1];
     }
 
     if (n & 0x1)
     {
-        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
-        _pdblImgOut[i] = _dblReal1 * _pdblImg2[i];
+        X[i] = a * C[i];
+        Y[i] = a * D[i];
     }
 #endif
 }

@@ -37,12 +37,7 @@ void iMultiComplexMatrixByRealMatrix(
     double *_pdblRealOut,	double *_pdblImgOut);
 
 void iMultiRealScalarByRealMatrix(double a, double* B, double* X, int n);
-
-void iMultiRealScalarByComplexMatrix(
-    double _dblReal1,
-    double *_pdblReal2,	double *_pdblImg2, int _iRows2, int _iCols2,
-    double *_pdblRealOut, double *_pdblImgOut);
-
+void iMultiRealScalarByComplexMatrix(double a, double* C, double* D, double* X, double* Y, int n);
 void iMultiComplexScalarByRealMatrix(double a, double b, double* C,double* X, double* Y, int n);
 void iMultiComplexScalarByComplexMatrix(double a, double b, double* C, double* D, double* X, double* Y, int n);
 
