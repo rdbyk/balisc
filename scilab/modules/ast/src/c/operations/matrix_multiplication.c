@@ -14,6 +14,7 @@
  */
 
 #include <string.h> // for memset function
+#include <complex.h>
 #if defined(__SSE2__)
 #include <emmintrin.h>
 #endif
@@ -181,23 +182,19 @@ void iMultiComplexScalarByRealMatrix(
 #endif
 }
 
-void iMultiComplexScalarByComplexMatrix(
-    double _dblReal1,		double _dblImg1,
-    double *_pdblReal2,		double *_pdblImg2, int _iRows2, int _iCols2,
-    double *_pdblRealOut,	double *_pdblImgOut)
+void iMultiComplexScalarByComplexMatrix(double a, double b, double* C, double* D,
+                                        double* X, double* Y, int n)
 {
-    int i = 0;
+    // X + Y*i = (a + b*i) * (C + D*i)
 
-    for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    int i;
+    for (i = 0; i < n; ++i)
     {
-        _pdblRealOut[i] = _dblReal1 * _pdblReal2[i];
-        _pdblRealOut[i] -= _dblImg1 * _pdblImg2[i];
-
-        _pdblImgOut[i] = _dblImg1 * _pdblReal2[i];
-        _pdblImgOut[i] += _dblReal1 * _pdblImg2[i];
+        double complex z = (a + b*I) * (C[i] + D[i]*I);
+        X[i] = creal(z);
+        Y[i] = cimag(z);
     }
 }
-
 
 /* (a1 + a2 * %s + ... ) * (a1 + a2 * %s + ... )*/
 void iMultiScilabPolynomByScilabPolynom(
