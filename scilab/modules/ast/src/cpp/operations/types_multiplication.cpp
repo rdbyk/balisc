@@ -368,7 +368,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
     }
     else //if(bComplex1 == true && bComplex2 == true)
     {
-        iDotMultiplyComplexMatrixByComplexMatrix(_pDouble1->get(), _pDouble1->getImg(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize(), 1);
+        iDotMultiplyComplexMatrixByComplexMatrix(_pDouble1->get(), _pDouble1->getImg(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
     }
 
     return 0;

@@ -307,19 +307,16 @@ void iDotMultiplyRealMatrixByComplexMatrix(double* A, double* C, double* D,
     }
 }
 
-void iDotMultiplyComplexMatrixByComplexMatrix(
-    double* _pdblReal1, double* _pdblImg1,
-    double* _pdblReal2, double* _pdblImg2,
-    double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut)
+void iDotMultiplyComplexMatrixByComplexMatrix(double* A, double* B, double* C, double* D,
+                                              double* X, double* Y, int n)
 {
-    int i = 0;
+    // X + Y*i = (A + B*i) * (C + D*i)
 
-    for (i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+    int i;
+    for (i = 0; i < n; ++i)
     {
-        _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
-        _pdblRealOut[i] -= _pdblImg1[i] * _pdblImg2[i];
-
-        _pdblImgOut[i] = _pdblImg1[i] * _pdblReal2[i];
-        _pdblImgOut[i] += _pdblReal1[i] * _pdblImg2[i];
+        double complex z = (A[i] + B[i]*I) * (C[i] + D[i]*I);
+        X[i] = creal(z);
+        Y[i] = cimag(z);
     }
 }
