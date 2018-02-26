@@ -356,7 +356,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
     (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), _pDouble1->isComplex() | _pDouble2->isComplex());
     if (bComplex1 == false && bComplex2 == false)
     {
-        iDotMultiplyRealMatrixByRealMatrix(_pDouble1->get(), _pDouble2->get(), (*_pDoubleOut)->get(), _pDouble1->getSize(), 1);
+        iDotMultiplyRealMatrixByRealMatrix(_pDouble1->get(), _pDouble2->get(), (*_pDoubleOut)->get(), _pDouble1->getSize());
     }
     else if (bComplex1 == false && bComplex2 == true)
     {

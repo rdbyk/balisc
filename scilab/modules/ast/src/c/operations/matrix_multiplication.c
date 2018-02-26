@@ -283,16 +283,14 @@ void iMultiComplexPolyByComplexPoly(
     }
 }
 
-void iDotMultiplyRealMatrixByRealMatrix(
-    double* _pdblReal1,
-    double* _pdblReal2,
-    double* _pdblRealOut, int _iRowsOut, int _iColsOut)
+void iDotMultiplyRealMatrixByRealMatrix(double* A, double* B, double* X, int n)
 {
-    int i = 0;
+    // X = A .* B
 
-    for (i = 0 ; i < _iRowsOut * _iColsOut ; i++)
+    int i;
+    for (i = 0; i < n; ++i)
     {
-        _pdblRealOut[i] = _pdblReal1[i] * _pdblReal2[i];
+        X[i] = A[i] * B[i];
     }
 }
 
