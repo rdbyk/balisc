@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,39 +26,9 @@ int	iRightDivisionOfComplexMatrix(
     double *_pdblReal2,		double *_pdblImg2,		int _iRows2,	int _iCols2,
     double *_pdblRealOut,	double *_pdblImgOut,	int _iRowsOut,	int _iColsOut, double *_pdblRcond);
 
-int iRightDivisionRealMatrixByRealMatrix(
-    double *_pdblReal1, int _iInc1,
-    double *_pdblReal2, int _iInc2,
-    double *_pdblRealOut, int _iIncOut, int _iSize);
-
-int iRightDivisionComplexByReal(
-    double _dblReal1, double _dblImg1,
-    double _dblReal2,
-    double *_pdblRealOut, double *_pdblImgOut);
-
-int iRightDivisionComplexMatrixByRealMatrix(
-    double *_pdblReal1,		double *_pdblImg1,		int _iInc1,
-    double *_pdblReal2,								int _iInc2,
-    double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
-
-int iRightDivisionRealByComplex(
-    double _dblReal1,
-    double _dblReal2, double _dblImg2,
-    double *_pdblRealOut, double *_pdblImgOut);
-
-int iRightDivisionRealMatrixByComplexMatrix(
-    double *_pdblReal1,								int _iInc1,
-    double *_pdblReal2,		double *_pdblImg2,		int _iInc2,
-    double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
-
-int iRightDivisionComplexByComplex(
-    double _dblReal1, double _dblImg1,
-    double _dblReal2, double _dblImg2,
-    double *_pdblRealOut, double *_pdblImgOut);
-
-int iRightDivisionComplexMatrixByComplexMatrix(
-    double *_pdblReal1,		double *_pdblImg1,		int _iInc1,
-    double *_pdblReal2,		double *_pdblImg2,		int _iInc2,
-    double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
+int iRightDivisionRealMatrixByReal(double* A, double b, double* X, int n);
+int iRightDivisionComplexMatrixByReal(double* A, double* B, double c, double* X, double* Y, int n);
+int iRightDivisionRealMatrixByComplex(double* A, double c, double d, double* X, double* Y, int n);
+int iRightDivisionComplexMatrixByComplex(double* A, double* B, double c, double d, double* X,   double* Y, int n);
 
 #endif /* __MATRIX_RDIV__ */

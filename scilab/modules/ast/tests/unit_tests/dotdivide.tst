@@ -1,6 +1,7 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
@@ -153,7 +154,7 @@ assert_checkequal(e .\ ui32, uint32((32)*eye()));
 
 assert_checkequal(ec .\ empty, []);
 assert_checkalmostequal(ec .\ r, (10/26-%i* 1/13)*eye());
-assert_checkequal(ec .\ c, (7/26+%i* 9/26)*eye());
+assert_checkalmostequal(ec .\ c, (7/26+%i* 9/26)*eye());
 assert_checkalmostequal(ec .\ e, (5/26-%i* 1/26)*eye());
 assert_checkequal(ec .\ ec, (1+%i*0)*eye());
 
@@ -272,7 +273,7 @@ assert_checkequal(SP .\ SPC1, sparse([1, 2; 3, 10; 4, 5],[2+%i* 6; (2/3)+%i* 2; 
 
 assert_checkequal(SPC .\ empty, []);
 assert_checkequal(SPC .\ r, sparse([1, 2; 3, 10; 4, 5],[2/17-%i* 8/17; 2/51-%i* 8/51; 1/17-%i* 4/17],[4, 10]));
-assert_checkequal(SPC .\ c, sparse([1, 2; 3, 10; 4, 5],[9/17-%i* 2/17; 3/17-%i* 2/51; 9/34-%i* 1/17],[4, 10]));
+assert_checkalmostequal(SPC .\ c, sparse([1, 2; 3, 10; 4, 5],[9/17-%i* 2/17; 3/17-%i* 2/51; 9/34-%i* 1/17],[4, 10]));
 assert_checkequal(SPC .\ SP, sparse([1, 2; 3, 10; 4, 5],[1/17-%i* 4/17; 1/17-%i* 4/17; 1/17-%i* 4/17],[4, 10]));
 assert_checkequal(SPC .\ SPC, sparse([1, 2; 3, 10; 4, 5],[1; 1; 1],[4, 10]));
 assert_checkequal(SPC .\ SP1, sparse([1, 2; 3, 10; 4, 5],[10/17-%i* 40/17; 10/51-%i* 40/51; 10/34-%i* 20/17],[4, 10]));
@@ -537,7 +538,7 @@ assert_checkequal(c ./ c,  1+%i*0);
 assert_checkequal(c ./ R,  [ 1+%i*2, 0.5+%i; (1/3)+%i*(2/3), 0.25+%i*0.5]);
 assert_checkequal(c ./ C, [1, 0.5; (1/3), 0.25]+%i*0);
 assert_checkequal(c ./ e, (1+%i* 2)*eye());
-assert_checkequal(c ./ ec, (7/26+%i* 9/26)*eye());
+assert_checkalmostequal(c ./ ec, (7/26+%i* 9/26)*eye());
 test = c ./ p;
 assert_checkequal(test(2), 1+%i*2+0*%s);
 assert_checkequal(test(3), 1+(1)*s+(- 1)*s^ 2);
@@ -551,7 +552,7 @@ test = c ./ PC;
 assert_checkequal(test(2), [1,1;1,1]*(1+%i*2)+0*%s);
 assert_checkequal(test(3),[2+%i* 4+(2-%i* 6)*s+(- 2+%i* 8)*s^ 2,- 3-%i* 6+(- 3+%i* 9)*s+(3-%i* 12)*s^ 2;4+%i* 8+(4-%i* 12)*s+(- 4+%i* 16)*s^ 2,- 5-%i* 10+(- 5+%i* 15)*s+(5-%i* 20)*s^ 2]);
 assert_checkequal(c ./ SP, sparse([1, 2; 3, 10; 4, 5],[1+%i* 2; (1/3)+%i* (2/3); 0.5+%i],[4, 10]));
-assert_checkequal(c ./ SPC, sparse([1, 2; 3, 10; 4, 5],[9/17-%i* 2/17; 3/17-%i* 2/51; 9/34-%i* 1/17],[4, 10]));
+assert_checkalmostequal(c ./ SPC, sparse([1, 2; 3, 10; 4, 5],[9/17-%i* 2/17; 3/17-%i* 2/51; 9/34-%i* 1/17],[4, 10]));
 assert_checkequal(c ./ SP1, sparse([1, 1], 0.1+%i* 0.2,[1, 1]));
 assert_checkalmostequal(c ./ SPC1, sparse([1, 1], 0.35-%i* 0.05,[1, 1]));
 

@@ -3,7 +3,7 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - Digiteo - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -106,17 +106,12 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     //A = A./2^s
     if (iComplex)
     {
-        iRightDivisionComplexMatrixByRealMatrix(
-            _pdblReal,			_pdblImg	,		1,
-            &dblS2,				0,
-            pdblMatrixRealA,	pdblMatrixImgA,	1,	iSquare);
+        iRightDivisionComplexMatrixByReal(_pdblReal,_pdblImg, dblS2,
+            pdblMatrixRealA, pdblMatrixImgA, iSquare);
     }
     else
     {
-        iRightDivisionRealMatrixByRealMatrix(
-            _pdblReal,			1,
-            &dblS2,				0,
-            pdblMatrixRealA,	1,	iSquare);
+        iRightDivisionRealMatrixByReal(_pdblReal, dblS2, pdblMatrixRealA, iSquare);
     }
 
     // Pade approximation for exp(A)
