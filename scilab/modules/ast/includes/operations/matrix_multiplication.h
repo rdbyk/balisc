@@ -74,11 +74,6 @@ void iMultiComplexPolyByComplexPoly(
 void iDotMultiplyRealMatrixByRealMatrix(double* A, double* B, double* X, int n);
 void iDotMultiplyRealMatrixByComplexMatrix(double* A, double* C, double* D, double* X, double* Y, int n);
 
-void iDotMultiplyComplexMatrixByRealMatrix(
-    double* _pdblReal1, double* _pdblImg1,
-    double* _pdblReal2,
-    double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
-
 void iDotMultiplyComplexMatrixByComplexMatrix(
     double* _pdblReal1, double* _pdblImg1,
     double* _pdblReal2, double* _pdblImg2,
