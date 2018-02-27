@@ -28,8 +28,6 @@ void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
 void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 
-double durands(int *_iVal);
-
 void franck_matrix(int _iSize, double *_pData);
 void hilb_matrix(int _iSize, double *_pData);
 void magic_matrix(int _iSize, double *_pData);

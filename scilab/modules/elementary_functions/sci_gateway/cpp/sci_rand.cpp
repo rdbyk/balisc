@@ -36,6 +36,8 @@ static const wchar_t g_pwstTypeNormal[] = {L"normal"};
 static int setRandType(wchar_t _wcType);
 static double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
+static double durands(int* _iVal);
+
 static const char fname[] = "rand";
 
 types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -241,4 +243,48 @@ static int setRandType(wchar_t _wcType)
         return 1;
     }
     return 0;
+}
+
+double durands(int* _iVal)
+{
+    static int ia = 0, ic = 0, itwo = 2, m2 = 0, m = 0, mic = 0;
+    static double halfm = 0, s = 0;
+
+    if (m2 == 0)
+    {
+        m = 1;
+        while (m > m2)
+        {
+            m2 = m;
+            m = itwo * m2;
+        }
+        halfm = m2;
+
+        ia = 8 * (int)(halfm * atan(1) / 8 + 0.5) + 5;
+        ic = 2 * (int)(halfm * (0.5 - sqrt(3) / 6) + 0.5) + 1;
+        mic = (m2 - ic) + m2;
+
+        s = 0.5 / halfm;
+    }
+
+    *_iVal *= ia;
+
+    if (*_iVal > mic)
+    {
+        *_iVal = (*_iVal - m2) - m2;
+    }
+
+    *_iVal += ic;
+
+    if (*_iVal / 2 > m2)
+    {
+        *_iVal = (*_iVal - m2) - m2;
+    }
+
+    if (*_iVal < 0)
+    {
+        *_iVal = (*_iVal + m2) + m2;
+    }
+
+    return (double) * _iVal * s;
 }
