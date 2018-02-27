@@ -22,19 +22,11 @@
 #include "BOOL.h"
 #include "elem_common.h"
 
-#define BY_ROWS			1
-#define BY_COLS			2
-#define BY_ALL			0
-#define	BY_MTLB			-1
-
 double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
 
 void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
 void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
-
-double durands(int *_iVal);
-int nint(double _iVal);
 
 void franck_matrix(int _iSize, double *_pData);
 void hilb_matrix(int _iSize, double *_pData);

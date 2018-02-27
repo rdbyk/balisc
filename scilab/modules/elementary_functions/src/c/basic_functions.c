@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
  *
  */
 #include "basic_functions.h"
-
 
 /*absolute complex sum*/
 double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg)
@@ -44,57 +43,3 @@ void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
         iIndex2 += _iInc;
     }
 }
-
-double durands(int* _iVal)
-{
-    static int ia = 0, ic = 0, itwo = 2, m2 = 0, m = 0, mic = 0;
-    static double halfm = 0, s = 0;
-
-    if (m2 == 0)
-    {
-        m = 1;
-        while (m > m2)
-        {
-            m2 = m;
-            m = itwo * m2;
-        }
-        halfm = m2;
-
-        ia = 8 * nint(halfm * atan(1) / 8) + 5;
-        ic = 2 * nint(halfm * (0.5 - sqrt(3) / 6)) + 1;
-        mic = (m2 - ic) + m2;
-
-        s = 0.5 / halfm;
-    }
-
-    *_iVal *= ia;
-
-    if (*_iVal > mic)
-    {
-        *_iVal = (*_iVal - m2) - m2;
-    }
-
-    *_iVal += ic;
-
-    if (*_iVal / 2 > m2)
-    {
-        *_iVal = (*_iVal - m2) - m2;
-    }
-
-    if (*_iVal < 0)
-    {
-        *_iVal = (*_iVal + m2) + m2;
-    }
-
-    return (double) * _iVal * s;
-}
-
-int nint(double _iVal)
-{
-    return (int)(_iVal + 0.5);
-}
-
-
-
-
-
