@@ -34,7 +34,6 @@ void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal,
 void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 
 double durands(int *_iVal);
-int nint(double _iVal);
 
 void franck_matrix(int _iSize, double *_pData);
 void hilb_matrix(int _iSize, double *_pData);
