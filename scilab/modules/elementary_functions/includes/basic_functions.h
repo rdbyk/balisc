@@ -22,11 +22,6 @@
 #include "BOOL.h"
 #include "elem_common.h"
 
-#define BY_ROWS			1
-#define BY_COLS			2
-#define BY_ALL			0
-#define	BY_MTLB			-1
-
 double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
 
 void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
