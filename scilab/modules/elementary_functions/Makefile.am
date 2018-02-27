@@ -11,8 +11,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/expm.c \
     src/c/dsearch.c \
     src/c/matrix_generation.c \
-    src/c/add_vector.c \
-    src/c/sub_vector.c \
     src/c/convertbase.c
 
 # List of the cpp files
