@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bernard HUGUENEY
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +26,8 @@ extern "C"
 #include "localization.h"
 }
 
+static const char fname[] = "sparse";
+
 types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     bool isValid = true;
@@ -34,7 +36,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
     // per the scilab manual sparse will take upto 3 arguments but no less than one
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "sparse", 1, 3);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 3);
         return types::Function::Error;
     }
 
@@ -61,14 +63,14 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
 
         if (!isValid)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "sparse", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), fname, i + 1);
             return types::Function::Error;
         }
 
         // Valid input arguments are matrices and not hypermatrices
         if ( in[i]->getAs<types::GenericType>()->getDims() > 2 )
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n"), "sparse", i + 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n"), fname, i + 1);
             return types::Function::Error;
         }
 
@@ -123,7 +125,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
         {
             if (in[i]->isDouble() == false && !(in[i]->isBool() && i == 1))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), "sparse", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), fname, i + 1);
                 return types::Function::Error;
             }
         }
@@ -135,7 +137,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             pDims = in[2]->getAs<types::Double>();
             if (pDims->getRows() != 1 || pDims->getCols() != 2)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), "sparse", 3, 1, 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), fname, 3, 1, 2);
                 return types::Function::Error;
             }
 
@@ -147,11 +149,18 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
         }
 
         types::Double* ij = in[0]->getAs<types::Double>();
+
+        if (ij->getCols() != 2)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A m-by-2 matrix expected.\n"), fname, 1);
+            return types::Function::Error;
+        }
+
         types::GenericType* pGT2 = in[1]->getAs<types::GenericType>();
 
         if (pGT2->getSize() != ij->getRows())
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"), "sparse", 2, ij->getRows());
+            Scierror(999, _("%s: Wrong size for input argument #%d: A vector of size %d expected.\n"), fname, 2, ij->getRows());
             return types::Function::Error;
         }
 
