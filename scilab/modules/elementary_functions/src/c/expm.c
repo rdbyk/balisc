@@ -24,6 +24,9 @@
 #include "matrix_multiplication.h"
 #include "matrix_right_division.h"
 
+static void vDless(double* A, double* B, double* X, int n);
+static void vDadd(double* A, double* B, double* X, int n);
+
 int dexpms2(double *_pdblReal, double *_pdblReturnReal, int _iLeadDim)
 {
     int iRet = zexpms2(_pdblReal, NULL, _pdblReturnReal, NULL, _iLeadDim);
@@ -135,17 +138,17 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
         iMultiRealScalarByRealMatrix(dblCst, pdblMatrixRealA, pdblMatrixRealcA, iSquare);
 
     //E = Eye + cA
-    vDadd(iSquare, pdblMatrixRealEye, pdblMatrixRealcA, 1, 1, _pdblReturnReal);
+    vDadd(pdblMatrixRealEye, pdblMatrixRealcA, _pdblReturnReal, iSquare);
     if (iComplex)
     {
-        vDadd(iSquare, pdblMatrixImgEye, pdblMatrixImgcA, 1, 1, _pdblReturnImg);
+        vDadd(pdblMatrixImgEye, pdblMatrixImgcA, _pdblReturnImg, iSquare);
     }
 
     //D = Eye - cA
-    vDless(iSquare, pdblMatrixRealEye, pdblMatrixRealcA, 1, 1, pdblMatrixRealD);
+    vDless(pdblMatrixRealEye, pdblMatrixRealcA, pdblMatrixRealD, iSquare);
     if (iComplex)
     {
-        vDless(iSquare, pdblMatrixImgEye, pdblMatrixImgcA, 1, 1, pdblMatrixImgD);
+        vDless(pdblMatrixImgEye, pdblMatrixImgcA, pdblMatrixImgD, iSquare);
     }
 
     iMax	= 6;
@@ -190,27 +193,27 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
             iMultiRealScalarByRealMatrix(dblCst, pdblMatrixRealX, pdblMatrixRealcX, iSquare);
 
         //E = E + cX
-        vDadd(iSquare, _pdblReturnReal, pdblMatrixRealcX, 1, 1, _pdblReturnReal);
+        vDadd(_pdblReturnReal, pdblMatrixRealcX, _pdblReturnReal, iSquare);
         if (iComplex)
         {
-            vDadd(iSquare, _pdblReturnImg, pdblMatrixImgcX, 1, 1, _pdblReturnImg);
+            vDadd(_pdblReturnImg, pdblMatrixImgcX, _pdblReturnImg, iSquare);
         }
 
 
         if (iFlag == 1) //D = D + cX
         {
-            vDadd(iSquare, pdblMatrixRealD, pdblMatrixRealcX, 1, 1, pdblMatrixRealD);
+            vDadd(pdblMatrixRealD, pdblMatrixRealcX, pdblMatrixRealD, iSquare);
             if (iComplex)
             {
-                vDadd(iSquare, pdblMatrixImgD, pdblMatrixImgcX, 1, 1, pdblMatrixImgD);
+                vDadd(pdblMatrixImgD, pdblMatrixImgcX, pdblMatrixImgD, iSquare);
             }
         }
         else //D = D - cX
         {
-            vDless(iSquare, pdblMatrixRealD, pdblMatrixRealcX, 1, 1, pdblMatrixRealD);
+            vDless(pdblMatrixRealD, pdblMatrixRealcX, pdblMatrixRealD, iSquare);
             if (iComplex)
             {
-                vDless(iSquare, pdblMatrixImgD, pdblMatrixImgcX, 1, 1, pdblMatrixImgD);
+                vDless(pdblMatrixImgD, pdblMatrixImgcX, pdblMatrixImgD, iSquare);
             }
         }
 
@@ -345,4 +348,26 @@ double dblGetMatrixInfiniteNorm(double *_pdblReal, double *_pdblImg, int _iRows,
         }
     }
     return dblRef;
+}
+
+void vDless(double* A, double* B, double* X, int n)
+{
+    // X = A - B
+
+    int i;
+    for (i = 0; i < n; ++i)
+    {
+        X[i] = A[i] - B[i];
+    }
+}
+
+void vDadd(double* A, double* B, double* X, int n)
+{
+    // X = A + B
+
+    int i;
+    for (i = 0; i < n; ++i)
+    {
+        X[i] = A[i] + B[i];
+    }
 }
