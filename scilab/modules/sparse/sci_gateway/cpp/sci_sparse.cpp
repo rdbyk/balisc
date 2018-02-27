@@ -150,7 +150,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
 
         types::Double* ij = in[0]->getAs<types::Double>();
 
-        if (ij->getCols() != 2)
+        if (ij->getSize() > 0 && ij->getCols() != 2)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A m-by-2 matrix expected.\n"), fname, 1);
             return types::Function::Error;
