@@ -56,40 +56,22 @@ inline void iPowerRealScalarByRealScalar(double _dblReal1,
         {
             //R ^ 1
             *_pdblRealOut = _dblReal1;
-            *_pdblImgOut  = 0;
-            *_piComplex	  = 0;
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
         else if (iReal2 == 0)
         {
             //R ^ 0
             *_pdblRealOut = 1;
-            *_pdblImgOut  = 0;
-            *_piComplex	  = 0;
-        }
-        else if (iReal2 < 0)
-        {
-            //R ^ Z-
-            if (_dblReal1 != 0)
-            {
-                //R* ^ Z-
-                *_pdblRealOut = pow(_dblReal1, iReal2);
-                *_pdblImgOut  = 0;
-                *_piComplex	  = 0;
-            }
-            else
-            {
-                //0 ^ 0
-                *_pdblRealOut  = +INFINITY;
-                *_pdblImgOut   = 0;
-                *_piComplex	   = 0;
-            }
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
         else
         {
-            //R ^ Z*+ ( N* )
+            //R* ^ Z
             *_pdblRealOut = pow(_dblReal1, iReal2);
-            *_pdblImgOut  = 0;
-            *_piComplex	  = 0;
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
     }
     else
@@ -98,16 +80,16 @@ inline void iPowerRealScalarByRealScalar(double _dblReal1,
         {
             //R*+ ^ R
             *_pdblRealOut = pow(_dblReal1, _dblReal2);
-            *_pdblImgOut  = 0;
-            *_piComplex	  = 0;
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
         else if (_dblReal1 < 0)
         {
             //R*- ^ R
-            double complex tmp = cpow((double complex){ _dblReal1, 0.0 }, (double complex){ _dblReal2, 0.0 });
+            double complex tmp = cpow(_dblReal1 + 0.0*I, _dblReal2 + 0.0*I);
             *_pdblRealOut = creal(tmp);
-            *_pdblImgOut  = cimag(tmp);
-            *_piComplex	  = 1;
+            *_pdblImgOut = cimag(tmp);
+            *_piComplex = 1;
         }
         else if (_dblReal1 == 0)
         {
@@ -115,37 +97,37 @@ inline void iPowerRealScalarByRealScalar(double _dblReal1,
             if (_dblReal2 < 0)
             {
                 //0 ^ R*-
-                *_pdblRealOut	= +INFINITY;
-                *_pdblImgOut	= 0;
-                *_piComplex		= 0;
+                *_pdblRealOut = +INFINITY;
+                *_pdblImgOut = 0;
+                *_piComplex = 0;
             }
             else if (_dblReal2 == 0)
             {
                 //0 ^ 0
                 //never call, pass in R ** 0 before
-                *_pdblRealOut		= 1;
-                *_pdblImgOut		= 0;
-                *_piComplex			= 0;
+                *_pdblRealOut = 1;
+                *_pdblImgOut = 0;
+                *_piComplex = 0;
             }
             else if (_dblReal2 > 0)
             {
                 //0 ^ R*+
-                *_pdblRealOut		= 0;
-                *_pdblImgOut		= 0;
-                *_piComplex			= 0;
+                *_pdblRealOut = 0;
+                *_pdblImgOut = 0;
+                *_piComplex = 0;
             }
             else //_dblReal2 is NaN
             {
-                *_pdblRealOut		= _dblReal2;
-                *_pdblImgOut		= 0;
-                *_piComplex			= 0;
+                *_pdblRealOut = _dblReal2;
+                *_pdblImgOut = 0;
+                *_piComplex = 0;
             }
         }
         else //_dblReal1 is NaN
         {
-            *_pdblRealOut		= _dblReal1;
-            *_pdblImgOut		= 0;
-            *_piComplex			= 0;
+            *_pdblRealOut = _dblReal1;
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
     }
 }
