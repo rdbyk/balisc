@@ -39,22 +39,22 @@ void iPowerComplexScalarByComplexScalar(
 //Scalar ^ Matrix
 void iPowerRealScalarByRealMatrix(
     double _dblReal1,
-    double* _pdblReal2, int _iRows2, int _iCols2,
+    double* _pdblReal2, int _iSize2,
     double* _pdblRealOut,	double* _pdblImgOut, int *_iComplex);
 
 void iPowerComplexScalarByRealMatrix(
     double _dblReal1, double _dblImg1,
-    double* _pdblReal2, int _iRows2, int _iCols2,
+    double* _pdblReal2, int _iSize2,
     double* _pdblRealOut,	double* _pdblImgOut);
 
 void iPowerRealScalarByComplexMatrix(
     double _dblReal1,
-    double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
+    double* _pdblReal2, double* _pdblImg2, int _iSize2,
     double* _pdblRealOut,	double* _pdblImgOut);
 
 void iPowerComplexScalarByComplexMatrix(
     double _dblReal1, double _dblImg1,
-    double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
+    double* _pdblReal2, double* _pdblImg2, int _iSize2,
     double* _pdblRealOut,	double* _pdblImgOut);
 
 //Square Matrix ^ Scalar

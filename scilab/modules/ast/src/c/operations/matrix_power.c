@@ -319,7 +319,7 @@ inline void iPowerComplexScalarByComplexScalar(double _dblReal1,
 
 /*s .^ []*/
 void iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2,
-                                 int _iRows2, int _iCols2,
+                                 int _iSize2,
                                  double* _pdblRealOut,
                                  double* _pdblImgOut, 
                                  int *_piComplex)
@@ -327,7 +327,7 @@ void iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2,
     *_piComplex = 0;
     
     int i;
-    for (i = 0; i < _iRows2 * _iCols2; i++)
+    for (i = 0; i < _iSize2; i++)
     {
         int iComplex;
         iPowerRealScalarByRealScalar(_dblReal1, _pdblReal2[i], 
@@ -339,11 +339,11 @@ void iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2,
 
 void iPowerComplexScalarByRealMatrix(double _dblReal1, double _dblImg1,
                                     double* _pdblReal2,
-                                    int _iRows2, int _iCols2,
+                                    int _iSize2,
                                     double* _pdblRealOut, double* _pdblImgOut)
 {
     int i;
-    for (i = 0; i < _iRows2 * _iCols2; i++)
+    for (i = 0; i < _iSize2; i++)
     {
         iPowerComplexScalarByRealScalar(_dblReal1, _dblImg1,
                                         _pdblReal2[i],
@@ -354,11 +354,11 @@ void iPowerComplexScalarByRealMatrix(double _dblReal1, double _dblImg1,
 
 void iPowerRealScalarByComplexMatrix(
     double _dblReal1,
-    double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
+    double* _pdblReal2, double* _pdblImg2, int _iSize2,
     double* _pdblRealOut,	double* _pdblImgOut)
 {
     int i;
-    for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    for (i = 0 ; i < _iSize2 ; i++)
     {
         iPowerRealScalarByComplexScalar(
             _dblReal1, _pdblReal2[i], _pdblImg2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
@@ -367,11 +367,11 @@ void iPowerRealScalarByComplexMatrix(
 
 void iPowerComplexScalarByComplexMatrix(
     double _dblReal1, double _dblImg1,
-    double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
+    double* _pdblReal2, double* _pdblImg2, int _iSize2,
     double* _pdblRealOut,	double* _pdblImgOut)
 {
     int i;
-    for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    for (i = 0 ; i < _iSize2 ; i++)
     {
         iPowerComplexScalarByComplexScalar(
             _dblReal1, _dblImg1, _pdblReal2[i], _pdblImg2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
