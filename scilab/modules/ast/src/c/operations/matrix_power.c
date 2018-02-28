@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -41,7 +41,7 @@ C : complex
 - : <= 0
 */
 
-inline int iPowerRealScalarByRealScalar(double _dblReal1,
+inline void iPowerRealScalarByRealScalar(double _dblReal1,
                                         double _dblReal2,
                                         double *_pdblRealOut,
                                         double *_pdblImgOut,
@@ -148,10 +148,9 @@ inline int iPowerRealScalarByRealScalar(double _dblReal1,
             *_piComplex			= 0;
         }
     }
-    return 0;
 }
 
-inline int iPowerRealScalarByComplexScalar(double _dblReal1,
+inline void iPowerRealScalarByComplexScalar(double _dblReal1,
                                            double _dblReal2, double _dblImg2,
                                            double* _pdblRealOut,
                                            double* _pdblImgOut)
@@ -197,10 +196,9 @@ inline int iPowerRealScalarByComplexScalar(double _dblReal1,
             }
         }
     }
-    return 0;
 }
 
-inline int iPowerComplexScalarByRealScalar(double _dblReal1,
+inline void iPowerComplexScalarByRealScalar(double _dblReal1,
                                            double _dblImg1,
                                            double _dblReal2,
                                            double* _pdblRealOut,
@@ -282,10 +280,9 @@ inline int iPowerComplexScalarByRealScalar(double _dblReal1,
             }
         }
     }
-    return 0;
 }
 
-inline int iPowerComplexScalarByComplexScalar(double _dblReal1,
+inline void iPowerComplexScalarByComplexScalar(double _dblReal1,
                                               double _dblImg1,
                                               double _dblReal2,
                                               double _dblImg2,
@@ -318,11 +315,10 @@ inline int iPowerComplexScalarByComplexScalar(double _dblReal1,
             *_pdblImgOut   = 0;
         }
     }
-    return 0;
 }
 
 /*s .^ []*/
-int iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2, 
+void iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2,
                                  int _iRows2, int _iCols2,
                                  double* _pdblRealOut,
                                  double* _pdblImgOut, 
@@ -339,10 +335,9 @@ int iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2,
                                      &iComplex);
         *_piComplex |= iComplex;
     }
-    return 0;
 }
 
-int iPowerComplexScalarByRealMatrix(double _dblReal1, double _dblImg1,
+void iPowerComplexScalarByRealMatrix(double _dblReal1, double _dblImg1,
                                     double* _pdblReal2,
                                     int _iRows2, int _iCols2,
                                     double* _pdblRealOut, double* _pdblImgOut)
@@ -355,35 +350,32 @@ int iPowerComplexScalarByRealMatrix(double _dblReal1, double _dblImg1,
                                         &_pdblRealOut[i],
                                         &_pdblImgOut[i]);
     }
-    return 0;
 }
 
-int iPowerRealScalarByComplexMatrix(
+void iPowerRealScalarByComplexMatrix(
     double _dblReal1,
     double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
     double* _pdblRealOut,	double* _pdblImgOut)
 {
-    int i = 0;
+    int i;
     for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
     {
         iPowerRealScalarByComplexScalar(
             _dblReal1, _pdblReal2[i], _pdblImg2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
     }
-    return 0;
 }
 
-int iPowerComplexScalarByComplexMatrix(
+void iPowerComplexScalarByComplexMatrix(
     double _dblReal1, double _dblImg1,
     double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
     double* _pdblRealOut,	double* _pdblImgOut)
 {
-    int i = 0;
+    int i;
     for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
     {
         iPowerComplexScalarByComplexScalar(
             _dblReal1, _dblImg1, _pdblReal2[i], _pdblImg2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
     }
-    return 0;
 }
 
 //Square Matrix ^ Scalar

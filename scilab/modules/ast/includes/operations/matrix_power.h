@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,49 +10,49 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __MATRIC_POWER_H__
 #define __MATRIC_POWER_H__
 
 //Scalar ^ Scalar
-int iPowerRealScalarByRealScalar(
+void iPowerRealScalarByRealScalar(
     double _dblReal1,
     double _dblReal2,
     double* _pdblRealOut, double* _pdblImgOut, int *_piComplex);
 
-int iPowerRealScalarByComplexScalar(
+void iPowerRealScalarByComplexScalar(
     double _dblReal1,
     double _dblReal2, double _dblImg2,
     double* _pdblRealOut, double* _pdblImgOut);
 
-int iPowerComplexScalarByRealScalar(
+void iPowerComplexScalarByRealScalar(
     double _dblReal1, double _dblImg1,
     double _dblReal2,
     double* _pdblRealOut, double* _pdblImgOut);
 
-int iPowerComplexScalarByComplexScalar(
+void iPowerComplexScalarByComplexScalar(
     double _dblReal1, double _dblImg1,
     double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut);
 
 //Scalar ^ Matrix
-int iPowerRealScalarByRealMatrix(
+void iPowerRealScalarByRealMatrix(
     double _dblReal1,
     double* _pdblReal2, int _iRows2, int _iCols2,
     double* _pdblRealOut,	double* _pdblImgOut, int *_iComplex);
 
-int iPowerComplexScalarByRealMatrix(
+void iPowerComplexScalarByRealMatrix(
     double _dblReal1, double _dblImg1,
     double* _pdblReal2, int _iRows2, int _iCols2,
     double* _pdblRealOut,	double* _pdblImgOut);
 
-int iPowerRealScalarByComplexMatrix(
+void iPowerRealScalarByComplexMatrix(
     double _dblReal1,
     double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
     double* _pdblRealOut,	double* _pdblImgOut);
 
-int iPowerComplexScalarByComplexMatrix(
+void iPowerComplexScalarByComplexMatrix(
     double _dblReal1, double _dblImg1,
     double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
     double* _pdblRealOut,	double* _pdblImgOut);
