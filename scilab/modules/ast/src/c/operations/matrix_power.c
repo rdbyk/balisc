@@ -500,16 +500,6 @@ int iPowerRealSquareMatrixByRealScalar(double* _pdblReal1, int _iRows1,
     return 0;
 }
 
-int iPowerRealSquareMatrixByComplexScalar(double* _pdblReal1,
-                                          int _iRows1, int _iCols1,
-                                          double _dblReal2,
-                                          double _dblImg2,
-                                          double* _pdblRealOut,
-                                          double* _pdblImgOut)
-{
-    return 0;
-}
-
 int iPowerComplexSquareMatrixByRealScalar(
     double* _pdblReal1, double* _pdblImg1, int _iRows1, int _iCols1,
     double _dblReal2,
@@ -639,13 +629,5 @@ int iPowerComplexSquareMatrixByRealScalar(
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
 
-    return 0;
-}
-
-int iPowerComplexSquareMatrixByComplexScalar(
-    double* _pdblReal1, double* _pdblImg1, int _iRows1, int _iCols1,
-    double _dblReal2, double _dblImg2,
-    double* _pdblRealOut,	double* _pdblImgOut)
-{
     return 0;
 }
