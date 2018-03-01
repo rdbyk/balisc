@@ -205,7 +205,7 @@ inline void iPowerComplexScalarByRealScalar(double _dblReal1,
             else
             {
                 *_pdblRealOut = +INFINITY;
-                *_pdblImgOut  = 0;
+                *_pdblImgOut  = NAN;
             }
         }
         else
@@ -244,13 +244,19 @@ inline void iPowerComplexScalarByRealScalar(double _dblReal1,
             {
                 //0 ^ R*-
                 *_pdblRealOut = +INFINITY;
-                *_pdblImgOut  = 0;
+                *_pdblImgOut  = NAN;
             }
-            else
+            else if (_dblReal2 == 0)
             {
                 //0 ^ 0
                 *_pdblRealOut = 1;
                 *_pdblImgOut  = 0;
+            }
+            else
+            {
+                // 0 ^ NaN
+                *_pdblRealOut = NAN;
+                *_pdblImgOut  = NAN;
             }
         }
     }
