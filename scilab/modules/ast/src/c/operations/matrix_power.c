@@ -150,31 +150,23 @@ inline void iPowerRealScalarByComplexScalar(double _dblReal1,
         if (_dblReal1 != 0)
         {
             //R* ^ C
-            double complex tmp = cpow(_dblReal1 + 0.0 * I, 
-                                      _dblReal2 + _dblImg2 * I);
+            double complex tmp = cpow(_dblReal1, _dblReal2 + _dblImg2 * I);
             *_pdblRealOut = creal(tmp);
             *_pdblImgOut  = cimag(tmp);
         }
         else
         {
             //0 ^ C
-            if (_dblReal2 > 0)
+            if (_dblReal2 != 0)
             {
-                //0 ^ (r E R*+ ) & ( c E R )
-                *_pdblRealOut = 0;
-                *_pdblImgOut  = 0;
+                double complex tmp = cpow(0.0, _dblReal2 + _dblImg2 * I);
+                *_pdblRealOut = creal(tmp);
+                *_pdblImgOut  = cimag(tmp);
             }
-            else if (_dblReal2 < 0)
+            else
             {
-                //0 ^ (r E R*- ) & ( c E R )
-                *_pdblRealOut = +INFINITY;
-                *_pdblImgOut  = 0;
-            }
-            else //_dblReal2 == 0, NaN
-            {
-                //0 ^ (r = 0 ) & ( c E R )
-                *_pdblRealOut = 1;
-                *_pdblImgOut  = 0;
+                *_pdblRealOut = NAN;
+                *_pdblImgOut  = NAN;
             }
         }
     }
