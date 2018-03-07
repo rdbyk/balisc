@@ -280,20 +280,10 @@ inline void iPowerComplexScalarByComplexScalar(double _dblReal1,
     else
     {
         //C ^ C
-        if ((_dblReal1 != 0) || (_dblImg1 != 0))
-        {
-            // ! 0 ^ C
-            double complex tmp = cpow(_dblReal1 + _dblImg1 * I,
-                                      _dblReal2 + _dblImg2 * I);
-            *_pdblRealOut = creal(tmp);
-            *_pdblImgOut  = cimag(tmp);
-        }
-        else
-        {
-            // 0 ^ C
-            *_pdblRealOut  = +INFINITY;
-            *_pdblImgOut   = 0;
-        }
+        double complex tmp = cpow(_dblReal1 + _dblImg1 * I,
+                                  _dblReal2 + _dblImg2 * I);
+        *_pdblRealOut = creal(tmp);
+        *_pdblImgOut  = cimag(tmp);
     }
 }
 
