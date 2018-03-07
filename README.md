@@ -73,7 +73,7 @@ complex plane. Therefore, a result with a `Nan` real _and_ a `Nan` imaginary par
  ans  =
    Inf + Nani
 ```
-Please note, this is just how nowadays the complex arithmetics, provided by a decent C/C++ compiler, works. These rectifications have been added very recently (cf. [#390](https://github.com/rdbyk/balisc/pull/390)).
+Please note, this is just how nowadays the complex arithmetics, provided by a decent C/C++ compiler, works. These rectifications have been added very recently (cf. [#390](https://github.com/rdbyk/balisc/pull/390) [#402](https://github.com/rdbyk/balisc/pull/402)).
 
 ### Try some of Scilab's Benchmarks
 
