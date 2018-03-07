@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -41,7 +41,7 @@ C : complex
 - : <= 0
 */
 
-inline int iPowerRealScalarByRealScalar(double _dblReal1,
+inline void iPowerRealScalarByRealScalar(double _dblReal1,
                                         double _dblReal2,
                                         double *_pdblRealOut,
                                         double *_pdblImgOut,
@@ -56,40 +56,22 @@ inline int iPowerRealScalarByRealScalar(double _dblReal1,
         {
             //R ^ 1
             *_pdblRealOut = _dblReal1;
-            *_pdblImgOut  = 0;
-            *_piComplex	  = 0;
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
         else if (iReal2 == 0)
         {
             //R ^ 0
             *_pdblRealOut = 1;
-            *_pdblImgOut  = 0;
-            *_piComplex	  = 0;
-        }
-        else if (iReal2 < 0)
-        {
-            //R ^ Z-
-            if (_dblReal1 != 0)
-            {
-                //R* ^ Z-
-                *_pdblRealOut = pow(_dblReal1, iReal2);
-                *_pdblImgOut  = 0;
-                *_piComplex	  = 0;
-            }
-            else
-            {
-                //0 ^ 0
-                *_pdblRealOut  = +INFINITY;
-                *_pdblImgOut   = 0;
-                *_piComplex	   = 0;
-            }
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
         else
         {
-            //R ^ Z*+ ( N* )
+            //R* ^ Z
             *_pdblRealOut = pow(_dblReal1, iReal2);
-            *_pdblImgOut  = 0;
-            *_piComplex	  = 0;
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
     }
     else
@@ -98,16 +80,16 @@ inline int iPowerRealScalarByRealScalar(double _dblReal1,
         {
             //R*+ ^ R
             *_pdblRealOut = pow(_dblReal1, _dblReal2);
-            *_pdblImgOut  = 0;
-            *_piComplex	  = 0;
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
         else if (_dblReal1 < 0)
         {
             //R*- ^ R
-            double complex tmp = cpow((double complex){ _dblReal1, 0.0 }, (double complex){ _dblReal2, 0.0 });
+            double complex tmp = cpow(_dblReal1 + 0.0*I, _dblReal2 + 0.0*I);
             *_pdblRealOut = creal(tmp);
-            *_pdblImgOut  = cimag(tmp);
-            *_piComplex	  = 1;
+            *_pdblImgOut = cimag(tmp);
+            *_piComplex = 1;
         }
         else if (_dblReal1 == 0)
         {
@@ -115,43 +97,42 @@ inline int iPowerRealScalarByRealScalar(double _dblReal1,
             if (_dblReal2 < 0)
             {
                 //0 ^ R*-
-                *_pdblRealOut	= +INFINITY;
-                *_pdblImgOut	= 0;
-                *_piComplex		= 0;
+                *_pdblRealOut = +INFINITY;
+                *_pdblImgOut = 0;
+                *_piComplex = 0;
             }
             else if (_dblReal2 == 0)
             {
                 //0 ^ 0
                 //never call, pass in R ** 0 before
-                *_pdblRealOut		= 1;
-                *_pdblImgOut		= 0;
-                *_piComplex			= 0;
+                *_pdblRealOut = 1;
+                *_pdblImgOut = 0;
+                *_piComplex = 0;
             }
             else if (_dblReal2 > 0)
             {
                 //0 ^ R*+
-                *_pdblRealOut		= 0;
-                *_pdblImgOut		= 0;
-                *_piComplex			= 0;
+                *_pdblRealOut = 0;
+                *_pdblImgOut = 0;
+                *_piComplex = 0;
             }
             else //_dblReal2 is NaN
             {
-                *_pdblRealOut		= _dblReal2;
-                *_pdblImgOut		= 0;
-                *_piComplex			= 0;
+                *_pdblRealOut = _dblReal2;
+                *_pdblImgOut = 0;
+                *_piComplex = 0;
             }
         }
         else //_dblReal1 is NaN
         {
-            *_pdblRealOut		= _dblReal1;
-            *_pdblImgOut		= 0;
-            *_piComplex			= 0;
+            *_pdblRealOut = _dblReal1;
+            *_pdblImgOut = 0;
+            *_piComplex = 0;
         }
     }
-    return 0;
 }
 
-inline int iPowerRealScalarByComplexScalar(double _dblReal1,
+inline void iPowerRealScalarByComplexScalar(double _dblReal1,
                                            double _dblReal2, double _dblImg2,
                                            double* _pdblRealOut,
                                            double* _pdblImgOut)
@@ -169,38 +150,29 @@ inline int iPowerRealScalarByComplexScalar(double _dblReal1,
         if (_dblReal1 != 0)
         {
             //R* ^ C
-            double complex tmp = cpow(_dblReal1 + 0.0 * I, 
-                                      _dblReal2 + _dblImg2 * I);
+            double complex tmp = cpow(_dblReal1, _dblReal2 + _dblImg2 * I);
             *_pdblRealOut = creal(tmp);
             *_pdblImgOut  = cimag(tmp);
         }
         else
         {
             //0 ^ C
-            if (_dblReal2 > 0)
+            if (_dblReal2 != 0)
             {
-                //0 ^ (r E R*+ ) & ( c E R )
-                *_pdblRealOut = 0;
-                *_pdblImgOut  = 0;
+                double complex tmp = cpow(0.0, _dblReal2 + _dblImg2 * I);
+                *_pdblRealOut = creal(tmp);
+                *_pdblImgOut  = cimag(tmp);
             }
-            else if (_dblReal2 < 0)
+            else
             {
-                //0 ^ (r E R*- ) & ( c E R )
-                *_pdblRealOut = +INFINITY;
-                *_pdblImgOut  = 0;
-            }
-            else //_dblReal2 == 0, NaN
-            {
-                //0 ^ (r = 0 ) & ( c E R )
-                *_pdblRealOut = 1;
-                *_pdblImgOut  = 0;
+                *_pdblRealOut = NAN;
+                *_pdblImgOut  = NAN;
             }
         }
     }
-    return 0;
 }
 
-inline int iPowerComplexScalarByRealScalar(double _dblReal1,
+inline void iPowerComplexScalarByRealScalar(double _dblReal1,
                                            double _dblImg1,
                                            double _dblReal2,
                                            double* _pdblRealOut,
@@ -233,7 +205,7 @@ inline int iPowerComplexScalarByRealScalar(double _dblReal1,
             else
             {
                 *_pdblRealOut = +INFINITY;
-                *_pdblImgOut  = 0;
+                *_pdblImgOut  = NAN;
             }
         }
         else
@@ -272,20 +244,25 @@ inline int iPowerComplexScalarByRealScalar(double _dblReal1,
             {
                 //0 ^ R*-
                 *_pdblRealOut = +INFINITY;
-                *_pdblImgOut  = 0;
+                *_pdblImgOut  = NAN;
             }
-            else
+            else if (_dblReal2 == 0)
             {
                 //0 ^ 0
                 *_pdblRealOut = 1;
                 *_pdblImgOut  = 0;
             }
+            else
+            {
+                // 0 ^ NaN
+                *_pdblRealOut = NAN;
+                *_pdblImgOut  = NAN;
+            }
         }
     }
-    return 0;
 }
 
-inline int iPowerComplexScalarByComplexScalar(double _dblReal1,
+inline void iPowerComplexScalarByComplexScalar(double _dblReal1,
                                               double _dblImg1,
                                               double _dblReal2,
                                               double _dblImg2,
@@ -303,27 +280,16 @@ inline int iPowerComplexScalarByComplexScalar(double _dblReal1,
     else
     {
         //C ^ C
-        if ((_dblReal1 != 0) || (_dblImg1 != 0))
-        {
-            // ! 0 ^ C
-            double complex tmp = cpow(_dblReal1 + _dblImg1 * I,
-                                      _dblReal2 + _dblImg2 * I);
-            *_pdblRealOut = creal(tmp);
-            *_pdblImgOut  = cimag(tmp);
-        }
-        else
-        {
-            // 0 ^ C
-            *_pdblRealOut  = +INFINITY;
-            *_pdblImgOut   = 0;
-        }
+        double complex tmp = cpow(_dblReal1 + _dblImg1 * I,
+                                  _dblReal2 + _dblImg2 * I);
+        *_pdblRealOut = creal(tmp);
+        *_pdblImgOut  = cimag(tmp);
     }
-    return 0;
 }
 
 /*s .^ []*/
-int iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2, 
-                                 int _iRows2, int _iCols2,
+void iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2,
+                                 int _iSize2,
                                  double* _pdblRealOut,
                                  double* _pdblImgOut, 
                                  int *_piComplex)
@@ -331,7 +297,7 @@ int iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2,
     *_piComplex = 0;
     
     int i;
-    for (i = 0; i < _iRows2 * _iCols2; i++)
+    for (i = 0; i < _iSize2; i++)
     {
         int iComplex;
         iPowerRealScalarByRealScalar(_dblReal1, _pdblReal2[i], 
@@ -339,51 +305,47 @@ int iPowerRealScalarByRealMatrix(double _dblReal1, double* _pdblReal2,
                                      &iComplex);
         *_piComplex |= iComplex;
     }
-    return 0;
 }
 
-int iPowerComplexScalarByRealMatrix(double _dblReal1, double _dblImg1,
+void iPowerComplexScalarByRealMatrix(double _dblReal1, double _dblImg1,
                                     double* _pdblReal2,
-                                    int _iRows2, int _iCols2,
+                                    int _iSize2,
                                     double* _pdblRealOut, double* _pdblImgOut)
 {
     int i;
-    for (i = 0; i < _iRows2 * _iCols2; i++)
+    for (i = 0; i < _iSize2; i++)
     {
         iPowerComplexScalarByRealScalar(_dblReal1, _dblImg1,
                                         _pdblReal2[i],
                                         &_pdblRealOut[i],
                                         &_pdblImgOut[i]);
     }
-    return 0;
 }
 
-int iPowerRealScalarByComplexMatrix(
+void iPowerRealScalarByComplexMatrix(
     double _dblReal1,
-    double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
+    double* _pdblReal2, double* _pdblImg2, int _iSize2,
     double* _pdblRealOut,	double* _pdblImgOut)
 {
-    int i = 0;
-    for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    int i;
+    for (i = 0 ; i < _iSize2 ; i++)
     {
         iPowerRealScalarByComplexScalar(
             _dblReal1, _pdblReal2[i], _pdblImg2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
     }
-    return 0;
 }
 
-int iPowerComplexScalarByComplexMatrix(
+void iPowerComplexScalarByComplexMatrix(
     double _dblReal1, double _dblImg1,
-    double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
+    double* _pdblReal2, double* _pdblImg2, int _iSize2,
     double* _pdblRealOut,	double* _pdblImgOut)
 {
-    int i = 0;
-    for (i = 0 ; i < _iRows2 * _iCols2 ; i++)
+    int i;
+    for (i = 0 ; i < _iSize2 ; i++)
     {
         iPowerComplexScalarByComplexScalar(
             _dblReal1, _dblImg1, _pdblReal2[i], _pdblImg2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
     }
-    return 0;
 }
 
 //Square Matrix ^ Scalar
@@ -505,16 +467,6 @@ int iPowerRealSquareMatrixByRealScalar(double* _pdblReal1, int _iRows1,
     }
 
     *_iComplex = 0;
-    return 0;
-}
-
-int iPowerRealSquareMatrixByComplexScalar(double* _pdblReal1,
-                                          int _iRows1, int _iCols1,
-                                          double _dblReal2,
-                                          double _dblImg2,
-                                          double* _pdblRealOut,
-                                          double* _pdblImgOut)
-{
     return 0;
 }
 
@@ -647,13 +599,5 @@ int iPowerComplexSquareMatrixByRealScalar(
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
 
-    return 0;
-}
-
-int iPowerComplexSquareMatrixByComplexScalar(
-    double* _pdblReal1, double* _pdblImg1, int _iRows1, int _iCols1,
-    double _dblReal2, double _dblImg2,
-    double* _pdblRealOut,	double* _pdblImgOut)
-{
     return 0;
 }
