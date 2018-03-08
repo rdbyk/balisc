@@ -179,22 +179,24 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         bool bComplex1  = _pDouble1->isComplex();
         bool bComplex2  = _pDouble2->isComplex();
 
-        (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), bComplex1 | bComplex2);
-
         if (bComplex1 == false && bComplex2 == false)
         {
+            (*_pDoubleOut) = _pDouble2->getRef() > 0 ? new Double(_pDouble2->getDims(), _pDouble2->getDimsArray()) : _pDouble2;
             iMultiRealScalarByRealMatrix(_pDouble1->getFirst(), _pDouble2->get(), (*_pDoubleOut)->get(), _pDouble2->getSize());
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
+            (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), true);
             iMultiRealScalarByComplexMatrix(_pDouble1->getFirst(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble2->getSize());
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
+            (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), true);
             iMultiComplexScalarByRealMatrix(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->get(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble2->getSize());
         }
         else //if(bComplex1 == true && bComplex2 == true)
         {
+            (*_pDoubleOut) = _pDouble2->getRef() > 0 ? new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), true) : _pDouble2;
             iMultiComplexScalarByComplexMatrix(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble2->getSize());
         }
 
@@ -210,20 +212,22 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
 
         if (bComplex1 == false && bComplex2 == false)
         {
-            //Real Matrix by Real Scalar
+            (*_pDoubleOut) = _pDouble1->getRef() > 0 ? new Double(_pDouble1->getDims(), _pDouble1->getDimsArray()) : _pDouble1;
             iMultiRealScalarByRealMatrix(_pDouble2->getFirst(), _pDouble1->get(), (*_pDoubleOut)->get(), _pDouble1->getSize());
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
-            //Real Matrix by Scalar Complex
+            (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true);
             iMultiComplexScalarByRealMatrix(_pDouble2->getFirst(), _pDouble2->getImgFirst(), _pDouble1->get(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
+            (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true);
             iMultiRealScalarByComplexMatrix(_pDouble2->getFirst(), _pDouble1->get(), _pDouble1->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
         }
         else //if(bComplex1 == true && bComplex2 == true)
         {
+            (*_pDoubleOut) = _pDouble1->getRef() > 0 ? new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true) : _pDouble1;
             iMultiComplexScalarByComplexMatrix(_pDouble2->getFirst(), _pDouble2->getImgFirst(), _pDouble1->get(), _pDouble1->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
         }
 
@@ -290,21 +294,24 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
 
     if (bScalar1)
     {
-        (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), _pDouble1->isComplex() | _pDouble2->isComplex());
         if (bComplex1 == false && bComplex2 == false)
         {
+            (*_pDoubleOut) = _pDouble2->getRef() > 0 ? new Double(_pDouble2->getDims(), _pDouble2->getDimsArray()) : _pDouble2;
             iMultiRealScalarByRealMatrix(_pDouble1->getFirst(), _pDouble2->get(), (*_pDoubleOut)->get(), _pDouble2->getSize());
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
+            (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), true);
             iMultiRealScalarByComplexMatrix(_pDouble1->getFirst(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble2->getSize());
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
+            (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), true);
             iMultiComplexScalarByRealMatrix(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->get(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble2->getSize());
         }
         else //if(bComplex1 == true && bComplex2 == true)
         {
+            (*_pDoubleOut) = _pDouble2->getRef() > 0 ? new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), true) : _pDouble2;
             iMultiComplexScalarByComplexMatrix(_pDouble1->getFirst(), _pDouble1->getImgFirst(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble2->getSize());
         }
 
@@ -313,23 +320,24 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
 
     if (bScalar2)
     {
-        (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), _pDouble1->isComplex() | _pDouble2->isComplex());
         if (bComplex1 == false && bComplex2 == false)
         {
-            //Real Matrix by Real Scalar
+            (*_pDoubleOut) = _pDouble1->getRef() > 0 ? new Double(_pDouble1->getDims(), _pDouble1->getDimsArray()) : _pDouble1;
             iMultiRealScalarByRealMatrix(_pDouble2->getFirst(), _pDouble1->get(), (*_pDoubleOut)->get(), _pDouble1->getSize());
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
-            //Real Matrix by Scalar Complex
+            (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true);
             iMultiComplexScalarByRealMatrix(_pDouble2->getFirst(), _pDouble2->getImgFirst(), _pDouble1->get(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
+            (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true);
             iMultiRealScalarByComplexMatrix(_pDouble2->getFirst(), _pDouble1->get(), _pDouble1->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
         }
         else //if(bComplex1 == true && bComplex2 == true)
         {
+            (*_pDoubleOut) = _pDouble1->getRef() > 0 ? new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true) : _pDouble1;
             iMultiComplexScalarByComplexMatrix(_pDouble2->getFirst(), _pDouble2->getImgFirst(), _pDouble1->get(), _pDouble1->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
         }
 
@@ -353,21 +361,24 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
         }
     }
 
-    (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), _pDouble1->isComplex() | _pDouble2->isComplex());
     if (bComplex1 == false && bComplex2 == false)
     {
+        (*_pDoubleOut) = _pDouble1->getRef() > 0 ? (_pDouble2->getRef() > 0 ? new Double(_pDouble1->getDims(), _pDouble1->getDimsArray()) : _pDouble2) : _pDouble1;
         iDotMultiplyRealMatrixByRealMatrix(_pDouble1->get(), _pDouble2->get(), (*_pDoubleOut)->get(), _pDouble1->getSize());
     }
     else if (bComplex1 == false && bComplex2 == true)
     {
+        (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true);
         iDotMultiplyRealMatrixByComplexMatrix(_pDouble1->get(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
     }
     else if (bComplex1 == true && bComplex2 == false)
     {
+        (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true);
         iDotMultiplyRealMatrixByComplexMatrix(_pDouble2->get(), _pDouble1->get(), _pDouble1->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
     }
     else //if(bComplex1 == true && bComplex2 == true)
     {
+        (*_pDoubleOut) = _pDouble1->getRef() > 0 ? (_pDouble2->getRef() > 0 ? new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true) : _pDouble2) : _pDouble1;
         iDotMultiplyComplexMatrixByComplexMatrix(_pDouble1->get(), _pDouble1->getImg(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
     }
 
