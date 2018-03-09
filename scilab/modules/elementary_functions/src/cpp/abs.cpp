@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -31,7 +31,7 @@ namespace balisc
 
 Double* abs(Double* x)
 {
-    Double* y = new Double(x->getDims(), x->getDimsArray(), false);
+    Double* y =  x->getRef() > 1 ? new Double(x->getDims(), x->getDimsArray()) : x;
 
     int n = x->getSize();
     
@@ -62,7 +62,8 @@ Double* abs(Double* x)
                 }
         }
 #endif
-        
+        y->setComplex(false);
+
         return y;
     }
     else

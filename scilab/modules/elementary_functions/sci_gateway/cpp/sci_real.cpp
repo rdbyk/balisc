@@ -27,41 +27,55 @@ extern "C"
 #include "elem_common.h"
 }
 
-types::Function::ReturnValue sci_real(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using types::Double;
+using types::Function;
+using types::Polynom;
+using types::Sparse;
+using types::typed_list;
+
+Function::ReturnValue sci_real(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "real", 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     if (in[0]->isDouble())
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
+        Double* pDblIn = in[0]->getAs<Double>();
 
         if (pDblIn->isComplex())
         {
-            types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
-            pDblOut->set(pDblIn->get());
-            out.push_back(pDblOut);
-            return types::Function::OK;
+            if (pDblIn->getRef() > 1)
+            {
+                Double* pDblOut = new Double(pDblIn->getDims(), pDblIn->getDimsArray());
+                memcpy(pDblOut->get(), pDblIn->get(), pDblIn->getSize() * sizeof(double));
+                out.push_back(pDblOut);
+            }
+            else
+            {
+                pDblIn->setComplex(false);
+                out.push_back(pDblIn);
+            }
         }
         else
         {
             out.push_back(pDblIn);
-            return types::Function::OK;
         }
+
+        return Function::OK;
     }
     else if (in[0]->isSparse())
     {
-        types::Sparse* pSparseIn = in[0]->getAs<types::Sparse>();
+        Sparse* pSparseIn = in[0]->getAs<Sparse>();
         if (pSparseIn->isComplex() == false)
         {
             out.push_back(pSparseIn);
-            return types::Function::OK;
+            return Function::OK;
         }
 
-        types::Sparse* pSparseOut = new types::Sparse(pSparseIn->getRows(), pSparseIn->getCols());
+        Sparse* pSparseOut = new Sparse(pSparseIn->getRows(), pSparseIn->getCols());
         int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
         int* pRows = new int[nonZeros * 2];
         pSparseIn->outputRowCol(pRows);
@@ -81,17 +95,17 @@ types::Function::ReturnValue sci_real(types::typed_list &in, int _iRetCount, typ
     }
     else if (in[0]->isPoly())
     {
-        types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
+        Polynom* pPolyIn = in[0]->getAs<Polynom>();
         if (pPolyIn->isComplex() == false)
         {
             out.push_back(pPolyIn);
-            return types::Function::OK;
+            return Function::OK;
         }
 
         int* piRanks = new int[pPolyIn->getSize()];
         pPolyIn->getRank(piRanks);
 
-        types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray(), piRanks);
+        Polynom* pPolyOut = new Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray(), piRanks);
         for (int i = 0; i < pPolyIn->getSize(); i++)
         {
             memcpy(pPolyOut->get(i)->get(), pPolyIn->get(i)->get(), (piRanks[i] + 1) * sizeof(double));
@@ -107,5 +121,5 @@ types::Function::ReturnValue sci_real(types::typed_list &in, int _iRetCount, typ
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    return types::Function::OK;
+    return Function::OK;
 }

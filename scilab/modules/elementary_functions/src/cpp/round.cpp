@@ -32,12 +32,12 @@ namespace balisc
 Double* round(Double* x)
 {
     bool is_complex = x->isComplex();
+    Double* y = x->getRef() > 1 ? new Double(x->getDims(), x->getDimsArray(), is_complex) : x;
+
     int n = x->getSize();
     
     if (is_complex)
     {
-        Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
-        
         double* xr = x->get();
         double* yr = y->get();
         double* xi = x->getImg();
@@ -54,13 +54,9 @@ Double* round(Double* x)
             yi[i] = a[1];
 #endif
         }
-        
-        return y;
     }
     else
     {
-        Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
-        
         double* xr = x->get();
         double* yr = y->get();
         
@@ -83,8 +79,9 @@ Double* round(Double* x)
             yr[i] = ::balisc_round_d(xr[i]);
         }
 #endif
-        return y;
     }
+
+    return y;
 }
 
 }

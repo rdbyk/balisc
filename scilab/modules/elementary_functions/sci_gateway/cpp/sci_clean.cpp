@@ -28,13 +28,20 @@ extern "C"
 #include "localization.h"
 }
 
+using types::Double;
+using types::Function;
+using types::Polynom;
+using types::SinglePoly;
+using types::Sparse;
+using types::typed_list;
+
 static const char fname[] = "clean";
 
-types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, types::typed_list &out)
+Function::ReturnValue sci_clean(typed_list &in, int _iRetCount, typed_list &out)
 {
-    types::Double* pDblOut      = NULL;
-    types::Polynom* pPolyOut    = NULL;
-    types::Sparse* pSparseOut   = NULL;
+    Double* pDblOut      = NULL;
+    Polynom* pPolyOut    = NULL;
+    Sparse* pSparseOut   = NULL;
 
     double* pdReal  = NULL;
     double* pdImg   = NULL;
@@ -44,20 +51,20 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
 
     int iSize       = 0;
 
-    //Only for types::Sparse case
+    //Only for Sparse case
     int* pRows = NULL;
     int* pCols = NULL;
 
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 3);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     /***** get data *****/
     if (in[0]->isDouble())
     {
-        pDblOut = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
+        pDblOut = in[0]->getRef() > 1 ? in[0]->getAs<Double>()->clone()->getAs<Double>() : in[0]->getAs<Double>();
 
         iSize = pDblOut->getSize();
         pdReal = pDblOut->get();
@@ -68,14 +75,14 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     }
     else if (in[0]->isPoly())
     {
-        types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
+        Polynom* pPolyIn = in[0]->getAs<Polynom>();
         iSize = pPolyIn->getSize();
-        pPolyOut = pPolyIn->clone()->getAs<types::Polynom>();
+        pPolyOut = pPolyIn->clone()->getAs<Polynom>();
     }
     else if (in[0]->isSparse())
     {
-        types::Sparse* pSparseIn = in[0]->getAs<types::Sparse>();
-        pSparseOut = new types::Sparse(pSparseIn->getRows(), pSparseIn->getCols());
+        Sparse* pSparseIn = in[0]->getAs<Sparse>();
+        pSparseOut = new Sparse(pSparseIn->getRows(), pSparseIn->getCols());
 
         iSize = static_cast<int>(pSparseIn->nonZeros());
         pRows = new int[iSize * 2];
@@ -112,10 +119,10 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
                     delete[] pdImg;
                 }
             }
-            return types::Function::Error;
+            return Function::Error;
         }
 
-        types::Double* pDbl = in[2]->getAs<types::Double>();
+        Double* pDbl = in[2]->getAs<Double>();
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
@@ -130,7 +137,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
                     delete[] pdImg;
                 }
             }
-            return types::Function::Error;
+            return Function::Error;
         }
 
         dEpsR = pDbl->getFirst();
@@ -151,10 +158,10 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
                     delete[] pdImg;
                 }
             }
-            return types::Function::Error;
+            return Function::Error;
         }
 
-        types::Double* pDbl = in[1]->getAs<types::Double>();
+        Double* pDbl = in[1]->getAs<Double>();
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
@@ -169,7 +176,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
                     delete[] pdImg;
                 }
             }
-            return types::Function::Error;
+            return Function::Error;
         }
 
         dEpsA = pDbl->getFirst();
@@ -180,7 +187,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     {
         for (int i = 0 ; i < iSize ; i++)
         {
-            types::SinglePoly* pSP = pPolyOut->get(i);
+            SinglePoly* pSP = pPolyOut->get(i);
             clean(pSP->get(), pSP->getImg(), pSP->getSize(), dEpsA, dEpsR);
         }
     }
@@ -226,5 +233,5 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         out.push_back(pSparseOut);
     }
 
-    return types::Function::OK;
+    return Function::OK;
 }

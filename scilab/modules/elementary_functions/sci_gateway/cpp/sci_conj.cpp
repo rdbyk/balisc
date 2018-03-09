@@ -26,24 +26,29 @@ extern "C"
 #include "basic_functions.h"
 }
 
-types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using types::Double;
+using types::Function;
+using types::Polynom;
+using types::typed_list;
+
+Function::ReturnValue sci_conj(typed_list &in, int _iRetCount, typed_list &out)
 {
-    types::Double* pDblOut      = NULL;
-    types::Polynom* pPolyOut    = NULL;
+    Double* pDblOut      = NULL;
+    Polynom* pPolyOut    = NULL;
 
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "conj", 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     if (in[0]->isDouble())
     {
-        pDblOut = in[0]->clone()->getAs<types::Double>();
+        pDblOut = in[0]->getRef() > 1 ? in[0]->clone()->getAs<Double>() : in[0]->getAs<Double>();
     }
     else if (in[0]->isPoly())
     {
-        pPolyOut = in[0]->clone()->getAs<types::Polynom>();
+        pPolyOut = in[0]->clone()->getAs<Polynom>();
         pDblOut = pPolyOut->getCoef();
     }
     else
@@ -74,5 +79,5 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
         pDblOut->killMe();
     }
 
-    return types::Function::OK;
+    return Function::OK;
 }

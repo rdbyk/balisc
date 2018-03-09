@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -35,7 +35,7 @@ namespace balisc
 Double* tan(Double* x)
 {
     bool is_complex = x->isComplex();
-    Double* y = new Double(x->getDims(), x->getDimsArray(), is_complex);
+    Double* y =  x->getRef() > 1 ? new Double(x->getDims(), x->getDimsArray(), is_complex) : x;
     
     int n = x->getSize();
 
