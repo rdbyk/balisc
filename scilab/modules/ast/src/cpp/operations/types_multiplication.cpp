@@ -186,7 +186,7 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
-            (*_pDoubleOut) = new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), true);
+            (*_pDoubleOut) = _pDouble2->getRef() > 0 ? new Double(_pDouble2->getDims(), _pDouble2->getDimsArray(), true) : _pDouble2;
             iMultiRealScalarByComplexMatrix(_pDouble1->getFirst(), _pDouble2->get(), _pDouble2->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble2->getSize());
         }
         else if (bComplex1 == true && bComplex2 == false)
@@ -208,8 +208,6 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         bool bComplex1  = _pDouble1->isComplex();
         bool bComplex2  = _pDouble2->isComplex();
 
-        (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), bComplex1 | bComplex2);
-
         if (bComplex1 == false && bComplex2 == false)
         {
             (*_pDoubleOut) = _pDouble1->getRef() > 0 ? new Double(_pDouble1->getDims(), _pDouble1->getDimsArray()) : _pDouble1;
@@ -222,7 +220,7 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
-            (*_pDoubleOut) = new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true);
+            (*_pDoubleOut) = _pDouble1->getRef() > 0 ? new Double(_pDouble1->getDims(), _pDouble1->getDimsArray(), true) : _pDouble1;
             iMultiRealScalarByComplexMatrix(_pDouble2->getFirst(), _pDouble1->get(), _pDouble1->getImg(), (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), _pDouble1->getSize());
         }
         else //if(bComplex1 == true && bComplex2 == true)
