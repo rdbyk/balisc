@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -49,8 +49,8 @@ Double* log(Double* x)
     
     if (is_complex)
     {
-        Double* y = new Double(x->getDims(), x->getDimsArray(), true);
-        
+        Double* y = x->getRef() > 1 ? new Double(x->getDims(), x->getDimsArray(), true) : x;
+
         Map<ArrayXd> xr(x->get(), n);
         Map<ArrayXd> xi(x->getImg(), n);
         Map<ArrayXd> yr(y->get(), n);
@@ -74,10 +74,12 @@ Double* log(Double* x)
                 break;
             }
         }
-        
+
+        Double* y = x->getRef() > 1 ? new Double(x->getDims(), x->getDimsArray()) : x;
+
         if (is_complex)
         {
-            Double* y = new Double(x->getDims(), x->getDimsArray(), true);
+            y->setComplex(true);
             
             double* yr = y->get();
             double* yi = y->getImg();
@@ -97,13 +99,9 @@ Double* log(Double* x)
                     yi[i] = M_PI;
                 }
             }
-            
-            return y;
         }
         else
         {
-            Double* y = new Double(x->getDims(), x->getDimsArray(), false);
-            
             double* xr = x->get();
             double* yr = y->get();
 
@@ -126,10 +124,10 @@ Double* log(Double* x)
             {
                 yr[i] = balisc_log_d(xr[i]);
             }
-            
-            return y;
 #endif
         }
+
+        return y;
     }
 }
 
