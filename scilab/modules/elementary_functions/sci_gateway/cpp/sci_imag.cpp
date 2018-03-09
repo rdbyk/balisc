@@ -14,7 +14,6 @@
  */
 
 #include <complex>
-
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -29,22 +28,30 @@ extern "C"
 #include "elem_common.h"
 }
 
-types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using types::Double;
+using types::Function;
+using types::Polynom;
+using types::SinglePoly;
+using types::Sparse;
+using types::typed_list;
+
+Function::ReturnValue sci_imag(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "imag", 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     if (in[0]->isDouble())
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+        Double* pDblIn = in[0]->getAs<Double>();
+        Double* pDblOut = pDblIn->getRef() > 1 ? new Double(pDblIn->getDims(), pDblIn->getDimsArray()) : pDblIn;
 
         if (pDblIn->isComplex())
         {
             memcpy(pDblOut->get(), pDblIn->getImg(), pDblIn->getSize() * sizeof(double));
+            pDblOut->setComplex(false);
         }
         else
         {
@@ -56,13 +63,13 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
     }
     else if (in[0]->isSparse())
     {
-        types::Sparse* pSparseIn = in[0]->getAs<types::Sparse>();
-        types::Sparse* pSparseOut = new types::Sparse(pSparseIn->getRows(), pSparseIn->getCols());
+        Sparse* pSparseIn = in[0]->getAs<Sparse>();
+        Sparse* pSparseOut = new Sparse(pSparseIn->getRows(), pSparseIn->getCols());
 
         if (pSparseIn->isComplex() == false)
         {
             out.push_back(pSparseOut);
-            return types::Function::OK;
+            return Function::OK;
         }
 
         int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
@@ -84,12 +91,12 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
     }
     else if (in[0]->isPoly())
     {
-        types::Polynom* pPolyIn  = in[0]->getAs<types::Polynom>();
-        types::Polynom* pPolyOut = NULL;
+        Polynom* pPolyIn  = in[0]->getAs<Polynom>();
+        Polynom* pPolyOut = NULL;
 
         if (pPolyIn->isComplex())
         {
-            pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
+            pPolyOut = new Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
             for (int i = 0; i < pPolyIn->getSize(); i++)
             {
                 int rank = pPolyIn->get(i)->getRank();
@@ -109,7 +116,7 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
                 }
 
                 double* dataReal = NULL;
-                types::SinglePoly* pSP = new types::SinglePoly(&dataReal, iNewRank);
+                SinglePoly* pSP = new SinglePoly(&dataReal, iNewRank);
 
                 for (int j = 0; j < iNewRank + 1; j++)
                 {
@@ -126,7 +133,7 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
             int iSize = pPolyIn->getSize();
             int* piRanks = new int[iSize];
             memset(piRanks, 0x00, iSize * sizeof(int));
-            pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray(), piRanks);
+            pPolyOut = new Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray(), piRanks);
             pPolyOut->setZeros();
             delete[] piRanks;
         }
@@ -139,5 +146,5 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    return types::Function::OK;
+    return Function::OK;
 }
