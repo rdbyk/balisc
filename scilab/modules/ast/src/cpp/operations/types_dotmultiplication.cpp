@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,6 +29,56 @@ extern "C"
 using namespace types;
 //define arrays on operation functions
 static dotmul_function pDotMulfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
+
+// specialization for Double (Scalar .* Scalar)
+template<>
+InternalType* dotmul_S_S<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    Double* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Double(0) : _pR) : _pL;
+    dotmul(_pL->getFirst(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+// specialization for Double (Matrix .* Scalar)
+template<>
+InternalType* dotmul_M_S<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    Double* pOut = _pL->getRef() > 0 ? new Double(_pL->getDims(), _pL->getDimsArray()) : _pL;
+    dotmul(_pL->get(), (size_t)pOut->getSize(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+// specialization for Double (Matrix .* Matrix)
+template<>
+InternalType* dotmul_M_M<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    //check dims
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return nullptr;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        }
+    }
+
+    Double* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Double(iDimsL, piDimsL) : _pR) : _pL;
+
+    int iSize = pOut->getSize();
+
+    dotmul(_pL->get(), iSize, _pR->get(), pOut->get());
+    return pOut;
+}
 
 void fillDotMulFunction()
 {

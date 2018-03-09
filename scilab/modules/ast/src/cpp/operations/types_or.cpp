@@ -4,7 +4,7 @@
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,6 +30,53 @@ using namespace types;
 
 //define arrays on operation functions
 static or_function pOrfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
+
+// specialization for Bool (Scalar | Scalar)
+template<>
+InternalType* or_S_S<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
+{
+    Bool* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Bool(0) : _pR) : _pL;
+    bit_or(_pL->getFirst(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+// specialization for Bool (Matrix | Scalar)
+template<>
+InternalType* or_M_S<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
+{
+    Bool* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Bool(_pL->getDims(), _pL->getDimsArray()) : _pR) : _pL;
+    bit_or(_pL->get(), (size_t)_pL->getSize(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+// specialization for Bool (Matrix | Matrix)
+template<>
+InternalType* or_M_M<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return nullptr;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        }
+    }
+
+    Bool* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Bool(iDimsL, piDimsL) : _pR) : _pL;
+
+    bit_or(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
+    return pOut;
+}
 
 void fillOrFunction()
 {

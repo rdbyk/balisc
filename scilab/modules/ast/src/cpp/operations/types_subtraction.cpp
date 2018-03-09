@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,6 +34,62 @@ using namespace types;
 
 //define arrays on operation functions
 static sub_function pSubfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
+
+// specialization for Double (Scalar - Scalar)
+template<>
+InternalType* sub_S_S<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    Double* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Double(0) : _pR) : _pL;
+    sub(_pL->getFirst(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+// specialization for Double (Matrix - Scalar)
+template<>
+InternalType* sub_M_S<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    Double* pOut = _pL->getRef() > 0 ? new Double(_pL->getDims(), _pL->getDimsArray()) : _pL;
+    sub(_pL->get(), (size_t)_pL->getSize(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+// specialization for Double (Scalar - Matrix)
+template<>
+InternalType* sub_S_M<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    Double* pOut = _pR->getRef() > 0 ? new Double(_pR->getDims(), _pR->getDimsArray()) : _pR;
+    sub(_pL->getFirst(), (size_t)_pR->getSize(), _pR->get(), pOut->get());
+    return pOut;
+}
+
+// specialization for Double (Matrix - Matrix)
+template<>
+InternalType* sub_M_M<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return nullptr;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        }
+    }
+
+    Double* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Double(iDimsL, piDimsL) : _pR) : _pL;
+
+    sub(_pL->get(), (size_t)_pL->getSize(), _pR->get(), pOut->get());
+    return pOut;
+}
 
 void fillSubtractFunction()
 {
