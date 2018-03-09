@@ -3,7 +3,7 @@
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,6 +28,53 @@ using namespace types;
 
 //define arrays on operation functions
 static and_function pAndfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
+
+// specialization for Bool (Scalar & Scalar)
+template<>
+InternalType* and_S_S<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
+{
+    Bool* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Bool(0) : _pR) : _pL;
+    bit_and(_pL->getFirst(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+// specialization for Bool (Matrix & Scalar)
+template<>
+InternalType* and_M_S<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
+{
+    Bool* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Bool(_pL->getDims(), _pL->getDimsArray()) : _pR) : _pL;
+    bit_and(_pL->get(), (size_t)_pL->getSize(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+// specialization for Bool (Matrix & Matrix)
+template<>
+InternalType* and_M_M<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return nullptr;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        }
+    }
+
+    Bool* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Bool(iDimsL, piDimsL) : _pR) : _pL;
+
+    bit_and(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
+    return pOut;
+}
 
 void fillAndFunction()
 {
@@ -588,7 +635,7 @@ InternalType* and_M_S(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* and_S_S(T *_pL, U *_pR)
 {
-    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
+    O* pOut = new O(0);
     bit_and(_pL->getFirst(), _pR->getFirst(), pOut->get());
     return pOut;
 }
