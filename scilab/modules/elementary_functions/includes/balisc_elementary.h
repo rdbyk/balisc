@@ -1,6 +1,6 @@
 /* Balisc (https://github.com/rdbyk/balisc/)
  * 
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -69,6 +69,12 @@
 #define balisc_sin_m128d   Sleef_sind2_u35sse2
 #define balisc_round_m128d Sleef_roundd2_sse2
 #define balisc_tan_m128d   Sleef_tand2_u35sse2 // not really fast
+
+#endif
+
+#if defined(__AVX__)
+
+#define balisc_sin_m256d  Sleef_sind4_u35avx
 
 #endif
 
