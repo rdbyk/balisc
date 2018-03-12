@@ -30,7 +30,7 @@ using namespace types;
 //define arrays on operation functions
 static dotmul_function pDotMulfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
 
-// specialization for Double (Scalar .* Scalar)
+// specializations for Double (Scalar .* Scalar)
 template<>
 InternalType* dotmul_S_S<Double, Double, Double>(Double *_pL, Double *_pR)
 {
@@ -39,12 +39,44 @@ InternalType* dotmul_S_S<Double, Double, Double>(Double *_pL, Double *_pR)
     return pOut;
 }
 
-// specialization for Double (Matrix .* Scalar)
+template<>
+InternalType* dotmul_S_SC<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    Double* pOut = _pR->getRef() > 0 ? new Double(0.0, 0.0) : _pR;
+    dotmul(_pL->get(), 1, _pR->getFirst(), _pR->getImgFirst(), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<>
+InternalType* dotmul_SC_SC<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    Double* pOut = _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Double(0.0, 0.0) : _pR) : _pL;
+    dotmul(_pL->getFirst(), _pL->getImgFirst(), 1, _pR->getFirst(), _pR->getImgFirst(), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+// specializations for Double (Matrix .* Scalar)
 template<>
 InternalType* dotmul_M_S<Double, Double, Double>(Double *_pL, Double *_pR)
 {
     Double* pOut = _pL->getRef() > 0 ? new Double(_pL->getDims(), _pL->getDimsArray()) : _pL;
     dotmul(_pL->get(), (size_t)pOut->getSize(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+template<>
+InternalType* dotmul_MC_S<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    Double* pOut = _pL->getRef() > 0 ? new Double(_pL->getDims(), _pL->getDimsArray(), true) : _pL;
+    dotmul(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->getFirst(), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<>
+InternalType* dotmul_MC_SC<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    Double* pOut = _pL->getRef() > 0 ? new Double(_pL->getDims(), _pL->getDimsArray(), true) : _pL;
+    dotmul(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->getFirst(), _pR->getImgFirst(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -77,6 +109,62 @@ InternalType* dotmul_M_M<Double, Double, Double>(Double *_pL, Double *_pR)
     int iSize = pOut->getSize();
 
     dotmul(_pL->get(), iSize, _pR->get(), pOut->get());
+    return pOut;
+}
+
+template<>
+InternalType* dotmul_M_MC<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return nullptr;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        }
+    }
+
+    Double* pOut = _pR->getRef() > 0 ? new Double(iDimsL, piDimsL, true) : _pR;
+
+    dotmul(_pL->get(), (size_t)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<>
+InternalType* dotmul_MC_MC<Double, Double, Double>(Double *_pL, Double *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return nullptr;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        }
+    }
+
+    Double* pOut =  _pL->getRef() > 0 ? (_pR->getRef() > 0 ? new Double(iDimsL, piDimsL, true) : _pR) : _pL;
+
+    dotmul(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 

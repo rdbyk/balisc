@@ -38,7 +38,21 @@ InternalType* and_S_S<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
     return pOut;
 }
 
-// specialization for Bool (Matrix & Scalar)
+template<>
+InternalType* and_S_S<Bool, Double, Bool>(Bool *_pL, Double *_pR)
+{
+    Bool* pOut =  _pL->getRef() > 0 ? new Bool(0) : _pL;
+    bit_and(_pL->getFirst(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+template<>
+InternalType* and_S_S<Double, Bool, Bool>(Double *_pL, Bool *_pR)
+{
+    return and_S_S<Bool, Double, Bool>(_pR, _pL);
+}
+
+// specializations for Bool (Matrix & Scalar)
 template<>
 InternalType* and_M_S<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
 {
@@ -47,7 +61,21 @@ InternalType* and_M_S<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
     return pOut;
 }
 
-// specialization for Bool (Matrix & Matrix)
+template<>
+InternalType* and_M_S<Bool, Double, Bool>(Bool *_pL, Double *_pR)
+{
+    Bool* pOut =  _pL->getRef() > 0 ? new Bool(_pL->getDims(), _pL->getDimsArray()) : _pL;
+    bit_and(_pL->get(), (size_t)_pL->getSize(), _pR->getFirst(), pOut->get());
+    return pOut;
+}
+
+template<>
+InternalType* and_S_M<Double, Bool, Bool>(Double *_pL, Bool *_pR)
+{
+    return and_M_S<Bool, Double, Bool>(_pR, _pL);
+}
+
+// specializations for Bool (Matrix & Matrix)
 template<>
 InternalType* and_M_M<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
 {
@@ -74,6 +102,40 @@ InternalType* and_M_M<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
 
     bit_and(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
     return pOut;
+}
+
+template<>
+InternalType* and_M_M<Bool, Double, Bool>(Bool *_pL, Double *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return nullptr;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        }
+    }
+
+    Bool* pOut =  _pL->getRef() > 0 ? new Bool(iDimsL, piDimsL) : _pL;
+
+    bit_and(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
+    return pOut;
+}
+
+template<>
+InternalType* and_M_M<Double, Bool, Bool>(Double *_pL, Bool *_pR)
+{
+    return and_M_M<Bool, Double, Bool>(_pR, _pL);
 }
 
 void fillAndFunction()
