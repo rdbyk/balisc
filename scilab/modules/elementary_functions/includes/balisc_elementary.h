@@ -79,6 +79,8 @@
 #define balisc_atan_m256d  Sleef_atand4_u35avx
 #define balisc_atan2_m256d Sleef_atan2d4_u35avx
 #define balisc_cos_m256d   Sleef_cosd4_u35avx
+#define balisc_log_m256d   Sleef_logd4_u35avx
+#define balisc_log10_m256d Sleef_log10d4_u10avx
 #define balisc_sin_m256d   Sleef_sind4_u35avx
 #define balisc_tan_m256d   Sleef_tand4_u35avx
 
