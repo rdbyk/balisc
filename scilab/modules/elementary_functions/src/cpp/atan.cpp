@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -46,7 +46,7 @@ Double* atan_real(Double* x)
                 yr[i] = balisc_atan_d(xr[i]);
             }
             return y;
-#else
+#elif !defined(balisc_atan_m256d)
             int i = 0;
             for ( ; i < n - 1; i += 2)
             {
@@ -62,6 +62,42 @@ Double* atan_real(Double* x)
             }
 
             return y;
+#else
+        int i = 0;
+        for ( ; i < n - 3; i += 4)
+        {
+            __m256d a = ::balisc_atan_m256d(_mm256_loadu_pd(&(xr[i])));
+            yr[i] = a[0];
+            yr[i+1] = a[1];
+            yr[i+2] = a[2];
+            yr[i+3] = a[3];
+        }
+
+        switch (n % 4)
+        {
+            case 1:
+                yr[i] = ::balisc_atan_d(xr[i]);
+                return y;
+
+            case 2:
+                {
+                    __m128d a = ::balisc_atan_m128d(*((__m128d*)&(xr[i])));
+                    yr[i] = a[0];
+                    yr[i+1] = a[1];
+                }
+                return y;
+
+            case 3:
+                {
+                    __m128d a = ::balisc_atan_m128d(*((__m128d*)&(xr[i])));
+                    yr[i] = a[0];
+                    yr[i+1] = a[1];
+                    yr[i+2] = ::balisc_atan_d(xr[i+2]);
+                }
+                return y;
+        }
+
+        return y;
 #endif
 }
 
@@ -129,7 +165,7 @@ Double* atan2(Double* x1, Double* x2)
                 yr[i] = ::balisc_atan2_d(x1r[i], x2r[i]);
             }
             return y;
-#else
+#elif !defined(balisc_atan2_m256d)
             int i = 0;
             for ( ; i < n - 1; i += 2)
             {
@@ -145,6 +181,42 @@ Double* atan2(Double* x1, Double* x2)
             }
 
             return y;
+#else
+        int i = 0;
+        for ( ; i < n - 3; i += 4)
+        {
+            __m256d a = ::balisc_atan2_m256d(_mm256_loadu_pd(&(x1r[i])), _mm256_loadu_pd(&(x2r[i])));
+            yr[i] = a[0];
+            yr[i+1] = a[1];
+            yr[i+2] = a[2];
+            yr[i+3] = a[3];
+        }
+
+        switch (n % 4)
+        {
+            case 1:
+                yr[i] = ::balisc_atan2_d(x1r[i], x2r[i]);
+                return y;
+
+            case 2:
+                {
+                    __m128d a = ::balisc_atan2_m128d(*((__m128d*)&(x1r[i])), *((__m128d*)&(x2r[i])));
+                    yr[i] = a[0];
+                    yr[i+1] = a[1];
+                }
+                return y;
+
+            case 3:
+                {
+                    __m128d a = ::balisc_atan2_m128d(*((__m128d*)&(x1r[i])), *((__m128d*)&(x2r[i])));
+                    yr[i] = a[0];
+                    yr[i+1] = a[1];
+                    yr[i+2] = ::balisc_atan2_d(x1r[i+2], x2r[i+2]);
+                }
+                return y;
+        }
+
+        return y;
 #endif
 }
 
