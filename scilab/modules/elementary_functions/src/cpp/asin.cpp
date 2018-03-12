@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -130,7 +130,7 @@ Double* asin(Double* x)
                 yr[i] = balisc_asin_d(xr[i]);
             }
             return y;
-#else
+#elif !defined(balisc_asin_m256d)
             int i = 0;
             for ( ; i < n - 1; i += 2)
             {
@@ -146,6 +146,42 @@ Double* asin(Double* x)
             }
             
             return y;
+#else
+        int i = 0;
+        for ( ; i < n - 3; i += 4)
+        {
+            __m256d a = ::balisc_asin_m256d(_mm256_loadu_pd(&(xr[i])));
+            yr[i] = a[0];
+            yr[i+1] = a[1];
+            yr[i+2] = a[2];
+            yr[i+3] = a[3];
+        }
+
+        switch (n % 4)
+        {
+            case 1:
+                yr[i] = ::balisc_asin_d(xr[i]);
+                return y;
+
+            case 2:
+                {
+                    __m128d a = ::balisc_asin_m128d(*((__m128d*)&(xr[i])));
+                    yr[i] = a[0];
+                    yr[i+1] = a[1];
+                }
+                return y;
+
+            case 3:
+                {
+                    __m128d a = ::balisc_asin_m128d(*((__m128d*)&(xr[i])));
+                    yr[i] = a[0];
+                    yr[i+1] = a[1];
+                    yr[i+2] = ::balisc_asin_d(xr[i+2]);
+                }
+                return y;
+        }
+
+        return y;
 #endif
         }
     }
