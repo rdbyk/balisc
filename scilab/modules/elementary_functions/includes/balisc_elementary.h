@@ -74,8 +74,9 @@
 
 #if defined(__AVX__)
 
-#define balisc_cos_m256d  Sleef_cosd4_u35avx
-#define balisc_sin_m256d  Sleef_sind4_u35avx
+#define balisc_cos_m256d Sleef_cosd4_u35avx
+#define balisc_sin_m256d Sleef_sind4_u35avx
+#define balisc_tan_m256d Sleef_tand4_u35avx
 
 #endif
 
