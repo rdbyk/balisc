@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,10 +22,12 @@
         <title>Description</title>
         <para>
             A boolean variable is <constant>%T</constant> (for "true") or <constant>%F</constant> (for "false"). These variables can be used to define matrices of booleans, with the usual syntax. Boolean matrices can be manipulated as ordinary matrices for elements extraction/insertion and concatenation.
+            There are three special operators defined for boolean matrices: <literal>~</literal>, <literal>&amp;</literal>, and <literal>|</literal>.
         </para>
         <para>
             <note>
-                Note that other usual operations (<literal>+</literal>, <literal>*</literal>, <literal>-</literal>, <literal>^</literal>, etc) are undefined for boolean matrices. Three special operators are defined for boolean matrices:
+                Note that some arithmetic operations (<literal>+</literal>, <literal>*</literal>, <literal>-</literal>, <literal>/</literal>, etc) are defined for boolean matrices. They are carried out by interpreting %t as 1, %f as 0, and return a corresponding real Double result.
+                Other (a priori undefined) arithmetic operations for boolean matrices might be provided by the user through overloading.
             </note>
         </para>
         <variablelist>
@@ -86,5 +88,18 @@ a=1:5; a(a>2)
                 <link linkend="not">not</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>Some arithmetic oprations are defined for boolean values and return a real Double result.</listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

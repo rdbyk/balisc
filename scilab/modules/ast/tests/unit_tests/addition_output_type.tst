@@ -1,6 +1,7 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
@@ -22,7 +23,7 @@ ref =[  "int8","uint8","int16","uint16","int32","uint32","int64","uint64","int8"
         "int64","uint64","int64","uint64","int64","uint64","int64","uint64","int64","int64"; ...
         "uint64","uint64","uint64","uint64","uint64","uint64","uint64","uint64","uint64","uint64"; ...
         "int8","uint8","int16","uint16","int32","uint32","int64","uint64","constant","constant"; ...
-        "int8","uint8","int16","uint16","int32","uint32","int64","uint64","constant","boolean"];
+        "int8","uint8","int16","uint16","int32","uint32","int64","uint64","constant","constant"];
 
 typesize = size(types);
 
