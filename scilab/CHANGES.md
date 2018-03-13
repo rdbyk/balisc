@@ -141,6 +141,7 @@ Known issues
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.
 * [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
 * [#8127](http://bugzilla.scilab.org/show_bug.cgi?id=8127): When using `ode()`, some internal errors messages were in french.
+* [#8810](http://bugzilla.scilab.org/show_bug.cgi?id=8810): Insertions with an hypermatrix of indices failed.
 * [#8995](http://bugzilla.scilab.org/show_bug.cgi?id=8995): Problem with row insertion in empty matrix.
 * [#9958](http://bugzilla.scilab.org/show_bug.cgi?id=9958): `mprintf("%d\r", 12345)` printed `" 345"`
 * [#10190](http://bugzilla.scilab.org/show_bug.cgi?id=10190): Xcos blocks and labels positioning were not aligned to the grid on creation.
