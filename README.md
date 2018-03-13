@@ -102,12 +102,12 @@ endfunction
 We have run them under Scilab 6.0.1 and current *__Balisc__* and got the following timing results.
 ##### Scilab 6.0.1
 ```scilab
---> tic();heat_vect(1e3,1e4,1e-1,1e-8,1,1);t_vect=toc()
- t_vect  = 
-   0.97665
 --> tic();heat_loop(1e3,1e4,1e-1,1e-8,1,1);t_loop=toc()
  t_loop  = 
    101.15152
+--> tic();heat_vect(1e3,1e4,1e-1,1e-8,1,1);t_vect=toc()
+ t_vect  = 
+   0.97665
 --> t_loop/t_vect
  ans  =
    103.56988
