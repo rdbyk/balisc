@@ -26,11 +26,9 @@ under current [**_Scilab 6.x_**](http://www.scilab.org/en/development/nightly_bu
 --> A=string(rand(1000,1000));
 --> tic;B=strcat(A);toc
  ans  =
-
    0.063398
 --> tic;strsubst(B,"3","X");toc
  ans  =
-
    0.095663
 ```
 
@@ -74,6 +72,62 @@ complex plane. Therefore, a result with a `Nan` real _and_ a `Nan` imaginary par
    Inf + Nani
 ```
 Please note, this is just how nowadays the complex arithmetics, provided by a decent C/C++ compiler, works. These rectifications have been added very recently (cf. [#390](https://github.com/rdbyk/balisc/pull/390) [#402](https://github.com/rdbyk/balisc/pull/402)).
+
+#### You Expect (Vectorized) Code to be Executed Faster?
+Heavily inspired by this simple [benchmark](https://github.com/antoine-levitt/benchmark_heat), we have assembled the following two functions `heat_loop` and `heat_vect`. 
+
+```scilab
+// naive (not vectorized)
+function u = heat_loop(nx, nt, dx, dt, D, v)
+    u=42*zeros(nx,1);
+    u_next=u;
+    for it=1:nt
+        for ix=2:nx-1
+            u_next(ix)=u(ix)+D*dt/(dx*dx)*(u(ix+1)-2*u(ix)+u(ix-1))-v*dt/dx*(u(ix+1)-u(ix));
+        end
+        u=u_next;
+    end
+endfunction
+
+// vectorized
+function u = heat_vect(nx, nt, dx, dt, D, v)
+    u=42*zeros(nx, 1);
+    u_next=u;
+    for it=1:nt
+        u_next(2:nx-1)=u(2:nx-1)+D*dt/(dx*dx)*(u(3:nx)-2*u(2:nx-1)+u(1:nx-2))-v*dt/dx*(u(3:nx)-u(2:nx-1));
+        u=u_next;
+    end
+endfunction
+```
+We have run them under Scilab 6.0.1 and current *__Balisc__* and got the following timing results.
+##### Scilab 6.0.1
+```scilab
+--> tic();heat_vect(1e3,1e4,1e-1,1e-8,1,1);t_vect=toc()
+ t_vect  = 
+   0.97665
+--> tic();heat_loop(1e3,1e4,1e-1,1e-8,1,1);t_loop=toc()
+ t_loop  = 
+   101.15152
+--> t_loop/t_vect
+ ans  =
+   103.56988
+```
+##### Balisc ([current](https://github.com/rdbyk/balisc/tree/b9641ac26a28efe78a55bd9b280c927546704130))
+```scilab
+--> tic();heat_loop(1e3,1e4,1e-1,1e-8,1,1);t_loop=toc()
+ t_loop  = 
+   80.622409
+--> tic();heat_vect(1e3,1e4,1e-1,1e-8,1,1);t_vect=toc()
+ t_vect  = 
+   0.491977
+--> t_loop/t_vect
+ ans  =
+   163.87435
+```
+The vectorized code `heat_vect` was executed 100 times faster under Scilab 6.0.1 and even __160 times faster under__ *__Balisc__* in comparision to `vect_loop`. Furthermore, `heat_vect` was executed __two times faster under__ *__Balisc__* in direct comparision to Scilab 6.0.1.
+
+Please don't expect to achieve this speed-up for every piece of code you can think of!
+This is just a motivating little spot light!.
 
 ### Try some of Scilab's Benchmarks
 
