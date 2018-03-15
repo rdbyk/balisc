@@ -81,6 +81,7 @@ end
 
 
 // Protect variable previously defined  ================================
+clear = clear          // special case: http://bugzilla.scilab.org/12198
 protect(); // protect all variables
 
 // At startup, no interactive vertical paging by default. ==============
