@@ -52,7 +52,7 @@ Function::ReturnValue sci_unprotect(typed_list &in, int _iRetCount, typed_list &
     {
         if (in[i]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A String matrix expected.\n"), fname, i);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A String matrix expected.\n"), fname, i+1);
             return Function::Error;
         }
     }
@@ -68,7 +68,7 @@ Function::ReturnValue sci_unprotect(typed_list &in, int _iRetCount, typed_list &
             if (pCtx->isValidVariableName(wcsVarName) == false)
             {
                 char* pstrVarName = wide_string_to_UTF8(wcsVarName);
-                Scierror(999, _("%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"), fname, pstrVarName, i);
+                Scierror(999, _("%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"), fname, pstrVarName, i+1);
                 FREE(pstrVarName);
                 return Function::Error;
             }
@@ -76,7 +76,7 @@ Function::ReturnValue sci_unprotect(typed_list &in, int _iRetCount, typed_list &
             if (pCtx->get(Symbol(wcsVarName)) == NULL)
             {
                 char* pstrVarName = wide_string_to_UTF8(wcsVarName);
-                Scierror(999, _("%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"), fname, pstrVarName, i);
+                Scierror(999, _("%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"), fname, pstrVarName, i+1);
                 FREE(pstrVarName);
                 return Function::Error;
             }
