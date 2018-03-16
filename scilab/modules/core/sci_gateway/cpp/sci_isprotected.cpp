@@ -40,9 +40,36 @@ static const char fname[] = "isprotected";
 
 Function::ReturnValue sci_isprotected(typed_list &in, int _iRetCount, typed_list &out)
 {
+    Context *pCtx = Context::getInstance();
+
+    if (in.size() == 0)
+    {
+        std::list<std::wstring> pvars;
+
+        int n = pCtx->protectedVars(pvars);
+
+        if (n == 0)
+        {
+            // return []
+            out.push_back(types::Double::Empty());
+            return Function::OK;
+        }
+
+        String* pS = new types::String(n, 1);
+
+        int i = 0;
+        for (auto p : pvars)
+        {
+            pS->set(i++, p.c_str());
+        }
+
+        out.push_back(pS);
+        return Function::OK;
+    }
+
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 0, 1);
         return types::Function::Error;
     }
 
@@ -53,15 +80,6 @@ Function::ReturnValue sci_isprotected(typed_list &in, int _iRetCount, typed_list
     }
     
     String* pS = in[0]->getAs<String>();
-    
-    if (pS->getSize() == 0)
-    {
-        out.push_back(
-        Double::Empty());
-        return Function::OK;
-    }
-
-    Context *pCtx = Context::getInstance();
 
     for (int i = 0; i < pS->getSize(); ++i)
     {
