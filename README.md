@@ -38,7 +38,7 @@ Please, don't take this example too seriously, it is just an extreme example cho
 With the unique functions `protect`, `unprotect`, and `isprotected` of **_Balisc_**, you might do this 
 ```scilab
 --> x=123;y=456;
---> protect("x")
+--> protect x
 --> x=0
 Redefining permanent variable.
 --> y=1
@@ -47,12 +47,12 @@ Redefining permanent variable.
 --> isprotected(["x" "y"])
  ans  =
   T F
---> unprotect("x")
+--> unprotect x
 --> x=0
  x  = 
    0.
 ```
-Please note, these functions have been added very recently (cf. [#366](https://github.com/rdbyk/balisc/pull/366)), thus they are not tested very well and might need some polishing. However, can you do the same thing using `predef` in current Scilab 6.x?
+Please note, these functions have been added very recently (cf. [#366](https://github.com/rdbyk/balisc/pull/366) [#420](https://github.com/rdbyk/balisc/pull/420)), thus they are not tested very well and might need some polishing. However, can you do the same thing using `predef` in current Scilab 6.x?
 
 #### You are working with Complex Numbers and Expect Consistent Results?
 With **_Balisc_** your calculations will yield _complex infinity_ and _undefined_ results consistently with respect to the
@@ -124,7 +124,7 @@ We have run them under Scilab 6.0.1 and current *__Balisc__* and got the followi
  ans  =
    163.87435
 ```
-The vectorized code `heat_vect` was executed 100 times faster under Scilab 6.0.1 and even __160 times faster under__ *__Balisc__* in comparision to `vect_loop`. Furthermore, `heat_vect` was executed __two times faster under__ *__Balisc__* in direct comparision to Scilab 6.0.1.
+The vectorized code `heat_vect` was executed 100 times faster under Scilab 6.0.1 and even __160 times faster under__ *__Balisc__* in comparison to `vect_loop`. Furthermore, `heat_vect` was executed __two times faster under__ *__Balisc__* in direct comparison to Scilab 6.0.1.
 
 Please don't expect to achieve this speed-up for every piece of code you can think of!
 This is just a motivating little spot light!.
