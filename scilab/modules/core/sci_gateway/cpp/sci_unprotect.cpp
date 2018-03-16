@@ -28,8 +28,6 @@ extern "C"
 #include "localization.h"
 }
 
-using types::Bool;
-using types::Double;
 using types::Function;
 using types::String;
 using types::typed_list;
@@ -42,60 +40,59 @@ static const char fname[] = "unprotect";
 
 Function::ReturnValue sci_unprotect(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if (in.size() != 1)
-    {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
-        return types::Function::Error;
-    }
+    Context *pCtx = Context::getInstance();
 
-    if (in[0]->isString() == false)
+    if (in.size() == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, 1);
-        return types::Function::Error;
-    }
-    
-    String* pS = in[0]->getAs<String>();
-    
-    if (pS->getSize() == 0)
-    {
-        out.push_back(
-        Double::Empty());
+        pCtx->unprotect();
         return Function::OK;
     }
 
-    Context *pCtx = Context::getInstance();
-    
-    for (int i = 0; i < pS->getSize(); ++i)
+    for (int i = 0; i < in.size(); ++i)
     {
-        wchar_t* wcsVarName = pS->get(i);
-
-        if (pCtx->isValidVariableName(wcsVarName) == false)
+        if (in[i]->isString() == false)
         {
-            char* pstrVarName = wide_string_to_UTF8(wcsVarName);
-            Scierror(999, _("%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"), fname, pstrVarName, 1);
-            FREE(pstrVarName);
-            return Function::Error;
-        }
-        
-        if (pCtx->get(Symbol(wcsVarName)) == NULL)
-        {
-            char* pstrVarName = wide_string_to_UTF8(wcsVarName);
-            Scierror(999, _("%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"), fname, pstrVarName, 1);
-            FREE(pstrVarName);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A String matrix expected.\n"), fname, i+1);
             return Function::Error;
         }
     }
 
-    for (int i = 0; i < pS->getSize(); ++i)
+    for (int i = 0; i < in.size(); ++i)
     {
-        wchar_t* wcsVarName = pS->get(i);
-
-        Variable* pV = pCtx->getOrCreate(Symbol(wcsVarName));
+        String* pS = in[i]->getAs<String>();
         
-        if (pV->empty() == false)
+        for (int j = 0; j < pS->getSize(); ++j)
         {
-            ScopedVariable* pSV = pV->top();
-            pSV->protect = false;
+            wchar_t* wcsVarName = pS->get(j);
+
+            if (pCtx->isValidVariableName(wcsVarName) == false)
+            {
+                char* pstrVarName = wide_string_to_UTF8(wcsVarName);
+                Scierror(999, _("%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"), fname, pstrVarName, i+1);
+                FREE(pstrVarName);
+                return Function::Error;
+            }
+
+            if (pCtx->get(Symbol(wcsVarName)) == NULL)
+            {
+                char* pstrVarName = wide_string_to_UTF8(wcsVarName);
+                Scierror(999, _("%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"), fname, pstrVarName, i+1);
+                FREE(pstrVarName);
+                return Function::Error;
+            }
+        }
+
+        for (int j = 0; j < pS->getSize(); ++j)
+        {
+            wchar_t* wcsVarName = pS->get(j);
+
+            Variable* pV = pCtx->getOrCreate(Symbol(wcsVarName));
+
+            if (pV->empty() == false)
+            {
+                ScopedVariable* pSV = pV->top();
+                pSV->protect = false;
+            }
         }
     }
 
