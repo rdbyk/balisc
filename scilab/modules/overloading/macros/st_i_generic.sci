@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,12 +11,11 @@
 // along with this program.
 
 function M = st_i_generic(varargin)
-    [lhs,rhs]=argn(0)
-    M=varargin(rhs)
-    N=varargin(rhs-1)//inserted matrix
-    index=varargin(1) //
+    M=varargin(nargin)
+    N=varargin(nargin-1)//inserted matrix
+    index=varargin(1)
     if M==[] then M=struct(),M(index)=N;return;end
-    if rhs==3 & (type(index)==10 | type(index)==15) then
+    if nargin==3 & (type(index)==10 | type(index)==15) then
         if type(index)==15 then
             M=struct()
             M(index)=N
@@ -26,5 +25,4 @@ function M = st_i_generic(varargin)
     else
         error(msprintf(_("%s: Incorrect assignment.\n"), "st_i_generic"));
     end
-
 endfunction

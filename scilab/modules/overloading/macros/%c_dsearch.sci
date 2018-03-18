@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) - 2013 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,7 +22,7 @@ function [i_bin, counts, outside] = %c_dsearch(T, bins, discrete)
 
     // DISCRETE CASE
     // -------------
-    if argn(2)>2 & discrete=="d" then
+    if nargin>2 & discrete=="d" then
         [nb, i_bin] = members(T, bins)
         outside = sum(bool2s(nb==0))
         counts = zeros(bins)

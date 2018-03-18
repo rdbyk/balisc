@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - Serge Steer
-//
+// Copyright (C) ???? - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,11 +13,9 @@
 function M = %s_i_c(varargin)
     //insertion of a matrix of numbers in a matrix of of string
 
-
-    rhs=argn(2)
     msg = _("%s: Non implemented feature.\n")
 
-    if rhs<=4 then //type conversion
+    if nargin<=4 then //type conversion
         error(msprintf(msg, "%s_i_c"))
     else //hypermatrix syntax
         if varargin($-1)<>[] then
@@ -26,4 +24,3 @@ function M = %s_i_c(varargin)
         M = generic_i_hm("",varargin(:))
     end
 endfunction
-

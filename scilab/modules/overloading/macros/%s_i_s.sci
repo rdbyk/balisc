@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,14 +11,12 @@
 // along with this program.
 
 function M=%s_i_s(varargin)
-
     //insertion of a matrix in an hypermatrix
-    [lhs,rhs]=argn(0)
-    M=varargin(rhs)
-    N=varargin(rhs-1)//inserted matrix
+    M=varargin(nargin)
+    N=varargin(nargin-1)//inserted matrix
 
-    index=varargin(1) //
-    if rhs==3 then
+    index=varargin(1)
+    if nargin==3 then
         //result will be a cell a struct
         if type(index)==10 then //M.x=N or M.entries=N
             M=struct()
@@ -52,7 +50,7 @@ function M=%s_i_s(varargin)
     dims=matrix(size(M),-1,1)
     v=M(:)
 
-    Ndims=rhs-2
+    Ndims=nargin-2
     nd=size(dims,"*")
     if Ndims>nd then dims(nd+1:Ndims)=0;end
     del=N==[];count=[]

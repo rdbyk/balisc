@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-// Copyright (C) Scilab Enterprises - Adeline CARNIS
-//
+// Copyright (C) ???? - INRIA
+// Copyright (C) ???? - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,9 +12,7 @@
 // along with this program.
 
 function res=%sp_norm(S,flag)
-
-    [lhs,rhs]=argn(0)
-    if rhs==1 then flag=2;end //norm(S)=norm(S,2)
+    if nargin==1 then flag=2;end //norm(S)=norm(S,2)
     [m,n]=size(S)
 
     if m==1|n==1 then //vector norm

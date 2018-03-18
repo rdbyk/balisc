@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,13 +9,12 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function a=%b_i_spb(i,j,b,a)
     // %spis(i,j,b,a) insert full matrix b into sparse matrix a for some special cases
     // a(i,j)=b
     //!
-
-    [lhs,rhs]=argn(0)
-    if rhs==3 then
+    if nargin==3 then
         a=b;
         b=j;
         [m,n]=size(a)
