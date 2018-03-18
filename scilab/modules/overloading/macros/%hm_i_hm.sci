@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - Vincent Couvert
-//
+// Copyright (C) ???? - INRIA - Vincent Couvert
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,16 +13,14 @@
 function M=%hm_i_hm(varargin)
 
     //insertion of a matrix in an hypermatrix
-    [lhs,rhs]=argn(0)
-    M=varargin(rhs)
-    N=varargin(rhs-1)//inserted matrix
+    M=varargin(nargin)
+    N=varargin(nargin-1)//inserted matrix
     dims=matrix(double(M.dims),-1,1);
 
     v=matrix(M.entries,-1,1);
 
-
     nd=size(dims,"*")
-    if rhs-2>nd then dims(nd+1:rhs-2)=1;end
+    if nargin-2>nd then dims(nd+1:nargin-2)=1;end
 
     //convert N-dimensional indexes to 1-D
     [Ndims,I]=convertindex(list(dims,double(matrix(N.dims,1,-1))),varargin(1:$-2))

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
-// 
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,12 +11,11 @@
 // along with this program.
 
 function [res1, res2]=%sp_det(A)
-    [lhs, rhs]=argn(0);
     hand = umf_lufact(A); //umfpack is used for complex sparse matrix
     [L,U,P,Q,r] = umf_luget(hand);
     res1=prod(r)*prod(diag(U));
     res2=res1;
-    if (lhs == 2) then
+    if (nargout == 2) then
         res1=0;
         while abs(res2) >= 10
             if abs(res2) < 1 then

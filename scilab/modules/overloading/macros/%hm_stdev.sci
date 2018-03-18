@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,10 +12,10 @@
 
 function x = %hm_stdev(m, d, ms)
     // d: 0, 1, 2...
-    if argn(2) < 3 then
+    if nargin < 3 then
         ms = %f
     end
-    if argn(2) == 3 & type(ms)~=1 then
+    if nargin == 3 & type(ms)~=1 then
         msg = _("%s: Wrong type for input argument #%d: A real matrix expected.\n")
         error(msprintf(msg, "stdev", 3));
     end
@@ -24,9 +24,9 @@ function x = %hm_stdev(m, d, ms)
         error(msprintf(msg,"stdev",2,1));
     end
 
-    if argn(2) == 1 | d==0 then
-        if argn(2) == 3 then
-            x = stdev(m(:), "*", ms);
+    if nargin == 1 | d==0 then
+        if nargin == 3 then
+            x = stdev(m(:), "*", ms); 
         else
             x = stdev(m(:), "*");
         end
@@ -43,7 +43,7 @@ function x = %hm_stdev(m, d, ms)
     ind = (0:p2:prod(dims)-1);
     I = ones(ind).*.I+ind.*.ones(I);
 
-    if argn(2) == 3 then
+    if nargin == 3 then
         if isscalar(ms) then
             x = stdev(matrix(m(I),dims(d),-1), 1, ms);
         else

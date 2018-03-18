@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ENPC
-//
+// Copyright (C) ???? - ENPC
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,8 +19,7 @@ endfunction
 function armap(ar,out)
     //used for display of armax objects
     //!
-    [lhs,rhs]=argn(0)
-    if rhs==1 then out=%io(2),end
+    if nargin==1 then out=%io(2),end
     deff("[ta]=%cv(x)",["[m,n]=size(x);";
     "frmt=format();frmt=10**frmt(2)/max([1,norm(x)]);";
     "x=round(frmt*x)/frmt;";
@@ -100,8 +99,7 @@ function armap_p(ar,out)
     //used for display of armax objects
     //use Scilan Polynomial matrix display
     //!
-    [lhs,rhs]=argn(0)
-    if rhs==1 then out=%io(2),end
+    if nargin==1 then out=%io(2),end
     deff("[ta]=%cv(x)",["[m,n]=size(x);";
     "frmt=format();frmt=10**frmt(2)/max([1,norm(x)]);";
     "x=round(frmt*x)/frmt;";

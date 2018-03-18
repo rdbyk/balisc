@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,10 +11,8 @@
 // along with this program.
 
 function s2=%c_i_lss(i,j,s1,s2)
-
     if type(i)==10 then  // sl('dt')
-        [lhs,rhs]=argn(0)
-        if rhs<>3 then
+        if nargin<>3 then
             msg = _("%s: Invalid index.\n")
             error(msprintf(msg, "%c_i_lss"))
         end

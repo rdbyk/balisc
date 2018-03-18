@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,12 +13,11 @@
 function M=%hm_i_s(varargin)
 
     //insertion of an hypermatrix in a matrix  derived from %hm_i_hm
-    [lhs,rhs]=argn(0)
-    M=varargin(rhs) //Matrix
-    N=varargin(rhs-1)//inserted hypermatrix
+    M=varargin(nargin) //Matrix
+    N=varargin(nargin-1)//inserted hypermatrix
     dims=size(M)'
 
-    if isempty(M) & rhs == 3 & type(varargin(1)) == 10 then
+    if isempty(M) & nargin == 3 & type(varargin(1)) == 10 then
         // Fix for bug 13247
         // the matrix is empty and the index is a field name, so we create a struct
         M = struct(varargin(1), N)
@@ -28,7 +27,7 @@ function M=%hm_i_s(varargin)
     v=M(:)
     nd=size(dims,"*")
 
-    if rhs-2>nd then dims(nd+1:rhs-2)=1;end
+    if nargin-2>nd then dims(nd+1:nargin-2)=1;end
 
     //convert N-dimensional indexes to 1-D
     [Ndims,I]=convertindex(list(dims,double(matrix(N.dims,1,-1))),varargin(1:$-2))

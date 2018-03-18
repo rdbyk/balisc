@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,11 +11,11 @@
 // along with this program.
 
 function [m,n]=%xlssheet_size(sheet,opt)
-    if argn(2)>1 then
+    if nargin>1 then
         m=size(sheet.value,opt)
     else
         m=size(sheet.value)
-        if argn(1)>1 then
+        if nargout>1 then
             [m,n]=(m(1),m(2))
         end
     end

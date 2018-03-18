@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,12 +11,10 @@
 // along with this program.
 
 function M=generic_i_s(varargin)
-
-    [lhs,rhs]=argn(0)
-    M=varargin(rhs)
-    N=varargin(rhs-1)//inserted matrix
+    M=varargin(nargin)
+    N=varargin(nargin-1)//inserted matrix
     index=varargin(1) //
-    if rhs==3&(type(index)==10|type(index)==15) then
+    if nargin==3&(type(index)==10|type(index)==15) then
         if type(index)<>15 then
             M=struct()
             M(index)=N
@@ -30,10 +28,9 @@ function M=generic_i_s(varargin)
             M=setfield(1,f,M)
         end
         return
-    elseif rhs==3 &(type(index)<>10 & type(index)<>15) then
+    elseif nargin==3 &(type(index)<>10 & type(index)<>15) then
         error(msprintf(_("%s: Wrong type for input argument #%d.\n"),"generic_i_s",1));
     else
         error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"generic_i_s",3));
     end
 endfunction
-

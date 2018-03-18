@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,12 +12,10 @@
 
 function M = generic_i_hm(default_value,varargin)
 
-
     //insertion of a matrix in an hypermatrix
-    [lhs,rhs]=argn(0)
-    rhs=rhs-1
-    M=varargin(rhs);
-    N=varargin(rhs-1);//inserted matrix
+    nargin=nargin-1
+    M=varargin(nargin);
+    N=varargin(nargin-1);//inserted matrix
 
     dims=matrix(size(M),-1,1);
     v=matrix(M,-1,1);
@@ -27,10 +25,10 @@ function M = generic_i_hm(default_value,varargin)
 
     // adjust dimension of matrix M to number of indices
     reduced_index=%f
-    if rhs-2>nd then
-        dims(nd+1:rhs-2)=0;
-    elseif rhs-2<nd  then //less indices than M number of dims
-        dims=[dims(1:rhs-3);prod(dims(rhs-2:$))]
+    if nargin-2>nd then
+        dims(nd+1:nargin-2)=0;
+    elseif nargin-2<nd  then //less indices than M number of dims
+        dims=[dims(1:nargin-3);prod(dims(nargin-2:$))]
         if size(find(dims>1),"*")>1 then reduced_index=%t,end
     end
 
@@ -40,7 +38,7 @@ function M = generic_i_hm(default_value,varargin)
         // corresponding dimension
         // if yes insertion is the extraction of the complement.
         ok=[];
-        for k=1:rhs-2
+        for k=1:nargin-2
             dk=varargin(k)
             if or(type(dk)==[2 129]) then
                 dk=horner(dk,dims(k)),

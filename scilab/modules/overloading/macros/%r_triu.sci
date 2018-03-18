@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1995-2010 - INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,9 @@
 // along with this program.
 
 function d = %r_triu(a,k)
-    // r_triu - implement triu function for  rationnal matrix ,..
+    // r_triu - implement triu function for  rational matrix ,..
 
-    if argn(2)<2 then
+    if nargin<2 then
         k=0,
     else
         fname = "%r_triu";

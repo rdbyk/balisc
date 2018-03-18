@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,17 +11,14 @@
 // along with this program.
 
 function M=%s_i_spb(varargin)
-
-    [lhs,rhs]=argn(0)
-    M=bool2s(varargin(rhs))
-    N=varargin(rhs-1)//inserted matrix
-    if rhs<=4 then
-        if rhs==3 then
+    M=bool2s(varargin(nargin))
+    N=varargin(nargin-1)//inserted matrix
+    if nargin<=4 then
+        if nargin==3 then
             M(varargin(1))=N
         else
             M(varargin(1),varargin(2))=N
         end
         return
     end
-
 endfunction

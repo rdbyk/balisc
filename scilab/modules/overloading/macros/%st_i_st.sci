@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - F. Delebcque , Serge Steer
-//
+// Copyright (C) ???? - INRIA - F. Delebcque , Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,6 @@ function M=%st_i_st(varargin)
     //insert the struct varargin($-1) as the field varargin(1)
     //of the struct varargin($)
 
-    [lhs,rhs]=argn(0)
     M=varargin($)
     N=varargin($-1)//inserted matrix
     dims=double(matrix(M.dims,1,-1));
@@ -39,10 +38,10 @@ function M=%st_i_st(varargin)
         olddims=dims
 
         reduced_index=%f
-        if rhs-2>nd then  //more indices than M number of dims
-            dims(nd+1:rhs-2)=1;
-        elseif rhs-2<nd  then //less indices than M number of dims
-            dims=[dims(1:rhs-3) prod(dims(rhs-2:$))]
+        if nargin-2>nd then  //more indices than M number of dims
+            dims(nd+1:nargin-2)=1;
+        elseif nargin-2<nd  then //less indices than M number of dims
+            dims=[dims(1:nargin-3) prod(dims(nargin-2:$))]
             if size(find(dims>1),"*")>1 then reduced_index=%t,end
         end
         //convert N-dimensional indexes to 1-D and extend dims if necessary

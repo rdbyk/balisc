@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
+// Copyright (C) ???? - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,7 @@
 // along with this program.
 
 function a=%s_i_sp(i,j,b,a)
-
-    [lhs,rhs]=argn(0)
-    if rhs==3 then
+    if nargin==3 then
         a=b;
         b=j;
         [m,n]=size(a)
