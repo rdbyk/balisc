@@ -188,9 +188,9 @@ public :
 
 protected :
 #ifdef _SCILAB_DEBUGREF_
-    InternalType() : m_iRef(0), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0), bKillMe(false)
+    InternalType() : m_iRef(0), bKillMe(false)
 #else
-    InternalType() : m_iRef(0), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0)
+    InternalType() : m_iRef(0)
 #endif
     {
 #ifdef _SCILAB_DEBUGREF_
@@ -413,19 +413,12 @@ public :
     virtual bool isLibrary(void);
     virtual bool isUserType(void);
 
-    void clearPrintState();
+    virtual void clearPrintState()
+    {
+    }
 
 protected :
-    int          m_iRef;
-
-    /*variables to manage print taking care of lines*/
-    bool m_bPrintFromStart;
-    int  m_iSavePrintState;
-    int  m_iRows1PrintState;
-    int  m_iCols1PrintState;
-    int  m_iRows2PrintState;
-    int  m_iCols2PrintState;
-
+    int m_iRef;
 #ifdef _SCILAB_DEBUGREF_
     bool bKillMe;
 #endif
