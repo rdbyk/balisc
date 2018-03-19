@@ -70,7 +70,7 @@ assert_checkalmostequal(R \ C, C / R);
 //C \ R
 assert_checkalmostequal(C \ R, R / C, [], %eps);
 //C \ C
-assert_checkalmostequal(C \ C, C / C);
+assert_checkalmostequal(C \ C, C / C, [], %eps);
 
 // dot left division
 //double .\ double
