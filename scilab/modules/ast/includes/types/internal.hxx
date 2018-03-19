@@ -187,7 +187,11 @@ public :
     };
 
 protected :
+#ifdef _SCILAB_DEBUGREF_
     InternalType() : m_iRef(0), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0), bKillMe(false)
+#else
+    InternalType() : m_iRef(0), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0)
+#endif
     {
 #ifdef _SCILAB_DEBUGREF_
 #if defined(_SCILAB_DEBUGREF_WITHOUT_START_END)
@@ -422,7 +426,9 @@ protected :
     int  m_iRows2PrintState;
     int  m_iCols2PrintState;
 
+#ifdef _SCILAB_DEBUGREF_
     bool bKillMe;
+#endif
 };
 
 }
