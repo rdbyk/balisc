@@ -125,7 +125,6 @@ private :
 
 protected:
     LOAD_DEPS               m_pLoadDeps;
-    std::string             m_stName;
 };
 
 class OptFunction : public Function
@@ -165,6 +164,9 @@ public:
 
 private:
     OLDGW_FUNC              m_pOldFunc;
+
+protected:
+    std::string m_stName;
 };
 
 class WrapCFunction : public Function
@@ -184,6 +186,8 @@ public:
 
 private:
     GW_C_FUNC               m_pCFunc;
+protected:
+    std::string m_stName;
 };
 
 class WrapMexFunction : public Function
