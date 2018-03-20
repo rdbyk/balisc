@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "exp.hxx" // for invoke
 #include "callexp.hxx"
@@ -324,15 +324,4 @@ bool InternalType::isUserType(void)
 {
     return false;
 }
-
-void InternalType::clearPrintState()
-{
-    m_bPrintFromStart = true;
-    m_iSavePrintState = 0;
-    m_iRows1PrintState = 0;
-    m_iCols1PrintState = 0;
-    m_iRows2PrintState = 0;
-    m_iCols2PrintState = 0;
-}
-
 }

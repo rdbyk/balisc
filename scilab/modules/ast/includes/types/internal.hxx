@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -187,7 +187,11 @@ public :
     };
 
 protected :
-    InternalType() : m_iRef(0), m_bAllowDelete(true), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0), bKillMe(false)
+#ifdef _SCILAB_DEBUGREF_
+    InternalType() : m_iRef(0), bKillMe(false)
+#else
+    InternalType() : m_iRef(0)
+#endif
     {
 #ifdef _SCILAB_DEBUGREF_
 #if defined(_SCILAB_DEBUGREF_WITHOUT_START_END)
@@ -409,23 +413,15 @@ public :
     virtual bool isLibrary(void);
     virtual bool isUserType(void);
 
-    void clearPrintState();
+    virtual void clearPrintState()
+    {
+    }
 
 protected :
-    int          m_iRef;
-    //use to know if we can delete this variables or if it's link to a scilab variable.
-    bool         m_bAllowDelete;
-
-    /*variables to manage print taking care of lines*/
-    bool m_bPrintFromStart;
-    int  m_iSavePrintState;
-    int  m_iRows1PrintState;
-    int  m_iCols1PrintState;
-    int  m_iRows2PrintState;
-    int  m_iCols2PrintState;
-
+    int m_iRef;
+#ifdef _SCILAB_DEBUGREF_
     bool bKillMe;
-
+#endif
 };
 
 }

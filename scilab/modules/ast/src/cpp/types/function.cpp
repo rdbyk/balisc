@@ -181,18 +181,12 @@ Function* Function::createFunction(const std::wstring& _wstName, GW_C_FUNC _pFun
 Function::Function(const std::wstring& _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule) : Callable(), m_pFunc(_pFunc), m_pLoadDeps(_pLoadDeps)
 {
     setName(_wstName);
-    char* s = wide_string_to_UTF8(m_wstName.data());
-    m_stName = s;
-    FREE(s);
-
     setModule(_wstModule);
 }
 
 Function::~Function()
 {
-
 }
-
 
 Function::ReturnValue Function::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out)
 {
@@ -239,9 +233,6 @@ bool Function::operator==(const InternalType& it)
 OptFunction::OptFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     m_wstName = _wstName;
-    char* s = wide_string_to_UTF8(m_wstName.data());
-    m_stName = s;
-    FREE(s);
     m_pFunc = _pFunc;
     m_pLoadDeps = _pLoadDeps;
     m_wstModule = _wstModule;
@@ -251,9 +242,6 @@ OptFunction::OptFunction(OptFunction* _pWrapFunction)
 {
     m_wstModule  = _pWrapFunction->getModule();
     m_wstName    = _pWrapFunction->getName();
-    char* s = wide_string_to_UTF8(m_wstName.data());
-    m_stName = s;
-    FREE(s);
     m_pFunc = _pWrapFunction->getFunc();
     m_pLoadDeps = _pWrapFunction->getDeps();
 }
@@ -465,9 +453,6 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
 WrapMexFunction::WrapMexFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     m_wstName = _wstName;
-    char* s = wide_string_to_UTF8(m_wstName.data());
-    m_stName = s;
-    FREE(s);
     m_pOldFunc = _pFunc;
     m_wstModule = _wstModule;
     m_pLoadDeps = _pLoadDeps;
@@ -476,9 +461,6 @@ WrapMexFunction::WrapMexFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc
 WrapMexFunction::WrapMexFunction(WrapMexFunction* _pWrapFunction)
 {
     m_wstModule = _pWrapFunction->getModule();
-    char* s = wide_string_to_UTF8(m_wstName.data());
-    m_stName = s;
-    FREE(s);
     m_wstName = _pWrapFunction->getName();
     m_pOldFunc = _pWrapFunction->getFunc();
     m_pLoadDeps = _pWrapFunction->getDeps();
@@ -627,9 +609,6 @@ Function::ReturnValue WrapCFunction::call(typed_list& in, optional_list& opt, in
 DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, const std::wstring& _wstLoadDepsName, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
 {
     m_wstName               = _wstName;
-    char* s = wide_string_to_UTF8(m_wstName.data());
-    m_stName = s;
-    FREE(s);
     m_wstLibName = _wstLibName;
     m_wstModule             = _wstModule;
     m_wstEntryPoint         = _wstEntryPointName;
@@ -648,9 +627,6 @@ DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstrin
 DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
 {
     m_wstName               = _wstName;
-    char* s = wide_string_to_UTF8(m_wstName.data());
-    m_stName = s;
-    FREE(s);
     m_wstLibName = _wstLibName;
     m_wstModule             = _wstModule;
     m_wstEntryPoint         = _wstEntryPointName;

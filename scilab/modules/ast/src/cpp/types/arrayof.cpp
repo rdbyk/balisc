@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -1675,6 +1675,16 @@ int ArrayOf<T>::getInvokeNbOut()
     return 1;
 }
 
+template<typename T>
+void ArrayOf<T>::clearPrintState()
+{
+    m_bPrintFromStart = true;
+    m_iSavePrintState = 0;
+    m_iRows1PrintState = 0;
+    m_iCols1PrintState = 0;
+    m_iRows2PrintState = 0;
+    m_iCols2PrintState = 0;
+}
 
 // used to allow definition of ArrayOf methode in this cpp file.
 template class ArrayOf < char >;

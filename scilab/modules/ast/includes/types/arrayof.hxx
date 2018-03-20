@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -46,8 +46,22 @@ protected :
     T*                      m_pRealData;
     T*                      m_pImgData;
 
+    // variables to manage print taking care of lines
+    bool m_bPrintFromStart;
+    int  m_iSavePrintState;
+    int  m_iRows1PrintState;
+    int  m_iCols1PrintState;
+    int  m_iRows2PrintState;
+    int  m_iCols2PrintState;
 
-    ArrayOf() : GenericType(), m_pRealData(NULL), m_pImgData(NULL) {}
+    ArrayOf() : GenericType(), m_pRealData(NULL),
+                               m_pImgData(NULL),
+                               m_bPrintFromStart(true),
+                               m_iSavePrintState(0),
+                               m_iRows1PrintState(0),
+                               m_iCols1PrintState(0),
+                               m_iRows2PrintState(0),
+                               m_iCols2PrintState(0) {}
 
     virtual                 ~ArrayOf()
     {
@@ -492,6 +506,8 @@ public :
         ostr << L" " << getTypeStr() << L"]";
         return ostr.str();
     }
+
+    virtual void clearPrintState();
 };
 
 }
