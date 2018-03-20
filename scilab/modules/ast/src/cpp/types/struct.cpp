@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -185,15 +185,6 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
             }
 
             _out = extractFields(wstFields);
-            if (_out.size() == 1)
-            {
-                InternalType * pIT = _out[0];
-                if (pIT->isList() && pIT->getAs<List>()->getSize() == 1)
-                {
-                    out.push_back(pIT->getAs<List>()->getFirst());
-                    return true;
-                }
-            }
 
             out.swap(_out);
             return true;
@@ -491,11 +482,11 @@ List* Struct::extractFieldWithoutClone(const std::wstring& _wstField)
 
 std::vector<InternalType*> Struct::extractFields(std::vector<std::wstring> _wstFields)
 {
-    std::vector<InternalType*> ResultList;
+    std::vector<InternalType*> ResultList(_wstFields.size());
 
     for (int i = 0 ; i < (int)_wstFields.size() ; i++)
     {
-        ResultList.push_back(extractField(_wstFields[i]));
+        ResultList[i] = extractField(_wstFields[i]);
     }
 
     return ResultList;
