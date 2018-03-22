@@ -159,12 +159,12 @@ ldivide			"\\"
 times			"*"
 power			("^"|"**")
 
-equal			"="{spaces}*"="
-notequal		("~"{spaces}*"="|"<"{spaces}*">")
-lowerthan		"<"
-greaterthan		">"
-lowerequal		"<"{spaces}*"="
-greaterequal		">"{spaces}*"="
+equal           "=="
+notequal        ("~="|"<>")
+lowerthan       "<"
+greaterthan     ">"
+lowerequal      "<="
+greaterequal    ">="
 
 krontimes		".*."
 kronrdivide		"./."
