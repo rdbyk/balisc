@@ -352,6 +352,13 @@ Known issues
 * This is one of the first releases of a completely rewritten interpreter engine. If you discover strange behaviors or unexpected results do not hesitate to [report](https://bugzilla.scilab.org) them.
 * Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 
+### Bugs fixed in 6.0.2:
+* [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
+* [#8127](http://bugzilla.scilab.org/show_bug.cgi?id=8127): When using `ode()`, some internal errors messages were in french.
+* [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
+* [#15440](http://bugzilla.scilab.org/show_bug.cgi?id=15440): Scilab debug help page linked to Xcos debug.
+* [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
+
 
 ### Bugs fixed in 6.0.1:
 * [#2441](http://bugzilla.scilab.org/show_bug.cgi?id=2441): `%onprompt()` could be defined only at the top execution level.
@@ -542,6 +549,7 @@ Known issues
 * [#15413](http://bugzilla.scilab.org/show_bug.cgi?id=15413): Deleting some ranges (rows, columns, pages, ..) in a structures array failed.
 * [#15418](http://bugzilla.scilab.org/show_bug.cgi?id=15418): With `colordef('black')` and colordef('none')`, black title and labels were invisible on the black background.
 * [#15420](http://bugzilla.scilab.org/show_bug.cgi?id=15420): insertion at negative index did not trigger an error.
+* [#15459](http://bugzilla.scilab.org/show_bug.cgi?id=15459): Generating code from an Xcos superblock generated warnings.
 
 
 ### Bugs fixed in 6.0.0:
