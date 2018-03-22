@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Balisc (https://github.com/rdbyk/balisc/)
+ *
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" scilab:needs-examples="no" xml:id="symbols">
     <refnamediv>
         <refname>symbols</refname>
-        <refpurpose>scilab operator names </refpurpose>
+        <refpurpose>scilab operator names</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -191,18 +211,6 @@
                 </td>
             </tr>
         </informaltable>
-        <warning>
-          <para>For historical reasons, different symbols may represent the same operator:</para>
-          <para>
-              <literal>@</literal> as the same meaning as <literal>~</literal>
-          </para>
-          <para>
-              <literal>`</literal> as the same meaning as &lt;
-          </para>
-          <para> It is highly recommended not to use these features because they will be removed in
-            the future.
-          </para>
-        </warning>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -211,5 +219,14 @@
                 <link linkend="overloading">overloading</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Removed (prehistoric) support of <literal>@</literal> and <literal>@=</literal> operators.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

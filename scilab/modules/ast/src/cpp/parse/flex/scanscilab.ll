@@ -114,7 +114,7 @@ next			\.\.+
 char_in_line_comment    [^\r\n]*
 char_in_comment         [^\r\n\/*]*
 
-boolnot			("@"|"~")
+boolnot			("~")
 booltrue		("%t"|"%T")
 boolfalse		("%f"|"%F")
 booland			("&")
@@ -160,7 +160,7 @@ times			"*"
 power			("^"|"**")
 
 equal			"="{spaces}*"="
-notequal		("~"{spaces}*"="|"@"{spaces}*"="|"<"{spaces}*">")
+notequal		("~"{spaces}*"="|"<"{spaces}*">")
 lowerthan		"<"
 greaterthan		">"
 lowerequal		"<"{spaces}*"="
