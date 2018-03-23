@@ -1,9 +1,9 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Based on E.Segre dynamickeywords.sce
 // Copyright (C) 2005 - INRIA - Allan CORNET
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
-// Based on E.Segre dynamickeywords.sce
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,6 +13,8 @@
 // along with this program.
 
 function list_keywords = getscilabkeywords()
+
+    warnobsolete("""what"", ""isprotected"", ""librarieslist"", ""libraryinfo"", ...", "/ Balisc 3");
 
     scilab_primitives = [];
     scilab_commands = [];
