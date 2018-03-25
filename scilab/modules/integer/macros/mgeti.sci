@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,12 +12,11 @@
 
 function x = mgeti(varargin)
 
-    rhs=argn(2);
-    if rhs == 0 | rhs > 3 then
+    if nargin == 0 | nargin > 3 then
         error(msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mgeti", 1, 3));
     end
 
-    if rhs == 1 then
+    if nargin == 1 then
         typeToConvert = 4;
     else
         type = varargin(2);
