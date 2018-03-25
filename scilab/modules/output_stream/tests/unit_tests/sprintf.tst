@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -9,7 +10,7 @@
 
 //test format '%f'
 //
-deff('[y]=bugnum(str1,str2,str3)',['[lhs,rhs]=argn(0);if rhs==3 then y= str1<>str2 & str1<>str3;';
+deff('[y]=bugnum(str1,str2,str3)',['if nargin==3 then y= str1<>str2 & str1<>str3;';
 		'else y=str1<>str2;end'])
 
 if bugnum(sprintf('%f',-35),'-35.000000' ) then pause,end
