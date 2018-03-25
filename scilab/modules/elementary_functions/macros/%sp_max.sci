@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - Scilab Enterprises - Adeline CARNIS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,10 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-// TODO: replace argn by nargin, nargout
-
 function [m, k] = %sp_max(varargin)
-    [lhs, rhs] = argn(0);
 
     elements = varargin;
     error_list = %f;
@@ -21,22 +18,22 @@ function [m, k] = %sp_max(varargin)
     // If the first argument is a list, it retrieves the number of sparse
     // matrices in list
     if type(varargin(1)) == 15 then
-        if rhs <> 1 then
+        if nargin <> 1 then
             error(msprintf(_("%s: Wrong size of input argument: %d expected.\n"), "%sp_max", 1))
         end
 
-        rhs = length(varargin(1));
+        nargin = length(varargin(1));
         elements = varargin(1);
         error_list = %t;
 
         // If the second argument of list is not a sparse -> ERROR
-        if rhs == 2 & type(elements(2)) <> 5 then
+        if nargin == 2 & type(elements(2)) <> 5 then
             error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", 1))
         end
     end
 
-    select rhs
-        // If rhs = 1, the first input argument must be a sparse
+    select nargin
+        // If nargin = 1, the first input argument must be a sparse
     case 1
         A1 = elements(1);
 
@@ -47,7 +44,7 @@ function [m, k] = %sp_max(varargin)
 
         // Retrieves entries of sparse matrix
         [ij, v, mn]= spget(A1);
-        if lhs == 1 then
+        if nargout == 1 then
             if v == [] then
                 m = 0;
             else
@@ -76,7 +73,7 @@ function [m, k] = %sp_max(varargin)
         // So, max = 0
         if m < 0 & length(v)<> mn(1)*mn(2) then
             m = 0;
-            if lhs == 2 then
+            if nargout == 2 then
                 k = 0;
                 if mn(1) == 1 then
                     for i = 1:length(v)
@@ -125,10 +122,10 @@ function [m, k] = %sp_max(varargin)
             end
         end
 
-        // If rhs = 2, the second input argument can be a character or a sparse
+        // If nargin = 2, the second input argument can be a character or a sparse
         // matrix
     case 2
-        if lhs == 2 then
+        if nargout == 2 then
             error(msprintf(_("%s: Wrong number of output argument: %d expected.\n"), "%sp_max", 1));
         end
 
@@ -238,13 +235,13 @@ function [m, k] = %sp_max(varargin)
 
         // Case : max(A1,A2,A3,..,An) or max(list(A1,A2,A3,..,An))
     else
-        if lhs == 2 then
+        if nargout == 2 then
             error(msprintf(_("%s: Wrong number of output argument: %d expected.\n"), "%sp_max", 1));
         end
         // m is the first matrix
         m = elements(1);
         // Loop on the number of input arguments
-        for i = 2:rhs
+        for i = 2:nargin
             An = elements(i);
 
             // Check if An is a sparse

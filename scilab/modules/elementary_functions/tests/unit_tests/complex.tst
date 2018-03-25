@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -21,16 +22,14 @@ function [flag,errmsg] = assert_equal ( computed , expected )
     endfunction
 
     function [nonan,numb] = mythrownan(x)
-        [lhs,rhs]=argn(0)
-        if ( rhs<>1 ) then 
+        if ( nargin<>1 ) then
             error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"thrownan",1))
         end
         numb=find(bool2s(~isnan(x)))
         nonan=x(~isnan(x))
     endfunction
 
-    [lhs,rhs]=argn()
-    if ( rhs <> 2 ) then
+    if ( nargin <> 2 ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d expected.\n") , "assert_checkequal" , 2 )
         error(errmsg)
     end
@@ -94,7 +93,7 @@ function [flag,errmsg] = assert_equal ( computed , expected )
             cstr = "[" + string(computed(1)) + " ...]"
         end
         errmsg = msprintf(gettext("%s: Assertion failed: expected = %s while computed = %s"),"assert_checkequal",estr,cstr)
-        if ( lhs < 2 ) then
+        if ( nargout < 2 ) then
             // If no output variable is given, generate an error
             error ( errmsg )
         end
