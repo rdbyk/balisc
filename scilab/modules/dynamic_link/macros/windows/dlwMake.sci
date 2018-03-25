@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,15 +9,14 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//=============================================================================
+
 function res = dlwMake(files, objects_or_dll)
 
     if ~haveacompiler() then
         error(msprintf(gettext("%s: A Fortran or C compiler is required.\n"), "G_make"))
     end
 
-    [lhs,rhs] = argn(0);
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "G_make"));
     end
 
@@ -45,7 +44,7 @@ function res = dlwMake(files, objects_or_dll)
     res = [OBJ];
 
 endfunction
-//=============================================================================
+
 function filename = writeBatchFile(cmd)
 
     //update DEBUG_SCILAB_DYNAMIC_LINK to match with Scilab compilation mode

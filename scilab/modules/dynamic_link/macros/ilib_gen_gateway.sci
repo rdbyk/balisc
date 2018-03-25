@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,8 +21,7 @@
 
 function gateway_filename = ilib_gen_gateway(name,tables)
 
-    [lhs,rhs] = argn(0);
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_gen_gateway"));
         return
     end
@@ -266,4 +265,3 @@ function [gate,names,cppCompilation] = new_names(table)
         end
     end
 endfunction
-//=============================================================================

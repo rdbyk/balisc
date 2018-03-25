@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
 // Copyright (C) DIGITEO - 2009-2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//=============================================================================
+
 // Generate a shared library which can be used by link command.
 function libn = ilib_for_link(names, ..
     files, ..
@@ -24,23 +24,22 @@ function libn = ilib_for_link(names, ..
     fflags, ..
     cc)
 
-    [lhs, rhs] = argn(0);
-    if rhs < 4 then
+    if nargin < 4 then
         error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_for_link"));
         return
     end
 
-    if rhs > 4 then
+    if nargin > 4 then
         if (makename <> [] & makename <> "") then
             warning(msprintf(_("%s: Wrong value for input argument #%d: """" or ""[]"" expected.\n"), "ilib_for_link", 5));
         end
     end
-    if rhs <= 5 then loadername = "loader.sce";end
-    if rhs <= 6 then libname = ""; end
-    if rhs <= 7 then ldflags = ""; end
-    if rhs <= 8 then cflags  = ""; end
-    if rhs <= 9 then fflags  = ""; end
-    if rhs <= 10 then cc  = ""; end
+    if nargin <= 5 then loadername = "loader.sce";end
+    if nargin <= 6 then libname = ""; end
+    if nargin <= 7 then ldflags = ""; end
+    if nargin <= 8 then cflags  = ""; end
+    if nargin <= 9 then fflags  = ""; end
+    if nargin <= 10 then cc  = ""; end
 
     if isempty(files) | ~and(isfile(files)) then
         error(msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_for_link", 2));
@@ -170,5 +169,3 @@ function makename = generateMakefile(names, ..
     end
 
 endfunction
-//=============================================================================
-

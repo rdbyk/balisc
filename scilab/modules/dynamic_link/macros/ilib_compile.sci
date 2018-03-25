@@ -3,8 +3,8 @@
 // Copyright (C) ENPC
 // Copyright (C) DIGITEO - 2009
 // Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-//=============================================================================
 function libn = ilib_compile(lib_name, ..
     makename, ..
     files, ..
@@ -22,8 +21,7 @@ function libn = ilib_compile(lib_name, ..
     fflags, ..
     cc)
 
-    [lhs,rhs] = argn(0);
-    if rhs < 2 then
+    if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_compile"));
         return
     end
@@ -37,9 +35,7 @@ function libn = ilib_compile(lib_name, ..
         return;
     end
 
-    [lhs,rhs]=argn(0);
-
-    if rhs < 3 then
+    if nargin < 3 then
         files = [];
     else
         if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
@@ -237,5 +233,3 @@ function [make_command, lib_name_make, lib_name,path, makename, files] = ..
     end
 
 endfunction
-//=============================================================================
-
