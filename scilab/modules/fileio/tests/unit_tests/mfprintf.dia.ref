@@ -3,6 +3,7 @@
 // Copyright (C) 2015 - Scilab Enterprises - John GLIKSBERG
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) ????-2008 - ENPC
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -18,8 +19,7 @@ function [rep]=Fprintf(varargin)
     rep = str;
 endfunction
 function [y]=bugnum(str1,str2,str3)
-    [lhs,rhs] = argn(0);
-    if rhs==3 then
+    if nargin==3 then
         y = or(str1<>str2) & or(str1<>str3);
     else
         y = or(str1<>str2);
