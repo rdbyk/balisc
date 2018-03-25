@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009-2010 - Calixte Denizet
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -70,9 +70,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
     // Authors
     // Calixte Denizet
 
-    nargs = argn(2);
-
-    select nargs
+    select nargin
     case 0 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."),"prettyprint",1,4));
     case 1 then
@@ -288,7 +286,7 @@ endfunction
 
 //This function generates a matrix with the given delimiter
 function str = mathmlmatrix(mat,delimiter)
-    if argn(2) == 1 then
+    if nargin == 1 then
         delimiter = "(";
     end
     select delimiter
@@ -395,7 +393,7 @@ function str = lss2latex(sys)
 endfunction
 
 function str = latexmatrix(mat,delimiter)
-    if argn(2) == 1 then
+    if nargin == 1 then
         delimiter = "(";
     end
     select delimiter
@@ -473,7 +471,7 @@ function str = lss2tex(sys)
 endfunction
 
 function str = texmatrix(mat,delimiter)
-    if argn(2) == 1 then
+    if nargin == 1 then
         delimiter = "(";
     end
     select delimiter

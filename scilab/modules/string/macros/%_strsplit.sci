@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -64,10 +64,8 @@ function [strs, matched_separators] = %_strsplit(varargin)
     matched_separators = [];
     strs = [];
 
-    [lhs, rhs] = argn(0);
-
     // input types are checked in strsplit primitive
-    if (rhs == 1) then
+    if (nargin == 1) then
         len = length(varargin(1));
         if len == 0 then
             strs = "";
@@ -79,14 +77,14 @@ function [strs, matched_separators] = %_strsplit(varargin)
                 strs = varargin(1);
             end
         end
-        if (lhs == 2) then
+        if (nargout == 2) then
             dims_strs = size(strs);
             matched_separators = emptystr(dims_strs(1), dims_strs(2));
         end
     else
 
         strsplit_limit = -1; // no limit
-        if (rhs == 3) then
+        if (nargin == 3) then
             strsplit_limit = varargin(3);
         end
 
