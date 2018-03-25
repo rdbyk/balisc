@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
 function head_comments(name, %paths)
     // Displays the first comments of a function
 
-    if argn(2) < 1 then
+    if nargin < 1 then
         error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "head_comments", 1, 2));
     end
 

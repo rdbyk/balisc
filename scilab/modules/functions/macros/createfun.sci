@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2003-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,7 @@ function %fun=createfun(t)
     //sequence and the following the function instructions, it returns et
     //Scilab function.
     // This is  mainly used by sci2exp
-    if argn(2) < 1 then
+    if nargin < 1 then
         error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "createfun", 1));
     end
     h=t(1)

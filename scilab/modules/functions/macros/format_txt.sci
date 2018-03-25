@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,10 +21,8 @@ function [txt,space]=format_txt(txt,instr,bprettyprintformat,nextinstr)
     // - txt: updated txt
     // - space: indentation margin for control instructions
 
-    rhs=argn(2)
-
     // Indentation and EOL in control clauses
-    if rhs==3 then
+    if nargin==3 then
         if instr<>list("EOL") & bprettyprintformat then
             txt = cat_code(txt,"")
             space="  "
