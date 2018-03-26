@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017 - ESI - Antoine ELIAS
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -18,7 +19,7 @@
 
 //varargout alone
 function [varargout]=foo0(varargin)
-    for i=1:argn(2)
+    for i=1:nargin
         varargout(i)=varargin(i);
     end
 endfunction
@@ -47,7 +48,7 @@ assert_checkequal(e, 5);
 
 //1 output var + varargout
 function [aa, varargout]=foo1(varargin)
-    aa = argn(2);
+    aa = nargin;
     for i=1:aa
         varargout(i)=varargin(i);
     end
@@ -70,8 +71,8 @@ assert_checkequal(d, 3);
 
 //2 output vars + varargin
 function [aa, bb, varargout]=foo2(varargin)
-    aa = argn(2);
-    bb = argn(1);
+    aa = nargin;
+    bb = nargout;
     for i=1:aa
         varargout(i)=varargin(i);
     end
