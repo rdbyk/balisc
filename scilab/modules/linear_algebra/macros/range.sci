@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +14,7 @@ function [X,dim]=range(A,k)
     // Computation of Range A^k ; the first dim rows of X span the
     // range of A^k.
     //!
-    if argn(2)==1 then k=1,end
+    if nargin==1 then k=1,end
     k=double(k)
     if int(k)<>k|k<0 then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Non-negative integer expected.\n"),"range",2));

@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -63,7 +64,7 @@ warning("off");
 //
 function y=norm(A,flag)
     //compute various matrix norms
-    if argn(2)==1 then flag=2,end
+    if nargin==1 then flag=2,end
 
     if type(A)==1 then
         if A==[] then y=0,return,end

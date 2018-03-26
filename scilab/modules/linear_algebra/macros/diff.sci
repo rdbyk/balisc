@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,13 +11,12 @@
 // along with this program.
 
 function x=diff(x,N,DIM)
-    rhs=argn(2)
-    if rhs<1 then
+    if nargin<1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"diff",1,3));
     end
     dims=size(x),nd=prod(size(dims))
-    if rhs<3 then DIM="*",end
-    if rhs<2 then N=1,end
+    if nargin<3 then DIM="*",end
+    if nargin<2 then N=1,end
     if DIM=="r" then DIM=1,end
     if DIM=="c" then DIM=2,end
     if DIM=="*" then DIM=-1,end

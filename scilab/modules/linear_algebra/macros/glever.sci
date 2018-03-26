@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1988-2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,10 +21,9 @@ function [Bfs,Bis,chis]=glever(E,A,s)
     // Caveat: uses clean to simplify Bfs,Bis and chis !
     // See also shuffle, determ, invr, coffg
 
-    [LHS,RHS]=argn(0);
-    if RHS==1 then [E,A]=pen2ea(E),s=poly(0,"s");end
-    if RHS==2 then s=poly(0,"s"),end;
-    if RHS==3 then s=poly(0,s);end
+    if nargin==1 then [E,A]=pen2ea(E),s=poly(0,"s");end
+    if nargin==2 then s=poly(0,"s"),end;
+    if nargin==3 then s=poly(0,s);end
     [Si,Pi,Di,index]=penlaur(E,A);
     k=round(sum(diag(Si*E)));
 

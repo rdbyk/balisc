@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,9 +17,8 @@ function [X,dim,Y]=im_inv(A,B,tol)
     // tol is a threshold to test if a  subspace is included in an other
     // default value tol = 100*%eps;
 
-    [lhs,rhs]=argn(0);
     [nA,mA]=size(A);[nB,mB]=size(B);
-    if rhs==2 then tol=100*%eps*mA*nA*nB*mB,end;
+    if nargin==2 then tol=100*%eps*mA*nA*nB*mB,end;
     if nA<>nB then
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"im_inv",1,2))
         return
@@ -43,6 +41,3 @@ function [X,dim,Y]=im_inv(A,B,tol)
     if norm(Alow,1) <= tol*norm(Aup,1) then dim=mA,return,end
     dim=mA-r1;
 endfunction
-
-
-

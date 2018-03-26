@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,8 +15,8 @@ function [A,b]=aff2ab(lme,dimX,D,flag)
     //Y=lme(X,D)= affine fct of Xi's;
     //[A,b]=matrix representation of lme in canonical basis.
     // if flag=='sp' A matrix is return in sparse storage.
-    [LHS,RHS]=argn(0)
-    if RHS==3 then flag="f";end
+
+    if nargin==3 then flag="f";end
 
     nvars=0;
     for k=dimX'

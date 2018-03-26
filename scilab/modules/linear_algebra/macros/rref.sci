@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
 
 function [A,jb]=rref(A,tol)
     //R = rref(A) produces the reduced row echelon form of A.
-    if argn(2)<2 then
+    if nargin<2 then
         tol=2*%eps*norm(A,"inf")*max(size(A))
     end
 

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2012- Scilab Enterprises - Adeline CARNIS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,9 +12,8 @@
 // along with this program.
 
 function c = cond(varargin)
-    rhs = argn(2);
 
-    select rhs
+    select nargin
     case 1
         // c=cond(A) condition number for 2-norm
         // cond(A) is the ratio of the largest singular of x to the smallest
@@ -58,4 +57,5 @@ function c = cond(varargin)
     else
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "cond", 1, 2));
     end
+
 endfunction

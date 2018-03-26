@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,11 +20,10 @@ function [x,dim]=spaninter(a,b,tol)
     // dim        dimension of subspace A inter B.
     // tol        threshold (sqrt(%eps) is the default value).
 
-    [lhs,rhs]=argn(0);
     [na,ma]=size(a);[nb,mb]=size(b);
     if ma*na==0 then dim=0;x=eye(nb,nb);return;end
     if mb*nb==0 then dim=0;x=eye(na,na);return;end
-    if rhs==2 then tol=sqrt(%eps);end
+    if nargin==2 then tol=sqrt(%eps);end
     if na <> nb then
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"spaninter",1,2));
     end
@@ -50,6 +49,3 @@ function [x,dim]=spaninter(a,b,tol)
     [u2p,dim]=rowcomp(b2(up,:));
     x(:,up)=x(:,up)*u2p'         //update
 endfunction
-
-
-
