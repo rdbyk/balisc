@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,15 +12,13 @@
 
 function myTree = uiCreateTree(parentNode, varargin)
 
-    [lhs,rhs]=argn(0);
-
     //Input arguments checking
-    if rhs == 0 then
+    if nargin == 0 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "uiCreateTree",1));
         return;
     end
 
-    if rhs >=1 then
+    if nargin >=1 then
         // Check if parentNode is a Tree
         if (typeof(parentNode) == "uitree") then
             myTree = tlist("uitree", parentNode(2));

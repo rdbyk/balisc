@@ -1,6 +1,6 @@
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,10 +10,9 @@
 // along with this program.
 
 function [rep] = x_choices(Title,listOfChoices)
-    [lhs,rhs] = argn(0)
 
     // Tests/Demo code
-    if rhs<=0 then
+    if nargin<=0 then
         s_mat = ["l1=list(''choice 1'',1,[''toggle c1'',''toggle c2'',''toggle c3'']);";
         "l2=list(''choice 2'',2,[''toggle d1'',''toggle d2'',''toggle d3'']);";
         "l3=list(''choice 3'',3,[''toggle e1'',''toggle e2'']);";
@@ -28,7 +27,7 @@ function [rep] = x_choices(Title,listOfChoices)
     end;
 
     // Check number of inputs
-    if rhs ~=2 then
+    if nargin ~=2 then
         error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "x_choices", 2));
     end
 
@@ -90,4 +89,3 @@ function [rep] = x_choices(Title,listOfChoices)
     // Call the interface to Java
     rep = xchoicesi(defv,Title,items)
 endfunction
-

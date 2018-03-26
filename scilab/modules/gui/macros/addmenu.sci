@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005 - INRIA - Allan CORNET
 // Copyright (C) 2007 - INRIA - Vincent COUVERT Java version
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,9 +19,7 @@ function addmenu(varargin)
         error(msprintf(_("%s: can not add a menu in this mode: %s.\n"), "addmenu", getscilabmode()));
     end
 
-    rhs=argn(2);
-
-    select rhs
+    select nargin
     case 1
         if type(varargin(1))==10
             // addmenu(menu_label)

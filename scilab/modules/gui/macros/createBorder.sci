@@ -1,8 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,13 +9,10 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
 
 function ret = createBorder(constType, varargin)
-    [lhs,rhs]=argn(0)
 
-    if rhs < 1 then
+    if nargin < 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected."), "createBorder", 1));
     end
 
@@ -24,7 +20,7 @@ function ret = createBorder(constType, varargin)
     if constType == "none" then
         ret = tlist(["NoBorder"]);
     elseif constType == "line" then
-        if rhs <> [2:4] then
+        if nargin <> [2:4] then
             error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createBorder", 2, 4));
         end
 
@@ -34,7 +30,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorder", 2));
         end
 
-        if rhs == 2 then
+        if nargin == 2 then
             ret = tlist(["LineBorder", "color"], arg1);
             return;
         end
@@ -45,7 +41,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: A integer expected.\n"), "createBorder", 3));
         end
 
-        if rhs == 3 then
+        if nargin == 3 then
             ret = tlist(["LineBorder", "color", "thickness"], arg1, arg2);
             return;
         end
@@ -67,7 +63,7 @@ function ret = createBorder(constType, varargin)
 
         ret = tlist(["LineBorder", "color", "thickness", "rounded"], arg1, arg2, arg3);
     elseif constType == "bevel" then
-        if rhs <> [2 4 6] then
+        if nargin <> [2 4 6] then
             error(msprintf(gettext("%s: Wrong number of input argument(s): %d, %d or %d expected."), "createBorder", 2, 4, 6));
         end
 
@@ -77,7 +73,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorder", 2));
         end
 
-        if rhs == 2 then
+        if nargin == 2 then
             ret = tlist(["BevelBorder", "type"], arg1);
             return;
         end
@@ -94,7 +90,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorder", 4));
         end
 
-        if rhs == 4 then
+        if nargin == 4 then
             ret = tlist(["BevelBorder", "type", "hlouter", "shadowouter"], arg1, arg2, arg3);
             return;
         end
@@ -113,7 +109,7 @@ function ret = createBorder(constType, varargin)
 
         ret = tlist(["BevelBorder", "type", "hlouter", "hlinner", "shadowouter", "shadowinner"], arg1, arg2, arg3, arg4, arg5);
     elseif constType == "softbevel" then
-        if rhs <> [2 4 6] then
+        if nargin <> [2 4 6] then
             error(msprintf(gettext("%s: Wrong number of input argument(s): %d, %d or %d expected."), "createBorder", 2, 4, 6));
         end
 
@@ -123,7 +119,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorder", 2));
         end
 
-        if rhs == 2 then
+        if nargin == 2 then
             ret = tlist(["SoftBevelBorder", "type"], arg1);
             return;
         end
@@ -140,7 +136,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorder", 4));
         end
 
-        if rhs == 4 then
+        if nargin == 4 then
             ret = tlist(["SoftBevelBorder", "type", "hlouter", "shadowouter"], arg1, arg2, arg3);
             return;
         end
@@ -160,11 +156,11 @@ function ret = createBorder(constType, varargin)
         ret = tlist(["SoftBevelBorder", "type", "hlouter", "hlinner", "shadowouter", "shadowinner"], arg1, arg2, arg3, arg4, arg5);
     elseif constType == "etched" then
 
-        if rhs > 4 then
+        if nargin > 4 then
             error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createBorder", 1, 4));
         end
 
-        if rhs == 1 then
+        if nargin == 1 then
             ret = tlist(["EtchedBorder"]);
             return;
         end
@@ -175,7 +171,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: A integer or a string expected.\n"), "createBorder", 2));
         end
 
-        if rhs == 2 then
+        if nargin == 2 then
             ret = tlist(["EtchedBorder", "type"], arg1);
             return;
         end
@@ -186,7 +182,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorder", 3));
         end
 
-        if rhs == 3 then
+        if nargin == 3 then
             ret = tlist(["EtchedBorder", "hl", "shadow"], arg1, arg2);
             return;
         end
@@ -199,7 +195,7 @@ function ret = createBorder(constType, varargin)
 
         ret = tlist(["EtchedBorder", "type", "hl", "shadow"], arg1, arg2, arg3);
     elseif constType == "titled" then
-        if rhs <> [2:7] then
+        if nargin <> [2:7] then
             error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createBorder", 2, 7));
         end
 
@@ -209,7 +205,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: A border or a string expected.\n"), "createBorder", 2));
         end
 
-        if rhs == 2 then
+        if nargin == 2 then
             if typeof(arg1) == "string" then
                 ret = tlist(["TitledBorder", "title"], arg1);
             else
@@ -224,7 +220,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorder", 3));
         end
 
-        if rhs == 3 then
+        if nargin == 3 then
             ret = tlist(["TitledBorder", "border", "title"], arg1, arg2);
             return;
         end
@@ -241,7 +237,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorder", 5));
         end
 
-        if rhs == 5 then
+        if nargin == 5 then
             ret = tlist(["TitledBorder", "border", "title", "justification", "position"], arg1, arg2, arg3, arg4);
             return;
         end
@@ -252,7 +248,7 @@ function ret = createBorder(constType, varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: A Font Border expected.\n"), "createBorder", 6));
         end
 
-        if rhs == 6 then
+        if nargin == 6 then
             ret = tlist(["TitledBorder", "border", "title", "justification", "position", "font"], ...
             arg1, arg2, arg3, arg4, arg5);
             return;
@@ -266,11 +262,11 @@ function ret = createBorder(constType, varargin)
         ret = tlist(["TitledBorder", "border", "title", "justification", "position", "font", "color"], ...
         arg1, arg2, arg3, arg4, arg5, arg6);
     elseif constType == "empty" then
-        if rhs <> [1 5] then
+        if nargin <> [1 5] then
             error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected."), "createBorder", 1, 5));
         end
 
-        if rhs == 1 then
+        if nargin == 1 then
             ret = tlist(["EmptyBorder"]);
             return;
         end
@@ -298,11 +294,11 @@ function ret = createBorder(constType, varargin)
         ret = tlist(["EmptyBorder", "top", "left", "bottom", "right"], arg1, arg2, arg3, arg4);
     elseif constType == "compound" then
 
-        if rhs <> [1 3] then
+        if nargin <> [1 3] then
             error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected."), "createBorder", 1, 3));
         end
 
-        if rhs == 1 then
+        if nargin == 1 then
             ret = tlist(["CompoundBorder"]);
             return;
         end
@@ -320,7 +316,7 @@ function ret = createBorder(constType, varargin)
         ret = tlist(["CompoundBorder", "outer", "inner"], arg1, arg2);
     elseif constType == "matte" then
 
-        if rhs <> 6 then
+        if nargin <> 6 then
             error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected."), "createBorder", 6));
         end
 

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,43 +12,39 @@
 
 function myNewTree = uiInsertNode(tree, position, node)
 
-    [lhs,rhs]=argn(0);
-
     //Input arguments checking
-    if rhs <> 3 then
+    if nargin <> 3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "uiInsertNode",3));
         return;
     end
 
     // Check 1st, 2nd and 3rd inputs : tree, (position or parent node) & node
-    if rhs == 3 then
-        if (typeof(tree) == "uitree") then
-            myTree = tree;
-            isPosition = %F;
-            isParentNode = %F;
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiInsertNode",1));
-            return;
-        end
+    if (typeof(tree) == "uitree") then
+        myTree = tree;
+        isPosition = %F;
+        isParentNode = %F;
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiInsertNode",1));
+        return;
+    end
 
-        if (type(position) == 10) then
-            myPosition = position;
-            isPosition = %T;
+    if (type(position) == 10) then
+        myPosition = position;
+        isPosition = %T;
 
-        elseif (typeof(position) == "uitree") then
-            myParentNode = position;
-            isParentNode = %T;
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiInsertNode",2));
-            return;
-        end
+    elseif (typeof(position) == "uitree") then
+        myParentNode = position;
+        isParentNode = %T;
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiInsertNode",2));
+        return;
+    end
 
-        if (typeof(node) == "uitree") then
-            myNode = node;
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiInsertNode",3));
-            return;
-        end
+    if (typeof(node) == "uitree") then
+        myNode = node;
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiInsertNode",3));
+        return;
     end
 
     // Return the previous position of a node
