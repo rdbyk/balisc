@@ -2,19 +2,19 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
 
-//argn
+// nargin, nargout
 
 funcprot(0);
 
 function [x,y]=foo(a,b)
-    [lhs,rhs]=argn(0);
-    x=[lhs,rhs];
+    x=[nargout,nargin];
     y=-1;
 endfunction
 
@@ -26,8 +26,7 @@ if or(foo()<>[1 0]) then pause,end
 [x,y]=foo();if or(x<>[2 0]) then pause,end
 
 function [x,y]=foo(a,b)
-    lhs=argn(0);
-    x=lhs;
+    x=nargout;
     y=-1;
 endfunction
 
@@ -37,8 +36,7 @@ if foo(1,2)<>1 then pause,end
 //
 
 function [x,y]=foo(a,b)
-    [lhs,rhs]=argn();
-    x=[lhs,rhs];
+    x=[nargout,nargin];
     y=-1;
 endfunction
 
@@ -50,8 +48,7 @@ if or(foo()<>[1 0]) then pause,end
 [x,y]=foo();if or(x<>[2 0]) then pause,end
 
 function [x,y]=foo(a,b)
-    lhs=argn();
-    x=lhs;
+    x=nargout;
     y=-1;
 endfunction
 

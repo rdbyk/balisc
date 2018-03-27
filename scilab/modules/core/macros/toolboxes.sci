@@ -2,8 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2009 - Allan CORNET
 // Copyright (C) 2012 - 2015 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,19 +12,17 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-//===========================================================
 function [y] = toolboxes(path)
     // INTERNAL macro should NOT used by users
     // toolboxes loading
     // path is a directory to explore for contribs
-    //===========================================================
+
     global %toolboxes
     global %toolboxes_dir
-    //===========================================================
-    [lhs,rhs] = argn(0)
+
     y = []
     // Action
-    if (rhs == 1) & typeof(path)=="constant" then
+    if (nargin == 1) & typeof(path)=="constant" then
         // return string to exec
         tmp = %toolboxes(path);
         if part(tmp,1)=="!" then   // ATOMS module
@@ -40,7 +38,7 @@ function [y] = toolboxes(path)
     end
 
     // Non ATOMS modules
-    if rhs == 0 then
+    if nargin == 0 then
         path = SCI + filesep() + "contrib";
     end
 
@@ -84,4 +82,3 @@ function [y] = toolboxes(path)
     chdir(cur_wd);
 
 endfunction
-//===========================================================
