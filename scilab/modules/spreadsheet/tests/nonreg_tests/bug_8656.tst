@@ -2,6 +2,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - S/E - Sylvestre Ledru
+// Copyright (C) 2018 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -24,6 +25,3 @@ assert_checkequal(A,evstr(resString));
 
 res=csvRead(filename);
 assert_checkequal(A,res);
-
-res=read_csv(filename);
-assert_checkequal(evstr(res),A);

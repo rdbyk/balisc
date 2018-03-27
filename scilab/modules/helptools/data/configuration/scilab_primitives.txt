@@ -725,7 +725,6 @@ rankqr
 rat
 rcond
 read
-read_csv
 readmps
 real
 realtime
@@ -886,7 +885,6 @@ whereis
 winsid
 with_module
 write
-write_csv
 x_choose
 x_choose_modeless
 x_dialog

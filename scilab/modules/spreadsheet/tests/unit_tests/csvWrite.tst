@@ -2,6 +2,7 @@
 // Copyright (C) 2011 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - INRIA - Allan CORNET
 // Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 // =============================================================================
 // <-- CLI SHELL MODE -->
 path = SCI+"/modules/spreadsheet/tests/unit_tests/";
@@ -115,5 +116,5 @@ complexMatrix = [0.211, -3.14, 0; ..
 //TODO check values with %inf*%i (currently bug on interpreting %inf*%i)
 
 filename = fullfile(TMPDIR, "complex.csv");
-write_csv(complexMatrix, filename, ascii(9), ".", "%5.3f");
+csvWrite(complexMatrix, filename, ascii(9), ".", "%5.3f");
 assert_checkfilesequal(filename , fullfile(path, "complex.csv"));
