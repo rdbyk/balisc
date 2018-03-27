@@ -2,8 +2,8 @@
 // Copyright (C) 1999 - INRIA - Carlos Klimann
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,14 +24,12 @@ function y = median(x,orient)
 
     // CHECKING ARGUMENTS
     // ==================
-    [lhs, rhs] = argn(0);
-
-    if rhs == 0 then
+    if nargin == 0 then
         msg = _("%s: Wrong number of input argument(s): %d or %d expected.\n")
         error(msprintf(msg, "median", 1, 2))
     end
 
-    if rhs<2 then
+    if nargin<2 then
         orient = 0
     else
         if orient=="r" then

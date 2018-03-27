@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,11 +17,10 @@ function [a, b] = nanreglin(x, y, dflag)
     // dflag is optional if 1 a display of the result is done
     //!
 
-    [lhs, rhs] = argn(0);
-    if rhs < 2 then
+    if nargin < 2 then
         error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanreglin",2,3))
     end
-    if rhs <= 2 then
+    if nargin <= 2 then
         dflag = 0;
     end
     [n1, n2] = size(x);

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [lambda,facpr,comprinc]=pca(x)
     //
@@ -62,7 +61,7 @@ function [lambda,facpr,comprinc]=pca(x)
     // splitted in printcomp (matlab compatibility) and show_pca Serge Steer
     // 2008
 
-    if argn(2) == 0 then
+    if nargin == 0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"pca",1))
     end
     if x==[] then

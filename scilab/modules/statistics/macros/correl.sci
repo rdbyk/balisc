@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - INRIA - Carlos Klimann
 // Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function rho=correl(varargin)
     //
@@ -23,9 +22,8 @@ function rho=correl(varargin)
     //References: Wonacott,  T.H. & Wonacott, R.J.; Introductory Statistics,
     //J.Wiley & Sons, 1990.
     //
-    //
-    rhs = argn(2);
-    if rhs < 2 | rhs > 3 then
+
+    if nargin < 2 | nargin > 3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"correl",2,3));
     end
 
@@ -50,7 +48,7 @@ function rho=correl(varargin)
     x=matrix(x,1,cx);
     y=matrix(y,ly,1);
 
-    if rhs == 2 then
+    if nargin == 2 then
         if cx <> ly then
             error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected"), "correl", 1, 2));
         end

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - INRIA - Carlos Klimann
 // Copyright (C) 2013 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [s, m] = variance(x, orien, m)
     //
@@ -34,8 +33,7 @@ function [s, m] = variance(x, orien, m)
 
     // Checking and normalizing input arguments:
     // ----------------------------------------
-    [lhs,rhs] = argn(0)
-    if rhs==0 then
+    if nargin==0 then
         tmp = gettext("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(tmp, "variance", 1, 2))
     end
@@ -49,7 +47,7 @@ function [s, m] = variance(x, orien, m)
         orien = "*"
     end
 
-    if rhs==3 then
+    if nargin==3 then
         if typeof(m)~="constant" then
             tmp = gettext("%s: Wrong value of m : a priori mean expected.\n")
             error(msprintf(tmp, "variance"))
@@ -88,16 +86,16 @@ function [s, m] = variance(x, orien, m)
 
     d = size(x, orien) - 1 + exists("m","local") // Denominator. If m is given, then the a priori mean is known and we divide by size(n,orien)
 
-    if rhs == 3 & isnan(m) then
+    if nargin == 3 & isnan(m) then
         // This will compute the "biased variance": the denominator is size(x,orien) but the a priori mean is not considered as provided.
-        rhs = 2
+        nargin = 2
     end
     if orien=="*" then
-        if rhs < 3 then
+        if nargin < 3 then
             m = mean(x)
         end
     else
-        if rhs < 3 then
+        if nargin < 3 then
             m = mean(x, orien).*.ones(size(x,1),1)
         else
             if isscalar(m) then
@@ -106,7 +104,7 @@ function [s, m] = variance(x, orien, m)
                     warning(msprintf(tmp, "variance", 3))
                 end
                 // If m is a scalar, extend it to the size of x.
-                // If lhs==1, we do not need to perform this operation, because in the following 'x - m', m can be a scalar
+                // If nargout==1, we do not need to perform this operation, because in the following 'x - m', m can be a scalar
                 m = m*ones(x)
             else
                 if transposed then

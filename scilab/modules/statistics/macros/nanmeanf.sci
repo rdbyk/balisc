@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1999 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-
 
 function [m]=nanmeanf(val,fre,orient)
     //
@@ -35,14 +32,13 @@ function [m]=nanmeanf(val,fre,orient)
     //the mean of  each row of val  (ignoring the NANs),  each value counted
     //with the multiplicity indicated by the corresponding value of fre.
     //
-    //
-    [lhs,rhs]=argn(0)
-    if rhs<2|rhs>3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanmeanf",2,3)), end
+
+    if nargin<2|nargin>3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanmeanf",2,3)), end
     if val==[]|fre==0 then m=[], return,end
     isn=isnan(val)
     fre(isn)=0
     val(isn)=0
-    if rhs==2 then
+    if nargin==2 then
         m=sum(val.*fre)/sum(fre)
     elseif orient=="*" then
         m=sum(val.*fre)/sum(fre)

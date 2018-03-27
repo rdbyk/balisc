@@ -1,9 +1,8 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1999 - INRIA - Carlos Klimann
 // corrected by bruno pincon (2006-08-16) (fix for bug 2092)
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [s2]=mad(x,orien)
     //
@@ -33,17 +31,17 @@ function [s2]=mad(x,orien)
     //References:  Wonacott, T.H. & Wonacott, R.J.; Introductory
     //Statistics, J.Wiley & Sons, 1990.
     //
-    [lhs,rhs]=argn()
-    if rhs < 1 | rhs > 2 then
+
+    if nargin < 1 | nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"mad",1,2)),
     end
 
     if x==[] then s2=%nan, return, end
 
     [nrow,ncol] = size(x);
-    if rhs==1 then
+    if nargin==1 then
         s2=sum(abs(x-mean(x)))/(nrow*ncol)
-    else // rhs == 2
+    else // nargin == 2
         if orien=="r" | orien==1 then
             s2=sum(abs(x-(ones(nrow,1)*mean(x,1))),1)/nrow
         elseif orien=="c" | orien==2 then

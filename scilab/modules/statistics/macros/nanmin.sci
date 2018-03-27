@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1999 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-
 
 function [s,index] = nanmin(x,orient)
     //
@@ -36,15 +33,13 @@ function [s,index] = nanmin(x,orient)
     //matrix are the indexes of the smallest elements (ignoring the NANs) of
     //each row of x in the corresponding row.
     //
-    //
 
     warnobsolete("min", "6.1");
 
-    [lhs, rhs] = argn(0)
-    if rhs == 0 then
+    if nargin == 0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanmin",1,2))
     end
-    if rhs==1 then  orient="*",end
+    if nargin==1 then  orient="*",end
     if orient==1 then orient="r",end
     if orient==2 then orient="c",end
     if x==[]|(size(x,"*")==1&isnan(x)) then s=[],index=[],return,end

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,24 +9,23 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
+
 function show_pca(lambda,facpr,N)
     //used to visualize Principal component analysis results.
     // It includes  drawing of
     //"correlations circle",  i.e. in the  horizontal axis the
     //correlation   values  r(c1;xj)   and  in   the  vertical
     //r(c2;xj). It is an extension of the pca function.
-
+    //
     //References: Saporta, Gilbert, Probabilites,  Analyse des
     //Donnees et Statistique, Editions Technip, Paris, 1990.
     //
     //Extracted out of pca, author: carlos klimann
 
-    [lhs, rhs] = argn(0);
-    if rhs < 2 then
+    if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"show_pca",2,3))
     end
-    if rhs<3 then
+    if nargin<3 then
         N=[1 2]
     end
     if size(N,"*")<>2 then

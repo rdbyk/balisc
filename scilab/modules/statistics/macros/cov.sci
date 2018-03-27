@@ -1,8 +1,8 @@
 // Copyright (C) 2012-2013 - Michael Baudin
 // Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 // Copyright (C) 1993 - 1995 - Anders Holtsberg
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -95,10 +95,7 @@ function C = cov(varargin)
     // [2] "Introduction to probability and statistics for engineers and scientists.", Sheldon Ross
     // [3] NIST/SEMATECH e-Handbook of Statistical Methods, 6.5.4.1. Mean Vector and Covariance Matrix, http://www.itl.nist.gov/div898/handbook/pmc/section5/pmc541.htm
 
-
-    [lhs, rhs]=argn()
-    //
-    if (rhs == 1) then
+    if (nargin == 1) then
         x = varargin(1)
         //
         // Check type
@@ -108,7 +105,7 @@ function C = cov(varargin)
         nobs = size(x, "r")
         r = 1/(nobs-1)
         A = x
-    elseif (rhs == 2) then
+    elseif (nargin == 2) then
         //
         x = varargin(1)
         y = varargin(2)
@@ -144,7 +141,7 @@ function C = cov(varargin)
             r = 1/(nobs-1)
             A = [x, y]
         end
-    elseif (rhs == 3) then
+    elseif (nargin == 3) then
         //
         x = varargin(1)
         y = varargin(2)

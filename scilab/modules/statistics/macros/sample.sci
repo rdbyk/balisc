@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2003 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,10 +31,9 @@ function s = sample(n, X, orient)
     //random  sample of  n columns,  extracted  with replacement
     //from the columns of X.
     //
-    [lhs, rhs] = argn(0)
-    if rhs < 2 | rhs > 3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "sample", 2, 3)), end
+    if nargin < 2 | nargin > 3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "sample", 2, 3)), end
     if X == [] then s = []; return; end
-    if rhs == 2 then
+    if nargin == 2 then
         orient = "*"
     end
     if orient == "*" then
