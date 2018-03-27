@@ -74,10 +74,6 @@
                         利用可能な値は "string" または "double"
                         (デフォルト)です.
                     </para>
-                    <para>
-                        <link linkend="read_csv">read_csv</link> では "string" がデフォルトであることに
-                        注意してください.
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -399,10 +395,6 @@ header = 2;
                 <revnumber>5.4.0</revnumber>
                 <revremark>関数が導入されました.
                     'csv_readwrite'モジュールに基づきます.
-                    <link linkend="read_csv">read_csv</link> と比べた場合の
-                    動作の唯一の差異は,
-                    read_csvが値を文字列として返す時,デフォルトで値をdoubleに変換しようとする
-                    ことです.
                 </revremark>
             </revision>
             <revision>

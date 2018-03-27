@@ -3,6 +3,7 @@
  * Copyright (C) 2010-2011 - INRIA - Allan CORNET
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -64,9 +65,6 @@
                 <listitem>
                     <para>a 1-by-1 matrix of strings, the type of the output
                         <literal>M</literal>. Available values are "string" or "double" (by default).
-                    </para>
-                    <para>
-                        Note that <link linkend="read_csv">read_csv</link> has "string" as default.
                     </para>
                 </listitem>
             </varlistentry>
@@ -382,7 +380,7 @@ header = 2;
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                    Function introduced. Based on the 'csv_readwrite' module. The only difference in the behavior compared to <link linkend="read_csv">read_csv</link> is that csvRead will try to convert value to double by default when read_csv will return value as string.
+                    Function introduced. Based on the 'csv_readwrite' module.
                 </revremark>
             </revision>
             <revision>

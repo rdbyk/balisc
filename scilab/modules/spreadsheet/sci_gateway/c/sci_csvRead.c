@@ -3,7 +3,7 @@
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -204,17 +204,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
     }
     else
     {
-        /* read_csv is using a 'string' conversion while csvRead is doing
-           a 'double' conversion */
-        if (balisc_strcmp(fname, "read_csv") == 0)
-        {
-            conversion = (char*)MALLOC((balisc_strlen("string") + 1) * sizeof(char));
-            strcpy(conversion, "string");
-        }
-        else
-        {
-            conversion = os_strdup(getCsvDefaultConversion());
-        }
+        conversion = os_strdup(getCsvDefaultConversion());
     }
 
     if (Rhs >= 3)
@@ -250,7 +240,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
     if (balisc_strcmp(separator, "\\t") == 0)
     {
         /* In Scilab, if the user is providing \t as separator, transform it to a real
-           tab. Example: read_csv(filename,"\t");
+           tab. Example: csvRead(filename,"\t");
         */
         strcpy(separator, "\t");
     }
