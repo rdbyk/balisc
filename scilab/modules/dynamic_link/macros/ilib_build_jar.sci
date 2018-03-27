@@ -1,4 +1,3 @@
-// ====================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises
 //
@@ -10,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-// =====================================================================
 
 // Builds a Java package (JAR) from a set of Java sources (see SEP #116)
 // - jarFilePath: is the JAR target file path
@@ -136,8 +134,7 @@ function ilib_build_jar(jarFilePath, packageNames, sourcePaths, classPaths, mani
     end
 
     // Check input arguments
-    [lhs, rhs] = argn(0);
-    if rhs < 3 then
+    if nargin < 3 then
         error(msprintf(_("%s: Wrong number of input argument(s): 3 to 5 expected.\n"), "ilib_build_jar"));
         return;
     end
@@ -152,7 +149,7 @@ function ilib_build_jar(jarFilePath, packageNames, sourcePaths, classPaths, mani
     end
 
     // Input argument 2: package names
-    if rhs > 2 then
+    if nargin > 2 then
         if type(packageNames) <> 10 then
             error(msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 2));
             return;
@@ -166,7 +163,7 @@ function ilib_build_jar(jarFilePath, packageNames, sourcePaths, classPaths, mani
     end
 
     // Input argument 4 (optional): class paths
-    if rhs > 3 then
+    if nargin > 3 then
         if type(classPaths) <> 10 then
             error(msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 4));
             return;
@@ -176,7 +173,7 @@ function ilib_build_jar(jarFilePath, packageNames, sourcePaths, classPaths, mani
     end
 
     // Input argument 5 (optional): manifest file path
-    if rhs > 4 then
+    if nargin > 4 then
         if type(manifestFilePath) <> 10 then
             error(msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build_jar", 5));
             return;

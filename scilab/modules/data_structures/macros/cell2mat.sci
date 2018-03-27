@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function y= cell2mat(c)
+function y = cell2mat(c)
 
     // This function returns a matrix which is the result of concatenation of all components of the cell c
     // Input : c, a cell. All components of c must have the same data type (strings or doubles or integers or booleans)
@@ -18,9 +18,7 @@ function y= cell2mat(c)
     // Output : y, a matrix or a hypermatrix
     // F.B
 
-    rhs = argn(2);
-
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cell2mat",1));
     end
 

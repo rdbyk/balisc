@@ -1,9 +1,8 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1987-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
 // Copyright (C) 1987-2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,15 +20,14 @@ function[m,den]=nlev(a,z,rmax)
     //      fonction bdiag)
     //
 
-    rhs=argn(2);
-    if rhs < 2 then
+    if nargin < 2 then
         msg = gettext("%s: Wrong number of input arguments: %d or %d expected.\n")
         error(msprintf(msg, "nlev", 2, 3));
     end
 
     z=poly(0,z);
 
-    if rhs==3 then
+    if nargin==3 then
         [a,x,bs]=bdiag(a,rmax),
     else
         [a,x,bs]=bdiag(a),
@@ -65,6 +63,3 @@ function[m,den]=nlev(a,z,rmax)
     end;
     m=m*diag(v)*inv(x);
 endfunction
-
-
-

@@ -1,9 +1,8 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Michael Baudin
 // Copyright (C) 2000 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [f,p]=ftuneq(varargin)
     //
@@ -36,14 +34,13 @@ function [f,p]=ftuneq(varargin)
     //Statistics, J.Wiley & Sons, 1990.
     //
     //
-    [lhs,rhs]=argn(0)
-    if rhs == 0 then
+    if nargin == 0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"ftuneq",1))
     end
     data=[]
     total=0
     sse=0
-    for i=1:rhs
+    for i=1:nargin
         len(i)=size(varargin(i),"*"),
         mat=matrix(varargin(i),len(i),1),
         partial=sum(mat),
@@ -54,9 +51,9 @@ function [f,p]=ftuneq(varargin)
     end
     xbarbar=total/sum(len)
     ssa=len'*((xbar-xbarbar).^2)
-    msa=ssa/(rhs-1)
+    msa=ssa/(nargin-1)
     deglib=sum(len-1)
     mse=sse/deglib
     f=msa/mse
-    [ignored,p]=cdff("PQ",f,(rhs-1),deglib)
+    [ignored,p]=cdff("PQ",f,(nargin-1),deglib)
 endfunction

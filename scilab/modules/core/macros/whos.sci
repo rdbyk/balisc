@@ -2,8 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
 // Copyright (C) 2010 - Samuel Gougeon
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -76,18 +76,16 @@ function whos(%_opt,%_sel)
 
     // display defined variable in a long form
 
-    [%_lhs, %_rhs] = argn();
-
-    if %_rhs == 0 then
+    if nargin == 0 then
         %_opt = [];
         %_sel = [];
     end
 
-    if %_rhs == 1 then
+    if nargin == 1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "whos", 0, 2));
     end
 
-    if %_rhs == 2 then
+    if nargin == 2 then
         %_nams($-1:$) = [];
         if %_opt <> "-type" & %_opt <> "-name" then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), "whos", 1, "-name", "-type"));
@@ -117,7 +115,7 @@ function whos(%_opt,%_sel)
             %_typn = "*deleted";
         end
 
-        b_ok = doDisplayWhosLine(%_rhs, %_opt, %_nams_all(%_k), %_typn, %_sel);
+        b_ok = doDisplayWhosLine(nargin, %_opt, %_nams_all(%_k), %_typn, %_sel);
 
         if b_ok then
             %_sz = getSizeAsString(%_nams_all(%_k), %_typ);

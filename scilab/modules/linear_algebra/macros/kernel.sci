@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,9 +14,8 @@ function kerA=kernel(A,tol,flag)
     //Syntax : [x]=kernel(A [,tol [,flag]])
     // flag = 'svd' or 'sqr' no flag if A sparse
     if type(A)==1 then
-        [lhs,rhs]=argn(0);
         [n,m]=size(A);
-        select rhs
+        select nargin
         case 1 then
             [kerA,rk]=colcomp(A);
         case 2 then
@@ -28,12 +26,11 @@ function kerA=kernel(A,tol,flag)
         kerA=kerA(:,1:m-rk);return;
     end
     if type(A)==5 then
-        [lhs,rhs]=argn(0);
         [ma,na]=size(A);
-        if rhs==3 then
+        if nargin==3 then
             error(msprintf(gettext("%s: SVD and QR not implemented in sparse.\n"),"kernel"));
         end
-        if rhs==2 then tol=1.d-10;else tol=%eps;end
+        if nargin==2 then tol=1.d-10;else tol=%eps;end
         %tol=tol*max(abs(A))*max(ma,na);
         if ma<na then
             A=[A;sparse([],[],[na-ma,na])];
@@ -64,5 +61,3 @@ function kerA=kernel(A,tol,flag)
         error(msprintf(gettext("%s: This feature has not been implemented.\n"),"kernel"));
     end
 endfunction
-
-

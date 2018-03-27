@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +9,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
+
 
 function [s]=wcenter(x,orient)
     //
@@ -39,10 +38,9 @@ function [s]=wcenter(x,orient)
     //
     //
     if x==[] then s=%nan, return, end
-    [lhs,rhs]=argn(0)
-    if (rhs<1)|(rhs>2) then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"wcenter",1,2)), end
+    if (nargin<1)|(nargin>2) then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"wcenter",1,2)), end
     [m n]=size(x);
-    if rhs==1
+    if nargin==1
         xbar=(sum(x)/(m*n))
         s=x-(ones(m,n)*xbar)
         sigma=sqrt(sum(s .^ 2)/(m*n-1))

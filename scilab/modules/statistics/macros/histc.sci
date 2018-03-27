@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - A. Khorshidi
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,13 +17,11 @@ function [cf, ind] = histc(n, data, normalization)
     //     data = rand(1, 1000, "normal");
     //     [class_freq, ind] = histc(n, data)
 
-    rhs = argn(2);
-
-    if rhs < 2
+    if nargin < 2
         error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"), "histc", 2));
     end
 
-    if rhs == 3 & exists("normalization", "local") then
+    if nargin == 3 & exists("normalization", "local") then
         if type(normalization) ~= 4 | size(normalization, "*") ~= 1 then
             error(msprintf(_("%s: Wrong type of input argument #%d: A single boolean expected.\n"), "histc", 3));
         end

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1999 - INRIA - Carlos Klimann
 // Copyright (C) 2003 - Jean-Sebastien Giet & Bruno Pincon
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [m] = tabul(X, order)
     //
@@ -56,10 +55,9 @@ function [m] = tabul(X, order)
     //          used gsort in place of sort : the sort function
     //          sorts strings vector not the usual way !
 
-    rhs = argn(2)
-    if rhs<1 | 2<rhs then
+    if nargin<1 | 2<nargin then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"tabul",1,2)),
-    elseif rhs == 1 then
+    elseif nargin == 1 then
         order = "d"
     end
     typeX = type(X)

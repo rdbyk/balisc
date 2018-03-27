@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
 function kdf=tokenpos(str,sep)
     //return a vector of indices giving the beginning of the included
     //tokens
-    if argn(2)<2 then sep=[" ",ascii(9)],end
+    if nargin<2 then sep=[" ",ascii(9)],end
 
     if size(str,"*")<> 1 then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A character string expected.\n"),"tokenpos",1));

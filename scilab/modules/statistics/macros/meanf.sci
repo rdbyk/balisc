@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1999 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [m]=meanf(val,fre,orient)
     //
@@ -36,9 +34,8 @@ function [m]=meanf(val,fre,orient)
     //References:  Wonacott, T.H. & Wonacott, R.J.; Introductory
     //Statistics, J.Wiley & Sons, 1990.
     //
-    [lhs, rhs] = argn(0);
 
-    if rhs == 0 | rhs == 1| rhs >= 4 then
+    if nargin == 0 | nargin == 1| nargin >= 4 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"meanf",2,3));
     end
 
@@ -61,9 +58,9 @@ function [m]=meanf(val,fre,orient)
         return
     end
 
-    if rhs == 2 then
+    if nargin == 2 then
         m=sum(val .* fre)/sum(fre);
-    elseif rhs==3 then
+    elseif nargin==3 then
         if orient=="*" then
             m=sum(val .* fre)/sum(fre)
         elseif orient=="r"|orient==1 then

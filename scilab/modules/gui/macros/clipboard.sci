@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004 - INRIA - Allan CORNET
 // Copyright (C) 20048- INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,12 +16,10 @@ function s=clipboard(varargin)
 
     if getscilabmode()<>"NWNI" then
 
-        rhs=argn(2)
-
-        if ( (rhs == 1) & (varargin(1) == "paste") ) then
+        if ( (nargin == 1) & (varargin(1) == "paste") ) then
             s=ClipBoard(varargin(1));
         else
-            if (rhs == 2) then
+            if (nargin == 2) then
                 if (varargin(1) == "copy") then
                     param=string(varargin(2));
                     ClipBoard(varargin(1),param);

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,16 +12,14 @@
 
 function uiDumpTree(tree, b)
 
-    [lhs,rhs]=argn(0);
-
     //Input arguments checking
-    if rhs <= 0 | rhs > 2 then
+    if nargin <= 0 | nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "uiDumpTree",1,2));
         return;
     end
 
     // Check 1st input : tree
-    if rhs >= 1 then
+    if nargin >= 1 then
         if (typeof(tree) == "uitree") then
             myTree = tree;
             myB = %F;
@@ -30,7 +28,7 @@ function uiDumpTree(tree, b)
             return;
         end
         // Check 2nd input : b
-        if rhs == 2 then
+        if nargin == 2 then
             if (type(b) == 4) then
                 myB = b;
             else
@@ -65,8 +63,3 @@ function uiDumpTree(tree, b)
     prettyPrint(myTree, myB, "");
 
 endfunction
-
-
-
-
-

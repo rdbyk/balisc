@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-
 
 function [dif]=nand2mean(sample1,sample2,conf)
     //
@@ -30,11 +27,10 @@ function [dif]=nand2mean(sample1,sample2,conf)
     //References:  Wonacott, T.H. & Wonacott, R.J.; Introductory
     //Statistics, J.Wiley & Sons, 1990.
     //
-    //
-    [lhs,rhs]=argn(0)
-    if rhs<2|rhs>3  then
+
+    if nargin<2|nargin>3  then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nand2mean",2,3)),
-    elseif rhs==2 then
+    elseif nargin==2 then
         conf=.975
     end
     if (sample1==[]|sample2==[]) then

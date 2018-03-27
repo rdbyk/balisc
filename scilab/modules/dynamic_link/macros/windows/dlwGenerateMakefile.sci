@@ -1,6 +1,6 @@
 // Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -8,7 +8,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//=============================================================================
+
 function Makename = dlwGenerateMakefile(name, ..
     tables, ..
     files, ..
@@ -20,12 +20,11 @@ function Makename = dlwGenerateMakefile(name, ..
     fflags, ..
     cc)
 
-    [lhs,rhs] = argn(0);
-    if rhs < 4 then
+    if nargin < 4 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): at least %d expected.\n"), "dlwGenerateMakefile", 4));
     end
 
-    if argn(2) < 6 then
+    if nargin < 6 then
         with_gateway = %t;
         ldflags = "";
         cflags = "";
@@ -78,7 +77,7 @@ function Makename = dlwGenerateMakefile(name, ..
     ilib_gen_Make_win32(name, tables, files, libs, libname, Makename, with_gateway, ldflags, cflags, fflags)
 
 endfunction
-//=============================================================================
+
 function ilib_gen_Make_win32(name, ..
     tables, ..
     files, ..
@@ -292,4 +291,3 @@ function ilib_gen_Make_win32(name, ..
     setenv("DEBUG_SCILAB_DYNAMIC_LINK", debugVal);
 
 endfunction
-//=============================================================================

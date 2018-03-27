@@ -1,8 +1,7 @@
-//------------------------------------------------------------------------------------------------------------
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Pierre MARECHAL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,15 +10,11 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-//
 // Returns the last day of the year and month by corresponding element of Matrix Y and M
-//------------------------------------------------------------------------------------------------------------
 
 function E=eomday(Y,M)
 
-    rhs=argn(2);
-
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"eomday", 2));
     end
 

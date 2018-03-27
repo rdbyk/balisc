@@ -2,6 +2,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge STEER
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -14,7 +15,7 @@
 //if on call a function stored in tlist to produce more than one output
 //argument the containing tlist is damaged when the function returns.
 //simple test
-function [d, s,p] = data_sum_1(val);d=val; s=argn(1);p=88;endfunction;
+function [d, s,p] = data_sum_1(val);d=val; s=nargout;p=88;endfunction;
 tlist1 = tlist(['x';'data';'fn'], 5, data_sum_1);
 [d1,s1,p1] = tlist1.fn(4);
 if d1<>4|s1<>3|p1<>88 then bugmes();quit;end

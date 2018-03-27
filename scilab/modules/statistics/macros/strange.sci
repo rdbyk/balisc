@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [r] = strange(x,orien)
     //
@@ -22,19 +21,18 @@ function [r] = strange(x,orien)
     //[r]=range(x,'c') (or equivalently [r]=range(x,2)) give a column vector
     //with the range of each row.
     //
-    //
-    [lhs,rhs] = argn(0)
-    if rhs==0 then 
+
+    if nargin==0 then 
         msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg,"strange",0,2))
     end
-    if rhs==1 then
+    if nargin==1 then
         if x==[]
             r = %nan
         else
             r = max(x) - min(x)
         end
-    elseif rhs==2 then
+    elseif nargin==2 then
         if orien=="r" | orien==1 then
             r = max(x,"r")-min(x,"r")
         elseif orien=="c" | orien==2 then

@@ -2,6 +2,7 @@
 // Copyright (C) INRIA -
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2016, 2017 - Samuel GOUGEON
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,10 +30,8 @@ function t=sci2exp(a,nom,lmax)
     "x=strsubst(x,''Inf'',''%inf'')"
     ])
 
-
-    [lhs,rhs]=argn(0)
     $ // import global variable $ in sci2exp context for efficiency
-    select rhs
+    select nargin
     case 1 then
         named=%f
         lmax=0
@@ -140,8 +139,7 @@ function t=sci2exp(a,nom,lmax)
 endfunction
 
 function t=str2exp(a,lmax)
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
+    if nargin<2 then lmax=0,end
 
     [m,n]=size(a),
     dots="."+"."
@@ -193,8 +191,7 @@ function t=str2exp(a,lmax)
 endfunction
 
 function t=mat2exp(a,lmax)
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
+    if nargin<2 then lmax=0,end
     if size(a,"*")==0 then t="[]",return,end
     [m,n]=size(a);
     if m<0 then
@@ -280,8 +277,7 @@ endfunction
 
 function t=pol2exp(a,lmax)
     $
-    if rhs<2 then lmax = 0, end
-    [lhs,rhs] = argn(0)
+    if nargin<2 then lmax = 0, end
 
     [m,n]=size(a),var=" ";lvar=1
     var=varn(a),lvar=length(var);
@@ -368,8 +364,7 @@ function t=pol2exp(a,lmax)
 endfunction
 
 function t = glist2exp(listType, l, lmax)
-    [lhs,rhs] = argn(0)
-    if rhs<3 then lmax = 0, end
+    if nargin<3 then lmax = 0, end
     dots = "."+".";
     isCell = typeof(l)=="ce";
     if isCell then
@@ -434,7 +429,7 @@ function t = mlist2exp(l, lmax)
 endfunction
 
 function t = scalarstruct2exp(l, lmax)
-    if argn(2)<2 then lmax = 0, end
+    if nargin<2 then lmax = 0, end
     dots = "."+".";
     t = "struct(";
     fields = fieldnames(l);
@@ -470,8 +465,7 @@ endfunction
 
 function t=log2exp(a,lmax)
     $;
-    if rhs<2 then lmax = 0, end
-    [lhs,rhs] = argn(0)
+    if nargin<2 then lmax = 0, end
     [m,n]=size(a),
     a1=matrix(a,m*n,1)
     F="%f"
@@ -512,8 +506,7 @@ function t=log2exp(a,lmax)
 endfunction
 
 function t=func2exp(a,lmax)
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
+    if nargin<2 then lmax=0,end
     [out,in,text]=string(a)
     if out==[] then out=emptystr(),end
     text=str2exp(text,lmax)
@@ -531,8 +524,7 @@ function t=func2exp(a,lmax)
 endfunction
 
 function t=imp2exp(a,lmax)
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
+    if nargin<2 then lmax=0,end
     v=[a(1),a(2),a(3)]
     if a(2)==1 then
         t=sci2exp(a(1))+":"+sci2exp(a(3))
@@ -542,8 +534,7 @@ function t=imp2exp(a,lmax)
 endfunction
 
 function t=sp2exp(a,lmax)
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
+    if nargin<2 then lmax=0,end
     dots="..";
     [ij,v,mn]=spget(a)
     t=sci2exp(ij,lmax)
@@ -581,9 +572,8 @@ endfunction
 
 function t=h2exp(a,lmax) //Only for figure and uicontrol
     $;
-    if rhs<2 then lmax=0
+    if nargin<2 then lmax=0
     end
-    [lhs,rhs]=argn(0);
 
     f1="''parent'', ";
     f2="''children'', ";

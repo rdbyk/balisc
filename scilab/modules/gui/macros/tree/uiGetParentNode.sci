@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,39 +12,34 @@
 
 function parentNode = uiGetParentNode(tree, node)
 
-    [lhs,rhs]=argn(0);
-
     //Input arguments checking
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "uiGetParentNode",2));
         return;
     end
 
     // Check 1st and 2nd inputs : tree & (node or position)
-    if rhs == 2 then
-        if (typeof(tree) == "uitree") then
-            myTree = tree;
-            isNode = %F;
-            isPosition = %F;
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiGetParentNode",1));
-            return;
-        end
-
-        if (typeof(node) == "uitree") then
-            myNode = node;
-            isNode = %T;
-
-        elseif (type(node) == 10) then
-            myPosition = node;
-            isPosition = %T;
-
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiGetParentNode",2));
-            return;
-        end
+    if (typeof(tree) == "uitree") then
+        myTree = tree;
+        isNode = %F;
+        isPosition = %F;
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiGetParentNode",1));
+        return;
     end
 
+    if (typeof(node) == "uitree") then
+        myNode = node;
+        isNode = %T;
+
+    elseif (type(node) == 10) then
+        myPosition = node;
+        isPosition = %T;
+
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiGetParentNode",2));
+        return;
+    end
 
     // Find parent node
     function [parentNode, found]= findParent(myTree, sonNode)

@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,8 +36,7 @@ function [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)
     //
     // interface  F.D. from Slicot-fstair
     // T. Beelen's routines
-    [LHS,RHS]=argn(0);
-    if RHS==1 then [E,A]=pen2ea(E);end
+    if nargin==1 then [E,A]=pen2ea(E);end
     [Q,Z,Ec,Ac,Qd,Zd,numbeps]=quaskro(E,A);
     rows=Qd(1)+Qd(2)+1:Qd(1)+Qd(2)+Qd(3);
     cols=Zd(1)+Zd(2)+1:Zd(1)+Zd(2)+Zd(3);

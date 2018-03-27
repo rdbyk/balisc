@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,9 +18,8 @@ function [S,P,D,index]=projspec(A,tol)
     //D = Nilpotent operator at 0
     //index = index of the 0 eigenvalue
     //!
-    [LHS,RHS]=argn(0)
     [n,n]=size(A);
-    if RHS==1 then tol=1.d-6;end;
+    if nargin==1 then tol=1.d-6;end;
     // A=0 ?
     if norm(A,1) < %eps*n*n
         P=eye(A),D=A,S=0*P;index=1;

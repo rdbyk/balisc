@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017 - ESI - Antoine ELIAS
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -18,9 +19,9 @@
 
 //wrong argn(1) in MList overload
 function varargout = %mymlist_e(varargin)
-    varargout(1) = argn(1);
-    varargout(2) = argn(2);
-    for i = 3:argn(1)
+    varargout(1) = nargout;
+    varargout(2) = nargin;
+    for i = 3:nargout
         varargout(i) = i;
     end
 endfunction

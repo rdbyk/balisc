@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,36 +12,32 @@
 
 function myNewTree = uiDeleteNode(tree, position)
 
-    [lhs,rhs]=argn(0);
-
     //Input arguments checking
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "uiDeleteNode",2));
         return;
     end
 
     // Check 1st and 2nd inputs : tree & (position or node)
-    if rhs == 2 then
-        if (typeof(tree) == "uitree") then
-            myTree = tree;
-            isPosition = %F;
-            isNode = %F;
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiDeleteNode",1));
-            return;
-        end
+    if (typeof(tree) == "uitree") then
+        myTree = tree;
+        isPosition = %F;
+        isNode = %F;
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiDeleteNode",1));
+        return;
+    end
 
-        if (type(position) == 10) then
-            myPosition = position;
-            isPosition = %T;
+    if (type(position) == 10) then
+        myPosition = position;
+        isPosition = %T;
 
-        elseif (typeof(position) == "uitree") then
-            myNode = position;
-            isNode = %T;
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiDeleteNode",2));
-            return;
-        end
+    elseif (typeof(position) == "uitree") then
+        myNode = position;
+        isNode = %T;
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiDeleteNode",2));
+        return;
     end
 
     // Check if the given position exist

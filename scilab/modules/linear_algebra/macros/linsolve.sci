@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +15,6 @@ function [x0,kerA]=linsolve(A,b,x0)
     // Finds all x solution to Ax+b=0;
     // x0=particular solution; kerA=nullspace of A
     // Any x=x0+kerA*w with arbitrary w solves A*x+b=0
-    [LHS,RHS]=argn(0);
     select type(A)
     case 1 then        //full matrix
         Ab=[A,b];[ma,na]=size(Ab);
@@ -29,7 +27,7 @@ function [x0,kerA]=linsolve(A,b,x0)
         end
         W=W*W2;
         kerA=W(1:na-1,1:na-rk-1);
-        if RHS==3 then
+        if nargin==3 then
             if norm(A*x0+b,1)<%tol then
                 return;
             end
@@ -48,13 +46,13 @@ function [x0,kerA]=linsolve(A,b,x0)
         end
         [ptr,rkA]=lufact(A,[%tol,0.001]);
         [P,L,U,Q]=luget(ptr);
-        if RHS==3 then
+        if nargin==3 then
             if norm(A*x0+b,1)>%tol then
                 x0=lusolve(ptr,-b);
                 disp("recomputing initial guess");
             end
         end
-        if RHS==2 then
+        if nargin==2 then
             x0=lusolve(ptr,-b);
         end
         ludel(ptr);

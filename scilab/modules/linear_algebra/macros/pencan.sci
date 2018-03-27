@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,8 +21,7 @@ function [Q,M,i1]=pencan(E,A)
     //                         0,I ]
     //See glever,  penlaur
     //!
-    [LHS,RHS]=argn(0);
-    if RHS==1 then [E,A]=pen2ea(E);end
+    if nargin==1 then [E,A]=pen2ea(E);end
     [Si,Pi,Di,index]=penlaur(E,A);
     [Q1,M1]=fullrf(Si);
     [Q2,M2]=fullrf(Pi);

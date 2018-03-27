@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2003 - INRIA - Carlos Klimann
 // Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-
 
 function [s]=nancumsum(x,orient)
     //
@@ -35,12 +33,11 @@ function [s]=nancumsum(x,orient)
     //s(i,:)=nancumsum(x(i,:))
     //
 
-    [lhs, rhs] = argn(0)
-    if lhs > 1 then
+    if nargout > 1 then
         error(msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"),"nancumsum",1))
     end
     
-    if rhs < 1 | rhs > 2 then
+    if nargin < 1 | nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"nancumsum",1,2))
     end
     
@@ -54,7 +51,7 @@ function [s]=nancumsum(x,orient)
         return
     end
     
-    if rhs == 1 then
+    if nargin == 1 then
         orient = "*";
     else
         if and(type(orient) <> [1  10])  then

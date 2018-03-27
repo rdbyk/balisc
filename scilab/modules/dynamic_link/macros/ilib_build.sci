@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC/INRIA
 // Copyright (C) DIGITEO - 2009-2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//=============================================================================
+
 function ilib_build(ilib_name, ..
     table, ..
     files, ..
@@ -27,8 +27,7 @@ function ilib_build(ilib_name, ..
         return;
     end
 
-    [lhs,rhs] = argn(0);
-    if rhs < 4 then
+    if nargin < 4 then
         error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_build"));
         return
     end
@@ -54,7 +53,7 @@ function ilib_build(ilib_name, ..
         error(msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_build", 3));
     end
 
-    if rhs > 4 then
+    if nargin > 4 then
         if (makename <> [] & makename <> "") then
             warning(msprintf(_("%s: Wrong value for input argument #%d: """" or ""[]"" expected.\n"), "ilib_build", 5));
         end
@@ -65,11 +64,11 @@ function ilib_build(ilib_name, ..
     end
 
 
-    if rhs <= 5 then ldflags = ""; end
-    if rhs <= 6 then cflags  = ""; end
-    if rhs <= 7 then fflags  = ""; end
-    if rhs <= 8 then ismex  = %f; end
-    if rhs <= 9 then cc  = ""; end
+    if nargin <= 5 then ldflags = ""; end
+    if nargin <= 6 then cflags  = ""; end
+    if nargin <= 7 then fflags  = ""; end
+    if nargin <= 8 then ismex  = %f; end
+    if nargin <= 9 then cc  = ""; end
 
     if getos() == "Windows" then
         if ~isdef("makename") | (makename == "") | (makename == []) then
@@ -143,5 +142,3 @@ function ilib_build(ilib_name, ..
     ilib_gen_cleaner(makename, "loader.sce", [libn; file_gw_name']);
 
 endfunction
-//=============================================================================
-

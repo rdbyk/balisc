@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,6 +9,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function t=trimmean(x,discard,orien, verbose)
     //
     //A  trimmed mean  is calculated  by discarding  a certain
@@ -72,8 +73,7 @@ function t=trimmean(x,discard,orien, verbose)
     //
     // modified by Bruno Pincon 2006-08-12 (to fix bug 2083)
 
-    [lhs,rhs]=argn()
-    if rhs < 1 | rhs > 4 then
+    if nargin < 1 | nargin > 4 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"trimmean",1,4))
     end
 

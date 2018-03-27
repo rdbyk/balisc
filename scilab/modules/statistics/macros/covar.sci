@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1999 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [s]=covar(x,y,fre)
     //
@@ -23,11 +21,10 @@ function [s]=covar(x,y,fre)
     //References: Wonacott,  T.H. & Wonacott, R.J.; Introductory Statistics,
     //J.Wiley & Sons, 1990.
     //
-    //
     //small correction (bug number 1072) date : 8 nov 2004
     //
-    [lhs,rhs]=argn(0)
-    if rhs <> 3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"covar",3)), end
+
+    if nargin <> 3 then error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"covar",3)), end
     if x==[] | y==[] then s=%nan; return, end
     [lfre cfre]=size(fre);
     [lx cx]=size(x)

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,19 +11,18 @@
 // along with this program.
 
 function [d, v] = eigs(varargin)
-    lhs = argn(1);
-    rhs = argn(2);
-    if(rhs == 0 | rhs > 6)
+
+    if(nargin == 0 | nargin > 6)
         error(msprintf(gettext("%s : Wrong number of input arguments : %d to %d expected.\n"), "eigs", 1, 6));
     end
 
-    if(rhs >= 1)
+    if(nargin >= 1)
         if((typeof(varargin(1)) <> "constant")  & typeof(varargin(1)) <> "function" & (typeof(varargin(1)) <> "sparse") | varargin(1) == [])
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A full or sparse square matrix or a function expected"), "eigs", 1));
         end
     end
 
-    if(rhs >= 1 & typeof(varargin(1)) <> "function")
+    if(nargin >= 1 & typeof(varargin(1)) <> "function")
         if(isreal(varargin(1)))
             resid = rand(size(varargin(1), "r"), 1);
         else
@@ -32,7 +31,7 @@ function [d, v] = eigs(varargin)
         A = varargin(1);
     end
 
-    if(rhs > 1 & typeof(varargin(1)) ==  "function")
+    if(nargin > 1 & typeof(varargin(1)) ==  "function")
         if(size(varargin(2)) <> 1)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive integer expected if the first input argument is a function."), "eigs",2));
         end
@@ -51,7 +50,7 @@ function [d, v] = eigs(varargin)
     info = 0;
     B = [];
     sigma = "LM";
-    if(rhs == 1)
+    if(nargin == 1)
         if(~issparse(varargin(1)))
             info = int32(0);
         end
@@ -62,7 +61,7 @@ function [d, v] = eigs(varargin)
     end
 
     if(typeof(varargin(1)) <> "function")
-        select rhs
+        select nargin
         case 1
             nev =  min(size(A, "r"), 6);
         case 2
@@ -115,7 +114,7 @@ function [d, v] = eigs(varargin)
             end
         end
 
-        select lhs
+        select nargout
         case 1
             if(issparse(A) | issparse(B))
                 d = speigs(A, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info);
@@ -130,7 +129,7 @@ function [d, v] = eigs(varargin)
             end
         end
     else
-        select rhs
+        select nargin
         case 2
             nev = min(Asize, 6)
 
@@ -187,7 +186,7 @@ function [d, v] = eigs(varargin)
                 end
             end
         end
-        select lhs
+        select nargout
         case 1
             d = feigs(Af, Asize, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
         case 2
@@ -197,9 +196,9 @@ function [d, v] = eigs(varargin)
 endfunction
 
 function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, resid, info)
-    lhs = argn(1);
+
     rvec = 0;
-    if(lhs > 1)
+    if(nargout > 1)
         rvec = 1;
     end
 
@@ -658,9 +657,9 @@ endfunction
 
 
 function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, cholB, resid, info, a_real, a_sym)
-    lhs = argn(1);
+
     rvec = 0;
-    if(lhs > 1)
+    if(nargout > 1)
         rvec = 1;
     end
 

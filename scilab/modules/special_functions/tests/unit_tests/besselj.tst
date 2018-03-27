@@ -2,13 +2,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 warning("off");
 
 function r=testresult(eps)
-  if argn(2)<=0 then eps=1d-10;end
+  if nargin<=0 then eps=1d-10;end
   if or(isnan(real(y))<>isnan(real(yref)))  then r=%t,return,end;
   if or(isnan(imag(y))<>isnan(imag(yref)))  then r=%t,return,end;
   if or(size(y)<>size(yref)) then r=%t,return,end;

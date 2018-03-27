@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Sylvestre LEDRU
 // Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-//=============================================================================
 function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
 
     // This function is restricted to Linux/Unix user only
@@ -20,8 +19,7 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
         return;
     end
 
-    [lhs,rhs] = argn(0);
-    if rhs <> 5 then
+    if nargin <> 5 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"gencompilationflags_unix",5));
         return
     end
@@ -83,4 +81,3 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
     end
 
 endfunction
-//=============================================================================

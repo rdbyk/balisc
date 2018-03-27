@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,9 +29,9 @@ function [Q,Z,Ec,Ac,Qd,Zd,numbeps]=quaskro(E,A,tol)
     // interface  from Slicot-fstair (F.D.)
     // T. Beelen's routines
     //!
-    [LHS,RHS]=argn(0);
-    if RHS==1 then [E,A]=pen2ea(E);tol=1.d-10;end
-    if RHS==2 then
+
+    if nargin==1 then [E,A]=pen2ea(E);tol=1.d-10;end
+    if nargin==2 then
         if type(E)==2 then [E,A]=pen2ea(E);end  //quaskro(pencil,tol)
         if type(E)==1 then tol=1.d-10;end   //quaskro(E,A);
     end

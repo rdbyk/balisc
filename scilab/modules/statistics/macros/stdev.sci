@@ -3,6 +3,7 @@
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2013 - Scilab Enteprises - Paul Bignier: added given mean
 // Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/15144
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,9 +32,7 @@ function sd = stdev(x, o, m)
     //divided by size(x,"*"). Otherwise ("sample standard deviation"), it is divided by size(x,"*")-1.
     //
 
-    [lhs, rhs] = argn(0);
-
-    if rhs < 1 then
+    if nargin < 1 then
         msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg, "stdev", 1, 3))
     end
@@ -61,7 +60,7 @@ function sd = stdev(x, o, m)
         end
     end
 
-    if rhs < 2 then
+    if nargin < 2 then
         o = "*"
         on = 0
     else
@@ -87,7 +86,7 @@ function sd = stdev(x, o, m)
     end
 
     if (length(size(x)) > 2) then
-        if rhs == 3 then
+        if nargin == 3 then
             sd = %hm_stdev(x, on, m);
         else
             sd = %hm_stdev(x, on);
@@ -96,7 +95,7 @@ function sd = stdev(x, o, m)
     end
 
     siz = size(x);
-    if rhs == 3 then
+    if nargin == 3 then
         if typeof(m) ~= "constant" | ~isreal(m) then
             tmp = _("%s: Wrong type for input argument #%d: A real matrix expected.\n")
             error(msprintf(tmp, "stdev", 3))
@@ -131,27 +130,27 @@ function sd = stdev(x, o, m)
         return
     end
 
-    if rhs == 3 & isnan(m) then
+    if nargin == 3 & isnan(m) then
         // This will compute the "biased variance": the denominator will be size(x,orien)
         // but the a priori mean is not considered as provided.
-        rhs = 2
+        nargin = 2
     end
 
     // Remove the mean
     if on == 0 then
-        if rhs == 3
+        if nargin == 3
             y = x - m;
         else
             y = x - mean(x);
         end
     elseif on == 2 then
-        if rhs == 3
+        if nargin == 3
             y = x - m*ones(x(1,:));
         else
             y = x - mean(x,on)*ones(x(1,:));
         end
     elseif on == 1 then
-        if rhs == 3
+        if nargin == 3
             y = x - ones(x(:,1))*m;
         else
             y = x - ones(x(:,1))*mean(x,1);
@@ -166,7 +165,7 @@ function sd = stdev(x, o, m)
     if mn == 1 then
         sd = 0*y;
     else
-        if rhs <= 2 & exists("m", "local") == 0 then // If m is provided but rhs=2, that means we want the biased deviation
+        if nargin <= 2 & exists("m", "local") == 0 then // If m is provided but nargin=2, that means we want the biased deviation
             sd = sqrt(sum(y.^2,o)/(mn-1));
         else
             sd = sqrt(sum(y.^2,o)/mn);

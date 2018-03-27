@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,11 +22,10 @@ function [w,rk]=colcomp(a,flag,tol)
     //the ma-rk first columns of w span the kernel of a when size(a)=(na,ma)
 
     [ma,na]=size(a)
-    [lhs,rhs]=argn(0)
     if a==[] then w=[];rk=0;return;end
     if norm(a,1) < sqrt(%eps)/10 then rk=0,w=eye(na,na),return,end
-    if rhs ==2 then tol=sqrt(%eps)*norm(a,1)*max(ma,na),end
-    if rhs==1 then flag="svd",tol=sqrt(%eps)*norm(a,1)*max(ma,na);end
+    if nargin ==2 then tol=sqrt(%eps)*norm(a,1)*max(ma,na),end
+    if nargin==1 then flag="svd",tol=sqrt(%eps)*norm(a,1)*max(ma,na);end
     select flag
     case "qr" then [q,r,rk,e]=qr(a',tol);
         //w=[q(:,rk+1:ma),q(:,1:rk)]; <-- le  ma me parait suspect je met na

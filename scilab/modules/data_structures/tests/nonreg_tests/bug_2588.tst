@@ -2,6 +2,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2006-2009 - INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -18,7 +19,7 @@
 
 M=[];
 function y=foo(a)
-  if argn(2)==0 then
+  if nargin==0 then
     y=%s
   else
     y=a

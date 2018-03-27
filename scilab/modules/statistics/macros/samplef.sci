@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2003 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function s = samplef(n, X, f, orient)
     //
@@ -40,8 +39,8 @@ function s = samplef(n, X, f, orient)
     //with replacement, from the columns  of X.  The length of f
     //must be equal to the number of columns of X.
     //
-    [lhs, rhs] = argn(0)
-    if rhs < 3 | rhs > 4 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "samplef", 3, 4)), end
+
+    if nargin < 3 | nargin > 4 then error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "samplef", 3, 4)), end
     if X == [] then s = []; return; end
 
     // Frequencies cannot be negative
@@ -50,7 +49,7 @@ function s = samplef(n, X, f, orient)
     end
 
     // Setting default value for 4th argument
-    if rhs == 3 then
+    if nargin == 3 then
         orient = "*"
     end
 

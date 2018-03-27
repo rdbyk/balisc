@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-//
 // Copyright (C) 1999 - INRIA - Carlos Klimann
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/15144
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,9 +20,8 @@ function [y] = mean(x,orient)
     //    - mean([]) return nan but mean([],orient) return [] (this
     //      is strange but corresponds to matlab behavior)
 
-    [lhs,rhs] = argn()
     // some arguments checking
-    if rhs == 0 | rhs > 2 then
+    if nargin == 0 | nargin > 2 then
         msg = gettext("%s: Wrong number of input argument: %d to %d expected.\n");
         error(msprintf(msg, "mean", 1, 2));
     else
@@ -41,7 +40,7 @@ function [y] = mean(x,orient)
             end
         end
 
-        if rhs == 2 then
+        if nargin == 2 then
             if orient == "r" then
                 orient = 1;
             end
@@ -67,7 +66,7 @@ function [y] = mean(x,orient)
         end
     end
 
-    if rhs == 1 then
+    if nargin == 1 then
         if x == [] then
             y = %nan;
             return

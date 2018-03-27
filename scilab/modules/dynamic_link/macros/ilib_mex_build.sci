@@ -2,8 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) 2008 - INRIA - Sylvestre LEDRU (add cc options)
 // Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//=============================================================================
+
 function ilib_mex_build(ilib_name, table, files, libs, makename, ldflags, cflags, fflags, cc)
 
     if ~haveacompiler() then
@@ -19,13 +19,12 @@ function ilib_mex_build(ilib_name, table, files, libs, makename, ldflags, cflags
         return;
     end
 
-    [lhs,rhs] = argn(0);
-    if rhs < 4 then
+    if nargin < 4 then
         error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_mex_build"));
         return
     end
 
-    if rhs > 4 & makename <> [] & makename <> "" then
+    if nargin > 4 & makename <> [] & makename <> "" then
         warning(msprintf(_("%s: Wrong value for input argument #%d: """" or ""[]"" expected.\n"),"ilib_mex_build", 5));
     end
 
@@ -37,10 +36,10 @@ function ilib_mex_build(ilib_name, table, files, libs, makename, ldflags, cflags
         error(msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_mex_build", 3));
     end
 
-    if rhs <= 5 then ldflags = ""; end
-    if rhs <= 6 then cflags  = ""; end
-    if rhs <= 7 then fflags  = ""; end
-    if rhs <= 8 then cc  = ""; end
+    if nargin <= 5 then ldflags = ""; end
+    if nargin <= 6 then cflags  = ""; end
+    if nargin <= 7 then fflags  = ""; end
+    if nargin <= 8 then cc  = ""; end
 
     if ~isdef("makename") then
         makename = "";
@@ -57,4 +56,3 @@ function ilib_mex_build(ilib_name, table, files, libs, makename, ldflags, cflags
     ilib_build(ilib_name, table, files, libs, makename, ldflags, cflags, fflags, %t, cc);
 
 endfunction
-//=============================================================================

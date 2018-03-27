@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
 // Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,37 +10,36 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//=============================================================================
+
 function ilib_gen_loader(varargin)
     // varargin (max) name, tables, libs, libname, flag, loadername
-    [lhs, rhs] = argn(0);
 
-    if and(rhs <> [2 3 6]) then
+    if and(nargin <> [2 3 6]) then
         error(msprintf(_("%s: Wrong number of input argument(s): %d,%d or %d expected.\n"), "ilib_gen_loader", 2, 3, 6));
     end
 
     name = varargin(1);
     tables = varargin(2);
 
-    if rhs > 2 then
+    if nargin > 2 then
         libs = varargin(3);
     else
         libs = [];
     end
 
-    if rhs > 3 then
+    if nargin > 3 then
         libname = varargin(4);
     else
         libname = "";
     end
 
-    if rhs > 4 then
+    if nargin > 4 then
         flag = varargin(5);
     else
         flag = "";
     end
 
-    if rhs > 5 then
+    if nargin > 5 then
         loadername = varargin(6);
         if isempty(loadername) then
             loadername = "loader.sce";
@@ -259,4 +258,3 @@ function bOK = generateLoader(name, tables, libs, libname, flag, loadername)
 
     bOK = %T;
 endfunction
-//=============================================================================

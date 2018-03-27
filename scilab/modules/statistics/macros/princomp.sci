@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [facpr,comprinc,lambda,tsquare]=princomp(x,eco)
     //
@@ -28,7 +27,6 @@ function [facpr,comprinc,lambda,tsquare]=princomp(x,eco)
     //the projection  onto the k dimensional  subspace must be
     //maximal.
     //
-
     //References: Saporta, Gilbert, Probabilites,  Analyse des
     //Donnees et Statistique, Editions Technip, Paris, 1990.
     //
@@ -36,11 +34,10 @@ function [facpr,comprinc,lambda,tsquare]=princomp(x,eco)
     //  author: carlos klimann
     //
 
-    [lhs, rhs] = argn(0);
-    if rhs == 0 then
+    if nargin == 0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"princomp",1,2))
     end
-    if rhs<2 then eco=%f,end
+    if nargin<2 then eco=%f,end
     if type(eco)<>4 then
         error(msprintf(_("%s: Wrong type for input argument #%d: Boolean expected."),"princomp",2))
     end

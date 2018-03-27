@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1987-2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,11 +21,10 @@ function [w,rk]=rowcomp(A,flag,tol)
     if A==[] then w=[];rk=0;return;end
 
     [ma,na]=size(A)
-    rhs=argn(2)
 
     if norm(A,1) < sqrt(%eps)/10 then rk=0,w=eye(ma,ma),return;end
 
-    select rhs
+    select nargin
     case 1 then// default values for flag and tol
         flag="svd",tol=sqrt(%eps)*norm(A,1);
     case 2 then //default value for tol
@@ -45,5 +43,3 @@ function [w,rk]=rowcomp(A,flag,tol)
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"rowcomp",2,"''qr'',''svd''"));
     end
 endfunction
-
-

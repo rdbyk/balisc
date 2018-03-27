@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +22,7 @@
 
 function tree_show(x,titletop)
 
-    if argn(2) < 1 then
+    if nargin < 1 then
         error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "tree_show", 1, 2));
     end
 
@@ -29,45 +30,6 @@ function tree_show(x,titletop)
         error("Wrong type; input must be a list or an Xcos object.")
     end
 
-    //-- tt = ["set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
-    //--       "if {[lsearch $auto_path $BWpath]==-1} { set auto_path [linsert $auto_path 0 $BWpath] }"
-    //--       "package require BWidget 1.8.0"
-    //-- //      'proc ppx {label} {global xmind; set xmind $label;ScilabEval '"%tcl_par=''1'''"}'
-    //-- //      'proc qqx {label} {global xmind; set xmind $label;ScilabEval '"%tcl_par=''3'''"}'
-    //--       'catch {destroy .ss}'
-    //--       'toplevel .ss'
-    //--       'scrollbar .ss.ysb -command {.ss.t yview}'
-    //--       'scrollbar .ss.xsb -command {.ss.t xview} -orient horizontal'
-    //--       'Tree .ss.t -xscrollcommand '".ss.xsb set'" -yscrollcommand '".ss.ysb set'" "+...
-    //--       " -width 30'
-    //--       'grid .ss.t .ss.ysb -sticky nsew'
-    //--       ' grid .ss.xsb -sticky ew'
-    //--       ' grid rowconfig    .ss 0 -weight 1'
-    //--       ' grid columnconfig .ss 0 -weight 1'
-    //--      ];
-
-    //-- for i=1:size(tt,1)
-    //--   TCL_EvalStr(tt(i))
-    //-- end
-
-
-    //-- if argn(2)>1 then
-    //--    tt = 'wm title .ss {'+titletop+'}';
-    //-- elseif type(x)<>15 then
-    //--    v = getfield(1,x);
-    //--    tt = 'wm title .ss '+v(1);
-    //-- else
-    //--    tt = 'wm title .ss list';
-    //-- end
-
-    //-- TCL_EvalStr(tt)
-    Path = "root"
-    tree = uiCreateNode("Root");
-    tree = crlist3(x,Path, tree);
-    uiDisplayTree(tree);
-
-    //-- TCL_EvalStr(' .ss.t bindText <Double-1> {ppx}')
-    //-- TCL_EvalStr(' .ss.t bindText <3> {qqx}')
 endfunction
 
 
@@ -89,14 +51,12 @@ function java = crlist3(x,Path, java)
         if type(o)==16 | type(o)==17 | type(o)==128 then
             w=getfield(1,o);
             titre2=titre+" ("+w(1)+")";
-            //-- 	TCL_EvalStr('.ss.t insert end '+Path+' '+path+' -image [Bitmap::get folder] -text {'+titre2+'}')
             currentNode = uiCreateNode(titre2);
             currentNode = crlist3(o,path,currentNode); //* recursive
             java = uiConcatTree(java, currentNode);
 
         elseif type(o)==15 then
             titre2=titre;
-            //-- 	TCL_EvalStr('.ss.t insert end '+Path+' '+path+' -image [Bitmap::get folder] -text {'+titre2+'}')
             currentNode = uiCreateNode(titre2);
             currentNode = crlist3(o,path,currentNode); //* recursive
             java = uiConcatTree(java, currentNode);
@@ -111,11 +71,8 @@ function java = crlist3(x,Path, java)
                 tts = typeof(o);
             end
             titre2=titre+": "+tts  ;
-            //--       TCL_EvalStr('set yy {'+titre2+'}')
-            //--       TCL_EvalStr('.ss.t insert end '+Path+' '+path+' -text $yy')
             java = uiConcatTree(java, uiCreateNode(titre2));
         end
     end
 
 endfunction
-

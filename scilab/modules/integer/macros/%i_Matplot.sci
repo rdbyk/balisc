@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -42,7 +42,7 @@ function %i_Matplot(z,strf,rect,nax,frameflag,axesflag)
         end
         opts=[opts,"axesflag=axesflag"]  ,
     end
-    if size(opts,2)+1-narg <argn(2) then
+    if size(opts,2)+1-narg < nargin then
         error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"%%i_Matplot","strf","rect","nax","frameflag","axesflag"));
     end
 

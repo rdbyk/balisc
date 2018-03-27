@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,9 @@
 // along with this program.
 
 function [string_list,err] = list_param(list_name)
-    [nargout,nargin] = argn();
+
     string_list = [];
+
     if typeof(list_name)=="plist" then
         string_list = getfield(1,list_name);
         string_list = string_list(2:$);
@@ -24,4 +25,5 @@ function [string_list,err] = list_param(list_name)
             error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "list_param", 1, "plist"));
         end
     end
+
 endfunction

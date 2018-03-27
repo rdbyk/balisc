@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,9 +29,7 @@ function ret = who_user(%__bPrint__)
     nams(ke)=[];mem(ke)=[];
     ret = nams
 
-    [%_lhs, %_rhs] = argn();
-
-    if %_rhs == 0 then
+    if nargin == 0 then
         %__bPrint__ = %t;
     end
 

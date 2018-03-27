@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [s]=stdevf(x,fre,o)
     //
@@ -33,18 +32,16 @@ function [s]=stdevf(x,fre,o)
     //deviation of  each row of x, each  value counted with the multiplicity
     //indicated by the corresponding value of fre.
     //
-    //
-    rhs=argn(2)
-    if rhs<2 then
+
+    if nargin<2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"stdevf",2,3)),
-    elseif rhs==2 then
+    elseif nargin==2 then
         o="*"
     end
     if or(size(x)<>size(fre)) then
         error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"),"stdevf",1,2))
     end
     if x==[] then s=%nan;return,end
-
 
     //remove the median
     if o=="*" then

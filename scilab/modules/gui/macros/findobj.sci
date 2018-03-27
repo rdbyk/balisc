@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
 // Copyright (C) 2008 - DIGITEO - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,16 +11,15 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function h =  findobj(propertyName, propertyValue)
+function h = findobj(propertyName, propertyValue)
 
-    rhs = argn(2);
-    if rhs<> [1 2] then
+    if nargin<> [1 2] then
         msg = gettext("%s: Wrong number of input arguments: %d or %d expected.\n");
         error(msprintf(msg, "findobj", 1, 2));
         return;
     end
 
-    if rhs == 1 then
+    if nargin == 1 then
         h = get(propertyName);
         return
     end
@@ -63,10 +62,8 @@ function h =  findobj(propertyName, propertyValue)
     scf(currentFig);
 
 endfunction
-//-----------------------------------------------------------------------------
+
 function hFound = findMatchingChild(children, propertyName, propertyValue)
-    // Copyright DIGITEO 2008
-    // Vincent COUVERT
 
     hFound = []
 
@@ -90,4 +87,3 @@ function hFound = findMatchingChild(children, propertyName, propertyValue)
     end
 
 endfunction
-//-----------------------------------------------------------------------------

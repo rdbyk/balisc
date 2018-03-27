@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function  y=num2cell(x,dimens)
+function y = num2cell(x,dimens)
     //
     // NUM2CELL function converts an array of double or string or boolean into a cell array
     // if there is just one input argument x, then it returns a cell which has the same size and the same components than x.
@@ -32,9 +32,9 @@ function  y=num2cell(x,dimens)
     end
     xsize=size(x)
     // check the number of input arguments
-    if argn(2)<1 then
+    if nargin<1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"num2cell",1));
-    elseif argn(2)==1 then
+    elseif nargin==1 then
         for i=1:size(x,"*")
             y{i}=x(i)
         end

@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - François DELEBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,8 +18,7 @@ function [Ws,Fs1]=rowshuff(Fs,alfa)
     // The poles @ infinity of Fs are put to alfa and the zeros of Ws are @ alfa.
     // Note that (s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)
 
-    [LHS,RHS]=argn(0);
-    if RHS==1 then
+    if nargin==1 then
         alfa=0;
     end
     [E,A]=pen2ea(Fs);
