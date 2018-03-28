@@ -22,8 +22,6 @@
 #include "BOOL.h"
 #include "elem_common.h"
 
-double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg);
-
 void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc);
 void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
 void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo);
