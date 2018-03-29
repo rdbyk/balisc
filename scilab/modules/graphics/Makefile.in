@@ -19,7 +19,7 @@
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2010 - Pierre MARECHAL
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -600,7 +600,6 @@ am__objects_3 = sci_gateway/c/libscigraphics_la-sci_swap_handles.lo \
 	sci_gateway/c/libscigraphics_la-sci_copy.lo \
 	sci_gateway/c/libscigraphics_la-sci_xarcs.lo \
 	sci_gateway/c/libscigraphics_la-sci_xfpoly.lo \
-	sci_gateway/c/libscigraphics_la-sci_drawlater.lo \
 	sci_gateway/c/libscigraphics_la-sci_champ.lo \
 	sci_gateway/c/libscigraphics_la-sci_unglue.lo \
 	sci_gateway/c/libscigraphics_la-sci_zoom_rect.lo \
@@ -610,7 +609,6 @@ am__objects_3 = sci_gateway/c/libscigraphics_la-sci_swap_handles.lo \
 	sci_gateway/c/libscigraphics_la-sci_xtitle.lo \
 	sci_gateway/c/libscigraphics_la-sci_StringBox.lo \
 	sci_gateway/c/libscigraphics_la-sci_xgetmouse.lo \
-	sci_gateway/c/libscigraphics_la-sci_drawnow.lo \
 	sci_gateway/c/libscigraphics_la-sci_xfarcs.lo \
 	sci_gateway/c/libscigraphics_la-sci_param3d.lo \
 	sci_gateway/c/libscigraphics_la-sci_contour2di.lo \
@@ -625,7 +623,9 @@ am__objects_3 = sci_gateway/c/libscigraphics_la-sci_swap_handles.lo \
 	sci_gateway/c/libscigraphics_la-sci_color.lo \
 	sci_gateway/c/libscigraphics_la-sci_name2rgb.lo \
 	sci_gateway/c/libscigraphics_la-sci_addcolor.lo
-am__objects_4 = sci_gateway/cpp/libscigraphics_la-sci_get.lo \
+am__objects_4 = sci_gateway/cpp/libscigraphics_la-sci_drawlater.lo \
+	sci_gateway/cpp/libscigraphics_la-sci_drawnow.lo \
+	sci_gateway/cpp/libscigraphics_la-sci_get.lo \
 	sci_gateway/cpp/libscigraphics_la-sci_gca.lo \
 	sci_gateway/cpp/libscigraphics_la-sci_gce.lo \
 	sci_gateway/cpp/libscigraphics_la-sci_gcf.lo \
@@ -1448,7 +1448,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_copy.c \
     sci_gateway/c/sci_xarcs.c \
     sci_gateway/c/sci_xfpoly.c \
-    sci_gateway/c/sci_drawlater.c \
     sci_gateway/c/sci_champ.c \
     sci_gateway/c/sci_unglue.c \
     sci_gateway/c/sci_zoom_rect.c \
@@ -1458,7 +1457,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_xtitle.c \
     sci_gateway/c/sci_StringBox.c \
     sci_gateway/c/sci_xgetmouse.c \
-    sci_gateway/c/sci_drawnow.c \
     sci_gateway/c/sci_xfarcs.c \
     sci_gateway/c/sci_param3d.c \
     sci_gateway/c/sci_contour2di.c \
@@ -1475,6 +1473,8 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_addcolor.c
 
 GATEWAY_CXX_SOURCES = \
+    sci_gateway/cpp/sci_drawlater.cpp \
+    sci_gateway/cpp/sci_drawnow.cpp \
     sci_gateway/cpp/sci_get.cpp \
     sci_gateway/cpp/sci_gca.cpp \
     sci_gateway/cpp/sci_gce.cpp \
@@ -2972,9 +2972,6 @@ sci_gateway/c/libscigraphics_la-sci_xarcs.lo:  \
 sci_gateway/c/libscigraphics_la-sci_xfpoly.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscigraphics_la-sci_drawlater.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscigraphics_la-sci_champ.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -3000,9 +2997,6 @@ sci_gateway/c/libscigraphics_la-sci_StringBox.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscigraphics_la-sci_xgetmouse.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscigraphics_la-sci_drawnow.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscigraphics_la-sci_xfarcs.lo:  \
@@ -3053,6 +3047,12 @@ sci_gateway/cpp/$(am__dirstamp):
 sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
 	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscigraphics_la-sci_drawlater.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscigraphics_la-sci_drawnow.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscigraphics_la-sci_get.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -3124,8 +3124,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_delete.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_demo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawaxis.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawlater.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawnow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_fec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_geom3d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_glue.Plo@am__quote@
@@ -3171,6 +3169,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_xtitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_zoom_rect.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_contour2dm.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_drawlater.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_drawnow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_gca.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_gce.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_gcf.Plo@am__quote@
@@ -6382,13 +6382,6 @@ sci_gateway/c/libscigraphics_la-sci_xfpoly.lo: sci_gateway/c/sci_xfpoly.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_xfpoly.lo `test -f 'sci_gateway/c/sci_xfpoly.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xfpoly.c
 
-sci_gateway/c/libscigraphics_la-sci_drawlater.lo: sci_gateway/c/sci_drawlater.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_drawlater.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawlater.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_drawlater.lo `test -f 'sci_gateway/c/sci_drawlater.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawlater.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawlater.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawlater.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_drawlater.c' object='sci_gateway/c/libscigraphics_la-sci_drawlater.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_drawlater.lo `test -f 'sci_gateway/c/sci_drawlater.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawlater.c
-
 sci_gateway/c/libscigraphics_la-sci_champ.lo: sci_gateway/c/sci_champ.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_champ.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_champ.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_champ.lo `test -f 'sci_gateway/c/sci_champ.c' || echo '$(srcdir)/'`sci_gateway/c/sci_champ.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_champ.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_champ.Plo
@@ -6451,13 +6444,6 @@ sci_gateway/c/libscigraphics_la-sci_xgetmouse.lo: sci_gateway/c/sci_xgetmouse.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_xgetmouse.c' object='sci_gateway/c/libscigraphics_la-sci_xgetmouse.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_xgetmouse.lo `test -f 'sci_gateway/c/sci_xgetmouse.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetmouse.c
-
-sci_gateway/c/libscigraphics_la-sci_drawnow.lo: sci_gateway/c/sci_drawnow.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_drawnow.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawnow.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_drawnow.lo `test -f 'sci_gateway/c/sci_drawnow.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawnow.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawnow.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawnow.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_drawnow.c' object='sci_gateway/c/libscigraphics_la-sci_drawnow.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_drawnow.lo `test -f 'sci_gateway/c/sci_drawnow.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawnow.c
 
 sci_gateway/c/libscigraphics_la-sci_xfarcs.lo: sci_gateway/c/sci_xfarcs.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_xfarcs.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_xfarcs.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_xfarcs.lo `test -f 'sci_gateway/c/sci_xfarcs.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xfarcs.c
@@ -6615,6 +6601,20 @@ src/cpp/libscigraphics_algo_la-ContourOnMesh.lo: src/cpp/ContourOnMesh.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ContourOnMesh.cpp' object='src/cpp/libscigraphics_algo_la-ContourOnMesh.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphics_algo_la-ContourOnMesh.lo `test -f 'src/cpp/ContourOnMesh.cpp' || echo '$(srcdir)/'`src/cpp/ContourOnMesh.cpp
+
+sci_gateway/cpp/libscigraphics_la-sci_drawlater.lo: sci_gateway/cpp/sci_drawlater.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigraphics_la-sci_drawlater.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_drawlater.Tpo -c -o sci_gateway/cpp/libscigraphics_la-sci_drawlater.lo `test -f 'sci_gateway/cpp/sci_drawlater.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_drawlater.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_drawlater.Tpo sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_drawlater.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_drawlater.cpp' object='sci_gateway/cpp/libscigraphics_la-sci_drawlater.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigraphics_la-sci_drawlater.lo `test -f 'sci_gateway/cpp/sci_drawlater.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_drawlater.cpp
+
+sci_gateway/cpp/libscigraphics_la-sci_drawnow.lo: sci_gateway/cpp/sci_drawnow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigraphics_la-sci_drawnow.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_drawnow.Tpo -c -o sci_gateway/cpp/libscigraphics_la-sci_drawnow.lo `test -f 'sci_gateway/cpp/sci_drawnow.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_drawnow.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_drawnow.Tpo sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_drawnow.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_drawnow.cpp' object='sci_gateway/cpp/libscigraphics_la-sci_drawnow.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigraphics_la-sci_drawnow.lo `test -f 'sci_gateway/cpp/sci_drawnow.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_drawnow.cpp
 
 sci_gateway/cpp/libscigraphics_la-sci_get.lo: sci_gateway/cpp/sci_get.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigraphics_la-sci_get.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_get.Tpo -c -o sci_gateway/cpp/libscigraphics_la-sci_get.lo `test -f 'sci_gateway/cpp/sci_get.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_get.cpp
