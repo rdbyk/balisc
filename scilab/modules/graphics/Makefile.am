@@ -3,7 +3,7 @@
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2010 - Pierre MARECHAL
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -439,7 +439,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_copy.c \
     sci_gateway/c/sci_xarcs.c \
     sci_gateway/c/sci_xfpoly.c \
-    sci_gateway/c/sci_drawlater.c \
     sci_gateway/c/sci_champ.c \
     sci_gateway/c/sci_unglue.c \
     sci_gateway/c/sci_zoom_rect.c \
@@ -449,7 +448,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_xtitle.c \
     sci_gateway/c/sci_StringBox.c \
     sci_gateway/c/sci_xgetmouse.c \
-    sci_gateway/c/sci_drawnow.c \
     sci_gateway/c/sci_xfarcs.c \
     sci_gateway/c/sci_param3d.c \
     sci_gateway/c/sci_contour2di.c \
@@ -466,6 +464,8 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_addcolor.c
 
 GATEWAY_CXX_SOURCES = \
+    sci_gateway/cpp/sci_drawlater.cpp \
+    sci_gateway/cpp/sci_drawnow.cpp \
     sci_gateway/cpp/sci_get.cpp \
     sci_gateway/cpp/sci_gca.cpp \
     sci_gateway/cpp/sci_gce.cpp \
