@@ -12,20 +12,8 @@
  * along with this program.
  *
  */
+
 #include "basic_functions.h"
-
-/*absolute complex sum*/
-double wasums(int _iNbElem, double* _pdblReal, double* _pdblImg)
-{
-    double dblRetVal = 0;
-    int iIndex		= 0;
-    int iOne		= 1;
-
-    dblRetVal	= C2F(dasum)(&_iNbElem, _pdblReal, &iOne);
-    dblRetVal	+= C2F(dasum)(&_iNbElem, _pdblImg, &iOne);
-
-    return dblRetVal;
-}
 
 /*memset on vector*/
 void vDset(int _iNbElem, double _dblVal, double* _pdblIn, int _iInc)
