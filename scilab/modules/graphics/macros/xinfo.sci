@@ -14,6 +14,8 @@ function xinfo( newMessage )
     // xinfo function
     // Set the text of the message bar of the current figure
 
+    warnobsolete("gcf().info_message", "/Balisc 3");
+
     if nargin<1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "xinfo", 1));
     end
