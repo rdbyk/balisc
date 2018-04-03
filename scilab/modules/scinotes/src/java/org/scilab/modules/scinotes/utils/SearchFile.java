@@ -73,6 +73,7 @@ import org.scilab.modules.scinotes.tabfactory.SearchInFilesTabFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import java.io.IOException;
 
 /**
  * Class SearchFile: open a window with a JTree to show the results of a search in files.
@@ -206,15 +207,15 @@ public class SearchFile extends SwingScilabDockablePanel {
      * Set a MyBackgroundSearch to this SearchFile
      * @param search a MyBackgroundSearch
      */
-    public void setMyBackgroundSearch(MyBackgroundSearch search) {
+    public synchronized void setMyBackgroundSearch(MyBackgroundSearch search) {
         mySearch = search;
     }
 
-    private void saveSearchFile() {
+    private synchronized void saveSearchFile() {
         if (mySearch != null) {
-            try {
-                FileWriter fwriter = new FileWriter(ScilabConstants.SCIHOME.toString() + File.separator + getPersistentId() + ".xml");
-                BufferedWriter buffer = new BufferedWriter(fwriter);
+            try ( FileWriter fwriter = new FileWriter(ScilabConstants.SCIHOME.toString() + File.separator + getPersistentId() + ".xml");
+                  BufferedWriter buffer = new BufferedWriter(fwriter) ) {
+
                 buffer.append("<SearchResults editor=\"" + editor.getUUID() + "\"");
                 buffer.append(" base=\"" + mySearch.base + "\"");
                 buffer.append(" recursive=\"" + mySearch.recursive + "\"");
@@ -230,8 +231,8 @@ public class SearchFile extends SwingScilabDockablePanel {
                 buffer.append(">\n");
                 mySearch.getResults().toXML(buffer, 1);
                 buffer.append("</SearchResults>");
-                buffer.close();
-            } catch (Exception e) {
+
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

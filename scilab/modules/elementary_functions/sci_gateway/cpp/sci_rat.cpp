@@ -110,6 +110,7 @@ types::Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, type
             if (iFail)
             {
                 Scierror(999, _("%s: The tolerance is too large for the value %d.\n"), fname, i);
+                pDblOut->killMe();
                 return types::Function::Error;
             }
             pOutR[i] = (double)dblN / (double)dblD;
@@ -130,6 +131,8 @@ types::Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, type
             if (iFail)
             {
                 Scierror(999, _("%s: The tolerance is too large for the value %d.\n"), fname, i);
+                pDblN->killMe();
+                pDblD->killMe();
                 return types::Function::Error;
             }
             pNR[i] = (double)dblN;

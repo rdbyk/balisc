@@ -187,11 +187,7 @@ struct tol
 
         std::vector<double> tol;
         controller.getObjectProperty(adaptee, PROPERTIES, tol);
-#ifdef _MSC_VER
-        std::copy(tol.begin() + 1, tol.end(), stdext::checked_array_iterator<double*>( data, 7 ));
-#else
         std::copy(tol.begin() + 1, tol.end(), data);
-#endif
 
         return o;
     }
@@ -453,7 +449,10 @@ struct doc
 
 } /* namespace */
 
-template<> property<ParamsAdapter>::props_t property<ParamsAdapter>::fields = property<ParamsAdapter>::props_t();
+#ifndef _MSC_VER
+template<>
+#endif
+property<ParamsAdapter>::props_t property<ParamsAdapter>::fields = property<ParamsAdapter>::props_t();
 static void initialize_fields()
 {
     if (property<ParamsAdapter>::properties_have_not_been_set())

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -488,7 +488,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 break;
         }
 
-        if(poResult && isNew)
+        if (poResult && isNew)
         {
             poResult->killMe();
         }
@@ -560,7 +560,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 break;
             default:
             {
-                if(poResult && isNew)
+                if (poResult && isNew)
                 {
                     poResult->killMe();
                 }
@@ -1648,7 +1648,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
             types::typed_list* pArgs = pEH->getArgs();
 
-            // should never occured
+            // should never occurred
             if (pArgs == NULL || pArgs->size() == 0)
             {
                 std::wostringstream os;
@@ -1921,7 +1921,6 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         if ((*_pArgs)[0]->isString())
         {
             types::String *pS = (*_pArgs)[0]->getAs<types::String>();
-            types::Struct* pStr = new types::Struct(1, 1);
 
             if (_pArgs->size() != 1 || pS->isScalar() == false)
             {
@@ -1935,6 +1934,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 throw ast::InternalError(os.str(), 999, e.getLocation());
             }
 
+            types::Struct* pStr = new types::Struct(1, 1);
             pStr->addField(pS->getFirst());
             pStr->getFirst()->set(pS->getFirst(), _pInsert);
             pOut = pStr;

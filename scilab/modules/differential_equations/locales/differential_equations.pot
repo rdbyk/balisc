@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-05 10:43+0100\n"
+"Revision-Date: 2018-03-26 10:40+0100\n"
 
 # File: modules/differential_equations/sci_gateway/cpp/sci_bvode.cpp, line: 63
 # File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 263
@@ -309,7 +309,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1452
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1506
 #, c-format
-msgid "%s: An error occured in '%s' subroutine.\n"
+msgid "%s: An error occurred in '%s' subroutine.\n"
 msgstr ""
 
 #
@@ -530,7 +530,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1152
 # File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1376
 #, c-format
-msgid "%ls: An error occured in '%ls' subroutine.\n"
+msgid "%ls: An error occurred in '%ls' subroutine.\n"
 msgstr ""
 
 #
@@ -1041,7 +1041,7 @@ msgstr ""
 
 #
 # File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 49
-msgid "Excesive accuracy requested (tolerances too small).\n"
+msgid "Excessive accuracy requested (tolerances too small).\n"
 msgstr ""
 
 #
@@ -1250,7 +1250,7 @@ msgstr ""
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 763
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 791
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #

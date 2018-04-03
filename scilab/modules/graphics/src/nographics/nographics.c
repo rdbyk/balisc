@@ -83,9 +83,65 @@ int callSetProperty(void* _pvCtx, int pObjUID, void* _pvData, int valueType, int
 }
 
 /*--------------------------------------------------------------------------*/
-int getFigureFromIndex(int figNum)
+int sciInitScreenPosition(int pobj, int pposx, int pposy)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+char *getStringFromStack(size_t stackPointer)
 {
     return NULL;
+}
+
+/*--------------------------------------------------------------------------*/
+double *getDoubleMatrixFromStack(size_t stackPointer)
+{
+    return NULL;
+}
+
+/*--------------------------------------------------------------------------*/
+double getDoubleFromStack(size_t stackPointer)
+{
+    return 0.;
+}
+
+/*--------------------------------------------------------------------------*/
+char **getStringMatrixFromStack(size_t stackPointer)
+{
+    return NULL;
+}
+
+/*--------------------------------------------------------------------------*/
+int allocateText(int pparentsubwinUID,
+                 char **text,
+                 int nbRow,
+                 int nbCol,
+                 double x,
+                 double y,
+                 BOOL autoSize,
+                 double userSize[2],
+                 int centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
+{
+    return NULL;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitBackground(int pobj, int colorindex)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitMarkBackground(int pobj, int colorindex)
+{
+    return -1;
+}
+
+/*--------------------------------------------------------------------------*/
+int sciInitMarkForeground(int pobj, int colorindex)
+{
+    return -1;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -184,11 +240,6 @@ void doubleArrayCopy(double dest[], const double src[], int nbElement)
 BOOL sciIsExistingFigure(int figNum)
 {
     return FALSE;
-}
-
-/*--------------------------------------------------------------------------*/
-void cloneAxesModel(int pstFigureUID)
-{
 }
 
 /*--------------------------------------------------------------------------*/

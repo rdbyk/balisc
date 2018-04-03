@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_where(types::typed_list &in, int _iRetCount, ty
     for (int i = 0; i < iWhereSize; ++i)
     {
         pd[i] = it->m_line;
-        pStrNames->set(i, (++it)->m_name.c_str());
+        pStrNames->set(i, (++it)->call->getName().c_str());
     }
 
     out.push_back(pDblLines);

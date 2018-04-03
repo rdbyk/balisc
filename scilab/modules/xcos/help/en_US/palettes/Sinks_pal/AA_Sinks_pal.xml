@@ -281,17 +281,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <link linkend="SCALE_CMSCOPE">SCALE_CMSCOPE - Multi display scope with Autoscale Graph Feature</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
                     <link linkend="CSCOPE">CSCOPE - Single Display Scope</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="SCALE_CSCOPE">CSCOPE - Single Display Scope with Autoscale Graph Feature</link>
                 </para>
             </listitem>
             <listitem>

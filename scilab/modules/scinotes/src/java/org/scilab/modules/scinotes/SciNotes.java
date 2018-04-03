@@ -709,6 +709,9 @@ public class SciNotes extends SwingScilabDockablePanel {
 
         addRestoreTab();
         WindowsConfigurationManager.restorationFinished(SciNotes.this);
+        if  (System.getProperty("os.name").toLowerCase().contains("mac")) {
+          RestoreOpenedFilesAction.restoreEnabledComponents(this);
+        }
     }
 
     /**
@@ -747,9 +750,9 @@ public class SciNotes extends SwingScilabDockablePanel {
             }
         } else {
             /* restore if it is iconified */
-            if(editor.getParentWindow() != null) {
+            if (editor.getParentWindow() != null) {
                 int state = editor.getParentWindow().getExtendedState();
-                if((state & JFrame.ICONIFIED) == JFrame.ICONIFIED) {
+                if ((state & JFrame.ICONIFIED) == JFrame.ICONIFIED) {
                     editor.getParentWindow().setExtendedState(state - JFrame.ICONIFIED);
                 }
             }
@@ -2588,15 +2591,20 @@ public class SciNotes extends SwingScilabDockablePanel {
         } catch (CharacterCodingException e) {
             throw new IOException(SciNotesMessages.CANNOT_GUESS_ENCODING + ": " + fileName);
         }
-        FileInputStream fis = new FileInputStream(fileName);
-        InputStreamReader isr = new InputStreamReader(fis, charset);
-        BufferedReader reader = new BufferedReader(isr);
+
         ScilabDocument doc = new ScilabDocument();
         ScilabEditorKit kit = new ScilabEditorKit();
-        try {
+
+        try ( FileInputStream fis = new FileInputStream(fileName);
+                    InputStreamReader isr = new InputStreamReader(fis, charset);
+                    BufferedReader reader = new BufferedReader(isr) ) {
+
             kit.read(reader, doc, 0);
+
         } catch (BadLocationException e) {
             System.err.println(e);
+        } catch (IOException ioe) {
+            System.err.println(ioe);
         }
 
         doc.addDocumentListener(doc);
@@ -2604,10 +2612,10 @@ public class SciNotes extends SwingScilabDockablePanel {
             action.actionOn(doc);
         }
 
-        reader.close();
         if (doc.isContentModified()) {
             SaveFile.doSave(doc, new File(fileName), kit);
         }
+
     }
 
     /**

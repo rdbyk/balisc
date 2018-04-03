@@ -23,8 +23,8 @@ int sci_addcb(char *fname, void *pvApiCtx);
 int sci_champ(char *fname, void *pvApiCtx);
 int sci_champ1(char *fname, void *pvApiCtx);
 int sci_champ_G(char *fname,
-                                int (*func) (double *, double *, double *, double *, int *, int *, char *, double *, double *, int),
-                                void *pvApiCtx);
+                int (*func) (double *, double *, double *, double *, int *, int *, char *, double *, double *, int),
+                void *pvApiCtx);
 int sci_xarc(char *fname, void *pvApiCtx);
 int sci_xarcs(char *fname, void *pvApiCtx);
 int sci_zoom_rect(char *fname, void *pvApiCtx);

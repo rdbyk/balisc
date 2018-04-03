@@ -42,12 +42,17 @@ double sciFindStPosMin(const double x[], int n);
 int checkMonotony(const double vector[], int nbElement);
 
 /**
- * copy an array into an other
+ * copy an array into another
  */
 void doubleArrayCopy(double dest[], const double src[], int nbElement);
 
 /**
- * copy a char * array into an other
+ * copy an int array into another
+ */
+void intArrayCopy(int dest[], const int src[], int nbElement);
+
+/**
+ * copy a char * array into another
  */
 BOOL stringArrayCopy(char * dest[], char * src[], int nbElement);
 

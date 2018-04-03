@@ -667,4 +667,3 @@ bool String::transpose(InternalType *& out)
 }
 
 }
-

@@ -19,6 +19,7 @@
 
 #include "types.hxx"
 #include "string.hxx"
+#include "double.hxx"
 #include "mlist.hxx"
 #include "list.hxx"
 #include "function.hxx"
@@ -77,8 +78,47 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
-    enum LogLevel logLevel = LoggerView::indexOf(strLevel->getFirst());
+    /*
+     * specific usages :
+     */
 
+    // "refCounters" will return reference counters per object, per kind
+    if (std::wstring(L"refCounters") == strLevel->get(0))
+    {
+        Controller controller;
+
+        std::vector<ScicosID> objects;
+        std::vector<ScicosID> tmp;
+
+        tmp = controller.getAll(BLOCK);
+        objects.insert(objects.end(), tmp.begin(), tmp.end());
+        tmp = controller.getAll(DIAGRAM);
+        objects.insert(objects.end(), tmp.begin(), tmp.end());
+        tmp = controller.getAll(LINK);
+        objects.insert(objects.end(), tmp.begin(), tmp.end());
+        tmp = controller.getAll(ANNOTATION);
+        objects.insert(objects.end(), tmp.begin(), tmp.end());
+
+        types::Double* refCounts = new types::Double((int) objects.size(), 3);
+
+        for (int i = 0; i < objects.size(); ++i)
+        {
+            model::BaseObject* o = controller.getBaseObject(objects[i]);
+
+            refCounts->set(i, 0, o->id());
+            refCounts->set(i, 1, o->kind());
+            refCounts->set(i, 2, o->refCount());
+        }
+
+        out.push_back(refCounts);
+        return types::Function::OK;
+    }
+
+    /*
+     * default usage: log level setting
+     */
+
+    enum LogLevel logLevel = LoggerView::indexOf(strLevel->get(0));
     if (logLevel < 0)
     {
         std::wstringstream buffer;
@@ -89,7 +129,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
         }
         buffer << LoggerView::toString(LOG_FATAL);
 
-        Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"), funame.data(), 1, buffer.str().data());
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be one of %ls.\n"), funame.data(), 1, buffer.str().data());
         return types::Function::Error;
     }
 
@@ -126,7 +166,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
         }
 
         LoggerView* logger = get_or_allocate_logger();
-        logger->log(logLevel, strMsg->getFirst());
+        logger->log(logLevel, strMsg->get(0));
 
         if (_iRetCount == 1)
         {
