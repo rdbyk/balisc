@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -27,7 +28,7 @@ function [txt,files]=returntoscilab()
         return,
     else
         txtg="["+files(1)
-        txtd="resume("+files(1)
+        txtd="return("+files(1)
         for i=2:n
             txtg=txtg+","+files(i)
             txtd=txtd+","+files(i)

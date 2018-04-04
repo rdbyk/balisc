@@ -1,14 +1,14 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                      - Alan Layec <alan.layec@inria.fr>
-//                      - Ramine Nikoukhah <ramine.nikoukhah@inria.fr>
-//                      - Rachid Djenidi
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//                     - Alan Layec <alan.layec@inria.fr>
+//                     - Ramine Nikoukhah <ramine.nikoukhah@inria.fr>
+//                     - Rachid Djenidi
+//                     - Scilab 5 update by Simone Mannori
 //
-//                      - Scilab 5 update by Simone Mannori
-//
-//  Copyright (C) DIGITEO - 2010 - Allan CORNET
-//  Copyright (C) Scilab Enterprises - 2012 - Bruno JOFRET
+// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2012 - Bruno JOFRET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -1800,7 +1800,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
         exec(rpat+"/"+rdnom+"_c.sci");
         //Change diagram superblock to new generated block
         XX=update_block(XX);
-        execstr(rdnom+"_c=resume("+rdnom+"_c)")
+        execstr(rdnom+"_c=return("+rdnom+"_c)")
     else
         message([_("Generated block cannot be linked with Scilab.")])
     end
