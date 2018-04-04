@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -78,14 +79,14 @@ str_l=list();str_l(1)=1;str_l(1)
 l=list(1,2,3);l(3)=null()
 
 function []=foo()
-    [noeuds,triang]=resume(1,2)
+    [noeuds,triang]=return(1,2)
 endfunction
 foo();disp([noeuds,triang])
 
 
 function [a]=foo(x)
     a=33
-    [noeuds,triang]=resume(45,sin(2))
+    [noeuds,triang]=return(45,sin(2))
 endfunction
 foo(%t)
 

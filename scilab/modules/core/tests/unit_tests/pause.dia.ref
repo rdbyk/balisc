@@ -31,14 +31,14 @@ return
  
 if 20-xx<>0 then bugmes();quit;end
  
-deff('[x]=tata(y)','x=-y,write(6,''type x=resume(0)''),pause')
+deff('[x]=tata(y)','x=-y,write(6,''type x=return(0)''),pause')
 Warning : redefining function : tata                    
  
  
 xx=tata(40);
-type x=resume(0)
+type x=return(0)
  
-x=resume(0)
+x=return(0)
  
 if xx<>0 then bugmes();quit;end
  

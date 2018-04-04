@@ -1,104 +1,106 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1998-2010 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+//
 // This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
 
 clear foo
-deff("foo()","a=1,b=2,c=3;[x,y]=resume(a,b)")
+deff("foo()","a=1,b=2,c=3;[x,y]=return(a,b)")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","a=1,b=2,c=3;[x,y,z]=resume(a,b,c)")
+deff("foo()","a=1,b=2,c=3;[x,y,z]=return(a,b,c)")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","if %t then a=1,b=2,c=3;[x,y]=resume(a,b);end")
+deff("foo()","if %t then a=1,b=2,c=3;[x,y]=return(a,b);end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","if %t then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end")
+deff("foo()","if %t then a=1,b=2,c=3;[x,y,z]=return(a,b,c);end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y]=resume(a,b);end;end")
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y]=return(a,b);end;end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end;end")
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y,z]=return(a,b,c);end;end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","a=1,b=2,c=3;[x,y]=resume(a,b)")
+deff("foo()","a=1,b=2,c=3;[x,y]=return(a,b)")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","a=1,b=2,c=3;[x,y,z]=resume(a,b,c)")
+deff("foo()","a=1,b=2,c=3;[x,y,z]=return(a,b,c)")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","if %t then a=1,b=2,c=3;[x,y]=resume(a,b);end")
+deff("foo()","if %t then a=1,b=2,c=3;[x,y]=return(a,b);end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","if %t then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end")
+deff("foo()","if %t then a=1,b=2,c=3;[x,y,z]=return(a,b,c);end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y]=resume(a,b);end;end")
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y]=return(a,b);end;end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end;end")
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y,z]=return(a,b,c);end;end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"")")
+deff("foo()","a=1,b=2,c=3;execstr(""[x,y]=return(a,b)"")")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"")")
+deff("foo()","a=1,b=2,c=3;execstr(""[x,y,z]=return(a,b,c)"")")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"");end")
+deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y]=return(a,b)"");end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"");end")
+deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y,z]=return(a,b,c)"");end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"");end;end")
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y]=return(a,b)"");end;end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"");end;end")
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y,z]=return(a,b,c)"");end;end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"")")
+deff("foo()","a=1,b=2,c=3;execstr(""[x,y]=return(a,b)"")")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"")")
+deff("foo()","a=1,b=2,c=3;execstr(""[x,y,z]=return(a,b,c)"")")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
-deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"");end")
+deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y]=return(a,b)"");end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"");end")
+deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y,z]=return(a,b,c)"");end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
-deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"");end;end")
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y]=return(a,b)"");end;end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
 
-deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"");end;end")
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y,z]=return(a,b,c)"");end;end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
 
@@ -108,13 +110,13 @@ clear  foo1  foo2  foo3
 function foo1()
 	clear var_a var_b var_c var_d;
 	foo2()
-	[va,vb,vc,vd] = resume(var_a,var_b,var_c,var_d);
+	[va,vb,vc,vd] = return(var_a,var_b,var_c,var_d);
 endfunction
 
 function foo2()
 	clear variable_a variable_b variable_c variable_d;
 	foo3()
-	[var_a,var_b,var_c,var_d] = resume(variable_a,variable_b,variable_c,variable_d);
+	[var_a,var_b,var_c,var_d] = return(variable_a,variable_b,variable_c,variable_d);
 endfunction
 
 function foo3()
@@ -125,7 +127,7 @@ function foo3()
 	d("field1") = a;
 	d("field2") = b;
 	d("field3") = c;
-	[variable_a,variable_b,variable_c,variable_d] = resume(a,b,c,d);
+	[variable_a,variable_b,variable_c,variable_d] = return(a,b,c,d);
 endfunction
 
 clear ref_a ref_b ref_c

@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2009 - INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -21,20 +22,20 @@ r=%f;
 try,%pi=3,catch,r=%t;end
 if ~r then bugmes();quit;end
 r=%f;
-function setpi(pi), %pi = resume(pi),endfunction
+function setpi(pi), %pi = return(pi),endfunction
 try,setpi(3),catch,r=%t;end
 if ~r then bugmes();quit;end
 r=%f;clear a
-function a=setpi(pi), a=228;%pi = resume(pi),endfunction
+function a=setpi(pi), a=228;%pi = return(pi),endfunction
 try,setpi(3),catch,r=%t;end
 if ~r then bugmes();quit;end
 if exists("a")<>0 then bugmes();quit;end
-function setpi(pi), execstr("%pi = resume(pi)"),endfunction
+function setpi(pi), execstr("%pi = return(pi)"),endfunction
 r=%f;
 try,setpi(3),catch,r=%t;end
 if ~r then bugmes();quit;end
 clear a
-function a=setpi(pi),a=123; execstr("%pi = resume(pi)"),endfunction
+function a=setpi(pi),a=123; execstr("%pi = return(pi)"),endfunction
 r=%f;
 try,setpi(3),catch,r=%t;end
 if ~r then bugmes();quit;end
