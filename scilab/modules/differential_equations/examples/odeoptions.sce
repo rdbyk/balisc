@@ -44,7 +44,7 @@ chk=0;
 deff("y=fcrit(t,x)",["if t<=tcrit then"
 " y=A*x;"
 "else"
-" y=A*x;chk=resume(1);end"])
+" y=A*x;chk=return(1);end"])
 x42=ode(x0,t0,t,fcrit);
 if chk==1 then pause,end
 [p,q]=size(x42);

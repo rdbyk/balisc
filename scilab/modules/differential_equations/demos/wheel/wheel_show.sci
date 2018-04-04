@@ -1,11 +1,10 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
-//
 
 function []=wheel_show(xx,t,p)
 
@@ -120,7 +119,7 @@ function []=wheel_show(xx,t,p)
     if ~is_handle_valid(curAxe) then
         break;
     end
-    [wheel_rti]=resume(wheel_rti);
+    [wheel_rti]=return(wheel_rti);
 
 endfunction
 
@@ -193,6 +192,6 @@ function get_wheel_rti(d_mode)
             end
         end
     end
-    [wheel_rti]=resume(wheel_rti);
+    [wheel_rti]=return(wheel_rti);
 
 endfunction

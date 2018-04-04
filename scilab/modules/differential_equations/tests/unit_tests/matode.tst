@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -156,7 +157,7 @@ function y=fcrit(t,x)
         y=A*x;
     else
         y=A*x;
-        chk=resume(1);
+        chk=return(1);
     end
 endfunction
 
