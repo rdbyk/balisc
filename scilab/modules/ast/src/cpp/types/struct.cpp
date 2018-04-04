@@ -480,9 +480,9 @@ List* Struct::extractFieldWithoutClone(const std::wstring& _wstField)
     return pL;
 }
 
-std::vector<InternalType*> Struct::extractFields(std::vector<std::wstring> _wstFields)
+typed_list Struct::extractFields(std::vector<std::wstring> _wstFields)
 {
-    std::vector<InternalType*> ResultList(_wstFields.size());
+    typed_list ResultList(_wstFields.size());
 
     for (int i = 0 ; i < (int)_wstFields.size() ; i++)
     {
@@ -523,9 +523,9 @@ InternalType * Struct::extractField(const std::wstring & wstField)
     }
 }
 
-std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
+typed_list Struct::extractFields(typed_list* _pArgs)
 {
-    std::vector<InternalType*> ResultList;
+    typed_list ResultList;
 
     int iDims           = (int)_pArgs->size();
     typed_list pArg;
@@ -598,7 +598,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
         else if (getSize() == 1)
         {
             //return elements
-            const std::vector<InternalType*> & pData = getFirst()->getData();
+            const typed_list & pData = getFirst()->getData();
             ResultList.push_back(pData[iIndex - 3]->clone());
         }
         else
@@ -609,7 +609,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
             for (int j = 0 ; j < getSize() ; j++)
             {
                 //-2 for fieldlist and dims, -1 for indexed at 0
-                const std::vector<InternalType*> & pData = get(j)->getData();
+                const typed_list & pData = get(j)->getData();
                 pL->append(pData[iIndex - 3]->clone());
             }
 

@@ -1,5 +1,4 @@
-/*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+/* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -11,9 +10,7 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
- *
  */
-/*--------------------------------------------------------------------------*/
 
 extern "C"
 {

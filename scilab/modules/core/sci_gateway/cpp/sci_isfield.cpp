@@ -78,6 +78,7 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
         }
         default:
             // never occurs
+            pOutBool->killMe();
             return types::Function::Error;
     }
 

@@ -11,4 +11,4 @@
 // <-- Short Description -->
 // Function "string" does Not Convert Integers Properly
 
-assert_checkequal(string(uint32(123456789), "123456789")
+assert_checkequal(string(uint32(123456789)), "123456789")

@@ -418,7 +418,8 @@ void *mxRealloc(void *ptr, size_t nsize)
 
 void mxFree(void *ptr)
 {
-    //TODO
+    FREE(ptr);
+    ptr = NULL;
 }
 
 //Validate Data
@@ -880,11 +881,11 @@ mwSize *mxGetDimensions(const mxArray *ptr)
             return piDims;
         }
         default:
-        {   
+        {
             if(pIT->isGenericType() == false)
             {
                return NULL;
-            } 
+            }
             types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
             return pGT->getDimsArray();
@@ -1457,13 +1458,13 @@ const char *mxGetClassName(const mxArray *ptr)
 
 mxArray *mxGetProperty(const mxArray *pa, mwIndex index, const char *propname)
 {
-    //TODO
+    //TODO : Dummy function as it requires objects which are Matlab class instances and there are no classes in Scilab.
     return NULL;
 }
 
 void mxSetProperty(mxArray *pa, mwIndex index, const char *propname, const mxArray *value)
 {
-    //TODO
+    //TODO : Dummy function as it requires objects which are Matlab class instances and there are no classes in Scilab.
 }
 
 mxArray *mxGetField(const mxArray *ptr, int lindex, const char *string)
@@ -1684,13 +1685,13 @@ mxArray *mexEvalStringWithTrap(const char *command)
 
 const mxArray *mexGet(double handle, const char *property)
 {
-    //TODO
+    //TODO : Dummy function as it requires objects which are Matlab class instances and there are no classes in Scilab.
     return NULL;
 }
 
 int mexSet(double handle, const char *property, mxArray *value)
 {
-    //TODO
+    //TODO : Dummy function as it requires objects which are Matlab class instances and there are no classes in Scilab.
     return 0;
 }
 
@@ -1804,12 +1805,14 @@ void mexSetTrapFlag(int trapflag)
 
 void mexErrMsgIdAndTxt(const char *errorid, const char *errormsg, ...)
 {
-    //TODO
+    //TODO: Have to handle errorid.
+    mexErrMsgTxt(errormsg);
 }
 
 void mexWarnMsgIdAndTxt(const char *warningid, const char *warningmsg, ...)
 {
-    //TODO
+    //TODO: Have to handle warningid.
+    mexWarnMsgTxt(warningmsg);
 }
 
 void mexErrMsgTxt(const char *error_msg)
@@ -1842,12 +1845,12 @@ void mexUnlock(void)
 
 void mexMakeArrayPersistent(void *ptr)
 {
-    //TODO
+    //Dummy Function as in Scilab6 Memory is not tracked.
 }
 
 void mexMakeMemoryPersistent(void *ptr)
 {
-    //TODO
+    //Dummy Function as in Scilab6 Memory is not tracked.
 }
 
 double mxGetInf(void)

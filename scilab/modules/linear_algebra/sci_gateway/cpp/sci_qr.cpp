@@ -189,6 +189,16 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         delete pDblQ;
         delete pDbl; // because of cloning, cf. above
 
+        if (pDblE)
+        {
+            pDblE->killMe();
+        }
+
+        if (pDblRk)
+        {
+            pDblRk->killMe();
+        }
+
         return types::Function::Error;
     }
 

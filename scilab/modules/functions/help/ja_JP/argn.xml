@@ -236,7 +236,6 @@ endfunction
                 <link linkend="varargin">varargin</link>
             </member>
             <member>
-<<<<<<< HEAD
                 <link linkend="varargout">varargout</link>
             </member>
             <member>
@@ -244,12 +243,12 @@ endfunction
             </member>
             <member>
                 <link linkend="function">function</link>
-=======
+            </member>
+            <member>
                 <link linkend="nargin">nargin</link>
             </member>
             <member>
                 <link linkend="nargout">nargout</link>
->>>>>>> 6146f9b... * Bug #14110 fixed - nargin and nargout were not documented.
             </member>
         </simplelist>
     </refsection>

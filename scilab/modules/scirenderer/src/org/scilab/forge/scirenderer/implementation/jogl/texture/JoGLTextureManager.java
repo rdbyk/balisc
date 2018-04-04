@@ -305,7 +305,7 @@ public class JoGLTextureManager implements TextureManager {
                         hasChanged = true;
                     }
 
-                    if (newBuffer != null || buffer != null) {
+                    if (buffer != null) {
                         if (wCuts == 1 && hCuts == 1) {
                             if (hasChanged) {
                                 if (isRowMajorOrder()) {
@@ -651,7 +651,7 @@ public class JoGLTextureManager implements TextureManager {
         }
 
         /** Called when gl context is gone. */
-        public void glReload() {
+        public synchronized void glReload() {
             buffer = null;
             textures = null;
             upToDate = false;

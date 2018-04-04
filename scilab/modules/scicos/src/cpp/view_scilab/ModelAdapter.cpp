@@ -3,7 +3,7 @@
  * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2017 - ESI Group - Clement DAVID
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,7 +27,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
-#include "tlist.hxx"
+#include "mlist.hxx"
 #include "user.hxx"
 
 #include "Controller.hxx"
@@ -56,12 +56,6 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring modelica (L"modelica");
-const std::wstring model (L"model");
-const std::wstring inputs (L"inputs");
-const std::wstring outputs (L"outputs");
-const std::wstring parameters (L"parameters");
-
 types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Controller& controller, object_properties_t p)
 {
     model::Block* adaptee = adaptor.getAdaptee();
@@ -79,7 +73,8 @@ types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Control
     types::InternalType* res;
     if (!vec2var(prop_content, res))
     {
-        return nullptr;
+        // if invalid data, return a valid value
+        return types::Double::Empty();
     }
 
     return res;
@@ -343,12 +338,7 @@ struct state
 
         double* data;
         types::Double* o = new types::Double((int)state.size(), 1, &data);
-
-#ifdef _MSC_VER
-        std::copy(state.begin(), state.end(), stdext::checked_array_iterator<double*>(data, state.size()));
-#else
         std::copy(state.begin(), state.end(), data);
-#endif
         return o;
     }
 
@@ -391,12 +381,7 @@ struct dstate
 
         double* data;
         types::Double* o = new types::Double((int)dstate.size(), 1, &data);
-
-#ifdef _MSC_VER
-        std::copy(dstate.begin(), dstate.end(), stdext::checked_array_iterator<double*>(data, dstate.size()));
-#else
         std::copy(dstate.begin(), dstate.end(), data);
-#endif
         return o;
     }
 
@@ -886,11 +871,7 @@ struct rpar
 
             double *data;
             types::Double* o = new types::Double((int)rpar.size(), 1, &data);
-#ifdef _MSC_VER
-            std::copy(rpar.begin(), rpar.end(), stdext::checked_array_iterator<double*>(data, rpar.size()));
-#else
             std::copy(rpar.begin(), rpar.end(), data);
-#endif
             return o;
         }
         else // SuperBlock, return the contained diagram (allocating it on demand)
@@ -977,12 +958,7 @@ struct ipar
 
         double *data;
         types::Double* o = new types::Double((int)ipar.size(), 1, &data);
-
-#ifdef _MSC_VER
-        std::transform(ipar.begin(), ipar.end(), stdext::checked_array_iterator<double*>(data, ipar.size()), toDouble);
-#else
         std::transform(ipar.begin(), ipar.end(), data, toDouble);
-#endif
         return o;
     }
 
@@ -1250,12 +1226,7 @@ struct nzcross
 
         double *data;
         types::Double* o = new types::Double((int)nzcross.size(), 1, &data);
-
-#ifdef _MSC_VER
-        std::transform(nzcross.begin(), nzcross.end(), stdext::checked_array_iterator<double*>(data, nzcross.size()), toDouble);
-#else
         std::transform(nzcross.begin(), nzcross.end(), data, toDouble);
-#endif
         return o;
     }
 
@@ -1305,12 +1276,7 @@ struct nmode
 
         double *data;
         types::Double* o = new types::Double((int)nmode.size(), 1, &data);
-
-#ifdef _MSC_VER
-        std::transform(nmode.begin(), nmode.end(), stdext::checked_array_iterator<double*>(data, nmode.size()), toDouble);
-#else
         std::transform(nmode.begin(), nmode.end(), data, toDouble);
-#endif
         return o;
     }
 
@@ -1406,7 +1372,10 @@ struct uid
 
 } /* namespace */
 
-template<> property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
+#ifndef _MSC_VER
+template<>
+#endif
+property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
 static void initialize_fields()
 {
     if (property<ModelAdapter>::properties_have_not_been_set())
