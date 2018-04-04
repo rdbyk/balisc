@@ -1,7 +1,8 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright (C) DIGITEO - 2010 - Jérôme PICARD
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) DIGITEO - 2010 - Jérôme PICARD
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -2232,7 +2233,7 @@ function scs_m_new=do_version27(scs_m)
         end
     end
 
-    [%cpr,edited]=resume(list(),%t) // doit etre enleve
+    [%cpr,edited]=return(list(),%t) // doit etre enleve
 endfunction
 
 function  gr_i=convert_gri(name,gri)
@@ -2340,7 +2341,7 @@ function scs_m_new=do_versionxx(scs_m)
             end
         end
     end
-    edited=resume(%t)
+    edited=return(%t)
 endfunction
 
 

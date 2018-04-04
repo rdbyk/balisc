@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -26,7 +27,7 @@ if t1(1)<>t1(1,2) then pause,end
 //
 //resume
 //
-deff("[x,y]=t3(a,b)","x=a+b,y=a-b,z=resume(a*a)")
+deff("[x,y]=t3(a,b)","x=a+b,y=a-b,z=return(a*a)")
 [u,v]=t3(1,2);
 if u<> 3 then pause,end
 if v<>-1 then pause,end
@@ -55,9 +56,9 @@ text = ["if n>0 then x=1"
 "end"
 "end"
 "if n==-1 then return,end"
-"if n==-2 then tt=resume(n),end"
+"if n==-2 then tt=return(n),end"
 "select x,"
-"case 1 then x=''pos'' ,tt=resume(''ok''),"
+"case 1 then x=''pos'' ,tt=return(''ok''),"
 "case -1 then x=''neg'' ,"
 "end"];
 //
@@ -108,9 +109,9 @@ text = ["if n>0 then x=1"
 "end"
 "end"
 "if n==b(-1) then return,end"
-"if n==b(-2) then tt=resume(b(n)),end"
+"if n==b(-2) then tt=return(b(n)),end"
 "select x,"
-"case 1 then x=b(''pos'') ,tt=resume(b(''ok'')),"
+"case 1 then x=b(''pos'') ,tt=return(b(''ok'')),"
 "case b(-1) then x=b(''neg'') ,"
 "end"];
 deff("[x]=b(a)","x=a,prod([1 1])")
@@ -265,7 +266,7 @@ u=t5(-4);
 if u<>"neg" then pause,end
 if exists("tt")==1 then pause,end
 // resume
-deff("[]=t6(a)","x=resume(a)")
+deff("[]=t6(a)","x=return(a)")
 clear ans x
 t6(15)
 if x<>15 then pause,end
@@ -332,7 +333,7 @@ x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
 //resume in external
-deff("[ydot]=simul(t,y,a)","ydot=a,tt=resume([tt,t])")
+deff("[ydot]=simul(t,y,a)","ydot=a,tt=return([tt,t])")
 tt=[]
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=a")
@@ -391,7 +392,7 @@ x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
 //
-deff("[ydot]=simul(t,y,a)","ydot=b(a),tt=resume([tt,t])")
+deff("[ydot]=simul(t,y,a)","ydot=b(a),tt=return([tt,t])")
 tt=[]
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=b(a)")
@@ -446,7 +447,7 @@ x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
 //
-deff("[ydot]=simul(t,y,a)","ydot=b(a),tt=resume([tt,t])")
+deff("[ydot]=simul(t,y,a)","ydot=b(a),tt=return([tt,t])")
 tt=[]
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=b(a)")

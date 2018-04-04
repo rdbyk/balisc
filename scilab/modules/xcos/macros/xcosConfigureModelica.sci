@@ -1,9 +1,8 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
 // Copyright (C) 2010-2010 - DIGITEO - Clément DAVID
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
 
 function xcosConfigureModelica(scs_m)
     // Configure the current diagram with the modelica setting UI.
@@ -68,7 +65,7 @@ function xcosConfigureModelica(scs_m)
     end
 
     // variables needed by compile_init_modelica
-    [modelica_libs,bllst,connectmat,clkconnect,cor,corinv]=resume(modelica_libs,bllst,connectmat,clkconnect,cor,corinv);
+    [modelica_libs,bllst,connectmat,clkconnect,cor,corinv]=return(modelica_libs,bllst,connectmat,clkconnect,cor,corinv);
 
 endfunction
 

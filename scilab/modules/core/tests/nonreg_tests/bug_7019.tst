@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -13,15 +14,15 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7019
 //
 // <-- Short Description -->
-// resume() produces an error instead of beeing equivalent to resume
+// return() produces an error instead of beeing equivalent to resume
 
-mputl(["y=33;";"resume()";"y=44"],TMPDIR+"/bug7019.sce");
+mputl(["y=33;";"return()";"y=44"],TMPDIR+"/bug7019.sce");
 if execstr("exec(TMPDIR+""/bug7019.sce"")","errcatch")<>46 then pause,end
 if y<>33 then pause,end
 
 
 
-if execstr("y=2;resume();y=-1",'errcatch')<>46 then pause,end
+if execstr("y=2;return();y=-1",'errcatch')<>46 then pause,end
 if y<>2  then pause,end
 function y=foo()
 y=1

@@ -1,9 +1,9 @@
 //  Scicos
 //
-//  Copyright (C) Scilab Enterprises - 2013 - Bruno JOFRET
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright (C) 2011 - INRIA - Serge Steer
-
+// Copyright (C) Scilab Enterprises - 2013 - Bruno JOFRET
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2011 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -337,7 +337,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
 
     Info = list(%tcur, %cpr, alreadyran, needstart, needcompile, %state0)
 
-    // Executing the resume() function at the end, because it does not return control
+    // Executing the return() function at the end, because it does not return control
     if ~isempty(Names) then
         execstr(Resume_line);
     end
@@ -392,7 +392,7 @@ function [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m
         // At the end, Names contains the string names of the variables and buff_sizes the respective buffer sizes
 
         // Second step: Link the variable names to their values vectors,
-        //and call '[names(1), names(2), ...] = resume(names(1), names(2), ...)' to save the variable into Scilab
+        //and call '[names(1), names(2), ...] = return(names(1), names(2), ...)' to save the variable into Scilab
         if ~isempty(Names) then
             for i=1:size(Names, "c")
                 execstr("NamesIval = "+Names(i)+"_val;");
@@ -420,7 +420,7 @@ function [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m
                     Resume_line_args   = Resume_line_args + ", " + Names(i);  // Concatenate the variable names up to the last one
                 end
             end
-            Resume_line = "[" + Resume_line_args + "] = resume(" + Resume_line_args + ");";  // Build the message
+            Resume_line = "[" + Resume_line_args + "] = return(" + Resume_line_args + ");";  // Build the message
             // Will execute Resume_line at the end of the main function, because it does not return control
         end
     end

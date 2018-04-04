@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -20,9 +21,9 @@ deff('[x]=tata(y)',['x=-y'
 xx=tata(0);
 return
 if 20-xx<>0 then pause,end
-deff('[x]=tata(y)','x=-y,write(6,''type x=resume(0)''),pause')
+deff('[x]=tata(y)','x=-y,write(6,''type x=return(0)''),pause')
 xx=tata(40);
-x=resume(0)
+x=return(0)
 if xx<>0 then pause,end
 clear x
 text=['after quit '

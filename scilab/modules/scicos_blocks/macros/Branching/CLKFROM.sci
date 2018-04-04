@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -45,7 +46,7 @@ function [x,y,typ]=CLKFROM(job,arg1,arg2)
             x.model=model
             break
         end
-        needcompile=resume(needcompile)
+        needcompile=return(needcompile)
     case "define" then
         model=scicos_model()
         model.sim="clkfrom"

@@ -1,9 +1,8 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
-//
 
 function []=bike_show(xx,t,p,f_name)
     //[]=bike_show(xx,t,p,[f_name])
@@ -79,7 +78,7 @@ function []=bike_show(xx,t,p,f_name)
     rect=[xmin,xmax,ymin,ymax,zmin,zmax]
     get_velo_rti(%f);
     f_name();
-    [velo_rti]=resume(velo_rti);
+    [velo_rti]=return(velo_rti);
 endfunction
 
 function get_velo_rti(d_mode)
@@ -103,7 +102,7 @@ function get_velo_rti(d_mode)
             end
         end
     end
-    [velo_rti]=resume(velo_rti);
+    [velo_rti]=return(velo_rti);
 endfunction
 
 

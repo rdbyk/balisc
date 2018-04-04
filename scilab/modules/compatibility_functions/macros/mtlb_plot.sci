@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -241,6 +241,6 @@ function mark=linespec2sci(linespec,cur_handle)
     elseif ~isempty(ind) then
         mark=4
     end
-    mtlbColor=resume(mtlbColor)
+    mtlbColor=return(mtlbColor)
 endfunction
 

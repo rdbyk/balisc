@@ -1,7 +1,8 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright (C) DIGITEO - 2010 - Jérôme PICARD
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) DIGITEO - 2010 - Jérôme PICARD
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -34,7 +35,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
         messagebox(["In block " + o.gui + ": ";
         txt;
         "current parameter value kept"],"Warning","modal");
-        %scicos_prob = resume(%t)
+        %scicos_prob = return(%t)
     endfunction
 
     // overload message
@@ -56,7 +57,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
             disp(txt);
         end
 
-        %scicos_prob = resume(%t)
+        %scicos_prob = return(%t)
     endfunction
 
     // path on do_eval hierarchy loop

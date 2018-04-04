@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -18,16 +19,16 @@
   //the following instructions has to be copied/pasted in the Scilab console
   clear aa bb  foo
   pause
-  [aa,bb] = resume(1.1,2.2);
+  [aa,bb] = return(1.1,2.2);
   if aa<>1.1|bb<>2.2 then pause,end
 
 
   deff("y=foo()","y=0;pause")
   if foo()<>3 then pause,end
-  y=resume(3);
+  y=return(3);
 
   clear foo
   deff("y=foo()","y=0;pause")
   if foo()<>3 then pause,end
-  y=resume(3);
+  y=return(3);
 

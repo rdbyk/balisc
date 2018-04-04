@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,7 +34,7 @@ function [x,y,typ]=PAL_f(job,arg1,arg2)
         x=arg1
         y=[]
         typ=[]
-        %exit=resume(%f)
+        %exit=return(%f)
 
     case "define" then
         scs=scicos_diagram();

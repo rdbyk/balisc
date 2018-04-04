@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - Author : EADS-CCR
+// Copyright (C) INRIA - Author : EADS-CCR
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -460,7 +461,7 @@ endfunction
 function do_quitter()
     fin=%f;
     ok=%t;
-    [ok,fin]=resume(ok,fin);
+    [ok,fin]=return(ok,fin);
 endfunction
 
 function do_valider()
@@ -469,7 +470,7 @@ function do_valider()
     if (get(edita,"String") == "" | get(editb,"String") == "") then
         messagebox(msprintf(_("Please give the discretization domain values")),"modal","error");
         fin=%t;
-        fin=resume(fin);
+        fin=return(fin);
     end
 
     // Test de renseignements sur les differents champs de l'IHM
@@ -477,49 +478,49 @@ function do_valider()
         if (get(edita1,"String") == "" | get(editb1,"String") == "") then
             messagebox(msprintf(_("Please give the ""%s"" operator coefficients"),"d2u/dt2"),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
     if (get(check_op2,"Value")== 1) then
         if (get(edita2,"String") == "" | get(editb2,"String") == "") then
             messagebox(msprintf(_("Please give the ""%s"" operator coefficients"),"d2u/dx2"),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
     if (get(check_op3,"Value")== 1) then
         if (get(edita3,"String") == "" | get(editb3,"String") == "") then
             messagebox(msprintf(_("Please give the ""%s"" operator coefficients"),"du/dt"),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
     if (get(check_op4,"Value")== 1) then
         if (get(edita4,"String") == "" | get(editb4,"String") == "") then
             messagebox(msprintf(_("Please give the ""%s"" operator coefficients"),"d2u/dtdx"),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
     if (get(check_op5,"Value")== 1) then
         if (get(edita5,"String") == "" | get(editb5,"String") == "") then
             messagebox(msprintf(_("Please give the ""%s"" operator coefficients"),"du/dx"),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
     if (get(check_op6,"Value")== 1) then
         if (get(edita6,"String") == "" | get(editb6,"String") == "") then
             messagebox(msprintf(_("Please give the ""%s"" operator coefficients"),"u"),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
     if (get(check_op7,"Value")== 1) then
         if (get(edita7,"String") == "" | get(editb7,"String") == "") then
             messagebox(msprintf(_("Please give the ""%s"" operator coefficients"),"f"),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
 
@@ -528,7 +529,7 @@ function do_valider()
         if (get(liste_signe,"Value") == 0 ) then
             messagebox(msprintf(_("Please give the sign for the variable discriminant")),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
 
@@ -537,19 +538,19 @@ function do_valider()
         if (get(liste_meth,"Value") == 0 ) then
             messagebox(msprintf(_("Please give the discretization method type")),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
 
         if (get(editdegre,"String") == "" ) then
             messagebox(msprintf(_("Please give the discretization method degree")),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
 
         if (get(editpas,"String") == "" ) then
             messagebox(msprintf(_("Please give the number of discretization points")),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
     // verification du renseignement des conditions intiales
@@ -557,25 +558,25 @@ function do_valider()
         if (get(editCI,"String") == "" ) then
             messagebox(msprintf(_("Please give the initial condition ""%s"""),"u(x,t0)"),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
     if (get(check_op1,"Value")== 1) then
         if (get(editCI1,"String") == "" ) then
             messagebox(msprintf(_("Please give the initial condition ""%s"""),"du/dx|t0"),"modal","error");
             fin=%t;
-            fin=resume(fin);
+            fin=return(fin);
         end
     end
     // verification du renseignement des conditions aux limites
     if (get(editCLa,"String") == "" | get(editCLb,"String") == "" ) then
         messagebox(msprintf(_("Please give the boundary conditions")),"modal","error");
         fin=%t;
-        fin=resume(fin);
+        fin=return(fin);
     end
 
     fin=%f; // Pour sortir sans problemes de l'IHM
-    fin=resume(fin);
+    fin=return(fin);
 endfunction
 
 function add_list_points()
@@ -595,7 +596,7 @@ function add_list_points()
         end
         list_points = [list_points  new];
         set(liste_pts,"String",strcat(list_points,"|"));
-        list_points=resume(list_points)
+        list_points=return(list_points)
     end
 endfunction
 
@@ -611,7 +612,7 @@ function del_list_points()
         end
         list_points =[list_points(1:del-1) list_points(del+1:$)];
         set(liste_pts,"String",strcat(list_points,"|"));
-        list_points=resume(list_points);
+        list_points=return(list_points);
     end
 endfunction
 
