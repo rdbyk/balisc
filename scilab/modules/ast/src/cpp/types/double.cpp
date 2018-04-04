@@ -740,6 +740,41 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
     return true;
 }
 
+std::wstring Double::toStringInLine()
+{
+    if (isScalar())
+    {
+        std::wostringstream ostr;
+
+        if (isComplex())
+        {
+            double re = getFirst();
+            double im = getImgFirst();
+            DoubleFormat dfR, dfI;
+            dfR.bPrintBlank = false;
+            dfR.bPaddSign = false;
+            getDoubleFormat(re, &dfR);
+            getDoubleFormat(im, &dfI);
+            addDoubleComplexValue(&ostr, re, im, dfR.iWidth + dfI.iWidth, &dfR, &dfI);
+        }
+        else
+        {
+            double re = getFirst();
+            DoubleFormat df;
+            df.bPrintBlank = false;
+            df.bPaddSign = false;
+            getDoubleFormat(re, &df);
+            addDoubleValue(&ostr, re, &df);
+        }
+
+        return ostr.str();
+    }
+    else
+    {
+        return ArrayOf<double>::toStringInLine();
+    }
+}
+
 Double* Double::clone()
 {
     int iMemSize = m_iSize * sizeof(double);
