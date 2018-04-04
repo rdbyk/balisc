@@ -1,9 +1,8 @@
-//
 // Scilab ( httzp://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Scilab Enterprises - 2013 - Bruno JOFRET
 // Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
 
 function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
 
@@ -41,7 +38,7 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
         ok=%t;
 
         // Force update on the parent in case of scoped modification
-        scs_m=resume(scs_m);
+        scs_m=return(scs_m);
     endfunction
 
     if isdef("pre_xcos_simulate") then
@@ -391,7 +388,7 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
     // At the end, Names contains the string names of the variables and buff_sizes the respective buffer sizes
 
     // Second step: Link the variable names to their values vectors,
-    //and call '[names(1), names(2), ...] = resume(names(1), names(2), ...)' to save the variable into Scilab
+    //and call '[names(1), names(2), ...] = return(names(1), names(2), ...)' to save the variable into Scilab
     if ~isempty(Names) then
         for i=1:size(Names, "c")
             execstr("NamesIval  = "+Names(i)+"_val;");
@@ -416,7 +413,7 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
                 Resume_line_args = Resume_line_args + ", " + Names(i);  // Concatenate the variable names up to the last one
             end
         end
-        Resume_line = "[" + Resume_line_args + "] = resume(" + Resume_line_args + ");";  // Build the message
+        Resume_line = "[" + Resume_line_args + "] = return(" + Resume_line_args + ");";  // Build the message
         // Will execute Resume_line at the end of the function, to run the following Hook instructions
     end
 
@@ -430,7 +427,7 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
         end
         ok=%t
         // Force update on the parent in case of scoped modification
-        scs_m=resume(scs_m);
+        scs_m=return(scs_m);
     endfunction
 
     if isdef("post_xcos_simulate") then
@@ -453,7 +450,7 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
         end
     end
 
-    // Executing the resume() function at the end, because it does not return control
+    // Executing the return() function at the end, because it does not return control
     if ~isempty(Names) then
         execstr(Resume_line);
     end
