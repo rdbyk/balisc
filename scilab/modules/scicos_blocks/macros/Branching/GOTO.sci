@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -54,7 +55,7 @@ function [x,y,typ]=GOTO(job,arg1,arg2)
                 break
             end
         end
-        needcompile=resume(needcompile)
+        needcompile=return(needcompile)
     case "define" then
         model=scicos_model()
         model.sim="goto"
