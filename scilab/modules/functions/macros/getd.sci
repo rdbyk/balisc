@@ -73,7 +73,7 @@ function getd(path,option)
     clearglobal old lst
 
     if new<>[] then
-        execstr("["+strcat(new,",")+"]=resume("+strcat(new,",")+")")
+        execstr("["+strcat(new,",")+"]=return("+strcat(new,",")+")")
     end
 
 endfunction
