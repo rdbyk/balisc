@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -515,6 +515,39 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
     std::flush(ostr);
     
     return true;
+}
+
+std::wstring String::toStringInLine()
+{
+    if (isScalar())
+    {
+        // FIXME: an appropriate iWidth should be provided by the caller
+        // this would allow to take the length of field names into account
+        int iWidth = ConfigVariable::getConsoleWidth() - 12;
+        wchar_t* s = getFirst();
+
+        if (wcslen(s) <= iWidth)
+        {
+            std::wstring ws;
+            ws.reserve(iWidth + 2);
+            ws += L"\"";
+            ws += s;
+            ws += L"\"";
+            return ws;
+        }
+        else
+        {
+            std::wstring ws(s, iWidth - 2);
+            ws.reserve(iWidth + 2);
+            ws = L"\"" + ws;
+            ws += L"...";
+            return ws;
+        }
+    }
+    else
+    {
+        return ArrayOf::toStringInLine();
+    }
 }
 
 bool String::operator==(const InternalType& it)

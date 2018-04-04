@@ -113,6 +113,7 @@ private :
     virtual void            deleteImg();
     virtual wchar_t**       allocData(int _iSize);
     void                    deleteData(wchar_t* data);
+    virtual std::wstring toStringInLine();
 };
 }
 
