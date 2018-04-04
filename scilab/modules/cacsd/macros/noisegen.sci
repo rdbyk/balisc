@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,5 +23,5 @@ function noisegen(pas,Tmax,sig)
     [nn1,nn2]=size(dua_g);
     deff("[b]=Noise(t)","b=dua_g(min(max((t/"+string(Tmax)+...
     ")*"+string(nn2)+",1),"+string(nn2)+"))");
-    [dua_g,Noise]=resume(dua_g,Noise);
+    [dua_g,Noise]=return(dua_g,Noise);
 endfunction
