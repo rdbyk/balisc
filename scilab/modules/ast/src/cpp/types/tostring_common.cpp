@@ -340,12 +340,16 @@ void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _d
 
     df.iPrec = _pDFR->iPrec;
     df.bExp = _pDFR->bExp;
+    df.bPrintBlank = _pDFR->bPrintBlank;
+    df.bPaddSign = _pDFR->bPaddSign;
 
     addDoubleValue(&ostemp, _dblR, &df);
 
     // imaginary part
     df.iPrec = _pDFI->iPrec;
     df.bExp = _pDFI->bExp;
+    df.bPrintBlank = _pDFI->bPrintBlank;
+    df.bPaddSign = _pDFI->bPaddSign;
     df.bPrintPlusSign = true;
     df.bPrintComplexPlusSpace = true;
     df.bPrintOne = false;
