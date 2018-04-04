@@ -32,7 +32,7 @@ function []=amdbaR(File_name)
     noeul=read(unit,x(1),4);
     trianl=read(unit,x(2),5);
     file("close",unit);
-    [noeuds,triang,noeul,trianl]=resume(noeuds,triang,noeul,trianl);
+    [noeuds,triang,noeul,trianl]=return(noeuds,triang,noeul,trianl);
 
 endfunction
 

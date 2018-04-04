@@ -2,6 +2,7 @@
 // Copyright (C) 1993 - INRIA - Serge Steer
 // Copyright (C) 1993 - INRIA - Habib Jreij
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -303,7 +304,7 @@ function [x,y] = addpt(c1,x,y)
         x = c1(1);
         y = c1(2);
         xpolys(x*[1 1],y*[1 1],[1,-1]);
-        hdl = resume(edit_curv_axes.children(1).children)
+        hdl = return(edit_curv_axes.children(1).children)
     end
     //recherche des intervalles en x contenant l'abscisse designee
     kk=[]
