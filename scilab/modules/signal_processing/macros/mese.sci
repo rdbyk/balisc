@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
 // Copyright (C) INRIA - 1991 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,8 +23,7 @@ function [sm,fr]=mese(x,npts);
 
     //default evaluation
 
-    [rhs,lhs]=argn(0);
-    if lhs==1 then,
+    if nargout==1 then,
         npts=256;
     end,
 

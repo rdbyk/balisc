@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,7 +30,6 @@ function [y,e1]=convol(h,x,e0)
     //  Finally y=[y1,y2,...,yNm1,yN]
     //!
 
-    [lhs,rhs]=argn(0)
     n=prod(size(x))
     m=prod(size(h))
     m1=2^(int(log(n+m-1)/log(2))+1)
@@ -40,13 +39,13 @@ function [y,e1]=convol(h,x,e0)
     else
         y=fft(fft(matrix(x,1,m1),-1).*fft(matrix(h,1,m1),-1),1)
     end
-    if lhs+rhs==5 then,
+    if nargout+nargin==5 then,
         e0(n)=0;//update carried from left to right
         e1=y(n+1:n+m-1)
         y=y(1:n)+e0
 
-    elseif lhs+rhs==4 then
-        if rhs==2 then
+    elseif nargout+nargin==4 then
+        if nargin==2 then
             e1=y(n+1:n+m-1)
             y=y(1:n) //initial update
         else

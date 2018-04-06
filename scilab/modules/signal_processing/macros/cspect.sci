@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,19 +30,17 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
     //
     //!
 
-    [lhs,rhs]=argn(0);
-
     if and(wtype<>["re","tr","hm","hn","kr","ch"]) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
         "cspect",3,"''re'',''tr'',''hm'',''hn'',''kr'',''ch''"));
     end
 
     //Analyze syntax and construct window
-    if rhs==4 then,
+    if nargin==4 then,
         //cspect(nlags,ntp,wtype,x)
         [w,cwp]=window(wtype,2*nlags-1);
         crossFlag=%f; //autocorrelation
-    elseif rhs==5 then
+    elseif nargin==5 then
         //cspect(nlags,ntp,wtype,x,wpar) or cspect(nlags,ntp,wtype,x,y)
         if wtype=="kr" then //cspect(nlags,ntp,'kr',x,wpar)
             wpar=y;

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,11 +30,11 @@ function xh=hilb(n,wtype,par)
     //  A. Reilly, G. Frazer, and B. Boashash, "Analytic signal generation
     //  Tips and traps,¡ IEEE Trans. Signal Processing, vol. 42,
     //  pp.3241-3245, Nov. 1994.
-    [lhs,rhs]=argn(0);
-    if rhs==1 then,
+
+    if nargin==1 then,
         wtype="re";
         par=[0 0];
-    elseif rhs==2 then,
+    elseif nargin==2 then,
         par=[0 0];
     end,
 

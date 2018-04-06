@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011-2014 - INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,7 @@ function [ok,values_res,exprs]=wfir_gui(exprs)
     FT=["lp","hp","bp","sb"]
     WT=["re","tr","hn","hm","kr","ch","ch"]
     //  errcatch(-1,'continue')
-    if argn(2)<1 then
+    if nargin<1 then
         exprs=["""lp""";
         """re"""
         "48";
@@ -565,7 +565,7 @@ endfunction
 
 function wfirSliderpos2Value(hs)
     //hs handle on the slider
-    if argn(2)<1 then hs=gcbo,end
+    if nargin<1 then hs=gcbo,end
     ud=hs.userdata
     hv=ud(1);//handle on edition zone
     fact=ud(2)// scale factor
@@ -574,7 +574,7 @@ function wfirSliderpos2Value(hs)
 endfunction
 function wfirSliderpos2ValueI(hs)
     //hs handle on the slider
-    if argn(2)<1 then hs=gcbo,end
+    if nargin<1 then hs=gcbo,end
     hs.value=round(hs.value)
     ud=hs.userdata
     hv=ud(1);//handle on edition zone
@@ -585,7 +585,7 @@ endfunction
 
 function wfirValue2Sliderpos(hv)
     // hv handle on edition zone
-    if argn(2)<1 then hv=gcbo,end
+    if nargin<1 then hv=gcbo,end
     if execstr("v="+hv.string,"errcatch")==0 then
         hs=hv.userdata //handle on the slider
         ud=hs.userdata

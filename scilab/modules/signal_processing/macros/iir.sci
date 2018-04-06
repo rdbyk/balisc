@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,7 +37,7 @@ function [hz,zz,gz]=iir(n,ftype,fdesign,frq,delta)
     //           :                    0<ripple<delta(2)   in stopband
     //
     //!
-    if and(argn(1)<>[1 3]) then
+    if and(nargout<>[1 3]) then
         error(msprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"),"iir",1,3))
     end
     //select analog filter design for low-pass filter with fc=.25
@@ -75,7 +75,7 @@ function [hz,zz,gz]=iir(n,ftype,fdesign,frq,delta)
     //make digital low-pass filter from analog low-pass filter
     z=poly(0,"z");[pd,zd,gd]=bilt(pc,zc,gc,2*(z-1),(z+1));
     //do change of variables to obtain general digital filter
-    if argn(1)==1 then
+    if nargout==1 then
         hz=trans(pd,zd,gd,ftype,frq);
     else
         [pz,zz,gz]=trans(pd,zd,gd,ftype,frq);

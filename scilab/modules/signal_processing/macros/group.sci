@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,14 +34,14 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
     //
     //!
 
-
     //get frequency grid values in [0,.5)
 
     fr=(0:.5/npts:.5*(npts-1)/npts);
 
     //get the of arguments used to called group
 
-    [ns,ne]=argn(0);
+    ne = nargin; // cf. below
+
     if and(ne <> [2 5]) then
         error(sprintf(_("%s: Wrong number of input argument(s): %d or %d expected.\n"), "group", 2, 5));
     end

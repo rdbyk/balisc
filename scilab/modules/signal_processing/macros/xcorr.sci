@@ -1,6 +1,7 @@
 // This file is part Scilab
 // Copyright (C) 2012 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -8,6 +9,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function [c,lagindex]=xcorr(x,varargin)
     nv=size(varargin)
     if nv>0&type(varargin(nv))==10 then
@@ -123,5 +125,5 @@ function [c,lagindex]=xcorr(x,varargin)
     end
     //give result same orientation as x
     if szx(1)==1 then c=matrix(c,1,-1),end
-    if argn(1)==2 then lagindex=-maxlags:maxlags,end
+    if nargout==2 then lagindex=-maxlags:maxlags,end
 endfunction

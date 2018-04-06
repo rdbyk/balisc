@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F.B
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +9,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
+
 function x = fft2(varargin)
     // Two-dimensional fast Fourier transform
     // Syntax : y = fft2(x) or y = fft2(x,m,n)
@@ -21,7 +20,7 @@ function x = fft2(varargin)
     // Outputs :
     // y : scalar, vector, matrix, array (real or complex), if there is one input argument x then y and x have the same size, else if there are 3 inputs arguments then the sizes of the first and second dimension of y are equal to m and n, the others dimension sizes are equal to the size of x
 
-    if ~or(argn(2)==[1 3])
+    if ~or(nargin==[1 3])
         msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
         error(msprintf(msg, "fft2", 1, 3))
     end

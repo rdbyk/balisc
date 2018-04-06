@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,10 +20,10 @@ function [hzt,zt,gt]=trans(pd,zd,gd,tr_type,frq)
     // frq     :frequency values
     // hzt     :output polynomial
     //!
-    if and(argn(1)<>[1 3]) then
+    if and(nargout<>[1 3]) then
         error(msprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"),"trans",1,3))
     end
-    select argn(2)
+    select nargin
     case 3 then //trans(hz,tr_type,frq): filter given by a siso tranfer function
         hz=pd
         if typeof(hz)<>"rational" then
@@ -99,7 +99,7 @@ function [hzt,zt,gt]=trans(pd,zd,gd,tr_type,frq)
     else
         [pt,zt,gt]=bilt(pd,zd,gd,num,den);
     end
-    if argn(1)==1 then
+    if nargout==1 then
         hzt=rlist(gt*real(poly(zt,"z")),real(poly(pt,"z")),"d");
     else
         hzt=pt(:)

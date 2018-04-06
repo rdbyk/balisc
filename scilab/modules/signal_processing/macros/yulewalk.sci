@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,8 +34,8 @@ function [Nz,Dz]=yulewalk(Norder, frq, mag)
     //clf(1); scf(1); plot2d(fs*frq',abs(repf'));
     //xtitle('Obtained Frequency Response')
     //
-    [LHS,RHS]=argn(0);
-    if RHS <>3
+
+    if nargin <>3
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"yulewalk",3));
     end
     npt=512;
@@ -115,7 +115,7 @@ function [Nz,Dz]=yulewalk(Norder, frq, mag)
     nB=size(B,"*");
     Nz=poly(B(nB:-1:1),"z","c");
     B =real(numf(hh(1:nr),A,nb));
-    if LHS==1 then
+    if nargout==1 then
         Nz=syslin("d",Nz/Dz);
     end
 endfunction
