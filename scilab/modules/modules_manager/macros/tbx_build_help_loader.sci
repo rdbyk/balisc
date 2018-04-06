@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Simon LIPP <simon.lipp@scilab.org>
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,11 +15,9 @@
 
 function tbx_build_help_loader(moduletitle,path)
 
-    rhs = argn(2);
-
     // Number of input arguments
 
-    if and(rhs<> [1 2]) then
+    if and(nargin<> [1 2]) then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"tbx_build_help_loader",1,2));
     end
 
@@ -37,7 +35,7 @@ function tbx_build_help_loader(moduletitle,path)
     // Input argument N°2
     // → path
 
-    if rhs<2 then
+    if nargin<2 then
         path = pwd();
 
     else

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Clément DAVID <clement.david@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,10 +20,10 @@ function tbx_build_blocks(module, names, macros_path)
     // module: toolbox base directory
     // names: list of block names (sci file name without extension)
 
-    if argn(2) < 2 then
+    if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"tbx_build_blocks",2));
     end
-    if argn(2) > 3 then
+    if nargin > 3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: At most %d expected.\n"),"tbx_build_blocks",3));
     end
 
