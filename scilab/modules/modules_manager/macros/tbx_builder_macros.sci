@@ -3,8 +3,8 @@
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL
 // Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
 // Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,7 @@ function tbx_builder_macros(tbx_path)
 
     // INITIALIZATIONS
     fname = "tbx_builder_macros"
-    if argn(2)~=1 then
+    if nargin~=1 then
         msg = _("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg, fname, 1))
     end

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,12 +16,11 @@ function mapsound (w,dt,fmin,fmax,simpl,rate)
     // rate is the sampling rate.
     // simpl points are collected for speed reasons.
 
-    [lhs,rhs]=argn(0);
-    if ( rhs <= 5 ) then rate=0;end
-    if ( rhs <= 4 ) then simpl=1; end ;
-    if ( rhs <= 3 ) then fmax=1500; end ;
-    if ( rhs <= 2 ) then fmin=100; end ;
-    if ( rhs <= 1 ) then dt=0.1;  end ;
+    if nargin <= 5 then rate=0;end
+    if nargin <= 4 then simpl=1; end ;
+    if nargin <= 3 then fmax=1500; end ;
+    if nargin <= 2 then fmin=100; end ;
+    if nargin <= 1 then dt=0.1;  end ;
     n=prod(size(w));
     defaultrate=22050;
     if rate==0; rate=defaultrate; end;

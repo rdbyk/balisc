@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,7 +29,7 @@ function [xm,fr]=frmag(num,den,npts)
     //       :magnitude is evaluated
     //!
 
-    select argn(2)
+    select nargin
     case 2 then //frmag(sys,npts)
         npts=den;
         if typeof(num)=="rational" then

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - INRIA - Serge STEER
 // Copyright (C) 2014 - Scilab Enterprises - Clément DAVID
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
 // along with this program.
 
 function tbx_build_pal_loader(palettename,interfacefunctions,module_path,script_path)
-    if argn(2) < 3 then
+    if nargin < 3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"tbx_build_blocks",3));
     end
     // checking palettename argument
@@ -40,7 +40,7 @@ function tbx_build_pal_loader(palettename,interfacefunctions,module_path,script_
     end
 
     // checking optional script_path argument
-    if argn(2)==4 then
+    if nargin==4 then
         if type(script_path) <> 10 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",4));
         end

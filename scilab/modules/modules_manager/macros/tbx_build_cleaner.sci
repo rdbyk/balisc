@@ -3,8 +3,8 @@
 // Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
 // Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
 // Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,26 +22,25 @@ function tbx_build_cleaner(name, path)
     // tbx_build_cleaner()             // 6.0  path = pwd()
 
     fname = "tbx_build_cleaner"
-    rhs = argn(2);
 
     // CHECKING INPUT PARAMETERS
     // -------------------------
-    if and(rhs <> [0 1 2]) then
+    if and(nargin <> [0 1 2]) then
         msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg, fname, 0, 1))
     end
 
-    if rhs==2
+    if nargin==2
         msg = "%s: %s(name, path) is obsolete. Please use %s(path) instead.\n"
         warning(msprintf(msg, fname, fname, fname))  // no translation
 
-    elseif rhs==0
+    elseif nargin==0
         path = pwd()
     else
         path = name
         if type(path) <> 10 then
             msg = _("%s: Argument #%d: Text(s) expected.\n")
-            error(msprintf(msg, fname, rhs))
+            error(msprintf(msg, fname, nargin))
         end
         path = path(1)
         // May be

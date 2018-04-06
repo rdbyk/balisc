@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,8 +33,8 @@ function [num,den]=mrfit(w,mod,r,weight)
     endfunction
 
     w=w(:);mod=mod(:);
-    [LHS, RHS]=argn(0);
-    if RHS < 4 then
+
+    if nargin < 4 then
         weight=ones(length(w),1);
     else
         if ~iscolumn(weight) then
@@ -89,7 +89,7 @@ function [num,den]=mrfit(w,mod,r,weight)
     fresp=cepstrum(w,mod);
 
     [num,den]=frfit(w,fresp,r,weight);
-    if LHS==1 then
+    if nargout==1 then
         num=syslin("c",num/den);
     end
 

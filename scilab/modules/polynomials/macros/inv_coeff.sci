@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,14 +10,14 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
 function [P]=inv_coeff(c,d,name)
     // inverse function of coeff
-    rhs=argn(2);
-    if rhs <= 2 ; name = "x";end
+    if nargin <= 2
+        name = "x";
+    end
 
     [n,m]=size(c);
-    if rhs <= 1 ; d = (m/n-1) ; end
+    if nargin <= 1 ; d = (m/n-1) ; end
     if d==m-1 then
         P=[];
         for l=1:n, P=[P;poly(c(l,:),name,"coeff")];end

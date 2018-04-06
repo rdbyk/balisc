@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - INRIA - Serge STEER
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,7 +19,7 @@ function y=convol2d(h,x)
     //%DESCRIPTION
     //  calculates the 2-D convolution y= h*x of two discrete sequences by
     //  using the fft.
-    if argn(2)<2 then
+    if nargin<2 then
         error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"convol2d",2))
     end
 

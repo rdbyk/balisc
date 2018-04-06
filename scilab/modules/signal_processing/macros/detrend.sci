@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Bruno Pincon
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,12 +30,11 @@ function [y] = detrend(x, flag, bp)
     // x is a matrix). So bp must be reals in [0 m-1].
     //
 
-    rhs = argn(2)
-    if rhs < 1 | rhs > 3 then
+    if nargin < 1 | nargin > 3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"detrend",1,3));
-    elseif rhs == 1
+    elseif nargin == 1
         flag = "linear"; bp = []
-    elseif rhs == 2
+    elseif nargin == 2
         bp = []
     end
 

@@ -1,7 +1,5 @@
 function [E_Value, M_Value] = ising2d(Var, J, H, Magnet, Connect)
 
-    [nargout, nargin] = argn();
-
     M_Value_defined = (nargout==2);
 
     if (~isdef("Connect","local")) then

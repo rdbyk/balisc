@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [resn,g]=pfactors(pol,flag)
     // Given polynomial pol returns in list resn polynomials of
@@ -22,10 +21,9 @@ function [resn,g]=pfactors(pol,flag)
     if n==0 then resn=list();g=coeff(pol);return;end
     co=coeff(pol);g=co(n+1);
     resn=list();
-    [LHS,RHS]=argn(0);
-    if RHS==1 then flag=[];end
-    if  flag==[] then RHS=1;end
-    if RHS==1 then
+    if nargin==1 then flag=[];end
+    if  flag==[] then nargin=1;end
+    if nargin==1 then
         kk=1;k=1;
         while %T
             if abs(imag(w(kk)))<=%eps then
@@ -39,8 +37,8 @@ function [resn,g]=pfactors(pol,flag)
                 if kk>n then return;end
             end
         end
-    end   //RHS=1
-    if RHS==2 then
+    end   //nargin=1
+    if nargin==2 then
         kk=1;k=1;
         if flag=="c" then
             while %T
@@ -83,5 +81,5 @@ function [resn,g]=pfactors(pol,flag)
                 end
             end
         end    //'d'
-    end   //RHS=2
+    end   //nargin=2
 endfunction

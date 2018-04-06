@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - Scilab Enterprises - Allan Cornet
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
 
 function y = ifftshift(x)
 
-    if argn(2) < 1 then
+    if nargin < 1 then
         error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "ifftshift", 1));
     end
 

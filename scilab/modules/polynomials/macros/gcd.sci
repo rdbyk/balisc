@@ -3,6 +3,7 @@
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/15017
 //                                       http://bugzilla.scilab.org/15058
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,8 +18,7 @@ function [x, uu] = gcd(p)
     //with minimal degree such that [p1 p2]*u=[0 ... 0 pgcd]
     //!
 
-    [lhs,rhs] = argn(0)
-    if rhs~=1
+    if nargin~=1
         msg = _("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg, "gcd", 1));
     end
@@ -46,13 +46,13 @@ function [x, uu] = gcd(p)
     uu = 1
     for l = 2:mn,
         [x, u] = bezout(x, p(l)),
-        if lhs==2 then
+        if nargout==2 then
             uu = [uu(:, 1:l-2) uu(:, l-1)*u(1, [2 1])];
             uu(l, l-1:l) = u(2, [2 1]);
         end
     end
 
-    if lhs>1
+    if nargout>1
         if type(p)==2
             // Polynomials case
             for l = mn:-1:2

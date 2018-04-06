@@ -5,8 +5,8 @@
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2006 - INRIA - Serge Steer
 // Copyright (C) 2005 - IRISA - Sage Group
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-//
 // conjgrad --
 //   This function regroups four methods from the "Conjugate Gradient family" to solve the linear system %Ax=b:
 //     - PCG (Preconditioned Conjugate Gradient): A must be symmetric positive definite,
@@ -89,9 +88,11 @@
 
 function [x, flag, resNorm, iter, resVec] = conjgrad(%A, %b, method, tol, maxIter, %M, %M2, x0, verbose )
 
-    [lhs, rhs] = argn(0);
+    // FIXME: {%cgs,%bicg,%bicgstab}.sci will fail if we do not define
+    // this 'lhs' variable here ... due to https://codereview.scilab.org/#/c/13007/
+    lhs = nargout;
 
-    if rhs < 2 | rhs >9 then
+    if nargin < 2 | nargin >9 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"conjgrad",2,9));
     end
 

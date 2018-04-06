@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
 // Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,9 +13,7 @@
 
 function [x] = input(msg, flag)
 
-    [lhs,rhs] = argn(0);
-
-    if rhs <> 1 & rhs <> 2 then
+    if nargin <> 1 & nargin <> 2 then
         msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg, "input", 1, 2));
     end
@@ -33,7 +31,7 @@ function [x] = input(msg, flag)
     // a tricky way to get all ascii codes  sequences
     fmt = "%[" + ascii(32) + "-" + ascii(254) + "]";
 
-    if argn(2) == 2 then
+    if nargin == 2 then
         if type(flag) <> 10 then
             msg = _("%s: Wrong type for input argument #%d: String expected.\n")
             error(msprintf(msg, "input",2));

@@ -1,9 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
 // Copyright (C) XXXX-2008 - INRIA - Allan CORNET
-
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function varargout = unix_g(cmd)
     //unix_g - shell command execution
@@ -29,9 +27,7 @@ function varargout = unix_g(cmd)
     // host unix_x unix_s
     //!
 
-    [lhs,rhs] = argn(0);
-
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"unix_g",1));
     end
 
@@ -43,7 +39,7 @@ function varargout = unix_g(cmd)
         error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"unix_g",1));
     end
 
-    if lhs > 3 then
+    if nargout > 3 then
         error(msprintf(gettext("%s: Wrong number of output argument(s).\n"),"unix_g"));
     end
 
@@ -57,7 +53,7 @@ function varargout = unix_g(cmd)
         if (stat == %t) then
             stat = 0;
         else
-            if lhs == 3 then
+            if nargout == 3 then
                 stderr = rep;
             else
                 for i=1:size(rep,"*") do write(%io(2),"   "+rep(i));end
@@ -84,7 +80,7 @@ function varargout = unix_g(cmd)
 
         case -1 then
             // host failed
-            if lhs == 3 then
+            if nargout == 3 then
                 stderr = msprintf(gettext("%s: The system interpreter does not answer..."),"unix_g");
             else
                 disp(msprintf(gettext("%s: The system interpreter does not answer..."),"unix_g"));
@@ -92,7 +88,7 @@ function varargout = unix_g(cmd)
             rep = emptystr();
         else
             msg = mgetl(TMPDIR+"/unix.err");
-            if lhs == 3 then
+            if nargout == 3 then
                 stderr = msg;
             else
                 disp(msg(1));
@@ -107,11 +103,11 @@ function varargout = unix_g(cmd)
 
     varargout(1) = rep;
 
-    if lhs >= 2 then
+    if nargout >= 2 then
         varargout(2) = stat;
     end
 
-    if lhs >= 3 then
+    if nargout >= 3 then
         varargout(3) = stderr;
     end
 

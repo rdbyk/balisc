@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,9 +33,7 @@ function [wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
 
     FT=["lp","hp","bp","sb"]
 
-    [lhs,rhs]=argn(0);
-
-    if rhs<=0 then,
+    if nargin<=0 then,
         //if macro called with no arguments query user for values
         [ok,values,exprs]=wfir_gui()
         if ~ok then return,end

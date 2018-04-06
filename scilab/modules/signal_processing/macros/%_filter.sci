@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Serge STEER <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,13 +12,12 @@
 
 function [y, z] = %_filter(b, a, x, z)
     fname = "filter"
-    [lhs, rhs] = argn(0)
 
-    if rhs < 3 | rhs > 4
+    if nargin < 3 | nargin > 4
         error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 3, 4));
     end
 
-    if rhs == 3
+    if nargin == 3
         z = 0;
     end
 
@@ -101,7 +100,7 @@ function [y, z] = %_filter(b, a, x, z)
         a = coeff(a, deg:-1:0);
     end
 
-    if rhs == 4 then
+    if nargin == 4 then
         [y, z] = filter(b, a, x, z);
     else
         [y, z] = filter(b, a, x);

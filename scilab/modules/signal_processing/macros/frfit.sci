@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,8 +27,7 @@ function [num,den]=frfit(w,fresp,order,weight)
     //
     // changing frequencies to rad/s
     w=2*%pi*w;
-    [LHS,RHS]=argn(0);
-    if RHS==3
+    if nargin==3
         weight=ones(w);
     end
     w=w(:);fresp=fresp(:);weight=weight(:);
@@ -40,7 +39,7 @@ function [num,den]=frfit(w,fresp,order,weight)
 
     order1=order+1;npts=length(w);wmed=1;
 
-    if RHS < 4 then
+    if nargin < 4 then
         weight=ones(npts,1);
     end
 
@@ -211,7 +210,7 @@ function [num,den]=frfit(w,fresp,order,weight)
     polydn=poly(fliplr(dn),"s");
     num=real(num(1)*polyrn);
     den=real(den(1)*polydn);
-    if LHS==1
+    if nargout==1
         num=syslin("c",num/den)
     end
 

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,7 @@
 // along with this program.
 
 function [sp]=speye(m,n)
-
-    [lhs,rhs]=argn(0)
-    if rhs==1 then [m,n]=size(m),end
+    if nargin==1 then [m,n]=size(m),end
     mn=min(m,n)
     sp=sparse([(1:mn)' (1:mn)'],ones(mn,1),[m,n])
 endfunction

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Simon LIPP <simon.lipp@scilab.org>
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,13 +24,11 @@ function tbx_build_gateway(libname,      ..
     makename,     ..
     ismex)
 
-
-    rhs = argn(2);
     currentdirectory = pwd();
 
     // Number of input arguments
 
-    if rhs<3 | rhs>11 then
+    if nargin<3 | nargin>11 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"tbx_build_gateway",3,11))
     end
 
@@ -66,7 +64,7 @@ function tbx_build_gateway(libname,      ..
     // Input argument N°4
     // → gateway_path
 
-    if rhs<4 then
+    if nargin<4 then
         gateway_path = currentdirectory;
 
     else
@@ -90,49 +88,49 @@ function tbx_build_gateway(libname,      ..
     // Input argument N°5
     // → libs
 
-    if rhs<5 then
+    if nargin<5 then
         libs = [];
     end
 
     // Input argument N°6
     // → ldflags
 
-    if rhs<6 then
+    if nargin<6 then
         ldflags = "";
     end
 
     // Input argument N°7
     // → cflags
 
-    if rhs<7 then
+    if nargin<7 then
         cflags = "";
     end
 
     // Input argument N°8
     // → fflags
 
-    if rhs<8 then
+    if nargin<8 then
         fflags = "";
     end
 
     // Input argument N°9
     // → cc
 
-    if rhs<9 then
+    if nargin<9 then
         cc = "";
     end
 
     // Input argument N°10
     // → makename
 
-    if rhs<10 then
+    if nargin<10 then
         makename = "";
     end
 
     // Input argument N°11
     // → ismex
 
-    if rhs<11 then
+    if nargin<11 then
         ismex = %F;
 
     else

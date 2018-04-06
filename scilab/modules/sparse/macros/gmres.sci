@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 // [x, flag, resNorm, iter, resVec] = gmres( A, b, x, M, restrt, max_it, tol )
 //
@@ -48,9 +47,7 @@ function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
     // -----------------------
     // Parsing input arguments
     // -----------------------
-
-    [lhs,rhs]=argn(0);
-    if ( rhs < 2 ),
+    if ( nargin < 2 ),
         error(msprintf(gettext("%s: Wrong number of input argument: At least %d expected.\n"),"gmres",2));
     end
 
@@ -80,7 +77,7 @@ function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
     end
 
     // Number of iterations between restarts
-    if (rhs >= 3),
+    if (nargin >= 3),
         restrt=varargin(2);
         if (size(restrt) ~= [1 1]),
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",3));
@@ -90,7 +87,7 @@ function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
     end
 
     // Error tolerance tol
-    if (rhs >= 4),
+    if (nargin >= 4),
         tol=varargin(3);
         if (size(tol) ~= [1 1]);
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",4));
@@ -100,7 +97,7 @@ function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
     end
 
     // Maximum number of iterations max_it
-    if (rhs >= 5),
+    if (nargin >= 5),
         max_it=varargin(4);
         if (size(max_it) ~= [1 1]),
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"gmres",5));
@@ -110,7 +107,7 @@ function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
     end
 
     // Parsing of the preconditioner matrix M
-    if (rhs >= 6),
+    if (nargin >= 6),
         M = varargin(5);
         select type(M)
         case 1 then
@@ -135,7 +132,7 @@ function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
     end
 
     // Parsing of the initial vector x
-    if (rhs >= 7),
+    if (nargin >= 7),
         x=varargin(6);
         if (size(x,2) ~= 1),
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"gmres",3));
@@ -147,7 +144,7 @@ function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
         x=zeros(b);
     end
 
-    if (rhs > 7),
+    if (nargin > 7),
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"gmres",2,7));
     end
 
@@ -285,7 +282,7 @@ function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
     end
     if ( resNorm > tol ),
         flag = 1;
-        if (lhs < 2),
+        if (nargout < 2),
             warning(msprintf(gettext("%s: Did not converge.\n"),"gmres"));
         end
     end
