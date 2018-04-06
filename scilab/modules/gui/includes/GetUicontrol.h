@@ -42,6 +42,7 @@ void* GetUicontrolMin(void* _pvCtx, int iObjUID);
 void* GetUicontrolPosition(void* _pvCtx, int iObjUID);
 void* GetUicontrolPosition(void* _pvCtx, int iObjUID);
 void* GetUicontrolSliderStep(void* _pvCtx, int iObjUID);
+void* GetUicontrolSnapToTicks(void* _pvCtx, int iObjUID);
 void* GetUicontrolString(void* _pvCtx, int iObjUID);
 void* GetUicontrolStyle(void* _pvCtx, int iObjUID);
 void* GetUicontrolTooltipString(void* _pvCtx, int iObjUID);

@@ -46,6 +46,7 @@ int SetUicontrolMin(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int
 int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, int nbCol);
 int SetUicontrolRelief(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 int SetUicontrolSliderStep(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+int SetUicontrolSnapToTicks(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol ) ;
 int SetUicontrolTooltipString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol ) ;
 int SetUicontrolUnits(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
