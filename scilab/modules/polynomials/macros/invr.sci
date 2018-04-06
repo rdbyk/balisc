@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,10 +22,10 @@ function [f, d] = invr(h, flag)
         error(msprintf(msg, "invr", 1));
     end
     // default
-    if argn(2)==1 then
+    if nargin==1 then
         flag = "C";
     end
-    lhs = argn(1)
+
     select typeof(h)
     case "constant" then
         f = inv(h);
@@ -45,7 +45,7 @@ function [f, d] = invr(h, flag)
             else
                 [Bfs,Bis,chis] = glever(E, A, varn(h));
                 f = Bfs/chis - Bis;
-                if lhs==2 then
+                if nargout==2 then
                     d = lcm(f("den"));
                     f = f*d;
                     f = f("num");
@@ -64,7 +64,7 @@ function [f, d] = invr(h, flag)
                 if degree(d)==0 then
                     d = coeff(d);
                 end
-                if lhs==1 then
+                if nargout==1 then
                     f = f/d;
                 end
             case "C"
@@ -72,7 +72,7 @@ function [f, d] = invr(h, flag)
                 if degree(d)==0 then
                     d = coeff(d);
                 end
-                if lhs==1 then
+                if nargout==1 then
                     f = f/d;
                 end
             else
@@ -84,7 +84,7 @@ function [f, d] = invr(h, flag)
         if m==1 then
           f = h.den
           d = h.num
-          if lhs==1 then
+          if nargout==1 then
               f = f/d;
           end
           return
@@ -107,7 +107,7 @@ function [f, d] = invr(h, flag)
                 d = d+b(l,l)
             end
             d = d/n
-            if lhs==1 then
+            if nargout==1 then
                 f = f/d;
             end
         case "A" //   lcm of all denominator entries
@@ -116,19 +116,19 @@ function [f, d] = invr(h, flag)
             Num = Num("num");
             [N, d] = coffg(Num);
             f = N*denh;
-            if lhs==1 then
+            if nargout==1 then
                 f = f/d;
             end
         case "C"// default method by polynomial inverse
             [Nh,Dh] = lcmdiag(h); //h=Nh*inv(Dh); Dh diagonal;
             [N, d]  = coffg(Nh);
             f = Dh*N;
-            if lhs==1 then
+            if nargout==1 then
                 f = f/d;
             end
         case "Cof"// cofactors method
             [f,d] = coffg(h);
-            if lhs==1 then
+            if nargout==1 then
                 f = f/d;
             end
         else

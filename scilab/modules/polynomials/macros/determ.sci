@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA - Francois DELBECQUE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function res=determ(W,k)
 
@@ -50,7 +49,7 @@ function res=determ(W,k)
 
     maj = n1*max(degree(W))+1;
 
-    if argn(2)==1 then
+    if nargin==1 then
         k=1;
         while k < maj,
             k=2*k;
@@ -87,7 +86,7 @@ function res=determ(W,k)
         Temp1 = clean(real(poly(fft(fi,1),varn(W),"c")),epsa,epsr);
     end
 
-    if argn(2)==1 then
+    if nargin==1 then
 
         // Cas où k est défini dans les paramètres d'entrée.
         // On va maintenant annuler tous les coefficients

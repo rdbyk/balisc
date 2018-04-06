@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [N,D]=lcmdiag(H,flag)
     //returns N and diagonal D
@@ -26,12 +25,13 @@ function [N,D]=lcmdiag(H,flag)
     Den = H("den");
     [m, n] = size(H);
     D = []; N = [];
-    [lhs, rhs] = argn(0);
-    if rhs==1 then
+
+    if nargin==1 then
         flag = "col";
     elseif type(flag)<>10 then
         error(msprintf(_("%s: Wrong type for argument #%d: String expected.\n"), "lcmdiag", 2));
     end
+
     select flag
     case "row"
         for k = 1:m

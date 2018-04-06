@@ -2,8 +2,8 @@
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) INRIA - Serge Steer
 // Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/15058
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -36,7 +36,7 @@ function [p, fact] = lcm(p)
 
     // Integers:
     if type(p)==8 then
-        if argn(1)==2 then
+        if nargout==2 then
             [p, fact] = %i_lcm(p);
         else
             p = %i_lcm(p);
