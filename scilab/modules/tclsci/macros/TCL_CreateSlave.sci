@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,18 +10,15 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
 function status = TCL_CreateSlave(slaveName, isSafe)
     // slaveName: name of the slave to create
     // isSafe: %T to create a safe slave, %F otherwise (default)
 
-    // Input arguments tests
-    [lhs, rhs] = argn();
-    if rhs<>1 & rhs<>2 then
+    if nargin<>1 & nargin<>2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "TCL_CreateSlave", 1, 2));
     end
 
-    if lhs<>1 then
+    if nargout<>1 then
         error(msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"), "TCL_CreateSlave", 1));
     end
 
@@ -29,7 +26,7 @@ function status = TCL_CreateSlave(slaveName, isSafe)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A String expected.\n"), "TCL_CreateSlave", 1));
     end
 
-    if rhs==1 then
+    if nargin==1 then
         isSafe = %F; // Create an unsafe slave by default
     end
 
