@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,8 +21,6 @@ function [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history ,
     // Log        : print some message during the run of the optimization
     // param      : a parameter list. this list contains the neighobrhood ('neigh_func') and some parameters related to this neighborhood functions (see the
     //              related function to list the available parameters)
-
-    [nargout, nargin] = argn();
 
     if ~isdef("param","local") then
         param = [];
