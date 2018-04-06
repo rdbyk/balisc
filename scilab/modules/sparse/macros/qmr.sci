@@ -1,9 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
 // Copyright (C) 2005 - IRISA - Sage Group
-
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 // [x, flag, err, iter, res] = qmr( A, Ap, b, x, M1, M1p, M2, M2p, max_it, tol )
 //
@@ -59,8 +57,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     // -----------------------
     // Parsing input arguments
     // -----------------------
-    [lhs,rhs]=argn(0);
-    if ( rhs < 2 ),
+    if ( nargin < 2 ),
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"qmr",2));
     end
 
@@ -88,7 +85,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     // If A is a function
     if (cpt==0),
         fct = 0;
-        if rhs >= 2,
+        if nargin >= 2,
             funcorvec=varargin(1);
             if and(type(funcorvec) <> [1 5 13]) then
                 error(msprintf(gettext("%s: Wrong value for input argument #%d: Transpose of the function %s expected.\n"),"qmr",2,"A"));
@@ -111,7 +108,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     end
 
     // Parsing right hand side b
-    if ( rhs >= fct+2 ),
+    if ( nargin >= fct+2 ),
         b=varargin(fct+1);
         // if b is not constant or sparse
         if and(type(b) <> [1 5])  then
@@ -123,7 +120,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     end
 
     // Parsing initial vector x
-    if ( rhs >= fct+3),
+    if ( nargin >= fct+3),
         x=varargin(fct+2);
         // if x is not constant or sparse
         if and(type(x) <> [1 5])  then
@@ -143,7 +140,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     //--------------------------------------------------------
     // Parsing of the preconditioner matrix M1
     //--------------------------------------------------------
-    if (rhs >=fct+4),
+    if (nargin >=fct+4),
         Prec_g=varargin(fct+3);
         select type(Prec_g)
         case 1 then
@@ -171,7 +168,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
         if ( cpt==0 ),
             precond_g = Prec_g;
             cptmatM1 = 1;
-            if ( rhs >= fct+5 & size(getfield(1,macrovar(precond_g)),"*") == 1),
+            if ( nargin >= fct+5 & size(getfield(1,macrovar(precond_g)),"*") == 1),
                 Precp_g = varargin(fct+4);
                 if (type(Precp_g) == 13 & size(getfield(1,macrovar(Precp_g)),"*")==1) then
                     //precond_g = Prec_g;
@@ -182,7 +179,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
                 else
                     error(msprintf(gettext("%s: Wrong type for input argument #%d: A transpose of the function expected.\n"), "qmr", fct + 5));
                 end
-            elseif rhs < fct+5 & size(getfield(1, macrovar(precond_g)), "*") == 1 then
+            elseif nargin < fct+5 & size(getfield(1, macrovar(precond_g)), "*") == 1 then
                 error(msprintf(gettext("%s: Wrong prototype of input argument #%d: If M1 is function, use the header M1(x,t) instead M1(x).\n"), "qmr", fct+4));
             end
         end
@@ -196,7 +193,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     //--------------------------------------------------------
     // Parsing of the preconditioner matrix M2
     //--------------------------------------------------------
-    if (rhs >=fct+5),
+    if (nargin >=fct+5),
         Prec_d=varargin(fct+4);
         select type(Prec_d)
         case 1 then
@@ -226,7 +223,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
         if ( cpt==0 )
             precond_d = Prec_d;
             cptmatM2 = 1;
-            if ( rhs >= fct+6 & size(getfield(1,macrovar(precond_d)),"*") == 1),
+            if ( nargin >= fct+6 & size(getfield(1,macrovar(precond_d)),"*") == 1),
                 Precp_d=varargin(fct+5);
                 if (type(Precp_d) == 13 & size(getfield(1,macrovar(Precp_d)),"*") == 1) then
                     precond_d = Prec_d;
@@ -237,7 +234,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
                 else
                     error(msprintf(gettext("%s: Wrong type for input argument #%d: A transpose of the function expected.\n"), "qmr", fct + 6));
                 end
-            elseif rhs < fct+6 & size(getfield(1, macrovar(precond_d)), "*") == 1 then
+            elseif nargin < fct+6 & size(getfield(1, macrovar(precond_d)), "*") == 1 then
                 error(msprintf(gettext("%s: Wrong prototype of input argument #%d: If M2 is function, use the header M2(x,t) instead M2(x).\n"), "qmr", fct+5));
             end
         end
@@ -251,7 +248,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     //--------------------------------------------------------
     // Parsing of the maximum number of iterations max_it
     //--------------------------------------------------------
-    if (rhs >= fct+6),
+    if (nargin >= fct+6),
         max_it=varargin(fct+5);
         // if max_it is not constant
         if type(max_it) <> 1 then
@@ -273,7 +270,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     //--------------------------------------------------------
     // Parsing of the error tolerance tol
     //--------------------------------------------------------
-    if (rhs == fct+7),
+    if (nargin == fct+7),
         tol=varargin(fct+6);
         // if tol is not constant
         if type(tol) <> 1 then
@@ -295,7 +292,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
     //--------------------------------------------------------
     // test about input arguments number
     //--------------------------------------------------------
-    if (rhs > fct+7),
+    if (nargin > fct+7),
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"qmr",2,fct+7));
     end
 
@@ -491,4 +488,3 @@ function y = precond_d(x,t)
         y = Prec_d'*x;
     end
 endfunction
-
