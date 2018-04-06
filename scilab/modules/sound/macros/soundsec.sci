@@ -2,8 +2,8 @@
 // Copyright (C) ???? - INRIA - Scilab
 // Copyright (C) ???? - ENPC
 // Copyright (C) 2014 - Scilab Enterprises - Pierre-Aimé AGNEL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,10 +15,9 @@
 function [t]=soundsec (n,rate)
     // Return [0,n) seconds of t parameter at frequency = rate (sample/sec)
     // Always excludes the last sample if it arrives exactly at n seconds
-    [lhs,rhs]=argn(0);
 
     //set rate if not defined
-    if rhs <=1 ; rate=22050; end;
+    if nargin <=1 ; rate=22050; end;
 
     //==============================================================================
     // Format testing of the parameters

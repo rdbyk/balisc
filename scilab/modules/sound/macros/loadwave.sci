@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,18 +10,14 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-// =============================================================================
 function varargout = loadwave(filename)
 
-    lhs = argn(1);
-    rhs = argn(2);
-
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"loadwave",1));
         return
     end
 
-    if lhs > 2 then
+    if nargout > 2 then
         error(msprintf(gettext("%s: Wrong number of output arguments.\n"),"loadwave"));
         return
     end
@@ -37,9 +33,9 @@ function varargout = loadwave(filename)
 
     y = wavread(filename);
 
-    if (lhs == 1) then
+    if (nargout == 1) then
         varargout = list(y);
-    elseif (lhs == 2) then
+    elseif (nargout == 2) then
         info_wav = wavread(filename,"info");
         varargout = list(y, info_wav);
     else

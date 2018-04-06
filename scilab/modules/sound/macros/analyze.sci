@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,11 +14,10 @@ function analyze (w,fmin,fmax,rate,points)
     // Make a frequency plot of the signal w with sampling rate.
     // The data must be at least points long.
     // The maximal frequency plotted will be fmax, the minimal fmin.
-    [lhs,rhs]=argn(0);
-    if ( rhs <= 4 ) then points=8192 ; end ;
-    if ( rhs <= 3 ) then rate=0; end ;
-    if ( rhs <= 2 ) then fmax=1500; end ;
-    if ( rhs <= 1 ) then fmin=10;  end ;
+    if nargin <= 4 then points=8192 ; end ;
+    if nargin <= 3 then rate=0; end ;
+    if nargin <= 2 then fmax=1500; end ;
+    if nargin <= 1 then fmin=10;  end ;
     defaultrate=22050;
     if rate==0; rate=defaultrate; end;
     v=w(1:points);

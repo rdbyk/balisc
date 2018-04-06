@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -91,7 +91,6 @@ function savewave(filename,x,rate,nbits)
     endfunction
     // =============================================================================
     function write_ckinfo(ck,sflg)
-        [nargout,nargin] = argn(0)
         // WRITE_CKINFO: Writes next RIFF chunk, but not the chunk data.
         //   If optional sflg is set to nonzero, write SUBchunk info instead.
         //   Expects an open FID pointing to first byte of chunk header,
@@ -223,14 +222,12 @@ function savewave(filename,x,rate,nbits)
     // =============================================================================
 
     // savewave main
-    lhs = argn(1);
-    rhs = argn(2);
 
-    if (rhs < 4) then
+    if nargin < 4 then
         nbits = 16;
     end;
 
-    if (rhs < 3) then
+    if nargin < 3 then
         rate = 22050;
     end;
 
@@ -248,7 +245,7 @@ function savewave(filename,x,rate,nbits)
         fid = -1;
     end
 
-    if ( fid == (-1) ) then
+    if fid == -1 then
         error(msprintf(gettext("%s: Cannot open file %s.\n"),"savewave",filename));
     end
 
