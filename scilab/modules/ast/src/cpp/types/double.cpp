@@ -769,6 +769,10 @@ std::wstring Double::toStringInLine()
 
         return ostr.str();
     }
+    else if (isEmpty())
+    {
+        return L"[]";
+    }
     else
     {
         return ArrayOf<double>::toStringInLine();
