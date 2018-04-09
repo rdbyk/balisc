@@ -169,7 +169,7 @@ operator = ".*" | "./" | ".\\" | ".^" | ".**" | "+" | "-" | "/" | "\\" | "*" | "
 
 structureKwds = "if" | "for" | "while" | "try" | "select" | "end" | "then" | "do" | "catch" | "case" | "elseif" | "else"
 
-controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
+controlKwds = "abort" | "break" | "quit" | "return" | "pause" | "continue" | "exit"
 
 break = ".."(".")*
 breakinstring = {break}[ \t]*({comment} | {eol})
