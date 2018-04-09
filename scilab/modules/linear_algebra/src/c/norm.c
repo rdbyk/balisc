@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -174,35 +174,24 @@ double normP (double *A, int iRows, int iCols, double p)
 
         // Not computing singular vectors, so arguments 7, 8, 9 and 10 are dummies.
         C2F(dgesdd)("N", &iRows, &iCols, A, &iRows, S, NULL, &one, NULL, &one, work, &lwork, iwork, &info);
-        if (info < 0)
+
+        if (info == 0)
         {
-            // Lapack provides its own error messages. Return.
-            FREE(S);
-            FREE(work);
-            FREE(iwork);
-            return 0;
+            // info = 0: successful termination.
+            // The largest singular value of A is stored in the first element of S, return it.
+            ret = S[0];
         }
         else
         {
-            if (info > 0)
-            {
-                // Lapack provides its own error messages. Return.
-                FREE(S);
-                FREE(work);
-                FREE(iwork);
-                return 0;
-            }
-            else
-            {
-                // info = 0: successful termination.
-                // The largest singular value of A is stored in the first element of S, return it.
-                ret = S[0];
-                FREE(S);
-                FREE(work);
-                FREE(iwork);
-                return ret;
-            }
+            // Lapack provides its own error messages. Return.
+            ret = 0;
         }
+
+        FREE(S);
+        FREE(work);
+        FREE(iwork);
+
+        return ret;
     }
     // Here, A is a vector of length iRows, return sum(abs(A(i))^p))^(1/p).
     if ((int) p == p && (int) p % 2 == 0) // No need to call Abs if p is divisible by 2.
@@ -284,40 +273,26 @@ double normPC (doublecomplex *A, int iRows, int iCols, double p)
 
         // Not computing singular vectors, so arguments 7, 8, 9 and 10 are dummies.
         C2F(zgesdd)("N", &iRows, &iCols, A, &iRows, S, NULL, &one, NULL, &one, work, &lwork, rwork, iwork, &info);
-        if (info < 0)
+
+        if (info == 0)
         {
-            // Lapack provides its own error messages. Return.
-            // Since the arguments have all been checked before, this error should not occur.
-            FREE(S);
-            FREE(work);
-            FREE(rwork);
-            FREE(iwork);
-            return 0;
+            // info = 0: successful termination.
+            // The largest singular value of A is stored in the first element of S, return it.
+            ret = S[0];
         }
         else
         {
-            if (info > 0)
-            {
-                // Lapack provides its own error messages. Return.
-                // Since the arguments have all been checked before, this error should not occur.
-                FREE(S);
-                FREE(work);
-                FREE(rwork);
-                FREE(iwork);
-                return 0;
-            }
-            else
-            {
-                // info = 0: successful termination.
-                // The largest singular value of A is stored in the first element of S, return it.
-                ret = S[0];
-                FREE(S);
-                FREE(work);
-                FREE(rwork);
-                FREE(iwork);
-                return ret;
-            }
+            // Lapack provides its own error messages. Return.
+            // Since the arguments have all been checked before, this error should not occur.
+            ret = 0;
         }
+
+        FREE(S);
+        FREE(work);
+        FREE(rwork);
+        FREE(iwork);
+
+        return ret;
     }
     // Here, A is a vector of length iRows, return sum(abs(A(i))^p))^(1/p).
     for (i = 0; i < iRows; ++i)
