@@ -150,14 +150,41 @@ public :
     {
         return ScilabDouble;
     }
+
     inline ScilabId             getId(void)
     {
-        return isIdentity() ? isComplex() ? IdIdentityComplex : IdIdentity
-               : isEmpty() ? IdEmpty
-               : isComplex() ? isScalar() ? IdScalarDoubleComplex
-               : IdDoubleComplex
-               : isScalar() ? IdScalarDouble
-               : IdDouble;
+        if (m_iRows == m_iCols)
+        {
+            if (m_iDims == 2)
+            {
+                switch (m_iRows)
+                {
+                    case -1:
+                        return isComplex() ? IdIdentityComplex : IdIdentity;
+                    case 0:
+                        return IdEmpty;
+                    case 1:
+                        return isComplex() ? IdScalarDoubleComplex : IdScalarDouble;
+                    default:
+                        return isComplex() ? IdDoubleComplex : IdDouble;
+                }
+            }
+            else
+            {
+                if (isIdentity())
+                {
+                    return isComplex() ? IdIdentityComplex : IdIdentity;
+                }
+                else
+                {
+                    return isComplex() ? IdDoubleComplex : IdDouble;
+                }
+            }
+        }
+        else
+        {
+            return isComplex() ? IdDoubleComplex : IdDouble;
+        }
     }
 
     inline bool conjugate(InternalType *& out)
