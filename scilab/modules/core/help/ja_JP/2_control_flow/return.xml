@@ -49,9 +49,6 @@
             呼び出し側の環境の<literal>xi</literal>という名前の変数に代入します.
         </para>
         <para>
-            <literal>resume</literal> は <literal>return</literal>と等価です.
-        </para>
-        <para>
           <note>
 	    注意: この機能を使用すると,コードが複雑化する可能性があります.
 	    代わりに, <code>function b = foo()</code>構文が推奨されます.
@@ -63,7 +60,7 @@
         <programlisting role="example"><![CDATA[
 function foo(a)
          a=a+1
-         b=resume(a)
+         b=return(a)
          c=52
 endfunction
 
@@ -87,8 +84,17 @@ assert_checkequal(b,43)
                 <link linkend="execstr">execstr</link>
             </member>
             <member>
-                <link linkend="resume">resume</link>
+                <link linkend="return">return</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Removed support of <code>resume</code> (replaced by <code>return</code>).</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

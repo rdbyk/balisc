@@ -41,11 +41,8 @@ static char *CommandWords[] =
     "function",
     "for",
     "if",
-    "otherwise",
-    "resume",
     "return",
     "select",
-    "switch",
     "then",
     "try",
     "while"
