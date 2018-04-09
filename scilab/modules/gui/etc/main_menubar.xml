@@ -90,7 +90,7 @@
     <!-- Control menu -->
     <menu label="&amp;Control" enabled="true">
         <submenu label="&amp;Resume" icon="media-playback-start">
-            <callback instruction="resume;" type="4"/>
+            <callback instruction="return;" type="4"/>
         </submenu>
         <submenu label="&amp;Abort" icon="process-stop">
             <callback instruction="abort;" type="4"/>
