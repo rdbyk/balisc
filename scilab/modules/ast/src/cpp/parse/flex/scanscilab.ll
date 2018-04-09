@@ -353,11 +353,6 @@ assign			"="
     return scan_throw(RETURN);
 }
 
-<INITIAL,BEGINID>"resume"	{
-    BEGIN(INITIAL);
-    return scan_throw(RETURN);
-}
-
 ^{spaces}*/({id}){spaces}([^ \t\v\f(=<>~@,;]|([~@]{spaces}*[^=]?)) {
         BEGIN(BEGINID);
 }
