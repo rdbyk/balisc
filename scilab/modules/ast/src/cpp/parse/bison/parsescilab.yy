@@ -255,9 +255,7 @@ static void print_rules(const std::string& _parent, const double _value)
 %token END              "end"
 
 %token SELECT           "select"
-%token SWITCH           "switch"
 %token CASE             "case"
-%token OTHERWISE        "otherwise"
 
 %token FUNCTION         "function"
 %token ENDFUNCTION      "endfunction"
@@ -1417,7 +1415,6 @@ select selectable selectConditionBreak casesControl END                         
 /* Fake Rule : Only for lazy syntax */
 select :
 SELECT      { /* !! Do Nothing !! */ print_rules("select", "SELECT");}
-| SWITCH    { /* !! Do Nothing !! */ print_rules("select", "SWITCH");}
 ;
 
 /*
@@ -1426,12 +1423,6 @@ SELECT      { /* !! Do Nothing !! */ print_rules("select", "SELECT");}
 /* Fake Rule : Only for lazy syntax */
 defaultCase :
 else                    { /* !! Do Nothing !! */ print_rules("defaultCase", "else");}
-| OTHERWISE             { /* !! Do Nothing !! */ print_rules("defaultCase", "OTHERWISE");}
-| OTHERWISE COMMA       { /* !! Do Nothing !! */ print_rules("defaultCase", "OTHERWISE COMMA");}
-| OTHERWISE SEMI        { /* !! Do Nothing !! */ print_rules("defaultCase", "OTHERWISE SEMI");}
-| OTHERWISE EOL         { /* !! Do Nothing !! */ print_rules("defaultCase", "OTHERWISE EOL");}
-| OTHERWISE COMMA EOL   { /* !! Do Nothing !! */ print_rules("defaultCase", "OTHERWISE COMMA EOL");}
-| OTHERWISE SEMI EOL    { /* !! Do Nothing !! */ print_rules("defaultCase", "OTHERWISE SEMI EOL");}
 ;
 
 /*
@@ -1710,8 +1701,6 @@ IF              { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"if"));           
 | ELSEIF        { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"elseif"));       print_rules("keywords", "ELSEIF");}
 | END           { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"end"));          print_rules("keywords", "END");}
 | SELECT        { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"select"));       print_rules("keywords", "SELECT");}
-| SWITCH        { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"switch"));       print_rules("keywords", "SWITCH");}
-| OTHERWISE     { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"otherwise"));    print_rules("keywords", "OTHERWISE");}
 | CASE          { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"case"));         print_rules("keywords", "CASE");}
 | FUNCTION      { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"function"));     print_rules("keywords", "FUNCTION");}
 | ENDFUNCTION   { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"endfunction"));  print_rules("keywords", "ENDFUNCTION");}

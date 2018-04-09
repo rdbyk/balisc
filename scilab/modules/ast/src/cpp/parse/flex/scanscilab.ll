@@ -249,27 +249,6 @@ assign			"="
     return scan_throw(SELECT);
 }
 
-<INITIAL,BEGINID>"switch"	{
-	if (last_token != DOT)
-    {
-        ParserSingleInstance::pushControlStatus(Parser::WithinSwitch);
-    }
-    DEBUG("BEGIN(INITIAL)");
-    BEGIN(INITIAL);
-    return scan_throw(SWITCH);
-}
-
-<INITIAL,BEGINID>"otherwise" {
-	if (last_token != DOT)
-    {
-        ParserSingleInstance::popControlStatus();
-        ParserSingleInstance::pushControlStatus(Parser::WithinOtherwise);
-    }
-    DEBUG("BEGIN(INITIAL)");
-    BEGIN(INITIAL);
-	return scan_throw(OTHERWISE);
-}
-
 <INITIAL,BEGINID>"case"		{
 	if (last_token != DOT)
     {
@@ -1561,8 +1540,6 @@ std::string token_to_string(int token)
                                      break;
         case OROR :                  str = "OROR";
                                      break;
-        case OTHERWISE :             str = "OTHERWISE";
-                                     break;
         case PLUS :                  str = "PLUS";
                                      break;
         case POWER :                 str = "POWER";
@@ -1586,8 +1563,6 @@ std::string token_to_string(int token)
         case SPACES :                str = "SPACES";
                                      break;
         case STR :                   str = "STR";
-                                     break;
-        case SWITCH :                str = "SWITCH";
                                      break;
         case THEN :                  str = "THEN";
                                      break;

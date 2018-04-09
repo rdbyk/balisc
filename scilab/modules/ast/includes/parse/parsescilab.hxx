@@ -98,35 +98,33 @@ extern int yydebug;
     ELSEIF = 307,
     END = 308,
     SELECT = 309,
-    SWITCH = 310,
-    CASE = 311,
-    OTHERWISE = 312,
-    FUNCTION = 313,
-    ENDFUNCTION = 314,
-    FOR = 315,
-    WHILE = 316,
-    DO = 317,
-    BREAK = 318,
-    CONTINUE = 319,
-    TRY = 320,
-    CATCH = 321,
-    RETURN = 322,
-    FLEX_ERROR = 323,
-    STR = 324,
-    ID = 325,
-    VARINT = 326,
-    VARFLOAT = 327,
-    NUM = 328,
-    PATH = 329,
-    COMMENT = 330,
-    BLOCKCOMMENT = 331,
-    TOPLEVEL = 332,
-    HIGHLEVEL = 333,
-    UPLEVEL = 334,
-    LISTABLE = 335,
-    CONTROLBREAK = 336,
-    UMINUS = 337,
-    FUNCTIONCALL = 338
+    CASE = 310,
+    FUNCTION = 311,
+    ENDFUNCTION = 312,
+    FOR = 313,
+    WHILE = 314,
+    DO = 315,
+    BREAK = 316,
+    CONTINUE = 317,
+    TRY = 318,
+    CATCH = 319,
+    RETURN = 320,
+    FLEX_ERROR = 321,
+    STR = 322,
+    ID = 323,
+    VARINT = 324,
+    VARFLOAT = 325,
+    NUM = 326,
+    PATH = 327,
+    COMMENT = 328,
+    BLOCKCOMMENT = 329,
+    TOPLEVEL = 330,
+    HIGHLEVEL = 331,
+    UPLEVEL = 332,
+    LISTABLE = 333,
+    CONTROLBREAK = 334,
+    UMINUS = 335,
+    FUNCTIONCALL = 336
   };
 #endif
 /* Tokens.  */
@@ -183,35 +181,33 @@ extern int yydebug;
 #define ELSEIF 307
 #define END 308
 #define SELECT 309
-#define SWITCH 310
-#define CASE 311
-#define OTHERWISE 312
-#define FUNCTION 313
-#define ENDFUNCTION 314
-#define FOR 315
-#define WHILE 316
-#define DO 317
-#define BREAK 318
-#define CONTINUE 319
-#define TRY 320
-#define CATCH 321
-#define RETURN 322
-#define FLEX_ERROR 323
-#define STR 324
-#define ID 325
-#define VARINT 326
-#define VARFLOAT 327
-#define NUM 328
-#define PATH 329
-#define COMMENT 330
-#define BLOCKCOMMENT 331
-#define TOPLEVEL 332
-#define HIGHLEVEL 333
-#define UPLEVEL 334
-#define LISTABLE 335
-#define CONTROLBREAK 336
-#define UMINUS 337
-#define FUNCTIONCALL 338
+#define CASE 310
+#define FUNCTION 311
+#define ENDFUNCTION 312
+#define FOR 313
+#define WHILE 314
+#define DO 315
+#define BREAK 316
+#define CONTINUE 317
+#define TRY 318
+#define CATCH 319
+#define RETURN 320
+#define FLEX_ERROR 321
+#define STR 322
+#define ID 323
+#define VARINT 324
+#define VARFLOAT 325
+#define NUM 326
+#define PATH 327
+#define COMMENT 328
+#define BLOCKCOMMENT 329
+#define TOPLEVEL 330
+#define HIGHLEVEL 331
+#define UPLEVEL 332
+#define LISTABLE 333
+#define CONTROLBREAK 334
+#define UMINUS 335
+#define FUNCTIONCALL 336
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
