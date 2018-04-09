@@ -86,8 +86,17 @@ foo1(%t) //enter quit at the following prompt
                 <link linkend="exit">exit</link>
             </member>
             <member>
-                <link linkend="resume">resume</link>
+                <link linkend="return">return</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Removed support of <code>resume</code> (replaced by <code>return</code>).</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

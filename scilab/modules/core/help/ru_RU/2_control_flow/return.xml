@@ -50,9 +50,6 @@
             в вызывающее окружение под именами <varname>xi</varname>.
         </para>
         <para>
-            Инструкция <code>resume</code> эквивалентна инструкции <code>return</code>.
-        </para>
-        <para>
             <note>
                 Примечание: использование этой возможности может усложнить код. Вместо
                 этого рекомендуется использовать синтаксис <code>function b = foo()</code>.
@@ -64,7 +61,7 @@
         <programlisting role="example"><![CDATA[
 function foo(a)
          a=a+1
-         b=resume(a)
+         b=return(a)
          c=52
 endfunction
 
@@ -90,8 +87,17 @@ assert_checkequal(b,43)
                 <link linkend="execstr">execstr</link>
             </member>
             <member>
-                <link linkend="resume">resume</link>
+                <link linkend="return">return</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Removed support of <code>resume</code> (replaced by <code>return</code>).</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

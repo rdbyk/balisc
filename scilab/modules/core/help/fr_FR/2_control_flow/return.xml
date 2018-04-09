@@ -44,9 +44,6 @@
         <para>
             Utilisé dans l'argument de <literal>execstr</literal> appelé dans une fonction, <literal>[..]=return(..)</literal> termine l'exécution de la fonction et renvoie les variables locales <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
         </para>
-        <para>
-            L'instruction <literal>return</literal> est équivalent à <literal>resume</literal>.
-        </para>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -61,8 +58,17 @@
                 <link linkend="execstr">execstr</link>
             </member>
             <member>
-                <link linkend="resume">resume</link>
+                <link linkend="return">return</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Removed support of <code>resume</code> (replaced by <code>return</code>).</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

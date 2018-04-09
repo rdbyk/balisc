@@ -43,10 +43,6 @@
             variáveis locais <literal>ai</literal> no ambiente de chamamento sob os
             nomes de <literal>xi</literal>.
         </para>
-        <para>
-            <literal>resume</literal> é equivalente a
-            <literal>return</literal>.
-        </para>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
