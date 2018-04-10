@@ -9,7 +9,7 @@ deff('[x]=tata(y)','x=-y,write(%io(2),''enter quit''),pause,x=+20')
 xx=tata(10);
 enter quit
  
-Type 'resume' or 'abort' to return to standard level prompt.
+Type 'return' or 'abort' to return to standard level prompt.
 
 quit;
  
