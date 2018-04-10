@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,15 +29,10 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 
     ok = [];
 
-    // Check input arguments
-    // =========================================================================
-
-    [lhs,rhs] = argn(0);
-
     // Input arguments number
     // -------------------------------------------------------------------------
 
-    if rhs < 2 | rhs > 3 then
+    if nargin < 2 | nargin > 3 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"add_help_chapter",2,3));
     end
 
@@ -52,7 +47,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"add_help_chapter",2));
     end
 
-    if (rhs>2) & (type(modulemode) <> 4) then
+    if (nargin>2) & (type(modulemode) <> 4) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"add_help_chapter",3));
     end
 
@@ -66,7 +61,7 @@ function ok = add_help_chapter(helptitle,path,modulemode)
     // Default value
     // =========================================================================
 
-    if rhs < 3 then
+    if nargin < 3 then
         modulemode = %F;
     end
 

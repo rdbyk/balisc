@@ -5,8 +5,8 @@
 // Copyright (C) 2010 - 2011 DIGITEO - Allan CORNET
 // Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
 // Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -61,12 +61,10 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
     all_scilab_help     = %F;
 
-    [lhs,rhs] = argn(0);
-
-    // Too much parameters
+    // Too many parameters
     // ---------------------------------------------------------------------
 
-    if rhs > 5 | rhs < 1 then
+    if nargin > 5 | nargin < 1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"xmltoformat",1,5));
     end
 
@@ -75,15 +73,15 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // Default case : building of the online help of Scilab
     // ---------------------------------------------------------------------
 
-    if (  (rhs <= 1) ..
-        | ((rhs == 2) & (dirs == [])) ..
-        | ((rhs == 3) & (dirs == []) & (titles == [])) ..
-        | ((rhs == 4) & (dirs == []) & (titles == [])) ) then
+    if (  (nargin <= 1) ..
+        | ((nargin == 2) & (dirs == [])) ..
+        | ((nargin == 3) & (dirs == []) & (titles == [])) ..
+        | ((nargin == 4) & (dirs == []) & (titles == [])) ) then
 
         all_scilab_help        = %T;
 
         // "directory_language" input argument is defined !
-        if rhs == 4 then
+        if nargin == 4 then
             my_wanted_language = directory_language;
             x2f_reset_help_mod_var(my_wanted_language);
             %HELPS = [%helps_modules; %helps];
@@ -154,7 +152,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         // Only directories are precised
         // ---------------------------------------------------------------------
 
-    elseif (rhs == 2) & (dirs <> []) then
+    elseif (nargin == 2) & (dirs <> []) then
 
         language_system    = [];
         titles             = [];
@@ -176,7 +174,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         // Only directories and title are precised
         // ---------------------------------------------------------------------
 
-    elseif rhs == 3 then
+    elseif nargin == 3 then
 
         language_system    = [];
         directory_language = [];
@@ -196,7 +194,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         // Directories, title and languages are specified
         // ---------------------------------------------------------------------
 
-    elseif rhs == 4 then
+    elseif nargin == 4 then
 
         language_system   = [];
         default_language  = [];
@@ -214,7 +212,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         // All is specified
         // ---------------------------------------------------------------------
 
-    elseif rhs == 5 then
+    elseif nargin == 5 then
 
         language_system   = [];
 
@@ -879,12 +877,11 @@ endfunction
 function tree = x2f_dir_to_tree(directory,level)
 
     tree = struct();
-    rhs  = argn(2);
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs<>2 then
+    if nargin<>2 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"x2f_dir_to_tree",2));
     end
 
@@ -999,12 +996,10 @@ endfunction
 
 function xmlfiles = x2f_get_xml_files(directory)
 
-    rhs = argn(2);
-
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"x2f_get_xml_files",1));
     end
 
@@ -1088,12 +1083,10 @@ endfunction
 
 function directories = x2f_get_directories(directory)
 
-    rhs  = argn(2);
-
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"x2f_get_directories",1));
     end
 
@@ -1156,12 +1149,10 @@ endfunction
 
 function desc_out = x2f_read_CHAPTER(file_in)
 
-    rhs  = argn(2);
-
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"x2f_read_CHAPTER",1));
     end
 
@@ -1227,12 +1218,11 @@ endfunction
 function desc_out = x2f_read_lsb(file_in)
 
     desc_out = struct();
-    rhs      = argn(2);
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"x2f_read_lsb",1));
     end
 
@@ -1293,12 +1283,10 @@ endfunction
 
 function desc_out = x2f_cat(desc_in_1,desc_in_2)
 
-    rhs = argn(2);
-
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"x2f_cat",2));
     end
 
@@ -1338,12 +1326,10 @@ endfunction
 
 function master_document = x2f_tree_to_master( tree )
 
-    rhs = argn(2);
-
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"x2f_tree_to_master",1));
     end
 
@@ -1483,12 +1469,10 @@ endfunction
 
 function master_section = x2f_tree_to_section( tree , offset )
 
-    rhs = argn(2);
-
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"x2f_tree_to_section",2));
     end
 
@@ -1601,12 +1585,10 @@ function tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
     // tree_in_1 : reference tree
     // tree_in_2 : tree to fill
 
-    rhs = argn(2);
-
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"x2f_merge_trees",1));
     end
 
@@ -1687,13 +1669,12 @@ endfunction
 
 function xmllist_out = x2f_cat_xmllist( tree , xmllist_in )
 
-    rhs         = argn(2);
     xmllist_out = xmllist_in;
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"x2f_cat_xmllist",2));
     end
 
@@ -1822,14 +1803,13 @@ endfunction
 
 function [timestamp,path] = x2f_get_most_recent( tree )
 
-    rhs         = argn(2);
     timestamp   = 0;
     path        = "";
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"x2f_get_most_recent",1));
     end
 

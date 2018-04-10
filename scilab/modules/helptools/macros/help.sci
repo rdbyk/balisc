@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,9 +12,7 @@
 
 function help(varargin)
 
-    [lhs,rhs]=argn(0);
-
-    if rhs >= 1 then
+    if nargin >= 1 then
         key = varargin(1);
     else
         key = "";
@@ -25,7 +23,7 @@ function help(varargin)
         if getscilabmode() <> "NWNI" then
 
             // No input argument: launch help browser
-            if argn(2)==0 then
+            if nargin==0 then
                 global %helps
                 helpbrowser(%helps(:,1), getlanguage());
                 return
