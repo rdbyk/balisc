@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -56,10 +56,7 @@ Library::~Library()
 
 bool Library::toString(std::wostringstream& ostr)
 {
-    wchar_t output[1024] = {0};
-    os_swprintf(output, 1024, _W("Functions files location : %s.\n").c_str(), m_wstPath.c_str());
-
-    ostr << output << L"\n";
+    ostr << _W("Functions files location : ") << m_wstPath << L".\n\n";
 
     size_t iLineLen = (size_t)ConfigVariable::getConsoleWidth();
 
