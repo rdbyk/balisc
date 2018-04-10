@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,9 +27,7 @@ function [xx,yy,zz]=genfac3d(x,y,zmat,mask)
     //  genfac3d()
     //!
 
-    [lhs,rhs]=argn(0)
-
-    if rhs <= 0 then   // demo
+    if nargin <= 0 then   // demo
         t=(0:10)'*%pi/5;
         zmat=sin(t)*cos(t');
         [xx,yy,zz]=genfac3d(t,t,zmat,zmat>=0);
@@ -36,7 +35,7 @@ function [xx,yy,zz]=genfac3d(x,y,zmat,mask)
         return
     end
 
-    if rhs<3 then
+    if nargin<3 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "genfac3d", 3));
     end
 
@@ -51,7 +50,7 @@ function [xx,yy,zz]=genfac3d(x,y,zmat,mask)
     xx=matrix(x(indx),4,nrl*nrc/4);
     yy=matrix(y(indy),4,nrl*nrc/4);
     zz=matrix(zmat(indz),4,nrl*nrc/4);
-    if rhs==4 then
+    if nargin==4 then
         zl=matrix(mask(indz),4,nrl*nrc/4);
         [xin,yin]=find(zl);
         zz=zz(:,yin);

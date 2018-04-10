@@ -1,8 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012-2012 - Scilab Enterprises - Bruno JOFRET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,12 +9,11 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
+
 function []=xsetech(wrect, frect, logflag, arect)
 
     // 1 <= RHS <= 3
-    if (argn(2) > 3 | argn(2) < 1) then
+    if (nargin > 3 | nargin < 1) then
         error(77, sprintf(_("%s: Wrong number of input argument(s): %d to %d expected."), "xsetech", 1, 3));
     end
 

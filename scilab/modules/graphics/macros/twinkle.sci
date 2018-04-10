@@ -2,6 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2015 - 2016 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +14,7 @@
 function twinkle(h,n)
 
     // CHECKING INPUT ARGUMENTS
-    [lhs,rhs]=argn(0)
-    if rhs==0 then
+    if nargin==0 then
         if winsid()~=[] then
             h = gce()
             n = 5
@@ -22,7 +22,7 @@ function twinkle(h,n)
             return
         end
     end
-    if rhs==1 then
+    if nargin==1 then
         if type(h)<>9
             n = h
             if winsid()~=[]
@@ -41,7 +41,7 @@ function twinkle(h,n)
     end
     if type(n)<>1 | n<0 then
         msg = _("%s: Wrong type for input argument #%d: Positive integer expected.\n")
-        error(msprintf(msg, "twinkle", min(rhs,2)));
+        error(msprintf(msg, "twinkle", min(nargin,2)));
     end
 
     // BLINKING THE GRAPHICAL COMPONENT

@@ -2,6 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,15 +13,13 @@
 
 function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
 
-    [lhs, rhs] = argn(0);
-
-    if rhs == 0 then
+    if nargin == 0 then
         scf();
         levels = contour2d(1:10, 1:10, rand(10,10), 5, rect = [0, 0, 11, 11]);
         return;
     end
 
-    if rhs < 4 then
+    if nargin < 4 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "contour2d", 4));
     end
 

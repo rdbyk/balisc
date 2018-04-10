@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1990 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,8 +41,7 @@ function [x,y,z]=eval3dp(fun,p1,p2)
     // plot3d fac3d
     //!
 
-    [lhs,rhs]=argn(0)
-    if rhs<3 then
+    if nargin<3 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "eval3dp", 3));
     end
 

@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,9 +23,8 @@ function plotframe(rect,axisdata,options,legs,subwindow)
     //	      rect initial data.
     //  subwindow : see xsetech (wrect)
     //!
-    [lhs,rhs]=argn(0)
 
-    if rhs < 1 then
+    if nargin < 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "plotframe", 1));
         return ;
     end
@@ -53,27 +53,27 @@ function plotframe(rect,axisdata,options,legs,subwindow)
         f_subwin = %t ;
     end
 
-    if rhs >= 2 & ~f_subwin & ~f_captions & ~f_flags & ~f_tics then
+    if nargin >= 2 & ~f_subwin & ~f_captions & ~f_flags & ~f_tics then
         // no optional argument specified we use the old syntax
         // with 2,3,4 or five parameters
 
         f_tics = %t ;
         tics = axisdata ;
-        if rhs == 5 then
+        if nargin == 5 then
             select type(subwindow),
             case 1 , subwin   = subwindow, f_subwin   = %t ;
             case 4 , flags    = subwindow, f_flags    = %t ;
             case 10, Captions = subwindow, f_captions = %t ;
             end
         end
-        if rhs >= 4 then
+        if nargin >= 4 then
             select type(legs),
             case 1 , subwin   = legs, f_subwin   = %t ;
             case 4 , flags    = legs, f_flags    = %t ;
             case 10, Captions = legs, f_captions = %t ;
             end
         end
-        if rhs >= 3 then
+        if nargin >= 3 then
             select type(options),
             case 1 , subwin   = options, f_subwin   = %t ;
             case 4 , flags    = options, f_flags    = %t ;

@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,8 +19,7 @@ function []=xrpoly(orig,n,r,theta)
     // theta : angle, 0 si omis
     // Attention utilise l'echelle d'un appel precedent de plot2d.
     //!
-    [lhs,rhs]=argn(0);
-    select rhs
+    select nargin
     case 3 then b=eye(2,2);
         // Transposed in order to post-multiply
     case 4 then b=[cos(theta) sin(theta); -sin(theta) cos(theta)];

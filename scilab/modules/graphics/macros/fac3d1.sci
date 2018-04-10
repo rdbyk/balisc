@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,13 +12,9 @@
 
 function fac3d1(x,y,z,T,A,leg,flags,ebox)
 
-    // Copyright INRIA
-
-    [lhs,rhs]=argn(0);
-
     write(%io(2),"WARNING : fac3d1 is obsolete see plot3d plot3d1 instead");
 
-    if rhs <= 0 then   // demo
+    if nargin <= 0 then   // demo
         deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)"; ..
         "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)"; ..
         "z=r*sin(alp)+orig(3)*ones(tet)"]);
@@ -36,7 +33,7 @@ function fac3d1(x,y,z,T,A,leg,flags,ebox)
         return
     end
 
-    select rhs
+    select nargin
     case 3 then plot3d1(x,y,z)
     case 4 then plot3d1(x,y,z,T)
     case 5 then plot3d1(x,y,z,T,A)

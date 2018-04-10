@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +12,7 @@
 
 function []=xload(fil,num)
 
-    if and(argn(2)<>[1 2]) then
+    if and(nargin<>[1 2]) then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "xload", 1, 2));
     end
 
@@ -19,7 +20,7 @@ function []=xload(fil,num)
         error(msprintf(gettext("%s: file %s does not exist.\n"), "xload", fil));
     end
 
-    if  argn(2)==2 then scf(num),end
+    if  nargin==2 then scf(num),end
     %__f__=gcf();
     res = execstr("load(fil)","errcatch") ;
     // Get latest figure created by load

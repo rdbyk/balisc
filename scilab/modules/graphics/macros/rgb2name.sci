@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,13 +12,12 @@
 
 function r=rgb2name(r,g,b)
 
-    [lhs,rhs]=argn(0)
-    if rhs==1 then
+    if nargin==1 then
         if (type(r)<>1 & size(r,"*")<>3) then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A vector of 3 integers expected.\n"),"rgb2name",1));
         end
         b=r(3); g=r(2); r=r(1);
-    elseif rhs==3 then
+    elseif nargin==3 then
         if (type(r)<>1 | type(g)<>1 | type(b)<>1 | size(r,"*")<>1 | size(g,"*")<>1 | size(b,"*")<>1) then
             error(msprintf(gettext("%s: Wrong type for input arguments #%d, #%d and #%d: Scalars expected.\n"),"rgb2name", 1, 2, 3));
         end

@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,8 +23,7 @@ function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
     // at which the coding of the jth surface begins
     // if vect==-1 means that vect is useless
     //---------------------------------------------------------
-    [lhs,rhs]=argn(0);
-    if rhs<3 then
+    if nargin<3 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "plot3d2", 3))
     end
     isvect=1
@@ -60,7 +60,7 @@ function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
         opts=[opts,"ebox=ebox"]
     end
 
-    if size(opts,2)+isvect+3 <rhs then
+    if size(opts,2)+isvect+3 <nargin then
         error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"plot3d2","theta","alpha","leg","flag","ebox"));
     end
 

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
 function datatipMove(tip_handle,ax)
     //moves a datatip along the associated curve
     // tip_handle : handle on the given datatip compound;
-    if argn(2)<1 then
+    if nargin<1 then
         error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),"datatipMove",1))
     end
 
@@ -21,7 +21,7 @@ function datatipMove(tip_handle,ax)
         error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipMove",1,"Datatip"))
     end
 
-    if argn(2)==1 then
+    if nargin==1 then
         ax=tip_handle.parent
         while ax.type<>"Axes" then ax=ax.parent,end
     else

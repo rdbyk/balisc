@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
 //
@@ -189,10 +190,8 @@ function [z, s] = cplxroot(n, m)
     // Cover the unit disc n times.
     // Copyright INRIA
 
-    [lhs, rhs] = argn(0);
-
-    if rhs  < 1, n = 3; end
-    if rhs  < 2, m = 20; end
+    if nargin  < 1, n = 3; end
+    if nargin  < 2, m = 20; end
 
     r = (0:m)'/m;
     theta = - %pi*(-n*m:n*m)/m;

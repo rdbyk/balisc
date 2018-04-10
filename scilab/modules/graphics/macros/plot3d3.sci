@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,8 +15,7 @@ function plot3d3(x,y,z,vect,theta,alpha,leg,flags,ebox)
     // by a set of points
     // the mesh is drawn using the colums and rows of [x,y,z]
     //---------------------------------------------------------
-    [lhs,rhs]=argn(0);
-    if rhs<3 then
+    if nargin<3 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "plot3d3", 3) );
     end;
     if exists("vect","local")==0 then vect=-1,end
@@ -45,7 +45,6 @@ function plot3d3(x,y,z,vect,theta,alpha,leg,flags,ebox)
     // flag(4): box type
     if exists("flags" ,"local")==0 then flags=[3,4,2,4];  ,end
     if exists("ebox" ,"local")==1 then opts=[opts,"ebox=ebox"]  ,end
-
 
     execstr("param3d1(xx,yy,list(zz,flags(1)*ones(1,p)),"+..
     strcat([opts "flag=flags(3:4)"],",")+")")

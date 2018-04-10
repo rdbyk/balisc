@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +12,7 @@
 
 function ged_insert(k,win)
 
-    [lhs,rhs]=argn(0);
-
-    if rhs<2,
+    if nargin<2,
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "ged_insert", 2));
     end
 
@@ -230,4 +229,3 @@ function [men,xc,yc]=ged_click()
     for k=1:3,end
     job=men
 endfunction
-

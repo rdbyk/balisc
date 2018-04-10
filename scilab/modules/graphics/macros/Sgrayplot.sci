@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) Bruno Pincon
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,9 +28,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     // Some new modifs (Bruno Pincon, Feb 2005, demo + some checking + cleaning + add
     // mesh and colout optional args)
 
-    [lhs,rhs] = argn();
-
-    if rhs == 0 then   // demo
+    if nargin == 0 then   // demo
 
         t=-%pi:0.1:%pi;
         m=sin(t)'*cos(t)
@@ -43,7 +41,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
         f.immediate_drawing = "on";
         return
 
-    elseif rhs < 3 then
+    elseif nargin < 3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"Sgrayplot",3));
     end
 

@@ -2,6 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,8 +22,7 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
     if ~isdef("flags","local") then flags = [2 1 4]; end;
 
     def=list(theta,alpha,leg,flags);
-    [lhs,rhs]=argn(0)
-    if rhs<=0 then  //demo
+    if nargin<=0 then  //demo
         towns = ["Agen" "Bastia" "Chamonix" "Cognac" "Hyères" "Le Mans" "Le Puy" ..
         "Lille" "Lorient" "Mende" ]
         months = [_("January") _("Febuary") _("March") _("April") _("May") _("June")..
@@ -95,4 +95,3 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
     plot3d(xx,yy,zz,def(1),def(2),def(3),def(4),ebox)
 
 endfunction
-

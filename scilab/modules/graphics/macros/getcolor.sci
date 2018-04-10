@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,12 +13,10 @@
 
 function [c] = getcolor(Title,cini)
 
-    [lhs,rhs] = argn(0)
-
-    if rhs==0 then
+    if nargin==0 then
         Title = "";
         cini = 1;
-    elseif rhs==1 then
+    elseif nargin==1 then
         if type(Title)~=10 then
             msg = gettext("%s: Wrong type for input argument #%d: string expected.\n")
             error(msprintf(msg, "getcolor", 1));
@@ -28,7 +26,7 @@ function [c] = getcolor(Title,cini)
             error(msprintf(msg, "getcolor", 1));
         end
         cini = 1;
-    elseif rhs==2 then
+    elseif nargin==2 then
         if type(Title)~=10 then
             msg = gettext("%s: Wrong type for input argument #%d: string expected.\n")
             error(msprintf(msg, "getcolor", 1));
@@ -186,6 +184,4 @@ function [c] = getcolor(Title,cini)
         scf(curwin);
     end;
 
-
 endfunction
-

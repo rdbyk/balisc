@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,9 +27,8 @@ function paramfplot2d(f,x,theta,flag,rect)
     // containing a-priori lower and upper bounds for x and f(t,x).
     //function y=f(x,t),y=abs(cos(1.5*x+4*t)).*sin(x+10*t),endfunction
     //x=linspace(0,20*%pi,500);theta=0:0.05:5;
-    [lhs,rhs]=argn(0)
 
-    if ~rhs then
+    if ~nargin then
         deff("y=f(x,t)","y=t*sin(x)")
         x=linspace(0,2*%pi,50);theta=0:0.05:1;
         clf;
@@ -36,13 +36,13 @@ function paramfplot2d(f,x,theta,flag,rect)
         return;
     end
 
-    if rhs<3 then
+    if nargin<3 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "paramfplot2d", 3));
     end
 
     x=x(:);
     theta=theta(:).'; // it should be a row-vector
-    if rhs<5 then //compute the data bounds
+    if nargin<5 then //compute the data bounds
         xmin=min(x);xmax=max(x);
         ymin=%inf;ymax=-%inf;
         for t=theta
@@ -50,7 +50,7 @@ function paramfplot2d(f,x,theta,flag,rect)
         end
         rect=[xmin,xmax,ymin,ymax];
     end
-    if rhs<4 then flag="no";end
+    if nargin<4 then flag="no";end
     realtimeinit(0.1);
 
     clf();

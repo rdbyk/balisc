@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
 //
@@ -9,9 +10,7 @@
 
 function gammatest (N)
 
-    [lhs,rhs] =argn(0);
-
-    if rhs < 1 then
+    if nargin < 1 then
         N=[10,20,50,100];
     end
 

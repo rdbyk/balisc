@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Gustavo Barbosa Libotte <gustavolibotte@gmail.com>
 // Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
 
 function curve_handles=datatipGetEntities(ax)
     curve_handles=[];
-    if argn(2)<1 then
+    if nargin<1 then
         ax=gca()
         fig = ax.parent;
         for k=1:size(fig.children,"*")

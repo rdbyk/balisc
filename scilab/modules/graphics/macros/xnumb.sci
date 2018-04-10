@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,13 +11,13 @@
 // along with this program.
 
 function xnumb(x,y,nums,box,angle)
-    if and(argn(2)<>[3:5]) then
+    if and(nargin<>[3:5]) then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "xnumb", 3, 5));
     end
 
     n=size(x,"*");
-    if argn(2)<5 then angle=zeros(1,n),end
-    if argn(2)<4 then box=0,end
+    if nargin<5 then angle=zeros(1,n),end
+    if nargin<4 then box=0,end
 
     if size(y,"*") >n|size(nums,"*" )<>n|size(angle,"*" )<>n then
         error(msprintf(_("%s: Wrong size for input arguments: Same sizes expected.\n"),"xnumb"));

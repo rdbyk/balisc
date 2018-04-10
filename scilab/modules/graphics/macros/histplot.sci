@@ -6,8 +6,8 @@
 // Copyright (C) 2013 - A. Khorshidi (new option)
 // Copyright (C) 2013 - Scilab Enterpriss - Paul Bignier: added output
 // Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -50,11 +50,9 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     //    - add some checking on n|x and data
     //
 
-    [lhs, rhs] = argn()
-
     y = [];
     ind = [];
-    if rhs == 0 then   // demo
+    if nargin == 0 then   // demo
         histplot([-4.5:0.25:4.5],rand(1,20000,"n"),style=2,axesflag=1,..
         frameflag=1,rect=[-4.5 0 4.5 0.47]);
         deff("[y]=f(x)","y=exp(-x.*x/2)/sqrt(2*%pi);");
@@ -68,7 +66,7 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
         return
     end
 
-    if rhs < 2
+    if nargin < 2
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"histplot",2));
     end
 

@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,14 +11,13 @@
 // along with this program.
 
 function subplot(m,n,p)
-    [lhs,rhs]=argn(0)
 
-    if rhs<>3 & rhs<>1 then
+    if nargin<>3 & nargin<>1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected."), "subplot", 1, 3));
         return
     end
 
-    if rhs==1 then
+    if nargin==1 then
         p=modulo(m,10)
         n=modulo((m-p)/10,10)
         m=(m-p-10*n)/100

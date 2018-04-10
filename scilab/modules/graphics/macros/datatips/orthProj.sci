@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,10 +16,9 @@ function [d,ptp,ind,c]=orthProj(data,pt)
     //ptp  projected point coordiantes
     //ind  projection lies on segment [ind ind+1]
     //c    orthogonal projection coefficient
-    if argn(2)<>2 then
+    if nargin<>2 then
         error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"orthProj",2))
     end
-
 
     d = [];ptp = [];ind = [],c = []
     [n,m] = size(data)

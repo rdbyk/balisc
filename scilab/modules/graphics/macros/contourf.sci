@@ -2,6 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2012 - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,39 +13,37 @@
 
 function contourf(x, y, z, nv, style, strf, leg, rect, nax)
 
-    [nout, nin] = argn(0);
-
-    if nin == 0 then   // demo
+    if nargin == 0 then   // demo
         t = -%pi:0.1:%pi;
         m = sin(t)' * cos(t);
         contourf(t,t,m);
         return;
     end
 
-    if nin <= 0 then
+    if nargin <= 0 then
         x=1:10;
     end
-    if nin <= 1 then
+    if nargin <= 1 then
         y=1:10;
     end
-    if nin <= 2 then
+    if nargin <= 2 then
         z=rand(size(x,"*"), size(y,"*"));
     end
-    if nin <= 3 then
+    if nargin <= 3 then
         zmin=min(z);
         zmax=max(z);
         nv = zmin + (1:10) * (zmax-zmin)/(11);
     end
-    if nin <= 5 then
+    if nargin <= 5 then
         strf="021";
     end
-    if nin <= 6 then
+    if nargin <= 6 then
         leg=" ";
     end
-    if nin <= 7 then
+    if nargin <= 7 then
         rect=[0,0,1,1];
     end
-    if nin <= 8 then
+    if nargin <= 8 then
         nax=[1,10,1,10];
     end
     if x==[] then
@@ -95,7 +94,7 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
         nv = zmin + (1:nvs)*(zmax-zmin)/(nvs+1);
     end;
 
-    if nin <= 4 then
+    if nargin <= 4 then
         style = -1*ones(1, nvs);
     end
 
@@ -103,7 +102,7 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "contourf", 5));
     end
 
-    if nin <= 7 then
+    if nargin <= 7 then
         rect=[min(x), min(y), max(x), max(y)];
     end
 

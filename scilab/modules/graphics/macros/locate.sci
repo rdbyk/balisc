@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,11 +28,10 @@ function [x,but]=locate(n,flag)
     //indiquee en cliquant sur le bouton de gauche.
     //!
 
-    [lhs,rhs]=argn(0)
     but=[]
     show_window();
-    if rhs<=1,flag=0;end
-    if rhs==0;n=-1;end
+    if nargin<=1,flag=0;end
+    if nargin==0;n=-1;end
 
     ax=gca()
     mark_style=ax.mark_style;mark_size=ax.mark_size;mark_size_unit=ax.mark_size_unit;

@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,11 +12,11 @@
 
 function [r,g,b]=hsv2rgb(h,s,v)
 
-    if and(argn(2)<>[1 3]) then
+    if and(nargin<>[1 3]) then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "hsv2rgb", 1, 3));
     end
 
-    if argn(2)==1 then
+    if nargin==1 then
         v=h(:,3);s=h(:,2);h=h(:,1)
     else
         h = h(:);s = s(:);v = v(:)
@@ -36,7 +37,7 @@ function [r,g,b]=hsv2rgb(h,s,v)
     b=sum(K.*[t t p e e n],2)
     f=v ./ max([r(:);g(:);b(:)])
 
-    if argn(1)==1 then
+    if nargout==1 then
         r=[f.*r,f.*g,f.*b]
     else
         r=f.*r;g=f.*g;b=f.*b

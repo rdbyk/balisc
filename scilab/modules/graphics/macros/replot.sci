@@ -2,8 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) 2016 - Clément DAVID - Scilab Enterprises
 // Copyright (C) 2013, 2016, 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,13 +27,12 @@ function replot(varargin)
     //  - replot()
     //  - tight_limits option
 
-    [lhs,rhs] = argn(0);
     fname = "replot"
 
     // CHECKING ARGUMENTS
     // ==================
     // Number of argins
-    if rhs > 3 then
+    if nargin > 3 then
         msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg, fname, 0, 3))
     end

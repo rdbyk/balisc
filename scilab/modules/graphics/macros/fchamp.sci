@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,8 +26,7 @@ function [] = fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
     //Example : enter fchamp()
     //!
 
-    [lhs,rhs]=argn(0)
-    if rhs == 0 then   // demo
+    if nargin == 0 then   // demo
         // Setting the figure
         fh = gcf()
         if ~isDocked(fh)
@@ -49,9 +48,9 @@ function [] = fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
         return
     end
 
-    if rhs <= 1,fch_t=0;end
-    if rhs <= 2,fch_xr=-1:0.1:1;end
-    if rhs <= 3,fch_yr=-1:0.1:1;end
+    if nargin <= 1,fch_t=0;end
+    if nargin <= 2,fch_xr=-1:0.1:1;end
+    if nargin <= 3,fch_yr=-1:0.1:1;end
 
     opts=[]
     if exists("arfact","local")==1 then opts=[opts,"arfact=arfact"],end
