@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,9 +24,7 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
     //    fgrayplot(-1:0.1:1,-1:0.1:1,Surf);
     //!
 
-    [lhs,rhs]=argn(0);
-
-    if rhs <= 0 then   // demo
+    if nargin <= 0 then   // demo
         deff("[z]=Surf(x,y)","z=cos(x).^2+sin(y).^2");
         fgrayplot(-%pi:0.1:%pi,-%pi:0.1:%pi, Surf);
         f = gcf();
@@ -34,7 +33,7 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
     end
 
 
-    if rhs<3,
+    if nargin<3,
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fgrayplot", 3));
     end
 

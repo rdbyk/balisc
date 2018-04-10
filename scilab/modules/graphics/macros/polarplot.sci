@@ -2,6 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Manuel Juliachs
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +12,7 @@
 // along with this program.
 
 function polarplot(theta,rho,style,strf,leg,rect)
-    [lhs,rhs]=argn(0)
-    if rhs<=0 then
+    if nargin<=0 then
         theta=0:.01:2*%pi;
         rho=sin(2*theta).*cos(2*theta)
         clf();
@@ -52,7 +52,7 @@ function polarplot(theta,rho,style,strf,leg,rect)
         isframeflag=%t
     end
 
-    if size(opts,2)<rhs-2 then
+    if size(opts,2)<nargin-2 then
         error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"polarplot","style","strf","leg","rect","frameflag"));
     end
 

@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -197,14 +198,11 @@ function [x,y,typ]=LOOKUP_c(job,arg1,arg2)
     end
 endfunction
 
-
-
 function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
-    [lhs,rhs]=argn(0)
     //in line definition of get_click
     deff("[btn,xc,yc,win,Cmenu]=get_click(flag)",[
     "if ~or(winsid() == curwin) then   Cmenu = ''Quit'';return,end,";
-    "if argn(2) == 1 then";
+    "if nargin == 1 then";
     "  [btn, xc, yc, win, str] = xclick(flag);";
     "else";
     "  [btn, xc, yc, win, str] = xclick();";
@@ -230,7 +228,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
     "Cmenu=[]"])
 
     ok=%f
-    if rhs==0 then
+    if nargin==0 then
         ixy=[];
     end;
     if size(xy,"c")<2 then
@@ -241,19 +239,19 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
     [xy]=cleandata(ixy)
     N=size(xy,"r");
 
-    if rhs<=1 then
+    if nargin<=1 then
         NOrder=1;
         PeridicOption=0;
         extrapo=0
         ipar=[N;NOrder;PeridicOption;extrapo]
         rpar=[]
-    elseif rhs==2 then
+    elseif nargin==2 then
         NOrder=iparin(2);
         PeridicOption=iparin(3);
         extrapo=iparin(4);
         ipar=iparin;
         rpar=[]
-    elseif rhs==3 then
+    elseif nargin==3 then
         NOrder=iparin(2);
         PeridicOption=iparin(3);
         extrapo=iparin(4);
@@ -1333,6 +1331,3 @@ function [Z]=ORDER2(x,y)
     Z=Zt(1:3*N,1)
 endfunction
 //===================================================
-
-
-

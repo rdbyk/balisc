@@ -1,39 +1,36 @@
-// =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - SCILAB ENTERPRISES - Claude Gomez
 // Copyright (C) Scilab Enterprises - 2014 - Pierre-Aime Agnel
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-// =============================================================================
 
 function implicitplot(fun, x_range, y_range, varargin)
 
-    [lhs, rhs] = argn(0);
-
-    if rhs == 0 then
+    if nargin == 0 then
         scf();
         implicitplot("rand() - 0.5", 1:10, 1:10);
         return;
     end
 
     // x and y must be constants
-    if rhs == 1 then
+    if nargin == 1 then
         x_range = linspace(-1, 1, 101);
         y_range = linspace(-1, 1, 101);
         varargin = [];
     end
-    if rhs == 2 then
+    if nargin == 2 then
         y_range = linspace(-1, 1, 101);
         varargin = [];
     end
 
-    if rhs >= 2 then
+    if nargin >= 2 then
         if type(x_range) <> 1 then
             error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "implicitplot", 2));
         end
@@ -45,7 +42,7 @@ function implicitplot(fun, x_range, y_range, varargin)
         end
     end
 
-    if rhs >= 3 then
+    if nargin >= 3 then
         if type(y_range) <> 1 then
             error(999, msprintf(gettext("%s: Wrong type for input argument #%d: Real vector expected.\n"), "implicitplot", 3));
         end

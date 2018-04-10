@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1992-2010 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,11 +41,10 @@ function [xi,xa,np]=graduate( xmi, xma,n1,n2)
     // test
     // ----
     //
-    [lhs,rhs]=argn(0)
-    if rhs <2 then
+    if nargin <2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "graduate", 2));
     end
-    if rhs <4 then
+    if nargin <4 then
         n1=3
         n2=10
     end

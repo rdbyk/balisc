@@ -2,6 +2,7 @@
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,9 +13,7 @@
 
 function opt1 = getColorIndex(ColorString)
 
-    [lhs,rhs]=argn(0)
-
-    if rhs<>1 then
+    if nargin<>1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "getColorIndex", 1));
     end
 
@@ -79,6 +78,5 @@ function opt1 = getColorIndex(ColorString)
         warning(msprintf(gettext("%s:  Wrong number of input arguments: %d expected.\n"),"getColorIndex",1));
         return;
     end
-
 
 endfunction

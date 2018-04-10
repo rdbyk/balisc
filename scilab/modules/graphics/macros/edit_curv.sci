@@ -46,13 +46,12 @@ function [x,y,ok,gc] = edit_curv(x,y,job,tit,gc)
     //  Save  : sauvegarde binaire (sur un fichier d'extension .xy) de
     //          la courbe
     //!
-    [lhs,rhs]=argn(0)
 
     ok = %t;
-    if rhs==0 then x=[]; y=[],end;
-    if rhs==1 then y=x;x=(1:size(y,"*"))',end
-    if rhs<3  then job="axy",end
-    if rhs<4 then tit=[" "," "," "],end
+    if nargin==0 then x=[]; y=[],end;
+    if nargin==1 then y=x;x=(1:size(y,"*"))',end
+    if nargin<3  then job="axy",end
+    if nargin<4 then tit=[" "," "," "],end
     if size(tit,"*")<3 then tit(3)=" ",end
     //
 
@@ -76,7 +75,7 @@ function [x,y,ok,gc] = edit_curv(x,y,job,tit,gc)
     eps = 0.03
     symbsiz = 0.2
     // bornes initiales du graphique
-    if rhs<5 then
+    if nargin<5 then
         if mx<>0 then
             xmx = max(x); xmn = min(x)
             ymx = max(y); ymn = min(y)
@@ -91,7 +90,7 @@ function [x,y,ok,gc] = edit_curv(x,y,job,tit,gc)
         rect=[xmn,ymn,xmx,ymx];
         axisdata=[2 10 2 10];
         gc = list(rect,axisdata);
-    else //** rhs=5 as in Scicos ;)
+    else //** nargin=5 as in Scicos ;)
         [rect,axisdata] = gc(1:2)
         xmn = rect(1);
         ymn = rect(2);
@@ -269,7 +268,7 @@ function [btn,xc,yc,win,Cmenu] = get_click(flag)
         return        ;
     end
 
-    if argn(2) == 1 then
+    if nargin == 1 then
         [btn, xc, yc, win, str] = xclick(flag);
     else
         [btn, xc, yc, win, str] = xclick();

@@ -23,8 +23,7 @@ function []=amdbaR(File_name)
     // of triangle type
     // The file is of amdba type
 
-    [lhs,rhs]=argn(0);
-    if rhs == 0 ; File_name="MESH"; end
+    if nargin == 0 ; File_name="MESH"; end
     unit=file("open",File_name,"old");
     x=read(unit,1,2);
     noeuds=x(1);
@@ -41,10 +40,9 @@ function []=meshvisu(col,rect)
     // Mesh visualisation
     // uses global variables
 
-    [lhs,rhs]=argn(0);
-    if rhs<=0;col=1;end
-    if rhs<=1;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
-    if rhs<=2;iso="1";end
+    if nargin<=0;col=1;end
+    if nargin<=1;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
+    if nargin<=2;iso="1";end
     plot2d(1,1,[1],"031"," ",rect);
     gca().clip_state = "clipgrf";
     xx=trianl(:,2:4);
@@ -65,8 +63,7 @@ function []=nvisu(rect)
 
     // Visualisation des noeuds
 
-    [lhs,rhs]=argn(0);
-    if rhs==0;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
+    if nargin==0;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
     plot2d(1,1,[1],"031"," ",rect);
     gca().clip_state = "clipgrf";
     bords=noeul(find(noeul(:,4)>0),:);
@@ -86,10 +83,9 @@ function []=emc2V(i,j,k,sa,FN,rect)
     // Les vecteurs sont lus dans les colonnes i et j du fichier
     // du fichier FN qui continet k colonnes
 
-    [lhs,rhs]=argn(0);
     plot2d(1,1,[1],"031"," ",rect);
     gca().clip_state = "clipgrf";
-    if rhs == 0 ; FN="MESH";end
+    if nargin == 0 ; FN="MESH";end
     unit=file("open",FN,"old")
     resu=read(unit,noeuds,k);
     file("close",unit);
@@ -116,12 +112,11 @@ function []=emc2C(i,j,FN,rect)
     // aux noeuds du maillage sur la ieme colonne
     // du fichier file qui en contient j
 
-    [lhs,rhs]=argn(0);
     unit=file("open",FN,"old");
     resu=read(unit,-1,j);
     file("close",unit);
     resu=resu(:,i);
-    if rhs<=3;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
+    if nargin<=3;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
     fec(noeul(:,2),noeul(:,3),trianl,resu,"031"," ",rect);
 
 endfunction

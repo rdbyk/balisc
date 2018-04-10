@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Scilab Enterprises - 2015 - 2012 - Juergen Koch <juergen.koch@hs-esslingen.de>
-// 
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,9 +13,8 @@
 function polyLine = scatter(varargin)
 
     polyLine = 0;
-    [lhs,rhs] = argn(0);
 
-    if ~rhs
+    if ~nargin
         clf;
         t = linspace(0,25,200);
         x = t.*cos(t);

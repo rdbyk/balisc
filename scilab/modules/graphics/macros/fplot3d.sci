@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,15 +22,14 @@ function fplot3d(xr,yr,f,theta,alpha,leg,flag,ebox)
     // Exemple : taper fplot3d() pour voir un exemple
     //!
 
-    [lhs,rhs]=argn(0)
-    if rhs <= 0 then   // demo
+    if nargin <= 0 then   // demo
         deff("[z]=Surf(x,y)","z=sin(x)*cos(y)");
         t=-%pi:0.3:%pi;
         fplot3d(t,t,Surf,35,45,"X@Y@Z");
         return
     end
 
-    if rhs<3 then
+    if nargin<3 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fplot3d", 3));
     end;
 

@@ -13,8 +13,7 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
     // Copyright INRIA
     // rewritten by Bruno Pincon (17 april 05) (based of my modifs of Sgrayplot)
 
-    [lhs,rhs]=argn()
-    if rhs == 0 then   // demo
+    if nargin == 0 then   // demo
         deff("[z]=Surf(x,y)","z=x.^3+y");
         f=gcf();
         f.color_map = jetcolormap(64);
@@ -24,7 +23,7 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
         xtitle("$\Large f(x,y)=x^3+y$");
         f.immediate_drawing = "on";
         return
-    elseif rhs < 3 then
+    elseif nargin < 3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "Sfgrayplot", 3, 10));
     end
 

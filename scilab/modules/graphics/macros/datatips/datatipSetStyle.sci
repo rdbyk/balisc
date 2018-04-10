@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - INRIA - Serge Steer <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,19 +16,19 @@ function datatipSetStyle(curve_handle,t,boxed,labeled)
     // t            : 1 "square mark" or 2 "Directional arrow"
     // boxed        : a boolean
     // labeled      : a boolean
-    if argn(2)<1 then
+    if nargin<1 then
         error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),...
         "datatipSetType",1))
     end
-    if argn(2)<4 then labeled=%t,end
-    if argn(2)<3 then boxed=%t,end
+    if nargin<4 then labeled=%t,end
+    if nargin<3 then boxed=%t,end
 
     if type(curve_handle)<>9|size(curve_handle,"*")<>1|or(curve_handle.type<>"Polyline") then
         error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),...
         "datatipSetType",1,"Polyline"))
     end
 
-    if argn(2)==1 then
+    if nargin==1 then
         items=[_("Square mark, boxed label")
         _("Square mark, simple label")
         _("Square mark, no label")

@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Farid Belahcene
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +13,6 @@
 function TitleLabel(varargin)
     // TITLELABEL function
     // is used by the functions title, xlabel, ylabel, zlabel
-
-    [lhs,rhs]=argn(0);
 
     //CurColor = 0; // current color used if no color specified via LineSpec
     // nor PropertyName
@@ -94,6 +93,4 @@ function TitleLabel(varargin)
     // smart drawnow
     ResetFigureDDM(current_figure, cur_draw_mode);
 
-
 endfunction
-

@@ -3,8 +3,8 @@
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -93,7 +93,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     // Copyright (C) 2010 - DIGITEO - Allan CORNET
     // Copyright (C) 2011 - DIGITEO - Michael Baudin
 
-    if argn(2) == 0 then
+    if nargin == 0 then
         helptxt = [..
         "function [z] = function_template(x,y)"
         "// Short description on the first line following the function header."
@@ -160,8 +160,8 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
         return;
     end
 
-    if argn(2) < 3 then demodir = []; end
-    if argn(2) < 2 then helpdir = []; end
+    if nargin < 3 then demodir = []; end
+    if nargin < 2 then helpdir = []; end
 
     if ~isempty(demodir) & ~isdir(demodir) then
         error(sprintf(gettext("%s: Wrong value for input argument #%d: A valid existing directory is expected.\n"), "help_from_sci", 3));

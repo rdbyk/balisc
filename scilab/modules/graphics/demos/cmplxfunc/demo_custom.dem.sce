@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO
 // Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
@@ -797,7 +798,7 @@ endfunction
 function updateStatusBar(tag,msg, msg_color)
     time_active = 2; //Time the message is active in s
 
-    if argn(2) == 0 then
+    if nargin == 0 then
         set(tag, "String", " ");
         return
     end

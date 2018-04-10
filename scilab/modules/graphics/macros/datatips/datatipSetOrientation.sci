@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,7 @@
 // along with this program.
 
 function datatipSetOrientation(tip_handle,o)
-    if argn(2)<>2 then
+    if nargin<>2 then
         error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),...
         "datatipSetOrientation",2))
     end

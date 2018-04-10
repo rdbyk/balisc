@@ -2,8 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
 // Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,15 +19,14 @@ function isoview(varargin)
     //isoview(idGraphics [,"on"|"off"])
     //isoview(xmin, xmax, ymin, ymax)  // OBSOLETE
 
-    rhs = argn(2)
-    if rhs==3 | rhs>4 then
+    if nargin==3 | nargin>4 then
         msg = _("%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n")
         error(msprintf(msg, "isoview"));
     end
 
     // isoview action to be performed: ""=switch, "on", "off"
     action = ""
-    if rhs>0 & rhs<4 & typeof(varargin($))=="string" then
+    if nargin>0 & nargin<4 & typeof(varargin($))=="string" then
         tmp = convstr(varargin($))
         if tmp(1)=="on"
             action = "on"
@@ -38,9 +37,9 @@ function isoview(varargin)
 
     // Set of axes to be processed
     // ---------------------------
-    if rhs==0 | rhs==4 | (rhs==1 & type(varargin(1))==10)
+    if nargin==0 | nargin==4 | (nargin==1 & type(varargin(1))==10)
         a = gca()
-    elseif rhs<3 // varargin(1) must be a graphics handle
+    elseif nargin<3 // varargin(1) must be a graphics handle
         a = varargin(1)
         if type(a)~=9 then
             msg = _("%s: Wrong type for input argument #%d: Graphic handle or string expected.\n")
@@ -71,7 +70,7 @@ function isoview(varargin)
 
     // isoview(xmin, xmax, ymin, ymax): checking input bounds
     // ------------------------------------------------------
-    if rhs>2
+    if nargin>2
         msg = _("isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from Scilab 6.1\nPlease use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n")
         warning(msprintf(msg))
         for i = 1:4
@@ -93,7 +92,7 @@ function isoview(varargin)
             a(i).isoview = "off"
         end
         a(i).clip_state = "clipgrf"
-        if rhs>2 then
+        if nargin>2 then
             a(i).data_bounds = [xmin xmax ymin ymax]
         end
     end

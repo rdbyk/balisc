@@ -2,8 +2,8 @@
 // Copyright (C) Bruno Pincon
 // Copyright (C) Serge Steer (adaptation to new graphic system)
 // Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/14711
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -42,8 +42,7 @@ function colorbar(umin, umax, colminmax, fmt)
     //     see the help page
 
     // Check number of input argument
-    [lhs, rhs] = argn();
-    if rhs < 2 then
+    if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "colorbar", 2, 4));
     end
     nb_grad = 5

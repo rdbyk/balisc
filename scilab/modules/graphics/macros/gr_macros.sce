@@ -204,10 +204,9 @@ function sd=Move(sd)
 endfunction
 
 function [sd1]=symbs(sd,del)
-    [lhs,rhs]=argn(0);
     sd1 = [];
     ax = gca();
-    if rhs<=0 then
+    if nargin<=0 then
         c = [ax.mark_style ax.mark_size];
         n1=c(1);
         dime=c(2)
@@ -222,8 +221,8 @@ function [sd1]=symbs(sd,del)
 endfunction
 
 function [sd1]=dashs(sd,del)
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then
+    sd1=[];
+    if nargin<=0 then
         n1=x_choose(dash,"Choose a dash style");
         if n1==[] then
             sd1=list()
@@ -237,9 +236,8 @@ function [sd1]=dashs(sd,del)
 endfunction
 
 function [sd1]=patts(sd,del)
-    [lhs,rhs]=argn(0);
     sd1 = [];
-    if rhs<=0 then
+    if nargin<=0 then
         n1=getcolor("Choose a pattern ",0)
         if n1==[] then
             sd1=list()
@@ -254,9 +252,8 @@ function [sd1]=patts(sd,del)
 endfunction
 
 function [sd1]=Thick(sd,del)
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then
-
+    sd1=[];
+    if nargin<=0 then
         T=string(1:15)
         ll=list()
         t = gca().thickness
@@ -274,13 +271,13 @@ function [sd1]=Thick(sd,del)
 endfunction
 
 function sd1 =rect(sd,del)
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then //get
+    sd1=[];
+    if nargin<=0 then //get
         [x1,y1,x2,y2,but]=xgetm(d_xrect)
         if but==2 then sd1=list();return,end
         sd1=list("rect",x1,x2,y1,y2);
         d_xrect(x1,y1,x2,y2);
-    elseif rhs==1 then //draw
+    elseif nargin==1 then //draw
         x1=sd(2);x2=sd(3),y1=sd(4),y2=sd(5);
         d_xrect(x1,y1,x2,y2);
     elseif del=="del" then //erase
@@ -299,13 +296,13 @@ function sd1 =rect(sd,del)
 endfunction
 
 function sd1=frect(sd,del)
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then // get
+    sd1=[];
+    if nargin<=0 then // get
         [x1,y1,x2,y2,but]=xgetm(d_xrect)
         if but==2 then sd1=list();return,end
         sd1=list("frect",x1,x2,y1,y2);
         d_xfrect(x1,y1,x2,y2);
-    elseif rhs==1 then //draw
+    elseif nargin==1 then //draw
         x1=sd(2);x2=sd(3),y1=sd(4),y2=sd(5)
         d_xfrect(x1,y1,x2,y2);
     elseif del=="del" then //erase
@@ -324,14 +321,14 @@ function sd1=frect(sd,del)
 endfunction
 
 function sd1=cerc(sd,del)
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then // get
+    sd1=[];
+    if nargin<=0 then // get
         [c1,c2,x1,x2,but]=xgetm(d_circle);
         if but==2 then sd1=list();return,end
         x=[x1;x2],c=[c1;c2];r=norm(x-c,2);
         sd1=list("cercle",c,r);
         d_circle(c,r);
-    elseif rhs==1 then //draw
+    elseif nargin==1 then //draw
         c=sd(2);r=sd(3);
         d_circle(c,r);
     elseif del=="del" then //erase
@@ -347,14 +344,14 @@ function sd1=cerc(sd,del)
 endfunction
 
 function sd1=fcerc(sd,del)
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then // get
+    sd1=[];
+    if nargin<=0 then // get
         [c1,c2,x1,x2,but]=xgetm(d_circle);
         if but==2 then sd1=list();return,end
         x=[x1;x2],c=[c1;c2];r=norm(x-c,2);
         sd1=list("fcercle",c,r);
         d_fcircle(c,r);
-    elseif rhs==1 then //draw
+    elseif nargin==1 then //draw
         c=sd(2);r=sd(3)
         d_fcircle(c,r);
     elseif del=="del" then //erase
@@ -370,8 +367,8 @@ function sd1=fcerc(sd,del)
 endfunction
 
 function [sd1]=fleche(sd,del)
-    [lhs,rhs]=argn(0);sd1=[]
-    if rhs<=0 then // get
+    sd1=[]
+    if nargin<=0 then // get
         [oi1,oi2,of1,of2,but]=xgetm(d_arrow);
         if but==2 then sd1=list();return,end
         o1=[oi1;of1],o2=[oi2;of2];
@@ -380,7 +377,7 @@ function [sd1]=fleche(sd,del)
         sz=1/(40*min(abs(r2(3)-r2(1)),abs(r2(4)-r2(2))))
         sd1=list("fleche",o1,o2,sz);
         d_arrow(o1,o2,sz);
-    elseif rhs==1 then //draw
+    elseif nargin==1 then //draw
         o1=sd(2),o2=sd(3),
         sz=-1
         if size(sd)>=4 then sz=sd(4),end
@@ -403,15 +400,15 @@ function [sd1]=fleche(sd,del)
 endfunction
 
 function [sd1]=comment(sd,del)
-    [lhs,rhs]=argn(0),sd1=[];
-    if rhs<=0 then // get
+    sd1=[];
+    if nargin<=0 then // get
         [i,z1,z2]=xclick(0);z=[z1;z2];
         com=x_dialog("Enter string"," ");
         if com<>[] then
             sd1=list("comm",z,com),
             xstring(z(1),z(2),com,0,0);
         end
-    elseif rhs==1 then //draw
+    elseif nargin==1 then //draw
         z=sd(2);com=sd(3);
         xstring(z(1),z(2),com,0,0);
     elseif del=="del" then //erase
@@ -426,13 +423,13 @@ endfunction
 
 function [sd1]=ligne(sd,del)
     // polyline
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then // get
+    sd1=[];
+    if nargin<=0 then // get
         z=xgetpoly(d_seg);
         if z==[], return;end;
         sd1=list("ligne",z);
         xpoly(z(1,:)',z(2,:)',"lines")
-    elseif rhs==1 then //draw
+    elseif nargin==1 then //draw
         z=sd(2);
         xpoly(z(1,:)',z(2,:)',"lines")
     elseif del=="del" then //erase
@@ -449,13 +446,13 @@ endfunction
 
 function [sd1]=fligne(sd,del)
     // filled polyline
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then // get
+    sd1=[];
+    if nargin<=0 then // get
         z=xgetpoly(d_seg);
         if z==[], return;end;
         sd1=list("fligne",z);
         xfpoly(z(1,:),z(2,:),1);
-    elseif rhs==1 then //draw
+    elseif nargin==1 then //draw
         z=sd(2);
         xfpoly(z(1,:),z(2,:),1);
     elseif del=="del" then //erase
@@ -472,8 +469,8 @@ endfunction
 
 function [sd1]=curve(sd,del)
     // smoothed curve
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then ,//get
+    sd1=[];
+    if nargin<=0 then ,//get
         z=xgetpoly(d_seg);
         if z==[], return;end
         mm=clearmode();xpoly(z(1,:)',z(2,:)',"lines");modeback(mm)
@@ -489,13 +486,13 @@ endfunction
 
 function [sd1]=points(sd,del)
     // polymark
-    [lhs,rhs]=argn(0);sd1=[];
-    if rhs<=0 then //get
+    sd1=[];
+    if nargin<=0 then //get
         z=xgetpoly(d_point);
         if z==[], return;end;
         sd1=list("point",z);
         xpoly(z(1,:)',z(2,:)',"marks");
-    elseif rhs==1 then //draw
+    elseif nargin==1 then //draw
         z=sd(2);
         xpoly(z(1,:)',z(2,:)',"marks");
     elseif del=="del" then //erase
@@ -511,8 +508,8 @@ function [sd1]=points(sd,del)
 endfunction
 
 function [sd1]=grclipoff(sd,del)
-    [lhs,rhs]=argn(0),sd1=[];
-    if rhs<=0 then ,
+    sd1=[];
+    if nargin<=0 then ,
         sd1=list("clipoff")
     end;
     // disable clipping
@@ -521,8 +518,8 @@ function [sd1]=grclipoff(sd,del)
 endfunction
 
 function [sd1]=grclipon(sd,del)
-    [lhs,rhs]=argn(0),sd1=[];
-    if rhs<=0 then ,
+    sd1=[];
+    if nargin<=0 then ,
         sd1=list("clipon")
     end;
     // axes clip
@@ -599,8 +596,7 @@ function []=d_xfrect(x0,yy0,x,y)
 endfunction
 
 function []=d_circle(c1,c2,x1,x2)
-    [lhs,rhs]=argn(0);
-    if rhs==2 then
+    if nargin==2 then
         r=c2;c2=c1(2);c1=c1(1);
         xarc(c1-r,c2+r,2*r,2*r,0,64*360);
 
@@ -611,8 +607,7 @@ function []=d_circle(c1,c2,x1,x2)
 endfunction
 
 function []=d_fcircle(c1,c2,x1,x2)
-    [lhs,rhs]=argn(0);
-    if rhs==2 then r=c2;c2=c1(2);c1=c1(1);
+    if nargin==2 then r=c2;c2=c1(2);c1=c1(1);
     else
         r=norm([x1-c1;x2-c2],2);
     end
@@ -620,8 +615,7 @@ function []=d_fcircle(c1,c2,x1,x2)
 endfunction
 
 function d_arrow(c1,c2,x1,x2)
-    [lhs,rhs]=argn(0);
-    if rhs<>4 then
+    if nargin<>4 then
         sz=x1;x1=c1(2);c1=c1(1);x2=c2(2);c2=c2(1);
     else
         ax = gca();

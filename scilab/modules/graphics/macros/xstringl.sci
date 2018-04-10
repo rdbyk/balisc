@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,12 +20,11 @@ function [rect] = xstringl( varargin )
 
     // the call is rect=xstringl(x,y,str,[fontId,fontSize])
 
-    [lhs,rhs] = argn(0) ;
     listArg = varargin ;
 
     // rect = xstringl(x,y,str,[fontId,fontSize])
 
-    select rhs,
+    select nargin,
     case 3 then
         // stringbox(str, x, y)
         corners = stringbox(listArg (3), listArg (1), listArg (2));
@@ -50,4 +50,3 @@ function [rect] = xstringl( varargin )
     rect(4) = abs(corners(2,3) - corners(2,1));
 
 endfunction
-

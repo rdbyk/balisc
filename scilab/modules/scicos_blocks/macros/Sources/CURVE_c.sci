@@ -1,8 +1,9 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - Masoud Najafi <masoud.najafi@inria.fr>
-//                        Serge Steer <serge.steer@inria.fr>       1993
-//                        Habib Jreij                              1993
+// Copyright (C) INRIA - Masoud Najafi <masoud.najafi@inria.fr>
+//                       Serge Steer <serge.steer@inria.fr>       1993
+//                       Habib Jreij                              1993
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -187,13 +188,11 @@ endfunction
 
 function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
 
-    [lhs,rhs]=argn(0)
-
     //** get_click is already defined in "editi_curv"
     //in line definition of get_click
     deff("[btn,xc,yc,win,Cmenu]=get_click(flag)",[
     "if ~or(winsid() == curwin) then   Cmenu = ''Quit'';return,end,";
-    "if argn(2) == 1 then";
+    "if nargin == 1 then";
     "  [btn, xc, yc, win, str] = xclick(flag);";
     "else";
     "  [btn, xc, yc, win, str] = xclick();";
@@ -219,7 +218,7 @@ function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
     "Cmenu=[]"])
 
     ok = %f
-    if rhs==0 then
+    if nargin==0 then
         ixy=[];
     end;
 
@@ -232,19 +231,19 @@ function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
 
     N = size(xy,"r");
 
-    if rhs<=1 then
+    if nargin<=1 then
         NOrder = 1;
         PeridicOption = 0;
         ipar = [N;NOrder;PeridicOption]
         rpar = []
     else
-        if rhs==2 then
+        if nargin==2 then
             NOrder = iparin(2);
             PeridicOption = iparin(3);
             ipar = iparin;
             rpar = [];
         else
-            if rhs==3 then
+            if nargin==3 then
                 NOrder = iparin(2);
                 PeridicOption = iparin(3);
                 ipar = iparin;

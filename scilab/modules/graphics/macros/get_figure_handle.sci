@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,10 +10,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
 function [fig]=get_figure_handle(index)
 
-    if argn(2)<>1 then
+    if nargin<>1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "get_figure_handle", 1));
     end
 
@@ -32,4 +32,3 @@ function [fig]=get_figure_handle(index)
     scf(curFig);
 
 endfunction
-

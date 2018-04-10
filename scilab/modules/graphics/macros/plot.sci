@@ -2,6 +2,7 @@
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,9 +16,7 @@ function plot(varargin)
     // plot(x,y,'X',1:10); // where X stands for Xdata (Matlab recognizes
     //it and treats it well...)
 
-    [lhs,rhs]=argn(0);
-
-    if ~rhs
+    if ~nargin
         //LineSpec and PropertySpec examples:
         t = 0:%pi/20:2*%pi;
         tt = t';
@@ -31,12 +30,8 @@ function plot(varargin)
         return;
     end
 
-
-
     CurColor = 0; // current color used if no color specified via LineSpec
     // nor PropertyName
-
-
 
     ListArg = varargin;
 
@@ -52,9 +47,7 @@ function plot(varargin)
         end
     end
 
-
     nv = size(ListArg)
-
 
     argTypes=[];
     couple=[];
@@ -80,7 +73,6 @@ function plot(varargin)
         end
 
     end
-
 
     if (couple==[]) // No data couple found
         // Search for at least a single data , i.e.: plot(y)
@@ -122,8 +114,6 @@ function plot(varargin)
             end
         end
 
-
-
         if (modulo(nv-(couple($)+1),2)<>0) then
             P1 = couple($)+3 // Position of the first PropertyName field
         else
@@ -164,8 +154,6 @@ function plot(varargin)
             end
         end
     end
-
-
 
     // delay the drawing commands
     // smart drawlater
@@ -239,7 +227,6 @@ function plot(varargin)
 
                     end
                 end
-
 
                 ListArg(xyIndexLineSpec(i,2)) = tmp;
                 // if there is another iteration, we will have error message redefining function.
@@ -329,8 +316,6 @@ function plot(varargin)
             Property = Property+2;
         end
 
-
-
         //Now we have an array xyIndexLineSpec [numplot x 3] containing indices pointing on T for :
         // - x (<>0 if existing)
         // - y
@@ -342,8 +327,6 @@ function plot(varargin)
         //plot2  i2|i3 |0    <=> plot(x,y)
         //plot3  i4|i5 |i6   <=> plot(x,y,LINESPEC)
         //...
-
-
 
         if (xyIndexLineSpec(i,3)<>0) then // if we have a line spec <=> index <> 0
             [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(xyIndexLineSpec(i,3)),current_figure,cur_draw_mode);
@@ -412,8 +395,6 @@ function plot(varargin)
     //PropertyName and PropertyValue //
     ///////////////////////////////////
 
-
-
     // Those properties will be applied to Agreg children
     Agreg = glue(FinalAgreg(1:$))
 
@@ -449,8 +430,6 @@ function plot(varargin)
     if  isFirstPlot & curAxes.x_location <> "origin" & curAxes.y_location <> "origin" then
         curAxes.box = "on";
     end
-
-
 
     //postponed drawings are done now !
     // smart drawnow

@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,9 +23,7 @@ function []=errbar(x,y,em,ep)
     //   y=<sin(x);cos(x)>';x=<x;x>';plot2d(x,y);
     //   errbar(x,y,0.05*ones(x),0.03*ones(x));
 
-    [lhs,rhs]=argn(0)
-
-    if rhs == 0 then   // demo
+    if nargin == 0 then   // demo
         x = 0:0.1:2*%pi;
         y = [sin(x);cos(x)]';
         x = [x;x]';
@@ -32,7 +31,7 @@ function []=errbar(x,y,em,ep)
         errbar(x,y,0.05*ones(x),0.03*ones(x));
         return;
     else
-        if rhs<4 then
+        if nargin<4 then
             error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "errbar", 4));
         end
     end

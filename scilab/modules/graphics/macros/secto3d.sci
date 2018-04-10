@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1991 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,16 +32,13 @@ function [m,x]=secto3d(seclist,npas)
     // la macro plot3d
     //!
 
-
-    [lhs,rhs]=argn(0)
-
-    if and(argn(2)<>[1 2]) then
+    if and(nargin<>[1 2]) then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "secto3d", 1, 2));
     end
 
     n=size(seclist)
     //
-    if rhs<2 then npas=n,end
+    if nargin<2 then npas=n,end
     if prod(size(npas))==1 then
         sec=seclist(1);sec=sec(1,:)
         xmax=max(sec);xmin=min(sec)
