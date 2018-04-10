@@ -26,7 +26,7 @@
  * and sorted in lexigraphically ascending order.
  */
 
-static const int nbrCommands = 19;
+static const int nbrCommands = 16;
 
 static char *CommandWords[] =
 {
