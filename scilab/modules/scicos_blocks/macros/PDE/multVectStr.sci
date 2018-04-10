@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - Author : EADS-CCR
+// Copyright (C) INRIA - Author : EADS-CCR
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,7 +30,7 @@ function y = multVectStr(M, x)
     // - y a nx1 vector of string
 
     // Check the syntax
-    if(argn(1) <> 1) then
+    if nargout <> 1 then
         error("Usage: y = multMatVect(M, x)");
     end
     if(M == []) then
