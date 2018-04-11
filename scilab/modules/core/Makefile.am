@@ -1,7 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -41,7 +41,6 @@ CORE_CPP_SOURCES = \
     src/cpp/demangle.cpp \
     src/cpp/backtrace_print.cpp \
     src/cpp/storeCommand.cpp \
-    src/cpp/banner.cpp \
     src/cpp/with_module.cpp \
     src/cpp/runner.cpp \
     src/cpp/tasks.cpp \
@@ -71,7 +70,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_clearfun.cpp \
 	sci_gateway/cpp/sci_newfun.cpp \
 	sci_gateway/cpp/sci_funptr.cpp \
-	sci_gateway/cpp/sci_banner.cpp \
 	sci_gateway/cpp/sci_quit.cpp \
 	sci_gateway/cpp/sci_exit.cpp \
 	sci_gateway/cpp/sci_argn.cpp \

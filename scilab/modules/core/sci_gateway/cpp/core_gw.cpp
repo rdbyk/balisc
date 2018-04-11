@@ -29,7 +29,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getdebuginfo", &sci_getdebuginfo, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getversion", &sci_getversion, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"clear", &sci_clear, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"banner", &sci_banner, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"quit", &sci_quit, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"exit", &sci_exit, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"exists", &sci_exists, MODULE_NAME));

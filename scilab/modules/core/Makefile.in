@@ -17,7 +17,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -221,7 +221,6 @@ am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 am__objects_2 = src/cpp/libscicore_algo_la-demangle.lo \
 	src/cpp/libscicore_algo_la-backtrace_print.lo \
 	src/cpp/libscicore_algo_la-storeCommand.lo \
-	src/cpp/libscicore_algo_la-banner.lo \
 	src/cpp/libscicore_algo_la-with_module.lo \
 	src/cpp/libscicore_algo_la-runner.lo \
 	src/cpp/libscicore_algo_la-tasks.lo \
@@ -240,7 +239,7 @@ libscicore_algo_la_OBJECTS = $(am_libscicore_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
-am__v_lt_1 =
+am__v_lt_1 = 
 @MAINTAINER_MODE_FALSE@am_libscicore_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscicore_algo_la_rpath =
 am__DEPENDENCIES_1 =
@@ -250,8 +249,8 @@ am__libscicore_la_SOURCES_DIST = sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/cpp/core_gw.cpp sci_gateway/cpp/sci_getmodules.cpp \
 	sci_gateway/cpp/sci_clear.cpp sci_gateway/cpp/sci_clearfun.cpp \
 	sci_gateway/cpp/sci_newfun.cpp sci_gateway/cpp/sci_funptr.cpp \
-	sci_gateway/cpp/sci_banner.cpp sci_gateway/cpp/sci_quit.cpp \
-	sci_gateway/cpp/sci_exit.cpp sci_gateway/cpp/sci_argn.cpp \
+	sci_gateway/cpp/sci_quit.cpp sci_gateway/cpp/sci_exit.cpp \
+	sci_gateway/cpp/sci_argn.cpp \
 	sci_gateway/cpp/sci_clearglobal.cpp \
 	sci_gateway/cpp/sci_global.cpp \
 	sci_gateway/cpp/sci_isglobal.cpp \
@@ -307,7 +306,6 @@ am__objects_6 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_clearfun.lo \
 	sci_gateway/cpp/libscicore_la-sci_newfun.lo \
 	sci_gateway/cpp/libscicore_la-sci_funptr.lo \
-	sci_gateway/cpp/libscicore_la-sci_banner.lo \
 	sci_gateway/cpp/libscicore_la-sci_quit.lo \
 	sci_gateway/cpp/libscicore_la-sci_exit.lo \
 	sci_gateway/cpp/libscicore_la-sci_argn.lo \
@@ -375,11 +373,11 @@ am__v_P_1 = :
 AM_V_GEN = $(am__v_GEN_@AM_V@)
 am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
 am__v_GEN_0 = @echo "  GEN     " $@;
-am__v_GEN_1 =
+am__v_GEN_1 = 
 AM_V_at = $(am__v_at_@AM_V@)
 am__v_at_ = $(am__v_at_@AM_DEFAULT_V@)
 am__v_at_0 = @
-am__v_at_1 =
+am__v_at_1 = 
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -393,7 +391,7 @@ LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 AM_V_CC = $(am__v_CC_@AM_V@)
 am__v_CC_ = $(am__v_CC_@AM_DEFAULT_V@)
 am__v_CC_0 = @echo "  CC      " $@;
-am__v_CC_1 =
+am__v_CC_1 = 
 CCLD = $(CC)
 LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -401,7 +399,7 @@ LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
-am__v_CCLD_1 =
+am__v_CCLD_1 = 
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -411,7 +409,7 @@ LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 AM_V_CXX = $(am__v_CXX_@AM_V@)
 am__v_CXX_ = $(am__v_CXX_@AM_DEFAULT_V@)
 am__v_CXX_0 = @echo "  CXX     " $@;
-am__v_CXX_1 =
+am__v_CXX_1 = 
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -419,14 +417,14 @@ CXXLINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
-am__v_CXXLD_1 =
+am__v_CXXLD_1 = 
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
 AM_V_F77 = $(am__v_F77_@AM_V@)
 am__v_F77_ = $(am__v_F77_@AM_DEFAULT_V@)
 am__v_F77_0 = @echo "  F77     " $@;
-am__v_F77_1 =
+am__v_F77_1 = 
 F77LD = $(F77)
 F77LINK = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -434,7 +432,7 @@ F77LINK = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
 AM_V_F77LD = $(am__v_F77LD_@AM_V@)
 am__v_F77LD_ = $(am__v_F77LD_@AM_DEFAULT_V@)
 am__v_F77LD_0 = @echo "  F77LD   " $@;
-am__v_F77LD_1 =
+am__v_F77LD_1 = 
 SOURCES = $(libscicore_algo_la_SOURCES) $(libscicore_la_SOURCES)
 DIST_SOURCES = $(libscicore_algo_la_SOURCES) \
 	$(am__libscicore_la_SOURCES_DIST)
@@ -791,7 +789,6 @@ CORE_CPP_SOURCES = \
     src/cpp/demangle.cpp \
     src/cpp/backtrace_print.cpp \
     src/cpp/storeCommand.cpp \
-    src/cpp/banner.cpp \
     src/cpp/with_module.cpp \
     src/cpp/runner.cpp \
     src/cpp/tasks.cpp \
@@ -818,8 +815,8 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_getmodules.cpp \
 	sci_gateway/cpp/sci_clear.cpp sci_gateway/cpp/sci_clearfun.cpp \
 	sci_gateway/cpp/sci_newfun.cpp sci_gateway/cpp/sci_funptr.cpp \
-	sci_gateway/cpp/sci_banner.cpp sci_gateway/cpp/sci_quit.cpp \
-	sci_gateway/cpp/sci_exit.cpp sci_gateway/cpp/sci_argn.cpp \
+	sci_gateway/cpp/sci_quit.cpp sci_gateway/cpp/sci_exit.cpp \
+	sci_gateway/cpp/sci_argn.cpp \
 	sci_gateway/cpp/sci_clearglobal.cpp \
 	sci_gateway/cpp/sci_global.cpp \
 	sci_gateway/cpp/sci_isglobal.cpp \
@@ -976,7 +973,7 @@ TARGETS_ALL = $(am__append_3)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci
+SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -1018,7 +1015,7 @@ EXAMPLES_DIR = examples
 JARDIR = jar/
 # JAR files mask
 JARMASK = *.jar
-# Chapter file
+# Chapter file 
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
@@ -1177,8 +1174,6 @@ src/cpp/libscicore_algo_la-backtrace_print.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicore_algo_la-storeCommand.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscicore_algo_la-banner.lo: src/cpp/$(am__dirstamp) \
-	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicore_algo_la-with_module.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicore_algo_la-runner.lo: src/cpp/$(am__dirstamp) \
@@ -1218,7 +1213,7 @@ src/fortran/write_inter.lo: src/fortran/$(am__dirstamp) \
 src/fortran/read_inter.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 
-libscicore-algo.la: $(libscicore_algo_la_OBJECTS) $(libscicore_algo_la_DEPENDENCIES) $(EXTRA_libscicore_algo_la_DEPENDENCIES)
+libscicore-algo.la: $(libscicore_algo_la_OBJECTS) $(libscicore_algo_la_DEPENDENCIES) $(EXTRA_libscicore_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscicore_algo_la_rpath) $(libscicore_algo_la_OBJECTS) $(libscicore_algo_la_LIBADD) $(LIBS)
 sci_gateway/c/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c
@@ -1251,9 +1246,6 @@ sci_gateway/cpp/libscicore_la-sci_newfun.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicore_la-sci_funptr.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscicore_la-sci_banner.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicore_la-sci_quit.lo:  \
@@ -1431,7 +1423,7 @@ sci_gateway/cpp/libscicore_la-sci_inspectorGetFunctionList.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
-libscicore.la: $(libscicore_la_OBJECTS) $(libscicore_la_DEPENDENCIES) $(EXTRA_libscicore_la_DEPENDENCIES)
+libscicore.la: $(libscicore_la_OBJECTS) $(libscicore_la_DEPENDENCIES) $(EXTRA_libscicore_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscicore_la_LINK) $(am_libscicore_la_rpath) $(libscicore_la_OBJECTS) $(libscicore_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
@@ -1457,7 +1449,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_abort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_analyzeroptions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_argn.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_banner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_cell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_checkNamedArguments.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_clear.Plo@am__quote@
@@ -1544,7 +1535,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/hashtable/$(DEPDIR)/libscicore_algo_la-hashtable_utility.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-InitScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-backtrace_print.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-banner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-demangle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-getfunctionsname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-getmacrosname.Plo@am__quote@
@@ -1799,13 +1789,6 @@ src/cpp/libscicore_algo_la-storeCommand.lo: src/cpp/storeCommand.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicore_algo_la-storeCommand.lo `test -f 'src/cpp/storeCommand.cpp' || echo '$(srcdir)/'`src/cpp/storeCommand.cpp
 
-src/cpp/libscicore_algo_la-banner.lo: src/cpp/banner.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicore_algo_la-banner.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicore_algo_la-banner.Tpo -c -o src/cpp/libscicore_algo_la-banner.lo `test -f 'src/cpp/banner.cpp' || echo '$(srcdir)/'`src/cpp/banner.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicore_algo_la-banner.Tpo src/cpp/$(DEPDIR)/libscicore_algo_la-banner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/banner.cpp' object='src/cpp/libscicore_algo_la-banner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicore_algo_la-banner.lo `test -f 'src/cpp/banner.cpp' || echo '$(srcdir)/'`src/cpp/banner.cpp
-
 src/cpp/libscicore_algo_la-with_module.lo: src/cpp/with_module.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicore_algo_la-with_module.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicore_algo_la-with_module.Tpo -c -o src/cpp/libscicore_algo_la-with_module.lo `test -f 'src/cpp/with_module.cpp' || echo '$(srcdir)/'`src/cpp/with_module.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicore_algo_la-with_module.Tpo src/cpp/$(DEPDIR)/libscicore_algo_la-with_module.Plo
@@ -1903,13 +1886,6 @@ sci_gateway/cpp/libscicore_la-sci_funptr.lo: sci_gateway/cpp/sci_funptr.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_funptr.cpp' object='sci_gateway/cpp/libscicore_la-sci_funptr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_funptr.lo `test -f 'sci_gateway/cpp/sci_funptr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_funptr.cpp
-
-sci_gateway/cpp/libscicore_la-sci_banner.lo: sci_gateway/cpp/sci_banner.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_banner.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_banner.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_banner.lo `test -f 'sci_gateway/cpp/sci_banner.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_banner.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_banner.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_banner.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_banner.cpp' object='sci_gateway/cpp/libscicore_la-sci_banner.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_banner.lo `test -f 'sci_gateway/cpp/sci_banner.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_banner.cpp
 
 sci_gateway/cpp/libscicore_la-sci_quit.lo: sci_gateway/cpp/sci_quit.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_quit.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_quit.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_quit.lo `test -f 'sci_gateway/cpp/sci_quit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_quit.cpp
@@ -2710,7 +2686,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -2732,7 +2708,7 @@ check-code:
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -2753,7 +2729,7 @@ check-code:
 @GIWS_TRUE@giws-exception:
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
