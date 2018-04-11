@@ -1955,27 +1955,6 @@ AH_BOTTOM([
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXTW],[L"$shrext_cmds"],[Extension of a shared library ( wide string )])
 
-
-
-#################
-## Update the years in the various part of the code.
-#################
-
-if test ! -f modules/core/src/cpp/banner.cpp; then
-   AC_MSG_ERROR([Could not find the Scilab banner file.])
-fi
-
-CURRENT_YEAR=`date "+%Y"`
-DETECTED_YEAR=`grep "Copyright (c) 2017-" modules/core/src/cpp/banner.cpp|sed -e "s/.*Copyright (c) 2017-\([[0-9]]*\).*/\1/g"`
-
-if test "$CURRENT_YEAR" != "$DETECTED_YEAR"; then
-   sed -i -e "s| 2017-$DETECTED_YEAR | 2017-$CURRENT_YEAR |g" modules/core/src/cpp/banner.cpp modules/windows_tools/src/c/scilab_windows/console.c
-   sed -i -e "s| 2017-$DETECTED_YEAR ESI Group| 2017-$CURRENT_YEAR ESI Group|g" etc/Info.plist.in
-   sed -i -e "s|VALUE \"LegalCopyright\", \"Copyright (C) $DETECTED_YEAR|VALUE \"LegalCopyright\", \"Copyright (C) $CURRENT_YEAR|" $(find . -iname '*.rc')
-   AC_MSG_WARN([New year ($CURRENT_YEAR) detected. Copyright files updated. Please commit them ASAP.])
-fi
-
-
 #########
 ## Make sure that the libstdc++ libgcc and libgfortran can be compiled as
 ## static if requested

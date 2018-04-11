@@ -70,7 +70,6 @@
     <PRIMITIVE gatewayId="13" primitiveId="38" primitiveName="getversion" />
     <PRIMITIVE gatewayId="13" primitiveId="39" primitiveName="macr2tree" />
     <PRIMITIVE gatewayId="13" primitiveId="40" primitiveName="getos" />
-    <PRIMITIVE gatewayId="13" primitiveId="41" primitiveName="banner" />
     <PRIMITIVE gatewayId="13" primitiveId="42" primitiveName="getmemory" />
     <PRIMITIVE gatewayId="13" primitiveId="43" primitiveName="getmd5" />
     <PRIMITIVE gatewayId="13" primitiveId="44" primitiveName="getmodules" />

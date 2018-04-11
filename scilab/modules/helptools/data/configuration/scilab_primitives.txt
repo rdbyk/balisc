@@ -299,7 +299,6 @@ asinh
 atan
 atanh
 balanc
-banner
 base2dec
 basename
 bdiag

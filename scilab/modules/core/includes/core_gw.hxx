@@ -34,7 +34,6 @@ public :
 
 CPP_GATEWAY_PROTOTYPE(sci_getmodules);
 CPP_GATEWAY_PROTOTYPE(sci_clear);
-CPP_GATEWAY_PROTOTYPE(sci_banner);
 CPP_GATEWAY_PROTOTYPE(sci_quit);
 CPP_GATEWAY_PROTOTYPE(sci_exit);
 CPP_GATEWAY_PROTOTYPE(sci_exists);
