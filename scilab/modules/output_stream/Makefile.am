@@ -3,7 +3,7 @@
 # Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 # Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -101,7 +101,6 @@ libscioutput_stream_la_etc_DATA = \
 
 #### output_stream : gateway declaration ####
 libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 
 #### output_stream : include files ####
 libscioutput_stream_la_includedir=$(pkgincludedir)

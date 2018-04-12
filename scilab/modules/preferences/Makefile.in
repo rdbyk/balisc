@@ -14,11 +14,10 @@
 
 @SET_MAKE@
 
-#
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2011 - DIGITEO
-#
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,7 +25,6 @@
 # and continues to be available under such terms.
 # For more information, see the COPYING file which you should have received
 # along with this program.
-#
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -178,7 +176,6 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipreferences_la_etcdir)" \
 	"$(DESTDIR)$(libscipreferences_la_rootdir)" \
-	"$(DESTDIR)$(libscipreferences_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscipreferences_la_src_xsltdir)" \
 	"$(DESTDIR)$(libscipreferences_la_src_xslt_xwizarddir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
@@ -286,7 +283,6 @@ am__can_run_installinfo = \
   esac
 DATA = $(libscipreferences_la_etc_DATA) \
 	$(libscipreferences_la_root_DATA) \
-	$(libscipreferences_la_sci_gateway_DATA) \
 	$(libscipreferences_la_src_xslt_DATA) \
 	$(libscipreferences_la_src_xslt_xwizard_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
@@ -717,7 +713,6 @@ libscipreferences_la_LIBADD = libscipreferences-algo.la $(X_LIBS) $(X_EXTRA_LIBS
 
 #### preferences : gateway declaration ####
 libscipreferences_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscipreferences_la_sci_gateway_DATA = sci_gateway/preferences_gateway.xml
 @GUI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -1108,27 +1103,6 @@ uninstall-libscipreferences_la_rootDATA:
 	@list='$(libscipreferences_la_root_DATA)'; test -n "$(libscipreferences_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscipreferences_la_rootdir)'; $(am__uninstall_files_from_dir)
-install-libscipreferences_la_sci_gatewayDATA: $(libscipreferences_la_sci_gateway_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(libscipreferences_la_sci_gateway_DATA)'; test -n "$(libscipreferences_la_sci_gatewaydir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(libscipreferences_la_sci_gatewaydir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(libscipreferences_la_sci_gatewaydir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscipreferences_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscipreferences_la_sci_gatewaydir)" || exit $$?; \
-	done
-
-uninstall-libscipreferences_la_sci_gatewayDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscipreferences_la_sci_gateway_DATA)'; test -n "$(libscipreferences_la_sci_gatewaydir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscipreferences_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
 install-libscipreferences_la_src_xsltDATA: $(libscipreferences_la_src_xslt_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscipreferences_la_src_xslt_DATA)'; test -n "$(libscipreferences_la_src_xsltdir)" || list=; \
@@ -1260,7 +1234,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipreferences_la_etcdir)" "$(DESTDIR)$(libscipreferences_la_rootdir)" "$(DESTDIR)$(libscipreferences_la_sci_gatewaydir)" "$(DESTDIR)$(libscipreferences_la_src_xsltdir)" "$(DESTDIR)$(libscipreferences_la_src_xslt_xwizarddir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipreferences_la_etcdir)" "$(DESTDIR)$(libscipreferences_la_rootdir)" "$(DESTDIR)$(libscipreferences_la_src_xsltdir)" "$(DESTDIR)$(libscipreferences_la_src_xslt_xwizarddir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1329,7 +1303,6 @@ info-am:
 install-data-am: install-data-local \
 	install-libscipreferences_la_etcDATA \
 	install-libscipreferences_la_rootDATA \
-	install-libscipreferences_la_sci_gatewayDATA \
 	install-libscipreferences_la_src_xsltDATA \
 	install-libscipreferences_la_src_xslt_xwizardDATA
 
@@ -1379,7 +1352,6 @@ ps-am:
 
 uninstall-am: uninstall-libscipreferences_la_etcDATA \
 	uninstall-libscipreferences_la_rootDATA \
-	uninstall-libscipreferences_la_sci_gatewayDATA \
 	uninstall-libscipreferences_la_src_xsltDATA \
 	uninstall-libscipreferences_la_src_xslt_xwizardDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1397,7 +1369,6 @@ uninstall-am: uninstall-libscipreferences_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscipreferences_la_etcDATA \
 	install-libscipreferences_la_rootDATA \
-	install-libscipreferences_la_sci_gatewayDATA \
 	install-libscipreferences_la_src_xsltDATA \
 	install-libscipreferences_la_src_xslt_xwizardDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1408,7 +1379,6 @@ uninstall-am: uninstall-libscipreferences_la_etcDATA \
 	tags tags-am uninstall uninstall-am \
 	uninstall-libscipreferences_la_etcDATA \
 	uninstall-libscipreferences_la_rootDATA \
-	uninstall-libscipreferences_la_sci_gatewayDATA \
 	uninstall-libscipreferences_la_src_xsltDATA \
 	uninstall-libscipreferences_la_src_xslt_xwizardDATA \
 	uninstall-pkglibLTLIBRARIES

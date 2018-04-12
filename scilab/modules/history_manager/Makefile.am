@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Allan CORNET
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -104,7 +104,6 @@ libscihistory_manager_la_etc_DATA = \
 
 #### history_manager : gateway declaration ####
 libscihistory_manager_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscihistory_manager_la_sci_gateway_DATA = sci_gateway/history_manager_gateway.xml
 
 #### history_manager : include files ####
 libscihistory_manager_la_includedir=$(pkgincludedir)

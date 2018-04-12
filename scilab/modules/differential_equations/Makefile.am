@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -160,6 +161,5 @@ libscidifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/d
 
 #### differential_equations : gateway declaration ####
 libscidifferential_equations_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscidifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am

@@ -16,7 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Allan CORNET
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -172,7 +172,6 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihistory_manager_la_etcdir)" \
 	"$(DESTDIR)$(libscihistory_manager_la_rootdir)" \
-	"$(DESTDIR)$(libscihistory_manager_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscihistory_manager_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscihistory_manager_algo_la_LIBADD =
@@ -276,8 +275,7 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(libscihistory_manager_la_etc_DATA) \
-	$(libscihistory_manager_la_root_DATA) \
-	$(libscihistory_manager_la_sci_gateway_DATA)
+	$(libscihistory_manager_la_root_DATA)
 HEADERS = $(libscihistory_manager_la_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
@@ -683,7 +681,6 @@ libscihistory_manager_la_etc_DATA = \
 
 #### history_manager : gateway declaration ####
 libscihistory_manager_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscihistory_manager_la_sci_gateway_DATA = sci_gateway/history_manager_gateway.xml
 
 #### history_manager : include files ####
 libscihistory_manager_la_includedir = $(pkgincludedir)
@@ -1200,27 +1197,6 @@ uninstall-libscihistory_manager_la_rootDATA:
 	@list='$(libscihistory_manager_la_root_DATA)'; test -n "$(libscihistory_manager_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscihistory_manager_la_rootdir)'; $(am__uninstall_files_from_dir)
-install-libscihistory_manager_la_sci_gatewayDATA: $(libscihistory_manager_la_sci_gateway_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(libscihistory_manager_la_sci_gateway_DATA)'; test -n "$(libscihistory_manager_la_sci_gatewaydir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(libscihistory_manager_la_sci_gatewaydir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(libscihistory_manager_la_sci_gatewaydir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscihistory_manager_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscihistory_manager_la_sci_gatewaydir)" || exit $$?; \
-	done
-
-uninstall-libscihistory_manager_la_sci_gatewayDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscihistory_manager_la_sci_gateway_DATA)'; test -n "$(libscihistory_manager_la_sci_gatewaydir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscihistory_manager_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
 install-libscihistory_manager_la_includeHEADERS: $(libscihistory_manager_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libscihistory_manager_la_include_HEADERS)'; test -n "$(libscihistory_manager_la_includedir)" || list=; \
@@ -1331,7 +1307,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihistory_manager_la_etcdir)" "$(DESTDIR)$(libscihistory_manager_la_rootdir)" "$(DESTDIR)$(libscihistory_manager_la_sci_gatewaydir)" "$(DESTDIR)$(libscihistory_manager_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihistory_manager_la_etcdir)" "$(DESTDIR)$(libscihistory_manager_la_rootdir)" "$(DESTDIR)$(libscihistory_manager_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1400,8 +1376,7 @@ info-am:
 install-data-am: install-data-local \
 	install-libscihistory_manager_la_etcDATA \
 	install-libscihistory_manager_la_includeHEADERS \
-	install-libscihistory_manager_la_rootDATA \
-	install-libscihistory_manager_la_sci_gatewayDATA
+	install-libscihistory_manager_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -1450,7 +1425,6 @@ ps-am:
 uninstall-am: uninstall-libscihistory_manager_la_etcDATA \
 	uninstall-libscihistory_manager_la_includeHEADERS \
 	uninstall-libscihistory_manager_la_rootDATA \
-	uninstall-libscihistory_manager_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: all check check-am install install-am install-strip
@@ -1466,8 +1440,7 @@ uninstall-am: uninstall-libscihistory_manager_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscihistory_manager_la_etcDATA \
 	install-libscihistory_manager_la_includeHEADERS \
-	install-libscihistory_manager_la_rootDATA \
-	install-libscihistory_manager_la_sci_gatewayDATA install-man \
+	install-libscihistory_manager_la_rootDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
@@ -1477,7 +1450,6 @@ uninstall-am: uninstall-libscihistory_manager_la_etcDATA \
 	uninstall-libscihistory_manager_la_etcDATA \
 	uninstall-libscihistory_manager_la_includeHEADERS \
 	uninstall-libscihistory_manager_la_rootDATA \
-	uninstall-libscihistory_manager_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

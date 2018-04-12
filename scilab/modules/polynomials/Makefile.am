@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -97,10 +97,7 @@ libscipolynomials_la_root_DATA =  license.txt
 libscipolynomials_la_etcdir = $(mydatadir)/etc
 libscipolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 
-
 #### polynomials : gateway declaration ####
 libscipolynomials_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
-
 
 include $(top_srcdir)/Makefile.incl.am

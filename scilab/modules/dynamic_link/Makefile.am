@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -86,7 +86,6 @@ MACROSDIRSEXT = macros/utils
 
 #### dynamic_link : gateway declaration ####
 libscidynamic_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscidynamic_link_la_sci_gateway_DATA = sci_gateway/dynamic_link_gateway.xml
 
 #### dynamic_link : compilation scripts ####
 libscidynamic_link_la_scriptdir = $(mydatadir)/src/scripts/

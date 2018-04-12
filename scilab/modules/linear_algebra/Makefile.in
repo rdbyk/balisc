@@ -166,8 +166,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscilinear_algebra_la_etcdir)" \
-	"$(DESTDIR)$(libscilinear_algebra_la_rootdir)" \
-	"$(DESTDIR)$(libscilinear_algebra_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscilinear_algebra_la_rootdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscilinear_algebra_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -301,8 +300,7 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(libscilinear_algebra_la_etc_DATA) \
-	$(libscilinear_algebra_la_root_DATA) \
-	$(libscilinear_algebra_la_sci_gateway_DATA)
+	$(libscilinear_algebra_la_root_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -706,9 +704,9 @@ libscilinear_algebra_la_root_DATA = license.txt
 #### linear_algebra : init scripts ####
 libscilinear_algebra_la_etcdir = $(mydatadir)/etc
 libscilinear_algebra_la_etc_DATA = etc/linear_algebra.quit etc/linear_algebra.start
+
 #### linear_algebra : gateway declaration ####
 libscilinear_algebra_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1348,27 +1346,6 @@ uninstall-libscilinear_algebra_la_rootDATA:
 	@list='$(libscilinear_algebra_la_root_DATA)'; test -n "$(libscilinear_algebra_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscilinear_algebra_la_rootdir)'; $(am__uninstall_files_from_dir)
-install-libscilinear_algebra_la_sci_gatewayDATA: $(libscilinear_algebra_la_sci_gateway_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(libscilinear_algebra_la_sci_gateway_DATA)'; test -n "$(libscilinear_algebra_la_sci_gatewaydir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(libscilinear_algebra_la_sci_gatewaydir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(libscilinear_algebra_la_sci_gatewaydir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscilinear_algebra_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscilinear_algebra_la_sci_gatewaydir)" || exit $$?; \
-	done
-
-uninstall-libscilinear_algebra_la_sci_gatewayDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscilinear_algebra_la_sci_gateway_DATA)'; test -n "$(libscilinear_algebra_la_sci_gatewaydir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscilinear_algebra_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1457,7 +1434,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscilinear_algebra_la_etcdir)" "$(DESTDIR)$(libscilinear_algebra_la_rootdir)" "$(DESTDIR)$(libscilinear_algebra_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscilinear_algebra_la_etcdir)" "$(DESTDIR)$(libscilinear_algebra_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1525,8 +1502,7 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscilinear_algebra_la_etcDATA \
-	install-libscilinear_algebra_la_rootDATA \
-	install-libscilinear_algebra_la_sci_gatewayDATA
+	install-libscilinear_algebra_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -1574,7 +1550,6 @@ ps-am:
 
 uninstall-am: uninstall-libscilinear_algebra_la_etcDATA \
 	uninstall-libscilinear_algebra_la_rootDATA \
-	uninstall-libscilinear_algebra_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
@@ -1589,8 +1564,7 @@ uninstall-am: uninstall-libscilinear_algebra_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscilinear_algebra_la_etcDATA \
-	install-libscilinear_algebra_la_rootDATA \
-	install-libscilinear_algebra_la_sci_gatewayDATA install-man \
+	install-libscilinear_algebra_la_rootDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
@@ -1599,7 +1573,6 @@ uninstall-am: uninstall-libscilinear_algebra_la_etcDATA \
 	tags tags-am uninstall uninstall-am \
 	uninstall-libscilinear_algebra_la_etcDATA \
 	uninstall-libscilinear_algebra_la_rootDATA \
-	uninstall-libscilinear_algebra_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

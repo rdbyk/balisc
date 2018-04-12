@@ -16,6 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -165,8 +166,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidifferential_equations_la_etcdir)" \
-	"$(DESTDIR)$(libscidifferential_equations_la_rootdir)" \
-	"$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscidifferential_equations_la_rootdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscidifferential_equations_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -326,8 +326,7 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(libscidifferential_equations_la_etc_DATA) \
-	$(libscidifferential_equations_la_root_DATA) \
-	$(libscidifferential_equations_la_sci_gateway_DATA)
+	$(libscidifferential_equations_la_root_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -790,7 +789,6 @@ libscidifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/d
 
 #### differential_equations : gateway declaration ####
 libscidifferential_equations_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscidifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations_gateway.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1490,27 +1488,6 @@ uninstall-libscidifferential_equations_la_rootDATA:
 	@list='$(libscidifferential_equations_la_root_DATA)'; test -n "$(libscidifferential_equations_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscidifferential_equations_la_rootdir)'; $(am__uninstall_files_from_dir)
-install-libscidifferential_equations_la_sci_gatewayDATA: $(libscidifferential_equations_la_sci_gateway_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(libscidifferential_equations_la_sci_gateway_DATA)'; test -n "$(libscidifferential_equations_la_sci_gatewaydir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)" || exit $$?; \
-	done
-
-uninstall-libscidifferential_equations_la_sci_gatewayDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscidifferential_equations_la_sci_gateway_DATA)'; test -n "$(libscidifferential_equations_la_sci_gatewaydir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1599,7 +1576,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidifferential_equations_la_etcdir)" "$(DESTDIR)$(libscidifferential_equations_la_rootdir)" "$(DESTDIR)$(libscidifferential_equations_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscidifferential_equations_la_etcdir)" "$(DESTDIR)$(libscidifferential_equations_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1667,8 +1644,7 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscidifferential_equations_la_etcDATA \
-	install-libscidifferential_equations_la_rootDATA \
-	install-libscidifferential_equations_la_sci_gatewayDATA
+	install-libscidifferential_equations_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -1716,7 +1692,6 @@ ps-am:
 
 uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 	uninstall-libscidifferential_equations_la_rootDATA \
-	uninstall-libscidifferential_equations_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
@@ -1732,17 +1707,15 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am \
 	install-libscidifferential_equations_la_etcDATA \
-	install-libscidifferential_equations_la_rootDATA \
-	install-libscidifferential_equations_la_sci_gatewayDATA \
-	install-man install-pdf install-pdf-am \
-	install-pkglibLTLIBRARIES install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags tags-am uninstall uninstall-am \
+	install-libscidifferential_equations_la_rootDATA install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am \
 	uninstall-libscidifferential_equations_la_etcDATA \
 	uninstall-libscidifferential_equations_la_rootDATA \
-	uninstall-libscidifferential_equations_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

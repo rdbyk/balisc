@@ -168,8 +168,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscielementary_functions_la_etcdir)" \
-	"$(DESTDIR)$(libscielementary_functions_la_rootdir)" \
-	"$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscielementary_functions_la_rootdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libdummy_elementary_functions_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -454,8 +453,7 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(libscielementary_functions_la_etc_DATA) \
-	$(libscielementary_functions_la_root_DATA) \
-	$(libscielementary_functions_la_sci_gateway_DATA)
+	$(libscielementary_functions_la_root_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -1109,7 +1107,6 @@ libscielementary_functions_la_etc_DATA = \
 
 #### elementary_functions : gateway declaration ####
 libscielementary_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscielementary_functions_la_sci_gateway_DATA = sci_gateway/elementary_functions_gateway.xml
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -2790,27 +2787,6 @@ uninstall-libscielementary_functions_la_rootDATA:
 	@list='$(libscielementary_functions_la_root_DATA)'; test -n "$(libscielementary_functions_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscielementary_functions_la_rootdir)'; $(am__uninstall_files_from_dir)
-install-libscielementary_functions_la_sci_gatewayDATA: $(libscielementary_functions_la_sci_gateway_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(libscielementary_functions_la_sci_gateway_DATA)'; test -n "$(libscielementary_functions_la_sci_gatewaydir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" || exit $$?; \
-	done
-
-uninstall-libscielementary_functions_la_sci_gatewayDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscielementary_functions_la_sci_gateway_DATA)'; test -n "$(libscielementary_functions_la_sci_gatewaydir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -2899,7 +2875,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_rootdir)" "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2973,8 +2949,7 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_rootDATA \
-	install-libscielementary_functions_la_sci_gatewayDATA
+	install-libscielementary_functions_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -3022,7 +2997,6 @@ ps-am:
 
 uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	uninstall-libscielementary_functions_la_rootDATA \
-	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
@@ -3037,17 +3011,15 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_rootDATA \
-	install-libscielementary_functions_la_sci_gatewayDATA \
-	install-man install-pdf install-pdf-am \
-	install-pkglibLTLIBRARIES install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags tags-am uninstall uninstall-am \
+	install-libscielementary_functions_la_rootDATA install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am \
 	uninstall-libscielementary_functions_la_etcDATA \
 	uninstall-libscielementary_functions_la_rootDATA \
-	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 	$(AM_CPPFLAGS)
