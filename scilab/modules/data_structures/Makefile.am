@@ -58,6 +58,5 @@ libscidata_structures_la_etc_DATA = \
 
 #### data_structures : gateway declaration ####
 libscidata_structures_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscidata_structures_la_sci_gateway_DATA = sci_gateway/data_structures_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am

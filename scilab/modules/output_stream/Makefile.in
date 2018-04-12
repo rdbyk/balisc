@@ -19,7 +19,7 @@
 # Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 # Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -177,7 +177,6 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_etcdir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_rootdir)" \
-	"$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscioutput_stream_algo_la_LIBADD =
@@ -298,8 +297,7 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(libscioutput_stream_la_etc_DATA) \
-	$(libscioutput_stream_la_root_DATA) \
-	$(libscioutput_stream_la_sci_gateway_DATA)
+	$(libscioutput_stream_la_root_DATA)
 HEADERS = $(libscioutput_stream_la_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
@@ -697,7 +695,6 @@ libscioutput_stream_la_etc_DATA = \
 
 #### output_stream : gateway declaration ####
 libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 
 #### output_stream : include files ####
 libscioutput_stream_la_includedir = $(pkgincludedir)
@@ -1224,27 +1221,6 @@ uninstall-libscioutput_stream_la_rootDATA:
 	@list='$(libscioutput_stream_la_root_DATA)'; test -n "$(libscioutput_stream_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscioutput_stream_la_rootdir)'; $(am__uninstall_files_from_dir)
-install-libscioutput_stream_la_sci_gatewayDATA: $(libscioutput_stream_la_sci_gateway_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(libscioutput_stream_la_sci_gateway_DATA)'; test -n "$(libscioutput_stream_la_sci_gatewaydir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)" || exit $$?; \
-	done
-
-uninstall-libscioutput_stream_la_sci_gatewayDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscioutput_stream_la_sci_gateway_DATA)'; test -n "$(libscioutput_stream_la_sci_gatewaydir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
 install-libscioutput_stream_la_includeHEADERS: $(libscioutput_stream_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libscioutput_stream_la_include_HEADERS)'; test -n "$(libscioutput_stream_la_includedir)" || list=; \
@@ -1354,7 +1330,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscioutput_stream_la_etcdir)" "$(DESTDIR)$(libscioutput_stream_la_rootdir)" "$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)" "$(DESTDIR)$(libscioutput_stream_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscioutput_stream_la_etcdir)" "$(DESTDIR)$(libscioutput_stream_la_rootdir)" "$(DESTDIR)$(libscioutput_stream_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1421,8 +1397,7 @@ info-am:
 install-data-am: install-data-local \
 	install-libscioutput_stream_la_etcDATA \
 	install-libscioutput_stream_la_includeHEADERS \
-	install-libscioutput_stream_la_rootDATA \
-	install-libscioutput_stream_la_sci_gatewayDATA
+	install-libscioutput_stream_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -1471,7 +1446,6 @@ ps-am:
 uninstall-am: uninstall-libscioutput_stream_la_etcDATA \
 	uninstall-libscioutput_stream_la_includeHEADERS \
 	uninstall-libscioutput_stream_la_rootDATA \
-	uninstall-libscioutput_stream_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
@@ -1487,8 +1461,7 @@ uninstall-am: uninstall-libscioutput_stream_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscioutput_stream_la_etcDATA \
 	install-libscioutput_stream_la_includeHEADERS \
-	install-libscioutput_stream_la_rootDATA \
-	install-libscioutput_stream_la_sci_gatewayDATA install-man \
+	install-libscioutput_stream_la_rootDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
@@ -1498,7 +1471,6 @@ uninstall-am: uninstall-libscioutput_stream_la_etcDATA \
 	uninstall-libscioutput_stream_la_etcDATA \
 	uninstall-libscioutput_stream_la_includeHEADERS \
 	uninstall-libscioutput_stream_la_rootDATA \
-	uninstall-libscioutput_stream_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

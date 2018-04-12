@@ -169,7 +169,6 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscistring_la_etcdir)" \
 	"$(DESTDIR)$(libscistring_la_rootdir)" \
-	"$(DESTDIR)$(libscistring_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscistring_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscistring_algo_la_LIBADD =
@@ -310,8 +309,7 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-DATA = $(libscistring_la_etc_DATA) $(libscistring_la_root_DATA) \
-	$(libscistring_la_sci_gateway_DATA)
+DATA = $(libscistring_la_etc_DATA) $(libscistring_la_root_DATA)
 HEADERS = $(libscistring_la_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
@@ -762,7 +760,6 @@ libscistring_la_etc_DATA = \
 
 ####�string : gateway declaration ####
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 
 #### string : include files ####
 libscistring_la_includedir = $(pkgincludedir)
@@ -1672,27 +1669,6 @@ uninstall-libscistring_la_rootDATA:
 	@list='$(libscistring_la_root_DATA)'; test -n "$(libscistring_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscistring_la_rootdir)'; $(am__uninstall_files_from_dir)
-install-libscistring_la_sci_gatewayDATA: $(libscistring_la_sci_gateway_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(libscistring_la_sci_gateway_DATA)'; test -n "$(libscistring_la_sci_gatewaydir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(libscistring_la_sci_gatewaydir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(libscistring_la_sci_gatewaydir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscistring_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscistring_la_sci_gatewaydir)" || exit $$?; \
-	done
-
-uninstall-libscistring_la_sci_gatewayDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscistring_la_sci_gateway_DATA)'; test -n "$(libscistring_la_sci_gatewaydir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscistring_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
 install-libscistring_la_includeHEADERS: $(libscistring_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libscistring_la_include_HEADERS)'; test -n "$(libscistring_la_includedir)" || list=; \
@@ -1802,7 +1778,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscistring_la_etcdir)" "$(DESTDIR)$(libscistring_la_rootdir)" "$(DESTDIR)$(libscistring_la_sci_gatewaydir)" "$(DESTDIR)$(libscistring_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscistring_la_etcdir)" "$(DESTDIR)$(libscistring_la_rootdir)" "$(DESTDIR)$(libscistring_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1866,8 +1842,7 @@ info-am:
 
 install-data-am: install-data-local install-libscistring_la_etcDATA \
 	install-libscistring_la_includeHEADERS \
-	install-libscistring_la_rootDATA \
-	install-libscistring_la_sci_gatewayDATA
+	install-libscistring_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -1915,9 +1890,7 @@ ps-am:
 
 uninstall-am: uninstall-libscistring_la_etcDATA \
 	uninstall-libscistring_la_includeHEADERS \
-	uninstall-libscistring_la_rootDATA \
-	uninstall-libscistring_la_sci_gatewayDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscistring_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
 
@@ -1932,19 +1905,15 @@ uninstall-am: uninstall-libscistring_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscistring_la_etcDATA \
 	install-libscistring_la_includeHEADERS \
-	install-libscistring_la_rootDATA \
-	install-libscistring_la_sci_gatewayDATA install-man \
-	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags tags-am uninstall uninstall-am \
-	uninstall-libscistring_la_etcDATA \
+	install-libscistring_la_rootDATA install-man install-pdf \
+	install-pdf-am install-pkglibLTLIBRARIES install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
+	uninstall-am uninstall-libscistring_la_etcDATA \
 	uninstall-libscistring_la_includeHEADERS \
-	uninstall-libscistring_la_rootDATA \
-	uninstall-libscistring_la_sci_gatewayDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscistring_la_rootDATA uninstall-pkglibLTLIBRARIES
 
 
 # This target enables tests for Scilab

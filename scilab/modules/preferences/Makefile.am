@@ -1,8 +1,7 @@
-#
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2011 - DIGITEO
-#
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +9,6 @@
 # and continues to be available under such terms.
 # For more information, see the COPYING file which you should have received
 # along with this program.
-#
 
 #### Target ######
 modulename=preferences
@@ -144,7 +142,6 @@ libscipreferences_la_LIBADD = libscipreferences-algo.la $(X_LIBS) $(X_EXTRA_LIBS
 
 #### preferences : gateway declaration ####
 libscipreferences_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscipreferences_la_sci_gateway_DATA = sci_gateway/preferences_gateway.xml
 
 if GUI
     USEANT=1

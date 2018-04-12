@@ -76,7 +76,6 @@ libscitime_la_etc_DATA = etc/time.quit etc/time.start
 
 #### time : gateway declaration ####
 libscitime_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscitime_la_sci_gateway_DATA = sci_gateway/time_gateway.xml
 
 #### time : include files ####
 libscitime_la_includedir=$(pkgincludedir)

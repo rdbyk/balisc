@@ -145,7 +145,6 @@ libscistring_la_etc_DATA = \
 
 ####�string : gateway declaration ####
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 
 #### string : include files ####
 libscistring_la_includedir=$(pkgincludedir)

@@ -215,7 +215,6 @@ libscicore_la_etc_DATA = etc/core.quit etc/core.start
 
 #### core : gateway declaration ####
 libscicore_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscicore_la_sci_gateway_DATA = sci_gateway/core_gateway.xml
 
 #### core :  dtd files ####
 libscicore_la_xmldir = $(mydatadir)/xml

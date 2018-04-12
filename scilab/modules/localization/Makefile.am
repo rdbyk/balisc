@@ -105,8 +105,6 @@ libscilocalization_la_etc_DATA = etc/localization.quit etc/localization.start
 
 ####�localization : gateway declaration ####
 libscilocalization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscilocalization_la_sci_gateway_DATA = sci_gateway/localization_gateway.xml
-
 
 ####localization : include files ####
 libscilocalization_la_includedir=$(pkgincludedir)
