@@ -4,6 +4,7 @@
 // This set of scilab 's macros provide a few sparse utilities.
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +18,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
     //  PURPOSE
     //     An utility to read the Harwell-Boeing sparse matrix
     //     format. Currently don't work for unassembled matrix.
-    //     Also possible rhs presents in the file are not red.
+    //     Also possible nargin presents in the file are not red.
     //
     //  ARGUMENTS
     //     filename   : (optional) a string given the filename
@@ -54,12 +55,11 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
     //  AUTHOR
     //     Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
     //
-    [lhs, rhs] = argn()
 
-    if rhs == 0 then
+    if nargin == 0 then
         filename = uigetfile("*.[rc][shzu]a", title=[gettext("Choose a sparse matrix"); ...
         gettext("   then click on OK   ")])
-    elseif rhs == 1 then
+    elseif nargin == 1 then
         if typeof(filename) ~= "string" then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"ReadHBSparse",1));
         end
@@ -78,7 +78,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
     description = convstr(description)
 
     // normaly the line2 contains 5 numbers and if the last is zero
-    // the file contains no rhs but in this case in some HB file
+    // the file contains no nargin but in this case in some HB file
     // we have only 4 numbers. So the following is a trick to take
     // into account this pb
     line2 = read(unit,1,1,"(A)") // read the line 2 as a string
@@ -90,7 +90,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
             Rhs_in_file = %f
         else
             Rhs_in_file = %t
-            warning(msprintf(gettext("%s: The file contains a rhs but it will not be read !"),"ReadHBSparse"));
+            warning(msprintf(gettext("%s: The file contains a nargin but it will not be read !"),"ReadHBSparse"));
 
         end
     end

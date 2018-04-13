@@ -4,6 +4,7 @@
 // This set of scilab 's macros provide a few sparse utilities.
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,9 +22,8 @@ function [X] = test_on_columns(X,Xold)
     //  2 columns j1 and j2 are // if  | Cj1'*Cj2 | = n because
     //  all elements are in {+1,-1}
     //
-    [lhs,rhs] = argn()
     [n,t] = size(X)
-    if rhs == 1 then
+    if nargin == 1 then
         for j=2:t
             while %t
                 res_test = abs(X(:,j)'*X(:,1:j-1))
@@ -34,7 +34,7 @@ function [X] = test_on_columns(X,Xold)
                 end
             end
         end
-    else   // rhs = 2
+    else   // nargin = 2
         for j=1:t
             while %t
                 res_test = abs([X(:,j)'*Xold  X(:,j)'*X(:,1:j-1)])

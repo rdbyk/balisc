@@ -4,6 +4,7 @@
 // This set of scilab 's macros provide a few sparse utilities.
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,8 +41,6 @@ function [K2, lm, vm, lM, vM] = cond2sp(A, C, rtol, itermax, verb)
     //     lM      : max eigenvalue
     //     vM      : associated eigenvector
 
-    //
-    [lhs, rhs] = argn()
     // no verif
     if ~exists("verb", "local") then , verb = %f , end
     if ~exists("rtol", "local") then , rtol = 1.e-3, end
