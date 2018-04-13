@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000- 2016 INRIA -
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +24,7 @@ function [K,X]=lqr(P12,Q,R,S)
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"),"lqr",1))
     end
 
-    if argn(2)>1 then //[K,X]=lqr(P,Q,R,S)
+    if nargin>1 then //[K,X]=lqr(P,Q,R,S)
         A=P12.A
         B2=P12.B
         [nx,nu]=size(B2)
@@ -43,7 +44,7 @@ function [K,X]=lqr(P12,Q,R,S)
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be symmetric.\n"),"lqr",3))
         end
 
-        if argn(2)<4 then
+        if nargin<4 then
             S=zeros(nu,nx);
         elseif or(size(S)<>[nu,nx]) then
             error(msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"lqr",4,nu,nx))

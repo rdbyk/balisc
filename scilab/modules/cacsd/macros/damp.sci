@@ -1,10 +1,12 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function [wn,z,p] = damp(R,dt1)
     //Natural frequency and damping factor for continuous systems.
     //   [Wn,Z,P] = damp(R) returns vectors Wn and Z containing the
@@ -12,11 +14,11 @@ function [wn,z,p] = damp(R,dt1)
     //   The variable R  must be a real or complex array of roots, a
     //   polynomial array or  a linear dynamical system
 
-    if argn(2)<1 then
+    if nargin<1 then
         error(msprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"),"damp",1,2))
     end
     //handling optional argument dt1
-    if argn(2)==1 then
+    if nargin==1 then
         dt1=[];
     else
         if type(dt1)==1 then

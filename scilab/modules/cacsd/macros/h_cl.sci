@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F. Delebecque
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,11 +24,10 @@ function Aclosed=h_cl(P,r,K)
     end
 
     if typeof(P)=="rational" then P=tf2ss(P);end
-    [LHS,RHS]=argn(0);
-    if RHS==2 then //h_cl(P,K)
+    if nargin==2 then //h_cl(P,K)
         K=r;[A,B2,C2,D22]=abcd(P);
         iK=2
-    elseif RHS==3 then //h_cl(P,r,K)
+    elseif nargin==3 then //h_cl(P,r,K)
         if typeof(r)<>"constant"|~isreal(r) then
             error(msprintf(gettext("%s: Wrong type for argument #%d: Real vector expected.\n"),"h_cl",2))
         end

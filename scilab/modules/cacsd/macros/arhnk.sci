@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,7 @@
 
 function [slm]=arhnk(a,ordre,tol)
 
-    [lhs,rhs]=argn(0),
-    if lhs<>1 then
+    if nargout<>1 then
         msg = _("%s: Wrong number of output arguments: %d to %d expected.\n");
         error(msprintf(msg, "arhnk", 0, 1));
     end
@@ -25,7 +24,7 @@ function [slm]=arhnk(a,ordre,tol)
         msg = _("%s: Wrong type for input argument #%d: In continuous time expected.\n");
         error(msprintf(msg, "arhnk",1));
     end
-    select rhs
+    select nargin
     case 2 then istol=0;
     case 3 then istol=1;
     end;
@@ -49,7 +48,7 @@ function [slm]=arhnk(a,ordre,tol)
     end;
     if ordre==n1 then
         a=a(1:n1,1:n1);b=b(1:n1,:);c=c(:,1:n1);
-        if lhs==1 then a=syslin("c",a,b,c,d,0*ones(n1,1)),end
+        if nargout==1 then a=syslin("c",a,b,c,d,0*ones(n1,1)),end
         return,
     end;
     sigma=wc(ordre+1,ordre+1)

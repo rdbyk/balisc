@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,10 +17,9 @@ function c = cont_mat(a,b)
     //i.e. c=[b, ab, ab,...; ab ]
     //!
 
-    [lhs,rhs] = argn(0)
     select typeof(a)
     case "constant"  then
-        if rhs==1 then
+        if nargin==1 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"cont_mat",2)),
         end
         [m,n]=size(a)
@@ -35,13 +34,13 @@ function c = cont_mat(a,b)
         end
 
     case "state-space" then
-        if rhs==2 then
+        if nargin==2 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d expected"),"cont_mat",1)),
         end
         [a,b]=a([2,3])
         [n,n]=size(a)
     else
-        if rhs==1 then
+        if nargin==1 then
             msg = _("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n");
             error(msprintf(msg, "cont_mat", 1))
         else

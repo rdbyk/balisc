@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -72,8 +72,7 @@ function [x,frequ]=linfn(G,PREC,RELTOL,options);
     //user interface. The default values are:
     //     PREC=1.0e-3; RELTOL=1.0e-10; options='nul';
     //************************************************
-    [lhs,rhs]=argn(0);
-    select rhs,
+    select nargin,
     case 0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"linfn",1))
     case 1 then

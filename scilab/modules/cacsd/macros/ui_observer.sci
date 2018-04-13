@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -65,11 +65,12 @@ function [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,Alfa,Beta)
     //2nd ex: nx=2;ny=3;nwu=2;Sys=ssrand(ny,nwu,nx);
     //        C1=rand(1,nx);D1=[0,1];
     //        UIobs=ui_observer(Sys,1,C1,D1);
-    [LHS,RHS]=argn(0);
-    if RHS==6 then Beta=-1;end
-    if RHS==5 then Beta=-1;Alfa=-1;end
-    if RHS==4 then Beta=-1;Alfa=-1;flag="st";end
-    if RHS==3 then Beta=-1;Alfa=-1;flag="st";D1=[];end
+
+    if nargin==6 then Beta=-1;end
+    if nargin==5 then Beta=-1;Alfa=-1;end
+    if nargin==4 then Beta=-1;Alfa=-1;flag="st";end
+    if nargin==3 then Beta=-1;Alfa=-1;flag="st";D1=[];end
+
     if size(C1,2) ~= size(Sys("A"),1) then
         msg = _("%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be equal to the column dimension of #%d.\n")
         error(msprintf(msg, "ui_observer", 1, 3, 1, 3))

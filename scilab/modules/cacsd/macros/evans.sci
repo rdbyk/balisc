@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge STEER
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,11 +16,7 @@ function evans(n,d,kmax)
     smax=0.002;smin=smax/3;
     nptmax=2000 //nbre maxi de pt de discretisation en k
 
-    //Check syntax
-
-    [lhs,rhs]=argn(0)
-
-    if rhs <= 0 then   // demonstration
+    if nargin <= 0 then   // demonstration
         n=real(poly([0.1-%i 0.1+%i,-10],"s"));
         d=real(poly([-1 -2 -%i %i],"s"));
         evans(n,d,80);
@@ -28,12 +25,12 @@ function evans(n,d,kmax)
 
     select typeof(n)
     case "polynomial"  then
-        if rhs==2 then kmax=0,end
+        if nargin==2 then kmax=0,end
     case "rational" then
-        if rhs==2 then kmax=d,else kmax=0,end
+        if nargin==2 then kmax=d,else kmax=0,end
         [n,d]=n(2:3)
     case "state-space" then
-        if rhs==2 then kmax=d,else kmax=0,end
+        if nargin==2 then kmax=d,else kmax=0,end
         n=ss2tf(n);
         [n,d]=n(2:3);n=clean(n);d=clean(d);
     else
@@ -219,4 +216,3 @@ function evans(n,d,kmax)
         warning(msprintf(gettext("%s: Curve truncated to the first %d discretization points.\n"),"evans",nptmax))
     end
 endfunction
-

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,15 +11,13 @@
 // along with this program.
 
 function [phi,db]=phasemag(z,mod)
-    //
 
     mod_def="c"     //continuous representation
     //mod_def='m'   //representation modulo 360 degrees
-    [lhs,rhs]=argn(0)
-    if lhs==2 then
+    if nargout==2 then
         db=20*log(abs(z))/log(10),
     end
-    if rhs<>2 then
+    if nargin<>2 then
         mod=mod_def
     end
     //compute first phase value in  (-pi, pi]

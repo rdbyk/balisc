@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,11 +13,10 @@
 function [n,nc,u,sl,v]=st_ility(sl,tol)
     //stabilizability test
 
-    [lhs,rhs]=argn(0)
     if type(sl)==1 then
         //[n,nc,u,A,B]=st_ility(A,B,tol)
-        if rhs==2
-            sl=syslin("c",sl,tol,[]);rhs=1;
+        if nargin==2
+            sl=syslin("c",sl,tol,[]);nargin=1;
         end
     end
     if typeof(sl)<>"state-space" then
@@ -36,7 +35,7 @@ function [n,nc,u,sl,v]=st_ility(sl,tol)
         b=zeros(na,1);
     end
     // controllable part
-    if rhs==1 then
+    if nargin==1 then
         [n,u,ind,V,a,b]=contr(a,b);
     else
         [n,u,ind,V,a,b]=contr(a,b,tol);
@@ -45,16 +44,16 @@ function [n,nc,u,sl,v]=st_ility(sl,tol)
         b=[];
     end;
     n=sum(n);nc=n;
-    if lhs==4 then c=c*u;x0=u'*x0;end
+    if nargout==4 then c=c*u;x0=u'*x0;end
     if n<>na then
         //order evals uncont. part
         nn=n+1:na;
         [v,n1]=schur(a(nn,nn),part(typ,1))
         n=n+n1
         //new realization
-        if lhs>2 then
+        if nargout>2 then
             u(:,nn)=u(:,nn)*v
-            if lhs==4 then
+            if nargout==4 then
                 a(:,nn)=a(:,nn)*v;a(nn,nn)=v'*a(nn,nn)
                 b(nn,:)=v'*b(nn,:)
                 c(:,nn)=c(:,nn)*v
@@ -63,6 +62,6 @@ function [n,nc,u,sl,v]=st_ility(sl,tol)
         end;
     end;
     //
-    if lhs==4 then sl=syslin(dom,a,b,c,d,x0),end
-    if lhs==5 then v=sl.B;sl=sl.A;end
+    if nargout==4 then sl=syslin(dom,a,b,c,d,x0),end
+    if nargout==5 then v=sl.B;sl=sl.A;end
 endfunction

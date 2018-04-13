@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@ function [nt,dt,rk]=trzeros(Sl)
     // Syntax : [nt,dt]=trzeros(Sl)
     //!
 
-    [LHS,RHS]=argn(0);
     sltyp=typeof(Sl)
 
     if sltyp == "polynomial" then
@@ -26,7 +25,7 @@ function [nt,dt,rk]=trzeros(Sl)
             return;
         end
         chis=det(D);nt=roots(chis);dt=ones(nt);
-        if LHS==1 then
+        if nargout==1 then
             nt=nt./dt;dt=[];rk=[];
         end
         return;
@@ -64,7 +63,7 @@ function [nt,dt,rk]=trzeros(Sl)
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Square system expected.\n"),"trzeros",1));
         end
         chis=det(systmat(Sl));nt=roots(chis);dt=ones(nt);
-        if LHS==1 then nt=nt./dt;dt=[];rk=[];end
+        if nargout==1 then nt=nt./dt;dt=[];rk=[];end
         return;
     end
 
@@ -76,7 +75,7 @@ function [nt,dt,rk]=trzeros(Sl)
                 error(msprintf(gettext("%s: Wrong size for input argument #%d: Square system expected.\n"),"trzeros",1));
             end
             chis=det(D);nt=roots(chis);dt=ones(nt);
-            if LHS==1 then nt=nt./dt;dt=[];rk=[];end
+            if nargout==1 then nt=nt./dt;dt=[];rk=[];end
             return;
         end;
     end;
@@ -84,7 +83,7 @@ function [nt,dt,rk]=trzeros(Sl)
     if norm(D,1)<sqrt(%eps)|ld==kd then
         [nt,dt,rk]=tr_zer(A,B,C,D);
         if norm(dt,1) > 1.d-10 then
-            if LHS==1 then nt=nt./dt;dt=[];rk=[];end
+            if nargout==1 then nt=nt./dt;dt=[];rk=[];end
             return;
         end
     end
@@ -92,7 +91,7 @@ function [nt,dt,rk]=trzeros(Sl)
         //nt=spec(A-B*pinv(D)*C);dt=ones(nt);
         [nt,dt]=tr_zer(A,B,C,D);
         rk=ld;
-        if LHS==1 then nt=nt./dt;end;
+        if nargout==1 then nt=nt./dt;end;
         return;
     end
     if ld > kd & norm(pinv(D)*D-eye(),1)< 1.d-10
@@ -100,7 +99,7 @@ function [nt,dt,rk]=trzeros(Sl)
         [nt,dt]=tr_zer(A,B,C,D);
         rk=kd;
         if norm(dt,1) > 1.d-10 then
-            if LHS==1 then nt=nt./dt;dt=[];rk=[];end;return;
+            if nargout==1 then nt=nt./dt;dt=[];rk=[];end;return;
         end
     end
     //warning('Trzeros:non-square system with D non zero and not full')
@@ -113,5 +112,5 @@ function [nt,dt,rk]=trzeros(Sl)
     finitepencil=Q(ix,:)*syst_matrix*Z(:,iy);
     [E,A]=pen2ea(finitepencil);
     [nt,dt]=spec(A,E);rk=[];
-    if LHS==1 then nt=nt./dt;dt=[];rk=[];end;
+    if nargout==1 then nt=nt./dt;dt=[];rk=[];end;
 endfunction

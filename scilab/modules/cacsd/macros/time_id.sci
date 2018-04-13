@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,6 @@
 
 function [h,err]=time_id(n,u,y)
 
-    [lhs,rhs]=argn(0)
     y=y(:)
     npt=size(y,"*");
     select type(u)
@@ -46,7 +45,7 @@ function [h,err]=time_id(n,u,y)
 
     h=syslin("d",num,den)
 
-    if lhs==2 then
+    if nargout==2 then
         err=norm(y-rtitr(num,den,u')',2)
     end
 endfunction

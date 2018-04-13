@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,14 +25,13 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     //
     // Copyright Enpc
 
-    [lhs,rhs]=argn(0)
     // switch to ar representation
     if type(x1)==1 then
-        if rhs < 5 then
+        if nargin < 5 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"narsimul",5,8));
         end;
         ar=armac(x1,x2,x3,size(x1,"r"),size(x5,"r"),x4);
-        select rhs
+        select nargin
         case 5 then
             z=narsimul(ar,x5);
         case 6 then
@@ -43,7 +42,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
             z=narsimul(ar,x5,x6,x7,x8);
         end
     elseif typeof(x1)== "ar" then  // Here the call is always arsimul(ar,....)
-        if rhs < 2|rhs>5 then
+        if nargin < 2|nargin>5 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"narsimul",2,5));
         end;
 
@@ -75,7 +74,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         // up doit etre de taille (al,(bdeg-1))
         // ep doit etre de taille (al,(adeg-1))
         //
-        if rhs <=3 then
+        if nargin <=3 then
             up=0*ones(mmu,(bdeg-1));
         else
             up=x3
@@ -88,7 +87,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
                 error(msprintf(msg, "narsimul",1,3,3,1));
             end
         end
-        if rhs <=4 then
+        if nargin <=4 then
             yp=0*ones(al,(adeg-1));
         else
             yp=x4
@@ -101,7 +100,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
                 error(msprintf(msg, "narsimul",1,4,4,1));
             end
         end
-        if rhs <=5,
+        if nargin <=5,
             ep=0*ones(al,(ddeg-1));
         else
             ep=x5

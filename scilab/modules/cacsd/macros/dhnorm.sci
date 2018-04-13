@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,13 +10,11 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
 function gama=dhnorm(Sl,tol,gamamax)
     //discrete-time case
     // included in h_norm!
-    [lhs,rhs]=argn(0);
-    if rhs==1 then tol=0.000001;gamamax=10000000;end
-    if rhs==2 then gamamax=1000;end
+    if nargin==1 then tol=0.000001;gamamax=10000000;end
+    if nargin==2 then gamamax=1000;end
     gamamin=sqrt(%eps);
     n=0;
     while %T

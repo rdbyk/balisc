@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,16 +11,14 @@
 // along with this program.
 
 function [a,b,c]=minreal(a,b,c,domaine,tol)
-    //
 
-    [lhs,rhs]=argn(0)
     select typeof(a)
     case "state-space" then
-        if lhs<>1 then
+        if nargout<>1 then
             msg = gettext("%s: Wrong number of output arguments: %d expected.\n")
             error(msprintf(msg, "minreal", 1))
         end;
-        select rhs
+        select nargin
         case 1 then
             istol = %f;
         case 2 then
@@ -40,11 +38,11 @@ function [a,b,c]=minreal(a,b,c,domaine,tol)
             domaine="d";
         end
     case "constant" then
-        if lhs<>3 then
+        if nargout<>3 then
             msg = gettext("%s: Wrong number of output arguments: %d expected.\n");
             error(msprintf(msg, "minreal", 3))
         end
-        select rhs
+        select nargin
         case 4 then istol = %f
         case 5 then istol = %t,
         else
@@ -70,7 +68,7 @@ function [a,b,c]=minreal(a,b,c,domaine,tol)
     a = r*a*ri;
     b = r*b;
     c = c*ri;
-    if lhs == 1 then
+    if nargout == 1 then
         a = syslin(dom,a,b,c,d,r*x0);
     end
 endfunction

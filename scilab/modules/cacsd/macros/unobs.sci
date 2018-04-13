@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 // Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarrre
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,9 +21,7 @@ function [dim,x]=unobs(A,C,tol)
     //    C*X = [0,*]
     // Copyright INRIA
 
-    [lhs,rhs]=argn(0);
-
-    if rhs < 2
+    if nargin < 2
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected."),"unobs", 2, 3));
     end
 
@@ -35,7 +33,7 @@ function [dim,x]=unobs(A,C,tol)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A real matrix expected."),"unobs",2));
     end
 
-    if rhs == 2
+    if nargin == 2
         tol=1.d-10*norm([A;C],1);
     end
 

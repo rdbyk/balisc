@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,6 @@
 function sl=cont_frm(num,den)
     //Controllable state-space form of the transfer num/den
     //!
-    [lhs,rhs]=argn(0)
     if size(den,"*")<>1 then
         msg = _("%s: Wrong type for input argument #%d: Polynomial expected.\n");
         error(msprintf(msg, "cont_frm", 2))

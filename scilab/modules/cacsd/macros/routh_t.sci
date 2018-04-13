@@ -3,8 +3,8 @@
 // Copyright (C) 1999 - Lucien.Povy@eudil.fr (to get a good table)
 // Copyright (C) 2013 - Charlotte HECQUET (new option)
 // Copyright (C) 2013 - A. Khorshidi (to define a new optional output argument)
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,20 +32,19 @@ function [r,num]=routh_t(h,k,normalized)
     //see also
     //Comments on the Routh-Hurwitz criterion, Shamash, Y.,Automatic Control, IEEE T.A.C
     //Volume 25, Issue 1, Feb 1980 Page(s): 132 - 133
-
     //http://controls.engin.umich.edu/wiki/index.php/RouthStability
-    [lhs,rhs]=argn(0);
+
     h1=h(1);
     flag=1;
-    if rhs==3 then
+    if nargin==3 then
         if normalized==%t then
             flag=1;
         else
             flag=0;
         end
-        rhs=2;
+        nargin=2;
     end
-    if rhs==2 then
+    if nargin==2 then
         if typeof(h)<>"rational" then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: rational fraction array expected.\n"),"routh_t",1));
         end
@@ -75,7 +74,7 @@ function [r,num]=routh_t(h,k,normalized)
     if size(r2,"*")<>ncol then r2=[r2,0],end
     r=[r1;r2]
     if ncol<2 then r=[],return,end;
-    if rhs==2 then
+    if nargin==2 then
 
         for i=3:nd,
             if flag==0 then // for a non-normalized table
@@ -101,7 +100,7 @@ function [r,num]=routh_t(h,k,normalized)
             end
             // Special Case: First element of the 2nd row or upper is zero and is replaced with %eps:
             if r(i-1,1)==0 then
-                if rhs==1 then
+                if nargin==1 then
                     if typeof(r)=="rational" then
                         //scilab is not able to handle multivariable polynomials
                         r=horner(r,%eps^2);
@@ -116,8 +115,8 @@ function [r,num]=routh_t(h,k,normalized)
         end;
     end;
 
-    if lhs==2  then
-        if rhs==2 & type(k)<>1 then
+    if nargout==2  then
+        if nargin==2 & type(k)<>1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"),"routh_t",2));
         end
         nrow=size(r,"r")

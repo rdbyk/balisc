@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge STEER
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +11,6 @@
 // along with this program.
 
 function nicholschart(modules,args,colors)
-
-    [lhs,rhs]=argn(0);
 
     l10=log(10);
     ratio=%pi/180;
@@ -191,7 +190,7 @@ function nicholschart(modules,args,colors)
     fig.immediate_drawing=immediate_drawing;
 
     // reset data_bounds
-    if rhs == 0 then
+    if nargin == 0 then
         ax.data_bounds=[-360,-40;0,40];
     else
         ax.data_bounds = old_data_bounds;

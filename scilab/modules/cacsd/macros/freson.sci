@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - 2016 - INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,7 @@
 // along with this program.
 
 function fr = freson(h)
-    [lhs,rhs] = argn(0);
-
-    if argn(2) < 1 then
+    if nargin < 1 then
         msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
         error(msprintf(msg, "freson", 1));
     end

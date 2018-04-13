@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,19 +11,19 @@
 // along with this program.
 
 function [nk,W]=hankelsv(sl,tol)
-    //!
+
     if typeof(sl)<>"state-space" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: State-space linear system expected.\n"),"hankelsv",1)),
     end
+
     if sl.dt==[] then
         warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"hankelsv",1));
         sl.dt="c"
     elseif sl.dt<>"c" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Continuous-time linear system expected.\n"),"hankelsv",1)),
     end
-    //
-    [lhs,rhs]=argn(0),
-    if rhs==1 then tol=1000*%eps,end,
+
+    if nargin==1 then tol=1000*%eps,end,
     lf=spec(sl(2)),
     if min(abs(lf))<=tol then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"),"hankelsv",1)),

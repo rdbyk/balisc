@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [ga,gs,gi]=dtsi(g,tol)
     //[ga,gs,gi]=dtsi(g,[tol]) stable-antistable decomposition of g:
@@ -23,8 +22,7 @@ function [ga,gs,gi]=dtsi(g,tol)
     // Default value: 100*%eps
     //!
 
-    [lhs,rhs]=argn(0),
-    if rhs <1 then
+    if nargin <1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"dtsi",1))
     end
 
@@ -34,7 +32,7 @@ function [ga,gs,gi]=dtsi(g,tol)
     if g.dt<>"c" then
         error(msprintf(gettext("%s: Wrong type for argument #%d: In continuous time expected.\n"),"dtsi",1))
     end
-    if rhs==1 then
+    if nargin==1 then
         tol=100*%eps,
     else
         if type(tol)<>1|size(tol,"*")<>1|~isreal(tol)|tol<=0 then

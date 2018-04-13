@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,8 +19,6 @@ function [k,x,err]=leqr(p12,vx)
     //  z|0   a'  0| - |-c'c  i    -s|      s|0   i   0| - |-c'c  -a'  -s  |
     //   |0   b'  0|   | s'   0   d'd|       |0   0   0|   | s'   -b'   d'd|
     //
-
-    [lhs,rhs]=argn(0);
 
     if typeof(p12)<>"state-space" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space expected.\n"),"leqr",1))
@@ -60,7 +58,7 @@ function [k,x,err]=leqr(p12,vx)
         end
         k=ws(2*n+1:2*n+nu,:)/x12;
         x=ws(n+1:2*n,:)/x12;
-        if lhs~=3 then return;end
+        if nargout~=3 then return;end
         ri=pinv(r);
         err=norm((a-b2*ri*s')'*x+x*(a-b2*ri*s')-x*(b2*ri*b2'-vx)*x+q-s*ri*s',1)
         //k=-ri*(b2'*x+s')
@@ -98,7 +96,7 @@ function [k,x,err]=leqr(p12,vx)
         end
 
         //a'*x*a-(a'*x*b2+c1'*d12)*pinv(b2'*x*b2+d12'*d12)*(b2'*x*a+d12'*c1)+c1'*c1
-        if lhs~=3 then return;end
+        if nargout~=3 then return;end
         ri=pinv(r);
         abar=a-b2*ri*s';
         qbar=q-s*ri*s';

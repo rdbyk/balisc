@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,7 +18,7 @@ function [x]=nehari(r,tol)
     //                  Y in Hoo
     //!
 
-    if argn(2)<1 then
+    if nargin<1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),..
         "nehari",1))
     end
@@ -34,7 +34,7 @@ function [x]=nehari(r,tol)
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"nehari",1))
     end
     //
-    if argn(2)==1 then
+    if nargin==1 then
         tol=1e-6
     else
         if type(tol)<>1|size(tol,"*")<>1 then
@@ -59,14 +59,11 @@ function [x]=nehari(r,tol)
     bx=[b;w'*b;w*xo*b],cx=[c,-c,0*ones(m,n)],
     x=syslin("c",ax,bx,cx*nn),
     [y,x]=dtsi(x);
-
-
 endfunction
 
 function [nk]=nophkel(sl,tol)
     //[nk]=nophkel(sl,[tol]) : norm of Hankel operator
-    [lhs,rhs]=argn(0),
-    if rhs==1 then tol=1000*%eps,end,
+    if nargin==1 then tol=1000*%eps,end,
     if sl==0 then nk=0,return,end,
     lf=spec(sl.A),
     if min(abs(lf))<=tol then

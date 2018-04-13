@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [n,m,xt,yt]=copfac(g,polf,polc,tol)
     //[n,m,xt,yt]=copfac(G,[polf,polc,[tol]]) returns a right coprime
@@ -26,8 +25,7 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
     //-- tol is a threshold for detecting stable poles.
     //!
 
-    [lhs,rhs]=argn(0),
-    if rhs<1 then
+    if nargin<1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"copfac",1))
     end
     select typeof(g)
@@ -44,7 +42,7 @@ function [n,m,xt,yt]=copfac(g,polf,polc,tol)
     [r,p,t]=size(g);
     [a,b,c,d]=abcd(g),
     [n1,u1]=contr(a,b),[n2,u2]=contr(a',c'),
-    select rhs,
+    select nargin,
     case 1 then
         polc=-ones(1,n1),polf=-ones(1,n2),tol=1000*%eps,
     case 2 then

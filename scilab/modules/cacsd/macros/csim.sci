@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - 2016 - INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -41,16 +41,14 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     // dsimul flts ltitr rtitr ode impl
     //!
 
-    [lhs,rhs]=argn(0)
-    //
-    if rhs<3 then
+    if nargin<3 then
         msg = _("%s: Wrong number of input arguments: At least %d expected.\n");
         error(msprintf(msg, "csim", 3));
     end
     sltyp=typeof(sl)
     if and(sltyp<>["state-space" "rational" "zpk"]) then
         args=["u","dt","sl","x0","tol"];
-        ierr=execstr("[y,x]=%"+overloadname(sl)+"_csim("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("[y,x]=%"+overloadname(sl)+"_csim("+strcat(args(1:nargin),",")+")","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"csim",3))
         end
@@ -110,7 +108,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         x = [];
         return
     end
-    if rhs==3 then x0=sl(6),end
+    if nargin==3 then x0=sl(6),end
     if imp==1|step==1 then x0=0*x0,end
     nt=size(dt,"*");x=0*ones(ma,nt);
     [a,v]=balanc(a);
@@ -162,7 +160,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         bk=b(kk,:);
         nrmu=max([norm(bk*ut,1),norm(x0(kk))]);
         if nrmu > 0 then
-            if rhs<5 then
+            if nargin<5 then
                 atol=1.d-12*nrmu;rtol=atol/100;
             else
                 atol=tol(1);rtol=tol(2);
@@ -177,5 +175,5 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         k=k+n
     end;
     y = c*x + d*ut
-    if lhs==2 then x=v1*v2*x,end
+    if nargout==2 then x=v1*v2*x,end
 endfunction

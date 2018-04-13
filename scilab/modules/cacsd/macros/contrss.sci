@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,13 +12,11 @@
 
 function slc=contrss(a,tol)
 
-    [lhs,rhs]=argn(0)
-    //
     if typeof(a)<>"state-space" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: State-space form expected.\n"),"contrss",1));
     end
 
-    if rhs==1 then tol=sqrt(%eps);end
+    if nargin==1 then tol=sqrt(%eps);end
     [a,b,c,d,x0,dom]=a(2:7)
     //
     [nc,u]=contr(a,b,tol*norm([a,b],1))

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F. Delebecque
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,7 +34,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
     // mu_inf upper bound on mu = gama^-2
     //P2 = normalized P.
     //
-    if argn(2)<>5 then
+    if nargin<>5 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"h_inf",5))
     end
 
@@ -108,7 +108,7 @@ function [Sk,rk,mu]=h_inf(P,r,mumin,mumax,nmax)
     Dk21=Dk21*Yci;
     //Convert to descriptor form:
     Sk=des2ss(Ak,[Bk1,Bk2],[Ck1;Ck2],[Dk11,Dk12;Dk21,Dk22],E);
-    if argn(1)<3 then
+    if nargout<3 then
         Sk=Sk(1:r(2),1:r(1));rk=mu;
         //    Case D22 different from zero
         if norm(coeff(D22),1) <> 0 then Sk=Sk/.D22;end

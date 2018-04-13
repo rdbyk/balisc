@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,7 +27,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
     //  Adapted from
     //  N.A. Bruinsma   T.U.Delft/Philips Research Eindhoven, see also
     //  Systems & Control Letters, vol. 14 pp. 287-293.
-    if argn(2)<1 then
+    if nargin<1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),..
         "h_norm",1))
     end
@@ -38,7 +38,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
         "h_norm",1))
     end
     if sltyp=="rational" then Sl=tf2ss(Sl);end
-    if argn(2)==1 then
+    if nargin==1 then
         rerr=1e-8;
     else
         if type(rerr)<>1|size(rerr,"*")<>1 then
@@ -59,7 +59,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
     if max(real(eiga)) >= -1e-12 then
         warning(msprintf(_("%s: System is not stable.\n"),"h_norm"))
     end
-    if argn(2)==1 then rerr=1e-8; end;
+    if nargin==1 then rerr=1e-8; end;
     [no,ns] = size(c); [ns,ni] = size(b);
     if min(ni,no) == 1 then isiso = 2; else isiso = 1; end;
     [p,a] = hess(a); [u,d,v] = svd(d); b = p' * b * v; c = u' * c * p;
@@ -114,9 +114,8 @@ endfunction
 function gama=dhnorm(Sl,tol,gamamax)
     //discrete-time case (should be tested!!!)
     //disp('warning: discrete-time h_norm is not fully tested!')
-    [lhs,rhs]=argn(0);
-    if rhs==1 then tol=0.00001;gamamax=10000000;end
-    if rhs==2 then gamamax=1000;end
+    if nargin==1 then tol=0.00001;gamamax=10000000;end
+    if nargin==2 then gamamax=1000;end
     gamamin=sqrt(%eps);
     n=0;
     while %T

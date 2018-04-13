@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,12 +12,11 @@
 
 function [y,xf] = flts(u, sl, x0)
     fname = "flts";
-    [lhs, rhs] = argn(0)
     if type(u) <> 1 then
         msg = gettext("%s: Argument #%d: Decimal or complex number(s) expected.\n")
         error(msprintf(msg, fname, 1))
     end
-    if rhs <= 1 then
+    if nargin <= 1 then
         msg = gettext("%s: Wrong number of input arguments: %d or %d expected.\n")
         error(msprintf(msg, fname, 2, 3))
     end
@@ -28,7 +26,7 @@ function [y,xf] = flts(u, sl, x0)
     end
     select typeof(sl)
     case "state-space" then
-        if rhs==2 then
+        if nargin==2 then
             x0 = sl.X0
         end
         [nb,mb] = size(sl.B)
@@ -49,7 +47,7 @@ function [y,xf] = flts(u, sl, x0)
             y = sl.C*x + rtitr(D,eye(D),u)
         end
     case "rational"  then
-        if lhs>1 then
+        if nargout>1 then
             msg = gettext("%s: Wrong number of output argument: %d expected.\n")
             error(msprintf(msg, fname, 1))
         end
@@ -77,7 +75,7 @@ function [y,xf] = flts(u, sl, x0)
             nm(l) = degree(nden(l))-max(degree(nnum(l,:)))
         end
         ly = mu+min(nm)
-        if rhs==3 then
+        if nargin==3 then
             [mx, nx] = size(x0);
             maxdgd = max(degree(nden))
             if nx < maxdgd then
@@ -94,7 +92,7 @@ function [y,xf] = flts(u, sl, x0)
             ddl = degree(nden(l))
             dnl = max(degree(nnum(l,:)))
             lent = ly-ddl+dnl
-            select rhs
+            select nargin
             case 2 then
                 yl = rtitr(nnum(l,:),nden(l),u(:,1:lent));
                 [nn, mm] = size(yl);
@@ -110,7 +108,7 @@ function [y,xf] = flts(u, sl, x0)
         y=y(:,1:min(mu,l));
     else
         args = ["u","sl","x0"]
-        ierr = execstr("[y,xf]=%"+overloadname(sl)+"_flts("+strcat(args(1:rhs),",")+")", "errcatch")
+        ierr = execstr("[y,xf]=%"+overloadname(sl)+"_flts("+strcat(args(1:nargin),",")+")", "errcatch")
         if ierr <> 0 then
             msg = _("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n")
             error(msprintf(msg, fname, 2))

@@ -1,6 +1,5 @@
 function [B,D,K,Q,Ry,S,rcnd]=findBDK(s,n,l,R,A,C,meth,job,nsmpl,tol,printw)
     B=[];D=[];K=[];Q=[];Ry=[];S=[];rcnd=[];
-    [nargout,nargin] = argn(0)
     //FINDBDK  Finds the system matrices B and D and the Kalman gain of a discrete-time
     //         system, given the system order, the matrices A and C, and the relevant
     //         part of the R factor of the concatenated block-Hankel matrices, using

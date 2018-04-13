@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F. Delebecque
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -45,7 +45,6 @@ function [Obs,U,m]=observer(Sys,flag,alfa)
     // Transfer u-->[u;u]-->w=[u;y=Sys*u]-->Obs*w  i.e. u-->output of Obs
     // this transfer must equal Sys2, the u-->z transfer  (H2=eye).
 
-    [LHS,RHS]=argn(0);
     if typeof(Sys)<>"state-space" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space expected.\n"),"observer",1))
     end
@@ -53,11 +52,11 @@ function [Obs,U,m]=observer(Sys,flag,alfa)
     [nx,nx]=size(Sys.A);
     td=Sys.dt;x0=Sys.X0;
 
-    if RHS<>2 then [m1,m2,U,sl2]=dt_ility(Sys);end
-    if RHS==1 then
+    if nargin<>2 then [m1,m2,U,sl2]=dt_ility(Sys);end
+    if nargin==1 then
         flag="st";alfa=-ones(1,nx);
     end
-    if RHS==2 then
+    if nargin==2 then
         //poles are not given-->set to -ones
         alfa=-ones(1,nx);
         [A,B,C,D]=abcd(Sys);  //
@@ -65,7 +64,7 @@ function [Obs,U,m]=observer(Sys,flag,alfa)
         //  F=A+J*C;G=[B+J*D,-J]; //
         Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A));U=[];m=[];return;  //Ao
     end
-    if RHS==3 then
+    if nargin==3 then
         if size(alfa,"*")==1 then alfa=alfa*ones(1,nx);end
     end
     select flag

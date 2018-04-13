@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +11,6 @@
 // along with this program.
 
 function [sl]=imrep2ss(v,deg)
-
-    [lhs,rhs]=argn(0)
     // hankel
     [no,nv]=size(v);
     n=nv/2;
@@ -21,7 +19,7 @@ function [sl]=imrep2ss(v,deg)
     h=0*ones(n,n);
     for k=1:n,h(l:l+ns1,:)=v(:,k:k+n2),l=l+no,end;
     //factorization
-    if rhs==1 then [u,h1,v1,deg]=svd(h);else [u,h1,v1]=svd(h);end
+    if nargin==1 then [u,h1,v1,deg]=svd(h);else [u,h1,v1]=svd(h);end
     //extraction
     obs=u(:,1:deg);con=h1*v1';con=con(1:deg,:);
     //shift

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,6 @@
 
 function [sl]=syslin(domain,a,b,c,d,x0)
 
-    [lhs,rhs]=argn(0)
     //
     // check domain
     select type(domain)
@@ -41,7 +40,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: String, Scalar or empty matrix expected.\n"),"syslin",1))
     end;
     //============================================================================
-    if rhs==2 then //syslin(domaine,sys)
+    if nargin==2 then //syslin(domaine,sys)
 
         if typeof(a)=="state-space" | typeof(a)=="rational" then
             sl=a;
@@ -50,7 +49,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"syslin",2))
         end
         //============================================================================
-    elseif rhs==3 then // syslin(domaine,num,den)
+    elseif nargin==3 then // syslin(domaine,num,den)
         num=a;den=b
         if type(num)>2 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Polynomial array expected.\n"),"syslin",2))
@@ -77,7 +76,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
 
         sl=rlist(varn(num,z),varn(den,z),domain)
         //============================================================================
-    elseif rhs>3 then // syslin(domaine,A,B,C [,D [X0]])
+    elseif nargin>3 then // syslin(domaine,A,B,C [,D [X0]])
         if type(a)<>1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"syslin",2))
         end
@@ -99,7 +98,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
         if na<>nc&nc<>0 then
             error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),"syslin",2,4));
         end
-        if rhs<6 then
+        if nargin<6 then
             x0=0*ones(na,1)
         else
             if type(x0)>1 then
@@ -111,7 +110,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
                 error(msprintf(msg,"syslin",6,1,6,1));
             end
         end
-        if rhs<5  then
+        if nargin<5  then
             d=0*ones(mc,nb)
         else
             if type(d)>2 then

@@ -3,6 +3,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA -Serge Steer
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -28,19 +29,18 @@
 // Modified by Michael Baudin to manage a comparison function
 //
 function [x] = sort_merge ( varargin )
-    [lhs,rhs]=argn();
-    if ( ( rhs<>1 ) & ( rhs<>2 ) & ( rhs<>3 ) ) then
-        errmsg = sprintf("Unexpected number of arguments : %d provided while 1, 2 or 3 are expected.",rhs);
+    if ( ( nargin<>1 ) & ( nargin<>2 ) & ( nargin<>3 ) ) then
+        errmsg = sprintf("Unexpected number of arguments : %d provided while 1, 2 or 3 are expected.",nargin);
         error(errmsg)
     end
     // Get the array x
     x = varargin(1);
     // Get the comparison function compfun
-    if rhs==1 then
+    if nargin==1 then
         compfun = sort_merge_comparison;
     else
         compfun = varargin(2);
-        if ( rhs == 3 ) then
+        if ( nargin == 3 ) then
             data = varargin(3);
         end
     end
@@ -49,7 +49,7 @@ function [x] = sort_merge ( varargin )
     if n > 1 then
         m = floor(n/2);
         p = n-m
-        if ( rhs == 3 ) then
+        if ( nargin == 3 ) then
             x1 = sort_merge ( x(1:m) , compfun , data )
             x2 = sort_merge ( x(m+1:n) , compfun , data )
         else
@@ -60,7 +60,7 @@ function [x] = sort_merge ( varargin )
         i1 = 1;
         i2 = 1;
         for i = 1:n
-            if ( rhs == 3 ) then
+            if ( nargin == 3 ) then
                 order = compfun ( x1(i1) , x2(i2) , data );
             else
                 order = compfun ( x1(i1) , x2(i2) );

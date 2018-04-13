@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -35,14 +35,13 @@ function F=stabil(A,B,alfa)
     //the two controllable modes are set to -1.
     //
 
-    [LHS,RHS]=argn(0)
     if typeof(A)~="state-space" then
         [ns,nc,U,sl]=st_ility(syslin("c",A,B,[]));
         [nx,nx]=size(A);[nn,nu]=size(B);
         if ns<nx then
             warning(msprintf(gettext("%s: System not stabilizable (or detectable) => Stabilizing the stabilizable part.\n"),"stabil"));
         end
-        if RHS==2 then
+        if nargin==2 then
             alfa=-ones(1,nx);
         end
         if prod(size(alfa))==1 then
@@ -58,9 +57,9 @@ function F=stabil(A,B,alfa)
     else
         //F=stabil(Sys,alfa,Beta);
         Sys=A;[A1,B1,C1,D1]=abcd(Sys);
-        if RHS==1 then al=-1;be=-1;end
-        if RHS==2 then al=B;be=-1;end
-        if RHS==3 then al=B;be=alfa;end
+        if nargin==1 then al=-1;be=-1;end
+        if nargin==2 then al=B;be=-1;end
+        if nargin==3 then al=B;be=alfa;end
         F=stabil(A1,B1,al);
         G=stabil(A1',C1',be);G=G';
         F=obscont(Sys,F,G);

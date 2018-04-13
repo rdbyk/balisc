@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,8 +32,6 @@ function [J]=fstabst(Stplant,r)
     flag=0;
     if typeof(Stplant)=="rational" then Stplant=tf2ss(Stplant),flag=1;end
 
-
-    [LHS,RHS]=argn(0);
     [a,b1,b2,c1,c2,d11,d12,d21,d22]=smga(Stplant,r),
     Rd1=d12'*d12,
     R12=sqrtm(Rd1);

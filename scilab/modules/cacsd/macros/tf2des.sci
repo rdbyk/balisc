@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,9 +18,8 @@ function [S]=tf2des(G,flag)
     //  with flag="withD" a maximal rank D matrix is returned
     //!
 
-    [LHS,RHS]=argn(0);
-    if RHS==1 then flag=[];end
-    if RHS==2&flag<>"withD" then warning(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"tf2des",2,"withD"));end
+    if nargin==1 then flag=[];end
+    if nargin==2&flag<>"withD" then warning(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"tf2des",2,"withD"));end
     Num=G(2);Den=G(3);
     %s=poly(0,varn(Den));
     [n,m]=size(Num);

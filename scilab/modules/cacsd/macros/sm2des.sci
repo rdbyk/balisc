@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,10 +16,9 @@ function des=sm2des(sysmat,n)
     // des=list('des',A,B,C,D,E)
     // n=size(A) (assumed square) (optional parameter)
 
-    [LHS,RHS]=argn(0)
     [nl,nc]=size(sysmat);
     E=-coeff(sysmat,1);
-    if RHS==1 then
+    if nargin==1 then
         k=nc;n=k;
         while E(:,k)==0*E(:,k)
             k=k-1;n=k;

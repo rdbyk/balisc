@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F. Delebecque
 // Copyright (C) 2016 INRIA -S. Steer
-//
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,8 +21,7 @@ function [p1,r1]=lft(p,r,p#,r#)
     // lft(p,k) is lft(p,r,k) with r=size of k transpose;
     //!
 
-    [lhs,rhs]=argn(0);
-    if rhs<2 then
+    if nargin<2 then
         error(msprintf(_("%s: Wrong number of input argument: At least %d expected.\n"),"lft",2))
     end
 
@@ -36,7 +35,7 @@ function [p1,r1]=lft(p,r,p#,r#)
         dom=p.dt
     end
 
-    if rhs==2 then //lft(p,p#)
+    if nargin==2 then //lft(p,p#)
         p#=r;
         if and(typeof(p#)<>["constant","rational","state-space"]) then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"lft",2))
@@ -44,7 +43,7 @@ function [p1,r1]=lft(p,r,p#,r#)
 
         r=size(p#');
         r#=size(p#)-[r(2),r(1)];
-    elseif rhs>=3 then //lft(p,r,p#) or lft(p,r,p#,r#)
+    elseif nargin>=3 then //lft(p,r,p#) or lft(p,r,p#,r#)
         if and(typeof(p#)<>["constant","rational","state-space"]) then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"lft",3))
         end
@@ -69,7 +68,7 @@ function [p1,r1]=lft(p,r,p#,r#)
             error(msprintf(_("%s: incompatible input arguments %d and %d\n"),"lft",2,3))
         end
 
-        if rhs==4 then //Obsolete
+        if nargin==4 then //Obsolete
             if type(r#)<>1 then
                 error(msprintf(_("%s: Wrong type for argument %d: Real vector expected.\n"),"lft",4))
             end
@@ -263,12 +262,11 @@ endfunction
 
 function [lf,r1]=lftpssd(p,r,k,r2)
     //lft for pssd (inria report #1827, dec. 1992)
-    [lhs,rhs]=argn(0);
-    if rhs==2 then
-        rhs=3;k=r;r=size(k');
+    if nargin==2 then
+        nargin=3;k=r;r=size(k');
     end
 
-    if rhs==3 then
+    if nargin==3 then
         [pp,qq]=size(p);
         l1=pp-r(1);k1=qq-r(2);
         l2=r(1);k2=r(2);
@@ -285,7 +283,7 @@ function [lf,r1]=lftpssd(p,r,k,r2)
         return;
     end
 
-    if rhs==4 then
+    if nargin==4 then
         [pp,qq]=size(p);
         l1=pp-r(1);k1=qq-r(2);
         l2=r(1);k2=r(2);

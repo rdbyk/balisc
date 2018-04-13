@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,8 +25,7 @@ function [x1,x2]=riccati(a,b,c,dom,typ)
     // See also ric_desc
     //!
 
-    [lhs,rhs]=argn(0),
-    if rhs==4 then typ="eigen",end,
+    if nargin==4 then typ="eigen",end,
     ham=[a -b;-c -a'],
     [n,n]=size(a),
     if part(dom,1)=="c" then
@@ -55,5 +54,5 @@ function [x1,x2]=riccati(a,b,c,dom,typ)
         s=s(:,1:n1);
     end,
     x1=s(n+1:2*n,:),x2=s(1:n,:),
-    if lhs==1 then x1=x1/x2,end
+    if nargout==1 then x1=x1/x2,end
 endfunction

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -118,10 +118,9 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
     endfunction
 
     margin=0.5;  //M "stable"  will mean real-part(M) < -margin
-    [lhs,rhs]=argn(0)
     //rand('seed',0)
     rand("normal")
-    if rhs==3 then flag=[];end
+    if nargin==3 then flag=[];end
     select flag(1)
     case []
         sl=syslin("c",rand(nstate,nstate),rand(nstate,nin),rand(nout,nstate),..
@@ -248,8 +247,7 @@ function w=imag_axis(ns,nn,nu,flag);
     //nn imaginary-axis evals and nu unstable evals.
     //flag='uis' blocks along main diagonal appear in the
     // order "unstable", "imaginary axis", "stable".
-    [LHS,RHS]=argn(0);
-    if RHS==3 then flag="siu";end
+    if nargin==3 then flag="siu";end
     if flag=="siu" then
 
         function [w]=st_able(w,margin)

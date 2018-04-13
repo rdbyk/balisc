@@ -1,6 +1,5 @@
 function [A,C,rcnd]=findAC(s,n,l,R,meth,tol,printw)
     A=[];C=[];rcnd=[];
-    [nargout,nargin] = argn(0)
     //FINDAC  Finds the system matrices A and C of a discrete-time system, given the
     //        system order and the relevant part of the R factor of the concatenated
     //        block-Hankel matrices, using subspace identification techniques (MOESP
