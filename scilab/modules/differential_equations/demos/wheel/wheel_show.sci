@@ -17,11 +17,9 @@ function []=wheel_show(xx,t,p)
     //                     .    .   .
     // xx= [theta,phi,psi,teta,phi,psi,x,y]
 
-
-    [lhs,rhs]=argn(0)
-    if rhs <= 2 , p=%pi/3;end
-    if rhs <= 2 , t=%pi/3;end
-    if rhs <= 3 , slowflag=0;end
+    if nargin <= 2 , p=%pi/3;end
+    if nargin <= 2 , t=%pi/3;end
+    if nargin <= 3 , slowflag=0;end
     nstep=1;r1=1.0;  //change nstep for postscript
     [nnr,nn]=size(xx);
     time=1:nstep:nn;

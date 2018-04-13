@@ -1,9 +1,8 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer <Serge.Steer@scilab.org>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
-//
 
 prot = funcprot();
 funcprot(0);
@@ -103,7 +102,7 @@ endfunction
 function update_height(h)
     Slider_Height=get("slider_height");
     Value_Height =get("value_height")
-    if argn(2)==1 then
+    if nargin==1 then
         Slider_Height.Value=(h-1.6)*100/0.2;
     else
         h=Slider_Height.Value
@@ -116,7 +115,7 @@ endfunction
 function update_theta(t)
     Slider_Theta=get("slider_theta")
     Value_Theta=get("value_theta")
-    if argn(2)==1 then
+    if nargin==1 then
         Slider_Theta.Value=(t-0.01)*100;
     else
         t=Slider_Theta.Value
@@ -129,7 +128,7 @@ endfunction
 function update_phi(p)
     Slider_Phi=get("slider_phi")
     Value_Phi=get("value_phi")
-    if argn(2)==1 then
+    if nargin==1 then
         Slider_Phi.Value=p*100/360;
     else
         p=Slider_Phi.Value
@@ -142,7 +141,7 @@ endfunction
 function update_psi(p)
     Slider_Psi=get("slider_psi")
     Value_Psi=get("value_psi")
-    if argn(2)==1 then
+    if nargin==1 then
         Slider_Psi.Value=p*100/360;
     else
         p=Slider_Psi.Value

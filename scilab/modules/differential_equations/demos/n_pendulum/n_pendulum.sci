@@ -1,10 +1,9 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) ENPC
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
-//
 
 function demo_pendulum()
 
@@ -35,7 +34,7 @@ function demo_pendulum()
     function draw_chain_from_angles(a,r,job)
         // a the angles , a(i,j) is the angle of node i a time t(j)
         // r the segments half length
-        if argn(2)<3 then job=0,end
+        if nargin<3 then job=0,end
         n2=size(a,2);
         // build the links positions
         x=[0*ones(1,n2);cumsum(2*diag(r)*cos(a),1)];
@@ -53,7 +52,7 @@ function demo_pendulum()
         // x,y the coordinates ,
         //   x(i,j), y(i,j) is the coordinate of node i a time t(j)
         // r the segments half length
-        if argn(2)<3 then job=0,end
+        if nargin<3 then job=0,end
         [n1,n2]=size(x);
 
         //set the frame

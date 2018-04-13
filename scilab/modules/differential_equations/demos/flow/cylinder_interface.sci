@@ -1,10 +1,9 @@
-//
 // Scilab ( http://www.scilab.org/) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime Agnel
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
-//
 
 // =============================================================================
 // Cylinder interface functions
@@ -196,7 +195,7 @@ function change_x(x)
     slider_direction = get( "slider_direction");
 
     value_x = get( "value_x");
-    if argn(2)==1 then
+    if nargin==1 then
         slider_x.Value=(x+0.9)*100/1.8;
     else
         x=slider_x.Value
@@ -217,7 +216,7 @@ function change_y(y)
     slider_direction = get( "slider_direction");
 
     value_y = get( "value_y");
-    if argn(2)==1 then
+    if nargin==1 then
         slider_y.Value=(y)*100/3;
     else
         y=slider_y.Value
@@ -238,7 +237,7 @@ function change_speed(speed)
     slider_direction = get( "slider_direction");
 
     value_speed = get( "value_speed");
-    if argn(2)==1 then
+    if nargin==1 then
         slider_speed.Value=(speed)*100/2;
     else
         speed=slider_speed.Value
@@ -259,7 +258,7 @@ function change_slope(slope)
     slider_direction = get( "slider_direction");
 
     value_slope = get( "value_slope");
-    if argn(2)==1 then
+    if nargin==1 then
         slider_slope.Value=(slope)*100/70;
     else
         slope=slider_slope.Value
@@ -282,7 +281,7 @@ function change_direction(direction)
     slider_direction = get( "slider_direction");
 
     value_direction = get( "value_direction");
-    if argn(2)==1 then
+    if nargin==1 then
         slider_direction.Value=(direction)*100/360;
     else
         direction=slider_direction.Value
@@ -304,7 +303,7 @@ function change_g(gravity)
     slider_g = get( "slider_g");
 
     value_g = get( "value_g");
-    if argn(2)==1 then
+    if nargin==1 then
         slider_g.Value=(gravity)*100/10;
     else
         gravity=slider_g.Value

@@ -3,8 +3,8 @@
 // Copyright (C) ? - 2008 - Bruno Pincon
 // Copyright (C) 2009 - INRIA - Michael Baudin
 // Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,13 +14,11 @@
 // along with this program.
 
 function [J, H] = numderivative(varargin)
-    //
-    // Check input arguments
-    [lhs, rhs] = argn();
-    if (rhs < 2 | rhs > 6) then
+
+    if (nargin < 2 | nargin > 6) then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "numderivative", 2, 6));
     end
-    if (lhs < 1 | lhs > 2) then
+    if (nargout < 1 | nargout > 2) then
         error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"), "numderivative", 1, 2));
     end
     //
@@ -59,7 +57,7 @@ function [J, H] = numderivative(varargin)
     //
     // Manage h: make it a column vector, if required.
     h = [];
-    if rhs >= 3 then
+    if nargin >= 3 then
         h = varargin(3);
         if type(h) ~= 1 then
             error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 3));
@@ -84,7 +82,7 @@ function [J, H] = numderivative(varargin)
     end
 
     order = 2;
-    if (rhs >= 4 & varargin(4) <> []) then
+    if (nargin >= 4 & varargin(4) <> []) then
         order = varargin(4);
         if type(order) ~= 1 then
             error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 4));
@@ -98,7 +96,7 @@ function [J, H] = numderivative(varargin)
     end
 
     H_form = "default";
-    if (rhs >= 5 & varargin(5) <> []) then
+    if (nargin >= 5 & varargin(5) <> []) then
         H_form = varargin(5);
         if type(H_form) ~= 10 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "numderivative", 5));
@@ -113,7 +111,7 @@ function [J, H] = numderivative(varargin)
 
     Q = eye(n, n);
     Q_not_given = %t;
-    if (rhs >= 6 & varargin(6) <> []) then
+    if (nargin >= 6 & varargin(6) <> []) then
         Q = varargin(6);
         Q_not_given = %f;
         if type(Q) ~= 1 then
@@ -146,7 +144,7 @@ function [J, H] = numderivative(varargin)
     J = numderivative_deriv1(__numderivative_f__, x, h, order, Q);
     //
     // Quick return if possible
-    if lhs == 1 then
+    if nargout == 1 then
         return
     end
 

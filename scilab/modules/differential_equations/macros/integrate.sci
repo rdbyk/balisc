@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,13 +23,12 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
     //integrate('sin(x)','x',0,%pi)
     //integrate(['if x==0 then 1,';
     //           'else sin(x)/x,end'],'x',0,%pi)
-    rhs = argn(2);
 
-    if rhs < 4 then
+    if nargin < 4 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"integrate",4));
     end
 
-    select rhs
+    select nargin
     case 4 then
         %ea=1d-14;%er=1.d-8
     case 5 then

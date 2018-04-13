@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,8 +17,7 @@ function v = inttrap(x,y)
     //v = inttrap(y) computes the trapezoidal integral of y assuming unit
     //spacing between the data points.
 
-    [lhs,rhs]=argn(0)
-    if rhs<2 then
+    if nargin<2 then
         y=x;
         v=sum(y(1:$-1) + y(2:$))/2;
     else
