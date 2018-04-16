@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
 // Copyright (C) 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,9 +12,8 @@
 // along with this program.
 
 function values = getPreferencesValue(xpath, attributes, doc)
-    rhs = argn(2);
 
-    if (rhs ~= 2 & rhs ~= 3) then
+    if (nargin ~= 2 & nargin ~= 3) then
         msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
         error(msprintf(msg, "getPreferencesValue", 2, 3));
     end
@@ -29,11 +28,11 @@ function values = getPreferencesValue(xpath, attributes, doc)
         error(msprintf(msg, "getPreferencesValue", 2));
     end
 
-    if rhs == 2 then
+    if nargin == 2 then
         doc = SCIHOME + "/XConfiguration.xml"
     end
     doc0 = doc
-    delDoc = (rhs == 2 | type(doc0)==10)
+    delDoc = (nargin == 2 | type(doc0)==10)
     if type(doc)==10 then
         if isfile(doc)
             try
