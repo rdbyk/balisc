@@ -2,9 +2,9 @@
 // Copyright (C) ENPC
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
-
 
 function []=GeomT(n)
 
@@ -23,8 +23,7 @@ function []=GeomT(n)
         y = matrix(y, m, n);
     endfunction
 
-    [lhs, rhs] = argn(0);
-    if rhs <= 0 ; n = 10000;end
+    if nargin <= 0 ; n = 10000;end
     pr = 0.2;
     y = Geom(1, n, pr);
     N = 20;

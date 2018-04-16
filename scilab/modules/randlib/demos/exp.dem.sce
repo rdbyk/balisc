@@ -2,10 +2,9 @@
 // Copyright (C) ENPC
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
-
-
 
 function [] = ExpT(n)
 
@@ -17,8 +16,7 @@ function [] = ExpT(n)
 
     // lambda exp(-lambda x) x>=0
     // ---------------------------
-    [lhs,rhs] = argn(0);
-    if rhs <= 0 ; n = 1000;end
+    if nargin <= 0 ; n = 1000;end
     lambda = 3;
     y = Exp(1, n, lambda);
     drawlater();
@@ -44,4 +42,3 @@ endfunction
 
 ExpT();
 clear ExpT;
-

@@ -2,9 +2,9 @@
 // Copyright (C) ENPC
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
-
 
 function [z]=PoissonT(n)
 
@@ -25,9 +25,7 @@ function [z]=PoissonT(n)
         y = matrix(y, m, n);
     endfunction
 
-
-    [lhs, rhs] = argn(0);
-    if rhs <= 0 ; n = 1000;end
+    if nargin <= 0 ; n = 1000;end
     pmean = 3;
     y = Poisson(1, n, pmean);
     N = 20;

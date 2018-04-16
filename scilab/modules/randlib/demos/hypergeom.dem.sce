@@ -2,9 +2,9 @@
 // Copyright (C) ENPC
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
-
 
 function [] = HyperGeomT(n)
 
@@ -19,8 +19,7 @@ function [] = HyperGeomT(n)
         y = -Mean * log(y1) ./ (2.0 * y) ;
     endfunction
 
-    [lhs,rhs]=argn(0)
-    if rhs <= 0 ; n=10000;end
+    if nargin <= 0 ; n=10000;end
     y=HyperGeom(1,n,1,10)
 
     drawlater();

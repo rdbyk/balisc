@@ -2,9 +2,9 @@
 // Copyright (C) ENPC
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
-
 
 function [z]=RndIntT(n)
 
@@ -15,8 +15,7 @@ function [z]=RndIntT(n)
         y = int(floor(y*(imax+1-imin)+ imin ));
     endfunction
 
-    [lhs,rhs] = argn(0)
-    if rhs <= 0 ; n = 10000;end
+    if nargin <= 0 ; n = 10000;end
     imin = -10;
     imax = 10;
     y = RndInt(1,n,-10,10);
@@ -43,4 +42,3 @@ endfunction
 
 RndIntT();
 clear RndIntT;
-
