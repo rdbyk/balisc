@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,14 +9,13 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
+
 function li=vec2list(bigVector,varsizes,ind)
     //bigVector: big vector
     //varsizes: k x 2 matrix, varsizes(i,:)=size of ith matrix
     //li: list of k matrices, li(i)=matrix of size varsizes(i,:);
 
-    [LHS, RHS] = argn(0)
-    if RHS < 2 then
+    if nargin < 2 then
         error(sprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "vec2list", 2, 3));
     end
 
@@ -30,5 +29,5 @@ function li=vec2list(bigVector,varsizes,ind)
         li(i)=matrix(bigVector(point:newpoint),dimi(1),dimi(2));
         point=newpoint+1;
     end
-    if RHS==3 then li=recons(li,ind); end
+    if nargin==3 then li=recons(li,ind); end
 endfunction

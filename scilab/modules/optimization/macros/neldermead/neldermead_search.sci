@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,12 +40,11 @@
 // neldermead_search --
 //   Search the minimum with Nelder-Mead algorithm.
 //
+
 function this = neldermead_search ( this , warn)
 
-    rhs = argn(2);
-
     warn_mode = warning("query"); // Saving current warning mode to revert to it at the end
-    if rhs == 2 then
+    if nargin == 2 then
         if warn == 0 | warn == "off" then
             warning("off"); // Turn off warnings
         elseif warn == 1 | warn == "on" then

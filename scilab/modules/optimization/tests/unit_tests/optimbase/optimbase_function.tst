@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,6 @@
 // Test the call to the cost function
 //
 
-
 // Test when there is no cost function
 opt = optimbase_new ();
 opt = optimbase_configure(opt,"-numberofvariables",2);
@@ -27,8 +26,7 @@ opt = optimbase_destroy(opt);
 
 // Test simple case
 function [ y , index ] = rosenbrock ( x , index )
-    [lhs,rhs]=argn();
-    if ( rhs <> 2 ) then
+    if ( nargin <> 2 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock", 2);
         error(errmsg)
     end
@@ -49,8 +47,7 @@ opt = optimbase_destroy(opt);
 
 // Test simple case where the index is changed
 function [ y , index ] = rosenbrock0 ( x , index )
-    [lhs,rhs]=argn();
-    if ( rhs <> 2 ) then
+    if ( nargin <> 2 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock0", 2);
         error(errmsg)
     end
@@ -75,8 +72,7 @@ opt = optimbase_destroy(opt);
 // and whatever variable name can be used.
 //
 function [ y , index ] = rosenbrock2 ( x , index , mydata )
-    [lhs,rhs]=argn();
-    if ( rhs <> 3 ) then
+    if ( nargin <> 3 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock2", 3);
         error(errmsg)
     end
@@ -113,12 +109,11 @@ opt = optimbase_destroy(opt);
 //  The inequality constraints are expected to be positive.
 //
 function [ f , c , index ] = optimtestcase ( x , index )
-    [lhs,rhs]=argn();
-    if ( rhs <> 2 ) then
+    if ( nargin <> 2 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimtestcase", 2);
         error(errmsg)
     end
-    if ( lhs <> 3 ) then
+    if ( nargout <> 3 ) then
         errmsg = msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"), "optimtestcase", 3);
         error(errmsg)
     end
@@ -175,12 +170,11 @@ opt = optimbase_destroy(opt);
 //  The inequality constraints are expected to be positive.
 //
 function [ f , c , index ] = boxproblemA ( x , index , data )
-    [lhs,rhs]=argn();
-    if ( rhs <> 3 ) then
+    if ( nargin <> 3 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "boxproblemA", 3);
         error(errmsg)
     end
-    if ( lhs <> 3 ) then
+    if ( nargout <> 3 ) then
         errmsg = msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"), "boxproblemA", 3);
         error(errmsg)
     end
@@ -288,12 +282,11 @@ opt = optimbase_destroy(opt);
 // Test with an additional argument.
 //
 function [ y , index ] = rosenbrock3 ( x , index , mydata )
-    [lhs,rhs]=argn();
-    if ( rhs <> 3 ) then
+    if ( nargin <> 3 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock3", 3);
         error(errmsg)
     end
-    if ( lhs <> 2 ) then
+    if ( nargout <> 2 ) then
         errmsg = msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"), "rosenbrock3", 2);
         error(errmsg)
     end
@@ -325,12 +318,11 @@ opt = optimbase_destroy(opt);
 //   This function could be accepted by optim, hence the test.
 //
 function [ f , g , index ] = rosenbrock4 ( x , index )
-    [lhs,rhs]=argn();
-    if ( rhs <> 2 ) then
+    if ( nargin <> 2 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "rosenbrock4", 2);
         error(errmsg)
     end
-    if ( lhs <> 3 ) then
+    if ( nargout <> 3 ) then
         errmsg = msprintf(gettext("%s: Wrong number of output argument: %d expected.\n"), "rosenbrock4", 3);
         error(errmsg)
     end
@@ -351,4 +343,3 @@ assert_checkequal ( index , 4 );
 assert_checkalmostequal ( f , 24.2 , %eps );
 assert_checkalmostequal ( g , [-215.6 -88.0].' , %eps );
 opt = optimbase_destroy(opt);
-

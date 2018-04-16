@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,6 +23,7 @@
 //        Initial guess for optimization algorithm.
 //  options : an optional struct, as provided by optimset
 //
+
 function [x,fval,exitflag,output] = fminsearch ( varargin )
     //
     // The output function called back by fminsearch
@@ -189,8 +190,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
         end
     endfunction
 
-    [lhs,rhs]=argn();
-    if rhs<>2 & rhs<>3 then
+    if nargin<>2 & nargin<>3 then
         errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "fminsearch", 2,3);
         error(errmsg)
     end
@@ -201,11 +201,11 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     x0 = matrix(x0,x0t,1);
     defaultoptions = optimset ("fminsearch");
     msg="";
-    if rhs==2 then
+    if nargin==2 then
         // No options on the command line
         // Set default values
         options = defaultoptions;
-    elseif rhs==3 then
+    elseif nargin==3 then
         // One options struc on the command line : use it !
         options = varargin(3);
     end

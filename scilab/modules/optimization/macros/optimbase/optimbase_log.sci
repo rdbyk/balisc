@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,9 +16,9 @@
 //   If verbose logging is enabled, prints the given message in the console.
 //   If verbose logging is disabled, does nothing.
 //
+
 function this = optimbase_log (this,msg)
-    [lhs,rhs]=argn();
-    if ( rhs <> 2 ) then
+    if ( nargin <> 2 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimbase_log", 2);
         error(errmsg)
     end
@@ -30,4 +30,3 @@ function this = optimbase_log (this,msg)
         end
     end
 endfunction
-

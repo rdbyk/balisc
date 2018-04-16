@@ -56,12 +56,11 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
     function newobj = optimsimplex_coords ( varargin )
         // newobj = optimsimplex_coords (  )
         // newobj = optimsimplex_coords ( coords )
-        [lhs,rhs]=argn();
-        if ( rhs> 1 ) then
+        if ( nargin> 1 ) then
             errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "optimsimplex_coords", 0,1);
             error(errmsg)
         end
-        coords = optim_argindefault ( rhs , varargin , 1 , [] )
+        coords = optim_argindefault ( nargin , varargin , 1 , [] )
         assert_typereal ( coords , "coords" , 1 );
         newobj = tlist(["TSIMPLEX",...
         "verbose","x","n","fv","nbve"]);
@@ -306,12 +305,11 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
         end
     endfunction
 
-    [lhs,rhs]=argn();
-    if rhs>7 then
+    if nargin>7 then
         errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "optimsimplex_new", 0,7);
         error(errmsg)
     end
-    if rhs == 0 then
+    if nargin == 0 then
         newobj = optimsimplex_coords ( )
         return;
     end
@@ -325,14 +323,14 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             //   newobj = optimsimplex_new ( "axes" , x0 , fun )
             //   newobj = optimsimplex_new ( "axes" , x0 , fun , len )
             //   [ newobj , data ] = optimsimplex_new ( "axes" , x0 , fun , len , data )
-            if rhs<2 | rhs > 5 then
-                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 to 5 are expected."), "optimsimplex_new", rhs);
+            if nargin<2 | nargin > 5 then
+                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 to 5 are expected."), "optimsimplex_new", nargin);
                 error(errmsg)
             end
             x0   = varargin(2);
-            fun = optim_argindefault ( rhs , varargin , 3 , [] )
-            len = optim_argindefault ( rhs , varargin , 4 , 1.0 )
-            data = optim_argindefault ( rhs , varargin , 5 , [] )
+            fun = optim_argindefault ( nargin , varargin , 3 , [] )
+            len = optim_argindefault ( nargin , varargin , 4 , 1.0 )
+            data = optim_argindefault ( nargin , varargin , 5 , [] )
             //
             // Check inputs
             //
@@ -361,14 +359,14 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             //   newobj = optimsimplex_new ( "spendley" , x0 , fun )
             //   newobj = optimsimplex_new ( "spendley" , x0 , fun , len )
             //   [ newobj , data ] = optimsimplex_new ( "spendley" , x0 , fun , len , data )
-            if rhs<2 | rhs > 5 then
-                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 to 5 are expected."), "optimsimplex_new", rhs);
+            if nargin<2 | nargin > 5 then
+                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 to 5 are expected."), "optimsimplex_new", nargin);
                 error(errmsg)
             end
             x0   = varargin(2);
-            fun = optim_argindefault ( rhs , varargin , 3 , [] )
-            len = optim_argindefault ( rhs , varargin , 4 , 1.0 )
-            data = optim_argindefault ( rhs , varargin , 5 , [] )
+            fun = optim_argindefault ( nargin , varargin , 3 , [] )
+            len = optim_argindefault ( nargin , varargin , 4 , 1.0 )
+            data = optim_argindefault ( nargin , varargin , 5 , [] )
             //
             // Check inputs
             //
@@ -392,15 +390,15 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             //   newobj = optimsimplex_new ( "pfeffer" , x0 , fun , deltausual )
             //   newobj = optimsimplex_new ( "pfeffer" , x0 , fun , deltausual , deltazero )
             //   [ newobj , data ] = optimsimplex_new ( "pfeffer" , x0 , fun , deltausual , deltazero , data )
-            if rhs<2 | rhs > 6 then
-                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 to 6 are expected."), "optimsimplex_new", rhs);
+            if nargin<2 | nargin > 6 then
+                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 to 6 are expected."), "optimsimplex_new", nargin);
                 error(errmsg)
             end
             x0   = varargin(2);
-            fun = optim_argindefault ( rhs , varargin , 3 , [] )
-            deltausual = optim_argindefault ( rhs , varargin , 4 , 0.05 )
-            deltazero = optim_argindefault ( rhs , varargin , 5 , 0.0075 )
-            data = optim_argindefault ( rhs , varargin , 6 , [] )
+            fun = optim_argindefault ( nargin , varargin , 3 , [] )
+            deltausual = optim_argindefault ( nargin , varargin , 4 , 0.05 )
+            deltazero = optim_argindefault ( nargin , varargin , 5 , 0.0075 )
+            data = optim_argindefault ( nargin , varargin , 6 , [] )
             //
             // Check inputs
             //
@@ -427,8 +425,8 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             //   newobj = optimsimplex_new ( "randbounds" , x0 , fun , boundsmin , boundsmax )
             //   newobj = optimsimplex_new ( "randbounds" , x0 , fun , boundsmin , boundsmax , nbve )
             //   [ newobj , data ] = optimsimplex_new ( "randbounds" , x0 , fun , boundsmin , boundsmax , nbve  , data )
-            if rhs<5 | rhs > 7 then
-                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 6 to 7 are expected."), "optimsimplex_new", rhs);
+            if nargin<5 | nargin > 7 then
+                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 6 to 7 are expected."), "optimsimplex_new", nargin);
                 error(errmsg)
             end
             x0   = varargin(2);
@@ -436,8 +434,8 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             boundsmin = varargin(4);
             boundsmax = varargin(5);
             n = length ( x0 )
-            nbve = optim_argindefault ( rhs , varargin , 6 , n+1 )
-            data = optim_argindefault ( rhs , varargin , 7 , [] )
+            nbve = optim_argindefault ( nargin , varargin , 6 , n+1 )
+            data = optim_argindefault ( nargin , varargin , 7 , [] )
             //
             // Check inputs
             //
@@ -466,13 +464,13 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             //   newobj = optimsimplex_new ( "oriented" , simplex0 )
             //   newobj = optimsimplex_new ( "oriented" , simplex0 , fun )
             //   [ newobj , data ] = optimsimplex_new ( "oriented" , simplex0 , fun , data )
-            if rhs<2 | rhs > 4 then
-                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 to 4 are expected."), "optimsimplex_new", rhs);
+            if nargin<2 | nargin > 4 then
+                errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 to 4 are expected."), "optimsimplex_new", nargin);
                 error(errmsg)
             end
             simplex0   = varargin(2);
-            fun = optim_argindefault ( rhs , varargin , 3 , [] )
-            data = optim_argindefault ( rhs , varargin , 4 , [] )
+            fun = optim_argindefault ( nargin , varargin , 3 , [] )
+            data = optim_argindefault ( nargin , varargin , 4 , [] )
             //
             // Check inputs
             //
@@ -505,13 +503,13 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
         //   newobj = optimsimplex_new ( coords )
         //   newobj = optimsimplex_new ( coords , fun )
         //   [ newobj , data ] = optimsimplex_new ( coords , fun , data )
-        if rhs < 1 | rhs > 3 then
-            errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 1 to 3 are expected."), "optimsimplex_new", rhs);
+        if nargin < 1 | nargin > 3 then
+            errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 1 to 3 are expected."), "optimsimplex_new", nargin);
             error(errmsg)
         end
         coords = varargin(1);
-        fun = optim_argindefault ( rhs , varargin , 2 , [] )
-        data = optim_argindefault ( rhs , varargin , 3 , [] )
+        fun = optim_argindefault ( nargin , varargin , 2 , [] )
+        data = optim_argindefault ( nargin , varargin , 3 , [] )
         //
         // Check inputs
         //

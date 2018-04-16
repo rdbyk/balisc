@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
 function [f, g, ind] = NDcost(x, ind, fun, varargin)
     // external for optim()
     // Computes the gradient of 'fun' at 'x' using code differentiation
-    if argn(2) < 4 then
+    if nargin < 4 then
         f = fun(x);
         g = numderivative(fun, x);
     else

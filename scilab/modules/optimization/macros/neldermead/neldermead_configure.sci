@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,10 +15,10 @@
 // neldermead_configure --
 //   Configure neldermead and returns the modified object.
 //
+
 function this = neldermead_configure (this,key,value)
     UN=number_properties("tiny")
-    [lhs,rhs]=argn();
-    if ( rhs <> 3 ) then
+    if ( nargin <> 3 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "neldermead_configure", 3);
         error(errmsg)
     end
@@ -312,4 +312,3 @@ function nelmead_checkoption ( funname , var , varname , ivar , expectedopt )
         error(errmsg);
     end
 endfunction
-
