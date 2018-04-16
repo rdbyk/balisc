@@ -24,9 +24,9 @@ function MPIPi(N,mod)
     ////////////////////
     // ArgChk //
     ////////////////////
-    if argn(2)<1,	N=1E7;	end
-    if argn(2)<2,  mod="s";	end
-    if argn(2)>2,	error("usage MPIPi(N,mod)"); end
+    if nargin<1,	N=1E7;	end
+    if nargin<2,  mod="s";	end
+    if nargin>2,	error("usage MPIPi(N,mod)"); end
     flag=0;
     [%H,%ierr] = evstr(string(N));
     flag=flag | size(N,"*")<>1 | %ierr<>0;
