@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -45,13 +45,10 @@
 
 function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
 
-    lhs = argn(1);
-    rhs = argn(2);
-
     // Check number of input arguments
     // =========================================================================
 
-    if (rhs < 1) | (rhs > 3) then
+    if (nargin < 1) | (nargin > 3) then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDepTreeFlat",1,3));
     end
 
@@ -62,11 +59,11 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDepTreeFlat",1));
     end
 
-    if (rhs>=2) & (type(version) <> 10) then
+    if (nargin>=2) & (type(version) <> 10) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDepTreeFlat",2));
     end
 
-    if (rhs==3) & (type(tree_in) <> 17) then
+    if (nargin==3) & (type(tree_in) <> 17) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsDepTreeFlat",3));
     end
 
@@ -77,7 +74,7 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
         error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDepTreeFlat",1));
     end
 
-    if (rhs>=2) & (size(name)<>1) then
+    if (nargin>=2) & (size(name)<>1) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDepTreeFlat",1));
     end
 
@@ -85,14 +82,14 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
     // the current version of Scilab
     // =========================================================================
 
-    if (rhs<2) | ((rhs>=2) & (version=="")) then
+    if (nargin<2) | ((nargin>=2) & (version=="")) then
         version = atomsCompatibleVersions(name);
     end
 
     // Define tree_in if not defined as input argument
     // =========================================================================
 
-    if rhs<3 then
+    if nargin<3 then
         tree_in = struct();
     end
 
@@ -104,7 +101,7 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
         this_package_details = atomsToolboxDetails([name,version(i)]);
         tree_out(name+" - "+version(i)) = this_package_details;
 
-        if lhs>1 then
+        if nargout>1 then
             version_out = version(i);
         end
 

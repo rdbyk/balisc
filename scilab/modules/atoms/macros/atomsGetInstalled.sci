@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,20 +28,19 @@ function packages = atomsGetInstalled(section)
         load("SCI/modules/atoms/macros/atoms_internals/lib");
     end
 
-    rhs      = argn(2);
     packages = [];
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs > 1 then
+    if nargin > 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsGetInstalled",1));
     end
 
     // Load all packages, "user" section or "allusers" section packages ?
     // =========================================================================
 
-    if rhs == 0 then
+    if nargin == 0 then
         section = "all";
     else
 

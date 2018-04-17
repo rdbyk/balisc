@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,9 +18,8 @@
 
 function bResult = atomsTest(packages, test_name)
 
-    rhs         = argn(2);
-    path        = [];
-    bResult     = %T;
+    path = [];
+    bResult = %T;
 
     // Load Atoms Internals lib if it's not already loaded
     // =========================================================================
@@ -31,9 +30,7 @@ function bResult = atomsTest(packages, test_name)
     // Check input parameters
     // =========================================================================
 
-    rhs = argn(2);
-
-    if rhs > 2 | rhs < 1 then
+    if nargin > 2 | nargin < 1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"atomsTest", 1, 2));
     end
 

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -57,13 +57,11 @@ function packages = atomsGetAvailable(category,nameonly)
     // Check input parameters
     // =========================================================================
 
-    rhs = argn(2);
-
-    if rhs > 2 then
+    if nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsGetAvailable",0,2))
     end
 
-    if rhs==0 then
+    if nargin==0 then
         category = [];
     end
 
@@ -87,7 +85,7 @@ function packages = atomsGetAvailable(category,nameonly)
 
     end
 
-    if rhs>=2 then
+    if nargin>=2 then
 
         if type(nameonly) <> 4 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetAvailable",2));

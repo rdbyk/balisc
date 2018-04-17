@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,41 +22,40 @@ function atomsCategoryList(section)
         load("SCI/modules/atoms/macros/atoms_internals/lib");
     end
 
-    rhs            = argn(2);
     categories_mat = [];
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs > 1 then
+    if nargin > 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsCategoryList",0,1));
     end
 
     // Check input argument type (if any)
     // =========================================================================
 
-    if (rhs==1) & (type(section) <> 10) then
+    if (nargin==1) & (type(section) <> 10) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsCategoryList",1));
     end
 
     // Check input argument dimension (if any)
     // =========================================================================
 
-    if (rhs==1) & (size(section,"*")<>1) then
+    if (nargin==1) & (size(section,"*")<>1) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsCategoryList",1));
     end
 
     // Check input argument values (if any)
     // =========================================================================
 
-    if (rhs==1) & (and(section<>["all","main"])) then
+    if (nargin==1) & (and(section<>["all","main"])) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"),"atomsCategoryList",1));
     end
 
     // Default value of section
     // =========================================================================
 
-    if rhs==0 then
+    if nargin==0 then
         section = "all";
     end
 

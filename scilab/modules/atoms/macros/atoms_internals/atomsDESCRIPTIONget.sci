@@ -2,8 +2,8 @@
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2011-2012 - DIGITEO - Allan CORNET
 // Copyright (C) 2012 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,13 +22,11 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
     // Check input parameters
     // =========================================================================
 
-    rhs  = argn(2);
-
-    if rhs > 1 then
+    if nargin > 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsDESCRIPTIONget",1));
     end
 
-    if (rhs == 1) & (type(update) <> 4) then
+    if (nargin == 1) & (type(update) <> 4) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"),"atomsDESCRIPTIONget",1));
     end
 
@@ -126,7 +124,7 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
     end
     if (packages_path_info == []) ..
         | (getdate("s") - packages_path_info(6) > TIME_BEFORE_NEW_UPDATE) ..
-        | (rhs == 1 & update) then
+        | (nargin == 1 & update) then
 
         // Initialize
         packages     = struct();

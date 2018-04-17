@@ -44,9 +44,8 @@ function result = atomsAutoload()
 
     // Check input parameters
     // =========================================================================
-    rhs = argn(2);
 
-    if rhs > 0 then
+    if nargin > 0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsAutoload",0))
     end
 

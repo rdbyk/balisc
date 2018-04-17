@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,9 +21,8 @@ function atomsDownload(url_in,file_out,md5sum)
 
     // Check input parameters number
     // =========================================================================
-    rhs  = argn(2);
 
-    if rhs < 2 | rhs > 3 then
+    if nargin < 2 | nargin > 3 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"), "atomsDownload", 2, 3));
     end
 
@@ -37,7 +36,7 @@ function atomsDownload(url_in,file_out,md5sum)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 2));
     end
 
-    if (rhs>2) & (type(md5sum) <> 10) then
+    if (nargin>2) & (type(md5sum) <> 10) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 3));
     end
 
@@ -52,7 +51,7 @@ function atomsDownload(url_in,file_out,md5sum)
         error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDownload",2));
     end
 
-    if (rhs>2) & (size(md5sum,"*") <> 1) then
+    if (nargin>2) & (size(md5sum,"*") <> 1) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDownload",3));
     end
 
@@ -63,7 +62,7 @@ function atomsDownload(url_in,file_out,md5sum)
         error(msprintf(gettext("%s: Wrong value for input argument #%d: String that starts with ''http(s)?://'',''ftp://'' or ''file://'' expected.\n"),"atomsDownload",1));
     end
 
-    if (rhs>2) & (length(md5sum)<>32) then
+    if (nargin>2) & (length(md5sum)<>32) then
         error(msprintf(gettext("%s: Wrong length for input argument #%d: String which has 32-characters length expected.\n"),"atomsDownload",3));
     end
 
@@ -247,7 +246,7 @@ function atomsDownload(url_in,file_out,md5sum)
     // If md5sum is gived, check the md5sum of the downloaded file
     // =========================================================================
 
-    if rhs>2 then
+    if nargin>2 then
 
         filemd5 = getmd5(file_out);
 

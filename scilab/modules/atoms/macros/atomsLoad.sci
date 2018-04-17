@@ -35,9 +35,7 @@ function result = atomsLoad(packages)
     // Check input parameters
     // =========================================================================
 
-    rhs = argn(2);
-
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsLoad",1,2))
     end
 

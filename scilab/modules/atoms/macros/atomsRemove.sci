@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -39,9 +39,7 @@ function result = atomsRemove(packages,section,del)
     // Check input parameters
     // =========================================================================
 
-    rhs = argn(2);
-
-    if rhs < 1 | rhs > 3 then
+    if nargin < 1 | nargin > 3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsRemove",1,3))
     end
 
@@ -82,7 +80,7 @@ function result = atomsRemove(packages,section,del)
     //     the "user" will be removed
     // =========================================================================
 
-    if rhs <= 1 then
+    if nargin <= 1 then
 
         // By default:
         //  → Remove packages located in both "allusers" and "user" sections if
@@ -97,7 +95,7 @@ function result = atomsRemove(packages,section,del)
 
         del = %F;
 
-    elseif rhs==2 then
+    elseif nargin==2 then
 
         // Process the 2nd input argument : section
         // Allusers can be a boolean or equal to "user" or "allusers"

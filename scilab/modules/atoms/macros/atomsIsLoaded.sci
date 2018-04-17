@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,15 +32,13 @@ function [res,version_out] = atomsIsLoaded(packages)
         load("SCI/modules/atoms/macros/atoms_internals/lib");
     end
 
-    rhs         = argn(2);
-    lhs         = argn(1);
     res         = [];
     version_out = [];
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsIsLoaded",1));
     end
 
@@ -161,7 +159,7 @@ function [res,version_out] = atomsIsLoaded(packages)
 
         end
 
-        if lhs>1 then
+        if nargout>1 then
             if res(i) then
                 version_out(i) = loadedpackages( find(loadedpackages(:,1) == name) , 2 )
             else
