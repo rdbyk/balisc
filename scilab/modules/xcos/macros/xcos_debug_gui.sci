@@ -1,8 +1,7 @@
-function flag=xcos_debug_gui(flag,block)
-    // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    // Copyright (C) 2013 - INRIA - Serge Steer <serge.steer@inria.fr>
-    //
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - INRIA - Serge Steer <serge.steer@inria.fr>
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,6 +10,7 @@ function flag=xcos_debug_gui(flag,block)
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
+function flag=xcos_debug_gui(flag,block)
     if scicos_debug()==0  then return;end
     gui =  findobj("tag","Xcos_debug_gui");
     init=gui==[]
@@ -531,7 +531,7 @@ function gui=xcos_debug_create_gui()
     fig.visible = "on";
 endfunction
 function ok=xcos_debug_check_time(Time)
-    if argn(2)<1 then Time=gcbo;end
+    if nargin<1 then Time=gcbo;end
     ud=Time.parent.user_data
     ok=execstr("t="+Time.string,"errcatch")==0
     if ~ok|type(t)<>1|size(t,"*")<>1 then
@@ -545,7 +545,7 @@ function ok=xcos_debug_check_time(Time)
     end
 endfunction
 function ok=xcos_debug_check_cond(Condition)
-    if argn(2)<1 then Condition=gcbo;end
+    if nargin<1 then Condition=gcbo;end
     ud=Condition.parent.user_data
     Cond=stripblanks(Condition.string)
     if Cond=="" then

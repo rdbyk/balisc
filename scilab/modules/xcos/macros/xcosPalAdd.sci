@@ -1,8 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
 
 function [status, msg] = xcosPalAdd(pal, category)
     // Add a palette to the Scilab/Xcos palette manager. Optional property can be added to set the category of the palette.
@@ -54,12 +51,11 @@ function [status, msg] = xcosPalAdd(pal, category)
     msg = "";
 
     // Checking arguments
-    [lhs,rhs] = argn(0)
-    if rhs < 1 | rhs > 2 then
+    if nargin < 1 | nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "xcosPalAdd", 1, 2));
     end
 
-    if lhs > 3 then
+    if nargout > 3 then
         error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"), "xcosPalAdd", 1, 2));
     end
 

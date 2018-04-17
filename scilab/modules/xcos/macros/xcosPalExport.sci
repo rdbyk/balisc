@@ -1,8 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
 
 // Export a palette instance to an hdf5 file.
 //
@@ -20,6 +17,7 @@
 // @return status %T if the export has been successful, %F otherwise
 // @return[opt] msg Contains the error message in case of %F status or an empty
 //                  string when no error as occurred.
+
 function [status, msg] = xcosPalExport(pal, path)
     // Export a palette instance to a path.
     //
@@ -65,12 +63,11 @@ function [status, msg] = xcosPalExport(pal, path)
     msg = "";
 
     // Checking arguments
-    [lhs,rhs] = argn(0)
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "xcosPalExport", 2));
     end
 
-    if lhs > 2 then
+    if nargout > 2 then
         error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"), "xcosPalExport", 1, 2));
     end
 
@@ -101,7 +98,7 @@ function [status, msg] = xcosPalExport(pal, path)
         msg = [];
     catch
         msg = msprintf(gettext("%s: Unable to export the palette to hdf5.\n"), "xcosPalExport");
-        if  lhs == 1 then
+        if  nargout == 1 then
             error(msg);
         end
     end

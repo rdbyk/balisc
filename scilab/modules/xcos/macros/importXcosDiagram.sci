@@ -15,12 +15,12 @@
 //parameters :
 //xcosFile : xcos diagram file
 //result : boolean
+
 function result = importXcosDiagram(xcosFile)
 
     result = %f;
-    rhs = argn(2);
 
-    if(rhs == 1) then
+    if(nargin == 1) then
         //save hdf5 file with xcos filename, just change extension
         [path,fname,extension] = fileparts(xcosFile);
         h5File = TMPDIR + filesep() + fname + ".sod";
@@ -58,4 +58,3 @@ function result = importXcosDiagram(xcosFile)
     result = %t;
     scs_m = return(scs_m);
 endfunction
-

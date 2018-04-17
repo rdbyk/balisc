@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010 - Clément DAVID
 // Copyright (C) - 2011 - Scilab Enterprises - Clément DAVID
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -61,12 +61,11 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     //  Yann COLLETTE
 
     // Checking arguments
-    [lhs,rhs] = argn(0)
-    if rhs < 2 | rhs > 5 then
+    if nargin < 2 | nargin > 5 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "xcosPalAddBlock", 2, 5));
     end
 
-    if lhs > 1 then
+    if nargout > 1 then
         error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"), "xcosPalAddBlock", 1));
     end
 

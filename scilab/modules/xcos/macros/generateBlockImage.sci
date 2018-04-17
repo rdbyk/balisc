@@ -1,8 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
 
 // Generate a block image from the instance.
 //
@@ -24,14 +21,14 @@
 // @param[opt] withPort true if the exported image should contains the port,
 //             false otherwise. The default is value is true.
 // @return status %T if the operation has been successfull, %F otherwise.
+
 function status = generateBlockImage(block, path, filename, imageType, withPort)
     status = %f;
 
     // call loadXcosLibs if not loaded
     if exists("scicos_diagram", "a") == 0 then loadXcosLibs(); end
 
-    [lhs,rhs] = argn(0)
-    if rhs < 2 | rhs > 6 then
+    if nargin < 2 | nargin > 6 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "generateBlockImage", 2, 4));
     end
 
@@ -127,4 +124,3 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
     // post operations
     driver(previous_driver);
 endfunction
-
