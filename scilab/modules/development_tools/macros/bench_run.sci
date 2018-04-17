@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,9 +16,6 @@
 //-----------------------------------------------------------------------------
 
 function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
-
-    lhs = argn(1);
-    rhs = argn(2);
 
     global test_list;
     global test_count;
@@ -42,9 +39,9 @@ function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
     // Gestion des tests à lancer
     // =======================================================
 
-    if (rhs == 0) ..
-        | ((rhs == 1) & (varargin(1)==[] | varargin(1)=="[]" | varargin(1) == "")) ..
-        | (((rhs >= 2)) & (varargin(1)==[] | varargin(1)=="[]" | varargin(1) == "") & (varargin(2)==[] | varargin(2)=="[]" | varargin(2) == "")) then
+    if (nargin == 0) ..
+        | ((nargin == 1) & (varargin(1)==[] | varargin(1)=="[]" | varargin(1) == "")) ..
+        | (((nargin >= 2)) & (varargin(1)==[] | varargin(1)=="[]" | varargin(1) == "") & (varargin(2)==[] | varargin(2)=="[]" | varargin(2) == "")) then
 
         // No input argument
         // bench_run()
@@ -57,8 +54,8 @@ function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
             bench_add_module(module_list(k));
         end
 
-    elseif (rhs == 1) ..
-        | ((rhs >= 2) & (varargin(2)==[] | varargin(2)=="[]" | varargin(2) == "")) ..
+    elseif (nargin == 1) ..
+        | ((nargin >= 2) & (varargin(2)==[] | varargin(2)=="[]" | varargin(2) == "")) ..
 
         // One input argument
         // bench_run(<module_name>)
@@ -86,7 +83,7 @@ function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
             end
         end
 
-    elseif (rhs >= 2 & rhs <= 4) then
+    elseif (nargin >= 2 & nargin <= 4) then
 
         // Two input arguments
         // bench_run(<module_name>,<test_name>)
@@ -122,7 +119,7 @@ function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
     // Gestion des options
     // =======================================================
 
-    if rhs >= 3 then
+    if nargin >= 3 then
 
         option_mat =  varargin(3);
 
@@ -264,7 +261,7 @@ function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
         module_name = "";
     end
 
-    if (rhs == 4)
+    if (nargin == 4)
         exportToFile = varargin(4);
         if (isempty(exportToFile) | exportToFile == "[]")
             exportToFile = "";

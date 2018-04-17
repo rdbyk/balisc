@@ -1,6 +1,6 @@
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,7 @@
 function assert_generror ( varargin )
     //   Generates an error.
 
-    [lhs,rhs]=argn()
-    if ( and(rhs <> [1 2] ) ) then
+    if ( and(nargin <> [1 2] ) ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d to %d expected.") , "assert_generror" , 1 , 2 )
         error(errmsg)
     end
@@ -29,7 +28,7 @@ function assert_generror ( varargin )
         error(errmsg)
     end
     //
-    if ( rhs == 1 ) then
+    if ( nargin == 1 ) then
         error ( errormsg )
     else
         errornb = varargin(2)
@@ -48,4 +47,3 @@ function assert_generror ( varargin )
         error ( errormsg , errornb )
     end
 endfunction
-

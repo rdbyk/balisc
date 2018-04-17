@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -21,8 +22,7 @@ function flag = MY_assert_equal ( computed , expected )
   if flag <> 1 then bugmes();quit;end
 endfunction
 function y=f(varargin)
-  [lhs,rhs]=argn()
-  if ( rhs <> 1 ) then
+  if ( nargin <> 1 ) then
     lclmsg = gettext("%s: Wrong number of input argument: %d expected.\n")
     errmsg = sprintf ( lclmsg  , "f" , 1 )
     error(errmsg,1234)

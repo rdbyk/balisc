@@ -1,7 +1,7 @@
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,8 +27,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     endfunction
 
     //  Check that an instruction produces the expected error.
-    [lhs,rhs]=argn()
-    if ( rhs < 2 ) then
+    if ( nargin < 2 ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input argument: At least %d expected.\n") , "assert_checkerror" , 2 )
         error(errmsg)
     end
@@ -36,7 +35,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     // Get arguments
     instr = varargin(1);
     expectedmsg = varargin(2);
-    expectederrnb = assert_argindefault ( rhs , varargin , 3 , [] );
+    expectederrnb = assert_argindefault ( nargin , varargin , 3 , [] );
     //
     // Check types of variables
     if ( typeof(instr) <> "string" ) then
@@ -107,7 +106,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     errmsg = ""
     //
     // Localize the message, if necessary.
-    if ( rhs >= 4 ) then
+    if ( nargin >= 4 ) then
         localmsg = gettext(expectedmsg)
         instr = "expectedmsg = msprintf(localmsg, varargin(4:$))"
         ierr = execstr(instr,"errcatch")
@@ -133,7 +132,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
             end
             localstr = gettext("%s: Assertion failed: expected error message = ""%s"" while computed error message = ""%s"".")
             errmsg = msprintf(localstr,"assert_checkerror", expectedmsg, compmsg)
-            if ( lhs < 2 ) then
+            if ( nargout < 2 ) then
                 // If no output variable is given, generate an error
                 error ( errmsg )
             else
@@ -148,7 +147,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
             flag = %f
             localstr = gettext("%s: Assertion failed: expected error number = %d while computed error number = %d.")
             errmsg = msprintf(localstr,"assert_checkerror",expectederrnb,compierr)
-            if ( lhs < 2 ) then
+            if ( nargout < 2 ) then
                 // If no output variable is given, generate an error
                 error ( errmsg )
             else
@@ -157,4 +156,3 @@ function [flag,errmsg] = assert_checkerror ( varargin )
         end
     end
 endfunction
-

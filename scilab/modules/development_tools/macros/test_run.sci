@@ -3,8 +3,8 @@
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2010-2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,13 +17,11 @@
 //   Launch unit tests.
 
 function test_run_result = test_run(varargin)
-    lhs     = argn(1);
-    rhs     = argn(2);
     test_run_result = %f;
     // =========================================================================
     // Print test_run help
     // =========================================================================
-    if (rhs >= 3) & (~ isempty(grep(varargin(3),"help"))) then
+    if (nargin >= 3) & (~ isempty(grep(varargin(3),"help"))) then
         example = test_examples();
         printf("%s\n",example);
         return;
@@ -55,7 +53,7 @@ function test_run_result = test_run(varargin)
     // =======================================================
     // Management of the kind of tests to run and the options
     // =======================================================
-    if rhs >= 3 then
+    if nargin >= 3 then
 
         option_mat = varargin(3);
         if (option_mat == "[]")
@@ -127,7 +125,7 @@ function test_run_result = test_run(varargin)
             return;
         end
 
-        if rhs == 4 then
+        if nargin == 4 then
             params.exportFile = varargin(4);
             // Doing the XML export, force the display of the error and diff
             params.show_diff = %t;
@@ -143,9 +141,9 @@ function test_run_result = test_run(varargin)
     // =======================================================
     // Management of the tests to run
     // =======================================================
-    if (rhs == 0) ..
-        | ((rhs == 1) & (varargin(1)==[] | varargin(1)=="[]")) ..
-        | (rhs >= 2 & rhs <= 4) & ( varargin(1)==[]|varargin(1)=="[]") & (varargin(2)==[]|varargin(2)=="[]") then
+    if (nargin == 0) ..
+        | ((nargin == 1) & (varargin(1)==[] | varargin(1)=="[]")) ..
+        | (nargin >= 2 & nargin <= 4) & ( varargin(1)==[]|varargin(1)=="[]") & (varargin(2)==[]|varargin(2)=="[]") then
 
 
         // No input argument
@@ -184,10 +182,10 @@ function test_run_result = test_run(varargin)
             end
         end
 
-    elseif (rhs == 1) ..
-        | ((rhs == 2) & (varargin(2)==[] || varargin(2)=="[]")) ..
-        | ((rhs == 3) & (varargin(2)==[] || varargin(2)=="[]")) ..
-        | ((rhs == 4) & (varargin(2)==[] || varargin(2)=="[]")) ..
+    elseif (nargin == 1) ..
+        | ((nargin == 2) & (varargin(2)==[] || varargin(2)=="[]")) ..
+        | ((nargin == 3) & (varargin(2)==[] || varargin(2)=="[]")) ..
+        | ((nargin == 4) & (varargin(2)==[] || varargin(2)=="[]")) ..
         | ( ~ isempty(params.skip_mat)) then
 
         // One input argument
@@ -226,7 +224,7 @@ function test_run_result = test_run(varargin)
         end
         // Do not take in account skipped tests
         status.test_count = status.test_count - status.test_skipped_count;
-    elseif or(rhs==[2 3 4]) then
+    elseif or(nargin==[2 3 4]) then
         // Two input arguments
         // test_run(<module_name>,<test_name>)
         // test_run(<module_name>,[<test_name_1>,<test_name_2>] )

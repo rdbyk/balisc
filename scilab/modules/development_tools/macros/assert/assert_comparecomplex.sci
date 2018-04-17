@@ -1,7 +1,7 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -70,8 +70,7 @@ function order = assert_comparecomplex ( varargin )
 
     // Compare complex numbers with a tolerance.
 
-    [lhs,rhs]=argn()
-    if ( and(rhs <> [2 3 4] ) ) then
+    if ( and(nargin <> [2 3 4] ) ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d to %d expected.") , "assert_comparecomplex" , 2 , 4 )
         error(errmsg)
     end
@@ -79,8 +78,8 @@ function order = assert_comparecomplex ( varargin )
     // Get arguments
     a = varargin(1)
     b = varargin(2)
-    reltol = assert_argindefault ( rhs , varargin , 3 , sqrt(%eps) )
-    abstol = assert_argindefault ( rhs , varargin , 4 , 0 )
+    reltol = assert_argindefault ( nargin , varargin , 3 , sqrt(%eps) )
+    abstol = assert_argindefault ( nargin , varargin , 4 , 0 )
     //
     // Check types of variables
     if ( typeof(a) <> "constant" ) then
