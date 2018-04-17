@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,8 +36,6 @@
 //##                 1 : Quit
 //##
 function [str_out,Quit] = scstxtedit(str_in,ptxtedit)
-    //** check lhs/rhs arg
-    [lhs,rhs]=argn(0)
 
     //## param from ptxtedit
     clos = ptxtedit.clos

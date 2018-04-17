@@ -1,9 +1,10 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                      - Ramine Nikoukhah <ramine.nikoukhah@inria.fr> - 2003
-//                      - Serge Steer <serge.steer@inria.fr>           - 2003
-//                      - Fady Nassif <fady.nassif@inria.fr>           - 2007
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//                     - Ramine Nikoukhah <ramine.nikoukhah@inria.fr> - 2003
+//                     - Serge Steer <serge.steer@inria.fr>           - 2003
+//                     - Fady Nassif <fady.nassif@inria.fr>           - 2007
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -20,7 +21,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]=scicos_flat(scs_m,ksup,MaxBlock)
     //This function takes a hierarchical Scicos diagram and computes the
@@ -64,7 +64,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
     // Fady NASSIF 2007. INRIA.
     //-------------------------------------------------------------------
 
-    if argn(2)<=1 then ksup=0;end //used for recursion
+    if nargin<=1 then ksup=0;end //used for recursion
     if ksup==0 then   // main scheme
         MaxBlock=countblocks(scs_m);
         //last created fictitious block (clock split,clock sum, superblocks)

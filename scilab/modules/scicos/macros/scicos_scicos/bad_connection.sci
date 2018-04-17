@@ -1,8 +1,9 @@
-//  Xcos
+// Xcos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                      - Alan Layec <alan.layec@inria.fr>
-//  Copyright (C) 2011 <bernard.dujardin@contrib.scilab.org>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//                     - Alan Layec <alan.layec@inria.fr>
+// Copyright (C) 2011 <bernard.dujardin@contrib.scilab.org>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,7 +20,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,typ)
     // alert for badly connected blocks
@@ -36,8 +36,7 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
         disp("bad_connection...")
     end
 
-    rhs = argn(2) ;
-    if (rhs == 8) then typ=0, end
+    if (nargin == 8) then typ=0, end
 
     if type(path_out)==15 then //set of modelica blocks
         // look for modelica bloc associated with prt_out

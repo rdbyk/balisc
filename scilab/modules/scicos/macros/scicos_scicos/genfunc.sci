@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,11 +18,9 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function [ok,mac,txt]=genfunc(txt)
-    [lhs,rhs]=argn(0)
-    if rhs<1 then txt=" ",end
+    if nargin<1 then txt=" ",end
     mac=[]
     while %t do
         txt=dialog(["Set Function Block";

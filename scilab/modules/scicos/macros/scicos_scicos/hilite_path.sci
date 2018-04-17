@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,14 +18,13 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function hilite_path(path,mess,with_intermediates)
     //hilite a block included in a superblock hierarchy and displays a
     //message.   If required all the intermediate superblocs are displayed
     //first entry of the path must be a bloc of currently opened diagram
 
-    if argn(2)<2 then mess=" ",end
+    if nargin<2 then mess=" ",end
 
     // retrieve the root diagram
     if isdef("scs_m_s") then

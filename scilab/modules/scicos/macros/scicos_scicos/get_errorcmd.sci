@@ -1,7 +1,8 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                      - Alan Layec <alan.layec@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//                     - Alan Layec <alan.layec@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
     //** get_errorcmd : return a Scicos_commands strings
@@ -62,12 +62,11 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
     //** generte empty spec_err
     spec_err=[]
 
-    //** check number of rhs arg
-    rhs = argn(2) ;
-    if (rhs == 1) then
+    //** check number of nargin arg
+    if (nargin == 1) then
         title_err=[]
         mess_err=[]
-    elseif (rhs == 2) then
+    elseif (nargin == 2) then
         if typeof(scs_m_in)=="diagram" then
             scs_m=scs_m_in
             mess_err=[]
@@ -75,7 +74,7 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
             title_err=scs_m_in
             mess_err=[]
         end
-    elseif (rhs == 3) then
+    elseif (nargin == 3) then
         if typeof(scs_m_in)=="diagram" then
             scs_m=scs_m_in
         elseif typeof(scs_m_in)=="string" then

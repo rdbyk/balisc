@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,12 +18,11 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function o=standard_define(sz,model,label,gr_i)
     //initialize graphic part of the block data structure
 
-    if argn(2)<4 then gr_i=[],end
+    if nargin<4 then gr_i=[],end
 
     nin=size(model.in,1);
     if nin>0 then pin(nin,1)=0,else pin=[],end

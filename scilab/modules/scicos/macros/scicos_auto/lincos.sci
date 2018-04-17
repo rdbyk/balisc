@@ -1,7 +1,8 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright (C) DIGITEO - Clément DAVID <clement.david@scilab.org>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) DIGITEO - Clément DAVID <clement.david@scilab.org>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ./license.txt
-//
 
 function sys = lincos(scs_m,x0,u0,param)
     // NAME
@@ -85,9 +85,8 @@ function sys = lincos(scs_m,x0,u0,param)
         [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
     end
     // =====================================================================
-    [lhs, rhs] = argn(0);
 
-    if rhs < 1 then
+    if nargin < 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "lincos", 1));
     end
     if typeof(scs_m)<>"diagram" & typeof(scs_m)<>"cpr" then
@@ -213,7 +212,7 @@ function sys = lincos(scs_m,x0,u0,param)
     nu=0; for k=pointi', nu=nu+size(state.outtb(k),"*"), end
     ny=0; for k=pointo', ny=ny+size(state.outtb(k),"*"), end
 
-    if rhs<3 then
+    if nargin<3 then
         x0=zeros(nx,1);u0=zeros(nu,1);
     else
         if size(x0,"*")<>nx then
@@ -231,7 +230,7 @@ function sys = lincos(scs_m,x0,u0,param)
         end
     end
 
-    if rhs==4 then
+    if nargin==4 then
         del = param(1)+param(1)*1d-4*abs([x0;u0])
         t   = param(2)
     else

@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,7 +18,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function num=message(strings ,buttons, modal)
     //interface to message primitive to allow simple overloading for live demo
@@ -34,8 +34,7 @@ function num=message(strings ,buttons, modal)
         warnUser = consoleDisplay
     end
 
-    [lhs,rhs]=argn(0)
-    if rhs==3 then
+    if nargin==3 then
         if modal == %t then
             if buttons == "" then
                 num=warnUser(strings, "modal", "scilab");
@@ -49,7 +48,7 @@ function num=message(strings ,buttons, modal)
                 num=warnUser(strings, "scilab", buttons);
             end
         end
-    elseif rhs==2 then
+    elseif nargin==2 then
         num=warnUser(strings, "modal", "scilab", buttons);
     else
         num=1

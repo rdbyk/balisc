@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,7 +18,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_implicit,out_implicit)
     // check_io first check if given number of ports agree with block connection
@@ -36,7 +36,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_impl
     //                    attempt to add/delete ports when some are connected
     //           ok==%t  : changes of block structure has been performed
     //!
-    if argn(2)<=6 then in_implicit=[],out_implicit=[],end
+    if nargin<=6 then in_implicit=[],out_implicit=[],end
     // check_io first check if given number of ports agree with block connection
     in=int(in(:));nin=size(in,1)
 

@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,7 +18,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function connected=get_connected(scs_m,k,typ)
     //return the vector of number of link connected to a given block
@@ -25,13 +25,12 @@ function connected=get_connected(scs_m,k,typ)
     //   k          :   block_number
     //   typ        :   'in','out','clkin','clkout'
     //   connected  :   vector of connected link numbers
-    [lhs,rhs]=argn(0)
 
     connected=[]
 
     //disp('get_connected')
     // pause
-    if rhs<=2 then // all connected links
+    if nargin<=2 then // all connected links
         graphics=scs_m.objs(k).graphics
 
         ip=graphics.pin
