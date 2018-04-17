@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +13,6 @@
 function [i,j,v]=mtlb_find(b)
     // Translation function for find() Matlab function
 
-    [lhs,rhs]=argn(0)
-
     // Because find does not work on complex values
     // And isreal does not word with Booleans
     c=b
@@ -25,13 +23,13 @@ function [i,j,v]=mtlb_find(b)
     end
 
     // One output arg
-    if lhs==1 then
+    if nargout==1 then
         i=find(c)
         if size(b,1)<>1 then
             i=i'
         end
         // Two output args
-    elseif lhs==2 then
+    elseif nargout==2 then
         [i,j]=find(c)
         if size(b,1)<>1 then
             i=i'

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
 // Copyright (C) 09/2013 - A. Khorshidi
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,11 +25,9 @@ function [] = bode_asymp(sl, w_min, w_max)
     // Ref:
     //     http://forge.scilab.org/index.php/p/cpge/source/tree/HEAD/macros/REP_FREQ_pre_simulate.sci
 
-    rhs = argn(2);
-
     if and(typeof(sl) <> ["state-space" "rational" "zpk"]) then
         args=["sl", "w_min", "w_max"]
-        ierr=execstr("%"+overloadname(sl)+"_bode_asymp("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("%"+overloadname(sl)+"_bode_asymp("+strcat(args(1:nargin),",")+")","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),"bode_asymp",1))
         end
@@ -144,7 +142,7 @@ function [] = bode_asymp(sl, w_min, w_max)
             flag = 0;
         end
 
-        if rhs == 1 then
+        if nargin == 1 then
             wmin = fig.children(1).data_bounds(1, 1); // Minimal frequency, w_min
             wmax = fig.children(1).data_bounds(2, 1); // Maximal frequency, w_max
         else

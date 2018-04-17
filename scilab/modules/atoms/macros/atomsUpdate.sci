@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -39,20 +39,18 @@ function result = atomsUpdate(name,section)
     // Check input parameters
     // =========================================================================
 
-    rhs = argn(2);
-
-    if rhs > 2 then
+    if nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsUpdate",0,2))
     end
 
-    if (rhs>0) & (~ isempty(name) ) & (type(name)<>10) then
+    if (nargin>0) & (~ isempty(name) ) & (type(name)<>10) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsUpdate",1));
     end
 
     // Install for all users or just for me ?
     // =========================================================================
 
-    if rhs < 2 then
+    if nargin < 2 then
         // By default, install for all users (if we have write access of course !)
         if ATOMSALLUSERSWRITEACCESS then
             section = "all";
@@ -75,7 +73,7 @@ function result = atomsUpdate(name,section)
     // Check if all specified toolboxes are effectively installed
     // =========================================================================
 
-    if (rhs>0) &  ~isempty(name) then
+    if (nargin>0) &  ~isempty(name) then
 
         // Remove leading and trealing whitespaces
         name = stripblanks(name);
@@ -94,7 +92,7 @@ function result = atomsUpdate(name,section)
     // If name isn't defined or empty, get the full list of installed packages
     // =========================================================================
 
-    if (rhs==0) | isempty(name) then
+    if (nargin==0) | isempty(name) then
 
         name               = [];
         package_installed  = atomsGetInstalled(section);

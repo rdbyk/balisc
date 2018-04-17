@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,10 +12,9 @@
 
 function o = obsv_mat(a, c)
 
-    [lhs,rhs]=argn(0)
     select typeof(a)
     case "constant"  then
-        if rhs==1 then
+        if nargin==1 then
             msg = _("%s: Wrong number of input arguments: %d expected")
             error(msprintf(msg, "obsv_mat", 2))
         end
@@ -33,7 +32,7 @@ function o = obsv_mat(a, c)
         [a,c]=a([2,4])
         [n,n]=size(a)
     else
-        if rhs==1 then
+        if nargin==1 then
             msg = _("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n")
             error(msprintf(msg,"obsv_mat",1))
         else

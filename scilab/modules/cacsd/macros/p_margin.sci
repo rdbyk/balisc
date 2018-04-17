@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - 2016 - INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
 
 function [phm,fr]=p_margin(h)
     //compute the phase margin of a SISO transfer function
-    if argn(2) < 1 then
+    if nargin < 1 then
         error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"g_margin",1));
     end
     if and(typeof(h)<>["state-space","rational","zpk"]) then

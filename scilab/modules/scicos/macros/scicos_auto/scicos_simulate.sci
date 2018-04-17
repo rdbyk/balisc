@@ -1,4 +1,4 @@
-//  Scicos
+// Scicos
 //
 // Copyright (C) Scilab Enterprises - 2013 - Bruno JOFRET
 // Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
@@ -20,7 +20,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ./license.txt
-//
 
 function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     // Function for running scicos simulation in batch mode
@@ -60,13 +59,13 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
 
     //** check/set rhs parameters
     //---------------------------
-    if argn(2) == 1 then
+    if nargin == 1 then
         //scicos_simulate(scs_m)
         Info            = list()
         updated_vars = struct()
         flag            = ""
         Ignb            = ""
-    elseif argn(2) == 2 then
+    elseif nargin == 2 then
         //scicos_simulate(scs_m, Info)
         //or scicos_simulate(scs_m,updated_vars)
         //or scicos_simulate(scs_m,flag)
@@ -87,7 +86,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
             ki=2
         end
         Ignb = ""
-    elseif argn(2) == 3 then
+    elseif nargin == 3 then
         //scicos_simulate(scs_m, Info,updated_vars) or scicos_simulate(scs_m, Info,"nw")
         if type(updated_vars) == 10 then
             flag = updated_vars
@@ -97,7 +96,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
             flag = ""
         end
         Ignb = ""
-    elseif argn(2) >= 4 then
+    elseif nargin >= 4 then
         //scicos_simulate(scs_m, Info,updated_vars,"nw") or
         //scicos_simulate(scs_m, Info,"nw",updated_vars)
         ku=3;kf=4
@@ -105,7 +104,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
             [updated_vars,flag]=(flag,updated_vars)
             kf=3;ku=4
         end
-        if argn(2) == 4 then Ignb = "",end
+        if nargin == 4 then Ignb = "",end
     else
         error(msprintf(_("%s: Wrong number of input arguments. Must be between %d and %d.\n"),...
         "scicos_simulate", 1, 5))

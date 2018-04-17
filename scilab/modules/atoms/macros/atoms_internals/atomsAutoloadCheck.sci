@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,8 +18,7 @@
 
 function result = atomsAutoloadCheck(packages,section)
 
-    rhs        = argn(2);
-    result     = []; // Column vector that contains autoloaded packages
+    result = []; // Column vector that contains autoloaded packages
 
     // Check write access on allusers zone
     // =========================================================================
@@ -28,7 +27,7 @@ function result = atomsAutoloadCheck(packages,section)
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 2 then
+    if nargin <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsAutoloadCheck",2));
     end
 

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,7 +38,7 @@ function svm = svplot(Sl,w)
     select Sl.dt
     case []
         warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"svplot",1));
-        if argn(2) == 1
+        if nargin == 1
             w = logspace(-3,3);
         end
         nf = max(size(w)); nsv = min(size(d)); j = sqrt(-1);
@@ -47,7 +47,7 @@ function svm = svplot(Sl,w)
             svm(:,i) = svd(c*((j*w(i)*eye()-a)\b)+d);
         end
     case "c"
-        if argn(2) == 1
+        if nargin == 1
             w = logspace(-3,3);
         end
         nf = max(size(w)); nsv = min(size(d)); j = sqrt(-1);
@@ -56,7 +56,7 @@ function svm = svplot(Sl,w)
             svm(:,i) = svd(c*((j*w(i)*eye()-a)\b)+d);
         end
     case "d"
-        if argn(2) == 1
+        if nargin == 1
             w = logspace(-3,%pi);
         end
         nf = max(size(w)); nsv = min(size(d)); j = sqrt(-1);
@@ -65,7 +65,7 @@ function svm = svplot(Sl,w)
             svm(:,i) = svd(c*((exp(j*w(i))*eye()-a)\b)+d);
         end
     else T=Sl("dt");
-        if argn(2) == 1
+        if nargin == 1
             w = logspace(-3,%pi);
         end
         nf = max(size(w)); nsv = min(size(d)); j = sqrt(-1);

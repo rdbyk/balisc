@@ -23,13 +23,11 @@ function loadmatfile(varargin)
         end
     end
 
-    [lhs,rhs]=argn(0)
-
     fil=[]
     bin=[]
     varnames=[]
 
-    if rhs==1 then
+    if nargin==1 then
         fil = varargin(1)
         fileExtension = fileparts(fil, "extension");
         if isempty(fileExtension) then // No extension: looks for a file named fil.mat and treats it as a binary MAT-file

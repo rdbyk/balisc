@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,11 +13,9 @@
 function val=mtlb_realmax(prec)
     // Emulation function for Matlab realmax()
 
-    rhs=argn(2);
-
-    if rhs<=0 then
+    if nargin<=0 then
         val=number_properties("huge");
-    elseif rhs==1 then
+    elseif nargin==1 then
         if prec=="double" then
             val=number_properties("huge");
         else

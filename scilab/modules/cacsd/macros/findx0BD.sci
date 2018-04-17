@@ -1,6 +1,5 @@
 function [x0,B,D,V,rcnd]=findx0BD(A,C,y,u,withx0,withd,tol,printw)
     x0=[];B=[];D=[];V=[];rcnd=[];
-    [nargout,nargin] = argn(0)
     //FINDX0BD  Estimates the initial state and/or the matrices B and D of a
     //          discrete-time linear system, given the (estimated) system
     //          matrices A, C, and a set of input/output data.

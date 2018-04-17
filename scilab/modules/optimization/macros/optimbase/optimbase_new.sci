@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,9 +15,9 @@
 // optimbase_new --
 //   Creates a new Optimization object.
 //
+
 function newobj = optimbase_new ()
-    [lhs,rhs]=argn();
-    if ( rhs <> 0 ) then
+    if ( nargin <> 0 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimbase_new", 0);
         error(errmsg)
     end
@@ -136,4 +136,3 @@ function newobj = optimbase_new ()
     // function.
     newobj.outputcommandarg = ""
 endfunction
-

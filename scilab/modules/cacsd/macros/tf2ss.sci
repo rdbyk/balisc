@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,8 +16,6 @@ function [sl]=tf2ss(h,tol)
     // h = transfer matrix
     // sl = linear system in state-space representation (syslin list)
     //!
-
-    [lhs,rhs]=argn(0)
 
     if type(h)<=2 then
         sl=syslin([],[],[],[],h);
@@ -73,7 +71,7 @@ function [sl]=tf2ss(h,tol)
         [k,l]=find(u<>0) //get the permutation
         u=u(k,l);c=c(:,k)*u; b=diag(1 ./diag(u))*b(k,:);
 
-        if rhs<2 then
+        if nargin<2 then
             [no,u]=contr(a',c',%eps);
         else
             [no,u]=contr(a',c',tol);

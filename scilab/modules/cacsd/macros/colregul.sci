@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [Stmp,Ws]=colregul(Sl,Alfa,Beta);
     // [Stmp,Ws]=regul(Sl) computes a polynomial-state-space prefilter
@@ -19,8 +18,7 @@ function [Stmp,Ws]=colregul(Sl,Alfa,Beta);
     // Sl is asummed left invertible i.e. ss2tf(Sl) full column rank
     //!
 
-    [LHS,RHS]=argn(0);
-    if RHS==1 then Alfa=0;Beta=0;end
+    if nargin==1 then Alfa=0;Beta=0;end
     flag=0;
     Sl1=Sl(1)
     if Sl1(1)=="r" then

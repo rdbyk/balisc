@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,13 +18,12 @@
 
 function toremove = atomsToremoveList(section)
 
-    rhs        = argn(2);
-    toremove   = [];
+    toremove = [];
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs > 1 then
+    if nargin > 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsToremoveList",1));
     end
 
@@ -37,7 +36,7 @@ function toremove = atomsToremoveList(section)
     //     the "user" will be removed
     // =========================================================================
 
-    if rhs <= 1 then
+    if nargin <= 1 then
 
         // By default:
         //  → Remove packages located in both "allusers" and "user" sections if

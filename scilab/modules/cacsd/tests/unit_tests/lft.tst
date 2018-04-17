@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -14,7 +15,7 @@ function [A11,A12,A21,A22]=split4(A,m,n)
       A11=A(i1,j1);A12=A(i1,j2);A21=A(i2,j1);A22=A(i2,j2);
 endfunction
 function S=check(P,p,R)
-  if argn(2)==2 then
+  if nargin==2 then
     R=p
     p=size(R')
   end

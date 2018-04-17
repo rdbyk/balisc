@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C)  1985-2010 - INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -55,15 +55,14 @@ function [h,num,den]=ss2tf(sl,rmax)
     end
 
     //Determine the algorithm
-    [lhs,rhs]=argn(0);
     meth="p";
-    if rhs==2 then
+    if nargin==2 then
         if type(rmax)==10 then
             meth=part(rmax,1);
             if and(meth<>["p","b"]) then
                 error(msprintf(_( "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"ss2tf",1,"''p'',''b''"));
             end
-            rhs=1;
+            nargin=1;
         else
             meth="b";
         end
@@ -75,7 +74,7 @@ function [h,num,den]=ss2tf(sl,rmax)
         [n1,n1]=size(a);
         z=poly(0,var);
         //block diagonal decomposition of the state matrix
-        if rhs==1 then
+        if nargin==1 then
             [a,x,bs]=bdiag(a);
         else
             [a,x,bs]=bdiag(a,rmax);
@@ -100,7 +99,7 @@ function [h,num,den]=ss2tf(sl,rmax)
             k=k+n;
         end
 
-        if lhs==3 then
+        if nargout==3 then
             h=sl.D,
             num=sl.C*m*diag(v)*(x\sl.B);
         else
@@ -139,7 +138,7 @@ function [h,num,den]=ss2tf(sl,rmax)
                 den(l,1:n)=ones(1,n);
             end
         end
-        if lhs==3 then
+        if nargout==3 then
             h=sl.D;
         else
             w=num./den+sl.D;

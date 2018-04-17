@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,16 +9,15 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
+
 function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
-    [LHS,RHS]=argn(0);
     txtdo=[]
 
-    if or(RHS == [0 2]) then
+    if or(nargin == [0 2]) then
         error(msprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"),"lmitool",1,3))
     end
 
-    if RHS == 1 then
+    if nargin == 1 then
         messagebox([gettext("Welcome to LMITOOL");"      ";"   ";
         gettext("LMITOOL is a Scilab package for LMI optimization");
         "            ";
@@ -106,7 +105,7 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
     txt1=[];txt2=[];
     for i = 1:vnum,
         vname = part(XNAME,index_commas(i)+1:index_commas(i+1)-1);
-        if RHS<>1 then
+        if nargin<>1 then
             txt1 = [txt1;
             vname+"_init=..."]
         end
@@ -115,7 +114,7 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
 
     txts1=["function [LME,LMI,OBJ]="+PROBNAME+"_eval(XLIST)";
     "["+XNAME+"]=XLIST(:)"]
-    if RHS ~= 1 then
+    if nargin ~= 1 then
         txts2=["LME=...";"LMI=...";"OBJ=..."]
     else
         [p,q]=size(mat);
@@ -151,7 +150,7 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
     txt4=[txt0;sep11;txt1;sep12;" ";txt2;" ";" ";" ";...
     sep2;" ";txts1;" ";sep13;txts2];
 
-    if RHS==0|RHS==1 then
+    if nargin==0|nargin==1 then
         [txt4]=x_dialog([gettext("Function definitions: ");
         gettext("Here is a skeleton of the functions you should edit.");
         gettext("You can edit in this window or click on ''ok''.");
@@ -160,7 +159,7 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
     if txt4==[] then txtdo="Try again";return;end
     txt=[txt4];
     n=1;
-    if RHS<>3 then
+    if nargin<>3 then
 
         fname=x_dialog([gettext("Name of the file where to save the solver function");
         gettext("and the evaluation function");
@@ -177,7 +176,7 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
     end
 
     // Tell the user what to do:
-    if RHS==0|RHS==1 then
+    if nargin==0|nargin==1 then
         txtdo = ["    To solve your problem, you need to ";
         "1- load your functions using the command:";
         "   exec(''"+fname'+"'')";
@@ -188,7 +187,7 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
 
         messagebox(txtdo,"modal","info");return
     end
-    if RHS==3 then
+    if nargin==3 then
         txtdo = [gettext("    To solve your problem, you need to ");
         gettext("1- edit file ")+fname
         gettext("2- load (and compile) your functions:");

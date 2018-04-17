@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,7 +18,6 @@
 
 function nbAdd = atomsAutoloadAdd(packages,section)
 
-    rhs            = argn(2);
     nbAdd          = 0;
     autoloaded     = []; // Column vector that contains autoloaded packages
 
@@ -35,7 +34,7 @@ function nbAdd = atomsAutoloadAdd(packages,section)
     // Check number of input arguments
     // =========================================================================
 
-    if rhs < 1 | rhs > 2 then
+    if nargin < 1 | nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsAutoloadAdd",1,2));
     end
 
@@ -59,7 +58,7 @@ function nbAdd = atomsAutoloadAdd(packages,section)
     //       → SCIHOME/atoms/autoloaded
     // =========================================================================
 
-    if rhs < 2 then
+    if nargin < 2 then
 
         // By default:
         //  → Add the module to the "autoload" list of the "allusers" section

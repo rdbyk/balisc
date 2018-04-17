@@ -1,6 +1,5 @@
 function [sys,K,Q,Ry,S,rcnd]=findABCD(s,n,l,R,meth,nsmpl,tol,printw)
     sys=[];K=[];Q=[];Ry=[];S=[];rcnd=[];
-    [nargout,nargin] = argn(0)
     //FINDABCD  Finds the system matrices and the Kalman gain of a discrete-time
     //          system, given the system order and the relevant part of the
     //          R factor of the concatenated block-Hankel matrices, using subspace

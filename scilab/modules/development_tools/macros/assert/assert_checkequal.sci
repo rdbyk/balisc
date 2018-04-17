@@ -1,7 +1,7 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,16 +38,14 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
         //vector (columns  first).
         //
         //
-        [lhs,rhs]=argn(0)
-        if ( rhs<>1 ) then
+        if ( nargin<>1 ) then
             error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"thrownan",1))
         end
         numb=find(bool2s(~isnan(x)))
         nonan=x(~isnan(x))
     endfunction
 
-    [lhs,rhs]=argn()
-    if ( rhs <> 2 ) then
+    if ( nargin <> 2 ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d expected.\n") , "assert_checkequal" , 2 )
         error(errmsg)
     end
@@ -146,11 +144,9 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
         else
             errmsg = msprintf(gettext("%s: Assertion failed: expected = %s while computed = %s"),"assert_checkequal",estr,cstr)
         end
-        if ( lhs < 2 ) then
+        if ( nargout < 2 ) then
             // If no output variable is given, generate an error
             assert_generror ( errmsg )
         end
     end
 endfunction
-
-

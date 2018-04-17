@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,17 +14,16 @@
 function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     // function z=arsimul(a,b,d,sig,u,up,yp,ep)
 
-    [lhs,rhs]=argn(0)
     // switch to ar representation
     if type(x1)<>15&type(x1)<>16 then
-        if rhs < 5,
+        if nargin < 5,
             error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"arsimul",5,8));
         end;
         ar=armac(x1,x2,x3,size(x1,"r"),size(x5,"r"),x4);
-        if rhs==5,z=arsimul(ar,x5);return;end
-        if rhs==6,z=arsimul(ar,x5,x6);return;end
-        if rhs==7,z=arsimul(ar,x5,x6,x7);return;end;
-        if rhs==8,z=arsimul(ar,x5,x6,x7,x8);return;end;
+        if nargin==5,z=arsimul(ar,x5);return;end
+        if nargin==6,z=arsimul(ar,x5,x6);return;end
+        if nargin==7,z=arsimul(ar,x5,x6,x7);return;end;
+        if nargin==8,z=arsimul(ar,x5,x6,x7,x8);return;end;
     end
     // Here the call is always arsimul(ar,....)
     a=x1("a");b=x1("b");d=x1("d");sig=x1("sig");
@@ -66,7 +65,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     // where ak= al1/al -1; bk= bl1/mmu -1 ; dk = dl1/al-1
     // past conditions for up
     //--------------------------
-    if rhs <=2,
+    if nargin <=2,
         up=0*ones(bl1,1);
     else
         up=x3;
@@ -85,7 +84,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     end
     // past conditions for yp
     //--------------------------
-    if rhs <=3,
+    if nargin <=3,
         yp=0*ones(al1,1)
     else
         yp=x4;
@@ -104,7 +103,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     end
     // past conditions for ep
     //--------------------------
-    if rhs <=4,
+    if nargin <=4,
         ep=0*ones(dl1,1);
     else
         ep=x5

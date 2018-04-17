@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,14 +25,12 @@ function atomsList(category)
     // Check input parameters
     // =========================================================================
 
-    rhs = argn(2);
-
-    if rhs > 1 then
+    if nargin > 1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"atomsInstall",0,1))
     end
 
 
-    if rhs==1 then
+    if nargin==1 then
 
         if type(category) <> 10 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsIsCategory",1));
@@ -53,7 +51,7 @@ function atomsList(category)
 
     [packages_struct,categories_struct] = atomsDESCRIPTIONget();
 
-    if rhs==0 then
+    if nargin==0 then
         packages_list      = getfield(1,packages_struct);
         packages_list(1:2) = [];
         packages_list      = packages_list';

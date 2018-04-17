@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,16 +9,15 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
+
 function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
     %OPT=[];%Xlist=list();
-    [LHS,RHS]=argn(0);
 
-    if RHS < 2 then
+    if nargin < 2 then
         error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"lmisolver",2,3))
     end
 
-    if RHS==2 then
+    if nargin==2 then
         %Mb = 1e3;%ato = 1e-10;%nu = 10;%mite = 100;%rto = 1e-10;
     else
         %Mb=%options(1);%ato=%options(2);%nu=%options(3);%mite=%options(4);%rto=%options(5);
@@ -382,8 +381,8 @@ function [A,b]=spaff2Ab(lme,dimX,D,ind)
     //Y,X,D are lists of matrices.
     //Y=lme(X,D)= affine fct of Xi's;
     //[A,b]=matrix representation of lme in canonical basis.
-    [LHS,RHS]=argn(0)
-    select RHS
+
+    select nargin
     case 3 then
         nvars=0;
         for k=dimX'

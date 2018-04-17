@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1996 - 2016 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,10 +12,9 @@
 
 function [f,r]=dscr(sys,dt,m)
 
-    [lhs,rhs]=argn(0);
     if and(typeof(sys) <> ["state-space" "rational" "zpk"]) then
         args=["sys","dt","m"]
-        ierr=execstr("%"+overloadname(sys)+"_dscr("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("%"+overloadname(sys)+"_dscr("+strcat(args(1:nargin),",")+")","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"dscr",1))
         end
@@ -54,7 +54,7 @@ function [f,r]=dscr(sys,dt,m)
     [n1,m1]=size(b),
     s=expm([a,b;0*ones(m1,n1+m1)]*dt),
     f=s(1:n1,1:n1);g=s(1:n1,n1+1:n1+m1);
-    if rhs==3 then
+    if nargin==3 then
         s=expm([-a,m;0*a a']*dt),
         r=f*s(1:n1,n1+1:n1+n1),
     end;

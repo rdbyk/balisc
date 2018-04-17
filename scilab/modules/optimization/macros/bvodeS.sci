@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Rainer von Seggern
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,8 +28,7 @@ function z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,...
         error(msprintf(_("%s: More than 20 equations are not allowed"),"bvodeS"));
     end
 
-    [lhs,rhs]=argn()
-    if rhs<8 | rhs>23 then
+    if nargin<8 | nargin>23 then
         error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), ...
         "bvodeS"));
     end

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) ???? - INRIA - Serge STEER
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,10 +26,8 @@ function   transorder=translatepaths(Paths,res_path)
     //  - mfile2sci
 
     // Get default arguments
-
-    [lhs,rhs]=argn(0)
-    if rhs<2 then res_path="./",end
-    if rhs<1 then m2sci_gui();transorder=[];return;end
+    if nargin<2 then res_path="./",end
+    if nargin<1 then m2sci_gui();transorder=[];return;end
 
     // Loads libraries related to m2sci
     if exists("m2skernellib")==0 then load("SCI/modules/m2sci/macros/kernel/lib"),end

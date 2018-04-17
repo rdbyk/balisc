@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Michael Baudin
 // Copyright (C) 2012 - Scilab Enterprises - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,13 @@
 
 function boolStatus = example_run(modulesName, functionsName, helpLanguage, varargin)
 
-    rhs = argn(2);
-
-    if rhs < 1 then
+    if nargin < 1 then
         modulesName = getmodules();
     end
-    if rhs < 2 then
+    if nargin < 2 then
         functionsName = [];
     end
-    if rhs < 3 then
+    if nargin < 3 then
         helpLanguage = "en_US";
     end
 
@@ -96,7 +94,7 @@ function boolStatus = example_run(modulesName, functionsName, helpLanguage, vara
         end
 
         testDir=fullfile(TMPDIR,tempModuleName)
-        if rhs > 3 then
+        if nargin > 3 then
             boolStatus = test_run(testDir, [], varargin(:))
         else
             boolStatus = test_run(testDir, [])

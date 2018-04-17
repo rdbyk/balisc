@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,12 +12,11 @@
 
 function M=%infer_i_s(varargin)
 
-    [lhs,rhs]=argn(0)
-    M=varargin(rhs)
-    N=varargin(rhs-1)//inserted matrix
+    M=varargin(nargin)
+    N=varargin(nargin-1)//inserted matrix
     index=varargin(1) //
 
-    if rhs==3&(type(index)==10|type(index)==15) then
+    if nargin==3&(type(index)==10|type(index)==15) then
         if type(index)<>15 then
             M=struct()
             M(index)=N

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F. Delebecque
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,Alfa,Beta)
     //--------------Exact disturbance decoupling----------
@@ -50,11 +49,10 @@ function [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,Alfa,Beta)
     // Stability (resp. pole placement) requires stabilizability
     // (resp. controllability) of (A,B2).
     //
-    [LHS,RHS]=argn(0);
-    if RHS==5 then Beta=-1;end
-    if RHS==4 then Beta=-1;Alfa=-1;end
-    if RHS==3 then Beta=-1;Alfa=-1;flag="st";end
-    if RHS==2 then Beta=-1;Alfa=-1;flag="st";D1=zeros(size(Sys("C"),1),size(B1,2));
+    if nargin==5 then Beta=-1;end
+    if nargin==4 then Beta=-1;Alfa=-1;end
+    if nargin==3 then Beta=-1;Alfa=-1;flag="st";end
+    if nargin==2 then Beta=-1;Alfa=-1;flag="st";D1=zeros(size(Sys("C"),1),size(B1,2));
     end
     if size(B1,1) ~= size(Sys("A"),1) then
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"),"ddp",1,3))

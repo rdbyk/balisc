@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,7 +18,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function ierr = cos2cosf(u,scs_m,count)
 
@@ -25,9 +25,8 @@ function ierr = cos2cosf(u,scs_m,count)
     //returns the  value of scicos data structure scs_m.
     //in the opened file associated with logical unit u
 
-    [lhs,rhs]=argn(0)
     ierr=0;
-    if rhs<3 then
+    if nargin<3 then
         count=0,
         lname="scs_m"
     else

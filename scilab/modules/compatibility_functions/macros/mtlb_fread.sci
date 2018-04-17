@@ -34,8 +34,7 @@ function [a, count]=mtlb_fread(fid,sz,prec)
     "?"  "intN"    ""
     "?"  "uintN"   ""         ]
 
-    [lhs,rhs]=argn(0)
-    select rhs
+    select nargin
     case 1 then
         sz=%inf
         prec="uchar"

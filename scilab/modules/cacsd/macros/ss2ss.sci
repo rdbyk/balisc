@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,8 +28,7 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
     // See also : projsl
 
     [A,B,C,D]=abcd(Sl);
-    [LHS,RHS]=argn(0);
-    select RHS
+    select nargin
     case 2 then
         Ti=inv(T)
         Sl1=syslin(Sl.dt,Ti*A*T,Ti*B,C*T,D,Ti*Sl.X0);

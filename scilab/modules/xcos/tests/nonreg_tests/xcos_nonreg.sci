@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Laurent VAYLET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -58,10 +58,6 @@ function xcos_nonreg(varargin)
     //  <YYYY/MM/DD>   <AUTHOR>         Modification
     //
 
-    //-- Parse input arguments
-    lhs = argn(1)
-    rhs = argn(2)
-
     // Define default input arguments
     defaultArgs = list("*")
     inputArgs   = defaultArgs
@@ -70,12 +66,12 @@ function xcos_nonreg(varargin)
     MAX_ARGS  = length(inputArgs)
 
     // Check number of input arguments
-    if rhs > MAX_ARGS
+    if nargin > MAX_ARGS
         error(msprintf("%s: Wrong number of input arguments: At most %d expected.\n", ..
         "xcos_nonreg", MAX_ARGS))
-    elseif rhs > 0
+    elseif nargin > 0
         // Replace any default value with user-provided one
-        for k = 1:rhs
+        for k = 1:nargin
             inputArgs(k) = varargin(k)
         end
     end
@@ -442,4 +438,3 @@ function filename = get_filename(fullPath)
 endfunction
 
 // -----------------------------------------------------------------------------
-

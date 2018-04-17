@@ -4,6 +4,7 @@
 // This set of scilab 's macros provide a few sparse utilities.
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,9 +49,8 @@ function [K1] = condestsp(A, arg2, arg3)
     //     close to the given algorithm as this one is written in
     //     a "matlab-like" language
     //
-    [lhs, rhs] = argn()
 
-    if rhs<1 | rhs>3 | lhs > 2 then
+    if nargin<1 | nargin>3 | nargout > 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"condestsp",1,3))
     end
 
@@ -66,15 +66,15 @@ function [K1] = condestsp(A, arg2, arg3)
     factor_inside = %f  // when LUp is given (after the following tests
     // this var is set to %t if the factorization
     // is computed inside this function)
-    if rhs == 1 then
+    if nargin == 1 then
         LUp = umf_lufact(A) ; factor_inside = %t ; t = 2
-    elseif rhs == 2 then
+    elseif nargin == 2 then
         if typeof(arg2) == "pointer" then
             LUp = arg2 ; t = 2
         else
             t = arg2 ; LUp = umf_lufact(A) ; factor_inside = %t
         end
-    elseif rhs == 3 then
+    elseif nargin == 3 then
         LUp = arg2 ; t = arg3
     end
 

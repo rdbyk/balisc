@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 // xopt=karmarkar(Aeq,beq,c)
 // xopt=karmarkar(Aeq,beq,c,x0)
@@ -51,24 +50,22 @@ function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
         end
     endfunction
 
-    //
-    [lhs,rhs]=argn(0)
-    if ( rhs<3 | rhs>12 | rhs==9 ) then
+    if ( nargin<3 | nargin>12 | nargin==9 ) then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"karmarkar",3,12));
     end
     //
     Aeq = varargin(1)
     beq = varargin(2)
     c = varargin(3)
-    x0 = optim_argindefault ( rhs , varargin , 4 , [] )
-    rtolf = optim_argindefault ( rhs , varargin , 5 , 1.d-5 )
-    gam = optim_argindefault ( rhs , varargin , 6 , 1/2 )
-    maxiter = optim_argindefault ( rhs , varargin , 7 , 200 )
-    __karmarkar_outfun__ = optim_argindefault ( rhs , varargin , 8 , [] )
-    A = optim_argindefault ( rhs , varargin , 9 , [] )
-    b = optim_argindefault ( rhs , varargin , 10 , [] )
-    lb = optim_argindefault ( rhs , varargin , 11 , [] )
-    ub = optim_argindefault ( rhs , varargin , 12 , [] )
+    x0 = optim_argindefault ( nargin , varargin , 4 , [] )
+    rtolf = optim_argindefault ( nargin , varargin , 5 , 1.d-5 )
+    gam = optim_argindefault ( nargin , varargin , 6 , 1/2 )
+    maxiter = optim_argindefault ( nargin , varargin , 7 , 200 )
+    __karmarkar_outfun__ = optim_argindefault ( nargin , varargin , 8 , [] )
+    A = optim_argindefault ( nargin , varargin , 9 , [] )
+    b = optim_argindefault ( nargin , varargin , 10 , [] )
+    lb = optim_argindefault ( nargin , varargin , 11 , [] )
+    ub = optim_argindefault ( nargin , varargin , 12 , [] )
     //
     // Check input arguments
     //
@@ -237,7 +234,7 @@ function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
     // Extract the solution from the initial problem
     [xopt,fopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb , ub , pinit , xxopt , yyopt , exitflag )
 
-    if lhs < 3 & exitflag~= 1 then
+    if nargout < 3 & exitflag~= 1 then
         warning(msprintf(gettext("%s: The algorithm did not converge (exitflag= %d).\n"),"karmarkar",exitflag));
     end
 
@@ -735,5 +732,3 @@ function stop = karmarkar_outfunDriver ( xopt , optimValues , state , outfun )
         stop = %f
     end
 endfunction
-
-

@@ -1,17 +1,19 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C)  2016 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function [z,p,C]=simplify_zp(z,p,tol)
     iszpk=typeof(z)=="zpk"
     if iszpk then //simplify_zp(sys,tol)
-        if argn(2)>2 then
+        if nargin>2 then
             error(msprintf(_("%s: Wrong number of input argument: at most %d expected.\n"),"simplify_zp",2))
         else
-            if argn(2)==1 then
+            if nargin==1 then
                 tol=0;
             else
                 tol=p;
@@ -21,11 +23,11 @@ function [z,p,C]=simplify_zp(z,p,tol)
         if type(tol)<>1|~isreal(tol)|size(tol)<>1|tol<0 then
             error(msprintf(_("%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"),"simplify_zp",2))
         end
-        if argn(1)>1 then
+        if nargout>1 then
             error(msprintf(_("%s: Wrong number of output argument: %d expected.\n"),"simplify_zp",1))
         end
     else
-        if argn(2)==2 then  tol=0;end
+        if nargin==2 then  tol=0;end
         if type(z)<>1 then
             error(msprintf(_("Wrong type for input argument %d: Real or complex array expected.\n"),"simplify_zp",1))
         end

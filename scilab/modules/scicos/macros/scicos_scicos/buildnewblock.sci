@@ -1,12 +1,12 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                      - Alan Layec <alan.layec@inria.fr>  - 2007
-//                      - Allan CORNET - 2008
-//                      - Rachid Djenidi
-//                      - Simone Mannori
-//
-//  Copyright (C) DIGITEO - Allan CORNET - 2010 - fully rewritten
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//                     - Alan Layec <alan.layec@inria.fr>  - 2007
+//                     - Allan CORNET - 2008
+//                     - Rachid Djenidi
+//                     - Simone Mannori
+// Copyright (C) DIGITEO - Allan CORNET - 2010 - fully rewritten
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
+
 //=============================================================================
 function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldflags, cflags)
 
@@ -45,16 +45,14 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
     //
     // Output :  ok : a flag to say if build is ok
 
-    //** check rhs paramaters
-    [lhs,rhs] = argn(0);
-
-    if rhs <= 1 then files    = blknam, end
-    if rhs <= 2 then filestan = "", end
-    if rhs <= 3 then filesint = "", end
-    if rhs <= 4 then libs     = "", end
-    if rhs <= 5 then rpat     = TMPDIR, end
-    if rhs <= 6 then ldflags  = "", end
-    if rhs <= 7 then cflags   = "", end
+    //** check nargin parameters
+    if nargin <= 1 then files    = blknam, end
+    if nargin <= 2 then filestan = "", end
+    if nargin <= 3 then filesint = "", end
+    if nargin <= 4 then libs     = "", end
+    if nargin <= 5 then rpat     = TMPDIR, end
+    if nargin <= 6 then ldflags  = "", end
+    if nargin <= 7 then cflags   = "", end
 
     // Add .c extension if it is not already added
     exts_files = fileext(files);

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,13 +17,11 @@ function [L]=mtlb_dir(path)
     // opt=='disp' -> result not affected to a variable
     // opt=='var' -> result affected to a variable
 
-    rhs=argn(2)
-
     mask = int32(61440)
     dirtype = 16384
     basepath=""
 
-    if rhs==1 then
+    if nargin==1 then
         files=listfiles(path)
         basepath=path
     else

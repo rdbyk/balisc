@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -54,34 +54,33 @@
 
 function categories_mat = atomsCategoryGet(categoryFilter)
 
-    rhs            = argn(2);
     categories_mat = [];
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs > 1 then
+    if nargin > 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsCategoryGet",0,1));
     end
 
     // Check input argument type (if any)
     // =========================================================================
 
-    if (rhs==1) & (type(categoryFilter) <> 10) then
+    if (nargin==1) & (type(categoryFilter) <> 10) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsCategoryGet",1));
     end
 
     // Check input argument dimension (if any)
     // =========================================================================
 
-    if (rhs==1) & (size(categoryFilter,"*")<>1) then
+    if (nargin==1) & (size(categoryFilter,"*")<>1) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsCategoryGet",1));
     end
 
     // Check input argument values (if any)
     // =========================================================================
 
-    if (rhs==1) ..
+    if (nargin==1) ..
         & (and(categoryFilter<>["filter:all","filter:main"])) ..
         & ( (regexp(categoryFilter,"/ - /")<>[]) | ~atomsIsCategory(categoryFilter)) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a valid main category expected.\n"),"atomsCategoryGet",1));
@@ -90,7 +89,7 @@ function categories_mat = atomsCategoryGet(categoryFilter)
     // Default value of categoryFilter
     // =========================================================================
 
-    if rhs==0 then
+    if nargin==0 then
         categoryFilter = "filter:all";
     end
 

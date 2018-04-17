@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,6 @@
 
 function r=mtlb_eval(%s1,%s2)
     // Emulation function for Matlab eval()
-
-    [lhs,rhs]=argn()
 
     %prot=funcprot();
     funcprot(0)
@@ -67,7 +65,7 @@ function r=mtlb_eval(%s1,%s2)
     %nold=size(who("get"),"*")
     %r=execstr(%txt,"errcatch")
 
-    if %r<>0&rhs==2 then
+    if %r<>0&nargin==2 then
         deff("%fun()",%s2)
         mtlbtree=macr2tree(%fun);
         [scitree,varslist]=mtlbtree2sci(mtlbtree,varslist)

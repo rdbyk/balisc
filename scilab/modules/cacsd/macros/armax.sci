@@ -1,7 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
+// Copyright (C) ENPC - J-Ph. Chancelier
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -50,11 +51,8 @@ function [archap,la,lb,sig,resid]=armax(r,s,y,u,b0f,prf)
     // Example:
     //      Enter the command [a,b,sig,resid]=armax();
     //      to see an example in dimension 1.
-    // Auteur: J-Ph. Chancelier ENPC Cergrene
     //!
-    // Copyright INRIA
-    [lhs,rhs]=argn(0)
-    if rhs==0,write(%io(2),"/ / y_t = 0.2*u_{t-1}+0.01*e(t)");
+    if nargin==0,write(%io(2),"/ / y_t = 0.2*u_{t-1}+0.01*e(t)");
         write(%io(2)," rand(''normal''); u=rand(1,1000);");
         write(%io(2)," y=arsimul([1],[0,0.2],1,0.01,u);");
         write(%io(2)," [archap,a,b,sig,resid]=armax(0,1,y,u)");
@@ -64,8 +62,8 @@ function [archap,la,lb,sig,resid]=armax(r,s,y,u,b0f,prf)
         [archap,la,lb,sig,resid]=armax(0,1,y,u,1);
         return
     end
-    if rhs<=5,prf=1;end
-    if rhs<=4,b0f=0;end
+    if nargin<=5,prf=1;end
+    if nargin<=4,b0f=0;end
     [ny,n2]=size(y)
     [nu,n2u]=size(u)
     // Compute zz matrix as

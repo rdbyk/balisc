@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,10 +15,8 @@ function varargout=mtlb_size(X,dim)
 
     varargout=list()
 
-    [lhs,rhs]=argn()
-
     // d=size(X,dim)
-    if rhs==2 then
+    if nargin==2 then
         if dim<=size(size(X),2) then
             varargout(1)=size(X,dim)
         else
@@ -27,17 +25,17 @@ function varargout=mtlb_size(X,dim)
         // [d1,...,dn]=size(X)
     else
         // if n < size(size(X),2)
-        if lhs<size(size(X),2) then
+        if nargout<size(size(X),2) then
             // d1,...,dn-1
-            for k=1:lhs
+            for k=1:nargout
                 varargout(k)=size(X,k)
             end
             // dn is equal to the product of remaining dimensions
             last=1
-            for k=lhs+1:size(size(X),2)
+            for k=nargout+1:size(size(X),2)
                 last=last*size(X,k)
             end
-            varargout(lhs)=last
+            varargout(nargout)=last
         else
 
             for k=1:size(size(X),2)
@@ -45,8 +43,8 @@ function varargout=mtlb_size(X,dim)
             end
 
             // if n > size(size(X),2)
-            if lhs>size(size(X),2)
-                for k=size(size(X),2)+1:lhs
+            if nargout>size(size(X),2)
+                for k=size(size(X),2)+1:nargout
                     varargout(k)=1
                 end
             end

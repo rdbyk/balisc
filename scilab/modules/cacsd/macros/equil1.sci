@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,12 +12,9 @@
 
 
 function [t,siz]=equil1(p,q,tol)
-    //
-
     [n,n]=size(p);
-    [lhs,rhs]=argn(0);
     // t1
-    if rhs==2 then
+    if nargin==2 then
         [u,p,u,np]=svd(p);
     else
         [u,p,u,np]=svd(p,tol);
@@ -27,7 +24,7 @@ function [t,siz]=equil1(p,q,tol)
     //
     // t2
     q=diag(p)*(u'*q*u)*diag(p) // q1=t1**-1'*q*t1**-1
-    if rhs==2 then
+    if nargin==2 then
         [u,sigma1,u,nq]=svd(q(1:np,1:np))
     else
         [u,sigma1,u,nq]=svd(q(1:np,1:np),tol)
@@ -45,7 +42,7 @@ function [t,siz]=equil1(p,q,tol)
     end;
     //
     // t4
-    if rhs==2 then
+    if nargin==2 then
         [u,q,u,n3]=svd(q(np+1:n,np+1:n));
     else
         [u,q,u,n3]=svd(q(np+1:n,np+1:n),tol);

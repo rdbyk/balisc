@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -49,11 +49,11 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
     //     Then C*[(sI-A-B*F)^(-1)+D]*(Q+B*R) =0   (<=>G*(Q+B*R)=0)
     //F.D.
     //function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
-    [LHS,RHS]=argn(0);
+
     if and(typeof(Sl)<>["state-space" "rational"]) then
         error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"abinv",1))
     end
-    select argn(2)
+    select nargin
     case 1 then
         Alfa=-1;Beta=-1;
         flag="ge";
@@ -155,7 +155,7 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
     A11=A11+B1bar*F1bar;  //add B1bar*F1bar is not necessary.
     if B1t ~= [] then
         voidB1t=%f;
-        if RHS==1 then
+        if nargin==1 then
             warning(msprintf(gettext("%s: Needs %s => Use default value %s=%d.\n"),"abinv","Alfa","Alfa",-1))
             Alfa=-1;
         end
@@ -172,7 +172,7 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 
     sl2=syslin(timedomain,A22,B2*Urange,0*(B2*Urange)');
     [ns2,nc2,U2,sl3]=st_ility(sl2);
-    if (nc2~=0)&(RHS==1|RHS==2) then
+    if (nc2~=0)&(nargin==1|nargin==2) then
         warning(msprintf(gettext("%s: Needs %s => Use default value %s=%d.\n"),"abinv","Beta","Beta",-1));
     end
     F2=Urange*stabil(sl2("A"),sl2("B"),Beta);

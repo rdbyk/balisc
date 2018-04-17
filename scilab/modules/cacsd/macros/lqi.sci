@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA 2016-
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,7 +49,7 @@ function [K,X] = lqi(G,Q,R,S)
         error(msprintf(_("%s: Wrong value for input argument #%d: Must be symmetric.\n"),"lqi",3))
     end
 
-    if argn(2)<4 then
+    if nargin<4 then
         S=zeros(nx+ny,nu);
     elseif or(size(S)<>[nx+ny,nu])  then
         error(msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),"lqi",4,nx+ny,nu))

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Serge STEER
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,13 +24,12 @@ function matfile2sci(mat_file_path, result_file_path, overwrite)
         error(msprintf(gettext("%s: %s module is not installed.\n"), "matfile2sci", "matio"));
     end
 
-    [lhs,rhs]=argn(0)
-    if rhs<2 | rhs>3 then
+    if nargin<2 | nargin>3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "matfile2sci", 2, 3));
     end
 
     //overwrite is false by default
-    if rhs==2
+    if nargin==2
         overwrite = %F;
     end
 

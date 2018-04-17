@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -50,8 +50,7 @@ function h=trfmod(h,job)
     ft = format();
     format("v", 15);
 
-    [lhs,rhs]=argn(0)
-    if rhs==1 then job="p",end
+    if nargin==1 then job="p",end
     //
     if type(h("num"))==1 then h("num")=poly(h("num"),varn(h("den")),"c"),end
     if type(h("den"))==1 then h("den")=poly(h("den"),varn(h("num")),"c"),end

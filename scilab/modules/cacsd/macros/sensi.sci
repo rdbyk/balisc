@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,8 +19,7 @@ function [Se,R,T]=sensi(G,Sk,flag)
     // [Si,Ri,Ti]= [inv(eye+K*G);G*inv(eye+K*G);K*G*inv(eye+K*G)];
     //!
 
-    [LHS,RHS]=argn(0);
-    if RHS==2 then flag="o";end
+    if nargin==2 then flag="o";end
     select flag
     case "o"
         G1=G(1);Sk1=Sk(1);

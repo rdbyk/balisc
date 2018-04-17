@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,7 +32,6 @@ function [a,b,c,d]=lin(sim,x0,u0)
     //                sl = syslin('c',a,b,c,d,x0)
     //!
 
-    [lhs,rhs]=argn(0)
     [n,w]=size(x0);[m,w]=size(u0);mpn=m+n
     nrm=norm([x0;u0]);if nrm<1 then nrm=1,end;
     [zz,nu]=colcomp(rand(mpn,mpn));
@@ -42,5 +41,5 @@ function [a,b,c,d]=lin(sim,x0,u0)
     [p,w]=size(y);
     ab=ab/d;a=ab(1:n,1:n);b=ab(1:n,n+1:mpn)
     c=ab(n+1:n+p,1:n);d=ab(n+1:n+p,n+1:mpn)
-    if lhs==1 then a=syslin("c",a,b,c,d,x0),end
+    if nargout==1 then a=syslin("c",a,b,c,d,x0),end
 endfunction

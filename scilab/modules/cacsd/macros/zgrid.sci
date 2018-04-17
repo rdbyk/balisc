@@ -2,6 +2,7 @@
 // Copyright (C) 2005 - INRIA - Farid Belahcene
 // Copyright (C) 2010 - INRIA - Serge STEER
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,25 +16,24 @@ function []=zgrid(varargin)
     // zgrid(Z,Wn [,"new"] [,colors])
     defaultcolors=[-1 -1];
     defaultbounds=[-1,-1;1,1];
-    rhs=argn(2)
     new=%f
-    if rhs>=1 then
+    if nargin>=1 then
         if type(varargin(1))==10 then
             if varargin(1)<>"new" then
                 error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"zgrid",1,"new"))
             end
             varargin(1)=null()
-            rhs=rhs-1
+            nargin=nargin-1
             new=%t
         end
     end
-    if rhs>=3 then
+    if nargin>=3 then
         if type(varargin(3))==10 then
             if varargin(3)<>"new" then
                 error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),"zgrid",3,"new"))
             end
             varargin(3)=null()
-            rhs=rhs-1
+            nargin=nargin-1
             new=%t
         end
     end
@@ -41,7 +41,7 @@ function []=zgrid(varargin)
     defaultwn=0:0.1:1;
     defaultzeta=0:0.1:1;
 
-    select rhs
+    select nargin
     case 0 then  //zgrid() or zgrid("new")
         wn=defaultwn
         zeta = defaultzeta

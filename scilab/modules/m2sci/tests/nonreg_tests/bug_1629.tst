@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005 - INRIA - Farid BELAHCENE
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -66,7 +67,7 @@ SCIFILECONTENTSREF=["function [out] = bug1629(par)";
 		"out=[];";
 		"";
 		"// Number of arguments in function call";
-		"[%nargout,%nargin] = argn(0)";
+		"[%nargout,%nargin] = (nargin,nargout)";
 		"";
 		"// Display mode";
 		"mode(0);";

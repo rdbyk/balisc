@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,7 +18,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function [model,...
     graphics,...
@@ -30,7 +30,7 @@ function [model,...
     in_implicit,...
     out_implicit)
     // CHECK
-    if argn(2)<=6 then
+    if nargin<=6 then
         in_implicit=[]
     out_implicit=[], end
     deff("[str__err]=str__err(err__,"+...

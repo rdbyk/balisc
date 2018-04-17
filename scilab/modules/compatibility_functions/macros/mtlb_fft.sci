@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,13 +13,12 @@
 function r=mtlb_fft(x,n,job)
     // Translation function for fft() Matlab function
 
-    [lhs,rhs]=argn(0)
     if size(x,"*")==0 then
         r=[]
         return
     end
-    if rhs<2 then n=[],end
-    if rhs==3 then //row or column-wise fft
+    if nargin<2 then n=[],end
+    if nargin==3 then //row or column-wise fft
         select job
         case 1 then //row-wise
             if n<>[] then //pad or truncate

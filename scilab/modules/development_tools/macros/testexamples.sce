@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -71,7 +71,7 @@ function r=xdel_run(w,opt)
     if winsid()==[] then return,end
     cur = gcf().figure_id
     //
-    if argn(2)==1 then
+    if nargin==1 then
         ids_=[]
         for k=1:size(w,"*")
             scf(w(k))
@@ -111,13 +111,12 @@ function r=clf_run(w,opt)
     r=%f
     if winsid()==[] then return,end
     cur = gcf().figure_id
-    rhs=argn(2)
-    if rhs==1 & type(w)==10 then
+    if nargin==1 & type(w)==10 then
         opt = w;
-        rhs = 0
+        nargin = 0
     end
     //
-    if rhs==1 then
+    if nargin==1 then
         ids_=[]
         if type(w)==9 then
             H=w;w=[]
@@ -134,7 +133,7 @@ function r=clf_run(w,opt)
             load(%U,"%wins_ref");
             if %CMP(%wins_, %wins_ref) then r=%t,return,end
         end
-        if rhs==1 then clf(w),else clf(w,opt),end
+        if nargin==1 then clf(w),else clf(w,opt),end
     else
         if get("figure_style")=="old" then return,end
         ids_ = cur
@@ -161,7 +160,7 @@ function r=xbasc_run(w)
     if winsid()==[] then return,end
     cur = gcf().figure_id
     //
-    if argn(2)==1 then
+    if nargin==1 then
         ids_=[]
         for k=1:size(w,"*")
             scf(w(k))

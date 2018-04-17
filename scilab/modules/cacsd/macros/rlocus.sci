@@ -1,19 +1,19 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - 2016 - INRIA - Serge STEER
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function [kk,ol_poles,ol_zeros,cl_poles,AsymptotesOrigin,AsymptotesAngles]=rlocus(sys,kmax)
-    //Calling sequence analysis
-    rhs=argn(2)
 
     kmax_ind=0; //for error messages
     sltyp=typeof(sys)
     if and(sltyp<>["state-space" "rational" "zpk"]) then
         args=["sys","kmax"];
-        ierr=execstr("[kk,ol_poles,ol_zeros,cl_poles,AsymptotesOrigin,AsymptotesAngles]=%"+overloadname(sys)+"_rlocus("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("[kk,ol_poles,ol_zeros,cl_poles,AsymptotesOrigin,AsymptotesAngles]=%"+overloadname(sys)+"_rlocus("+strcat(args(1:nargin),",")+")","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"rlocus",1))
         end
@@ -41,7 +41,7 @@ function [kk,ol_poles,ol_zeros,cl_poles,AsymptotesOrigin,AsymptotesAngles]=rlocu
     end
 
 
-    if rhs<2 then
+    if nargin<2 then
         kmax=0,
     else
         if type(kmax)<>1|~isreal(kmax)|kmax<0 then

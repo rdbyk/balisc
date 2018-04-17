@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) - 2014, 2018 - Samuel GOUGEON <sgougeon@free.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,7 +21,7 @@ function elts = pfss(S, rmax, cord)
     // If S is given in transfer form, it is first converted into state-space
     // and each subsystem is then converted in transfer form.
 
-    select argn(2)
+    select nargin
     case 1 then
         rmax = [];
         cord = [];
@@ -62,7 +62,7 @@ function elts = pfss(S, rmax, cord)
         elts(ll+1) = syslin("c", f1l, gl, hl)
         ll = ll+1; k = k+l;
     end;
-    if argn(2) == 2  then
+    if nargin == 2  then
         select cord
         case "c"
             nb = size(bs, "*");

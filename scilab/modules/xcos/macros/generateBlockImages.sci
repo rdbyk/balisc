@@ -1,9 +1,8 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2009-2009 - Vincent COUVERT
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
 
 // Generate xcos palette block icons and graph images from scicos pal files.
 //
@@ -22,9 +19,10 @@
 // @param imagesOutPath output path of the graph images (SVG files).
 //             The default is the common `palFiles' dir.
 // @param[opt] traceEnable %T if a trace output must be printed, %F if not (default=%F).
+
 function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable)
-    [lhs, rhs] = argn(0);
-    if rhs < 3 then
+
+    if nargin < 3 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "generateBlockImages", 3));
     end
 

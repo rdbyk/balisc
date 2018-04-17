@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -82,14 +82,14 @@
 //   [ f , g , c ] = costf ( this , x , index , a1, a2, ... )
 //   [ f , c ] = costf ( this , x , index , a1, a2, ... )
 //
+
 function varargout = optimbase_function ( this , x , index )
-    [lhs,rhs]=argn();
-    if ( rhs <> 3 ) then
-        errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 are expected."), "optimbase_function", rhs);
+    if ( nargin <> 3 ) then
+        errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 are expected."), "optimbase_function", nargin);
         error(errmsg)
     end
-    if ( ( lhs < 3 ) | ( lhs > 5 ) ) then
-        errmsg = msprintf(gettext("%s: Unexpected number of output arguments : %d provided while 3 to 5 are expected."), "optimbase_function", lhs);
+    if ( ( nargout < 3 ) | ( nargout > 5 ) ) then
+        errmsg = msprintf(gettext("%s: Unexpected number of output arguments : %d provided while 3 to 5 are expected."), "optimbase_function", nargout);
         error(errmsg)
     end
     if this.fun == "" then
@@ -215,4 +215,3 @@ function varargout = optimbase_function ( this , x , index )
         end
     end
 endfunction
-

@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,7 +18,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
+
 function scs_m_new = update_scs_m(scs_m,version)
     // update_scs_m : function to do certification of
     //                main data structure of
@@ -34,8 +35,7 @@ function scs_m_new = update_scs_m(scs_m,version)
     //
     // Initial rev 12/05/07 : Alan
     // Copyright INRIA
-    rhs = argn(2)
-    if rhs<2 then
+    if nargin<2 then
         version=get_scicos_version();
     end
 

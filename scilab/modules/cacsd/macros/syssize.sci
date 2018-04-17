@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,8 +33,7 @@ function [io,s] = syssize(sys)
             [s,s]=size(sys("A"))
         case "r" then
             io=size(sys("den"))
-            [lhs,rhs]=argn(0);
-            if lhs==2 then  sys=tf2ss(sys);[s,s]=size(sys("A")),end
+            if nargout==2 then  sys=tf2ss(sys);[s,s]=size(sys("A")),end
         else
             msg = _("%s: Argument #%d: A system in state space or transfer matrix form expected.\n")
             error(msprintf(msg, "syssize", 1))

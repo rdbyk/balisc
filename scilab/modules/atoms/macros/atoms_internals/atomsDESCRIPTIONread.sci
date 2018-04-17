@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -63,9 +63,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
     // Check input parameters
     // =========================================================================
 
-    rhs  = argn(2);
-
-    if and(rhs <> [1 2])  then
+    if and(nargin <> [1 2])  then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDESCRIPTIONread",1,2));
     end
 
@@ -73,7 +71,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
         error(msprintf(gettext("%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsDESCRIPTIONread",1));
     end
 
-    if rhs < 2 then
+    if nargin < 2 then
         additional = struct();
     else
         if type(additional) <> 17 then

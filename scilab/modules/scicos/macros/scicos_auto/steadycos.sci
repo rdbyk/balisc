@@ -1,7 +1,8 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright (C) DIGITEO - Clément DAVID <clement.david@scilab.org>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) DIGITEO - Clément DAVID <clement.david@scilab.org>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ./license.txt
-//
 
 function [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy,Indxp,param)
     // NAME
@@ -72,9 +72,7 @@ function [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy,Indxp,param)
     end
     // =====================================================================
 
-    [lhs,rhs] = argn(0) ;
-
-    if rhs < 1 then
+    if nargin < 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "steadycos", 1));
     end
     if typeof(scs_m)<>"diagram" & typeof(scs_m)<>"cpr" then
@@ -108,11 +106,11 @@ function [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy,Indxp,param)
             scs_m=do_version(scs_m,scicos_ver);
         end
 
-        if rhs==7 then
+        if nargin==7 then
             Indxp=[ ];param=list(1.d-6,0)
-        elseif rhs==8 then
+        elseif nargin==8 then
             param=list(1.d-6,0)
-        elseif rhs==9 then
+        elseif nargin==9 then
         else
             error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "steadycos", 7, 9));
         end
@@ -274,4 +272,3 @@ function [f,g,ind]=cost(ux,ind)
     end
 
 endfunction
-

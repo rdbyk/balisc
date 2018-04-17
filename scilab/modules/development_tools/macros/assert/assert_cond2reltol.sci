@@ -1,6 +1,6 @@
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -45,9 +45,8 @@ function rtol = assert_cond2reltol ( varargin )
         // Authors
         //   Michael Baudin - 2009-2010 - DIGITEO
 
-        [lhs,rhs]=argn()
-        if ( rhs <> lhs ) then
-            errmsg = sprintf ( gettext ( "%s: The number of output arguments %d do not match the number of input arguments %d.") , "assert_expandvar" , lhs , rhs )
+        if ( nargin <> nargout ) then
+            errmsg = sprintf ( gettext ( "%s: The number of output arguments %d do not match the number of input arguments %d.") , "assert_expandvar" , nargout , nargin )
             error(errmsg)
         end
 
@@ -56,7 +55,7 @@ function rtol = assert_cond2reltol ( varargin )
         // imat is the index of the input argument which is a matrix.
         istherematrix = %f
         imat = 0
-        for ivar = 1 : rhs
+        for ivar = 1 : nargin
             if ( size ( varargin(ivar) , "*" ) <> 1 ) then
                 istherematrix = %t
                 imat = ivar
@@ -65,7 +64,7 @@ function rtol = assert_cond2reltol ( varargin )
         end
         // If there is no matrix, returns the output arguments as is.
         if ( ~istherematrix ) then
-            for ovar = 1 : lhs
+            for ovar = 1 : nargout
                 varargout ( ovar ) = varargin ( ovar )
             end
             return
@@ -74,7 +73,7 @@ function rtol = assert_cond2reltol ( varargin )
         nbrows = size ( varargin ( imat ) , "r" )
         nbcols = size ( varargin ( imat ) , "c" )
         // Check that all matrices have the same shape.
-        for ivar = 1 : rhs
+        for ivar = 1 : nargin
             nbi = size ( varargin ( ivar ) , "*" )
             if ( nbi <> 1 ) then
                 nbrowsi = size ( varargin ( ivar ) , "r" )
@@ -86,13 +85,13 @@ function rtol = assert_cond2reltol ( varargin )
             end
         end
         // Expand all input arguments which are scalar up to this shape.
-        for ivar = 1 : rhs
+        for ivar = 1 : nargin
             if ( size ( varargin(ivar) , "*" ) == 1 ) then
                 varargin ( ivar ) = varargin ( ivar ) * ones ( nbrows , nbcols )
             end
         end
         // Set all output variables
-        for ovar = 1 : lhs
+        for ovar = 1 : nargout
             varargout ( ovar ) = varargin ( ovar )
         end
     endfunction
@@ -112,16 +111,14 @@ function rtol = assert_cond2reltol ( varargin )
         end
     endfunction
 
-
-    [lhs,rhs]=argn()
-    if ( and ( rhs <> [1 2] ) ) then
+    if ( and ( nargin <> [1 2] ) ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d to %d expected.") , "assert_cond2reltol" , 1 , 2 )
         error(errmsg)
     end
     //
     // Get arguments
     condition = varargin ( 1 )
-    offset = assert_argindefault ( rhs , varargin , 2 , 0 )
+    offset = assert_argindefault ( nargin , varargin , 2 , 0 )
     //
     // Check types of variables
     if ( typeof(condition) <> "constant" ) then
@@ -147,4 +144,3 @@ function rtol = assert_cond2reltol ( varargin )
     d = assert_cond2reqdigits ( condition , offset , 10 )
     rtol = 10^-d
 endfunction
-

@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added argument checking and error control
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,16 +19,14 @@ function [r, err] = intc(a, b, f, abserr, relerr)
     // relerr: relative error required. Default: 1d-8.
     // err : estimated absolute error on the result.
 
-    [lhs, rhs] = argn();
-
-    if rhs < 3 then
+    if nargin < 3 then
         error(msprintf(_("%s: Wrong number of input argument(s): at least %d expected.\n"), "intc", 3));
     end
 
-    if rhs == 3 then
+    if nargin == 3 then
         abserr = 1d-14;
         relerr = 1d-8;
-    elseif rhs == 4 then
+    elseif nargin == 4 then
         if type(abserr) <> 1 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Real expected.\n"), "intc", 4));
         end

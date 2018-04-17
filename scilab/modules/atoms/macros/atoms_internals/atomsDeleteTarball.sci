@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Simon GARESTE <simon.gareste@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,14 +18,10 @@ function remList = atomsDeleteTarball(package,section,version)
 
     remList = [];
 
-    // Check input parameters
-    // =========================================================================
-    rhs = argn(2);
-
     // Input argument number
     // =========================================================================
 
-    if rhs < 2 | rhs > 3 then
+    if nargin < 2 | nargin > 3 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsDeleteTarball",2,3))
     end
 
@@ -52,7 +48,7 @@ function remList = atomsDeleteTarball(package,section,version)
 
     // 3rd input argument
     // =========================================================================
-    if rhs==3 then
+    if nargin==3 then
         if and(section<>["user","allusers","all"]) then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"),"atomsRemove",2));
         end

@@ -2,8 +2,8 @@
 // Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - Michael Baudin
 // Copyright (C) 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -93,8 +93,7 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
 
     //  Check that computed and expected are numerically close.
 
-    [lhs,rhs]=argn()
-    if ( and(rhs <> [2 3 4 5] ) ) then
+    if ( and(nargin <> [2 3 4 5] ) ) then
         errmsg = gettext("%s: Wrong number of input arguments: %d to %d expected.")
         error(msprintf(errmsg, "assert_checkalmostequal" , 2 , 5 ))
     end
@@ -102,9 +101,9 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
     // Get arguments
     computed = varargin(1)
     expected = varargin(2)
-    reltol = assert_argindefault ( rhs , varargin , 3 , sqrt(%eps) )
-    abstol = assert_argindefault ( rhs , varargin , 4 , 0 )
-    comptype = assert_argindefault ( rhs , varargin , 5 , "element" )
+    reltol = assert_argindefault ( nargin , varargin , 3 , sqrt(%eps) )
+    abstol = assert_argindefault ( nargin , varargin , 4 , 0 )
+    comptype = assert_argindefault ( nargin , varargin , 5 , "element" )
     //
     // Check types of variables
     if ( and(typeof(computed) <> ["constant" "sparse" "polynomial"]) ) then
@@ -209,7 +208,7 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
         absstr = string(abstol)
         errmsg = gettext("%s: Assertion failed: expected = %s while computed = %s")
         errmsg = msprintf(errmsg, "assert_checkalmostequal", estr, cstr)
-        if ( lhs < 2 ) then
+        if ( nargout < 2 ) then
             // If no output variable is given, generate an error
             assert_generror ( errmsg )
         end

@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -20,11 +21,11 @@
 //
 
 function add_entity_menu(win, emen)
-    if argn(2)<1 then
+    if nargin<1 then
         win = get(gcf(),"figure_id")
         scf(win)
     end
-    if argn(2)<2 then emen="Edit",end
+    if nargin<2 then emen="Edit",end
     old = gcf()
     EntityMenus=["Browser","Copy","Paste","Move","Delete","Insert","Ok","Cancel"];
     //delmenu(win,'Entities')
@@ -33,8 +34,6 @@ function add_entity_menu(win, emen)
     //seteventhandler('entity_handler')
     scf(old)
 endfunction
-
-
 
 function entity_menu(k,win)
     old=gcf();fig=scf(win)
@@ -202,7 +201,6 @@ function move_entity()
     mprintf("fin move\n")
 endfunction
 
-
 function copy_entity()
     gedx=ged;
     [btn,xc,yc]=xclick()
@@ -212,7 +210,6 @@ function copy_entity()
     twinkle(r,1);
     save(TMPDIR+"/G_Clipboard",r)
 endfunction
-
 
 function paste_entity()
     // check the file
@@ -228,7 +225,7 @@ endfunction
 
 function txt=gen_code(win)
     old=gcf()
-    if argn(2)>=1 then scf(win);end
+    if nargin>=1 then scf(win);end
     ax=gca()
     txt=[]
     for k=size(ax.children,"*"):-1:1
@@ -417,6 +414,7 @@ function markopt=mark_opt(e)
         end
     end
 endfunction
+
 function lineopt=line_opt(e)
     lineopt=[]
     t=e.type
@@ -449,6 +447,7 @@ function fillopt=fill_opt(e)
         end
     end
 endfunction
+
 function arrowopt=arrow_opt(e)
     arrowopt=[]
     if e.polyline_style<>1 then
@@ -457,6 +456,7 @@ function arrowopt=arrow_opt(e)
         "e.arrow_size_factor="+string(e.arrow_size_factor)]
     end
 endfunction
+
 function fontopt=font_opt(e)
     fontopt=[]
     if e.font_foreground<>-1 then
@@ -511,10 +511,7 @@ function clipopt=clip_opt(e)
     end
 endfunction
 
-
 function s=num2string(a)
     s=matrix(msprintf("%.2f\n",a(:)),size(a))
     s=strsubst(s,".00","")
 endfunction
-
-

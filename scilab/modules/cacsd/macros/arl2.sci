@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC - JPC
 // Copyright (C) INRIA - Serge Steer , Francois Delebecque
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,16 +12,15 @@
 // along with this program.
 
 function   [den,num,err]=arl2(y,den0,n,imp,all)
-    [lhs,rhs]=argn(0);
     // test the system type 'c' 'd' or dt
-    if rhs <= 4 then all="one";end
-    if rhs <= 3 then imp=0;end
+    if nargin <= 4 then all="one";end
+    if nargin <= 3 then imp=0;end
     if all=="all" then
         [den,num,err]=arl2_ius(y,den0,n,imp,all);
     else
         [den,num,err]=arl2_ius(y,den0,n,imp);
     end;
-    if lhs<=1 then
+    if nargout<=1 then
         den=syslin("d",num,den);
     end
 endfunction

@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,7 +18,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with_gui, init)
     //Scilab interface with external tool modelicac
@@ -27,7 +27,7 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
         MODELICAC_FILENAME = MODELICAC_FILENAME + ".exe";
     end
 
-    if argn(2) < 7 then init = %f,end
+    if nargin < 7 then init = %f,end
     incidence = "";
     tmpdir = pathconvert(TMPDIR, %t, %t);  //for error log and  shell scripts
     xmlfileTMP = pathconvert(xmlfileTMP, %f, %t);

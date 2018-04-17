@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,13 +21,12 @@
 //   options = optimset ( key1 , value1 , key2 , value2 , ... )
 //   options = optimset ( options , key , value )
 //   options = optimset ( options , key1 , value1 , key2 , value2 , ... )
-//
+
 function options = optimset (varargin)
-    [lhs,rhs]=argn();
-    if rhs == 0 then
+    if nargin == 0 then
         options = optimset_new ();
         return
-    elseif rhs==1 then
+    elseif nargin==1 then
         //
         //   options = optimset ( funname )
         // If there is only one argument, it is expected to be the
@@ -38,7 +37,7 @@ function options = optimset (varargin)
         return
     end
     // Set the options variable
-    if modulo(rhs,2)<>0 then
+    if modulo(nargin,2)<>0 then
         //
         //   options = optimset ( options , key , value )
         //   options = optimset ( options , key1 , value1 , key2 , value2 , ... )
@@ -59,7 +58,7 @@ function options = optimset (varargin)
     end
     // Set ivar : index of input variable.
     // The variable ivar allows to make a loop over input arguments.
-    if ( modulo(rhs,2)<>0 ) then
+    if ( modulo(nargin,2)<>0 ) then
         ivar = 1;
     else
         ivar = 0;
@@ -67,7 +66,7 @@ function options = optimset (varargin)
     //
     // Process key,values as pairs.
     //
-    nbkeys = rhs/2;
+    nbkeys = nargin/2;
     for i=1:nbkeys
         ivar = ivar + 1;
         key = varargin(ivar);

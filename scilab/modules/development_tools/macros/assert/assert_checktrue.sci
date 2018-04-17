@@ -1,7 +1,7 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +13,7 @@
 function [flag,errmsg] = assert_checktrue ( condition )
     //   Check that condition is true.
 
-    [lhs,rhs]=argn()
-    if ( rhs <> 1 ) then
+    if ( nargin <> 1 ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d expected.\n") , "assert_checktrue" , 1 )
         error(errmsg)
     end
@@ -37,10 +36,9 @@ function [flag,errmsg] = assert_checktrue ( condition )
         end
         errmsg = msprintf(gettext("%s: Assertion failed: found false entry in condition = %s"), ..
         "assert_checktrue",cstr)
-        if ( lhs < 2 ) then
+        if ( nargout < 2 ) then
             // If no output variable is given, generate an error
             assert_generror ( errmsg )
         end
     end
 endfunction
-

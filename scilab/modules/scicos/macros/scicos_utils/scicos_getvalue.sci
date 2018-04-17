@@ -1,7 +1,8 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright (C) 2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2010 - DIGITEO - Clément DAVID <clement.david@scilab.org>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ./license.txt
-//
 
 function [%ok,%1,%2,%3,%4,%5,...
     %6,%7,%8,%9,%10,...
@@ -80,10 +80,9 @@ function [%ok,%1,%2,%3,%4,%5,...
     // 12/02/07 -Alan- : fix (variable evaluation of %scicos_context)
     //
     // Copyright INRIA
-    [%lhs, %rhs]=argn(0)
 
     %nn=prod(size(%labels))
-    if %lhs <> %nn+2 & %lhs <> %nn+1 then
+    if nargout <> %nn+2 & nargout <> %nn+1 then
         msg = _("%s: Wrong number of output arguments: %d to %d expected.\n")
         error(msprintf(msg, "scicos_getvalue", %nn+1, %nn+2))
     end
@@ -97,7 +96,7 @@ function [%ok,%1,%2,%3,%4,%5,...
     %21=[];%22=[];%23=[];%24=[];%25=[];
     %26=[];%27=[];%28=[];%29=[];%30=[];
 
-    if %rhs==3 then  %ini=emptystr(%nn,1),end
+    if nargin==3 then  %ini=emptystr(%nn,1),end
 
     // Transform a list of strings into a vector of strings
     // Has no effect if %ini is already a vector of strings
@@ -311,7 +310,7 @@ function [%ok,%1,%2,%3,%4,%5,...
             break
         end
     end
-    if %lhs==%nn+2 then
-        execstr("%"+string(%lhs-1)+"=%str")
+    if nargout==%nn+2 then
+        execstr("%"+string(nargout-1)+"=%str")
     end
 endfunction

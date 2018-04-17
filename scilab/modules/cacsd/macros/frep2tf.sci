@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Serge Steer
 // Copyright (C) ENPC -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,16 +15,15 @@ function [best_h,best_w]=frep2tf(frq,repf,dg,dom,tols,weight)
     // iterative use of frep2tf_b jpc fd 1997
 
     // Copyright INRIA
-    [lhs,rhs]=argn(0);
-    if rhs <= 3 then dom="c" ; end
-    if rhs <= 4 then
+    if nargin <= 3 then dom="c" ; end
+    if nargin <= 4 then
         rtol=1.e-2; atol=1.e-4, N=10;
     else
         rtol=tols(1);atol=tols(2);N=tols(3);
     end
     if dom==[] then dom="c";end
     if dom=="d" then dom=1;end
-    if rhs <=5  then
+    if nargin <=5  then
         [h,err]=frep2tf_b(frq,repf,dg,dom);
         best_w = [];
     else
@@ -50,10 +49,9 @@ endfunction
 function [h,err]=frep2tf_b(frq,repf,dg,dom,weight)
     // steer, jpc, fd 1997 (Nov)
     //============================
-    [lhs,rhs]=argn(0);
     // test the system type 'c' 'd' or dt
-    if rhs <= 3 then dom="c" ; end
-    if rhs <= 4 then weight=[];end
+    if nargin <= 3 then dom="c" ; end
+    if nargin <= 4 then weight=[];end
     if dom==[] then dom="c";end
     if dom=="d" then dom=1;end
     n=size(frq,"*");
@@ -117,7 +115,7 @@ function [h,err]=frep2tf_b(frq,repf,dg,dom,weight)
     x=x(1:$-1);
 
     h=syslin(dom,poly(x(1:dg+1),"s","c"),poly([x((dg+2):$)],"s","c"))
-    if lhs==2 then
+    if nargout==2 then
         repf1=repfreq(h,frq);
         err = sum(abs(repf1(:)-repf(:)))/n;
     end

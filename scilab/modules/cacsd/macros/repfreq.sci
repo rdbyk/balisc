@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1984 - 2011 - INRIA - Serge STEER
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,11 +14,11 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
 
     pas_def="auto";
     l10=log(10);
-    [lhs,rhs]=argn(0)
+
     //discretization
     if and(typeof(sys)<>[ "rational" "state-space" "zpk"]) then
         args=["sys","fmin","fmax","pas"];
-        ierr=execstr("[frq,rep,splitf]=%"+overloadname(sys)+"_repfreq("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("[frq,rep,splitf]=%"+overloadname(sys)+"_repfreq("+strcat(args(1:nargin),",")+")","errcatch")
         if ierr<>0 then
             msg = gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n")
             error(msprintf(msg, "repfreq", 1))
@@ -33,14 +33,14 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
     end
     if dom=="d" then dom=1;end
 
-    select  rhs
+    select  nargin
     case 1 then
         pas=pas_def
         if dom=="c" then fmax=1.d3; else fmax=1/(2*dom),end
         fmin=0
     case 2 then
         if type(fmin)==10 then
-            rhs=1
+            nargin=1
             pas=pas_def
             if dom=="c" then fmax=1.d3; else fmax=1/(2*dom),end
             if fmin=="sym" then
@@ -59,7 +59,7 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
         error(msprintf(msg, "repfreq", 1, 4))
     end;
     splitf=1
-    if rhs<>2 then
+    if nargin<>2 then
         if fmin==[] then
             fmin=0,
         end
@@ -137,5 +137,5 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
         error(msprintf(msg, "repfreq", 1))
     end;
     //representation
-    if lhs==1 then frq=rep,end
+    if nargout==1 then frq=rep,end
 endfunction

@@ -1,9 +1,8 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Clément DAVID
 // Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +10,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
+
 function [status, msg] = xcosValidateBlockSet(interfFunctionName)
     status = %t;
     msg = "";
@@ -41,11 +39,10 @@ function [status, msg] = xcosValidateBlockSet(interfFunctionName)
     // Stubbing the x_mdialog method
     // checking it's arguments size only
     function [result]=x_mdialog(title, labelsv, labelsh, default_inputs_vector)
-        [lhs, rhs] = argn();
-        if rhs == 3 then
+        if nargin == 3 then
             default_inputs_vector = labelsh;
             result = x_dialog(labelsv, default_inputs_vector);
-        elseif rhs == 4 then
+        elseif nargin == 4 then
             vSize = size(labelsv, "*");
             hSize = size(labelsh, "*");
             if size(default_inputs_vector) <> [vSize, hSize] then

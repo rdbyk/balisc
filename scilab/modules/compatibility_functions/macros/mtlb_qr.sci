@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,12 +13,10 @@
 function [Q,R,E]=mtlb_qr(A,B)
     // Emulation function for qr() Matlab function
 
-    [lhs,rhs]=argn()
-
-    if lhs<>3 then
+    if nargout<>3 then
         error(msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"),"mtlb_qr",3));
     end
-    if rhs<>2 then
+    if nargin<>2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"mtlb_qr",2));
     end
 

@@ -1,6 +1,5 @@
 function [R,n,sval,rcnd]=findR(s,y,u,meth,alg,jobd,tol,printw)
     R=[];n=[];sval=[];rcnd=[];
-    [nargout,nargin] = argn(0)
     //FINDR   Preprocesses the input-output data for estimating the matrices
     //of a linear time-invariant dynamical system, using Cholesky or
     //(fast) QR factorization and subspace identification techniques

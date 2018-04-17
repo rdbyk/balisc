@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function [s] = mtlb_var (x,w,dim)
     //
@@ -31,16 +29,15 @@ function [s] = mtlb_var (x,w,dim)
     //
 
     if x==[] then s=%nan, return, end
-    [lhs,rhs]=argn(0)
-    if rhs==0 then
+    if nargin==0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"mtlb_var",1,2))
     end
     [m n]=size(x);
     
-    if rhs == 1 then
+    if nargin == 1 then
         w = 0;
     end
-    if rhs<=2 then
+    if nargin<=2 then
         dim=1;
     end
     if dim==1 then
@@ -60,7 +57,7 @@ function [s] = mtlb_var (x,w,dim)
     
     query = warning("query");
     warning("off")
-    if rhs == 1 | w == 0 then
+    if nargin == 1 | w == 0 then
         s = variance(x,dim);
     else
         s = variance(x,dim,mean(x, dim));

@@ -1,7 +1,8 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                      - Serge Steer <serge.steer@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//                     - Serge Steer <serge.steer@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,flgcdgen)
     //derived from c_pass1 for implicit diagrams
@@ -52,7 +52,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,f
     // Fady Nassif 2007. INRIA.
     //c_pass1;
 
-    if argn(2)<=1 then flgcdgen=-1, end
+    if nargin<=1 then flgcdgen=-1, end
     freof=[];
     MaxBlock=countblocks(scs_m);
     blklst=[];cmat=[],ccmat=[],cor=[],corinv=[]

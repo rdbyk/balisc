@@ -24,8 +24,8 @@ function MPIPi_seq(N)
     ////////////////////
     // ArgChk //
     ////////////////////
-    if argn(2)<1,	N=1E7;	end
-    if argn(2)>1,	error("usage Pi_seq(N)"); end
+    if nargin<1,	N=1E7;	end
+    if nargin>1,	error("usage Pi_seq(N)"); end
     flag=0;
     [%H,%ierr] = evstr(string(N));
     flag=flag | size(N,"*")<>1 | %ierr<>0;

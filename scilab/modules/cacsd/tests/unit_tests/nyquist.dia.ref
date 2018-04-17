@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2016 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -30,7 +31,7 @@ function r=checknyquist(Args,leg)
     if or(a.axes_visible<>["on","on","on"]) then r=2;return,end
     n=size(Args(1),1)
     n1=size(a.children,"*")
-    if (argn(2)==1&(n<>n1))|(argn(2)==2&(n+1<>n1)) then r=3;return,end
+    if (nargin==1&(n<>n1))|(nargin==2&(n+1<>n1)) then r=3;return,end
     for k=1:n;
         if a.children($+1-k).type<>"Compound" then r=4;return,end
         if size(a.children($+1-k).children,"*")<>2  then r=5;return,end
@@ -46,7 +47,7 @@ function r=checknyquist(Args,leg)
         if norm(a.children($+1-k).children(2).data(l,:)-[R(k,l)' I(k,l)'])> 1d-14 then r=12;return, end
         s= a.children($+1-k).children(1).children(1);
     end
-    if argn(2)==2 then //test the legend
+    if nargin==2 then //test the legend
         if size(a.children,"*")<=n then r=13;return,end
         if a.children(1).type<>"Legend" then r=14;return,end
         if size(a.children(1).links,"*")<>n then r=15;return,end

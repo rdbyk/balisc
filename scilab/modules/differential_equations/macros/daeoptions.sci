@@ -2,8 +2,8 @@
 // Copyright (C) 2008 - Scilab Enterprises - Paul Bignier : added daskr options
 // Copyright (C) 2008 - INRIA - Sabine GAUZERE
 // ...
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,7 +27,7 @@ function [%DAEOPTIONS] = daeoptions(%DAEOPTIONS)
     default = ["0","[]","0","[]","[]","[]","0","0","0","[]","0","0","[]","[]","1"];
     //default(find(default=='Inf'))="%inf"
 
-    if argn(2)>0 then
+    if nargin>0 then
         options=%DAEOPTIONS
     end
 

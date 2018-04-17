@@ -1,10 +1,9 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime Agnel
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
-//
 
 // =============================================================================
 // BlackHole interface functions
@@ -379,7 +378,7 @@ function change_r(r)
     slider_r     = get("slider_r");
 
     value_r       = get("value_r");
-    if argn(2)==1 then
+    if nargin==1 then
         slider_r.Value=(r-0.007)/(2-0.08)*100;
     else
         r=slider_r.Value
@@ -401,7 +400,7 @@ function change_theta(theta)
     slider_r     = get("slider_r");
 
     value_theta   = get("value_theta");
-    if argn(2)==1 then
+    if nargin==1 then
         slider_theta.Value=(theta)*100/360;
     else
         theta=slider_theta.Value
@@ -421,7 +420,7 @@ function change_speed(speed)
     slider_dir   = get("slider_dir");
 
     value_speed  = get("value_speed");
-    if argn(2)==1 then
+    if nargin==1 then
         slider_speed.Value=(speed)*100/3;
     else
         speed=slider_speed.Value
@@ -441,7 +440,7 @@ function change_dir(dir)
     slider_dir      = get("slider_dir");
     value_dir       = get("value_dir");
 
-    if argn(2) == 1 then
+    if nargin == 1 then
         slider_dir.Value = dir * 100 / 360;
     else
         dir = slider_dir.Value

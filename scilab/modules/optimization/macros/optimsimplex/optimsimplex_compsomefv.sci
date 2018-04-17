@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,15 +38,15 @@ function [ this , data ] = optimsimplex_compsomefv ( varargin )
             end
         end
     endfunction
-    [lhs,rhs]=argn();
-    if ( rhs<3 | rhs>4 ) then
+
+    if ( nargin<3 | nargin>4 ) then
         errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "optimsimplex_computefv", 3,4);
         error(errmsg)
     end
     this = varargin(1)
     fun = varargin(2)
-    indices = optim_argindefault ( rhs , varargin , 3 , this.nbve )
-    data = optim_argindefault ( rhs , varargin , 4 , [] )
+    indices = optim_argindefault ( nargin , varargin , 3 , this.nbve )
+    data = optim_argindefault ( nargin , varargin , 4 , [] )
     if ( typeof(data)=="constant" ) then
         if ( data==[] ) then
             for j = indices;
@@ -63,4 +63,3 @@ function [ this , data ] = optimsimplex_compsomefv ( varargin )
         end
     end
 endfunction
-

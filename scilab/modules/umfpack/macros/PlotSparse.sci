@@ -4,6 +4,7 @@
 // This set of scilab 's macros provide a few sparse utilities.
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -51,9 +52,7 @@ function [] = PlotSparse(A, style)
     default_markColor = 2  // blue in std colormap
     default_markId    = 0  // a point .
 
-    [lhs, rhs] = argn()
-
-    if ( rhs<1 | rhs>2 ) then
+    if ( nargin<1 | nargin>2 ) then
         error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"PlotSparse"));
     end
 
@@ -64,7 +63,7 @@ function [] = PlotSparse(A, style)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: sparse matrix expected.\n"),"PlotSparse",1));
     end
 
-    if rhs == 1 then
+    if nargin == 1 then
         markColor = default_markColor
         markId = default_markId
     elseif typeof(style) ~= "string" then

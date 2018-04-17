@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [X,dims,J,Y,k,Z]=cainv(Sl,Alfa,Beta,flag)
     //CA invariant subspace: dual of abinv
@@ -54,11 +53,10 @@ function [X,dims,J,Y,k,Z]=cainv(Sl,Alfa,Beta,flag)
     // [Xp(1:dimSg,:);C]*W = [0 | *] one has
     // H*W = [0 | *]  (with at least as many columns as above).
 
-    [LHS,RHS]=argn(0);
-    if RHS==1 then Alfa=-1;Beta=-1;flag="ge";end
-    if RHS==2 then Beta=Alfa;flag="ge";end
-    if RHS==3 then flag="ge";end
-    if RHS==4 then
+    if nargin==1 then Alfa=-1;Beta=-1;flag="ge";end
+    if nargin==2 then Beta=Alfa;flag="ge";end
+    if nargin==3 then flag="ge";end
+    if nargin==4 then
         if type(flag)~=10 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"cainv",4));
         end

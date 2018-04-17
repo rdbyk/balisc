@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,17 +13,15 @@
 function []=mtlb_box(axes_handle,val)
     // Emulation function for Matlab box()
 
-    rhs=argn(2)
-
     a=gca();
 
-    if rhs<=0 then // box toggle
+    if nargin<=0 then // box toggle
         if a.box=="on" then
             a.box="off"
         else
             a.box="on"
         end
-    elseif rhs==1 then
+    elseif nargin==1 then
         if type(axes_handle)==10 then // box on/off
             a.box=convstr(axes_handle,"l")
         else // box(axes_handle)
@@ -33,7 +31,7 @@ function []=mtlb_box(axes_handle,val)
                 axes_handle.box="on"
             end
         end
-    elseif rhs==2 then // box(axes_handle,...)
+    elseif nargin==2 then // box(axes_handle,...)
         axes_handle.box=convstr(val,"l")
     else
         error(msprintf(gettext("%s: This feature has not been implemented.\n"),"mtlb_box"));

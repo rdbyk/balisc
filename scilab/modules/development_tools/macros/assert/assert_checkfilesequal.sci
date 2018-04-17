@@ -1,7 +1,7 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +13,7 @@
 function [flag,errmsg] = assert_checkfilesequal ( varargin )
     //   Check two files are equal.
 
-    [lhs,rhs]=argn()
-    if ( and ( rhs <> [ 2 3 ] ) ) then
+    if ( and ( nargin <> [ 2 3 ] ) ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d to %d expected.") , "assert_checkfilesequal" , 2 , 3 )
         error(errmsg)
     end
@@ -22,7 +21,7 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     // Get input arguments
     filecomp = varargin(1)
     fileref = varargin(2)
-    if ( rhs <= 2 ) then
+    if ( nargin <= 2 ) then
         compfun = []
     else
         compfun = varargin(3)
@@ -58,7 +57,7 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     if ( fileinfo(filecomp) == [] ) then
         flag = %f
         errmsg = sprintf ( gettext ( "%s: The file %s does not exist.\n") , "assert_checkfilesequal" , filecomp )
-        if ( lhs < 2 ) then
+        if ( nargout < 2 ) then
             assert_generror ( errmsg )
         else
             return
@@ -67,7 +66,7 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     if ( fileinfo(fileref) == [] ) then
         flag = %f
         errmsg = sprintf ( gettext ( "%s: The file %s does not exist.\n") , "assert_checkfilesequal" , fileref )
-        if ( lhs < 2 ) then
+        if ( nargout < 2 ) then
             assert_generror ( errmsg )
         else
             return
@@ -79,7 +78,7 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     if ( err <> 0 ) then
         flag = %f
         errmsg = sprintf ( gettext ( "%s: Cannot open file %s.\n") , "assert_checkfilesequal" , filecomp )
-        if ( lhs < 2 ) then
+        if ( nargout < 2 ) then
             assert_generror ( errmsg )
         else
             return
@@ -89,7 +88,7 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
     if ( err <> 0 ) then
         flag = %f
         errmsg = sprintf ( gettext ( "%s: Cannot open file %s.\n") , "assert_checkfilesequal" , fileref )
-        if ( lhs < 2 ) then
+        if ( nargout < 2 ) then
             assert_generror ( errmsg )
         else
             return
@@ -139,7 +138,7 @@ function [flag,errmsg] = assert_checkfilesequal ( varargin )
         // We consider that that not being able to close the file is a bigger issue,
     end
 
-    if ( ~flag & lhs < 2 ) then
+    if ( ~flag & nargout < 2 ) then
         // If no output variable is given, generate an error
         assert_generror ( errmsg )
     end

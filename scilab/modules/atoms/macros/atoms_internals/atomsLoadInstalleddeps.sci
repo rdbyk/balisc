@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,9 +14,6 @@
 
 function [child_deps_tree,parent_deps_tree] = atomsLoadInstalleddeps(section)
 
-    lhs = argn(1);
-    rhs = argn(2);
-
     // Init the output argument
     // =========================================================================
     child_deps_tree  = struct();
@@ -25,7 +22,7 @@ function [child_deps_tree,parent_deps_tree] = atomsLoadInstalleddeps(section)
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsLoadInstalleddeps",1));
     end
 
@@ -68,7 +65,7 @@ function [child_deps_tree,parent_deps_tree] = atomsLoadInstalleddeps(section)
         // contenate installed_deps into tree_out
         child_deps_tree = atomsCatTree(child_deps_tree,child_deps);
 
-        if lhs > 1 then
+        if nargout > 1 then
             parent_deps_tree = atomsCatTree(parent_deps_tree,parent_deps);
         end
 

@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Clément DAVID
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -24,11 +25,10 @@ funcprot(0);
 // Stubbing the x_mdialog method
 // checking it's arguments size only
 function [result]=x_mdialog(title, labelsv, labelsh, default_inputs_vector)
-    [lhs, rhs] = argn();
-    if rhs == 3 then
+    if nargin == 3 then
         default_inputs_vector = labelsh;
         result = x_dialog(labelsv, default_inputs_vector);
-    elseif rhs == 4 then
+    elseif nargin == 4 then
         vSize = size(labelsv, '*');
         hSize = size(labelsh, '*');
         if size(default_inputs_vector) <> [vSize, hSize] then

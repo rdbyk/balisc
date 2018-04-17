@@ -1,6 +1,5 @@
 function [x0,V,rcnd]=inistate(A,B,C,D,y,u,tol,printw)
     x0=[];V=[];rcnd=[];
-    [nargout,nargin] = argn(0)
     //INISTATE  Estimates the initial state of a discrete-time system, given the
     //          (estimated) system matrices, and a set of input/output data.
     //

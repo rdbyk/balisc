@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -53,7 +54,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     // clkconnect: same as connectmat but for clock scicopaths.
     //
     // define some constants
-    if argn(2) <6 then flag="verbose",end
+    if nargin<6 then flag="verbose",end
     show_trace=%f
     if show_trace then mprintf("c_pass1:\t%f\n", timer()),end
 

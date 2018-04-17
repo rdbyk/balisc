@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,8 +17,7 @@ function w=sdiff(z,d)
     // and d the difrenecing order
     // z : a matrix of size(n1,n2) z(t)=z(:,t)
 
-    [lhs,rhs]=argn(0)
-    if rhs==1;d=1;end
+    if nargin==1;d=1;end
     w=z;
     for i=1:d,[n1,n2]=size(w); w=w(:,2:n2)-w(:,1:(n2-1));end
 endfunction

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,8 +19,7 @@ function [m1,m2,u2,sl2]=dt_ility(sl,tol)
     //sl2=ss2ss(sl,u2)
     //!
 
-    [LHS,RHS]=argn(0)
-    if RHS==2 then
+    if nargin==2 then
         [n1,n2,u1,sl1]=st_ility(sl',tol);
     else
         [n1,n2,u1,sl1]=st_ility(sl');

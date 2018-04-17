@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -  Author: Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,7 @@
 // along with this program.
 
 function show_margins(h,typ)
-    if argn(2)<2 then typ="bode",end
+    if nargin<2 then typ="bode",end
     if and(typ<>["nyquist","bode"]) then
         error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
         "show_margins",2,"""nyquist"", ""bode"""))

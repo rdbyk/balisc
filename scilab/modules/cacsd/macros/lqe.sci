@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005 - 2016 INRIA -
-//
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,7 +18,7 @@ function [K,X]=lqe(P21,Q_ww,R_vv,S_wv)
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"),"lqe",1))
     end
 
-    if argn(2)>1 then //[K,X]=lqe(P21,Q_ww,R_vv,S_wv)
+    if nargin>1 then //[K,X]=lqe(P21,Q_ww,R_vv,S_wv)
         [ny,nu,nx]=size(P21)
         if or(size(Q_ww)<>nx) then
             error(msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"),...
@@ -38,7 +38,7 @@ function [K,X]=lqe(P21,Q_ww,R_vv,S_wv)
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be symmetric.\n"),"lqe",3))
         end
 
-        if argn(2)<4 then
+        if nargin<4 then
             S_wv=zeros(nx,ny);
         elseif or(size(S_wv)<>[nx,ny]) then
             error(msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "lqe",4,nx,ny))

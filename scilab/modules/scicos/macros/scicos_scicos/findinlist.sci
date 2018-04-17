@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,13 +18,12 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function [path]=findinlist(L,v,path)
     //recherche si un element de valeur v existe dans la liste L
     global paths
     if and(type(L)<>(15:17)) then error("First argument should be a list"),end
-    firstlevel=argn(2)<3
+    firstlevel=nargin<3
     if firstlevel then paths=list(),path=[];end
     for k=1:size(L)
         l=L(k)

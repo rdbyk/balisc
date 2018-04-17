@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -49,8 +49,6 @@ function [p,err]=datafit(iprint,G,varargin)
     //plot2d(X',FF(X)',5,'002')
     //a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
     //
-
-    [lhs,rhs]=argn(0)
 
     if type(iprint)<>1 then
         wflag=warning("query") // Disable warnings as the following lines may produce some
@@ -187,6 +185,5 @@ function [p,err]=datafit(iprint,G,varargin)
     "end"])
 
     [err,p]=optim(costf,varargin(:),iprint=iprint)
-
 
 endfunction

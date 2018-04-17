@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,15 +15,14 @@ function [s1]=des2ss(a,b,c,d,e,tol)
     //descriptor to state-space
     //!
 
-    [lhs,rhs]=argn(0)
-    if rhs==1 then
+    if nargin==1 then
         [a,b,c,d,e]=a(2:6);
         // if norm(d,1)<>0 then warning('des2ss: d matrix must be zero!');end
         [bfs,bis,chis]=glever(e,a);
         s1=c*tf2ss(bfs/chis)*b;s1(5)=-c*bis*b+d;
         return;
     end
-    if rhs == 5 then tol=1.e-8;end
+    if nargin == 5 then tol=1.e-8;end
     [ns,ns] = size(a);
     if norm(e,1) < %eps then s1=syslin([],[],[],[],-c/a*b + d);return;end
     [ue,se,ve,rk] = svd(e,tol*norm(e,1));

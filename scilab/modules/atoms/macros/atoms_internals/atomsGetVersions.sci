@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,9 +23,7 @@ function versions = atomsGetVersions(name,min_version,max_version,min_version_in
     // Check input parameters
     // =========================================================================
 
-    rhs  = argn(2);
-
-    if rhs < 1 | rhs > 5 then
+    if nargin < 1 | nargin > 5 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetVersions",1,5));
     end
 
@@ -33,38 +31,38 @@ function versions = atomsGetVersions(name,min_version,max_version,min_version_in
         error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"atomsGetVersions",1));
     end
 
-    if (rhs>1) & (type(min_version)<>10) then
+    if (nargin>1) & (type(min_version)<>10) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"atomsGetVersions",2));
     end
 
-    if (rhs>2) & (type(max_version)<>10) then
+    if (nargin>2) & (type(max_version)<>10) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"atomsGetVersions",3));
     end
 
-    if (rhs>3) & (type(min_version_included)<>4) then
+    if (nargin>3) & (type(min_version_included)<>4) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"),"atomsGetVersions",4));
     end
 
-    if (rhs>4) & (type(max_version_included)<>4) then
+    if (nargin>4) & (type(max_version_included)<>4) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"),"atomsGetVersions",5));
     end
 
     // Default values
     // =========================================================================
 
-    if (rhs<2) | ( (rhs>=2) & (min_version=="") ) then
+    if (nargin<2) | ( (nargin>=2) & (min_version=="") ) then
         min_version = "0";
     end
 
-    if (rhs<3) | ( (rhs>=3) & (max_version=="") ) then
+    if (nargin<3) | ( (nargin>=3) & (max_version=="") ) then
         max_version = "9999999";
     end
 
-    if rhs<4 then
+    if nargin<4 then
         min_version_included = %T;
     end
 
-    if rhs<5 then
+    if nargin<5 then
         max_version_included = %T;
     end
 

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,7 @@ function [nh]=h2norm(g,tol)
     //  |g| =1/(2*%pi).|trace[g(jw).g(jw)]dw
     //     2           |
     //                 /-00
-    if argn(2)<1 then
+    if nargin<1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),..
         "h2norm",1))
     end
@@ -32,8 +32,7 @@ function [nh]=h2norm(g,tol)
         error(msprintf(msg,"h2norm",1))
     end
 
-    [lhs,rhs]=argn(0),
-    if rhs==1 then
+    if nargin==1 then
         tol=1000*%eps,
     else
         if type(tol)<>1|size(tol,"*")<>1 then

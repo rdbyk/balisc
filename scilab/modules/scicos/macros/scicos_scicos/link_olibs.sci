@@ -1,12 +1,12 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//                      - Alan Layec <alan.layec@inria.fr>   - 2007
-//                      - Allan CORNET - 2008
-//                      - Rachid Djenidi
-//                      - Simone Mannori
-//
-//  Copyright (C) DIGITEO - Allan CORNET - 2010
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//                     - Alan Layec <alan.layec@inria.fr>   - 2007
+//                     - Allan CORNET - 2008
+//                     - Rachid Djenidi
+//                     - Simone Mannori
+// Copyright (C) DIGITEO - Allan CORNET - 2010
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,9 +41,6 @@
 //                     for exec or for loader.sce
 //
 function [ok, libs, for_link] = link_olibs(libs,rpat)
-
-    //** get lhs,rhs nb paramaters
-    [lhs,rhs] = argn(0);
 
     //** declare  and set local variables
     ok = %t;

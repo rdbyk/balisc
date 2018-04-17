@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -49,9 +49,7 @@ function [insList,depTree] = atomsInstallList(packages,section)
     // Check input parameters
     // =========================================================================
 
-    rhs = argn(2);
-
-    if rhs > 2 then
+    if nargin > 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: at most %d expected.\n"),"atomsInstallList",2))
     end
 
@@ -75,7 +73,7 @@ function [insList,depTree] = atomsInstallList(packages,section)
     //   - 3rd case: section is equal to "allusers", module is only searched
     //               in the "allusers" section"
 
-    if rhs < 2 then
+    if nargin < 2 then
         section = "all";
 
     else
@@ -214,9 +212,8 @@ function result = atomsPackagingVersion(packages)
 
     // Check input parameters
     // =========================================================================
-    rhs  = argn(2);
 
-    if rhs <> 1 then
+    if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsPackagingVersion",1));
     end
 

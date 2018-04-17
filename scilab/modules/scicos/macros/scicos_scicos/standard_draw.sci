@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -17,7 +18,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
 function standard_draw (o, frame, draw_ports, up)
     //
@@ -34,16 +34,14 @@ function standard_draw (o, frame, draw_ports, up)
 
     xf = 60 ; yf = 40 ;
 
-    [lhs,rhs] = argn(0)
-
-    if rhs==1 then
+    if nargin==1 then
         frame=%t
     end
 
-    if rhs<3 then
+    if nargin<3 then
         draw_ports = standard_draw_ports     //** left right ports
         //** the function 'standard_draw_ports' it's copied in 'draw_ports'
-    elseif rhs==4 then                       //** otherwise
+    elseif nargin==4 then                       //** otherwise
         draw_ports = standard_draw_ports_up  //** up / down ports
     end                                      //** the function 'standard_draw_ports_up' it's copied in 'draw_ports'
 

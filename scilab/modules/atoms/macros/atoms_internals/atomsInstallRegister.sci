@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,13 +19,12 @@
 
 function nbAdd = atomsInstallRegister(name,version,status,section)
 
-    rhs            = argn(2);
-    nbAdd          = 0;
+    nbAdd = 0;
 
     // Check number of input arguments
     // =========================================================================
 
-    if rhs <> 4 then
+    if nargin <> 4 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsInstallRegister",3,4));
     end
 

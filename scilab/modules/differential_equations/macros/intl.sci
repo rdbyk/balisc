@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,13 +18,10 @@ function r=intl(a,b,z0,r,f,ea,er)
     //(part of the circle with center z0 and radius r with phase between a and b)
     //!
 
-    //First compile f if necessary:
-
-    rhs=argn(2)
-    if rhs<7 then
+    if nargin<7 then
         er=%eps;
     end
-    if rhs<6 then
+    if nargin<6 then
         ea=1.d-12;
     end
 

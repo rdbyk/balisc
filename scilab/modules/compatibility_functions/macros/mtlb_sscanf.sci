@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,8 @@
 // along with this program.
 
 function [a,nvars,errmsg,nextindex] = mtlb_sscanf(s,fmt,sz)
-    [lhs,rhs]=argn()
-    if lhs==4 then error(msprintf(gettext("%s: ''%s'' not implemented.\n"),"mtlb_sscanf","nextindex")),end
-    if rhs<3 then sz=%inf,end
+    if nargout==4 then error(msprintf(gettext("%s: ''%s'' not implemented.\n"),"mtlb_sscanf","nextindex")),end
+    if nargin<3 then sz=%inf,end
     nmx=prod(sz)
     nvars=0
 

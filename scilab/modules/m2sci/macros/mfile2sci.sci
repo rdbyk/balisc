@@ -18,13 +18,12 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
     // - Recmode: recursive mode (default value is false)
 
     // Get default arguments
-    [lhs,rhs]=argn(0)
-    if rhs<6 then prettyprintoutput=%F,end
-    if rhs<5 then verbose_mode=3,end
-    if rhs<4 then only_double=%T,end
-    if rhs<3 then Recmode=%F,end
-    if rhs<2 then res_path="./",end
-    if rhs<1 then m2sci_gui();res=[];return;end
+    if nargin<6 then prettyprintoutput=%F,end
+    if nargin<5 then verbose_mode=3,end
+    if nargin<4 then only_double=%T,end
+    if nargin<3 then Recmode=%F,end
+    if nargin<2 then res_path="./",end
+    if nargin<1 then m2sci_gui();res=[];return;end
     if getos() == "Windows" then
         fil=strsubst(fil,filesep(),"/")
         res_path=strsubst(res_path,"\","/")

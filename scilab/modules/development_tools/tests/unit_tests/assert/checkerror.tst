@@ -1,7 +1,7 @@
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,8 +33,7 @@ endfunction
 // a Scilab in English or in French equally pass the test.
 
 function y = f(x)
-    [lhs,rhs]=argn()
-    if ( rhs <> 1 ) then
+    if ( nargin <> 1 ) then
         lstr=gettext("%s: Wrong number of input argument: %d expected.\n")
         errmsg = sprintf ( lstr , "f" , 1 )
         error(errmsg)

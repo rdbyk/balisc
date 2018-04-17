@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) ENPC - J-Ph. Chancelier
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,8 +48,7 @@ function [arc,resid]=armax1(r,s,q,y,u,b0f)
     //      If q=0, it is a sequential version of the least squares algorithm given
     //      in armax function
 
-    [lhs,rhs]=argn(0)
-    if rhs<=5,b0f=0;end
+    if nargin<=5,b0f=0;end
     if s==-1,b0f=0;end // Seems not natural, but makes things work
     u=matrix(u,1,-1);y=matrix(y,1,-1); //make u and y row vectors
     [n1,n2]=size(y)

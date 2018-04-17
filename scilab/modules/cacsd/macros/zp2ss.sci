@@ -1,13 +1,15 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C)  2016 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function s=zp2ss(Z,P,K,dt)
     //zero pole gain to state space (simo system)
-    if argn(2)<4 then dt=[];end
+    if nargin<4 then dt=[];end
     if type(Z)<>1 then
         error(msprintf(_("%s: Wrong type for input argument #%d: Real or complex array expected.\n"),"zp2ss",1))
     end

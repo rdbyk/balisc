@@ -1,7 +1,7 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -68,14 +68,13 @@ function d = assert_computedigits ( varargin )
     endfunction
     // Returns the number of significant digits in computed result.
 
-    [lhs,rhs]=argn()
-    if ( and ( rhs <> [2 3] ) ) then
+    if ( and ( nargin <> [2 3] ) ) then
         errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d to %d expected.\n") , "assert_computedigits" , 2 , 3 )
         error(errmsg)
     end
     computed = varargin ( 1 )
     expected = varargin ( 2 )
-    basis = assert_argindefault ( rhs , varargin , 3 , 10 )
+    basis = assert_argindefault ( nargin , varargin , 3 , 10 )
     //
     // Check types of variables
     if ( typeof(computed) <> "constant" ) then

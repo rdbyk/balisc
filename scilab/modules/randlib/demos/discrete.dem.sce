@@ -2,9 +2,9 @@
 // Copyright (C) ENPC
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
-
 
 function [z] = RndDiscT(n)
 
@@ -23,8 +23,7 @@ function [z] = RndDiscT(n)
         y = matrix(res, m, n);
     endfunction
 
-    [lhs,rhs] = argn(0)
-    if rhs <= 0 ; n = 10000;end
+    if nargin <= 0 ; n = 10000;end
     x = [1,3,4,6,10,12];
     pr = [0.1,0.2,0.3,0.2,0.1,0.1];
     y = RndDisc(1,n,x,pr);
@@ -51,4 +50,3 @@ endfunction
 
 RndDiscT();
 clear RndDiscT;
-

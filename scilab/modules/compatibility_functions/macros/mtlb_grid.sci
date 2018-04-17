@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,14 @@
 function mtlb_grid(arg1,arg2)
     // Emulation function for Matlab grid
 
-    rhs=argn(2)
-    if rhs<=0 then // toggle
+    if nargin<=0 then // toggle
         a=gca();
         if and(a.grid==[-1 -1]) then
             a.grid=[1 1]
         else
             a.grid=[-1 -1]
         end
-    elseif rhs==1 then
+    elseif nargin==1 then
         if type(arg1)==9 then // toggle
             if and(arg1.grid==[-1 -1]) then
                 arg1.grid=[1 1]
@@ -45,7 +44,7 @@ function mtlb_grid(arg1,arg2)
                 error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"), "mtlb_grid", 1, "on", "off", "minor"));
             end
         end
-    elseif rhs==2 then
+    elseif nargin==2 then
         if arg2=="on" then
             arg1.grid=[1 1]
         elseif arg2=="off" then
