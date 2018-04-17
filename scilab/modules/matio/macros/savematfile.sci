@@ -2,8 +2,8 @@
 // Copyright (C) 2014 - Scilab Enterprises - Paul Bignier: bug #13102 fixed
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) ???? - INRIA - Serge STEER
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,8 +25,6 @@ function savematfile(varargin)
         end
     end
 
-    [lhs,rhs]=argn(0);
-
     mtlb_opts=[]; // Options for ASCII format
     mtlb_thefile=[]; // Name of file to write
     mtlb_names=[]; // Variable names to save
@@ -34,7 +32,7 @@ function savematfile(varargin)
     bin=[]; // %T is binary file %F if ASCII file
 
     // Default format is binary
-    if rhs==1 then
+    if nargin==1 then
         bin=%T;
     end
 
@@ -167,7 +165,7 @@ function savematfile(varargin)
                     error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
                 end
             end
-            clear("x","k","rhs","lhs","kk","err","bin","version","mtlb_thefile","mtlb_opts");
+            clear("x","k","kk","err","bin","version","mtlb_thefile","mtlb_opts");
 
             // Following 'for loop' from SS
             for mtlb_k=1:size(mtlb_names,"*")
@@ -277,7 +275,7 @@ function savematfile(varargin)
                     error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k))
                 end
             end
-            clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
+            clear("x","k","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
 
             // Write variables as miMATRIX data type
             for k=1:size(mtlb_names,"*")
@@ -306,7 +304,7 @@ function savematfile(varargin)
                     error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k))
                 end
             end
-            clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
+            clear("x","k","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
 
             // Write variables as miCOMPRESSED data type
             for k=1:size(mtlb_names,"*")
@@ -335,7 +333,7 @@ function savematfile(varargin)
                     error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k))
                 end
             end
-            clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
+            clear("x","k","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
 
             // Write variables as miCOMPRESSED data type
             for k=1:size(mtlb_names,"*")
@@ -385,7 +383,7 @@ function savematfile(varargin)
                 error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k));
             end
         end
-        clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
+        clear("x","k","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
 
         for mtlb_k=1:size(mtlb_names,"*")
             // perform changes on variables
