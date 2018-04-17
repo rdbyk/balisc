@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +13,6 @@
 function varargout=mtlb_colordef(varargin)
     // Emulation function for Matlab colordef()
 
-    lhs=argn(1);
-
     if size(varargin)==1 then
         color_option=varargin(1)
         fig=[]
@@ -25,7 +23,7 @@ function varargout=mtlb_colordef(varargin)
         else
             f.background=-2
         end
-        if lhs==1 then
+        if nargout==1 then
             varargout(1)=f
         end
     else
@@ -41,13 +39,9 @@ function varargout=mtlb_colordef(varargin)
         else
             fig.background=-2
         end
-        if lhs==1 then
+        if nargout==1 then
             varargout(1)=fig
         end
-
     end
 
-
 endfunction
-
-

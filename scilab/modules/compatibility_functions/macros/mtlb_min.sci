@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,17 +16,15 @@ function [r,k]=mtlb_min(a,b,c)
     // Emulation function for min() Matlab function
     // V.C.
 
-    [lhs,rhs]=argn(0);
-
-    if rhs==2 then
+    if nargin==2 then
         if type(b)==10 then
-            rhs=1
+            nargin=1
         end
     end
 
-    if rhs==1 then //min(A)
+    if nargin==1 then //min(A)
         // One output arg
-        if lhs==1 then
+        if nargout==1 then
             if ~isreal(a,0) then
                 if size(a,1)==1|size(a,2)==1 then
                     [r,k]=min(abs(a))
@@ -66,9 +64,9 @@ function [r,k]=mtlb_min(a,b,c)
             end
         end
         // min(A,B) A and B have the same size
-    elseif rhs==2 then
+    elseif nargin==2 then
         // Only one output arg is possible...
-        if lhs > 1 then
+        if nargout > 1 then
             error(msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"),"mtlb_min", 1));
         end
 
@@ -113,7 +111,7 @@ function [r,k]=mtlb_min(a,b,c)
             r = min(a,b)
         end
         // min(a,[],num) with num>2 or num is a variable name
-    elseif rhs==3 then
+    elseif nargin==3 then
         //If num>number of dims of a
         if c>size(size(a),2) then
             r=a
@@ -156,5 +154,3 @@ function [r,k]=mtlb_min(a,b,c)
         end
     end
 endfunction
-
-

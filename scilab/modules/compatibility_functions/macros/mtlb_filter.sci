@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,6 @@
 // along with this program.
 
 function [y,zf] = mtlb_filter(b,a,x,zi)
-    [lhs,rhs]=argn()
     [m,n]=size(x)
     x=matrix(x,1,m*n)
     a=poly(a($:-1:1),"z","c")
@@ -21,15 +20,15 @@ function [y,zf] = mtlb_filter(b,a,x,zi)
     db = degree(b)
     if (da-db) > 0 then b=b*z^(da-db); end
     if (db-da) > 0 then a=a*z^(db-da); end
-    if  lhs==1 then
-        if rhs==4 then
+    if nargout==1 then
+        if nargin==4 then
             y=rtitr(b,a,x,zi)
         else
             y=rtitr(b,a,x);
         end
     else
         sl=tf2ss(rlist(b,a,[]))
-        if rhs==4 then
+        if nargin==4 then
             [y,zf]=flts(x,sl,zi)
         else
             [y,zf]=flts(x,sl)

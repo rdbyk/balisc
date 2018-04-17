@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Scilab
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,8 @@
 // along with this program.
 
 function [AA, BB, Q, Z, V] = mtlb_qz(A,B)
-    [lhs,rhs] = argn(0)
     [AA, BB, Q, Z] = schur(A,B)
-    if lhs==5 then
+    if nargout==5 then
         n  = size(A,1)
         LA = diag(AA)
         LB = diag(BB)

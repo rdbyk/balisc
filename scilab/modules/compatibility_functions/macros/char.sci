@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,10 +27,9 @@ function y=char(varargin)
     // This function returns a vector in  which the rows are st1, st2,st3,...,
     // the length of all strings sti is completed by blanks,in order to have the same length for each sti.
 
-    rhs=argn(2)
     y=[]
     // One input argument
-    if rhs==1 then
+    if nargin==1 then
         if typeof(varargin(1))=="ce" then // input argument is a cell of characters arrays
             c=varargin(1)
             if size(c)==1 then // cell contains one element
@@ -107,7 +106,7 @@ function y=char(varargin)
             error(msprintf(gettext("%s: Wrong type for input argument: Cell expected.\n"),"char"));
         end
         // More than one input argument
-    elseif rhs > 1 then
+    elseif nargin > 1 then
         for i=1:size(varargin)
             if size(varargin(i), 2) > 2 then
                 lst=varargin(i)

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,16 +13,14 @@
 function varargout=mtlb_sortrows(varargin)
     // Emulation function for sortrows() Matlab function
 
-    [lhs,rhs]=argn()
-
-    if rhs==1 then
+    if nargin==1 then
         if type(varargin(1))==1 | type(varargin(1))==8 | type(varargin(1))==10 then
             [var1,index]=gsort(varargin(1),"lr","i")
         elseif type(varargin(1))==4 then
             [var1,index]=gsort(bool2s(varargin(1)),"lr","i")
         end
         varargout(1)=var1
-    elseif rhs==2 then
+    elseif nargin==2 then
         A=varargin(1)
         cls=varargin(2)
         indexlist=list((1:size(A,1))');
@@ -69,7 +67,7 @@ function varargout=mtlb_sortrows(varargin)
         end
     end
 
-    if lhs==2 then
+    if nargout==2 then
         varargout($+1)=index
     end
 

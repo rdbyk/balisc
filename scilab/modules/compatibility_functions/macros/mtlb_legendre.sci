@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
 function y=mtlb_legendre(n,x,flag)
     // Emulation function for legendre() Matlab function
 
-    rhs=argn(2)
     if ndims(n) <> 2 | size(n,"*") <> 1 | floor(n)-n <> 0 | n<0 then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: A positive integer value expected.\n"),"mtlb_legendre",1));
     end
@@ -26,9 +25,9 @@ function y=mtlb_legendre(n,x,flag)
     xtemp(xminusone)=nearfloat("succ",-1);
     y = legendre(n,m,xtemp);
 
-    if (rhs == 2) then
+    if (nargin == 2) then
         y = legendre(n,m,xtemp);
-    elseif rhs == 3 then
+    elseif nargin == 3 then
         if flag == "norm" then
             y = legendre(n,m,xtemp,"norm");
         elseif flag == "sch" then

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,10 +13,8 @@
 function [Y,I]=mtlb_sort(x,dim,txt)
     // Emulation function for sort() Matlab function
 
-    [lhs,rhs]=argn(0);
-
-    if rhs==1 then
-        if lhs==1 then
+    if nargin==1 then
+        if nargout==1 then
             if type(x)==10 then
                 x=mstr2sci(x)
                 if find(size(x)==1)==[] then
@@ -41,7 +39,7 @@ function [Y,I]=mtlb_sort(x,dim,txt)
                     Y=gsort(x,"g","i");
                 end
             end
-            // lhs==2
+            // nargout==2
         else
             if type(x)==10 then
                 x=mstr2sci(x)
@@ -93,8 +91,8 @@ function [Y,I]=mtlb_sort(x,dim,txt)
                 end
             end
         end
-        // rhs==2
-    elseif rhs==2
+        // nargin==2
+    elseif nargin==2
         if dim==1 then
             dim="r"
         else
@@ -139,7 +137,7 @@ function [Y,I]=mtlb_sort(x,dim,txt)
             [Y,I]=gsort(x,dim,"i");
         end
 
-    elseif rhs==3
+    elseif nargin==3
 
         if dim==1 then
             dim="r"
