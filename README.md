@@ -176,8 +176,8 @@ Please note, that **_Balisc_** additionally needs **_SLEEF (SIMD Library for Eva
 
 ## Issues and Pull Requests
 Both are welcome! For the time being, we have the following focus
-- improvement of run-time performance
-- simplication of code base and maintainability
+- improvement of run-time performance and maintainability
+- simplification of code base
 - compilation under Linux x86_64 GCC
 - building of binary packages (Debian, Ubuntu, ...)
 - ...
