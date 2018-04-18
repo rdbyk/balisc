@@ -16,9 +16,9 @@
 function ret = who_user(%__bPrint__)
     //get user variables
     [nams,mem]=who("get"); //get all variables
-    p=predef("names");
+    p=isprotected();
 
-    //remove predef vars
+    //remove protected vars
     ke=grep(nams,p);
     nams(ke) = [];
     mem(ke) = [];
