@@ -2,7 +2,7 @@
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2009-2011 - DIGITEO
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +16,7 @@
 mode(-1);  // silent execution mode
 
 // clean database when restarted ======================================
-//predef("clear"); //unprotect all variables
+//unprotect(); //unprotect all variables
 clear;  // erase all variables
 clearglobal();
 
@@ -81,7 +81,7 @@ end
 
 
 // Protect variable previously defined  ================================
-predef("all");
+protect(); // protect all variables
 
 // At startup, no interactive vertical paging by default. ==============
 lines(0);
