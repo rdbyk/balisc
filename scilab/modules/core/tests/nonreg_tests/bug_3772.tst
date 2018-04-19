@@ -2,6 +2,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -14,8 +15,8 @@
 // <-- Short Description -->
 // input argument in predef function not correctly checked
 
-ierr = execstr('predef([1 2])','errcatch');
+ierr = execstr('protect([1 2])','errcatch');
 if ierr <> 999 then pause,end
 
-ierr = execstr('predef(''max'')','errcatch');
+ierr = execstr('protect(''non_existent'')','errcatch');
 if ierr <> 999 then pause,end

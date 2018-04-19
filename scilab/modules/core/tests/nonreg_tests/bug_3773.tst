@@ -14,5 +14,5 @@
 // <-- Short Description -->
 // bug in predef "ans" was protected
 
-ierr = execstr("predef(''a'');predef(''a'')","errcatch");
+ierr = execstr("protect();protect()","errcatch");
 if ierr <> 0 then pause,end

@@ -1,4 +1,4 @@
-// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // <-- CLI SHELL MODE -->
 //
@@ -12,7 +12,7 @@
 
 
 global a b
-predef("all");
+protect();
 
 errmsg = _("clearglobal: Redefining permanent variable.");
 
