@@ -32,7 +32,7 @@
             This command kills variables which are not protected.
             It removes the named variables from the environment.
             By itself <code>clear</code> kills all the variables except the variables
-            protected by <code>predef</code>. Thus the two commands <code>predef(0)</code> and <code>clear</code>
+            protected by <code>protect</code>. Thus the two commands <code>unprotect()</code> and <code>clear</code>
             remove all the variables.
         </para>
         <para>
@@ -74,7 +74,10 @@ isdef("a") | isdef("b") | isdef("c") // F
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="predef">predef</link>
+                <link linkend="protect">protect</link>
+            </member>
+            <member>
+                <link linkend="unprotect">unprotect</link>
             </member>
             <member>
                 <link linkend="funcprot">funcprot</link>
@@ -90,6 +93,10 @@ isdef("a") | isdef("b") | isdef("c") // F
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>Argument can now be a matrix of strings</revdescription>
+            </revision>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revdescription>Introduced <code>protect</code> and <code>unprotect</code>.</revdescription>
             </revision>
         </revhistory>
     </refsection>

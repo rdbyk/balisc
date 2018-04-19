@@ -30,7 +30,7 @@
         <title>Description</title>
         <para>
             Cette commande supprime des variables non-protégées. Elle supprime de l'environnement les variables dont les noms sont spécifiés.
-            Sans argument, <literal>clear</literal> supprime toutes les variables sauf celles qui ont été protégées par <literal>predef</literal>. La succession des commandes <literal>predef(0)</literal> et <literal>clear</literal> supprime toutes les variables.
+            Sans argument, <literal>clear</literal> supprime toutes les variables sauf celles qui ont été protégées par <literal>protect</literal>. La succession des commandes <literal>unprotect()</literal> et <literal>clear</literal> supprime toutes les variables.
         </para>
         <para>
             Habituellement, les variables protégées sont les bibliothèques standard et les variables dont le nom commence par le caractère "%".
@@ -62,7 +62,10 @@ isdef("a") | isdef("b") | isdef("c") // F
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="predef">predef</link>
+                <link linkend="protect">protect</link>
+            </member>
+            <member>
+                <link linkend="unprotect">unprotect</link>
             </member>
             <member>
                 <link linkend="funcprot">funcprot</link>
@@ -78,6 +81,10 @@ isdef("a") | isdef("b") | isdef("c") // F
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>Peut prendre une matrice de chaînes de caractères en argument</revdescription>
+            </revision>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revdescription>Introduced <code>protect</code> and <code>unprotect</code>.</revdescription>
             </revision>
         </revhistory>
     </refsection>

@@ -24,8 +24,8 @@ function list_keywords = getscilabkeywords()
 
     [scilab_primitives, scilab_commands] = what();
 
-    // predefined variables
-    predef_variables = predef("names");
+    // protected variables
+    predef_variables = isprotected();
 
     //library functions
     libvar = librarieslist();

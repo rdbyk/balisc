@@ -31,9 +31,9 @@
         <para>
             このコマンドは保護されていない変数を消去します.
             変数は環境から削除されます.
-            <code>clear</code> は<code>predef</code>で保護された
+            <code>clear</code> は<code>protect</code>で保護された
             変数以外の全ての変数を消去します.
-            このため,2つのコマンド  <code>predef(0)</code> および<code>clear</code>
+            このため,2つのコマンド  <code>unprotect()</code> および<code>clear</code>
             により全ての変数が削除されます.
         </para>
         <para>
@@ -76,7 +76,10 @@ isdef("a") | isdef("b") | isdef("c") // F
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="predef">predef</link>
+                <link linkend="protect">protect</link>
+            </member>
+            <member>
+                <link linkend="unprotect">unprotect</link>
             </member>
             <member>
                 <link linkend="funcprot">funcprot</link>
@@ -92,6 +95,10 @@ isdef("a") | isdef("b") | isdef("c") // F
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>引数を文字列の行列とすることができるようになりました</revdescription>
+            </revision>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revdescription>Introduced <code>protect</code> and <code>unprotect</code>.</revdescription>
             </revision>
         </revhistory>
     </refsection>

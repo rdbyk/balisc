@@ -750,7 +750,7 @@ function status = test_single(_module, _testPath, _testName)
         head($+1) = "function []=messagebox(msg, msg_title, info, buttons, isModal), disp(''messagebox: '' + msg);endfunction";
     end
     head = [ head ;
-    "predef(''all'');";
+    "protect();";
     "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''';//\n'',TMPDIR);"
     ];
 

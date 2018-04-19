@@ -16,8 +16,8 @@
         <para>Este comando cancela variáveis que não estão protegidas. Ele remove
             as variáveis nomeadas do ambiente. Por si só, <literal>clear</literal>
             cancela todas as variáveis, exceto as protegidas por
-            <literal>predef</literal>. Logo, os dois comandos
-            <literal>predef(0)</literal> e <literal>clear</literal> removem todas as
+            <literal>protect</literal>. Logo, os dois comandos
+            <literal>unprotect()</literal> e <literal>clear</literal> removem todas as
             variáveis.
         </para>
         <para>Normalmente, variáveis protegidas são bibliotecas padrões e
@@ -34,7 +34,10 @@
         <title> Ver Também </title>
         <simplelist type="inline">
             <member>
-                <link linkend="predef">predef</link>
+                <link linkend="protect">protect</link>
+            </member>
+            <member>
+                <link linkend="unprotect">unprotect</link>
             </member>
             <member>
                 <link linkend="funcprot">funcprot</link>
@@ -43,5 +46,14 @@
                 <link linkend="who">who</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revdescription>Introduced <code>protect</code> and <code>unprotect</code>.</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

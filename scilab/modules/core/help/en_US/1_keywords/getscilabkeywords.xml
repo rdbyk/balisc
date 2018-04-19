@@ -62,5 +62,5 @@ xcos_functions = list_keywords(5)
                 <revremark>Tagged as OBSOLETE (to be removed in Balisc 3).</revremark>
             </revision>
         </revhistory>
-</refsection>
+    </refsection>
 </refentry>

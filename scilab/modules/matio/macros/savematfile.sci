@@ -128,7 +128,7 @@ function savematfile(varargin)
         mtlb_names=vars;
 
         // Part to delete Scilab variables from mtlb_names (should be improved)
-        predef_names = [predef("names");"savematfile";"varargin"];
+        predef_names = [isprotected();"savematfile";"varargin"];
         for i=1:size(predef_names, "*")
             mtlb_names(mtlb_names==predef_names(i))=[];
         end

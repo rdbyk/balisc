@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,12 +23,17 @@ extern "C"
 #include "charEncoding.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "sciprint.h"
 }
 
 static const std::string fname("predef");
 
 types::Function::ReturnValue sci_predef(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), fname.c_str());
+    sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "'protect', 'unprotect', and 'isprotected'");
+    sciprint(_("%s: This feature will be permanently removed in Scilab / %s.\n"), _("Warning"), "Balisc 3");
+
     int rhs = in.size();
     symbol::Context* ctx = symbol::Context::getInstance();
     if (rhs > 1)

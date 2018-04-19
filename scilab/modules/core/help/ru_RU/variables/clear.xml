@@ -31,7 +31,7 @@
             Эта команда уничтожает переменные, которые не защищены. Она удаляет
             перечисленные переменные из окружения. Само по себе, без аргументов, <code>clear</code>
             уничтожает все переменные за исключением переменных, защищённых с помощью
-            <code>predef</code>. Таким образом, две команды <code>predef(0)</code> и
+            <code>protect</code>. Таким образом, две команды <code>unprotect()</code> и
             <code>clear</code> уничтожают все переменные.
         </para>
         <para>
@@ -67,7 +67,10 @@ isdef("b") // F
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="predef">predef</link>
+                <link linkend="protect">protect</link>
+            </member>
+            <member>
+                <link linkend="unprotect">unprotect</link>
             </member>
             <member>
                 <link linkend="funcprot">funcprot</link>
@@ -76,5 +79,14 @@ isdef("b") // F
                 <link linkend="who">who</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revdescription>Introduced <code>protect</code> and <code>unprotect</code>.</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
