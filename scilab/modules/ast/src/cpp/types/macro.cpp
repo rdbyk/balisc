@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -239,14 +239,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else if (iInputArgsActual > iInputArgsExpected)
     {
-        if (iInputArgsExpected == 0)
-        {
-            Scierror(999, _("Wrong number of input arguments: This function has no input argument.\n"));
-        }
-        else
-        {
-            Scierror(999, _("Wrong number of input arguments.\n"));
-        }
+        char* pstMacroName = wide_string_to_UTF8(getName().c_str());
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), pstMacroName, iInputArgsExpected);
+        FREE(pstMacroName);
 
         pContext->scope_end();
         ConfigVariable::macroFirstLine_end();
@@ -370,7 +365,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
             char* pstArgName = wide_string_to_UTF8(arg->getSymbol().getName().c_str());
             char* pstMacroName = wide_string_to_UTF8(getName().c_str());
-            Scierror(999, _("Undefined variable '%s' in function '%s'.\n"), pstArgName, pstMacroName);
+            Scierror(999, _("%s: Undefined variable '%s'.\n"), pstMacroName, pstArgName);
             FREE(pstArgName);
             FREE(pstMacroName);
             return Callable::Error;
@@ -384,7 +379,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         if (pOut == NULL)
         {
             cleanCall(pContext, oldVal);
-            Scierror(999, _("Invalid index.\n"));
+            char* pstMacroName = wide_string_to_UTF8(getName().c_str());
+            Scierror(999, _("%s: Undefined variable '%s'.\n"), pstMacroName, "varargout");
+            FREE(pstMacroName);
             return Callable::Error;
         }
 
@@ -392,7 +389,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         {
             cleanCall(pContext, oldVal);
             char* pstMacroName = wide_string_to_UTF8(getName().c_str());
-            Scierror(999, _("%s: Wrong type for %s: A list expected.\n"), pstMacroName, "Varargout");
+            Scierror(999, _("%s: Wrong type for '%s': A list expected.\n"), pstMacroName, "varargout");
             FREE(pstMacroName);
             return Callable::Error;
         }
@@ -412,7 +409,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 out.clear();
                 cleanCall(pContext, oldVal);
 
-                Scierror(999, _("List element number %d is Undefined.\n"), i + 1);
+                char* pstMacroName = wide_string_to_UTF8(getName().c_str());
+                Scierror(999, _("%s: Element number #%d in '%s' is undefined.\n"), pstMacroName, i + 1, "varargout");
+                FREE(pstMacroName);
                 return Callable::Error;
             }
 
