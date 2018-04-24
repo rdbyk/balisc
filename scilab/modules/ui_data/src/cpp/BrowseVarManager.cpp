@@ -429,18 +429,7 @@ static char * valueToDisplay(types::InternalType* pIT, int variableType, int nbR
         {
             // size of arrays "n1 x n2 x .. x nd"
             types::GenericType* pG = pIT->getAs<types::GenericType>();
-            int n = pG->getDims();
-            int* d = pG->getDimsArray();
-            char* s = (char *)MALLOC(12 * n * sizeof(char));
-
-            char* ss = s;
-            for (int i = 0; i < n - 1; ++i)
-            {
-                ss += sprintf(ss, "%dx", d[i]);
-            }
-            ss += sprintf(ss, "%d", d[n-1]);
-
-            return s;
+            return os_strdup(pG->DimsToString<std::string>().c_str());
         }
         else
         {

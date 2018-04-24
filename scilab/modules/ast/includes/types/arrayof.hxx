@@ -491,19 +491,7 @@ public :
     virtual std::wstring toStringInLine()
     {
         std::wostringstream ostr;
-        ostr << L"[";
-
-        for (int i = 0 ; i < m_iDims ; i++)
-        {
-            if (i > 0)
-            {
-                ostr << L"x";
-            }
-
-            ostr << m_piDims[i];
-        }
-
-        ostr << L" " << getTypeStr() << L"]";
+        ostr << L"[" << DimsToString<std::wstring>() << L" " << getTypeStr() << L"]";
         return ostr.str();
     }
 

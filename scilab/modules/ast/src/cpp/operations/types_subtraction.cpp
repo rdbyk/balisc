@@ -2057,7 +2057,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
         if (piDims1[i] != piDims2[i])
         {
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"-", _pL->DimToString().c_str(), _pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"-", _pL->DimsToString<std::wstring>().c_str(), _pR->DimsToString<std::wstring>().c_str());
             throw ast::InternalError(pMsg);
         }
     }
@@ -2337,7 +2337,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         if (piDims1[i] != piDims2[i])
         {
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimsToString<std::wstring>().c_str(), _pR->DimsToString<std::wstring>().c_str());
             throw ast::InternalError(pMsg);
         }
     }

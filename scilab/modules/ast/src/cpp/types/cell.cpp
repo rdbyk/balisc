@@ -3,7 +3,7 @@
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -331,14 +331,7 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                         //"  ixjxkxl type   "
                         GenericType* pGT = pIT->getAs<GenericType>();
                         std::wostringstream ostemp;
-                        for (int k = 0 ; k < pGT->getDims() ; k++)
-                        {
-                            if (k != 0)
-                            {
-                                ostemp << L"x";
-                            }
-                            ostemp << pGT->getDimsArray()[k];
-                        }
+                        ostemp << pGT->DimsToString<std::wstring>();
                         configureStream(&ostr, piSizeLen[j], iPrecision, ' ');
                         ostr << std::right << ostemp.str();
                     }
