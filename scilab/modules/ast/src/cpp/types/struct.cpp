@@ -444,19 +444,8 @@ bool Struct::toString(std::wostringstream& ostr)
     }
     else
     {
-        ostr << L"  ";
-        for (int i = 0 ; i < m_iDims ; i++)
-        {
-            if (i > 0)
-            {
-                ostr << L"x";
-            }
-            ostr << m_piDims[i];
-        }
-        ostr << L" struct array with ";
-
+        ostr << L"  " << DimsToString<std::wstring>() << L" struct array with fields:\n";
         String* pwstFields = getFieldNames();
-        ostr <<  L"fields:" << L"\n";
         for (int i = 0 ; i < pwstFields->getSize() ; i++)
         {
             ostr << L"    " << pwstFields->get(i) << L"\n";
