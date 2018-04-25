@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *  Copyright (C) 2014-2015 - Scilab Enterprises - Cedric Delamarre
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2014-2015 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -143,21 +143,28 @@ int StaticRunner::launch()
         if (ConfigVariable::getPauseLevel())
         {
             ConfigVariable::DecreasePauseLevel();
-            throw ia;
         }
-
-        // close all scope before return to console scope
-        symbol::Context* pCtx = symbol::Context::getInstance();
-        while (pCtx->getScopeLevel() > scope)
+        else
         {
-            pCtx->scope_end();
+            // close all scope before return to console scope
+            symbol::Context* pCtx = symbol::Context::getInstance();
+            while (pCtx->getScopeLevel() > scope)
+            {
+                pCtx->scope_end();
+            }
+
+            // send the good signal about the end of execution
+            sendExecDoneSignal(runMe.get());
+
+            //clean debugger step flag if debugger is not interrupted ( end of debug )
+            manager->resetStep();
         }
 
-        // send the good signal about the end of execution
-        sendExecDoneSignal(runMe.get());
+        if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)
+        {
+            UpdateBrowseVar();
+        }
 
-        //clean debugger step flag if debugger is not interrupted ( end of debug )
-        manager->resetStep();
         throw ia;
     }
 
