@@ -16,6 +16,8 @@
 #ifndef __TYPES_DOTDIVIDE_HXX__
 #define __TYPES_DOTDIVIDE_HXX__
 
+#include <type_traits>
+#include <limits>
 #include "generic_operations.hxx"
 #include "configvariable.hxx"
 #include "double.hxx"
@@ -93,7 +95,26 @@ template<typename T, typename U, typename O> inline static void dotdiv(T l, U r,
 {
     if ((O)r == 0)
     {
-        ConfigVariable::setDivideByZero(true);
+        if (std::is_integral<O>())
+        {
+            if (std::is_signed<O>() && (O)l < 0)
+            {
+                *o = std::numeric_limits<O>::min();
+            }
+            else if ((O)l > 0)
+            {
+                *o = std::numeric_limits<O>::max();
+            }
+            else
+            {
+                *o = (O)0;
+            }
+            return;
+        }
+        else
+        {
+            ConfigVariable::setDivideByZero(true);
+        }
     }
     *o = (O)l / (O)r;
 }
