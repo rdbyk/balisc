@@ -1059,9 +1059,9 @@ assign			"="
 	    return scan_throw(FLEX_ERROR);
         }
         yylval.comment = new std::wstring(pwstBuffer);
-	pstBuffer.clear();
+        pstBuffer.clear();
         FREE (pwstBuffer);
-        return scan_throw(COMMENT);
+//        return scan_throw(COMMENT);
     }
     else
     {
@@ -1085,7 +1085,7 @@ assign			"="
     yylval.comment = new std::wstring(pwstBuffer);
     pstBuffer.clear();
     FREE (pwstBuffer);
-    return scan_throw(COMMENT);
+//    return scan_throw(COMMENT);
   }
 
   {char_in_line_comment}         {
