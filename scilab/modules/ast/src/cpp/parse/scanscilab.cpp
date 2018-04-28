@@ -3173,9 +3173,9 @@ YY_RULE_SETUP
 	    return scan_throw(FLEX_ERROR);
         }
         yylval.comment = new std::wstring(pwstBuffer);
-	pstBuffer.clear();
+        pstBuffer.clear();
         FREE (pwstBuffer);
-        return scan_throw(COMMENT);
+//        return scan_throw(COMMENT);
     }
     else
     {
@@ -3200,7 +3200,7 @@ case YY_STATE_EOF(LINECOMMENT):
     yylval.comment = new std::wstring(pwstBuffer);
     pstBuffer.clear();
     FREE (pwstBuffer);
-    return scan_throw(COMMENT);
+//    return scan_throw(COMMENT);
   }
 	YY_BREAK
 case 107:
