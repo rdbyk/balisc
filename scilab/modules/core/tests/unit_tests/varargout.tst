@@ -1,15 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-//
+
 // Return 3 values
-//
 function varargout=__test_function__()
   varargout(1) = 42;
   varargout(2) = "value";
@@ -73,5 +73,5 @@ function varargout=__test_function4__()
   varargout = 42;
 endfunction
 
-msg = msprintf(_("%s: Wrong type for %s: A list expected.\n"), "__test_function4__", "Varargout");
+msg = msprintf(_("%s: Wrong type for ''%s'': A list expected.\n"), "__test_function4__", "varargout");
 assert_checkerror("__test_function4__()", msg);

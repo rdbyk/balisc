@@ -65,4 +65,3 @@ format(10);
 disp(A + %i * B);
 format("e");
 disp(A + %i * B);
-
