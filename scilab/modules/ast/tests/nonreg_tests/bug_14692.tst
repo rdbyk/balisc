@@ -1,9 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 14692 -->
 //
@@ -28,4 +31,3 @@ assert_checktrue(tested_fun == sin);
 assert_checktrue(tested_fun2 == cos);
 assert_checktrue(tested_fun <> cos);
 assert_checktrue(tested_fun2 <> sin);
-

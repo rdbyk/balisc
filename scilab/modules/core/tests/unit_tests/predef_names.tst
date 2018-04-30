@@ -5,9 +5,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 variables_names_1 = isprotected();
 assert_checkequal(size(grep(variables_names_1,'jnull'), '*'), 1);
 assert_checkequal(size(grep(variables_names_1,'evoid'), '*'), 1);
