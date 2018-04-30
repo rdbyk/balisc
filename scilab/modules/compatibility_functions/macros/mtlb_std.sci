@@ -15,7 +15,9 @@ function m = mtlb_std(x, flag, dim)
 
     if nargin < 2 then
         flag = 0;
-    elseif nargin < 3 then
+    end
+
+    if nargin < 3 then
         dim = "*";
     end
 
