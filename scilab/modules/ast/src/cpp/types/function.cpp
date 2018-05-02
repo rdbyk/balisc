@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -209,9 +209,9 @@ void Function::whoAmI()
     std::cout << "types::Function";
 }
 
-bool Function::toString(std::wostringstream& /*ostr*/)
+bool Function::toString(std::wostringstream& ostr)
 {
-    // display nothing. ie : c = cos
+    ostr << L"   <" << getTypeStr() << L":" << getName() << L">" << std::endl;
     return true;
 }
 

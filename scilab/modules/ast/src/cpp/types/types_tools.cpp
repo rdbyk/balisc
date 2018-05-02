@@ -904,11 +904,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
     else
     {
         std::wostringstream ostr;
-        if (pIT->isFunction())
-        {
-            pIT->getAs<types::Function>()->toString(ostr);
-        }
-        else if (pIT->isList() || pIT->isCallable())
+        if (pIT->isList() || (pIT->isCallable() && pIT->isFunction() == false))
         {
             ostr << wcsVarName;
         }
