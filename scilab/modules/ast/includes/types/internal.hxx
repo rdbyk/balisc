@@ -374,7 +374,6 @@ public :
     virtual bool isDouble(void);
     virtual bool isSparse(void);
     virtual bool isSparseBool(void);
-    virtual bool isFloat(void);
     virtual bool isInt(void);
     virtual bool isInt8(void);
     virtual bool isUInt8(void);

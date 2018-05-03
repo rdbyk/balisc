@@ -5,7 +5,7 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - Gsoc 2017 - Siddhartha Gairola
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -1382,8 +1382,6 @@ mxClassID mxGetClassID(const mxArray *ptr)
             return mxDOUBLE_CLASS;
         case types::InternalType::ScilabBool:
             return mxLOGICAL_CLASS;
-        case types::InternalType::ScilabFloat:
-            return mxSINGLE_CLASS;
         case types::InternalType::ScilabStruct:
             return mxSTRUCT_CLASS;
         case types::InternalType::ScilabCell:
