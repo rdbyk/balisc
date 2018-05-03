@@ -136,11 +136,6 @@ bool InternalType::isSparseBool(void)
     return false;
 }
 
-bool InternalType::isFloat(void)
-{
-    return false;
-}
-
 bool InternalType::isInt(void)
 {
     return false;
