@@ -275,11 +275,6 @@ bool InternalType::isHandle(void)
     return false;
 }
 
-bool InternalType::isSingleHandle(void)
-{
-    return false;
-}
-
 bool InternalType::isThreadId(void)
 {
     return false;

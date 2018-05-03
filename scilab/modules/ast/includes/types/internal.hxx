@@ -401,7 +401,6 @@ public :
     virtual bool isDollar(void);
     virtual bool isFile(void);
     virtual bool isHandle(void);
-    virtual bool isSingleHandle(void);
     virtual bool isThreadId(void);
     virtual bool isListOperation(void);
     virtual bool isListDelete(void);
