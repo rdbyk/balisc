@@ -2,7 +2,7 @@
 # Copyright (C) 2007-2008 - DIGITEO - Bruno JOFRET
 # Copyright (C) 2007-2008 - DIGITEO - Antoine ELIAS
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -100,7 +100,6 @@ src/cpp/types/sparse.cpp \
 src/cpp/types/string.cpp \
 src/cpp/types/struct.cpp \
 src/cpp/types/test-types.cpp \
-src/cpp/types/threadId.cpp \
 src/cpp/types/tlist.cpp \
 src/cpp/types/tostring_common.cpp \
 src/cpp/types/types.cpp \
@@ -478,7 +477,6 @@ includes/types/sparse.hxx \
 includes/types/sparseOp.hxx \
 includes/types/string.hxx \
 includes/types/struct.hxx \
-includes/types/threadId.hxx \
 includes/types/tlist.hxx \
 includes/types/tostring_common.hxx \
 includes/types/typesdecl.hxx \
