@@ -79,7 +79,6 @@ public :
         ScilabString,
         ScilabDouble,
         ScilabBool,
-        ScilabFloat,
         ScilabPolynom,
         ScilabSinglePolynom,
         /* Callable */
