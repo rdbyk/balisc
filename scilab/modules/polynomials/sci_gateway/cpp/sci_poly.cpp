@@ -119,6 +119,7 @@ Function::ReturnValue sci_poly(typed_list &in, int _iRetCount, typed_list &out)
         }
 
         bool bDeleteInput = false;
+        bool bComplexResult = pDblIn->isComplex();
 
         if (pDblIn->getSize() != 1 && pDblIn->getCols() == pDblIn->getRows())
         {
@@ -144,21 +145,11 @@ Function::ReturnValue sci_poly(typed_list &in, int _iRetCount, typed_list &out)
 
         if (pDblIn->isComplex())
         {
-            double dblEps = nc_eps_machine();
             pPolyOut->setComplex(true);
             double* pdblInImg   = pDblIn->getImg();
             double* pdblCoefImg = pPolyOut->getFirst()->getImg();
             C2F(wprxc)(iRanks, pdblInReal, pdblInImg, pdblCoefReal, pdblCoefImg);
-            bool bSetCplx = false;
-            for (int k = 0; k < *iRanks; k++)
-            {
-                if ((pdblCoefReal[k] + pdblCoefImg[k]) != pdblCoefReal[k])
-                {
-                    bSetCplx = true;
-                    break;
-                }
-            }
-            pPolyOut->setComplex(bSetCplx);
+            pPolyOut->setComplex(bComplexResult);
         }
         else
         {
