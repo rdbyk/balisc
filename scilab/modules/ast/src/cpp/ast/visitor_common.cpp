@@ -2382,7 +2382,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         pOut = pRet;
     }
 
-    if (pIL)
+    if (pIL && pIL != pOut)
     {
         pIL->killMe();
     }
