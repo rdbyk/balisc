@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -110,6 +110,13 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
 
     if (_pDouble2->isScalar())
     {
+        // eye() \ x = x
+        if (_pDouble1->isIdentity() )
+        {
+            *_pDoubleOut = new Double(*_pDouble2);
+            return 0;
+        }
+
         //X \ y => X \ (eye() * y)
         pDblTmp = new types::Double(_pDouble1->getRows(), _pDouble1->getRows(), _pDouble2->isComplex());
         double dblScalarReal = _pDouble2->getFirst();
@@ -143,6 +150,13 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
     if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getRows() != _pDouble2->getRows())
     {
         //not managed
+        return 0;
+    }
+
+    // eye() \ eye() = eye()
+    if (_pDouble1->isIdentity() && _pDouble2->isIdentity() )
+    {
+        *_pDoubleOut = Double::Identity(-1, -1);
         return 0;
     }
 

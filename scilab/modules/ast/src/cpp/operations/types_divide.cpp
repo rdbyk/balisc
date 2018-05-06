@@ -245,6 +245,13 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         return 0;
     }
 
+    // eye() / eye() = eye()
+    if (_pDouble1->isIdentity() && _pDouble2->isIdentity() )
+    {
+        *_pDoubleOut = Double::Identity(-1, -1);
+        return 0;
+    }
+
     *_pDoubleOut = new Double(_pDouble1->getRows(), _pDouble2->getRows(), _pDouble1->isComplex() || _pDouble2->isComplex());
     if ((*_pDoubleOut)->isComplex())
     {
