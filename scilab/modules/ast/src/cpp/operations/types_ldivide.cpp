@@ -113,8 +113,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         // eye() \ x = x
         if (_pDouble1->isIdentity() )
         {
-            *_pDoubleOut = new Double(*_pDouble2);
-            return 0;
+            return RDivideDoubleByDouble(_pDouble2, _pDouble1, _pDoubleOut);
         }
 
         //X \ y => X \ (eye() * y)
@@ -156,8 +155,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
     // eye() \ eye() = eye()
     if (_pDouble1->isIdentity() && _pDouble2->isIdentity() )
     {
-        *_pDoubleOut = Double::Identity(-1, -1);
-        return 0;
+        return RDivideDoubleByDouble(_pDouble2, _pDouble1, _pDoubleOut);
     }
 
     *_pDoubleOut = new Double(_pDouble1->getCols(), _pDouble2->getCols(), _pDouble1->isComplex() || _pDouble2->isComplex());
