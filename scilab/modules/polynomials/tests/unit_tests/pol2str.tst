@@ -1,11 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 warning("off"); // WARNING_EMPTY_OPS
 assert_checkequal(pol2str(%z), "z");
 assert_checkequal(pol2str([%z %z]), ["z", "z"]);
@@ -24,5 +27,3 @@ assert_checkerror("pol2str(1)", msgerror);
 assert_checkequal(pol2str(%i*%z),"%i*z");
 ref = matrix( ["1+0.8497452*z";"1+0.685731*z"], [1 1 2]);
 assert_checktrue(and(pol2str(1+matrix( [0.8497452;0.6857310], [1 1 2])*%z) == ref));
-
-

@@ -4,17 +4,19 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
-//
+
 // <-- Non-regression test for bug 10782 -->
 //
-// <-- CLI SHELL MODE -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=10782
 //
 // <-- Short Description -->
 // iconvert did not check input arguments
-//
+
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 B = 69;
 

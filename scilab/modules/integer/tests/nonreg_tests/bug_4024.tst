@@ -4,8 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
-//
+
 // <-- Non-regression test for bug 4024 -->
 //
 // <-- Bugzilla URL -->
@@ -26,4 +25,3 @@ if []+int32(2)<>[] then pause,end
 if int32(2)+[]<>[] then pause,end
 if []-int32(2)<>[] then pause,end
 if int32(2)-[]<>[] then pause,end
-
