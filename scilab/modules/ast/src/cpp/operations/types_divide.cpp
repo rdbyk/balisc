@@ -182,8 +182,39 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         // x / eye() = x
         if (_pDouble2->isIdentity() )
         {
-            *_pDoubleOut = new Double(*_pDouble1);
-            return 0;
+            int iErr = 0;
+            int iComplex = 2 * _pDouble1->isComplex() + _pDouble2->isComplex();
+
+            *_pDoubleOut = new Double(1, 1, iComplex);
+
+            switch (iComplex)
+            {
+                case 0:
+                    iErr = iRightDivisionRealMatrixByReal(
+                           _pDouble1->get(),
+                           _pDouble2->getFirst(),
+                           (*_pDoubleOut)->get(), 1);
+                    break;
+                case 1:
+                    iErr = iRightDivisionRealMatrixByComplex(
+                            _pDouble1->get(),
+                            _pDouble2->getFirst(), _pDouble2->getImgFirst(),
+                            (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1);
+                    break;
+                case 2:
+                    iErr = iRightDivisionComplexMatrixByReal(
+                            _pDouble1->get(), _pDouble1->getImg(), _pDouble2->getFirst(),
+                            (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1);
+                    break;
+                case 3:
+                    iErr = iRightDivisionComplexMatrixByComplex(
+                            _pDouble1->get(), _pDouble1->getImg(),
+                            _pDouble2->getFirst(), _pDouble2->getImgFirst(),
+                            (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1);
+                    break;
+            }
+
+            return iErr;
         }
 
         int iRowResult = _pDouble2->getCols();
@@ -248,8 +279,39 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
     // eye() / eye() = eye()
     if (_pDouble1->isIdentity() && _pDouble2->isIdentity() )
     {
-        *_pDoubleOut = Double::Identity(-1, -1);
-        return 0;
+        int iErr = 0;
+        int iComplex = 2 * _pDouble1->isComplex() + _pDouble2->isComplex();
+
+        *_pDoubleOut = new Double(-1, -1, iComplex);
+
+        switch (iComplex)
+        {
+            case 0:
+                iErr = iRightDivisionRealMatrixByReal(
+                       _pDouble1->get(),
+                       _pDouble2->getFirst(),
+                       (*_pDoubleOut)->get(), 1);
+                break;
+            case 1:
+                iErr = iRightDivisionRealMatrixByComplex(
+                        _pDouble1->get(),
+                        _pDouble2->getFirst(), _pDouble2->getImgFirst(),
+                        (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1);
+                break;
+            case 2:
+                iErr = iRightDivisionComplexMatrixByReal(
+                        _pDouble1->get(), _pDouble1->getImg(), _pDouble2->getFirst(),
+                        (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1);
+                break;
+            case 3:
+                iErr = iRightDivisionComplexMatrixByComplex(
+                        _pDouble1->get(), _pDouble1->getImg(),
+                        _pDouble2->getFirst(), _pDouble2->getImgFirst(),
+                        (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), 1);
+                break;
+        }
+
+        return iErr;
     }
 
     *_pDoubleOut = new Double(_pDouble1->getRows(), _pDouble2->getRows(), _pDouble1->isComplex() || _pDouble2->isComplex());
