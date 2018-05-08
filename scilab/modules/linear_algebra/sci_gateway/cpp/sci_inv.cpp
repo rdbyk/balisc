@@ -3,7 +3,7 @@
  * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +13,8 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
+#include <complex>
 #include "linear_algebra_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -29,13 +29,11 @@ extern "C"
 #include "invert_matrix.h"
 #include "doublecomplex.h"
 }
-/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDbl = NULL;
     double* pData       = NULL;
-    int ret             = 0;
 
     if (in.size() != 1)
     {
@@ -75,12 +73,35 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
 
     if (pDbl->getCols() == -1)
     {
-        pData[0] = 1. / pData[0];
+        if (pDbl->isComplex())
+        {
+            if (pData[0] == 0.0 && pData[1] == 0.0 && ConfigVariable::getWarningMode())
+            {
+                sciprint(_("Warning :\n"));
+                sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), 0.0);
+            }
+
+            std::complex<double> z = 1. / std::complex<double>(pData[0], pData[1]);
+            pData[0] = real(z);
+            pData[1] = imag(z);
+            vGetPointerFromDoubleComplex((doublecomplex*)pData, pDbl->getSize(), pDbl->getReal(), pDbl->getImg());
+            vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+        }
+        else
+        {
+            if (pData[0] == 0.0 && ConfigVariable::getWarningMode())
+            {
+                sciprint(_("Warning :\n"));
+                sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), 0.0);
+            }
+
+            pData[0] = 1. / pData[0];
+        }
     }
     else
     {
         double dblRcond;
-        ret = iInvertMatrixM(pDbl->getRows(), pDbl->getCols(), pData, pDbl->isComplex(), &dblRcond);
+        int ret = iInvertMatrixM(pDbl->getRows(), pDbl->getCols(), pData, pDbl->isComplex(), &dblRcond);
         if (pDbl->isComplex())
         {
             /* z -> c */
@@ -96,16 +117,14 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
                 sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
             }
         }
-    }
 
-    if (ret == 19)
-    {
-        Scierror(19, _("%s: Problem is singular.\n"), "inv");
-        return types::Function::Error;
+        if (ret == 19)
+        {
+            Scierror(19, _("%s: Problem is singular.\n"), "inv");
+            return types::Function::Error;
+        }
     }
 
     out.push_back(pDbl);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-
