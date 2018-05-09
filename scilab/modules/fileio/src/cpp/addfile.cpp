@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "filemanager.hxx"
 #include "file.hxx"
 
@@ -23,7 +23,6 @@ extern "C"
 #include "sci_malloc.h"
 }
 
-/*--------------------------------------------------------------------------*/
 void C2F(addfile)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *ierr)
 {
     wchar_t* wcsFilename = to_wide_string(filename);
@@ -34,7 +33,7 @@ void C2F(addfile)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *fil
     if (*type == 2)
     {
         pFile->setFileDesc(fa);
-        pFile->setFileModeAsInt(*mode);
+        pFile->setFileModeFromInt(*mode);
     }
     else if (*type == -1)
     {
@@ -63,5 +62,3 @@ void C2F(addfile)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *fil
 
     FREE(wcsFilename);
 }
-/*--------------------------------------------------------------------------*/
-

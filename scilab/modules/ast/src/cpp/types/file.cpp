@@ -95,7 +95,7 @@ int File::getFileModeAsInt()
     return 100 * iMode + 10 * iPlus + iBin;
 }
 
-void File::setFileModeAsInt(int _iMode)
+void File::setFileModeFromInt(int _iMode)
 {
     int iBin = _iMode % 10;
     int iPlus = (_iMode / 10) % 10;

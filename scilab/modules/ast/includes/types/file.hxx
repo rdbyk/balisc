@@ -28,7 +28,7 @@ public :
 
     void                        setFileMode(const std::wstring& _pstMode);
     std::wstring&               getFileMode();
-    void                        setFileModeAsInt(int _iMode);
+    void                        setFileModeFromInt(int _iMode);
     int                         getFileModeAsInt();
     void                        setFileFortranMode(int _iMode);
     int                         getFileFortranMode();
