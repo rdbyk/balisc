@@ -97,9 +97,9 @@ int File::getFileModeAsInt()
 
 void File::setFileModeAsInt(int _iMode)
 {
-    int iMode  = (int)(_iMode / 100);
-    int iPlus  = (int)((_iMode - iMode * 100) / 10);
-    int iBin   = _iMode - iMode * 100 - iPlus * 10;
+    int iBin = _iMode % 10;
+    int iPlus = (_iMode / 10) % 10;
+    int iMode = _iMode / 100;
 
     m_pstMode.clear();
 
