@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -95,11 +95,11 @@ int File::getFileModeAsInt()
     return 100 * iMode + 10 * iPlus + iBin;
 }
 
-void File::setFileModeAsInt(int _iMode)
+void File::setFileModeFromInt(int _iMode)
 {
-    int iMode  = (int)(_iMode / 100);
-    int iPlus  = (int)((_iMode - iMode * 100) / 10);
-    int iBin   = _iMode - iMode * 100 - iPlus * 10;
+    int iBin = _iMode % 10;
+    int iPlus = (_iMode / 10) % 10;
+    int iMode = _iMode / 100;
 
     m_pstMode.clear();
 
@@ -183,23 +183,6 @@ void File::setFilename(const std::wstring& _stFilename)
 std::wstring& File::getFilename()
 {
     return m_stFilename;
-}
-
-int File::getCountLines()
-{
-    char* pstFileName = wide_string_to_UTF8(m_stFilename.c_str());
-    std::ifstream in(pstFileName);
-    std::string stLine;
-    int iLines = 0;
-
-    while (std::getline(in, stLine))
-    {
-        iLines++;
-    }
-
-    in.close();
-    FREE(pstFileName);
-    return iLines;
 }
 
 }

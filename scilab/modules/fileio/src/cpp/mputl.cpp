@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2010 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,9 +10,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
+
 #include <string.h>
 #include <stdio.h>
 #include "filemanager.hxx"
@@ -25,9 +25,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }
-/*--------------------------------------------------------------------------*/
-#define MPUTL_FORMAT "%s\n"
-/*--------------------------------------------------------------------------*/
+
 mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR)
 {
     int i = 0;
@@ -53,7 +51,9 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR
                 return MPUTL_ERROR;
             }
 
-            if ((pF->getFileModeAsInt() >= 100) && (pF->getFileModeAsInt() < 200) && ((pF->getFileModeAsInt() % 100) < 10) /* not r+ */)
+            int iFileModeMode = pF->getFileModeAsInt();
+
+            if ((iFileModeMode >= 100) && (iFileModeMode < 200) && ((iFileModeMode % 100) < 10) /* not r+ */)
             {
                 return MPUTL_NO_WRITE_RIGHT;
             }
@@ -86,5 +86,3 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR
 
     return MPUTL_NO_ERROR;
 }
-/*--------------------------------------------------------------------------*/
-
