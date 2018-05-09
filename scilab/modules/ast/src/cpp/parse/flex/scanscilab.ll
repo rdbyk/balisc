@@ -730,7 +730,10 @@ assign			"="
           || last_token == QUOTE
           || last_token == VARINT
           || last_token == VARFLOAT
-          || last_token == NUM)
+          || last_token == NUM
+          || last_token == BOOLTRUE
+          || last_token == BOOLFALSE
+          || last_token == STR)
       {
           return scan_throw(COMMA);
       }
