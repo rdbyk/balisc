@@ -44,6 +44,9 @@ public :
     Double(int _iDims, const int* _piDims, bool _bComplex = false, bool _bZComplex = false);
 
     static Double*              Empty();
+    static Double* Identity(bool _bComplex = false);
+    static Double* Identity(double _pdblReal);
+    static Double* Identity(double _pdblReal, double _pdblImg);
     static Double*              Identity(int _iRows, int _iCols);
     static Double*              Identity(int _iDims, const int* _piDims);
     static Double*              Identity(int _iDims, const int* _piDims, double _dblReal);

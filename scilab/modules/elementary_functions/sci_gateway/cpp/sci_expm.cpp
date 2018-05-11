@@ -63,9 +63,26 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
+    bool bIsComplex = pDblIn->isComplex();
 
-    if (pDblIn->isComplex())
+    if (pDblIn->getRows() == -1) // FIXME: find a better way to detect eye()
+    {
+        if (bIsComplex)
+        {
+            std::complex<double> z = std::exp(std::complex<double>(pDblIn->getFirst(), pDblIn->getImgFirst()));
+            out.push_back(types::Double::Identity(real(z), imag(z)));
+        }
+        else
+        {
+            out.push_back(types::Double::Identity(std::exp(pDblIn->getFirst())));
+        }
+
+        return types::Function::OK;
+    }
+
+    pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), bIsComplex);
+
+    if (bIsComplex)
     {
         zexpms2(pDblIn->get(), pDblIn->getImg(), pDblOut->get(), pDblOut->getImg(), pDblIn->getCols());
     }

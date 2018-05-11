@@ -39,6 +39,40 @@ Double* Double::Empty()
     return new Double(0, 0);
 }
 
+Double* Double::Identity(bool _bComplex)
+{
+    if (_bComplex)
+    {
+        return Double::Identity(1.0);
+    }
+    else
+    {
+        return Double::Identity(1.0, 1.0);
+    }
+}
+
+Double* Double::Identity(double _pdblReal)
+{
+    double* pdbl = NULL;
+    Double* pIdent = new Double(-1, -1, &pdbl);
+
+    pdbl[0] = _pdblReal;
+
+    return pIdent;
+}
+
+Double* Double::Identity(double _pdblReal, double _pdblImg)
+{
+    double* pdblR = NULL;
+    double* pdblI = NULL;
+    Double* pIdent = new Double(-1, -1, &pdblR, &pdblI);
+
+    pdblR[0] = _pdblReal;
+    pdblI[0] = _pdblImg;
+
+    return pIdent;
+}
+
 Double* Double::Identity(int _iRows, int _iCols)
 {
     double* pdbl = NULL;
