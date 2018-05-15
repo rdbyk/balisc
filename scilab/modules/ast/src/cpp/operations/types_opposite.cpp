@@ -24,6 +24,40 @@
 using namespace types;
 static opposite_function pOppositefunction[types::InternalType::IdLast] = {NULL};
 
+// specialization for Double (Scalar)
+template<>
+types::InternalType* opposite_S<Double, Double>(Double *_pL)
+{
+    Double* pOut = _pL->getRef() > 0 ? new Double(0) : _pL;
+    opposite(_pL->getFirst(), pOut->get());
+    return pOut;
+}
+
+template<>
+types::InternalType* opposite_SC<Double, Double>(Double *_pL)
+{
+    Double* pOut = _pL->getRef() > 0 ? new Double(0, 0) : _pL;
+    opposite(_pL->getFirst(), _pL->getImgFirst(), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+// specialization for Double (Matrix)
+template<>
+types::InternalType* opposite_M<Double, Double>(Double *_pL)
+{
+    Double* pOut = _pL->getRef() >  0 ? new Double(_pL->getDims(), _pL->getDimsArray()) : _pL;
+    opposite(_pL->get(), pOut->getSize(), pOut->get());
+    return pOut;
+}
+
+template<>
+types::InternalType* opposite_MC<Double, Double>(Double *_pL)
+{
+    Double* pOut = _pL->getRef() >  0 ? new Double(_pL->getDims(), _pL->getDimsArray(), true) : _pL;
+    opposite(_pL->get(), _pL->getImg(), pOut->getSize(), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
 void fillOppositeFunction()
 {
 #define scilab_fill_opposite(id1, func, typeIn1, typeOut) \
