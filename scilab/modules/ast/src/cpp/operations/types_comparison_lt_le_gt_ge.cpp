@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -36,7 +36,7 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
     {
-        return Double::Empty();
+        return _pLeftOperand->getRef() > 0 ? Double::Empty() : _pLeftOperand;
     }
 
     /*
@@ -44,7 +44,7 @@ InternalType *GenericLess(InternalType *_pLeftOperand, InternalType *_pRightOper
     */
     if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
     {
-        return Double::Empty();
+        return _pRightOperand->getRef() > 0 ? Double::Empty() : _pRightOperand;
     }
 
     /*
@@ -252,7 +252,7 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
     */
     if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
     {
-        return Double::Empty();
+        return _pLeftOperand->getRef() > 0 ? Double::Empty() : _pLeftOperand;
     }
 
     /*
@@ -260,7 +260,7 @@ InternalType *GenericLessEqual(InternalType *_pLeftOperand, InternalType *_pRigh
     */
     if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
     {
-        return Double::Empty();
+        return _pRightOperand->getRef() > 0 ? Double::Empty() : _pRightOperand;
     }
 
     /*
