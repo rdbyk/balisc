@@ -231,7 +231,7 @@ bool ImplicitList::compute()
 
             if (finite(dblStep) == 0 || finite(dblRange) == 0)
             {
-                if (isnan(dblStep) || isnan(dblRange) || std::signbit(dblStep) == std::signbit(dblRange))
+                if (std::isnan(dblStep) || std::isnan(dblRange) || std::signbit(dblStep) == std::signbit(dblRange))
                 {
                     // return nan
                     m_iSize = -1;
