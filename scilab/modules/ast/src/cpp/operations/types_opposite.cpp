@@ -33,30 +33,33 @@ types::InternalType* opposite_S<Double, Double>(Double *_pL)
     return pOut;
 }
 
-template<>
-types::InternalType* opposite_SC<Double, Double>(Double *_pL)
-{
-    Double* pOut = _pL->getRef() > 0 ? new Double(0, 0) : _pL;
-    opposite(_pL->getFirst(), _pL->getImgFirst(), pOut->get(), pOut->getImg());
-    return pOut;
-}
+// FIXME: this specialization makes the "addition", "subtraction" tests
+// *crashing*, why?!
+//template<>
+//types::InternalType* opposite_SC<Double, Double>(Double *_pL)
+//{
+//    Double* pOut = _pL->getRef() > 0 ? new Double(0, 0) : _pL;
+//    opposite(_pL->getFirst(), _pL->getImgFirst(), pOut->get(), pOut->getImg());
+//    return pOut;
+//}
 
+// FIXME: these specializations makes the "sparse" test failing, why?!
 // specialization for Double (Matrix)
-template<>
-types::InternalType* opposite_M<Double, Double>(Double *_pL)
-{
-    Double* pOut = _pL->getRef() >  0 ? new Double(_pL->getDims(), _pL->getDimsArray()) : _pL;
-    opposite(_pL->get(), pOut->getSize(), pOut->get());
-    return pOut;
-}
-
-template<>
-types::InternalType* opposite_MC<Double, Double>(Double *_pL)
-{
-    Double* pOut = _pL->getRef() >  0 ? new Double(_pL->getDims(), _pL->getDimsArray(), true) : _pL;
-    opposite(_pL->get(), _pL->getImg(), pOut->getSize(), pOut->get(), pOut->getImg());
-    return pOut;
-}
+//template<>
+//types::InternalType* opposite_M<Double, Double>(Double *_pL)
+//{
+//    Double* pOut = _pL->getRef() >  0 ? new Double(_pL->getDims(), _pL->getDimsArray()) : _pL;
+//    opposite(_pL->get(), pOut->getSize(), pOut->get());
+//    return pOut;
+//}
+//
+//template<>
+//types::InternalType* opposite_MC<Double, Double>(Double *_pL)
+//{
+//    Double* pOut = _pL->getRef() >  0 ? new Double(_pL->getDims(), _pL->getDimsArray(), true) : _pL;
+//    opposite(_pL->get(), _pL->getImg(), pOut->getSize(), pOut->get(), pOut->getImg());
+//    return pOut;
+//}
 
 void fillOppositeFunction()
 {
