@@ -71,6 +71,10 @@ Packaging & Supported Operating Systems
 * [SSE2](https://en.wikipedia.org/wiki/SSE2), Streaming SIMD Extensions 2 support is now mandatory to run Scilab on Linux i686.
 
 
+Language changes
+----------------
+
+
 Feature changes and additions
 -----------------------------
 
@@ -138,36 +142,55 @@ Known issues
 
 
 ### Bugs fixed in 6.0.2:
+* [#4050](http://bugzilla.scilab.org/show_bug.cgi?id=4050): `ged()` did not support graphical texts with a font size > 5.
+* [#5430](http://bugzilla.scilab.org/show_bug.cgi?id=5430): `clf` could erase the ATOMS GUI or the m2sci one.
+* [#6548](http://bugzilla.scilab.org/show_bug.cgi?id=6548): `gamma` did not accept an hypermatrix and could not be overloaded for complex numbers.
+* [#6729](http://bugzilla.scilab.org/show_bug.cgi?id=6729): The compatibility functions `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_uint8`, `mtlb_uint16` and `mtlb_uint32` were not actually Matlab-like. Their documentation was neither correct nor up-to-date. `mtlb_int64` and `mtlb_int64` were missing. 
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.
 * [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
 * [#8127](http://bugzilla.scilab.org/show_bug.cgi?id=8127): When using `ode()`, some internal errors messages were in french.
+* [#8810](http://bugzilla.scilab.org/show_bug.cgi?id=8810): Insertions with an hypermatrix of indices failed.
 * [#8995](http://bugzilla.scilab.org/show_bug.cgi?id=8995): Problem with row insertion in empty matrix.
+* [#9063](http://bugzilla.scilab.org/show_bug.cgi?id=9063): `pt` was the alias of `pt_PT` instead of `pt_BR`.
 * [#9958](http://bugzilla.scilab.org/show_bug.cgi?id=9958): `mprintf("%d\r", 12345)` printed `" 345"`
 * [#10190](http://bugzilla.scilab.org/show_bug.cgi?id=10190): Xcos blocks and labels positioning were not aligned to the grid on creation.
 * [#11240](http://bugzilla.scilab.org/show_bug.cgi?id=11240): `A=[]; clear B; [A($+1),B]=1;` crashed Scilab.
 * [#11583](http://bugzilla.scilab.org/show_bug.cgi?id=11583): When in Scinotes preferences the default header is erased, the available variables were no longer documented.
 * [#11916](http://bugzilla.scilab.org/show_bug.cgi?id=11916): Loading a graphic file containing several figures restored them by superimposing them in the same window.
 * [#12109](http://bugzilla.scilab.org/show_bug.cgi?id=12109): `execstr(.,"errcatch")` calling a macro returning before setting the argout crashed Scilab.
+* [#12198](http://bugzilla.scilab.org/show_bug.cgi?id=12198): Scilab control and block keywords `break case ... try while` and `clear()` could be overloaded as regular assignable variables.
 * [#12566](http://bugzilla.scilab.org/show_bug.cgi?id=12566): `disp()` of a T-list with a single field set to an encoded integer value generated an error.
+* [#12926](http://bugzilla.scilab.org/show_bug.cgi?id=12926): `~%f==1` was parsed as `~(%f==1)` instead of `(~%f)==1`.
 * [#13466](http://bugzilla.scilab.org/show_bug.cgi?id=13466): Since Scilab 5.5.0, it was no longer possible to dock the demo GUI.
 * [#13778](http://bugzilla.scilab.org/show_bug.cgi?id=13778): The size of `repmat([], [1 1 3])` was [0 0 3] instead of [0 0].
+* [#13915](http://bugzilla.scilab.org/show_bug.cgi?id=13915): On Windows, reinstalling an ATOMS toolbox with an archive already present failed.
+* [#14010](http://bugzilla.scilab.org/show_bug.cgi?id=14010): Browsevar was not displaying dimensions > 2 of hypermatrix
 * [#14521](http://bugzilla.scilab.org/show_bug.cgi?id=14521): For the CONVERT Xcos block, types codes 2, 6, 7, and 8 were not documented.
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.
+* [#14897](http://bugzilla.scilab.org/show_bug.cgi?id=14897): `xinfo` is poor and useless. It is declared obsolete.
 * [#14988](http://bugzilla.scilab.org/show_bug.cgi?id=14988): The example of Xcos diagram on the DERIV help page was distorted.
 * [#14989](http://bugzilla.scilab.org/show_bug.cgi?id=14989): The example of Xcos diagram on the INTEGRAL_m help page was distorted.
 * [#14990](http://bugzilla.scilab.org/show_bug.cgi?id=14990): The example of Xcos diagram on the NEGTOPOS_f help page was distorted.
 * [#15263](http://bugzilla.scilab.org/show_bug.cgi?id=15263): Assignments in an array of structures often overwrote some untargeted elements.
 * [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
 * [#15423](http://bugzilla.scilab.org/show_bug.cgi?id=15423): `tbx_make(myModule,sections)` executed the existing builder (if any), instead of targeting only selected module sections. Otherwise, tbx_make(myModule, "help"|"macros") yielded an error, and tbx_make(myModule,"localization") never built it.
+* [#15430](http://bugzilla.scilab.org/show_bug.cgi?id=15430): 47 `Scierror()` errors messages had mismatching input data.
 * [#15440](http://bugzilla.scilab.org/show_bug.cgi?id=15440): Scilab debug help page linked to Xcos debug.
 * [#15442](http://bugzilla.scilab.org/show_bug.cgi?id=15442): `printf` could not handle uint64 integers greater than 2^32-1.
+* [#15447](http://bugzilla.scilab.org/show_bug.cgi?id=15447): The scilab.appdata.xml file deserved some refreshment.
+* [#15449](http://bugzilla.scilab.org/show_bug.cgi?id=15449): Some small changes were required to ease the compilation with gcc >= 7.
 * [#15464](http://bugzilla.scilab.org/show_bug.cgi?id=15464): Xcos C-blocks could not link dlls on Windows.
 * [#15484](http://bugzilla.scilab.org/show_bug.cgi?id=15484): On Windows, `isdir("w:")`, `isdir("w:/")`, and `isdir("w:\")` returned %T whenever the W: drive does not exist.
+* [#15489](http://bugzilla.scilab.org/show_bug.cgi?id=15489): Help pages of `covStart`, `covStop`, `covWrite` and `covMerge` were not built for the fr, ja, pt and ru languages, and were unreachable from a session in non `en_US` language.
 * [#15495](http://bugzilla.scilab.org/show_bug.cgi?id=15495): SampleCLK simple demo failed to simulate.
 * [#15496](http://bugzilla.scilab.org/show_bug.cgi?id=15496): Scinotes `File > Open recent` menu was not updated when it should.
 * [#15499](http://bugzilla.scilab.org/show_bug.cgi?id=15499): Scinotes menus were inactive after session restore under OSX.
+* [#15508](http://bugzilla.scilab.org/show_bug.cgi?id=15508): `int8..uint64` and `iconvert` help pages had errors and were not up to date.
+* [#15511](http://bugzilla.scilab.org/show_bug.cgi?id=15511): Keyboard ctrl-left ctrl-right shortcuts could not be used for slider under OSX.
 * [#15527](http://bugzilla.scilab.org/show_bug.cgi?id=15527): `ode` gave incorrect results with %ODEOPTIONS(1)=2.
+* [#15528](http://bugzilla.scilab.org/show_bug.cgi?id=15528): savewave wrote null signal if 24 bits resolution and more than 2 channels
 * [#15539](http://bugzilla.scilab.org/show_bug.cgi?id=15539): zero step in integer implicit list crashed Scilab.
+
 
 ### Bugs fixed in 6.0.1:
 * [#2441](http://bugzilla.scilab.org/show_bug.cgi?id=2441): `%onprompt()` could be defined only at the top execution level.
