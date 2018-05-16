@@ -172,7 +172,7 @@ Please note, that **_Balisc_** additionally needs **_SLEEF (SIMD Library for Eva
 - `mv lib lib_DEV`
 - `mkdir -p lib/thirdparty`
 - `cp lib_DEV/thirdparty/libjogl_*.so lib/thirdparty`
-- `./configure --with-eigen-include=<PATH>/balisc_master/scilab/usr_DEV/include`
+- `./configure --with-eigen-include=<PATH>/balisc/scilab/usr_DEV/include`
 - `make`
 
 ## Issues and Pull Requests
