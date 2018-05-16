@@ -165,8 +165,8 @@ Please note, that **_Balisc_** additionally needs **_SLEEF (SIMD Library for Eva
 **_What else is needed?_** For the time being, just run `configure` (cf. below), and see what is missing, install the missing libraries, and re-run `configure` ... and so on ...
 
 - `cd <PATH>`
-- `git clone -b master --depth=1 https://github.com/rdbyk/balic.git balisc_master`
-- `cd balisc_master/scilab`
+- `git clone https://github.com/rdbyk/balisc.git balisc`
+- `cd balisc/scilab`
 - `svn --force checkout https://github.com/scilab/scilab-prerequirements.git/trunk/linux_x64/ .`
 - `mv usr usr_DEV`
 - `mv lib lib_DEV`
