@@ -24,14 +24,9 @@
 #include "matrix_multiplication.h"
 #include "matrix_right_division.h"
 
+static double dblGetMatrixInfiniteNorm(double *_pdblReal, double *_pdblImg, int _iRows, int _iCols);
 static void vDless(double* A, double* B, double* X, int n);
 static void vDadd(double* A, double* B, double* X, int n);
-
-int dexpms2(double *_pdblReal, double *_pdblReturnReal, int _iLeadDim)
-{
-    int iRet = zexpms2(_pdblReal, NULL, _pdblReturnReal, NULL, _iLeadDim);
-    return iRet;
-}
 
 int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double *_pdblReturnImg, int _iLeadDim)
 {
@@ -42,13 +37,9 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
     int iFlag				= 0;
     int iLoop1			= 0;
     int iSquare			= 0;
-    int iOne				= 1;
     int iMallocSize = 0;
 
     int iComplex = 0;
-
-    double dblZero	= 0;
-    double dblOne	= 1;
 
     int iExp	= 0;
     double dblS		= 0;
@@ -180,11 +171,7 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
                 pdblMatrixRealTemp, _iLeadDim, _iLeadDim,
                 pdblMatrixRealX);
         }
-        /*		C2F(dgemm)("n", "n", &_iLeadDim, &_iLeadDim, &_iLeadDim, &dblOne,
-        			pdblMatrixRealA, &_iLeadDim ,
-        			pdblMatrixRealTemp, &_iLeadDim, &dblZero,
-        			pdblMatrixRealX ,&_iLeadDim);
-        */
+
         //cX = c * X
         if (iComplex)
             iMultiRealScalarByComplexMatrix(dblCst, pdblMatrixRealX, pdblMatrixImgX,
@@ -282,12 +269,6 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
                 pdblMatrixRealTemp,	_iLeadDim, _iLeadDim,
                 pdblMatrixRealTemp,	_iLeadDim, _iLeadDim,
                 _pdblReturnReal);
-        /*
-        		C2F(dgemm)("n", "n", &_iLeadDim, &_iLeadDim, &_iLeadDim, &dblOne,
-        			pdblMatrixRealTemp,		&_iLeadDim ,
-        			pdblMatrixRealTemp2,	&_iLeadDim, &dblZero,
-        			_pdblReturnReal ,		&_iLeadDim);
-        */
     }
 
     free(pdblMatrixRealA);

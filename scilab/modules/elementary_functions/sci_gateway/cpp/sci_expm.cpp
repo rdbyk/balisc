@@ -25,17 +25,21 @@ extern "C"
 #include "expm.h"
 }
 
+using types::Double;
+using types::Function;
+using types::typed_list;
+
 static const char fname[] = "expm";
 
-types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, types::typed_list &out)
+Function::ReturnValue sci_expm(typed_list &in, int _iRetCount, typed_list &out)
 {
-    types::Double* pDblIn = NULL;
-    types::Double* pDblOut = NULL;
+    Double* pDblIn = NULL;
+    Double* pDblOut = NULL;
 
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     if (in[0]->isDouble() == false)
@@ -44,7 +48,7 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDblIn = in[0]->getAs<types::Double>();
+    pDblIn = in[0]->getAs<Double>();
 
     if (pDblIn->getDims() > 2)
     {
@@ -53,14 +57,14 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
 
     if (pDblIn->getSize() == 0)
     {
-        out.push_back(types::Double::Empty());
-        return types::Function::OK;
+        out.push_back(Double::Empty());
+        return Function::OK;
     }
 
     if (pDblIn->getCols() != pDblIn->getRows())
     {
         Scierror(999, _("%s: Wrong size for input argument #%d : A square matrix expected.\n"), fname, 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     bool bIsComplex = pDblIn->isComplex();
@@ -70,27 +74,21 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
         if (bIsComplex)
         {
             std::complex<double> z = std::exp(std::complex<double>(pDblIn->getFirst(), pDblIn->getImgFirst()));
-            out.push_back(types::Double::Identity(real(z), imag(z)));
+            out.push_back(Double::Identity(real(z), imag(z)));
         }
         else
         {
-            out.push_back(types::Double::Identity(std::exp(pDblIn->getFirst())));
+            out.push_back(Double::Identity(std::exp(pDblIn->getFirst())));
         }
 
-        return types::Function::OK;
+        return Function::OK;
     }
 
-    pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), bIsComplex);
+    pDblOut = new Double(pDblIn->getDims(), pDblIn->getDimsArray(), bIsComplex);
 
-    if (bIsComplex)
-    {
-        zexpms2(pDblIn->get(), pDblIn->getImg(), pDblOut->get(), pDblOut->getImg(), pDblIn->getCols());
-    }
-    else
-    {
-        dexpms2(pDblIn->get(), pDblOut->get(), pDblIn->getCols());
-    }
+    // Note: NULL pointers for imaginary parts are handled in zexpms2
+    zexpms2(pDblIn->get(), pDblIn->getImg(), pDblOut->get(), pDblOut->getImg(), pDblIn->getCols());
 
     out.push_back(pDblOut);
-    return types::Function::OK;
+    return Function::OK;
 }
