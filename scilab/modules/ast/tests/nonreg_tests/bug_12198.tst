@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -26,7 +27,7 @@ stillUnprotected = ["abort" "exit" "pause" "quit"];
 //Error: syntax error, unexpected =
 //
 keyws = ["break" "case" "catch" "continue" "do" "else" "elseif" "end" ..
-        "endfunction" "for" "function" "if" "resume" ..
+        "endfunction" "for" "function" "if" ..
         "return" "select" "then" "try" "while"];
 
 for k = keyws

@@ -6,9 +6,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//for version after 3.0 the comments are no more handled by a preprocessor,
-//but by the parser itself
-
 a=1//test
 if a<>1 then pause,end
 a=2;//test
@@ -280,63 +277,67 @@ a=foo();
 if a<>15 then pause,end
 warning("on");
 
-//with macr2tree
-//first define an utilitary function
-function [C,L,lc]=getcommentsintree(T,lc)
-    C=[],L=[];
-    if nargin<2 then lc=0,end
-    for k=1:size(T)
-        l=T(k)
-        if  l(1)(1)=="ifthenelse" then
-            [CC,LL,lc]=getcommentsintree(l.then,lc)
-            C=[C;CC]
-            L=[L;LL]
-            [CC,LL,lc]=getcommentsintree(l.elseifs,lc)
-            C=[C;CC]
-            L=[L;LL]
-        [CC,LL,lc]=getcommentsintree(l.else,lc)
-            C=[C;CC]
-            L=[L;LL]
-        elseif  l(1)(1)=="while" then
-            [CC,LL,lc]=getcommentsintree(l.statements,lc)
-            C=[C;CC]
-            L=[L;LL]
-        elseif l(1)(1)=="comment" then
-            C=[C;l.text]
-            L=[L;lc]
-        elseif l(1)=="EOL" then
-            lc=lc+1
-        end
-    end
-endfunction
-
-function a=foo
-    a=0;k=0;//initialization
-    while %t
-        k=k+1; //ttttt ttttt
-        if a> 10 then //f f
-            break // go out the loop
-        else //111 111
-            a=a-1; //sdf dfd
-        end //xx xxx
-        a=a+k; //hhh hh
-    end //loop end
-endfunction
-T=macr2tree(foo);
-[C,L]=getcommentsintree(T.statements)
-Cref=["initialization";
-"ttttt ttttt";
-"f f";
-" go out the loop";
-"111 111";
-"sdf dfd";
-"xx xxx";
-"hhh hh";
-"loop end"];
-Lref=[1 3 5:6 8:12]';
-if or(C<>Cref) then pause,end
-if or(L<>Lref) then pause,end
-
+//
+// NOTE:
+// Comments are currently dropped at the parsing level and thus the following
+// tests are useless! cf. https://github.com/rdbyk/balisc/pull/489
+//
+////with macr2tree
+////first define an utilitary function
+//function [C,L,lc]=getcommentsintree(T,lc)
+//    C=[],L=[];
+//    if nargin<2 then lc=0,end
+//    for k=1:size(T)
+//        l=T(k)
+//        if  l(1)(1)=="ifthenelse" then
+//            [CC,LL,lc]=getcommentsintree(l.then,lc)
+//            C=[C;CC]
+//            L=[L;LL]
+//            [CC,LL,lc]=getcommentsintree(l.elseifs,lc)
+//            C=[C;CC]
+//            L=[L;LL]
+//        [CC,LL,lc]=getcommentsintree(l.else,lc)
+//            C=[C;CC]
+//            L=[L;LL]
+//        elseif  l(1)(1)=="while" then
+//            [CC,LL,lc]=getcommentsintree(l.statements,lc)
+//            C=[C;CC]
+//            L=[L;LL]
+//        elseif l(1)(1)=="comment" then
+//            C=[C;l.text]
+//            L=[L;lc]
+//        elseif l(1)=="EOL" then
+//            lc=lc+1
+//        end
+//    end
+//endfunction
+//
+//function a=foo
+//    a=0;k=0;//initialization
+//    while %t
+//        k=k+1; //ttttt ttttt
+//        if a> 10 then //f f
+//            break // go out the loop
+//        else //111 111
+//            a=a-1; //sdf dfd
+//        end //xx xxx
+//        a=a+k; //hhh hh
+//    end //loop end
+//endfunction
+//T=macr2tree(foo);
+//[C,L]=getcommentsintree(T.statements)
+//Cref=["initialization";
+//"ttttt ttttt";
+//"f f";
+//" go out the loop";
+//"111 111";
+//"sdf dfd";
+//"xx xxx";
+//"hhh hh";
+//"loop end"];
+//Lref=[1 3 5:6 8:12]';
+//if or(C<>Cref) then pause,end
+//if or(L<>Lref) then pause,end
 
 function a=foo
     a=0;k=0;//initialization
