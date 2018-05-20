@@ -1719,7 +1719,6 @@ titlepage
 twinkle
 whitecolormap
 wintercolormap
-xinfo
 xlabel
 xload
 xnumb

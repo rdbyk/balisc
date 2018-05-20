@@ -3549,14 +3549,43 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/contour.sci, line: 50
-# File: modules/graphics/macros/contour.sci, line: 54
-# File: modules/graphics/macros/contour2d.sci, line: 27
-# File: modules/graphics/macros/contour2d.sci, line: 31
-# File: modules/graphics/macros/contourf.sci, line: 57
-# File: modules/graphics/macros/contourf.sci, line: 61
-# File: modules/graphics/macros/implicitplot.sci, line: 35
-# File: modules/graphics/macros/implicitplot.sci, line: 47
+# File: modules/graphics/macros/contour.sci, line: 47
+# File: modules/graphics/macros/contour2d.sci, line: 24
+# File: modules/graphics/macros/datatips/datatipMove.sci, line: 17
+# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 20
+# File: modules/graphics/macros/errbar.sci, line: 36
+# File: modules/graphics/macros/fgrayplot.sci, line: 38
+# File: modules/graphics/macros/fplot2d.sci, line: 30
+# File: modules/graphics/macros/fplot3d.sci, line: 33
+# File: modules/graphics/macros/fplot3d1.sci, line: 35
+# File: modules/graphics/macros/ged_insert.sci, line: 17
+# File: modules/graphics/macros/genfac3d.sci, line: 40
+# File: modules/graphics/macros/graduate.sci, line: 45
+# File: modules/graphics/macros/graypolarplot.sci, line: 33
+# File: modules/graphics/macros/histplot.sci, line: 72
+# File: modules/graphics/macros/legend.sci, line: 17
+# File: modules/graphics/macros/paramfplot2d.sci, line: 40
+# File: modules/graphics/macros/plot3d2.sci, line: 27
+# File: modules/graphics/macros/plot3d3.sci, line: 19
+# File: modules/graphics/macros/plotframe.sci, line: 28
+# File: modules/graphics/macros/title.sci, line: 17
+# File: modules/graphics/macros/xlabel.sci, line: 17
+# File: modules/graphics/macros/xsave.sci, line: 14
+# File: modules/graphics/macros/ylabel.sci, line: 17
+# File: modules/graphics/macros/zlabel.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/contour.sci, line: 51
+# File: modules/graphics/macros/contour.sci, line: 55
+# File: modules/graphics/macros/contour2d.sci, line: 28
+# File: modules/graphics/macros/contour2d.sci, line: 32
+# File: modules/graphics/macros/contourf.sci, line: 58
+# File: modules/graphics/macros/contourf.sci, line: 62
+# File: modules/graphics/macros/implicitplot.sci, line: 38
+# File: modules/graphics/macros/implicitplot.sci, line: 50
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
