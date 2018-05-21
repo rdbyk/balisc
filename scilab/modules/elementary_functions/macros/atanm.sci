@@ -25,8 +25,7 @@ function x=atanm(a)
         return
     end
 
-    [m,n]=size(a);
-    if m<>n then
+    if ~issquare(a) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"atanm",1));
     end
 
@@ -39,7 +38,7 @@ function x=atanm(a)
 
     x=t*diag(atan(diag(x)))/t;
 
-    if and(imag(a)==0) then
+    if isreal(a,0) then
         x=real(x)
     end
 
