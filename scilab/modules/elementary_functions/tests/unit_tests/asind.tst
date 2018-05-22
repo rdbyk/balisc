@@ -416,13 +416,9 @@ ref=[-1, -90.
 199/200, 84.2680320348022760258123492403
 1, 90.];
 
-
 x=ref(:,1);e=max(abs((ref(:,2)-asind(x))./ref(:,2)));
 if e>2*eps then pause,end
 if asind(1)<>90 then pause,end
 if asind(-1)<>-90 then pause,end
 if asind(0)<>0 then pause,end
-
-
 if asind([])<>[] then pause,end
-

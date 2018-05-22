@@ -8,8 +8,6 @@
 
 // <-- CLI SHELL MODE -->
 
-
-
 // Maple code used to create reference
 // Digits := 40:
 // writeto("cotd.ref"): interface(prettyprint = 0): 
@@ -382,22 +380,20 @@ expected = ref(:,2);
 computed = cotd(x);
 e=max(abs((expected-computed)./expected));
 if e>100*eps then pause,end
-//
+
 x=ref(:,1)+2^6*360; 
 expected = ref(:,2);
 computed = cotd(x);
 e=max(abs((expected-computed)./expected));
 if e>100*eps then pause,end
-//
+
 x=ref(:,1)+2^10*360; 
 expected = ref(:,2);
 computed = cotd(x);
 e=max(abs((expected-computed)./expected));
 if e>100*eps then pause,end
 
-if  cotd(-180)<>Inf then pause,end
-if  cotd(+180)<>Inf then pause,end
-if  cotd(0)<>Inf then pause,end
-
+if cotd(-180)<>Inf then pause,end
+if cotd(+180)<>Inf then pause,end
+if cotd(0)<>Inf then pause,end
 if cotd([])<>[] then pause,end
-

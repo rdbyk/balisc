@@ -389,6 +389,4 @@ if e>eps then pause,end
 if ~isnan(cosd(-Inf)) then pause,end
 if ~isnan(cosd(Inf)) then pause,end
 if ~isnan(cosd(NaN)) then pause,end
-
 if cosd([])<>[] then pause,end
-

@@ -1,16 +1,5 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Serge Steer
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
-// Digits := 40:
-// writeto("cscd.ref"); interface(prettyprint = 0):
-// for i from 0 to 360 do if ((i<>0) and (i~=180) and (i~=360)) then print(-180+i, evalf[30](csc(-Pi+i*Pi/180), 30)) end end do; 
-// writeto(terminal);
 ieee(2);
-pi=%pi;eps=%eps;Inf=%inf;NaN=%nan; //used to make following code runnable under Matlab
+pi=%pi;eps=%eps;Inf=%inf;NaN=%nan;
 ref=[-179, -57.2986884985501834766126837351
 -178, -28.6537083478438211365216382162
 -177, -19.1073226092973979922961125616
@@ -370,7 +359,6 @@ ref=[-179, -57.2986884985501834766126837351
 178, 28.6537083478438211365216382162
 179, 57.2986884985501834766126837351
 ];
-//diff(csc(x*(1+e)), e) = -csc(x*(1+e))*cot(x*(1+e))*x
 x=ref(:,1);
 if max(abs((cscd(x)-ref(:,2))./(cotg(x*%pi/180).*x.*cscd(x))))*180/pi>20*eps then bugmes();quit;end
 if max(abs((ref(:,2)-cscd(x))./ref(:,2)))>10*eps then bugmes();quit;end

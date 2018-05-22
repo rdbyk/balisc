@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // unit tests for cross function.
 // =============================================================================
@@ -42,7 +44,7 @@ C=sparse([-9;6;3]);
 assert_checkequal(cross(A,B),C);
 
 // Error messages
-errmsg1=msprintf(_("Wrong number of input arguments.\n"));
+errmsg1=msprintf(_("cross: Wrong number of input arguments: 2 expected.\n"));
 assert_checkerror("cross(A,B,C)", errmsg1);
 errmsg2=msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "cross",2);
 assert_checkerror("cross(A)", errmsg2);

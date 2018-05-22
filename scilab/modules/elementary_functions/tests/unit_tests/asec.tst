@@ -2,11 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer
 // Copyright (C) 2011 - DIGITEO - Michaël Baudin
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // Maple code used to create reference
 // Digits := 40: 
@@ -1026,32 +1028,28 @@ refi=[1/100, 5.29829236561048459070166683494
 1, 0.
 ];
 
-
-     x=ref(:,1);
-	 y = asec(x);
-	 e=ref(:,2);
-     assert_checkalmostequal(y,e,10*%eps,[],"element");
-	 //
-     x=-ref(:,1);
-	 y = asec(x);
-	 e=pi-ref(:,2);
-     assert_checkalmostequal(y,e,10*%eps,[],"element");
-     
-     
-     x=refi(:,1);
-	 y = asec(x);
-	 e = imult(refi(:,2));
-     assert_checkalmostequal(y,e,20*%eps,[],"element");
-	//
-     x=-refi(:,1);
-	 y = asec(x);
-	 e = pi-imult(refi(:,2));
-     assert_checkalmostequal(y,e,20*%eps,[],"element");
+ x=ref(:,1);
+ y = asec(x);
+ e=ref(:,2);
+ assert_checkalmostequal(y,e,10*%eps,[],"element");
+ //
+ x=-ref(:,1);
+ y = asec(x);
+ e=pi-ref(:,2);
+ assert_checkalmostequal(y,e,10*%eps,[],"element");
  
-     assert_checkequal(asec(0),imult(Inf));
-     assert_checkalmostequal(asec(Inf),pi/2,%eps,[],"element");
+ 
+ x=refi(:,1);
+ y = asec(x);
+ e = imult(refi(:,2));
+ assert_checkalmostequal(y,e,20*%eps,[],"element");
+//
+ x=-refi(:,1);
+ y = asec(x);
+ e = pi-imult(refi(:,2));
+ assert_checkalmostequal(y,e,20*%eps,[],"element");
 
-     assert_checkequal(asec(NaN),%nan);
-
-     assert_checkequal(asec([]),[]);
-
+ assert_checkequal(asec(0),imult(Inf));
+ assert_checkalmostequal(asec(Inf),pi/2,%eps,[],"element");
+ assert_checkequal(asec(NaN),%nan);
+ assert_checkequal(asec([]),[]);

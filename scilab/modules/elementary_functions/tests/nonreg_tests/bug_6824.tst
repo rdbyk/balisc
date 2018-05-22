@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 6824 -->
 //
 // <-- Bugzilla URL -->
@@ -121,7 +123,6 @@ m = resize_matrix(m, 10, 4);
 
 assert_checkequal(size(m), size(refM));
 assert_checkequal(m, refM);
-
 
 // Error checks
 refMsg = msprintf(_("%s: Wrong sizes requested, cannot convert list to matrix.\n"), "resize_matrix");

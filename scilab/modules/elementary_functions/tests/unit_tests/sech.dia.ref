@@ -1,17 +1,5 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Serge Steer
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
-// Maple code used to create reference
-// Digits := 40: 
-// writeto("sech.ref"): interface(prettyprint = 0): 
-// for i from 0 to 400 do print(i, evalf[30](sech(i), 30)) end do: 
-// writeto(terminal):
 ieee(2);
-pi=%pi;eps=%eps;Inf=%inf;NaN=%nan; //used to make following code runnable under Matlab
+pi=%pi;eps=%eps;Inf=%inf;NaN=%nan;
 ref=[0, 1.
 1, .648054273663885399574977353226
 2, .265802228834079692120862739820
@@ -414,18 +402,16 @@ ref=[0, 1.
 399, 0.104119414263298393442787763061e-172
 400, 0.383033919342801139003967955731e-173
 ];
-     x=ref(:,1);
-     e=max(abs((ref(:,2)-sech(x))./ref(:,2)));
-     if e>200*eps then bugmes();quit;end
-     //diff(sech(x*(1+e)), e) = -sech(x*(1+e))*tanh(x*(1+e))*x
-     e=max(abs((ref(:,2)-sech(x))./(-sech(x).*tanh(x).*x)));
-     if e>200*eps then bugmes();quit;end
-     x=ref(:,1);e=max(abs((ref(:,2)-sech(-x))./ref(:,2)));
-     if e>200*eps then bugmes();quit;end
-      //diff(sech(x*(1+e)), e) = -sech(x*(1+e))*tanh(x*(1+e))*x
-     e=max(abs((ref(:,2)-sech(x))./(-sech(x).*tanh(x).*x)));
-     if e>200*eps then bugmes();quit;end
-     if sech(Inf)<>0 then bugmes();quit;end
-     if sech(-Inf)<>0 then bugmes();quit;end
-     if ~isnan(sech(NaN)) then bugmes();quit;end
-     if sech([])<>[] then bugmes();quit;end
+x=ref(:,1);
+e=max(abs((ref(:,2)-sech(x))./ref(:,2)));
+if e>200*eps then bugmes();quit;end
+e=max(abs((ref(:,2)-sech(x))./(-sech(x).*tanh(x).*x)));
+if e>200*eps then bugmes();quit;end
+x=ref(:,1);e=max(abs((ref(:,2)-sech(-x))./ref(:,2)));
+if e>200*eps then bugmes();quit;end
+e=max(abs((ref(:,2)-sech(x))./(-sech(x).*tanh(x).*x)));
+if e>200*eps then bugmes();quit;end
+if sech(Inf)<>0 then bugmes();quit;end
+if sech(-Inf)<>0 then bugmes();quit;end
+if ~isnan(sech(NaN)) then bugmes();quit;end
+if sech([])<>[] then bugmes();quit;end

@@ -180,8 +180,6 @@ x=refi(:,1);
 e=max(abs((refi(:,2)-imult(pi/2)-acoth(x))./(refi(:,2)-imult(pi/2))));
 if e>10*eps then pause,end
 
-
-
 x=-ref(:,1);
 e=max(abs((-ref(:,2)-acoth(x))./ref(:,2)));
 if e>10*eps then pause,end
@@ -190,12 +188,9 @@ x=-refi(:,1);
 e=max(abs((-refi(:,2)-imult(pi/2)-acoth(x))./(-refi(:,2)-imult(pi/2))));
 if e>10*eps then pause,end
 
-
-
 if acoth(1)<>Inf then pause,end
 if acoth(-1)<>-Inf then pause,end
 if acoth(0)<>-imult(pi/2) then pause,end
 
 if acoth([])<>[] then pause,end
 if ~isnan(acoth(%nan)) then pause,end
-

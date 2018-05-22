@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // Maple code used to create reference
 // Digits := 40: 
@@ -224,27 +226,21 @@ refi=[1, 0.
 100, 1.56079616012072950610569941457
 ];
 
+x=ref(:,1);
+e=max(abs((ref(:,2)-asech(x))./ref(:,2)));
+assert_checkfalse(e>20*eps);
+x=-ref(:,1);
+e=max(abs((ref(:,2)+imult(pi)-asech(x))./(ref(:,2)+imult(pi))));
+assert_checkfalse(e>10*eps);
 
- x=ref(:,1);
- e=max(abs((ref(:,2)-asech(x))./ref(:,2)));
- assert_checkfalse(e>20*eps);
- x=-ref(:,1);
- e=max(abs((ref(:,2)+imult(pi)-asech(x))./(ref(:,2)+imult(pi))));
- assert_checkfalse(e>10*eps);
- 
- 
- x=refi(:,1);
- e=max(abs((imult(refi(:,2))-asech(x))./refi(:,2)));
- assert_checkfalse(e>10*eps);
- x=-refi(:,1);
- e=max(abs((imult(pi-refi(:,2))-asech(x))./(pi-refi(:,2))));
- assert_checkfalse(e>10*eps);
+x=refi(:,1);
+e=max(abs((imult(refi(:,2))-asech(x))./refi(:,2)));
+assert_checkfalse(e>10*eps);
+x=-refi(:,1);
+e=max(abs((imult(pi-refi(:,2))-asech(x))./(pi-refi(:,2))));
+assert_checkfalse(e>10*eps);
 
-
- assert_checkequal(asech(0), Inf);
- assert_checkalmostequal(imag(asech(Inf)), pi/2);
-
- assert_checktrue(isnan(asech(NaN)));
-
- assert_checkequal(asech([]), []);
-
+assert_checkequal(asech(0), Inf);
+assert_checkalmostequal(imag(asech(Inf)), pi/2);
+assert_checktrue(isnan(asech(NaN)));
+assert_checkequal(asech([]), []);

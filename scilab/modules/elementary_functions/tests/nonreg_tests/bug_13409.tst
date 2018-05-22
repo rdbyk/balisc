@@ -1,10 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime Agnel
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug  -->
 //
 // <-- Bugzilla URL -->
@@ -13,8 +17,6 @@
 // <-- Short Description -->
 // permute(x, dims) failed when dims was greater than the dimensions of size(x)
 // now permute treats extra dimensions as 1
-//
-// <-- CLI SHELL MODE -->
 
 x = matrix(1:6, [2, 3]);
 // x is of size 2, 2 so has 2 dimension

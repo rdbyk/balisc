@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // unit tests for iscolumn function
 // =============================================================================
 
@@ -129,7 +131,7 @@ assert_checkequal(iscolumn(l), %t); // Column case
 // Error messages
 errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"iscolumn", 1);
 assert_checkerror("iscolumn()", errmsg1);
-errmsg2 = msprintf(_("Wrong number of input arguments.\n"));
+errmsg2 = msprintf(_("iscolumn: Wrong number of input arguments: 1 expected.\n"));
 assert_checkerror("iscolumn(1,2)", errmsg2);
 errmsg3 = msprintf(_("Wrong number of output arguments.\n"));
 assert_checkerror("[r,b]=iscolumn([1 2 3]);", errmsg3);
