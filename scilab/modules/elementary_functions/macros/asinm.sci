@@ -20,9 +20,7 @@ function t=asinm(x)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"asinm",1));
     end
 
-    [m,n]=size(x);
-
-    if m<>n then
+    if ~issquare(x) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"asinm",1));
     end
 

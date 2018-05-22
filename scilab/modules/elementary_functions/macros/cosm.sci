@@ -21,17 +21,11 @@ function x=cosm(a)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"cosm",1));
     end
 
-    [m,n]=size(a);
-    if m<>n then
+    if ~issquare(a) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"cosm",1));
     end
 
-    if a==[] then
-        x=[]
-        return
-    end
-
-    if norm(imag(a),1)==0 then
+    if isreal(a,0) then
         x=real(expm(%i*a))
     else
         x=0.5*(expm(%i*a)+expm(-%i*a));
