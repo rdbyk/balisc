@@ -24,11 +24,6 @@ function x=sinhm(a)
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"sinhm",1));
     end
 
-    if a==[] then
-        x=[]
-        return
-    end
-
     x=(expm(a)-expm(-a))/2;
 
 endfunction

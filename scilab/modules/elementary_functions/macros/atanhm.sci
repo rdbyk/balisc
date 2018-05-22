@@ -20,10 +20,6 @@ function t=atanhm(x)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"atanhm",1));
     end
 
-    if x==[] then
-        t=[]
-    end
-
     if ~issquare(x) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"atanhm",1));
     end
