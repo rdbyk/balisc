@@ -1,59 +1,36 @@
-
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
+// Balisc (https://github.com/rdbyk/balisc/)
 //
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
-// This file is hereby licensed under the terms of the GNU GPL v2.0,
-// pursuant to article 5.3.4 of the CeCILL v.2.1.
-// This file was originally licensed under the terms of the CeCILL v2.1,
-// and continues to be available under such terms.
-// For more information, see the COPYING file which you should have received
-// along with this program.
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+// 02110-1301, USA.
 
-function t=trace(a)
-    // trace - computes the trace of a matrix
-    select type(a)
-    case 1 then
-        [m,n]=size(a)
-        if m<>n then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
-        end
-        t=sum(diag(a))
-    case 2 then
-        [m,n]=size(a)
-        if m<>n then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
-        end
-        t=sum(diag(a))
-        //-compat next case retained for list /tlist compatibility
-    case 15 then
-        if a(1)=="r" then
-            [m,n]=size(a)
-            if m<>n then
-                error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
-            end
-            t=sum(diag(a))
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"trace",1));
-        end
-    case 16 then
-        if a(1)=="r" then
-            [m,n]=size(a)
-            if m<>n then
-                error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
-            end
-            t=sum(diag(a))
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"trace",1));
-        end
-    case 5 then
-        [m,n]=size(a)
-        if m<>n then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
-        end
-        t=sum(diag(a))
-    else
+function y=trace(u)
+
+    if nargin < 1 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"trace",1));
+    end
+
+    if and(type(u)<>[1:8,16,17]) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"trace",1));
     end
+
+    if ~issquare(u) then
+        error(msprintf(gettext("%s: Wrong size of input argument #%d: expected a square matrix.\n"),"trace",1));
+    end
+
+    y = sum(diag(u));
+
 endfunction
