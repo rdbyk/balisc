@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -55,7 +55,7 @@
         <para>
             <note>
               <para>
-                <literal>issquare([])</literal> returns <literal>%F</literal> (false).
+                <literal>issquare([])</literal> returns <literal>%T</literal> (true).
               </para>
               <para>
                 <literal>issquare(eye())</literal> returns <literal>%T</literal> (true).
@@ -125,6 +125,12 @@ issquare(s) // 3D array of structures (with a singleton dim)
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>Function issquare introduced.</revremark>
+            </revision>
+        </revhistory>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark><literal>issquare([])</literal> returns <literal>%T</literal> (true).</revremark>
             </revision>
         </revhistory>
     </refsection>

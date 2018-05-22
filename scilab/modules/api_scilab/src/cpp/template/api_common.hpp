@@ -423,11 +423,6 @@ int API_PROTO(isSquare)(scilabEnv env, scilabVar var)
 
         default:
         {
-            if (scilab_isEmpty(env, var))
-            {
-                return 0;
-            }
-
             int dim = scilab_getDim(env, var);
 
             if (dim == 2)
