@@ -20,8 +20,7 @@ function x=sinhm(a)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sinhm",1));
     end
 
-    [m,n]=size(a)
-    if m<>n then
+    if ~issquare(a) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"sinhm",1));
     end
 

@@ -24,9 +24,7 @@ function t=atanhm(x)
         t=[]
     end
 
-    [m,n]=size(x)
-
-    if m<>n then
+    if ~issquare(x) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"atanhm",1));
     end
 
