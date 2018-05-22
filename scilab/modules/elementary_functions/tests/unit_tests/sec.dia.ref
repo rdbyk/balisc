@@ -1,17 +1,5 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Serge Steer
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
-// Maple code used to create reference
-//Digits := 40; 
-//writeto("sec.ref"); interface(prettyprint = 0); 
-//for i from 0 to 80 do print(-4+(i/10), evalf[30](sec(-4+(i/10)), 30)) end do; 
-//writeto(terminal);
 ieee(2);
-pi=%pi;eps=%eps;Inf=%inf;NaN=%nan; //used to make following code runnable under Matlab
+pi=%pi;eps=%eps;Inf=%inf;NaN=%nan;
 ref=[-4, -1.52988565646639757462951092294
      -39/10, -1.37753891680277005963861004901
      -19/5, -1.26427410997555454000707635103
@@ -102,12 +90,12 @@ ref=[ref;
      pi/6    2/sqrt(3)
      5*pi/6 -2/sqrt(3)
      pi     -1];
-     x=ref(:,1);e=max(abs((ref(:,2)-sec(x))./ref(:,2)));
-     if e>15*eps then bugmes();quit;end
-     x=ref(:,1)+2^15*pi; e=max(abs((ref(:,2)-sec(x))./ref(:,2)));
-     if e>1d-9 then bugmes();quit;end
-     if sec(pi/2)<1d16 then bugmes();quit;end
-     if ~isnan(sec(-Inf)) then bugmes();quit;end
-     if ~isnan(sec(Inf)) then bugmes();quit;end
-     if ~isnan(sec(NaN)) then bugmes();quit;end
-     if sec([])<>[] then bugmes();quit;end
+x=ref(:,1);e=max(abs((ref(:,2)-sec(x))./ref(:,2)));
+if e>15*eps then bugmes();quit;end
+x=ref(:,1)+2^15*pi; e=max(abs((ref(:,2)-sec(x))./ref(:,2)));
+if e>1d-9 then bugmes();quit;end
+if sec(pi/2)<1d16 then bugmes();quit;end
+if ~isnan(sec(-Inf)) then bugmes();quit;end
+if ~isnan(sec(Inf)) then bugmes();quit;end
+if ~isnan(sec(NaN)) then bugmes();quit;end
+if sec([])<>[] then bugmes();quit;end

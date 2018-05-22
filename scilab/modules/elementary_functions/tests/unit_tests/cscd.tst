@@ -373,6 +373,7 @@ ref=[-179, -57.2986884985501834766126837351
 178, 28.6537083478438211365216382162
 179, 57.2986884985501834766126837351
 ];
+
 //diff(csc(x*(1+e)), e) = -csc(x*(1+e))*cot(x*(1+e))*x
 x=ref(:,1);
 if max(abs((cscd(x)-ref(:,2))./(cotg(x*%pi/180).*x.*cscd(x))))*180/pi>20*eps then pause,end
@@ -381,7 +382,6 @@ if max(abs((ref(:,2)-cscd(x))./ref(:,2)))>10*eps then pause,end
 x=ref(:,1)+2^6*360;
 if max(abs((cscd(x)-ref(:,2))./(cotg(x*%pi/180).*x.*cscd(x))))*180/pi>20*eps then pause,end
 if max(abs((ref(:,2)-cscd(x))./ref(:,2)))>10*eps then pause,end
-
 
 x=ref(:,1)+2^10*360; 
 if max(abs((cscd(x)-ref(:,2))./(cotg(x*%pi/180).*x.*cscd(x))))*180/pi>20*eps then pause,end
@@ -393,6 +393,4 @@ if cscd(-180)<>-Inf then pause,end
 if ~isnan(cscd(-Inf)) then pause,end
 if ~isnan(cscd(Inf)) then pause,end
 if ~isnan(cscd(NaN)) then pause,end
-
 if cscd([])<>[] then pause,end
-

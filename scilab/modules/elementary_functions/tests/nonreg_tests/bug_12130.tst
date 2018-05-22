@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 12130 -->
 //
 // <-- Bugzilla URL -->
@@ -15,8 +17,6 @@
 // <-- Short Description -->
 // flipdim can now flip an input by blocks.
 
-
-//---------------------------------------------------
 // Double type
 x = [0 1 2 3 4 5 6 7 8 9 10 11];
 x = [x ; x];
@@ -46,8 +46,6 @@ ref5 = [ref5 ; ref5];
 y = flipdim(x, 2, 6);
 assert_checkequal(y, ref5);
 
-
-//---------------------------------------------------
 // String type
 x = string(x);
 ref1 = string(ref1);
@@ -70,8 +68,6 @@ ref5 = string(ref5);
 y = flipdim(x, 2, 6);
 assert_checkequal(y, ref5);
 
-
 // Error checks
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: A divisor of the selected dimension size expected.\n"), "flipdim", 3);
 assert_checkerror("y = flipdim(x, 2, 5)", refMsg); // size(x) = [2 12] and 5 does not divide 12.
-

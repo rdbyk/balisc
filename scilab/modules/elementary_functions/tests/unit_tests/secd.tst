@@ -389,6 +389,4 @@ if secd(-90)<>Inf then pause,end
 if ~isnan(secd(-Inf)) then pause,end
 if ~isnan(secd(Inf)) then pause,end
 if ~isnan(secd(NaN)) then pause,end
-
 if secd([])<>[] then pause,end
-

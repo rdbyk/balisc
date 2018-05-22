@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*/
+ */
 
 #include "gatewaystruct.hxx"
 #include "double.hxx"
@@ -393,57 +393,83 @@ int API_PROTO(isScalar)(scilabEnv env, scilabVar var)
 
 int API_PROTO(isSquare)(scilabEnv env, scilabVar var)
 {
-    if (scilab_isList(env, var))
+    switch (scilab_getType(env, var))
     {
-        return scilab_getSize(env, var) == 1 ? 1 : 0;
-    }
-
-    if (scilab_isEmpty(env, var))
-    {
-        return 0;
-    }
-
-    int dim = scilab_getDim(env, var);
-
-
-    if (dim == 2)
-    {
-        int row = 0;
-        int col = 0;
-        scilab_getDim2d(env, var, &row, &col);
-        if (row == col)
+        case sci_tlist:
+        case sci_mlist:
+        case sci_c_function:
+        case sci_pointer:
+        case sci_implicit_poly:
+        case sci_intrinsic_function:
+        case sci_lib:
         {
+            scilabVar out;
+
+            if (scilab_overload(env, var, 1, &var, 1, &out) == STATUS_OK && scilab_isBoolean(env,out))
+            {
+                int is_square;
+                scilab_getBoolean(env, out, &is_square);
+                return is_square;
+            }
+            else
+            {
+                scilab_setInternalError(env, L"issquare", _W("Error in overloaded function"));
+                return 0;
+            }
+        }
+
+        case sci_list:
+            return 0;
+
+        default:
+        {
+            if (scilab_isEmpty(env, var))
+            {
+                return 0;
+            }
+
+            int dim = scilab_getDim(env, var);
+
+            if (dim == 2)
+            {
+                int row = 0;
+                int col = 0;
+                scilab_getDim2d(env, var, &row, &col);
+                if (row == col)
+                {
+                    return 1;
+                }
+
+                return 0;
+            }
+
+            // exclude cases like [4, 1, 1, 1]
+            if (scilab_isVector(env, var))
+            {
+                return false;
+            }
+
+            int* dims = nullptr;
+            scilab_getDimArray(env, var, &dims);
+
+            int ref = -1;
+            for (int i = 1; i < dim; ++i)
+            {
+                if (ref == -1 && dims[i] != 1)
+                {
+                    ref = dims[i];
+                    continue;
+                }
+
+                if (dims[i] != ref && dims[i] != 1)
+                {
+                    return 0;
+                }
+            }
+
             return 1;
         }
-
-        return 0;
     }
-
-    //to exclude case like [4, 1, 1, 1]
-    if (scilab_isVector(env, var))
-    {
-        return false;
-    }
-
-    int* dims = nullptr;
-    scilab_getDimArray(env, var, &dims);
-
-    int ref = -1;
-    for (int i = 1; i < dim; ++i)
-    {
-        if (ref == -1 && dims[i] != 1)
-        {
-            ref = dims[i];
-            continue;
-        }
-
-        if (dims[i] != ref && dims[i] != 1)
-        {
-            return 0;
-        }
-    }
-
-    return 1;
 }
 
 int API_PROTO(isVector)(scilabEnv env, scilabVar var)

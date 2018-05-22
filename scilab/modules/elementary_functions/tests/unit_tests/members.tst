@@ -1,14 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
-//
 
 // Vectors
 [nb, loc] = members([], [], "last");
@@ -464,11 +464,7 @@ assert_checkequal(loc, loc_ref);
 assert_checkequal(nb , nb_ref);
 assert_checkequal(loc, loc_ref);
 
-
-
 // =============================================================================
-
-
 
 // Error checks
 A = [1 2 3; 4 5 6];

@@ -418,25 +418,20 @@ ref=[0, 1.
 400, 0.383033919342801139003967955731e-173
 ];
 
+x=ref(:,1);
+e=max(abs((ref(:,2)-sech(x))./ref(:,2)));
+if e>200*eps then pause,end
+//diff(sech(x*(1+e)), e) = -sech(x*(1+e))*tanh(x*(1+e))*x
+e=max(abs((ref(:,2)-sech(x))./(-sech(x).*tanh(x).*x)));
+if e>200*eps then pause,end
 
-     
-     x=ref(:,1);
-     e=max(abs((ref(:,2)-sech(x))./ref(:,2)));
-     if e>200*eps then pause,end
-     //diff(sech(x*(1+e)), e) = -sech(x*(1+e))*tanh(x*(1+e))*x
-     e=max(abs((ref(:,2)-sech(x))./(-sech(x).*tanh(x).*x)));
-     if e>200*eps then pause,end
- 
-     x=ref(:,1);e=max(abs((ref(:,2)-sech(-x))./ref(:,2)));
-     if e>200*eps then pause,end
-      //diff(sech(x*(1+e)), e) = -sech(x*(1+e))*tanh(x*(1+e))*x
-     e=max(abs((ref(:,2)-sech(x))./(-sech(x).*tanh(x).*x)));
-     if e>200*eps then pause,end
-    
-     if sech(Inf)<>0 then pause,end
-     if sech(-Inf)<>0 then pause,end
+x=ref(:,1);e=max(abs((ref(:,2)-sech(-x))./ref(:,2)));
+if e>200*eps then pause,end
+//diff(sech(x*(1+e)), e) = -sech(x*(1+e))*tanh(x*(1+e))*x
+e=max(abs((ref(:,2)-sech(x))./(-sech(x).*tanh(x).*x)));
+if e>200*eps then pause,end
 
-     if ~isnan(sech(NaN)) then pause,end
-
-     if sech([])<>[] then pause,end
-
+if sech(Inf)<>0 then pause,end
+if sech(-Inf)<>0 then pause,end
+if ~isnan(sech(NaN)) then pause,end
+if sech([])<>[] then pause,end

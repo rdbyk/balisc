@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -118,7 +119,7 @@ assert_checkequal(issquare(a), %t); // Hypermatrix with singleton (square)
 // Lists
 assert_checkequal(issquare(list()), %f); // Empty list
 l=list(1);
-assert_checkequal(issquare(l), %t); // Scalar case
+assert_checkequal(issquare(l), %f); // Scalar case
 clear l;
 l=list(1,"test");
 assert_checkequal(issquare(l), %f); // Column case

@@ -4,11 +4,13 @@
 // Copyright (C) ????-2008 - ENPC
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //================================ complex matrix ================================================
 x = [3  1  5 ; 2 9 8];

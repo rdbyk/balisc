@@ -217,7 +217,6 @@ ref=[-100, -89.4270613023165140731585775209
 100, 89.4270613023165140731585775209
 ];
 
-
 x=ref(:,1);e=max(abs((ref(:,2)-atand(x))./ref(:,2)));
 if e>2*eps then pause,end
 if atand(Inf)<>90 then pause,end
@@ -225,7 +224,4 @@ if atand(-Inf)<>-90 then pause,end
 if atand(0)<>0 then pause,end
 if atand(-1)<>-45 then pause,end
 if atand(1)<>45 then pause,end
-
-
 if atand([])<>[] then pause,end
-

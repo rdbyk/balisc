@@ -108,18 +108,13 @@ ref=[ref;
      5*pi/6 -2/sqrt(3)
      pi     -1];
 
-     
-     x=ref(:,1);e=max(abs((ref(:,2)-sec(x))./ref(:,2)));
-     if e>15*eps then pause,end
-     x=ref(:,1)+2^15*pi; e=max(abs((ref(:,2)-sec(x))./ref(:,2)));
-     if e>1d-9 then pause,end
-     
+x=ref(:,1);e=max(abs((ref(:,2)-sec(x))./ref(:,2)));
+if e>15*eps then pause,end
+x=ref(:,1)+2^15*pi; e=max(abs((ref(:,2)-sec(x))./ref(:,2)));
+if e>1d-9 then pause,end
 
-     if sec(pi/2)<1d16 then pause,end
-     
-     if ~isnan(sec(-Inf)) then pause,end
-     if ~isnan(sec(Inf)) then pause,end
-     if ~isnan(sec(NaN)) then pause,end
-
-     if sec([])<>[] then pause,end
-
+if sec(pi/2)<1d16 then pause,end
+if ~isnan(sec(-Inf)) then pause,end
+if ~isnan(sec(Inf)) then pause,end
+if ~isnan(sec(NaN)) then pause,end
+if sec([])<>[] then pause,end

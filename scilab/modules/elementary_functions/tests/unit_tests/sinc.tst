@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Charlotte Hecquet
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // unit tests for sinc() function
 // =============================================================================
@@ -27,9 +29,8 @@ x2=sparse(x);
 assert_checkalmostequal(sinc(x2),full(sin(x2)./x2), [], 1e-12);
 
 // Error messages
-error_msg = msprintf(gettext("Wrong number of input arguments.\n"));
-assert_checkerror("sinc(1,2,3)",error_msg,999);
-error_msg=msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sinc", 1);
+error_msg = msprintf(gettext("sinc: Wrong number of input arguments: 1 expected.\n"));
+assert_checkerror("sinc(1,2,3)",error_msg);
 assert_checkerror("sinc()",error_msg);
 error_msg = msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n"),"sinc",1);
 assert_checkerror("sinc(""test"")",error_msg);

@@ -387,6 +387,4 @@ if e>eps then pause,end
 if ~isnan(sind(-Inf)) then pause,end
 if ~isnan(sind(Inf)) then pause,end
 if ~isnan(sind(NaN)) then pause,end
-
 if sind([])<>[] then pause,end
-

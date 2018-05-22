@@ -128,9 +128,9 @@ l=list(1,"test");
 assert_checkequal(isrow(l), %f); // Column case
 
 // Error messages
-errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"isrow", 1);
+errmsg1 = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"isrow", 1);
 assert_checkerror("isrow()", errmsg1);
-errmsg2 = msprintf(_("Wrong number of input arguments.\n"));
+errmsg2 = msprintf(_("isrow: Wrong number of input arguments: 1 expected.\n"));
 assert_checkerror("isrow(1,2)", errmsg2);
 errmsg3 = msprintf(_("Wrong number of output arguments.\n"));
 assert_checkerror("[r,b]=isrow([1 2 3]);", errmsg3);

@@ -11,10 +11,10 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function y=sinc(x,fl)
+function y=sinc(x)
 
     if nargin < 1 then
-        msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg, "sinc", 1));
     end
     
@@ -23,12 +23,6 @@ function y=sinc(x,fl)
         error(msprintf(msg, "sinc", 1));
     end
 
-    if nargin == 2 then // for compatibility
-        warning("obsolete use of sinc, use filt_sinc instead")
-        ffilt = ffilt; //load ffilt and its subfunctions
-        y = filt_sinc(x, fl);
-        return
-    end
     y = ones(x);
     kz = find(x <> 0);
     y(kz) = sin(x(kz))./(x(kz));
