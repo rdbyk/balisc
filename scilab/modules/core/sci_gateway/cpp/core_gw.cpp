@@ -77,7 +77,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mlist", &sci_mlist_gw, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isfield", &sci_isfield, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fieldnames", &sci_fieldnames, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"oldEmptyBehaviour", &sci_oldEmptyBehaviour, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isprotected", &sci_isprotected, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"protect", &sci_protect, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"unprotect", &sci_unprotect, MODULE_NAME));
