@@ -243,21 +243,6 @@ public :
         return m_bWarningStop;
     }
 
-    // WarningStop
-private :
-    static bool m_bOldEmptyBehaviour;
-
-public :
-    static void setOldEmptyBehaviour(bool _bOldEmptyBehaviour)
-    {
-        m_bOldEmptyBehaviour = _bOldEmptyBehaviour;
-    }
-
-    static bool getOldEmptyBehaviour(void)
-    {
-        return m_bOldEmptyBehaviour;
-    }
-
     //HOME
 private :
     static std::wstring m_HOME;

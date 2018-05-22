@@ -146,16 +146,6 @@ bool ConfigVariable::m_bWarningStop = false;
 */
 
 /*
-** Old Empty Behaviour
-** \{
-*/
-bool ConfigVariable::m_bOldEmptyBehaviour = false;
-/*
-** \}
-*/
-
-
-/*
 ** HOME
 ** \{
 */

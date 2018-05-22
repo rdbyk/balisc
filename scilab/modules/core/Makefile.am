@@ -118,7 +118,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_isprotected.cpp \
 	sci_gateway/cpp/sci_protect.cpp \
 	sci_gateway/cpp/sci_unprotect.cpp \
-	sci_gateway/cpp/sci_oldEmptyBehaviour.cpp \
 	sci_gateway/cpp/sci_fieldnames.cpp \
 	sci_gateway/cpp/sci_checkNamedArguments.cpp
 
