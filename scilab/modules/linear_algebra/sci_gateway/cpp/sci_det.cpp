@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,9 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
 
 #include "linear_algebra_gw.hxx"
 #include "function.hxx"
@@ -26,25 +25,30 @@ extern "C"
 #include "det.h"
 #include "doublecomplex.h"
 }
-/*--------------------------------------------------------------------------*/
 
-types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using types::Double;
+using types::Function;
+using types::typed_list;
+
+static const char fname[] = "det";
+
+Function::ReturnValue sci_det(typed_list &in, int _iRetCount, typed_list &out)
 {
-    types::Double* pDbl             = NULL;
-    types::Double* pDblMantissa     = NULL;
-    types::Double* pDblExponent     = NULL;
+    Double* pDbl             = NULL;
+    Double* pDblMantissa     = NULL;
+    Double* pDblExponent     = NULL;
     double* pData                   = NULL;
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "det", 1);
-        return types::Function::Error;
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
+        return Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "det", 1, 2);
-        return types::Function::Error;
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 2);
+        return Function::Error;
     }
 
     if ((in[0]->isDouble() == false))
@@ -53,68 +57,77 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
+    Double* in0 = in[0]->getAs<Double>();
 
-    if (pDbl->isComplex())
+    if (in0->getRows() != in0->getCols())
     {
-        pData = (double *)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
+        Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
+        return Function::Error;
+    }
+
+    if ((in0->getSize() == 0)) // empty []
+    {
+        if (_iRetCount == 2)
+        {
+            out.push_back(new Double(0.0));
+        }
+
+        out.push_back(new Double(1.0));
+        return Function::OK;
+    }
+
+    bool bIsComplex = in0->isComplex();
+
+    if (bIsComplex)
+    {
+        pData = (double *)oGetDoubleComplexFromPointer(in0->getReal(), in0->getImg(), in0->getSize());
         if (!pData)
         {
-            Scierror(999, _("%s: Cannot allocate more memory.\n"), "det");
-            return types::Function::Error;
+            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            return Function::Error;
         }
     }
     else
     {
+        pDbl = in0->clone()->getAs<Double>();
         pData = pDbl->getReal();
     }
 
-    if (pDbl->getRows() != pDbl->getCols())
-    {
-        Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "det", 1);
-        return types::Function::Error;
-    }
-
-    if ((pDbl->getRows() == -1)) // manage eye case
-    {
-        Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "det", 1);
-        return types::Function::Error;
-    }
-
-    pDblMantissa = new types::Double(1, 1, pDbl->isComplex());
-
-    if (_iRetCount == 2)
-    {
-        pDblExponent = new types::Double(1, 1);
-    }
+    pDblMantissa = new Double(1, 1, bIsComplex);
 
     int iExponent = 0;
-    int iRet = iDetM(pData, pDbl->getCols(), pDblMantissa->getReal(), pDbl->isComplex() ? pDblMantissa->getImg() : NULL, pDblExponent ? &iExponent : NULL);
+    int iRet = iDetM(pData, std::abs(in0->getCols()), pDblMantissa->getReal(), bIsComplex ? pDblMantissa->getImg() : NULL, (_iRetCount == 2) ? &iExponent : NULL);
     if (iRet < 0)
     {
-        Scierror(999, _("%s: LAPACK error n°%d.\n"), "det", iRet);
-        return types::Function::Error;
+        delete pDblMantissa;
+
+        if (bIsComplex)
+        {
+            vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+        }
+        else
+        {
+            delete pDbl;
+        }
+
+        Scierror(999, _("%s: LAPACK error n°%d.\n"), fname, iRet);
+        return Function::Error;
     }
 
-    if (pDblExponent)
-    {
-        pDblExponent->set(0, iExponent);
-    }
-
-    if (pDbl->isComplex())
+    if (bIsComplex)
     {
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
+    else
+    {
+        delete pDbl;
+    }
 
     if (_iRetCount == 2)
     {
-        out.push_back(pDblExponent);
+        out.push_back(new Double((double)iExponent));
     }
 
-    delete pDbl;
     out.push_back(pDblMantissa);
-
-    return types::Function::OK;
+    return Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-
