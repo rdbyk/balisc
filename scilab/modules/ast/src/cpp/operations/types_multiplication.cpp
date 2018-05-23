@@ -232,13 +232,18 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         return 0;
     }
 
-    if (_pDouble1->getDims() == 2 && _pDouble1->getDims() == _pDouble2->getDims() && _pDouble1->getCols() != _pDouble2->getRows())
+    int r1 = _pDouble1->getRows();
+    int c1 = _pDouble1->getCols();
+    int r2 = _pDouble2->getRows();
+    int c2 = _pDouble2->getCols();
+
+    if (_pDouble1->getDims() == 2 && _pDouble1->getDims() == _pDouble2->getDims() && c1 != r2)
     {
         // Both matrices but with wrong dimensions: error out
         return 1;
     }
 
-    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getCols() != _pDouble2->getRows())
+    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || c1 != r2)
     {
         //call overload
         return 0;
@@ -246,38 +251,49 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
 
     bool bComplex1  = _pDouble1->isComplex();
     bool bComplex2  = _pDouble2->isComplex();
-    (*_pDoubleOut) = new Double(_pDouble1->getRows(), _pDouble2->getCols(), bComplex1 | bComplex2);
+    (*_pDoubleOut) = new Double(r1, c2, bComplex1 | bComplex2);
+
+    // FIXME: find a better way to detect "eye()*eye()"
+    if (r1 == -1)
+    {
+        // we pretend, that the eye() factors are 1x1-matrices in order
+        // to make the following low-level multiplication routines happy
+        r1 = 1;
+        c1 = 1;
+        r2 = 1;
+        c2 = 1;
+    }
 
     if (bComplex1 == false && bComplex2 == false)
     {
         //Real Matrix by Real Matrix
         iMultiRealMatrixByRealMatrix(
-            _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->get(), _pDouble2->getRows(), _pDouble2->getCols(),
+            _pDouble1->get(), r1, c1,
+            _pDouble2->get(), r2, c2,
             (*_pDoubleOut)->get());
     }
     else if (bComplex1 == false && bComplex2 == true)
     {
         //Real Matrix by Matrix Complex
         iMultiRealMatrixByComplexMatrix(
-            _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->get(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
+            _pDouble1->get(), r1, c1,
+            _pDouble2->get(), _pDouble2->getImg(), r2, c2,
             (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
     }
     else if (bComplex1 == true && bComplex2 == false)
     {
         //Complex Matrix by Real Matrix
         iMultiComplexMatrixByRealMatrix(
-            _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->get(), _pDouble2->getRows(), _pDouble2->getCols(),
+            _pDouble1->get(), _pDouble1->getImg(), r1, c1,
+            _pDouble2->get(), r2, c2,
             (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
     }
     else //if(bComplex1 == true && bComplex2 == true)
     {
         //Complex Matrix by Complex Matrix
         iMultiComplexMatrixByComplexMatrix(
-            _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->get(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
+            _pDouble1->get(), _pDouble1->getImg(), r1, c1,
+            _pDouble2->get(), _pDouble2->getImg(), r2, c2,
             (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
     }
     return 0;
