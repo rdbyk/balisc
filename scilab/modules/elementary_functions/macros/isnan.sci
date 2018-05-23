@@ -18,6 +18,7 @@ function r = isnan(x)
         msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
         error(msprintf(msg, "isnan", 1));
     end
+
     if x == [] then
         r = [];
     else
@@ -25,8 +26,6 @@ function r = isnan(x)
             if isreal(x)
                 r = (x ~= x);
             else
-                rp = real(x)
-                ip = imag(x)
                 r = (x~=x | (abs(real(x))==%inf & abs(imag(x))==%inf) )
             end
         else
