@@ -146,64 +146,117 @@ int DoubleLessDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         return 0;
     }
 
-    Bool* pB = NULL;
-    if (_pDouble1->isScalar())
+    int iCase = 2*(_pDouble2->getSize() == 1) + (_pDouble1->getSize() == 1);
+
+    switch (iCase)
     {
-        //d < D
-        pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
-        int* pb = pB->get();
-        double dblRef = _pDouble1->getFirst();
+        case 1:  // only 1st arg is scalar or eye()
+            {
+                Bool* pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
 
-        for (int i = 0 ; i < pB->getSize() ; i++)
-        {
-            pb[i] = dblRef < _pDouble2->get(i);
-        }
+                if (_pDouble1->getRows() == -1) // FIXME: better check for eye()
+                {
+                    for (int i = 0; i < pB->getRows(); ++i)
+                    {
+                        for (int j = 0; j < pB->getCols(); ++j)
+                        {
+                            if (i != j)
+                            {
+                                pB->set(i,j, 0.0 < _pDouble2->get(i,j));
+                            }
+                            else
+                            {
+                                pB->set(i,j, 1.0 < _pDouble2->get(i,j));
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    int* pb = pB->get();
+                    double dblRef = _pDouble1->getFirst();
 
-        *_pOut = pB;
-        return 0;
+                    for (int i = 0; i < pB->getSize(); ++i)
+                    {
+                        pb[i] = dblRef < _pDouble2->get(i);
+                    }
+                }
+
+                *_pOut = pB;
+            }
+            break;
+
+        case 2:  // only 2nd arg is scalar or eye()
+            {
+                Bool* pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
+
+                if (_pDouble2->getRows() == -1) // FIXME: better check for eye()
+                {
+                    for (int i = 0; i < pB->getRows(); ++i)
+                    {
+                        for (int j = 0; j < pB->getCols(); ++j)
+                        {
+                            if (i != j)
+                            {
+                                pB->set(i,j, _pDouble1->get(i,j) < 0.0);
+                            }
+                            else
+                            {
+                                pB->set(i,j, _pDouble1->get(i,j) < 1.0);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    int* pb = pB->get();
+                    double dblRef = _pDouble2->getFirst();
+
+                    for (int i = 0 ; i < pB->getSize() ; i++)
+                    {
+                        pb[i] = _pDouble1->get(i) < dblRef;
+                    }
+                }
+
+                *_pOut = pB;
+            }
+            break;
+
+        case 3:  // both args are scalar or eye()
+            *_pOut = new Bool(_pDouble1->getFirst() < _pDouble2->getFirst());
+            break;
+
+        default: // no arg is scalar or eye()
+            {
+                if (_pDouble1->getDims() != _pDouble2->getDims())
+                {
+                    return 1;
+                }
+
+                int* piDims1 = _pDouble1->getDimsArray();
+                int* piDims2 = _pDouble2->getDimsArray();
+
+                for (int i = 0 ; i < _pDouble1->getDims() ; i++)
+                {
+                    if (piDims1[i] != piDims2[i])
+                    {
+                        return 1;
+                    }
+                }
+
+                Bool* pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
+                int* pb = pB->get();
+
+                for (int i = 0 ; i < pB->getSize() ; i++)
+                {
+                    pb[i] = _pDouble1->get(i) < _pDouble2->get(i);
+                }
+
+                *_pOut = pB;
+            }
+            break;
     }
-    else if (_pDouble2->isScalar())
-    {
-        //D < d
-        pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
-        int* pb = pB->get();
-        double dblRef	= _pDouble2->getFirst();
 
-        for (int i = 0 ; i < pB->getSize() ; i++)
-        {
-            pb[i] = _pDouble1->get(i) < dblRef;
-        }
-
-        *_pOut = pB;
-        return 0;
-    }
-
-    if (_pDouble1->getDims() != _pDouble2->getDims())
-    {
-        return 1;
-    }
-
-    //D < D
-    int* piDims1 = _pDouble1->getDimsArray();
-    int* piDims2 = _pDouble2->getDimsArray();
-
-    for (int i = 0 ; i < _pDouble1->getDims() ; i++)
-    {
-        if (piDims1[i] != piDims2[i])
-        {
-            return 1;
-        }
-    }
-
-    pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
-    int* pb = pB->get();
-
-    for (int i = 0 ; i < pB->getSize() ; i++)
-    {
-        pb[i] = _pDouble1->get(i) < _pDouble2->get(i);
-    }
-
-    *_pOut = pB;
     return 0;
 }
 
@@ -361,65 +414,117 @@ int DoubleLessEqualDouble(Double* _pDouble1, Double* _pDouble2, Bool** _pOut)
         return 0;
     }
 
-    Bool* pB = NULL;
-    if (_pDouble1->isScalar())
+    int iCase = 2*(_pDouble2->getSize() == 1) + (_pDouble1->getSize() == 1);
+
+    switch (iCase)
     {
-        //d <= D
-        pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
-        int* pb = pB->get();
-        double dblRef	= _pDouble1->getFirst();
+        case 1:  // only 1st arg is scalar or eye()
+            {
+                Bool* pB = new Bool(_pDouble2->getDims(), _pDouble2->getDimsArray());
 
-        for (int i = 0 ; i < pB->getSize() ; i++)
-        {
-            pb[i] = dblRef <= _pDouble2->get(i);
-        }
+                if (_pDouble1->getRows() == -1) // FIXME: better check for eye()
+                {
+                    for (int i = 0; i < pB->getRows(); ++i)
+                    {
+                        for (int j = 0; j < pB->getCols(); ++j)
+                        {
+                            if (i != j)
+                            {
+                                pB->set(i,j, 0.0 <= _pDouble2->get(i,j));
+                            }
+                            else
+                            {
+                                pB->set(i,j, 1.0 <= _pDouble2->get(i,j));
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    int* pb = pB->get();
+                    double dblRef = _pDouble1->getFirst();
 
-        *_pOut = pB;
-        return 0;
+                    for (int i = 0; i < pB->getSize(); ++i)
+                    {
+                        pb[i] = dblRef <= _pDouble2->get(i);
+                    }
+                }
+
+                *_pOut = pB;
+            }
+            break;
+
+        case 2:  // only 2nd arg is scalar or eye()
+            {
+                Bool* pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
+
+                if (_pDouble2->getRows() == -1) // FIXME: better check for eye()
+                {
+                    for (int i = 0; i < pB->getRows(); ++i)
+                    {
+                        for (int j = 0; j < pB->getCols(); ++j)
+                        {
+                            if (i != j)
+                            {
+                                pB->set(i,j, _pDouble1->get(i,j) <= 0.0);
+                            }
+                            else
+                            {
+                                pB->set(i,j, _pDouble1->get(i,j) <= 1.0);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    int* pb = pB->get();
+                    double dblRef = _pDouble2->getFirst();
+
+                    for (int i = 0 ; i < pB->getSize() ; i++)
+                    {
+                        pb[i] = _pDouble1->get(i) <= dblRef;
+                    }
+                }
+
+                *_pOut = pB;
+            }
+            break;
+
+        case 3:  // both args are scalar or eye()
+            *_pOut = new Bool(_pDouble1->getFirst() <= _pDouble2->getFirst());
+            break;
+
+        default: // no arg is scalar or eye()
+            {
+                if (_pDouble1->getDims() != _pDouble2->getDims())
+                {
+                    return 1;
+                }
+
+                int* piDims1 = _pDouble1->getDimsArray();
+                int* piDims2 = _pDouble2->getDimsArray();
+
+                for (int i = 0 ; i < _pDouble1->getDims() ; i++)
+                {
+                    if (piDims1[i] != piDims2[i])
+                    {
+                        return 1;
+                    }
+                }
+
+                Bool* pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
+                int* pb = pB->get();
+
+                for (int i = 0 ; i < pB->getSize() ; i++)
+                {
+                    pb[i] = _pDouble1->get(i) <= _pDouble2->get(i);
+                }
+
+                *_pOut = pB;
+            }
+            break;
     }
-    else if (_pDouble2->isScalar())
-    {
-        //D <= d
-        pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
-        int* pb = pB->get();
 
-        double dblRef	= _pDouble2->getFirst();
-
-        for (int i = 0 ; i < pB->getSize() ; i++)
-        {
-            pb[i] = _pDouble1->get(i) <= dblRef;
-        }
-
-        *_pOut = pB;
-        return 0;
-    }
-
-    if (_pDouble1->getDims() != _pDouble2->getDims())
-    {
-        return 1;
-    }
-
-    //D <= D
-    int* piDims1 = _pDouble1->getDimsArray();
-    int* piDims2 = _pDouble2->getDimsArray();
-
-    for (int i = 0 ; i < _pDouble1->getDims() ; i++)
-    {
-        if (piDims1[i] != piDims2[i])
-        {
-            return 1;
-        }
-    }
-
-    pB = new Bool(_pDouble1->getDims(), _pDouble1->getDimsArray());
-    int* pb = pB->get();
-
-    for (int i = 0 ; i < pB->getSize() ; i++)
-    {
-        pb[i] = _pDouble1->get(i) <= _pDouble2->get(i);
-    }
-
-    *_pOut = pB;
     return 0;
 }
 
