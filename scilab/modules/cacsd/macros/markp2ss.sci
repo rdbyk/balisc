@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,7 +24,7 @@ function [Sl]=markp2ss(markpar,n,nout,nin)
     H=[];H(n*nout,n*nin)=0;
     p=markpar;
     l1=1:nout;k1=1;
-    H(l1,:)=p;kset=(nmax-nin+1):nmax;zeroing=0*ones(nout,nin);
+    H(l1,:)=p;kset=(nmax-nin+1):nmax;zeroing=zeros(nout,nin);
     for k=2:n;
         l1=l1+nout*ones(l1);
         k1=k1+nin;

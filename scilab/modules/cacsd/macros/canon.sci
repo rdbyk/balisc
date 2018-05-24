@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F. Delebecque
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [ac,bc,u,ind]=canon(a,b)
     //[ac,bc,u,ind]=canon(a,b)  gives the canonical controllable form
@@ -49,7 +48,7 @@ function [ac,bc,u,ind]=canon(a,b)
         ac=j*ac*i,bc=j*bc;u=u*i;k0=k1;k1=k2;
     end;
     // controllability indices
-    ind=0*ones(1,ni);[xx,mi]=size(ro);
+    ind=zeros(1,ni);[xx,mi]=size(ro);
     for k=1:ni,for kk=1:mi,
             if ro(kk)>=k then ind(k)=ind(k)+1;end;
     end;end
