@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1990 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -90,7 +90,7 @@ function [y]=intdec(x,lom)
                 xlf=xf;
             else,//increase row length (interpolation)
                 xlf=[xf(1:fp(1),:);...
-                0*ones(xmsize(1)-fpc(1)-fp(1),xsize(2));...
+                zeros(xmsize(1)-fpc(1)-fp(1),xsize(2));...
                 xf(xsize(1)-fpc(1)+1:xsize(1),:)];
             end,
         end,
@@ -101,7 +101,7 @@ function [y]=intdec(x,lom)
                 xlf=xlf;
             else,//increase column length (interpolation)
                 xlf=[xlf(:,1:fp(2)),...
-                0*ones(xmsize(1),xmsize(2)-fpc(2)-fp(2)),...
+                zeros(xmsize(1),xmsize(2)-fpc(2)-fp(2)),...
                 xlf(:,xsize(2)-fpc(2)+1:xsize(2))];
             end,
         end,

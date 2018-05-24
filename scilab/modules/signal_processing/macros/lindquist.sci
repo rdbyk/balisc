@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1989 - G. Le Vey
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,7 +26,7 @@ function [P,R,T]=lindquist(n,H,F,G,R0)
     Gn=G;
     Rn=R0;
     Pn=zeros(m,m)
-    Kn=0*ones(m,d);
+    Kn=zeros(m,d);
 
     //recursion
     for j=1:n,
