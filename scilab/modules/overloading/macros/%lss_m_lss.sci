@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,8 +28,7 @@ function [SS]=%lss_m_lss(S1,S2)
     end
     //improper systems
 
-    J=[A1,B1*C2;
-    0*ones(B1*C2)',A2];
+    J=[A1,B1*C2;zeros(B1*C2)',A2];
     Ls=[C1 D1*C2]'
     Ms=[B1*D2;B2]
 

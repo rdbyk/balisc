@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [sig,resid]=epred(r,s,q,coef,y,u,b0f)
     //<sig,resid>=epred(r,s,q,coef,y,u,b0f)
@@ -22,10 +21,10 @@ function [sig,resid]=epred(r,s,q,coef,y,u,b0f)
     t0=max(max(r,s+1),1)+1;
     if r<>0;XTM1=y((t0-1):-1:(t0-r));else XTM1=[];end
     if s<>-1;UTM1=u(t0-b0f:-1:(t0-s));else UTM1=[];end
-    if q<>0;ETM1=0*ones(1,q);else ETM1=[];end
+    if q<>0;ETM1=zeros(1,q);else ETM1=[];end
     npar=r+s+1-b0f+q
     ZTM1=[XTM1,UTM1,ETM1]';
-    resid=0*ones(1,n2);
+    resid=zeros(1,n2);
     for t=t0+1:n2,
         if r<>0;XT=[ y(t-1), XTM1(1:(r-1))];else XT=[];end
         if s<>-1;UT=[ u(t-b0f), UTM1(1:(s-b0f))];else UT=[];end

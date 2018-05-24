@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1988 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,7 +48,7 @@ function [czx]=czt(x,m,w,phi,a,theta)
 
     hc=h(nm:nm+m-1);
     hc(m+1:m+n-1)=h(nm-n+1:nm-1);
-    gc=0*ones(hc);
+    gc=zeros(hc);
     gc(1:n)=g;
     hf=fft(hc,-1);
     gf=fft(gc,-1);

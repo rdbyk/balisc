@@ -71,7 +71,7 @@ function [q, fact] = %i_lcm(p)
     k = find(p==0);
     if k <> [] then
         q = p(k(1));
-        fact = 0*ones(p);
+        fact = zeros(p);
         fact(k) = 1;
         return
     end

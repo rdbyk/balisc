@@ -83,9 +83,9 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
         //get number of sections to be used
         nsecs=int((x-sec_leng+sec_step)/sec_step);//x  contains the number of points of the signals
         ovrlp=sec_leng-sec_step;
-        xd=[0*ones(1,sec_step) getx(ovrlp,1)];
+        xd=[zeros(1,sec_step) getx(ovrlp,1)];
         if crossFlag then
-            yd=[0*ones(1,sec_step) gety(ovrlp,1)];
+            yd=[zeros(1,sec_step) gety(ovrlp,1)];
         end
         for k=1:nsecs
             xd(1:ovrlp)=xd(sec_step+1:sec_leng);
