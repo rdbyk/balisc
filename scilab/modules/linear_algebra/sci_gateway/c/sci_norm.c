@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,8 @@
  * along with this program.
  *
  */
-#include <stdio.h>
 
+#include <stdio.h>
 #include "doublecomplex.h"
 #include "api_scilab.h"
 #include "gw_linear_algebra2.h"
@@ -23,7 +23,6 @@
 #include "norm.h"
 #include "strcmp.h"
 
-/*--------------------------------------------------------------------------*/
 int sci_norm(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -43,8 +42,6 @@ int sci_norm(char *fname, void* pvApiCtx)
     // Return value
     double ret = 0;
 
-    double RowsColsTemp = 0;
-    int i = 0;
     int isMat = 0;
     int isComplex = 0;
 
@@ -78,6 +75,8 @@ int sci_norm(char *fname, void* pvApiCtx)
         }
 
         isComplex = 1;
+
+        int i;
         for (i = 0; i < iRows * iCols; ++i) // Checking A for %inf, which is not supported by Lapack.
         {
             if (la_isinf(pAC[i].r) != 0 || la_isinf(pAC[i].i) != 0 || ISNAN(pAC[i].r) || ISNAN(pAC[i].i))
@@ -97,6 +96,7 @@ int sci_norm(char *fname, void* pvApiCtx)
             return 0;
         }
 
+        int i;
         for (i = 0 ; i < iRows * iCols ; i++) // Checking A for %inf, which is not supported by Lapack.
         {
             if (la_isinf(pA[i]) != 0 || ISNAN(pA[i]))
@@ -106,23 +106,36 @@ int sci_norm(char *fname, void* pvApiCtx)
             }
         }
     }
-    if (iRows == 0) // A = [] => returning 0.
-    {
-        createScalarDouble(pvApiCtx, Rhs + 1, 0);
-        AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
-        return 0;
-    }
 
-    if (iRows > 1 && iCols > 1) // If A is a matrix, only 1, 2 and %inf are allowed as second argument.
+    switch (iRows)
     {
-        isMat = 1;
-    }
+        case -1: // FIXME: better check for eye() ?
+            // pretend that eye() is 1x1-matrix, in order to make
+            // the underlying LAPACK stuff happy
+            iRows = 1;
+            iCols = 1;
+            break;
 
-    if (iRows == 1) // If iRows == 1, then transpose A to consider it like a vector.
-    {
-        RowsColsTemp = iRows;
-        iRows = iCols;
-        iCols = (int)RowsColsTemp;
+        case 0: // norm([]) => result is 0.0
+            createScalarDouble(pvApiCtx, Rhs + 1, 0.0);
+            AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
+            return 0;
+
+        case 1: // transpose row vector => col vector
+            {
+                int iTemp = iRows;
+                iRows = iCols;
+                iCols = iTemp;
+            }
+            break;
+
+        default: // iRows > 1
+            if (iCols > 1)
+            {
+                // matrix case
+                isMat = 1;
+            }
+            break;
     }
 
     if (Rhs == 1) // One argument => returning norm 2.
@@ -250,4 +263,3 @@ int sci_norm(char *fname, void* pvApiCtx)
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/
