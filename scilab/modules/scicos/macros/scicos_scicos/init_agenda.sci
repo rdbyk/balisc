@@ -1,6 +1,6 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ function [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
     ninit=size(initexe,1)
     pointi=0
     nevts=clkptr(nblk+1)-1 //time events agenda size
-    tevts=0*ones(nevts,1)
+    tevts=zeros(nevts,1)
     if initexe<>[] then
         tevts(clkptr(initexe(:,1))+initexe(:,2)-1)=initexe(:,3)
     end
@@ -50,4 +50,5 @@ function [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
         clkptr(initexe(2:ninit,1))+initexe(2:ninit,2)-1;
         evtspt(clkptr(initexe(ninit,1))+initexe(ninit,2)-1)=0;
     end
+
 endfunction
