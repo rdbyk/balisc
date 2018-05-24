@@ -57,7 +57,7 @@ function res=determ(W,k)
     end
 
     // Default Values
-    e=0*ones(k,1);
+    e=zeros(k,1);
     e(2)=1;
 
     // Paramètres de clean
