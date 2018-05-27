@@ -330,17 +330,18 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         }
     }
 
+    //update complexity *before* first resizing
+    if (pSource->isComplex() && m_pImgData == NULL)
+    {
+        setComplex(true);
+    }
+
+    //before resize, check input dimension
     if (bNeedToResize)
     {
         resize(piNewDims, iNewDims);
         delete[] piNewDims;
         piNewDims = NULL;
-    }
-
-    //update complexity
-    if (pSource->isComplex() && m_pImgData == NULL)
-    {
-        setComplex(true);
     }
 
     int argSize = static_cast<int>(pArg.size());

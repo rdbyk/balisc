@@ -38,7 +38,7 @@ Function::ReturnValue sci_expm(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
         return Function::Error;
     }
 
