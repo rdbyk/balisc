@@ -111,7 +111,7 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
     pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
     int iStart = 0;
     int iEnd = 0;
-    int len = (int)wcslen(_pwstInput);
+    int len;
     int* arriStart = (int*)MALLOC(sizeof(int) * len);
     int* arriEnd = (int*)MALLOC(sizeof(int) * len);
     int iOccurs = 0;
@@ -126,6 +126,8 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
         FREE(arriEnd);
         return NULL;
     }
+
+    len = (int)wcslen(_pwstInput);
 
     if (_pwstSearch == NULL || _pwstReplace == NULL)
     {

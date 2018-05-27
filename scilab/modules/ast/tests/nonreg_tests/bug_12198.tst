@@ -1,7 +1,10 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
+<<<<<<< HEAD
 // Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+=======
+>>>>>>> upstream/master
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
