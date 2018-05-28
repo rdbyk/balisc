@@ -38,13 +38,13 @@
             <varlistentry>
                 <term>eps</term>
                 <listitem>
-                    <para>a positive or null real (default value = 0)</para>
+                    <para>non-negative real scalar</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>a boolean</para>
+                    <para>boolean</para>
                 </listitem>
             </varlistentry>
         </variablelist>
