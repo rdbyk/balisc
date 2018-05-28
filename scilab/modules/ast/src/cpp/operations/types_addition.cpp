@@ -1672,24 +1672,46 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
         }
     }
 
-    String* pOut = new String(iDimsL, piDimsL);
     int size = _pL->getSize();
-    int* sizeOut = new int[size];
-    for (int i = 0 ; i < size ; ++i)
-    {
-        wchar_t* pwstL = _pL->get(i);
-        wchar_t* pwstR = _pR->get(i);
-        int sizeL = (int)wcslen(pwstL);
-        int sizeR = (int)wcslen(pwstR);
 
-        sizeOut[i] = sizeL + sizeR + 1;
-        wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut[i] * sizeof(wchar_t));
-        //assign ptr without strdup
-        pOut->get()[i] = pwstOut;
+    String* pOut;
+    if (_pL->getRef() > 0)
+    {
+        int* sizeOut = new int[size];
+        pOut = new String(iDimsL, piDimsL);
+
+        for (int i = 0 ; i < size ; ++i)
+        {
+            wchar_t* pwstL = _pL->get(i);
+            wchar_t* pwstR = _pR->get(i);
+            int sizeL = (int)wcslen(pwstL);
+            int sizeR = (int)wcslen(pwstR);
+
+            sizeOut[i] = sizeL + sizeR + 1;
+            wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut[i] * sizeof(wchar_t));
+            //assign ptr without strdup
+            pOut->get()[i] = pwstOut;
+        }
+
+        add(_pL->get(), size, _pR->get(), sizeOut, pOut->get());
+        delete[] sizeOut;
+    }
+    else
+    {
+        pOut = _pL;
+
+        for (int i = 0; i < size; ++i)
+        {
+            wchar_t* pwstL = pOut->get(i);
+            wchar_t* pwstR = _pR->get(i);
+            int sizeL = (int)wcslen(pwstL);
+            int sizeR = (int)wcslen(pwstR);
+
+            pOut->get()[i] = (wchar_t*)REALLOC(pwstL, (sizeL + sizeR + 1) * sizeof(wchar_t));
+            wcscat(pOut->get(i), pwstR);
+        }
     }
 
-    add(_pL->get(), size, _pR->get(), sizeOut, pOut->get());
-    delete[] sizeOut;
     return pOut;
 }
 
