@@ -52,8 +52,23 @@ Cell::Cell(int _iDims, const int* _piDims, InternalType** data)
 
 void Cell::createCell(int _iDims, const int* _piDims, InternalType** data)
 {
-    InternalType** pIT = NULL;
-    create(_piDims, _iDims, &pIT, NULL);
+    // FIXME: For _iDims = 2, _piDims={-1,-1} we are expected to
+    // create an empty cell "{}". However, ArrayOf::create interprets
+    // this args as "eye()", thus, for the time being, we have to take
+    // care of this case here ...
+    // In the long run, it might be a good idea to implement a dedicated
+    // Cell::create ... ?!
+    if (_iDims == 2 && _piDims[0] == -1 && _piDims[1] == -1)
+    {
+        int piDims[2] = {0, 0};
+        create(piDims, 2, NULL, NULL);
+    }
+    else
+    {
+        InternalType** pIT = NULL;
+        create(_piDims, _iDims, &pIT, NULL);
+    }
+
     if( m_iSizeMax == 0)
     {
         return;
