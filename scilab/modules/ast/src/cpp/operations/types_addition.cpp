@@ -1745,44 +1745,25 @@ InternalType* add_S_M<String, String, String>(String* _pL, String* _pR)
 template<>
 InternalType* add_M_S<String, String, String>(String* _pL, String* _pR)
 {
+    String* pOut = new String(_pL->getDims(), _pL->getDimsArray());
     int size = _pL->getSize();
+    int* sizeOut = new int[size];
     wchar_t* pwstR = _pR->getFirst();
     int sizeR = (int)wcslen(pwstR);
 
-    String* pOut;
-    if (_pL->getRef() > 0)
+    for (int i = 0 ; i < size ; ++i)
     {
-        int* sizeOut = new int[size];
+        wchar_t* pwstL = _pL->get(i);
+        int sizeL = (int)wcslen(pwstL);
 
-        pOut = new String(_pL->getDims(), _pL->getDimsArray());
-
-        for (int i = 0 ; i < size ; ++i)
-        {
-            wchar_t* pwstL = _pL->get(i);
-            int sizeL = (int)wcslen(pwstL);
-
-            sizeOut[i] = sizeL + sizeR + 1;
-            wchar_t* pwstOut = (wchar_t*)MALLOC(sizeOut[i] * sizeof(wchar_t));
-            //assign ptr without strdup
-            pOut->get()[i] = pwstOut;
-        }
-
-        add(_pL->get(), size, pwstR, sizeOut, pOut->get());
-        delete[] sizeOut;
-    }
-    else
-    {
-        pOut = _pL;
-
-        for (int i = 0; i < size; ++i)
-        {
-            wchar_t* pwstL = pOut->get(i);
-            int sizeL = (int)wcslen(pwstL);
-            pOut->get()[i] = (wchar_t*)REALLOC(pwstL, (sizeL + sizeR + 1) * sizeof(wchar_t));
-            wcscat(pOut->get(i), pwstR);
-        }
+        sizeOut[i] = sizeL + sizeR + 1;
+        wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut[i] * sizeof(wchar_t));
+        //assign ptr without strdup
+        pOut->get()[i] = pwstOut;
     }
 
+    add(_pL->get(), size, pwstR, sizeOut, pOut->get());
+    delete[] sizeOut;
     return pOut;
 }
 
