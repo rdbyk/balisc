@@ -98,44 +98,60 @@ Double* Double::Identity(int _iRows, int _iCols)
 
 Double* Double::Identity(int _iDims, const int* _piDims)
 {
-    Double* pI = new Double(_iDims, _piDims);
-    double* pdbl = pI->get();
     int iMinDim = *std::min_element(_piDims, _piDims + _iDims);
-    int* piIndex = new int[_iDims];
 
-    pI->setZeros();
-
-    for (int i = 0; i < iMinDim; i++)
+    if (iMinDim > 0)
     {
-        std::fill(piIndex, piIndex + _iDims, i);
+        Double* pI = new Double(_iDims, _piDims);
+        double* pdbl = pI->get();
+        int* piIndex = new int[_iDims];
 
-        int index = getIndexWithDims(piIndex, _piDims, _iDims);
-        pdbl[index] = 1.0;
+        pI->setZeros();
+
+        for (int i = 0; i < iMinDim; i++)
+        {
+            std::fill(piIndex, piIndex + _iDims, i);
+
+            int index = getIndexWithDims(piIndex, _piDims, _iDims);
+            pdbl[index] = 1.0;
+        }
+
+        delete[] piIndex;
+        return pI;
     }
-
-    delete[] piIndex;
-    return pI;
+    else
+    {
+        return Double::Empty();
+    }
 }
 
 Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal)
 {
-    Double* pI = new Double(_iDims, _piDims);
-    double* pdbl = pI->get();
     int iMinDim = *std::min_element(_piDims, _piDims + _iDims);
-    int* piIndex = new int[_iDims];
 
-    pI->setZeros();
-
-    for (int i = 0; i < iMinDim; i++)
+    if (iMinDim > 0)
     {
-        std::fill(piIndex, piIndex + _iDims, i);
+        Double* pI = new Double(_iDims, _piDims);
+        double* pdbl = pI->get();
+        int* piIndex = new int[_iDims];
 
-        int index = getIndexWithDims(piIndex, _piDims, _iDims);
-        pdbl[index] = _dblReal;
+        pI->setZeros();
+
+        for (int i = 0; i < iMinDim; i++)
+        {
+            std::fill(piIndex, piIndex + _iDims, i);
+
+            int index = getIndexWithDims(piIndex, _piDims, _iDims);
+            pdbl[index] = _dblReal;
+        }
+
+        delete[] piIndex;
+        return pI;
     }
-
-    delete[] piIndex;
-    return pI;
+    else
+    {
+        return Double::Empty();
+    }
 }
 
 Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal, double _dblImg)
