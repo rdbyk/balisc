@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,10 +10,10 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
+
 #include <sstream>
-#include <cmath>
 #include "singlepoly.hxx"
 #include "double.hxx"
 #include "tostring_common.hxx"
@@ -288,7 +288,7 @@ void SinglePoly::updateRank(void)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (std::fabs(m_pRealData[i]) == 0.0 && std::fabs(m_pImgData[i]) == 0.0)
+            if (m_pRealData[i] == 0.0 && m_pImgData[i] == 0.0)
             {
                 iNewRank--;
             }
@@ -302,7 +302,7 @@ void SinglePoly::updateRank(void)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (std::fabs(m_pRealData[i]) == 0.0)
+            if (m_pRealData[i] == 0.0)
             {
                 iNewRank--;
             }
