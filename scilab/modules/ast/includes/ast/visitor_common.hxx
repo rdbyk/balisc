@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,16 +29,6 @@ types::InternalType* AddElementToVariable(
     types::InternalType* _poSource,
     int _iRows, int _iCols);
 
-types::InternalType* AddElementToVariableFromCol(
-    types::InternalType* _poDest,
-    types::InternalType* _poSource,
-    int _iRows, int _iCols, int *_piCols);
-
-types::InternalType* AddElementToVariableFromRow(
-    types::InternalType* _poDest,
-    types::InternalType* _poSource,
-    int _iRows, int _iCols, int *_piRows);
-
 const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);
 
 bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields);
@@ -60,6 +50,5 @@ ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg = std::wstring(L""));
 
 void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
 std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer);
-
 
 #endif //!AST_VISITOR_COMMON_HXX
