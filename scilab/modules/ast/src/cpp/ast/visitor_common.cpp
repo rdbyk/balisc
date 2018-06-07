@@ -37,6 +37,8 @@ extern "C"
 #include "storeCommand.h"
 }
 
+static void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
+
 size_t ast::Ast::globalNodeNumber = 0;
 
 /*
