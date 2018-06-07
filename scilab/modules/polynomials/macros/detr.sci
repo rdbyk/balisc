@@ -18,22 +18,37 @@ function [d]=detr(h)
     if nargin <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "detr", 1));
     end
-    
-    tof=typeof(h)
-    if or(tof==["polynomial","constant", "rational"]) then
-        [m,n]=size(h);
+
+    if or(typeof(h)==["polynomial","constant", "rational"]) then
+
+        [m,n]=size(h)
+
         if m<>n then
             error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"detr",1))
         end
-        f=eye(n,n);
-        for k=1:n-1,
-            b=h*f,
-            d=-sum(diag(b))/k
-            f=b+eye(n,n)*d,
+
+        if n <=0 then
+            d = 1
+            return
         end
-        d=-sum(diag(h*f))/n;
-        if 2*int(n/2)<>n then d=-d;end
+
+        f=eye(n,n)
+        g=f
+
+        for k=1:n-1
+            b=h*f
+            d=-sum(diag(b))/k
+            f=b+g*d
+        end
+
+        d=-sum(diag(h*f))/n
+        
+        if 2*int(n/2)<>n then
+            d=-d
+        end
+
     else
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A floating point number or polynomial or rational fraction array expected.\n"),"detr",1))
     end
+
 endfunction
