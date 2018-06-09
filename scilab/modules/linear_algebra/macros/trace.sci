@@ -23,7 +23,7 @@ function y=trace(u)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"trace",1));
     end
 
-    if and(type(u)<>[1:8,16,17]) then
+    if type(u)<>[1:8,16,17] then
         error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"trace",1));
     end
 
