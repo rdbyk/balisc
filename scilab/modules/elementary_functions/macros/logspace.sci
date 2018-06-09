@@ -20,18 +20,19 @@ function y=logspace(d1, d2, n)
     if nargin < 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"logspace", 2));
     end
-    if size(d1,2)<>1 then
+
+    if size(d1,2) <> 1 then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A column vector expected.\n"),"logspace",1));
     end
 
-    if ~and(size(d1) == size(d2)) then
+    if or(size(d1) <> size(d2)) then
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"logspace",1,2));
     end
 
     if nargin == 2 then
         n = 50;
     else
-        if type(n)<>1|size(n,"*")<>1 then
+        if type(n) <> 1 || size(n,"*") <> 1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"),"logspace",3));
         end
         if int(n) <> n then
