@@ -35,7 +35,7 @@ function y = primes(x)
         ylength = size(y,"*")
         i = 2
         while (i <= sqrt(x))
-            if y(i) <> 0
+            if y(i)
                 y(2*y(i):y(i):ylength) = 0
             end
             i = i+1
