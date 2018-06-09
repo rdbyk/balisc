@@ -702,6 +702,19 @@ bool String::isTrue()
     return false;
 }
 
+bool String::neg(InternalType *& out)
+{
+    out = new Bool(m_iDims, m_piDims);
+    int* o = out->getAs<Bool>()->get();
+
+    for (int i = 0; i < getSize(); ++i)
+    {
+        o[i] = (wcslen(get(i)) == 0);
+    }
+
+    return true;
+}
+
 bool String::transpose(InternalType *& out)
 {
     return type_traits::transpose(*this, out);
