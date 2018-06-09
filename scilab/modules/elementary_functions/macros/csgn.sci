@@ -22,7 +22,7 @@ function s = csgn(z)
         error(msprintf(msg, "csgn", 1));
     end
     
-    if and(typeof(z) <> ["constant" "sparse"]) then
+    if type(z) <> [1 5] then
         msg = _("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n")
         error(msprintf(msg, "csgn", 1));
     end
