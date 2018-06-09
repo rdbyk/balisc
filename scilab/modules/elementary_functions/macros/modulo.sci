@@ -23,17 +23,17 @@ function i = modulo(n, m)
     mt = type(m)
     nt = type(n)
 
-    if or(type(n)==[15 16]) | and(nt <> [1 2 8]) | (nt==1 & ~isreal(n))
+    if or(nt==[15 16]) || nt <> [1 2 8] || (nt==1 && ~isreal(n))
         msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
         error(msprintf(msg, "modulo", 1))
     end
 
-    if or(type(m)==[15 16]) |  and(mt <> [1 2 8]) | (mt==1 & ~isreal(m))
+    if or(mt==[15 16]) || mt <> [1 2 8] || (mt==1 && ~isreal(m))
         msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
         error(msprintf(msg, "modulo", 2))
     end
 
-    if (nt==8 | mt==8)  & nt~=mt
+    if (nt==8 || mt==8) && nt <> mt
         msg = _("%s: Incompatible input arguments #%d and #%d: Same types expected.\n")
         error(msprintf(msg, "modulo", 1, 2))
     end
@@ -43,8 +43,8 @@ function i = modulo(n, m)
         return
     end
 
-    if or(mt==[1 8]) & mt==nt then
-        if length(n)>1 & length(m)>1 & or(size(n) <> size(m)) then
+    if or(mt==[1 8]) && mt==nt then
+        if length(n)>1 && length(m)>1 && or(size(n) <> size(m)) then
             msg = _("%s: Wrong size for input arguments: Same size expected.\n")
             error(msprintf(msg, "modulo"))
         end
