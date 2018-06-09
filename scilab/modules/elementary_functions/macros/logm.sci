@@ -17,16 +17,13 @@ function x=logm(a)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"logm", 1));
     end
 
-    [m ,n] = size(a);
-
-    if m <> n then
+    if ~issquare(a) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"logm",1));
     end
 
     flag = or(a<>a');
     if ~flag then
         //Hermitian matrix
-        r = and(imag(a) == 0)
         [u, s] = schur(a);
         w = diag(s);
         zw = find(w == 0);
@@ -39,15 +36,14 @@ function x=logm(a)
             w1 = log(w);
         end
         x = u * diag(w1) * u';
-        if r then
-            if and(real(s) >= 0) then
+        if isreal(a, 0) then
+            if real(s) >= 0 then
                 x = real(x);
             end
         end
     end
     if flag then
         //General matrix
-        r = and(imag(a) == 0);
         a = a + 0 * %i;   //Set complex
         rmax = max(norm(a, 1), 1 / sqrt(%eps));
         [s, u, bs] = bdiag(a, rmax);

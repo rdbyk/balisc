@@ -18,13 +18,13 @@ function y=sinc(x)
         error(msprintf(msg, "sinc", 1));
     end
     
-    if and(typeof(x)<>["constant", "sparse"]) then
+    if type(x) <> [1 5] then
         msg = _("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n")
         error(msprintf(msg, "sinc", 1));
     end
 
     y = ones(x);
-    kz = find(x <> 0);
+    kz = find(x);
     y(kz) = sin(x(kz))./(x(kz));
 
 endfunction

@@ -18,7 +18,7 @@ function y = acscd(x)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"acscd", 1));
     end
 
-    if and(type(x) <> [1 5]) | ~isreal(x) then
+    if type(x) <> [1 5] || ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real sparse or full matrix expected.\n"),"acscd",1));
     end
 

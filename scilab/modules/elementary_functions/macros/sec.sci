@@ -17,8 +17,8 @@ function y = sec(x)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sec", 1));
     end
 
-    if and(typeof(x) <> ["constant", "sparse"," hypermatrix"]) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n"),"sec", 1));
+    if type(x) <> [1 5] then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix expected.\n"),"sec", 1));
     end
 
     y = ones(x)./cos(x);
