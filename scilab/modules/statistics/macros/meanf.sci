@@ -35,17 +35,17 @@ function [m]=meanf(val,fre,orient)
     //Statistics, J.Wiley & Sons, 1990.
     //
 
-    if nargin == 0 | nargin == 1| nargin >= 4 then
+    if nargin <= 1 || nargin >= 4 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"meanf",2,3));
     end
 
     // If val is not constant, sparse, integer, hypermat
-    if and(type(val) <> [1 5 8]) then
+    if type(val) <> [1 5 8] then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A full or sparse matrix, or an integer matrix, or an hypermat expected.\n"),"meanf",1));
     end
 
     // If fre is not constant, sparse, integer, hypermat
-    if and(type(fre) <> [1 5 8]) then
+    if type(fre) <> [1 5 8] then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A full or sparse matrix, or an integer matrix, or an hypermat expected.\n"),"meanf", 2));
     end
 
