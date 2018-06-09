@@ -25,21 +25,20 @@ function x=tanm(a)
         return
     end
 
-    [m,n]=size(a);
-    if m<>n then
+    if ~issquare(a) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"tanm",1));
     end
 
     //diagonalization
-    [x,t,bs]=bdiag(a+0*%i*ones(a),1/%eps)
+    [x,t,bs]=bdiag(a+0*%i,1/%eps)
 
-    if find(bs>1)<>[] then
+    if find(bs>1) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"),"tanm",1));
     end
 
     x=t*diag(tan(diag(x)))/t;
 
-    if and(imag(a)==0) then
+    if imag(a)==0 then
         x=real(x)
     end
 
