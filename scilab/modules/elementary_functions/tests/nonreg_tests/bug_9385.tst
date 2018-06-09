@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 9385 -->
 //
@@ -49,7 +51,7 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real matrix expected
 assert_checkerror("secd(""x"")", refMsg);
 
 assert_checkfalse(execstr("sec(""x"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n"),"sec",1);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix expected.\n"),"sec",1);
 assert_checkerror("sec(""x"")", refMsg);
 
 assert_checkfalse(execstr("csgn(""x"")"   ,"errcatch") == 0);
@@ -65,7 +67,7 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real matrix expected
 assert_checkerror("cscd(""x"")", refMsg);
 
 assert_checkfalse(execstr("csc(""x"")", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n"), "csc", 1);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix expected.\n"), "csc", 1);
 assert_checkerror("csc(""x"")", refMsg);
 
 assert_checkfalse(execstr("cotd(""x"")", "errcatch") == 0);
