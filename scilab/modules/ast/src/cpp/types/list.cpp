@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -396,7 +396,7 @@ bool List::isTrue()
 {
     for (int i = 0; i < getSize(); ++i)
     {
-        // FIXME: is this a reasonable definition?
+        // FIXME: is this a reasonable definition? (cf. neg)
         switch(get(i)->getType())
         {
             // case ScilabListInsertOperation:
@@ -408,6 +408,29 @@ bool List::isTrue()
     }
 
     return false;
+}
+
+bool List::neg(InternalType *& out)
+{
+    for (int i = 0; i < getSize(); ++i)
+    {
+        // FIXME: is this a reasonable definition? (cf. isTrue)
+        switch(get(i)->getType())
+        {
+            // case ScilabListInsertOperation:
+            // case ScilabListDeleteOperation:
+            case ScilabListUndefinedOperation:
+            case ScilabVoid:
+                break;
+
+            default:
+                out = new Bool(false);
+                return true;
+        }
+    }
+
+    out = new Bool(true);
+    return true;
 }
 
 }
