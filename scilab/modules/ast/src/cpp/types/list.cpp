@@ -392,4 +392,22 @@ bool List::operator==(const InternalType& it)
     return true;
 }
 
+bool List::isTrue()
+{
+    for (int i = 0; i < getSize(); ++i)
+    {
+        // FIXME: is this a reasonable definition?
+        switch(get(i)->getType())
+        {
+            // case ScilabListInsertOperation:
+            // case ScilabListDeleteOperation:
+            case ScilabListUndefinedOperation:
+            case ScilabVoid:
+                return true;
+        }
+    }
+
+    return false;
+}
+
 }

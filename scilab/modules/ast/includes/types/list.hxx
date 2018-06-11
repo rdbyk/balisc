@@ -127,6 +127,8 @@ public :
 
     virtual bool                    operator==(const InternalType& it);
 
+    bool isTrue();
+
 protected :
     std::vector<InternalType *>*    m_plData;
 };
