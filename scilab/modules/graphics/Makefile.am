@@ -44,7 +44,6 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/get_axes_size_property.c \
     src/c/getHandleProperty/get_thickness_property.c \
     src/c/getHandleProperty/get_font_foreground_property.c \
-    src/c/getHandleProperty/get_bar_layout_property.c \
     src/c/getHandleProperty/get_current_axes_property.c \
     src/c/getHandleProperty/get_bar_width_property.c \
     src/c/getHandleProperty/get_datatips_property.c \
@@ -142,7 +141,6 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/get_hidden_color_property.c \
     src/c/getHandleProperty/get_handle_visible_property.c \
     src/c/getHandleProperty/get_labels_font_color_property.c \
-    src/c/getHandleProperty/get_surface_color_property.c \
     src/c/getHandleProperty/get_tics_label_property.c \
     src/c/getHandleProperty/get_labels_font_style_property.c \
     src/c/getHandleProperty/get_axes_visible_property.c \
@@ -218,7 +216,6 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_thickness_property.c \
     src/c/getHandleProperty/set_font_foreground_property.c \
     src/c/getHandleProperty/set_text_box_mode_property.c \
-    src/c/getHandleProperty/set_bar_layout_property.c \
     src/c/getHandleProperty/set_bar_width_property.c \
     src/c/getHandleProperty/set_datatips_property.c \
     src/c/getHandleProperty/SetPropertyStatus.c \
@@ -298,7 +295,6 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_box_property.c \
     src/c/getHandleProperty/set_hidden_color_property.c \
     src/c/getHandleProperty/set_label_font_style_property.c \
-    src/c/getHandleProperty/set_surface_color_property.c \
     src/c/getHandleProperty/set_yticks_coord_property.c \
     src/c/getHandleProperty/CheckTicksProperty.c \
     src/c/getHandleProperty/set_x_ticks_property.c \
