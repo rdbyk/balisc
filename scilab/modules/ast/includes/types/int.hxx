@@ -107,7 +107,7 @@ public :
 
     bool neg(InternalType *& out)
     {
-        out = new Int<T>(this->getDims(), this->getDimsArray());
+        out = this->getRef() > 0 ? new Int<T>(this->getDims(), this->getDimsArray()) : this;
         type_traits::bin_neg<T, T>(this->m_iSize, this->m_pRealData, static_cast<Int<T> *>(out)->get());
 
         return true;
