@@ -26,6 +26,7 @@
 #define __BOOL_HXX__
 
 #include "arrayof.hxx"
+#include "type_traits.hxx"
 
 namespace types
 {
@@ -76,6 +77,14 @@ public:
     virtual std::wstring     getShortTypeStr() const
     {
         return L"b";
+    }
+
+    virtual bool neg(InternalType *& out) override
+    {
+            out = getRef() > 0 ? new Bool(this->m_iDims, this->m_piDims) : this;
+            type_traits::neg<int, int>(this->m_iSize, this->m_pRealData, static_cast<Bool *>(out)->get());
+
+            return true;
     }
 
     virtual bool transpose(InternalType *& out);
