@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2007 - INRIA - Vincent Couvert
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -95,7 +95,6 @@ static setHashTableCouple propertySetTable[] =
     {"mark_background", set_mark_background_property},
     {"mark_offset", set_mark_offset_property},
     {"mark_stride", set_mark_stride_property},
-    {"bar_layout", set_bar_layout_property},
     {"bar_width", set_bar_width_property},
     {"x_shift", set_x_shift_property},
     {"y_shift", set_y_shift_property},
@@ -166,7 +165,6 @@ static setHashTableCouple propertySetTable[] =
     {"color_mode", set_color_mode_property},
     {"color_flag", set_color_flag_property},
     {"cdata_mapping", set_cdata_mapping_property},
-    {"surface_color", set_surface_color_property},
     {"triangles", set_triangles_property},
     {"z_bounds", set_z_bounds_property},
     {"user_data", set_user_data_property},

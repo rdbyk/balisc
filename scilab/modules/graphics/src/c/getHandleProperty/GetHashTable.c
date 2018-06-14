@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -94,7 +94,6 @@ static getHashTableCouple propertyGetTable[] =
     {"mark_background", get_mark_background_property},
     {"mark_offset", get_mark_offset_property},
     {"mark_stride", get_mark_stride_property},
-    {"bar_layout", get_bar_layout_property},
     {"bar_width", get_bar_width_property},
     {"x_shift", get_x_shift_property},
     {"y_shift", get_y_shift_property},
@@ -165,7 +164,6 @@ static getHashTableCouple propertyGetTable[] =
     {"color_mode", get_color_mode_property},
     {"color_flag", get_color_flag_property},
     {"cdata_mapping", get_cdata_mapping_property},
-    {"surface_color", get_surface_color_property},
     {"triangles", get_triangles_property},
     {"z_bounds", get_z_bounds_property},
     {"user_data", get_user_data_property},
