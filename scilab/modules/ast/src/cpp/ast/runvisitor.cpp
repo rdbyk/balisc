@@ -1480,6 +1480,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             case types::InternalType::ScilabList:
             case types::InternalType::ScilabTList:
             case types::InternalType::ScilabMList:
+            case types::InternalType::ScilabUserType:
                 break;
 
             case types::InternalType::ScilabImplicitList:
@@ -1535,6 +1536,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             case types::InternalType::ScilabList:
             case types::InternalType::ScilabTList:
             case types::InternalType::ScilabMList:
+            case types::InternalType::ScilabUserType:
                 break;
 
             case types::InternalType::ScilabImplicitList:
@@ -1592,6 +1594,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             case types::InternalType::ScilabList:
             case types::InternalType::ScilabTList:
             case types::InternalType::ScilabMList:
+            case types::InternalType::ScilabUserType:
                 break;
 
             case types::InternalType::ScilabImplicitList:
