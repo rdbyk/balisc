@@ -1470,23 +1470,51 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         throw;
     }
 
-    types::GenericType* pITStart = static_cast<types::GenericType*>(getResult());
-    if (pITStart == NULL ||
-            ((pITStart->getSize() != 1 || (pITStart->isDouble() && pITStart->getAs<types::Double>()->isComplex())) &&
-             pITStart->isList() == false)) // list case => call overload
-    {
-        if (pITStart)
-        {
-            pITStart->killMe();
-        }
+    types::InternalType * piStart = getResult();
+    setResult(NULL);
 
-        setResult(NULL);
+    if (piStart)
+    {
+        switch (piStart->getType())
+        {
+            case types::InternalType::ScilabList:
+            case types::InternalType::ScilabTList:
+            case types::InternalType::ScilabMList:
+            case types::InternalType::ScilabUserType:
+                break;
+
+            case types::InternalType::ScilabImplicitList:
+            {
+                types::InternalType* piTmp = piStart->getAs<types::ImplicitList>()->extractFullMatrix();
+                piStart->killMe();
+                piStart = piTmp;
+                if (piStart->isInt()) break;
+            }
+
+            case types::InternalType::ScilabDouble:
+                if (piStart->getAs<types::Double>()->getSize() == 1
+                    && !(piStart->getAs<types::Double>()->isComplex()))
+                    break;
+
+            default:
+                if (!(piStart->isGenericType()) || piStart->getAs<types::GenericType>()->getSize() != 1)
+                {
+                    piStart->killMe();
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
+                    CoverageInstance::stopChrono((void*)&e);
+                    throw InternalError(szError, 999, e.getLocation());
+                }
+                break;
+        }
+    }
+    else
+    {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
+        os_swprintf(szError, bsiz, _W("%ls: Evaluation of argument %d yields no result.\n").c_str(), L"':'", 1);
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
-    types::InternalType * piStart = pITStart;
 
     try
     {
@@ -1497,25 +1525,54 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         CoverageInstance::stopChrono((void*)&e);
         throw;
     }
-    types::GenericType* pITStep = static_cast<types::GenericType*>(getResult());
-    setResult(NULL);
-    if (pITStep == NULL ||
-            ((pITStep->getSize() != 1 || (pITStep->isDouble() && pITStep->getAs<types::Double>()->isComplex())) &&
-             pITStep->isList() == false)) // list case => call overload
-    {
-        pITStart->killMe();
-        if (pITStep)
-        {
-            pITStep->killMe();
-        }
 
-        setResult(NULL);
+    types::InternalType * piStep = getResult();
+    setResult(NULL);
+
+    if (piStep)
+    {
+        switch (piStep->getType())
+        {
+            case types::InternalType::ScilabList:
+            case types::InternalType::ScilabTList:
+            case types::InternalType::ScilabMList:
+            case types::InternalType::ScilabUserType:
+                break;
+
+            case types::InternalType::ScilabImplicitList:
+            {
+                types::InternalType* piTmp = piStep->getAs<types::ImplicitList>()->extractFullMatrix();
+                piStep->killMe();
+                piStep = piTmp;
+                if (piStep->isInt()) break;
+            }
+
+            case types::InternalType::ScilabDouble:
+                if (piStep->getAs<types::Double>()->getSize() == 1
+                    && !(piStep->getAs<types::Double>()->isComplex()))
+                    break;
+
+            default:
+                if (!(piStep->isGenericType()) || piStep->getAs<types::GenericType>()->getSize() != 1)
+                {
+                    piStart->killMe();
+                    piStep->killMe();
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
+                    CoverageInstance::stopChrono((void*)&e);
+                    throw InternalError(szError, 999, e.getLocation());
+                }
+                break;
+        }
+    }
+    else
+    {
+        piStart->killMe();
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
+        os_swprintf(szError, bsiz, _W("%ls: Evaluation of argument %d yields no result.\n").c_str(), L"':'", 2);
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
-    types::InternalType* piStep = pITStep;
 
     try
     {
@@ -1527,26 +1584,55 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         throw;
     }
 
-    types::GenericType* pITEnd = static_cast<types::GenericType*>(getResult());
+    types::InternalType * piEnd = getResult();
     setResult(NULL);
-    if (pITEnd == NULL ||
-            ((pITEnd->getSize() != 1 || (pITEnd->isDouble() && pITEnd->getAs<types::Double>()->isComplex())) &&
-             pITEnd->isList() == false)) // list case => call overload
-    {
-        pITStart->killMe();
-        pITStep->killMe();
-        if (pITEnd)
-        {
-            pITEnd->killMe();
-        }
 
-        setResult(NULL);
+    if (piEnd)
+    {
+        switch (piEnd->getType())
+        {
+            case types::InternalType::ScilabList:
+            case types::InternalType::ScilabTList:
+            case types::InternalType::ScilabMList:
+            case types::InternalType::ScilabUserType:
+                break;
+
+            case types::InternalType::ScilabImplicitList:
+            {
+                types::InternalType* piTmp = piEnd->getAs<types::ImplicitList>()->extractFullMatrix();
+                piEnd->killMe();
+                piEnd = piTmp;
+                if (piEnd->isInt()) break;
+            }
+
+            case types::InternalType::ScilabDouble:
+                if (piEnd->getAs<types::Double>()->getSize() == 1
+                    && !(piEnd->getAs<types::Double>()->isComplex()))
+                    break;
+
+            default:
+                if (!(piEnd->isGenericType()) || piEnd->getAs<types::GenericType>()->getSize() != 1)
+                {
+                    piStart->killMe();
+                    piStep->killMe();
+                    piEnd->killMe();
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2 + e.hasExplicitStep());
+                    CoverageInstance::stopChrono((void*)&e);
+                    throw InternalError(szError, 999, e.getLocation());
+                }
+                break;
+        }
+    }
+    else
+    {
+        piStart->killMe();
+        piStep->killMe();
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 3);
+        os_swprintf(szError, bsiz, _W("%ls: Evaluation of argument %d yields no result.\n").c_str(), L"':'", 2 + e.hasExplicitStep());
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
-    types::InternalType* piEnd = pITEnd;
 
     ////check if implicitlist is 1:$ to replace by ':'
     //if (piStart->isDouble() && piStep->isDouble() && piEnd->isPoly())
