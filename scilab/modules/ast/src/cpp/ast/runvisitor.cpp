@@ -1484,12 +1484,17 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                 break;
 
             case types::InternalType::ScilabImplicitList:
-            {
-                types::InternalType* piTmp = piStart->getAs<types::ImplicitList>()->extractFullMatrix();
-                piStart->killMe();
-                piStart = piTmp;
-                if (piStart->isInt()) break;
-            }
+                if (piStart->getAs<types::ImplicitList>()->isComputable())
+                {
+                    types::InternalType* piTmp = piStart->getAs<types::ImplicitList>()->extractFullMatrix();
+                    piStart->killMe();
+                    piStart = piTmp;
+                    if (piStart->isInt()) break;
+                }
+                else
+                {
+                    break;
+                }
 
             case types::InternalType::ScilabDouble:
                 if (piStart->getAs<types::Double>()->getSize() == 1
@@ -1540,12 +1545,17 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                 break;
 
             case types::InternalType::ScilabImplicitList:
-            {
-                types::InternalType* piTmp = piStep->getAs<types::ImplicitList>()->extractFullMatrix();
-                piStep->killMe();
-                piStep = piTmp;
-                if (piStep->isInt()) break;
-            }
+                if (piStep->getAs<types::ImplicitList>()->isComputable())
+                {
+                    types::InternalType* piTmp = piStep->getAs<types::ImplicitList>()->extractFullMatrix();
+                    piStep->killMe();
+                    piStep = piTmp;
+                    if (piStep->isInt()) break;
+                }
+                else
+                {
+                    break;
+                }
 
             case types::InternalType::ScilabDouble:
                 if (piStep->getAs<types::Double>()->getSize() == 1
@@ -1598,12 +1608,17 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                 break;
 
             case types::InternalType::ScilabImplicitList:
-            {
-                types::InternalType* piTmp = piEnd->getAs<types::ImplicitList>()->extractFullMatrix();
-                piEnd->killMe();
-                piEnd = piTmp;
-                if (piEnd->isInt()) break;
-            }
+                if (piEnd->getAs<types::ImplicitList>()->isComputable())
+                {
+                    types::InternalType* piTmp = piEnd->getAs<types::ImplicitList>()->extractFullMatrix();
+                    piEnd->killMe();
+                    piEnd = piTmp;
+                    if (piStep->isInt()) break;
+                }
+                else
+                {
+                    break;
+                }
 
             case types::InternalType::ScilabDouble:
                 if (piEnd->getAs<types::Double>()->getSize() == 1
