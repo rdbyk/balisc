@@ -14017,7 +14017,7 @@ State 235
   167             | . "\\." functionCall
   168 listableBegin: . ":" variable
   169              | . ":" functionCall
-  169              | ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  169              | ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   170 listableEnd: . listableBegin ":" variable
   171            | . listableBegin ":" functionCall
   172            | . listableBegin
@@ -14026,32 +14026,26 @@ State 235
   181         | functionCall . listableEnd
   197         | functionCall . "(" functionArgs ")"
 
-    "'"         shift, and go to state 113
-    "("         shift, and go to state 163
-    "."         shift, and go to state 164
-    ".'"        shift, and go to state 117
-    "+"         shift, and go to state 118
-    "-"         shift, and go to state 119
-    "*"         shift, and go to state 120
-    ".*"        shift, and go to state 121
-    ".*."       shift, and go to state 122
-    "*."        shift, and go to state 123
-    "/"         shift, and go to state 124
-    "./"        shift, and go to state 125
-    "/."        shift, and go to state 126
-    "./."       shift, and go to state 127
-    "\\"        shift, and go to state 128
-    ".\\"       shift, and go to state 129
-    "\\."       shift, and go to state 130
-    ".\\."      shift, and go to state 131
-    "** or ^"   shift, and go to state 132
-    ".^"        shift, and go to state 133
-    "=="        shift, and go to state 134
-    "<> or ~="  shift, and go to state 135
-    "<"         shift, and go to state 136
-    "<="        shift, and go to state 137
-    ">"         shift, and go to state 138
-    ">="        shift, and go to state 139
+    "'"        shift, and go to state 113
+    "("        shift, and go to state 163
+    "."        shift, and go to state 164
+    ".'"       shift, and go to state 117
+    "+"        shift, and go to state 118
+    "-"        shift, and go to state 119
+    "*"        shift, and go to state 120
+    ".*"       shift, and go to state 121
+    ".*."      shift, and go to state 122
+    "*."       shift, and go to state 123
+    "/"        shift, and go to state 124
+    "./"       shift, and go to state 125
+    "/."       shift, and go to state 126
+    "./."      shift, and go to state 127
+    "\\"       shift, and go to state 128
+    ".\\"      shift, and go to state 129
+    "\\."      shift, and go to state 130
+    ".\\."     shift, and go to state 131
+    "** or ^"  shift, and go to state 132
+    ".^"       shift, and go to state 133
 
     $default  reduce using rule 169 (listableBegin)
 
@@ -14081,12 +14075,12 @@ State 235
     Conflict between rule 169 and token ".\\." resolved as shift (COLON < ".\\.").
     Conflict between rule 169 and token "** or ^" resolved as shift (COLON < "** or ^").
     Conflict between rule 169 and token ".^" resolved as shift (COLON < ".^").
-    Conflict between rule 169 and token "==" resolved as shift (COLON < "==").
-    Conflict between rule 169 and token "<> or ~=" resolved as shift (COLON < "<> or ~=").
-    Conflict between rule 169 and token "<" resolved as shift (COLON < "<").
-    Conflict between rule 169 and token "<=" resolved as shift (COLON < "<=").
-    Conflict between rule 169 and token ">" resolved as shift (COLON < ">").
-    Conflict between rule 169 and token ">=" resolved as shift (COLON < ">=").
+    Conflict between rule 169 and token "==" resolved as reduce ("==" < COLON).
+    Conflict between rule 169 and token "<> or ~=" resolved as reduce ("<> or ~=" < COLON).
+    Conflict between rule 169 and token "<" resolved as reduce ("<" < COLON).
+    Conflict between rule 169 and token "<=" resolved as reduce ("<=" < COLON).
+    Conflict between rule 169 and token ">" resolved as reduce (">" < COLON).
+    Conflict between rule 169 and token ">=" resolved as reduce (">=" < COLON).
     Conflict between rule 169 and token "&" resolved as reduce ("&" < COLON).
     Conflict between rule 169 and token "&&" resolved as reduce ("&&" < COLON).
     Conflict between rule 169 and token "|" resolved as reduce ("|" < COLON).
@@ -14162,7 +14156,7 @@ State 236
   166             | . "\\." variable
   167             | . "\\." functionCall
   168 listableBegin: . ":" variable
-  168              | ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  168              | ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   169              | . ":" functionCall
   170 listableEnd: . listableBegin ":" variable
   171            | . listableBegin ":" functionCall
@@ -14173,32 +14167,26 @@ State 236
   180         | variable . listableEnd
   196         | variable . "(" functionArgs ")"
 
-    "'"         shift, and go to state 149
-    "("         shift, and go to state 165
-    "."         shift, and go to state 166
-    ".'"        shift, and go to state 152
-    "+"         shift, and go to state 118
-    "-"         shift, and go to state 119
-    "*"         shift, and go to state 120
-    ".*"        shift, and go to state 121
-    ".*."       shift, and go to state 122
-    "*."        shift, and go to state 123
-    "/"         shift, and go to state 124
-    "./"        shift, and go to state 125
-    "/."        shift, and go to state 126
-    "./."       shift, and go to state 127
-    "\\"        shift, and go to state 128
-    ".\\"       shift, and go to state 129
-    "\\."       shift, and go to state 130
-    ".\\."      shift, and go to state 131
-    "** or ^"   shift, and go to state 153
-    ".^"        shift, and go to state 154
-    "=="        shift, and go to state 134
-    "<> or ~="  shift, and go to state 135
-    "<"         shift, and go to state 136
-    "<="        shift, and go to state 137
-    ">"         shift, and go to state 138
-    ">="        shift, and go to state 139
+    "'"        shift, and go to state 149
+    "("        shift, and go to state 165
+    "."        shift, and go to state 166
+    ".'"       shift, and go to state 152
+    "+"        shift, and go to state 118
+    "-"        shift, and go to state 119
+    "*"        shift, and go to state 120
+    ".*"       shift, and go to state 121
+    ".*."      shift, and go to state 122
+    "*."       shift, and go to state 123
+    "/"        shift, and go to state 124
+    "./"       shift, and go to state 125
+    "/."       shift, and go to state 126
+    "./."      shift, and go to state 127
+    "\\"       shift, and go to state 128
+    ".\\"      shift, and go to state 129
+    "\\."      shift, and go to state 130
+    ".\\."     shift, and go to state 131
+    "** or ^"  shift, and go to state 153
+    ".^"       shift, and go to state 154
 
     $default  reduce using rule 168 (listableBegin)
 
@@ -14228,12 +14216,12 @@ State 236
     Conflict between rule 168 and token ".\\." resolved as shift (COLON < ".\\.").
     Conflict between rule 168 and token "** or ^" resolved as shift (COLON < "** or ^").
     Conflict between rule 168 and token ".^" resolved as shift (COLON < ".^").
-    Conflict between rule 168 and token "==" resolved as shift (COLON < "==").
-    Conflict between rule 168 and token "<> or ~=" resolved as shift (COLON < "<> or ~=").
-    Conflict between rule 168 and token "<" resolved as shift (COLON < "<").
-    Conflict between rule 168 and token "<=" resolved as shift (COLON < "<=").
-    Conflict between rule 168 and token ">" resolved as shift (COLON < ">").
-    Conflict between rule 168 and token ">=" resolved as shift (COLON < ">=").
+    Conflict between rule 168 and token "==" resolved as reduce ("==" < COLON).
+    Conflict between rule 168 and token "<> or ~=" resolved as reduce ("<> or ~=" < COLON).
+    Conflict between rule 168 and token "<" resolved as reduce ("<" < COLON).
+    Conflict between rule 168 and token "<=" resolved as reduce ("<=" < COLON).
+    Conflict between rule 168 and token ">" resolved as reduce (">" < COLON).
+    Conflict between rule 168 and token ">=" resolved as reduce (">=" < COLON).
     Conflict between rule 168 and token "&" resolved as reduce ("&" < COLON).
     Conflict between rule 168 and token "&&" resolved as reduce ("&&" < COLON).
     Conflict between rule 168 and token "|" resolved as reduce ("|" < COLON).
@@ -18504,7 +18492,7 @@ State 289
   103                | . "||" ":"
   104                | . "==" variable
   105                | . "==" functionCall
-  105                | "==" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  105                | "==" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   106                | . "==" ":"
   107                | . "<> or ~=" variable
   108                | . "<> or ~=" functionCall
@@ -18567,6 +18555,7 @@ State 289
   197         | functionCall . "(" functionArgs ")"
 
     "'"        shift, and go to state 113
+    ":"        shift, and go to state 114
     "("        shift, and go to state 163
     "."        shift, and go to state 164
     ".'"       shift, and go to state 117
@@ -18595,7 +18584,7 @@ State 289
     listableEnd      go to state 148
 
     Conflict between rule 105 and token "'" resolved as shift (EQ < "'").
-    Conflict between rule 105 and token ":" resolved as reduce (":" < EQ).
+    Conflict between rule 105 and token ":" resolved as shift (EQ < ":").
     Conflict between rule 105 and token "(" resolved as shift (EQ < "(").
     Conflict between rule 105 and token "." resolved as shift (EQ < ".").
     Conflict between rule 105 and token ".'" resolved as shift (EQ < ".'").
@@ -18643,7 +18632,7 @@ State 290
   102                | . "||" functionCall
   103                | . "||" ":"
   104                | . "==" variable
-  104                | "==" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  104                | "==" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   105                | . "==" functionCall
   106                | . "==" ":"
   107                | . "<> or ~=" variable
@@ -18708,6 +18697,7 @@ State 290
   196         | variable . "(" functionArgs ")"
 
     "'"        shift, and go to state 149
+    ":"        shift, and go to state 114
     "("        shift, and go to state 165
     "."        shift, and go to state 166
     ".'"       shift, and go to state 152
@@ -18736,7 +18726,7 @@ State 290
     listableEnd      go to state 157
 
     Conflict between rule 104 and token "'" resolved as shift (EQ < "'").
-    Conflict between rule 104 and token ":" resolved as reduce (":" < EQ).
+    Conflict between rule 104 and token ":" resolved as shift (EQ < ":").
     Conflict between rule 104 and token "(" resolved as shift (EQ < "(").
     Conflict between rule 104 and token "." resolved as shift (EQ < ".").
     Conflict between rule 104 and token ".'" resolved as shift (EQ < ".'").
@@ -18795,7 +18785,7 @@ State 292
   106                | . "==" ":"
   107                | . "<> or ~=" variable
   108                | . "<> or ~=" functionCall
-  108                | "<> or ~=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  108                | "<> or ~=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   109                | . "<> or ~=" ":"
   110                | . ">" variable
   111                | . ">" functionCall
@@ -18855,6 +18845,7 @@ State 292
   197         | functionCall . "(" functionArgs ")"
 
     "'"        shift, and go to state 113
+    ":"        shift, and go to state 114
     "("        shift, and go to state 163
     "."        shift, and go to state 164
     ".'"       shift, and go to state 117
@@ -18883,7 +18874,7 @@ State 292
     listableEnd      go to state 148
 
     Conflict between rule 108 and token "'" resolved as shift (NE < "'").
-    Conflict between rule 108 and token ":" resolved as reduce (":" < NE).
+    Conflict between rule 108 and token ":" resolved as shift (NE < ":").
     Conflict between rule 108 and token "(" resolved as shift (NE < "(").
     Conflict between rule 108 and token "." resolved as shift (NE < ".").
     Conflict between rule 108 and token ".'" resolved as shift (NE < ".'").
@@ -18934,7 +18925,7 @@ State 293
   105                | . "==" functionCall
   106                | . "==" ":"
   107                | . "<> or ~=" variable
-  107                | "<> or ~=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  107                | "<> or ~=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   108                | . "<> or ~=" functionCall
   109                | . "<> or ~=" ":"
   110                | . ">" variable
@@ -18996,6 +18987,7 @@ State 293
   196         | variable . "(" functionArgs ")"
 
     "'"        shift, and go to state 149
+    ":"        shift, and go to state 114
     "("        shift, and go to state 165
     "."        shift, and go to state 166
     ".'"       shift, and go to state 152
@@ -19024,7 +19016,7 @@ State 293
     listableEnd      go to state 157
 
     Conflict between rule 107 and token "'" resolved as shift (NE < "'").
-    Conflict between rule 107 and token ":" resolved as reduce (":" < NE).
+    Conflict between rule 107 and token ":" resolved as shift (NE < ":").
     Conflict between rule 107 and token "(" resolved as shift (NE < "(").
     Conflict between rule 107 and token "." resolved as shift (NE < ".").
     Conflict between rule 107 and token ".'" resolved as shift (NE < ".'").
@@ -19089,7 +19081,7 @@ State 295
   112                | . ">" ":"
   113                | . "<" variable
   114                | . "<" functionCall
-  114                | "<" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  114                | "<" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   115                | . "<" ":"
   116                | . ">=" variable
   117                | . ">=" functionCall
@@ -19143,6 +19135,7 @@ State 295
   197         | functionCall . "(" functionArgs ")"
 
     "'"        shift, and go to state 113
+    ":"        shift, and go to state 114
     "("        shift, and go to state 163
     "."        shift, and go to state 164
     ".'"       shift, and go to state 117
@@ -19171,7 +19164,7 @@ State 295
     listableEnd      go to state 148
 
     Conflict between rule 114 and token "'" resolved as shift (LT < "'").
-    Conflict between rule 114 and token ":" resolved as reduce (":" < LT).
+    Conflict between rule 114 and token ":" resolved as shift (LT < ":").
     Conflict between rule 114 and token "(" resolved as shift (LT < "(").
     Conflict between rule 114 and token "." resolved as shift (LT < ".").
     Conflict between rule 114 and token ".'" resolved as shift (LT < ".'").
@@ -19228,7 +19221,7 @@ State 296
   111                | . ">" functionCall
   112                | . ">" ":"
   113                | . "<" variable
-  113                | "<" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  113                | "<" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   114                | . "<" functionCall
   115                | . "<" ":"
   116                | . ">=" variable
@@ -19284,6 +19277,7 @@ State 296
   196         | variable . "(" functionArgs ")"
 
     "'"        shift, and go to state 149
+    ":"        shift, and go to state 114
     "("        shift, and go to state 165
     "."        shift, and go to state 166
     ".'"       shift, and go to state 152
@@ -19312,7 +19306,7 @@ State 296
     listableEnd      go to state 157
 
     Conflict between rule 113 and token "'" resolved as shift (LT < "'").
-    Conflict between rule 113 and token ":" resolved as reduce (":" < LT).
+    Conflict between rule 113 and token ":" resolved as shift (LT < ":").
     Conflict between rule 113 and token "(" resolved as shift (LT < "(").
     Conflict between rule 113 and token "." resolved as shift (LT < ".").
     Conflict between rule 113 and token ".'" resolved as shift (LT < ".'").
@@ -19383,7 +19377,7 @@ State 298
   118                | . ">=" ":"
   119                | . "<=" variable
   120                | . "<=" functionCall
-  120                | "<=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  120                | "<=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   121                | . "<=" ":"
   123 operation: functionCall . rightOperand
   130          | functionCall . "** or ^" variable
@@ -19431,6 +19425,7 @@ State 298
   197         | functionCall . "(" functionArgs ")"
 
     "'"        shift, and go to state 113
+    ":"        shift, and go to state 114
     "("        shift, and go to state 163
     "."        shift, and go to state 164
     ".'"       shift, and go to state 117
@@ -19459,7 +19454,7 @@ State 298
     listableEnd      go to state 148
 
     Conflict between rule 120 and token "'" resolved as shift (LE < "'").
-    Conflict between rule 120 and token ":" resolved as reduce (":" < LE).
+    Conflict between rule 120 and token ":" resolved as shift (LE < ":").
     Conflict between rule 120 and token "(" resolved as shift (LE < "(").
     Conflict between rule 120 and token "." resolved as shift (LE < ".").
     Conflict between rule 120 and token ".'" resolved as shift (LE < ".'").
@@ -19522,7 +19517,7 @@ State 299
   117                | . ">=" functionCall
   118                | . ">=" ":"
   119                | . "<=" variable
-  119                | "<=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  119                | "<=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   120                | . "<=" functionCall
   121                | . "<=" ":"
   122 operation: variable . rightOperand
@@ -19572,6 +19567,7 @@ State 299
   196         | variable . "(" functionArgs ")"
 
     "'"        shift, and go to state 149
+    ":"        shift, and go to state 114
     "("        shift, and go to state 165
     "."        shift, and go to state 166
     ".'"       shift, and go to state 152
@@ -19600,7 +19596,7 @@ State 299
     listableEnd      go to state 157
 
     Conflict between rule 119 and token "'" resolved as shift (LE < "'").
-    Conflict between rule 119 and token ":" resolved as reduce (":" < LE).
+    Conflict between rule 119 and token ":" resolved as shift (LE < ":").
     Conflict between rule 119 and token "(" resolved as shift (LE < "(").
     Conflict between rule 119 and token "." resolved as shift (LE < ".").
     Conflict between rule 119 and token ".'" resolved as shift (LE < ".'").
@@ -19662,7 +19658,7 @@ State 301
   109                | . "<> or ~=" ":"
   110                | . ">" variable
   111                | . ">" functionCall
-  111                | ">" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  111                | ">" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   112                | . ">" ":"
   113                | . "<" variable
   114                | . "<" functionCall
@@ -19719,6 +19715,7 @@ State 301
   197         | functionCall . "(" functionArgs ")"
 
     "'"        shift, and go to state 113
+    ":"        shift, and go to state 114
     "("        shift, and go to state 163
     "."        shift, and go to state 164
     ".'"       shift, and go to state 117
@@ -19747,7 +19744,7 @@ State 301
     listableEnd      go to state 148
 
     Conflict between rule 111 and token "'" resolved as shift (GT < "'").
-    Conflict between rule 111 and token ":" resolved as reduce (":" < GT).
+    Conflict between rule 111 and token ":" resolved as shift (GT < ":").
     Conflict between rule 111 and token "(" resolved as shift (GT < "(").
     Conflict between rule 111 and token "." resolved as shift (GT < ".").
     Conflict between rule 111 and token ".'" resolved as shift (GT < ".'").
@@ -19801,7 +19798,7 @@ State 302
   108                | . "<> or ~=" functionCall
   109                | . "<> or ~=" ":"
   110                | . ">" variable
-  110                | ">" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  110                | ">" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   111                | . ">" functionCall
   112                | . ">" ":"
   113                | . "<" variable
@@ -19860,6 +19857,7 @@ State 302
   196         | variable . "(" functionArgs ")"
 
     "'"        shift, and go to state 149
+    ":"        shift, and go to state 114
     "("        shift, and go to state 165
     "."        shift, and go to state 166
     ".'"       shift, and go to state 152
@@ -19888,7 +19886,7 @@ State 302
     listableEnd      go to state 157
 
     Conflict between rule 110 and token "'" resolved as shift (GT < "'").
-    Conflict between rule 110 and token ":" resolved as reduce (":" < GT).
+    Conflict between rule 110 and token ":" resolved as shift (GT < ":").
     Conflict between rule 110 and token "(" resolved as shift (GT < "(").
     Conflict between rule 110 and token "." resolved as shift (GT < ".").
     Conflict between rule 110 and token ".'" resolved as shift (GT < ".'").
@@ -19956,7 +19954,7 @@ State 304
   115                | . "<" ":"
   116                | . ">=" variable
   117                | . ">=" functionCall
-  117                | ">=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  117                | ">=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   118                | . ">=" ":"
   119                | . "<=" variable
   120                | . "<=" functionCall
@@ -20007,6 +20005,7 @@ State 304
   197         | functionCall . "(" functionArgs ")"
 
     "'"        shift, and go to state 113
+    ":"        shift, and go to state 114
     "("        shift, and go to state 163
     "."        shift, and go to state 164
     ".'"       shift, and go to state 117
@@ -20035,7 +20034,7 @@ State 304
     listableEnd      go to state 148
 
     Conflict between rule 117 and token "'" resolved as shift (GE < "'").
-    Conflict between rule 117 and token ":" resolved as reduce (":" < GE).
+    Conflict between rule 117 and token ":" resolved as shift (GE < ":").
     Conflict between rule 117 and token "(" resolved as shift (GE < "(").
     Conflict between rule 117 and token "." resolved as shift (GE < ".").
     Conflict between rule 117 and token ".'" resolved as shift (GE < ".'").
@@ -20095,7 +20094,7 @@ State 305
   114                | . "<" functionCall
   115                | . "<" ":"
   116                | . ">=" variable
-  116                | ">=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  116                | ">=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   117                | . ">=" functionCall
   118                | . ">=" ":"
   119                | . "<=" variable
@@ -20148,6 +20147,7 @@ State 305
   196         | variable . "(" functionArgs ")"
 
     "'"        shift, and go to state 149
+    ":"        shift, and go to state 114
     "("        shift, and go to state 165
     "."        shift, and go to state 166
     ".'"       shift, and go to state 152
@@ -20176,7 +20176,7 @@ State 305
     listableEnd      go to state 157
 
     Conflict between rule 116 and token "'" resolved as shift (GE < "'").
-    Conflict between rule 116 and token ":" resolved as reduce (":" < GE).
+    Conflict between rule 116 and token ":" resolved as shift (GE < ":").
     Conflict between rule 116 and token "(" resolved as shift (GE < "(").
     Conflict between rule 116 and token "." resolved as shift (GE < ".").
     Conflict between rule 116 and token ".'" resolved as shift (GE < ".'").
@@ -25329,39 +25329,33 @@ State 413
   169              | . ":" functionCall
   170 listableEnd: . listableBegin ":" variable
   171            | . listableBegin ":" functionCall
-  171            | listableBegin ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  171            | listableBegin ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   172            | . listableBegin
   178 variable: functionCall . "." "identifier"
   179         | functionCall . "." keywords
   181         | functionCall . listableEnd
   197         | functionCall . "(" functionArgs ")"
 
-    "'"         shift, and go to state 113
-    "("         shift, and go to state 163
-    "."         shift, and go to state 164
-    ".'"        shift, and go to state 117
-    "+"         shift, and go to state 118
-    "-"         shift, and go to state 119
-    "*"         shift, and go to state 120
-    ".*"        shift, and go to state 121
-    ".*."       shift, and go to state 122
-    "*."        shift, and go to state 123
-    "/"         shift, and go to state 124
-    "./"        shift, and go to state 125
-    "/."        shift, and go to state 126
-    "./."       shift, and go to state 127
-    "\\"        shift, and go to state 128
-    ".\\"       shift, and go to state 129
-    "\\."       shift, and go to state 130
-    ".\\."      shift, and go to state 131
-    "** or ^"   shift, and go to state 132
-    ".^"        shift, and go to state 133
-    "=="        shift, and go to state 134
-    "<> or ~="  shift, and go to state 135
-    "<"         shift, and go to state 136
-    "<="        shift, and go to state 137
-    ">"         shift, and go to state 138
-    ">="        shift, and go to state 139
+    "'"        shift, and go to state 113
+    "("        shift, and go to state 163
+    "."        shift, and go to state 164
+    ".'"       shift, and go to state 117
+    "+"        shift, and go to state 118
+    "-"        shift, and go to state 119
+    "*"        shift, and go to state 120
+    ".*"       shift, and go to state 121
+    ".*."      shift, and go to state 122
+    "*."       shift, and go to state 123
+    "/"        shift, and go to state 124
+    "./"       shift, and go to state 125
+    "/."       shift, and go to state 126
+    "./."      shift, and go to state 127
+    "\\"       shift, and go to state 128
+    ".\\"      shift, and go to state 129
+    "\\."      shift, and go to state 130
+    ".\\."     shift, and go to state 131
+    "** or ^"  shift, and go to state 132
+    ".^"       shift, and go to state 133
 
     $default  reduce using rule 171 (listableEnd)
 
@@ -25391,12 +25385,12 @@ State 413
     Conflict between rule 171 and token ".\\." resolved as shift (COLON < ".\\.").
     Conflict between rule 171 and token "** or ^" resolved as shift (COLON < "** or ^").
     Conflict between rule 171 and token ".^" resolved as shift (COLON < ".^").
-    Conflict between rule 171 and token "==" resolved as shift (COLON < "==").
-    Conflict between rule 171 and token "<> or ~=" resolved as shift (COLON < "<> or ~=").
-    Conflict between rule 171 and token "<" resolved as shift (COLON < "<").
-    Conflict between rule 171 and token "<=" resolved as shift (COLON < "<=").
-    Conflict between rule 171 and token ">" resolved as shift (COLON < ">").
-    Conflict between rule 171 and token ">=" resolved as shift (COLON < ">=").
+    Conflict between rule 171 and token "==" resolved as reduce ("==" < COLON).
+    Conflict between rule 171 and token "<> or ~=" resolved as reduce ("<> or ~=" < COLON).
+    Conflict between rule 171 and token "<" resolved as reduce ("<" < COLON).
+    Conflict between rule 171 and token "<=" resolved as reduce ("<=" < COLON).
+    Conflict between rule 171 and token ">" resolved as reduce (">" < COLON).
+    Conflict between rule 171 and token ">=" resolved as reduce (">=" < COLON).
     Conflict between rule 171 and token "&" resolved as reduce ("&" < COLON).
     Conflict between rule 171 and token "&&" resolved as reduce ("&&" < COLON).
     Conflict between rule 171 and token "|" resolved as reduce ("|" < COLON).
@@ -25474,7 +25468,7 @@ State 414
   168 listableBegin: . ":" variable
   169              | . ":" functionCall
   170 listableEnd: . listableBegin ":" variable
-  170            | listableBegin ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  170            | listableBegin ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   171            | . listableBegin ":" functionCall
   172            | . listableBegin
   175 variable: variable . "." "identifier"
@@ -25483,32 +25477,26 @@ State 414
   180         | variable . listableEnd
   196         | variable . "(" functionArgs ")"
 
-    "'"         shift, and go to state 149
-    "("         shift, and go to state 165
-    "."         shift, and go to state 166
-    ".'"        shift, and go to state 152
-    "+"         shift, and go to state 118
-    "-"         shift, and go to state 119
-    "*"         shift, and go to state 120
-    ".*"        shift, and go to state 121
-    ".*."       shift, and go to state 122
-    "*."        shift, and go to state 123
-    "/"         shift, and go to state 124
-    "./"        shift, and go to state 125
-    "/."        shift, and go to state 126
-    "./."       shift, and go to state 127
-    "\\"        shift, and go to state 128
-    ".\\"       shift, and go to state 129
-    "\\."       shift, and go to state 130
-    ".\\."      shift, and go to state 131
-    "** or ^"   shift, and go to state 153
-    ".^"        shift, and go to state 154
-    "=="        shift, and go to state 134
-    "<> or ~="  shift, and go to state 135
-    "<"         shift, and go to state 136
-    "<="        shift, and go to state 137
-    ">"         shift, and go to state 138
-    ">="        shift, and go to state 139
+    "'"        shift, and go to state 149
+    "("        shift, and go to state 165
+    "."        shift, and go to state 166
+    ".'"       shift, and go to state 152
+    "+"        shift, and go to state 118
+    "-"        shift, and go to state 119
+    "*"        shift, and go to state 120
+    ".*"       shift, and go to state 121
+    ".*."      shift, and go to state 122
+    "*."       shift, and go to state 123
+    "/"        shift, and go to state 124
+    "./"       shift, and go to state 125
+    "/."       shift, and go to state 126
+    "./."      shift, and go to state 127
+    "\\"       shift, and go to state 128
+    ".\\"      shift, and go to state 129
+    "\\."      shift, and go to state 130
+    ".\\."     shift, and go to state 131
+    "** or ^"  shift, and go to state 153
+    ".^"       shift, and go to state 154
 
     $default  reduce using rule 170 (listableEnd)
 
@@ -25538,12 +25526,12 @@ State 414
     Conflict between rule 170 and token ".\\." resolved as shift (COLON < ".\\.").
     Conflict between rule 170 and token "** or ^" resolved as shift (COLON < "** or ^").
     Conflict between rule 170 and token ".^" resolved as shift (COLON < ".^").
-    Conflict between rule 170 and token "==" resolved as shift (COLON < "==").
-    Conflict between rule 170 and token "<> or ~=" resolved as shift (COLON < "<> or ~=").
-    Conflict between rule 170 and token "<" resolved as shift (COLON < "<").
-    Conflict between rule 170 and token "<=" resolved as shift (COLON < "<=").
-    Conflict between rule 170 and token ">" resolved as shift (COLON < ">").
-    Conflict between rule 170 and token ">=" resolved as shift (COLON < ">=").
+    Conflict between rule 170 and token "==" resolved as reduce ("==" < COLON).
+    Conflict between rule 170 and token "<> or ~=" resolved as reduce ("<> or ~=" < COLON).
+    Conflict between rule 170 and token "<" resolved as reduce ("<" < COLON).
+    Conflict between rule 170 and token "<=" resolved as reduce ("<=" < COLON).
+    Conflict between rule 170 and token ">" resolved as reduce (">" < COLON).
+    Conflict between rule 170 and token ">=" resolved as reduce (">=" < COLON).
     Conflict between rule 170 and token "&" resolved as reduce ("&" < COLON).
     Conflict between rule 170 and token "&&" resolved as reduce ("&&" < COLON).
     Conflict between rule 170 and token "|" resolved as reduce ("|" < COLON).
