@@ -1489,7 +1489,10 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                     types::InternalType* piTmp = piStart->getAs<types::ImplicitList>()->extractFullMatrix();
                     piStart->killMe();
                     piStart = piTmp;
-                    if (piStart->isInt()) break;
+                    if (piStart->isInt())
+                    {
+                        break;
+                    }
                 }
                 else
                 {
@@ -1497,20 +1500,32 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                 }
 
             case types::InternalType::ScilabDouble:
-                if (piStart->getAs<types::Double>()->getSize() == 1
+                if ((piStart->getAs<types::Double>()->getSize() == 1)
                     && !(piStart->getAs<types::Double>()->isComplex()))
+                {
                     break;
+                }
+                else
+                {
+                    goto ERROR_START;
+                }
 
             default:
-                if (!(piStart->isGenericType()) || piStart->getAs<types::GenericType>()->getSize() != 1)
+                if (!(piStart->isGenericType()) || (piStart->getAs<types::GenericType>()->getSize() != 1))
                 {
-                    piStart->killMe();
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw InternalError(szError, 999, e.getLocation());
+                    goto ERROR_START;
                 }
-                break;
+                else
+                {
+                    break;
+                }
+
+            ERROR_START:
+                piStart->killMe();
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
+                CoverageInstance::stopChrono((void*)&e);
+                throw InternalError(szError, 999, e.getLocation());
         }
     }
     else
@@ -1550,7 +1565,10 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                     types::InternalType* piTmp = piStep->getAs<types::ImplicitList>()->extractFullMatrix();
                     piStep->killMe();
                     piStep = piTmp;
-                    if (piStep->isInt()) break;
+                    if (piStep->isInt())
+                    {
+                        break;
+                    }
                 }
                 else
                 {
@@ -1558,21 +1576,33 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                 }
 
             case types::InternalType::ScilabDouble:
-                if (piStep->getAs<types::Double>()->getSize() == 1
+                if ((piStep->getAs<types::Double>()->getSize() == 1)
                     && !(piStep->getAs<types::Double>()->isComplex()))
+                {
                     break;
+                }
+                else
+                {
+                    goto ERROR_STEP;
+                }
 
             default:
-                if (!(piStep->isGenericType()) || piStep->getAs<types::GenericType>()->getSize() != 1)
+                if (!(piStep->isGenericType()) || (piStep->getAs<types::GenericType>()->getSize() != 1))
                 {
-                    piStart->killMe();
-                    piStep->killMe();
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw InternalError(szError, 999, e.getLocation());
+                    goto ERROR_STEP;
                 }
-                break;
+                else
+                {
+                    break;
+                }
+
+            ERROR_STEP:
+                piStart->killMe();
+                piStep->killMe();
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
+                CoverageInstance::stopChrono((void*)&e);
+                throw InternalError(szError, 999, e.getLocation());
         }
     }
     else
@@ -1613,7 +1643,10 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                     types::InternalType* piTmp = piEnd->getAs<types::ImplicitList>()->extractFullMatrix();
                     piEnd->killMe();
                     piEnd = piTmp;
-                    if (piStep->isInt()) break;
+                    if (piStep->isInt())
+                    {
+                        break;
+                    }
                 }
                 else
                 {
@@ -1621,22 +1654,34 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                 }
 
             case types::InternalType::ScilabDouble:
-                if (piEnd->getAs<types::Double>()->getSize() == 1
+                if ((piEnd->getAs<types::Double>()->getSize() == 1)
                     && !(piEnd->getAs<types::Double>()->isComplex()))
+                {
                     break;
+                }
+                else
+                {
+                    goto ERROR_END;
+                }
 
             default:
-                if (!(piEnd->isGenericType()) || piEnd->getAs<types::GenericType>()->getSize() != 1)
+                if (!(piEnd->isGenericType()) || (piEnd->getAs<types::GenericType>()->getSize() != 1))
                 {
-                    piStart->killMe();
-                    piStep->killMe();
-                    piEnd->killMe();
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2 + e.hasExplicitStep());
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw InternalError(szError, 999, e.getLocation());
+                    goto ERROR_END;
                 }
-                break;
+                else
+                {
+                    break;
+                }
+
+            ERROR_END:
+                piStart->killMe();
+                piStep->killMe();
+                piEnd->killMe();
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2 + e.hasExplicitStep());
+                CoverageInstance::stopChrono((void*)&e);
+                throw InternalError(szError, 999, e.getLocation());
         }
     }
     else
