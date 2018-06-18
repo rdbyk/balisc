@@ -17,11 +17,11 @@ my_struct = struct("field_1",123,"field_2",456);
 
 ierr = execstr("isfield()","errcatch");
 if ierr == 0 then pause,end
-if lasterror() <> msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"isfield",2) then pause, end
+if lasterror() <> msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"isfield",2) then pause, end
 
 ierr = execstr("isfield(my_struct)","errcatch");
 if ierr == 0 then pause,end
-if lasterror() <> msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"isfield",2) then pause, end
+if lasterror() <> msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"isfield",2) then pause, end
 
 ierr = execstr("isfield(my_struct,''field_1'',''field_2'')","errcatch");
 if ierr == 0 then pause,end

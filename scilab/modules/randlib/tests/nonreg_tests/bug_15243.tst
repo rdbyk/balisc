@@ -18,5 +18,5 @@
 // <-- Short Description -->
 // grand() crashed with wrong number of arguments
 
-assert_checkerror("grand(3, 4, ""uin"", 0.9)", _("grand: Wrong number of input argument(s): 5 expected."));
+assert_checkerror("grand(3, 4, ""uin"", 0.9)", _("grand: Wrong number of input arguments: 5 expected."));
 

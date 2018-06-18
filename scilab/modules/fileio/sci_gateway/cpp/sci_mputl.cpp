@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 2)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
         return types::Function::Error;
     }
 

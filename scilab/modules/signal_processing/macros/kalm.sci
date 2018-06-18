@@ -28,7 +28,7 @@ function [x1,p1,x,p]=kalm(y,x0,p0,f,g,h,q,r)
     //!
 
     if nargin <> 8 then
-        error(sprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "kalm", 8));
+        error(sprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "kalm", 8));
     end
 
     k=p0*h'*(h*p0*h'+r)**(-1);

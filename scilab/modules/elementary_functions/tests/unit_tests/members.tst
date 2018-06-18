@@ -468,7 +468,7 @@ assert_checkequal(loc, loc_ref);
 
 // Error checks
 A = [1 2 3; 4 5 6];
-refMsg = msprintf(_("%s: Wrong number of input argument(s): at least %d expected.\n"), "members", 2);
+refMsg = msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"), "members", 2);
 assert_checkerror("[nb, loc] = members(A);", refMsg);
 S = string(A);
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: expected same type as first argument.\n"), "members", 2);

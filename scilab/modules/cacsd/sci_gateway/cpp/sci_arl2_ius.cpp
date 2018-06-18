@@ -57,13 +57,13 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
 
     if (in.size() < 3 || in.size() > 5)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "arl2_ius", 3, 5);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "arl2_ius", 3, 5);
         return types::Function::Error;
     }
 
     if (_iRetCount != 1 && _iRetCount > 3)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "arl2_ius", 1, 3);
+        Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "arl2_ius", 1, 3);
         return types::Function::Error;
     }
 

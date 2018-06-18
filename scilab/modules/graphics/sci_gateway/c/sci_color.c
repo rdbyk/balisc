@@ -35,7 +35,7 @@ int sci_color(char *fname, void* pvApiCtx)
 
     if (iRhs != 1 && iRhs != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), fname, 1, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 1, 3);
         return 1;
     }
 

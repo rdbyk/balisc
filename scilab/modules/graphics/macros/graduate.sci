@@ -42,7 +42,7 @@ function [xi,xa,np]=graduate( xmi, xma,n1,n2)
     // ----
     //
     if nargin <2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "graduate", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "graduate", 2));
     end
     if nargin <4 then
         n1=3

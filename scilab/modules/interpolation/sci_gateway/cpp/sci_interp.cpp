@@ -48,14 +48,14 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 5)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "interp", 4, 5);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "interp", 4, 5);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 4)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "interp", 1, 4);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "interp", 1, 4);
         return types::Function::Error;
     }
 

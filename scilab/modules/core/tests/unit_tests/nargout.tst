@@ -21,7 +21,7 @@ function varargout = test(a,b)
         varargout(2) = 1;
         varargout(3) = 2;
     elseif nargout > 3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "test", 1, 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "test", 1, 3));
     end
 endfunction
 
@@ -32,5 +32,5 @@ assert_checkequal(test(1,2), 1);
 assert_checkequal(res, 2);
 [res, res2, res3] = test(1,2);
 assert_checkequal(res, 3);
-errmsg = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "test", 1, 3);
+errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "test", 1, 3);
 assert_checkerror("[res, res2, res3, res4]=test(1,2)", errmsg);

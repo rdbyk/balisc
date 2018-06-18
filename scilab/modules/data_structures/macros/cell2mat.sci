@@ -19,7 +19,7 @@ function y = cell2mat(c)
     // F.B
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cell2mat",1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"cell2mat",1));
     end
 
     if isempty(c) then

@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             //info
             if (iSizeIn > 1)
             {
-                Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
                 return types::Function::Error;
             }
 
@@ -107,7 +107,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 2);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
                 return types::Function::Error;
             }
         }

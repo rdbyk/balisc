@@ -58,7 +58,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
     wchar_t* interf = NULL;
     if (nin < 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
         return 1;
     }
 

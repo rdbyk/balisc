@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_removelinehistory(types::typed_list &in, int _i
     }
     else
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "removelinehistory", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "removelinehistory", 1);
         return types::Function::Error;
     }
     return types::Function::OK;

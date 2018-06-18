@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     // *** check the minimal number of input args. ***
     if (in.size() < 4)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", 6);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "odedc", 6);
         return types::Function::Error;
     }
 
@@ -149,7 +149,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     {
         if (_iRetCount != 1 && _iRetCount != 3)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "odedc", 1, 3);
+            Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "odedc", 1, 3);
             return types::Function::Error;
         }
     }
@@ -157,7 +157,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     {
         if (_iRetCount == 3 || _iRetCount > 4)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d, %d or %d expected.\n"), "odedc", 1, 2, 4);
+            Scierror(78, _("%s: Wrong number of output arguments: %d, %d or %d expected.\n"), "odedc", 1, 2, 4);
             return types::Function::Error;
         }
     }
@@ -165,7 +165,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     {
         if (_iRetCount != 1)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "odedc", 1);
+            Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "odedc", 1);
             return types::Function::Error;
         }
     }
@@ -287,7 +287,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     {
         if (in.size() != 7)
         {
-            Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", 7);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "odedc", 7);
             DifferentialEquation::removeDifferentialEquationFunctions();
             FREE(pdYData);
             FREE(YSize);
@@ -355,7 +355,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 }
                 else
                 {
-                    Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", iPos + 2);
+                    Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "odedc", iPos + 2);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYData);
                     FREE(YSize);
@@ -593,7 +593,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     if (bFuncF == false)
     {
         int val = (meth == 3) ? 3 : 1;
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", in.size() + val);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "odedc", in.size() + val);
         DifferentialEquation::removeDifferentialEquationFunctions();
         FREE(pdYData);
         FREE(YSize);
@@ -601,7 +601,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     }
     if (pDblNg == NULL && meth == 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", in.size() + 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "odedc", in.size() + 2);
         DifferentialEquation::removeDifferentialEquationFunctions();
         FREE(pdYData);
         FREE(YSize);
@@ -609,7 +609,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     }
     if (bFuncG == false && meth == 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", in.size() + 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "odedc", in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
         FREE(pdYData);
         FREE(YSize);

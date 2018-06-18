@@ -14,7 +14,7 @@
 function x = sqrtm(a)
 
     if nargin <> 1 then
-        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"sqrtm", 1));
+        error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"sqrtm", 1));
     end
 
     if type(a) <> 1 then

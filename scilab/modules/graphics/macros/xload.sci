@@ -13,7 +13,7 @@
 function []=xload(fil,num)
 
     if and(nargin<>[1 2]) then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "xload", 1, 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "xload", 1, 2));
     end
 
     if ~isfile(fil) then

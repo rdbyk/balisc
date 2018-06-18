@@ -13,7 +13,7 @@
 function x = mgeti(varargin)
 
     if nargin == 0 | nargin > 3 then
-        error(msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mgeti", 1, 3));
+        error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgeti", 1, 3));
     end
 
     if nargin == 1 then

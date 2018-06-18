@@ -34,13 +34,13 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
 
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), fname, 0, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected."), fname, 0, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 4)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 4);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 4);
         return types::Function::Error;
     }
 

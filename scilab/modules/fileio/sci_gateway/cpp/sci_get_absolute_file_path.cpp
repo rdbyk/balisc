@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "get_absolute_file_path", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "get_absolute_file_path", 1);
         return types::Function::Error;
     }
 

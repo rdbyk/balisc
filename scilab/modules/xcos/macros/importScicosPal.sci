@@ -43,7 +43,7 @@ function importScicosPal(palFiles, outPath)
     end
 
     if nargin < 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "importScicosPal", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "importScicosPal", 2));
         return
     end
 

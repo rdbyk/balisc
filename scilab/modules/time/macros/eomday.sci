@@ -15,7 +15,7 @@
 function E=eomday(Y,M)
 
     if nargin <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"eomday", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"eomday", 2));
     end
 
     common_year = [31,28,31,30,31,30,31,31,30,31,30,31];

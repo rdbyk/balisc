@@ -33,7 +33,7 @@ function [m,x]=secto3d(seclist,npas)
     //!
 
     if and(nargin<>[1 2]) then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "secto3d", 1, 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "secto3d", 1, 2));
     end
 
     n=size(seclist)

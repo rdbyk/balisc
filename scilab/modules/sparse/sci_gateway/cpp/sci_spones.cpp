@@ -28,7 +28,7 @@ types::Function::ReturnValue sci_spones(types::typed_list &in, int _piRetCount, 
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "spones", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "spones", 1);
         return types::Function::Error;
     }
 

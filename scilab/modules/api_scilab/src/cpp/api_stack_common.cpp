@@ -128,11 +128,11 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
     if (_iMin == _iMax)
     {
         /* No optional argument */
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), pStr->m_pstName, _iMax);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), pStr->m_pstName, _iMax);
     }
     else
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), pStr->m_pstName, _iMin, _iMax);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), pStr->m_pstName, _iMin, _iMax);
     }
     return 0;
 }
@@ -161,7 +161,7 @@ int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
         return 1;
     }
 
-    Scierror(77, _("%s: Wrong number of input argument(s): at least %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMin);
+    Scierror(77, _("%s: Wrong number of input arguments: at least %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMin);
     return 0;
 }
 
@@ -173,7 +173,7 @@ int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
         return 1;
     }
 
-    Scierror(77, _("%s: Wrong number of input argument(s): at most %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMax);
+    Scierror(77, _("%s: Wrong number of input arguments: at most %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMax);
     return 0;
 }
 
@@ -187,11 +187,11 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
 
     if (_iMax == _iMin)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMax);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMax);
     }
     else
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMin, _iMax);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMin, _iMax);
     }
 
     return 0;
@@ -205,7 +205,7 @@ int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
         return 1;
     }
 
-    Scierror(78, _("%s: Wrong number of output argument(s): at least %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMin);
+    Scierror(78, _("%s: Wrong number of output arguments: at least %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMin);
     return 0;
 }
 
@@ -217,7 +217,7 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
         return 1;
     }
 
-    Scierror(78, _("%s: Wrong number of output argument(s): at most %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMax);
+    Scierror(78, _("%s: Wrong number of output arguments: at most %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMax);
     return 0;
 }
 

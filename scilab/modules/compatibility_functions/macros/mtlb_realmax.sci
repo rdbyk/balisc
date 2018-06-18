@@ -22,6 +22,6 @@ function val=mtlb_realmax(prec)
             error(msprintf(gettext("%s: Not yet implemented.\n"),"mtlb_realmax"));
         end
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"mtlb_realmax",0,1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"mtlb_realmax",0,1));
     end
 endfunction

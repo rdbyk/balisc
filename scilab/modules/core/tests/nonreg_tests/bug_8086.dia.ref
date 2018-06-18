@@ -66,7 +66,7 @@ macros_error_type_1 = ["isscalar"; ..
 "tand"; ..
 "toeplitz"; ..
 ];
-msg_error_ref_1 = _("%s: Wrong number of input argument(s): %d expected.\n");
+msg_error_ref_1 = _("%s: Wrong number of input arguments: %d expected.\n");
 for i=1:size(macros_error_type_1, "*")
     assert_checkerror (macros_error_type_1(i) + "()" , msg_error_ref_1 , [] , macros_error_type_1(i) , 1);
 end
@@ -82,7 +82,7 @@ macros_error_type_2 = ["base2dec"; ..
 "setdiff"; ..
 "union"; ..
 ];
-msg_error_ref_2 = _("%s: Wrong number of input argument(s): %d expected.\n");
+msg_error_ref_2 = _("%s: Wrong number of input arguments: %d expected.\n");
 for i=1:size(macros_error_type_2, "*")
     assert_checkerror (macros_error_type_2(i) + "()" , msg_error_ref_2 , [] , macros_error_type_2(i) , 2);
 end
@@ -100,13 +100,13 @@ for i=1:size(macros_error_type_4, "*")
 end
 // =============================================================================
 macros_error_type_6 = ["max", "min"];
-msg_error_ref_6 = _("%s: Wrong number of input argument(s): At least %d expected.\n");
+msg_error_ref_6 = _("%s: Wrong number of input arguments: At least %d expected.\n");
 for i=1:size(macros_error_type_6, "*")
     assert_checkerror (macros_error_type_6(i) + "()" , msg_error_ref_6 , [] , macros_error_type_6(i), 1);
 end
 // =============================================================================
 macros_error_type_5 = ["flipdim"; "linspace"];
-msg_error_ref_5 = _("%s: Wrong number of input argument(s): %d to %d expected.\n");
+msg_error_ref_5 = _("%s: Wrong number of input arguments: %d to %d expected.\n");
 for i=1:size(macros_error_type_5, "*")
     assert_checkerror (macros_error_type_5(i) + "()" , msg_error_ref_5 , [] , macros_error_type_5(i) , 2, 3);
 end

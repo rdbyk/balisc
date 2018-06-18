@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_addhistory(types::typed_list &in, int _iRetCoun
     }
     else
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "addhistory", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "addhistory", 1);
         return types::Function::Error;
     }
     return types::Function::OK;

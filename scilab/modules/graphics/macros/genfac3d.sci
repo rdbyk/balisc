@@ -36,7 +36,7 @@ function [xx,yy,zz]=genfac3d(x,y,zmat,mask)
     end
 
     if nargin<3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "genfac3d", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "genfac3d", 3));
     end
 
     [nr,nc]=size(zmat)

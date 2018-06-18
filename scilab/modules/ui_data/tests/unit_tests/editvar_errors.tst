@@ -10,10 +10,10 @@
 
 // <-- ENGLISH IMPOSED -->
 
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "editvar", 1, 4);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "editvar", 1, 4);
 assert_checkerror("editvar();", refMsg);
 
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d, %d or %d expected.\n"), "editvar", 1, 2, 4);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d, %d or %d expected.\n"), "editvar", 1, 2, 4);
 assert_checkerror("editvar(1,2,3);", refMsg);
 
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: A String expected.\n"), "editvar", 1);

@@ -215,7 +215,7 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallDgety->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -308,7 +308,7 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallDgetx->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }

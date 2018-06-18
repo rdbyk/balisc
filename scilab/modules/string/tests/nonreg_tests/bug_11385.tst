@@ -16,6 +16,6 @@
 // Wrong error message returned by length when called without input argument.
 //
 
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "length", 1);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "length", 1);
 assert_checkerror("length()", refMsg);
 

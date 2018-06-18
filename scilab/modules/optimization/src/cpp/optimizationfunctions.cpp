@@ -407,7 +407,7 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -565,7 +565,7 @@ void OptimizationFunctions::callFsolveFctMacro(int *n, double *x, double *v, int
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -654,7 +654,7 @@ void OptimizationFunctions::callFsolveJacMacro(int *n, double *x, double *v, dou
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -748,7 +748,7 @@ void OptimizationFunctions::callLsqrsolveFctMacro(int *m, int *n, double *x, dou
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -845,7 +845,7 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }

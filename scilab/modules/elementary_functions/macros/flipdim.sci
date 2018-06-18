@@ -15,7 +15,7 @@
 function y = flipdim(x, dim, sb)
 
     if nargin < 2 then
-        msg = _("%s: Wrong number of input argument(s): %d to %d expected.\n");
+        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n");
         error(msprintf(msg, "flipdim", 2, 3));
     end
 

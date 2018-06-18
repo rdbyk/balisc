@@ -16,7 +16,7 @@ function plot3d3(x,y,z,vect,theta,alpha,leg,flags,ebox)
     // the mesh is drawn using the colums and rows of [x,y,z]
     //---------------------------------------------------------
     if nargin<3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "plot3d3", 3) );
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "plot3d3", 3) );
     end;
     if exists("vect","local")==0 then vect=-1,end
     if vect<>-1 then

@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCou
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s:  Wrong number of output argument(s): %d to %d expected."), "helpbrowser", 0, 1);
+        Scierror(78, _("%s:  Wrong number of output arguments: %d to %d expected."), "helpbrowser", 0, 1);
         return types::Function::Error;
     }
     switch (in.size())
@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCou
             }
             break;
         default:
-            Scierror(77, _("%s:  Wrong number of input argument(s): %d to %d expected."), "helpbrowser", 2, 4);
+            Scierror(77, _("%s:  Wrong number of input arguments: %d to %d expected."), "helpbrowser", 2, 4);
             return types::Function::Error;
     }
 

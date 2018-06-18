@@ -23,7 +23,7 @@ function hk = hank(m, n, seq_cov)
     //
 
     if nargin <> 3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "hank", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "hank", 3));
     end
 
     if and(type(m) <> [1 8]) then

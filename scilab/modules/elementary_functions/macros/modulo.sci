@@ -16,7 +16,7 @@
 function i = modulo(n, m)
 
     if nargin <> 2 then
-        msg = _("%s: Wrong number of input argument(s): %d expected.\n")
+        msg = _("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg, "modulo", 2))
     end
 

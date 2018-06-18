@@ -33,7 +33,7 @@ types::Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetC
 
     if (in.size() != 0)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "getscilabmode", 0);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "getscilabmode", 0);
         return types::Function::Error;
     }
 

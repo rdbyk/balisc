@@ -74,14 +74,14 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     // *** check the minimal number of input args. ***
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "xls_open", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xls_open", 1);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount != 4)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "xls_open", 4);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "xls_open", 4);
         return types::Function::Error;
     }
 

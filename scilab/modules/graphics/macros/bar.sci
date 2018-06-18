@@ -29,7 +29,7 @@ function  bar(varargin)
     // style : a string 'grouped' or 'stacked' (default: style='grouped')
 
     if size(varargin)<1 | size(varargin)>5  then
-        msg = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n")
+        msg = gettext("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg, "bar", 1, 5));
     end
 

@@ -23,7 +23,7 @@
 function tree_show(x,titletop)
 
     if nargin < 1 then
-        error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "tree_show", 1, 2));
+        error(sprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "tree_show", 1, 2));
     end
 
     if type(x)<>16 & type(x)<>17 & type(x)<>15 & type(x)<>128 then

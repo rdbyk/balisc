@@ -42,7 +42,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
 {
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getfield", 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "getfield", 2);
         return types::Function::Error;
     }
 
@@ -116,7 +116,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
 
     if (_iRetCount < iListSize)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getfield", iListSize);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "getfield", iListSize);
         return types::Function::Error;
     }
 
@@ -236,7 +236,7 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
 
     if (_iRetCount != static_cast<int>(vectResult.size()))
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getfield", vectResult.size());
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "getfield", vectResult.size());
         return types::Function::Error;
     }
 

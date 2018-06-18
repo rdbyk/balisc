@@ -14,5 +14,5 @@ resRef = list([0 0; 0 0]);
 assert_checkequal(res, resRef);
 
 
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected."), "buildouttb", 2);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected."), "buildouttb", 2);
 assert_checkerror("buildouttb()", refMsg);

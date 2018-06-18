@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_winqueryreg(types::typed_list &in, int _iRetCou
     int rhs = static_cast<int>(in.size());
     if (rhs != 2 && rhs != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname.data(), 2, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname.data(), 2, 3);
         return types::Function::Error;
     }
 

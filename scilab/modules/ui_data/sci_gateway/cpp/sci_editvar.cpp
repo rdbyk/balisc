@@ -164,7 +164,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
 
     if (Rhs == 3)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d, %d or %d expected.\n"), fname, 1, 2, 4);
+        Scierror(999, _("%s: Wrong number of input arguments: %d, %d or %d expected.\n"), fname, 1, 2, 4);
         return 0;
     }
 

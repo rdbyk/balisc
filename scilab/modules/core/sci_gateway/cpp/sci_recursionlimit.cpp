@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_recursionlimit(types::typed_list &in, int _iRet
 {
     if (in.size() > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 0, 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 0, 1);
         return types::Function::Error;
     }
 

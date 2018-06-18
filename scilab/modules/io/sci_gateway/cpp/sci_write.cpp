@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
     if (iRhs < 2 || iRhs > 4)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "write", 2, 4);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "write", 2, 4);
         return types::Function::Error;
     }
 

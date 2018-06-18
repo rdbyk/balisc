@@ -12,7 +12,7 @@
 
 function xnumb(x,y,nums,box,angle)
     if and(nargin<>[3:5]) then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "xnumb", 3, 5));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "xnumb", 3, 5));
     end
 
     n=size(x,"*");

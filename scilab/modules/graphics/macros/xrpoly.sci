@@ -23,7 +23,7 @@ function []=xrpoly(orig,n,r,theta)
     case 3 then b=eye(2,2);
         // Transposed in order to post-multiply
     case 4 then b=[cos(theta) sin(theta); -sin(theta) cos(theta)];
-    else error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "xrpoly", 3, 4));
+    else error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected."), "xrpoly", 3, 4));
     end;
     //
     ang=2*%pi/n

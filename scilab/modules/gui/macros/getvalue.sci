@@ -75,7 +75,7 @@ function [%ok,%1,%2,%3,%4,%5,...
     // Copyright INRIA
 
     if nargin < 3 then
-        msg = _("%s: Wrong number of input argument(s): %d to %d expected.\n")
+        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg, "getvalue", 3, 4));
     end
 

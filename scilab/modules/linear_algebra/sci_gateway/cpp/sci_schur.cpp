@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     // *** check number of input args. ***
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "schur", 1, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "schur", 1, 3);
         return types::Function::Error;
     }
 
@@ -167,7 +167,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (_iRetCount > 2)
             {
-                Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "schur", 1, 2);
+                Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "schur", 1, 2);
                 return types::Function::Error;
             }
             break;
@@ -176,7 +176,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (_iRetCount != 2 && _iRetCount != 4)
             {
-                Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "schur", 2, 4);
+                Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "schur", 2, 4);
                 return types::Function::Error;
             }
             break;
@@ -185,7 +185,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (_iRetCount < 1 || _iRetCount > 3)
             {
-                Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "schur", 1, 3);
+                Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "schur", 1, 3);
                 return types::Function::Error;
             }
             break;
@@ -194,7 +194,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (_iRetCount > 4) // in doc, 5 output args are possible ?!?
             {
-                Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "schur", 1, 4);
+                Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "schur", 1, 4);
                 return types::Function::Error;
             }
             break;

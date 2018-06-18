@@ -104,7 +104,7 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: Boolean expected.\n"
 assert_checkerror("uiDumpTree(treeRoot,123)", refMsg);
 
 // tree creation with wrong inputs
-refMsg = msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"), "uiCreateTree",1);
+refMsg = msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"), "uiCreateTree",1);
 assert_checkerror("uiCreateTree()", refMsg);
 
 // right inputs

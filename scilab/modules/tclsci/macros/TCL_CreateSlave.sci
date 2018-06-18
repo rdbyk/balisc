@@ -15,11 +15,11 @@ function status = TCL_CreateSlave(slaveName, isSafe)
     // isSafe: %T to create a safe slave, %F otherwise (default)
 
     if nargin<>1 & nargin<>2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "TCL_CreateSlave", 1, 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "TCL_CreateSlave", 1, 2));
     end
 
     if nargout<>1 then
-        error(msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"), "TCL_CreateSlave", 1));
+        error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"), "TCL_CreateSlave", 1));
     end
 
     if typeof(slaveName)<>"string" then

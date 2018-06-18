@@ -42,7 +42,7 @@ function [x,y,z]=eval3dp(fun,p1,p2)
     //!
 
     if nargin<3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "eval3dp", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "eval3dp", 3));
     end
 
     n1=prod(size(p1))

@@ -22,7 +22,7 @@ function y = linspace(d1, d2, n)
     // CHECKING ARGUMENTS
     // ------------------
     if nargin < 2 then
-        msg = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n")
+        msg = gettext("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg, "linspace", 2, 3));
     end
     if size(d1,2)<>1 then

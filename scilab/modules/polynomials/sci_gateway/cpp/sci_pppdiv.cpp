@@ -46,13 +46,13 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
 
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "pppdiv", 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "pppdiv", 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "pppdiv", 1, 2);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "pppdiv", 1, 2);
         return types::Function::Error;
     }
 

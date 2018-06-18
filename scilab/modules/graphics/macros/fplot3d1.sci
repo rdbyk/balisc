@@ -31,7 +31,7 @@ function []=fplot3d1(xr,yr,f,theta,alpha,leg,flag,ebox)
     end
 
     if nargin<3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fplot3d1", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "fplot3d1", 3));
     end;
 
     opts=[]

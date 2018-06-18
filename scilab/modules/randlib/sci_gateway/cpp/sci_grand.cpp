@@ -67,14 +67,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     // *** check the maximal number of input args. ***
     /* if (in.size() > 6)
     {
-    Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "grand", 1, 6);
+    Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "grand", 1, 6);
     return types::Function::Error;
     }*/
 
     // *** check number of output args. ***
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "grand", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "grand", 1);
         return types::Function::Error;
     }
 
@@ -388,7 +388,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     {
         if (in.size() - iPos != iNumInputArg)
         {
-            Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "grand", iPos + iNumInputArg);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "grand", iPos + iNumInputArg);
             delete[] itab;
             return types::Function::Error;
         }

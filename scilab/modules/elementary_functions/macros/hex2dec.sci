@@ -14,7 +14,7 @@
 function d = hex2dec(h)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"hex2dec", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"hex2dec", 1));
     end
 
     if type(h)<> 10 then

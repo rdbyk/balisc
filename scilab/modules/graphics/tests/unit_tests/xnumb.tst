@@ -175,7 +175,7 @@ plot2d ([0.935000 ,1.000000] ,[-0.03,0.03]);
 errmsg1=msprintf(_("%s: Wrong size for input arguments: Same sizes expected.\n"),"xnumb");
 assert_checkerror("xnumb(x,y,valeurs,1,20);",errmsg1);
 
-errmsg2=msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "xnumb", 3, 5);
+errmsg2=msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "xnumb", 3, 5);
 assert_checkerror("xnumb(x,y);",errmsg2);
 
 close

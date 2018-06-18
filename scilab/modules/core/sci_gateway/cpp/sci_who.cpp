@@ -39,13 +39,13 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
 
     if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "who", 0, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "who", 0, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "who", 0, 2);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "who", 0, 2);
         return types::Function::Error;
     }
 

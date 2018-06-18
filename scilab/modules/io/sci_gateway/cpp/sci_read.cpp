@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
 
     if (iRhs < 3 || iRhs > 5)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "read", 2, 4);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "read", 2, 4);
         return types::Function::Error;
     }
 

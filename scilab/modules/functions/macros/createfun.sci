@@ -16,7 +16,7 @@ function %fun=createfun(t)
     //Scilab function.
     // This is  mainly used by sci2exp
     if nargin < 1 then
-        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "createfun", 1));
+        error(sprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "createfun", 1));
     end
     h=t(1)
     k=strindex(h,"=")

@@ -28,7 +28,7 @@ function F=randpencil(eps,infi,fin,eta)
     // (bad behavior of the empty matrix!!!!!)
 
     if nargin<>4 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"randpencil",4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"randpencil",4));
     end
     select type(fin)
     case 1

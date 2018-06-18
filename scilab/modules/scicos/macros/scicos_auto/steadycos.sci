@@ -73,7 +73,7 @@ function [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy,Indxp,param)
     // =====================================================================
 
     if nargin < 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "steadycos", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "steadycos", 1));
     end
     if typeof(scs_m)<>"diagram" & typeof(scs_m)<>"cpr" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A diagram expected.\n"), "steadycos", 1));

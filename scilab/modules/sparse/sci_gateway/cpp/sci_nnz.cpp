@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_nnz(types::typed_list &in, int nbRes, types::ty
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "nnz", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "nnz", 1);
         return types::Function::Error;
     }
 

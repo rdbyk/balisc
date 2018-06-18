@@ -128,7 +128,7 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
     else
     {
         /* ScilabEval called without argument */
-        Scierror(999, _("%s: Wrong number of input argument(s): at least one expected.\n"), "TCL_EvalScilabCmd");
+        Scierror(999, _("%s: Wrong number of input arguments: at least one expected.\n"), "TCL_EvalScilabCmd");
         return TCL_ERROR;
     }
 

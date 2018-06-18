@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_addinter(types::typed_list &in, int _iRetCount,
     int iErr = 0;
     if (in.size() != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "addinter", 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "addinter", 3);
         return types::Function::Error;
     }
 

@@ -16,7 +16,7 @@ function ret = createBorderFont(varargin)
     fontweight = "normal";
 
     if nargin < 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected."), "createBorderFont", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected."), "createBorderFont", 1));
     end
 
     fontname = varargin(1);

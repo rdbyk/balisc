@@ -20,7 +20,7 @@ int sci_csum6(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt* opt, i
     /* check that we have only 1 output argument */
     if (nin > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
         return 1;
     }
 

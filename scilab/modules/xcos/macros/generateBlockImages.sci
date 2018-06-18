@@ -23,7 +23,7 @@
 function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable)
 
     if nargin < 3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "generateBlockImages", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "generateBlockImages", 3));
     end
 
     if typeof(iconsOutPath) <> "string" | ~isdir(iconsOutPath) then

@@ -16,10 +16,10 @@
 // fscanf did not check number of input arguments
 // fscanf is obsolete, mfscanf is used instead.
 
-msgError = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n");
+msgError = gettext("%s: Wrong number of input arguments: %d to %d expected.\n");
 assert_checkerror ("mfscanf()", msgError , [] , "mfscanf" , 2, 3);
 
-msgError = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n");
+msgError = gettext("%s: Wrong number of input arguments: %d to %d expected.\n");
 assert_checkerror ("mfscanf(TMPDIR + ""/bug_9869.dat"")", msgError , [] , "mfscanf" , 2, 3);
 
 mputl(string(1:4), TMPDIR + "/bug_9869.dat");

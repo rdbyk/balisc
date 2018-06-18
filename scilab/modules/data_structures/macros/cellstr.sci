@@ -19,7 +19,7 @@ function c = cellstr(s)
     // F.B
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cellstr",1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"cellstr",1));
     end
 
     // The input argument size must be less or equal to 2

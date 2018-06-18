@@ -12,7 +12,7 @@
 
 // Interface
 assert_checkfalse(execstr("legendre()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "legendre", 3, 4);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "legendre", 3, 4);
 assert_checkerror("legendre()", refMsg);
 
 assert_checkfalse(execstr("legendre([1 2], [1 2], 1)"   ,"errcatch") == 0);

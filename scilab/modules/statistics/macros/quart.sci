@@ -27,7 +27,7 @@ function q=quart(x,orien)
     //
     //
 
-    if nargin==0 then error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"),"quart",1,2)), end
+    if nargin==0 then error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"quart",1,2)), end
 
     function y = vperctl(x,p)
         //inline function wich computes percentiles of a vector

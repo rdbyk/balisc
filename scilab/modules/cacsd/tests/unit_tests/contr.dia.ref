@@ -7,7 +7,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 assert_checkfalse(execstr("contr()", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "contr", 2, 3);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "contr", 2, 3);
 assert_checkerror("contr()", refMsg);
 A = ones(3,3) + 0 * %i;
 B = ones(3,3) * 2;

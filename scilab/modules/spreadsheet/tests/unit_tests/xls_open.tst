@@ -34,5 +34,5 @@ cd TMPDIR;
 removedir open_xls_tests;
 
 instr = "[fd, SST, Sheetnames, Sheetpos] = xls_open();";
-refMsg = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "xls_open", 1);
+refMsg = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "xls_open", 1);
 assert_checkerror(instr, refMsg);

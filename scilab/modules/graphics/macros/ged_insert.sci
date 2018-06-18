@@ -13,7 +13,7 @@
 function ged_insert(k,win)
 
     if nargin<2,
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "ged_insert", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "ged_insert", 2));
     end
 
     global active men

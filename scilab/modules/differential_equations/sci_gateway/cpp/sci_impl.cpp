@@ -85,14 +85,14 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
     // *** check the minimal number of input args. ***
     if (in.size() < 6 || in.size() > 12)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "impl", 6, 12);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "impl", 6, 12);
         return types::Function::Error;
     }
 
     // *** check number of output args ***
     if (_iRetCount > 3 || _iRetCount == 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "impl", 1, 3);
+        Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "impl", 1, 3);
         return types::Function::Error;
     }
 
@@ -248,7 +248,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 }
                 else
                 {
-                    Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "impl", iPos + 2);
+                    Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "impl", iPos + 2);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     free(pdYData);
                     free(YSize);
@@ -484,7 +484,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
     if (bFuncF == false)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "impl", in.size() + 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "impl", in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
         free(pdYData);
         free(YSize);
@@ -493,7 +493,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
     if (bFuncG == false)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "impl", in.size() + 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "impl", in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
         free(pdYData);
         free(YSize);

@@ -36,5 +36,5 @@ METH=1;
 [A,C,B,D,K] = sident(METH,1,S,N,1,R);
 
 // Wrong number of output arguments
-expectedError = msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"), "sident", 5);
+expectedError = msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"), "sident", 5);
 assert_checkerror("[A,C,B,D,K,BadOutput] = sident(METH,1,S,N,1,R);", expectedError);

@@ -20,7 +20,7 @@ function [r, err] = intc(a, b, f, abserr, relerr)
     // err : estimated absolute error on the result.
 
     if nargin < 3 then
-        error(msprintf(_("%s: Wrong number of input argument(s): at least %d expected.\n"), "intc", 3));
+        error(msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"), "intc", 3));
     end
 
     if nargin == 3 then

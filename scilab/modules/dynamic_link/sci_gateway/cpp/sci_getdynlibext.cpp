@@ -28,7 +28,7 @@ types::Function::ReturnValue sci_getdynlibext(types::typed_list &in, int _iRetCo
 {
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getdynlibext", 0);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "getdynlibext", 0);
         return types::Function::Error;
     }
 

@@ -53,14 +53,14 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
     // *** check the minimal number of input args. ***
     if (in.size() < 2 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "feval", 2, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "feval", 2, 3);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "feval", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "feval", 1);
         return types::Function::Error;
     }
 

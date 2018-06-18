@@ -97,7 +97,7 @@ assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
 A=[1 1; 1 2];
 errmsg1 = msprintf(_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "det", 1);
 assert_checkerror("det([1,2;3,4;5,6])", errmsg1, 20);
-errmsg2 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "det", 1);
+errmsg2 = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "det", 1);
 assert_checkerror("det(A,1)", errmsg2, 77);
 
 // Check det == 0 for simple cases

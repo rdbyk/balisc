@@ -30,7 +30,7 @@ function y=calerf(x,flag)
 
     // check the number of input arguments
     if nargin<>2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"calerf",2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"calerf",2));
     end
 
     if flag==0 then

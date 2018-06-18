@@ -18,7 +18,7 @@ function y=logspace(d1, d2, n)
     // logspace(d1, d2, n) generates n points.
 
     if nargin < 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"logspace", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"logspace", 2));
     end
 
     if size(d1,2) <> 1 then

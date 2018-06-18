@@ -13,7 +13,7 @@
 function y = nthroot(x,n)
 
     if nargin <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "nthroot", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "nthroot", 2));
     end
 
     if typeof(x) <> "constant" | ~isreal(x)  then

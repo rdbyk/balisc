@@ -15,7 +15,7 @@
 function x = secd(x)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"secd", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"secd", 1));
     end
 
     // Secant argument in degree

@@ -13,7 +13,7 @@
 function subplot(m,n,p)
 
     if nargin<>3 & nargin<>1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected."), "subplot", 1, 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected."), "subplot", 1, 3));
         return
     end
 

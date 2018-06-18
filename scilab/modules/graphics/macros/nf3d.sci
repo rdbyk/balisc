@@ -16,7 +16,7 @@ function [xx,yy,zz]=nf3d(x,y,z)
     // accepted by plot3d
     //---------------------------------------------------------
     if nargin<>3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "nf3d", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "nf3d", 3));
     end
 
 

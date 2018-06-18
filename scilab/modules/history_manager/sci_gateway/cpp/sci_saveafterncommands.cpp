@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_saveafterncommands(types::typed_list &in, int _
     }
     else
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "saveafterncommands", 0, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "saveafterncommands", 0, 1);
         return types::Function::Error;
     }
     return types::Function::OK;

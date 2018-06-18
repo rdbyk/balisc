@@ -1236,7 +1236,7 @@ void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, 
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -1373,7 +1373,7 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -1451,7 +1451,7 @@ void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -1533,7 +1533,7 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -1623,7 +1623,7 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -1719,7 +1719,7 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -1817,7 +1817,7 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -1928,7 +1928,7 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGsubFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2023,7 +2023,7 @@ void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, doubl
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallDgsubFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2118,7 +2118,7 @@ void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, dou
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFsubFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2213,7 +2213,7 @@ void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, do
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallDfsubFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2303,7 +2303,7 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2416,7 +2416,7 @@ void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* 
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2520,7 +2520,7 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2618,7 +2618,7 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2722,7 +2722,7 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2855,7 +2855,7 @@ void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doub
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -2962,7 +2962,7 @@ void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* 
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -3084,7 +3084,7 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -3292,7 +3292,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }

@@ -8,7 +8,7 @@
 // <-- CLI SHELL MODE -->
 
 assert_checkfalse(execstr("umfpack()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "umfpack", 3);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "umfpack", 3);
 assert_checkerror("umfpack()", refMsg);
 
 assert_checkfalse(execstr("umfpack(speye(3,3), 2, 2)"   ,"errcatch") == 0);

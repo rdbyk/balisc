@@ -45,7 +45,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
     bool bRegExp = false;
     if (in.size() < 3 || in.size() > 4)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 3, 4);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 3, 4);
         return Function::Error;
     }
 

@@ -65,7 +65,7 @@ function varargout=__test_function3__()
   varargout = list();
 endfunction
 
-msg = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "__test_function3__", 0);
+msg = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "__test_function3__", 0);
 assert_checkerror("a = __test_function3__()", msg);
 
 // wrong varargout type

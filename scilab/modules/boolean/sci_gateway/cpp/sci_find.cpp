@@ -43,7 +43,7 @@ Function::ReturnValue sci_find(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.size() == 0 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "find", 1, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "find", 1, 2);
         return Function::Error;
     }
 

@@ -181,7 +181,7 @@ function C = cov(varargin)
             r = 1/(nobs-1)
         end
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d, %d or %d expected.\n"),"cov", 1, 2, 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d, %d or %d expected.\n"),"cov", 1, 2, 3));
     end
     //
     // Compute with A in the general case

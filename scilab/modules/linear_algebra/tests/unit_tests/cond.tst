@@ -14,11 +14,11 @@
 // ===========
 
 assert_checkfalse(execstr("cond()", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "cond", 1, 2);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "cond", 1, 2);
 assert_checkerror("cond()", refMsg);
 
 assert_checkfalse(execstr("cond(1,2,3)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "cond", 1, 2);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "cond", 1, 2);
 assert_checkerror("cond(1,2,3)", refMsg);
 
 assert_checkfalse(execstr("cond(%nan)", "errcatch") == 0);

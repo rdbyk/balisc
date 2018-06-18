@@ -12,7 +12,7 @@
 
 function xsave(fil,num)
     if nargin<1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "xsave", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "xsave", 1));
     end
     if nargin<2 then
         f=gcf()

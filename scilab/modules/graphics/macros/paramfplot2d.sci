@@ -37,7 +37,7 @@ function paramfplot2d(f,x,theta,flag,rect)
     end
 
     if nargin<3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "paramfplot2d", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "paramfplot2d", 3));
     end
 
     x=x(:);

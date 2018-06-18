@@ -33,13 +33,13 @@ int sci_getio(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, in
 
 	if (nin != 0)
 	{
-		Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 0);
+		Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 0);
 		return 1;
 	}
 
 	if (nout != 1)
 	{
-		Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), fname, 1);
+		Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
 		return 1;
 	}
 

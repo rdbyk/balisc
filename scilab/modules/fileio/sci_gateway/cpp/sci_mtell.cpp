@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mtell", 0, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mtell", 0, 1);
         return types::Function::Error;
     }
     if (in.size() == 1)

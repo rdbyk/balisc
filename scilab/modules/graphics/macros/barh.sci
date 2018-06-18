@@ -21,7 +21,7 @@ function  barh(varargin)
     // style : a string, 'grouped' or 'stacked' (default: style='grouped')
 
     if and(size(varargin)<>[1:5]) then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "barh", 1, 5));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "barh", 1, 5));
     end
 
     styletab=["grouped","stacked"]

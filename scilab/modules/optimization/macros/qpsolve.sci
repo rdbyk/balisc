@@ -14,7 +14,7 @@
 function [x, iact, iter, f]=qpsolve(Q,p,C,b,ci,cs,me)
 
     if nargin <> 7
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "qpsolve", 7));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "qpsolve", 7));
     end
     C(me+1:$, :) = -C(me+1:$, :);
     b(me+1:$) = -b(me+1:$);

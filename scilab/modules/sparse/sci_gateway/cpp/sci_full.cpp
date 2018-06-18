@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_full(types::typed_list &in, int _iRetCount, typ
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "full", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "full", 1);
         return types::Function::Error;
     }
 

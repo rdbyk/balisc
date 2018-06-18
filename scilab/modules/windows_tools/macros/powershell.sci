@@ -38,6 +38,6 @@ function [resultat, status] = powershell(varargin)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "powershell", 1));
         end
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "powershell", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "powershell", 1));
     end
 endfunction

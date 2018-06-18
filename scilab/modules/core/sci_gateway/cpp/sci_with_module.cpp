@@ -33,7 +33,7 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
     types::String* pStr = NULL;
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "with_module", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "with_module", 1);
         return types::Function::Error;
     }
 

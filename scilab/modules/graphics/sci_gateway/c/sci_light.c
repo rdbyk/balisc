@@ -28,7 +28,7 @@ int sci_light(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, in
     int light = 0;
     if (nin > 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 0, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 0, 1);
         return 1;
     }
 

@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_exit(types::typed_list &in, int _iRetCount, typ
     // in[0] Should be a scalar double value.
     if (in.size() > 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected."), "exit", 0, 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected."), "exit", 0, 1);
         return types::Function::Error;
     }
 

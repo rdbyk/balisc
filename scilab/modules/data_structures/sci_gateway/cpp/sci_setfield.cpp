@@ -33,7 +33,7 @@ types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount,
 {
     if (in.size() != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
         return types::Function::Error;
     }
 

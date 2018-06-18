@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
     // per the scilab manual sparse will take upto 3 arguments but no less than one
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 1, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 3);
         return types::Function::Error;
     }
 

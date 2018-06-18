@@ -25,7 +25,7 @@ function generated_files = xmltopdf(dirs,titles,directory_language,default_langu
     case 4 then
         generated_files = xmltoformat("pdf",dirs,titles,directory_language,default_language);
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At most %d expected.\n"),"xmltopdf",4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At most %d expected.\n"),"xmltopdf",4));
 
     end
 

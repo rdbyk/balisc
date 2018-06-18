@@ -14,7 +14,7 @@
 function varargout = ind2sub(dims, I)
 
     if nargin <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "ind2sub", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "ind2sub", 2));
     end
 
     varargout = list();

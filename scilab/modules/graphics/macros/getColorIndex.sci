@@ -14,7 +14,7 @@
 function opt1 = getColorIndex(ColorString)
 
     if nargin<>1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "getColorIndex", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "getColorIndex", 1));
     end
 
     if type(ColorString)<>10 then

@@ -47,7 +47,7 @@ Function::ReturnValue sci_poly(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() < 2 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname, 2, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 2, 3);
         return Function::Error;
     }
 

@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_matplot1(types::typed_list &in, int _iRetCount,
     }
     else if (in.size() != 2)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "Matplot1", 2);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "Matplot1", 2);
         return types::Function::Error;
     }
 

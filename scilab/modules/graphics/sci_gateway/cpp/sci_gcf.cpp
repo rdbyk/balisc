@@ -34,7 +34,7 @@ Function::ReturnValue sci_gcf(types::typed_list &in, int _iRetCount, types::type
 {
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "gcf", 0);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "gcf", 0);
         return Function::Error;
     }
     

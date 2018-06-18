@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mseek", 1, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mseek", 1, 3);
         return types::Function::Error;
     }
 

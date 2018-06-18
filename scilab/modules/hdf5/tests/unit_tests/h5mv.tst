@@ -7,7 +7,7 @@
 //
 // <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "h5mv", 2, 4);
+msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "h5mv", 2, 4);
 assert_checkerror("h5mv()",msgerr,77);
 msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5mv", 1);
 assert_checkerror("h5mv(42,42)",msgerr,999);

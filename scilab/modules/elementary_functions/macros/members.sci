@@ -131,7 +131,7 @@ function [nb, loc] = members(A, S, varargin)
         return
     end
     if nargin < 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): at least %d expected.\n"), "members", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: at least %d expected.\n"), "members", 2));
     end
     if A == [] then
         if nargout > 1 then

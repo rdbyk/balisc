@@ -32,7 +32,7 @@ function []=errbar(x,y,em,ep)
         return;
     else
         if nargin<4 then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "errbar", 4));
+            error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "errbar", 4));
         end
     end
 

@@ -7,7 +7,7 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-assert_checkerror("wintercolormap(0,1,2,3)", "%s: Wrong number of input argument(s): %d expected.\n", 10000, "wintercolormap", 1);
+assert_checkerror("wintercolormap(0,1,2,3)", "%s: Wrong number of input arguments: %d expected.\n", 10000, "wintercolormap", 1);
 
 assert_checkerror("wintercolormap(%t)", "%s: Wrong type for input argument #%d: a real scalar expected.\n", 10000, "wintercolormap", 1);
 

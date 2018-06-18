@@ -101,7 +101,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     //check input parameters
     if (in.size() != 5)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "syredi", 5);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "syredi", 5);
         return types::Function::Error;
     }
 

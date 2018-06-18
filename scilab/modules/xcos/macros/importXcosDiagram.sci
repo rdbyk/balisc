@@ -34,7 +34,7 @@ function result = importXcosDiagram(xcosFile)
         fullPathName = get_absolute_file_path(fname + extension) + fname + convstr(extension, "l");
         mclose(a);
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected." + "\n"), "importXcosDiagram", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected." + "\n"), "importXcosDiagram", 1));
         return;
     end
 

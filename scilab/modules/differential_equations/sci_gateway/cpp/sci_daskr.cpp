@@ -107,14 +107,14 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     // *** check the minimal number of input args. ***
     if ((int)in.size() < 6 || (int)in.size() > 13)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "daskr", 6, 13);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "daskr", 6, 13);
         return types::Function::Error;
     }
 
     // *** check number of output args ***
     if (_iRetCount != 3 && _iRetCount != 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "daskr", 2, 3);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "daskr", 2, 3);
         return types::Function::Error;
     }
 
@@ -260,7 +260,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 pDblHd = in[iPos]->getAs<types::Double>();
                 if ((int)in.size() != iPos + 1)
                 {
-                    Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", iPos + 1);
+                    Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "daskr", iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYdotData);
                     FREE(pdYData);
@@ -737,7 +737,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
     if (bFuncF == false)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", (int)in.size() + 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "daskr", (int)in.size() + 3);
         DifferentialEquation::removeDifferentialEquationFunctions();
         FREE(pdYdotData);
         FREE(pdYData);
@@ -747,7 +747,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
     if (pDblNg == NULL)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", (int)in.size() + 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "daskr", (int)in.size() + 2);
         DifferentialEquation::removeDifferentialEquationFunctions();
         FREE(pdYdotData);
         FREE(pdYData);
@@ -757,7 +757,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
     if (bFuncG == false)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "daskr", (int)in.size() + 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "daskr", (int)in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
         FREE(pdYdotData);
         FREE(pdYData);

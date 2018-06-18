@@ -53,14 +53,14 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
     // *** check the minimal number of input args. ***
     if ((in.size() < 4) || (5 < in.size()))
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "interp3d", 4);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "interp3d", 4);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 4)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "interp3d", 1, 4);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "interp3d", 1, 4);
         return types::Function::Error;
     }
 

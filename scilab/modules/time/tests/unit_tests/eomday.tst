@@ -11,7 +11,7 @@
 // =============================================================================
 
 // Error messages
-errmsg = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"eomday", 2);
+errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"eomday", 2);
 assert_checkerror("eomday()", errmsg);
 assert_checkerror("eomday()", errmsg);
 errmsg = msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"), "eomday", 1);

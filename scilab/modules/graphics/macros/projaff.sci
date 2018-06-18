@@ -27,7 +27,7 @@ function d=projaff(x,y,pt)
     //!
 
     if nargin<>3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "projaff", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "projaff", 3));
     end
 
     dx=x(2)-x(1);dy=y(2)-y(1)

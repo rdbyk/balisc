@@ -33,7 +33,7 @@ Function::ReturnValue sci_drawnow(typed_list &in, int _iRetCount, typed_list &ou
 {
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "drawnow", 0);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "drawnow", 0);
         return Function::Error;
     }
 

@@ -13,7 +13,7 @@
 function ret = createConstraints(constType, varargin)
 
     if nargin < 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected."), "createConstraints", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected."), "createConstraints", 1));
     end
 
     ret = [];
@@ -26,7 +26,7 @@ function ret = createConstraints(constType, varargin)
         arg2 = [-1 -1];
 
         if size(varargin) <> [1 2] then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createConstraints", 2, 3));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected."), "createConstraints", 2, 3));
         end
 
         arg1 = varargin(1);
@@ -51,7 +51,7 @@ function ret = createConstraints(constType, varargin)
         arg6 = [-1 -1];
 
         if size(varargin) <> [1:6] then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createConstraints", 2, 7));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected."), "createConstraints", 2, 7));
         end
 
         arg1 = varargin(1);

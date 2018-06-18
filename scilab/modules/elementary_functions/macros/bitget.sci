@@ -19,7 +19,7 @@ function z = bitget(x, pos)
     // CHECKING ARGUMENTS
     // ==================
     if nargin~=2 then
-        msg = _("%s: Wrong number of input argument(s): %d expected.\n");
+        msg = _("%s: Wrong number of input arguments: %d expected.\n");
         error(msprintf(msg, fname, 2));
     end
 

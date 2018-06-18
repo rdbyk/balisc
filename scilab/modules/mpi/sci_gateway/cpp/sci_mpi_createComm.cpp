@@ -29,13 +29,13 @@ types::Function::ReturnValue sci_mpi_createComm(types::typed_list &in, int _iRet
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (out.size() > 1)
     {
-        Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 

@@ -201,7 +201,7 @@ cfC = histc([0 7], D, %f);
 assert_checkequal(cfC, 100000); // 0 > D > 7, and D has 100000 elements.
 
 // Error checks
-refMsg = msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"), "histc", 2);
+refMsg = msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"), "histc", 2);
 assert_checkerror("histc(1)", refMsg);
 assert_checkerror("histc()", refMsg);
 

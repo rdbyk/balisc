@@ -18,7 +18,7 @@ function [nh]=h2norm(g,tol)
     //     2           |
     //                 /-00
     if nargin<1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),..
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),..
         "h2norm",1))
     end
 

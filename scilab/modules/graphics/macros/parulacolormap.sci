@@ -16,7 +16,7 @@ function cmap = parulacolormap(varargin)
     
     // Check number of input argument
     if size(varargin) > 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "parulacolormap", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "parulacolormap", 1));
     end
     if size(varargin) == 0 then
         n = nDefault;

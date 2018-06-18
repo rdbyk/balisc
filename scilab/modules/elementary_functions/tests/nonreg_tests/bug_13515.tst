@@ -84,7 +84,7 @@ function [dbRefOne, dbRefZero, ...
 endfunction
 
 // check input arguments
-lstr = gettext("%s: Wrong number of input argument(s): At least %d expected.\n");
+lstr = gettext("%s: Wrong number of input arguments: At least %d expected.\n");
 errmsg = msprintf (lstr, "bitset", 2);
 assert_checkerror("bitset(1)", errmsg);
 assert_checkerror("bitset()", errmsg);

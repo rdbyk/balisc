@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 // eval failed on some functions without output arguments.
-errmsg = msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"), "realtimeinit", 0);
+errmsg = msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"), "realtimeinit", 0);
 str = "realtimeinit(60)";
 assert_checkerror("eval(str)", errmsg);
 

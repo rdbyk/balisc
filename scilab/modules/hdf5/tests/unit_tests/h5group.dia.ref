@@ -6,9 +6,9 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5group", 2);
+msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "h5group", 2);
 assert_checkerror("h5group()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5group", 2);
+msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "h5group", 2);
 assert_checkerror("h5group(42)",msgerr,77);
 msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5group", 1);
 assert_checkerror("h5group(42,42)",msgerr,999);

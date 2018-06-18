@@ -14,10 +14,10 @@ function [Q,R,E]=mtlb_qr(A,B)
     // Emulation function for qr() Matlab function
 
     if nargout<>3 then
-        error(msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"),"mtlb_qr",3));
+        error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"),"mtlb_qr",3));
     end
     if nargin<>2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"mtlb_qr",2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"mtlb_qr",2));
     end
 
     [Q,R,E] = qr(A)

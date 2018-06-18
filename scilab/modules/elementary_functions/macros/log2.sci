@@ -14,7 +14,7 @@
 function [f, e] = log2(x)
     // x may be positive, negative, or complex
     if nargin <> 1 then
-        msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg, "log2", 1))
     end
     if nargout == 1 then

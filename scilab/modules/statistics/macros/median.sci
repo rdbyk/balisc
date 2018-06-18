@@ -25,7 +25,7 @@ function y = median(x,orient)
     // CHECKING ARGUMENTS
     // ==================
     if nargin == 0 then
-        msg = _("%s: Wrong number of input argument(s): %d or %d expected.\n")
+        msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
         error(msprintf(msg, "median", 1, 2))
     end
 

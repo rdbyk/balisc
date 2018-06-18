@@ -43,8 +43,8 @@ c.den = c.den*f;
 assert_checkequal(clean(tc-c), 0/%s);
 
 // Error messages
-errmsg1=msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "conj", 1);
+errmsg1=msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "conj", 1);
 assert_checkerror("conj()", errmsg1, 77);
 assert_checkerror("conj(A,2)", errmsg1, 77);
-errmsg2=msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "conj", 1);
+errmsg2=msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "conj", 1);
 assert_checkerror("[res1, res2]=conj(A)", errmsg2, 999);

@@ -29,7 +29,7 @@ function graypolarplot(theta,rho,z,varargin)
     end
 
     if nargin<3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "graypolarplot", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "graypolarplot", 3));
     end
 
     R = max(rho)

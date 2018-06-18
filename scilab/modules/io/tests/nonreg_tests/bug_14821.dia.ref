@@ -20,9 +20,9 @@ assert_checkequal(res, [5 5 2 6]);
 // error
 str = "getio(1)";
 assert_checkfalse(execstr(str   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "getio", 0);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "getio", 0);
 assert_checkerror(str, refMsg);
 str = "[a,b] = getio()";
 assert_checkfalse(execstr(str   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "getio", 1);
+refMsg = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "getio", 1);
 assert_checkerror(str, refMsg);

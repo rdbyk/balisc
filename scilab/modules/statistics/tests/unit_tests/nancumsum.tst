@@ -11,7 +11,7 @@
 // =============================================================================
 
 assert_checkfalse(execstr("nancumsum()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "nancumsum", 1, 2);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "nancumsum", 1, 2);
 assert_checkerror("nancumsum()", refMsg);
 
 assert_checkfalse(execstr("nancumsum(""s"")"   ,"errcatch") == 0);

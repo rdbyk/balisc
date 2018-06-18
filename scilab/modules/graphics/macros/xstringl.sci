@@ -36,7 +36,7 @@ function [rect] = xstringl( varargin )
         corners = stringbox(listArg (3), listArg (1), listArg (2), 0, listArg (4), listArg (5));
     else
         // incorrect number of input argmuments
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "xstringl", 3, 5));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected."), "xstringl", 3, 5));
         return ;
     end;
 

@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_sinh(types::typed_list &in, int _iRetCount, typ
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "sinh", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "sinh", 1);
         return types::Function::Error;
     }
 

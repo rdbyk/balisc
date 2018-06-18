@@ -30,7 +30,7 @@ function a=%r_sum(varargin)
     case 3
         d = varargin(2);
     else
-        error(msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),"sum", 1, 3));
+        error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"sum", 1, 3));
     end
 
     // Check second argument : d

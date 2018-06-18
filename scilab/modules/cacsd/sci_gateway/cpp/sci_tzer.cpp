@@ -41,13 +41,13 @@ types::Function::ReturnValue sci_tzer(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() != 4)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "tzer", 4);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "tzer", 4);
         return types::Function::Error;
     }
 
     if (_iRetCount < 2 || _iRetCount > 3)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "tzer", 2, 3);
+        Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "tzer", 2, 3);
         return types::Function::Error;
     }
 

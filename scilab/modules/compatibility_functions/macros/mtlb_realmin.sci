@@ -22,6 +22,6 @@ function val=mtlb_realmin(prec)
             error(msprintf(gettext("%s: Not yet implemented.\n"),"mtlb_realmin"));
         end
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"mtlb_realmin",0,1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"mtlb_realmin",0,1));
     end
 endfunction

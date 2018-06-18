@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     // *** check the minimal number of input args. ***
     if (in.size() < 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "linear_interpn", 3);
+        Scierror(77, _("%s: Wrong number of input arguments: At least %d expected.\n"), "linear_interpn", 3);
         return types::Function::Error;
     }
 
@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "linear_interpn", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "linear_interpn", 1);
         return types::Function::Error;
     }
 

@@ -13,7 +13,7 @@ function c=hsvcolormap(varargin)
 
     // Check number of input argument
     if size(varargin)<>1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "hsvcolormap", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "hsvcolormap", 1));
     end
     n=varargin(1);
 

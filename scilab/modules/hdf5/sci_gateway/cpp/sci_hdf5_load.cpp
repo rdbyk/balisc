@@ -40,7 +40,7 @@ types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount
     int rhs = static_cast<int>(in.size());
     if (rhs < 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): at least %d expected.\n"), fname.data(), 1);
+        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), fname.data(), 1);
         return types::Function::Error;
     }
 

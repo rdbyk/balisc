@@ -54,14 +54,14 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
     // *** check the minimal number of input args. ***
     if (in.size() != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "eval_cshep2d", 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "eval_cshep2d", 3);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount != 3 && _iRetCount != 6 && _iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d, %d or %d expected.\n"), "eval_cshep2d", 1, 3, 6);
+        Scierror(78, _("%s: Wrong number of output arguments: %d, %d or %d expected.\n"), "eval_cshep2d", 1, 3, 6);
         return types::Function::Error;
     }
 

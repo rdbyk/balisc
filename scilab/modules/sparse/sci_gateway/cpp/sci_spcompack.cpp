@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_spcompack(types::typed_list &in, int nbRes, typ
 {
     if (in.size() != 3)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "spcompack", 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "spcompack", 3);
         return types::Function::Error;
     }
 

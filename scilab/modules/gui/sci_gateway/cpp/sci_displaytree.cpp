@@ -47,13 +47,13 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), funname.data(), 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), funname.data(), 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s:  Wrong number of output argument(s): %d to %d expected."), "helpbrowser", 0, 1);
+        Scierror(78, _("%s:  Wrong number of output arguments: %d to %d expected."), "helpbrowser", 0, 1);
         return types::Function::Error;
     }
 

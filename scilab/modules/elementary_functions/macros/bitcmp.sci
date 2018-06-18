@@ -14,9 +14,9 @@
 function y = bitcmp(x,n)
 
     if nargin == 0 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"bitcmp",1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"bitcmp",1));
     elseif (type(x) == 1) & (nargin == 1) then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"bitcmp",2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"bitcmp",2));
     end
 
     // check type

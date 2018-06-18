@@ -27,7 +27,7 @@ function version = getDiagramVersion(diagram)
     version = get_scicos_version();
 
     if nargin <> 1 then
-        error( msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "getDiagramVersion", 1));
+        error( msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "getDiagramVersion", 1));
     end
 
     if typeof(diagram) <> "diagram" then //check inputs

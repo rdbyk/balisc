@@ -15,7 +15,7 @@
 
 function a = toeplitz(c, r)
     if nargin < 1 then
-        msg = _("%s: Wrong number of input argument(s): %d to %d expected.\n");
+        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n");
         error(msprintf(msg, "toeplitz", 1, 2));
     end
 

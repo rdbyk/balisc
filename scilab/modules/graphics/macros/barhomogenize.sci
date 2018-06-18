@@ -20,7 +20,7 @@ function  barhomogenize(varargin)
     // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8).
 
     if and(size(varargin)<>[0:3]) then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "barhomogenize", 0, 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "barhomogenize", 0, 3));
     end
 
     // Default values

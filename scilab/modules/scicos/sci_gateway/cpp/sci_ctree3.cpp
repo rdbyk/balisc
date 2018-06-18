@@ -41,13 +41,13 @@ types::Function::ReturnValue sci_ctree3(types::typed_list &in, int _iRetCount, t
 {
     if (in.size() != 8)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), funname.data(), 8);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), funname.data(), 8);
         return types::Function::Error;
     }
 
     if (_iRetCount != 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), funname.data(), 2);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), funname.data(), 2);
         return types::Function::Error;
     }
 

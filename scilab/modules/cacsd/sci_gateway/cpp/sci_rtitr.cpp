@@ -59,13 +59,13 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 3 && in.size() != 5)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), "rtitr", 3, 5);
+        Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "rtitr", 3, 5);
         return types::Function::Error;
     }
 
     if (_iRetCount < 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "rtitr", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "rtitr", 1);
         return types::Function::Error;
     }
 
