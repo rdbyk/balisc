@@ -38,7 +38,7 @@ types::Function::ReturnValue sci_findfileassociation(types::typed_list &in, int 
     int rhs = static_cast<int>(in.size());
     if (rhs != 1 && rhs != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname.data(), 1, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname.data(), 1, 2);
         return types::Function::Error;
     }
 

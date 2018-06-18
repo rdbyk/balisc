@@ -130,7 +130,7 @@ function K=lqg(P,varargin)
             end
         end
     else
-        error(msprintf(_("%s: Wrong number of input argument(s): %d or %d expected."),"lqg",2,3))
+        error(msprintf(_("%s: Wrong number of input arguments: %d or %d expected."),"lqg",2,3))
     end
 
     if ~flag then

@@ -14,7 +14,7 @@
 function y = acot(x)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "acot", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "acot", 1));
     end
 
     if type(x) <> 1 then

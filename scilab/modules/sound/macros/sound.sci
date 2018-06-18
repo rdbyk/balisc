@@ -27,7 +27,7 @@ function []=sound(y,fs,bits,aplay)
     //   See also SOUNDSC.
 
     if nargin<1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"sound",1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"sound",1));
     end
     if nargin<2 then
         fs = 22050;

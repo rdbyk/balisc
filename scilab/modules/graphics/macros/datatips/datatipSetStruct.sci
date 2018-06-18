@@ -12,7 +12,7 @@
 
 function ok=datatipSetStruct(curve,t)
     if nargin<>2 then
-        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),...
+        error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),...
         "datatipSetStruct",2))
     end
     if type(curve)<>9|size(curve,"*")<>1|or(curve.type<>"Polyline") then

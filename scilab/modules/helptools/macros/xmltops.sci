@@ -25,7 +25,7 @@ function generated_files = xmltops(dirs,titles,directory_language,default_langua
     case 4 then
         generated_files = xmltoformat("ps",dirs,titles,directory_language,default_language);
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At most %d expected.\n"),"xmltops",4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At most %d expected.\n"),"xmltops",4));
 
     end
 

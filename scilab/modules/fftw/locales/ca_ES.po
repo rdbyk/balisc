@@ -73,13 +73,17 @@ msgstr ""
 msgid "%s: Creation of requested fftw plan failed.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"

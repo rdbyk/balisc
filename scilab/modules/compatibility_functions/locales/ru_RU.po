@@ -208,8 +208,8 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось целое положительное "
 "число.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
 
 #, c-format
@@ -224,8 +224,8 @@ msgstr "%s: В «%s» найден неизвестный стиль линии 
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s: В «%s» найден неизвестный цвет -> выбран чёрный.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
@@ -233,7 +233,7 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s: пучок не может быть диаганолизирован.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
@@ -257,13 +257,13 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s: Не удалось открыть ни «%s», ни «%s», ни «%s».\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s: Фактор нормирования m - 1 равен нулю.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: Фактор нормирования n - 1 равен нулю.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"

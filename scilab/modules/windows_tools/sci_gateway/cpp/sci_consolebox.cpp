@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_consolebox(types::typed_list &in, int _iRetCoun
 {
     if (in.size() < 0 || in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), "consolebox", 0, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "consolebox", 0, 1);
         return types::Function::Error;
     }
 

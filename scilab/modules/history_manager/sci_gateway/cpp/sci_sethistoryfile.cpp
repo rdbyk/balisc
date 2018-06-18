@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_sethistoryfile(types::typed_list &in, int _iRet
     }
     else
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "sethistoryfile", 0, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "sethistoryfile", 0, 1);
         return types::Function::Error;
     }
     return types::Function::OK;

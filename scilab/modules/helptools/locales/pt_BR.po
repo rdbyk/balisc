@@ -317,7 +317,7 @@ msgstr ""
 "válido existente.\n"
 
 #, fuzzy, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: O arquivo CHAPTER não está formatado adequadamente na linha %d\n"
 
 #, c-format
@@ -329,7 +329,7 @@ msgstr ""
 "terminado com .last_sucessful_build.\n"
 
 #, fuzzy, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: O arquivo last_successful_build não está formatado adequadamente na "
 "linha %d\n"
@@ -345,8 +345,8 @@ msgstr ""
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: As 2 mlist não devem ter qualquer campo em comum.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se no máximo "
 "%d.\n"

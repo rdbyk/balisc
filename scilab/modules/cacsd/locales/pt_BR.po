@@ -289,9 +289,9 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr "%s: O argumento de entrada #%d deve ser real.\n"
 
 #, c-format
 msgid ""
@@ -334,14 +334,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: ZUNGQR exit with info = %d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -427,15 +419,7 @@ msgid "%s: too many solutions found\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -491,11 +475,7 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 152
 # File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 195
 #, c-format
-msgid "%s: An error occured in '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -580,11 +560,6 @@ msgid "%s: Needs %s => Use default value %s=%d.\n"
 msgstr "%s: É necessário %s => Use o valor padrão %s=%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de saída: esperava-se de %d a %d.\n"
-
-#, c-format
 msgid "%s: Argument #%d: Linear state space expected.\n"
 msgstr ""
 
@@ -647,11 +622,6 @@ msgid ""
 msgstr ""
 "%s: Argumentos de entrada incompatíveis #%d e #%d: esperava-se o mesmo "
 "número de elementos.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
 
 #, c-format
 msgid "%s: Number of rows of %s are incompatible with %s object.\n"
@@ -805,10 +775,6 @@ msgstr ""
 "< %s .\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um espaço de "
@@ -867,12 +833,6 @@ msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um espaço de "
 "estados.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
-"%d.\n"
 
 #, c-format
 msgid ""
@@ -941,11 +901,6 @@ msgstr ""
 "estável.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real non negative scalar expected.\n"
 msgstr ""
@@ -971,11 +926,6 @@ msgstr "%s: Argumento de entrada #%d ignorado.\n"
 #, c-format
 msgid "%s: Bad conditioning.\n"
 msgstr "%s: Mau condicionamento.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de saída: esperava-se %d ou %d.\n"
 
 #, c-format
 msgid "%s: More than %d iterations.\n"
@@ -1400,9 +1350,10 @@ msgstr ""
 msgid "%s: %s is not zero! (set to zero)"
 msgstr "%s: %s não é zero! (ajuste para zero)"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
 #, c-format
 msgid ""
@@ -1413,10 +1364,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de saída: esperava-se %d.\n"
 
 #, c-format
 msgid ""
@@ -1504,7 +1451,7 @@ msgid "Transmission zeros and poles"
 msgstr "Pólos e zeros de transmissão"
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma lista.\n"
 
@@ -1797,3 +1744,28 @@ msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
 msgstr ""
+
+#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumentos de saída: esperava-se de %d a %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a "
+#~ "%d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
+#~ "%d.\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumentos de saída: esperava-se %d ou %d.\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr "%s: Quantidade incorreta de argumentos de saída: esperava-se %d.\n"

@@ -89,25 +89,6 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 0ｋと2^52の間�
 msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 値を変換できません.\n"
 
-msgid "Warning : singularity of 'log' or 'tan' function.\n"
-msgstr "警告: 'log'または'tan'関数の特異点.\n"
-
-#, c-format
-msgid ""
-"%s: More than one argument can be used only with double matrix in first "
-"argument.\n"
-msgstr ""
-"%s: 最初の引数にdouble行列を指定した場合のみ一つ以上の引数を使用できます.\n"
-
-#, c-format
-msgid "%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"
-msgstr "%ls: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
-
-#, c-format
-msgid "%ls:  Wrong type for input argument #%d: A real scalar expected.\n"
-msgstr ""
-"%ls: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
-
 #, c-format
 msgid "%s: unknown property kind.\n"
 msgstr "%s: 未知の種類のプロパティ.\n"
@@ -164,9 +145,10 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 実数の行列または文字列を指定してくださ"
 "い.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています:  %d 以下で指定してください.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -209,11 +191,6 @@ msgid "Invalid index.\n"
 msgstr "添字が間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
@@ -228,11 +205,9 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています:　 ['g' 'r' 'c' 'lc' 'lr'] を指定してく"
 "ださい.\n"
 
-#, c-format
-msgid ""
-"%ls: Warning: Wrong value for input argument #%d : Singularity of the "
-"function.\n"
-msgstr "%ls: 警告: 入力引数 #%d の値が間違っています: 関数の特異点.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: more than %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"
 
 #, c-format
 msgid ""
@@ -301,9 +276,8 @@ msgstr "%s: 値 %d の許容誤差が大きすぎます.\n"
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr "%s: 引数 %d の大きさが間違っています:  (%d,%d) を指定してください.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています:  '%s', '%s', '%s' または '%s' を指定し"
 "てください.\n"
@@ -462,9 +436,9 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してくだ"
 "さい.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 引数 #%d: 整数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -485,6 +459,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 正の実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
@@ -513,10 +491,6 @@ msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 行列は対角可能ではありません。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real, complex, boolean or "
 "polynomial matrix expected.\n"
@@ -541,7 +515,7 @@ msgstr ""
 "列またはハイパー行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
@@ -640,8 +614,8 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -765,10 +739,6 @@ msgstr "%s: 入力引数に互換性がありません: 同じ型を指定して
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -896,11 +866,6 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています:  4列以上で指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr ""
 "%s:入力引数  #%d および #%d には互換性がありません: 同じ型を指定してくださ"
@@ -909,3 +874,41 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
+
+#~ msgid "Warning : singularity of 'log' or 'tan' function.\n"
+#~ msgstr "警告: 'log'または'tan'関数の特異点.\n"
+
+#~ msgid ""
+#~ "%s: More than one argument can be used only with double matrix in first "
+#~ "argument.\n"
+#~ msgstr ""
+#~ "%s: 最初の引数にdouble行列を指定した場合のみ一つ以上の引数を使用できま"
+#~ "す.\n"
+
+#~ msgid "%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"
+#~ msgstr ""
+#~ "%ls: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
+
+#~ msgid "%ls:  Wrong type for input argument #%d: A real scalar expected.\n"
+#~ msgstr ""
+#~ "%ls: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています:  %d 以下で指定してください.\n"
+
+#~ msgid ""
+#~ "%ls: Warning: Wrong value for input argument #%d : Singularity of the "
+#~ "function.\n"
+#~ msgstr "%ls: 警告: 入力引数 #%d の値が間違っています: 関数の特異点.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"

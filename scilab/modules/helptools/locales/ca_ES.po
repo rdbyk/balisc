@@ -309,7 +309,7 @@ msgstr ""
 "existeixi.\n"
 
 #, fuzzy, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: El fitxer de CHAPTER té un format incorrecte a la línia %d\n"
 
 #, c-format
@@ -321,7 +321,7 @@ msgstr ""
 "caràcters que acabi amb .last_successful_build.\n"
 
 #, fuzzy, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: El fitxer de last_successful_build té un format incorrecte a la línia "
 "%d\n"
@@ -337,8 +337,8 @@ msgstr ""
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: Els 2 mlist no poden tenir cap camp en comú.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Han de ser %d com a "
 "màxim.\n"

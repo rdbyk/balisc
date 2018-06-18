@@ -65,7 +65,7 @@ function [r,k]=mtlb_max(a,b,c)
     elseif nargin==2 then
         // Only one output arg is possible...
         if nargout > 1 then
-            error(msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"),"mtlb_max", 1));
+            error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"),"mtlb_max", 1));
         end
 
         // Special case if A==[] and B==[]

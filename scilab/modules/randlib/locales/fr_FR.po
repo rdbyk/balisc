@@ -17,8 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
@@ -62,8 +62,8 @@ msgstr ""
 msgid "Missing vect for random permutation\n"
 msgstr "vect manquant pour la permutation aléatoire\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
@@ -260,11 +260,9 @@ msgstr ""
 msgid "The %s option affects only the %s generator\n"
 msgstr "L'option %s affecte seulement le générateur %s\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
-msgstr ""
-"%s : Valeur erronée pour l'argument d'entrée n°%d : Il doit être compris "
-"entre %d et %d.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
+msgstr "%s : X0(%d) doit appartenir à [1,%d[.\n"
 
 #, c-format
 msgid ""
@@ -413,3 +411,9 @@ msgstr "Variable aléatoire d'Erlang"
 
 msgid "Simulation of a Weibull random variable"
 msgstr "Simulation d'une variable aléatoire de Weibull"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s : Valeur erronée pour l'argument d'entrée n°%d : Il doit être compris "
+#~ "entre %d et %d.\n"

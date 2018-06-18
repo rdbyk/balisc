@@ -430,22 +430,12 @@ msgstr ""
 msgid "     norm of the residual    = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 145
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 149
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 193
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 197
 #, c-format
-msgid "     same but with refinment = "
+msgid "     same but with refinement = "
 msgstr ""
 
 #, c-format
 msgid "     norm of the residual     = "
-msgstr ""
-
-#, c-format
-msgid "     same but with refinement = "
 msgstr ""
 
 msgid "Now we will see how to use the taucs snmf stuff on the matrix A2."
@@ -546,14 +536,14 @@ msgstr "   然後點擊 OK   "
 
 #
 # File: macros/ReadHBSparse.sci, line: 84
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
 
 #
 # File: macros/ReadHBSparse.sci, line: 110
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
+#, fuzzy, c-format
+msgid "%s: The file contains a nargin but it will not be read !"
 msgstr "%s: 檔案內含一  rhs 但不會被讀入  1"
 
 #

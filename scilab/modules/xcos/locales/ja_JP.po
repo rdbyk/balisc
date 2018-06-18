@@ -20,15 +20,6 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
 
@@ -1110,11 +1101,6 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: %s を %s にエクスポートできません.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr "%s: 入力引数 %s の型が間違っています: ブロック型を指定してください.\n"
 
@@ -1173,8 +1159,8 @@ msgstr ""
 msgid "Unable to open %s"
 msgstr "%s を開けません"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
 
 #, c-format
@@ -1465,3 +1451,14 @@ msgstr "%s: '%s'からファイルの内容を読み込む際にエラーが発�
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr "%s: コンテキストを設定中に構文エラーが発生しました"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"

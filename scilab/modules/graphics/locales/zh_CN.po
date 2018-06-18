@@ -102,10 +102,6 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s：可选参数位置错误：参数 #%d 必须置于位置 %d。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
@@ -166,14 +162,6 @@ msgstr "%: %s “%c” 的值错误： 应该是“%s”，“%s”和“%s”�
 #, c-format
 msgid ""
 "%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
 
 #, c-format
@@ -500,9 +488,9 @@ msgstr "%s：输入参数 #%d 错误：指定的范围不正确。\n"
 msgid "%s: Invalid vertex index.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: A real scalar expected.\n"
@@ -514,6 +502,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
 
 #, c-format
@@ -535,6 +527,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: A single graphic handle expected.\n"
+msgstr "%s：输入参数 #%d 的大小错误：应该为一个句柄。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: real scalar or graphic handle expected.\n"
+msgstr "%s：输入参数 #%d 类型错误：应该为实的数组或图像句柄队列。\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
@@ -567,26 +568,12 @@ msgstr "父对象必须为 SUBWIN。\n"
 #
 # File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr ""
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s 只是用来计算等高线并且不能呈现他们。\n"
-
-#
-# File: modules/graphics/src/c/DrawObjects.c, line: 88
-msgid "Could not retrive bounds.\n"
-msgstr ""
-
-msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
-msgstr "警告：不能使用对数(Log)当 X-轴的最小值是负的。\n"
-
-msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
-msgstr "警告：不能使用对数(Log)当 Y-轴的最小值是负的。\n"
-
-msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
-msgstr "警告：不能使用对数(Log)当 Z-轴的最小值是负的。\n"
 
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr "警告：Nax 对对数比例不起作用。\n"
@@ -1334,10 +1321,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
-
-#, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s：输入参数 #%d 必须为实数。\n"
 
@@ -1472,9 +1455,9 @@ msgstr ""
 msgid "Transposing column vector X to get row vector"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s：输入参数的数目错误：应该为%d 到%d 个。"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
@@ -1524,10 +1507,6 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少要 %d 个。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
 
@@ -1561,9 +1540,9 @@ msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 msgid "%s: Colormap too small"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected."
+msgstr "%s：输入参数的数目错误：至少要 %d 个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -1838,6 +1817,32 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr "%s：输入参数 #%d 的类型错误：应该为实标量。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr "%s：输入参数 #%d 的类型错误：应该为实行向量或一个布尔型。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 99
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 145
+#, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr ""
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr ""
@@ -1850,10 +1855,10 @@ msgstr ""
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
-msgstr ""
+"%s: Wrong number of input arguments: 0, 1, 2, or 4 arguments expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid ""
@@ -2027,8 +2032,8 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr "%s：输入参数的数目出错：应为 %d 或者 %d 个。"
 
 #, c-format
@@ -2088,3 +2093,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr ""
+
+#~ msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
+#~ msgstr "警告：不能使用对数(Log)当 X-轴的最小值是负的。\n"
+
+#~ msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
+#~ msgstr "警告：不能使用对数(Log)当 Y-轴的最小值是负的。\n"
+
+#~ msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
+#~ msgstr "警告：不能使用对数(Log)当 Z-轴的最小值是负的。\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr "%s：输入参数的数目错误：应该为%d 到%d 个。"

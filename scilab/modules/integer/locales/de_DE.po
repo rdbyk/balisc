@@ -18,18 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
@@ -42,19 +30,34 @@ msgid "Never occur"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : int or double expected.\n"
+msgstr ""
+
+# File: modules/integer/macros/%_iconvert.sci, line: 16
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/integer/macros/%_iconvert.sci, line: 20
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#
+# File: modules/integer/macros/%_iconvert.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/integer/macros/%_iconvert.sci, line: 47
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #, c-format
@@ -75,8 +78,10 @@ msgstr ""
 msgid "%s: %s expected instead of %s.\n"
 msgstr ""
 
+#
+# File: modules/integer/macros/mgeti.sci, line: 16
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format

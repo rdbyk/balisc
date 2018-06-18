@@ -38,7 +38,7 @@ types::Function::ReturnValue sci_predef(types::typed_list &in, int _iRetCount, t
     symbol::Context* ctx = symbol::Context::getInstance();
     if (rhs > 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), fname.data(), 0, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname.data(), 0, 1);
         return types::Function::Error;
     }
 

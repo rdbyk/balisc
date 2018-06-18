@@ -14,7 +14,7 @@ function head_comments(name, %paths)
     // Displays the first comments of a function
 
     if nargin < 1 then
-        error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "head_comments", 1, 2));
+        error(sprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "head_comments", 1, 2));
     end
 
     if type(name) <> 10 then

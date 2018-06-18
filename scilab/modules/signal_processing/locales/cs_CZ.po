@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
@@ -40,10 +44,6 @@ msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -156,7 +156,7 @@ msgstr ""
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 93
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 154
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
@@ -400,16 +400,8 @@ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %s nebo %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
-
-#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s: Argumenty #%d a #%d musí mít stejnou velikost.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
@@ -696,3 +688,9 @@ msgstr ""
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr "%s: Příliš náhlá změna blízko konce rozsahu frekvence,\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"

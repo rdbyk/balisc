@@ -18,7 +18,7 @@ function t=asinhm(x)
     //                      and    [ 0  ,inf[ x [ pi/2]
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"asinhm",1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"asinhm",1));
     end
 
     if type(x)<>1 then

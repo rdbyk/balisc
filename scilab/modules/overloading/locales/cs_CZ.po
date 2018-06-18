@@ -64,23 +64,6 @@ msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
 msgstr "%s: Syntaxe x(j) je povolena pouze pro cbloky řádku.\n"
 
 #, c-format
-msgid "%s: Invalid field name.\n"
-msgstr "%s: Neplatný název pole.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný název pole.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments.\n"
-msgstr "%s: Špatný počet výstupních argumentů.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: ŠPatná velikost vstupního argumentu #%d: Transpozice nemůže být určena.\n"
@@ -199,9 +182,9 @@ msgstr "%s: Špatná velikost vstupních argumentů.\n"
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: Špatná velikost vstupních argumentů.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -302,6 +285,10 @@ msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+
+#, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
 
@@ -318,28 +305,12 @@ msgid "%s: Field names mismatch.\n"
 msgstr "%s: Neshoda názvů polí.\n"
 
 #, c-format
+msgid "%s: Invalid field name.\n"
+msgstr "%s: Neplatný název pole.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Není platný název pole.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván reálný vektor.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
-
-#, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
-msgstr "%s: vstupní a výstupní matice musí mít stejný počet prvků.\n"
-
-#, c-format
-msgid "%s: Wrong size or value for input argument #%d.\n"
-msgstr "%s: Špatná velikost nebo hodnota vstupního argumentu #%d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 
 msgid "Inconsistent row/column dimensions.\n"
 msgstr ""
@@ -377,3 +348,27 @@ msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
 #, c-format
 msgid "%s: Incorrect assignment.\n"
 msgstr ""
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+#~ msgstr ""
+#~ "%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný název pole.\n"
+
+#~ msgid "%s: Wrong number of output arguments.\n"
+#~ msgstr "%s: Špatný počet výstupních argumentů.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
+#~ msgstr "%s: Špatný typ argumentu %d: Očekáván reálný vektor.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+#~ msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
+
+#~ msgid ""
+#~ "%s: input and output matrices  must have the same number of elements.\n"
+#~ msgstr "%s: vstupní a výstupní matice musí mít stejný počet prvků.\n"
+
+#~ msgid "%s: Wrong size or value for input argument #%d.\n"
+#~ msgstr "%s: Špatná velikost nebo hodnota vstupního argumentu #%d.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d.\n"
+#~ msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"

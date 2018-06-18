@@ -28,7 +28,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
     //  N.A. Bruinsma   T.U.Delft/Philips Research Eindhoven, see also
     //  Systems & Control Letters, vol. 14 pp. 287-293.
     if nargin<1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),..
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),..
         "h_norm",1))
     end
 

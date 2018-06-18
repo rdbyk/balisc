@@ -29,8 +29,12 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: A positive double expected\n"
 msgstr ""
 
+#
+# File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 55
+# File: modules/console/sci_gateway/cpp/sci_lines.cpp, line: 33
+# File: modules/console/sci_gateway/cpp/sci_prompt.cpp, line: 37
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -45,20 +49,26 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
 msgstr ""
 
+#
+# File: modules/console/sci_gateway/cpp/sci_prompt.cpp, line: 45
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
+#
+# File: modules/console/sci_gateway/cpp/sci_prompt.cpp, line: 62
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
+#
+# File: modules/console/sci_gateway/cpp/sci_tohome.cpp, line: 32
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 msgid "File"
@@ -697,6 +707,14 @@ msgstr ""
 msgid "Save file"
 msgstr ""
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 794
+# File: modules/console/src/console_fake_xml.c, line: 1061
+# File: modules/console/src/console_fake_xml.c, line: 1372
+# File: modules/console/src/console_fake_xml.c, line: 1694
+msgid "Demos"
+msgstr ""
+
 msgid "Environment"
 msgstr ""
 
@@ -776,6 +794,12 @@ msgid "Action name"
 msgstr ""
 
 msgid "Key binding"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1379
+# File: modules/console/src/console_fake_xml.c, line: 1701
+msgid "The demo interface is dockable"
 msgstr ""
 
 #, c-format

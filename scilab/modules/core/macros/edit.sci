@@ -18,7 +18,7 @@ function edit(macroname,linenumber)
     // linenumber : line number (as decimal number or literal one)
 
     if (nargin > 2) then
-        error(sprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "edit", 1));
+        error(sprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "edit", 1));
     end
 
     if (nargin >= 1 & type(macroname) ~= 10) then

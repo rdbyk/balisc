@@ -18,42 +18,8 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr "%s: Неверный размер аргумента %d: ожидался вещественный скаляр.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
-"значение.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Ошибка выделения памяти.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -67,9 +33,9 @@ msgstr "%s: Неверный размер входного аргумента �
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -88,6 +54,12 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr "%s: Неверное значение входного параметра №%d: «%s», «%s» или «%s».\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -97,9 +69,9 @@ msgstr ""
 msgid "Redefining permanent variable.\n"
 msgstr "Переопределение неизменной переменной.\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+#, fuzzy, c-format
+msgid "%s: Redefining permanent variable.\n"
+msgstr "Переопределение неизменной переменной.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -208,10 +180,6 @@ msgid "  for more details, show help page.\n"
 msgstr "  за подробностями обратитесь к справке.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Неверный тип входного параметра №%d.\n"
 
@@ -237,6 +205,12 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: Неверный входной аргумент %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
+"значение.\n"
 
 msgid "Could not retrieve sub-type.\n"
 msgstr "Не удалось получить подтип.\n"
@@ -272,10 +246,6 @@ msgstr ""
 "%d].\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s: Неверное число выходных аргументов: ожидалось %d."
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
 msgstr ""
 "%s: Неверное значение для входного аргумента №%d: ожидалось 0, 1 или 2.\n"
@@ -292,9 +262,21 @@ msgstr "%s: Неверное значение входного параметр�
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: Файл %s не существует.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
+
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr "%s: Неверное число входных аргуметов: ожидается %d."
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -304,12 +286,8 @@ msgstr "%s: Неверный размер входного параметра �
 msgid "%s: Wrong file version.xml %s.\n"
 msgstr "%s: Неверный файл version.xml модуля %s.\n"
 
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось не больше %d.\n"
-
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument #%d: %s\n"
 msgstr "%s : Неверное значение аргумента №%d: %s\n"
 
 #, c-format
@@ -332,6 +310,17 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался массив структур или "
 "типизированный список или матричноориентированный список.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось корректное имя "
+"функции.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
@@ -345,10 +334,6 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 #, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
 msgstr "%s: Неверный размер входных аргументов: ожидалось более, чем %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for output arguments: %d expected.\n"
-msgstr "%s: Неверный размер выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid ""
@@ -376,19 +361,31 @@ msgid "%s: function-name is incorrect.\n"
 msgstr "%s: неправильное имя функции.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: должно быть во множестве {№"
-"%s}.\n"
-
-#, c-format
 msgid "%s: function is disabled in debug mode.\n"
 msgstr "%s: функция отключена в режиме отладки.\n"
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+msgid "Warning"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: Проверьте: %s.\n"
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+#, c-format
+msgid "%s: This feature will be permanently removed in Scilab / %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected."
@@ -399,6 +396,17 @@ msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось «%s», «%s» или "
 "«%s».\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String matrix expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
+"значение.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -415,8 +423,8 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось строковое или "
 "целочисленное значение.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number is expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось чётное число.\n"
 
 #, c-format
@@ -462,32 +470,6 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось 'local', 'get', "
 "'global' или 'sorted'.\n"
-
-msgid "The SCI environment variable is not set.\n"
-msgstr "Переменная окружения SCI не установлена.\n"
-
-#, c-format
-msgid "Cannot load the module declaration file: %s.\n"
-msgstr "Не удалось загрузить файл описаний модуля: %s.\n"
-
-#, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Внимание: не удалось найти %s\n"
-
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr "Ошибка: не удалось сделать синтаксический разбор файла %s.\n"
-
-#, c-format
-msgid "%s module not found.\n"
-msgstr "Модуль %s не найден.\n"
-
-#, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr ""
-"Ошибка: Неправильный файл модуля %s. Определена кодировка «%s», а должна "
-"быть «%s».\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -566,21 +548,6 @@ msgid ""
 msgstr ""
 "Конец стека вызовов\n"
 "\n"
-
-msgid "ESI Group\n"
-msgstr "ESI Group\n"
-
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr "Авторское право (c) 2017-2018 (ESI Group)\n"
-
-msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
-msgstr "Авторское право (c) 2011-2017 (Scilab Enterprises)\n"
-
-msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr "Авторское право (c) 1989-2012 (INRIA)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Авторское право (c) 1989-2007 (ENPC)\n"
 
 #, c-format
 msgid "Recursion limit reached (%d).\n"
@@ -672,12 +639,8 @@ msgstr "%s: Проверьте: %s.\n"
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: Файл не существует: %s"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: Ожидался double (число двойной "
 "точности).\n"
@@ -689,30 +652,6 @@ msgstr "%s: %s является нередактируемой жёстко за
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: Неверное количество входных аргументов.\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Файл Perl не найден: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Команда perl не была задана."
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: Perl не найден в «%s»."
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Perl не найден.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Системная ошибка: выполняемая команда: %s"
 
 msgid "Scilab Version: "
 msgstr "Версия Scilab: "
@@ -769,3 +708,109 @@ msgstr "Размер"
 
 msgid "Bytes"
 msgstr "Байт"
+
+#~ msgid "%s: Can not read input argument #%d.\n"
+#~ msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+#~ msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+#~ msgstr "%s: Неверный размер аргумента %d: ожидался вещественный скаляр.\n"
+
+#~ msgid "%s: Memory allocation error.\n"
+#~ msgstr "%s: Ошибка выделения памяти.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d."
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected."
+#~ msgstr "%s: Неверное число выходных аргументов: ожидалось %d."
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected."
+#~ msgstr "%s: Неверное число входных аргуметов: ожидается %d."
+
+#~ msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество выходных аргументов: ожидалось не больше %d.\n"
+
+#~ msgid "%s: Wrong size for output arguments: %d expected.\n"
+#~ msgstr "%s: Неверный размер выходных аргументов: ожидалось %d.\n"
+
+#~ msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного аргумента №%d: должно быть во множестве {№"
+#~ "%s}.\n"
+
+#~ msgid "The SCI environment variable is not set.\n"
+#~ msgstr "Переменная окружения SCI не установлена.\n"
+
+#~ msgid "Cannot load the module declaration file: %s.\n"
+#~ msgstr "Не удалось загрузить файл описаний модуля: %s.\n"
+
+#~ msgid "Warning: Could not find %s\n"
+#~ msgstr "Внимание: не удалось найти %s\n"
+
+#~ msgid "Error: Could not parse file %s.\n"
+#~ msgstr "Ошибка: не удалось сделать синтаксический разбор файла %s.\n"
+
+#~ msgid "%s module not found.\n"
+#~ msgstr "Модуль %s не найден.\n"
+
+#~ msgid ""
+#~ "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' "
+#~ "found.\n"
+#~ msgstr ""
+#~ "Ошибка: Неправильный файл модуля %s. Определена кодировка «%s», а должна "
+#~ "быть «%s».\n"
+
+#~ msgid "ESI Group\n"
+#~ msgstr "ESI Group\n"
+
+#~ msgid "Copyright (c) 2017-2018 (ESI Group)\n"
+#~ msgstr "Авторское право (c) 2017-2018 (ESI Group)\n"
+
+#~ msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
+#~ msgstr "Авторское право (c) 2011-2017 (Scilab Enterprises)\n"
+
+#~ msgid "Copyright (c) 1989-2012 (INRIA)\n"
+#~ msgstr "Авторское право (c) 1989-2012 (INRIA)\n"
+
+#~ msgid "Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "Авторское право (c) 1989-2007 (ENPC)\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: Файл Perl не найден: %s"
+
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: Команда perl не была задана."
+
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: Perl не найден в «%s»."
+
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: Perl не найден.\n"
+
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: Системная ошибка: выполняемая команда: %s"

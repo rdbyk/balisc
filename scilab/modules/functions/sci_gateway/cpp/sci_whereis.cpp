@@ -30,14 +30,14 @@ types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, 
     /* Check the number of input argument */
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "whereis", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "whereis", 1);
         return types::Function::Error;
     }
 
     /* Check the number of output argument */
     if (_iRetCount != 1)
     {
-        Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "whereis", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "whereis", 1);
         return types::Function::Error;
     }
 

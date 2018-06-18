@@ -372,8 +372,8 @@ msgstr "%s: Неверное значение для индекса ярлыка
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидался скаляр.\n"
 
-#, c-format
-msgid "%s:  Wrong number of output argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s:  Wrong number of output arguments: %d to %d expected."
 msgstr "%s:  Неверное количество выходных аргументов: ожидалось от %d до %d."
 
 #, c-format
@@ -463,8 +463,8 @@ msgstr ""
 msgid "%s:  Wrong type for input argument #%d: string expected."
 msgstr "%s:  Неверный тип входного аргумента №%d: ожидалась строка."
 
-#, c-format
-msgid "%s:  Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s:  Wrong number of input arguments: %d to %d expected."
 msgstr "%s:  Неверное количество входных аргументов: ожидалось от %d до %d."
 
 #, c-format
@@ -2598,13 +2598,13 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался графический дескриптор или "
 "вещественное число.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected."
 msgstr ""
 "%s: Неверное количество входных аргументов: ожидалось по меньшей мере %d."
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d."
 
 #, c-format
@@ -2612,8 +2612,8 @@ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось целочисленное значение.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d, %d or %d expected."
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d, %d или %d."
 
 #, c-format
@@ -2631,16 +2631,16 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалась рамка шрифта.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A border expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалась рамка.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
 msgstr "%s: Неверное число входных аргуметов: ожидается %d."
 
 #, c-format
@@ -2657,10 +2657,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %s или %s.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
@@ -2715,8 +2711,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался uitree.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
@@ -2805,3 +2801,7 @@ msgstr "%s: Неверный тип %s: ожидалось вещественн�
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Неверный размер %s: ожидалось вещественное число.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"

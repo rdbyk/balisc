@@ -12,7 +12,7 @@
 
 function fr = freson(h)
     if nargin < 1 then
-        msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg, "freson", 1));
     end
     if and(typeof(h)<>["state-space","rational","zpk"]) then

@@ -62,13 +62,13 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
 
     if (in.size() != 1 && in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "svd", 1, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "svd", 1, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 4)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): At least %d expected.\n"), "svd", 4);
+        Scierror(78, _("%s: Wrong number of output arguments: At least %d expected.\n"), "svd", 4);
         return types::Function::Error;
     }
 
@@ -85,7 +85,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         {
             if (_iRetCount == 4)
             {
-                Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "svd", 1, 3);
+                Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "svd", 1, 3);
                 return types::Function::Error;
             }
             types::String* pStr = in[1]->getAs<types::String>();

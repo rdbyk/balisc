@@ -61,7 +61,7 @@ function clf(varargin)
         end
         job = varargin(2);
     else
-        msg = _("%s: Wrong number of input argument(s): %d to %d expected.")
+        msg = _("%s: Wrong number of input arguments: %d to %d expected.")
         error(msprintf(msg, "clf", 0, 2))
     end
 

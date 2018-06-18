@@ -67,24 +67,6 @@ msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
 msgstr "%s: Синтаксис x(j) разрешён только для строки cblock'ов.\n"
 
 #, c-format
-msgid "%s: Invalid field name.\n"
-msgstr "%s: Недопустимое имя поля.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось допустимое имя "
-"поля.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Неверный размер входного аргумента №%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments.\n"
-msgstr "%s: Неверное количество выходных аргументов.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: нельзя определить "
@@ -217,8 +199,8 @@ msgstr "%s: Неверный размер входных аргументов.\n
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: Неверные размеры аргументов.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
@@ -329,6 +311,10 @@ msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
 msgstr "%s: не реализовано для argin#1 матрицы и argin#2 гиперматрицы\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного аргумента №%d.\n"
+
+#, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr "%s: Случай вставки в разрежённую матрицу не реализован.\n"
 
@@ -347,29 +333,12 @@ msgid "%s: Field names mismatch.\n"
 msgstr "%s: Имена полей не совпадают.\n"
 
 #, c-format
+msgid "%s: Invalid field name.\n"
+msgstr "%s: Недопустимое имя поля.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
 msgstr "%s: Неверное значение входного аргумента №%d: неправильное имя поля.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидался вещественный вектор.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
-
-#, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
-msgstr ""
-"%s: входная и выходная матрицы должны иметь одинаковое число элементов.\n"
-
-#, c-format
-msgid "%s: Wrong size or value for input argument #%d.\n"
-msgstr "%s: Неверный размер или значение входного аргумента №%d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: Неверное значение входного аргумента №%d.\n"
 
 msgid "Inconsistent row/column dimensions.\n"
 msgstr "Несогласованные размеры по строкам/столбцам.\n"
@@ -411,3 +380,29 @@ msgstr "%s: Неверное количество входных аргумен�
 #, c-format
 msgid "%s: Incorrect assignment.\n"
 msgstr ""
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного аргумента №%d: ожидалось допустимое имя "
+#~ "поля.\n"
+
+#~ msgid "%s: Wrong number of output arguments.\n"
+#~ msgstr "%s: Неверное количество выходных аргументов.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
+#~ msgstr "%s: Неверный тип параметра %d: ожидался вещественный вектор.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+#~ msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
+
+#~ msgid ""
+#~ "%s: input and output matrices  must have the same number of elements.\n"
+#~ msgstr ""
+#~ "%s: входная и выходная матрицы должны иметь одинаковое число элементов.\n"
+
+#~ msgid "%s: Wrong size or value for input argument #%d.\n"
+#~ msgstr "%s: Неверный размер или значение входного аргумента №%d.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d.\n"
+#~ msgstr "%s: Неверное значение входного аргумента №%d.\n"

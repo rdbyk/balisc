@@ -18,10 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s : Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
@@ -29,13 +25,13 @@ msgstr ""
 msgid "%s : Wrong type for input argument #%d: String vector expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Falsche Anzahl Eingabeargumente: %d erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: falsche Anzahl an Eingangsargumenten: %d, %d oder %d erwartet.\n"
 
 #, c-format
 msgid "%s : second argument must be a unique id of a shared library.\n"
@@ -281,10 +277,6 @@ msgstr "%s: kann Datei nicht öffnen %s.\n"
 msgid "%s: Feature not available under Microsoft Windows.\n"
 msgstr "%s: Funktionalität unter MS Windows nicht verfügbar.\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Falsche Anzahl Eingabeargumente: %d erwartet.\n"
-
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
 "'haveacompiler' is only supported under Windows."
@@ -347,9 +339,9 @@ msgstr "   erzeuge eine Cleanerdatei\n"
 msgid "%s: function not available in NWNI mode.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): 3 to 5 expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: 3 to 5 expected.\n"
+msgstr "%s: Falsche Anzahl Eingabeargumente: %d erwartet.\n"
 
 #, c-format
 msgid "   Building JAR library %s\n"
@@ -549,8 +541,8 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: %d erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d,%d or %d expected.\n"
 msgstr "%s: falsche Anzahl an Eingangsargumenten: %d, %d oder %d erwartet.\n"
 
 #, c-format
@@ -585,8 +577,8 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Skalar erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: Falsche Anzahl Eingabewert(e): mindestens %d erwartet.\n"
 
 msgid "not found."

@@ -220,8 +220,8 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un valore "
 "intero positivo.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
@@ -240,8 +240,8 @@ msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr ""
 "%s: È stato trovato un colore sconosciuto in '%s' -> impostato a nero.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
@@ -250,7 +250,7 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s: la matita non è diagonalizzabile.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
 "%d.\n"
@@ -280,15 +280,14 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s: Non è possibile aprire né '%s' né '%s' né '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-"%d.\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s: Il fattore di normalizzazione m - 1 è zero.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: Il fattore di normalizzazione n - 1 è zero.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+#~ "%d.\n"

@@ -40,10 +40,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 
@@ -91,9 +87,11 @@ msgstr ""
 msgid "%s: Can not open File \"%s\"\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
+"%s: nombre de paràmetres d'entrada incorrecte: n'hi ha d'haver entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
@@ -165,9 +163,11 @@ msgstr ""
 msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
+"%s: nombre de paràmetres d'entrada incorrecte: n'hi ha d'haver entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: %s is not a valid module file.\n"
@@ -220,37 +220,9 @@ msgstr ""
 msgid "Undefined environment variable %s.\n"
 msgstr "Variable d'entorn %s no definida.\n"
 
-msgid "Too many files opened!\n"
-msgstr "Hi ha massa fitxers oberts.\n"
-
-#, c-format
-msgid "File \"%s\" already exists.\n"
-msgstr "Ja existeix el fitxer \"%s\".\n"
-
-#, c-format
-msgid "\"%s\" directory write access denied.\n"
-msgstr "\"%s\" no teniu accés d'escriptura al directori.\n"
-
-#, c-format
-msgid "File \"%s\" does not exist.\n"
-msgstr "No existeix el fitxer \"%s\".\n"
-
-#, c-format
-msgid "File \"%s\" read access denied.\n"
-msgstr "No teniu accés de lectura al fitxer \"%s\".\n"
-
-msgid "unmanaged error by v2cunit.\n"
-msgstr "Error no gestionat de v2cunit.\n"
-
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s: la llegenda no encaixa en el context actual. S'ignora\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: nombre de paràmetres d'entrada incorrecte: n'hi ha d'haver entre %d i "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -277,3 +249,21 @@ msgstr "%s: Error durant l'execució %s"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr ""
+
+#~ msgid "Too many files opened!\n"
+#~ msgstr "Hi ha massa fitxers oberts.\n"
+
+#~ msgid "File \"%s\" already exists.\n"
+#~ msgstr "Ja existeix el fitxer \"%s\".\n"
+
+#~ msgid "\"%s\" directory write access denied.\n"
+#~ msgstr "\"%s\" no teniu accés d'escriptura al directori.\n"
+
+#~ msgid "File \"%s\" does not exist.\n"
+#~ msgstr "No existeix el fitxer \"%s\".\n"
+
+#~ msgid "File \"%s\" read access denied.\n"
+#~ msgstr "No teniu accés de lectura al fitxer \"%s\".\n"
+
+#~ msgid "unmanaged error by v2cunit.\n"
+#~ msgstr "Error no gestionat de v2cunit.\n"

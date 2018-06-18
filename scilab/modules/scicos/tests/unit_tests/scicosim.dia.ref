@@ -7,5 +7,5 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "scicosim", 6);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "scicosim", 6);
 assert_checkerror("scicosim()", refMsg);

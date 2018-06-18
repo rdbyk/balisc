@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_ordmmd(types::typed_list &in, int _iRetCount, t
 {
     if (in.size() != 3)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "ordmmd", 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "ordmmd", 3);
         return types::Function::Error;
     }
 

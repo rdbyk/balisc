@@ -14,7 +14,7 @@ function datatipMove(tip_handle,ax)
     //moves a datatip along the associated curve
     // tip_handle : handle on the given datatip compound;
     if nargin<1 then
-        error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),"datatipMove",1))
+        error(msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"),"datatipMove",1))
     end
 
     if type(tip_handle)<>9|size(tip_handle,"*")<>1|or(tip_handle.type<>"Datatip") then

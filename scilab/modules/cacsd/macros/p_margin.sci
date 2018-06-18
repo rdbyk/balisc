@@ -13,7 +13,7 @@
 function [phm,fr]=p_margin(h)
     //compute the phase margin of a SISO transfer function
     if nargin < 1 then
-        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"g_margin",1));
+        error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"g_margin",1));
     end
     if and(typeof(h)<>["state-space","rational","zpk"]) then
         ierr=execstr("[phm,fr]=%"+overloadname(h)+"_p_margin(h)","errcatch")

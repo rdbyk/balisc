@@ -78,14 +78,14 @@ msgstr ""
 msgid "%s: Creation of requested fftw plan failed.\n"
 msgstr "%s: спроба створення потрібного плану fftw зазнала невдачі.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
 "%d параметрів.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format

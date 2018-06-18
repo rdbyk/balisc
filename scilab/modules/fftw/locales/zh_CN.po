@@ -69,13 +69,13 @@ msgstr ""
 msgid "%s: Creation of requested fftw plan failed.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"

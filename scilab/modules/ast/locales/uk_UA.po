@@ -104,6 +104,14 @@ msgstr ""
 "%ls: помилковий тип параметра %d: мало бути вказано дійсне числове "
 "значення.\n"
 
+#
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1519
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1582
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1647
+#, c-format
+msgid "%ls: Evaluation of argument %d yields no result.\n"
+msgstr ""
+
 #, c-format
 msgid "Recursion limit reached (%d).\n"
 msgstr "Перевищено обмеження на рекурсію (%d).\n"
@@ -149,19 +157,6 @@ msgstr ""
 
 msgid "Inconsistent row/column dimensions.\n"
 msgstr "Несумісне співвідношення рядки/стовпчики.\n"
-
-msgid ""
-"operation +: Warning adding a matrix with the empty matrix old behaviour.\n"
-msgstr ""
-"дія +: попередження: додавання матриці і порожньої матриці у застарілій "
-"формі.\n"
-
-msgid ""
-"operation +: Warning adding a matrix with the empty matrix will give an "
-"empty matrix result.\n"
-msgstr ""
-"операція +: попередження: додавання матриці до порожньої матриці дає порожню "
-"матрицю.\n"
 
 msgid "variables don't have the same formal variable"
 msgstr "у змінних немає спільної формальної змінної"
@@ -216,19 +211,6 @@ msgstr "Некоректний степінь: степінь має бути д
 
 msgid "Invalid exponent.\n"
 msgstr "Некоректний показник.\n"
-
-msgid ""
-"operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
-msgstr ""
-"дія -: попередження: додавання матриці і порожньої матриці у застарілій "
-"формі.\n"
-
-msgid ""
-"operation -: Warning adding a matrix with the empty matrix will give an "
-"empty matrix result.\n"
-msgstr ""
-"операція -: попередження: додавання матриці до порожньої матриці дає порожню "
-"матрицю.\n"
 
 #, c-format
 msgid "%ls: Cannot open file %ls.\n"
@@ -322,8 +304,8 @@ msgstr "Не вдалося завантажити бібліотеку %s\n"
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr "Не вдалося завантажити функцію %s у бібліотеці %s: %s\n"
 
-#, c-format
-msgid "Functions files location : %s.\n"
+#, fuzzy
+msgid "Functions files location : "
 msgstr "Розташування файлів функції: %s.\n"
 
 #, c-format
@@ -336,24 +318,20 @@ msgstr "Не можна вставляти кратний запис до спи
 msgid "Index out of bounds.\n"
 msgstr "Індекс поза припустимими межами.\n"
 
-msgid "Wrong number of input arguments: This function has no input argument.\n"
-msgstr ""
-"Помилкова кількість вхідних параметрів: для функції не передбачено вхідних "
-"параметрів\n"
-
-msgid "Wrong number of input arguments.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "Помилкова кількість параметрів.\n"
 
-#, c-format
-msgid "Undefined variable '%s' in function '%s'.\n"
-msgstr "Невизначена змінна «%s» у функції «%s».\n"
+#, fuzzy, c-format
+msgid "%s: Undefined variable '%s'.\n"
+msgstr "Невизначена змінна: %s\n"
 
-#, c-format
-msgid "%s: Wrong type for %s: A list expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for '%s': A list expected.\n"
 msgstr "%s: помилковий тип %s: слід використовувати список.\n"
 
-#, c-format
-msgid "List element number %d is Undefined.\n"
+#, fuzzy, c-format
+msgid "%s: Element number #%d in '%s' is undefined.\n"
 msgstr "Елемент списку із номером %d є невизначеним.\n"
 
 #, c-format
@@ -466,3 +444,40 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+
+#~ msgid ""
+#~ "operation +: Warning adding a matrix with the empty matrix old "
+#~ "behaviour.\n"
+#~ msgstr ""
+#~ "дія +: попередження: додавання матриці і порожньої матриці у застарілій "
+#~ "формі.\n"
+
+#~ msgid ""
+#~ "operation +: Warning adding a matrix with the empty matrix will give an "
+#~ "empty matrix result.\n"
+#~ msgstr ""
+#~ "операція +: попередження: додавання матриці до порожньої матриці дає "
+#~ "порожню матрицю.\n"
+
+#~ msgid ""
+#~ "operation -: Warning adding a matrix with the empty matrix old "
+#~ "behaviour.\n"
+#~ msgstr ""
+#~ "дія -: попередження: додавання матриці і порожньої матриці у застарілій "
+#~ "формі.\n"
+
+#~ msgid ""
+#~ "operation -: Warning adding a matrix with the empty matrix will give an "
+#~ "empty matrix result.\n"
+#~ msgstr ""
+#~ "операція -: попередження: додавання матриці до порожньої матриці дає "
+#~ "порожню матрицю.\n"
+
+#~ msgid ""
+#~ "Wrong number of input arguments: This function has no input argument.\n"
+#~ msgstr ""
+#~ "Помилкова кількість вхідних параметрів: для функції не передбачено "
+#~ "вхідних параметрів\n"
+
+#~ msgid "Undefined variable '%s' in function '%s'.\n"
+#~ msgstr "Невизначена змінна «%s» у функції «%s».\n"

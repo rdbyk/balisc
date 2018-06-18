@@ -216,7 +216,7 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
 
     if ( Rhs != inarg + 1 )
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, inarg + 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, inarg + 1);
         return 1;
     }
 

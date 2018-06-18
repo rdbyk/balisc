@@ -19,8 +19,8 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
@@ -40,13 +40,13 @@ msgid "%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 多項式 '%ls' を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
@@ -77,9 +77,9 @@ msgid "%s: Wrong size for input argument #%d : A scalar expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d : Valid variable name expected.\n"
+"%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 有効な変数名を指定してください.\n"
 
@@ -180,6 +180,12 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 論理値スカラーを指定してくださ"
 "い.\n"
 
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : Valid variable name expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 有効な変数名を指定してください.\n"
+
 msgid "Polynomials"
 msgstr "多項式"
 
@@ -227,10 +233,6 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 線形動的システムまたは多項式配列を指定"
 "してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""

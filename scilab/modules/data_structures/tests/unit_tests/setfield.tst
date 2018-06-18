@@ -22,9 +22,9 @@ assert_checkequal(b, list(2));
 
 // error
 assert_checkfalse(execstr("setfield()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "setfield", 3);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "setfield", 3);
 assert_checkerror("setfield()", refMsg);
 
 assert_checkfalse(execstr("[c,d] = setfield(1,10,a)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "setfield", 1);
+refMsg = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "setfield", 1);
 assert_checkerror("[c,d] = setfield(1,10,a)", refMsg);

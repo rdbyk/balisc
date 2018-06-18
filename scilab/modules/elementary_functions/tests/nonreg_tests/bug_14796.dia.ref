@@ -19,5 +19,5 @@ assert_checkequal(res, expected);
 res = ind2sub([4 2 5], []);
 assert_checkequal(res, expected);
 assert_checkfalse(execstr("[resi, resj] = ind2sub([4 2], [])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "ind2sub", 1);
+refMsg = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "ind2sub", 1);
 assert_checkerror("[resi, resj] = ind2sub([4 2], [])", refMsg);

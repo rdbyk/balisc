@@ -39,10 +39,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: No hay más memoria.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 
@@ -90,9 +86,9 @@ msgstr ""
 msgid "%s: Can not open File \"%s\"\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Número incorrecto de argumento(s) de salida.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
@@ -163,9 +159,10 @@ msgstr ""
 msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
 
 #, c-format
 msgid "%s: %s is not a valid module file.\n"
@@ -218,34 +215,8 @@ msgstr ""
 msgid "Undefined environment variable %s.\n"
 msgstr "Variable de entorno no definida %s.\n"
 
-msgid "Too many files opened!\n"
-msgstr "¡Demasiados archivos abiertos!\n"
-
-#, c-format
-msgid "File \"%s\" already exists.\n"
-msgstr "El archivo \"%s\" ya existe.\n"
-
-#, c-format
-msgid "\"%s\" directory write access denied.\n"
-msgstr "Acceso de escritura denegado en el directorio \"%s\".\n"
-
-#, c-format
-msgid "File \"%s\" does not exist.\n"
-msgstr "El archivo \"%s\" no existe.\n"
-
-#, c-format
-msgid "File \"%s\" read access denied.\n"
-msgstr "Acceso de lectura al archivo \"%s\" denegado.\n"
-
-msgid "unmanaged error by v2cunit.\n"
-msgstr "error no manejado por v2cunit.\n"
-
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -275,3 +246,21 @@ msgstr "%s: error durante la ejecución de: %s"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr ""
+
+#~ msgid "Too many files opened!\n"
+#~ msgstr "¡Demasiados archivos abiertos!\n"
+
+#~ msgid "File \"%s\" already exists.\n"
+#~ msgstr "El archivo \"%s\" ya existe.\n"
+
+#~ msgid "\"%s\" directory write access denied.\n"
+#~ msgstr "Acceso de escritura denegado en el directorio \"%s\".\n"
+
+#~ msgid "File \"%s\" does not exist.\n"
+#~ msgstr "El archivo \"%s\" no existe.\n"
+
+#~ msgid "File \"%s\" read access denied.\n"
+#~ msgstr "Acceso de lectura al archivo \"%s\" denegado.\n"
+
+#~ msgid "unmanaged error by v2cunit.\n"
+#~ msgstr "error no manejado por v2cunit.\n"

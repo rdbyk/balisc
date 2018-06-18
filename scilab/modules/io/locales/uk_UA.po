@@ -41,12 +41,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано рядковий "
@@ -99,8 +93,8 @@ msgstr "%s: файла «%s» не існує або доступ до чита�
 msgid "%s: Can not open File \"%s\"\n"
 msgstr "%s: не вдалося відрити файл «%s»\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -184,8 +178,8 @@ msgstr ""
 "Виявлено застарілу двійкову бібліотеку. Будь ласка, повторно зберіть "
 "бібліотеку у Scilab 6.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід вказати принаймні %d.\n"
 
@@ -248,38 +242,10 @@ msgstr "Кінець файла у рядку %d.\n"
 msgid "Undefined environment variable %s.\n"
 msgstr "Невизначена змінна середовища %s.\n"
 
-msgid "Too many files opened!\n"
-msgstr "Відкрито забагато файлів!\n"
-
-#, c-format
-msgid "File \"%s\" already exists.\n"
-msgstr "Файл з назвою «%s» вже існує.\n"
-
-#, c-format
-msgid "\"%s\" directory write access denied.\n"
-msgstr "Запис до каталогу «%s» заборонено.\n"
-
-#, c-format
-msgid "File \"%s\" does not exist.\n"
-msgstr "Не виявлено файла з назвою «%s».\n"
-
-#, c-format
-msgid "File \"%s\" read access denied.\n"
-msgstr "Читання файла «%s» заборонено.\n"
-
-msgid "unmanaged error by v2cunit.\n"
-msgstr "непридатна до обробки помилка v2cunit.\n"
-
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""
 "%s: умовні позначення не відповідають поточному контексту. Пропущено.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -311,3 +277,31 @@ msgid ""
 msgstr ""
 "%s: спроба виконати команду завершилася помилкою з кодом %s та таким "
 "повідомленням:\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"
+
+#~ msgid "Too many files opened!\n"
+#~ msgstr "Відкрито забагато файлів!\n"
+
+#~ msgid "File \"%s\" already exists.\n"
+#~ msgstr "Файл з назвою «%s» вже існує.\n"
+
+#~ msgid "\"%s\" directory write access denied.\n"
+#~ msgstr "Запис до каталогу «%s» заборонено.\n"
+
+#~ msgid "File \"%s\" does not exist.\n"
+#~ msgstr "Не виявлено файла з назвою «%s».\n"
+
+#~ msgid "File \"%s\" read access denied.\n"
+#~ msgstr "Читання файла «%s» заборонено.\n"
+
+#~ msgid "unmanaged error by v2cunit.\n"
+#~ msgstr "непридатна до обробки помилка v2cunit.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d.\n"

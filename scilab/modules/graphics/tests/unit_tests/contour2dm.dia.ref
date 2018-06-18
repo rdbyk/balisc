@@ -52,10 +52,10 @@ assert_checkalmostequal(xc, xc_ref);
 assert_checkalmostequal(yc, yc_ref);
 // Error messages
 // Number of arguments
-err = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "contour2dm", 5);
+err = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "contour2dm", 5);
 assert_checkerror("[xc,yc] = contour2dm()", err);
 assert_checkerror("[xc,yc] = contour2dm(""A"", nodes(:,2), [(1:size(m, 1))'', m, (1:size(m, 1))''], z, [-0.5, -0.25, 0, 0.25, 0.5], ""arg6"")", err);
-err = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "contour2dm", 2);
+err = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "contour2dm", 2);
 assert_checkerror("contour2dm(""A"", nodes(:,2), [(1:size(m, 1))'', m, (1:size(m, 1))''], z, [-0.5, -0.25, 0, 0.25, 0.5])", err);
 assert_checkerror("[xc,yc,zc] = contour2dm(""A"", nodes(:,2), [(1:size(m, 1))'', m, (1:size(m, 1))''], z, [-0.5, -0.25, 0, 0.25, 0.5])", err);
 // Type of arguments

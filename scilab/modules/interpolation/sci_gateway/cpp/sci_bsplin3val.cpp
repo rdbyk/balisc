@@ -46,14 +46,14 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
     // *** check the minimal number of input args. ***
     if (in.size() != 5)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "bsplin3val", 5);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "bsplin3val", 5);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "bsplin3val", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "bsplin3val", 1);
         return types::Function::Error;
     }
 

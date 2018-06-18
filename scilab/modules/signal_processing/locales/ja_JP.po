@@ -19,6 +19,10 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 範囲 %s とする必要があります.\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
@@ -45,11 +49,6 @@ msgstr "%s: メモリ割当エラー.\n"
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr "%s: メモリ確保エラー.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -180,7 +179,7 @@ msgstr "未定義の関数 '%ls'.\n"
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 93
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 154
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
@@ -439,19 +438,8 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています: %s または %sを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s: 引数 #%d と #%d の大きさは同じにする必要があります.\n"
-
-#
-# File: macros/fft2.sci, line: 57
-# File: macros/trans.sci, line: 47
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が不正です: %d または、%d を想定します。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
@@ -750,3 +738,16 @@ msgstr ""
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr "%s: 周波数範囲の終端近くで急峻過ぎる変化です.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#
+# File: macros/fft2.sci, line: 57
+# File: macros/trans.sci, line: 47
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s: 入力引数の数が不正です: %d または、%d を想定します。\n"

@@ -53,13 +53,13 @@ types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &
     /* check min/max lhs/rhs arguments of scilab function */
     if (in.size() < 1 || in.size() > iMaxRhs)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), cname.data(), 1, iMaxRhs);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), cname.data(), 1, iMaxRhs);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), cname.data(), 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), cname.data(), 1);
         return types::Function::Error;
     }
 

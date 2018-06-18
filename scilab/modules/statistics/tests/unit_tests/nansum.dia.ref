@@ -8,7 +8,7 @@
 // unit tests for nansum function
 // =============================================================================
 assert_checkfalse(execstr("nansum()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "nansum", 1, 2);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "nansum", 1, 2);
 assert_checkerror("nansum()", refMsg);
 assert_checkfalse(execstr("nansum(""s"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real or complex, boolean, polynomial matrix expected.\n"), "nansum", 1);

@@ -19,12 +19,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
-
-#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
@@ -48,8 +42,8 @@ msgstr ""
 msgid "%s: Incompatible input argument.\n"
 msgstr "%s: несумісний вхідний параметр.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -63,13 +57,9 @@ msgstr ""
 msgid "%s: insufficient working storage"
 msgstr "%s: недостатньо робочого сховища даних"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d  expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d  expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
 msgid ""
@@ -84,8 +74,8 @@ msgstr ""
 "Помилкове значення параметра №%d: елемент керування LU-розкладом втратив "
 "чинність.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути не більше %d.\n"
 
 #, c-format
@@ -162,11 +152,16 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мала бути матриця "
 "розмірності %d x %d.\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A m-by-2 matrix expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця "
-"розмірності %d.\n"
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця m на n.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідних параметрів %d: мало бути використано "
+"вектор розмірності %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
@@ -447,12 +442,6 @@ msgid " Insufficient working storage in sfinit"
 msgstr " Недостатній об’єм робочого сховища даних у sfinit"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
-
-#, c-format
 msgid "Arguments:\n"
 msgstr "Параметри:\n"
 
@@ -641,3 +630,22 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
 "«%s».\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: мала бути матриця "
+#~ "розмірності %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d.\n"

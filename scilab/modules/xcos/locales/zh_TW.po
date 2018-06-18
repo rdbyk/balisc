@@ -19,14 +19,6 @@ msgstr ""
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 
@@ -1084,10 +1076,6 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: 不能匯出( export) %s 到 %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 輸入參數個數錯誤: 應該有 %d 至 %d 個.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
 
@@ -1142,9 +1130,9 @@ msgstr "%s: 無法建立 %s 目錄, 請檢查你是否有存取該目錄的權�
 msgid "Unable to open %s"
 msgstr "無法開啟 %s。"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: 輸入參數個數錯誤: 應該有 %d 至 %d 個.\n"
 
 #, c-format
 msgid "%s: Not supported format %s.\n"

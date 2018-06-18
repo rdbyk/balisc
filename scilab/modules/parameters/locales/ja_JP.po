@@ -192,8 +192,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定して
 msgid "%s: parameter %s not defined"
 msgstr "%s: パラメータ %s は定義されていません"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 偶数を指定してください.\n"
 
 #, c-format

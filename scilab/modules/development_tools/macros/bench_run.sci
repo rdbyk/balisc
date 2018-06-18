@@ -112,7 +112,7 @@ function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
             bench_add_onebench(bench_list_reduced(i, 1), bench_list_reduced(i, 2));
         end
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "bench_run", 0, 4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "bench_run", 0, 4));
     end
 
     // =======================================================

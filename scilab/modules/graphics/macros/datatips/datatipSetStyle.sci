@@ -17,7 +17,7 @@ function datatipSetStyle(curve_handle,t,boxed,labeled)
     // boxed        : a boolean
     // labeled      : a boolean
     if nargin<1 then
-        error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),...
+        error(msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"),...
         "datatipSetType",1))
     end
     if nargin<4 then labeled=%t,end

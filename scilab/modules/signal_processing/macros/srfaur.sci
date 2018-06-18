@@ -35,7 +35,7 @@ function [p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)
         p=l'*l;
     else,
         if nargin<>9 then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"srfaur",9));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"srfaur",9));
         end;
     end;
     //recursion

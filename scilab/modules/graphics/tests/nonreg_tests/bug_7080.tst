@@ -23,7 +23,7 @@ f13="Sgrayplot";
 f14="TitleLabel";
 
 //bar
-msgerr11=msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),f1,1,5);
+msgerr11=msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),f1,1,5);
 assert_checkerror("bar(gca(),[1 2],[1 2],0.8,""blue"",""grouped"")", msgerr11);
 msgerr12=msprintf(gettext("%s: Wrong type for input arguments: Matrix expected for %s, %s and %s.\n"),"bar", "x", "y", "width");
 assert_checkerror("bar(gca(),[""s"" ""d""],[1 2 3])", msgerr12);
@@ -31,7 +31,7 @@ msgerr13=msprintf(_("%s: Wrong size for input arguments #%d and #%d: The number 
 assert_checkerror("bar([1 2],[1 2 3],0.8,""blue"")", msgerr13);
 
 //barh
-msgerr21=msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),f2,1,5);
+msgerr21=msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),f2,1,5);
 assert_checkerror("barh(gca(),[1 2],[1 2],0.8,""blue"",""grouped"")", msgerr21);
 msgerr22=msprintf(gettext("%s: Wrong type for input arguments: Matrix expected for %s, %s and %s.\n"),"barh", "x", "y", "width");
 assert_checkerror("barh(gca(),[""s"" ""d""],[1 2 3])", msgerr22);
@@ -41,7 +41,7 @@ msgerr24=msprintf(gettext("%s: Wrong type for input argument #%d: string expecte
 assert_checkerror("barh(1,2,3,4,5)",msgerr24);
 
 //barhomogenize
-msgerr31=msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),f3,0,3);
+msgerr31=msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),f3,0,3);
 assert_checkerror("barhomogenize(gca(),[1 2],[1 2],0.8,""blue"",""grouped"")", msgerr31);
 msgerr32=msprintf(_("%s: Could not find any bar in the current graphic.\n"), "barhomogenize");
 assert_checkerror("barhomogenize(gca(),""grouped"",3)", msgerr32);

@@ -80,12 +80,12 @@ msgstr "розріджена матриця з булівських значен
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
 "%d параметрів.\n"
@@ -93,32 +93,32 @@ msgstr ""
 msgid "matrix"
 msgstr "матриця"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід вказати принаймні %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути вказано не більше %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість виведених параметрів: мало бути виведено принаймні "
 "%d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at most %d expected.\n"
 msgstr ""
 "%s: помилкова кількість виведених параметрів: мало бути виведено не більше "
 "%d.\n"

@@ -31,7 +31,7 @@ Function::ReturnValue sci_isequal(typed_list &in, int _iRetCount, typed_list &ou
 {
     if (in.size() <= 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): more than %d expected.\n"), "isequal", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: more than %d expected.\n"), "isequal", 1);
         return Function::Error;
     }
 

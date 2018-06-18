@@ -20,14 +20,14 @@ types::Function::ReturnValue sci_cppfoo(types::typed_list &in, int _iRetCount, t
     /* check that we have only 2 input arguments */
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "cppfoo", 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "cppfoo", 2);
         return types::Function::Error;
     }
 
     /* check that we have only 2 output argument */
     if (_iRetCount != 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "cppfoo", 2);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected."), "cppfoo", 2);
         return types::Function::Error;
     }
 

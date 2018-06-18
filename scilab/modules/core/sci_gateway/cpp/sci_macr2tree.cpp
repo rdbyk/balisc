@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected."), fname, 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected."), fname, 1);
         return types::Function::Error;
     }
 

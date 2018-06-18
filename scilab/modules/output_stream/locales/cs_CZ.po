@@ -157,14 +157,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr "  (pokrč) %s\n"
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr "     (konec) %s\n"
-
 msgid ""
 "*** Execution stopped after a warning. ***\n"
 "Set warning(\"on\") to continue execution after a warning.\n"
@@ -197,3 +189,9 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván stavový model.\n
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"
 msgstr "%s: systém nemůže být na této stránce zobrazen.\n"
+
+#~ msgid "  (cont'd) %s\n"
+#~ msgstr "  (pokrč) %s\n"
+
+#~ msgid "     (end) %s\n"
+#~ msgstr "     (konec) %s\n"

@@ -14,7 +14,7 @@ function myTree = uiCreateTree(parentNode, varargin)
 
     //Input arguments checking
     if nargin == 0 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "uiCreateTree",1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "uiCreateTree",1));
         return;
     end
 

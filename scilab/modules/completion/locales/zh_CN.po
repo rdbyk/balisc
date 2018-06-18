@@ -17,12 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr "%s：输入参数的数目错误：应该为%d到%d 个。"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected."
 msgstr "%s：输出参数的数目错误：应该为%d到%d 个。"
 
 #, c-format
@@ -33,8 +33,8 @@ msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
 msgstr "%s：输出参数的数目错误：应该为%d个。"
 
 #, c-format

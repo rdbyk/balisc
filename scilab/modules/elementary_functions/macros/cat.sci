@@ -18,7 +18,7 @@ function  y = cat(dim, varargin)
     // y : concatenated array
 
     if nargin < 2 then
-        msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg,"cat", 1));
     end
 

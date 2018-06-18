@@ -110,14 +110,8 @@ msgstr ""
 "можуть бути неточними.\n"
 "\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
@@ -246,8 +240,8 @@ msgid "%s: Wrong type for input argument #%d: String \"b\" expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати рядок «b».\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or more expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або більше.\n"
 
 #, c-format
@@ -329,8 +323,8 @@ msgstr ""
 msgid "%s: This method is NOT implemented.\n"
 msgstr "%s: цей метод ще не реалізовано.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -519,7 +513,7 @@ msgid "Undefined function '%ls'.\n"
 msgstr "Невизначене функція «%ls».\n"
 
 #, fuzzy, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr "Функцію користувача «%s» не встановлено.\n"
 
 #, c-format
@@ -941,12 +935,6 @@ msgstr "%s: вагова матриця має бути квадратною."
 msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 "%s: якщо функцію задано явно, користувач має вказати вихідний розмір G."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -1864,6 +1852,15 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
 "значення.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"

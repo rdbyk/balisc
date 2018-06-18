@@ -7,9 +7,9 @@
 //
 // <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5umount", 2);
+msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "h5umount", 2);
 assert_checkerror("h5umount()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5umount", 2);
+msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "h5umount", 2);
 assert_checkerror("h5umount(42)",msgerr,77);
 msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A H5Object expected.\n"), "h5umount", 1);
 assert_checkerror("h5umount(42,42)",msgerr,999);

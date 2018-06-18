@@ -49,9 +49,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 輸入參數的個數不對: 應該是 %d 或 %d 個.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
@@ -69,9 +69,9 @@ msgstr ""
 msgid "%s: LAPACK error n%d.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數的個數不對: 應該是 %d 或 %d 個.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
@@ -103,10 +103,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
-msgstr ""
-
 msgid "Warning :\n"
 msgstr ""
 
@@ -127,6 +123,10 @@ msgid "%s: %s and %s must have equal number of rows.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 
@@ -138,9 +138,9 @@ msgstr ""
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: 輸入參數的個數不對: 應該是 %d 或 %d 個.\n"
 
 #
 # File: sci_gateway/c/sci_schur.c, line: 109
@@ -211,9 +211,9 @@ msgstr ""
 msgid "%s: Error return from DTGEVC.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
+msgstr "%s: 輸入參數的個數不對: 應該是 %d 或 %d 個.\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
@@ -291,10 +291,6 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: must be %d, %d, %s, '%s' or '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
@@ -425,3 +421,15 @@ msgid ""
 "%s: Wrong value for input argument #%d: Requested rank is greater than "
 "matrix dimension."
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 要求之秩大於矩陣之維度."
+
+#
+# File: macros/range.sci, line: 21
+# File: macros/cond.sci, line: 16
+# File: macros/trace.sci, line: 17
+# File: macros/trace.sci, line: 23
+# File: macros/trace.sci, line: 31
+# File: macros/trace.sci, line: 41
+# File: macros/trace.sci, line: 50
+#, fuzzy, c-format
+msgid "%s: Wrong size of input argument #%d: expected a square matrix.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為方陣.\n"

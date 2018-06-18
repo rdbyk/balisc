@@ -11,7 +11,7 @@
 // =============================================================================
 
 assert_checkfalse(execstr("umf_lusolve()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "umf_lusolve", 2, 4);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "umf_lusolve", 2, 4);
 assert_checkerror("umf_lusolve()", refMsg);
 
 assert_checkfalse(execstr("umf_lusolve(1,1)"   ,"errcatch") == 0);

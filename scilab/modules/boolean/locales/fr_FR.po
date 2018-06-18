@@ -22,10 +22,6 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d à %d attendu(s).\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
 
@@ -43,16 +39,18 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid ""
 "%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 "%s : Type erroné pour l'argument d'entrée n°%d : entier positif attendu.\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments de sortie : %d à %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"

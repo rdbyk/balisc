@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, typ
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "host", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "host", 1);
         return types::Function::Error;
     }
 

@@ -18,41 +18,8 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: No hi ha més memòria.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Error de memòria.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d'arguments de sortida: Han de ser entre %d i %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Nombre d'arguments de sortida incorrecte: Hi ha d'haver %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -67,9 +34,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Han de ser entre %d i %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -93,6 +61,12 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s', '%s', o "
 "'%s'.\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -100,8 +74,12 @@ msgstr ""
 msgid "Redefining permanent variable.\n"
 msgstr ""
 
+#
+# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 49
+# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 73
+# File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 68
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "%s: Redefining permanent variable.\n"
 msgstr ""
 
 #, c-format
@@ -209,11 +187,6 @@ msgid "  for more details, show help page.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Han de ser entre %d i %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte.\n"
 
@@ -239,6 +212,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 msgid "Could not retrieve sub-type.\n"
@@ -272,10 +249,6 @@ msgstr ""
 "[%d,%d].\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
 msgstr ""
 
@@ -294,9 +267,22 @@ msgstr ""
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: El fitxer %s no existeix.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
+msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Nombre incorrecte d'arguments de sortida: Han de ser entre %d i %d.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -308,13 +294,10 @@ msgstr ""
 msgid "%s: Wrong file version.xml %s.\n"
 msgstr "%s: El fitxer version.xml %s és incorrecte.\n"
 
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument #%d: %s\n"
 msgstr ""
-
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser \"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
@@ -334,6 +317,18 @@ msgid ""
 "expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de text.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser major que 0.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
@@ -344,10 +339,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for output arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -372,15 +363,30 @@ msgid "%s: function-name is incorrect.\n"
 msgstr "%s: El nom de la funció no és correcte.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: function is disabled in debug mode.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+msgid "Warning"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: Comproveu: %s.\n"
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+#, c-format
+msgid "%s: This feature will be permanently removed in Scilab / %s.\n"
 msgstr ""
 
 #, c-format
@@ -390,6 +396,18 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de text.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser \"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -403,9 +421,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number is expected.\n"
 msgstr ""
+"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
 
 #, c-format
 msgid "%s: Field names must be strings.\n"
@@ -446,32 +465,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'local', 'get', 'global' or 'sorted' "
 "expected.\n"
 msgstr ""
-
-msgid "The SCI environment variable is not set.\n"
-msgstr "No s'ha establert la variable d'entorn SCI.\n"
-
-#, c-format
-msgid "Cannot load the module declaration file: %s.\n"
-msgstr "No s'ha pogut carregar el fitxer de declaració del mòdul: %s.\n"
-
-#, c-format
-msgid "Warning: Could not find %s\n"
-msgstr ""
-
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr "Error: No s'ha pogut analitzar el fitxer %s.\n"
-
-#, c-format
-msgid "%s module not found.\n"
-msgstr "No s'ha trobat el mòdul %s.\n"
-
-#, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr ""
-"Error: El fitxer de mòdul %s no és vàlid (la codificació no és '%s') Està "
-"codificat en '%s'.\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -535,21 +528,6 @@ msgstr ""
 msgid ""
 "End of stack\n"
 "\n"
-msgstr ""
-
-msgid "ESI Group\n"
-msgstr ""
-
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr ""
-
-msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
-msgstr ""
-
-msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr ""
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr ""
 
 #, c-format
@@ -640,14 +618,11 @@ msgstr "%s: Comproveu: %s.\n"
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: No existeix el fitxer: %s"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr ""
-"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"real.\n"
 
 #, c-format
 msgid "%s: %s is an uneditable hard coded function.\n"
@@ -656,32 +631,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: No es pot trobar el fitxer Perl: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de text.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: No s'ha especificat cap comanda perl."
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: No s'ha trobat el Perl a '%s"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: No s'ha trobat el Perl.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Error de sistema: Ordre executada: %s"
 
 msgid "Scilab Version: "
 msgstr ""
@@ -738,3 +687,43 @@ msgstr ""
 
 msgid "Bytes"
 msgstr ""
+
+#~ msgid "%s: Memory allocation error.\n"
+#~ msgstr "%s: Error de memòria.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: Nombre d'arguments de sortida incorrecte: Hi ha d'haver %d.\n"
+
+#~ msgid "The SCI environment variable is not set.\n"
+#~ msgstr "No s'ha establert la variable d'entorn SCI.\n"
+
+#~ msgid "Cannot load the module declaration file: %s.\n"
+#~ msgstr "No s'ha pogut carregar el fitxer de declaració del mòdul: %s.\n"
+
+#~ msgid "Error: Could not parse file %s.\n"
+#~ msgstr "Error: No s'ha pogut analitzar el fitxer %s.\n"
+
+#~ msgid "%s module not found.\n"
+#~ msgstr "No s'ha trobat el mòdul %s.\n"
+
+#~ msgid ""
+#~ "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' "
+#~ "found.\n"
+#~ msgstr ""
+#~ "Error: El fitxer de mòdul %s no és vàlid (la codificació no és '%s') Està "
+#~ "codificat en '%s'.\n"
+
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: No es pot trobar el fitxer Perl: %s"
+
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: No s'ha especificat cap comanda perl."
+
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: No s'ha trobat el Perl a '%s"
+
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: No s'ha trobat el Perl.\n"
+
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: Error de sistema: Ordre executada: %s"

@@ -213,8 +213,8 @@ msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un valor "
 "entero positivo.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Número incorrecto de argumento(s) de salida: Se esperaban %d.\n"
 
 #, c-format
@@ -230,8 +230,8 @@ msgstr ""
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s: Color desconocido en '%s' -> ajustado a negro.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
 
 #, c-format
@@ -239,9 +239,9 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s: el lápiz no es diagonalizable.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d.\n"
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -268,14 +268,14 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s: No se pudo abrir '%s' o '%s' o '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s: La normalización m - 1 factor es cero.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: La normalización n - 1 factor es cero.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a "
+#~ "%d.\n"

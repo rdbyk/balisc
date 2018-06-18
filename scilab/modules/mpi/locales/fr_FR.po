@@ -102,12 +102,12 @@ msgstr "%s : Impossible de désérialiser les données.\n"
 msgid "%s: MPI_Wait failed while waiting %d: %s\n"
 msgstr "%s : Échec de MPI_wait en attendant %d : %s.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format

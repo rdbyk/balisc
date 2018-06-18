@@ -39,7 +39,7 @@ Function::ReturnValue sci_imag(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "imag", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "imag", 1);
         return Function::Error;
     }
 

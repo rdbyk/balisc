@@ -216,8 +216,8 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur entière "
 "positive attendue.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
@@ -232,8 +232,8 @@ msgstr "%s : Style de ligne inconnu trouvé dans '%s' -> fixé à 6.\n"
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s : Couleur inconnue trouvée dans '%s' -> fixé à noir.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
@@ -241,8 +241,8 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s : Le mode trait n'est pas diagonalisable.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -268,13 +268,12 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s : Ne peut  pas ouvrir '%s' ni '%s' ni '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s : Le facteur de normalisation m - 1 est zéro.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s : Le facteur de normalisation n - 1 est zéro.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"

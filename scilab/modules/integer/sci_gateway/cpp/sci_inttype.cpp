@@ -29,7 +29,7 @@ types::Function::ReturnValue sci_inttype(types::typed_list &in, int _piRetCount,
     /* First check if there is only 1 input of type int */
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "inttype", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "inttype", 1);
         return types::Function::Error;
     }
 

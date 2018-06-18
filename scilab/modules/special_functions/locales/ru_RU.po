@@ -86,9 +86,26 @@ msgstr ""
 "%s: Неверный тип аргумента №%d: ожидалась вещественная или комплексная "
 "матрица.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
+"чисел.\n"
+
+# File: modules/special_functions/macros/%s_gamma.sci, line: 21
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
+msgid ""
+"%s: Function not defined for the given argument type.\n"
+"  Check arguments or define function %s for overloading.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for argument #%d: 0, 1 or 2 expected.\n"
@@ -98,3 +115,6 @@ msgstr "%s: Неверное значение аргумента №%d: ожид
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"

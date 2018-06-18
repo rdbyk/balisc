@@ -14,84 +14,8 @@ msgstr ""
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 無法讀取第 #%d 個參數.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr "%s:參數%d的長度錯誤:應該為一實數純量.\n"
-
-#
-# File: src/c/stack2.c, line: 1868
-# File: src/c/stack2.c, line: 2104
-# File: src/c/intmacr2tree.c, line: 98
-# File: src/c/intmacr2tree.c, line: 153
-# File: src/c/intmacr2tree.c, line: 321
-# File: src/c/intmacr2tree.c, line: 326
-# File: src/c/intmacr2tree.c, line: 408
-# File: src/c/intmacr2tree.c, line: 413
-# File: src/c/intmacr2tree.c, line: 544
-# File: src/c/intmacr2tree.c, line: 551
-# File: src/c/intmacr2tree.c, line: 554
-# File: src/c/intmacr2tree.c, line: 674
-# File: src/c/intmacr2tree.c, line: 679
-# File: src/c/intmacr2tree.c, line: 983
-# File: src/c/intmacr2tree.c, line: 988
-# File: src/c/intmacr2tree.c, line: 993
-# File: src/c/intmacr2tree.c, line: 1021
-# File: src/c/intmacr2tree.c, line: 1026
-# File: src/c/intmacr2tree.c, line: 1049
-# File: src/c/intmacr2tree.c, line: 1127
-# File: src/c/intmacr2tree.c, line: 1132
-# File: src/c/intmacr2tree.c, line: 1259
-# File: src/c/intmacr2tree.c, line: 1264
-# File: src/c/intmacr2tree.c, line: 1425
-# File: src/c/intmacr2tree.c, line: 1430
-# File: src/c/intmacr2tree.c, line: 1437
-# File: src/c/intmacr2tree.c, line: 1442
-# File: src/c/intmacr2tree.c, line: 1471
-# File: src/c/intmacr2tree.c, line: 1476
-# File: src/c/intmacr2tree.c, line: 1486
-# File: src/c/intmacr2tree.c, line: 1491
-# File: src/c/intmacr2tree.c, line: 1501
-# File: src/c/intmacr2tree.c, line: 1506
-# File: src/c/intmacr2tree.c, line: 1600
-# File: src/c/intmacr2tree.c, line: 1605
-# File: src/c/intmacr2tree.c, line: 1643
-# File: src/c/intmacr2tree.c, line: 1648
-# File: src/c/intmacr2tree.c, line: 1676
-# File: src/c/intmacr2tree.c, line: 1681
-# File: src/c/intmacr2tree.c, line: 1743
-# File: src/c/stack1.c, line: 2236
-# File: src/c/stack1.c, line: 2318
-# File: src/c/stack1.c, line: 2349
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體不夠.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s: 第 #%d 個輸入參數值錯誤: 應該是一個整數值.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Memory 分配有誤.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤: 應為 %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: 輸出參數數目錯誤: 應在 %d ,%d 之間.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -105,9 +29,9 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s：第 %d 個輸入參數形式錯誤： 應為整數值。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s: 輸入參數數目錯誤: 應在 %d ,%d 之間.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -125,6 +49,12 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是純量．\n"
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -132,8 +62,12 @@ msgstr ""
 msgid "Redefining permanent variable.\n"
 msgstr ""
 
+#
+# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 49
+# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 73
+# File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 68
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "%s: Redefining permanent variable.\n"
 msgstr ""
 
 #, c-format
@@ -239,10 +173,6 @@ msgid "  for more details, show help page.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤: 應在 %d ,%d 之間.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 
@@ -266,6 +196,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s: 第 #%d 個輸入參數值錯誤: 應該是一個整數值.\n"
 
 msgid "Could not retrieve sub-type.\n"
 msgstr ""
@@ -296,10 +230,6 @@ msgid ""
 msgstr "%s: 第 %d 輸入參數值錯誤: 應該是在 [%d, %d] 範圍區間.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
 msgstr ""
 
@@ -318,9 +248,65 @@ msgstr "%s: 輸入參數的值有誤 #%d: \"%s\"才對.\n"
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: 檔案 %s 不存在.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: 輸入參數數目錯誤: 應為 %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
+msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: 輸出參數數目錯誤: 應在 %d ,%d 之間.\n"
+
+#
+# File: src/c/stack2.c, line: 1868
+# File: src/c/stack2.c, line: 2104
+# File: src/c/intmacr2tree.c, line: 98
+# File: src/c/intmacr2tree.c, line: 153
+# File: src/c/intmacr2tree.c, line: 321
+# File: src/c/intmacr2tree.c, line: 326
+# File: src/c/intmacr2tree.c, line: 408
+# File: src/c/intmacr2tree.c, line: 413
+# File: src/c/intmacr2tree.c, line: 544
+# File: src/c/intmacr2tree.c, line: 551
+# File: src/c/intmacr2tree.c, line: 554
+# File: src/c/intmacr2tree.c, line: 674
+# File: src/c/intmacr2tree.c, line: 679
+# File: src/c/intmacr2tree.c, line: 983
+# File: src/c/intmacr2tree.c, line: 988
+# File: src/c/intmacr2tree.c, line: 993
+# File: src/c/intmacr2tree.c, line: 1021
+# File: src/c/intmacr2tree.c, line: 1026
+# File: src/c/intmacr2tree.c, line: 1049
+# File: src/c/intmacr2tree.c, line: 1127
+# File: src/c/intmacr2tree.c, line: 1132
+# File: src/c/intmacr2tree.c, line: 1259
+# File: src/c/intmacr2tree.c, line: 1264
+# File: src/c/intmacr2tree.c, line: 1425
+# File: src/c/intmacr2tree.c, line: 1430
+# File: src/c/intmacr2tree.c, line: 1437
+# File: src/c/intmacr2tree.c, line: 1442
+# File: src/c/intmacr2tree.c, line: 1471
+# File: src/c/intmacr2tree.c, line: 1476
+# File: src/c/intmacr2tree.c, line: 1486
+# File: src/c/intmacr2tree.c, line: 1491
+# File: src/c/intmacr2tree.c, line: 1501
+# File: src/c/intmacr2tree.c, line: 1506
+# File: src/c/intmacr2tree.c, line: 1600
+# File: src/c/intmacr2tree.c, line: 1605
+# File: src/c/intmacr2tree.c, line: 1643
+# File: src/c/intmacr2tree.c, line: 1648
+# File: src/c/intmacr2tree.c, line: 1676
+# File: src/c/intmacr2tree.c, line: 1681
+# File: src/c/intmacr2tree.c, line: 1743
+# File: src/c/stack1.c, line: 2236
+# File: src/c/stack1.c, line: 2318
+# File: src/c/stack1.c, line: 2349
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體不夠.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -330,13 +316,9 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
 msgid "%s: Wrong file version.xml %s.\n"
 msgstr "%s: 有錯的檔 version.xml %s.\n"
 
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument #%d: %s\n"
+msgstr "%s: 第 %d 個輸入參數的數值錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
@@ -356,6 +338,15 @@ msgid ""
 "expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 輸入參數 #%d 型態錯誤: 應為字串.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"
+msgstr "%s: 第 #%d 個輸入參數值錯誤: 應該是一個整數值.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
@@ -366,10 +357,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for output arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -396,15 +383,30 @@ msgid "%s: function-name is incorrect.\n"
 msgstr "%s: 函數名稱不正確.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: function is disabled in debug mode.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+msgid "Warning"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: 請檢查: %s.\n"
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+#, c-format
+msgid "%s: This feature will be permanently removed in Scilab / %s.\n"
 msgstr ""
 
 #, c-format
@@ -414,6 +416,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String matrix expected.\n"
+msgstr "%s: 輸入參數 #%d 型態錯誤: 應為字串.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"
+msgstr "%s: 第 #%d 個輸入參數值錯誤: 應該是一個整數值.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -427,9 +438,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number is expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
 
 #, c-format
 msgid "%s: Field names must be strings.\n"
@@ -470,34 +481,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'local', 'get', 'global' or 'sorted' "
 "expected.\n"
 msgstr ""
-
-#
-# File: src/c/getmodules.c, line: 72
-msgid "The SCI environment variable is not set.\n"
-msgstr "SCI 環境參數未設.\n"
-
-#, c-format
-msgid "Cannot load the module declaration file: %s.\n"
-msgstr "無法載入模組宣告檔:%s.\n"
-
-#, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "警告：找不到 %s\n"
-
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr "錯誤: 無法剖析(parse) 檔案 %s.\n"
-
-#
-# File: src/c/getmodules.c, line: 202
-#, c-format
-msgid "%s module not found.\n"
-msgstr "%s 模組找不到.\n"
-
-#, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr "錯誤: 模組檔案 %s 不正確(不以 '%s'　編碼) , 編碼為 '%s'.\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -570,21 +553,6 @@ msgid ""
 msgstr ""
 "堆疊結束\n"
 "\n"
-
-msgid "ESI Group\n"
-msgstr ""
-
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr ""
-
-msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
-msgstr ""
-
-msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr ""
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr ""
 
 #, c-format
 msgid "Recursion limit reached (%d).\n"
@@ -680,12 +648,8 @@ msgstr "%s: 請檢查: %s.\n"
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: 檔案不存在 : %s"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr "%s: 輸入參數 #%d 的型態錯誤: 應該是雙精度.\n"
 
 #, c-format
@@ -695,39 +659,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
-
-# File: macros/perl.sci, line: 12
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s:無法找到 Perl 程序檔: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: 輸入參數 #%d 型態錯誤: 應為字串.\n"
-
-#
-# File: macros/perl.sci, line: 32
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: perl 指令未給定(specified)."
-
-#
-# File: macros/perl.sci, line: 40
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: 無法在 '%s' 中找到 Perl"
-
-#
-# File: macros/perl.sci, line: 56
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: 無法找到 Perl.\n"
-
-#
-# File: macros/perl.sci, line: 61
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: 系統錯誤: 執行指令為: %s"
 
 msgid "Scilab Version: "
 msgstr ""
@@ -788,3 +719,66 @@ msgstr "大小"
 
 msgid "Bytes"
 msgstr "位元組"
+
+#~ msgid "%s: Can not read input argument #%d.\n"
+#~ msgstr "%s: 無法讀取第 #%d 個參數.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+#~ msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+#~ msgstr "%s:參數%d的長度錯誤:應該為一實數純量.\n"
+
+#~ msgid "%s: Memory allocation error.\n"
+#~ msgstr "%s: Memory 分配有誤.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
+
+#
+# File: src/c/getmodules.c, line: 72
+#~ msgid "The SCI environment variable is not set.\n"
+#~ msgstr "SCI 環境參數未設.\n"
+
+#~ msgid "Cannot load the module declaration file: %s.\n"
+#~ msgstr "無法載入模組宣告檔:%s.\n"
+
+#~ msgid "Warning: Could not find %s\n"
+#~ msgstr "警告：找不到 %s\n"
+
+#~ msgid "Error: Could not parse file %s.\n"
+#~ msgstr "錯誤: 無法剖析(parse) 檔案 %s.\n"
+
+#
+# File: src/c/getmodules.c, line: 202
+#~ msgid "%s module not found.\n"
+#~ msgstr "%s 模組找不到.\n"
+
+#~ msgid ""
+#~ "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' "
+#~ "found.\n"
+#~ msgstr "錯誤: 模組檔案 %s 不正確(不以 '%s'　編碼) , 編碼為 '%s'.\n"
+
+# File: macros/perl.sci, line: 12
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s:無法找到 Perl 程序檔: %s"
+
+#
+# File: macros/perl.sci, line: 32
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: perl 指令未給定(specified)."
+
+#
+# File: macros/perl.sci, line: 40
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: 無法在 '%s' 中找到 Perl"
+
+#
+# File: macros/perl.sci, line: 56
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: 無法找到 Perl.\n"
+
+#
+# File: macros/perl.sci, line: 61
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: 系統錯誤: 執行指令為: %s"

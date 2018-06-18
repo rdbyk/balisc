@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "c_link", 0, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "c_link", 0, 3);
         return types::Function::Error;
     }
 

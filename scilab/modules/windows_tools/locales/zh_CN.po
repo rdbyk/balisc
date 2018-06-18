@@ -17,9 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为'%s'。\n"
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "只可在窗口模式下，不可在控制台模式下。\n"
@@ -28,9 +28,9 @@ msgstr "只可在窗口模式下，不可在控制台模式下。\n"
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为'%s'。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"

@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() < 3 || in.size() > 6)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "rpem", 3, 6);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "rpem", 3, 6);
         return types::Function::Error;
     }
 

@@ -18,10 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
 msgid "%s : Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано рядок.\n"
@@ -32,14 +28,14 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано вектор "
 "рядків.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
 "%d параметрів.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
@@ -317,10 +313,6 @@ msgstr "%s: не вдалося відкрити файл %s.\n"
 msgid "%s: Feature not available under Microsoft Windows.\n"
 msgstr "%s: цією можливість не можна скористатися у Microsoft Windows.\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
 "'haveacompiler' is only supported under Windows."
@@ -387,8 +379,8 @@ msgstr "   Створення файла чищення\n"
 msgid "%s: function not available in NWNI mode.\n"
 msgstr "%s: у режимі NWNI функцією не можна користуватися.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): 3 to 5 expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: 3 to 5 expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути від 3 до 5 "
 "параметрів.\n"
@@ -596,8 +588,8 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d,%d or %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
@@ -638,8 +630,8 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "дійсне число.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід вказати принаймні %d.\n"
 
@@ -650,3 +642,10 @@ msgstr "не знайдено."
 msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string»."
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"

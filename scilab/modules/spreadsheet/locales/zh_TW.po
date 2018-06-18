@@ -166,13 +166,13 @@ msgstr ""
 msgid "%s: error.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應該是 '%s' 或 '%s'.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應該是 '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"

@@ -33,13 +33,13 @@ types::Function::ReturnValue sci_ludel(types::typed_list &in, int _iRetCount, ty
     //check input parameters
     if (in.size() != 1 )
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d  expected.\n"), "ludel", 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d  expected.\n"), "ludel", 1);
         return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
-        Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "ludel", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "ludel", 1);
         return types::Function::Error;
     }
 

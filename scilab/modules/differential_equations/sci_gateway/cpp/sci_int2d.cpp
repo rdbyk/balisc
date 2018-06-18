@@ -60,14 +60,14 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     // *** check the minimal number of input args. ***
     if (in.size() < 3 || in.size() > 4)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "int2d", 3, 4);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "int2d", 3, 4);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 3)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "int2d", 2);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "int2d", 2);
         return types::Function::Error;
     }
 

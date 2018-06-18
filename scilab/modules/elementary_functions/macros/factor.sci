@@ -24,7 +24,7 @@ function y=factor(x)
     // y : a vector of primes numbers
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"factor", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"factor", 1));
     end
 
     if size(x,"*")<>1 then

@@ -25,7 +25,7 @@ function generated_files = xmltohtml(dirs,titles,directory_language,default_lang
     case 4 then
         generated_files = xmltoformat("html",dirs,titles,directory_language,default_language);
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At most %d expected.\n"),"xmltohtml",4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At most %d expected.\n"),"xmltohtml",4));
 
     end
 

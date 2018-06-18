@@ -182,8 +182,8 @@ msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
 msgid "%s: parameter %s not defined"
 msgstr "%s: il parametro %s non è definito"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: era atteso un numero "
 "pari.\n"

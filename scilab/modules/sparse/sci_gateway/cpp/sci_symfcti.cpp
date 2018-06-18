@@ -36,7 +36,7 @@ Function::ReturnValue sci_symfcti(typed_list &in, int _iRetCount, typed_list &ou
 {
     if (in.size() != 13)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "symfcti", 13);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "symfcti", 13);
         return Function::Error;
     }
 

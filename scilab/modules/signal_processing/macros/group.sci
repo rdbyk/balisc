@@ -43,7 +43,7 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
     ne = nargin; // cf. below
 
     if and(ne <> [2 5]) then
-        error(sprintf(_("%s: Wrong number of input argument(s): %d or %d expected.\n"), "group", 2, 5));
+        error(sprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"), "group", 2, 5));
     end
 
     //if the number of arguments is 2 then

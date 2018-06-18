@@ -18,10 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
@@ -41,9 +37,10 @@ msgstr ""
 msgid "%s: Incompatible input argument.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid ""
@@ -54,13 +51,10 @@ msgstr ""
 msgid "%s: insufficient working storage"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d  expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d  expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid ""
@@ -71,9 +65,10 @@ msgstr ""
 msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
 msgstr ""
+"%s: Número incorrecto de argumentos de salida: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of dimensions for input argument #%d.\n"
@@ -131,9 +126,16 @@ msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A m-by-2 matrix expected.\n"
 msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un vector "
+"columna.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
@@ -398,11 +400,6 @@ msgstr ""
 
 msgid " Insufficient working storage in sfinit"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid "Arguments:\n"

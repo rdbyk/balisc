@@ -20,7 +20,7 @@ function [xy]=rotate(xy,teta,orig)
     select nargin
     case 2 then orig=[0;0];
     case 3 then orig=matrix(orig,2,1);
-    else error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "scaling", 2, 3));
+    else error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected."), "scaling", 2, 3));
     end;
     //
     [m,n]=size(xy)

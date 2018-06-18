@@ -17,9 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
+"%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwano '%s'\n"
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Tylko w trybie Windows, a nie w konsoli.\n"
@@ -30,9 +31,10 @@ msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwano '%s'\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"

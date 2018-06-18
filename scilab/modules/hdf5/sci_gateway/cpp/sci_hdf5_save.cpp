@@ -115,7 +115,7 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
 
     if (in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): at least %d expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), fname, 2);
         return Function::Error;
     }
 

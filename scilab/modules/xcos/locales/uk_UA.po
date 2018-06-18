@@ -19,16 +19,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати %s.\n"
@@ -1119,12 +1109,6 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: не вдалося експортувати %s до %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати блоковий "
@@ -1190,8 +1174,8 @@ msgstr ""
 msgid "Unable to open %s"
 msgstr "Не вдалося відкрити %s"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d."
 
 #, c-format
@@ -1493,3 +1477,16 @@ msgstr "%s: помилка під час спроби прочитати вмі�
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr "%s: синтаксична помилка під час спроби встановити контекст з"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d.\n"

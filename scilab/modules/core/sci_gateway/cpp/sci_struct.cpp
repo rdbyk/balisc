@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
     /* Check number of input arguments: must be even */
     if (in.size() % 2 != 0)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): An even number is expected.\n"), "struct");
+        Scierror(999, _("%s: Wrong number of input arguments: An even number is expected.\n"), "struct");
         return types::Function::Error;
     }
 

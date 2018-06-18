@@ -33,8 +33,8 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути додатне число типу "
 "із подвійною точністю.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
 "%d параметрів.\n"
@@ -55,12 +55,12 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: Мало бути вказано невід’ємний "
 "скаляр.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -69,8 +69,8 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 msgid "File"
@@ -713,6 +713,14 @@ msgstr "Зберегти журнал"
 msgid "Save file"
 msgstr "Зберегти файл"
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 794
+# File: modules/console/src/console_fake_xml.c, line: 1061
+# File: modules/console/src/console_fake_xml.c, line: 1372
+# File: modules/console/src/console_fake_xml.c, line: 1694
+msgid "Demos"
+msgstr ""
+
 msgid "Environment"
 msgstr "Середовище"
 
@@ -793,6 +801,12 @@ msgstr "Назва дії"
 
 msgid "Key binding"
 msgstr "Прив’язка клавіш"
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1379
+# File: modules/console/src/console_fake_xml.c, line: 1701
+msgid "The demo interface is dockable"
+msgstr ""
 
 #, c-format
 msgid ""

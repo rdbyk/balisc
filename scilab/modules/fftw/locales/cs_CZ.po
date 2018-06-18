@@ -71,13 +71,13 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekávána platná wisd
 msgid "%s: Creation of requested fftw plan failed.\n"
 msgstr "%s: Vytvoření požadovaného plánu fftw selhalo.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %d nebo %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %d nebo %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"

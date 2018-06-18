@@ -14,7 +14,7 @@ function []=xsetech(wrect, frect, logflag, arect)
 
     // 1 <= RHS <= 3
     if (nargin > 3 | nargin < 1) then
-        error(77, sprintf(_("%s: Wrong number of input argument(s): %d to %d expected."), "xsetech", 1, 3));
+        error(77, sprintf(_("%s: Wrong number of input arguments: %d to %d expected."), "xsetech", 1, 3));
     end
 
     if ~exists("wrect", "local")

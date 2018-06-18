@@ -28,13 +28,13 @@ types::Function::ReturnValue sci_simpMode(types::typed_list &in, int _iRetCount,
 {
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "simp_mode", 0, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "simp_mode", 0, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "simp_mode", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "simp_mode", 1);
         return types::Function::Error;
     }
 

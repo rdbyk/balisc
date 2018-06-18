@@ -18,19 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
@@ -45,14 +32,6 @@ msgid "Never occur"
 msgstr "Ніколи не трапляється"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано тип %s, %s "
@@ -60,6 +39,28 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : int or double expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип цілого "
+"числа (int) або числа з подвійною точністю (double).\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип цілого "
+"числа (int) або числа з подвійною точністю (double).\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано тип цілого "
 "числа (int) або числа з подвійною точністю (double).\n"
@@ -84,8 +85,8 @@ msgstr "%s: нереалізована можливість.\n"
 msgid "%s: %s expected instead of %s.\n"
 msgstr "%s: мало бути %s, а не %s.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
 "%d параметрів.\n"
@@ -110,3 +111,15 @@ msgstr ""
 #, c-format
 msgid "%s: Incorrect integer type: %s .\n"
 msgstr "%s: помилковий тип цілого числа: %s .\n"
+
+#~ msgid "%s: Can not read input argument #%d.\n"
+#~ msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
+
+#~ msgid "%s: No more memory.\n"
+#~ msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"

@@ -80,14 +80,14 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 9)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "dassl", 4, 9);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "dassl", 4, 9);
         return types::Function::Error;
     }
 
     // *** check number of output args ***
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "dassl", 1, 2);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "dassl", 1, 2);
         return types::Function::Error;
     }
 
@@ -207,7 +207,7 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                 pDblHd = in[iPos]->getAs<types::Double>();
                 if (in.size() != iPos + 1)
                 {
-                    Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "dassl", iPos + 1);
+                    Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "dassl", iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYdotData);
                     FREE(pdYData);
@@ -508,7 +508,7 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
 
     if (bFuncF == false)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "dassl", in.size() + 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "dassl", in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
         FREE(pdYdotData);
         FREE(pdYData);

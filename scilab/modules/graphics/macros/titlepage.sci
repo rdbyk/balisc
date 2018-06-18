@@ -17,7 +17,7 @@ function titlepage(str,win)
     //!
 
     if ~isdef("str") then
-        msg = _("%s: Wrong number of input argument(s): %d or %d expected.\n")
+        msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
         error(msprintf(msg, "titlepage", 1, 2));
     end
 

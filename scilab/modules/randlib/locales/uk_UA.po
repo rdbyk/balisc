@@ -19,8 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -65,8 +65,8 @@ msgstr ""
 msgid "Missing vect for random permutation\n"
 msgstr "Не вказано значення vect для випадкової перестановки\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -264,11 +264,9 @@ msgstr ""
 msgid "The %s option affects only the %s generator\n"
 msgstr "Параметр %s стосується лише генератора %s\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"між %d та %d.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
+msgstr "%s: X0(%d) має належати діапазону [1,%d[.\n"
 
 #, c-format
 msgid ""
@@ -420,3 +418,9 @@ msgstr "випадкова змінна із розподілом Ерланга
 
 msgid "Simulation of a Weibull random variable"
 msgstr "Моделювання випадкової величини із розподілом Вейбулла"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати "
+#~ "значення між %d та %d.\n"

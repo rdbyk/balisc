@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_adj2sp(types::typed_list &in, int nbRes, types:
 {
     if (in.size() > 4 || in.size() < 3)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "adj2sp", 3, 4);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "adj2sp", 3, 4);
         return types::Function::Error;
     }
     if (nbRes != 1)

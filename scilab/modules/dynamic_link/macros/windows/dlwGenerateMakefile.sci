@@ -21,7 +21,7 @@ function Makename = dlwGenerateMakefile(name, ..
     cc)
 
     if nargin < 4 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): at least %d expected.\n"), "dlwGenerateMakefile", 4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: at least %d expected.\n"), "dlwGenerateMakefile", 4));
     end
 
     if nargin < 6 then

@@ -14,7 +14,7 @@
 function fields=ghdl_fields(h)
 
     if nargin<>1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "ghdl_fields", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "ghdl_fields", 1));
     end
 
     //returns the set of fields associated with a given graphic handle

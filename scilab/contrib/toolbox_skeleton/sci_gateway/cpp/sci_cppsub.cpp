@@ -20,14 +20,14 @@ types::Function::ReturnValue sci_cppsub(types::typed_list &in, int _iRetCount, t
     /* check that we have only 2 input arguments */
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "cpp_sub", 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "cpp_sub", 2);
         return types::Function::Error;
     }
 
     /* check that we have only 1 output argument */
     if (_iRetCount != 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "cpp_sub", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected."), "cpp_sub", 1);
         return types::Function::Error;
     }
 

@@ -35,7 +35,7 @@ Function::ReturnValue sci_blkfc1i(typed_list &in, int _iRetCount, typed_list &ou
 {
     if (in.size() != 15)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "blkfc1", 15);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "blkfc1", 15);
         return Function::Error;
     }
 

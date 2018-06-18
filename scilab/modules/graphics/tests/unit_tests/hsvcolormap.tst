@@ -7,7 +7,7 @@
 
 // <-- TEST WITH Ga rAPHIC -->
 
-assert_checkerror("hsvcolormap(0,1,2,3)", "%s: Wrong number of input argument(s): %d expected.\n", 10000, "hsvcolormap", 1);
+assert_checkerror("hsvcolormap(0,1,2,3)", "%s: Wrong number of input arguments: %d expected.\n", 10000, "hsvcolormap", 1);
 
 assert_checkerror("hsvcolormap(%t)", "%s: Wrong type for input argument #%d: a real scalar expected.\n", 10000, "hsvcolormap", 1);
 

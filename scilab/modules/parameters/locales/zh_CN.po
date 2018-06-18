@@ -167,8 +167,8 @@ msgstr "%s：第%d个输入参数的类型错误：应该为%s。\n"
 msgid "%s: parameter %s not defined"
 msgstr "%s：参数%s未定义。"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number expected.\n"
 msgstr "%s：输入参数的输入错误：应该为偶数个。\n"
 
 #, c-format

@@ -39,10 +39,6 @@ msgid "Invalid index.\n"
 msgstr "Некоректний індекс.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
-
-#, c-format
 msgid "List element number %d is Undefined.\n"
 msgstr "Елемент списку із номером %d є невизначеним.\n"
 
@@ -66,8 +62,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
 "%d.\n"
@@ -101,29 +97,8 @@ msgstr ""
 "рядків.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be non-negative "
-"integers.\n"
-msgstr ""
-"%s: помилкові значення для вхідного параметра №%d: елементами мають бути "
-"невід’ємні цілі значення.\n"
-
-#, c-format
-msgid "%s: Number of entries does not match product of dimensions"
-msgstr "%s: кількість записів не дорівнює добутку вимірів"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
@@ -138,3 +113,24 @@ msgstr ""
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
 msgstr ""
 "%s: помилковий параметр №%d: слід використовувати додатне ціле число.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: Elements must be non-negative "
+#~ "integers.\n"
+#~ msgstr ""
+#~ "%s: помилкові значення для вхідного параметра №%d: елементами мають бути "
+#~ "невід’ємні цілі значення.\n"
+
+#~ msgid "%s: Number of entries does not match product of dimensions"
+#~ msgstr "%s: кількість записів не дорівнює добутку вимірів"
+
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"

@@ -13,7 +13,7 @@
 function y = bitset(x,pos,v)
 
     if nargin < 2 then
-        msg = _("%s: Wrong number of input argument(s): At least %d expected.\n")
+        msg = _("%s: Wrong number of input arguments: At least %d expected.\n")
         error(msprintf(msg, "bitset", 2));
     end
 

@@ -86,7 +86,7 @@ function s=zpk(varargin)
             error(msprintf(_("%s: Wrong type for input argument #%d: A vector or a cell of vectors expected.\n"),"zpk",1))
         end
     else
-        error(msprintf(_("%s: Wrong number of input argument(s): %d or %d expected."),"zpk",1,4))
+        error(msprintf(_("%s: Wrong number of input arguments: %d or %d expected."),"zpk",1,4))
     end
     //order poles ans zeros
     for iy=1:ny

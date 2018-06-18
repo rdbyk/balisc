@@ -135,7 +135,7 @@ function ilib_build_jar(jarFilePath, packageNames, sourcePaths, classPaths, mani
 
     // Check input arguments
     if nargin < 3 then
-        error(msprintf(_("%s: Wrong number of input argument(s): 3 to 5 expected.\n"), "ilib_build_jar"));
+        error(msprintf(_("%s: Wrong number of input arguments: 3 to 5 expected.\n"), "ilib_build_jar"));
         return;
     end
 

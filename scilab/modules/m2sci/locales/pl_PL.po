@@ -532,7 +532,7 @@ msgid "Verbose mode:"
 msgstr "Tryb wyściowy rozszerzony:"
 
 #, fuzzy
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Generowanie sformatowanego kodu:"
 
 msgid "M-file reading..."

@@ -25,7 +25,7 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
     //           'else sin(x)/x,end'],'x',0,%pi)
 
     if nargin < 4 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"integrate",4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"integrate",4));
     end
 
     select nargin

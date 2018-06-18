@@ -189,8 +189,8 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: parameter %s not defined"
 msgstr "%s: параметр %s не определен"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось чётное число.\n"
 
 #, c-format

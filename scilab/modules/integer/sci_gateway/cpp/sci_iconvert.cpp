@@ -30,7 +30,7 @@ Function::ReturnValue sci_iconvert(typed_list &in, int _iRetCount, typed_list &o
 {
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "iconvert", 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "iconvert", 2);
         return Function::Error;
     }
 

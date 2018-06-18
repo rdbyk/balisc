@@ -51,14 +51,14 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
     // *** check the minimal number of input args. ***
     if (in.size() < 2 || in.size() > 4)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "splin", 2, 4);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "splin", 2, 4);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "splin", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "splin", 1);
         return types::Function::Error;
     }
 
@@ -164,7 +164,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
         {
             if (in.size() != 4)
             {
-                Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "splin", 4);
+                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "splin", 4);
                 return types::Function::Error;
             }
 
@@ -184,7 +184,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
         }
         else if (in.size() == 4)
         {
-            Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "splin", 3);
+            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "splin", 3);
             return types::Function::Error;
         }
     }

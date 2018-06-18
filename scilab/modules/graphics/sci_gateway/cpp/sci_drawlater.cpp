@@ -34,7 +34,7 @@ Function::ReturnValue sci_drawlater(typed_list &in, int _iRetCount, typed_list &
 {
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "drawlater", 0);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "drawlater", 0);
         return Function::Error;
     }
 

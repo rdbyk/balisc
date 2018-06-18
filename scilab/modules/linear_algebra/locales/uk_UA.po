@@ -69,8 +69,8 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "дійсне число.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -90,8 +90,8 @@ msgstr "%s: не вдалося виділити більше пам’яті.\n
 msgid "%s: LAPACK error n%d.\n"
 msgstr "%s: помилка LAPACK %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
@@ -128,12 +128,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати квадратну "
 "матрицю.\n"
 
-#, c-format
-msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
-msgstr ""
-"%s: тут не можна використовувати параметри змінної розмірності a*eye(), "
-"(параметр %d).\n"
-
 msgid "Warning :\n"
 msgstr "Попередження:\n"
 
@@ -156,6 +150,12 @@ msgid "%s: %s and %s must have equal number of rows.\n"
 msgstr "%s: %s і %s повинні мати однакову кількість рядків.\n"
 
 #, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+"%s: тут не можна використовувати параметри змінної розмірності a*eye(), "
+"(параметр %d).\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
@@ -171,8 +171,8 @@ msgstr ""
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
 msgstr "%s: параметр %d і параметр %d повинні мати однакові розмірності.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d або %d.\n"
 
 #, c-format
@@ -260,8 +260,8 @@ msgstr "%s: не вдалося виконати ітерацію, відмін�
 msgid "%s: Error return from DTGEVC.\n"
 msgstr "%s: DTGEVC повернуто повідомлення про помилку.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути принаймні %d.\n"
 
 #, c-format
@@ -359,12 +359,6 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %d, %d, "
 "%s, «%s» або «%s».\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -491,3 +485,14 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: потрібний ранг перевищує "
 "розмірність матриці.\n"
 "."
+
+#, fuzzy, c-format
+msgid "%s: Wrong size of input argument #%d: expected a square matrix.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"квадратну матрицю.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d.\n"

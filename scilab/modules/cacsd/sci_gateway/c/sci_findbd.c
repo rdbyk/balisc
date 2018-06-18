@@ -218,7 +218,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
     {
         if (iRhs < 5)
         {
-            Scierror(999, _("%s: Wrong number of input argument(s): At least %d expected.\n"), fname, 5);
+            Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 5);
             return 0;
         }
     }
@@ -226,7 +226,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
     {
         if (iRhs < 6)
         {
-            Scierror(999, _("%s: Wrong number of input argument(s): At least %d expected.\n"), fname, 6);
+            Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 6);
             return 0;
         }
     }
@@ -254,12 +254,12 @@ int sci_findbd(char *fname, void* pvApiCtx)
     {
         if (iIJOB == 1 && iRhs < 7)
         {
-            Scierror(999, _("%s: Wrong number of input argument(s): At least %d expected.\n"), fname, 7);
+            Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 7);
             return 0;
         }
         else if (iIJOB == 2 && iRhs < 8)
         {
-            Scierror(999, _("%s: Wrong number of input argument(s): At least %d expected.\n"), fname, 8);
+            Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 8);
             return 0;
         }
     }

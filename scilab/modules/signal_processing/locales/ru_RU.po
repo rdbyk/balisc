@@ -17,6 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: оно должно быть на интервале "
+"%s.\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
@@ -43,10 +49,6 @@ msgstr "%s: Ошибка выделения памяти.\n"
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr "%s : Ошибка распределения памяти.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -173,7 +175,7 @@ msgid "Undefined function '%ls'.\n"
 msgstr "Неопределённая функция '%ls'.\n"
 
 #, fuzzy, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr "Пользовательская функция '%s' не установлена.\n"
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
@@ -425,16 +427,8 @@ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %s или %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
-
-#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s: Параметры №%d и №%d должны иметь одинаковые размеры.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
@@ -740,3 +734,13 @@ msgstr ""
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr "%s: Слишком быстрое изменение около границы частотного диапазона.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"

@@ -17,7 +17,7 @@ function y=factorial(n)
     // Output : y, a scalar/vector/matrix/hypermat
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"factorial",1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"factorial",1));
     end
 
     if (type(n) <> 1) || (n <> [] && (or((n-floor(n) <> 0)) || or(n < 0))) then

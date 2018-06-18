@@ -20,10 +20,6 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s : Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
@@ -32,13 +28,13 @@ msgid "%s : Wrong type for input argument #%d: String vector expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列ベクトルを指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
@@ -312,10 +308,6 @@ msgstr "%s: ファイル %s を開けません.\n"
 msgid "%s: Feature not available under Microsoft Windows.\n"
 msgstr "%s: この機能は, Microsoft Windows では使用できません.\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
 "'haveacompiler' is only supported under Windows."
@@ -384,8 +376,8 @@ msgstr "   クリーナ・ファイルの生成\n"
 msgid "%s: function not available in NWNI mode.\n"
 msgstr "%s: NWNIモードでは利用できない関数です。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): 3 to 5 expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: 3 to 5 expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 3から5個の引数を指定してください.\n"
 
 #, c-format
@@ -605,8 +597,8 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d,%d or %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が不間違っています: %d,%d または %d 個の引数を指定してくださ"
 "い.\n"
@@ -645,8 +637,8 @@ msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 msgid "not found."
@@ -655,3 +647,9 @@ msgstr "見つかりません."
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください."
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"

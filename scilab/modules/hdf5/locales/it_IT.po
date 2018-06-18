@@ -176,9 +176,11 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
@@ -194,13 +196,11 @@ msgstr ""
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: Formato HDF5 di Scilab non valido.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid "%s: Unable to open file: '%s'.\n"
@@ -224,6 +224,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 165
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 211
+#, c-format
+msgid "WARNING: %s: invalid graphic handle is ignored.\n"
 msgstr ""
 
 #, c-format

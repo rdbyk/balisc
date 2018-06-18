@@ -15,7 +15,7 @@
 function [varargout] = dae(varargin)
 
     if size(varargin) == 0 then
-        error(sprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "dae", 3, 8));
+        error(sprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "dae", 3, 8));
     end
     if isdef("%DAEOPTIONS") == %F then
         if varargin(1) <> "root2" then
@@ -33,7 +33,7 @@ function [varargout] = dae(varargin)
             elseif nargout == 1 then
                 [y] = dassl(x0, t0, t, res, %DAEOPTIONS);
             else
-                error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
             end
 
         elseif nargin == 8 then // call with all the optional arguments
@@ -43,7 +43,7 @@ function [varargout] = dae(varargin)
             elseif nargout == 1 then
                 [y] = dassl(x0, t0, t, atol, rtol, res, jac, %DAEOPTIONS, hd);
             else
-                error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
             end
 
         elseif nargin == 5 then
@@ -55,7 +55,7 @@ function [varargout] = dae(varargin)
                 elseif nargout == 1 then
                     [y] = dassl(x0, t0, t, atol, res, %DAEOPTIONS);
                 else
-                    error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                    error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                 end
 
             else
@@ -67,7 +67,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 1 then
                         [y] = dassl(x0, t0, t, res, %DAEOPTIONS, hd);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                     end
 
                 else
@@ -77,7 +77,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 1 then
                         [y] = dassl(x0, t0, t, res, jac, %DAEOPTIONS);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                     end
 
                 end
@@ -95,7 +95,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 1 then
                         [y] = dassl(x0, t0, t, atol, rtol, res, %DAEOPTIONS);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                     end
 
                 else
@@ -107,7 +107,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 1 then
                             [y] = dassl(x0, t0, t, atol, res, %DAEOPTIONS, hd);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                         end
 
                     else
@@ -117,7 +117,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 1 then
                             [y] = dassl(x0, t0, t, atol, res, jac, %DAEOPTIONS);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                         end
 
                     end
@@ -130,7 +130,7 @@ function [varargout] = dae(varargin)
                 elseif nargout == 1 then
                     [y] = dassl(x0, t0, t, res, jac, %DAEOPTIONS, hd);
                 else
-                    error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                    error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                 end
 
             end
@@ -146,7 +146,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 1 then
                         [y] = dassl(x0, t0, t, atol, rtol, res, %DAEOPTIONS, hd);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                     end
 
                 else
@@ -156,7 +156,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 1 then
                         [y] = dassl(x0, t0, t, atol, rtol, res, jac, %DAEOPTIONS);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                     end
 
                 end
@@ -168,12 +168,12 @@ function [varargout] = dae(varargin)
                 elseif nargout == 1 then
                     [y] = dassl(x0, t0, t, atol, res, jac, %DAEOPTIONS, hd);
                 else
-                    error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+                    error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
                 end
             end
 
         else
-            error(sprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "dae", 4, 8));
+            error(sprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "dae", 4, 8));
         end
 
         if %DAEOPTIONS(2) == 0 then
@@ -185,7 +185,7 @@ function [varargout] = dae(varargin)
         elseif nargout == 1 then
             varargout = list(y);
         else
-            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 1, 2));
+            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 1, 2));
         end
 
     elseif varargin(1) == "root" then // Case root (dasrt)
@@ -197,7 +197,7 @@ function [varargout] = dae(varargin)
             elseif nargout == 3 then
                 [y, nn, hd] = dasrt(x0, t0, t, res, ng, surface, %DAEOPTIONS);
             else
-                error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
             end
 
         elseif nargin == 11 then // Call with all the optional arguments
@@ -207,7 +207,7 @@ function [varargout] = dae(varargin)
             elseif nargout == 3 then
                 [y, nn, hd] = dasrt(x0, t0, t, atol, rtol, res, jac, ng, surface, %DAEOPTIONS, hd);
             else
-                error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
             end
 
         elseif nargin == 8 then
@@ -219,7 +219,7 @@ function [varargout] = dae(varargin)
                 elseif nargout == 3 then
                     [y, nn, hd] = dasrt(x0, t0, t, atol, res, ng, surface, %DAEOPTIONS);
                 else
-                    error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                    error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                 end
 
             else
@@ -231,7 +231,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = dasrt(x0, t0, t, res, ng, surface, %DAEOPTIONS, hd);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
 
                 else
@@ -241,7 +241,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = dasrt(x0, t0, t, res, jac, ng, surface, %DAEOPTIONS);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
 
                 end
@@ -259,7 +259,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = dasrt(x0, t0, t, atol, rtol, res, ng, surface, %DAEOPTIONS);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
 
                 else
@@ -271,7 +271,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = dasrt(x0, t0, t, atol, res, ng, surface, %DAEOPTIONS, hd);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
 
                     else
@@ -281,7 +281,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = dasrt(x0, t0, t, atol, res, jac, ng, surface, %DAEOPTIONS);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
 
                     end
@@ -294,7 +294,7 @@ function [varargout] = dae(varargin)
                 elseif nargout == 3 then
                     [y, nn, hd] = dasrt(x0, t0, t, res, jac, ng, surface, %DAEOPTIONS, hd);
                 else
-                    error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                    error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                 end
             end
 
@@ -311,7 +311,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = dasrt(x0, t0, t, atol, rtol, res, ng, surface, %DAEOPTIONS, hd);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
 
                     else
@@ -321,7 +321,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = dasrt(x0, t0, t, atol, rtol, res, jac, ng, surface, %DAEOPTIONS);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
                     end
 
@@ -332,7 +332,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = dasrt(x0, t0, t, atol, res, jac, ng, surface, %DAEOPTIONS, hd);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
 
                 end
@@ -344,12 +344,12 @@ function [varargout] = dae(varargin)
                 elseif nargout == 3 then
                     [y, nn, hd] = dasrt(x0, t0, t, res, jac, ng, surface, %DAEOPTIONS, hd);
                 else
-                    error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                    error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                 end
             end
 
         else
-            error(sprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "dae", 7, 11));
+            error(sprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "dae", 7, 11));
         end
         if %DAEOPTIONS(2) == 0 then
             [r, c] = size(y);
@@ -360,7 +360,7 @@ function [varargout] = dae(varargin)
         elseif nargout == 3 then
             varargout = list(y, nn, hd);
         else
-            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
         end
 
     elseif varargin(1) == "root2" then // Case root2 (daskr)
@@ -372,7 +372,7 @@ function [varargout] = dae(varargin)
             elseif nargout == 3 then
                 [y, nn, hd] = daskr(x0, t0, t, res, ng, surface, %DAEOPTIONS);
             else
-                error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
             end
 
         elseif nargin == 13 then // Call with all the optional arguments
@@ -382,7 +382,7 @@ function [varargout] = dae(varargin)
             elseif nargout == 3 then
                 [y, nn, hd] = daskr(x0, t0, t, atol, rtol, res, jac, ng, surface, %DAEOPTIONS, psol, pjac, hd);
             else
-                error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
             end
 
         elseif nargin == 8 then
@@ -394,7 +394,7 @@ function [varargout] = dae(varargin)
                 elseif nargout == 3 then
                     [y, nn, hd] = daskr(x0, t0, t, atol, res, ng, surface, %DAEOPTIONS);
                 else
-                    error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                    error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                 end
 
             else
@@ -406,7 +406,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = daskr(x0, t0, t, res, ng, surface, %DAEOPTIONS, hd);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
 
                 else
@@ -416,7 +416,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = daskr(x0, t0, t, res, jac, ng, surface, %DAEOPTIONS);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
 
                 end
@@ -434,7 +434,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = daskr(x0, t0, t, atol, rtol, res, ng, surface, %DAEOPTIONS);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
 
                 else
@@ -446,7 +446,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, res, ng, surface, %DAEOPTIONS, hd);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
 
                     else
@@ -456,7 +456,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, res, jac, ng, surface, %DAEOPTIONS);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
 
                     end
@@ -470,7 +470,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = daskr(x0, t0, t, res, jac, ng, surface, %DAEOPTIONS, hd);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
                 else
                     [typ, x0, t0, t, res, ng, surface, psol, pjac] = varargin(:)
@@ -479,7 +479,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = daskr(x0, t0, t, res, ng, surface, %DAEOPTIONS, psol, pjac);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
                 end
 
@@ -498,7 +498,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, rtol, res, ng, surface, %DAEOPTIONS, hd);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
 
                     else
@@ -508,7 +508,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, rtol, res, jac, ng, surface, %DAEOPTIONS);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
                     end
 
@@ -520,7 +520,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, res, jac, ng, surface, %DAEOPTIONS, hd);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
                     else
                         [typ, x0, t0, t, atol, res, ng, surface, psol, pjac] = varargin(:)
@@ -529,7 +529,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, res, ng, surface, %DAEOPTIONS, psol, pjac);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
                     end
 
@@ -543,7 +543,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = daskr(x0, t0, t, res, ng, surface, %DAEOPTIONS, psol, pjac, hd);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
                 else
                     [typ, x0, t0, t, res, jac, ng, surface, psol, pjac] = varargin(:)
@@ -552,7 +552,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = daskr(x0, t0, t, res, jac, ng, surface, %DAEOPTIONS, psol, pjac);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
                 end
             end
@@ -570,7 +570,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, rtol, res, jac, ng, surface, %DAEOPTIONS, hd);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
 
                     else
@@ -580,7 +580,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, rtol, res, ng, surface, %DAEOPTIONS, psol, pjac);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
                     end
 
@@ -592,7 +592,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, res, ng, surface, %DAEOPTIONS, psol, pjac, hd);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
                     else
                         [typ, x0, t0, t, atol, res, jac, ng, surface, psol, pjac] = varargin(:)
@@ -601,7 +601,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, res, jac, ng, surface, %DAEOPTIONS, psol, pjac);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
                     end
                 end
@@ -613,7 +613,7 @@ function [varargout] = dae(varargin)
                 elseif nargout == 3 then
                     [y, nn, hd] = daskr(x0, t0, t, res, jac, ng, surface, %DAEOPTIONS, psol, pjac, hd);
                 else
-                    error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                    error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                 end
             end
 
@@ -630,7 +630,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, rtol, res, ng, surface, %DAEOPTIONS, psol, pjac, hd);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
 
                     else
@@ -640,7 +640,7 @@ function [varargout] = dae(varargin)
                         elseif nargout == 3 then
                             [y, nn, hd] = daskr(x0, t0, t, atol, rtol, res, jac, ng, surface, %DAEOPTIONS, psol, pjac);
                         else
-                            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                         end
                     end
 
@@ -651,7 +651,7 @@ function [varargout] = dae(varargin)
                     elseif nargout == 3 then
                         [y, nn, hd] = daskr(x0, t0, t, atol, res, jac, ng, surface, %DAEOPTIONS, psol, pjac, hd);
                     else
-                        error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                        error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
                     end
                 end
             end
@@ -664,11 +664,11 @@ function [varargout] = dae(varargin)
             elseif nargout == 3 then
                 [y, nn, hd] = daskr(x0, t0, t, atol, rtol, res, jac, ng, surface, %DAEOPTIONS, psol, pjac, hd);
             else
-                error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+                error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
             end
 
         else
-            error(sprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "dae", 7, 13));
+            error(sprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "dae", 7, 13));
         end
         if %DAEOPTIONS(2) == 0 then
             [r, c] = size(y);
@@ -679,7 +679,7 @@ function [varargout] = dae(varargin)
         elseif nargout == 3 then
             varargout = list(y, nn, hd);
         else
-            error(sprintf(gettext("%s: Wrong number of output argument(s): %d or %d expected.\n"), "dae", 2, 3));
+            error(sprintf(gettext("%s: Wrong number of output arguments: %d or %d expected.\n"), "dae", 2, 3));
         end
     else
         error(sprintf(gettext("%s: Invalid option %s: real matrix expected.\n"), "dae", "root"));

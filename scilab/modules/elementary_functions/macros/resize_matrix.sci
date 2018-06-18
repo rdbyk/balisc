@@ -82,7 +82,7 @@ function mat = resize_matrix(mat, varargin)
     // ARGUMENTS ANALYSIS & CHECKING
     // -----------------------------
     if nargin==1 | nargin > 5 then
-        msg = _("%s: Wrong number of input argument(s): %d to %d expected.\n")
+        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg, "resize_matrix", 2, 5))
     end
 

@@ -7,7 +7,7 @@
 // ============================================================================
 // <-- CLI SHELL MODE -->
 assert_checkfalse(execstr("umf_lufact()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "umf_lufact", 1);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "umf_lufact", 1);
 assert_checkerror("umf_lufact()", refMsg);
 assert_checkfalse(execstr("umf_lufact(1)"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "umf_lufact", 1);

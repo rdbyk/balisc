@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_gethistoryfile(types::typed_list &in, int _iRet
 {
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "gethistoryfile", 0);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "gethistoryfile", 0);
         return types::Function::Error;
     }
 

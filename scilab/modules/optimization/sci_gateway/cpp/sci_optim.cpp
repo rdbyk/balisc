@@ -107,13 +107,13 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
     {
         if (in.size() < 2 || in.size() > 18)
         {
-            Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "optim", 2, 18);
+            Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "optim", 2, 18);
             throw ast::ScilabException();
         }
 
         if (_iRetCount > 9)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", 1, 9);
+            Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "optim", 1, 9);
             throw ast::ScilabException();
         }
 
@@ -316,7 +316,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
             if (in.size() < 5)
             {
-                Scierror(77, _("%s: Wrong number of input argument(s): %d or more expected.\n"), "optim", 5);
+                Scierror(77, _("%s: Wrong number of input arguments: %d or more expected.\n"), "optim", 5);
                 throw ast::ScilabException();
             }
 
@@ -1008,7 +1008,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         int iRetCount1 = _iRetCount - iSaveI - iSaveD;
         if (iRetCount1 == 0)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", iSaveI + iSaveD, iSaveI + iSaveD + 1);
+            Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "optim", iSaveI + iSaveD, iSaveI + iSaveD + 1);
             throw ast::ScilabException();
         }
 

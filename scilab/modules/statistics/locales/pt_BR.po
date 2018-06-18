@@ -140,13 +140,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d, %d or %d expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -158,10 +155,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -240,7 +233,7 @@ msgstr ""
 "as mesmas dimensões.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -257,10 +250,6 @@ msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -302,10 +291,6 @@ msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um dado "
 "numérico.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected."
@@ -441,3 +426,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr "%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"

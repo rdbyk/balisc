@@ -30,7 +30,7 @@ types::Function::ReturnValue sci_win64(types::typed_list &in, int _iRetCount, ty
     int status = 0;
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname.data(), 0);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname.data(), 0);
         return types::Function::Error;
     }
 

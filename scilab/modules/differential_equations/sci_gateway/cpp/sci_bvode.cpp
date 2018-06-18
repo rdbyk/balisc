@@ -60,14 +60,14 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     // *** check the minimal number of input args. ***
     if (in.size() != 15)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "bvode", 15);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "bvode", 15);
         return types::Function::Error;
     }
 
     // *** check number of output args ***
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "bvode", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "bvode", 1);
         return types::Function::Error;
     }
 

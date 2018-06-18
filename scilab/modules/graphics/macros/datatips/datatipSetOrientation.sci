@@ -12,7 +12,7 @@
 
 function datatipSetOrientation(tip_handle,o)
     if nargin<>2 then
-        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),...
+        error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),...
         "datatipSetOrientation",2))
     end
     orientations=["automatic" "upper left" "upper right", "lower left","lower right"]

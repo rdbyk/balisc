@@ -32,8 +32,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: A positive double expected\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 正のdoubleを指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
@@ -50,21 +50,21 @@ msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています : スカラー (>= 0) を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 msgid "File"
@@ -712,6 +712,14 @@ msgstr "履歴を保存"
 msgid "Save file"
 msgstr "ファイルを保存"
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 794
+# File: modules/console/src/console_fake_xml.c, line: 1061
+# File: modules/console/src/console_fake_xml.c, line: 1372
+# File: modules/console/src/console_fake_xml.c, line: 1694
+msgid "Demos"
+msgstr ""
+
 msgid "Environment"
 msgstr "環境"
 
@@ -792,6 +800,12 @@ msgstr "アクション名"
 
 msgid "Key binding"
 msgstr "キー割付"
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1379
+# File: modules/console/src/console_fake_xml.c, line: 1701
+msgid "The demo interface is dockable"
+msgstr ""
 
 #, c-format
 msgid ""

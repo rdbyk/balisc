@@ -72,7 +72,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
 
     select nargin
     case 0 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."),"prettyprint",1,4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected."),"prettyprint",1,4));
     case 1 then
         exportFormat="latex";
         delimiter = "(";

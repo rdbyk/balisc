@@ -17,12 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
@@ -80,8 +80,8 @@ msgstr ""
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s : Nœuds dupliqués ou tous les nœuds sont colinéaires (ier = %d).\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d, %d or %d expected.\n"
 msgstr ""
 "%s : Nombre erroné de(s) argument(s) de sortie : %d, %d ou %d attendu.\n"
 
@@ -91,12 +91,12 @@ msgstr ""
 "%s : Type erroné pour l'argument d'entrée n°%d : Une tlist de type %s "
 "attendue.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
@@ -142,8 +142,8 @@ msgstr ""
 "%s : Dimension erronée pour l'argument d'entrée n°%d : Un vecteur colonne de "
 "dimension %d attendu.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format

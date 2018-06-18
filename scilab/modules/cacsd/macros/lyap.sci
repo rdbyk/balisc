@@ -13,7 +13,7 @@
 function X = lyap(A,C,flag)
     //  solve  A'*X+X*A=C if flag=='c' or  A'*X*A-X=C if flag=='d'
     if nargin<>3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"lyap",3))
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"lyap",3))
     end
     flag=part(flag,1)
     if flag=="c" then

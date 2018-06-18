@@ -47,7 +47,7 @@ function [la, sig, lb] = levin(n, Cov)
     //!
 
     if nargin <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "levin", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "levin", 2));
     end
     [l, d] = size(Cov);
     if d > l then

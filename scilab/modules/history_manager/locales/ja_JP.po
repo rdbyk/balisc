@@ -52,12 +52,12 @@ msgstr ""
 msgid "%s: Append lines in Scilab history failed.\n"
 msgstr "%s: Scilabヒストリに行を追加できませんでした.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 

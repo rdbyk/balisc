@@ -24,12 +24,6 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати значення "
-"від %d до %d.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
 
@@ -47,15 +41,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
 
 #, c-format
 msgid ""
@@ -63,3 +51,13 @@ msgid ""
 msgstr ""
 "%s:  помилковий тип вхідного параметра №%d: мало бути використано скалярне "
 "додатне ціле число.\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вихідних параметрів: слід використовувати "
+#~ "значення від %d до %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"

@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
     //check input parameters
     if (in.size() != 1 && in.size() != 2 && in.size() != 4)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), "fft", 1, 4);
+        Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "fft", 1, 4);
         return types::Function::Error;
     }
 
@@ -113,7 +113,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
             break;
         default :
         {
-            Scierror(77, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), "fft", 1, 4);
+            Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "fft", 1, 4);
             return types::Function::Error;
         }
     }

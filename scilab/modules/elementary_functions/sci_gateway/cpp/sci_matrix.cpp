@@ -47,7 +47,7 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
 
     if (in.size() < 2 )
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), fname, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 2);
         return Function::Error;
     }
 

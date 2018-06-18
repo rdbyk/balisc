@@ -70,7 +70,7 @@ msgid "I/O error: %s"
 msgstr "I/Oエラー: %s"
 
 #, fuzzy, c-format
-msgid "The file %s has been modified by an other program. Reload it ?"
+msgid "The file %s has been modified by another program. Reload it ?"
 msgstr "ファイル %s が他のプログラムにより変更されました. 再度読み込みますか?"
 
 msgid "File"
@@ -1114,6 +1114,12 @@ msgstr "デフォルトのヘッダ"
 
 msgid "Add a default header to new file"
 msgstr "デフォルトのヘッダを新規ファイルに追加"
+
+#
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1474
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2038
+msgid "Available variables: {{$current-date}}, {{$current-year}}"
+msgstr ""
 
 msgid "The last error did not occur inside a Scilab macro."
 msgstr "直近のエラーはScilabマクロ内で発生したものではありません."

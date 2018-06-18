@@ -10,7 +10,7 @@
 // unit tests for modulo() function
 // =============================================================================
 
-assert_checkerror("modulo()", msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"modulo", 2));
+assert_checkerror("modulo()", msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"modulo", 2));
 assert_checkerror("modulo(''a'',1)", msprintf(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n"), "modulo", 1));
 assert_checkerror("modulo(1,''a'')", msprintf(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n"), "modulo", 2));
 assert_checkerror("modulo(%pi+%i,1)", msprintf(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n"), "modulo", 1));

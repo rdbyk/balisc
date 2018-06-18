@@ -19,12 +19,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати "
@@ -73,9 +67,16 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
 "рядків.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
+"рядок.\n"
+
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -92,11 +93,6 @@ msgstr ""
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: некоректна бібліотека %s.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: macro expected.\n"
@@ -141,12 +137,6 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s: помилкова функція у файлі %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати рядок з "
@@ -188,3 +178,16 @@ msgstr "Будь ласка, використовуйте %s."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Цю функцію буде назавжди вилучено у Scilab %s"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"

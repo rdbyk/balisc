@@ -17,7 +17,7 @@ function [d,ptp,ind,c]=orthProj(data,pt)
     //ind  projection lies on segment [ind ind+1]
     //c    orthogonal projection coefficient
     if nargin<>2 then
-        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"orthProj",2))
+        error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"orthProj",2))
     end
 
     d = [];ptp = [];ind = [],c = []

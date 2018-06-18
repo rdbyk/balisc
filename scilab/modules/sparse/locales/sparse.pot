@@ -15,15 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
-
-# File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 34
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 51
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 37
-# File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 32
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+"Revision-Date: 2018-06-18 10:21+0100\n"
 
 #
 # File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 39
@@ -32,9 +24,13 @@ msgstr ""
 # File: modules/sparse/sci_gateway/cpp/sci_blkslvi.cpp, line: 43
 # File: modules/sparse/sci_gateway/cpp/sci_full.cpp, line: 41
 # File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 45
+# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 42
+# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 69
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 60
 # File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 70
 # File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 41
 # File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 45
+# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 42
 # File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 88
 # File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 38
 # File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 45
@@ -84,7 +80,7 @@ msgstr ""
 # File: modules/sparse/sci_gateway/cpp/sci_spones.cpp, line: 31
 # File: modules/sparse/sci_gateway/cpp/sci_symfcti.cpp, line: 39
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -171,16 +167,7 @@ msgstr ""
 # File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 36
 # File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 63
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d  expected.\n"
-msgstr ""
-
-#
-# File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 42
-# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 69
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 60
-# File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 42
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d  expected.\n"
 msgstr ""
 
 #
@@ -195,8 +182,8 @@ msgstr ""
 # File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 59
 # File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 88
 # File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 151
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 157
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 169
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 158
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 171
 #, c-format
 msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr ""
@@ -204,7 +191,7 @@ msgstr ""
 #
 # File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 57
 #, c-format
-msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
 msgstr ""
 
 #
@@ -266,35 +253,41 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 64
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 66
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 71
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 73
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A m-by-n matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 126
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 128
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 138
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 140
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 154
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 155
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: A m-by-2 matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 163
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
 
 #
@@ -632,7 +625,7 @@ msgstr ""
 # File: modules/sparse/macros/%bicg.sci, line: 178
 # File: modules/sparse/macros/%bicgstab.sci, line: 191
 # File: modules/sparse/macros/%cgs.sci, line: 183
-# File: modules/sparse/macros/conjgrad.sci, line: 267
+# File: modules/sparse/macros/conjgrad.sci, line: 268
 #, c-format
 msgid "Final residual = %s > tol =%s\n"
 msgstr ""
@@ -641,7 +634,7 @@ msgstr ""
 # File: modules/sparse/macros/%bicg.sci, line: 179
 # File: modules/sparse/macros/%bicgstab.sci, line: 192
 # File: modules/sparse/macros/%cgs.sci, line: 184
-# File: modules/sparse/macros/conjgrad.sci, line: 268
+# File: modules/sparse/macros/conjgrad.sci, line: 269
 #, c-format
 msgid "Algorithm fails\n"
 msgstr ""
@@ -650,7 +643,7 @@ msgstr ""
 # File: modules/sparse/macros/%bicg.sci, line: 183
 # File: modules/sparse/macros/%bicgstab.sci, line: 196
 # File: modules/sparse/macros/%cgs.sci, line: 188
-# File: modules/sparse/macros/conjgrad.sci, line: 272
+# File: modules/sparse/macros/conjgrad.sci, line: 273
 #, c-format
 msgid "%s: Convergence error.\n"
 msgstr ""
@@ -659,7 +652,7 @@ msgstr ""
 # File: modules/sparse/macros/%bicg.sci, line: 188
 # File: modules/sparse/macros/%bicgstab.sci, line: 201
 # File: modules/sparse/macros/%cgs.sci, line: 193
-# File: modules/sparse/macros/conjgrad.sci, line: 277
+# File: modules/sparse/macros/conjgrad.sci, line: 278
 #, c-format
 msgid "Algorithm pass\n"
 msgstr ""
@@ -705,53 +698,45 @@ msgid " Insufficient working storage in sfinit"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 95
-# File: modules/sparse/macros/gmres.sci, line: 151
-# File: modules/sparse/macros/qmr.sci, line: 299
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/sparse/macros/conjgrad.sci, line: 120
+# File: modules/sparse/macros/conjgrad.sci, line: 121
 #, c-format
 msgid "Arguments:\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 146
-# File: modules/sparse/macros/conjgrad.sci, line: 203
-# File: modules/sparse/macros/conjgrad.sci, line: 232
+# File: modules/sparse/macros/conjgrad.sci, line: 147
+# File: modules/sparse/macros/conjgrad.sci, line: 204
+# File: modules/sparse/macros/conjgrad.sci, line: 233
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 151
-# File: modules/sparse/macros/conjgrad.sci, line: 207
-# File: modules/sparse/macros/conjgrad.sci, line: 236
+# File: modules/sparse/macros/conjgrad.sci, line: 152
+# File: modules/sparse/macros/conjgrad.sci, line: 208
+# File: modules/sparse/macros/conjgrad.sci, line: 237
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 159
+# File: modules/sparse/macros/conjgrad.sci, line: 160
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 163
-# File: modules/sparse/macros/conjgrad.sci, line: 168
-# File: modules/sparse/macros/conjgrad.sci, line: 210
-# File: modules/sparse/macros/conjgrad.sci, line: 239
-# File: modules/sparse/macros/conjgrad.sci, line: 247
-# File: modules/sparse/macros/gmres.sci, line: 78
-# File: modules/sparse/macros/gmres.sci, line: 130
-# File: modules/sparse/macros/gmres.sci, line: 144
-# File: modules/sparse/macros/qmr.sci, line: 136
-# File: modules/sparse/macros/qmr.sci, line: 165
-# File: modules/sparse/macros/qmr.sci, line: 219
+# File: modules/sparse/macros/conjgrad.sci, line: 164
+# File: modules/sparse/macros/conjgrad.sci, line: 169
+# File: modules/sparse/macros/conjgrad.sci, line: 211
+# File: modules/sparse/macros/conjgrad.sci, line: 240
+# File: modules/sparse/macros/conjgrad.sci, line: 248
+# File: modules/sparse/macros/gmres.sci, line: 75
+# File: modules/sparse/macros/gmres.sci, line: 127
+# File: modules/sparse/macros/gmres.sci, line: 141
+# File: modules/sparse/macros/qmr.sci, line: 133
+# File: modules/sparse/macros/qmr.sci, line: 162
+# File: modules/sparse/macros/qmr.sci, line: 216
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
@@ -759,71 +744,71 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 173
+# File: modules/sparse/macros/conjgrad.sci, line: 174
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 175
+# File: modules/sparse/macros/conjgrad.sci, line: 176
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 179
-# File: modules/sparse/macros/conjgrad.sci, line: 183
-# File: modules/sparse/macros/qmr.sci, line: 258
-# File: modules/sparse/macros/qmr.sci, line: 280
+# File: modules/sparse/macros/conjgrad.sci, line: 180
+# File: modules/sparse/macros/conjgrad.sci, line: 184
+# File: modules/sparse/macros/qmr.sci, line: 255
+# File: modules/sparse/macros/qmr.sci, line: 277
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/conjgrad.sci, line: 244
+# File: modules/sparse/macros/conjgrad.sci, line: 245
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/gmres.sci, line: 54
+# File: modules/sparse/macros/gmres.sci, line: 51
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/gmres.sci, line: 74
-# File: modules/sparse/macros/gmres.sci, line: 141
-# File: modules/sparse/macros/qmr.sci, line: 121
-# File: modules/sparse/macros/qmr.sci, line: 133
+# File: modules/sparse/macros/gmres.sci, line: 71
+# File: modules/sparse/macros/gmres.sci, line: 138
+# File: modules/sparse/macros/qmr.sci, line: 118
+# File: modules/sparse/macros/qmr.sci, line: 130
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/gmres.sci, line: 86
-# File: modules/sparse/macros/gmres.sci, line: 96
-# File: modules/sparse/macros/gmres.sci, line: 106
-# File: modules/sparse/macros/qmr.sci, line: 266
-# File: modules/sparse/macros/qmr.sci, line: 288
+# File: modules/sparse/macros/gmres.sci, line: 83
+# File: modules/sparse/macros/gmres.sci, line: 93
+# File: modules/sparse/macros/gmres.sci, line: 103
+# File: modules/sparse/macros/qmr.sci, line: 263
+# File: modules/sparse/macros/qmr.sci, line: 285
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/gmres.sci, line: 289
+# File: modules/sparse/macros/gmres.sci, line: 286
 #, c-format
 msgid "%s: Did not converge.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 64
+# File: modules/sparse/macros/qmr.sci, line: 61
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 76
+# File: modules/sparse/macros/qmr.sci, line: 73
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real or complex matrix or a sparse "
@@ -831,7 +816,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 94
+# File: modules/sparse/macros/qmr.sci, line: 91
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Transpose of the function %s "
@@ -839,7 +824,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 98
+# File: modules/sparse/macros/qmr.sci, line: 95
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A transpose of the function %s "
@@ -847,7 +832,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 108
+# File: modules/sparse/macros/qmr.sci, line: 105
 #, c-format
 msgid ""
 "%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
@@ -855,8 +840,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 118
-# File: modules/sparse/macros/qmr.sci, line: 130
+# File: modules/sparse/macros/qmr.sci, line: 115
+# File: modules/sparse/macros/qmr.sci, line: 127
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex, full or sparse "
@@ -864,8 +849,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 156
-# File: modules/sparse/macros/qmr.sci, line: 209
+# File: modules/sparse/macros/qmr.sci, line: 153
+# File: modules/sparse/macros/qmr.sci, line: 206
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or complex, full or sparse, "
@@ -873,7 +858,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 181
+# File: modules/sparse/macros/qmr.sci, line: 178
 #, c-format
 msgid ""
 "%s : Calling qmr(...,M1,M1p) is deprecated. Please see qmr documentation for "
@@ -881,8 +866,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 183
-# File: modules/sparse/macros/qmr.sci, line: 238
+# File: modules/sparse/macros/qmr.sci, line: 180
+# File: modules/sparse/macros/qmr.sci, line: 235
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A transpose of the function "
@@ -890,7 +875,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 186
+# File: modules/sparse/macros/qmr.sci, line: 183
 #, c-format
 msgid ""
 "%s: Wrong prototype of input argument #%d: If M1 is function, use the header "
@@ -898,7 +883,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 236
+# File: modules/sparse/macros/qmr.sci, line: 233
 #, c-format
 msgid ""
 "%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
@@ -906,7 +891,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 241
+# File: modules/sparse/macros/qmr.sci, line: 238
 #, c-format
 msgid ""
 "%s: Wrong prototype of input argument #%d: If M2 is function, use the header "
@@ -914,27 +899,27 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/macros/qmr.sci, line: 262
-# File: modules/sparse/macros/qmr.sci, line: 284
+# File: modules/sparse/macros/qmr.sci, line: 259
+# File: modules/sparse/macros/qmr.sci, line: 281
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/sprand.sci, line: 20
-# File: modules/sparse/macros/spzeros.sci, line: 17
+# File: modules/sparse/macros/sprand.sci, line: 17
+# File: modules/sparse/macros/spzeros.sci, line: 16
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/sprand.sci, line: 28
+# File: modules/sparse/macros/sprand.sci, line: 25
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/macros/sprand.sci, line: 32
+# File: modules/sparse/macros/sprand.sci, line: 29
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""

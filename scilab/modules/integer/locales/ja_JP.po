@@ -18,18 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 入力引数 #%d を読み込めません.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
@@ -44,20 +32,30 @@ msgid "Never occur"
 msgstr "一度も発生しません"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 "%s: 入力引数#%dの型が間違っています: %s, %s または %s を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : int or double expected.\n"
+msgstr ""
+"%s: 入力引数#%dの型が間違っています: intまたは doubleを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: 入力引数#%dの型が間違っています: intまたは doubleを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: 入力引数#%dの型が間違っています: intまたは doubleを指定してください.\n"
 
@@ -81,8 +79,8 @@ msgstr ""
 msgid "%s: %s expected instead of %s.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
@@ -104,3 +102,15 @@ msgstr ""
 #, c-format
 msgid "%s: Incorrect integer type: %s .\n"
 msgstr "%s: 整数型が間違っています: %s .\n"
+
+#~ msgid "%s: Can not read input argument #%d.\n"
+#~ msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#~ msgid "%s: No more memory.\n"
+#~ msgstr "%s: メモリ不足です.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"

@@ -38,7 +38,7 @@ types::Function::ReturnValue sci_getlongpathname(types::typed_list &in, int _iRe
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 2);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 

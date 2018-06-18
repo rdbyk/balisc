@@ -107,12 +107,8 @@ msgstr ""
 "Результаты могут быть неточными.\n"
 "\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
@@ -227,8 +223,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String \"b\" expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка \"b\".\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or more expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d или более.\n"
 
 #, c-format
@@ -304,8 +300,8 @@ msgstr ""
 msgid "%s: This method is NOT implemented.\n"
 msgstr "%s: Этот метод НЕ реализован.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
@@ -495,7 +491,7 @@ msgid "Undefined function '%ls'.\n"
 msgstr "Неопределённая функция '%ls'.\n"
 
 #, fuzzy, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr "Пользовательская функция '%s' не установлена.\n"
 
 #, c-format
@@ -900,10 +896,6 @@ msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 "%s: Для жёстко запрограммированной функции пользователь должен указывать "
 "выходной размер G."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -1787,6 +1779,13 @@ msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
 "значение.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"

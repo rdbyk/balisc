@@ -75,7 +75,7 @@ function pie(varargin)
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector of strings expected.\n"),"pie", 3));
         end
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "pie", 1, 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "pie", 1, 3));
     end
 
     if isempty(x) then

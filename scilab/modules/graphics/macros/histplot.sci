@@ -67,7 +67,7 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     end
 
     if nargin < 2
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"histplot",2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"histplot",2));
     end
 
     if type(n) ~= 1 |  ~isreal(n)

@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
 
     if (in.size() > 5)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "Matplot", 1, 5);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "Matplot", 1, 5);
         return types::Function::Error;
     }
 
@@ -265,7 +265,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
 
     if (opt.size() > 4)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "Matplot", 1, 5);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "Matplot", 1, 5);
         if (bFREE)
         {
             FREE(strf);

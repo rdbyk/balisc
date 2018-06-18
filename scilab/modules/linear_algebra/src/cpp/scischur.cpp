@@ -84,7 +84,7 @@ int schur_dgees(double* _real, double* _img)
     if (out.size() != 1)
     {
         char* pstrName = wide_string_to_UTF8(pCall->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -170,7 +170,7 @@ int schur_dgges(double* _real, double* _img, double* _beta)
     if (out.size() != 1)
     {
         char* pstrName = wide_string_to_UTF8(pCall->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -243,7 +243,7 @@ int schur_zgees(doublecomplex* _complex)
     if (out.size() != 1)
     {
         char* pstrName = wide_string_to_UTF8(pCall->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }
@@ -335,7 +335,7 @@ int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
     if (out.size() != 1)
     {
         char* pstrName = wide_string_to_UTF8(pCall->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
+        sprintf(errorMsg, _("%s: Wrong number of output arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
         throw ast::InternalError(errorMsg);
     }

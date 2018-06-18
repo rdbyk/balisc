@@ -202,8 +202,8 @@ msgstr "%s : Nombre erroné d'argument(s) : %d attendu(s).\n"
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
 
 #, c-format
@@ -220,12 +220,8 @@ msgstr ""
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s : Format Scilab HDF5 invalide.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
@@ -253,6 +249,13 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : une chaîne de caractères "
 "attendue.\n"
+
+#
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 165
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 211
+#, c-format
+msgid "WARNING: %s: invalid graphic handle is ignored.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -834,3 +837,6 @@ msgstr "Permissivité"
 
 msgid "Ring Resonator"
 msgstr "Résonateur en anneau"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"

@@ -311,7 +311,7 @@ msgstr ""
 "nazwa pliku.\n"
 
 #, fuzzy, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: Plik CHAPTER nie jest dobrze sformatowany w wierszu %d\n"
 
 #, c-format
@@ -323,7 +323,7 @@ msgstr ""
 "łancuchu, zakończonego .last_successful_build.\n"
 
 #, fuzzy, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: Plik last_successful_build nie jest dobrze sformatowany w wierszu %d\n"
 
@@ -338,7 +338,7 @@ msgstr ""
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: Dwie listy typu mlist nie mogą mieć żadnego pola wspólnego.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"

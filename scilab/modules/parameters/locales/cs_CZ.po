@@ -163,8 +163,8 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: očekáváno %s.\n"
 msgid "%s: parameter %s not defined"
 msgstr "%s: parametr %s není stanoven"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno sudé číslo.\n"
 
 #, c-format

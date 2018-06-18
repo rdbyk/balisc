@@ -374,9 +374,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s:  Wrong number of output argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s:  Wrong number of output arguments: %d to %d expected."
 msgstr ""
+"%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d lub %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A list expected.\n"
@@ -450,9 +451,10 @@ msgstr ""
 msgid "%s:  Wrong type for input argument #%d: string expected."
 msgstr ""
 
-#, c-format
-msgid "%s:  Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s:  Wrong number of input arguments: %d to %d expected."
 msgstr ""
+"%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d lub %d.\n"
 
 #, c-format
 msgid "%s: This file %s does not exist.\n"
@@ -2580,21 +2582,25 @@ msgstr ""
 "%s: Zły typ parametru wejściowego nr %d: Oczekiwano obsługi graficznej lub "
 "wartości rzeczywistej.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected."
 msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
+"%d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr ""
+"%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d lub %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d, %d or %d expected."
 msgstr ""
+"%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d lub %d.\n"
 
 #, c-format
 msgid ""
@@ -2609,17 +2615,20 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr ""
+"%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d lub %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A border expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
 msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -2631,10 +2640,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -2688,8 +2693,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
 "%d.\n"

@@ -29,9 +29,10 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: A positive double expected\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
@@ -47,22 +48,25 @@ msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: Ein Skalar (>= 0) wird "
 "erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
 
 msgid "File"
 msgstr ""
@@ -702,6 +706,14 @@ msgstr ""
 msgid "Save file"
 msgstr ""
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 794
+# File: modules/console/src/console_fake_xml.c, line: 1061
+# File: modules/console/src/console_fake_xml.c, line: 1372
+# File: modules/console/src/console_fake_xml.c, line: 1694
+msgid "Demos"
+msgstr ""
+
 msgid "Environment"
 msgstr ""
 
@@ -781,6 +793,12 @@ msgid "Action name"
 msgstr ""
 
 msgid "Key binding"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1379
+# File: modules/console/src/console_fake_xml.c, line: 1701
+msgid "The demo interface is dockable"
 msgstr ""
 
 #, c-format

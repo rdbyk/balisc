@@ -17,6 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"nell'intervallo %s.\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
@@ -45,10 +51,6 @@ msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -161,7 +163,7 @@ msgstr ""
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 93
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 154
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
@@ -415,19 +417,8 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso %s o %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
-
-#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s: Gli argomenti #%d e #%d devono avere le stesse dimensioni.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
-"%d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
@@ -738,3 +729,13 @@ msgstr ""
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr ""
 "%s: C'è un cambio troppo brusco vicino alla fine della gamma di frequenze.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+#~ "%d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d "
+#~ "o %d.\n"

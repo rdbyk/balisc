@@ -29,7 +29,7 @@ types::Function::ReturnValue sci_rlist(types::typed_list &in, int _iRetCount, ty
 {
     if (in.size() == 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): At most %d expected.\n"), "rlist", 2);
+        Scierror(77, _("%s: Wrong number of input arguments: At most %d expected.\n"), "rlist", 2);
         return types::Function::Error;
     }
 

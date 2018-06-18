@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
     bool bAdd = true;
     if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "intppty", 0, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected."), "intppty", 0, 2);
         return types::Function::Error;
     }
 

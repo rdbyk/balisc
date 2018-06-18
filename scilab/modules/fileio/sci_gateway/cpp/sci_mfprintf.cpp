@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
 
     if (in.size() < 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "mfprintf", 2);
+        Scierror(77, _("%s: Wrong number of input arguments: At least %d expected.\n"), "mfprintf", 2);
         return types::Function::Error;
     }
 

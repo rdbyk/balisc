@@ -36,13 +36,13 @@ types::Function::ReturnValue sci_http_delete(types::typed_list &in, types::optio
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 2);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 

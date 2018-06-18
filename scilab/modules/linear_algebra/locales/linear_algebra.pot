@@ -15,15 +15,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2018-06-18 10:21+0100\n"
 
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 57
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 55
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 75
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 73
 # File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 95
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
@@ -31,56 +31,56 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 84
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 103
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 104
 #, c-format
 msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 155
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 169
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 163
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 177
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 170
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 184
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s, or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 178
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 231
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 192
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 245
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 201
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 215
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 207
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 221
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 47
-# File: modules/linear_algebra/src/cpp/scischur.cpp, line: 82
-# File: modules/linear_algebra/src/cpp/scischur.cpp, line: 166
-# File: modules/linear_algebra/src/cpp/scischur.cpp, line: 239
-# File: modules/linear_algebra/src/cpp/scischur.cpp, line: 329
+# File: modules/linear_algebra/src/cpp/scischur.cpp, line: 87
+# File: modules/linear_algebra/src/cpp/scischur.cpp, line: 173
+# File: modules/linear_algebra/src/cpp/scischur.cpp, line: 246
+# File: modules/linear_algebra/src/cpp/scischur.cpp, line: 338
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -95,7 +95,7 @@ msgstr ""
 # File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 68
 # File: modules/linear_algebra/sci_gateway/cpp/sci_chol.cpp, line: 53
 # File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 61
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 56
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 54
 # File: modules/linear_algebra/sci_gateway/cpp/sci_rcond.cpp, line: 54
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 68
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 88
@@ -105,12 +105,12 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 109
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 63
+# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 86
 # File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 87
 # File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 104
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 117
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 67
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 70
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 120
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 100
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 131
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 98
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 334
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 341
@@ -122,28 +122,28 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 125
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 95
-# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 117
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 148
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 127
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 167
+# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 113
+# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 118
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 153
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 135
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 169
 #, c-format
 msgid "%s: LAPACK error n%d.\n"
 msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 55
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 46
+# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 50
 # File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 47
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 50
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 50
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 53
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 48
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 48
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 51
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 170
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 188
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 197
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 51
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #
@@ -167,7 +167,7 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 132
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 144
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 149
 # File: modules/linear_algebra/sci_gateway/cpp/sci_rcond.cpp, line: 87
 #, c-format
 msgid "%s: Allocation failed.\n"
@@ -187,7 +187,7 @@ msgid "%s: Matrix is not positive definite.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 74
+# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 64
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 65
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 294
 #, c-format
@@ -195,9 +195,42 @@ msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 80
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 80
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 94
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 116
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 429
+msgid "Warning :\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 81
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 95
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 117
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 123
+#, c-format
+msgid "%s: Problem is singular.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 74
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr ""
+
+#
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 84
+#, c-format
+msgid "%s: %s and %s must have equal number of rows.\n"
+msgstr ""
+
+#
 # File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 108
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 103
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 87
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 74
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 94
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 71
@@ -207,43 +240,13 @@ msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 95
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 429
-msgid "Warning :\n"
-msgstr ""
-
-#
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 96
-#, c-format
-msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
-msgstr ""
-
-#
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 103
-#, c-format
-msgid "%s: Problem is singular.\n"
-msgstr ""
-
-#
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 76
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
-msgstr ""
-
-#
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 86
-#, c-format
-msgid "%s: %s and %s must have equal number of rows.\n"
-msgstr ""
-
-#
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 121
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 105
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 134
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 118
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
@@ -258,7 +261,7 @@ msgstr ""
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 179
 # File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 88
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 
 #
@@ -366,7 +369,7 @@ msgstr ""
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 71
 #, c-format
-msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr ""
 
 #
@@ -450,7 +453,7 @@ msgstr ""
 msgid "Reordering failed in ZTGSEN.\n"
 msgstr ""
 
-# File: modules/linear_algebra/macros/coff.sci, line: 23
+# File: modules/linear_algebra/macros/coff.sci, line: 22
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
@@ -462,122 +465,116 @@ msgid "%s: Wrong type for input argument #%d: Polynomial expected."
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/cond.sci, line: 25
+# File: modules/linear_algebra/macros/cond.sci, line: 24
 #, c-format
 msgid "%s: Wrong value for input argument #%d: must not contain %s or %s.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/cond.sci, line: 38
+# File: modules/linear_algebra/macros/cond.sci, line: 37
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/cond.sci, line: 48
+# File: modules/linear_algebra/macros/cond.sci, line: 47
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/cond.sci, line: 51
+# File: modules/linear_algebra/macros/cond.sci, line: 50
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/cond.sci, line: 54
+# File: modules/linear_algebra/macros/cond.sci, line: 53
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: must be %d, %d, %s, '%s' or '%s'.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/diff.sci, line: 16
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/linear_algebra/macros/diff.sci, line: 25
-# File: modules/linear_algebra/macros/diff.sci, line: 34
+# File: modules/linear_algebra/macros/diff.sci, line: 24
+# File: modules/linear_algebra/macros/diff.sci, line: 33
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/diff.sci, line: 29
-# File: modules/linear_algebra/macros/diff.sci, line: 38
+# File: modules/linear_algebra/macros/diff.sci, line: 28
+# File: modules/linear_algebra/macros/diff.sci, line: 37
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/givens.sci, line: 27
+# File: modules/linear_algebra/macros/givens.sci, line: 25
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/householder.sci, line: 35
-# File: modules/linear_algebra/macros/householder.sci, line: 39
+# File: modules/linear_algebra/macros/householder.sci, line: 34
+# File: modules/linear_algebra/macros/householder.sci, line: 38
 #, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/householder.sci, line: 43
-# File: modules/linear_algebra/macros/householder.sci, line: 47
+# File: modules/linear_algebra/macros/householder.sci, line: 42
+# File: modules/linear_algebra/macros/householder.sci, line: 46
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/householder.sci, line: 51
-# File: modules/linear_algebra/macros/im_inv.sci, line: 25
-# File: modules/linear_algebra/macros/spaninter.sci, line: 29
-# File: modules/linear_algebra/macros/spanplus.sci, line: 29
+# File: modules/linear_algebra/macros/householder.sci, line: 50
+# File: modules/linear_algebra/macros/im_inv.sci, line: 23
+# File: modules/linear_algebra/macros/spaninter.sci, line: 28
+# File: modules/linear_algebra/macros/spanplus.sci, line: 27
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/kernel.sci, line: 34
+# File: modules/linear_algebra/macros/kernel.sci, line: 31
 #, c-format
 msgid "%s: SVD and QR not implemented in sparse.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/kernel.sci, line: 64
+# File: modules/linear_algebra/macros/kernel.sci, line: 61
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/linsolve.sci, line: 27
+# File: modules/linear_algebra/macros/linsolve.sci, line: 25
 msgid "Conflicting linear constraints."
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/linsolve.sci, line: 36
+# File: modules/linear_algebra/macros/linsolve.sci, line: 34
 msgid "Recomputing initial guess"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/linsolve.sci, line: 75
+# File: modules/linear_algebra/macros/linsolve.sci, line: 73
 #, c-format
 msgid "Possible Conflicting linear constraints, error in the order of %s"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/nlev.sci, line: 26
+# File: modules/linear_algebra/macros/nlev.sci, line: 24
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/nlev.sci, line: 40
+# File: modules/linear_algebra/macros/nlev.sci, line: 38
 #, c-format
 msgid "%s: Argument #%d: Square matrix expected.\n"
 msgstr ""
@@ -585,21 +582,21 @@ msgstr ""
 #
 # File: modules/linear_algebra/macros/pbig.sci, line: 33
 # File: modules/linear_algebra/macros/psmall.sci, line: 34
-# File: modules/linear_algebra/macros/rowcomp.sci, line: 45
+# File: modules/linear_algebra/macros/rowcomp.sci, line: 43
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/penlaur.sci, line: 33
-# File: modules/linear_algebra/macros/rowshuff.sci, line: 36
+# File: modules/linear_algebra/macros/penlaur.sci, line: 31
+# File: modules/linear_algebra/macros/rowshuff.sci, line: 34
 #, c-format
 msgid "%s: Singular pencil."
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/pinv.sci, line: 41
-# File: modules/linear_algebra/macros/rank.sci, line: 33
+# File: modules/linear_algebra/macros/pinv.sci, line: 40
+# File: modules/linear_algebra/macros/rank.sci, line: 32
 # File: modules/linear_algebra/macros/rref.sci, line: 45
 #, c-format
 msgid ""
@@ -607,25 +604,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/range.sci, line: 21
+# File: modules/linear_algebra/macros/range.sci, line: 20
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/range.sci, line: 24
-# File: modules/linear_algebra/macros/trace.sci, line: 20
-# File: modules/linear_algebra/macros/trace.sci, line: 26
-# File: modules/linear_algebra/macros/trace.sci, line: 34
-# File: modules/linear_algebra/macros/trace.sci, line: 44
-# File: modules/linear_algebra/macros/trace.sci, line: 53
+# File: modules/linear_algebra/macros/range.sci, line: 23
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/rowcomp.sci, line: 36
+# File: modules/linear_algebra/macros/rowcomp.sci, line: 34
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
@@ -645,17 +637,21 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/macros/squeeze.sci, line: 38
-# File: modules/linear_algebra/macros/trace.sci, line: 38
-# File: modules/linear_algebra/macros/trace.sci, line: 48
-# File: modules/linear_algebra/macros/trace.sci, line: 57
+# File: modules/linear_algebra/macros/trace.sci, line: 27
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/sva.sci, line: 25
+# File: modules/linear_algebra/macros/sva.sci, line: 24
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Requested rank is greater than "
 "matrix dimension."
+msgstr ""
+
+#
+# File: modules/linear_algebra/macros/trace.sci, line: 31
+#, c-format
+msgid "%s: Wrong size of input argument #%d: expected a square matrix.\n"
 msgstr ""

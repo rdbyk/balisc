@@ -9,7 +9,7 @@
 // <-- CLI SHELL MODE -->
 
 assert_checkfalse(execstr("umf_luinfo()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "umf_luinfo", 1);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "umf_luinfo", 1);
 assert_checkerror("umf_luinfo()", refMsg);
 
 assert_checkfalse(execstr("umf_luinfo(1)"   ,"errcatch") == 0);

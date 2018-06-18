@@ -49,7 +49,7 @@ function [la,lb]=lattn(n,p,mat_cov)
 
 
     if nargin<>3 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"lattn",3))
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"lattn",3))
     end
     if type(n)<>1 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"lattn",1))

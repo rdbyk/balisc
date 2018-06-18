@@ -13,7 +13,7 @@
 function z = bitand(x, y)
 
     if nargin <> 2 then
-        msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg, "bitand", 2))
     end
 

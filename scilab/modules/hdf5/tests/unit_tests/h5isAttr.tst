@@ -7,7 +7,7 @@
 //
 // <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5isAttr", 1);
+msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "h5isAttr", 1);
 assert_checkerror("h5isAttr()",msgerr,77);
 assert_checkfalse(h5isAttr("42"));
 assert_checkfalse(h5isAttr(42));

@@ -22,10 +22,6 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
 
@@ -42,13 +38,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 
 #, c-format
 msgid ""

@@ -15,7 +15,7 @@ function [x_out, ka_out, kb_out] = intersect(a_in, b_in, orient)
     // returns the vector of common values of two vectors
 
     if nargin < 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "intersect", 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "intersect", 2));
     end
 
     if ( (a_in == [])| (b_in == []) ) then

@@ -74,17 +74,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: помилкові значення вхідного параметра №%d: слід використовувати "
-"невід’ємні цілі числа\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
-msgstr "%s: помилкове значення вхідного параметра №%d: мало бути «s».\n"
-
-#, c-format
-msgid ""
 "%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
 msgstr ""
 "%s: можливість %s вважається застарілою, її буде остаточно вилучено у Scilab "
@@ -96,6 +85,39 @@ msgstr "Попередження"
 #, c-format
 msgid "%s: Please use %s instead.\n"
 msgstr "%s: будь ласка, скористайтеся %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: слід використовувати "
+"невід’ємні цілі числа\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
+"число.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: A positive real expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано дійсне "
+"значення.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d: мало бути «s».\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Must be scalars.\n"
@@ -202,8 +224,8 @@ msgstr "%s: помилкова кількість вхідних парамет�
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -237,11 +259,6 @@ msgstr ""
 "бути однаковими.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr ""
@@ -253,6 +270,27 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
 "«%s».\n"
+
+msgid "Saturday"
+msgstr "Субота"
+
+msgid "Sunday"
+msgstr "Неділя"
+
+msgid "Monday"
+msgstr "Понеділок"
+
+msgid "Tuesday"
+msgstr "Вівторок"
+
+msgid "Wednesday"
+msgstr "Середа"
+
+msgid "Thursday"
+msgstr "Четвер"
+
+msgid "Friday"
+msgstr "п'ятниця"
 
 msgid "Sat"
 msgstr "Сбт"
@@ -275,23 +313,10 @@ msgstr "Чтв"
 msgid "Fri"
 msgstr "Птн"
 
-msgid "Saturday"
-msgstr "Субота"
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
-msgid "Sunday"
-msgstr "Неділя"
-
-msgid "Monday"
-msgstr "Понеділок"
-
-msgid "Tuesday"
-msgstr "Вівторок"
-
-msgid "Wednesday"
-msgstr "Середа"
-
-msgid "Thursday"
-msgstr "Четвер"
-
-msgid "Friday"
-msgstr "п'ятниця"
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d або "
+#~ "%d.\n"

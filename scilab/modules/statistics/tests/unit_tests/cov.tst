@@ -11,7 +11,7 @@
 
 // Check error
 assert_checkfalse(execstr("cov()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d, %d or %d expected.\n"),"cov", 1, 2, 3);
+refMsg = msprintf(_("%s: Wrong number of input arguments: %d, %d or %d expected.\n"),"cov", 1, 2, 3);
 assert_checkerror("cov()", refMsg);
 
 assert_checkfalse(execstr("cov(""r"")"   ,"errcatch") == 0);

@@ -49,12 +49,12 @@ msgstr "%s：第%d个输入参数的类型错误：应该为字符串矩阵。\n
 msgid "%s: Append lines in Scilab history failed.\n"
 msgstr "%s：向历史记录中添加行失败。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format

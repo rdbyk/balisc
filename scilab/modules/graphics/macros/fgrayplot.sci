@@ -34,7 +34,7 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
 
 
     if nargin<3,
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fgrayplot", 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "fgrayplot", 3));
     end
 
 

@@ -87,7 +87,7 @@ function sys = lincos(scs_m,x0,u0,param)
     // =====================================================================
 
     if nargin < 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "lincos", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "lincos", 1));
     end
     if typeof(scs_m)<>"diagram" & typeof(scs_m)<>"cpr" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A diagram expected.\n"), "lincos", 1));

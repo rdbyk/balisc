@@ -49,13 +49,13 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 2 || in.size() > 4)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "fsolve", 2, 4);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "fsolve", 2, 4);
         return types::Function::Error;
     }
 
     if (_iRetCount > 3)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "fsolve", 1, 3);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "fsolve", 1, 3);
         return types::Function::Error;
     }
 

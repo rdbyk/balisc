@@ -13,7 +13,7 @@
 
 // Error messages
 
-errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "fileparts", 1, 2);
+errmsg1 = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "fileparts", 1, 2);
 assert_checkerror("fileparts(SCI+''/etc/scilab.start'', ""extension"", ""extension"")", errmsg1);
 
 errmsg2 = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"),  "fileparts", 1);

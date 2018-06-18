@@ -23,4 +23,4 @@
 //     what is the third ?
 
 if execstr("mgetstr()","errcatch") == 0 then pause,end
-if lasterror() <> msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mgetstr", 1, 2) then pause,end
+if lasterror() <> msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgetstr", 1, 2) then pause,end

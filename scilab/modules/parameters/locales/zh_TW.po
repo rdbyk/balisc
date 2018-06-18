@@ -177,8 +177,8 @@ msgstr "%s: 第 %d 個輸入參數的資料型態錯誤: 應該是 %s.\n"
 msgid "%s: parameter %s not defined"
 msgstr "%s: %s 參數未被定義"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number expected.\n"
 msgstr "%s: 參數個數有誤: 偶數才對.\n"
 
 #, c-format

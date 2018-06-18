@@ -76,40 +76,40 @@ msgstr ""
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: 輸入參數數目錯誤: 應在 %d ,%d 之間.\n"
 
 msgid "matrix"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: 參數個數有誤: 至少要 %d 才對.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s: 參數個數有誤: 最多爲 %d 個.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應在 %d ,%d 之間.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at least %d expected.\n"
+msgstr "%s: 參數個數有誤: 至少要 %d 才對.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at most %d expected.\n"
+msgstr "%s: 參數個數有誤: 最多爲 %d 個.\n"
 
 #, c-format
 msgid "%s: matrix argument expected"

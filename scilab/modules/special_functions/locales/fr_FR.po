@@ -85,9 +85,25 @@ msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice réelle ou complexe "
 "attendue.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu(s).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"
+
+# File: modules/special_functions/macros/%s_gamma.sci, line: 21
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
+msgid ""
+"%s: Function not defined for the given argument type.\n"
+"  Check arguments or define function %s for overloading.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong value for argument #%d: 0, 1 or 2 expected.\n"
@@ -96,3 +112,6 @@ msgstr "%s : Valeur erronée de l'argument n°%d : 0, 1 ou 2 attendu.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"

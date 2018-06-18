@@ -25,7 +25,7 @@ function plotframe(rect,axisdata,options,legs,subwindow)
     //!
 
     if nargin < 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "plotframe", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "plotframe", 1));
         return ;
     end
 

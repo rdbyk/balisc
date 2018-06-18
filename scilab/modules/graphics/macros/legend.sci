@@ -14,7 +14,7 @@
 function c=legend(varargin)
 
     if size(varargin)<1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "legend", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "legend", 1));
     end
 
     options_names=["in_upper_right";"in_upper_left";"in_lower_left";

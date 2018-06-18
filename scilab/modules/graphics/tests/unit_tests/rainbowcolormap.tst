@@ -7,7 +7,7 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-assert_checkerror("rainbowcolormap(0,1,2,3)", "%s: Wrong number of input argument(s): %d expected.\n", 10000, "rainbowcolormap", 1);
+assert_checkerror("rainbowcolormap(0,1,2,3)", "%s: Wrong number of input arguments: %d expected.\n", 10000, "rainbowcolormap", 1);
 
 assert_checkerror("rainbowcolormap(%t)", "%s: Wrong type for input argument #%d: a real scalar expected.\n", 10000, "rainbowcolormap", 1);
 

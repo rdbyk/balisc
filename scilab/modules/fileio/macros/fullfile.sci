@@ -14,7 +14,7 @@
 function f = fullfile(varargin)
 
     if size(varargin) < 1 then
-        error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"), "fullfile",1));
+        error(msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"), "fullfile",1));
     end
 
     fs = ["/" "\"];

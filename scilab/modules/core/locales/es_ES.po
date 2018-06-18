@@ -18,44 +18,8 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-"%s: Tamaño incorrecto para argumento %d: Se esperaba un escalar real.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: No hay más memoria.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba un "
-"entero.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Error de asignación de memoria.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumento(s) de salida: Se esperaban de %d a %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Número incorrecto de argumento(s) de salida: Se esperaban %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -72,9 +36,10 @@ msgstr ""
 "%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un valor "
 "entero.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr ""
+"%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -95,6 +60,12 @@ msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: '%s', '%s' o '%s'.\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -102,8 +73,12 @@ msgstr ""
 msgid "Redefining permanent variable.\n"
 msgstr ""
 
+#
+# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 49
+# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 73
+# File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 68
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "%s: Redefining permanent variable.\n"
 msgstr ""
 
 #, c-format
@@ -210,11 +185,6 @@ msgid "  for more details, show help page.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Tipo incorrecto del argumento de entrada #%d.\n"
 
@@ -242,6 +212,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba un "
+"entero.\n"
 
 msgid "Could not retrieve sub-type.\n"
 msgstr ""
@@ -274,10 +250,6 @@ msgstr ""
 "intervalo [%d, %d].\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
 msgstr ""
 
@@ -295,9 +267,22 @@ msgstr ""
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: El archivo %s no existe.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
+msgstr "%s: Número incorrecto de argumentos de salida: Se esperaban %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Número incorrecto de argumento(s) de salida: Se esperaban de %d a %d.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hay más memoria.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -308,13 +293,9 @@ msgstr ""
 msgid "%s: Wrong file version.xml %s.\n"
 msgstr "%s: Archivo version.xml incorrecto %s.\n"
 
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument #%d: %s\n"
+msgstr "%s: Valor incorrecto del argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
@@ -334,6 +315,18 @@ msgid ""
 "expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban strings.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba un "
+"entero.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
@@ -344,10 +337,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for output arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -372,15 +361,30 @@ msgid "%s: function-name is incorrect.\n"
 msgstr "%s: El nombre de la función es incorrecto.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: function is disabled in debug mode.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+msgid "Warning"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: Por favor revise: %s.\n"
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+#, c-format
+msgid "%s: This feature will be permanently removed in Scilab / %s.\n"
 msgstr ""
 
 #, c-format
@@ -390,6 +394,18 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban strings.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba un "
+"entero.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -403,9 +419,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number is expected.\n"
 msgstr ""
+"%s: Número incorrecto de argumento(s) de entrada: Se esperaban al menos %d.\n"
 
 #, c-format
 msgid "%s: Field names must be strings.\n"
@@ -446,32 +463,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'local', 'get', 'global' or 'sorted' "
 "expected.\n"
 msgstr ""
-
-msgid "The SCI environment variable is not set.\n"
-msgstr "La variable del entorno SCI no está definida.\n"
-
-#, c-format
-msgid "Cannot load the module declaration file: %s.\n"
-msgstr "No se puede cargar el archivo del módulo de declaración: %s.\n"
-
-#, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Advertencia: No se pudo encontrar %s\n"
-
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr "Error: No se pudo analizar el archivo %s.\n"
-
-#, c-format
-msgid "%s module not found.\n"
-msgstr "módulo %s no encontrado.\n"
-
-#, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr ""
-"Error: Archivo de módulo %s inválido (codificación no '%s') Se encontró "
-"codificación '%s'.\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -540,21 +531,6 @@ msgid ""
 msgstr ""
 "Fin de la pila\n"
 "\n"
-
-msgid "ESI Group\n"
-msgstr ""
-
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr ""
-
-msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
-msgstr ""
-
-msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr ""
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr ""
 
 #, c-format
 msgid "Recursion limit reached (%d).\n"
@@ -648,13 +624,8 @@ msgstr "%s: Por favor revise: %s.\n"
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: Archivo inexistente: %s"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumento(s) de entrada: Se esperaban al menos %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un "
 "double.\n"
@@ -666,31 +637,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Incapaz de encontrar el archivo Perl: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban strings.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: No se especificó un comando perl."
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: Incapaz de encontrar Perl en '%s"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Incapaz de encontrar Perl.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Error del sistema: Comando ejecutado: %s"
 
 msgid "Scilab Version: "
 msgstr ""
@@ -747,3 +693,57 @@ msgstr "Tamaño"
 
 msgid "Bytes"
 msgstr "Bytes"
+
+#~ msgid "%s: Can not read input argument #%d.\n"
+#~ msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+#~ msgstr ""
+#~ "%s: Tamaño incorrecto para argumento %d: Se esperaba un escalar real.\n"
+
+#~ msgid "%s: Memory allocation error.\n"
+#~ msgstr "%s: Error de asignación de memoria.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: Número incorrecto de argumento(s) de salida: Se esperaban %d.\n"
+
+#~ msgid "The SCI environment variable is not set.\n"
+#~ msgstr "La variable del entorno SCI no está definida.\n"
+
+#~ msgid "Cannot load the module declaration file: %s.\n"
+#~ msgstr "No se puede cargar el archivo del módulo de declaración: %s.\n"
+
+#~ msgid "Warning: Could not find %s\n"
+#~ msgstr "Advertencia: No se pudo encontrar %s\n"
+
+#~ msgid "Error: Could not parse file %s.\n"
+#~ msgstr "Error: No se pudo analizar el archivo %s.\n"
+
+#~ msgid "%s module not found.\n"
+#~ msgstr "módulo %s no encontrado.\n"
+
+#~ msgid ""
+#~ "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' "
+#~ "found.\n"
+#~ msgstr ""
+#~ "Error: Archivo de módulo %s inválido (codificación no '%s') Se encontró "
+#~ "codificación '%s'.\n"
+
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: Incapaz de encontrar el archivo Perl: %s"
+
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: No se especificó un comando perl."
+
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: Incapaz de encontrar Perl en '%s"
+
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: Incapaz de encontrar Perl.\n"
+
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: Error del sistema: Comando ejecutado: %s"

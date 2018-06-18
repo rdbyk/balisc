@@ -17,13 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误：必须在%d和%d之间。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
@@ -68,21 +68,21 @@ msgstr ""
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d, %d or %d expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或实数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
 
 #, c-format
 msgid ""
@@ -115,9 +115,9 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：必须在%d和%d之间。\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"

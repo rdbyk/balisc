@@ -43,7 +43,7 @@ function contour(x, y, z, nz, theta, alpha, leg, flag, ebox, zlev)
     end
 
     if nargin < 4 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "contour", 4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "contour", 4));
     end
 
     if type(x) <> 1 then

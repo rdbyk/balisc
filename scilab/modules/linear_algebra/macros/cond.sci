@@ -55,7 +55,7 @@ function c = cond(varargin)
 
         c = norm(A, p) * norm(inv(A), p);
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "cond", 1, 2));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "cond", 1, 2));
     end
 
 endfunction

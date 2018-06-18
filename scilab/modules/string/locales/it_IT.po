@@ -18,10 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
 "expected.\n"
@@ -43,11 +39,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -65,16 +57,7 @@ msgstr ""
 "'u' (maiuscolo) o 'l' (minuscolo).\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -127,9 +110,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa %s o %s.\n"
 
 #, c-format
 msgid ""
@@ -144,7 +128,7 @@ msgid "%s: Wrong type for input argument #%d: Char(s) expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -174,8 +158,9 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -271,10 +256,6 @@ msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
@@ -337,22 +318,6 @@ msgstr ""
 "%s: $ è l'unica variabile implicita supportata negli indici selezionati"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso è di tipo sbagliato: era attesa una stringa.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa di caratteri.\n"
-
-#, c-format
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è sbagliato: dimensione non consistente.\n"
@@ -362,11 +327,11 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"intero.\n"
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid ""
@@ -399,9 +364,10 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso %s, %s o "
 "%s.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid ""
@@ -433,9 +399,24 @@ msgstr ""
 "variabile di tipo %s.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa di caratteri.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un carattere "
 "o un vettore di caratteri.\n"
+
+#~ msgid "%s: Wrong type for input argument: String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso è di tipo sbagliato: era attesa una stringa.\n"
+
+#~ msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso "
+#~ "un intero.\n"

@@ -37,10 +37,6 @@ msgid "Invalid index.\n"
 msgstr "Indice invalide.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
-
-#, c-format
 msgid "List element number %d is Undefined.\n"
 msgstr "L'élément numéro %d est indéfini.\n"
 
@@ -63,8 +59,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : un entier attendu.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : au plus %d attendu(s).\n"
 
 #, c-format
@@ -94,28 +90,8 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be non-negative "
-"integers.\n"
-msgstr ""
-"%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
-"être des entiers positifs.\n"
-
-#, c-format
-msgid "%s: Number of entries does not match product of dimensions"
-msgstr "%s: Le nombre d'entrées ne correspond pas au produit des dimensions"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
@@ -129,3 +105,22 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : au moins %d attendus.\n"
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : un entier positif attendu.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
+
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: Elements must be non-negative "
+#~ "integers.\n"
+#~ msgstr ""
+#~ "%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
+#~ "être des entiers positifs.\n"
+
+#~ msgid "%s: Number of entries does not match product of dimensions"
+#~ msgstr "%s: Le nombre d'entrées ne correspond pas au produit des dimensions"
+
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu(s).\n"

@@ -17,13 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected."
 msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -35,9 +37,10 @@ msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
 msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
 msgid ""

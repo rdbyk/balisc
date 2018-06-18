@@ -433,17 +433,13 @@ msgstr ""
 msgid "     norm of the residual    = "
 msgstr "     残差のノルム = "
 
-#, fuzzy, c-format
-msgid "     same but with refinment = "
+#, c-format
+msgid "     same but with refinement = "
 msgstr "     改善処理付きの残差のノルム = "
 
 #, c-format
 msgid "     norm of the residual     = "
 msgstr "     残差のノルム = "
-
-#, c-format
-msgid "     same but with refinement = "
-msgstr "     改善処理付きの残差のノルム = "
 
 msgid "Now we will see how to use the taucs snmf stuff on the matrix A2."
 msgstr "次に行列A2のtaucs snmf処理の使用法を示します."
@@ -536,12 +532,12 @@ msgstr "疎行列を選択してください"
 msgid "   then click on OK   "
 msgstr "   OKをクリックして下さい   "
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
+#, fuzzy, c-format
+msgid "%s: The file contains a nargin but it will not be read !"
 msgstr "%s: このファイルには右辺がありますが,これは読み込まれません!"
 
 #, c-format
@@ -643,3 +639,7 @@ msgstr "condestsp の小テスト"
 # File: macros/scisptdemo.sci, line: 61
 msgid "Click to choose a demo"
 msgstr "クリックしてデモを選んで下さい"
+
+#, fuzzy
+#~ msgid "     same but with refinment = "
+#~ msgstr "     改善処理付きの残差のノルム = "

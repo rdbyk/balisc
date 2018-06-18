@@ -19,8 +19,8 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
@@ -41,8 +41,8 @@ msgstr "ウインドウズモードに限定されます、コンソールモー
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 

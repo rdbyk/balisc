@@ -58,7 +58,7 @@ treeNode3 = uiCreateTree(node3, leaf31,leaf32);
 treeRoot = uiCreateTree(root, node1,node2,node3);
 
 // tree creation with wrong inputs
-refMsg = msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"), "uiCreateTree",1);
+refMsg = msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"), "uiCreateTree",1);
 assert_checkerror("myTree = uiCreateTree()", refMsg);
 
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiCreateTree",1);

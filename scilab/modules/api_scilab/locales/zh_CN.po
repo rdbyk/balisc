@@ -76,39 +76,39 @@ msgstr "布尔型稀疏矩阵"
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 msgid "matrix"
 msgstr "矩阵"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为至少%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为至多%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d到%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at least %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为至少%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at most %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为至多%d个。\n"
 
 #, c-format

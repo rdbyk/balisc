@@ -17,12 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected."
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d."
 
 #, c-format
@@ -36,8 +36,8 @@ msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d."
 
 #, c-format

@@ -12,7 +12,7 @@
 function [y] = x_matrix(mes, x)
 
     if nargin < 2 then
-        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "x_matrix", 2));
+        error(sprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "x_matrix", 2));
     end
 
     if type(x)<>1 then

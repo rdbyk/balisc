@@ -207,7 +207,7 @@ int sci_xrect(char *fname, void *pvApiCtx)
 
             break;
         default :
-            Scierror(999, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), fname, 1, 4);
+            Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 1, 4);
             break;
     }
 

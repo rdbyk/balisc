@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_savehistory(types::typed_list &in, int _iRetCou
     }
     else
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "savehistory", 0, 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "savehistory", 0, 1);
         return types::Function::Error;
     }
     return types::Function::OK;

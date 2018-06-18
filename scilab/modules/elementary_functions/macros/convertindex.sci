@@ -25,7 +25,7 @@ function [Newdims,I] = convertindex(dims, varargin)
     // Modified files: %ce_i_ce.sci %st_i_st.sci %b_i_hm.sci %hm_i_b.sci %hm_i_hm.sci %hm_i_i.sci %hm_i_p.sci %hm_i_s.sci %i_i_hm.sci %p_i_hm.sci
 
     if nargin < 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"convertindex", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"convertindex", 1));
     end
 
     if type(dims)==15 then // insertion

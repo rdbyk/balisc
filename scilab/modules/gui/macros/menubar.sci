@@ -12,7 +12,7 @@
 function menubar(win,menus)
 
     if nargin < 2 then
-        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "menubar", 2));
+        error(sprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "menubar", 2));
     end
 
     names = menus(1)

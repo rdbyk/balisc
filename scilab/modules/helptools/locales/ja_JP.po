@@ -377,7 +377,7 @@ msgid ""
 msgstr "%s: 入力引数 #%d で不正な値: 適当な既に在るファイルを想定します。\n"
 
 #, fuzzy, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: CHAPTER ファイルは 行 %d で満足にフォーマットされません\n"
 
 #
@@ -391,7 +391,7 @@ msgstr ""
 "す。\n"
 
 #, fuzzy, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
 
@@ -413,6 +413,6 @@ msgstr "%s: 2 mlistは、共通のフィールドを持てません。\n"
 # File: macros/xmltojar.sci, line: 28
 # File: macros/xmltopdf.sci, line: 28
 # File: macros/xmltops.sci, line: 28
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: 入力引数(s)で不正な値: すくなくとも %d を想定します。\n"

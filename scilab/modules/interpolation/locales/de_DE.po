@@ -17,13 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Falsche #%d Eingabeargumentgröße: Vektor erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
+"%s: Falsche Anzahl an Eingabeargumenten: Muss zwischen %d und %d sein.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
@@ -68,21 +69,21 @@ msgstr ""
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s: doppelte Knoten oder alle Knoten kolinear (ier = %d).\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d, %d or %d expected.\n"
+msgstr "%s: Falscher #%d Eingabeargumentwert: '%s' oder Reelle erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Falsche #%d Eingabeargumentgröße: Vektor erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: Falsche #%d Eingabeargumentgröße: Vektor erwartet.\n"
 
 #, c-format
 msgid ""
@@ -115,9 +116,10 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
+"%s: Falsche Anzahl an Eingabeargumenten: Muss zwischen %d und %d sein.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"

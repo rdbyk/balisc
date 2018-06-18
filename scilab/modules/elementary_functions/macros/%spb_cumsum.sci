@@ -32,7 +32,7 @@ function r = %spb_cumsum(varargin)
         d = varargin(2);
         typ = varargin(3);
     else
-        error(msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),"cumsum", 1, 3));
+        error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"cumsum", 1, 3));
     end
     
     // Check second argument : d

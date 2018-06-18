@@ -18,7 +18,7 @@ function [cf, ind] = histc(n, data, normalization)
     //     [class_freq, ind] = histc(n, data)
 
     if nargin < 2
-        error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"), "histc", 2));
+        error(msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"), "histc", 2));
     end
 
     if nargin == 3 & exists("normalization", "local") then

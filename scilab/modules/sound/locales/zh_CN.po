@@ -128,8 +128,8 @@ msgstr "只能为8/16/24/32位编码。"
 msgid "Unknown data format."
 msgstr "未知的数据格式。"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s：输入参数的数目错误：至少%d个。\n"
 
 msgid "Requires 2-D values only."

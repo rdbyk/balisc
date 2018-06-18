@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 1 || in.size() > 4)
     {
-        Scierror(78, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "genlib", 1, 4);
+        Scierror(78, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "genlib", 1, 4);
         return types::Function::Error;
     }
 

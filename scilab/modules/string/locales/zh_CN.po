@@ -18,10 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
 "expected.\n"
@@ -39,11 +35,7 @@ msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -57,15 +49,7 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为'u'（大写）或'l'（小写）。\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该为%d个。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -116,9 +100,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为 %s 或 %s 。\n"
 
 #, c-format
 msgid ""
@@ -131,7 +115,7 @@ msgid "%s: Wrong type for input argument #%d: Char(s) expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -160,8 +144,8 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：输入参数#%d的类型错误。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -244,10 +228,6 @@ msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
@@ -304,18 +284,6 @@ msgid "%s: $ is the only implicit variable supported in selected indices"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s：第一个输入参数值错误：应该为%d。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr "%s：输入参数的类型错误：应该为字符串。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个字符的字符串。\n"
-
-#, c-format
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
 msgstr ""
 
@@ -323,9 +291,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid ""
@@ -351,9 +319,9 @@ msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为%s、%s或%s。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s：第一个输入参数值错误：应该为%d。\n"
 
 #, c-format
 msgid ""
@@ -383,7 +351,17 @@ msgid ""
 msgstr "%s：该功能尚未实现：类型为%s的变量转换。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个字符的字符串。\n"
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "
 "expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个字符或一个字符向量。\n"
+
+#~ msgid "%s: Wrong type for input argument: String expected.\n"
+#~ msgstr "%s：输入参数的类型错误：应该为字符串。\n"
+
+#~ msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+#~ msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"

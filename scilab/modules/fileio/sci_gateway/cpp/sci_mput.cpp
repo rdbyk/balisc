@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mput", 1, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mput", 1, 3);
         FREE(pstType);
         return types::Function::Error;
     }

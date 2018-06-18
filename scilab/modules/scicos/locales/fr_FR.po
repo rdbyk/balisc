@@ -18,12 +18,8 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid ""
@@ -82,14 +78,6 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real, complex or integer matrix "
 "expected.\n"
@@ -129,8 +117,8 @@ msgstr ""
 "identique\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu(s).\n"
 
 msgid ""
 "\n"
@@ -257,10 +245,6 @@ msgid "%s: Unable to save \"%s\" .\n"
 msgstr "%s : Impossible de sauver \"%s\".\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu(s).\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d : A real scalar expected.\n"
 msgstr ""
 "%s : Taille erronée de l'argument d'entrée #%d : un scalaire réel attendu.\n"
@@ -283,8 +267,8 @@ msgstr ""
 "%s : Taille erronée de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée #%d : doit être dans l'ensemble "
 "[%ls].\n"
@@ -317,18 +301,10 @@ msgid "%s: Wrong value for input argument #%d: not handled kind.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée #%d : type non prévu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : au moins %d attendus.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or ID expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée #%d : chaîne de caractères ou ID "
 "attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
@@ -1042,10 +1018,6 @@ msgstr ""
 "Valeur erronée du champ %s.%s : le port FIXME n'a pas été mis à jour.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre d'argument(s) d'entrée erroné : Au moins %d attendus.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr ""
 "%s : L'argument d'entrée numéro %d est de mauvais type : Un diagramme est "
@@ -1337,11 +1309,11 @@ msgstr ""
 "Quelle est la dimension de ce lien ?"
 
 #
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2294
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2295
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+"It should be a column vector of size %d."
 msgstr ""
 
 msgid ""
@@ -1560,3 +1532,24 @@ msgid ""
 msgstr ""
 "La solution donnée pour %s \n"
 " est erronée : %s.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : au moins %d attendus.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr "%s : Nombre d'argument(s) d'entrée erroné : Au moins %d attendus.\n"

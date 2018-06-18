@@ -180,9 +180,9 @@ msgstr "Variabel zu lang.\n"
 msgid "%s: Error TCL interpreter not initialized.\n"
 msgstr "%s: Fehler; TCL Interpreter nicht initialisert.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least one expected.\n"
+msgstr "%s: falsche Nummer von Eingangsargument(en): %d nach %d erwartet.\n"
 
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Scilab TCL/TK Modul nicht installiert.\n"
@@ -211,12 +211,12 @@ msgstr ""
 msgid "%s: Argument #%d: Name of a variable of type 1, 4 or 10 expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: falsche Nummer von Eingangsargument(en): %d nach %d erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: falsche Anzahl an Ausgangsargumenten: %d erwartet.\n"
 
 #, c-format

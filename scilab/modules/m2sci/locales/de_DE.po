@@ -539,7 +539,7 @@ msgid "Verbose mode:"
 msgstr "Wortreicher Modus:"
 
 #, fuzzy
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "formatierten Code erzeugen"
 
 msgid "M-file reading..."

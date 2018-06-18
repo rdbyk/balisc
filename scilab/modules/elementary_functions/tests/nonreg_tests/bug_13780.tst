@@ -17,13 +17,13 @@
 // =============================================================================
 
 assert_checkfalse(execstr("[r,c] = size(ones(4,2), ""*"")", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "size", 1);
+refMsg = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "size", 1);
 assert_checkerror("[r,c] = size(ones(4,2), ""*"")", refMsg);
 
 assert_checkfalse(execstr("[r,c] = size(ones(4,2), ""r"")", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "size", 1);
+refMsg = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "size", 1);
 assert_checkerror("[r,c] = size(ones(4,2), ""*"")", refMsg);
 
 assert_checkfalse(execstr("[r,c] = size(ones(4,2), ""c"")", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "size", 1);
+refMsg = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "size", 1);
 assert_checkerror("[r,c] = size(ones(4,2), ""*"")", refMsg);

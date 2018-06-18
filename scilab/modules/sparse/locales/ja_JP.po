@@ -20,11 +20,6 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
@@ -45,8 +40,8 @@ msgstr ""
 msgid "%s: Incompatible input argument.\n"
 msgstr "%s: 入力引数に互換性がありません.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
@@ -58,13 +53,9 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数値行列を�
 msgid "%s: insufficient working storage"
 msgstr "%s: 作業用ストレージが不十分です"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d  expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d  expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -77,8 +68,8 @@ msgstr ""
 msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr "引数 #%d の値が間違っています: LUハンドルがもう有効ではありません.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています:  %d 以下で指定してください.\n"
 
 #, c-format
@@ -144,11 +135,15 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 大きさ %d x %d の行列を指定してく"
 "ださい.\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A m-by-2 matrix expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 大きさ %d の行列を指定してくださ"
-"い.\n"
+"%s: 入力引数 #%d の大きさが間違っています: m行n列の行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgstr ""
+"%s: 引数 %d の大きさが間違っています: 大きさ%dのベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
@@ -488,15 +483,6 @@ msgid " Insufficient working storage in sfinit"
 msgstr " sfinit の作業領域が足りません"
 
 #
-# File: macros/gmres.sci, line: 152
-# File: macros/pcg.sci, line: 48
-# File: macros/pcg.sci, line: 51
-# File: macros/qmr.sci, line: 261
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
-
-#
 # File: macros/pcg.sci, line: 72
 #, c-format
 msgid "Arguments:\n"
@@ -706,3 +692,24 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています: 大きさ %d の行列を指定してくだ"
+#~ "さい.\n"
+
+#
+# File: macros/gmres.sci, line: 152
+# File: macros/pcg.sci, line: 48
+# File: macros/pcg.sci, line: 51
+# File: macros/qmr.sci, line: 261
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"

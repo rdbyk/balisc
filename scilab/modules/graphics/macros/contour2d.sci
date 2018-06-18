@@ -20,7 +20,7 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
     end
 
     if nargin < 4 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "contour2d", 4));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "contour2d", 4));
     end
 
     if type(x) <> 1 then

@@ -76,41 +76,41 @@ msgstr "論理値疎行列"
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: 入力引数の数が誤っています: %d から %d を指定してください.\n"
 
 msgid "matrix"
 msgstr "行列"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以下の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at least %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d  個以上の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at most %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d  個以下の引数を指定してください.\n"
 

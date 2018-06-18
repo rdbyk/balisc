@@ -31,9 +31,9 @@ assert_checktrue(bitcmp([13,99],16)==uint16([65522,65436]));
 assert_checktrue(bitcmp([13,99],32)==uint32([4294967282,4294967196]));
 
 // Error messages
-errmsg = msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),"bitcmp",1);
+errmsg = msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"),"bitcmp",1);
 assert_checkerror("bitcmp()",errmsg); //no input argument
-errmsg3 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"bitcmp",2);
+errmsg3 = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"bitcmp",2);
 assert_checkerror("bitcmp(99)",errmsg3); //First (and only) argument is not an unsigned integer
 errmsg4 = msprintf(_("%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitcmp",1);
 assert_checkerror("bitcmp(""s"")",errmsg4); //input argument is a char

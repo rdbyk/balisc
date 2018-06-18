@@ -43,13 +43,13 @@ types::Function::ReturnValue sci_freq(types::typed_list &in, int _iRetCount, typ
 {
     if (in.size() < 3 || in.size() > 5)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "freq", 3, 5);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "freq", 3, 5);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "freq", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "freq", 1);
         return types::Function::Error;
     }
 

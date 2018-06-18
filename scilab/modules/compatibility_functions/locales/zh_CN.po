@@ -192,8 +192,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为一个正整数值。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目出错：应该为 %d 个。\n"
 
 #, c-format
@@ -208,8 +208,8 @@ msgstr "%s：“%s”中的未知线型->设置为6。\n"
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s：在“%s”中发现未知的颜色->设置为黑色。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
@@ -217,7 +217,7 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s：铅笔是非对角化的。\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
@@ -241,13 +241,12 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s：不能打开“%s”，“%s”和“%s”中任一个。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s：正常化 m - 1 的因子是零。\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s：正常化 n - 1 的因子是零。\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"

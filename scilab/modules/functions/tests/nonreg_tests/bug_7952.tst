@@ -17,7 +17,7 @@
 //
 
 if execstr("macros = libraryinfo()", "errcatch") <> 999 then pause, end
-if lasterror() <> msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "libraryinfo", 1) then pause, end
+if lasterror() <> msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "libraryinfo", 1) then pause, end
 
 if execstr("macros = libraryinfo([""functionslib"", ""corelib""])", "errcatch") <> 999 then pause, end
 if lasterror() <> msprintf(_("%s: Wrong size for input argument #%d: A String expected.\n"), "libraryinfo", 1) then pause, end

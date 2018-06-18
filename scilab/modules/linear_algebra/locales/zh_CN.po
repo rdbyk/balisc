@@ -53,9 +53,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
@@ -73,9 +73,9 @@ msgstr ""
 msgid "%s: LAPACK error n%d.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
@@ -105,10 +105,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
-msgstr ""
-
 msgid "Warning :\n"
 msgstr ""
 
@@ -129,6 +125,10 @@ msgid "%s: %s and %s must have equal number of rows.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"
 
@@ -140,9 +140,9 @@ msgstr ""
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -211,9 +211,9 @@ msgstr ""
 msgid "%s: Error return from DTGEVC.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
+msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
@@ -291,10 +291,6 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: must be %d, %d, %s, '%s' or '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -392,3 +388,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: Requested rank is greater than "
 "matrix dimension."
 msgstr "%s：第%d个输入参数的值错误：需要的秩大于矩阵的维数。"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size of input argument #%d: expected a square matrix.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个方阵。\n"

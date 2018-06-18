@@ -29,7 +29,7 @@ function s=nansum(x,orient)
     //
 
     if nargin < 1 | nargin > 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"nansum",1,2))
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nansum",1,2))
     end
 
     if or(type(x) == [10 15 16]) then

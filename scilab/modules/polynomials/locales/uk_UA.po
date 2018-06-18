@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
@@ -40,14 +40,14 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути використано поліном "
 "«%ls».\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
 "%d параметрів.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -86,9 +86,9 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "дійсне число.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d : Valid variable name expected.\n"
+"%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати чинну "
 "назву змінної.\n"
@@ -204,6 +204,13 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "числове значення типу «boolean».\n"
 
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : Valid variable name expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати чинну "
+"назву змінної.\n"
+
 msgid "Polynomials"
 msgstr "Поліноми"
 
@@ -255,10 +262,6 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати лінійну "
 "динамічну систему або масив поліномів.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid ""
@@ -332,3 +335,7 @@ msgstr ""
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: вхідний параметр №%d має бути дійсним числом.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"

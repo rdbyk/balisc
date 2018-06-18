@@ -74,13 +74,13 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
     int rhs = static_cast<int>(in.size());
     if (rhs != 1)
     {
-        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), fname.data(), 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname.data(), 1);
         return types::Function::Error;
     }
 
     if (_iRetCount < 1 || _iRetCount > 4)
     {
-        Scierror(999, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname.data(), 1, 4);
+        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname.data(), 1, 4);
         return types::Function::Error;
     }
 

@@ -17,12 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -84,8 +84,8 @@ msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr ""
 "%s: дублювання вузлів або всі вузли лежать на одній прямій (ier = %d).\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d, %d or %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вихідних параметрів: мало бути %d, %d або %d.\n"
 
@@ -95,14 +95,14 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати tlist типу "
 "%s.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
 "%d параметрів.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
@@ -148,8 +148,8 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
 "вектор-стовпчик розмірності %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
 "%d.\n"

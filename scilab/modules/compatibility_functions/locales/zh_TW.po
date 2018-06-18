@@ -192,8 +192,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
 msgstr "%s: 第 %d 輸入參數數值錯誤: 應為一正整數.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 輸出參數數目錯誤: 應為 %d .\n"
 
 #, c-format
@@ -208,8 +208,8 @@ msgstr "%s: '%s'  中未知之 line 型態-> 設為 6.\n"
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s:: '%s'  中未知之顏色-> 設為黑色 ( black).\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 輸入參數數目錯誤:應為  %d.\n"
 
 #, c-format
@@ -217,8 +217,8 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s:  矩陣束違法主對角線化 (diagonalizable).\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數的個數錯誤: 應該是 %d 到 %d 個.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -241,13 +241,12 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s: 無法開啟 '%s' , '%s'  或 '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 輸入參數的個數錯誤: 應該是 %d 到 %d 個.\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s: 正規化 m - 1 係數值為零.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: 正規化 n - 1 係數值為零.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"

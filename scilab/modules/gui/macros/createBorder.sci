@@ -13,7 +13,7 @@
 function ret = createBorder(constType, varargin)
 
     if nargin < 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected."), "createBorder", 1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected."), "createBorder", 1));
     end
 
     ret = [];
@@ -21,7 +21,7 @@ function ret = createBorder(constType, varargin)
         ret = tlist(["NoBorder"]);
     elseif constType == "line" then
         if nargin <> [2:4] then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createBorder", 2, 4));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected."), "createBorder", 2, 4));
         end
 
         //color
@@ -64,7 +64,7 @@ function ret = createBorder(constType, varargin)
         ret = tlist(["LineBorder", "color", "thickness", "rounded"], arg1, arg2, arg3);
     elseif constType == "bevel" then
         if nargin <> [2 4 6] then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d, %d or %d expected."), "createBorder", 2, 4, 6));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d, %d or %d expected."), "createBorder", 2, 4, 6));
         end
 
         //type
@@ -110,7 +110,7 @@ function ret = createBorder(constType, varargin)
         ret = tlist(["BevelBorder", "type", "hlouter", "hlinner", "shadowouter", "shadowinner"], arg1, arg2, arg3, arg4, arg5);
     elseif constType == "softbevel" then
         if nargin <> [2 4 6] then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d, %d or %d expected."), "createBorder", 2, 4, 6));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d, %d or %d expected."), "createBorder", 2, 4, 6));
         end
 
         //type
@@ -157,7 +157,7 @@ function ret = createBorder(constType, varargin)
     elseif constType == "etched" then
 
         if nargin > 4 then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createBorder", 1, 4));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected."), "createBorder", 1, 4));
         end
 
         if nargin == 1 then
@@ -196,7 +196,7 @@ function ret = createBorder(constType, varargin)
         ret = tlist(["EtchedBorder", "type", "hl", "shadow"], arg1, arg2, arg3);
     elseif constType == "titled" then
         if nargin <> [2:7] then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createBorder", 2, 7));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected."), "createBorder", 2, 7));
         end
 
         //string or border
@@ -263,7 +263,7 @@ function ret = createBorder(constType, varargin)
         arg1, arg2, arg3, arg4, arg5, arg6);
     elseif constType == "empty" then
         if nargin <> [1 5] then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected."), "createBorder", 1, 5));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected."), "createBorder", 1, 5));
         end
 
         if nargin == 1 then
@@ -295,7 +295,7 @@ function ret = createBorder(constType, varargin)
     elseif constType == "compound" then
 
         if nargin <> [1 3] then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected."), "createBorder", 1, 3));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected."), "createBorder", 1, 3));
         end
 
         if nargin == 1 then
@@ -317,7 +317,7 @@ function ret = createBorder(constType, varargin)
     elseif constType == "matte" then
 
         if nargin <> 6 then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected."), "createBorder", 6));
+            error(msprintf(gettext("%s: Wrong number of input arguments: %d expected."), "createBorder", 6));
         end
 
         //top

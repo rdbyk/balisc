@@ -16,7 +16,7 @@ function li=vec2list(bigVector,varsizes,ind)
     //li: list of k matrices, li(i)=matrix of size varsizes(i,:);
 
     if nargin < 2 then
-        error(sprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "vec2list", 2, 3));
+        error(sprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "vec2list", 2, 3));
     end
 
     if bigVector==[] then

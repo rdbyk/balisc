@@ -53,14 +53,14 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     // *** check the minimal number of input args. ***
     if (in.size() < 5 || in.size() > 6)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "interp2d", 5, 6);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "interp2d", 5, 6);
         return types::Function::Error;
     }
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 6)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "interp2d", 1, 6);
+        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "interp2d", 1, 6);
         return types::Function::Error;
     }
 

@@ -336,7 +336,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "string", 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "string", 1);
         return Function::Error;
     }
 
@@ -462,7 +462,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         {
             if (_iRetCount != 3)
             {
-                Scierror(77, _("%s: Wrong number of output argument(s): %d expected.\n"), "string", 3);
+                Scierror(77, _("%s: Wrong number of output arguments: %d expected.\n"), "string", 3);
                 return Function::Error;
             }
 
@@ -482,7 +482,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         {
             if (_iRetCount != 3)
             {
-                Scierror(77, _("%s: Wrong number of output argument(s): %d expected.\n"), "string", 3);
+                Scierror(77, _("%s: Wrong number of output arguments: %d expected.\n"), "string", 3);
                 return Function::Error;
             }
 

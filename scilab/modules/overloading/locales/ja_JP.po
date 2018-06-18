@@ -67,24 +67,6 @@ msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
 msgstr "%s: 構文 x(i) は cblockの行でのみ使用可能です.\n"
 
 #, c-format
-msgid "%s: Invalid field name.\n"
-msgstr "%s: フィールド名が不正です.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 有効なフィールド名を指定してくださ"
-"い.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments.\n"
-msgstr "%s: 出力引数の数が間違っています.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 転置が定義できません.\n"
 
@@ -208,8 +190,8 @@ msgstr "%s: 入力引数の大きさが間違っています.\n"
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: 入力引数の大きさが間違っています.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
@@ -320,6 +302,10 @@ msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
 msgstr "%s: argin#1 行列および argin#2 ハイパー行列は実装されていません\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr "%s: 疎行列の挿入は実装されていません.\n"
 
@@ -336,29 +322,13 @@ msgid "%s: Field names mismatch.\n"
 msgstr "%s: フィールド名が一致しません.\n"
 
 #, c-format
+msgid "%s: Invalid field name.\n"
+msgstr "%s: フィールド名が不正です.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 正しいフィールド名ではありません.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数ベクトルを指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
-
-#, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
-msgstr "%s: 入力および出力の行列の要素の数は同じとする必要があります.\n"
-
-#, c-format
-msgid "%s: Wrong size or value for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさまたは値が間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 msgid "Inconsistent row/column dimensions.\n"
 msgstr "行/列の次元が不整合です.\n"
@@ -401,3 +371,29 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 #, c-format
 msgid "%s: Incorrect assignment.\n"
 msgstr ""
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が間違っています: 有効なフィールド名を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong number of output arguments.\n"
+#~ msgstr "%s: 出力引数の数が間違っています.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
+#~ msgstr ""
+#~ "%s: 引数 %d の型が間違っています:　実数ベクトルを指定してください.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+#~ msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
+
+#~ msgid ""
+#~ "%s: input and output matrices  must have the same number of elements.\n"
+#~ msgstr "%s: 入力および出力の行列の要素の数は同じとする必要があります.\n"
+
+#~ msgid "%s: Wrong size or value for input argument #%d.\n"
+#~ msgstr "%s: 入力引数 #%d の大きさまたは値が間違っています.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています.\n"

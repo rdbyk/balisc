@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
     //check input parameters
     if (in.size() < 2 || in.size() > 5)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "corr", 2, 5);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "corr", 2, 5);
         return types::Function::Error;
     }
 
@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
             //check input parameters
             if (in.size() < 4 || in.size() > 5)
             {
-                Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "corr", 4, 5);
+                Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "corr", 4, 5);
                 return types::Function::Error;
             }
 
@@ -406,7 +406,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         //check input parameters
         if (in.size() < 2 || in.size() > 3)
         {
-            Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "corr", 2, 3);
+            Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "corr", 2, 3);
             return types::Function::Error;
         }
 

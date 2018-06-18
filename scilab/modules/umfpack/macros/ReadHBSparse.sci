@@ -64,7 +64,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"ReadHBSparse",1));
         end
     else
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"ReadHBSparse",0));
+        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"ReadHBSparse",0));
     end
 
     unit = file("open", filename, "old")
