@@ -13,13 +13,13 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
@@ -64,21 +64,21 @@ msgstr ""
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s:重覆的節點是所有節點colinears (ier = %d).\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d, %d or %d expected.\n"
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
 #, c-format
 msgid ""
@@ -111,9 +111,9 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"

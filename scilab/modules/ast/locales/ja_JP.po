@@ -95,6 +95,14 @@ msgstr ""
 msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
 msgstr "%ls: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
 
+#
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1519
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1582
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1647
+#, c-format
+msgid "%ls: Evaluation of argument %d yields no result.\n"
+msgstr ""
+
 #, c-format
 msgid "Recursion limit reached (%d).\n"
 msgstr "再帰制限に達しました (%d).\n"
@@ -139,15 +147,6 @@ msgstr ""
 
 msgid "Inconsistent row/column dimensions.\n"
 msgstr "行/列の次元が不整合です.\n"
-
-msgid ""
-"operation +: Warning adding a matrix with the empty matrix old behaviour.\n"
-msgstr "+演算 : 警告 空行列との行列加算は古い動作となります.\n"
-
-msgid ""
-"operation +: Warning adding a matrix with the empty matrix will give an "
-"empty matrix result.\n"
-msgstr "+ 演算子 : 警告: 行列に空行列を加算すると, 空行列となります.\n"
 
 msgid "variables don't have the same formal variable"
 msgstr "変数は同じ形式の変数を有しません."
@@ -204,15 +203,6 @@ msgstr "指数が誤っています: 実数を指定してください.\n"
 
 msgid "Invalid exponent.\n"
 msgstr "指数が間違っています.\n"
-
-msgid ""
-"operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
-msgstr "-演算 : 警告 空行列との行列加算は古い動作となります.\n"
-
-msgid ""
-"operation -: Warning adding a matrix with the empty matrix will give an "
-"empty matrix result.\n"
-msgstr "- 演算子: 警告: 行列と空行列を加算すると空行列となります.\n"
 
 #, c-format
 msgid "%ls: Cannot open file %ls.\n"
@@ -304,8 +294,8 @@ msgstr "%s ライブラリを読み込むことはできません\n"
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr "%s 関数を読み込めません(ライブラリ %s) : %s\n"
 
-#, c-format
-msgid "Functions files location : %s.\n"
+#, fuzzy
+msgid "Functions files location : "
 msgstr "関数ファイルの位置: %s.\n"
 
 #, c-format
@@ -318,22 +308,20 @@ msgstr "リストに複数の要素を挿入することはできません.\n"
 msgid "Index out of bounds.\n"
 msgstr "添字が範囲を超えています.\n"
 
-msgid "Wrong number of input arguments: This function has no input argument.\n"
-msgstr "入力引数の数が間違っています: この関数は入力引数を有しません.\n"
-
-msgid "Wrong number of input arguments.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "入力引数の数が間違っています.\n"
 
-#, c-format
-msgid "Undefined variable '%s' in function '%s'.\n"
-msgstr "未定義の変数 '%s' が関数 '%s' にあります.\n"
+#, fuzzy, c-format
+msgid "%s: Undefined variable '%s'.\n"
+msgstr "未定義の変数: %s\n"
 
-#, c-format
-msgid "%s: Wrong type for %s: A list expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong type for '%s': A list expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
-#, c-format
-msgid "List element number %d is Undefined.\n"
+#, fuzzy, c-format
+msgid "%s: Element number #%d in '%s' is undefined.\n"
 msgstr "リストの要素数 %d が未定義です.\n"
 
 #, c-format
@@ -441,3 +429,30 @@ msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+
+#~ msgid ""
+#~ "operation +: Warning adding a matrix with the empty matrix old "
+#~ "behaviour.\n"
+#~ msgstr "+演算 : 警告 空行列との行列加算は古い動作となります.\n"
+
+#~ msgid ""
+#~ "operation +: Warning adding a matrix with the empty matrix will give an "
+#~ "empty matrix result.\n"
+#~ msgstr "+ 演算子 : 警告: 行列に空行列を加算すると, 空行列となります.\n"
+
+#~ msgid ""
+#~ "operation -: Warning adding a matrix with the empty matrix old "
+#~ "behaviour.\n"
+#~ msgstr "-演算 : 警告 空行列との行列加算は古い動作となります.\n"
+
+#~ msgid ""
+#~ "operation -: Warning adding a matrix with the empty matrix will give an "
+#~ "empty matrix result.\n"
+#~ msgstr "- 演算子: 警告: 行列と空行列を加算すると空行列となります.\n"
+
+#~ msgid ""
+#~ "Wrong number of input arguments: This function has no input argument.\n"
+#~ msgstr "入力引数の数が間違っています: この関数は入力引数を有しません.\n"
+
+#~ msgid "Undefined variable '%s' in function '%s'.\n"
+#~ msgstr "未定義の変数 '%s' が関数 '%s' にあります.\n"

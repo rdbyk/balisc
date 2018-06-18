@@ -19,12 +19,12 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
@@ -80,8 +80,8 @@ msgstr ""
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s: ノードを二重化または全てのノードを同一線上にする (ier = %d).\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d, %d or %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d, %d または %d 個の引数を指定してくださ"
 "い.\n"
@@ -91,13 +91,13 @@ msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: %s型のtlistを指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
@@ -140,8 +140,8 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています:  大きさ%dの列ベクトルを指定してく"
 "ださい.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 #, c-format

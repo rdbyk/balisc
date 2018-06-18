@@ -101,28 +101,6 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Impossible de convertir la "
 "ou les valeur(s).\n"
 
-msgid "Warning : singularity of 'log' or 'tan' function.\n"
-msgstr "Attention : singularité de la fonction 'log' ou 'tan'.\n"
-
-#, c-format
-msgid ""
-"%s: More than one argument can be used only with double matrix in first "
-"argument.\n"
-msgstr ""
-"%s : Plus qu'un argument peut être utilisé seulement avec une matrice double "
-"en premier argument.\n"
-
-#, c-format
-msgid "%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"
-msgstr ""
-"%ls : Type erroné pour l'argument d'entrée n°%d : une matrice réelle "
-"attendue.\n"
-
-#, c-format
-msgid "%ls:  Wrong type for input argument #%d: A real scalar expected.\n"
-msgstr ""
-"%ls : Type erroné pour l'argument d'entrée n°%d : Un scalaire réel attendu.\n"
-
 #, c-format
 msgid "%s: unknown property kind.\n"
 msgstr "%s : type de propriété inconnu.\n"
@@ -185,11 +163,9 @@ msgstr ""
 "%s : Type erroné pour l'argument d'entrée n°%d : Une matrice réelle ou une "
 "chaîne de caractères attendue.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
-msgstr ""
-"%s : Nombre erroné pour de(s) argument(s) de sortie : Au plus %d "
-"attendu(s).\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -236,10 +212,6 @@ msgid "Invalid index.\n"
 msgstr "Indice invalide.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 "%s : Type erroné pour l'argument d'entrée n°%d : une chaîne de caractères "
@@ -257,13 +229,9 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : 'g' 'r' 'c' 'lc' 'lr'] "
 "attendu.\n"
 
-#, c-format
-msgid ""
-"%ls: Warning: Wrong value for input argument #%d : Singularity of the "
-"function.\n"
-msgstr ""
-"%ls : Attention : Valeur erronée pour l'argument d'entrée n°%d : singularité "
-"de la fonction.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: more than %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : Au plus %d attendus.\n"
 
 #, c-format
 msgid ""
@@ -340,9 +308,8 @@ msgstr "%s : La tolérance est trop large pour la valeur %d.\n"
 msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
 msgstr "%s : Dimension erronée pour l'argument %d : (%d,%d) attendu.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée pour l'argument d'entrée n°%d : '%s', '%s', '%s' ou '%s' "
 "attendu.\n"
@@ -504,10 +471,9 @@ msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être entre %d et %d.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
-"%s : Dimension erronée des arguments d'entrée : Même dimension attendue.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
+msgstr "%s : Argument #%d : valeur entière attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -530,6 +496,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un réel positif attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s : Dimension erronée des arguments d'entrée : Même dimension attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
@@ -558,10 +529,6 @@ msgstr ""
 "diagonalisable.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real, complex, boolean or "
 "polynomial matrix expected.\n"
@@ -586,8 +553,8 @@ msgstr ""
 "hypermatrice réelle ou complexe, creuse ou dense attendue.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid ""
@@ -680,8 +647,8 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
 
 #, c-format
 msgid ""
@@ -812,10 +779,6 @@ msgstr "%s : Arguments d'entrée incompatibles : Mêmes types attendus.\n"
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un réel attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
 
 #, c-format
 msgid ""
@@ -954,10 +917,6 @@ msgstr ""
 "attendues.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
-
-#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr ""
 "%s : Arguments d'entrée n°%d et n°%d incompatibles : Types identiques "
@@ -967,3 +926,45 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s : Dimension erronée des arguments d'entrée : Dimensions incompatibles.\n"
+
+#~ msgid "Warning : singularity of 'log' or 'tan' function.\n"
+#~ msgstr "Attention : singularité de la fonction 'log' ou 'tan'.\n"
+
+#~ msgid ""
+#~ "%s: More than one argument can be used only with double matrix in first "
+#~ "argument.\n"
+#~ msgstr ""
+#~ "%s : Plus qu'un argument peut être utilisé seulement avec une matrice "
+#~ "double en premier argument.\n"
+
+#~ msgid "%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"
+#~ msgstr ""
+#~ "%ls : Type erroné pour l'argument d'entrée n°%d : une matrice réelle "
+#~ "attendue.\n"
+
+#~ msgid "%ls:  Wrong type for input argument #%d: A real scalar expected.\n"
+#~ msgstr ""
+#~ "%ls : Type erroné pour l'argument d'entrée n°%d : Un scalaire réel "
+#~ "attendu.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
+#~ msgstr ""
+#~ "%s : Nombre erroné pour de(s) argument(s) de sortie : Au plus %d "
+#~ "attendu(s).\n"
+
+#~ msgid ""
+#~ "%ls: Warning: Wrong value for input argument #%d : Singularity of the "
+#~ "function.\n"
+#~ msgstr ""
+#~ "%ls : Attention : Valeur erronée pour l'argument d'entrée n°%d : "
+#~ "singularité de la fonction.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#~ msgstr ""
+#~ "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"

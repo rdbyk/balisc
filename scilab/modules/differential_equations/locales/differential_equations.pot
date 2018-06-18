@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2018-06-18 10:21+0100\n"
 
 # File: modules/differential_equations/sci_gateway/cpp/sci_bvode.cpp, line: 63
 # File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 263
@@ -45,7 +45,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 604
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 612
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -77,7 +77,7 @@ msgstr ""
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 3087
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 3295
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -337,14 +337,6 @@ msgid "%s: There is an input data error.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 117
-# File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 91
-# File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 90
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-
-#
 # File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 133
 # File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 201
 # File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 107
@@ -527,8 +519,8 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 790
 # File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 724
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 257
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1152
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1376
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1162
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1387
 #, c-format
 msgid "%ls: An error occurred in '%ls' subroutine.\n"
 msgstr ""
@@ -616,8 +608,8 @@ msgstr ""
 #
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 652
 # File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 659
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1109
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1332
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1119
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1343
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1218
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1413
 #, c-format
@@ -863,7 +855,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 167
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 160
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d, %d or %d expected.\n"
 msgstr ""
 
 #
@@ -908,20 +900,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 990
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1000
 #, c-format
 msgid "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\tiopt = %d\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 991
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1001
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1010
 #, c-format
 msgid "tcrit = %lf\th0 = %lf\thmax = %lf\thmin = %lf\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1040
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1050
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1075
 #, c-format
 msgid ""
@@ -930,8 +922,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1168
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1406
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1179
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1417
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1269
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1531
 #, c-format
@@ -939,8 +931,8 @@ msgid "Integration was stopped at t = %lf.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1180
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1428
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1191
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1439
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1285
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1550
 #, c-format
@@ -1433,7 +1425,7 @@ msgid "Levitron"
 msgstr ""
 
 #
-# File: modules/differential_equations/demos/flow/blackhole_interface.sci, line: 37
+# File: modules/differential_equations/demos/flow/blackhole_interface.sci, line: 36
 msgid "Blackhole"
 msgstr ""
 
@@ -1443,12 +1435,12 @@ msgid "Simulation Parameters"
 msgstr ""
 
 #
-# File: modules/differential_equations/demos/flow/cylinder_interface.sci, line: 47
+# File: modules/differential_equations/demos/flow/cylinder_interface.sci, line: 46
 msgid "Cylinder"
 msgstr ""
 
 #
-# File: modules/differential_equations/demos/flow/sphere_interface.sci, line: 40
+# File: modules/differential_equations/demos/flow/sphere_interface.sci, line: 39
 msgid "Sphere"
 msgstr ""
 
@@ -1490,92 +1482,92 @@ msgid "Simulation with ode (needs a Fortran compiler)"
 msgstr ""
 
 #
-# File: modules/differential_equations/demos/wheel/wheel_show.sci, line: 64
+# File: modules/differential_equations/demos/wheel/wheel_show.sci, line: 61
 msgid "Simulation of mechanical system with holonomic constraints"
 msgstr ""
 
 #
-# File: modules/differential_equations/demos/wheel/wheel_show.sci, line: 65
+# File: modules/differential_equations/demos/wheel/wheel_show.sci, line: 62
 msgid "Differential equations code generated by Maple"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/dae.sci, line: 20
+# File: modules/differential_equations/macros/dae.sci, line: 18
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/dae.sci, line: 689
+# File: modules/differential_equations/macros/dae.sci, line: 685
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/intc.sci, line: 25
+# File: modules/differential_equations/macros/intc.sci, line: 23
 #, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/intc.sci, line: 33
-# File: modules/differential_equations/macros/intc.sci, line: 41
-# File: modules/differential_equations/macros/intc.sci, line: 47
+# File: modules/differential_equations/macros/intc.sci, line: 31
+# File: modules/differential_equations/macros/intc.sci, line: 39
+# File: modules/differential_equations/macros/intc.sci, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/intc.sci, line: 36
-# File: modules/differential_equations/macros/intc.sci, line: 44
-# File: modules/differential_equations/macros/intc.sci, line: 50
+# File: modules/differential_equations/macros/intc.sci, line: 34
+# File: modules/differential_equations/macros/intc.sci, line: 42
+# File: modules/differential_equations/macros/intc.sci, line: 48
 #, c-format
 msgid "%s: Wrong size for input argument #%d: (%d,%d) expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/intc.sci, line: 55
+# File: modules/differential_equations/macros/intc.sci, line: 53
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/integrate.sci, line: 29
+# File: modules/differential_equations/macros/integrate.sci, line: 28
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/integrate.sci, line: 40
-# File: modules/differential_equations/macros/integrate.sci, line: 44
-# File: modules/differential_equations/macros/integrate.sci, line: 48
+# File: modules/differential_equations/macros/integrate.sci, line: 39
+# File: modules/differential_equations/macros/integrate.sci, line: 43
+# File: modules/differential_equations/macros/integrate.sci, line: 47
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/integrate.sci, line: 52
-# File: modules/differential_equations/macros/integrate.sci, line: 56
+# File: modules/differential_equations/macros/integrate.sci, line: 51
+# File: modules/differential_equations/macros/integrate.sci, line: 55
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/integrate.sci, line: 69
+# File: modules/differential_equations/macros/integrate.sci, line: 68
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/integrate.sci, line: 73
+# File: modules/differential_equations/macros/integrate.sci, line: 72
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
 # File: modules/differential_equations/macros/intsplin.sci, line: 30
-# File: modules/differential_equations/macros/inttrap.sci, line: 26
+# File: modules/differential_equations/macros/inttrap.sci, line: 25
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr ""
@@ -1587,25 +1579,13 @@ msgid "%s: Argument #%d: Real number(s) expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 21
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/differential_equations/macros/numderivative.sci, line: 24
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/differential_equations/macros/numderivative.sci, line: 31
+# File: modules/differential_equations/macros/numderivative.sci, line: 29
 #, c-format
 msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 37
+# File: modules/differential_equations/macros/numderivative.sci, line: 35
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Function expected in first element of "
@@ -1613,7 +1593,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 40
+# File: modules/differential_equations/macros/numderivative.sci, line: 38
 #, c-format
 msgid ""
 "%s: Wrong number of elements in input argument #%d: At least %d elements "
@@ -1621,64 +1601,64 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 48
-# File: modules/differential_equations/macros/numderivative.sci, line: 65
-# File: modules/differential_equations/macros/numderivative.sci, line: 90
-# File: modules/differential_equations/macros/numderivative.sci, line: 120
+# File: modules/differential_equations/macros/numderivative.sci, line: 46
+# File: modules/differential_equations/macros/numderivative.sci, line: 63
+# File: modules/differential_equations/macros/numderivative.sci, line: 88
+# File: modules/differential_equations/macros/numderivative.sci, line: 118
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 52
-# File: modules/differential_equations/macros/numderivative.sci, line: 71
+# File: modules/differential_equations/macros/numderivative.sci, line: 50
+# File: modules/differential_equations/macros/numderivative.sci, line: 69
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 77
+# File: modules/differential_equations/macros/numderivative.sci, line: 75
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 81
+# File: modules/differential_equations/macros/numderivative.sci, line: 79
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 93
-# File: modules/differential_equations/macros/numderivative.sci, line: 107
-# File: modules/differential_equations/macros/numderivative.sci, line: 123
+# File: modules/differential_equations/macros/numderivative.sci, line: 91
+# File: modules/differential_equations/macros/numderivative.sci, line: 105
+# File: modules/differential_equations/macros/numderivative.sci, line: 121
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 96
-# File: modules/differential_equations/macros/numderivative.sci, line: 110
+# File: modules/differential_equations/macros/numderivative.sci, line: 94
+# File: modules/differential_equations/macros/numderivative.sci, line: 108
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 104
+# File: modules/differential_equations/macros/numderivative.sci, line: 102
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 126
+# File: modules/differential_equations/macros/numderivative.sci, line: 124
 #, c-format
 msgid "%s: Q must be orthogonal.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/macros/numderivative.sci, line: 201
-# File: modules/differential_equations/macros/numderivative.sci, line: 214
-# File: modules/differential_equations/macros/numderivative.sci, line: 218
+# File: modules/differential_equations/macros/numderivative.sci, line: 199
+# File: modules/differential_equations/macros/numderivative.sci, line: 212
+# File: modules/differential_equations/macros/numderivative.sci, line: 216
 #, c-format
 msgid "%s: Unknown value %s for option %s.\n"
 msgstr ""

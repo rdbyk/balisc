@@ -40,11 +40,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
@@ -96,8 +91,8 @@ msgstr ""
 msgid "%s: Can not open File \"%s\"\n"
 msgstr "%s: ファイル \"%s\"をオープンできません\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
@@ -172,8 +167,8 @@ msgstr "libファイルを読み込めません: 正しいXML形式ではあり�
 msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
 msgstr "古いバイナリlibが検出されました. Scilab 6で再コンパイルしてください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 #, c-format
@@ -237,36 +232,9 @@ msgstr "ファイルの終端(%d行目).\n"
 msgid "Undefined environment variable %s.\n"
 msgstr "環境変数 %s が定義されていません.\n"
 
-msgid "Too many files opened!\n"
-msgstr "開いているファイルの数が多すぎます!\n"
-
-#, c-format
-msgid "File \"%s\" already exists.\n"
-msgstr "ファイル \"%s\" は既に存在します.\n"
-
-#, c-format
-msgid "\"%s\" directory write access denied.\n"
-msgstr "\"%s\" ディレクトリへの書き込みアクセスが拒否されました\n"
-
-#, c-format
-msgid "File \"%s\" does not exist.\n"
-msgstr "ファイル \"%s\" は存在しません.\n"
-
-#, c-format
-msgid "File \"%s\" read access denied.\n"
-msgstr "ファイル \"%s\" への読み込みアクセスが拒否されました.\n"
-
-msgid "unmanaged error by v2cunit.\n"
-msgstr "v2cunitによる管理外のエラー.\n"
-
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s: 凡例はカレントのコンテキストに適合しません.　スキップしました.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -292,3 +260,29 @@ msgstr "%s: %s 実行中にエラーが発生しました"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr "%s: コマンドはエラーコード %s および以下のメッセージで終了しました:\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "Too many files opened!\n"
+#~ msgstr "開いているファイルの数が多すぎます!\n"
+
+#~ msgid "File \"%s\" already exists.\n"
+#~ msgstr "ファイル \"%s\" は既に存在します.\n"
+
+#~ msgid "\"%s\" directory write access denied.\n"
+#~ msgstr "\"%s\" ディレクトリへの書き込みアクセスが拒否されました\n"
+
+#~ msgid "File \"%s\" does not exist.\n"
+#~ msgstr "ファイル \"%s\" は存在しません.\n"
+
+#~ msgid "File \"%s\" read access denied.\n"
+#~ msgstr "ファイル \"%s\" への読み込みアクセスが拒否されました.\n"
+
+#~ msgid "unmanaged error by v2cunit.\n"
+#~ msgstr "v2cunitによる管理外のエラー.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"

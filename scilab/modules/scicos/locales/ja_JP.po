@@ -20,11 +20,7 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
@@ -81,15 +77,6 @@ msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real, complex or integer matrix "
 "expected.\n"
@@ -123,7 +110,7 @@ msgid "%s: 1st and 2nd argument must have equal size\n"
 msgstr "%s: 第1および第2引数の大きさを同じにしてください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
@@ -247,11 +234,6 @@ msgid "%s: Unable to save \"%s\" .\n"
 msgstr "%s: \"%s\"を保存できません.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d : A real scalar expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 実数スカラーを指定してください.\n"
@@ -269,8 +251,8 @@ msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 集合{%ls}の中とする必要があります.\n"
 
@@ -302,19 +284,9 @@ msgid "%s: Wrong value for input argument #%d: not handled kind.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 処理できない種類です.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or ID expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列またはIDを指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
@@ -1003,10 +975,6 @@ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
 msgstr "フィールド %s.%sの値が間違っています: ポート番号が更新されました.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: ダイアグラムを指定してください.\n"
@@ -1296,7 +1264,7 @@ msgstr ""
 #, fuzzy, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+"It should be a column vector of size %d."
 msgstr ""
 "%sブロックのdep_utの大きさが不正確です.\n"
 "大きさ%dの列ベクトルとする必要があります."
@@ -1520,3 +1488,31 @@ msgid ""
 msgstr ""
 "%s に指定された回答は\n"
 "間違っています: %s.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"

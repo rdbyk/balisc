@@ -13,9 +13,9 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 '%s'.\n"
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "僅可在視窗模式下使用,不可在主控模式下使用.\n"
@@ -24,9 +24,9 @@ msgstr "僅可在視窗模式下使用,不可在主控模式下使用.\n"
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"

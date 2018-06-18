@@ -95,13 +95,10 @@ msgid ""
 "\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
 
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
@@ -199,9 +196,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String \"b\" expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or more expected.\n"
 msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
@@ -267,9 +265,9 @@ msgstr ""
 msgid "%s: This method is NOT implemented.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -455,7 +453,7 @@ msgstr ""
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 217
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 246
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #, c-format
@@ -850,11 +848,6 @@ msgstr ""
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -1727,8 +1720,4 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""

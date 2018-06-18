@@ -213,8 +213,8 @@ msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um valor "
 "inteiro positivo.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumento(s) de saída: esperava-se %d.\n"
 
 #, c-format
@@ -231,8 +231,8 @@ msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr ""
 "%s: Encontrou-se uma cor desconhecida em '%s' -> ajustado para preto.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumento(s) de entrada: esperava-se %d.\n"
 
 #, c-format
@@ -240,10 +240,9 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s: o lápis não é diagonalizável.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumento(s) de entrada: esperava-se de %d a "
-"%d.\n"
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -268,14 +267,14 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s: Não foi possível abrir '%s' nem '%s' nem '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s: O fator m - 1 de normalização é zero.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: O fator n - 1 de normalização é zero.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Quantidade incorreta de argumento(s) de entrada: esperava-se de %d a "
+#~ "%d.\n"

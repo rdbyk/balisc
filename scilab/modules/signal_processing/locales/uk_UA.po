@@ -18,6 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення має перебувати у "
+"інтервалі %s.\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
@@ -46,12 +52,6 @@ msgstr "%s: помилка під час спроби виділення пам�
 #, c-format
 msgid "%s : Memory allocation error.\n"
 msgstr "%s: помилка під час спроби отримати область пам’яті.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -191,7 +191,7 @@ msgid "Undefined function '%ls'.\n"
 msgstr "Невизначене функція «%ls».\n"
 
 #, fuzzy, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr "Функцію користувача «%s» не встановлено.\n"
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
@@ -447,17 +447,8 @@ msgstr ""
 "%s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
-#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s: параметри №%d та №%d повинні мати однакову розмірність.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
@@ -769,3 +760,17 @@ msgstr ""
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr "%s: занадто різка зміна поблизу до межі частотного діапазону.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d або "
+#~ "%d.\n"

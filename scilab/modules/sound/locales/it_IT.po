@@ -136,8 +136,8 @@ msgstr "solo 8/16/24/32 bit per la codifica"
 msgid "Unknown data format."
 msgstr "Formato di dati sconosciuto"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
 "almeno %d.\n"

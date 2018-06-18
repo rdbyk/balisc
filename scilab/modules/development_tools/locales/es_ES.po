@@ -221,10 +221,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Cannot create file %s, created file %s instead.\n"
 msgstr ""
 

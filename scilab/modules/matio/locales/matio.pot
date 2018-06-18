@@ -15,11 +15,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2018-06-18 10:21+0100\n"
 
 # File: modules/matio/sci_gateway/c/sci_matfile_close.c, line: 66
 # File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 64
-# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 64
+# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 65
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
 msgstr ""
@@ -27,14 +27,14 @@ msgstr ""
 #
 # File: modules/matio/sci_gateway/c/sci_matfile_close.c, line: 73
 # File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 71
-# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 71
+# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 72
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
 msgstr ""
 
 #
 # File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 80
-# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 80
+# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 81
 #, c-format
 msgid "%s: Invalid file identifier.\n"
 msgstr ""
@@ -100,6 +100,7 @@ msgstr ""
 # File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 138
 # File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 149
 # File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 161
+# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 93
 # File: modules/matio/src/c/CreateIntegerVariable.c, line: 53
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -245,19 +246,19 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/matio/macros/loadmatfile.sci, line: 57
+# File: modules/matio/macros/loadmatfile.sci, line: 55
 #, c-format
 msgid "%s: This feature has not been implemented: %s."
 msgstr ""
 
 #
-# File: modules/matio/macros/loadmatfile.sci, line: 94
+# File: modules/matio/macros/loadmatfile.sci, line: 92
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: modules/matio/macros/loadmatfile.sci, line: 117
+# File: modules/matio/macros/loadmatfile.sci, line: 115
 #, c-format
 msgid ""
 "%s: No variable read in file '%s'. Check if your file is not corrupted.\n"
@@ -269,59 +270,59 @@ msgid "All inputs must be character strings."
 msgstr ""
 
 #
-# File: modules/matio/macros/savematfile.sci, line: 51
-# File: modules/matio/macros/savematfile.sci, line: 105
+# File: modules/matio/macros/savematfile.sci, line: 49
+# File: modules/matio/macros/savematfile.sci, line: 103
 #, c-format
 msgid "Option %s not implemented: IGNORED."
 msgstr ""
 
 #
-# File: modules/matio/macros/savematfile.sci, line: 125
+# File: modules/matio/macros/savematfile.sci, line: 123
 msgid "Option -v7 added."
 msgstr ""
 
 #
-# File: modules/matio/macros/savematfile.sci, line: 156
+# File: modules/matio/macros/savematfile.sci, line: 154
 #, c-format
 msgid "Variable %s can not be saved in level 4 MAT-file: IGNORED."
 msgstr ""
 
 #
-# File: modules/matio/macros/savematfile.sci, line: 167
-# File: modules/matio/macros/savematfile.sci, line: 277
-# File: modules/matio/macros/savematfile.sci, line: 306
-# File: modules/matio/macros/savematfile.sci, line: 335
-# File: modules/matio/macros/savematfile.sci, line: 385
+# File: modules/matio/macros/savematfile.sci, line: 165
+# File: modules/matio/macros/savematfile.sci, line: 275
+# File: modules/matio/macros/savematfile.sci, line: 304
+# File: modules/matio/macros/savematfile.sci, line: 333
+# File: modules/matio/macros/savematfile.sci, line: 383
 #, c-format
 msgid "Name conflict: it is not possible to save variable with name %s."
 msgstr ""
 
 #
-# File: modules/matio/macros/savematfile.sci, line: 223
+# File: modules/matio/macros/savematfile.sci, line: 221
 msgid "Attempt to write an unsupported data type to an ASCII file."
 msgstr ""
 
 #
-# File: modules/matio/macros/savematfile.sci, line: 272
-# File: modules/matio/macros/savematfile.sci, line: 301
-# File: modules/matio/macros/savematfile.sci, line: 330
+# File: modules/matio/macros/savematfile.sci, line: 270
+# File: modules/matio/macros/savematfile.sci, line: 299
+# File: modules/matio/macros/savematfile.sci, line: 328
 #, c-format
 msgid "%s: Could not open file '%s'.\n"
 msgstr ""
 
 #
-# File: modules/matio/macros/savematfile.sci, line: 289
-# File: modules/matio/macros/savematfile.sci, line: 292
-# File: modules/matio/macros/savematfile.sci, line: 318
-# File: modules/matio/macros/savematfile.sci, line: 321
-# File: modules/matio/macros/savematfile.sci, line: 347
-# File: modules/matio/macros/savematfile.sci, line: 350
+# File: modules/matio/macros/savematfile.sci, line: 287
+# File: modules/matio/macros/savematfile.sci, line: 290
+# File: modules/matio/macros/savematfile.sci, line: 316
+# File: modules/matio/macros/savematfile.sci, line: 319
+# File: modules/matio/macros/savematfile.sci, line: 345
+# File: modules/matio/macros/savematfile.sci, line: 348
 #, c-format
 msgid "savematfile: could not save variable named %s.\n"
 msgstr ""
 
 #
-# File: modules/matio/macros/savematfile.sci, line: 365
+# File: modules/matio/macros/savematfile.sci, line: 363
 #, c-format
 msgid "Variable %s can not be saved in ASCII file: IGNORED."
 msgstr ""

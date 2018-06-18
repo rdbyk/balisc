@@ -211,8 +211,8 @@ msgstr ""
 "%s: Zła wartość parametru wejściowego #%d: Oczekiwana dodatnia wartość "
 "całkowita.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d.\n"
 
 #, c-format
@@ -227,8 +227,8 @@ msgstr "%s: Odnaleziono nieznany typ linii w '%s' -> zmieniono na 6.\n"
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s: Odnaleziono nieznany kolor w '%s' -> zmieniono na czarny.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
 #, c-format
@@ -236,9 +236,9 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s: macierzy typu pencil nie da się zdiagonalizować\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d\n"
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -263,14 +263,13 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s: Nie można otworzyć '%s' ani '%s' ani '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s: Współczynnik normalizacji m - 1 wynosi zero.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: Współczynnik normalizacji n - 1 wynosi zero.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d\n"

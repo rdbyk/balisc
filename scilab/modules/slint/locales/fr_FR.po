@@ -343,7 +343,7 @@ msgid "Use of non-initialized variable '%s' may have any side-effects."
 msgstr "La variable \"%s\" est utilisée sans initialisation."
 
 #, fuzzy, c-format
-msgid "Use of a private macro '%s' defined in an other file %s."
+msgid "Use of a private macro '%s' defined in another file %s."
 msgstr ""
 "Utilisation de la macro privée \"%s\" définie dans un autre fichier %s."
 

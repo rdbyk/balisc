@@ -169,8 +169,8 @@ msgstr "%s: Niepoprawny typ parametru wejściowego nr %d: oczekiwano %s.\n"
 msgid "%s: parameter %s not defined"
 msgstr "%s: parameter %s nie zdefiniowany"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number expected.\n"
 msgstr ""
 "%s: nieprawidłowa liczba parametrów wejściowych: Oczekiwano liczbę "
 "parzystą.\n"

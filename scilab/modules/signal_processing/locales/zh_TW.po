@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr "%s: 第 %d 輸入參數值有誤: 元素必在在範圍[%s, %s].\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
@@ -39,10 +43,6 @@ msgstr ""
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -155,7 +155,7 @@ msgstr ""
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 93
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 154
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
@@ -390,16 +390,8 @@ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s: 參數#%d and #%d 必須相同大小.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤: 預期為 %d 或 %d 個.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
@@ -660,3 +652,6 @@ msgstr "%s: 第#%d個輸入參數值有誤 :第一個應是%s最後一個應是%
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr "%s: 靠近頻率範圍的結束部分,太突然的改變.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s: 輸入參數數目錯誤: 預期為 %d 或 %d 個.\n"

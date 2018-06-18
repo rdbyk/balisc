@@ -18,10 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
 msgstr ""
 "%s: valor incorrecto de argumento de entrada nº %d. Se experaba un "
@@ -61,8 +57,13 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -76,10 +77,6 @@ msgstr ""
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: Biblioteca %s inválida.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments: macro expected.\n"
@@ -121,10 +118,6 @@ msgstr "%s: No puedo encontrar ningún archivo con la extensión %s en %s\n"
 #, c-format
 msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s: Función incorrecta en el archivo %s.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"

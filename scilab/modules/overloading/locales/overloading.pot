@@ -15,24 +15,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2018-06-18 10:21+0100\n"
 
 # File: modules/overloading/macros/%0_i_st.sci, line: 22
-# File: modules/overloading/macros/%b_e.sci, line: 26
-# File: modules/overloading/macros/%c_e.sci, line: 26
-# File: modules/overloading/macros/%c_i_lss.sci, line: 18
-# File: modules/overloading/macros/%c_i_r.sci, line: 18
-# File: modules/overloading/macros/%lss_e.sci, line: 19
-# File: modules/overloading/macros/%lss_e.sci, line: 25
-# File: modules/overloading/macros/%lss_i_lss.sci, line: 17
-# File: modules/overloading/macros/%p_e.sci, line: 27
-# File: modules/overloading/macros/%p_i_lss.sci, line: 20
+# File: modules/overloading/macros/%c_i_lss.sci, line: 16
+# File: modules/overloading/macros/%c_i_r.sci, line: 16
+# File: modules/overloading/macros/%lss_e.sci, line: 17
+# File: modules/overloading/macros/%lss_e.sci, line: 23
+# File: modules/overloading/macros/%lss_i_lss.sci, line: 18
+# File: modules/overloading/macros/%p_i_lss.sci, line: 18
 # File: modules/overloading/macros/%r_i_lss.sci, line: 17
 # File: modules/overloading/macros/%s_e.sci, line: 26
-# File: modules/overloading/macros/%s_i_lss.sci, line: 19
-# File: modules/overloading/macros/%s_i_lss.sci, line: 24
-# File: modules/overloading/macros/%st_i_st.sci, line: 51
-# File: modules/overloading/macros/generic_i_hm.sci, line: 54
+# File: modules/overloading/macros/%s_i_lss.sci, line: 18
+# File: modules/overloading/macros/%s_i_lss.sci, line: 23
+# File: modules/overloading/macros/%st_i_st.sci, line: 50
+# File: modules/overloading/macros/generic_i_hm.sci, line: 52
 #, c-format
 msgid "%s: Invalid index.\n"
 msgstr ""
@@ -46,23 +43,22 @@ msgstr ""
 #
 # File: modules/overloading/macros/%3d_i_h.sci, line: 34
 # File: modules/overloading/macros/%3d_i_h.sci, line: 44
-# File: modules/overloading/macros/%c_i_lss.sci, line: 22
-# File: modules/overloading/macros/%c_i_r.sci, line: 22
-# File: modules/overloading/macros/%ce_size.sci, line: 27
+# File: modules/overloading/macros/%c_i_lss.sci, line: 20
+# File: modules/overloading/macros/%c_i_r.sci, line: 20
 # File: modules/overloading/macros/%champdat_i_h.sci, line: 44
 # File: modules/overloading/macros/%grayplot_i_h.sci, line: 44
-# File: modules/overloading/macros/%p_i_lss.sci, line: 23
-# File: modules/overloading/macros/%p_i_lss.sci, line: 27
+# File: modules/overloading/macros/%p_i_lss.sci, line: 21
+# File: modules/overloading/macros/%p_i_lss.sci, line: 25
 # File: modules/overloading/macros/%ticks_i_h.sci, line: 45
 # File: modules/overloading/macros/generic_i_h.sci, line: 17
 # File: modules/overloading/macros/generic_i_h.sci, line: 73
-# File: modules/overloading/macros/generic_i_s.sci, line: 34
+# File: modules/overloading/macros/generic_i_s.sci, line: 32
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%b_i_sp.sci, line: 24
+# File: modules/overloading/macros/%b_i_sp.sci, line: 23
 #, c-format
 msgid "%s: Multidimensional sparse matrices are not handled.\n"
 msgstr ""
@@ -72,7 +68,7 @@ msgstr ""
 # File: modules/overloading/macros/%c_b_s.sci, line: 19
 # File: modules/overloading/macros/%r_l_r.sci, line: 19
 # File: modules/overloading/macros/%r_r_r.sci, line: 20
-# File: modules/overloading/macros/%s_i_c.sci, line: 18
+# File: modules/overloading/macros/%s_i_c.sci, line: 16
 #, c-format
 msgid "%s: Non implemented feature.\n"
 msgstr ""
@@ -90,15 +86,15 @@ msgid "%c: input argument #%d must be sorted in lexicographic order\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%c_i_lss.sci, line: 26
-# File: modules/overloading/macros/%c_i_r.sci, line: 27
+# File: modules/overloading/macros/%c_i_lss.sci, line: 24
+# File: modules/overloading/macros/%c_i_r.sci, line: 25
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'c', 'd' or a scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%c_i_s.sci, line: 19
+# File: modules/overloading/macros/%c_i_s.sci, line: 18
 #, c-format
 msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
@@ -118,37 +114,6 @@ msgstr ""
 # File: modules/overloading/macros/%cblock_e.sci, line: 34
 #, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%ce_e.sci, line: 24
-# File: modules/overloading/macros/%st_e.sci, line: 28
-#, c-format
-msgid "%s: Invalid field name.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%ce_e.sci, line: 47
-#, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%ce_size.sci, line: 21
-# File: modules/overloading/macros/%ce_size.sci, line: 23
-# File: modules/overloading/macros/%ip_string.sci, line: 22
-# File: modules/overloading/macros/%s_q_hm.sci, line: 16
-# File: modules/overloading/macros/%s_x_hm.sci, line: 16
-# File: modules/overloading/macros/%st_size.sci, line: 23
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%ce_size.sci, line: 34
-# File: modules/overloading/macros/%st_size.sci, line: 36
-#, c-format
-msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 
 #
@@ -320,8 +285,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/overloading/macros/%lss_i_p.sci, line: 31
-# File: modules/overloading/macros/%lss_i_s.sci, line: 41
+# File: modules/overloading/macros/%lss_i_p.sci, line: 30
+# File: modules/overloading/macros/%lss_i_s.sci, line: 38
 #, c-format
 msgid "%s: Invalid syntax for a MIMO system.\n"
 msgstr ""
@@ -334,15 +299,15 @@ msgid "%s: The problem is singular.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%lss_norm.sci, line: 20
-# File: modules/overloading/macros/%r_norm.sci, line: 20
+# File: modules/overloading/macros/%lss_norm.sci, line: 19
+# File: modules/overloading/macros/%r_norm.sci, line: 19
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%msp_i_s.sci, line: 34
-# File: modules/overloading/macros/%sp_i_s.sci, line: 34
+# File: modules/overloading/macros/%msp_i_s.sci, line: 31
+# File: modules/overloading/macros/%sp_i_s.sci, line: 31
 #, c-format
 msgid ""
 "%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
@@ -351,8 +316,8 @@ msgstr ""
 #
 # File: modules/overloading/macros/%p_a_r.sci, line: 36
 # File: modules/overloading/macros/%r_a_p.sci, line: 37
-# File: modules/overloading/macros/%r_a_r.sci, line: 38
-# File: modules/overloading/macros/%r_a_r.sci, line: 50
+# File: modules/overloading/macros/%r_a_r.sci, line: 43
+# File: modules/overloading/macros/%r_a_r.sci, line: 57
 # File: modules/overloading/macros/%r_a_s.sci, line: 43
 #, c-format
 msgid "%s: Inconsistent addition.\n"
@@ -411,7 +376,7 @@ msgstr ""
 # File: modules/overloading/macros/%r_prod.sci, line: 32
 # File: modules/overloading/macros/%r_sum.sci, line: 33
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
@@ -501,7 +466,7 @@ msgid "%s: Inconsistent multiplication.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%r_size.sci, line: 29
+# File: modules/overloading/macros/%r_size.sci, line: 28
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
@@ -567,10 +532,10 @@ msgid "%s: Wrong argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%s_i_s.sci, line: 151
+# File: modules/overloading/macros/%s_i_s.sci, line: 149
 # File: modules/overloading/macros/%s_i_st.sci, line: 38
 # File: modules/overloading/macros/%s_i_st.sci, line: 80
-# File: modules/overloading/macros/generic_i_hm.sci, line: 57
+# File: modules/overloading/macros/generic_i_hm.sci, line: 55
 #, c-format
 msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr ""
@@ -588,7 +553,14 @@ msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%sp_i_sp.sci, line: 36
+# File: modules/overloading/macros/%s_q_hm.sci, line: 16
+# File: modules/overloading/macros/%s_x_hm.sci, line: 16
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%sp_i_sp.sci, line: 34
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
@@ -612,39 +584,15 @@ msgid "%s: Field names mismatch.\n"
 msgstr ""
 
 #
+# File: modules/overloading/macros/%st_e.sci, line: 28
+#, c-format
+msgid "%s: Invalid field name.\n"
+msgstr ""
+
+#
 # File: modules/overloading/macros/%st_e.sci, line: 51
 #, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%st_matrix.sci, line: 18
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%st_matrix.sci, line: 24
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%st_matrix.sci, line: 33
-#, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%st_size.sci, line: 25
-#, c-format
-msgid "%s: Wrong size or value for input argument #%d.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%st_size.sci, line: 29
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
@@ -667,7 +615,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/overloading/macros/%zpk_size.sci, line: 12
+# File: modules/overloading/macros/%zpk_size.sci, line: 14
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr ""
@@ -694,13 +642,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/overloading/macros/generic_i_s.sci, line: 36
+# File: modules/overloading/macros/generic_i_s.sci, line: 34
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/st_i_generic.sci, line: 27
+# File: modules/overloading/macros/st_i_generic.sci, line: 26
 #, c-format
 msgid "%s: Incorrect assignment.\n"
 msgstr ""

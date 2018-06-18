@@ -19,12 +19,9 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid ""
@@ -83,17 +80,6 @@ msgstr ""
 "дійсними елементами.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real, complex or integer matrix "
 "expected.\n"
@@ -132,8 +118,9 @@ msgid "%s: 1st and 2nd argument must have equal size\n"
 msgstr "%s: розмірності першого і другого параметрів мають збігатися\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 msgid ""
 "\n"
@@ -268,11 +255,6 @@ msgid "%s: Unable to save \"%s\" .\n"
 msgstr "%s: не вдалося зберегти «%s» .\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d : A real scalar expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
@@ -295,8 +277,8 @@ msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "з набору {%ls}\n"
@@ -331,19 +313,10 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: не придатний до обробки тип.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or ID expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мав бути рядок або "
 "ідентифікатор.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
@@ -1052,12 +1025,6 @@ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
 msgstr "Помилкове значення поля %s.%s: порт FIXME не оновлено.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано діаграму.\n"
@@ -1363,7 +1330,7 @@ msgstr ""
 #, fuzzy, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+"It should be a column vector of size %d."
 msgstr ""
 "розмірність dep_ut блоку %s є некоректною.\n"
 "Це мав бути вектор-стовпчик розмірності %d."
@@ -1590,3 +1557,30 @@ msgid ""
 msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати не менше "
+#~ "за %d.\n"

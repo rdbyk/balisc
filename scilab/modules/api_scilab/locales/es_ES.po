@@ -78,44 +78,44 @@ msgstr "matriz booleana dispersa"
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d.\n"
 
 msgid "matrix"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban a lo sumo%d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Número incorrecto de argumento(s) de salida: Se esperaban %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumento(s) de salida: Se esperaban de %d a %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at least %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de salida: Se esperaban al menos %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: at most %d expected.\n"
 msgstr ""
 "%s: Número incorrecto de argumentos de salida: Se esperaban a lo sumo%d.\n"
 

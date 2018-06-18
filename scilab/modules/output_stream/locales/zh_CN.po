@@ -146,14 +146,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr ""
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr ""
-
 msgid ""
 "*** Execution stopped after a warning. ***\n"
 "Set warning(\"on\") to continue execution after a warning.\n"

@@ -221,10 +221,6 @@ msgstr ""
 "trouvé dans la liste des modules"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendu.\n"
-
-#, c-format
 msgid "%s: Cannot create file %s, created file %s instead.\n"
 msgstr ""
 "%s : Le fichier %s n'a pas pu être créée, le fichier %s a été créée à la "
@@ -353,3 +349,6 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "Pas de variable %s_ref dans le fichier de référence"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendu.\n"

@@ -13,10 +13,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
 #
 # File: sci_gateway/c/sci_ascii.c, line: 328
 #, c-format
@@ -41,11 +37,7 @@ msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
@@ -79,15 +71,7 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 'u' (Upper) 或 'l' (Lower) .\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: 輸出參數之數目錯誤: 應為 %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -175,9 +159,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+#
+# File: sci_gateway/c/sci_strcmp.c, line: 57
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 %s 或 %s.\n"
 
 #
 # File: sci_gateway/c/sci_strstr.c, line: 54
@@ -192,7 +178,7 @@ msgid "%s: Wrong type for input argument #%d: Char(s) expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -229,8 +215,8 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 輸出參數之數目錯誤: 應為 %d.\n"
 
 #
 # File: sci_gateway/c/sci_stripblanks.c, line: 56
@@ -323,10 +309,6 @@ msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
@@ -402,24 +384,6 @@ msgstr "%s: 未知錯誤.\n"
 msgid "%s: $ is the only implicit variable supported in selected indices"
 msgstr ""
 
-#
-# File: macros/arobasestring2strings.sci, line: 23
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
-
-#
-# File: macros/arobasestring2strings.sci, line: 31
-#, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
-
-# File: macros/tokenpos.sci, line: 16
-# File: macros/arobasestring2strings.sci, line: 37
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
-
 #, c-format
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
 msgstr ""
@@ -431,10 +395,16 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
 
 #
-# File: macros/blanks.sci, line: 21
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一整數.\n"
+# File: sci_gateway/c/sci_strindex.c, line: 144
+# File: sci_gateway/c/sci_tokens.c, line: 147
+# File: sci_gateway/c/sci_strtok.c, line: 54
+# File: sci_gateway/c/sci_strtok.c, line: 74
+# File: sci_gateway/c/sci_strsubst.c, line: 98
+# File: sci_gateway/c/sci_strsubst.c, line: 108
+# File: sci_gateway/c/sci_convstr.c, line: 72
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
 
 #
 # File: macros/blanks.sci, line: 29
@@ -474,9 +444,11 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+#
+# File: macros/arobasestring2strings.sci, line: 23
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
 
 #, c-format
 msgid ""
@@ -507,6 +479,12 @@ msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"
 msgstr "%s: 此特性尚未實作: 型態 %s 之變數轉換.\n"
 
+# File: macros/tokenpos.sci, line: 16
+# File: macros/arobasestring2strings.sci, line: 37
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
+
 #
 # File: macros/tokenpos.sci, line: 19
 #, c-format
@@ -514,3 +492,13 @@ msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "
 "expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字元或字元向量.\n"
+
+#
+# File: macros/arobasestring2strings.sci, line: 31
+#~ msgid "%s: Wrong type for input argument: String expected.\n"
+#~ msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
+
+#
+# File: macros/blanks.sci, line: 21
+#~ msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+#~ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一整數.\n"

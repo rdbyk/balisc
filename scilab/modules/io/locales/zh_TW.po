@@ -38,10 +38,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體空間不足.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 
@@ -89,9 +85,11 @@ msgstr ""
 msgid "%s: Can not open File \"%s\"\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#
+# File: macros/unix_g.sci, line: 44
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 輸出參數之數目錯誤(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
@@ -161,9 +159,9 @@ msgstr ""
 msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 純量才對.\n"
 
 #, c-format
 msgid "%s: %s is not a valid module file.\n"
@@ -219,34 +217,8 @@ msgstr ""
 msgid "Undefined environment variable %s.\n"
 msgstr "未定義之環境參數 %s.\n"
 
-msgid "Too many files opened!\n"
-msgstr "已開啟太多檔案!\n"
-
-#, c-format
-msgid "File \"%s\" already exists.\n"
-msgstr "檔案 \"%s\" 已經存在.\n"
-
-#, c-format
-msgid "\"%s\" directory write access denied.\n"
-msgstr "\"%s\" 目錄禁止寫入.\n"
-
-#, c-format
-msgid "File \"%s\" does not exist.\n"
-msgstr "檔案 \"%s\" 不存在.\n"
-
-#, c-format
-msgid "File \"%s\" read access denied.\n"
-msgstr "檔案 \"%s\" 禁止讀取.\n"
-
-msgid "unmanaged error by v2cunit.\n"
-msgstr "無法管理的錯誤 by v2cunit.\n"
-
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
@@ -298,3 +270,21 @@ msgstr "%s: 執行 %s 時發生錯誤"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr ""
+
+#~ msgid "Too many files opened!\n"
+#~ msgstr "已開啟太多檔案!\n"
+
+#~ msgid "File \"%s\" already exists.\n"
+#~ msgstr "檔案 \"%s\" 已經存在.\n"
+
+#~ msgid "\"%s\" directory write access denied.\n"
+#~ msgstr "\"%s\" 目錄禁止寫入.\n"
+
+#~ msgid "File \"%s\" does not exist.\n"
+#~ msgstr "檔案 \"%s\" 不存在.\n"
+
+#~ msgid "File \"%s\" read access denied.\n"
+#~ msgstr "檔案 \"%s\" 禁止讀取.\n"
+
+#~ msgid "unmanaged error by v2cunit.\n"
+#~ msgstr "無法管理的錯誤 by v2cunit.\n"

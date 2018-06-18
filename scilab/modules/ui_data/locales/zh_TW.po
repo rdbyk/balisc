@@ -25,9 +25,9 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d, %d or %d expected.\n"
+msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"

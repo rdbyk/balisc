@@ -160,18 +160,6 @@ msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 実数または文字列を指定してください.\n"
 
-#
-# File: src/c/sciprint_full.c, line: 96
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr "  (続き) %s\n"
-
-#
-# File: src/c/sciprint_full.c, line: 100
-#, c-format
-msgid "     (end) %s\n"
-msgstr "     (終了) %s\n"
-
 msgid ""
 "*** Execution stopped after a warning. ***\n"
 "Set warning(\"on\") to continue execution after a warning.\n"
@@ -209,3 +197,13 @@ msgstr ""
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"
 msgstr "%s システムはこのページで表示できません。\n"
+
+#
+# File: src/c/sciprint_full.c, line: 96
+#~ msgid "  (cont'd) %s\n"
+#~ msgstr "  (続き) %s\n"
+
+#
+# File: src/c/sciprint_full.c, line: 100
+#~ msgid "     (end) %s\n"
+#~ msgstr "     (終了) %s\n"

@@ -18,14 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 
@@ -1108,11 +1100,6 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: No s'ha pogut exportar %s a %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un bloc.\n"
@@ -1174,9 +1161,10 @@ msgstr ""
 msgid "Unable to open %s"
 msgstr "No s'ha pogut obrir %s"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
 msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
 
 #, c-format
 msgid "%s: Not supported format %s.\n"

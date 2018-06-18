@@ -20,42 +20,8 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 入力引数 #%d を読み込めません.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ確保エラー.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -70,9 +36,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: 入力引数の数が間違っています: %d から%d個の引数を指定してください."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -92,6 +59,12 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してくだ"
 "さい.\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -100,9 +73,9 @@ msgstr ""
 msgid "Redefining permanent variable.\n"
 msgstr "永続的変数を再定義しています.\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+#, fuzzy, c-format
+msgid "%s: Redefining permanent variable.\n"
+msgstr "永続的変数を再定義しています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -211,10 +184,6 @@ msgid "  for more details, show help page.\n"
 msgstr "  詳細については, ヘルプを参照.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: 入力引数の数が誤っています: %d から %d を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
@@ -239,6 +208,10 @@ msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定し
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: 入力引数 %d が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
 
 msgid "Could not retrieve sub-type.\n"
 msgstr "サブタイプを取得できません.\n"
@@ -270,10 +243,6 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています: [%d,%d] の範囲としてください.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s: 出力引数の数が間違っています: %d個の引数を指定してください."
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 0, 1 または 2を指定してください.\n"
@@ -290,9 +259,22 @@ msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\" を指定し
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: ファイル %s は存在しません.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -303,12 +285,8 @@ msgstr ""
 msgid "%s: Wrong file version.xml %s.\n"
 msgstr "%s: ファイル version.xml %s に誤りがあります.\n"
 
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: 最大でも %d 個としてください.\n"
-
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument #%d: %s\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: %s\n"
 
 #, c-format
@@ -331,6 +309,16 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 構造体配列またはtlistまたはmlistを指定"
 "してください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 有効な関数名を指定してください.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
@@ -343,11 +331,6 @@ msgstr "%s: 入力引数 #%d の型が間違っています: マクロを指定�
 #, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
 msgstr "%s: 入力引数の大きさは %d より大きくする必要があります.\n"
-
-#, c-format
-msgid "%s: Wrong size for output arguments: %d expected.\n"
-msgstr ""
-"%s:  出力引数の大きさが間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -375,17 +358,31 @@ msgid "%s: function-name is incorrect.\n"
 msgstr "%s: 関数名が間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 集合 {#%s}に含まれる必要があります.\n"
-
-#, c-format
 msgid "%s: function is disabled in debug mode.\n"
 msgstr "%s: 関数がデバッグモードで無効になりました.\n"
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+msgid "Warning"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: %s を確認してください.\n"
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+#, c-format
+msgid "%s: This feature will be permanently removed in Scilab / %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected."
@@ -396,6 +393,15 @@ msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してくだ"
 "さい.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"
+msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -411,8 +417,8 @@ msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number is expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 偶数の引数を指定してください.\n"
 
 #, c-format
@@ -458,36 +464,6 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 'local', 'get' または 'sorted' を指定"
 "してください.\n"
-
-msgid "The SCI environment variable is not set.\n"
-msgstr "環境変数 SCI を設定できません.\n"
-
-#
-# File: src/c/getmodules.c, line: 100
-#, c-format
-msgid "Cannot load the module declaration file: %s.\n"
-msgstr "モジュール宣言ファイルをロードできません: %s\n"
-
-#, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "警告: %s が見つかりません\n"
-
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr "エラー:ファイル %s をパースできません.\n"
-
-#
-# File: src/c/getmodules.c, line: 213
-#, c-format
-msgid "%s module not found.\n"
-msgstr "%s モジュールが見つかりません。\n"
-
-#, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr ""
-"エラー: モジュールファイル %s に誤りがあります. (エンコーディングが '%s'　で"
-"はありません) エンコーディング '%s' が見つかりました  .\n"
 
 #
 # File: src/c/loadversion.c, line: 74
@@ -573,21 +549,6 @@ msgid ""
 msgstr ""
 "スタックの終端\n"
 "\n"
-
-msgid "ESI Group\n"
-msgstr ""
-
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr ""
-
-msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
-msgstr "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
-
-msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr "Copyright (c) 1989-2012 (INRIA)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
 #, c-format
 msgid "Recursion limit reached (%d).\n"
@@ -704,14 +665,8 @@ msgstr "%s: %s を確認してください.\n"
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: ファイルは存在しません: %s"
 
-#
-# File: macros/edit.sci, line: 24
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数の数が違います: 少なくとも %d が予想されます。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: double を指定してください.\n"
 
 #, c-format
@@ -721,36 +676,6 @@ msgstr "%s: %s は編集不可のハードコードされた関数です.\n"
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: 入力引数の数が間違っています.\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Perlファイルが見つかりません: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Perl コマンドが指定されていません."
-
-#
-# File: macros/perl.sci, line: 47
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: '%s' でPerlを見つけられません"
-
-#
-# File: macros/perl.sci, line: 63
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Perlを見つけられません。\n"
-
-#
-# File: macros/perl.sci, line: 68
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: システム・エラー: コマンドは実行されました: %s"
 
 msgid "Scilab Version: "
 msgstr "Scilabバージョン: "
@@ -807,3 +732,115 @@ msgstr "サイズ"
 
 msgid "Bytes"
 msgstr "バイト"
+
+#~ msgid "%s: Can not read input argument #%d.\n"
+#~ msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+#~ msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+#~ msgstr ""
+#~ "%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
+
+#~ msgid "%s: Memory allocation error.\n"
+#~ msgstr "%s: メモリ確保エラー.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から%d個の引数を指定してください."
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s: 入力引数の数が誤っています: %d から %d を指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected."
+#~ msgstr "%s: 出力引数の数が間違っています: %d個の引数を指定してください."
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected."
+#~ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
+
+#~ msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: 最大でも %d 個としてください.\n"
+
+#~ msgid "%s: Wrong size for output arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s:  出力引数の大きさが間違っています: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が間違っています: 集合 {#%s}に含まれる必要がありま"
+#~ "す.\n"
+
+#~ msgid "The SCI environment variable is not set.\n"
+#~ msgstr "環境変数 SCI を設定できません.\n"
+
+#
+# File: src/c/getmodules.c, line: 100
+#~ msgid "Cannot load the module declaration file: %s.\n"
+#~ msgstr "モジュール宣言ファイルをロードできません: %s\n"
+
+#~ msgid "Warning: Could not find %s\n"
+#~ msgstr "警告: %s が見つかりません\n"
+
+#~ msgid "Error: Could not parse file %s.\n"
+#~ msgstr "エラー:ファイル %s をパースできません.\n"
+
+#
+# File: src/c/getmodules.c, line: 213
+#~ msgid "%s module not found.\n"
+#~ msgstr "%s モジュールが見つかりません。\n"
+
+#~ msgid ""
+#~ "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' "
+#~ "found.\n"
+#~ msgstr ""
+#~ "エラー: モジュールファイル %s に誤りがあります. (エンコーディングが '%s'　"
+#~ "ではありません) エンコーディング '%s' が見つかりました  .\n"
+
+#~ msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
+#~ msgstr "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
+
+#~ msgid "Copyright (c) 1989-2012 (INRIA)\n"
+#~ msgstr "Copyright (c) 1989-2012 (INRIA)\n"
+
+#~ msgid "Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "Copyright (c) 1989-2007 (ENPC)\n"
+
+#
+# File: macros/edit.sci, line: 24
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr "%s: 入力引数の数が違います: 少なくとも %d が予想されます。\n"
+
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: Perlファイルが見つかりません: %s"
+
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: Perl コマンドが指定されていません."
+
+#
+# File: macros/perl.sci, line: 47
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: '%s' でPerlを見つけられません"
+
+#
+# File: macros/perl.sci, line: 63
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: Perlを見つけられません。\n"
+
+#
+# File: macros/perl.sci, line: 68
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: システム・エラー: コマンドは実行されました: %s"

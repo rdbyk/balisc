@@ -78,8 +78,24 @@ msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána matice reálných čísel.\n"
+
+# File: modules/special_functions/macros/%s_gamma.sci, line: 21
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgid ""
+"%s: Function not defined for the given argument type.\n"
+"  Check arguments or define function %s for overloading.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
 
 #, c-format

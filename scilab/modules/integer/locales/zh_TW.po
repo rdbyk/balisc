@@ -18,18 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 無法讀取第 #%d 個輸入參數值.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體空間不足。\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
@@ -42,20 +30,28 @@ msgid "Never occur"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : int or double expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
 
 #, c-format
 msgid "%s: '%s' already defined by the '%s' argument."
@@ -75,9 +71,9 @@ msgstr ""
 msgid "%s: %s expected instead of %s.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
@@ -95,3 +91,9 @@ msgstr ""
 #, c-format
 msgid "%s: Incorrect integer type: %s .\n"
 msgstr ""
+
+#~ msgid "%s: Can not read input argument #%d.\n"
+#~ msgstr "%s: 無法讀取第 #%d 個輸入參數值.\n"
+
+#~ msgid "%s: No more memory.\n"
+#~ msgstr "%s: 記憶體空間不足。\n"

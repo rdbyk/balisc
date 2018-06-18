@@ -40,10 +40,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 "%s : Type erroné pour l'argument d'entrée n°%d : une chaîne de caractères "
@@ -99,8 +95,8 @@ msgstr ""
 msgid "%s: Can not open File \"%s\"\n"
 msgstr "%s : Impossible d'ouvrir le fichier \"%s\"\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
@@ -181,8 +177,8 @@ msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
 msgstr ""
 "Vieille librairie binaire détectée. Veuillez le recompiler pour Scilab 6.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
 
 #, c-format
@@ -245,35 +241,9 @@ msgstr "Fin de fichier à la ligne %d.\n"
 msgid "Undefined environment variable %s.\n"
 msgstr "Variable d'environnement %s non définie.\n"
 
-msgid "Too many files opened!\n"
-msgstr "Trop de fichiers ouverts !\n"
-
-#, c-format
-msgid "File \"%s\" already exists.\n"
-msgstr "Le fichier \"%s\" existe déjà.\n"
-
-#, c-format
-msgid "\"%s\" directory write access denied.\n"
-msgstr "Écriture refusée dans le répertoire \"%s\".\n"
-
-#, c-format
-msgid "File \"%s\" does not exist.\n"
-msgstr "Le fichier \"%s\" n'existe pas.\n"
-
-#, c-format
-msgid "File \"%s\" read access denied.\n"
-msgstr "Accès en lecture au fichier \"%s\" refusé.\n"
-
-msgid "unmanaged error by v2cunit.\n"
-msgstr "Erreur non gérée par v2cunit.\n"
-
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s : La légende ne correspond pas au contexte actuel. Ignoré\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -304,3 +274,27 @@ msgid ""
 msgstr ""
 "%s : La commande a échoué avec pour code d'erreur %s et le message "
 "suivant :\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#~ msgid "Too many files opened!\n"
+#~ msgstr "Trop de fichiers ouverts !\n"
+
+#~ msgid "File \"%s\" already exists.\n"
+#~ msgstr "Le fichier \"%s\" existe déjà.\n"
+
+#~ msgid "\"%s\" directory write access denied.\n"
+#~ msgstr "Écriture refusée dans le répertoire \"%s\".\n"
+
+#~ msgid "File \"%s\" does not exist.\n"
+#~ msgstr "Le fichier \"%s\" n'existe pas.\n"
+
+#~ msgid "File \"%s\" read access denied.\n"
+#~ msgstr "Accès en lecture au fichier \"%s\" refusé.\n"
+
+#~ msgid "unmanaged error by v2cunit.\n"
+#~ msgstr "Erreur non gérée par v2cunit.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"

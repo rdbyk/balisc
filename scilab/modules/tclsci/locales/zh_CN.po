@@ -176,9 +176,9 @@ msgstr "变量太长。\n"
 msgid "%s: Error TCL interpreter not initialized.\n"
 msgstr "%s：错误：Tcl解释器没有初始化。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least one expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Scilab Tcl/Tk 模块没有安装。\n"
@@ -207,12 +207,12 @@ msgstr ""
 msgid "%s: Argument #%d: Name of a variable of type 1, 4 or 10 expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format

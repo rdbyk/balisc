@@ -97,11 +97,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -114,10 +110,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -157,10 +149,6 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: '%s' 唯一無效之路徑.\n"
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s:  %s檔在 scilab中還沒打開.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
@@ -272,10 +260,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format

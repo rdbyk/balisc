@@ -203,8 +203,8 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: očekávána hodnota kladného "
 "celého čísla.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
 #, c-format
@@ -219,8 +219,8 @@ msgstr "%s: V '%s' byl nalezen neznámý styl řádku -> nastaven na 6.\n"
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s: V '%s' byla nalezena neznámá barva -> nastaveno na černou.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáván %d.\n"
 
 #, c-format
@@ -228,7 +228,7 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s: tužka není diagonalizovatelná.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
@@ -252,13 +252,12 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s: Nelze otevřít ani '%s', ani '%s', ani '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s: Normalizace m - 1 činitel je nula.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: Normalizace n - 1 činitel je nula.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"

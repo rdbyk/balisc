@@ -192,8 +192,8 @@ msgstr "%s: 引数の数が間違っています: %d 個の引数を指定して
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 #, c-format
@@ -210,12 +210,8 @@ msgstr ""
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: 無効なHDF5 Scilab形式.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
@@ -242,6 +238,13 @@ msgstr "%s: '%s'を読み込めません.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 165
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 211
+#, c-format
+msgid "WARNING: %s: invalid graphic handle is ignored.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -813,3 +816,6 @@ msgstr "誘電率"
 
 msgid "Ring Resonator"
 msgstr "リング共振器"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"

@@ -69,9 +69,11 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
 "scalare reale.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
@@ -89,9 +91,11 @@ msgstr ""
 msgid "%s: LAPACK error n%d.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
@@ -121,10 +125,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
-msgstr ""
-
 msgid "Warning :\n"
 msgstr ""
 
@@ -145,6 +145,10 @@ msgid "%s: %s and %s must have equal number of rows.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
@@ -158,9 +162,11 @@ msgstr ""
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -231,9 +237,11 @@ msgstr ""
 msgid "%s: Error return from DTGEVC.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
@@ -323,12 +331,6 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere %d, %d, "
 "%s, ''%s'' o ''%s''.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -451,3 +453,9 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: il rango richiesto è "
 "maggiore della dimensione della matrice."
+
+#, fuzzy, c-format
+msgid "%s: Wrong size of input argument #%d: expected a square matrix.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"matrice quadrata.\n"

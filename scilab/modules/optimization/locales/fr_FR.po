@@ -109,13 +109,9 @@ msgstr ""
 "peuvent être imprécis.\n"
 "\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
@@ -213,9 +209,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String \"b\" expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or more expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
@@ -281,9 +277,9 @@ msgstr ""
 msgid "%s: This method is NOT implemented.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'argument d'entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -469,7 +465,7 @@ msgstr ""
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 217
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 246
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #, c-format
@@ -871,10 +867,6 @@ msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 "%s : Avec une fonction codée en dur, l'utilisateur doit donner la taille de "
 "la sortie de G."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -1808,6 +1800,5 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur entière "
 "attendue.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"

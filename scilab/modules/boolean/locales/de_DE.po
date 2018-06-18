@@ -22,10 +22,6 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
@@ -41,12 +37,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
+#
+# File: modules/boolean/sci_gateway/cpp/sci_bool2s.cpp, line: 36
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #, c-format

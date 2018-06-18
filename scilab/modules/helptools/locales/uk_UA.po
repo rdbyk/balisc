@@ -324,7 +324,7 @@ msgstr ""
 "назву існуючого файла.\n"
 
 #, fuzzy, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: помилка у форматуванні файла CHAPTER, рядок %d\n"
 
 #, c-format
@@ -336,7 +336,7 @@ msgstr ""
 "який завершується підрядком «.last_successful_build».\n"
 
 #, fuzzy, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr "%s: помилка у форматуванні файла last_successful_build, рядок %d\n"
 
 #, c-format
@@ -350,8 +350,8 @@ msgstr ""
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: ці 2 mlist не повинні мати спільних полів.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
 "%d.\n"

@@ -368,22 +368,12 @@ msgstr ""
 msgid "     norm of the residual    = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 145
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 149
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 193
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 197
 #, c-format
-msgid "     same but with refinment = "
+msgid "     same but with refinement = "
 msgstr ""
 
 #, c-format
 msgid "     norm of the residual     = "
-msgstr ""
-
-#, c-format
-msgid "     same but with refinement = "
 msgstr ""
 
 msgid "Now we will see how to use the taucs snmf stuff on the matrix A2."
@@ -474,13 +464,13 @@ msgstr "Escolliu una matriu dispersa"
 msgid "   then click on OK   "
 msgstr "   després feu clic a Accepta   "
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
 
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
+#, fuzzy, c-format
+msgid "%s: The file contains a nargin but it will not be read !"
 msgstr "%s: El fitxer conté un rhs però no es llegirà !"
 
 #, c-format

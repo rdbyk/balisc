@@ -171,8 +171,8 @@ msgstr "%s: Falscher Typ für Eingangsargument #%d: %s erwartet.\n"
 msgid "%s: parameter %s not defined"
 msgstr "%s: Parameter %s nicht definiert"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number expected.\n"
 msgstr ""
 "%s: Falsche Anzahl von Eingangsargumenten: eine gerade Anzahl erwartet.\n"
 

@@ -166,13 +166,9 @@ msgstr "%s: помилкова розмірність вхідного пара�
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d, %d or %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -188,12 +184,6 @@ msgstr ""
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: параметр №%d: має належати до множини {%s}.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
@@ -290,8 +280,9 @@ msgstr ""
 "збігатися.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 #, c-format
 msgid ""
@@ -308,12 +299,6 @@ msgstr "%s: помилкова кількість вхідних парамет�
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr "%s: помилкова кількість вихідного параметра: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
 
 #, c-format
 msgid ""
@@ -360,11 +345,6 @@ msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати числовий "
 "тип.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected."
@@ -510,3 +490,20 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати не менше "
+#~ "за %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"

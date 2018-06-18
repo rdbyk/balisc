@@ -175,14 +175,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано дійсне "
 "число або рядок.\n"
 
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr "  (продовжено) %s\n"
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr "     (кінець) %s\n"
-
 msgid ""
 "*** Execution stopped after a warning. ***\n"
 "Set warning(\"on\") to continue execution after a warning.\n"
@@ -227,3 +219,9 @@ msgstr ""
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"
 msgstr "%s: показати систему на цій сторінці неможливо.\n"
+
+#~ msgid "  (cont'd) %s\n"
+#~ msgstr "  (продовжено) %s\n"
+
+#~ msgid "     (end) %s\n"
+#~ msgstr "     (кінець) %s\n"

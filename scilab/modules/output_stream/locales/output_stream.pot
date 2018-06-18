@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2018-06-18 10:21+0100\n"
 
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 109
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 127
@@ -157,7 +157,7 @@ msgstr ""
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 863
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 940
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1049
-# File: modules/output_stream/sci_gateway/cpp/sci_mprintf.cpp, line: 48
+# File: modules/output_stream/sci_gateway/cpp/sci_mprintf.cpp, line: 47
 # File: modules/output_stream/sci_gateway/cpp/sci_msprintf.cpp, line: 42
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -227,7 +227,7 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_mprintf.cpp, line: 42
+# File: modules/output_stream/sci_gateway/cpp/sci_mprintf.cpp, line: 41
 # File: modules/output_stream/sci_gateway/cpp/sci_msprintf.cpp, line: 36
 # File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 41
 #, c-format
@@ -254,8 +254,6 @@ msgstr ""
 
 #
 # File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 70
-# File: modules/output_stream/src/c/sciprint_full.c, line: 54
-# File: modules/output_stream/src/c/sciprint_full.c, line: 64
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -291,18 +289,6 @@ msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/src/c/sciprint_full.c, line: 101
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr ""
-
-#
-# File: modules/output_stream/src/c/sciprint_full.c, line: 105
-#, c-format
-msgid "     (end) %s\n"
-msgstr ""
-
-#
 # File: modules/output_stream/src/cpp/Sciwarning.cpp, line: 42
 msgid ""
 "*** Execution stopped after a warning. ***\n"
@@ -310,56 +296,56 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 153
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 204
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 246
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 256
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 275
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 285
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 305
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 315
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 332
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 342
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 360
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 150
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 201
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 243
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 253
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 272
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 282
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 302
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 312
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 329
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 339
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 357
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 162
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 213
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 159
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 210
 #, c-format
 msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
 msgstr ""
 
-# File: modules/output_stream/macros/ssprint.sci, line: 28
+# File: modules/output_stream/macros/ssprint.sci, line: 27
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
-# File: modules/output_stream/macros/ssprint.sci, line: 36
+# File: modules/output_stream/macros/ssprint.sci, line: 35
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/macros/ssprint.sci, line: 41
+# File: modules/output_stream/macros/ssprint.sci, line: 40
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/macros/ssprint.sci, line: 46
+# File: modules/output_stream/macros/ssprint.sci, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/macros/ssprint.sci, line: 117
-# File: modules/output_stream/macros/ssprint.sci, line: 120
-# File: modules/output_stream/macros/ssprint.sci, line: 180
-# File: modules/output_stream/macros/ssprint.sci, line: 183
+# File: modules/output_stream/macros/ssprint.sci, line: 116
+# File: modules/output_stream/macros/ssprint.sci, line: 119
+# File: modules/output_stream/macros/ssprint.sci, line: 179
+# File: modules/output_stream/macros/ssprint.sci, line: 182
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"
 msgstr ""

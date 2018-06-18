@@ -116,11 +116,6 @@ msgstr ""
 "позиции %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидалась матрица %d на %d.\n"
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Неверный размер входных параметров: размеры несовместимы.\n"
 
@@ -188,14 +183,6 @@ msgid ""
 msgstr ""
 "%s: Неверное количество столбцов у входного аргумента №%d: ожидалось не "
 "менее %d.\n"
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr "%s: Не удалось прочесть свойство '%s' для объекта командного окна.\n"
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
-msgstr "%s: Из этого дескриптора невозможно получить полезный путь.\n"
 
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
@@ -599,8 +586,8 @@ msgstr "%s: Ошибка во входном параметре №%d: гран�
 msgid "%s: Invalid vertex index.\n"
 msgstr "%s: Недопустимый индекс вершины.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
@@ -616,6 +603,10 @@ msgstr ""
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr "%s: Не удалось прочитать свойство '%s' корневого объекта.\n"
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
+msgstr "%s: Из этого дескриптора невозможно получить полезный путь.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
@@ -638,6 +629,19 @@ msgstr "%s: Неверный тип входного аргумента  №%ls:
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-строка.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: A single graphic handle expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался графический "
+"дескриптор.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: real scalar or graphic handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался массив графического "
+"дескриптора.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
@@ -671,32 +675,13 @@ msgid "The parent has to be a SUBWIN\n"
 msgstr "Предок должен быть «Subwin»\n"
 
 #, fuzzy, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr "%s: Не удалось получить рамку ограничений.\n"
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s создано только для вычисления кривых уровня, а не для их изображения.\n"
-
-#, fuzzy
-msgid "Could not retrive bounds.\n"
-msgstr "Не удалось получить границы.\n"
-
-msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
-msgstr ""
-"Внимание: не удалось использовать логарифмический режим для оси абсцисс из-"
-"за отрицательного xmin.\n"
-
-msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
-msgstr ""
-"Внимание: невозможно использовать логарифмический масштаб для оси Y, так как "
-"ymin отрицателен.\n"
-
-msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
-msgstr ""
-"Внимание: невозможно использовать логарифмический масштаб для оси Z, так как "
-"zmin отрицателен.\n"
 
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr "Предупреждение: Nax не работает с логарифмическим масштабированием.\n"
@@ -1510,10 +1495,6 @@ msgstr ""
 "окна.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: Входной параметр №%d должен быть вещественным числом.\n"
 
@@ -1677,9 +1658,9 @@ msgstr ""
 msgid "Transposing column vector X to get row vector"
 msgstr "Транспонирование вектор-столбца X для получения вектор-строки"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
@@ -1740,10 +1721,6 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Неверный размер параметра %d: ожидался размер %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался вектор вещественных "
@@ -1785,8 +1762,8 @@ msgstr "%s: Неверный размер входного параметра �
 msgid "%s: Colormap too small"
 msgstr "%s: Карта цветов (colormap) слишком мала"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected."
 msgstr ""
 "%s: Неверное количество входных аргументов: ожидалось по меньшей мере %d."
 
@@ -2088,6 +2065,35 @@ msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось вещественное число.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось допустимое "
+"свойство.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица или "
+"функция Scilab.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: Неверный размер входного  аргумента №%d: ожидался строковый скаляр.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 99
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr "Ошибка %d : в plot2d, вызванной в contour2d"
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr "%s: Аргумент №%d: ожидались числа или текст.\n"
@@ -2100,9 +2106,9 @@ msgstr "%s: Аргумент №%d: ожидалось десятичное чи
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr "%s: Аргумент №%d: ожидался текст.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+"%s: Wrong number of input arguments: 0, 1, 2, or 4 arguments expected.\n"
 msgstr ""
 "%s: Неверное число входных аргументов: ожидалось 0, 1, 2 или 4 аргумента.\n"
 
@@ -2317,8 +2323,8 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица или "
 "матрица строк.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d."
 
 #, c-format
@@ -2393,3 +2399,37 @@ msgstr "%s: Неверный размер входных аргументов: �
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: Для %s дано неверное значение."
+
+#~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного аргумента №%d: ожидалась матрица %d на %d.\n"
+
+#~ msgid "%s: Could not read property '%s' for console object.\n"
+#~ msgstr ""
+#~ "%s: Не удалось прочесть свойство '%s' для объекта командного окна.\n"
+
+#, fuzzy
+#~ msgid "Could not retrive bounds.\n"
+#~ msgstr "Не удалось получить границы.\n"
+
+#~ msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
+#~ msgstr ""
+#~ "Внимание: не удалось использовать логарифмический режим для оси абсцисс "
+#~ "из-за отрицательного xmin.\n"
+
+#~ msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
+#~ msgstr ""
+#~ "Внимание: невозможно использовать логарифмический масштаб для оси Y, так "
+#~ "как ymin отрицателен.\n"
+
+#~ msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
+#~ msgstr ""
+#~ "Внимание: невозможно использовать логарифмический масштаб для оси Z, так "
+#~ "как zmin отрицателен.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d."
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"

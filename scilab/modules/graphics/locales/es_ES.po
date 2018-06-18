@@ -113,10 +113,6 @@ msgstr ""
 "%s: Argumento opcional mal colocado: #%d debe estar en la posición %d\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
@@ -181,14 +177,6 @@ msgstr "%: Valor incorrecto de %s '%c': Se esperaba '%s', '%s' y '%s'.\n"
 #, c-format
 msgid ""
 "%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
 
 #, c-format
@@ -588,9 +576,10 @@ msgstr ""
 msgid "%s: Invalid vertex index.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: A real scalar expected.\n"
@@ -602,6 +591,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
 
 #, c-format
@@ -623,6 +616,19 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: A single graphic handle expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un manejador "
+"simple.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: real scalar or graphic handle expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un arreglo "
+"de manejadores gráficos.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
@@ -655,32 +661,12 @@ msgstr "El padre debe ser una SUBVENTANA\n"
 #
 # File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr ""
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s es solo para computar curvas de nivel y no para mostrarlas.\n"
-
-#
-# File: modules/graphics/src/c/DrawObjects.c, line: 88
-msgid "Could not retrive bounds.\n"
-msgstr ""
-
-msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
-msgstr ""
-"Advertencia: No se puede usar logaritmo en el eje x porque xmin es "
-"negativo.\n"
-
-msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
-msgstr ""
-"Advertencia: No se puede usar logaritmo en el eje Y porque ymin es "
-"negativo.\n"
-
-msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
-msgstr ""
-"Advertencia: No se puede usar logaritmo en el eje Z porque zmin es "
-"negativo.\n"
 
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr "Advertencia: Nax no funciona con escala logarítmica.\n"
@@ -1463,11 +1449,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
-
-#, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: El argumento de entrada #%d debe ser real.\n"
 
@@ -1605,10 +1586,10 @@ msgstr ""
 msgid "Transposing column vector X to get row vector"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr ""
-"%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d."
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
@@ -1671,11 +1652,6 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Tamaño incorrecto para el argumento %d: Se esperaba %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
 
@@ -1712,9 +1688,10 @@ msgstr ""
 msgid "%s: Colormap too small"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected."
 msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -1999,6 +1976,37 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba una "
+"propiedad válida.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano o "
+"un vector fila real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 99
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 145
+#, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr ""
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr ""
@@ -2011,10 +2019,11 @@ msgstr ""
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+"%s: Wrong number of input arguments: 0, 1, 2, or 4 arguments expected.\n"
 msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
 msgid ""
@@ -2190,8 +2199,8 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaba %d ó %d."
 
 #, c-format
@@ -2257,3 +2266,22 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr ""
+
+#~ msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
+#~ msgstr ""
+#~ "Advertencia: No se puede usar logaritmo en el eje x porque xmin es "
+#~ "negativo.\n"
+
+#~ msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
+#~ msgstr ""
+#~ "Advertencia: No se puede usar logaritmo en el eje Y porque ymin es "
+#~ "negativo.\n"
+
+#~ msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
+#~ msgstr ""
+#~ "Advertencia: No se puede usar logaritmo en el eje Z porque zmin es "
+#~ "negativo.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr ""
+#~ "%s: Número incorrecto de argumento(s) de entrada: Se esperaban de %d a %d."

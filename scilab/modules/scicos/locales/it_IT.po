@@ -18,11 +18,7 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -76,14 +72,6 @@ msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real, complex or integer matrix "
 "expected.\n"
@@ -113,7 +101,7 @@ msgstr ""
 "%s: Il primo e il secondo argomento devono avere la stessa dimensione\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 msgid ""
@@ -227,10 +215,6 @@ msgid "%s: Unable to save \"%s\" .\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d : A real scalar expected.\n"
 msgstr ""
 
@@ -246,9 +230,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' .\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"
@@ -275,15 +260,7 @@ msgid "%s: Wrong value for input argument #%d: not handled kind.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or ID expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -913,12 +890,6 @@ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-"almeno %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
@@ -1179,11 +1150,11 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2294
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2295
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+"It should be a column vector of size %d."
 msgstr ""
 
 msgid ""
@@ -1389,3 +1360,8 @@ msgid ""
 "Answer given for %s \n"
 " is incorrect: %s.\n"
 msgstr ""
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+#~ "almeno %d.\n"

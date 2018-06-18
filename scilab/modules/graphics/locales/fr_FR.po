@@ -122,12 +122,6 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s : Argument optionnel mal placé : n°%d doit être à la position %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice %d-by-%d "
-"attendue.\n"
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s : Dimension erronée des arguments d'entrée : Dimensions incompatibles.\n"
@@ -202,14 +196,6 @@ msgid ""
 msgstr ""
 "%s : Nombre erroné de colonnes pour l'argument n°%d : au moins %d "
 "attendue(s).\n"
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr "%s : Impossible de lire la propriété '%s' pour l'objet console.\n"
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
-msgstr "%s : Impossible de trouver un chemin utile pour ce handle.\n"
 
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
@@ -628,8 +614,8 @@ msgstr ""
 msgid "%s: Invalid vertex index.\n"
 msgstr "%s : Indice de sommet invalide.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
@@ -645,6 +631,10 @@ msgstr ""
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr "%s : La propriété \"%s\" ne peut pas être lue pour l'objet racine.\n"
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
+msgstr "%s : Impossible de trouver un chemin utile pour ce handle.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
@@ -672,6 +662,19 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 "%s : Taille erronée de l'argument d'entrée n°%d : Un vecteur ligne attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: A single graphic handle expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un handle graphique "
+"attendu.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: real scalar or graphic handle expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une table de handle graphique "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
@@ -706,7 +709,7 @@ msgid "The parent has to be a SUBWIN\n"
 msgstr "Le parent doit être une sous-fenêtre\n"
 
 #, fuzzy, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr "%s : Impossible de retrouver la boîte entourante.\n"
 
 #, c-format
@@ -714,19 +717,6 @@ msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s a pour seul objectif de calculer les courbes de niveau, pas de les "
 "représenter.\n"
-
-#, fuzzy
-msgid "Could not retrive bounds.\n"
-msgstr "Impossible de retrouver les bornes.\n"
-
-msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
-msgstr "Attention : Impossible d'utiliser Log sur l'axe X, xmin est négatif.\n"
-
-msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
-msgstr "Attention : Impossible d'utiliser Log sur l'axe Y, ymin est négatif.\n"
-
-msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
-msgstr "Attention : Impossible d'utiliser Log sur l'axe Z, zmin est négatif.\n"
 
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr ""
@@ -1584,10 +1574,6 @@ msgstr ""
 "figure attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
-
-#, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s : L'argument d'entrée n°%d doit être réel.\n"
 
@@ -1765,9 +1751,9 @@ msgstr ""
 msgid "Transposing column vector X to get row vector"
 msgstr "Transposition du vecteur colonne X pour obtenir le vecteur ligne"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s)."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
@@ -1832,10 +1818,6 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s : Dimension erronée de l'argument %d : %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur réel attendu.\n"
@@ -1878,8 +1860,8 @@ msgstr ""
 msgid "%s: Colormap too small"
 msgstr "%s : La table de couleurs est trop petite"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected."
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s)."
 
 #, c-format
@@ -2186,6 +2168,35 @@ msgstr "Répartition Gaussienne exacte"
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Une propriété valide "
+"attendue.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle ou une "
+"fonction Scilab attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s : Taille erronée de l'argument d'entrée #%d : Un scalaire texte attendu.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 99
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr "Erreur %d : dans plot2d appelé par contour2d"
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr "%s Argument #%d : Texte ou réels attendu.\n"
@@ -2198,9 +2209,9 @@ msgstr "%s Argument #%d : Nombre(s) réel(s) attendu(s).\n"
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr "%s : Argument #%d : texte(s) attendu(s).\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+"%s: Wrong number of input arguments: 0, 1, 2, or 4 arguments expected.\n"
 msgstr ""
 "%s : Nombre erroné d'argument(s) d'entrée : 0, 1, 2 ou 4 argument(s) "
 "attendu(s).\n"
@@ -2427,8 +2438,8 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle ou une "
 "matrice de chaîne de caractères attendu.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s)."
 
 #, c-format
@@ -2505,3 +2516,34 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s : Valeur erronée donnée pour %s."
+
+#~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+#~ msgstr ""
+#~ "%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice %d-by-%d "
+#~ "attendue.\n"
+
+#~ msgid "%s: Could not read property '%s' for console object.\n"
+#~ msgstr "%s : Impossible de lire la propriété '%s' pour l'objet console.\n"
+
+#, fuzzy
+#~ msgid "Could not retrive bounds.\n"
+#~ msgstr "Impossible de retrouver les bornes.\n"
+
+#~ msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
+#~ msgstr ""
+#~ "Attention : Impossible d'utiliser Log sur l'axe X, xmin est négatif.\n"
+
+#~ msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
+#~ msgstr ""
+#~ "Attention : Impossible d'utiliser Log sur l'axe Y, ymin est négatif.\n"
+
+#~ msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
+#~ msgstr ""
+#~ "Attention : Impossible d'utiliser Log sur l'axe Z, zmin est négatif.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s)."
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"

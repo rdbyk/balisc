@@ -119,6 +119,24 @@ msgstr "loader.sceを生成中...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "unloader.sce を生成中 ...\n"
 
+#
+# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 69
+#, c-format
+msgid "%s: The module '%s' has no entry to be localized.\n"
+msgstr ""
+
+#
+# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 73
+#, c-format
+msgid ""
+"%s: \n"
+"   '%s' has been generated in the module.\n"
+"   Please\n"
+"   - clone it into la_LA.po (ex: pt_BR.po) in the same directory\n"
+"   - translate the copies\n"
+"   - rerun the build\n"
+msgstr ""
+
 msgid "Generating localization\n"
 msgstr "ローカル化を生成中\n"
 

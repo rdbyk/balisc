@@ -29,8 +29,8 @@ msgstr "%s：第%d个输入参数的类型错误：应该为双精度标量。\n
 msgid "%s: Wrong value for input argument #%d: A positive double expected\n"
 msgstr "%s：第%d个输入参数的值错误：应该为双精度正实数\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
@@ -45,20 +45,20 @@ msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为非负标量。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d到%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 msgid "File"
@@ -697,6 +697,14 @@ msgstr "保存历史"
 msgid "Save file"
 msgstr "保存文件"
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 794
+# File: modules/console/src/console_fake_xml.c, line: 1061
+# File: modules/console/src/console_fake_xml.c, line: 1372
+# File: modules/console/src/console_fake_xml.c, line: 1694
+msgid "Demos"
+msgstr ""
+
 msgid "Environment"
 msgstr "环境设置"
 
@@ -777,6 +785,12 @@ msgstr "操作名"
 
 msgid "Key binding"
 msgstr "快捷键绑定"
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1379
+# File: modules/console/src/console_fake_xml.c, line: 1701
+msgid "The demo interface is dockable"
+msgstr ""
 
 #, c-format
 msgid ""

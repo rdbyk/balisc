@@ -19,44 +19,8 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: помилкова розмірність параметра %d: мало бути вказано дійсне число.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
-"значення.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: помилка виділення пам’яті.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -76,9 +40,11 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d. Слід використовувати значення "
 "цілого типу.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -103,6 +69,12 @@ msgstr ""
 "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -112,9 +84,9 @@ msgstr ""
 msgid "Redefining permanent variable.\n"
 msgstr "Повторне визначення незмінної змінної.\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+#, fuzzy, c-format
+msgid "%s: Redefining permanent variable.\n"
+msgstr "Повторне визначення незмінної змінної.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -229,12 +201,6 @@ msgid "  for more details, show help page.\n"
 msgstr "  докладніші відомості на сторінці довідки.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d.\n"
 
@@ -263,6 +229,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: помилковий вхідний параметр %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
 
 msgid "Could not retrieve sub-type.\n"
 msgstr "Не вдалося отримати підтип.\n"
@@ -298,10 +270,6 @@ msgstr ""
 "у інтервалі [%d, %d]\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d."
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d: мало бути 0, 1 або 2.\n"
 
@@ -320,9 +288,22 @@ msgstr ""
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: файла з назвою %s не існує.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d."
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -333,14 +314,8 @@ msgstr ""
 msgid "%s: Wrong file version.xml %s.\n"
 msgstr "%s: помилка у файлі version.xml %s.\n"
 
-#, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати не більше "
-"%d.\n"
-
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for argument #%d: %s\n"
 msgstr "%s: помилкове значення параметра №%d: %s\n"
 
 #, c-format
@@ -365,6 +340,19 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мав бути масив struct, tlist або "
 "mlist.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано коректну "
+"функцію.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
@@ -379,12 +367,6 @@ msgstr "%s: помилковий тип вхідного параметра №%
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідних параметрів: розмірність мала перевищувати "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for output arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова розмірність вихідних параметрів: розмірність мала дорівнювати "
 "%d.\n"
 
 #, c-format
@@ -414,20 +396,31 @@ msgid "%s: function-name is incorrect.\n"
 msgstr "%s: помилкова назва функції.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано "
-"одинарний рядок.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: значення має належати набору "
-"{№%s}.\n"
-
-#, c-format
 msgid "%s: function is disabled in debug mode.\n"
 msgstr "%s: функцію вимкнено у діагностичному режимі.\n"
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+msgid "Warning"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "%s: будь ласка, перевірте: %s.\n"
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+#, c-format
+msgid "%s: This feature will be permanently removed in Scilab / %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected."
@@ -439,6 +432,19 @@ msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A String matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
@@ -456,8 +462,8 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано рядок або "
 "ціле значення.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number is expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: їх кількість мала бути парною.\n"
 
@@ -506,32 +512,6 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано «local», "
 "«get», «global» або «sorted».\n"
-
-msgid "The SCI environment variable is not set.\n"
-msgstr "Змінну середовища SCI не визначено.\n"
-
-#, c-format
-msgid "Cannot load the module declaration file: %s.\n"
-msgstr "Не вдалося завантажити файл оголошення модуля: %s.\n"
-
-#, c-format
-msgid "Warning: Could not find %s\n"
-msgstr "Попередження: не вдалося знайти %s\n"
-
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr "Помилка: не вдалося розібрати файл %s.\n"
-
-#, c-format
-msgid "%s module not found.\n"
-msgstr "Модуль %s не знайдено.\n"
-
-#, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr ""
-"Помилка: некоректний файл модуля %s (кодування, відмінне від «%s»). Виявлено "
-"кодування «%s».\n"
 
 #, c-format
 msgid "Error: Could not parse file %s\n"
@@ -610,21 +590,6 @@ msgid ""
 msgstr ""
 "Кінець стека\n"
 "\n"
-
-msgid "ESI Group\n"
-msgstr "Група ESI\n"
-
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr "© ESI Group, 2017–2018\n"
-
-msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
-msgstr "© Scilab Enterprises, 2011–2017\n"
-
-msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr "© INRIA, 1989–2012\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "© ENPC, 1989–2007\n"
 
 #, c-format
 msgid "Recursion limit reached (%d).\n"
@@ -716,14 +681,8 @@ msgstr "%s: будь ласка, перевірте: %s.\n"
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: файла не існує: %s"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано тип "
 "double.\n"
@@ -735,32 +694,6 @@ msgstr "%s: %s є непридатною до редагування вбудо�
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: помилкова кількість вхідних параметрів.\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: не вдалося знайти файл Perl: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати рядковий "
-"тип.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: не вказано команди perl."
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: не вдалося знайти інтерпретатор Perl у «%s»"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: не вдалося знайти інтерпретатор Perl.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: помилка системи: виконувалася команда: %s"
 
 msgid "Scilab Version: "
 msgstr "Версія Scilab: "
@@ -817,3 +750,120 @@ msgstr "Розмір"
 
 msgid "Bytes"
 msgstr "Байти"
+
+#~ msgid "%s: Can not read input argument #%d.\n"
+#~ msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
+
+#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип параметра %d: мало бути вказано дійсне числове "
+#~ "значення.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність параметра %d: мало бути вказано дійсне число.\n"
+
+#~ msgid "%s: Memory allocation error.\n"
+#~ msgstr "%s: помилка виділення пам’яті.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected."
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d."
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected."
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d."
+
+#~ msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вихідних параметрів: слід використовувати не "
+#~ "більше %d.\n"
+
+#~ msgid "%s: Wrong size for output arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вихідних параметрів: розмірність мала "
+#~ "дорівнювати %d.\n"
+
+#~ msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано "
+#~ "одинарний рядок.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: значення має належати "
+#~ "набору {№%s}.\n"
+
+#~ msgid "The SCI environment variable is not set.\n"
+#~ msgstr "Змінну середовища SCI не визначено.\n"
+
+#~ msgid "Cannot load the module declaration file: %s.\n"
+#~ msgstr "Не вдалося завантажити файл оголошення модуля: %s.\n"
+
+#~ msgid "Warning: Could not find %s\n"
+#~ msgstr "Попередження: не вдалося знайти %s\n"
+
+#~ msgid "Error: Could not parse file %s.\n"
+#~ msgstr "Помилка: не вдалося розібрати файл %s.\n"
+
+#~ msgid "%s module not found.\n"
+#~ msgstr "Модуль %s не знайдено.\n"
+
+#~ msgid ""
+#~ "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' "
+#~ "found.\n"
+#~ msgstr ""
+#~ "Помилка: некоректний файл модуля %s (кодування, відмінне від «%s»). "
+#~ "Виявлено кодування «%s».\n"
+
+#~ msgid "ESI Group\n"
+#~ msgstr "Група ESI\n"
+
+#~ msgid "Copyright (c) 2017-2018 (ESI Group)\n"
+#~ msgstr "© ESI Group, 2017–2018\n"
+
+#~ msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
+#~ msgstr "© Scilab Enterprises, 2011–2017\n"
+
+#~ msgid "Copyright (c) 1989-2012 (INRIA)\n"
+#~ msgstr "© INRIA, 1989–2012\n"
+
+#~ msgid "Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "© ENPC, 1989–2007\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати не менше "
+#~ "за %d.\n"
+
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: не вдалося знайти файл Perl: %s"
+
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати рядковий "
+#~ "тип.\n"
+
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: не вказано команди perl."
+
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: не вдалося знайти інтерпретатор Perl у «%s»"
+
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: не вдалося знайти інтерпретатор Perl.\n"
+
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: помилка системи: виконувалася команда: %s"

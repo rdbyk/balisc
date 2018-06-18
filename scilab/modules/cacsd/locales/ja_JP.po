@@ -323,9 +323,9 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 正のスカラー整数を指定してください.\n"
 
-#, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr "%s:  order は%d 以下にしてください.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr "%s: 入力引数 #%d は実数でなくてはなりません.\n"
 
 #, c-format
 msgid ""
@@ -373,16 +373,6 @@ msgstr "%s: ZB03OD が info = %d で終了しました.\n"
 #, c-format
 msgid "%s: ZUNGQR exit with info = %d.\n"
 msgstr "%s: ZUNGQR が info = %d で終了しました.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: 出力変数の数が間違っています: %d または %d 個の変数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single polynom expected.\n"
@@ -476,17 +466,8 @@ msgid "%s: too many solutions found\n"
 msgstr "%s: 解が多すぎます.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
@@ -544,13 +525,8 @@ msgid "%s: Uncontrollable system.\n"
 msgstr "%s: 不可制御システム.\n"
 
 #, fuzzy, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s: '%s' でエラー発生.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %s\n"
@@ -635,11 +611,6 @@ msgid "%s: Needs %s => Use default value %s=%d.\n"
 msgstr "%s: %s が必要です => デフォルト値 %s=%d を使用します.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が正しくありません: %d から %d の範囲で指定してください.\n"
-
-#, c-format
 msgid "%s: Argument #%d: Linear state space expected.\n"
 msgstr ""
 
@@ -695,11 +666,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: 入力引数 #%d と #%d は互換性がありません: 要素数を同じにしてください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Number of rows of %s are incompatible with %s object.\n"
@@ -889,10 +855,6 @@ msgstr ""
 "%s: 入力引数 #%d および #%d の値が間違っています: %s < %s としてください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が正しくありません: 線形状態空間を指定してください.\n"
@@ -944,11 +906,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が正しくありません: 状態空間形式で指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -1020,11 +977,6 @@ msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 安定システムを想定します。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real non negative scalar expected.\n"
 msgstr ""
@@ -1052,11 +1004,6 @@ msgstr "%s: 入力引数 #%d が省略されました.\n"
 #, c-format
 msgid "%s: Bad conditioning.\n"
 msgstr "%s: 悪条件です.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
 
 #
 # File: macros/dhnorm.sci, line: 21
@@ -1497,10 +1444,10 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 対称である必�
 msgid "%s: %s is not zero! (set to zero)"
 msgstr "%s: %s はゼロではありません!(ゼロに設定)"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください."
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -1512,10 +1459,6 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 対象非負定行�
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: c または d を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -1614,7 +1557,7 @@ msgid "Transmission zeros and poles"
 msgstr "伝送ゼロと極"
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
@@ -1939,3 +1882,55 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: ゼロ-極-ゲイン表現で指定してくださ"
 "い.\n"
+
+#~ msgid "%s: The order should be at most %d.\n"
+#~ msgstr "%s:  order は%d 以下にしてください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: 出力変数の数が間違っています: %d または %d 個の変数を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 出力引数の数が正しくありません: %d から %d の範囲で指定してください.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください."
+
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"

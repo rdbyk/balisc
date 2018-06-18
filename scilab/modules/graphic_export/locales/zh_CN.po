@@ -17,6 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
+# File: modules/graphic_export/sci_gateway/cpp/sci_driver.cpp, line: 55
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：不能读取第%d个输入参数。\n"
@@ -121,9 +126,10 @@ msgid ""
 "scilab.org."
 msgstr "无法导出文件，请提交缺陷报告到http://bugzilla.scilab.org。"
 
+#, fuzzy
 msgid ""
-"Unable to create export file, the file cannot be created or is locked by an "
-"other process."
+"Unable to create export file, the file cannot be created or is locked by "
+"another process."
 msgstr "无法导出文件，文件被其它进程 锁定。"
 
 #, c-format

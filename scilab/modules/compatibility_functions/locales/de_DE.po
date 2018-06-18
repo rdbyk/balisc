@@ -211,8 +211,8 @@ msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: einen positiven Integerwert "
 "erwartet.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Falsche Anzahl von Ausgangsargumenten: %d erwartet.\n"
 
 #, c-format
@@ -227,8 +227,8 @@ msgstr "%s: unbekannter Anschlußstil gefunden in '%s' -> gesetzt nach 6.\n"
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s: Unbekannte Farbe gefunden in '%s' -> nach Schwarz gesetzt.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
 
 #, c-format
@@ -236,7 +236,7 @@ msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s: Stift ist nicht diagnostizierbar.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Falsche Anzahl von Eingangsargumenten: zwischen %d und %d erwartet.\n"
 
@@ -262,14 +262,13 @@ msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
 msgstr "%s: kann Folgendes nicht öffnen: '%s', '%s' und '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Falsche Anzahl von Eingangsargumenten: zwischen %d und %d erwartet.\n"
-
-#, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
 msgstr "%s: der Normierungsfaktor m-1 ist Null.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: der Normierungsfaktor n-1 ist Null.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Falsche Anzahl von Eingangsargumenten: zwischen %d und %d erwartet.\n"

@@ -182,8 +182,8 @@ msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser %s.\n"
 msgid "%s: parameter %s not defined"
 msgstr "%s: No s'ha definit el paràmetre %s"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: An even number expected.\n"
 msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser un nombre "
 "senar.\n"

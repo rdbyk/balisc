@@ -27,8 +27,8 @@ msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d, %d or %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format

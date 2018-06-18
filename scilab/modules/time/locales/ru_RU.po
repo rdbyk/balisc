@@ -66,17 +66,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: Неверные значения входного параметра №%d: ожидались неотрицательные "
-"целые числа.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
-msgstr "%s: Неверное значение входного аргумента №#%d: ожидалось 's'.\n"
-
-#, c-format
-msgid ""
 "%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
 msgstr "%s: Возможность %s устарела и будет навсегда удалена в Scilab %s\n"
 
@@ -86,6 +75,35 @@ msgstr "Предупреждение"
 #, c-format
 msgid "%s: Please use %s instead.\n"
 msgstr "%s: Пожалуйста, используйте вместо этого %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Неверные значения входного параметра №%d: ожидались неотрицательные "
+"целые числа.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидается вещественный скаляр.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: A positive real expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось вещественное число.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
+msgstr "%s: Неверное значение входного аргумента №#%d: ожидалось 's'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Must be scalars.\n"
@@ -187,9 +205,9 @@ msgstr "%s: Неверное количество входных парамет�
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -221,10 +239,6 @@ msgstr ""
 "размер.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr ""
@@ -235,6 +249,27 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+msgid "Saturday"
+msgstr "Суббота"
+
+msgid "Sunday"
+msgstr "Воскресенье"
+
+msgid "Monday"
+msgstr "Понедельник"
+
+msgid "Tuesday"
+msgstr "Вторник"
+
+msgid "Wednesday"
+msgstr "Среда"
+
+msgid "Thursday"
+msgstr "Четверг"
+
+msgid "Friday"
+msgstr "Пятница"
 
 msgid "Sat"
 msgstr "Сбт"
@@ -257,23 +292,8 @@ msgstr "Чтв"
 msgid "Fri"
 msgstr "Птн"
 
-msgid "Saturday"
-msgstr "Суббота"
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
 
-msgid "Sunday"
-msgstr "Воскресенье"
-
-msgid "Monday"
-msgstr "Понедельник"
-
-msgid "Tuesday"
-msgstr "Вторник"
-
-msgid "Wednesday"
-msgstr "Среда"
-
-msgid "Thursday"
-msgstr "Четверг"
-
-msgid "Friday"
-msgstr "Пятница"
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"

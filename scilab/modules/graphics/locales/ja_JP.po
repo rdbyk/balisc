@@ -120,12 +120,6 @@ msgstr ""
 "ん.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
-"い.\n"
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
 
@@ -197,15 +191,6 @@ msgid ""
 "%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の列の数が間違っています : %d 列以上を指定してください.\n"
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr ""
-"%s: コンソールオブジェクトに関するプロパティ '%s' を読み込めませんでした.\n"
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
-msgstr "%s: このハンドルから利用可能なパスを取得できません.\n"
 
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
@@ -604,8 +589,8 @@ msgstr "%s: 入力引数 #%d エラー: 指定された範囲は正しくあり�
 msgid "%s: Invalid vertex index.\n"
 msgstr "%s: vertexの添字が間違っています.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
@@ -619,6 +604,10 @@ msgstr ""
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr "%s: ルートオブジェクトのプロパティ '%s' を読み込めません.\n"
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
+msgstr "%s: このハンドルから利用可能なパスを取得できません.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
@@ -641,6 +630,19 @@ msgstr "%s: 入力引数 #%ls の型が間違っています: 行列を指定し
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 行ベクトルを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: A single graphic handle expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: グラフィックのハンドルを指定してく"
+"ださい.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: real scalar or graphic handle expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています :  グラフィックハンドルの配列を指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
@@ -685,25 +687,12 @@ msgid "The parent has to be a SUBWIN\n"
 msgstr "親は、SUBWINである必要があります\n"
 
 #, fuzzy, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr "%s: バウンディングボックスを取得できません.\n"
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s はレベル曲線の計算にのみ使用され,表示しません.\n"
-
-#, fuzzy
-msgid "Could not retrive bounds.\n"
-msgstr "境界を取得できません.\n"
-
-msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
-msgstr "警告: xminが負のため、X軸を対数軸とすることができません.\n"
-
-msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
-msgstr "警告: yminが負のため、Y軸を対数軸とすることができません.\n"
-
-msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
-msgstr "警告: zminが負のため、Z軸を対数軸とすることができません.\n"
 
 #
 # File: src/c/FeC.c, line: 169
@@ -1898,11 +1887,6 @@ msgstr ""
 "さい.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: 入力引数 #%d は実数としてください.\n"
 
@@ -2067,11 +2051,10 @@ msgstr ""
 msgid "Transposing column vector X to get row vector"
 msgstr "行ベクトルを得るために列ベクトルX を転置します"
 
-#
-# File: macros/clf.sci, line: 40
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: 入力引数の数が不正です: %d から %d を想定します。"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
@@ -2132,10 +2115,6 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: 引数 %d の大きさが間違っています: 大きさを %d にしてください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
@@ -2174,8 +2153,8 @@ msgstr ""
 msgid "%s: Colormap too small"
 msgstr "%s: カラーマップが小さすぎます"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected."
 msgstr "%s: 入力引数の数が間違っています: %d 以上を指定してください."
 
 #, c-format
@@ -2503,6 +2482,34 @@ msgstr "厳密なガウス分布密度"
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 有効なプロパティを指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実行列またはScilab関数を指定してくださ"
+"い.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 99
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr "エラー %d: contour2d によりコールされたplot2dで発生"
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr ""
@@ -2515,9 +2522,9 @@ msgstr ""
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+"%s: Wrong number of input arguments: 0, 1, 2, or 4 arguments expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: 0, 1, 2, または4個の引数を指定してくださ"
 "い.\n"
@@ -2737,8 +2744,8 @@ msgstr ""
 "%s: 入力引数 #%dの型が間違っています:  実数の行列または文字列行列を指定してく"
 "ださい.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr ""
 "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください."
 
@@ -2813,3 +2820,35 @@ msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: %s に指定された値が間違っています."
+
+#~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくだ"
+#~ "さい.\n"
+
+#~ msgid "%s: Could not read property '%s' for console object.\n"
+#~ msgstr ""
+#~ "%s: コンソールオブジェクトに関するプロパティ '%s' を読み込めませんでし"
+#~ "た.\n"
+
+#, fuzzy
+#~ msgid "Could not retrive bounds.\n"
+#~ msgstr "境界を取得できません.\n"
+
+#~ msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
+#~ msgstr "警告: xminが負のため、X軸を対数軸とすることができません.\n"
+
+#~ msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
+#~ msgstr "警告: yminが負のため、Y軸を対数軸とすることができません.\n"
+
+#~ msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
+#~ msgstr "警告: zminが負のため、Z軸を対数軸とすることができません.\n"
+
+#
+# File: macros/clf.sci, line: 40
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr "%s: 入力引数の数が不正です: %d から %d を想定します。"
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"

@@ -17,6 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être dans "
+"l'intervalle %s.\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
@@ -41,10 +47,6 @@ msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -159,7 +161,7 @@ msgstr ""
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 93
 # File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 154
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
@@ -413,16 +415,8 @@ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
-
-#, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
 msgstr "%s : Les arguments n°%d et n°%d doivent avoir les mêmes dimensions.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
@@ -730,3 +724,9 @@ msgstr ""
 msgid "%s: Too abrupt change near end of frequency range.\n"
 msgstr ""
 "%s : Changement trop brusque près de la fin de la bande de fréquence.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"

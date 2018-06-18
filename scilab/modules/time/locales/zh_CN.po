@@ -63,15 +63,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
 "%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
 msgstr ""
 
@@ -80,6 +71,31 @@ msgstr ""
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为实数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: A positive real expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为实数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr ""
 
 #, c-format
@@ -177,8 +193,8 @@ msgstr "%s：输入参数数目错误。\n"
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
@@ -202,10 +218,6 @@ msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr "%s：第%d个输入参数和第%d个输入参数的维度错度：应该为相同维度。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为实数常量矩阵。\n"
@@ -213,6 +225,27 @@ msgstr "%s：第%d个输入参数的类型错误：应该为实数常量矩阵�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"
+
+msgid "Saturday"
+msgstr "星期六"
+
+msgid "Sunday"
+msgstr "星期日"
+
+msgid "Monday"
+msgstr "星期一"
+
+msgid "Tuesday"
+msgstr "星期二"
+
+msgid "Wednesday"
+msgstr "星期三"
+
+msgid "Thursday"
+msgstr "星期四"
+
+msgid "Friday"
+msgstr "星期五"
 
 msgid "Sat"
 msgstr "星期六"
@@ -235,23 +268,8 @@ msgstr "星期四"
 msgid "Fri"
 msgstr "星期五"
 
-msgid "Saturday"
-msgstr "星期六"
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
-msgid "Sunday"
-msgstr "星期日"
-
-msgid "Monday"
-msgstr "星期一"
-
-msgid "Tuesday"
-msgstr "星期二"
-
-msgid "Wednesday"
-msgstr "星期三"
-
-msgid "Thursday"
-msgstr "星期四"
-
-msgid "Friday"
-msgstr "星期五"
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"

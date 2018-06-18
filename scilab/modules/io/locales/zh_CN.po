@@ -38,10 +38,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s：内存不足。\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
@@ -89,8 +85,8 @@ msgstr "%s：文件“%s”不存在，或目录读取已拒绝。\n"
 msgid "%s: Can not open File \"%s\"\n"
 msgstr "%s：无法打开文件“%s”\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
@@ -161,8 +157,8 @@ msgstr "无法读取库文件：文件XML格式为不正确。\n"
 msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
 msgstr "检测到旧二进制库，请重编译以适合Scilab 6。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为至少%d个。\n"
 
 #, c-format
@@ -216,35 +212,9 @@ msgstr "文件结束于第%d行。\n"
 msgid "Undefined environment variable %s.\n"
 msgstr "未定义的环境变量%s。\n"
 
-msgid "Too many files opened!\n"
-msgstr "打开文件过多！\n"
-
-#, c-format
-msgid "File \"%s\" already exists.\n"
-msgstr "文件“%s”已经存在。\n"
-
-#, c-format
-msgid "\"%s\" directory write access denied.\n"
-msgstr "\"%s\"目录没有写入权限。\n"
-
-#, c-format
-msgid "File \"%s\" does not exist.\n"
-msgstr "文件“%s”不存在。\n"
-
-#, c-format
-msgid "File \"%s\" read access denied.\n"
-msgstr "读取文件“%s”被拒。\n"
-
-msgid "unmanaged error by v2cunit.\n"
-msgstr "v2cunit引起的非托管错误。\n"
-
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s: Legend 不适合目前的情况。跳过\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -270,3 +240,27 @@ msgstr "%s：%s在执行过程中发生错误"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr "%s：命令执行失败，其错误代码为%s，错误消息为：\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+
+#~ msgid "Too many files opened!\n"
+#~ msgstr "打开文件过多！\n"
+
+#~ msgid "File \"%s\" already exists.\n"
+#~ msgstr "文件“%s”已经存在。\n"
+
+#~ msgid "\"%s\" directory write access denied.\n"
+#~ msgstr "\"%s\"目录没有写入权限。\n"
+
+#~ msgid "File \"%s\" does not exist.\n"
+#~ msgstr "文件“%s”不存在。\n"
+
+#~ msgid "File \"%s\" read access denied.\n"
+#~ msgstr "读取文件“%s”被拒。\n"
+
+#~ msgid "unmanaged error by v2cunit.\n"
+#~ msgstr "v2cunit引起的非托管错误。\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"

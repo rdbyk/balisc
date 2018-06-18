@@ -303,7 +303,7 @@ msgstr ""
 "wird erwartet.\n"
 
 #, fuzzy, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s: die Kapiteldatei ist nicht gut formatiert in Zeile %d.\n"
 
 #, c-format
@@ -315,7 +315,7 @@ msgstr ""
 "last_sucessfull_build endet, wird erwartet.\n"
 
 #, fuzzy, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 "%s: die letzte erfolgreiche erzeugungs Datei ist nicht gut formatiert in "
 "Zeile %d\n"
@@ -331,6 +331,6 @@ msgstr ""
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: die 2 m Liste darf in keinem Feld gleich sein.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: falsche Anzahl von EIngangsargumenten: höchstens %d erwartet.\n"

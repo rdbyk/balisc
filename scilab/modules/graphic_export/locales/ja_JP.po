@@ -19,6 +19,11 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
+# File: modules/graphic_export/sci_gateway/cpp/sci_driver.cpp, line: 55
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
@@ -140,9 +145,10 @@ msgstr ""
 "エキスポートするファイルを作成できません. http://bugzilla.scilab.org でバグを"
 "レポートしてください."
 
+#, fuzzy
 msgid ""
-"Unable to create export file, the file cannot be created or is locked by an "
-"other process."
+"Unable to create export file, the file cannot be created or is locked by "
+"another process."
 msgstr ""
 "エクスポートファイルを作成できませんでした.  ファイルを作成できなかったか他の"
 "プロセスにロックされています."

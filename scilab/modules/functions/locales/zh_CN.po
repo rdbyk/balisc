@@ -18,10 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为 'errcatch'。\n"
 
@@ -59,8 +55,12 @@ msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串向量。\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s：第%d个输入参数的维度错误：应该为字符串。\n"
+
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
@@ -74,10 +74,6 @@ msgstr "%s：第%d个输入参数的维度错误：应该为字符串。\n"
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s：不正确的库%s。\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: macro expected.\n"
@@ -120,10 +116,6 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s：文件 %s 中存在不正确的函数。\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
@@ -158,3 +150,12 @@ msgstr "请使用 %s 替代。"
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "该函数将被永久地从 Scilab %s 中移除。"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s：输出参数的数目错误：应该为%d个。\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"

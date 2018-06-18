@@ -15,21 +15,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
-
-# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 35
-# File: modules/dynamic_link/sci_gateway/cpp/sci_call.cpp, line: 61
-# File: modules/dynamic_link/sci_gateway/cpp/sci_getdynlibext.cpp, line: 31
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+"Revision-Date: 2018-06-18 10:21+0100\n"
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 42
-# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 49
-# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 57
-# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 64
-# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 71
+# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 41
+# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 48
+# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 54
+# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 61
+# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 67
 # File: modules/dynamic_link/sci_gateway/cpp/sci_c_link.cpp, line: 67
 # File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 77
 #, c-format
@@ -37,7 +30,7 @@ msgid "%s : Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 78
+# File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 74
 #, c-format
 msgid "%s : Wrong type for input argument #%d: String vector expected.\n"
 msgstr ""
@@ -48,13 +41,13 @@ msgstr ""
 # File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 49
 # File: modules/dynamic_link/sci_gateway/cpp/sci_ulink.cpp, line: 44
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
 # File: modules/dynamic_link/sci_gateway/cpp/sci_c_link.cpp, line: 48
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #
@@ -137,37 +130,37 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 92
+# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 89
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 103
+# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 100
 #, c-format
 msgid ""
 "%s Wrong type for input argument #%d: string or string vector expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 119
+# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 116
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 119
+# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 116
 msgid "Unique id of a shared library expected."
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 147
+# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 144
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 178
+# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 175
 #, c-format
 msgid ""
 "Number of entry points %d.\n"
@@ -175,19 +168,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 203
+# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 200
 #, c-format
 msgid "] : %d library.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 207
+# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 204
 #, c-format
 msgid "] : %d libraries.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 216
+# File: modules/dynamic_link/sci_gateway/cpp/sci_link.cpp, line: 213
 #, c-format
 msgid "Entry point %ls in shared library %d.\n"
 msgstr ""
@@ -223,59 +216,59 @@ msgid "%s: problem with one of the entry point.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 77
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 72
 #, c-format
 msgid "%s: can not to load a x86 dll in a x64 environment.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 86
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 81
 #, c-format
 msgid "%s: can not load a x64 dll in a x86 environment.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 99
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 94
 #, c-format
 msgid "%ls: The file %ls does not exist in PATH environment.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 106
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 101
 #, c-format
 msgid "Link failed for dynamic library '%ls'.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 107
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 102
 #, c-format
 msgid "An error occurred: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 117
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 112
 msgid "Shared archive loaded.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 118
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 113
 msgid "Link done.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 206
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 201
 #, c-format
 msgid "Entry name %ls.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 221
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 216
 #, c-format
 msgid "%ls is not an entry point.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 231
+# File: modules/dynamic_link/src/cpp/dynamic_link.cpp, line: 225
 #, c-format
 msgid "Linking %ls.\n"
 msgstr ""
@@ -410,7 +403,7 @@ msgid "Call a C++ function (using C++ Standard Library)"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/G_make.sci, line: 18
+# File: modules/dynamic_link/macros/G_make.sci, line: 17
 # File: modules/dynamic_link/macros/ilib_build.sci, line: 26
 # File: modules/dynamic_link/macros/ilib_mex_build.sci, line: 18
 # File: modules/dynamic_link/macros/windows/dlwMake.sci, line: 16
@@ -435,36 +428,30 @@ msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/dllinfo.sci, line: 18
+# File: modules/dynamic_link/macros/dllinfo.sci, line: 17
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/dllinfo.sci, line: 36
-# File: modules/dynamic_link/macros/windows/dlwDllInfo.sci, line: 114
+# File: modules/dynamic_link/macros/dllinfo.sci, line: 33
+# File: modules/dynamic_link/macros/windows/dlwDllInfo.sci, line: 110
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/dllinfo.sci, line: 41
-# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 127
-# File: modules/dynamic_link/macros/windows/dlwDllInfo.sci, line: 119
+# File: modules/dynamic_link/macros/dllinfo.sci, line: 38
+# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 126
+# File: modules/dynamic_link/macros/windows/dlwDllInfo.sci, line: 115
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/gencompilationflags_unix.sci, line: 19
+# File: modules/dynamic_link/macros/gencompilationflags_unix.sci, line: 18
 #, c-format
 msgid "%s: Feature not available under Microsoft Windows.\n"
-msgstr ""
-
-#
-# File: modules/dynamic_link/macros/gencompilationflags_unix.sci, line: 25
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -475,123 +462,123 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 41
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 150
-# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 89
-# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 97
-# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 105
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 40
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 147
+# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 88
+# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 96
+# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 104
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 45
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 157
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 164
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 171
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 181
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 44
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 154
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 161
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 168
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 178
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 54
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 46
-# File: modules/dynamic_link/macros/ilib_mex_build.sci, line: 33
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 53
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 42
+# File: modules/dynamic_link/macros/ilib_mex_build.sci, line: 32
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 59
-# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 35
-# File: modules/dynamic_link/macros/ilib_mex_build.sci, line: 29
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 58
+# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 34
+# File: modules/dynamic_link/macros/ilib_mex_build.sci, line: 28
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 64
-# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 46
-# File: modules/dynamic_link/macros/ilib_gen_Make.sci, line: 41
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 63
+# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 45
+# File: modules/dynamic_link/macros/ilib_gen_Make.sci, line: 39
 # File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 172
-# File: modules/dynamic_link/macros/ilib_mex_build.sci, line: 37
-# File: modules/dynamic_link/macros/windows/dlwGenerateMakefile.sci, line: 184
+# File: modules/dynamic_link/macros/ilib_mex_build.sci, line: 36
+# File: modules/dynamic_link/macros/windows/dlwGenerateMakefile.sci, line: 183
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 88
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 87
 #, c-format
 msgid "%s: %s already loaded in scilab."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 89
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 88
 msgid "You need to unload this library before."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 94
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 93
 msgid "   Generate a gateway file\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 107
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 106
 #, c-format
 msgid "%s: %s format is not supported by your compiler."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 115
-# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 64
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 114
+# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 63
 msgid "   Generate a loader file\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 125
-# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 92
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 124
+# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 91
 msgid "   Generate a Makefile\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 135
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 134
 msgid "   Running the makefile\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 141
-# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 121
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 140
+# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 120
 msgid "   Generate a cleaner file\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 134
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 132
 #, c-format
 msgid "%s: function not available in NWNI mode.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 141
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 138
 #, c-format
-msgid "%s: Wrong number of input argument(s): 3 to 5 expected.\n"
+msgid "%s: Wrong number of input arguments: 3 to 5 expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 191
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 188
 #, c-format
 msgid "   Building JAR library %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 197
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 194
 #, c-format
 msgid "Cannot create jar build dir %s"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 204
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 201
 #, c-format
 msgid ""
 "   Add dependency class paths:\n"
@@ -599,83 +586,83 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 213
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 210
 #, c-format
 msgid "   Build package %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 227
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 224
 msgid "   Compiling source files:\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 230
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 227
 #, c-format
 msgid "   Compiling Java sources in %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 235
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 232
 #, c-format
 msgid "No Java sources in %s to compile for package %s"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 245
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 242
 #, c-format
 msgid "Cannot create jar package directory %s"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 249
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 246
 #, c-format
 msgid "   Copying compiled package from %s to %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 254
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 251
 #, c-format
 msgid "Cannot find compilation directory %s for package %s"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 266
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 263
 #, c-format
 msgid "   Creating JAR archive %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 270
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 267
 #, c-format
 msgid "Cannot create JAR file %s"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 276
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 273
 #, c-format
 msgid "   Creating scripts for JAR relative path %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 282
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 279
 #, c-format
 msgid "   Create loader script for Java %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 289
+# File: modules/dynamic_link/macros/ilib_build_jar.sci, line: 286
 #, c-format
 msgid "   Create cleaner script for Java %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 36
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 34
 msgid "A Fortran or C compiler is required."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 145
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 141
 #, c-format
 msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
@@ -683,39 +670,39 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 174
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 170
 #, c-format
 msgid "%s: Build command: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 175
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 171
 # File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 239
 #, c-format
 msgid "Output: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 176
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 172
 # File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 241
 #, c-format
 msgid "stderr: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 180
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 176
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 182
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 178
 #, c-format
 msgid "%s: The command was:\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 191
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 187
 #, c-format
 msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
@@ -723,31 +710,31 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_compile.sci, line: 200
+# File: modules/dynamic_link/macros/ilib_compile.sci, line: 196
 #, c-format
 msgid "%s: Could not find the built library '%s'.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 50
+# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 49
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 77
+# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 76
 msgid "F2C cannot build fortran 90"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 111
+# File: modules/dynamic_link/macros/ilib_for_link.sci, line: 110
 msgid "   Running the Makefile\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make.sci, line: 65
-# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 74
-# File: modules/dynamic_link/macros/windows/dlwGenerateMakefile.sci, line: 58
+# File: modules/dynamic_link/macros/ilib_gen_Make.sci, line: 63
+# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 73
+# File: modules/dynamic_link/macros/windows/dlwGenerateMakefile.sci, line: 57
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
@@ -855,15 +842,15 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_gateway.sci, line: 70
+# File: modules/dynamic_link/macros/ilib_gen_gateway.sci, line: 69
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 19
+# File: modules/dynamic_link/macros/ilib_gen_loader.sci, line: 18
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d,%d or %d expected.\n"
 msgstr ""
 
 #
@@ -895,36 +882,36 @@ msgid "%s: Error while executing %s.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/windows/dlwDllInfo.sci, line: 146
+# File: modules/dynamic_link/macros/windows/dlwDllInfo.sci, line: 142
 #, c-format
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/windows/dlwForceRebuild.sci, line: 23
+# File: modules/dynamic_link/macros/windows/dlwForceRebuild.sci, line: 22
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/windows/dlwForceRebuild.sci, line: 27
+# File: modules/dynamic_link/macros/windows/dlwForceRebuild.sci, line: 26
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/windows/dlwGenerateMakefile.sci, line: 25
+# File: modules/dynamic_link/macros/windows/dlwGenerateMakefile.sci, line: 24
 #, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/windows/dlwGenerateMakefile.sci, line: 288
+# File: modules/dynamic_link/macros/windows/dlwGenerateMakefile.sci, line: 287
 msgid "not found."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/windows/dlwMake.sci, line: 27
+# File: modules/dynamic_link/macros/windows/dlwMake.sci, line: 26
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr ""

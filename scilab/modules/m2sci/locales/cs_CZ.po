@@ -524,7 +524,7 @@ msgid "Verbose mode:"
 msgstr "Režim výpisu:"
 
 #, fuzzy
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Vytvořit formátovaný kód:"
 
 msgid "M-file reading..."

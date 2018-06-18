@@ -289,7 +289,7 @@ msgid ""
 msgstr "%s：第%d输入参数的值错误：应该为一个正确的已存在的文件。\n"
 
 #, fuzzy, c-format
-msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr "%s：这个CHAPTER文件的第%d行的格式不正确。\n"
 
 #, c-format
@@ -300,7 +300,7 @@ msgstr ""
 "%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
 
 #, fuzzy, c-format
-msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr "%s：last_successful_build文件的第%d行格式不正确。\n"
 
 #, c-format
@@ -312,6 +312,6 @@ msgstr "%s：输入参数#%d的值错误：应该为matrix oriented typed list�
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s：两个mlist类型必须有相同的域（field）。\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s：输入参数的数目错误：最多应该%d个。\n"

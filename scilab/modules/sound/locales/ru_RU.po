@@ -135,8 +135,8 @@ msgstr "только 8/16/24/32 бит для кодирования."
 msgid "Unknown data format."
 msgstr "Неизвестный формат данных."
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 msgid "Requires 2-D values only."

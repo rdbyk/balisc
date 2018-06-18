@@ -17,9 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso uno "
+"scalare positivo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -52,9 +54,11 @@ msgstr ""
 msgid "Missing vect for random permutation\n"
 msgstr "Manca vect per la permutazione casuale\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso uno "
+"scalare positivo.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
@@ -208,8 +212,10 @@ msgstr ""
 msgid "The %s option affects only the %s generator\n"
 msgstr "L'opzione %s riguarda solo il generatore %s\n"
 
+#
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1455
 #, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 
 #, c-format

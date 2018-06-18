@@ -193,8 +193,8 @@ msgstr "Занадто довга змінна.\n"
 msgid "%s: Error TCL interpreter not initialized.\n"
 msgstr "%s: помилка: інтерпретатор TCL не ініціалізовано.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least one expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мав бути принаймні один.\n"
 
 msgid "Scilab TCL/TK module not installed.\n"
@@ -224,14 +224,14 @@ msgstr "%s: параметр %d: невизначена змінна.\n"
 msgid "%s: Argument #%d: Name of a variable of type 1, 4 or 10 expected.\n"
 msgstr "%s: параметр №%d: мало бути вказано назву змінної типу 1, 4 або 10.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
 "%d параметрів.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format

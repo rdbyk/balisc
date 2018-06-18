@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2018-06-18 10:21+0100\n"
 
 # File: modules/external_objects_java/sci_gateway/cpp/sci_jcreatejar.cpp, line: 42
 # File: modules/external_objects_java/sci_gateway/cpp/sci_jcreatejar.cpp, line: 99
@@ -62,47 +62,47 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 229
+# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 228
 msgid "Invalid operator: '"
 msgstr ""
 
 #
-# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 243
+# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 242
 msgid "Invalid operator: .*"
 msgstr ""
 
 #
-# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 245
+# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 244
 msgid "Invalid operator: ./"
 msgstr ""
 
 #
-# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 247
+# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 246
 msgid "Invalid operator: .\\"
 msgstr ""
 
 #
-# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 249
+# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 248
 msgid "Invalid operator: .*."
 msgstr ""
 
 #
-# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 251
+# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 250
 msgid "Invalid operator: ./."
 msgstr ""
 
 #
-# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 253
+# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 252
 msgid "Invalid operator: .\\."
 msgstr ""
 
 #
-# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 263
+# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 262
 msgid "Invalid operator: .^"
 msgstr ""
 
 #
-# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 267
+# File: modules/external_objects_java/src/cpp/ScilabJavaEnvironment.hxx, line: 266
 msgid "Invalid operator: .'"
 msgstr ""
 

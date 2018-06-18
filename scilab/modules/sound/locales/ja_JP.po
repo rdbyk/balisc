@@ -145,8 +145,8 @@ msgstr "対応する符号化は 8/16/24/32 ビットのみです."
 msgid "Unknown data format."
 msgstr "未知のデータ・フォーマットです。"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 msgid "Requires 2-D values only."

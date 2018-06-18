@@ -121,13 +121,8 @@ msgstr ""
 "%s: 警告: Qが対称正定ではありません. 結果が不正確となる可能性があります.\n"
 "\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
@@ -241,8 +236,8 @@ msgid "%s: Wrong type for input argument #%d: String \"b\" expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列\"b\"を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or more expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d以上の引数を指定してください.\n"
 
 #, c-format
@@ -316,8 +311,8 @@ msgstr ""
 msgid "%s: This method is NOT implemented.\n"
 msgstr "%s: この手法は実装されていません.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
@@ -546,7 +541,7 @@ msgstr "未定義の関数 '%ls'.\n"
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 217
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 246
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #, c-format
@@ -955,11 +950,6 @@ msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 "%s: ハードコーディングされた関数の場合, ユーザはGの出力の大きさを指定する必要"
 "があります."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -1820,7 +1810,15 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してくださ"
+#~ "い.\n"

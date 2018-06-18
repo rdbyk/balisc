@@ -537,7 +537,7 @@ msgid "Verbose mode:"
 msgstr "Докладний режим:"
 
 #, fuzzy
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Форматувати код:"
 
 msgid "M-file reading..."

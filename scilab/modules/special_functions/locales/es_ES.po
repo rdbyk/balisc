@@ -79,9 +79,27 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
+
+# File: modules/special_functions/macros/%s_gamma.sci, line: 21
+#, c-format
+msgid ""
+"%s: Function not defined for the given argument type.\n"
+"  Check arguments or define function %s for overloading.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
 
 #, c-format
 msgid "%s: Wrong value for argument #%d: 0, 1 or 2 expected.\n"

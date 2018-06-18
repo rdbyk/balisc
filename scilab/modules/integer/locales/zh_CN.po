@@ -18,18 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s：不能读取第%d个输入参数。\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s：内存不足。\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s：输入参数的数目错误，应该为%d个。\n"
 
@@ -42,19 +30,27 @@ msgid "Never occur"
 msgstr "从未发生"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该为%d个。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为%s、%s或%s。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : int or double expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为整型或双精度浮点型。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为整型或双精度浮点型。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为整型或双精度浮点型。\n"
 
 #, c-format
@@ -75,8 +71,8 @@ msgstr ""
 msgid "%s: %s expected instead of %s.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
@@ -95,3 +91,15 @@ msgstr "%s：第%d个参数的维度错误：应该为%d~%d元素字符串。\n"
 #, c-format
 msgid "%s: Incorrect integer type: %s .\n"
 msgstr "%s：错误的整数类型：%s 。\n"
+
+#~ msgid "%s: Can not read input argument #%d.\n"
+#~ msgstr "%s：不能读取第%d个输入参数。\n"
+
+#~ msgid "%s: No more memory.\n"
+#~ msgstr "%s：内存不足。\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d个。\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s：输出参数的数目错误：应该为%d个。\n"

@@ -62,8 +62,8 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидается вещественный скаляр.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
@@ -82,8 +82,8 @@ msgstr "%s: Не удалось выделить больше памяти.\n"
 msgid "%s: LAPACK error n%d.\n"
 msgstr "%s: Ошибка LAPACK №%d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
@@ -117,11 +117,6 @@ msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась квадратная матрица.\n"
 
-#, c-format
-msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
-msgstr ""
-"%s: Здесь не разрешено изменение размера аргумента a*eye(), (arg %d).\n"
-
 msgid "Warning :\n"
 msgstr "Предупреждение:\n"
 
@@ -143,6 +138,11 @@ msgid "%s: %s and %s must have equal number of rows.\n"
 msgstr "%s: %s и %s должны иметь одинаковое количество строк.\n"
 
 #, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+"%s: Здесь не разрешено изменение размера аргумента a*eye(), (arg %d).\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался вещественный скаляр.\n"
@@ -157,8 +157,8 @@ msgstr ""
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
 msgstr "%s: Аргумент %d и аргумент %d должны иметь одинаковые размеры.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d или %d.\n"
 
 #, c-format
@@ -243,8 +243,8 @@ msgstr "%s: Отличная от QZ итерация провалена в DHGE
 msgid "%s: Error return from DTGEVC.\n"
 msgstr "%s: Возврат с ошибкой из DTGEVC.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s:  Неверное количество выходных аргументов: ожидалось не менее %d.\n"
 
 #, c-format
@@ -329,10 +329,6 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: должно быть %d, %d, %s, '%s' "
 "или '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -447,3 +443,12 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного параметра №%d: запрошенный ранг больше "
 "размерности матрицы."
+
+#, fuzzy, c-format
+msgid "%s: Wrong size of input argument #%d: expected a square matrix.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась квадратная матрица.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных аргументов: ожидалось от %d до %d.\n"

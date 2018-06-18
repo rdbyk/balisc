@@ -361,9 +361,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s:  Wrong number of output argument(s): %d to %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s:  Wrong number of output arguments: %d to %d expected."
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d nebo %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A list expected.\n"
@@ -437,9 +437,9 @@ msgstr ""
 msgid "%s:  Wrong type for input argument #%d: string expected."
 msgstr ""
 
-#, c-format
-msgid "%s:  Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s:  Wrong number of input arguments: %d to %d expected."
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d nebo %d.\n"
 
 #, c-format
 msgid "%s: This file %s does not exist.\n"
@@ -2552,21 +2552,21 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána grafická obslužná rutina "
 "nebo reálné číslo.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected."
+msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d nebo %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d, %d or %d expected."
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d nebo %d.\n"
 
 #, c-format
 msgid ""
@@ -2581,17 +2581,17 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d nebo %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A border expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
+msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -2603,10 +2603,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -2663,8 +2659,8 @@ msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván strom grafického rozhraní.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
 
 #, c-format

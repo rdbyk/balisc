@@ -65,8 +65,8 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 実数のスカラーを1つ指定してくださ"
 "い.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
@@ -85,8 +85,8 @@ msgstr "%s: メモリを確保できません.\n"
 msgid "%s: LAPACK error n%d.\n"
 msgstr "%s: LAPACKエラー n%d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
@@ -123,10 +123,6 @@ msgstr "%s: 行列が正定ではありません.\n"
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 正方行列を指定してください.\n"
 
-#, c-format
-msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
-msgstr "%s: 大きさが可変の引数 a*eye(), (arg %d) はここで使用できません.\n"
-
 msgid "Warning :\n"
 msgstr "警告:\n"
 
@@ -147,6 +143,10 @@ msgid "%s: %s and %s must have equal number of rows.\n"
 msgstr "%s: %sおよび%sの行数は等しい必要があります.\n"
 
 #, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr "%s: 大きさが可変の引数 a*eye(), (arg %d) はここで使用できません.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実スカラーを指定してください.\n"
 
@@ -159,8 +159,8 @@ msgstr ""
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
 msgstr "%s: 引数 %d および引数 %d の次元が等しい必要があります.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 "%s: 出力変数の数が間違っています: %d または %d 個の変数を指定してください.\n"
 
@@ -244,8 +244,8 @@ msgstr "%s: DHGEQZにおけるQZ反復以外が失敗しました.\n"
 msgid "%s: Error return from DTGEVC.\n"
 msgstr "%s: DTGEVCからエラーが返されました.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個以上を指定してください.\n"
 
 #, c-format
@@ -335,11 +335,6 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: %d, %d, %s, '%s' または '%s'としてくだ"
 "さい.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -453,3 +448,12 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が正しくありません: 指定された階数は行列の次元を超えてい"
 "ます."
+
+#, fuzzy, c-format
+msgid "%s: Wrong size of input argument #%d: expected a square matrix.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 正方行列を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"

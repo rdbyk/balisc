@@ -15,148 +15,94 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2018-06-18 10:21+0100\n"
 
-# File: modules/core/sci_gateway/c/sci_debug.c, line: 43
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/c/sci_debug.c, line: 49
-# File: modules/core/sci_gateway/c/sci_debug.c, line: 55
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/c/sci_debug.c, line: 61
-# File: modules/core/sci_gateway/c/sci_debug.c, line: 67
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/c/sci_debug.c, line: 73
-# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 76
-# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 83
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/c/sci_debug.c, line: 80
-# File: modules/core/sci_gateway/cpp/sci_exit.cpp, line: 63
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 103
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 120
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 192
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 217
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 266
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/c/sci_debug.c, line: 90
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#
 # File: modules/core/sci_gateway/cpp/sci_abort.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 47
+# File: modules/core/sci_gateway/cpp/sci_clearfun.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 105
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 172
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 294
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 310
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 322
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 343
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 358
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 377
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 397
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 466
 # File: modules/core/sci_gateway/cpp/sci_fieldnames.cpp, line: 35
-# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 36
+# File: modules/core/sci_gateway/cpp/sci_funptr.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_getmodules.cpp, line: 32
+# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 34
 # File: modules/core/sci_gateway/cpp/sci_getscilabmode.cpp, line: 36
-# File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 41
+# File: modules/core/sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp, line: 30
+# File: modules/core/sci_gateway/cpp/sci_inspectorGetFunctionList.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 31
+# File: modules/core/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 31
+# File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 37
 # File: modules/core/sci_gateway/cpp/sci_isglobal.cpp, line: 36
-# File: modules/core/sci_gateway/cpp/sci_oldEmptyBehaviour.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_newfun.cpp, line: 59
 # File: modules/core/sci_gateway/cpp/sci_pause.cpp, line: 42
 # File: modules/core/sci_gateway/cpp/sci_sciargs.cpp, line: 35
-# File: modules/core/sci_gateway/cpp/sci_warning.cpp, line: 42
+# File: modules/core/sci_gateway/cpp/sci_type.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_typename.cpp, line: 41
+# File: modules/core/sci_gateway/cpp/sci_warning.cpp, line: 44
 # File: modules/core/sci_gateway/cpp/sci_what.cpp, line: 61
 # File: modules/core/sci_gateway/cpp/sci_with_module.cpp, line: 36
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_abort.cpp, line: 39
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 52
-# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 44
-# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 52
-# File: modules/core/sci_gateway/cpp/sci_lasterror.cpp, line: 40
-# File: modules/core/sci_gateway/cpp/sci_recursionlimit.cpp, line: 35
-# File: modules/core/sci_gateway/cpp/sci_typename.cpp, line: 48
-# File: modules/core/sci_gateway/cpp/sci_what.cpp, line: 68
-# File: modules/core/sci_gateway/cpp/sci_who.cpp, line: 48
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/cpp/sci_analyzeroptions.cpp, line: 43
-# File: modules/core/sci_gateway/cpp/sci_errclear.cpp, line: 39
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 37
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 39
-# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 82
-# File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 42
-# File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 35
-# File: modules/core/sci_gateway/cpp/sci_macr2tree.cpp, line: 42
-# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 44
-# File: modules/core/sci_gateway/cpp/sci_oldEmptyBehaviour.cpp, line: 40
-# File: modules/core/sci_gateway/cpp/sci_warning.cpp, line: 48
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/cpp/sci_analyzeroptions.cpp, line: 55
-# File: modules/core/sci_gateway/cpp/sci_errclear.cpp, line: 51
-# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 56
+# File: modules/core/sci_gateway/cpp/sci_analyzeroptions.cpp, line: 47
+# File: modules/core/sci_gateway/cpp/sci_errclear.cpp, line: 45
+# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 48
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_analyzeroptions.cpp, line: 63
-# File: modules/core/sci_gateway/cpp/sci_errclear.cpp, line: 59
+# File: modules/core/sci_gateway/cpp/sci_analyzeroptions.cpp, line: 55
+# File: modules/core/sci_gateway/cpp/sci_errclear.cpp, line: 53
 # File: modules/core/sci_gateway/cpp/sci_exit.cpp, line: 56
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 183
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 208
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 257
-# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 60
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 179
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 204
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 253
+# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 56
 # File: modules/core/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 45
 # File: modules/core/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 45
 # File: modules/core/sci_gateway/cpp/sci_inspectorShowItem.cpp, line: 63
 # File: modules/core/sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp, line: 59
-# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 64
+# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 56
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_analyzeroptions.cpp, line: 70
-# File: modules/core/sci_gateway/cpp/sci_errclear.cpp, line: 66
-# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 67
-# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 71
+# File: modules/core/sci_gateway/cpp/sci_analyzeroptions.cpp, line: 63
+# File: modules/core/sci_gateway/cpp/sci_errclear.cpp, line: 60
+# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 64
+# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 63
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_argn.cpp, line: 33
-# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 62
+# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 50
 # File: modules/core/sci_gateway/cpp/sci_exit.cpp, line: 40
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 46
-# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 47
+# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 35
 # File: modules/core/sci_gateway/cpp/sci_intppty.cpp, line: 35
-# File: modules/core/sci_gateway/cpp/sci_lasterror.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_lasterror.cpp, line: 37
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_argn.cpp, line: 40
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 53
+# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 80
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
@@ -171,7 +117,7 @@ msgstr ""
 #
 # File: modules/core/sci_gateway/cpp/sci_argn.cpp, line: 56
 # File: modules/core/sci_gateway/cpp/sci_exit.cpp, line: 49
-# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 52
+# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 48
 # File: modules/core/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 38
 # File: modules/core/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 38
 # File: modules/core/sci_gateway/cpp/sci_inspectorShowItem.cpp, line: 56
@@ -187,6 +133,12 @@ msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr ""
 
 #
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
+#
 # File: modules/core/sci_gateway/cpp/sci_clear.cpp, line: 49
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -198,34 +150,18 @@ msgid "Redefining permanent variable.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_clearfun.cpp, line: 34
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 106
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 173
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 295
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 311
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 323
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 344
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 359
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 378
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 398
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 467
-# File: modules/core/sci_gateway/cpp/sci_funptr.cpp, line: 34
-# File: modules/core/sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp, line: 30
-# File: modules/core/sci_gateway/cpp/sci_inspectorGetFunctionList.cpp, line: 33
-# File: modules/core/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 31
-# File: modules/core/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 31
-# File: modules/core/sci_gateway/cpp/sci_newfun.cpp, line: 59
-# File: modules/core/sci_gateway/cpp/sci_type.cpp, line: 34
-# File: modules/core/sci_gateway/cpp/sci_typename.cpp, line: 41
+# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 49
+# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 73
+# File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 68
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "%s: Redefining permanent variable.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 45
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 52
-# File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 42
-# File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 55
+# File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 65
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 48
+# File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 52
+# File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 49
 # File: modules/core/sci_gateway/cpp/sci_isglobal.cpp, line: 43
 # File: modules/core/sci_gateway/cpp/sci_isglobal.cpp, line: 50
 # File: modules/core/sci_gateway/cpp/sci_typeof.cpp, line: 69
@@ -236,219 +172,215 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 72
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 71
 #, c-format
 msgid "%s: Debugger can be activated only at console scope level\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 83
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 82
 #, c-format
 msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 92
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 91
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 126
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 193
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 227
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 261
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 413
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 125
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 192
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 226
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 260
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 412
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 39
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 41
+# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 42
+# File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 36
+# File: modules/core/sci_gateway/cpp/sci_isprotected.cpp, line: 72
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 41
+# File: modules/core/sci_gateway/cpp/sci_who.cpp, line: 42
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 151
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 204
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 238
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 272
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 425
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 150
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 203
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 237
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 271
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 424
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 210
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 244
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 278
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 432
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 209
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 243
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 277
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 431
 #, c-format
 msgid "%s: Unable to retrieve information about breakpoint %d.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 332
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 331
 #, c-format
 msgid "%ls"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 481
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 480
 msgid "callstack:"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 518
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 517
 msgid "debug commands : \n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 519
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 518
 msgid "show this help"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 520
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 519
 msgid "open debug documentation page"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 522
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 521
 msgid "stop debugging"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 523
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 522
 msgid "show callstack"
 msgstr ""
 
 #
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 524
 # File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 525
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 526
 msgid "execute cmd"
 msgstr ""
 
 #
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 527
 # File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 528
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 529
 msgid "display variable"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 531
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 530
 msgid "continue execution"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 532
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 531
 msgid "abort execution"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 533
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 532
 msgid "continue to next statement"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 534
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 533
 msgid "step into function"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 535
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 534
 msgid "step outside function"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 537
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 536
 msgid "add a breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 538
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 537
 msgid "delete all breakpoints"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 539
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 538
 msgid "delete a specific breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 540
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 539
 msgid "enable all breakpoints"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 541
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 540
 msgid "enable a specific breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 542
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 541
 msgid "disable all breakpoints"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 543
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 542
 msgid "disable a specific breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 544
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 543
 msgid "show all breakpoints"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 545
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 544
 msgid "show a specific breakpoint"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 547
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 546
 msgid "  for more details, show help page.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 43
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 45
-# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 44
-# File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 35
-# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 36
-# File: modules/core/sci_gateway/cpp/sci_who.cpp, line: 42
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 81
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 87
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 94
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 113
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 77
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 83
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 90
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 109
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 119
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 125
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 133
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 115
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 121
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 129
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 131
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 127
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 68
+# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 56
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 74
+# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 62
 # File: modules/core/sci_gateway/cpp/sci_who.cpp, line: 73
 # File: modules/core/sci_gateway/cpp/sci_who.cpp, line: 100
 #, c-format
@@ -456,10 +388,20 @@ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 109
-# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 139
+# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 99
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_exit.cpp, line: 63
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 99
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 116
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 188
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 213
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 262
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
@@ -468,125 +410,137 @@ msgid "Could not retrieve sub-type.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 109
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 272
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 105
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 268
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 126
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 198
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 223
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 122
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 194
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 219
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive value expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 143
-# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 53
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 139
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 58
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected."
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 175
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 171
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 278
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 285
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 274
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 281
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 327
-# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 339
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 323
+# File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 335
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 39
-# File: modules/core/sci_gateway/cpp/sci_getmemory.cpp, line: 38
-# File: modules/core/sci_gateway/cpp/sci_where.cpp, line: 40
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 73
+# File: modules/core/sci_gateway/cpp/sci_funcprot.cpp, line: 70
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 51
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 57
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 47
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 53
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 69
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 65
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 102
-# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 120
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 98
+# File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 116
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_getmemory.cpp, line: 32
-# File: modules/core/sci_gateway/cpp/sci_macr2tree.cpp, line: 36
+# File: modules/core/sci_gateway/cpp/sci_macr2tree.cpp, line: 37
 # File: modules/core/sci_gateway/cpp/sci_where.cpp, line: 34
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
+msgid "%s: Wrong number of input arguments: %d expected."
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 76
-# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 107
-# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 113
+# File: modules/core/sci_gateway/cpp/sci_getmemory.cpp, line: 38
+# File: modules/core/sci_gateway/cpp/sci_where.cpp, line: 40
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected."
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 40
+# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 50
+# File: modules/core/sci_gateway/cpp/sci_lasterror.cpp, line: 43
+# File: modules/core/sci_gateway/cpp/sci_recursionlimit.cpp, line: 35
+# File: modules/core/sci_gateway/cpp/sci_typename.cpp, line: 48
+# File: modules/core/sci_gateway/cpp/sci_what.cpp, line: 67
+# File: modules/core/sci_gateway/cpp/sci_who.cpp, line: 48
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 64
+# File: modules/core/sci_gateway/cpp/sci_getos.cpp, line: 71
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 74
+# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 105
+# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 111
 # File: modules/core/sci_gateway/cpp/sci_with_module.cpp, line: 49
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 93
+# File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 91
 #, c-format
 msgid "%s: Wrong file version.xml %s.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 50
+# File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 61
 #, c-format
-msgid "%s: Wrong number of output arguments: At most %d expected.\n"
+msgid "%s: Wrong value for argument #%d: %s\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 62
-#, c-format
-msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 55
+# File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 48
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 63
+# File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 56
 #, c-format
 msgid "%s: Wrong value for input argument #%d : 0, 1 or 2 expected.\n"
 msgstr ""
@@ -599,7 +553,7 @@ msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 49
+# File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 43
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: struct array or tlist or mlist "
@@ -607,32 +561,41 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_lasterror.cpp, line: 48
+# File: modules/core/sci_gateway/cpp/sci_isprotected.cpp, line: 78
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_isprotected.cpp, line: 91
+# File: modules/core/sci_gateway/cpp/sci_protect.cpp, line: 71
+# File: modules/core/sci_gateway/cpp/sci_unprotect.cpp, line: 71
+#, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: A valid variable name expected.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_lasterror.cpp, line: 51
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_macr2tree.cpp, line: 49
+# File: modules/core/sci_gateway/cpp/sci_macr2tree.cpp, line: 44
 #, c-format
 msgid "%s: Wrong type for input argument #%d: macro expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 49
+# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 52
 #, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 55
-#, c-format
-msgid "%s: Wrong size for output arguments: %d expected.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 136
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 154
+# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 132
+# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 148
 #, c-format
 msgid ""
 "%s: Wrong input arguments: Dimensions given as first argument do not match "
@@ -640,13 +603,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 146
+# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 141
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 79
+# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 71
 msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
@@ -663,33 +626,61 @@ msgid "%s: function-name is incorrect.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_oldEmptyBehaviour.cpp, line: 53
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#
-# File: modules/core/sci_gateway/cpp/sci_oldEmptyBehaviour.cpp, line: 86
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
-msgstr ""
-
-#
 # File: modules/core/sci_gateway/cpp/sci_pause.cpp, line: 35
 #, c-format
 msgid "%s: function is disabled in debug mode.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 61
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+#, c-format
+msgid "%s: Feature %s is obsolete.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 33
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 34
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+msgid "Warning"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 34
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 35
+#, c-format
+msgid "%s: This feature will be permanently removed in Scilab / %s.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 66
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 99
+# File: modules/core/sci_gateway/cpp/sci_predef.cpp, line: 104
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_protect.cpp, line: 55
+# File: modules/core/sci_gateway/cpp/sci_unprotect.cpp, line: 55
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/core/sci_gateway/cpp/sci_protect.cpp, line: 79
+# File: modules/core/sci_gateway/cpp/sci_unprotect.cpp, line: 79
+#, c-format
+msgid ""
+"%s: Wrong value \"%s\" in argument #%d: An existent variable expected.\n"
 msgstr ""
 
 #
@@ -713,7 +704,7 @@ msgstr ""
 #
 # File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 37
 #, c-format
-msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
+msgid "%s: Wrong number of input arguments: An even number is expected.\n"
 msgstr ""
 
 #
@@ -742,7 +733,7 @@ msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_warning.cpp, line: 112
+# File: modules/core/sci_gateway/cpp/sci_warning.cpp, line: 110
 #, c-format
 msgid "WARNING: %ls\n"
 msgstr ""
@@ -776,50 +767,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/core/src/c/getmodules.c, line: 84
-# File: modules/core/src/c/getmodules.c, line: 119
-msgid "The SCI environment variable is not set.\n"
-msgstr ""
-
-#
-# File: modules/core/src/c/getmodules.c, line: 101
-#, c-format
-msgid "Cannot load the module declaration file: %s.\n"
-msgstr ""
-
-#
-# File: modules/core/src/c/getmodules.c, line: 132
-#, c-format
-msgid "Warning: Could not find %s\n"
-msgstr ""
-
-#
-# File: modules/core/src/c/getmodules.c, line: 172
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr ""
-
-#
-# File: modules/core/src/c/getmodules.c, line: 235
-#, c-format
-msgid "%s module not found.\n"
-msgstr ""
-
-#
-# File: modules/core/src/c/getmodules.c, line: 261
-#, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr ""
-
-#
-# File: modules/core/src/c/loadversion.c, line: 91
+# File: modules/core/src/c/loadversion.c, line: 92
 #, c-format
 msgid "Error: Could not parse file %s\n"
 msgstr ""
 
 #
-# File: modules/core/src/c/loadversion.c, line: 161
+# File: modules/core/src/c/loadversion.c, line: 162
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
@@ -827,7 +781,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/core/src/c/loadversion.c, line: 178
+# File: modules/core/src/c/loadversion.c, line: 179
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
@@ -869,12 +823,12 @@ msgid "Scilab Version Info."
 msgstr ""
 
 #
-# File: modules/core/src/cpp/InitScilab.cpp, line: 804
+# File: modules/core/src/cpp/InitScilab.cpp, line: 808
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
 #
-# File: modules/core/src/cpp/InitScilab.cpp, line: 805
+# File: modules/core/src/cpp/InitScilab.cpp, line: 809
 msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
@@ -890,31 +844,6 @@ msgstr ""
 msgid ""
 "End of stack\n"
 "\n"
-msgstr ""
-
-#
-# File: modules/core/src/cpp/banner.cpp, line: 40
-msgid "ESI Group\n"
-msgstr ""
-
-#
-# File: modules/core/src/cpp/banner.cpp, line: 41
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr ""
-
-#
-# File: modules/core/src/cpp/banner.cpp, line: 42
-msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
-msgstr ""
-
-#
-# File: modules/core/src/cpp/banner.cpp, line: 43
-msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr ""
-
-#
-# File: modules/core/src/cpp/banner.cpp, line: 44
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr ""
 
 #
@@ -941,61 +870,61 @@ msgstr ""
 msgid "Scilab %s Console"
 msgstr ""
 
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 39
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 39
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 40
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 40
 #, c-format
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 56
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 56
 #, c-format
 msgid "Failed to execute %s:"
 msgstr ""
 
 #
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 138
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 139
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 139
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 140
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 140
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 141
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 141
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 142
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 142
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 144
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 147
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 150
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 153
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 143
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 145
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 148
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 151
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 154
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 155
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 156
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 156
-# File: modules/core/macros/toolboxes.sci, line: 69
-# File: modules/core/macros/toolboxes.sci, line: 70
-# File: modules/core/macros/toolboxes.sci, line: 79
+# File: /home/dirk/Downloads/balisc/scilab//etc/scilab.start, line: 157
+# File: modules/core/macros/toolboxes.sci, line: 67
+# File: modules/core/macros/toolboxes.sci, line: 68
+# File: modules/core/macros/toolboxes.sci, line: 77
 msgid "&Toolboxes"
 msgstr ""
 
@@ -1064,63 +993,22 @@ msgid "%s: File doesn't exist: %s"
 msgstr ""
 
 #
-# File: modules/core/macros/edit.sci, line: 21
+# File: modules/core/macros/edit.sci, line: 30
+# File: modules/core/macros/edit.sci, line: 36
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr ""
 
 #
-# File: modules/core/macros/edit.sci, line: 29
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-
-#
-# File: modules/core/macros/edit.sci, line: 44
+# File: modules/core/macros/edit.sci, line: 54
 #, c-format
 msgid "%s: %s is an uneditable hard coded function.\n"
 msgstr ""
 
 #
-# File: modules/core/macros/halt.sci, line: 25
+# File: modules/core/macros/halt.sci, line: 23
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 26
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 31
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 46
-#, c-format
-msgid "%s: No perl command specified."
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 52
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 68
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 73
-#, c-format
-msgid "%s: System error: Command executed: %s"
 msgstr ""
 
 #
@@ -1178,12 +1066,12 @@ msgid "%s called at line %s of macro %s"
 msgstr ""
 
 #
-# File: modules/core/macros/who_user.sci, line: 69
+# File: modules/core/macros/who_user.sci, line: 67
 msgid "User variables are:"
 msgstr ""
 
 #
-# File: modules/core/macros/who_user.sci, line: 73
+# File: modules/core/macros/who_user.sci, line: 71
 #, c-format
 msgid "Using %s elements"
 msgstr ""
@@ -1194,21 +1082,21 @@ msgid " by "
 msgstr ""
 
 #
-# File: modules/core/macros/whos.sci, line: 98
+# File: modules/core/macros/whos.sci, line: 96
 msgid "Name"
 msgstr ""
 
 #
-# File: modules/core/macros/whos.sci, line: 99
+# File: modules/core/macros/whos.sci, line: 97
 msgid "Type"
 msgstr ""
 
 #
-# File: modules/core/macros/whos.sci, line: 100
+# File: modules/core/macros/whos.sci, line: 98
 msgid "Size"
 msgstr ""
 
 #
-# File: modules/core/macros/whos.sci, line: 101
+# File: modules/core/macros/whos.sci, line: 99
 msgid "Bytes"
 msgstr ""

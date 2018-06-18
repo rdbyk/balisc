@@ -151,14 +151,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています:  整数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d, %d or %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -172,10 +168,6 @@ msgstr "%s: 引数 #%d: 10進数または複素数を指定してください.\n
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 引数 #%d: 集合 {%s} の中に含まれている必要があります.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
@@ -259,7 +251,7 @@ msgstr ""
 "さい.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
@@ -278,11 +270,6 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -324,11 +311,6 @@ msgstr "%s: NaNが検出できませんでした, かわりに %s() を使用し
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 数値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected."
@@ -472,3 +454,19 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"

@@ -133,8 +133,8 @@ msgstr "Només es pot codificar en 8/16/24/32 bits."
 msgid "Unknown data format."
 msgstr "El format de les dades és desconegut."
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
 

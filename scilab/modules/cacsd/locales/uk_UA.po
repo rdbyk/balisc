@@ -339,9 +339,9 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
 "ціле значення.\n"
 
-#, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr "%s: порядок не повинен перевищувати %d.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr "%s: параметр №%d: мало бути %s.\n"
 
 #, c-format
 msgid ""
@@ -393,16 +393,6 @@ msgstr "%s: ZB03OD, вихід зі значенням info = %d.\n"
 #, c-format
 msgid "%s: ZUNGQR exit with info = %d.\n"
 msgstr "%s: ZUNGQR, вихід зі значенням info = %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single polynom expected.\n"
@@ -512,17 +502,9 @@ msgid "%s: too many solutions found\n"
 msgstr "%s: знайдено забагато розв’язків\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано матрицю.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
@@ -582,12 +564,8 @@ msgid "%s: Uncontrollable system.\n"
 msgstr "%s: некерована система.\n"
 
 #, fuzzy, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s: сталася помилка у «%s».\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %s\n"
@@ -673,12 +651,6 @@ msgid "%s: Needs %s => Use default value %s=%d.\n"
 msgstr "%s: потребує %s => буде використано типове значення %s=%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати значення "
-"від %d до %d.\n"
-
-#, c-format
 msgid "%s: Argument #%d: Linear state space expected.\n"
 msgstr "%s: параметр %d: мало бути вказано лінійний простір станів.\n"
 
@@ -742,12 +714,6 @@ msgid ""
 msgstr ""
 "%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
 "кількість елементів.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
 
 #, c-format
 msgid "%s: Number of rows of %s are incompatible with %s object.\n"
@@ -902,10 +868,6 @@ msgstr ""
 "%s: помилкове значення вхідних параметрів №%d і №%d: мало бути %s < %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати лінійний "
@@ -963,11 +925,6 @@ msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати форму "
 "простору станів.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
 
 #, c-format
 msgid ""
@@ -1040,11 +997,6 @@ msgstr ""
 "стабільну систему.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real non negative scalar expected.\n"
 msgstr ""
@@ -1072,12 +1024,6 @@ msgstr "%s: вхідний параметр №%d проігноровано.\n"
 #, c-format
 msgid "%s: Bad conditioning.\n"
 msgstr "%s: погана обумовленість.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d або "
-"%d.\n"
 
 #, c-format
 msgid "%s: More than %d iterations.\n"
@@ -1523,9 +1469,10 @@ msgstr ""
 msgid "%s: %s is not zero! (set to zero)"
 msgstr "%s: %s не є нулем! (встановлено у нульове значення)"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 #, c-format
 msgid ""
@@ -1538,11 +1485,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d: мало бути c або d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid ""
@@ -1634,7 +1576,7 @@ msgid "Transmission zeros and poles"
 msgstr "Перехід нулів і полюсів"
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мала бути матриця із дійсних "
 "значень.\n"
@@ -1977,3 +1919,54 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути представлення у форматі "
 "моделі з нулями, полюсами і масштабним коефіцієнтом передавальної функції.\n"
+
+#~ msgid "%s: The order should be at most %d.\n"
+#~ msgstr "%s: порядок не повинен перевищувати %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d параметрів.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d або %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вихідних параметрів: слід використовувати "
+#~ "значення від %d до %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вихідних параметрів: слід використовувати %d або "
+#~ "%d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d."
+
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"

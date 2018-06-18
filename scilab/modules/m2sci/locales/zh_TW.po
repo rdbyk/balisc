@@ -495,8 +495,8 @@ msgid "Verbose mode:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 132
-msgid "Generate formated code:"
+# File: modules/m2sci/macros/mfile2sci.sci, line: 131
+msgid "Generate formatted code:"
 msgstr ""
 
 msgid "M-file reading..."

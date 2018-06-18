@@ -50,13 +50,15 @@ msgstr ""
 msgid "%s: Append lines in Scilab history failed.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekiwano \"%s\".\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekiwano \"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"

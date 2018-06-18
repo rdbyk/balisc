@@ -162,14 +162,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr "  (cont'd) %s\n"
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr "     (Ende)%s\n"
-
 msgid ""
 "*** Execution stopped after a warning. ***\n"
 "Set warning(\"on\") to continue execution after a warning.\n"
@@ -210,3 +202,9 @@ msgstr ""
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"
 msgstr "%s: System kann nicht auf dieser Seite angezeigt werden.\n"
+
+#~ msgid "  (cont'd) %s\n"
+#~ msgstr "  (cont'd) %s\n"
+
+#~ msgid "     (end) %s\n"
+#~ msgstr "     (Ende)%s\n"

@@ -18,11 +18,7 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
@@ -79,14 +75,6 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d : ожидалась вещественная матрица.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real, complex or integer matrix "
 "expected.\n"
@@ -115,8 +103,8 @@ msgid "%s: 1st and 2nd argument must have equal size\n"
 msgstr "%s: 1-й и 2-й аргументы должны быть равных размеров.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
 
 msgid ""
 "\n"
@@ -237,10 +225,6 @@ msgid "%s: Unable to save \"%s\" .\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d : A real scalar expected.\n"
 msgstr ""
 
@@ -256,9 +240,9 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"
@@ -285,17 +269,8 @@ msgid "%s: Wrong value for input argument #%d: not handled kind.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных аргументов: Ожидалось как минимум %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or ID expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
@@ -952,10 +927,6 @@ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась диаграмма.\n"
 
@@ -1224,11 +1195,11 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2294
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2295
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+"It should be a column vector of size %d."
 msgstr ""
 
 msgid ""
@@ -1443,3 +1414,28 @@ msgid ""
 msgstr ""
 "Ответ, данный для %s, \n"
 " неверен: %s.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных аргументов: Ожидалось как минимум %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"

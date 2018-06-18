@@ -99,6 +99,14 @@ msgstr ""
 msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
 msgstr "%ls : type erroné pour l'argument %d : scalaire réel attendu.\n"
 
+#
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1519
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1582
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1647
+#, c-format
+msgid "%ls: Evaluation of argument %d yields no result.\n"
+msgstr ""
+
 #, c-format
 msgid "Recursion limit reached (%d).\n"
 msgstr "Limite de récursion atteinte (%d).\n"
@@ -144,19 +152,6 @@ msgstr ""
 
 msgid "Inconsistent row/column dimensions.\n"
 msgstr "Dimensions ligne/colonne incohérentes.\n"
-
-msgid ""
-"operation +: Warning adding a matrix with the empty matrix old behaviour.\n"
-msgstr ""
-"opération + : attention, ajout obsolète d'une matrice avec une matrice "
-"vide.\n"
-
-msgid ""
-"operation +: Warning adding a matrix with the empty matrix will give an "
-"empty matrix result.\n"
-msgstr ""
-"opération + : attention, l'ajout d'une matrice à une matrice vide donnera "
-"une matrice vide.\n"
 
 msgid "variables don't have the same formal variable"
 msgstr "les variables n'ont pas la même variable formelle"
@@ -211,19 +206,6 @@ msgstr "Exposant invalide : réel attendu.\n"
 
 msgid "Invalid exponent.\n"
 msgstr "Exposant invalide.\n"
-
-msgid ""
-"operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
-msgstr ""
-"Opération - : attention, addition obsolète d'une matrice avec une matrice "
-"vide.\n"
-
-msgid ""
-"operation -: Warning adding a matrix with the empty matrix will give an "
-"empty matrix result.\n"
-msgstr ""
-"Opération - : attention, l'addition d'une matrice avec une matrice vide "
-"donnera une matrice vide.\n"
 
 #, c-format
 msgid "%ls: Cannot open file %ls.\n"
@@ -315,8 +297,8 @@ msgstr "Impossible de charger la librairie %s\n"
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr "Impossible de charger la fonction %s de la librairie %s : %s\n"
 
-#, c-format
-msgid "Functions files location : %s.\n"
+#, fuzzy
+msgid "Functions files location : "
 msgstr "Emplacement des fichiers des fonctions : %s.\n"
 
 #, c-format
@@ -329,22 +311,20 @@ msgstr "Impossible d'ajouter plusieurs éléments à une liste.\n"
 msgid "Index out of bounds.\n"
 msgstr "Indice hors-limite.\n"
 
-msgid "Wrong number of input arguments: This function has no input argument.\n"
-msgstr "Nombre d'arguments erroné : cette fonction n'attend pas d'entrée.\n"
-
-msgid "Wrong number of input arguments.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "Nombre d'arguments d'entrée erroné.\n"
 
-#, c-format
-msgid "Undefined variable '%s' in function '%s'.\n"
-msgstr "Variable indéfinie '%s' dans la fonction '%s'.\n"
+#, fuzzy, c-format
+msgid "%s: Undefined variable '%s'.\n"
+msgstr "Variable non définie : %s\n"
 
-#, c-format
-msgid "%s: Wrong type for %s: A list expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for '%s': A list expected.\n"
 msgstr "%s : Type erroné de %s : Une liste attendue.\n"
 
-#, c-format
-msgid "List element number %d is Undefined.\n"
+#, fuzzy, c-format
+msgid "%s: Element number #%d in '%s' is undefined.\n"
 msgstr "L'élément numéro %d est indéfini.\n"
 
 #, c-format
@@ -458,3 +438,38 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : un scalaire attendu.\n
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : un entier attendu.\n"
+
+#~ msgid ""
+#~ "operation +: Warning adding a matrix with the empty matrix old "
+#~ "behaviour.\n"
+#~ msgstr ""
+#~ "opération + : attention, ajout obsolète d'une matrice avec une matrice "
+#~ "vide.\n"
+
+#~ msgid ""
+#~ "operation +: Warning adding a matrix with the empty matrix will give an "
+#~ "empty matrix result.\n"
+#~ msgstr ""
+#~ "opération + : attention, l'ajout d'une matrice à une matrice vide donnera "
+#~ "une matrice vide.\n"
+
+#~ msgid ""
+#~ "operation -: Warning adding a matrix with the empty matrix old "
+#~ "behaviour.\n"
+#~ msgstr ""
+#~ "Opération - : attention, addition obsolète d'une matrice avec une matrice "
+#~ "vide.\n"
+
+#~ msgid ""
+#~ "operation -: Warning adding a matrix with the empty matrix will give an "
+#~ "empty matrix result.\n"
+#~ msgstr ""
+#~ "Opération - : attention, l'addition d'une matrice avec une matrice vide "
+#~ "donnera une matrice vide.\n"
+
+#~ msgid ""
+#~ "Wrong number of input arguments: This function has no input argument.\n"
+#~ msgstr "Nombre d'arguments erroné : cette fonction n'attend pas d'entrée.\n"
+
+#~ msgid "Undefined variable '%s' in function '%s'.\n"
+#~ msgstr "Variable indéfinie '%s' dans la fonction '%s'.\n"

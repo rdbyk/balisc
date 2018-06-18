@@ -18,14 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался %s.\n"
 
@@ -1112,10 +1104,6 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: Не удалось экспортировать %s в %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr "%s: Неверный тип входного параметра %s: ожидался блок.\n"
 
@@ -1174,8 +1162,8 @@ msgstr ""
 msgid "Unable to open %s"
 msgstr "Не удалось открыть %s"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected."
 msgstr "%s: Неверное число входных аргуметов: ожидается %d."
 
 #, c-format
@@ -1454,3 +1442,14 @@ msgstr "%s: Ошибка при попытке прочитать содержа
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr "%s: Синтаксическая ошибка при попытке установить контекст из"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"

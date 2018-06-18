@@ -133,8 +133,8 @@ msgstr "Apenas 8/16/24/32 bits para codificação."
 msgid "Unknown data format."
 msgstr "Formato de dados desconhecido."
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
 "%d.\n"

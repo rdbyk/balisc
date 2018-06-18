@@ -25,8 +25,8 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d, %d or %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
 

@@ -194,8 +194,8 @@ msgstr "%s: Недопустимое количество аргументов: 
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
 
 #, c-format
@@ -212,12 +212,8 @@ msgstr ""
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: Неверный формат HDF5 Scilab.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
@@ -242,6 +238,13 @@ msgstr "%s: Невозможно загрузить '%s'.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
+
+#
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 165
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 211
+#, c-format
+msgid "WARNING: %s: invalid graphic handle is ignored.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -817,3 +820,6 @@ msgstr ""
 
 msgid "Ring Resonator"
 msgstr "Кольцевой резонатор"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"

@@ -126,12 +126,6 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s: додатковий параметр не на місці: №%d має бути у позиції %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця %d на "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
 
@@ -210,14 +204,6 @@ msgid ""
 msgstr ""
 "%s: помилкова кількість стовпчиків для вхідного параметра %d: мало бути "
 "принаймні %d.\n"
-
-#, c-format
-msgid "%s: Could not read property '%s' for console object.\n"
-msgstr "%s: не вдалося прочитати властивість «%s» об’єкта консолі.\n"
-
-#, c-format
-msgid "%s: Unable to get useful path from this handle.\n"
-msgstr "%s: не вдалося отримати корисний шлях з цього елемента керування.\n"
 
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
@@ -643,8 +629,8 @@ msgstr "%s: помилка у вхідному параметрі №%d: вка�
 msgid "%s: Invalid vertex index.\n"
 msgstr "%s: некоректний індекс вершини.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
@@ -661,6 +647,10 @@ msgstr ""
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr "%s: не вдалося прочитати властивість «%s» кореневого об’єкта.\n"
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
+msgstr "%s: не вдалося отримати корисний шлях з цього елемента керування.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
@@ -688,6 +678,19 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
 "вектор-рядок.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for argument #%d: A single graphic handle expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
+"керування графічним об’єктом.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for argument #%d: real scalar or graphic handle expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив з "
+"елементів керування графічним об’єктом.\n"
 
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
@@ -722,7 +725,7 @@ msgid "The parent has to be a SUBWIN\n"
 msgstr "Батьківським елементом має бути SUBWIN\n"
 
 #, fuzzy, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr "%s: не вдалося отримати обмежувальну рамку.\n"
 
 #, c-format
@@ -730,25 +733,6 @@ msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s призначено для обчислення даних кривих рівнів, а не для показу цих "
 "кривих.\n"
-
-#, fuzzy
-msgid "Could not retrive bounds.\n"
-msgstr "Не вдалося отримати межі.\n"
-
-msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
-msgstr ""
-"Попередження: використовувати логарифмічний масштаб за віссю X не можна, "
-"оскільки xmin від’ємне.\n"
-
-msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
-msgstr ""
-"Попередження: використовувати логарифмічний масштаб за віссю Y не можна, "
-"оскільки ymin від’ємне.\n"
-
-msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
-msgstr ""
-"Попередження: використовувати логарифмічний масштаб за віссю Z не можна, "
-"оскільки zmin від’ємне.\n"
 
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr "Попередження: за логарифмічного масштабування «nax» не працює.\n"
@@ -1653,12 +1637,6 @@ msgstr ""
 "керування графічним об’єктом  рисунка.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
-
-#, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: вхідний параметр №%d має бути дійсним числом.\n"
 
@@ -1834,9 +1812,11 @@ msgstr ""
 msgid "Transposing column vector X to get row vector"
 msgstr "Транспонуємо вектор-стовпчик X для отримання вектора-рядка"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
@@ -1904,12 +1884,6 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: помилкова розмірність параметра №%d: мало бути %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
@@ -1954,8 +1928,8 @@ msgstr ""
 msgid "%s: Colormap too small"
 msgstr "%s: занадто мала карта кольорів"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected."
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути принаймні %d "
 "параметрів."
@@ -2271,6 +2245,36 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
 "значень.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: помилкове значення для вхідного параметра №%d. Мала бути коректна "
+"властивість.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю "
+"дійсних чисел або функцію Scilab.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра %d: мало бути вказано числовий "
+"рядок.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 99
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr "Помилка %d: у plot2d, викликаному contour2d"
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
@@ -2284,9 +2288,9 @@ msgstr ""
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr "%s: параметр №%d: мало бути вказано текстові дані.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+"%s: Wrong number of input arguments: 0, 1, 2, or 4 arguments expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути 0, 1, 2 або 4 "
 "параметрів.\n"
@@ -2519,8 +2523,8 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "дійсних або рядкових значень.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d."
 
 #, c-format
@@ -2600,3 +2604,38 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: вказано помилкове значення %s."
+
+#~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: мала бути матриця %d на "
+#~ "%d.\n"
+
+#~ msgid "%s: Could not read property '%s' for console object.\n"
+#~ msgstr "%s: не вдалося прочитати властивість «%s» об’єкта консолі.\n"
+
+#, fuzzy
+#~ msgid "Could not retrive bounds.\n"
+#~ msgstr "Не вдалося отримати межі.\n"
+
+#~ msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
+#~ msgstr ""
+#~ "Попередження: використовувати логарифмічний масштаб за віссю X не можна, "
+#~ "оскільки xmin від’ємне.\n"
+
+#~ msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
+#~ msgstr ""
+#~ "Попередження: використовувати логарифмічний масштаб за віссю Y не можна, "
+#~ "оскільки ymin від’ємне.\n"
+
+#~ msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
+#~ msgstr ""
+#~ "Попередження: використовувати логарифмічний масштаб за віссю Z не можна, "
+#~ "оскільки zmin від’ємне.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected."
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути від %d до %d."
+
+#~ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати не менше "
+#~ "за %d.\n"

@@ -331,9 +331,9 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier positif "
 "attendu.\n"
 
-#, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr "%s : L'ordre doit être au plus %d.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr "%s : Argument #%d : %s attendu.\n"
 
 #, c-format
 msgid ""
@@ -386,14 +386,6 @@ msgstr "%s : Sortie de la fonction ZB03OD avec info = %d.\n"
 #, c-format
 msgid "%s: ZUNGQR exit with info = %d.\n"
 msgstr "%s : Sortie de la fonction ZUNGQR avec info = %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single polynom expected.\n"
@@ -503,16 +495,8 @@ msgid "%s: too many solutions found\n"
 msgstr "%s : trop de solutions trouvées\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
@@ -573,12 +557,8 @@ msgid "%s: Uncontrollable system.\n"
 msgstr "%s : Système incontrôlable.\n"
 
 #, fuzzy, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s : Une erreur s'est produite dans '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %s\n"
@@ -665,10 +645,6 @@ msgid "%s: Needs %s => Use default value %s=%d.\n"
 msgstr "%s : %s requis => Utilise la valeur par défaut %s=%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d à %d attendus.\n"
-
-#, c-format
 msgid "%s: Argument #%d: Linear state space expected.\n"
 msgstr ""
 
@@ -731,10 +707,6 @@ msgid ""
 msgstr ""
 "%s : Arguments d'entrée n°%d et n°%d incompatibles : Mêmes nombres "
 "d'éléments attendus.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Number of rows of %s are incompatible with %s object.\n"
@@ -890,10 +862,6 @@ msgstr ""
 "%s : Valeur erronée des arguments d'entrée n°%d et n°%d : %s < %s attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un espace d'état linéaire "
@@ -949,10 +917,6 @@ msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une forme espace d'état "
 "attendue.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
 
 #, c-format
 msgid ""
@@ -1023,10 +987,6 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real non negative scalar expected.\n"
 msgstr ""
@@ -1054,10 +1014,6 @@ msgstr "%s : L'argument d'entrée n°%d ignoré.\n"
 #, c-format
 msgid "%s: Bad conditioning.\n"
 msgstr "%s : Mauvais conditionnement.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendus.\n"
 
 #, c-format
 msgid "%s: More than %d iterations.\n"
@@ -1499,9 +1455,9 @@ msgstr ""
 msgid "%s: %s is not zero! (set to zero)"
 msgstr "%s : %s n'est pas zéro ! (mis à zéro)"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu."
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected."
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid ""
@@ -1514,10 +1470,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : c ou d attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d attendus.\n"
 
 #, c-format
 msgid ""
@@ -1609,7 +1561,7 @@ msgid "Transmission zeros and poles"
 msgstr "Zéros et pôles de transmission"
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée #%d : matrice réelle attendue.\n"
 
@@ -1938,3 +1890,42 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée #%d : représentation \"pôle de gain "
 "nul\" attendue.\n"
+
+#~ msgid "%s: The order should be at most %d.\n"
+#~ msgstr "%s : L'ordre doit être au plus %d.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) de sortie : %d ou %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments de sortie : %d à %d attendus.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
+
+#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
+
+#~ msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendus.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected."
+#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu."
+
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments de sortie : %d attendus.\n"

@@ -131,8 +131,8 @@ msgstr "pro zakódování pouze 8/16/24/32 bitů"
 msgid "Unknown data format."
 msgstr "Nezmámý formát dat."
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
 
 msgid "Requires 2-D values only."

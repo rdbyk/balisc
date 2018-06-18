@@ -65,8 +65,8 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire réel "
 "attendu.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
@@ -85,8 +85,8 @@ msgstr "%s : Impossible d'allouer plus de mémoire.\n"
 msgid "%s: LAPACK error n%d.\n"
 msgstr "%s : Erreur LAPACK n°%d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
@@ -122,12 +122,6 @@ msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice carrée attendue.\n"
 
-#, c-format
-msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
-msgstr ""
-"%s:  Un argument de dimension variable de a*eye(), (argument %d) non "
-"autorisé ici.\n"
-
 msgid "Warning :\n"
 msgstr "Attention :\n"
 
@@ -150,6 +144,12 @@ msgid "%s: %s and %s must have equal number of rows.\n"
 msgstr "%s : %s et %s doivent avoir un nombre égal de lignes.\n"
 
 #, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+"%s:  Un argument de dimension variable de a*eye(), (argument %d) non "
+"autorisé ici.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire réel attendu.\n"
@@ -164,8 +164,8 @@ msgstr ""
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
 msgstr "%s : Les arguments %d et %d doivent avoir des dimensions égales.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie : %d ou %d attendu(s).\n"
 
 #, c-format
@@ -252,8 +252,8 @@ msgstr "%s : Les itérations autres que QZ ont échoué dans DHGEQZ.\n"
 msgid "%s: Error return from DTGEVC.\n"
 msgstr "%s : Erreur retournée par DTGEVC.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr ""
 "%s : Nombre erroné de(s) argument(s) de sortie : Au moins %d attendu(s).\n"
 
@@ -348,10 +348,6 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être %d, %d, %s, '%s' "
 "ou '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -471,3 +467,12 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Le rang demandé est plus "
 "grand que la dimension de la matrice."
+
+#, fuzzy, c-format
+msgid "%s: Wrong size of input argument #%d: expected a square matrix.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice carrée "
+"attendue.\n"
+
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
