@@ -206,14 +206,17 @@ bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
         //input arg type must be scalar double, int8, int16, ...
         if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
         {
-            int ind = static_cast<int>(getIndex(in));
+            // FIXME: This handles non-finite index values by accident,
+            // rather than by standards, because the casting result of a
+            // non-finite double to int is in general *not* defined ...
+            int ind = static_cast<int>(getIndex(in)) - 1;
 
-            if (ind <= 0 || (dimsIn != 1 && ind > pdims[i]))
+            if (ind < 0 || (dimsIn != 1 && ind >= pdims[i]))
             {
                 return false;
             }
 
-            *index += (ind - 1) * previousDims;
+            *index += ind * previousDims;
             previousDims *= pdims[i];
         }
         else
