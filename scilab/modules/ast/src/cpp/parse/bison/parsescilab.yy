@@ -1206,9 +1206,6 @@ assignable ASSIGN variable              %prec HIGHLEVEL { $$ = new ast::AssignEx
 | assignable ASSIGN functionCall        %prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *$3); print_rules("variableDeclaration", "assignable ASSIGN functionCall");}
 | functionCall ASSIGN variable          %prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *$3); print_rules("variableDeclaration", "functionCall ASSIGN variable");}
 | functionCall ASSIGN functionCall      %prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *$3); print_rules("variableDeclaration", "functionCall ASSIGN functionCall");}
-// --> Sugar Syntax for ':' meaning eye .* 1
-| assignable ASSIGN COLON                               { $$ = new ast::AssignExp(@$, *$1, *new ast::ColonVar(@3)); print_rules("variableDeclaration", "assignable ASSIGN COLON");}
-| functionCall ASSIGN COLON                             { $$ = new ast::AssignExp(@$, *$1, *new ast::ColonVar(@3)); print_rules("variableDeclaration", "functionCall ASSIGN COLON");}
 // --> Strange Syntax : a = return (x)
 | assignable ASSIGN returnControl                       { $$ = new ast::AssignExp(@$, *$1, *$3); print_rules("variableDeclaration", "assignable ASSIGN returnControl");}
 | functionCall ASSIGN returnControl                     { $$ = new ast::AssignExp(@$, *$1, *$3); print_rules("variableDeclaration", "functionCall ASSIGN returnControl");}
