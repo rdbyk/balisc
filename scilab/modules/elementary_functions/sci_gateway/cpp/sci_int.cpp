@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
     if (in[0]->isDouble())
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
+        types::Double* pDblOut = pDblIn->getRef() > 1 ? new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex()) : pDblIn;
 
         double* pInR = pDblIn->get();
         double* pOutR = pDblOut->get();
