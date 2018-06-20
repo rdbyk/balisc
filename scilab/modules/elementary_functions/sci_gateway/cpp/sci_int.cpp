@@ -28,6 +28,8 @@ extern "C"
 #include "core_math.h"
 }
 
+#define TRUNC(x) (x > 0 ? std::floor(x) : std::ceil(x))
+
 types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
@@ -52,15 +54,15 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
 
             for (int i = 0; i < size; i++)
             {
-                pOutR[i] = std::trunc(pInR[i]);
-                pOutI[i] = std::trunc(pInI[i]);
+                pOutR[i] = TRUNC(pInR[i]);
+                pOutI[i] = TRUNC(pInI[i]);
             }
         }
         else
         {
             for (int i = 0; i < size; i++)
             {
-                pOutR[i] = std::trunc(pInR[i]);
+                pOutR[i] = TRUNC(pInR[i]);
             }
         }
 
@@ -84,8 +86,8 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
         {
             for (int i = 0; i < nonZeros; i++)
             {
-                pNonZeroR[i] = std::trunc(pNonZeroR[i]);
-                pNonZeroI[i] = std::trunc(pNonZeroI[i]);
+                pNonZeroR[i] = TRUNC(pNonZeroR[i]);
+                pNonZeroI[i] = TRUNC(pNonZeroI[i]);
                 std::complex<double> cplx(pNonZeroR[i], pNonZeroI[i]);
                 pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx, false);
             }
@@ -94,7 +96,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
         {
             for (int i = 0; i < nonZeros; i++)
             {
-                pNonZeroR[i] = std::trunc(pNonZeroR[i]);
+                pNonZeroR[i] = TRUNC(pNonZeroR[i]);
                 pSparseOut->set(pRows[i] - 1, pCols[i] - 1, pNonZeroR[i], false);
             }
         }
@@ -124,8 +126,8 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
 
                 for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = std::trunc(pPolyIn->get(i)->get()[j]);
-                    dataImg[j] = std::trunc(pPolyIn->get(i)->getImg()[j]);
+                    dataReal[j] = TRUNC(pPolyIn->get(i)->get()[j]);
+                    dataImg[j] = TRUNC(pPolyIn->get(i)->getImg()[j]);
                 }
 
                 pPolyOut->set(i, pSP);
@@ -143,7 +145,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
 
                 for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = std::trunc(pPolyIn->get(i)->get()[j]);
+                    dataReal[j] = TRUNC(pPolyIn->get(i)->get()[j]);
                 }
 
                 pPolyOut->set(i, pSP);
