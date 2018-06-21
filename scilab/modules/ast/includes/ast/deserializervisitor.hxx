@@ -1,9 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2012-2013 - OCAMLPRO INRIA - Fabrice LE FESSANT
- *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012-2013 - OCAMLPRO INRIA - Fabrice LE FESSANT
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -267,11 +267,6 @@ private :
             {
                 bool b = get_bool();
                 exp = new BoolExp(loc, b);
-                break;
-            }
-            case 8:
-            {
-                exp = new NilExp(loc);
                 break;
             }
             case 9:

@@ -304,10 +304,6 @@ void PrintVisitor::visit (const BoolExp  &e)
     }
 }
 
-void PrintVisitor::visit (const NilExp &/*e*/)
-{
-    /* Do Nothing */
-}
 /** \} */
 
 /** \name Visit Variable related nodes.

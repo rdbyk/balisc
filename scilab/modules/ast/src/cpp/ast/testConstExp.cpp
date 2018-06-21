@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -130,20 +130,6 @@ static void boolExpTest(void)
     _falseExp->accept(printMe);
     std::cout << std::endl;
 }
-
-static void nilExpTest(void)
-{
-    ast::NilExp *_nilExp = new ast::NilExp(*new Location());
-    ast::PrintVisitor printMe = *new ast::PrintVisitor(std::cout);
-
-    std::cout << "---------------" << std::endl;
-    std::cout << "  ast::NilExp" << std::endl;
-    std::cout << "---------------" << std::endl;
-
-    _nilExp->accept(printMe);
-    std::cout << std::endl;
-}
-
 
 int main(void)
 {

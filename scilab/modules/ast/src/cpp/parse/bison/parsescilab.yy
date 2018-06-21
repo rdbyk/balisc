@@ -656,24 +656,10 @@ variable                                    {$$ = new ast::exps_t;$$->push_back(
 | functionCall                              {$$ = new ast::exps_t;$$->push_back($1);print_rules("functionArgs", "functionCall");}
 | COLON                                     {$$ = new ast::exps_t;$$->push_back(new ast::ColonVar(@1));print_rules("functionArgs", "COLON");}
 | variableDeclaration                       {$$ = new ast::exps_t;$$->push_back($1);print_rules("functionArgs", "variableDeclaration");}
-| COMMA                                     {$$ = new ast::exps_t;$$->push_back(new ast::NilExp(@1));$$->push_back(new ast::NilExp(@1));print_rules("functionArgs", "COMMA");}
-| COMMA variable                            {$$ = new ast::exps_t;$$->push_back(new ast::NilExp(@1));$$->push_back($2);print_rules("functionArgs", "COMMA variable");}
-| COMMA functionCall                        {$$ = new ast::exps_t;$$->push_back(new ast::NilExp(@1));$$->push_back($2);print_rules("functionArgs", "COMMA functionCall");}
-| COMMA COLON                               {$$ = new ast::exps_t;$$->push_back(new ast::NilExp(@1));$$->push_back(new ast::ColonVar(@2));print_rules("functionArgs", "COMMA COLON");}
-| COMMA variableDeclaration                 {$$ = new ast::exps_t;$$->push_back(new ast::NilExp(@1));$$->push_back($2);print_rules("functionArgs", "COMMA variableDeclaration");}
-| functionArgs COMMA                        {$1->push_back(new ast::NilExp(@2));$$ = $1;print_rules("functionArgs", "functionArgs COMMA");}
 | functionArgs COMMA variable               {$1->push_back($3);$$ = $1;print_rules("functionArgs", "functionArgs COMMA variable");}
 | functionArgs COMMA functionCall           {$1->push_back($3);$$ = $1;print_rules("functionArgs", "functionArgs COMMA functionCall");}
 | functionArgs COMMA COLON                  {$1->push_back(new ast::ColonVar(@1));$$ = $1;print_rules("functionArgs", "functionArgs COMMA COLON");}
 | functionArgs COMMA variableDeclaration    {$1->push_back($3);$$ = $1;print_rules("functionArgs", "functionArgs COMMA variableDeclaration");}
-//| functionArgs COMMA {
-//                  $1->push_back(new ast::NilExp(@2));
-//                  $$ = $1;
-//                }
-//| COMMA functionArgs {
-//                  $2->insert($2->begin(), new ast::NilExp(@1));
-//                  $$ = $2;
-//                }
 ;
 
 /*

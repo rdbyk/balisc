@@ -101,14 +101,6 @@ void RunVisitorT<T>::visitprivate(const BoolExp & e)
 }
 
 template <class T>
-void RunVisitorT<T>::visitprivate(const NilExp & e)
-{
-    CoverageInstance::invokeAndStartChrono((void*)&e);
-    setResult(new types::Void());
-    CoverageInstance::stopChrono((void*)&e);
-}
-
-template <class T>
 void RunVisitorT<T>::visitprivate(const SimpleVar & e)
 {
     CoverageInstance::invokeAndStartChrono((void*)&e);
