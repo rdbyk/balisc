@@ -1710,28 +1710,28 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
     //check compatibility
     // double : double : double or poly : poly : poly and mix like double : double : poly
-    if ((pStart->isPoly() || pStart->isDouble()) &&
-            (pStep->isPoly() || pStep->isDouble()) &&
-            (pEnd->isPoly() || pEnd->isDouble()))
+    if ((piStart->isPoly() || piStart->isDouble()) &&
+            (piStep->isPoly() || piStep->isDouble()) &&
+            (piEnd->isPoly() || piEnd->isDouble()))
     {
         // No need to kill piStart, ... because Implicit list ctor will incref them
-        setResult(new types::ImplicitList(pStart, pStep, pEnd));
+        setResult(new types::ImplicitList(piStart, piStep, piEnd));
         CoverageInstance::stopChrono((void*)&e);
         return;
     }
 
     // int : double or int : int
-    if (pStart->isInt() &&
-            (pStep->isDouble() || pStep->isInt()) &&
-            pEnd->isInt())
+    if (piStart->isInt() &&
+            (piStep->isDouble() || piStep->isInt()) &&
+            piEnd->isInt())
     {
         // check for same int type int8, int 16 ...
-        if (pStart->getType() == pEnd->getType() &&
-                (pStart->getType() == pStep->getType() ||
-                 pStep->isDouble()))
+        if (piStart->getType() == piEnd->getType() &&
+                (piStart->getType() == piStep->getType() ||
+                 piStep->isDouble()))
         {
             // No need to kill piStart, ... because Implicit list ctor will incref them
-            setResult(new types::ImplicitList(pStart, pStep, pEnd));
+            setResult(new types::ImplicitList(piStart, piStep, piEnd));
             CoverageInstance::stopChrono((void*)&e);
             return;
         }
@@ -1742,8 +1742,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     types::typed_list in;
     types::typed_list out;
 
-    pStart->IncreaseRef();
-    in.push_back(pStart);
+    piStart->IncreaseRef();
+    in.push_back(piStart);
 
     try
     {
@@ -1751,20 +1751,20 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         {
             // 1:2:4
             //call overload %typeStart_b_typeStep
-            pStep->IncreaseRef();
-            in.push_back(pStep);
-            pEnd->IncreaseRef();
-            in.push_back(pEnd);
-            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pStep->getShortTypeStr(), in, 1, out, true);
+            piStep->IncreaseRef();
+            in.push_back(piStep);
+            piEnd->IncreaseRef();
+            in.push_back(piEnd);
+            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piStep->getShortTypeStr(), in, 1, out, true);
         }
         else
         {
             // 1:2
             //call overload %typeStart_b_typeEnd
-            pStep->killMe();
-            pEnd->IncreaseRef();
-            in.push_back(pEnd);
-            Ret = Overload::call(L"%" + pStart->getShortTypeStr() + L"_b_" + pEnd->getShortTypeStr(), in, 1, out, true);
+            piStep->killMe();
+            piEnd->IncreaseRef();
+            in.push_back(piEnd);
+            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piEnd->getShortTypeStr(), in, 1, out, true);
         }
     }
     catch (const InternalError& error)
