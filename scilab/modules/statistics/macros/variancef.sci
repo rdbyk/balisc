@@ -58,21 +58,21 @@ function [s, m] = variancef(x, fre, orien, m)
     if nargin==4 then
         if typeof(m)~="constant" then
             tmp = gettext("%s: Wrong value of m : a priori mean expected.\n")
-            error(msprintf(tmp, "variancef", ))
+            error(msprintf(tmp, "variancef"))
         elseif orien=="*" then
             if ~isscalar(m) then
                 tmp = gettext("%s: Wrong value of m : a priori mean expected.\n")
-                error(msprintf(tmp, "variancef", ))
+                error(msprintf(tmp, "variancef"))
             end
         elseif orien=="r" | orien==1 then
             if size(m)~=[1 size(x,"c")] & ~isscalar(m) then
                 tmp = gettext("%s: Wrong value of m : a priori mean expected.\n")
-                error(msprintf(tmp, "variancef", ))
+                error(msprintf(tmp, "variancef"))
             end
         elseif orien=="c" | orien==2 then
             if size(m)~=[size(x,"r") 1] & ~isscalar(m) then
                 tmp = gettext("%s: Wrong value of m : a priori mean expected.\n")
-                error(msprintf(tmp, "variancef", ))
+                error(msprintf(tmp, "variancef"))
             end
         end
         if isnan(m) then

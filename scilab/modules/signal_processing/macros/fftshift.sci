@@ -18,7 +18,7 @@ function x = fftshift(x,job)
     if job=="all" then
         for sk=size(x),ind($+1)=fun(sk),end
     else
-        for sk=size(x),ind($+1)=:,end;
+        for sk=size(x),ind($+1)=eye(),end;
         ind(job)=fun(size(x,job))
     end
     x=x(ind(:))

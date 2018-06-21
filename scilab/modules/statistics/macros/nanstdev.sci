@@ -46,7 +46,7 @@ function [s]=nanstdev(x,orient)
         x=x-Mean
     else
         N=size(x,orient)-sum(bool2s(isn),orient)
-        ind=list();for k=size(x),ind($+1)=:;end
+        ind=list();for k=size(x),ind($+1)=eye();end
         ind(orient)=ones(size(x,orient),1)
         x=x-Mean(ind(:))
     end

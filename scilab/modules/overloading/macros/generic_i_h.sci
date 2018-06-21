@@ -17,7 +17,7 @@ function h=generic_i_h(i,v,h)
     if type(i)<>15 then  error(msprintf(_("%s: Wrong type for input argument #%d.\n"),"generic_i_h",1)),end
 
     if and(type(i($))<>[1 2 4 8 129 15]) then
-        i($+1)=:
+        i($+1)=eye()
     end
 
     n = size(i)

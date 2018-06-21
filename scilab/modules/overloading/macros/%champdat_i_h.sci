@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,6 +9,7 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function h=%champdat_i_h(i,v,h)
     if type(i)==10 then
         set(h,i,v)
@@ -19,7 +20,7 @@ function h=%champdat_i_h(i,v,h)
             index=i($)
             i($)=null()
         else
-            index=:
+            index=1:1:$
         end
         n = size(i)
         for k=1:n-1
