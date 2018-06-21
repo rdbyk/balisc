@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -106,7 +106,6 @@ public:
     virtual void visit (typename select_const<K, BoolExp>::t & e) = 0;
     virtual void visit (typename select_const<K, StringExp>::t & e) = 0;
     virtual void visit (typename select_const<K, CommentExp>::t & e) = 0;
-    virtual void visit (typename select_const<K, NilExp>::t & e) = 0;
     /** \} */
 
     /** \name Visit Instructions related nodes.

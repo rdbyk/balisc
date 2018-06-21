@@ -81,11 +81,6 @@ public :
         visitprivate(e);
     }
 
-    void visit (const NilExp &e)
-    {
-        visitprivate(e);
-    }
-
     void visit (const SimpleVar &e)
     {
         visitprivate(e);

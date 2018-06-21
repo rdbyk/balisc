@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef AST_SHORTCUTVISITOR_HXX
 #define AST_SHORTCUTVISITOR_HXX
@@ -40,7 +40,6 @@ public:
     virtual void visit (const BoolExp &/*e*/) {}
     virtual void visit (const StringExp &/*e*/) {}
     virtual void visit (const CommentExp &/*e*/) {}
-    virtual void visit (const NilExp &/*e*/) {}
     virtual void visit (const CallExp &/*e*/) {}
     virtual void visit (const CellCallExp &/*e*/) {}
     virtual void visit (const OpExp &/*e*/) {}
