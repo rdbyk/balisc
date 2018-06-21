@@ -859,43 +859,33 @@ rightComparable :
 /* & */
 AND variable            { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *$2); print_rules("rightComparable", "AND variable");}
 | AND functionCall      { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalAnd, *$2); print_rules("rightComparable", "AND functionCall");}
-| AND COLON             { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalAnd, * new ast::ColonVar(@$)); print_rules("rightComparable", "AND COLON");}
 /* && */
 | ANDAND variable       { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *$2); print_rules("rightComparable", "ANDAND variable");}
 | ANDAND functionCall   { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, *$2); print_rules("rightComparable", "ANDAND functionCall");}
-| ANDAND COLON          { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutAnd, * new ast::ColonVar(@$)); print_rules("rightComparable", "ANDAND COLON");}
 /* | */
 | OR variable           { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalOr, *$2); print_rules("rightComparable", "OR variable");}
 | OR functionCall       { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalOr, *$2); print_rules("rightComparable", "OR functionCall");}
-| OR COLON              { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalOr, * new ast::ColonVar(@$)); print_rules("rightComparable", "OR COLON");}
 /* || */
 | OROR variable         { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *$2); print_rules("rightComparable", "OROR variable");}
 | OROR functionCall     { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, *$2); print_rules("rightComparable", "OROR functionCall");}
-| OROR COLON            { $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::LogicalOpExp::logicalShortCutOr, * new ast::ColonVar(@$)); print_rules("rightComparable", "OROR COLON");}
 /* == */
 | EQ variable           { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::eq, *$2); print_rules("rightComparable", "EQ variable");}
 | EQ functionCall       { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::eq, *$2); print_rules("rightComparable", "EQ functionCall");}
-| EQ COLON              { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::eq, * new ast::ColonVar(@$)); print_rules("rightComparable", "EQ COLON");}
 /* ~= */
 | NE variable           { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ne, *$2); print_rules("rightComparable", "NE variable");}
 | NE functionCall       { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ne, *$2); print_rules("rightComparable", "NE functionCall");}
-| NE COLON              { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ne, * new ast::ColonVar(@$)); print_rules("rightComparable", "NE COLON");}
 /* > */
 | GT variable           { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::gt, *$2); print_rules("rightComparable", "GT variable");}
 | GT functionCall       { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::gt, *$2); print_rules("rightComparable", "GT functionCall");}
-| GT COLON              { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::gt, * new ast::ColonVar(@$)); print_rules("rightComparable", "GT COLON");}
 /* < */
 | LT variable           { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::lt, *$2); print_rules("rightComparable", "LT variable");}
 | LT functionCall       { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::lt, *$2); print_rules("rightComparable", "LT functionCall");}
-| LT COLON              { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::lt, * new ast::ColonVar(@$)); print_rules("rightComparable", "LT COLON");}
 /* >= */
 | GE variable           { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ge, *$2); print_rules("rightComparable", "GE variable");}
 | GE functionCall       { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ge, *$2); print_rules("rightComparable", "GE functionCall");}
-| GE COLON              { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::ge, * new ast::ColonVar(@$)); print_rules("rightComparable", "GE COLON");}
 /* <= */
 | LE variable           { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::le, *$2); print_rules("rightComparable", "LE variable");}
 | LE functionCall       { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::le, *$2); print_rules("rightComparable", "LE functionCall");}
-| LE COLON              { $$ = new ast::OpExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), ast::OpExp::le, * new ast::ColonVar(@$)); print_rules("rightComparable", "LE COLON");}
 ;
 
 /*
