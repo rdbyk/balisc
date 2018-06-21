@@ -761,6 +761,13 @@ public class SciNotes extends SwingScilabDockablePanel {
         if (!editor.restored) {
             editor.restorePreviousSession();
         }
+
+        /* Bug #14489 */
+        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, editor.getTabPane());
+        if (window != null) {
+            window.toFront();
+        }
+
     }
 
     /**
@@ -1229,7 +1236,7 @@ public class SciNotes extends SwingScilabDockablePanel {
      * @return the file picked up by the user
      */
     public String chooseFileToSave(String title, String path) {
-        String extension = new String();
+        String extension = "";
 
         String initialDirectoryPath = path;
         if (initialDirectoryPath == null) {

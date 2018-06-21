@@ -439,37 +439,6 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : un scalaire attendu.\n
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : un entier attendu.\n"
 
-#~ msgid ""
-#~ "operation +: Warning adding a matrix with the empty matrix old "
-#~ "behaviour.\n"
-#~ msgstr ""
-#~ "opération + : attention, ajout obsolète d'une matrice avec une matrice "
-#~ "vide.\n"
-
-#~ msgid ""
-#~ "operation +: Warning adding a matrix with the empty matrix will give an "
-#~ "empty matrix result.\n"
-#~ msgstr ""
-#~ "opération + : attention, l'ajout d'une matrice à une matrice vide donnera "
-#~ "une matrice vide.\n"
-
-#~ msgid ""
-#~ "operation -: Warning adding a matrix with the empty matrix old "
-#~ "behaviour.\n"
-#~ msgstr ""
-#~ "Opération - : attention, addition obsolète d'une matrice avec une matrice "
-#~ "vide.\n"
-
-#~ msgid ""
-#~ "operation -: Warning adding a matrix with the empty matrix will give an "
-#~ "empty matrix result.\n"
-#~ msgstr ""
-#~ "Opération - : attention, l'addition d'une matrice avec une matrice vide "
-#~ "donnera une matrice vide.\n"
-
-#~ msgid ""
-#~ "Wrong number of input arguments: This function has no input argument.\n"
-#~ msgstr "Nombre d'arguments erroné : cette fonction n'attend pas d'entrée.\n"
-
-#~ msgid "Undefined variable '%s' in function '%s'.\n"
-#~ msgstr "Variable indéfinie '%s' dans la fonction '%s'.\n"
+#, c-format
+msgid "%ls: Too many %ls or wrong type for argument %d: Real scalar expected.\n"
+msgstr "%ls : Trop de %ls ou type erroné pour l'argument %d : scalaire réel attendu.\n"

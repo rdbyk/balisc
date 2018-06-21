@@ -187,6 +187,7 @@ Function::ReturnValue sci_poly(typed_list &in, int _iRetCount, typed_list &out)
         pPolyOut->updateRank();
     }
 
+    pPolyOut->updateRank();
     out.push_back(pPolyOut);
     return Function::OK;
 }
