@@ -307,13 +307,16 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         InternalType* in = (*_pArgsIn)[i];
         if (in->isGenericType() && in->getAs<GenericType>()->isScalar())
         {
-            int idx = static_cast<int>(getIndex(in));
-            if (idx <= 0)
+            // FIXME: This handles non-finite index values by accident,
+            // rather than by standards, because the casting result of a
+            // non-finite double to int is in general *not* defined ...
+            int idx = static_cast<int>(getIndex(in)) - 1;
+            if (idx < 0)
             {
                 return false;
             }
 
-            lstIdx.emplace_back(1, idx - 1);
+            lstIdx.emplace_back(1, idx);
             dims.push_back(1);
         }
         else if (in->isColon())
@@ -365,11 +368,18 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 std::vector<int> idx(size);
 
                 double val = start - 1;
+
                 idx[0] = (int)val;
                 for (int i = 1; i < size; ++i)
                 {
                     val += step;
                     idx[i] = (int)val;
+                }
+
+                // check validity of index values
+                if (idx.front() < 0 || idx.back() < 0)
+                {
+                    return false;
                 }
 
                 lstIdx.push_back(idx);
