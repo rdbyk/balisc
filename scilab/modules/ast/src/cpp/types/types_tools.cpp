@@ -357,7 +357,20 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 double step = evalute(pIL->getStep(), sizeRef);
                 double end = evalute(pIL->getEnd(), sizeRef);
 
-                int size = (end - start) / step + 1;
+                double dsize = (end - start) / step + 1;
+
+                if (std::isnan(dsize))
+                {
+                    return false;
+                }
+
+                int size = static_cast<int>(dsize);
+
+                if (start < 1 || start + (size - 1)*step < 1)
+                {
+                    return false;
+                }
+
                 if (size <= 0)
                 {
                     //manage implicit that return []
@@ -374,12 +387,6 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 {
                     val += step;
                     idx[i] = (int)val;
-                }
-
-                // check validity of index values
-                if (idx.front() < 0 || idx.back() < 0)
-                {
-                    return false;
                 }
 
                 lstIdx.push_back(idx);
