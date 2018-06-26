@@ -536,59 +536,82 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         {
             //: or a:b:c
             ImplicitList* pIL = pIT->getAs<ImplicitList>()->clone()->getAs<ImplicitList>();
-            if (pIL->isComputable() == false)
+            bool bIsComputable = pIL->isComputable();
+
+            if (bIsComputable == false)
             {
                 //: or $
                 if (_pRef == NULL)
                 {
-                    //not enough information to compute indexes.
-                    _pArgsOut->push_back(NULL);
-                    bUndefine = true;
-                    pIL->killMe();
-                    continue;
+                    if (pIL->getStep()->isDouble() &&
+                        ((getIndex(pIL->getStep()) > 0 && pIL->getStart()->isDouble() && getIndex(pIL->getStart()) < 1) ||
+                        (getIndex(pIL->getStep()) < 0 && pIL->getEnd()->isDouble() && getIndex(pIL->getEnd()) < 1)))
+                    {
+                        pCurrentArg = NULL;
+                    }
+                    else
+                    {
+                        //not enough information to compute indexes.
+                        _pArgsOut->push_back(NULL);
+                        bUndefine = true;
+                        pIL->killMe();
+                        continue;
+                    }
                 }
-                //evalute polynom with "MaxDim"
-                int iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
-#if defined(_SCILAB_DEBUGREF_)
-                Double* pdbl = new Double(iMaxDim);
-#else
-                Double dbl(iMaxDim);
-#endif
-                if (pIL->getStart()->isPoly())
+                else
                 {
-                    Polynom *poPoly = pIL->getStart()->getAs<types::Polynom>();
+                    //evalute polynom with "MaxDim"
+                    int iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
 #if defined(_SCILAB_DEBUGREF_)
-                    pIL->setStart(poPoly->evaluate(pdbl));
+                    Double* pdbl = new Double(iMaxDim);
 #else
-                    pIL->setStart(poPoly->evaluate(&dbl));
+                    Double dbl(iMaxDim);
 #endif
-                }
-                if (pIL->getStep()->isPoly())
-                {
-                    Polynom *poPoly = pIL->getStep()->getAs<types::Polynom>();
+                    if (pIL->getStart()->isPoly())
+                    {
+                        Polynom *poPoly = pIL->getStart()->getAs<types::Polynom>();
 #if defined(_SCILAB_DEBUGREF_)
-                    pIL->setStep(poPoly->evaluate(pdbl));
+                        pIL->setStart(poPoly->evaluate(pdbl));
 #else
-                    pIL->setStep(poPoly->evaluate(&dbl));
+                        pIL->setStart(poPoly->evaluate(&dbl));
 #endif
-                }
-                if (pIL->getEnd()->isPoly())
-                {
-                    Polynom *poPoly = pIL->getEnd()->getAs<types::Polynom>();
+                    }
+                    if (pIL->getStep()->isPoly())
+                    {
+                        Polynom *poPoly = pIL->getStep()->getAs<types::Polynom>();
 #if defined(_SCILAB_DEBUGREF_)
-                    pIL->setEnd(poPoly->evaluate(pdbl));
+                        pIL->setStep(poPoly->evaluate(pdbl));
 #else
-                    pIL->setEnd(poPoly->evaluate(&dbl));
+                        pIL->setStep(poPoly->evaluate(&dbl));
 #endif
-                }
+                    }
+                    if (pIL->getEnd()->isPoly())
+                    {
+                        Polynom *poPoly = pIL->getEnd()->getAs<types::Polynom>();
+#if defined(_SCILAB_DEBUGREF_)
+                        pIL->setEnd(poPoly->evaluate(pdbl));
+#else
+                        pIL->setEnd(poPoly->evaluate(&dbl));
+#endif
+                    }
 
 #if defined(_SCILAB_DEBUGREF_)
-                pdbl->killMe();
+                    pdbl->killMe();
 #endif
+                }
             }
 
+            if (_pRef || bIsComputable)
+            {
+                double start = getIndex(pIL->getStart());
+                double step = getIndex(pIL->getStep());
+                double end = getIndex(pIL->getEnd());
+                double dsize = (end - start) / step + 1;
+                int size = static_cast<int>(dsize);
 
-            pCurrentArg = pIL->extractFullMatrix()->getAs<Double>();
+                pCurrentArg = (std::isnan(dsize) || start < 1 || start + (size - 1)*step < 1) ? NULL : pIL->extractFullMatrix()->getAs<Double>();
+            }
+
             pIL->killMe();
         }
         else if (pIT->isString())
