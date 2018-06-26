@@ -358,17 +358,13 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 double end = evalute(pIL->getEnd(), sizeRef);
 
                 double dsize = (end - start) / step + 1;
-
-                if (std::isnan(dsize))
-                {
-                    return false;
-                }
-
                 int size = static_cast<int>(dsize);
 
-                if (start < 1 || start + (size - 1)*step < 1)
+                if (std::isnan(dsize) || start < 1 || start + (size - 1)*step < 1)
                 {
-                    return false;
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
+                    throw ast::InternalError(szError);
                 }
 
                 if (size <= 0)
@@ -523,7 +519,9 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 double min_idx = _pRef && _pRef->isList() ? 0 : 1;
                 for (int j = 0; j < size; ++j)
                 {
-                    if (idx[j] < min_idx)
+                    int idxj = idx[j];
+
+                    if (idxj < min_idx || std::isnan(idxj))
                     {
                         pCurrentArg->killMe();
                         pCurrentArg = NULL;
