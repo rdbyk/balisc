@@ -1756,7 +1756,16 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         }
         else if (_pInsert->isGenericType() && (_pInsert->isTList() == false &&  _pInsert->isMList() == false))
         {
-            pOut = _pVar->getAs<types::GenericType>()->remove(_pArgs);
+            if (_pArgs->size() > 0)
+            {
+                pOut = _pVar->getAs<types::GenericType>()->remove(_pArgs);
+            }
+            else
+            {
+                std::wostringstream os;
+                os << _W("Wrong insertion : Cannot insert without arguments.");
+                throw ast::InternalError(os.str(), 999, e.getLocation());
+            }
         }
         else
         {
@@ -1764,7 +1773,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
         }
     }
-    else if (_pVar == NULL || (_pVar->isDouble() && _pVar->getAs<types::Double>()->getSize() == 0))
+    else if (_pArgs->size() > 0 && (_pVar == NULL || (_pVar->isDouble() && _pVar->getAs<types::Double>()->getSize() == 0)))
     {
         //insert in a new variable or []
         //call static insert function
