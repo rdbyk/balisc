@@ -1822,94 +1822,146 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         // call type insert function
 
         //check types compatibilities
-        if (_pVar->isDouble() && _pInsert->isSparse())
+        if (_pVar->isDouble())
         {
-            types::Sparse* pSp = _pInsert->getAs<types::Sparse>();
-            types::Double* pD = new types::Double(pSp->getRows(), pSp->getCols(), pSp->isComplex());
-            pSp->fill(*pD);
-            pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, pD);
-            delete pD;
-        }
-        else if (_pVar->isSparse() && _pInsert->isDouble())
-        {
-            pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isSparseBool() && _pInsert->isBool())
-        {
-            pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isDouble() && _pInsert->isPoly())
-        {
-            types::Double* pDest = _pVar->getAs<types::Double>();
-            types::Polynom* pIns = _pInsert->getAs<types::Polynom>();
-            int iSize = pDest->getSize();
-            int* piRanks = new int[iSize]();
-            types::Polynom* pP = new types::Polynom(pIns->getVariableName(), pDest->getDims(), pDest->getDimsArray(), piRanks);
-            delete[] piRanks;
-            pP->setComplex(pDest->isComplex());
-
-            if (pP->isComplex())
+            switch(_pInsert->getType())
             {
-                int size = pP->getSize();
-                for (int idx = 0; idx < size; idx++)
-                {
-                    double dblR = pDest->get(idx);
-                    double dblI = pDest->getImg(idx);
-                    pP->get(idx)->setCoef(&dblR, &dblI);
-                }
-            }
-            else
-            {
-                int size = pP->getSize();
-                for (int idx = 0; idx < size; idx++)
-                {
-                    double dblR = pDest->get(idx);
-                    pP->get(idx)->setCoef(&dblR, NULL);
-                }
-            }
+                case types::InternalType::ScilabSparse:
+                    {
+                        types::Sparse* pSp = _pInsert->getAs<types::Sparse>();
+                        types::Double* pD = new types::Double(pSp->getRows(), pSp->getCols(), pSp->isComplex());
+                        pSp->fill(*pD);
+                        pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, pD);
+                        delete pD;
+                    }
+                    break;
 
-            pOut = pP->insert(_pArgs, pIns);
+                case types::InternalType::ScilabPolynom:
+                    {
+                        types::Double* pDest = _pVar->getAs<types::Double>();
+                        types::Polynom* pIns = _pInsert->getAs<types::Polynom>();
+                        int iSize = pDest->getSize();
+                        int* piRanks = new int[iSize]();
+                        types::Polynom* pP = new types::Polynom(pIns->getVariableName(), pDest->getDims(), pDest->getDimsArray(), piRanks);
+                        delete[] piRanks;
+                        pP->setComplex(pDest->isComplex());
+
+                        if (pP->isComplex())
+                        {
+                            int size = pP->getSize();
+                            for (int idx = 0; idx < size; idx++)
+                            {
+                                double dblR = pDest->get(idx);
+                                double dblI = pDest->getImg(idx);
+                                pP->get(idx)->setCoef(&dblR, &dblI);
+                            }
+                        }
+                        else
+                        {
+                            int size = pP->getSize();
+                            for (int idx = 0; idx < size; idx++)
+                            {
+                                double dblR = pDest->get(idx);
+                                pP->get(idx)->setCoef(&dblR, NULL);
+                            }
+                        }
+
+                        pOut = pP->insert(_pArgs, pIns);
+                    }
+                    break;
+
+                case types::InternalType::ScilabDouble:
+                    pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+                    break;
+
+                default:
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    break;
+            }
         }
-        else if (_pVar->isPoly() && _pInsert->isDouble())
+        else if (_pVar->isSparse())
         {
-            types::Polynom* pDest = _pVar->getAs<types::Polynom>();
-            types::Double* pIns = _pInsert->getAs<types::Double>();
-            bool isComplexIns = pIns->isComplex();
-            int iSize = pIns->getSize();
-            int* piRanks = new int[iSize]();
-
-            //create a new polynom with Double to insert it into dest polynom
-            types::Polynom* pP = new types::Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray(), piRanks);
-            delete[] piRanks;
-
-            if (isComplexIns)
+            switch(_pInsert->getType())
             {
-                double* pR = pIns->get();
-                double* pI = pIns->getImg();
-                types::SinglePoly** pSP = pP->get();
-                int size = pP->getSize();
-                for (int idx = 0; idx < size; idx++)
-                {
-                    double dblR = pR[idx];
-                    double dblI = pI[idx];
-                    pSP[idx]->setComplex(true);
-                    pSP[idx]->setCoef(&dblR, &dblI);
-                }
-            }
-            else
-            {
-                double* pdblR = pIns->get();
-                types::SinglePoly** pSP = pP->get();
-                int size = pP->getSize();
-                for (int idx = 0; idx < size; idx++)
-                {
-                    double dblR = pdblR[idx];
-                    pSP[idx]->setCoef(&dblR, NULL);
-                }
-            }
+                case types::InternalType::ScilabDouble:
+                case types::InternalType::ScilabSparse:
+                    pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+                    break;
 
-            pOut = pDest->insert(_pArgs, pP);
-            pP->killMe();
+                default:
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    break;
+            }
+        }
+        else if (_pVar->isSparseBool())
+        {
+            switch(_pInsert->getType())
+            {
+                case types::InternalType::ScilabBool:
+                case types::InternalType::ScilabSparseBool:
+                    pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+                    break;
+
+                default:
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    break;
+            }
+        }
+        else if (_pVar->isPoly())
+        {
+            switch(_pInsert->getType())
+            {
+                case types::InternalType::ScilabDouble:
+                    {
+                        types::Polynom* pDest = _pVar->getAs<types::Polynom>();
+                        types::Double* pIns = _pInsert->getAs<types::Double>();
+                        bool isComplexIns = pIns->isComplex();
+                        int iSize = pIns->getSize();
+                        int* piRanks = new int[iSize]();
+
+                        //create a new polynom with Double to insert it into dest polynom
+                        types::Polynom* pP = new types::Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray(), piRanks);
+                        delete[] piRanks;
+
+                        if (isComplexIns)
+                        {
+                            double* pR = pIns->get();
+                            double* pI = pIns->getImg();
+                            types::SinglePoly** pSP = pP->get();
+                            int size = pP->getSize();
+                            for (int idx = 0; idx < size; idx++)
+                            {
+                                double dblR = pR[idx];
+                                double dblI = pI[idx];
+                                pSP[idx]->setComplex(true);
+                                pSP[idx]->setCoef(&dblR, &dblI);
+                            }
+                        }
+                        else
+                        {
+                            double* pdblR = pIns->get();
+                            types::SinglePoly** pSP = pP->get();
+                            int size = pP->getSize();
+                            for (int idx = 0; idx < size; idx++)
+                            {
+                                double dblR = pdblR[idx];
+                                pSP[idx]->setCoef(&dblR, NULL);
+                            }
+                        }
+
+                        pOut = pDest->insert(_pArgs, pP);
+                        pP->killMe();
+                    }
+                    break;
+
+                case types::InternalType::ScilabPolynom:
+                    pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+                    break;
+
+                default:
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    break;
+            }
         }
         else if (_pVar->isStruct())
         {
@@ -2058,22 +2110,6 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     else
                     {
                         return callOverload(e, L"i", _pArgs, _pInsert, _pVar);
-
-                        //ExecVisitor exec;
-                        //typed_list in;
-                        //typed_list out;
-                        //std::wstring function_name = L"%l_e";
-
-                        //_pInsert->IncreaseRef();
-                        //in.push_back(_pInsert);
-
-                        //Overload::call(function_name, in, 1, out, &exec);
-                        //_pInsert->DecreaseRef();
-
-                        //if (out.size() != 0)
-                        //{
-                        //    pOut = in[0];
-                        //}
                     }
                 }
                 else
@@ -2213,19 +2249,23 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
             }
         }
-        else if (_pVar->getType() == _pInsert->getType())
-        {
-            pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
-        }
         else if (_pVar->isCell())
         {
-            if (_pInsert->isCell() == false)
+            if (_pInsert->isCell())
+            {
+                pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+            }
+            else
             {
                 //manage error
                 std::wostringstream os;
                 os << _W("Wrong insertion: A Cell expected: use {...} instead of (...).\n");
                 throw ast::InternalError(os.str(), 999, e.getLocation());
             }
+        }
+        else if (_pVar->getType() == _pInsert->getType())
+        {
+            pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
         }
         else
         {
