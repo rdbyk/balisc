@@ -1685,86 +1685,98 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 {
     types::InternalType* pOut = NULL;
     types::InternalType *pIL = NULL;
-    //fisrt extract implicit list
-    if (_pInsert->isColon())
+
+    // case m=x; m()=x;
+    if (_pArgs->size() == 0)
     {
-        //double* pdbl = NULL;
-        //_pInsert = new Double(-1, -1, &pdbl);
-        //pdbl[0] = 1;
-        pIL = types::Double::Identity(-1, -1);
-        _pInsert->killMe();
-        _pInsert = pIL;
-    }
-    else if (_pInsert->isImplicitList())
-    {
-        pIL = _pInsert->getAs<types::ImplicitList>()->extractFullMatrix();
-        if (pIL && pIL->isDeletable())
-        {
-            _pInsert->killMe();
-            _pInsert = pIL;
-        }
-    }
-    else if (_pInsert->isContainer() && _pInsert->isRef())
-    {
-        //std::cout << "assign container type during insertion" << std::endl;
-        //types::InternalType* pIL = _pInsert->clone();
-        //_pInsert = pIL;
+        std::wostringstream os;
+        os << _W("Wrong insertion : Cannot insert without arguments.");
+        throw ast::InternalError(os.str(), 999, e.getLocation());
     }
 
-    if (_pInsert->isDouble() && _pInsert->getAs<types::Double>()->isEmpty() && _pVar == NULL)
+    // first extract implicit list
+    switch (_pInsert->getType())
+    {
+        case types::InternalType::ScilabColon:
+
+            pIL = types::Double::Identity(-1, -1);
+            _pInsert->killMe();
+            _pInsert = pIL;
+            break;
+
+        case types::InternalType::ScilabImplicitList:
+
+            pIL = _pInsert->getAs<types::ImplicitList>()->extractFullMatrix();
+            if (pIL && pIL->isDeletable())
+            {
+                _pInsert->killMe();
+                _pInsert = pIL;
+            }
+            break;
+    }
+
+    bool bInsertIsEmpty =_pInsert->isDouble() && _pInsert->getAs<types::Double>()->isEmpty();
+    bool bVarNotDefined = _pVar == NULL;
+
+    if (bInsertIsEmpty && bVarNotDefined)
     {
         // l(x) = [] when l is not defined => create l = []
         pOut = types::Double::Empty();
     }
-    else if (_pInsert->isDouble() && _pInsert->getAs<types::Double>()->isEmpty() && _pVar->isStruct() == false && _pVar->isList() == false)
+    else if (bInsertIsEmpty && _pVar->isStruct() == false && _pVar->isList() == false)
     {
         //insert [] so deletion except for Struct and List which can insert []
-        if (_pVar->isHandle())
+        switch(_pVar->getType())
         {
-            types::GraphicHandle* pH = _pVar->getAs<types::GraphicHandle>();
-            if ((*_pArgs)[0]->isString())
-            {
-                types::String *pS = (*_pArgs)[0]->getAs<types::String>();
-
-                types::typed_list in;
-                types::typed_list out;
-                types::optional_list opt;
-
-                in.push_back(pH);
-                in.push_back(pS);
-                in.push_back(_pInsert);
-
-                types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
-                types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out);
-                if (ret == types::Callable::OK)
+            case types::InternalType::ScilabHandle:
                 {
-                    pOut = _pVar;
+                    types::GraphicHandle* pH = _pVar->getAs<types::GraphicHandle>();
+                    if ((*_pArgs)[0]->isString())
+                    {
+                        types::String *pS = (*_pArgs)[0]->getAs<types::String>();
+
+                        types::typed_list in;
+                        types::typed_list out;
+                        types::optional_list opt;
+
+                        in.push_back(pH);
+                        in.push_back(pS);
+                        in.push_back(_pInsert);
+
+                        types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
+                        types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out);
+                        if (ret == types::Callable::OK)
+                        {
+                            pOut = _pVar;
+                        }
+                    }
+                    else
+                    {
+                        pOut = pH->insert(_pArgs, _pInsert);
+                    }
                 }
-            }
-            else
-            {
-                pOut = pH->insert(_pArgs, _pInsert);
-            }
-        }
-        else if (_pVar->isStruct())
-        {
-            pOut = _pVar->getAs<types::Struct>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isUserType())
-        {
-            pOut = _pVar->getAs<types::UserType>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pInsert->isGenericType() && (_pInsert->isTList() == false &&  _pInsert->isMList() == false))
-        {
-            pOut = _pVar->getAs<types::GenericType>()->remove(_pArgs);
-        }
-        else
-        {
-            //overload !
-            pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                break;
+
+            case types::InternalType::ScilabUserType:
+
+                pOut = _pVar->getAs<types::UserType>()->insert(_pArgs, _pInsert);
+                break;
+
+            default:
+
+                if (_pInsert->isGenericType() && _pInsert->isTList() == false &&  _pInsert->isMList() == false)
+                {
+                    pOut = _pVar->getAs<types::GenericType>()->remove(_pArgs);
+                }
+                else
+                {
+                    //overload !
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                }
+                break;
         }
     }
-    else if (_pVar == NULL || (_pVar->isDouble() && _pVar->getAs<types::Double>()->getSize() == 0))
+    else if (bVarNotDefined || (_pVar->isDouble() && _pVar->getAs<types::Double>()->getSize() == 0))
     {
         //insert in a new variable or []
         //call static insert function
@@ -1792,7 +1804,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
         }
         else
         {
-            if (_pInsert->isGenericType() && (_pInsert->isTList() == false &&  _pInsert->isMList() == false))
+            if (_pInsert->isGenericType() && _pInsert->isTList() == false &&  _pInsert->isMList() == false)
             {
                 pOut = _pInsert->getAs<types::GenericType>()->insertNew(_pArgs);
             }
@@ -1807,106 +1819,149 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
     }
     else
     {
-        //call type insert function
-        types::InternalType* pRet = NULL;
+        // call type insert function
 
-        // case m=x; m()=x;
-        if (_pArgs == NULL || _pArgs->size() == 0)
+        //check types compatibilities
+        if (_pVar->isDouble())
         {
-            std::wostringstream os;
-            os << _W("Wrong insertion : Cannot insert without arguments.");
-            throw ast::InternalError(os.str(), 999, e.getLocation());
-        }
-
-        //check types compatibilties
-        if (_pVar->isDouble() && _pInsert->isSparse())
-        {
-            types::Sparse* pSp = _pInsert->getAs<types::Sparse>();
-            types::Double* pD = new types::Double(pSp->getRows(), pSp->getCols(), pSp->isComplex());
-            pSp->fill(*pD);
-            pRet = _pVar->getAs<types::GenericType>()->insert(_pArgs, pD);
-            delete pD;
-        }
-        else if (_pVar->isSparse() && _pInsert->isDouble())
-        {
-            pRet = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isSparseBool() && _pInsert->isBool())
-        {
-            pRet = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isDouble() && _pInsert->isPoly())
-        {
-            types::Double* pDest = _pVar->getAs<types::Double>();
-            types::Polynom* pIns = _pInsert->getAs<types::Polynom>();
-            int iSize = pDest->getSize();
-            int* piRanks = new int[iSize]();
-            types::Polynom* pP = new types::Polynom(pIns->getVariableName(), pDest->getDims(), pDest->getDimsArray(), piRanks);
-            delete[] piRanks;
-            pP->setComplex(pDest->isComplex());
-
-            if (pP->isComplex())
+            switch(_pInsert->getType())
             {
-                int size = pP->getSize();
-                for (int idx = 0; idx < size; idx++)
-                {
-                    double dblR = pDest->get(idx);
-                    double dblI = pDest->getImg(idx);
-                    pP->get(idx)->setCoef(&dblR, &dblI);
-                }
-            }
-            else
-            {
-                int size = pP->getSize();
-                for (int idx = 0; idx < size; idx++)
-                {
-                    double dblR = pDest->get(idx);
-                    pP->get(idx)->setCoef(&dblR, NULL);
-                }
-            }
+                case types::InternalType::ScilabSparse:
+                    {
+                        types::Sparse* pSp = _pInsert->getAs<types::Sparse>();
+                        types::Double* pD = new types::Double(pSp->getRows(), pSp->getCols(), pSp->isComplex());
+                        pSp->fill(*pD);
+                        pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, pD);
+                        delete pD;
+                    }
+                    break;
 
-            pRet = pP->insert(_pArgs, pIns);
+                case types::InternalType::ScilabPolynom:
+                    {
+                        types::Double* pDest = _pVar->getAs<types::Double>();
+                        types::Polynom* pIns = _pInsert->getAs<types::Polynom>();
+                        int iSize = pDest->getSize();
+                        int* piRanks = new int[iSize]();
+                        types::Polynom* pP = new types::Polynom(pIns->getVariableName(), pDest->getDims(), pDest->getDimsArray(), piRanks);
+                        delete[] piRanks;
+                        pP->setComplex(pDest->isComplex());
+
+                        if (pP->isComplex())
+                        {
+                            int size = pP->getSize();
+                            for (int idx = 0; idx < size; idx++)
+                            {
+                                double dblR = pDest->get(idx);
+                                double dblI = pDest->getImg(idx);
+                                pP->get(idx)->setCoef(&dblR, &dblI);
+                            }
+                        }
+                        else
+                        {
+                            int size = pP->getSize();
+                            for (int idx = 0; idx < size; idx++)
+                            {
+                                double dblR = pDest->get(idx);
+                                pP->get(idx)->setCoef(&dblR, NULL);
+                            }
+                        }
+
+                        pOut = pP->insert(_pArgs, pIns);
+                    }
+                    break;
+
+                case types::InternalType::ScilabDouble:
+                    pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+                    break;
+
+                default:
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    break;
+            }
         }
-        else if (_pVar->isPoly() && _pInsert->isDouble())
+        else if (_pVar->isSparse())
         {
-            types::Polynom* pDest = _pVar->getAs<types::Polynom>();
-            types::Double* pIns = _pInsert->getAs<types::Double>();
-            bool isComplexIns = pIns->isComplex();
-            int iSize = pIns->getSize();
-            int* piRanks = new int[iSize]();
-
-            //create a new polynom with Double to insert it into dest polynom
-            types::Polynom* pP = new types::Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray(), piRanks);
-            delete[] piRanks;
-
-            if (isComplexIns)
+            switch(_pInsert->getType())
             {
-                double* pR = pIns->get();
-                double* pI = pIns->getImg();
-                types::SinglePoly** pSP = pP->get();
-                int size = pP->getSize();
-                for (int idx = 0; idx < size; idx++)
-                {
-                    double dblR = pR[idx];
-                    double dblI = pI[idx];
-                    pSP[idx]->setComplex(true);
-                    pSP[idx]->setCoef(&dblR, &dblI);
-                }
-            }
-            else
-            {
-                double* pdblR = pIns->get();
-                types::SinglePoly** pSP = pP->get();
-                int size = pP->getSize();
-                for (int idx = 0; idx < size; idx++)
-                {
-                    double dblR = pdblR[idx];
-                    pSP[idx]->setCoef(&dblR, NULL);
-                }
-            }
+                case types::InternalType::ScilabDouble:
+                case types::InternalType::ScilabSparse:
+                    pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+                    break;
 
-            pRet = pDest->insert(_pArgs, pP);
-            pP->killMe();
+                default:
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    break;
+            }
+        }
+        else if (_pVar->isSparseBool())
+        {
+            switch(_pInsert->getType())
+            {
+                case types::InternalType::ScilabBool:
+                case types::InternalType::ScilabSparseBool:
+                    pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+                    break;
+
+                default:
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    break;
+            }
+        }
+        else if (_pVar->isPoly())
+        {
+            switch(_pInsert->getType())
+            {
+                case types::InternalType::ScilabDouble:
+                    {
+                        types::Polynom* pDest = _pVar->getAs<types::Polynom>();
+                        types::Double* pIns = _pInsert->getAs<types::Double>();
+                        bool isComplexIns = pIns->isComplex();
+                        int iSize = pIns->getSize();
+                        int* piRanks = new int[iSize]();
+
+                        //create a new polynom with Double to insert it into dest polynom
+                        types::Polynom* pP = new types::Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray(), piRanks);
+                        delete[] piRanks;
+
+                        if (isComplexIns)
+                        {
+                            double* pR = pIns->get();
+                            double* pI = pIns->getImg();
+                            types::SinglePoly** pSP = pP->get();
+                            int size = pP->getSize();
+                            for (int idx = 0; idx < size; idx++)
+                            {
+                                double dblR = pR[idx];
+                                double dblI = pI[idx];
+                                pSP[idx]->setComplex(true);
+                                pSP[idx]->setCoef(&dblR, &dblI);
+                            }
+                        }
+                        else
+                        {
+                            double* pdblR = pIns->get();
+                            types::SinglePoly** pSP = pP->get();
+                            int size = pP->getSize();
+                            for (int idx = 0; idx < size; idx++)
+                            {
+                                double dblR = pdblR[idx];
+                                pSP[idx]->setCoef(&dblR, NULL);
+                            }
+                        }
+
+                        pOut = pDest->insert(_pArgs, pP);
+                        pP->killMe();
+                    }
+                    break;
+
+                case types::InternalType::ScilabPolynom:
+                    pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+                    break;
+
+                default:
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    break;
+            }
         }
         else if (_pVar->isStruct())
         {
@@ -1945,7 +2000,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                         pStruct->get(i)->set(pS->getFirst(), _pInsert);
                     }
                 }
-                pRet = pStruct;
+                pOut = pStruct;
             }
             else // insert something in a struct
             {
@@ -1996,8 +2051,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     }
 
                     // insert elements in following pArgs
-                    pRet = pStruct->insert(_pArgs, pStructInsert);
-                    pStructRet = pRet->getAs<types::Struct>();
+                    pOut = pStruct->insert(_pArgs, pStructInsert);
+                    pStructRet = pOut->getAs<types::Struct>();
 
                     pStructInsert->killMe();
 
@@ -2015,7 +2070,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 }
                 else
                 {
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
                 }
             }
         }
@@ -2050,27 +2105,11 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     {
                         pTL = pTL->copyAs<types::TList>();
                         pTL->set(pS->getFirst(), _pInsert);
-                        pRet = pTL;
+                        pOut = pTL;
                     }
                     else
                     {
                         return callOverload(e, L"i", _pArgs, _pInsert, _pVar);
-
-                        //ExecVisitor exec;
-                        //typed_list in;
-                        //typed_list out;
-                        //std::wstring function_name = L"%l_e";
-
-                        //_pInsert->IncreaseRef();
-                        //in.push_back(_pInsert);
-
-                        //Overload::call(function_name, in, 1, out, &exec);
-                        //_pInsert->DecreaseRef();
-
-                        //if (out.size() != 0)
-                        //{
-                        //    pRet = in[0];
-                        //}
                     }
                 }
                 else
@@ -2078,7 +2117,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     // s(x)
                     if (_pVar->isMList())
                     {
-                        pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                        pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
                     }
                     else
                     {
@@ -2089,7 +2128,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                             pTL = pTL->clone()->getAs<types::TList>();
                         }
 
-                        pRet = pTL->insert(_pArgs, _pInsert);
+                        pOut = pTL->insert(_pArgs, _pInsert);
 
                         // If we have inserted something else than a String
                         // in the first element, the TList have to be a List.
@@ -2103,7 +2142,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                             }
 
                             pTL->killMe();
-                            pRet = pL;
+                            pOut = pL;
                         }
                     }
                 }
@@ -2112,16 +2151,16 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             {
                 if (_pVar->isMList())
                 {
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
                 }
                 else
                 {
                     // call the overload if it exists.
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
-                    if (pRet == NULL)
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    if (pOut == NULL)
                     {
                         // else normal insert
-                        pRet = pTL->insert(_pArgs, _pInsert);
+                        pOut = pTL->insert(_pArgs, _pInsert);
                     }
                 }
             }
@@ -2134,22 +2173,22 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             if (_pVar->getRef() > 1)
             {
                 pL = _pVar->clone()->getAs<types::List>();
-                pRet = pL->insert(_pArgs, _pInsert);
-                if (pRet == NULL)
+                pOut = pL->insert(_pArgs, _pInsert);
+                if (pOut == NULL)
                 {
                     pL->killMe();
                     // call overload
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
                 }
             }
             else
             {
                 pL = _pVar->getAs<types::List>();
-                pRet = pL->insert(_pArgs, _pInsert);
-                if (pRet == NULL)
+                pOut = pL->insert(_pArgs, _pInsert);
+                if (pOut == NULL)
                 {
                     // call overload
-                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                    pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
                 }
             }
         }
@@ -2174,7 +2213,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out);
                     if (ret == types::Callable::OK)
                     {
-                        pRet = _pVar;
+                        pOut = _pVar;
                     }
                     else
                     {
@@ -2184,7 +2223,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             }
             else
             {
-                pRet = _pVar->getAs<types::GraphicHandle>()->insert(_pArgs, _pInsert);
+                pOut = _pVar->getAs<types::GraphicHandle>()->insert(_pArgs, _pInsert);
             }
         }
         else if (_pVar->isUserType())
@@ -2204,19 +2243,19 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 }
             }
 
-            pRet = _pVar->getAs<types::UserType>()->insert(_pArgs, _pInsert);
-            if (pRet == NULL)
+            pOut = _pVar->getAs<types::UserType>()->insert(_pArgs, _pInsert);
+            if (pOut == NULL)
             {
-                pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
             }
-        }
-        else if (_pVar->getType() == _pInsert->getType())
-        {
-            pRet = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
         }
         else if (_pVar->isCell())
         {
-            if (_pInsert->isCell() == false)
+            if (_pInsert->isCell())
+            {
+                pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+            }
+            else
             {
                 //manage error
                 std::wostringstream os;
@@ -2224,13 +2263,15 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 throw ast::InternalError(os.str(), 999, e.getLocation());
             }
         }
+        else if (_pVar->getType() == _pInsert->getType())
+        {
+            pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
+        }
         else
         {
             // overload
-            pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+            pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
         }
-
-        pOut = pRet;
     }
 
     if (pIL && pIL != pOut)
