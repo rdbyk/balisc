@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,9 +26,16 @@ void clean(double* pdblReal, double* pdblImg, int iSize, double dEpsA, double dE
 {
     if (pdblImg)
     {
-        int iOne = 1;
-        double dNorm = C2F(dasum)(&iSize, pdblReal, &iOne);
-               dNorm += C2F(dasum)(&iSize, pdblImg, &iOne);
+        double dNorm = 0;
+        for (int i = 0 ; i < iSize ; i++)
+        {
+            double d = std::abs(pdblReal[i]) + std::abs(pdblImg[i]);
+            if (std::isfinite(d))
+            {
+               dNorm += d;
+            }
+        }
+
         double dEps = std::max(dEpsA, dEpsR * dNorm);
         for (int i = 0 ; i < iSize ; i++)
         {
@@ -45,10 +52,16 @@ void clean(double* pdblReal, double* pdblImg, int iSize, double dEpsA, double dE
     }
     else
     {
-        int iOne = 1;
-        double dNorm = C2F(dasum)(&iSize, pdblReal, &iOne);
+        double dNorm = 0;
+        for (int i = 0 ; i < iSize ; i++)
+        {
+            double d = std::abs(pdblReal[i]);
+            if (std::isfinite(d))
+            {
+               dNorm += d;
+            }
+        }
         double dEps = std::max(dEpsA, dEpsR * dNorm);
-
         for (int i = 0 ; i < iSize ; i++)
         {
             if (std::abs(pdblReal[i]) <= dEps)
