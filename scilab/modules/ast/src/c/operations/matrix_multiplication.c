@@ -208,16 +208,7 @@ void iMultiScilabPolynomByScilabPolynom(
     {
         for (i2 = 0 ; i2 < _iRank2 ; i2++)
         {
-            dblMult = _pdblReal1[i1] * _pdblReal2[i2];
-            dblAdd = _pdblRealOut[i1 + i2] + dblMult;
-            if (fabs(dblAdd) > 2 * nc_eps() * Max(fabs(_pdblRealOut[i1 + i2]), fabs(dblMult)))
-            {
-                _pdblRealOut[i1 + i2] = dblAdd;
-            }
-            else
-            {
-                _pdblRealOut[i1 + i2] = 0.0;
-            }
+            _pdblRealOut[i1 + i2] += _pdblReal1[i1] * _pdblReal2[i2];
         }
     }
 }
