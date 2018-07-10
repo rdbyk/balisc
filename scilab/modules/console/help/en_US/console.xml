@@ -122,7 +122,7 @@
                 <td>select current word.</td>
             </tr>
             <tr>
-                <td>:&lt;xyz&gt;/td>
+                <td>:&lt;xyz&gt;</td>
                 <td>recall last history entry beginning with &lt;xyz&gt;.</td>
             </tr>
         </informaltable>

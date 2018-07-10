@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2018 Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="protect">
+    <refnamediv>
+        <refname>protect</refname>
+        <refpurpose>protect variables</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>protect()
+            protect(a1, a2 ...)
+            protect x y ...
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+            <term>a1, a2, ...</term>
+            <listitem>
+                <para>string matrices.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>x, y, ...</term>
+            <listitem>
+                <para>arbitrary existent variables.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utility function to declare existent variables as "protected". Protected
+            variables cannot be modified and are ignored by the <function>save</function> function.
+        </para>
+        <para>
+        <variablelist>
+            <varlistentry>
+                <term>protect()</term>
+                <listitem>
+                    <para>Protect all currently existent variables.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry></varlistentry>
+            <varlistentry>
+                <term>protect(a1, a2, ...)</term>
+                <listitem>
+                    <para>Protect existent variables, whose names are given by <term>a1, a2, ...</term>.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry></varlistentry>
+            <varlistentry>
+                <term>protect x y ...</term>
+                <listitem>
+                    <para>Protect existent variables <term>x, y, ...</term>.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a = 1;
+protect("a");
+clear a // fails
+unprotect("a")
+clear a // works
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="unprotect">unprotect</link>
+            </member>
+            <member>
+                <link linkend="isprotected">isprotected</link>
+            </member>
+            <member>
+                <link linkend="clear">clear</link>
+            </member>
+            <member>
+                <link linkend="save">save</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Function <function>protect</function> was introduced..</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
