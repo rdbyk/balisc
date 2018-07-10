@@ -215,7 +215,6 @@ public :
 #endif
     }
 
-    virtual void                    whoAmI(void);
     virtual bool                    isAssignable(void);
     virtual ScilabType              getType(void) = 0 ; //{ return ScilabInternal; }
     virtual ScilabId                getId(void) = 0 ; //{ return ScilabInternal; }

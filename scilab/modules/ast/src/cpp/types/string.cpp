@@ -109,11 +109,6 @@ String* String::clone()
     return pstClone;
 }
 
-void String::whoAmI()
-{
-    std::cout << "types::String";
-}
-
 void String::deleteString(int _iPos)
 {
     wchar_t* str = m_pRealData[_iPos];

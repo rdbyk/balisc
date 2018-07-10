@@ -204,11 +204,6 @@ Function::ReturnValue Function::call(typed_list &in, optional_list &/*opt*/, int
     return this->m_pFunc(in, _iRetCount, out);
 }
 
-void Function::whoAmI()
-{
-    std::cout << "types::Function";
-}
-
 bool Function::toString(std::wostringstream& ostr)
 {
     ostr << L"   <" << getTypeStr() << L":" << getName() << L">" << std::endl;

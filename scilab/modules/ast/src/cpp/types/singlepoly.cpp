@@ -255,11 +255,6 @@ bool SinglePoly::setCoef(const double* _pdblCoefR, const double* _pdblCoefI)
     return true;
 }
 
-void SinglePoly::whoAmI()
-{
-    std::cout << "types::SinglePoly";
-}
-
 bool SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI)
 {
     *_pdblOutR = 0;

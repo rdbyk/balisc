@@ -100,11 +100,6 @@ Macro* Macro::clone()
     return this;
 }
 
-void Macro::whoAmI()
-{
-    std::cout << "types::Macro";
-}
-
 ast::SeqExp* Macro::getBody(void)
 {
     return m_body;

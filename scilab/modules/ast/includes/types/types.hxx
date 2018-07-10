@@ -46,10 +46,6 @@ protected :
 
 public :
     virtual                     ~GenericType() {}
-    void                        whoAmI(void)
-    {
-        std::cout << "types::GenericType";
-    }
 
     virtual bool                isComplex()
     {

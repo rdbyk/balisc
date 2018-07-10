@@ -320,11 +320,6 @@ void Double::setInt(int* _piReal)
     }
 }
 
-void Double::whoAmI()
-{
-    std::cout << "types::Double";
-}
-
 void Double::setZeros()
 {
     if (m_pRealData != NULL)

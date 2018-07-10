@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -776,11 +776,6 @@ std::complex<double> Sparse::getImg(int _iRows, int _iCols) const
     }
 
     return res;
-}
-
-void Sparse::whoAmI() SPARSE_CONST
-{
-    std::cout << "types::Sparse";
 }
 
 Sparse* Sparse::clone(void)
@@ -3242,11 +3237,6 @@ bool SparseBool::toString(std::wostringstream& ostr)
 {
     ostr << ::toString(*matrixBool, 0);
     return true;
-}
-
-void SparseBool::whoAmI() SPARSE_CONST
-{
-    std::cout << "types::SparseBool";
 }
 
 SparseBool* SparseBool::clone(void)

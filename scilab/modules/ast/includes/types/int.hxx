@@ -96,9 +96,6 @@ public :
         pbClone->set(ArrayOf<T>::get());
         return pbClone;
     }
-    
-    /*Config management*/
-    void whoAmI();
 
     bool isInt()
     {
@@ -674,47 +671,6 @@ template<> inline std::wstring Int<unsigned long long>::getTypeStr() const
 {
     return L"uint64";
 }
-
-template<> inline void Int<char>::whoAmI()
-{
-    std::cout << "types::Int8";
-}
-
-template<> inline void Int<short>::whoAmI()
-{
-    std::cout << "types::Int16";
-}
-
-template<> inline void Int<int>::whoAmI()
-{
-    std::cout << "types::Int32";
-}
-
-template<> inline void Int<long long>::whoAmI()
-{
-    std::cout << "types::Int64";
-}
-
-template<> inline void Int<unsigned char>::whoAmI()
-{
-    std::cout << "types::UInt8";
-}
-
-template<> inline void Int<unsigned short>::whoAmI()
-{
-    std::cout << "types::UInt16";
-}
-
-template<> inline void Int<unsigned int>::whoAmI()
-{
-    std::cout << "types::UInt32";
-}
-
-template<> inline void Int<unsigned long long>::whoAmI()
-{
-    std::cout << "types::UInt64";
-}
-
 
 typedef Int<char> Int8;
 typedef Int<short> Int16;

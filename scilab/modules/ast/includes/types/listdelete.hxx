@@ -44,8 +44,6 @@ public :
         return true;
     }
 
-    void                    whoAmI();
-
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring    getTypeStr() const
     {
