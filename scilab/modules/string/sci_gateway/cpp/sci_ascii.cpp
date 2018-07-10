@@ -3,7 +3,7 @@
  * Copyright (C) INRIA - Cong WU
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,8 +32,8 @@ extern "C"
 #include <ctype.h>
 #include "sci_malloc.h"
 #include "Scierror.h"
+#include "Sciwarning.h"
 #include "localization.h"
-#include "sciprint.h"
 #include "strlen.h"
 }
 
@@ -128,19 +128,33 @@ types::String* TypeToString(T* _pI)
     char* pcText = new char[len + 1];
     Y* p = _pI->get();
 
-    bool bWarning = !ConfigVariable::getWarningMode();
-    for (int i = 0; i < len; i++)
+    int i = 0;
+
+    if (ConfigVariable::getWarningMode())
     {
-        if (bWarning == false && p[i] > MAX_ASCII)
+        for ( ; i < len; ++i)
         {
-            sciprint(_("WARNING : \n"));
-            sciprint(_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), "ascii", 1, 0, MAX_ASCII);
-            bWarning = true;
+            pcText[i] = static_cast<char>(p[i]);
+
+            if (p[i] > MAX_ASCII || p[i] < 0)
+            {
+                if (ConfigVariable::getWarningStop())
+                {
+                    delete[] pcText;
+                }
+
+                Sciwarning(_("WARNING: %s: Wrong value for input argument #%d: Must be between %d and %d.\n"), "ascii", 1, 0, MAX_ASCII);
+
+                break;
+            }
         }
-
-        pcText[i] = static_cast<char>(p[i]);
-
     }
+
+    for ( ; i < len; ++i)
+    {
+        pcText[i] = static_cast<char>(p[i]);
+    }
+
     pcText[len] = '\0';
 
     pst = to_wide_string(pcText);
