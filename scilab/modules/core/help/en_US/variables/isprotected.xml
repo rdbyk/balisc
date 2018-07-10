@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2018 Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="isprotected">
+    <refnamediv>
+        <refname>isprotected</refname>
+        <refpurpose>check protection of variables</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>names = isprotected()
+            yesno = isprotected(a)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+            <term>names</term>
+            <listitem>
+                <para>column vector of strings.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>a</term>
+            <listitem>
+                <para>(m,n)-matrix of strings.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>yesno</term>
+            <listitem>
+                <para>(m,n)-matrix of booleans</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utility function to check, whether variables are "protected" or not.
+        </para>
+        <para>
+        <variablelist>
+            <varlistentry>
+                <term>names = isprotected()</term>
+                <listitem>
+                    <para>Returns the <term>names</term> of all currently protected variables.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry></varlistentry>
+            <varlistentry>
+                <term>yesno = isprotected(a)</term>
+                <listitem>
+                    <para>
+                        Checks the protection of existent variables, whose names are given by <term>a</term>,
+                        and returns a boolean matrix <term>yesno</term>. A boolean value <term>%T</term> indicates
+                        that the corresponding variable is protected.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a = 1;
+b = 2;
+protect("b");
+
+// check protection of variables "a" and "b"
+isprotected(["a" "b"])
+
+// which variables are protected?
+isprotected()
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="protect">protect</link>
+            </member>
+            <member>
+                <link linkend="unprotect">isprotect</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Function <function>isprotected</function> was introduced..</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
