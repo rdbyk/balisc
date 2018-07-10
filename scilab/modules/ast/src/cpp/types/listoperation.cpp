@@ -26,11 +26,6 @@ ListOperation::~ListOperation()
 {
 }
 
-void ListOperation::whoAmI()
-{
-    std::cout << "types::ListDelete";
-}
-
 ListOperation* ListOperation::clone(void)
 {
     return new ListOperation();

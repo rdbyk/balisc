@@ -86,11 +86,6 @@ Bool* Bool::clone()
     return pbClone;
 }
 
-void Bool::whoAmI()
-{
-    std::cout << "types::Bool";
-}
-
 void Bool::setFalse()
 {
     int size = getSize();

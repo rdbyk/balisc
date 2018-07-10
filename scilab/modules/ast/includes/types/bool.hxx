@@ -57,9 +57,6 @@ public:
     void setFalse();
     void setTrue();
 
-    /*Config management*/
-    void                    whoAmI();
-
     bool                    isBool()
     {
         return true;

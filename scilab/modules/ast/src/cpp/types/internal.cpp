@@ -21,11 +21,6 @@
 namespace types
 {
 
-void InternalType::whoAmI(void)
-{
-    std::cout << "types::Internal";
-}
-
 bool InternalType::isAssignable(void)
 {
     return false;

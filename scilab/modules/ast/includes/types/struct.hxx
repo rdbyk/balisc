@@ -40,11 +40,6 @@ private :
 
 public :
 
-    void                        whoAmI(void)
-    {
-        std::cout << "types::Struct";
-    };
-
     inline ScilabType           getType(void)
     {
         return ScilabStruct;

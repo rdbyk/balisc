@@ -94,8 +94,6 @@ public :
         return true;
     }
 
-    void                    whoAmI();
-
     bool                    toString(std::wostringstream& ostr);
 
     virtual ReturnValue     call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;

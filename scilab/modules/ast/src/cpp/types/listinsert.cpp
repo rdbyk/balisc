@@ -37,11 +37,6 @@ ListInsert::~ListInsert()
     }
 }
 
-void ListInsert::whoAmI()
-{
-    std::cout << "types::ListInsert";
-}
-
 ListInsert* ListInsert::clone(void)
 {
     return new ListInsert(m_pInsert);

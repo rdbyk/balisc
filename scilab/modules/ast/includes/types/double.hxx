@@ -63,7 +63,6 @@ public :
     void setOnes();
 
     /*Config management*/
-    void                        whoAmI();
     bool                        isEmpty();
 
     Double*                     clone();

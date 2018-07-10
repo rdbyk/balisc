@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
- * Copyright Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -142,7 +142,6 @@ struct Sparse : GenericType
     /*
       Config management and GenericType methods overrides
     */
-    void whoAmI() SPARSE_CONST;
     bool isExtract() const;
     Sparse* clone(void);
     bool toString(std::wostringstream& ostr);
@@ -611,8 +610,6 @@ struct SparseBool : GenericType
         out = _out;
         return true;
     }
-
-    void whoAmI() SPARSE_CONST;
 
     bool* get();
     bool getFirst() SPARSE_CONST
