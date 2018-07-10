@@ -2057,16 +2057,20 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     pStructInsert->killMe();
 
                     // insert fields of pStructInsert in pRet
-                    int size = pStrInsertFieldsName->getSize();
-                    for (int i = 0; i < size; i++)
+                    if (pStrInsertFieldsName)
                     {
-                        if (pStructRet->exists(pStrInsertFieldsName->get(i)) == false)
-                        {
-                            pStructRet->addField(pStrInsertFieldsName->get(i));
-                        }
-                    }
+                        int size = pStrInsertFieldsName->getSize();
 
-                    pStrInsertFieldsName->killMe();
+                        for (int i = 0; i < size; i++)
+                        {
+                            if (pStructRet->exists(pStrInsertFieldsName->get(i)) == false)
+                            {
+                                pStructRet->addField(pStrInsertFieldsName->get(i));
+                            }
+                        }
+
+                        pStrInsertFieldsName->killMe();
+                    }
                 }
                 else
                 {
