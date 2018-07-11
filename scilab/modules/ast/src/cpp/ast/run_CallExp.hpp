@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -352,7 +352,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             if (pIT->isCell() == false)
             {
                 CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getFirstLocation());
+                throw ast::InternalError(_W("Cell indexing \"{..}\" of non-cell objects is not allowed.\n"), 999, e.getFirstLocation());
             }
 
             //Create list of indexes
