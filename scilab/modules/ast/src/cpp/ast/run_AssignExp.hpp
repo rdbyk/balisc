@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -151,8 +151,23 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
         if (e.getLeftExp().isCellCallExp())
         {
+            // a{?} = ?
             CellCallExp *pCell = static_cast<CellCallExp*>(&e.getLeftExp());
             types::InternalType *pOut = NULL;
+
+            // a is a cell?
+            if (pCell->getName().isSimpleVar())
+            {
+                ast::SimpleVar* var = pCell->getName().getAs<ast::SimpleVar>();
+                types::InternalType* pIT = ctx->getCurrentLevel(var->getStack());
+
+                if (pIT && pIT->isCell() == false)
+                {
+                    std::wostringstream os;
+                    os << _W("Cell indexing \"{..}\" of non-cell objects is not allowed.\n");
+                    throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
+                }
+            }
 
             /*getting what to assign*/
             types::InternalType* pITR = e.getRightVal();
