@@ -1,11 +1,14 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
-//  This file is distributed under the same license as the Scilab package.
+// This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+//
 // <-- Non-regression test for bug 9002 -->
 //
 // <-- Bugzilla URL -->
@@ -13,7 +16,6 @@
 //
 // <-- Short Description -->
 // linear_interpn, splin2d/interp2d, ... functions ignored imaginary part of input arguments
-
 
 // test with bsplin3val  
 //
