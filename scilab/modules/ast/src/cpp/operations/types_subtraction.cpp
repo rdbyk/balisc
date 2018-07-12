@@ -1566,7 +1566,13 @@ template<class T, class U, class O> types::InternalType* sub_E_IC(T * /*_pL*/, U
 
 template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
 {
+    if (_pL->getVariableName() != _pR->getVariableName())
+    {
+        return NULL; // overload
+    }
+
     Polynom* pOut = NULL;
+
     if (_pL->isScalar())
     {
         SinglePoly* p1Coef  = _pL->getFirst();

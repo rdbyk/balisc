@@ -105,7 +105,13 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         Polynom *pL          = _pLeftOperand->getAs<types::Polynom>();
         Polynom *pR          = _pRightOperand->getAs<types::Polynom>();
 
+        if (pL->getVariableName() != pR->getVariableName())
+        {
+            return NULL; // overload
+        }
+
         int iResult = MultiplyPolyByPoly(pL, pR, (Polynom**)&pResult);
+
         if (iResult)
         {
             throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
