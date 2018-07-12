@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "polynomials_gw.hxx"
 #include "function.hxx"
 #include "bool.hxx"
@@ -23,18 +23,12 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_simpMode(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "simp_mode", 0, 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "simp_mode", 1);
         return types::Function::Error;
     }
 
@@ -64,5 +58,3 @@ types::Function::ReturnValue sci_simpMode(types::typed_list &in, int _iRetCount,
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-

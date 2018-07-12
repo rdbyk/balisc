@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,7 +37,6 @@ extern "C"
 #include "GetScreenProperty.h"
 #include "FigureList.h"
 }
-/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -49,12 +48,6 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "get", 1, 2);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "get", 1);
         return types::Function::Error;
     }
 

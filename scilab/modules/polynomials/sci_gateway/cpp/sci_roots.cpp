@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include <cmath>
 
@@ -33,7 +32,7 @@ extern "C"
     extern int C2F(rpoly)(double*, int*, double*, double*, int*);
     extern int C2F(wscal)(int*, double*, double*, double*, double*, int*);
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     std::wstring wstrAlgo   = L"e"; // e = eigen (default), f = fast
@@ -55,12 +54,6 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
     if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "roots", 1, 2);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "roots", 1);
         return types::Function::Error;
     }
 
@@ -284,5 +277,3 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
 
     return ret;
 }
-/*--------------------------------------------------------------------------*/
-

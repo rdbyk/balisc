@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -52,12 +52,6 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
     if (in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "lusolve", 2);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "lusolve", 1);
         return types::Function::Error;
     }
 

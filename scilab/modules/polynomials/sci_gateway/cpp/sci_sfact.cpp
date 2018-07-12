@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "polynomials_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -28,7 +28,7 @@ extern "C"
     extern int C2F(sfact1)(double*, int*, double*, int*, int*);
     extern int C2F(sfact2)(double*, int*, int*, double*, int*, int*);
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Polynom* pPolyIn  = NULL;
@@ -41,12 +41,6 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "sfact", 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "sfact", 1);
         return types::Function::Error;
     }
 
@@ -184,5 +178,3 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
     out.push_back(pPolyOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-

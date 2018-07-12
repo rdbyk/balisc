@@ -4,8 +4,8 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - Scilab Enterprises - Bruno JOFRET
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -60,12 +60,6 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
     if (in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "xget", 1, 2);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "xget", 1);
         return types::Function::Error;
     }
 
@@ -424,4 +418,3 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
