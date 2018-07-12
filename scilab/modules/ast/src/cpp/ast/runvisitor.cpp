@@ -226,7 +226,15 @@ void RunVisitorT<T>::visitprivate(const VarDec & e)
     {
         /*getting what to assign*/
         e.getInit().accept(*this);
-        getResult()->IncreaseRef();
+
+        if (getResult())
+        {
+            getResult()->IncreaseRef();
+        }
+        else
+        {
+            throw InternalError(_W("for expression : No value for assignment to loop variable.\n"), 999, e.getLocation());
+        }
     }
     catch (const InternalError& error)
     {
@@ -484,7 +492,6 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
 
     //Create local exec visitor
     ShortCutVisitor SCTest;
-    bool bTestStatus = false;
 
     //condition
     try
@@ -498,8 +505,10 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
         throw;
     }
 
-    bTestStatus = getResult()->isTrue();
+    bool bTestStatus = getResult() ? getResult()->isTrue() : false;
+
     clearResult();
+
     try
     {
         if (bTestStatus == true)
@@ -577,8 +586,9 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
     }
 
     types::InternalType* pIT = getResult();
+    bool bTestResult = pIT ? pIT->isTrue() : false;
 
-    while (pIT->isTrue())
+    while (bTestResult)
     {
         pIT->killMe();
         setResult(NULL);
@@ -626,7 +636,9 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
             CoverageInstance::stopChrono((void*)&e);
             throw;
         }
+
         pIT = getResult();
+        bTestResult = pIT ? pIT->isTrue() : false;
     }
 
     //pIT->killMe();
