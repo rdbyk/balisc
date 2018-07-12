@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,9 +10,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
+
 #include "interpolation_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -25,7 +25,6 @@ extern "C"
 #include "Scierror.h"
 #include "interpolation_functions.h"
 }
-/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -47,13 +46,6 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
     if (in.size() != 5)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "bsplin3val", 5);
-        return types::Function::Error;
-    }
-
-    // *** check number of output args according the methode. ***
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "bsplin3val", 1);
         return types::Function::Error;
     }
 
@@ -162,4 +154,3 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
 
     return types::Function::OK;
 }
-
