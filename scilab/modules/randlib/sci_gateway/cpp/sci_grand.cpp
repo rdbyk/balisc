@@ -3,7 +3,7 @@
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "randlib_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -34,7 +34,6 @@ extern "C"
 #include "clcg4.h"
 #include "others_generators.h"
 }
-/*--------------------------------------------------------------------------*/
 
 template<class U>
 void sci_grand_prm(int iNumIter, U *pIn, types::InternalType** pOut);
@@ -70,13 +69,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "grand", 1, 6);
     return types::Function::Error;
     }*/
-
-    // *** check number of output args. ***
-    if (_iRetCount > 1)
-    {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "grand", 1);
-        return types::Function::Error;
-    }
 
     // *** find the method string. ***
     for (int i = 0; i < in.size(); i++)
@@ -1629,5 +1621,3 @@ void sci_grand_prm(int iNumIter, U *pIn, types::InternalType** pOut)
 
     delete pDblOut;
 }
-
-/*--------------------------------------------------------------------------*/
