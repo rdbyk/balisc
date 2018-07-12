@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include <algorithm>
 
@@ -29,7 +28,7 @@ extern "C"
 #include "localization.h"
     extern int C2F(dpsimp)(double*, int*, double*, int*, double*, int*, double*, int*, double*, int*);
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::InternalType* pNumOut = NULL;
@@ -41,8 +40,6 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
     int iMaxDegrNum = 0;
     int iMaxDegrDen = 0;
     int iErr        = 0;
-
-    std::wstring wstrName = L"";
 
     if (in.size() < 1 || in.size() > 2)
     {
@@ -102,25 +99,21 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
             return Overload::call(L"%p_simp", in, _iRetCount, out);
         }
 
-        if (iDouble == 3) // simp(double, double)
-        {
-            return Overload::call(L"%s_simp", in, _iRetCount, out);
-        }
-
         switch (iDouble)
         {
-            case 0 : // sim(poly, poly)
+            case 0 : // simp(poly, poly)
             {
+                std::wstring wstrName = in[0]->getAs<types::Polynom>()->getVariableName();
+
+                if (wstrName != in[1]->getAs<types::Polynom>()->getVariableName())
+                {
+                    pNumOut = in[0];
+                    pDenOut = in[1];
+                    break;
+                }
+
                 types::Polynom* pNum = in[0]->clone()->getAs<types::Polynom>();
                 types::Polynom* pDen = in[1]->clone()->getAs<types::Polynom>();
-
-                wstrName = pNum->getVariableName();
-
-                if (wstrName != pDen->getVariableName())
-                {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "simp", 2, wstrName.c_str());
-                    return types::Function::Error;
-                }
 
                 types::Polynom* pPolyNumOut = new types::Polynom(wstrName, pNum->getDims(), pNum->getDimsArray());
                 types::Polynom* pPolyDenOut = new types::Polynom(wstrName, pNum->getDims(), pNum->getDimsArray());
@@ -141,9 +134,6 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                     int iDegreeNum  = pNum->get(i)->getRank();
                     int iDegreeDen  = pDen->get(i)->getRank();
 
-                    double* pdblNumOut = NULL;
-                    double* pdblDenOut = NULL;
-
                     double* pdblNumTmp = new double[iDegreeNum + 1];
                     double* pdblDenTmp = new double[iDegreeDen + 1];
 
@@ -160,9 +150,11 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                     {
                         delete[] pdblNumTmp;
                         delete[] pdblDenTmp;
-                        break;
+                        break; // for loop
                     }
 
+                    double* pdblNumOut = NULL;
+                    double* pdblDenOut = NULL;
                     types::SinglePoly* pSPNum = new types::SinglePoly(&pdblNumOut, iRankNumOut - 1);
                     types::SinglePoly* pSPDen = new types::SinglePoly(&pdblDenOut, iRankDenOut - 1);
 
@@ -186,13 +178,15 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 pDenOut = pPolyDenOut;
                 break;
             }
-            case 1 : // sim(double, poly)
-            case 2 : // sim(poly, double)
-            {
+
+            case 1: // simp(double, poly)
+            case 2: // simp(poly, double)
                 pNumOut = in[0];
                 pDenOut = in[1];
                 break;
-            }
+
+            case 3: // simp(double, double)
+                return Overload::call(L"%s_simp", in, _iRetCount, out);
         }
     }
 
@@ -206,5 +200,3 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
     out.push_back(pDenOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-
