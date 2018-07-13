@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -192,7 +192,9 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 if (pGT->isList() || poRow->isList() ||
                     pGT->isStruct() || poRow->isStruct() ||
                     pGT->isUserType() || poRow->isUserType() ||
-                    poRow->isImplicitList() || pGT->getDims() > 2)
+                    poRow->isImplicitList() || pGT->getDims() > 2 ||
+                    (pGT->isPoly() && poRow->isPoly() &&
+                     pGT->getAs<types::Polynom>()->getVariableName() != poRow->getAs<types::Polynom>()->getVariableName()))
                 {
                     try
                     {
@@ -348,7 +350,9 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             if (pGT->isList() || pGTResult->isList() ||
                 pGT->isStruct() || pGTResult->isStruct() ||
                 pGT->isUserType() || pGTResult->isUserType() ||
-                pGT->getDims() > 2)
+                pGT->getDims() > 2 ||
+                (pGT->isPoly() && pGTResult->isPoly() &&
+                 pGT->getAs<types::Polynom>()->getVariableName() != pGTResult->getAs<types::Polynom>()->getVariableName()))
             {
                 try
                 {
