@@ -2976,6 +2976,11 @@ InternalType* compnoequal_M_M<SparseBool, Bool, SparseBool>(SparseBool* _pL, Boo
 template<>
 InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
 {
+    if (_pL->getVariableName() != _pR->getVariableName())
+    {
+        return new Bool(true);
+    }
+
     Bool* pbOut = NULL;
     bool bPoise = true;
 

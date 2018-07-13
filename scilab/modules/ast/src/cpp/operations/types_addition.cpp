@@ -1881,12 +1881,10 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     Polynom* pRSave = _pR;
 
     Polynom* pOut = NULL;
+
     if (_pL->getVariableName() != _pR->getVariableName())
     {
-        std::wostringstream os;
-        os << _W("variables don't have the same formal variable");
-        //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
-        throw ast::InternalError(os.str());
+        return NULL; // overload
     }
 
     if (_pR->isIdentity())
