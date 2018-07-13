@@ -2970,6 +2970,11 @@ InternalType* compequal_M_M<SparseBool, Bool, SparseBool>(SparseBool* _pL, Bool*
 template<>
 InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
 {
+    if (_pL->getVariableName() != _pR->getVariableName())
+    {
+        return new Bool(false);
+    }
+
     Bool* pbOut = NULL;
     bool bPoise = true;
 
