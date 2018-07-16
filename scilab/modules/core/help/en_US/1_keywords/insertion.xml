@@ -328,7 +328,7 @@
                             </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para> a real non negative scalar (only its integer part is taken into account).
+                                    <para> an array of real non negative values (only integer parts are taken into account).
                                         <literal>l(0)=a</literal> adds an entry on the "left"
                                         of the list. <literal>l(i)=a</literal> sets the <literal>i</literal>
                                         entry of the list <literal>l</literal> to <literal>a</literal>. If
@@ -437,5 +437,16 @@ dts(2)('b')(1,2)=-100
                 <link linkend="extraction">extraction</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revdescription>
+                    Lists accept now an index array i of real non-negative values. 
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
