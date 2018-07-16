@@ -3,7 +3,7 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,7 +26,6 @@
 #include "freeArrayOfString.h"
 #include "returnanan.h"
 
-/*------------------------------------------------------------------------*/
 double sciFindStPosMin(const double x[], int n)
 {
     double min = -1.0;
@@ -68,7 +67,7 @@ double sciFindStPosMin(const double x[], int n)
     /* if we have found at least one positive value in x, min strictly positive */
     return min;
 }
-/*------------------------------------------------------------------------*/
+
 int checkMonotony(const double vector[], int nbElement)
 {
     int i = 0;
@@ -102,12 +101,12 @@ int checkMonotony(const double vector[], int nbElement)
     return 0 ;
 
 }
-/*------------------------------------------------------------------------*/
+
 void doubleArrayCopy(double dest[], const double src[], int nbElement)
 {
     memcpy( dest, src, nbElement * sizeof(double) ) ;
 }
-/*------------------------------------------------------------------------*/
+
 BOOL stringArrayCopy(char * dest[], char * src[], int nbElement)
 {
     int i = 0;
@@ -128,27 +127,8 @@ BOOL stringArrayCopy(char * dest[], char * src[], int nbElement)
     }
     return TRUE;
 }
-/*------------------------------------------------------------------------*/
+
 void destroyStringArray(char * src[], int nbStrings)
 {
     freeArrayOfString(src, nbStrings);
 }
-/*--------------------------------------------------------------------------*/
-char ** createStringArray(int nbElement)
-{
-    int i = 0;
-    char ** res = MALLOC( nbElement * sizeof(char *) ) ;
-
-    if ( res == NULL )
-    {
-        return NULL ;
-    }
-
-    for ( i = 0 ; i < nbElement; i++ )
-    {
-        res[i] = NULL ;
-    }
-
-    return res ;
-}
-/*--------------------------------------------------------------------------*/

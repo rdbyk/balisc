@@ -7,8 +7,8 @@
  * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -452,7 +452,7 @@ int InitAxesModel()
     setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
     setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
 
-    stringVector = createStringArray(defaultNumberTicks);
+    stringVector = CALLOC(defaultNumberTicks, sizeof(char*));
 
     if (stringVector == NULL)
     {
