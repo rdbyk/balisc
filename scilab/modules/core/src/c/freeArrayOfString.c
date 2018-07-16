@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,24 +12,23 @@
  * along with this program.
  *
  */
+
 #include <stdlib.h>
 #include "freeArrayOfString.h"
 #include "sci_malloc.h"
-/*---------------------------------------------------------------------------*/
-BOOL freeArrayOfString(char **Str, int dim)
-{
-    return freeArray((void**)Str, dim);
-}
-/*---------------------------------------------------------------------------*/
-BOOL freeArrayOfWideString(wchar_t **wcStr, int dim)
-{
-    return freeArray((void**)wcStr, dim);
-}
-/*---------------------------------------------------------------------------*/
-BOOL freeArray(void **pArray, int dim)
-{
-    BOOL bRet = TRUE;
 
+void freeArrayOfString(char **Str, int dim)
+{
+    freeArray((void**)Str, dim);
+}
+
+void freeArrayOfWideString(wchar_t **wcStr, int dim)
+{
+    freeArray((void**)wcStr, dim);
+}
+
+void freeArray(void **pArray, int dim)
+{
     if (pArray)
     {
         int i = 0;
@@ -38,20 +37,9 @@ BOOL freeArray(void **pArray, int dim)
             if (pArray[i])
             {
                 FREE(pArray[i]);
-                pArray[i] = NULL;
-            }
-            else
-            {
-                bRet = FALSE;
             }
         }
         FREE(pArray);
         pArray = NULL;
-        return bRet;
-    }
-    else
-    {
-        return FALSE;
     }
 }
-/*---------------------------------------------------------------------------*/
