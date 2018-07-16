@@ -385,7 +385,10 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
         {
             m_OptimArgs[i]->DecreaseRef();
         }
-
+        pDblX->DecreaseRef();
+        pDblX->killMe();
+        pDblInd->DecreaseRef();
+        pDblInd->killMe();
         throw ie;
     }
 
@@ -399,6 +402,10 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
         char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
+        pDblX->DecreaseRef();
+        pDblX->killMe();
+        pDblInd->DecreaseRef();
+        pDblInd->killMe();
         throw ast::InternalError(errorMsg);
     }
 
@@ -543,7 +550,8 @@ void OptimizationFunctions::callFsolveFctMacro(int *n, double *x, double *v, int
         {
             m_fsolveFctArgs[i]->DecreaseRef();
         }
-
+        pDblX->DecreaseRef();
+        pDblX->killMe();
         throw ie;
     }
 
@@ -557,6 +565,8 @@ void OptimizationFunctions::callFsolveFctMacro(int *n, double *x, double *v, int
         char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
+        pDblX->DecreaseRef();
+        pDblX->killMe();
         throw ast::InternalError(errorMsg);
     }
 
@@ -632,7 +642,8 @@ void OptimizationFunctions::callFsolveJacMacro(int *n, double *x, double *v, dou
         {
             m_fsolveJacArgs[i]->DecreaseRef();
         }
-
+        pDblX->DecreaseRef();
+        pDblX->killMe();
         throw ie;
     }
 
@@ -646,6 +657,8 @@ void OptimizationFunctions::callFsolveJacMacro(int *n, double *x, double *v, dou
         char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
+        pDblX->DecreaseRef();
+        pDblX->killMe();
         throw ast::InternalError(errorMsg);
     }
 
@@ -726,7 +739,10 @@ void OptimizationFunctions::callLsqrsolveFctMacro(int *m, int *n, double *x, dou
         {
             m_fsolveFctArgs[i]->DecreaseRef();
         }
-
+        pDblX->DecreaseRef();
+        pDblX->killMe();
+        pDblM->DecreaseRef();
+        pDblM->killMe();
         throw ie;
     }
 
@@ -740,6 +756,10 @@ void OptimizationFunctions::callLsqrsolveFctMacro(int *m, int *n, double *x, dou
         char* pstrName = wide_string_to_UTF8(m_pCallFsolveFctFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
+        pDblX->DecreaseRef();
+        pDblX->killMe();
+        pDblM->DecreaseRef();
+        pDblM->killMe();
         throw ast::InternalError(errorMsg);
     }
 
@@ -823,7 +843,10 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
         {
             m_fsolveJacArgs[i]->DecreaseRef();
         }
-
+        pDblX->DecreaseRef();
+        pDblX->killMe();
+        pDblM->DecreaseRef();
+        pDblM->killMe();
         throw ie;
     }
 
@@ -837,6 +860,10 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
         char* pstrName = wide_string_to_UTF8(m_pCallFsolveJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of input arguments: %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
+        pDblX->DecreaseRef();
+        pDblX->killMe();
+        pDblM->DecreaseRef();
+        pDblM->killMe();
         throw ast::InternalError(errorMsg);
     }
 
