@@ -213,22 +213,16 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
     int* piCountDim     = new int[iDims];
 
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+
     delete[] piMaxDim;
     delete[] piCountDim;
+
     if (iSeqCount == 0)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         //do nothing
         return this;
-    }
-    else if (iSeqCount > 1)
-    {
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        std::wostringstream os;
-        os << _W("Unable to insert multiple item in a list.\n");
-        throw ast::InternalError(os.str());
     }
     else if (iSeqCount < 0)
     {
@@ -237,80 +231,90 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
         return NULL;
     }
 
-    int idx = (int)pArg[0]->getAs<Double>()->getFirst();
-    if (_pSource->isListDelete())
-    {
-        //delete item
-        if (idx == 0)
-        {
-            //free pArg content
-            cleanIndexesArguments(_pArgs, &pArg);
-            //do nothing
-            return this;
-        }
-        else if (idx <= (int)m_plData->size())
-        {
-            InternalType* pIT = (*m_plData)[idx - 1];
-            if (pIT)
-            {
-                pIT->DecreaseRef();
-                pIT->killMe();
-            }
-            m_plData->erase(m_plData->begin() + idx - 1);
-        }
-    }
-    else if (_pSource->isListInsert())
-    {
-        //insert item
-        if (idx == 0)
-        {
-            //free pArg content
-            cleanIndexesArguments(_pArgs, &pArg);
-            std::wostringstream os;
-            os << _W("Index out of bounds.\n");
-            throw ast::InternalError(os.str());
-        }
+    types::Double* pIdx = pArg[0]->getAs<Double>();
 
-        InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert();
-        pInsert->IncreaseRef();
-        if (idx > (int)m_plData->size())
+    for (int i = 0; i < pIdx->getSize(); ++i)
+    {
+        int idx = static_cast<int>(pIdx->get(i));
+
+        if (_pSource->isListDelete())
         {
-            //try to insert after the last index, increase list size and assign value
-            while ((int)m_plData->size() < idx)
+            int iDelIndex = idx - i;
+
+            //delete item
+            if (iDelIndex == 0)
             {
-                //incease list size and fill with "Undefined"
-                m_plData->push_back(new ListUndefined());
+                //free pArg content
+                cleanIndexesArguments(_pArgs, &pArg);
+                //do nothing
+                return this;
             }
-            (*m_plData)[idx - 1] = pInsert;
+            else if (iDelIndex <= (int)m_plData->size())
+            {
+                InternalType* pIT = (*m_plData)[iDelIndex - 1];
+                if (pIT)
+                {
+                    pIT->DecreaseRef();
+                    pIT->killMe();
+                }
+                m_plData->erase(m_plData->begin() + iDelIndex - 1);
+            }
+        }
+        else if (_pSource->isListInsert())
+        {
+            int iInsIndex = idx + i;
+
+            //insert item
+            if (iInsIndex == 0)
+            {
+                //free pArg content
+                cleanIndexesArguments(_pArgs, &pArg);
+                std::wostringstream os;
+                os << _W("Index out of bounds.\n");
+                throw ast::InternalError(os.str());
+            }
+
+            InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert();
+            pInsert->IncreaseRef();
+            if (iInsIndex > (int)m_plData->size())
+            {
+                //try to insert after the last index, increase list size and assign value
+                while ((int)m_plData->size() < iInsIndex)
+                {
+                    //incease list size and fill with "Undefined"
+                    m_plData->push_back(new ListUndefined());
+                }
+                (*m_plData)[iInsIndex - 1] = pInsert;
+            }
+            else
+            {
+                m_plData->insert(m_plData->begin() + iInsIndex - 1, pInsert);
+            }
+        }
+        else if (idx == 0)
+        {
+            //special case to insert at the first position
+            _pSource->IncreaseRef();
+            m_plData->insert(m_plData->begin(), _pSource);
         }
         else
         {
-            m_plData->insert(m_plData->begin() + idx - 1, pInsert);
+            while ((int)m_plData->size() < idx)
+            {
+                //incease list size and fill with "Undefined"
+                InternalType* pLU = new ListUndefined();
+                pLU->IncreaseRef();
+                m_plData->push_back(pLU);
+            }
+
+            InternalType* pIT = (*m_plData)[idx - 1];
+
+            (*m_plData)[idx - 1] = _pSource;
+            (*m_plData)[idx - 1]->IncreaseRef();
+
+            pIT->DecreaseRef();
+            pIT->killMe();
         }
-    }
-    else if (idx == 0)
-    {
-        //special case to insert at the first position
-        _pSource->IncreaseRef();
-        m_plData->insert(m_plData->begin(), _pSource);
-    }
-    else
-    {
-        while ((int)m_plData->size() < idx)
-        {
-            //incease list size and fill with "Undefined"
-            InternalType* pLU = new ListUndefined();
-            pLU->IncreaseRef();
-            m_plData->push_back(pLU);
-        }
-
-        InternalType* pIT = (*m_plData)[idx - 1];
-
-        (*m_plData)[idx - 1] = _pSource;
-        (*m_plData)[idx - 1]->IncreaseRef();
-
-        pIT->DecreaseRef();
-        pIT->killMe();
     }
 
     m_iSize = (int)m_plData->size();
