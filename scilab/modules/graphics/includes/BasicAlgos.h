@@ -42,16 +42,6 @@ double sciFindStPosMin(const double x[], int n);
 int checkMonotony(const double vector[], int nbElement);
 
 /**
- * copy an array into another
- */
-void doubleArrayCopy(double dest[], const double src[], int nbElement);
-
-/**
- * copy an int array into another
- */
-void intArrayCopy(int dest[], const int src[], int nbElement);
-
-/**
  * free an array of strings
  */
 void destroyStringArray(char * src[], int nbStrings);

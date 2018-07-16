@@ -102,11 +102,6 @@ int checkMonotony(const double vector[], int nbElement)
 
 }
 
-void doubleArrayCopy(double dest[], const double src[], int nbElement)
-{
-    memcpy( dest, src, nbElement * sizeof(double) ) ;
-}
-
 void destroyStringArray(char * src[], int nbStrings)
 {
     freeArrayOfString(src, nbStrings);

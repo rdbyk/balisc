@@ -7,7 +7,7 @@
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -42,7 +42,6 @@
 #include "Format.h"
 #include "sci_malloc.h"
 #include "GetProperty.h"
-#include "BasicAlgos.h"
 #include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -704,8 +703,8 @@ static void GradFixedlog(double minVal, double maxVal, double* outTicks, int nbG
         FREE(removedTicks);
 
     }
-    doubleArrayCopy(outTicks, tempTicks, nbGrads);
 
+    memcpy(outTicks, tempTicks, nbGrads * sizeof(double));
 }
 
 

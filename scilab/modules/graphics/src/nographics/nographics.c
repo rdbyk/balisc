@@ -225,12 +225,6 @@ int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgra
 }
 
 /*--------------------------------------------------------------------------*/
-void doubleArrayCopy(double dest[], const double src[], int nbElement)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 BOOL sciIsExistingFigure(int figNum)
 {
     return FALSE;
