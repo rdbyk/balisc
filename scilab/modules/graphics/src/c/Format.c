@@ -799,22 +799,6 @@ static int GradLog(double   _min   ,
     return 0;
 }
 
-/**
-* get the exponent used for log axis from given data bounds
-* @return 0 if OK, -1 if negative bounds.
-*/
-int sciGetLogExponent(double minBound, double maxBound, double* expMin, double* expMax)
-{
-    if (minBound > 0)
-    {
-        *expMin = floor(log10(minBound));
-        *expMax = ceil( log10(maxBound));
-        return 0;
-    }
-    *expMax = 1.0;
-    *expMin = 0.0;
-    return -1;
-}
 /*--------------------------------------------------------------------------*/
 /*
  * This function has been adapted to the MVC framework (property get calls)
