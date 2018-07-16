@@ -23,12 +23,10 @@
 #ifndef _BASIC_ALGOS_H_
 #define _BASIC_ALGOS_H_
 
-#include "BOOL.h"
-
 /**
- * Find the striclty positive minimum value of an array of double.
+ * Find the strictly positive minimum value of an array of double.
  * @param[in] x array of size n.
- * @return The stricly posistive minimum of x if exists, a negative value otherwise
+ * @return The strictly posistive minimum of x if exists, a negative value otherwise
  */
 double sciFindStPosMin(const double x[], int n);
 
@@ -40,10 +38,5 @@ double sciFindStPosMin(const double x[], int n);
  * @param nbElement must be greater than 2.
  */
 int checkMonotony(const double vector[], int nbElement);
-
-/**
- * free an array of strings
- */
-void destroyStringArray(char * src[], int nbStrings);
 
 #endif /* _BASIC_ALGOS_H_ */

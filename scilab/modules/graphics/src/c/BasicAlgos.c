@@ -101,8 +101,3 @@ int checkMonotony(const double vector[], int nbElement)
     return 0 ;
 
 }
-
-void destroyStringArray(char * src[], int nbStrings)
-{
-    freeArrayOfString(src, nbStrings);
-}

@@ -40,7 +40,7 @@
 #include "BuildObjects.h"
 #include "sciprint.h"
 #include "HandleManagement.h"
-#include "BasicAlgos.h"
+#include "freeArrayOfString.h"
 
 #include "sci_malloc.h"             /* MALLOC */
 #include "localization.h"
@@ -469,7 +469,7 @@ int InitAxesModel()
 
         if (stringVector[i] == NULL)
         {
-            destroyStringArray(stringVector, i);
+            freeArrayOfString(stringVector, i);
             return -1;
         }
     }
@@ -495,14 +495,14 @@ int InitAxesModel()
 
         if (stringVector[i] == NULL)
         {
-            destroyStringArray(stringVector, defaultNumberTicks);
+            freeArrayOfString(stringVector, defaultNumberTicks);
             return -1;
         }
     }
 
     setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
 
-    destroyStringArray(stringVector, defaultNumberTicks);
+    freeArrayOfString(stringVector, defaultNumberTicks);
 
     /*
      * Indicates the direction of projection (0 for the axis corresponding to the direction,
