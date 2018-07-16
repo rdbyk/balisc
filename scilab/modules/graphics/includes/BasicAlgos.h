@@ -52,11 +52,6 @@ void doubleArrayCopy(double dest[], const double src[], int nbElement);
 void intArrayCopy(int dest[], const int src[], int nbElement);
 
 /**
- * copy a char * array into another
- */
-BOOL stringArrayCopy(char * dest[], char * src[], int nbElement);
-
-/**
  * free an array of strings
  */
 void destroyStringArray(char * src[], int nbStrings);

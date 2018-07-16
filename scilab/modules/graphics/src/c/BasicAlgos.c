@@ -107,27 +107,6 @@ void doubleArrayCopy(double dest[], const double src[], int nbElement)
     memcpy( dest, src, nbElement * sizeof(double) ) ;
 }
 
-BOOL stringArrayCopy(char * dest[], char * src[], int nbElement)
-{
-    int i = 0;
-    for ( i = 0 ; i < nbElement ; i++ )
-    {
-        int elemSize =  (int)strlen( src[i] ) + 1 ;
-        FREE( dest[i] ) ;
-
-        dest[i] = MALLOC( elemSize * sizeof(char) ) ;
-
-        if ( dest[i] == NULL )
-        {
-            destroyStringArray( dest, nbElement ) ;
-            return FALSE;
-        }
-
-        strcpy( dest[i], src[i] ) ;
-    }
-    return TRUE;
-}
-
 void destroyStringArray(char * src[], int nbStrings)
 {
     freeArrayOfString(src, nbStrings);
