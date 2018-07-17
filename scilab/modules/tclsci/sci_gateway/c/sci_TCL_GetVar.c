@@ -26,7 +26,7 @@
 #include "sci_malloc.h"
 #include "GlobalTclInterp.h"
 #include "os_string.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 int sci_TCL_GetVar(char *fname, void* pvApiCtx)
@@ -130,22 +130,22 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                        freeArrayOfString(ReturnArrayString, nb_lines * nb_columns);
-                        freeArrayOfString(index_list, nb_lines * nb_columns);
+                        freeArrayOfPtrs((void**)ReturnArrayString, nb_lines * nb_columns);
+                        freeArrayOfPtrs((void**)index_list, nb_lines * nb_columns);
                         freeAllocatedSingleString(VarName);
                         return 1;
                     }
 
                     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 
-                    freeArrayOfString(ReturnArrayString, nb_lines * nb_columns);
-                    freeArrayOfString(index_list, nb_lines * nb_columns);
+                    freeArrayOfPtrs((void**)ReturnArrayString, nb_lines * nb_columns);
+                    freeArrayOfPtrs((void**)index_list, nb_lines * nb_columns);
                     ReturnArguments(pvApiCtx);
                 }
                 else
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
-                    freeArrayOfString(index_list, nb_lines * nb_columns);
+                    freeArrayOfPtrs((void**)index_list, nb_lines * nb_columns);
                     freeAllocatedSingleString(VarName);
                     return 0;
                 }

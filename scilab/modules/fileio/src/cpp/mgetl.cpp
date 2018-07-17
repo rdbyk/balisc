@@ -18,7 +18,7 @@ extern "C"
 #include <stdio.h>
 #include <stdlib.h>
 #include "mgetl.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "charEncoding.h"
 #include "sci_malloc.h"
 #include "strcmp.h"

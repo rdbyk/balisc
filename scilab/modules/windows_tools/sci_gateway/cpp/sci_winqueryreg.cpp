@@ -24,7 +24,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 /*--------------------------------------------------------------------------*/
 const std::string fname = "winqueryreg";

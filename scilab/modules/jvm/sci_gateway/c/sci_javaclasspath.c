@@ -21,7 +21,7 @@
 #include "addToClasspath.h"
 #include "getClasspath.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 int sci_javaclasspath(char *fname, void* pvApiCtx)
@@ -44,7 +44,7 @@ int sci_javaclasspath(char *fname, void* pvApiCtx)
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
-        freeArrayOfString(pstClasspath, iRows * iCols);
+        freeArrayOfPtrs((void**)pstClasspath, iRows * iCols);
     }
     else
     {
@@ -80,13 +80,13 @@ int sci_javaclasspath(char *fname, void* pvApiCtx)
                 if (!addToClasspath(pStVarOne[i], STARTUP))
                 {
                     Scierror(999, _("%s: Could not add URL to system classloader : %s.\n"), fname, pStVarOne[i]);
-                    freeArrayOfString(pStVarOne, iRows * iCols);
+                    freeArrayOfPtrs((void**)pStVarOne, iRows * iCols);
                     return 0;
                 }
             }
             LhsVar(1) = 0;
             PutLhsVar();
-            freeArrayOfString(pStVarOne, iRows * iCols);
+            freeArrayOfPtrs((void**)pStVarOne, iRows * iCols);
         }
         else
         {

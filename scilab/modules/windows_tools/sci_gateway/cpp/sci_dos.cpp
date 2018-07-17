@@ -27,7 +27,7 @@ extern "C"
 #include "FileExist.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "getshortpathname.h"
 #include "api_scilab.h"
 #include "charEncoding.h"
@@ -294,7 +294,7 @@ int sci_dos(char *fname, void* pvApiCtx)
         StatusExit = NULL;
     }
 
-    freeArrayOfString(Output, numberoflines);
+    freeArrayOfPtrs((void**)Output, numberoflines);
 
     ClosePipeInfo(pipeSpawnOut);
     ClosePipeInfo(pipeSpawnErr);

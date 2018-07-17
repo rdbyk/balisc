@@ -22,7 +22,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "charEncoding.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "getFullFilename.h"
 }
 /*--------------------------------------------------------------------------*/

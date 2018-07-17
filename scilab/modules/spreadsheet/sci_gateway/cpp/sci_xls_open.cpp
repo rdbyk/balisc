@@ -34,7 +34,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "mopen.h"
 #include "sci_tmpdir.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "FileExist.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -258,7 +258,7 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
             pStrSst->set(i, wcssst);
             free(wcssst);
         }
-        freeArrayOfString(sst, ns);
+        freeArrayOfPtrs((void**)sst, ns);
         out.push_back(pStrSst);
     }
     else
@@ -276,7 +276,7 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
             pStrSheets->set(i, wcssheet);
             free(wcssheet);
         }
-        freeArrayOfString(Sheetnames, nsheets);
+        freeArrayOfPtrs((void**)Sheetnames, nsheets);
         out.push_back(pStrSheets);
 
         if (Abspos)

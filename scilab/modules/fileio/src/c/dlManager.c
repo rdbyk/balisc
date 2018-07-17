@@ -33,7 +33,7 @@
 #include "splitpath.h"
 #include "getScilabPreference.h"
 #include "os_string.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "strlen.h"
 #include "strcmp.h"
 #include "strchr.h"
@@ -154,7 +154,7 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     }
     else
     {
-        freeArrayOfString(values, N);
+        freeArrayOfPtrs((void**)values, N);
         return 0;
     }
 

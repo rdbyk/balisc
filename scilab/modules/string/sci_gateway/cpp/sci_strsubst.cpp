@@ -27,7 +27,7 @@ extern "C"
 #include "Scierror.h"
 #include "pcre_error.h"
 #include "pcre_private.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 using types::Double;
@@ -117,7 +117,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
         pwstOutput = wcssubst_reg(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace, &iErr);
         if (iErr != NO_MATCH && iErr != PCRE_FINISHED_OK && iErr != PCRE_EXIT)
         {
-            freeArrayOfWideString(pwstOutput, pOut->getSize());
+            freeArrayOfPtrs((void**)pwstOutput, pOut->getSize());
             pcre_error(fname, iErr);
             delete pOut;
             return Function::Error;
@@ -129,7 +129,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
     }
 
     pOut->set(pwstOutput);
-    freeArrayOfWideString(pwstOutput, pOut->getSize());
+    freeArrayOfPtrs((void**)pwstOutput, pOut->getSize());
     out.push_back(pOut);
     return Function::OK;
 }

@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "convertbase.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 /*--------------------------------------------------------------------------*/
 int sci_dec2base(char *fname, void* pvApiCtx)
 {
@@ -166,7 +166,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
     convertedValues = convertMatrixOfDec2Base(dValues, m * n, iBaseUsed, nbDigits, &err);
     if ((err != ERROR_CONVERTBASE_OK) || (convertedValues == NULL))
     {
-        freeArrayOfString(convertedValues, m * n);
+        freeArrayOfPtrs((void**)convertedValues, m * n);
         convertedValues = NULL;
 
         switch (err)
@@ -191,7 +191,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
     }
 
     sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m, n, (char const * const*) convertedValues);
-    freeArrayOfString(convertedValues, m * n);
+    freeArrayOfPtrs((void**)convertedValues, m * n);
     convertedValues = NULL;
 
     if (sciErr.iErr)

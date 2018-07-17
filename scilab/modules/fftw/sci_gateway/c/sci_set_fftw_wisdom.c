@@ -21,7 +21,7 @@
 #include "sci_malloc.h"
 #include "gw_fftw.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "Scierror.h"
 #include "strlen.h"
 /*--------------------------------------------------------------------------*/
@@ -101,7 +101,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         free(piLen);
-        freeArrayOfString(Str1, m1 * n1);
+        freeArrayOfPtrs((void**)Str1, m1 * n1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -123,7 +123,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
 
         if (Str == NULL)
         {
-            freeArrayOfString(Str1, m1 * n1);
+            freeArrayOfPtrs((void**)Str1, m1 * n1);
             free(piLen);
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
             return 1;
@@ -139,7 +139,7 @@ int sci_set_fftw_wisdom(char *fname, void* pvApiCtx)
     Str[k - 1] = '\0';
 
     free(piLen);
-    freeArrayOfString(Str1, m1 * n1);
+    freeArrayOfPtrs((void**)Str1, m1 * n1);
 
     if (!(call_fftw_import_wisdom_from_string(Str)))
     {

@@ -21,7 +21,7 @@
 #include "addToLibrarypath.h"
 #include "getLibrarypath.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 int sci_javalibrarypath(char *fname, void* pvApiCtx)
@@ -44,7 +44,7 @@ int sci_javalibrarypath(char *fname, void* pvApiCtx)
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
-        freeArrayOfString(pstLibrarypath, iRows * iCols);
+        freeArrayOfPtrs((void**)pstLibrarypath, iRows * iCols);
     }
     else
     {
@@ -80,13 +80,13 @@ int sci_javalibrarypath(char *fname, void* pvApiCtx)
                 if (!addToLibrarypath(pStVarOne[i]))
                 {
                     Scierror(999, _("%s: Could not add path to java.library.path: %s.\n"), fname, pStVarOne[i]);;
-                    freeArrayOfString(pStVarOne, iRows * iCols);
+                    freeArrayOfPtrs((void**)pStVarOne, iRows * iCols);
                     return 0;
                 }
             }
             LhsVar(1) = 0;
             PutLhsVar();
-            freeArrayOfString(pStVarOne, iRows * iCols);
+            freeArrayOfPtrs((void**)pStVarOne, iRows * iCols);
         }
         else
         {

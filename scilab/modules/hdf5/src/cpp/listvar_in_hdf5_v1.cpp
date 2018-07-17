@@ -27,7 +27,7 @@ extern "C"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile_v1.h"
 #include "expandPathVariable.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 #include <vector>
@@ -137,7 +137,7 @@ int sci_listvar_in_hdf5_v1(char *fname, int* pvCtx)
             }
         }
 
-        freeArrayOfString(pstVarNameList, iNbItem);
+        freeArrayOfPtrs((void**)pstVarNameList, iNbItem);
     }
     else
     {

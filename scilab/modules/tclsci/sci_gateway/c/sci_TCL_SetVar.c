@@ -19,7 +19,7 @@
 #include "setvar.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "GlobalTclInterp.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/

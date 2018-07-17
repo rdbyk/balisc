@@ -17,7 +17,7 @@
 #include "splitLine.h"
 #include "strsubst.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "BOOL.h"
 #include "strlen.h"
 #include "strcmp.h"
@@ -173,7 +173,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
                             else
                             {
                                 *toks = 0;
-                                freeArrayOfString(retstr, (int)balisc_strlen(substitutedstring));
+                                freeArrayOfPtrs((void**)retstr, (int)balisc_strlen(substitutedstring));
                                 FREE(substitutedstring);
                                 return NULL;
                             }
@@ -232,7 +232,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         if (!addToken(retstr, &curr_str, (char*)(idx - len), len))
         {
             *toks = 0;
-            freeArrayOfString(retstr, (int)balisc_strlen(substitutedstring));
+            freeArrayOfPtrs((void**)retstr, (int)balisc_strlen(substitutedstring));
             FREE(substitutedstring);
             return NULL;
         }

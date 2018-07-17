@@ -17,7 +17,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "sci_malloc.h"
 #include "getPartLine.h"
 /*--------------------------------------------------------------------------*/

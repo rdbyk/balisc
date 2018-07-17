@@ -17,7 +17,7 @@
 
 #include "api_scilab.h"
 #include "CreateMatlabVariable.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_string.h"
 #include "sci_malloc.h"
 #include "localization.h"
@@ -52,7 +52,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
             if (charData[K] == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), "CreateCharVariable");
-                freeArrayOfString(charData, K);
+                freeArrayOfPtrs((void**)charData, K);
                 return FALSE;
             }
         }
@@ -75,7 +75,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    freeArrayOfString(charData, nbRow);
+                    freeArrayOfPtrs((void**)charData, nbRow);
                     return 0;
                 }
             }
@@ -85,7 +85,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    freeArrayOfString(charData, nbRow);
+                    freeArrayOfPtrs((void**)charData, nbRow);
                     return 0;
                 }
             }
@@ -109,14 +109,14 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    freeArrayOfString(tmp_char, 1);
+                    freeArrayOfPtrs((void**)tmp_char, 1);
                     return 0;
                 }
-                freeArrayOfString(tmp_char, 1);
+                freeArrayOfPtrs((void**)tmp_char, 1);
             }
         }
 
-        freeArrayOfString(charData, nbRow * nbCol);
+        freeArrayOfPtrs((void**)charData, nbRow * nbCol);
     }
     else /* Multi-dimension array -> Scilab HyperMatrix */
     {

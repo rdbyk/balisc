@@ -13,13 +13,24 @@
  *
  */
 
-#ifndef __freeArrayOfString_H__
-#define __freeArrayOfString_H__
+#include "freeArrayOfPtrs.h"
+#include "sci_malloc.h"
 
-#include <wchar.h>
+void freeArrayOfPtrs(void **ptr, int n)
+{
+    if (ptr)
+    {
+        int i = 0;
 
-void freeArrayOfString(char **Str, int dim);
-void freeArrayOfWideString(wchar_t **wcStr, int dim);
-void freeArray(void **pArray, int dim);
+        for (i = 0; i < n; i++)
+        {
+            if (ptr[i])
+            {
+                FREE(ptr[i]);
+            }
+        }
 
-#endif
+        FREE(ptr);
+        ptr = NULL;
+    }
+}

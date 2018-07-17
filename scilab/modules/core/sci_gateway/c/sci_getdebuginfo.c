@@ -17,7 +17,7 @@
 #include "api_scilab.h"
 #include "version.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #ifdef _MSC_VER
 #include "getdynamicDebugInfo_Windows.h"
 #include "getstaticDebugInfo_Windows.h"
@@ -49,8 +49,8 @@ int sci_getdebuginfo(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        freeArrayOfString(outputDynamicList, m1);
-        freeArrayOfString(outputStaticList, m2);
+        freeArrayOfPtrs((void**)outputDynamicList, m1);
+        freeArrayOfPtrs((void**)outputStaticList, m2);
         return 0;
     }
 
@@ -62,15 +62,15 @@ int sci_getdebuginfo(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            freeArrayOfString(outputDynamicList, m1);
-            freeArrayOfString(outputStaticList, m2);
+            freeArrayOfPtrs((void**)outputDynamicList, m1);
+            freeArrayOfPtrs((void**)outputStaticList, m2);
             return 0;
         }
 
         LhsVar(2) = Rhs + 2;
     }
-    freeArrayOfString(outputDynamicList, m1);
-    freeArrayOfString(outputStaticList, m2);
+    freeArrayOfPtrs((void**)outputDynamicList, m1);
+    freeArrayOfPtrs((void**)outputStaticList, m2);
 
     PutLhsVar();
     return 0;

@@ -29,7 +29,7 @@ extern "C"
 #include "mopen.h"
 #include "mclose.h"
 #include "expandPathVariable.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -147,7 +147,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
         types::String *pS = new types::String(iLinesRead, 1);
         pS->set(wcReadStrings);
         out.push_back(pS);
-        freeArrayOfWideString(wcReadStrings, iLinesRead);
+        freeArrayOfPtrs((void**)wcReadStrings, iLinesRead);
     }
     else
     {

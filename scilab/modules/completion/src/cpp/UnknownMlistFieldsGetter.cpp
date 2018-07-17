@@ -18,7 +18,7 @@
 
 extern "C"
 {
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "api_scilab.h"
 #include "sci_malloc.h"
 #include "strcmp.h"
@@ -71,7 +71,7 @@ const char ** UnknownMlistFieldsGetter::getFieldsName(int * mlist, char ** field
     rc = rows * cols;
     if (rc == 1)
     {
-        freeArrayOfString(pstData, rc);
+        freeArrayOfPtrs((void**)pstData, rc);
         return 0;
     }
 
@@ -90,7 +90,7 @@ const char ** UnknownMlistFieldsGetter::getFieldsName(int * mlist, char ** field
     {
         if (!balisc_strcmp(pstData[i], fieldPath[0]))
         {
-            freeArrayOfString(pstData, rc);
+            freeArrayOfPtrs((void**)pstData, rc);
             int * itemAddr = 0;
             sciErr = getListItemAddress(NULL, mlist, i + 1, &itemAddr);
             if (sciErr.iErr)
@@ -101,7 +101,7 @@ const char ** UnknownMlistFieldsGetter::getFieldsName(int * mlist, char ** field
             return FieldsManager::getFields(itemAddr, fieldPath, fieldPathLen, fieldsSize);
         }
     }
-    freeArrayOfString(pstData, rc);
+    freeArrayOfPtrs((void**)pstData, rc);
 
     return 0;
 }

@@ -23,7 +23,7 @@
 #include "FigureList.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_string.h"
 #include "configvariable_interface.h"
 #include "getGraphicObjectProperty.h"

@@ -24,7 +24,7 @@
 #include "sci_malloc.h"
 #include "csvWrite.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "csvDefault.h"
 #include "checkCsvWriteFormat.h"
 #include "gw_csv_helpers.h"
@@ -325,7 +325,7 @@ static void freeVar(char** separator, char** decimal, char** filename, char** pr
 
     if (pHeadersLines && *pHeadersLines)
     {
-        freeArrayOfString(*pHeadersLines, sizeHeader);
+        freeArrayOfPtrs((void**)*pHeadersLines, sizeHeader);
         *pHeadersLines = NULL;
     }
 

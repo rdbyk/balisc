@@ -22,7 +22,7 @@ extern "C"
 #include "CallMessageBox.h"
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 /*--------------------------------------------------------------------------*/
 int sci_x_dialog(char *fname, void* pvApiCtx)

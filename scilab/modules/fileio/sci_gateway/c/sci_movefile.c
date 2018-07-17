@@ -29,7 +29,7 @@
 #include "movefile.h"
 #include "isdir.h"
 #include "splitpath.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "charEncoding.h"
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/

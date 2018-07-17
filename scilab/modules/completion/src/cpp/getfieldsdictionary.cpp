@@ -27,7 +27,7 @@ extern "C"
 #include "getfieldsdictionary.h"
 #include "getPartLine.h"
 #include "completion.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "charEncoding.h"
 #include "getfields.h"
 }

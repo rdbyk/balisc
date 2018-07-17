@@ -22,7 +22,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "sci_malloc.h"
 #include "csvRead.h"
 #include "stringToComplex.h"
@@ -285,7 +285,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
                         if (pStrRange)
                         {
                             sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, newM, newN, pStrRange);
-                            freeArrayOfString(pStrRange, newM * newN);
+                            freeArrayOfPtrs((void**)pStrRange, newM * newN);
                         }
                         else
                         {
@@ -529,7 +529,7 @@ static void freeVar(char** filename, char** separator, char** decimal, char** co
 
     if (toreplace && *toreplace)
     {
-        freeArrayOfString(*toreplace, sizeReplace);
+        freeArrayOfPtrs((void**)*toreplace, sizeReplace);
         *toreplace = NULL;
     }
 

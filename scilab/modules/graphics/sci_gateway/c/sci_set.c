@@ -32,7 +32,7 @@
 #include "HandleManagement.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 
 #include "SetHashTable.h"
 #include "SetPropertyStatus.h"

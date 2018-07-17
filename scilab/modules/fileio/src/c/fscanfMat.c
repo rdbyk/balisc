@@ -28,7 +28,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "os_string.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "mgetl.h"
 #include "mopen.h"
 #include "mclose.h"
@@ -148,7 +148,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
             resultFscanfMat->text = NULL;
             resultFscanfMat->values = NULL;
         }
-        freeArrayOfWideString(pwstLines, nblines);
+        freeArrayOfPtrs((void**)pwstLines, nblines);
         return resultFscanfMat;
     }
 
@@ -158,7 +158,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         lines[i] = wide_string_to_UTF8(pwstLines[i]);
     }
 
-    freeArrayOfWideString(pwstLines, nblines);
+    freeArrayOfPtrs((void**)pwstLines, nblines);
 
     lines = removeEmptyLinesAtTheEnd(lines, &nblines);
     lines = removeTextLinesAtTheEnd(lines, &nblines, format, separator);
@@ -193,7 +193,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
             }
             else
             {
-                freeArrayOfString(lines, nblines);
+                freeArrayOfPtrs((void**)lines, nblines);
                 resultFscanfMat->text = NULL;
             }
             resultFscanfMat->sizeText = nbLinesTextDetected;
@@ -205,12 +205,12 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         else
         {
             FREE(dValues);
-            freeArrayOfString(lines, nblines);
+            freeArrayOfPtrs((void**)lines, nblines);
         }
     }
     else
     {
-        freeArrayOfString(lines, nblines);
+        freeArrayOfPtrs((void**)lines, nblines);
         if (nbColumns == 0 || nbRows == 0)
         {
             resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
@@ -234,7 +234,7 @@ void freeFscanfMatResult(fscanfMatResult *resultStruct)
     {
         if (resultStruct->text)
         {
-            freeArrayOfString(resultStruct->text, resultStruct->sizeText);
+            freeArrayOfPtrs((void**)resultStruct->text, resultStruct->sizeText);
             resultStruct->text = NULL;
         }
 
@@ -357,7 +357,7 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
         char **splittedStr = splitLine(line, separator, &nbTokens, 0);
         if (nbTokens == 0)
         {
-            freeArrayOfString(splittedStr, nbTokens);
+            freeArrayOfPtrs((void**)splittedStr, nbTokens);
             return nbColums;
         }
         if (splittedStr)
@@ -387,7 +387,7 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                         }
                         else
                         {
-                            freeArrayOfString(splittedStr, nbTokens);
+                            freeArrayOfPtrs((void**)splittedStr, nbTokens);
                             /* bug 6889 */
                             if (nbColums)
                             {
@@ -402,7 +402,7 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                     {
                         FREE(str);
                         str = NULL;
-                        freeArrayOfString(splittedStr, nbTokens);
+                        freeArrayOfPtrs((void**)splittedStr, nbTokens);
                         return nbColums;
                     }
 
@@ -410,7 +410,7 @@ static int getNbColumnsInLine(char *line, char *format, char *separator)
                     str = NULL;
                 }
             }
-            freeArrayOfString(splittedStr, nbTokens);
+            freeArrayOfPtrs((void**)splittedStr, nbTokens);
         }
     }
     return nbColums;
@@ -478,7 +478,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
 
                         if (retstr[curr_str] == NULL)
                         {
-                            freeArrayOfString(retstr, curr_str);
+                            freeArrayOfPtrs((void**)retstr, curr_str);
                             *toks = 0;
                             return NULL;
                         }
@@ -654,7 +654,7 @@ static double *getDoubleValuesInLine(char *line,
                         }
                         else
                         {
-                            freeArrayOfString(splittedStr, nbTokens);
+                            freeArrayOfPtrs((void**)splittedStr, nbTokens);
                             FREE(dValues);
                             dValues = NULL;
                             FREE(str);
@@ -664,7 +664,7 @@ static double *getDoubleValuesInLine(char *line,
                     }
                     else
                     {
-                        freeArrayOfString(splittedStr, nbTokens);
+                        freeArrayOfPtrs((void**)splittedStr, nbTokens);
                         FREE(dValues);
                         dValues = NULL;
                         FREE(str);
@@ -675,7 +675,7 @@ static double *getDoubleValuesInLine(char *line,
                     str = NULL;
                 }
             }
-            freeArrayOfString(splittedStr, nbTokens);
+            freeArrayOfPtrs((void**)splittedStr, nbTokens);
         }
     }
 

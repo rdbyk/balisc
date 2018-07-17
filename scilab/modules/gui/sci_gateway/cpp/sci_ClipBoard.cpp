@@ -30,7 +30,7 @@ extern "C"
 #include "sciprint.h"
 #include "configvariable_interface.h" /* FIXME: enum scilabMode */
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "CallClipboard.h"
 #include "os_string.h"
 #include "FigureList.h"
@@ -269,7 +269,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                             {
                                 freeAllocatedMatrixOfString(m2, n2, Str);
                                 Scierror(999, _("%s: No more memory.\n"), fname);
-                                freeArrayOfString(buffer, m2 * n2);
+                                freeArrayOfPtrs((void**)buffer, m2 * n2);
 
                                 return FALSE;
                             }
@@ -292,7 +292,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
 
                             FREE(buffer);
                             buffer = NULL;
-                            freeArrayOfString(buffer, m2 * n2);
+                            freeArrayOfPtrs((void**)buffer, m2 * n2);
                             FREE(TextToSendInClipboard);
                             TextToSendInClipboard = NULL;
                         }

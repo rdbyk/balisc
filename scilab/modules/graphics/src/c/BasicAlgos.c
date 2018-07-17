@@ -23,7 +23,7 @@
 #include "BasicAlgos.h"
 #include "sci_malloc.h"
 #include "core_math.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "returnanan.h"
 
 double sciFindStPosMin(const double x[], int n)

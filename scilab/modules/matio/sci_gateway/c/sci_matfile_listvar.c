@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_string.h"
 
 int sci_matfile_listvar(char *fname, void* pvApiCtx)
@@ -172,7 +172,7 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            freeArrayOfString(varnames, nbvar);
+            freeArrayOfPtrs((void**)varnames, nbvar);
             FREE(varclasses);
             FREE(vartypes);
             return 0;
@@ -186,7 +186,7 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                freeArrayOfString(varnames, nbvar);
+                freeArrayOfPtrs((void**)varnames, nbvar);
                 FREE(varclasses);
                 FREE(vartypes);
                 return 0;
@@ -201,7 +201,7 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                freeArrayOfString(varnames, nbvar);
+                freeArrayOfPtrs((void**)varnames, nbvar);
                 FREE(varclasses);
                 FREE(vartypes);
                 return 0;
@@ -210,7 +210,7 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
         }
     }
 
-    freeArrayOfString(varnames, nbvar);
+    freeArrayOfPtrs((void**)varnames, nbvar);
     FREE(varclasses);
     FREE(vartypes);
 

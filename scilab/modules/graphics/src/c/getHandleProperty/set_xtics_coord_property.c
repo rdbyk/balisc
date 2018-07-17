@@ -28,7 +28,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "Format.h"
 #include "sci_malloc.h"
 
@@ -126,7 +126,7 @@ int set_xtics_coord_property(void* _pvCtx, int iObjUID, void* _pvData, int value
 
     FREE(vector);
 
-    freeArrayOfString(stringVector, N);
+    freeArrayOfPtrs((void**)stringVector, N);
 
     if (status == TRUE)
     {

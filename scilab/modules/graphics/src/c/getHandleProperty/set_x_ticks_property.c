@@ -32,7 +32,7 @@
 #include "CheckTicksProperty.h"
 #include "sci_malloc.h"
 #include "BasicAlgos.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "loadTextRenderingAPI.h"
 #include "sci_types.h"
 

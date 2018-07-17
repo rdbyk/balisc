@@ -73,7 +73,7 @@ int sci_bug9264(char *fname, void* pvApiCtx)
             str[i] = (char*)MALLOC(sizeof(char) * (lengths[i] + 1));
             if (str[i] == NULL)
             {
-                freeArrayOfString(str, i);
+                freeArrayOfPtrs((void**)str, i);
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
             }
@@ -82,7 +82,7 @@ int sci_bug9264(char *fname, void* pvApiCtx)
         err = getMatrixOfString(pvApiCtx, piAddressVarOne, &rows, &cols, lengths, str);
 
         FREE(lengths);
-        freeArrayOfString(str, size);
+        freeArrayOfPtrs((void**)str, size);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;

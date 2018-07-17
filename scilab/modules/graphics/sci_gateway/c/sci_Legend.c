@@ -29,7 +29,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "Axes.h" /* propertyNameToLegendPlace */
 #include "HandleManagement.h"
 

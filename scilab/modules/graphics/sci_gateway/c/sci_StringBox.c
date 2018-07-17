@@ -30,7 +30,7 @@
 #include "axesScale.h"
 #include "getPropertyAssignedValue.h"
 #include "HandleManagement.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "BuildObjects.h"
 
 #include "getGraphicObjectProperty.h"

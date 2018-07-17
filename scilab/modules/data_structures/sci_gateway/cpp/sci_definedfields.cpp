@@ -26,7 +26,7 @@ extern "C"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 /*-----------------------------------------------------------------------------------*/

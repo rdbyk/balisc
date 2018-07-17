@@ -21,7 +21,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "strsubst.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "expandPathVariable.h"
 
 int sci_addlocalizationdomain(char *fname, void* pvApiCtx)

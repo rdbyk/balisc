@@ -22,7 +22,7 @@ CORE_C_SOURCES = \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
     src/c/commandwords.c \
-    src/c/freeArrayOfString.c \
+    src/c/freeArrayOfPtrs.c \
     src/c/getstaticdebuginfo.c \
     src/c/getdynamicdebuginfo.c \
     src/c/setPrecisionFPU.c \
@@ -226,7 +226,7 @@ includes/backtrace_print.h \
 includes/BOOL.h \
 includes/core_math.h \
 includes/exit_status.hxx \
-includes/freeArrayOfString.h \
+includes/freeArrayOfPtrs.h \
 includes/getmemory.h \
 includes/getos.h \
 includes/getversion.h \

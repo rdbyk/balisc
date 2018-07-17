@@ -29,7 +29,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "dl_genErrorMessage.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "sciprint.h"
 }
 

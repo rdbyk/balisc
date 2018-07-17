@@ -46,7 +46,7 @@ extern "C"
 #include "os_string.h"
 #include "os_wfopen.h"
 #include "sciprint.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "Scierror.h"
 #include "scicurdir.h"
 #include "md5.h"
@@ -239,7 +239,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
                 Scierror(999, _("%s: Cannot open file ''%s''.\n"), "genlib", pstr);
                 FREE(pstr);
                 FREE(pstParsePath);
-                freeArrayOfWideString(pstPath, iNbFile);
+                freeArrayOfPtrs((void**)pstPath, iNbFile);
                 pLib->killMe();
                 return types::Function::Error;
             }
@@ -292,7 +292,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
                     FREE(str);
 
                     FREE(pstParsePath);
-                    freeArrayOfWideString(pstPath, iNbFile);
+                    freeArrayOfPtrs((void**)pstPath, iNbFile);
                     closeXMLFile(pWriter);
                     delete pLib;
                     return types::Function::Error;
@@ -352,7 +352,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         {
             Scierror(999, _("Redefining permanent variable.\n"));
 
-            freeArrayOfWideString(pstPath, iNbFile);
+            freeArrayOfPtrs((void**)pstPath, iNbFile);
             FREE(pstParsePath);
             closeXMLFile(pWriter);
             delete pLib;
@@ -360,7 +360,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         }
     }
 
-    freeArrayOfWideString(pstPath, iNbFile);
+    freeArrayOfPtrs((void**)pstPath, iNbFile);
 
     out.push_back(new types::Bool(succes));
 

@@ -29,7 +29,7 @@
 #include "localization.h"
 #include "get_ticks_utils.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -74,7 +74,7 @@ void* get_y_ticks_property(void* _pvCtx, int iObjUID)
 
         /* free arrays */
 #if 0
-        freeArrayOfString(labels, iNbTicks);
+        freeArrayOfPtrs((void**)labels, iNbTicks);
         FREE(positions);
 #endif
     }

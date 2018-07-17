@@ -24,7 +24,7 @@ extern "C"
 {
 #include "sci_types.h"
 #include "api_scilab.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "sci_malloc.h"
 }
 

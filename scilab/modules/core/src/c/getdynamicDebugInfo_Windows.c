@@ -29,7 +29,7 @@
 #include "charEncoding.h"
 #include "os_string.h"
 #include "getVideoAdapters.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "GetWindowsVersion.h"
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyCPUIdentifier(void);
@@ -204,7 +204,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
                 outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
             }
         }
-        freeArrayOfString(DevicesName, nbDevices);
+        freeArrayOfPtrs((void**)DevicesName, nbDevices);
         DevicesName = NULL;
     }
     else

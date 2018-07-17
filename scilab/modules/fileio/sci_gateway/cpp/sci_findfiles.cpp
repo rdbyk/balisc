@@ -30,7 +30,7 @@ extern "C"
 #include "PATH_MAX.h"
 #include "os_string.h"
 #include "scicurdir.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -99,7 +99,7 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
     {
         types::String* pS = new types::String(iSize, 1);
         pS->set(pwstFilesList);
-        freeArrayOfWideString(pwstFilesList, iSize);
+        freeArrayOfPtrs((void**)pwstFilesList, iSize);
         out.push_back(pS);
     }
     else

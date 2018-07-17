@@ -28,7 +28,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "loadTextRenderingAPI.h"
 
 #include "setGraphicObjectProperty.h"
@@ -70,7 +70,7 @@ int set_tics_labels_property(void* _pvCtx, int iObjUID, void* _pvData, int value
 
     status = setGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, nbRow * nbCol);
 
-    freeArrayOfString(stringVector, nbRow * nbCol);
+    freeArrayOfPtrs((void**)stringVector, nbRow * nbCol);
 
     if (status == TRUE)
     {

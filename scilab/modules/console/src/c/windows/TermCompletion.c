@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include "TermCompletion.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "localization.h"
 #include "TermLine.h"
 #include "TermConsole.h"
@@ -67,8 +67,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
             //displayCompletionDictionary(dictionaryFiles, sizedictionaryFiles, gettext("File or Directory"));
             displayCompletionDictionary(files, sizeFiles, gettext("File"));
             displayCompletionDictionary(directories, sizeDirectories, gettext("Directory"));
-            freeArrayOfString(files, sizeFiles);
-            freeArrayOfString(directories, sizeDirectories);
+            freeArrayOfPtrs((void**)files, sizeFiles);
+            freeArrayOfPtrs((void**)directories, sizeDirectories);
 
             displayPrompt();
             newLine();
@@ -232,7 +232,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 {
                     commonAll = getCommonPart(completionDictionaryFields, sizecompletionDictionaryFields);
                     displayCompletionDictionary(completionDictionaryFields, sizecompletionDictionaryFields, (char *)_("Scilab Fields"));
-                    freeArrayOfString(completionDictionaryFields, sizecompletionDictionaryFields);
+                    freeArrayOfPtrs((void**)completionDictionaryFields, sizecompletionDictionaryFields);
                 }
                 else
                 {
@@ -256,7 +256,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                         {
                             commonAll = getCommonPart(commonsDictionary, sizecommonsDictionary);
                         }
-                        freeArrayOfString(commonsDictionary, sizecommonsDictionary);
+                        freeArrayOfPtrs((void**)commonsDictionary, sizecommonsDictionary);
                     }
 
                     displayCompletionDictionary(completionDictionaryFunctions, sizecompletionDictionaryFunctions, (char *)_("Scilab Function"));
@@ -264,11 +264,11 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                     displayCompletionDictionary(completionDictionaryMacros, sizecompletionDictionaryMacros, (char *)_("Scilab Macro"));
                     displayCompletionDictionary(completionDictionaryVariables, sizecompletionDictionaryVariables, (char *)_("Scilab Variable"));
                     displayCompletionDictionary(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties, (char *)_("Graphics handle field"));
-                    freeArrayOfString(completionDictionaryFunctions, sizecompletionDictionaryFunctions);
-                    freeArrayOfString(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords);
-                    freeArrayOfString(completionDictionaryMacros, sizecompletionDictionaryMacros);
-                    freeArrayOfString(completionDictionaryVariables, sizecompletionDictionaryVariables);
-                    freeArrayOfString(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties);
+                    freeArrayOfPtrs((void**)completionDictionaryFunctions, sizecompletionDictionaryFunctions);
+                    freeArrayOfPtrs((void**)completionDictionaryCommandWords, sizecompletionDictionaryCommandWords);
+                    freeArrayOfPtrs((void**)completionDictionaryMacros, sizecompletionDictionaryMacros);
+                    freeArrayOfPtrs((void**)completionDictionaryVariables, sizecompletionDictionaryVariables);
+                    freeArrayOfPtrs((void**)completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties);
                 }
 
                 displayPrompt();
@@ -311,7 +311,7 @@ void TermCompletion(void)
         TermCompletionOnFiles(completionDictionaryFiles, sizecompletionDictionaryFiles,
                               LineBeforeCaret, LineAfterCaret, fileSearchedPattern, SearchedPattern);
 
-        freeArrayOfString(completionDictionaryFiles, sizecompletionDictionaryFiles);
+        freeArrayOfPtrs((void**)completionDictionaryFiles, sizecompletionDictionaryFiles);
     }
     else
     {

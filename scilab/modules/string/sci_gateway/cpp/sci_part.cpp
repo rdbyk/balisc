@@ -26,7 +26,7 @@ extern "C"
 #include <stdio.h>
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 using types::Double;
@@ -91,7 +91,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
     delete[] piIndex;
     String* pOut = new String(pS->getRows(), pS->getCols());
     pOut->set(pwstOut);
-    freeArrayOfWideString(pwstOut, pOut->getSize());
+    freeArrayOfPtrs((void**)pwstOut, pOut->getSize());
     out.push_back(pOut);
     return Function::OK;
 }

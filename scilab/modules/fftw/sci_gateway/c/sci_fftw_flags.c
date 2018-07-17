@@ -22,7 +22,7 @@
 #include "sci_malloc.h"
 #include "gw_fftw.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "Scierror.h"
 #include "os_string.h"
 #include "strcmp.h"
@@ -226,7 +226,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     free(piLen);
-                    freeArrayOfString(Str1, m1 * n1);
+                    freeArrayOfPtrs((void**)Str1, m1 * n1);
                     printError(&sciErr, 0);
                     return 1;
                 }
@@ -244,7 +244,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                     if (i == nb_flag)
                     {
                         free(piLen);
-                        freeArrayOfString(Str1, m1 * n1);
+                        freeArrayOfPtrs((void**)Str1, m1 * n1);
                         Scierror(999, _("%s: Wrong values for input argument #%d: FFTW flag expected.\n"), fname, 1);
                         return 0;
                     }
@@ -259,7 +259,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
 
                 uiVar1 = (unsigned int)flagv;
                 free(piLen);
-                freeArrayOfString(Str1, m1 * n1);
+                freeArrayOfPtrs((void**)Str1, m1 * n1);
                 m1 = 1;
                 n1 = 1;
                 break;
@@ -334,7 +334,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
                 if (Str3[j - 1] == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
-                    freeArrayOfString(Str3, j);
+                    freeArrayOfPtrs((void**)Str3, j);
                     return 1;
                 }
             }
@@ -349,7 +349,7 @@ int sci_fftw_flags(char *fname,  void* pvApiCtx)
 
     /* Create the string matrix as return of the function */
     sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 3, j, 1, Str3);
-    freeArrayOfString(Str3, j); // Data have been copied into Scilab memory
+    freeArrayOfPtrs((void**)Str3, j); // Data have been copied into Scilab memory
 
     if (sciErr.iErr)
     {

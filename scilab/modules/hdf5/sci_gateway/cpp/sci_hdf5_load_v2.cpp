@@ -35,7 +35,7 @@ extern "C"
 #include "h5_attributeConstants.h"
 #include "expandPathVariable.h"
 #include "stdlib.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "strcmp.h"
 }
 
@@ -185,7 +185,7 @@ int sci_hdf5_load_v2(char *fn, int* pvApiCtx)
                 varList.push_back(to_wide_string(pstVarNameList[i]));
             }
 
-            freeArrayOfString(pstVarNameList, iNbItem);
+            freeArrayOfPtrs((void**)pstVarNameList, iNbItem);
         }
     }
     //close the file

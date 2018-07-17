@@ -19,7 +19,7 @@
 #include "machine.h" /* bsiz */
 #include "convertbase.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "strlen.h"
 /*--------------------------------------------------------------------------*/
 #define char_a 'a'
@@ -221,7 +221,7 @@ char **convertMatrixOfDec2Base(const double* dValues, int mn,
             convertedValues[i] = convertDec2Base(dValues[i], numberbase, nbDigits, err);
             if (*err)
             {
-                freeArrayOfString(convertedValues, mn);
+                freeArrayOfPtrs((void**)convertedValues, mn);
                 return NULL;
             }
         }

@@ -22,7 +22,7 @@
 #include "sci_malloc.h"
 #include "gw_fftw.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "Scierror.h"
 #include "strlen.h"
 /*--------------------------------------------------------------------------*/
@@ -90,7 +90,7 @@ int sci_get_fftw_wisdom(char *fname, void* pvApiCtx)
 
                 if ((Str1[n1 - 1] = (char *)MALLOC(sizeof(char) * (len + 1))) == NULL)
                 {
-                    freeArrayOfString(Str1, n1 - 1);
+                    freeArrayOfPtrs((void**)Str1, n1 - 1);
                     if (Str)
                     {
                         // According to the FFTW documentation we should free Str
@@ -136,7 +136,7 @@ int sci_get_fftw_wisdom(char *fname, void* pvApiCtx)
 
     if ((Str1[n1 - 1] = (char *)MALLOC(sizeof(char))) == NULL)
     {
-        freeArrayOfString(Str1, n1 - 1);
+        freeArrayOfPtrs((void**)Str1, n1 - 1);
         if (Str)
         {
             // According to the FFTW documentation we should free Str
@@ -150,7 +150,7 @@ int sci_get_fftw_wisdom(char *fname, void* pvApiCtx)
 
     createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, n1, 1, Str1);
 
-    freeArrayOfString(Str1, n1);
+    freeArrayOfPtrs((void**)Str1, n1);
     if (Str)
     {
         // According to the FFTW documentation we should free Str

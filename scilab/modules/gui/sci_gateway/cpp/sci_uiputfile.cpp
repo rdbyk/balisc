@@ -31,7 +31,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_string.h"
 #include "BOOL.h"
 }
@@ -159,7 +159,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         char *path = NULL;
         if (checkInputArgumentType(pvApiCtx, 2, sci_strings) == FALSE)
         {
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 1;
@@ -168,7 +168,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
         if (sciErr.iErr)
         {
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             printError(&sciErr, 0);
             return 1;
@@ -176,7 +176,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
 
         if (getAllocatedSingleString(pvApiCtx, piAddr2, &initialDirectory))
         {
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             printError(&sciErr, 0);
             return 1;
@@ -192,7 +192,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
     {
         if (checkInputArgumentType(pvApiCtx, 3, sci_strings) == FALSE)
         {
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             freeAllocatedSingleString(initialDirectory);
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
@@ -202,7 +202,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
         if (sciErr.iErr)
         {
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             freeAllocatedSingleString(initialDirectory);
             printError(&sciErr, 0);
@@ -211,7 +211,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
 
         if (getAllocatedSingleString(pvApiCtx, piAddr3, &titleBox))
         {
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             freeAllocatedSingleString(initialDirectory);
             printError(&sciErr, 0);
@@ -246,7 +246,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         }
 
         // free pointer
-        freeArrayOfString(description, nbRow);
+        freeArrayOfPtrs((void**)description, nbRow);
         freeAllocatedMatrixOfString(nbRow, nbCol, mask);
         freeAllocatedSingleString(initialDirectory);
         freeAllocatedSingleString(titleBox);
@@ -260,7 +260,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
     }
     catch (const GiwsException::JniException & e)
     {
-        freeArrayOfString(description, nbRow);
+        freeArrayOfPtrs((void**)description, nbRow);
         freeAllocatedMatrixOfString(nbRow, nbCol, mask);
         freeAllocatedSingleString(initialDirectory);
         freeAllocatedSingleString(titleBox);

@@ -31,7 +31,7 @@
 #include "configvariable_interface.h"
 #include "sciprint.h"
 #include "charEncoding.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "strlen.h"
 /*-------------------------------------------------------------------------------*/
 /* A number of things vary for Windows builds. Originally, pcretest opened its
@@ -1197,7 +1197,7 @@ pcre_error_code wide_pcre_private(const wchar_t* _pwstInput, const wchar_t* _pws
             {
                 (*_pstCapturedString)[i] = to_wide_string(pstCaptured[i]);
             }
-            freeArrayOfString(pstCaptured, *_piCapturedStringCount);
+            freeArrayOfPtrs((void**)pstCaptured, *_piCapturedStringCount);
         }
 
         FREE(pstTempStart);
@@ -1212,7 +1212,7 @@ pcre_error_code wide_pcre_private(const wchar_t* _pwstInput, const wchar_t* _pws
         if (_piCapturedStringCount && *_piCapturedStringCount > 0)
         {
             /*free unused captured field*/
-            freeArrayOfString(pstCaptured, *_piCapturedStringCount);
+            freeArrayOfPtrs((void**)pstCaptured, *_piCapturedStringCount);
         }
     }
 

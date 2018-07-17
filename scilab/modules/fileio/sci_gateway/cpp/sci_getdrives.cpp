@@ -24,7 +24,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "getdrives.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount
         dimsArray[1] = iNbDrives;
         pOut = new types::String(2, dimsArray);
         pOut->set(wcsDrives);
-        freeArrayOfWideString(wcsDrives, iNbDrives);
+        freeArrayOfPtrs((void**)wcsDrives, iNbDrives);
     }
     else
     {
