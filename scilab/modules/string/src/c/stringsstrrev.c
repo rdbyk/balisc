@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "stringsstrrev.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "sci_malloc.h"
 #include "os_string.h"
 /*----------------------------------------------------------------------------*/
@@ -36,7 +36,7 @@ wchar_t **strings_strrev(wchar_t **Input_strings, int Dim_Input_strings)
                 Output_strings[i] = scistrrev(Input_strings[i]);
                 if (Output_strings[i] == NULL)
                 {
-                    freeArrayOfWideString(Output_strings, i);
+                    freeArrayOfPtrs((void**)Output_strings, i);
                     return NULL;
                 }
             }

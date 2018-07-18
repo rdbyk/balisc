@@ -27,7 +27,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 using namespace org_scilab_modules_gui_filechooser;

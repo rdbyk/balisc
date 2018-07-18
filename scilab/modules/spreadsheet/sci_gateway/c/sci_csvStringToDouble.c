@@ -22,7 +22,7 @@
 #include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "stringToComplex.h"
 #include "csvDefault.h"
 #include "gw_csv_helpers.h"
@@ -65,7 +65,7 @@ int sci_csvStringToDouble(char *fname, void* pvApiCtx)
 
     ptrComplexArray = stringsToComplexArray((const char**)pStringValues, m1 * n1, getCsvDefaultDecimal(), bConvertToNan, &ierr);
 
-    freeArrayOfString(pStringValues, m1 * n1);
+    freeArrayOfPtrs((void**)pStringValues, m1 * n1);
     pStringValues = NULL;
 
     if (ptrComplexArray == NULL)

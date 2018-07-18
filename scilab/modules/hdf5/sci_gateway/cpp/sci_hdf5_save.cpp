@@ -39,7 +39,7 @@ extern "C"
 #include "Scierror.h"
 #include "Sciwarning.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_string.h"
 #include "deleteafile.h"
 #include "expandPathVariable.h"
@@ -328,12 +328,12 @@ static bool isVarExist(int _iFile, const char* _pstVarName)
         {
             if (balisc_strcmp(pstVarNameList[i], _pstVarName) == 0)
             {
-                freeArrayOfString(pstVarNameList, iNbItem);
+                freeArrayOfPtrs((void**)pstVarNameList, iNbItem);
                 return true;
             }
         }
 
-        freeArrayOfString(pstVarNameList, iNbItem);
+        freeArrayOfPtrs((void**)pstVarNameList, iNbItem);
     }
 
     return false;

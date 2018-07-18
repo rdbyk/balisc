@@ -20,7 +20,7 @@
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "expandPathVariable.h"
 #include "os_string.h"
 #include "fscanfMat.h"

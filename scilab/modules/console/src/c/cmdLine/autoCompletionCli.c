@@ -23,7 +23,7 @@
 #include "autoCompletionCli.h"
 #include "completeLine.h"
 #include "cliDisplayManagement.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "cliPrompt.h"
 #include "sci_malloc.h"
 #include "completion.h"
@@ -100,7 +100,7 @@ static void doCompletion(char **wk_buf, unsigned int *cursor, unsigned int *curs
         TermCompletionOnFiles(completionDictionaryFiles, sizecompletionDictionaryFiles,
                               LineBeforeCaret, LineAfterCaret, fileSearchedPattern, SearchedPattern, wk_buf, cursor, cursor_max);
 
-        freeArrayOfString(completionDictionaryFiles, sizecompletionDictionaryFiles);
+        freeArrayOfPtrs((void**)completionDictionaryFiles, sizecompletionDictionaryFiles);
     }
     else
     {
@@ -231,8 +231,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
             //displayCompletionDictionary(dictionaryFiles, sizedictionaryFiles, gettext("File or Directory"));
             displayCompletionDictionary(files, sizeFiles, gettext("File"));
             displayCompletionDictionary(directories, sizeDirectories, gettext("Directory"));
-            freeArrayOfString(files, sizeFiles);
-            freeArrayOfString(directories, sizeDirectories);
+            freeArrayOfPtrs((void**)files, sizeFiles);
+            freeArrayOfPtrs((void**)directories, sizeDirectories);
 
             printf("\n");
 
@@ -555,7 +555,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                             commonAll = getCommonPart(commonsDictionary, sizecommonsDictionary);
                         }
                     }
-                    freeArrayOfString(commonsDictionary, sizecommonsDictionary);
+                    freeArrayOfPtrs((void**)commonsDictionary, sizecommonsDictionary);
 
                     displayCompletionDictionary(completionDictionaryFunctions, sizecompletionDictionaryFunctions, (char *)_("Scilab Function"));
                     displayCompletionDictionary(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords, (char *)_("Scilab Command"));
@@ -593,12 +593,12 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 }
             }
         }
-        freeArrayOfString(completionDictionaryFields, sizecompletionDictionaryFields);
-        freeArrayOfString(completionDictionaryFunctions, sizecompletionDictionaryFunctions);
-        freeArrayOfString(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords);
-        freeArrayOfString(completionDictionaryMacros, sizecompletionDictionaryMacros);
-        freeArrayOfString(completionDictionaryVariables, sizecompletionDictionaryVariables);
-        freeArrayOfString(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties);
+        freeArrayOfPtrs((void**)completionDictionaryFields, sizecompletionDictionaryFields);
+        freeArrayOfPtrs((void**)completionDictionaryFunctions, sizecompletionDictionaryFunctions);
+        freeArrayOfPtrs((void**)completionDictionaryCommandWords, sizecompletionDictionaryCommandWords);
+        freeArrayOfPtrs((void**)completionDictionaryMacros, sizecompletionDictionaryMacros);
+        freeArrayOfPtrs((void**)completionDictionaryVariables, sizecompletionDictionaryVariables);
+        freeArrayOfPtrs((void**)completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties);
     }
 }
 

@@ -7,8 +7,8 @@
  * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,7 +40,7 @@
 #include "BuildObjects.h"
 #include "sciprint.h"
 #include "HandleManagement.h"
-#include "BasicAlgos.h"
+#include "freeArrayOfPtrs.h"
 
 #include "sci_malloc.h"             /* MALLOC */
 #include "localization.h"
@@ -452,7 +452,7 @@ int InitAxesModel()
     setGraphicObjectProperty(iAxesmdlUID, __GO_X_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
     setGraphicObjectProperty(iAxesmdlUID, __GO_Y_AXIS_TICKS_LOCATIONS__, tab, jni_double_vector, defaultNumberTicks);
 
-    stringVector = createStringArray(defaultNumberTicks);
+    stringVector = CALLOC(defaultNumberTicks, sizeof(char*));
 
     if (stringVector == NULL)
     {
@@ -469,7 +469,7 @@ int InitAxesModel()
 
         if (stringVector[i] == NULL)
         {
-            destroyStringArray(stringVector, i);
+            freeArrayOfPtrs((void**)stringVector, i);
             return -1;
         }
     }
@@ -495,14 +495,14 @@ int InitAxesModel()
 
         if (stringVector[i] == NULL)
         {
-            destroyStringArray(stringVector, defaultNumberTicks);
+            freeArrayOfPtrs((void**)stringVector, defaultNumberTicks);
             return -1;
         }
     }
 
     setGraphicObjectProperty(iAxesmdlUID, __GO_Z_AXIS_TICKS_LABELS__, stringVector, jni_string_vector, defaultNumberTicks);
 
-    destroyStringArray(stringVector, defaultNumberTicks);
+    freeArrayOfPtrs((void**)stringVector, defaultNumberTicks);
 
     /*
      * Indicates the direction of projection (0 for the axis corresponding to the direction,

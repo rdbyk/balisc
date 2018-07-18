@@ -31,7 +31,7 @@ extern "C"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, int _iRetCount, types::typed_list &out);

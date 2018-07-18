@@ -26,7 +26,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "strsplit.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 static const char fname[] = "strsplit";
@@ -134,35 +134,35 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
                     types::String* pStrOut = new types::String(pDbl->getSize() + 1, 1);
                     pStrOut->set(results);
 
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfPtrs((void**)results, pDbl->getSize() + 1);
                     out.push_back(pStrOut);
                     return types::Function::OK;
                 }
                 break;
                 case STRSPLIT_INCORRECT_VALUE_ERROR:
                 {
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfPtrs((void**)results, pDbl->getSize() + 1);
                     Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
                     return types::Function::Error;
                 }
                 break;
                 case STRSPLIT_INCORRECT_ORDER_ERROR:
                 {
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfPtrs((void**)results, pDbl->getSize() + 1);
                     Scierror(999, _("%s: Elements of %dth argument must be in increasing order.\n"), fname, 2);
                     return types::Function::Error;
                 }
                 break;
                 case STRSPLIT_MEMORY_ALLOCATION_ERROR:
                 {
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfPtrs((void**)results, pDbl->getSize() + 1);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return types::Function::Error;
                 }
                 break;
                 default:
                 {
-                    freeArrayOfWideString(results, pDbl->getSize() + 1);
+                    freeArrayOfPtrs((void**)results, pDbl->getSize() + 1);
                     Scierror(999, _("%s: error.\n"), fname);
                     return types::Function::Error;
                 }

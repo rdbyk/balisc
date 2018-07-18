@@ -22,7 +22,7 @@ extern "C"
 #include "Scierror.h"
 #include "CallFontChooser.h"
 #include "getPropertyAssignedValue.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 /*--------------------------------------------------------------------------*/

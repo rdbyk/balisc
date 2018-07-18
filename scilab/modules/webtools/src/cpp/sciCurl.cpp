@@ -19,7 +19,7 @@
 extern "C"
 {
     #include "getScilabPreference.h"
-    #include "freeArrayOfString.h"
+    #include "freeArrayOfPtrs.h"
 }
 
 SciCurl* SciCurl::me = nullptr;
@@ -124,7 +124,7 @@ int SciCurl::setProxy(CURL* curl)
     // proxy is configured and not enabled
     if (stricmp(values[0]/*enabled*/, "false") == 0)
     {
-        freeArrayOfString(values, N);
+        freeArrayOfPtrs((void**)values, N);
         return 0;
     }
 
@@ -135,7 +135,7 @@ int SciCurl::setProxy(CURL* curl)
 
     if(host_len == 0 || port_len == 0 || user_len == 0)
     {
-        freeArrayOfString(values, N);
+        freeArrayOfPtrs((void**)values, N);
         return 1;
     }
 
@@ -154,25 +154,25 @@ int SciCurl::setProxy(CURL* curl)
     if(curl_easy_setopt(curl, CURLOPT_PROXY, values[1]) != CURLE_OK) //host
     {
         FREE(proxyUserPwd);
-        freeArrayOfString(values, N);
+        freeArrayOfPtrs((void**)values, N);
         return 1;
     }
 
     if(curl_easy_setopt(curl, CURLOPT_PROXYPORT, strtol(values[2], NULL, 10)) != CURLE_OK) //port
     {
         FREE(proxyUserPwd);
-        freeArrayOfString(values, N);
+        freeArrayOfPtrs((void**)values, N);
         return 1;
     }
 
     if(curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, proxyUserPwd) != CURLE_OK) //port
     {
         FREE(proxyUserPwd);
-        freeArrayOfString(values, N);
+        freeArrayOfPtrs((void**)values, N);
         return 1;
     }
 
     FREE(proxyUserPwd);
-    freeArrayOfString(values, N);
+    freeArrayOfPtrs((void**)values, N);
     return 0;
 }

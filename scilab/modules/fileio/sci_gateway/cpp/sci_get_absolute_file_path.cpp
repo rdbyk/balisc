@@ -26,7 +26,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -68,7 +68,7 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
                 types::String* pStringOut = new types::String(wcsPath);
                 FREE(wcsPath);
                 out.push_back(pStringOut);
-                freeArrayOfWideString(wcsFilesOpened, FileManager::getOpenedCount());
+                freeArrayOfPtrs((void**)wcsFilesOpened, FileManager::getOpenedCount());
                 return types::Function::OK;
             }
             else
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
         }
     }
 
-    freeArrayOfWideString(wcsFilesOpened, FileManager::getOpenedCount());
+    freeArrayOfPtrs((void**)wcsFilesOpened, FileManager::getOpenedCount());
 
     char* pstFile = wide_string_to_UTF8(wcsFileName);
     Scierror(999, _("%s: The file %s is not opened in scilab.\n"), "get_absolute_file_path", pstFile);

@@ -203,7 +203,7 @@ am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-GetXmlFileEncoding.lo \
 	src/c/libscicore_algo_la-islittleendian.lo \
 	src/c/libscicore_algo_la-commandwords.lo \
-	src/c/libscicore_algo_la-freeArrayOfString.lo \
+	src/c/libscicore_algo_la-freeArrayOfPtrs.lo \
 	src/c/libscicore_algo_la-getstaticdebuginfo.lo \
 	src/c/libscicore_algo_la-getdynamicdebuginfo.lo \
 	src/c/libscicore_algo_la-setPrecisionFPU.lo \
@@ -767,7 +767,7 @@ CORE_C_SOURCES = \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
     src/c/commandwords.c \
-    src/c/freeArrayOfString.c \
+    src/c/freeArrayOfPtrs.c \
     src/c/getstaticdebuginfo.c \
     src/c/getdynamicdebuginfo.c \
     src/c/setPrecisionFPU.c \
@@ -923,7 +923,7 @@ includes/backtrace_print.h \
 includes/BOOL.h \
 includes/core_math.h \
 includes/exit_status.hxx \
-includes/freeArrayOfString.h \
+includes/freeArrayOfPtrs.h \
 includes/getmemory.h \
 includes/getos.h \
 includes/getversion.h \
@@ -1121,7 +1121,7 @@ src/c/libscicore_algo_la-islittleendian.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-commandwords.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-freeArrayOfString.lo: src/c/$(am__dirstamp) \
+src/c/libscicore_algo_la-freeArrayOfPtrs.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-getstaticdebuginfo.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
@@ -1505,7 +1505,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-backtrace.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-commandwords.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-csignal.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfString.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfPtrs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getdynamicdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getos.Plo@am__quote@
@@ -1630,12 +1630,12 @@ src/c/libscicore_algo_la-commandwords.lo: src/c/commandwords.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-commandwords.lo `test -f 'src/c/commandwords.c' || echo '$(srcdir)/'`src/c/commandwords.c
 
-src/c/libscicore_algo_la-freeArrayOfString.lo: src/c/freeArrayOfString.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-freeArrayOfString.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfString.Tpo -c -o src/c/libscicore_algo_la-freeArrayOfString.lo `test -f 'src/c/freeArrayOfString.c' || echo '$(srcdir)/'`src/c/freeArrayOfString.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfString.Tpo src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfString.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/freeArrayOfString.c' object='src/c/libscicore_algo_la-freeArrayOfString.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/libscicore_algo_la-freeArrayOfPtrs.lo: src/c/freeArrayOfPtrs.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-freeArrayOfPtrs.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfPtrs.Tpo -c -o src/c/libscicore_algo_la-freeArrayOfPtrs.lo `test -f 'src/c/freeArrayOfPtrs.c' || echo '$(srcdir)/'`src/c/freeArrayOfPtrs.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfPtrs.Tpo src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfPtrs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/freeArrayOfPtrs.c' object='src/c/libscicore_algo_la-freeArrayOfPtrs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-freeArrayOfString.lo `test -f 'src/c/freeArrayOfString.c' || echo '$(srcdir)/'`src/c/freeArrayOfString.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-freeArrayOfPtrs.lo `test -f 'src/c/freeArrayOfPtrs.c' || echo '$(srcdir)/'`src/c/freeArrayOfPtrs.c
 
 src/c/libscicore_algo_la-getstaticdebuginfo.lo: src/c/getstaticdebuginfo.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-getstaticdebuginfo.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-getstaticdebuginfo.Tpo -c -o src/c/libscicore_algo_la-getstaticdebuginfo.lo `test -f 'src/c/getstaticdebuginfo.c' || echo '$(srcdir)/'`src/c/getstaticdebuginfo.c

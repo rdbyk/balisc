@@ -28,7 +28,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -142,7 +142,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            freeArrayOfWideString(pStVarOne, m1 * n1);
+            freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
             FREE(lenStVarOne);
             return 0;
         }
@@ -159,7 +159,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-                freeArrayOfWideString(pStVarOne, m1 * n1);
+                freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                 FREE(lenStVarOne);
                 return 0;
             }
@@ -169,7 +169,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-                freeArrayOfWideString(pStVarOne, m1 * n1);
+                freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                 FREE(lenStVarOne);
                 return 0;
             }
@@ -177,7 +177,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
             if (iType2 != sci_matrix && iType2 != sci_strings)
             {
                 Scierror(999, _("%s: Wrong type for argument #%d: Real matrix or \'readonly\' expected.\n"), fname, 2);
-                freeArrayOfWideString(pStVarOne, m1 * n1);
+                freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                 FREE(lenStVarOne);
                 return 0;
             }
@@ -193,7 +193,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
@@ -202,7 +202,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 if (lenStVarTwo == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
@@ -214,7 +214,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     FREE(lenStVarTwo);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
@@ -224,7 +224,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
                     FREE(lenStVarTwo);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
@@ -235,9 +235,9 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                     if (pStVarTwo[i] == NULL)
                     {
                         Scierror(999, _("%s: No more memory.\n"), fname);
-                        freeArrayOfWideString(pStVarTwo, i);
+                        freeArrayOfPtrs((void**)pStVarTwo, i);
                         FREE(lenStVarTwo);
-                        freeArrayOfWideString(pStVarOne, m1 * n1);
+                        freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
                     }
@@ -251,7 +251,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                     FREE(pStVarTwo);
                     FREE(lenStVarTwo);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
@@ -263,22 +263,22 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 catch (const GiwsException::JniCallMethodException& exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
-                    freeArrayOfWideString(pStVarTwo, m2 * n2);
+                    freeArrayOfPtrs((void**)pStVarTwo, m2 * n2);
                     FREE(lenStVarTwo);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
                 catch (const GiwsException::JniException& exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
-                    freeArrayOfWideString(pStVarTwo, m2 * n2);
+                    freeArrayOfPtrs((void**)pStVarTwo, m2 * n2);
                     FREE(lenStVarTwo);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
-                freeArrayOfWideString(pStVarTwo, m2 * n2);
+                freeArrayOfPtrs((void**)pStVarTwo, m2 * n2);
                 FREE(lenStVarTwo);
             }
             else
@@ -286,7 +286,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 if (isVarComplex(pvApiCtx, piAddressVarTwo) == 1)
                 {
                     Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), fname, 2);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
@@ -296,7 +296,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
@@ -304,7 +304,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 if (m2 * n2 != m1 * n1)
                 {
                     Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"), fname, 1, 2);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
+                    freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
@@ -318,7 +318,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-                        freeArrayOfWideString(pStVarOne, m1 * n1);
+                        freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
                     }
@@ -326,7 +326,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                     if (!isStringType(pvApiCtx, piAddressVarThree))
                     {
                         Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
-                        freeArrayOfWideString(pStVarOne, m1 * n1);
+                        freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
                     }
@@ -336,7 +336,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                     if (ret)
                     {
                         Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
-                        freeArrayOfWideString(pStVarOne, m1 * n1);
+                        freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
                     }
@@ -372,7 +372,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
             }
         }
 
-        freeArrayOfWideString(pStVarOne, m1 * n1);
+        freeArrayOfPtrs((void**)pStVarOne, m1 * n1);
         FREE(lenStVarOne);
         if (functionName)
         {

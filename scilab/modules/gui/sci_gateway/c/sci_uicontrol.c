@@ -28,7 +28,7 @@
 #include "Scierror.h"
 #include "FigureList.h"         /* getFigureFromIndex */
 #include "Widget.h"             /* requestWidgetFocus */
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

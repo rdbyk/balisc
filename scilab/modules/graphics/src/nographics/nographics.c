@@ -5,7 +5,7 @@
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -175,12 +175,6 @@ StringMatrix *computeDefaultTicsLabels(int pobjUID)
 }
 
 /*--------------------------------------------------------------------------*/
-void stringArrayCopy(char *dest[], char *src[], int nbElement)
-{
-
-}
-
-/*--------------------------------------------------------------------------*/
 void sciGetLogFlags(int pObjUID, char flags[3])
 {
 
@@ -228,12 +222,6 @@ void ChoixFormatE(char *fmt, double xmin, double xmax, double xpas)
 int GradLog(double _min, double _max, double *_grads, int *n_grads, int compNgrads)
 {
     return -1;
-}
-
-/*--------------------------------------------------------------------------*/
-void doubleArrayCopy(double dest[], const double src[], int nbElement)
-{
-
 }
 
 /*--------------------------------------------------------------------------*/

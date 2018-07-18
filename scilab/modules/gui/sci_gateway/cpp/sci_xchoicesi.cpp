@@ -23,7 +23,7 @@ extern "C"
 #include "CallMessageBox.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 /*--------------------------------------------------------------------------*/

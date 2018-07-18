@@ -79,7 +79,7 @@ extern "C"
 #include "machine.h"
 #include "mex.h"
 #include "os_string.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 //#ifdef getType
@@ -277,7 +277,7 @@ mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
     }
 
     types::String *ptr = new types::String(m, n, strings);
-    freeArrayOfWideString(strings, m);
+    freeArrayOfPtrs((void**)strings, m);
     mxArray* ret = new mxArray;
     ret->ptr = (int*)ptr;
     return ret;

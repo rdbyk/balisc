@@ -27,7 +27,7 @@ extern "C"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "FileExist.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "localization.h"
 #include "gw_gui.h"
 #include "getScilabJavaVM.h"
@@ -275,7 +275,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                     if (pStVarOne[i] == NULL)
                     {
                         Scierror(999, _("%s: No more memory.\n"), fname);
-                        freeArrayOfString(pStVarOne, i);
+                        freeArrayOfPtrs((void**)pStVarOne, i);
                         FREE(lenStVarOne);
                         return 1;
                     }
@@ -287,7 +287,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-                    freeArrayOfString(pStVarOne, mnOne);
+                    freeArrayOfPtrs((void**)pStVarOne, mnOne);
                     return 1;
                 }
 
@@ -295,7 +295,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                 if (lines == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
-                    freeArrayOfString(pStVarOne, mnOne);
+                    freeArrayOfPtrs((void**)pStVarOne, mnOne);
                     return 1;
                 }
 
@@ -308,7 +308,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                         e = stpcpy(stpcpy(e, pStVarOne[i]), "\n");
                     }
                 }
-                freeArrayOfString(pStVarOne, mnOne);
+                freeArrayOfPtrs((void**)pStVarOne, mnOne);
 
                 if (getAllocatedSingleString(_pvCtx, piAddressVarTwo, &pageHeader) == 0)
                 {

@@ -42,7 +42,7 @@
 #include "localization.h"
 #include "get_ticks_utils.h"
 #include "HandleManagement.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 
 #include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
@@ -476,7 +476,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
                 setGraphicObjectProperty(iLegUID, __GO_LINE_MODE__, &contourMode, jni_bool, 1);
             }
 
-            freeArrayOfString(Str, nleg);
+            freeArrayOfPtrs((void**)Str, nleg);
         }
 
         /*---- construct Compound ----*/

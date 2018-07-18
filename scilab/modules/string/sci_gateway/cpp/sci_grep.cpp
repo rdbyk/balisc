@@ -417,8 +417,8 @@ static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
 //	{
 //		if ( strlen(Strings_Input_Two[i]) == 0)
 //		{
-//			freeArrayOfString(Strings_Input_One,m1n1);
-//			freeArrayOfString(Strings_Input_Two,m2n2);
+//			freeArrayOfPtrs((void**)Strings_Input_One,m1n1);
+//			freeArrayOfPtrs((void**)Strings_Input_Two,m2n2);
 //			Scierror(249,_("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"),fname,2);
 //			return 0;
 //		}
@@ -438,8 +438,8 @@ static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
 //		code_error_grep = GREP_OLD(&grepresults,Strings_Input_One,m1n1,Strings_Input_Two,m2n2);
 //	}
 //
-//	freeArrayOfString(Strings_Input_One,m1n1);
-//	freeArrayOfString(Strings_Input_Two,m2n2);
+//	freeArrayOfPtrs((void**)Strings_Input_One,m1n1);
+//	freeArrayOfPtrs((void**)Strings_Input_Two,m2n2);
 //
 //	switch (code_error_grep)
 //	{

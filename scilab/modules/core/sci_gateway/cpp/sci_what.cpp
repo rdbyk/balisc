@@ -26,7 +26,7 @@ extern "C"
 #include "commandwords.h"
 #include "getfunctionsname.h"
 #include "sciprint.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 void printVarList(const char* title, const char* const* vars, int size)
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, typ
         out.push_back(pOutStringCmd);
     }
 
-    freeArrayOfString(pOutStringFctTmp, sizeFct);
-    freeArrayOfString(pOutStringCmdTmp, sizeCmd);
+    freeArrayOfPtrs((void**)pOutStringFctTmp, sizeFct);
+    freeArrayOfPtrs((void**)pOutStringCmdTmp, sizeCmd);
     return types::Function::OK;
 }

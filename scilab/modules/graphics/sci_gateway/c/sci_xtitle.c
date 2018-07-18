@@ -25,7 +25,7 @@
 #include "Scierror.h"
 #include "SetProperty.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "localization.h"
 #include "HandleManagement.h"
 
@@ -152,7 +152,7 @@ int sci_xtitle(char * fname, void *pvApiCtx)
 
         if (m * n == 0)
         {
-            freeArrayOfString(Str, m * n);
+            freeArrayOfPtrs((void**)Str, m * n);
             continue;
         }
 
@@ -186,7 +186,7 @@ int sci_xtitle(char * fname, void *pvApiCtx)
         endFigureDataWriting(pFigure);
 #endif
 
-        freeArrayOfString(Str, m * n);
+        freeArrayOfPtrs((void**)Str, m * n);
     }
 
     setCurrentObject(iSubwinUID);

@@ -18,7 +18,7 @@
 #include "call_scilab.h"
 #include "sci_malloc.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_string.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
@@ -377,7 +377,7 @@ static BOOL CleanBuffers(char *bufCommands, char **LOCALJOBS, int numberjobs)
         FREE(bufCommands);
         bufCommands = NULL;
     }
-    freeArrayOfString(LOCALJOBS, numberjobs);
+    freeArrayOfPtrs((void**)LOCALJOBS, numberjobs);
     return TRUE;
 }
 

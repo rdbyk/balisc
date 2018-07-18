@@ -30,7 +30,7 @@ extern "C"
 #include "localization.h"
 #include "isdir.h"
 #include "findfiles.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "fullpath.h"
 #include "PATH_MAX.h"
 }
@@ -139,7 +139,7 @@ void SLint::collectInDirectory(const std::wstring & path)
         {
             filesVector.emplace_back(_path + files[i]);
         }
-        freeArrayOfWideString(files, size);
+        freeArrayOfPtrs((void**)files, size);
         setFiles(filesVector);
     }
 }

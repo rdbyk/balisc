@@ -20,7 +20,7 @@
 #include "parameters.h"
 #include "sci_types.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "api_scilab.h"
@@ -83,7 +83,7 @@ int checkPList(void* _pvCtx, int * _piAddress)
                 FREE(len_label);
                 len_label = NULL;
             }
-            freeArrayOfString(label_list, m_label * n_label);
+            freeArrayOfPtrs((void**)label_list, m_label * n_label);
 
             return 0;
         }
@@ -93,7 +93,7 @@ int checkPList(void* _pvCtx, int * _piAddress)
             FREE(len_label);
             len_label = NULL;
         }
-        freeArrayOfString(label_list, m_label * n_label);
+        freeArrayOfPtrs((void**)label_list, m_label * n_label);
     }
 
     result = 1;
@@ -466,7 +466,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
             FREE(len_label);
             len_label = NULL;
         }
-        freeArrayOfString(label_list, m_label * n_label);
+        freeArrayOfPtrs((void**)label_list, m_label * n_label);
     }
     else
     {
@@ -722,7 +722,7 @@ SciErr getColVectorOfDoubleInPList(void* _pvCtx, int * _piAddress, const char * 
     pos_label = commonFindLabel(_pvCtx, _piAddress, _pstLabel);
     *_piFound = pos_label;
 
-    freeArrayOfString(label_list, m_label * n_label);
+    freeArrayOfPtrs((void**)label_list, m_label * n_label);
 
     if (pos_label != -1)
     {
@@ -924,7 +924,7 @@ SciErr createPList(void* _pvCtx, int _iVar, int ** _piAddress, char ** _pstLabel
 
     _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, *_piAddress, 1, 1, _iNbParams + 1, (char const * const*) label_list);
 
-    freeArrayOfString(label_list, _iNbParams + 1);
+    freeArrayOfPtrs((void**)label_list, _iNbParams + 1);
 
     return _SciErr;
 }
@@ -1088,7 +1088,7 @@ static int commonFindLabelPartial(void* _pvCtx, int * _piAddress, char const * c
                         FREE(len_label);
                         len_label = NULL;
                     }
-                    freeArrayOfString(label_list, m_label * n_label);
+                    freeArrayOfPtrs((void**)label_list, m_label * n_label);
 
                     return Pos;
                 }
@@ -1101,7 +1101,7 @@ static int commonFindLabelPartial(void* _pvCtx, int * _piAddress, char const * c
         FREE(len_label);
         len_label = NULL;
     }
-    freeArrayOfString(label_list, m_label * n_label);
+    freeArrayOfPtrs((void**)label_list, m_label * n_label);
 
     return Pos;
 }
@@ -1143,7 +1143,7 @@ static int commonFindLabel(void* _pvCtx, int * _piAddress, char const * const _p
                         FREE(len_label);
                         len_label = NULL;
                     }
-                    freeArrayOfString(label_list, m_label * n_label);
+                    freeArrayOfPtrs((void**)label_list, m_label * n_label);
 
                     return Pos;
                 }
@@ -1156,7 +1156,7 @@ static int commonFindLabel(void* _pvCtx, int * _piAddress, char const * const _p
         FREE(len_label);
         len_label = NULL;
     }
-    freeArrayOfString(label_list, m_label * n_label);
+    freeArrayOfPtrs((void**)label_list, m_label * n_label);
 
     return Pos;
 }

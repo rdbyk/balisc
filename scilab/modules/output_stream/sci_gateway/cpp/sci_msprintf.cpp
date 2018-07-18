@@ -25,7 +25,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -64,7 +64,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
 
     types::String* pOut = new types::String(iOutputRows, 1);
     pOut->set(pwstOutput);
-    freeArrayOfWideString(pwstOutput, iOutputRows);
+    freeArrayOfPtrs((void**)pwstOutput, iOutputRows);
     out.push_back(pOut);
     return types::Function::OK;
 }

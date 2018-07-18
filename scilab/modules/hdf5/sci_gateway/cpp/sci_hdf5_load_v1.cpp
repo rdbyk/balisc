@@ -31,7 +31,7 @@ extern "C"
 #include "h5_readDataFromFile_v1.h"
 #include "h5_attributeConstants.h"
 #include "expandPathVariable.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "strcmp.h"
 }
 
@@ -168,7 +168,7 @@ int sci_hdf5_load_v1(char *fn, int* pvApiCtx)
                 varList.push_back(to_wide_string(pstVarNameList[i]));
             }
 
-            freeArrayOfString(pstVarNameList, iNbItem);
+            freeArrayOfPtrs((void**)pstVarNameList, iNbItem);
         }
     }
     //close the file
@@ -476,7 +476,7 @@ static bool import_string_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_p
     iRet = readStringMatrix_v1(_iDatasetId, iRows, iCols, pstData);
     if (iRet)
     {
-        freeArrayOfString(pstData, iRows * iCols);
+        freeArrayOfPtrs((void**)pstData, iRows * iCols);
         return false;
     }
 
@@ -496,7 +496,7 @@ static bool import_string_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_p
         sciErr = createMatrixOfStringInNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pstData);
     }
 
-    freeArrayOfString(pstData, iRows * iCols);
+    freeArrayOfPtrs((void**)pstData, iRows * iCols);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

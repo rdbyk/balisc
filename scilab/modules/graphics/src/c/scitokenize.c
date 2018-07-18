@@ -18,7 +18,7 @@
 #include <string.h>
 #include "scitokenize.h"
 #include "sci_malloc.h" /* MALLOC */
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "strlen.h"
 /*--------------------------------------------------------------------------*/
 int scitokenize(char * legend, char *** Strptr, int *n)
@@ -62,7 +62,7 @@ int scitokenize(char * legend, char *** Strptr, int *n)
 
         if (Str[i] == NULL)
         {
-            freeArrayOfString(Str, i - 1);
+            freeArrayOfPtrs((void**)Str, i - 1);
             return 1;
         }
 

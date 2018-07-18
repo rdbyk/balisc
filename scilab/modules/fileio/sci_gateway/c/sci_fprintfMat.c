@@ -19,7 +19,7 @@
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "expandPathVariable.h"
 #include "os_string.h"
 #include "fprintfMat.h"
@@ -246,7 +246,7 @@ static void freeVar(char** filename, char** expandedFilename, char*** textAdded,
 
     if (textAdded && *textAdded)
     {
-        freeArrayOfString(*textAdded, m4n4);
+        freeArrayOfPtrs((void**)*textAdded, m4n4);
         *textAdded = NULL;
     }
 

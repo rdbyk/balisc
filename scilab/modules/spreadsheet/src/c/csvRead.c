@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include "csvRead.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "mopen.h"
 #include "mgetl.h"
 #include "localization.h"
@@ -136,7 +136,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         {
             pstLines[i] = wide_string_to_UTF8(pwstLines[i]);
         }
-        freeArrayOfWideString(pwstLines, nbLines);
+        freeArrayOfPtrs((void**)pwstLines, nbLines);
         pwstLines = NULL;
     }
     else
@@ -176,7 +176,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
                 result->pstrComments = NULL;
                 result->nbComments = 0;
             }
-            freeArrayOfString(pstLines, nbLines);
+            freeArrayOfPtrs((void**)pstLines, nbLines);
             return result;
         }
 
@@ -202,14 +202,14 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         replacedInLines = replaceStrings((const char**)pstLines, nbLines, toreplace, sizetoreplace);
         if (replacedInLines)
         {
-            freeArrayOfString(pstLines, nbLines);
+            freeArrayOfPtrs((void**)pstLines, nbLines);
             pstLines = replacedInLines;
         }
     }
 
     result = csvTextScan((const char**)pstLines, nbLines, (const char*)separator, (const char*)decimal);
-    freeArrayOfString(pstLines, nbLines);
-    freeArrayOfWideString(pwstLines, nbLines);
+    freeArrayOfPtrs((void**)pstLines, nbLines);
+    freeArrayOfPtrs((void**)pwstLines, nbLines);
 
     if (result)
     {
@@ -218,7 +218,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
     }
     else
     {
-        freeArrayOfString(pComments, nbComments);
+        freeArrayOfPtrs((void**)pComments, nbComments);
     }
 
     return result;
@@ -256,7 +256,7 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
             char **tmpLines = removeAllBlankLines(lines, &nbLines);
             if (tmpLines)
             {
-                freeArrayOfString(cleanedLines, nbLines);
+                freeArrayOfPtrs((void**)cleanedLines, nbLines);
                 cleanedLines = tmpLines;
             }
         }
@@ -291,7 +291,7 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
     cellsStrings = getStringsFromLines((const char **)cleanedLines, nbLines, separator, decimal, nbColumns, nbRows);
     if (cleanedLines)
     {
-        freeArrayOfString(cleanedLines, nbLines);
+        freeArrayOfPtrs((void**)cleanedLines, nbLines);
         cleanedLines = NULL;
     }
 
@@ -334,7 +334,7 @@ void freeCsvResult(csvResult *result)
     {
         if (result->pstrValues)
         {
-            freeArrayOfString(result->pstrValues, result->m * result->n);
+            freeArrayOfPtrs((void**)result->pstrValues, result->m * result->n);
             result->pstrValues = NULL;
         }
         result->m = 0;
@@ -342,7 +342,7 @@ void freeCsvResult(csvResult *result)
 
         if (result->pstrComments)
         {
-            freeArrayOfString(result->pstrComments, result->nbComments);
+            freeArrayOfPtrs((void**)result->pstrComments, result->nbComments);
             result->pstrComments = NULL;
         }
         result->err = CSV_READ_ERROR;
@@ -390,7 +390,7 @@ static int getNumbersOfColumnsInLine(const char *line, const char *separator)
         char **splittedStr = splitLineCSV(line, separator, &nbTokens);
         if (splittedStr)
         {
-            freeArrayOfString(splittedStr, nbTokens);
+            freeArrayOfPtrs((void**)splittedStr, nbTokens);
             return nbTokens;
         }
         else
@@ -444,7 +444,7 @@ static char **getStringsFromLines(const char **lines, int sizelines,
 
             if (m != nbTokens)
             {
-                freeArrayOfString(results, nbTokens * n);
+                freeArrayOfPtrs((void**)results, nbTokens * n);
                 FREE(lineStrings);
                 return NULL;
             }
@@ -658,7 +658,7 @@ static char **extractComments(const char **lines, int nbLines,
         {
             if (pComments)
             {
-                freeArrayOfString(pComments, *nbcomments);
+                freeArrayOfPtrs((void**)pComments, *nbcomments);
             }
 
             *nbcomments = 0;

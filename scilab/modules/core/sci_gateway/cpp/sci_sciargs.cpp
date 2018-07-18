@@ -24,7 +24,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_sciargs(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -42,14 +42,14 @@ types::Function::ReturnValue sci_sciargs(types::typed_list &in, int _iRetCount, 
     {
         // call_scilab
         out.push_back(new types::String(L""));
-        freeArrayOfWideString(pwstCmdLineArgs, iCount);
+        freeArrayOfPtrs((void**)pwstCmdLineArgs, iCount);
         return types::Function::OK;
     }
 
     types::String* pS = new types::String(iCount, 1);
     pS->set(pwstCmdLineArgs);
     out.push_back(pS);
-    freeArrayOfWideString(pwstCmdLineArgs, iCount);
+    freeArrayOfPtrs((void**)pwstCmdLineArgs, iCount);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

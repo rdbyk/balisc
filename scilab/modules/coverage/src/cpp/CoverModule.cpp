@@ -37,7 +37,7 @@ extern "C"
 #include "copyfile.h"
 #include "isdir.h"
 #include "findfiles.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 #ifdef _MSC_VER
@@ -105,7 +105,7 @@ const std::vector<std::pair<std::wstring, std::wstring>> CoverModule::getModule(
                     paths.emplace_back(modulePath, files[i]);
                 }
             }
-            freeArrayOfWideString(files, size);
+            freeArrayOfPtrs((void**)files, size);
             return paths;
         }
 
@@ -150,7 +150,7 @@ void CoverModule::getMacrosFromDir(const std::wstring & path, const std::wstring
                 getMacrosFromDir(_file, module);
             }
         }
-        freeArrayOfWideString(files, size);
+        freeArrayOfPtrs((void**)files, size);
     }
 }
 

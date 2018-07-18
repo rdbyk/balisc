@@ -19,7 +19,7 @@
 #include "CallMessageBox.h"
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 /*--------------------------------------------------------------------------*/
 int sci_x_choose_modeless(char *fname, void* pvApiCtx)
 {

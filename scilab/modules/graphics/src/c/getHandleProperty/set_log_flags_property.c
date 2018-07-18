@@ -35,7 +35,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
@@ -89,7 +89,7 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
             cmpteur2++;
         }
 
-        freeArrayOfString(u_xlabels, nbtics);
+        freeArrayOfPtrs((void**)u_xlabels, nbtics);
         u_xlabels = ticklabel;
     }
 

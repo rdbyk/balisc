@@ -25,7 +25,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 /*--------------------------------------------------------------------------*/
 
@@ -81,7 +81,7 @@ types::Function::ReturnValue sci_gethistory(types::typed_list &in, int _iRetCoun
             }
 
             out.push_back(pS);
-            freeArrayOfString(pstLines, nbElements);
+            freeArrayOfPtrs((void**)pstLines, nbElements);
         }
         else
         {

@@ -25,7 +25,7 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "RendererFontManager.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "FileExist.h"
@@ -69,13 +69,13 @@ static int xlfont_no_rhs(char * fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
 
-        freeArrayOfString(fontsname, nbElements);
+        freeArrayOfPtrs((void**)fontsname, nbElements);
         printError(&sciErr, 0);
         return 1;
 
     }
 
-    freeArrayOfString(fontsname, nbElements);
+    freeArrayOfPtrs((void**)fontsname, nbElements);
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
@@ -116,7 +116,7 @@ static int xlfont_one_rhs(char * fname, void* pvApiCtx)
             n1 = 1;
 
             sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m1, n1, (const char * const*)fontsname);
-            freeArrayOfString(fontsname, nbElements);
+            freeArrayOfPtrs((void**)fontsname, nbElements);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);

@@ -30,7 +30,7 @@ extern "C"
 #include "Scierror.h"
 #include "charEncoding.h"
 #include "os_string.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 
 #define WCHAR_S L's'
@@ -149,7 +149,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
             delete[] piEnd;
             for (int i = 0; i < iOccurs; i++)
             {
-                freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
+                freeArrayOfPtrs((void**)pwstCapturedString[i], piCapturedStringCount[i]);
             }
 
             FREE(pwstCapturedString);
@@ -177,7 +177,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
             out.push_back(new types::String(L""));
         }
 
-        freeArrayOfWideString(pwstCapturedString[0], piCapturedStringCount[0]);
+        freeArrayOfPtrs((void**)pwstCapturedString[0], piCapturedStringCount[0]);
         FREE(pwstCapturedString);
         FREE(piCapturedStringCount);
         delete[] piStart;
@@ -270,7 +270,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
 
     for (int i = 0; i < iOccurs; i++)
     {
-        freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
+        freeArrayOfPtrs((void**)pwstCapturedString[i], piCapturedStringCount[i]);
     }
 
     FREE(pwstCapturedString);

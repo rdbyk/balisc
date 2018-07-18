@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
 #include "HandleManagement.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 
 #include "createGraphicObject.h"
 #include "graphicObjectProperties.h"

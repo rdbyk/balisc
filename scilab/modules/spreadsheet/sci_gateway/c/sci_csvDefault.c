@@ -24,7 +24,7 @@
 #include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_string.h"
 #include "csvDefault.h"
 #include "gw_csv_helpers.h"
@@ -131,7 +131,7 @@ static int sci_csvDefault_no_rhs(char *fname, void* pvApiCtx)
         arrayOut[15] = os_strdup(getCsvDefaultCsvIgnoreBlankLine());
 
         sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, nbRows, nbCols, arrayOut);
-        freeArrayOfString(arrayOut, sizeArray);
+        freeArrayOfPtrs((void**)arrayOut, sizeArray);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);

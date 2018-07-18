@@ -27,7 +27,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "getScilabJavaVM.h"
 #include "configvariable_interface.h" /* FIXME: enum scilabMode */
 }

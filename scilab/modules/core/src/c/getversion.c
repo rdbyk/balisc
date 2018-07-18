@@ -22,7 +22,7 @@
 #include "os_string.h"
 #include "with_module.h"
 #include "loadversion.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "sci_malloc.h"
 #include "../../../io/includes/getenvc.h"
 #include "charEncoding.h"
@@ -192,7 +192,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
             }
             else
             {
-                freeArrayOfWideString(options, nbOptions);
+                freeArrayOfPtrs((void**)options, nbOptions);
                 return NULL;
             }
         }
@@ -207,7 +207,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
             }
             else
             {
-                freeArrayOfWideString(options, nbOptions);
+                freeArrayOfPtrs((void**)options, nbOptions);
                 return NULL;
             }
         }
@@ -220,7 +220,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            freeArrayOfWideString(options, nbOptions);
+            freeArrayOfPtrs((void**)options, nbOptions);
             return NULL;
         }
 
@@ -232,7 +232,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            freeArrayOfWideString(options, nbOptions);
+            freeArrayOfPtrs((void**)options, nbOptions);
             return NULL;
         }
 
@@ -244,7 +244,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            freeArrayOfWideString(options, nbOptions);
+            freeArrayOfPtrs((void**)options, nbOptions);
             return NULL;
         }
 

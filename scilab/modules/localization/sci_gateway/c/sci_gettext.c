@@ -23,7 +23,7 @@
 #include "Scierror.h"
 #include "strsubst.h"
 #include "os_string.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "strcmp.h"
 #include "strchr.h"
 
@@ -123,7 +123,7 @@ int sci_gettext(char *fname, void* pvApiCtx)
     StringsToTranslate = NULL;
 
     sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m, n, TranslatedStrings);
-    freeArrayOfString(TranslatedStrings, m * n);
+    freeArrayOfPtrs((void**)TranslatedStrings, m * n);
     TranslatedStrings = NULL;
 
     if (sciErr.iErr)

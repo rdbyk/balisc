@@ -16,7 +16,7 @@
 #include <string.h>
 #include "strsplit.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 /*----------------------------------------------------------------------------*/
 wchar_t **strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, strsplit_error *ierr)
 {
@@ -78,7 +78,7 @@ wchar_t **strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, 
 
             if (splitted[i] == NULL)
             {
-                freeArrayOfWideString(splitted, sizeIndices);
+                freeArrayOfPtrs((void**)splitted, sizeIndices);
                 *ierr = STRSPLIT_MEMORY_ALLOCATION_ERROR;
                 return NULL;
             }
@@ -95,7 +95,7 @@ wchar_t **strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, 
 
         if (splitted[sizeIndices] == NULL)
         {
-            freeArrayOfWideString(splitted, sizeIndices + 1);
+            freeArrayOfPtrs((void**)splitted, sizeIndices + 1);
             *ierr = STRSPLIT_MEMORY_ALLOCATION_ERROR;
             return NULL;
         }

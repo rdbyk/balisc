@@ -36,7 +36,7 @@ extern "C"
 #include "call_scilab.h"
 #include "localization.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_string.h"
 #include "strlen.h"
 }
@@ -327,7 +327,7 @@ SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols,
         addErrorMessage(&sciErr, API_ERROR_CREATE_WIDE_STRING, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfWideString");
     }
 
-    freeArrayOfString(pStrings, _iRows * _iCols);
+    freeArrayOfPtrs((void**)pStrings, _iRows * _iCols);
 
     return sciErr;
 }

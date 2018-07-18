@@ -23,7 +23,7 @@
 #include "BOOL.h"
 #include "localization.h"
 #include "os_string.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 /*------------------------------------------------------------------------*/
 #define STRING_BEGIN_SESSION _("Begin Session : ")
 #define FORMAT_SESSION "%s%s%s"
@@ -108,8 +108,8 @@ static char *ASCIItime(const struct tm *timeptr)
     }
 
     /* free pointers */
-    freeArrayOfString(wday_name, MAX_wday);
-    freeArrayOfString(mon_name, MAX_mon);
+    freeArrayOfPtrs((void**)wday_name, MAX_wday);
+    freeArrayOfPtrs((void**)mon_name, MAX_mon);
 
     return result;
 }

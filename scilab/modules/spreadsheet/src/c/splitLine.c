@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,8 @@
 #include "splitLine.h"
 #include "strsubst.h"
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
+#include "BOOL.h"
 #include "strlen.h"
 #include "strcmp.h"
 
@@ -172,7 +173,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
                             else
                             {
                                 *toks = 0;
-                                freeArrayOfString(retstr, (int)balisc_strlen(substitutedstring));
+                                freeArrayOfPtrs((void**)retstr, (int)balisc_strlen(substitutedstring));
                                 FREE(substitutedstring);
                                 return NULL;
                             }
@@ -231,7 +232,7 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
         if (!addToken(retstr, &curr_str, (char*)(idx - len), len))
         {
             *toks = 0;
-            freeArrayOfString(retstr, (int)balisc_strlen(substitutedstring));
+            freeArrayOfPtrs((void**)retstr, (int)balisc_strlen(substitutedstring));
             FREE(substitutedstring);
             return NULL;
         }

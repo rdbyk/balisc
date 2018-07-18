@@ -3,7 +3,7 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,12 +23,10 @@
 #ifndef _BASIC_ALGOS_H_
 #define _BASIC_ALGOS_H_
 
-#include "BOOL.h"
-
 /**
- * Find the striclty positive minimum value of an array of double.
+ * Find the strictly positive minimum value of an array of double.
  * @param[in] x array of size n.
- * @return The stricly posistive minimum of x if exists, a negative value otherwise
+ * @return The strictly posistive minimum of x if exists, a negative value otherwise
  */
 double sciFindStPosMin(const double x[], int n);
 
@@ -40,30 +38,5 @@ double sciFindStPosMin(const double x[], int n);
  * @param nbElement must be greater than 2.
  */
 int checkMonotony(const double vector[], int nbElement);
-
-/**
- * copy an array into another
- */
-void doubleArrayCopy(double dest[], const double src[], int nbElement);
-
-/**
- * copy an int array into another
- */
-void intArrayCopy(int dest[], const int src[], int nbElement);
-
-/**
- * copy a char * array into another
- */
-BOOL stringArrayCopy(char * dest[], char * src[], int nbElement);
-
-/**
- * free an array of strings
- */
-void destroyStringArray(char * src[], int nbStrings);
-
-/**
- * allocate a string array and set all its element to NULL
- */
-char ** createStringArray(int nbElement);
 
 #endif /* _BASIC_ALGOS_H_ */

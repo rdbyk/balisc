@@ -29,7 +29,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "newest.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 }
 /*--------------------------------------------------------------------------*/
 

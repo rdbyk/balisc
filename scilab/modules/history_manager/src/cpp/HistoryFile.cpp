@@ -38,7 +38,7 @@ extern "C"
 #include "mopen.h"
 #include "mgetl.h"
 #include "mclose.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_wfopen.h"
 #include "expandPathVariable.h"
 };
@@ -225,7 +225,7 @@ errorLoadHistoryCode HistoryFile::loadFromFile(std::string _stFilename)
                         CommandLine Line(lines[i]);
                         Commands.push_back(Line);
                     }
-                    freeArrayOfString(lines, nblines);
+                    freeArrayOfPtrs((void**)lines, nblines);
                     lines = NULL;
                 }
             }

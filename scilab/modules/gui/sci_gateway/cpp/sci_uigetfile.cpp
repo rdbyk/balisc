@@ -33,7 +33,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
-#include "freeArrayOfString.h"
+#include "freeArrayOfPtrs.h"
 #include "os_string.h"
 #include "BOOL.h"
 }
@@ -174,7 +174,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         if (checkInputArgumentType(pvApiCtx, 2, sci_strings) == FALSE)
         {
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
@@ -183,7 +183,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             printError(&sciErr, 0);
             return 1;
         }
@@ -191,7 +191,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         if (getAllocatedSingleString(pvApiCtx, piAddr2, &initialDirectory))
         {
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             printError(&sciErr, 0);
             return 1;
         }
@@ -208,7 +208,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             return 1;
         }
 
@@ -216,7 +216,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             printError(&sciErr, 0);
             return 1;
         }
@@ -224,7 +224,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         if (getAllocatedSingleString(pvApiCtx, piAddr3, &titleBox))
         {
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
-            freeArrayOfString(description, nbRow);
+            freeArrayOfPtrs((void**)description, nbRow);
             printError(&sciErr, 0);
             return 1;
         }
@@ -256,7 +256,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
                 if (checkInputArgumentType(pvApiCtx, 4, sci_boolean) == FALSE)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 4);
-                    freeArrayOfString(description, nbRow);
+                    freeArrayOfPtrs((void**)description, nbRow);
                     freeAllocatedMatrixOfString(nbRow, nbCol, mask);
                     freeAllocatedSingleString(initialDirectory);
                     freeAllocatedSingleString(titleBox);
@@ -267,7 +267,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
                 sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
                 if (sciErr.iErr)
                 {
-                    freeArrayOfString(description, nbRow);
+                    freeArrayOfPtrs((void**)description, nbRow);
                     freeAllocatedMatrixOfString(nbRow, nbCol, mask);
                     freeAllocatedSingleString(initialDirectory);
                     freeAllocatedSingleString(titleBox);
@@ -277,7 +277,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
 
                 if (getScalarBoolean(pvApiCtx, piAddr4, &multipleSelection))
                 {
-                    freeArrayOfString(description, nbRow);
+                    freeArrayOfPtrs((void**)description, nbRow);
                     freeAllocatedMatrixOfString(nbRow, nbCol, mask);
                     freeAllocatedSingleString(initialDirectory);
                     freeAllocatedSingleString(titleBox);
@@ -295,7 +295,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         }
 
         // free pointer
-        freeArrayOfString(description, nbRow);
+        freeArrayOfPtrs((void**)description, nbRow);
         freeAllocatedMatrixOfString(nbRow, nbCol, mask);
         freeAllocatedSingleString(initialDirectory);
         freeAllocatedSingleString(titleBox);
