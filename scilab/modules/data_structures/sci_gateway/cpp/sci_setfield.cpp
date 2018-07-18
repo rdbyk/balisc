@@ -25,8 +25,8 @@ extern "C"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "localization.h"
-#include "freeArrayOfPtrs.h"
 }
+
 static const char fname[] = "setfield";
 
 types::Function::ReturnValue sci_setfield(types::typed_list &in, int _iRetCount, types::typed_list &out)
