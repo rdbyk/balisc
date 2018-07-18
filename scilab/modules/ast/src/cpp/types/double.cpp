@@ -1249,11 +1249,27 @@ ast::Exp* Double::getExp(const Location& loc)
 
 bool Double::isTrue()
 {
-    if (isEmpty() || isComplex())
+    if (isEmpty())
     {
         return false;
     }
 
-    return type_traits::isTrue<double>(m_iSize, m_pRealData);
+    if (m_pImgData ==  NULL)
+    {
+        return type_traits::isTrue<double>(isViewAsZComplex() ? 2 * m_iSize : m_iSize, m_pRealData);
+    }
+    else
+    {
+        for (int i = 0; i < m_iSize; ++i)
+        {
+            if (!(m_pRealData[i] || m_pImgData[i]))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
+
 }
