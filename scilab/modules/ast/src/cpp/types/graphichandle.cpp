@@ -24,6 +24,7 @@ extern "C"
 #include "localization.h"
 #include "os_string.h"
 #include "sci_malloc.h"
+#include "HandleManagement.h"
 }
 
 namespace types
@@ -198,6 +199,32 @@ bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount,
 bool GraphicHandle::transpose(InternalType *& out)
 {
     return type_traits::transpose(*this, out);
+}
+
+bool GraphicHandle::isTrue()
+{
+    for (int i = 0; i < m_iSize; ++i)
+    {
+        if (!getObjectFromHandle(get(i)))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool GraphicHandle::neg(InternalType*& out)
+{
+    out = new Bool(this->m_iDims, this->m_piDims);
+    int* pb = static_cast<Bool*>(out)->get();
+
+    for (int i = 0; i < m_iSize; ++i)
+    {
+        pb[i] = !getObjectFromHandle(get(i));
+    }
+
+    return true;
 }
 
 }
