@@ -228,11 +228,16 @@ private :
     std::wstring            m_wstLoadDepsName;
     bool                    m_bCloseLibAfterCall;
     FunctionType            m_iType;
-    GW_FUNC                 m_pFunc;
-    GW_FUNC_OPT             m_pOptFunc;
-    OLDGW_FUNC              m_pOldFunc;
-    GW_C_FUNC               m_pCFunc;
-    MEXGW_FUNC              m_pMexFunc;
+
+    union
+    {
+        GW_FUNC                 m_pFunc;
+        GW_FUNC_OPT             m_pOptFunc;
+        OLDGW_FUNC              m_pOldFunc;
+        GW_C_FUNC               m_pCFunc;
+        MEXGW_FUNC              m_pMexFunc;
+    };
+
     Function*               m_pFunction;
 };
 

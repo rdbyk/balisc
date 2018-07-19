@@ -612,11 +612,7 @@ DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstrin
     m_bCloseLibAfterCall    = _bCloseLibAfterCall;
     m_iType                 = _iType;
     m_pFunc                 = NULL;
-    m_pOptFunc              = NULL;
-    m_pOldFunc              = NULL;
-    m_pMexFunc              = NULL;
     m_pFunction             = NULL;
-    m_pCFunc                = NULL;
 }
 
 DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
@@ -630,11 +626,7 @@ DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstrin
     m_bCloseLibAfterCall    = _bCloseLibAfterCall;
     m_iType                 = _iType;
     m_pFunc                 = NULL;
-    m_pOptFunc              = NULL;
-    m_pOldFunc              = NULL;
-    m_pMexFunc              = NULL;
     m_pFunction             = NULL;
-    m_pCFunc                = NULL;
 }
 
 Function::ReturnValue DynamicFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
@@ -773,7 +765,7 @@ Callable::ReturnValue DynamicFunction::Init()
         FREE(pstEntryPoint);
     }
 
-    if (m_pFunc == NULL && m_pOldFunc == NULL && m_pMexFunc == NULL && m_pOptFunc == NULL && m_pCFunc == NULL)
+    if (m_pFunc == NULL)
     {
         char* pstEntry = wide_string_to_UTF8(m_wstEntryPoint.c_str());
         char* pstLib = wide_string_to_UTF8(m_wstLibName.c_str());
@@ -812,8 +804,6 @@ Callable::ReturnValue DynamicFunction::Init()
 void DynamicFunction::Clear()
 {
     m_pFunc     = NULL;
-    m_pOldFunc  = NULL;
-    m_pMexFunc  = NULL;
 }
 
 }
