@@ -396,14 +396,11 @@ bool List::isTrue()
 {
     for (int i = 0; i < getSize(); ++i)
     {
-        // FIXME: is this a reasonable definition? (cf. neg)
-        switch(get(i)->getType())
+        InternalType* e = get(i);
+
+        if ((e->isGenericType() && e->getAs<GenericType>()->getSize()) || e->isTrue())
         {
-            // case ScilabListInsertOperation:
-            // case ScilabListDeleteOperation:
-            case ScilabListUndefinedOperation:
-            case ScilabVoid:
-                return true;
+            return true;
         }
     }
 
@@ -412,24 +409,7 @@ bool List::isTrue()
 
 bool List::neg(InternalType *& out)
 {
-    for (int i = 0; i < getSize(); ++i)
-    {
-        // FIXME: is this a reasonable definition? (cf. isTrue)
-        switch(get(i)->getType())
-        {
-            // case ScilabListInsertOperation:
-            // case ScilabListDeleteOperation:
-            case ScilabListUndefinedOperation:
-            case ScilabVoid:
-                break;
-
-            default:
-                out = new Bool(false);
-                return true;
-        }
-    }
-
-    out = new Bool(true);
+    out = new Bool(!isTrue());
     return true;
 }
 
