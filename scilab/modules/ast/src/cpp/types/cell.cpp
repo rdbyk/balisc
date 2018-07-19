@@ -474,4 +474,40 @@ Cell* Cell::createEmpty()
 {
     return new Cell();
 }
+
+bool Cell::isTrue()
+{
+    for (int i = 0; i < getSize(); ++i)
+    {
+        InternalType* e = get(i);
+
+        if ((e->isGenericType() && e->getAs<GenericType>()->getSize()) || e->isTrue())
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Cell::neg(InternalType*& out)
+{
+    if (getSize() == 0)
+    {
+        out = new Bool(true);
+        return true;
+    }
+
+    out = new Bool(this->m_iDims, this->m_piDims);
+    int* pb = static_cast<Bool*>(out)->get();
+
+    for (int i = 0; i < m_iSize; ++i)
+    {
+        InternalType* e = get(i);
+        pb[i] = !((e->isGenericType() && e->getAs<GenericType>()->getSize()) || e->isTrue());
+    }
+
+    return true;
+}
+
 }
