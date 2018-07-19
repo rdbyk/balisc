@@ -110,7 +110,7 @@ public :
     {
         if (getSize() == 0)
         {
-            out = new Bool(false);
+            out = new Bool(true);
             return true;
         }
 

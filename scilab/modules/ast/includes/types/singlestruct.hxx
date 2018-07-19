@@ -80,7 +80,7 @@ public :
         {
             InternalType* e = m_Data[i];
 
-            if ((e->isGenericType() && e->getAs<GenericType>()->getSize()) || e->isTrue())
+            if ((e->isGenericType() && !e->isString() && e->getAs<GenericType>()->getSize()) || e->isTrue())
             {
                 return true;
             }

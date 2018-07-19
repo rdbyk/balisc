@@ -398,7 +398,7 @@ bool List::isTrue()
     {
         InternalType* e = get(i);
 
-        if ((e->isGenericType() && e->getAs<GenericType>()->getSize()) || e->isTrue())
+        if ((e->isGenericType() && !e->isString() && e->getAs<GenericType>()->getSize()) || e->isTrue())
         {
             return true;
         }

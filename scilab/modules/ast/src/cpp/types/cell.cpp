@@ -481,7 +481,7 @@ bool Cell::isTrue()
     {
         InternalType* e = get(i);
 
-        if ((e->isGenericType() && e->getAs<GenericType>()->getSize()) || e->isTrue())
+        if ((e->isGenericType() && !e->isString() && e->getAs<GenericType>()->getSize()) || e->isTrue())
         {
             return true;
         }
@@ -504,7 +504,7 @@ bool Cell::neg(InternalType*& out)
     for (int i = 0; i < m_iSize; ++i)
     {
         InternalType* e = get(i);
-        pb[i] = !((e->isGenericType() && e->getAs<GenericType>()->getSize()) || e->isTrue());
+        pb[i] = !((e->isGenericType() && !e->isString() && e->getAs<GenericType>()->getSize()) || e->isTrue());
     }
 
     return true;
