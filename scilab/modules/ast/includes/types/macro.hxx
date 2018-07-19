@@ -109,7 +109,6 @@ private :
     std::list<symbol::Variable*>*   m_inputArgs;
     std::list<symbol::Variable*>*   m_outputArgs;
     ast::SeqExp*                    m_body;
-    bool                            bAutoAlloc;
     symbol::Variable*               m_Nargin;
     symbol::Variable*               m_Nargout;
     symbol::Variable*               m_Varargin;

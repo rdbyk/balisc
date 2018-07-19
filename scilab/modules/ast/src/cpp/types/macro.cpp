@@ -48,7 +48,6 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputAr
 {
     setName(_stName);
     setModule(_stModule);
-    bAutoAlloc = false;
     m_pDblArgIn = new Double(1);
     m_pDblArgIn->IncreaseRef(); //never delete
     m_pDblArgOut = new Double(1);
