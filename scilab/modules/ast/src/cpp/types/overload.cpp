@@ -123,7 +123,7 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
             }
             else
             {
-                os_sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), pstFuncName);
+                os_sprintf(pstError2, _("check arguments or define function %s for overloading.\n"), pstFuncName);
                 os_sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
             }
 
