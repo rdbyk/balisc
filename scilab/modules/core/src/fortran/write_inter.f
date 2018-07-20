@@ -1,8 +1,8 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c Copyright (C) ENPC
-c
 c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 c
 c This file is hereby licensed under the terms of the GNU GPL v2.0,
 c pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +23,8 @@ c     &       (stk(li+j*m),j=0,n-1)
       !write (*, '(f)') dat(1)
       !write (*, '(f)') dat(2)
       do 65 i=1,m
-          write(buf,form,err=20) (dat(j*m+i),j=0, n-1)
+          write(buf,form,iostat=ierr,err=20) (dat(j*m+i),j=0, n-1)
+          if(ierr.ne.0) return
           lb1=lch
  66       lb1=lb1-1
           if(buf(lb1:lb1).eq.' ') goto 66
@@ -50,7 +51,8 @@ c     &       (stk(li+j*m),j=0,n-1)
       !write (*, '(f)') dat(1)
       !write (*, '(f)') dat(2)
       do 67 i=1,m
-          write(buf,form,err=20) (dat(j*m+i),j=0, n-1)
+          write(buf,form,iostat=ierr,err=20) (dat(j*m+i),j=0, n-1)
+          if(ierr.ne.0) return
           lb1=lch
  68       lb1=lb1-1
           if(buf(lb1:lb1).eq.' ') goto 68
@@ -75,7 +77,8 @@ c     &       (stk(li+j*m),j=0,n-1)
       integer ierr
 
 
-      write(buf,form,err=20) dat
+      write(buf,form,iostat=ierr,err=20) dat
+      if(ierr.ne.0) return
       lb1=lch
  69   lb1=lb1-1
       if(buf(lb1:lb1).eq.' ') goto 69
@@ -98,11 +101,11 @@ c     &       (stk(li+j*m),j=0,n-1)
 
       do 99 i=1,len(dat),lch
           if(len(dat) < (i+lch-1)) then
-              write(ID,form,err=20) dat(i:len(dat))
+              write(ID,form,iostat=ierr,err=20) dat(i:len(dat))
           else
-              write(ID,form,err=20) dat(i:(i+lch-1))
+              write(ID,form,iostat=ierr,err=20) dat(i:(i+lch-1))
           end if
-
+          if(ierr.ne.0) return
 99    continue
       return
 
@@ -121,8 +124,8 @@ c     &       (stk(li+j*m),j=0,n-1)
 
 
       do 71 i=1,m
-          write(ID,form,err=20) (dat(j*m+i),j=0, n-1)
-
+          write(ID,form,iostat=ierr,err=20) (dat(j*m+i),j=0, n-1)
+          if(ierr.ne.0) return
  71   continue
       return
 
@@ -139,8 +142,8 @@ c     &       (stk(li+j*m),j=0,n-1)
       character form*(*)
 
       do 72 i=1,m
-          write(ID,form,err=20) (dat(j*m+i),j=0, n-1)
-
+          write(ID,form,iostat=ierr,err=20) (dat(j*m+i),j=0, n-1)
+          if(ierr.ne.0) return
  72   continue
       return
 
@@ -159,7 +162,8 @@ c     &       (stk(li+j*m),j=0,n-1)
       character form*(*)
 
       do 73 i=1,m
-          write(buf,form,err=20) (dat(j*m+i),j=0, n-1)
+          write(buf,form,iostat=ierr,err=20) (dat(j*m+i),j=0, n-1)
+          if(ierr.ne.0) return
           lb1=lch
  74       lb1=lb1-1
           if(buf(lb1:lb1).eq.' ') goto 74
@@ -167,7 +171,6 @@ c     &       (stk(li+j*m),j=0,n-1)
       do 75 j=1,lb1,szsc
           if(lb1 < (j+szsr-1)) then
               write(buf2,*) buf(j:lb1)
-
           else
               write(buf2,*) buf(j:(j+szsc-1))
           end if
@@ -191,7 +194,8 @@ c     &       (stk(li+j*m),j=0,n-1)
       integer m,n,szsc,ierr
 
       do 76 i=1,m
-          write(ID,*,err=20) (dat(j*m+i),j=0, n-1)
+          write(ID,*,iostat=ierr,err=20) (dat(j*m+i),j=0, n-1)
+          if(ierr.ne.0) return
  76   continue
       return
 
@@ -210,7 +214,8 @@ c     &       (stk(li+j*m),j=0,n-1)
       character form*(*)
 
       do 79 i=1,m
-          write(buf,form,err=20) (dat(j*m+i),j=0, n-1)
+          write(buf,form,iostat=ierr,err=20) (dat(j*m+i),j=0, n-1)
+          if(ierr.ne.0) return
           lb1=lch
  80       lb1=lb1-1
           if(buf(lb1:lb1).eq.' ') goto 80
@@ -243,7 +248,8 @@ c     &       (stk(li+j*m),j=0,n-1)
       character form*(*)
 
       do 82 i=1,m
-          write(buf,form,err=20) (dat(j*m+i),j=0, n-1)
+          write(buf,form,iostat=ierr,err=20) (dat(j*m+i),j=0, n-1)
+          if(ierr.ne.0) return
           lb1=lch
  83       lb1=lb1-1
           if(buf(lb1:lb1).eq.' ') goto 83
