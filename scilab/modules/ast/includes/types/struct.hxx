@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -90,12 +90,39 @@ public :
 
     bool isTrue()
     {
-        return false;
+        if (getSize() == 0)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < getSize(); ++i)
+        {
+            if (!get(i)->isTrue())
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    virtual bool neg(InternalType *& /*out*/)
+    virtual bool neg(InternalType*& out)
     {
-        return false;
+        if (getSize() == 0)
+        {
+            out = new Bool(true);
+            return true;
+        }
+
+        out = new Bool(this->m_iDims, this->m_piDims);
+        int* pb = static_cast<Bool*>(out)->get();
+
+        for (int i = 0; i < m_iSize; ++i)
+        {
+            pb[i] = !get(i)->isTrue();
+        }
+
+        return true;
     }
 
     bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;

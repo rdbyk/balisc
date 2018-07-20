@@ -114,7 +114,28 @@ public :
 
     bool isTrue()
     {
-        return false;
+        for (int i = 0; i < m_iSize; ++i)
+        {
+            if (!get(i)->isTrue())
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    virtual bool neg(InternalType*& out)
+    {
+        out = new Bool(this->m_iDims, this->m_piDims);
+        int* pb = static_cast<Bool*>(out)->get();
+
+        for (int i = 0; i < m_iSize; ++i)
+        {
+            pb[i] = !get(i)->isTrue();
+        }
+
+        return true;
     }
 
     bool transpose(InternalType *& out);

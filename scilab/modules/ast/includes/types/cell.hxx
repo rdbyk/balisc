@@ -92,15 +92,9 @@ public :
     }
     bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
-    bool isTrue()
-    {
-        return false;
-    }
+    bool isTrue();
 
-    virtual bool neg(InternalType *& /*out*/)
-    {
-        return false;
-    }
+    virtual bool neg(InternalType *& /*out*/);
 
     virtual bool transpose(InternalType *& out);
 

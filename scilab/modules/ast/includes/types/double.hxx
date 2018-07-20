@@ -110,7 +110,35 @@ public :
             return true;
         }
 
-        return ArrayOf<double>::neg(out);
+        out = new Bool(this->m_iDims, this->m_piDims);
+        int* pb = static_cast<Bool*>(out)->get();
+
+        if (m_pImgData ==  NULL)
+        {
+            if (isViewAsZComplex())
+            {
+                for (int i = 0; i < m_iSize; ++i)
+                {
+                    pb[i] = !(m_pRealData[i] || m_pRealData[2*i+1]);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < m_iSize; ++i)
+                {
+                    pb[i] = !(m_pRealData[i]);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < m_iSize; ++i)
+            {
+                pb[i] = !(m_pRealData[i] || m_pImgData[i]);
+            }
+        }
+
+        return true;
     }
 
     void                        setViewAsInteger(bool _bViewAsInteger = true)

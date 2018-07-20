@@ -689,6 +689,32 @@ ast::Exp* String::getExp(const Location& loc)
     return new ast::StringExp(loc, this);
 }
 
+bool String::isTrue()
+{
+    for (int i = 0; i < getSize(); ++i)
+    {
+        if (wcslen(get(i)) > 0)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool String::neg(InternalType *& out)
+{
+    out = new Bool(m_iDims, m_piDims);
+    int* o = out->getAs<Bool>()->get();
+
+    for (int i = 0; i < getSize(); ++i)
+    {
+        o[i] = (wcslen(get(i)) == 0);
+    }
+
+    return true;
+}
+
 bool String::transpose(InternalType *& out)
 {
     return type_traits::transpose(*this, out);

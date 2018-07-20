@@ -17,6 +17,9 @@
 #include "callexp.hxx"
 
 #include "internal.hxx"
+#include "bool.hxx"
+#include "function.hxx"
+#include "overload.hxx"
 
 namespace types
 {
@@ -43,7 +46,26 @@ ast::Exp * InternalType::getExp(const Location& /*loc*/)
 
 bool InternalType::isTrue()
 {
-    return false;
+    typed_list in;
+    typed_list out;
+
+    in.push_back(this);
+
+    std::wstring wstFuncName = L"%" + getShortTypeStr() + L"_T";
+
+    if (Overload::call(wstFuncName, in, 1, out) == Function::OK && out[0]->isBool())
+    {
+        types::Bool* pB = out[0]->getAs<Bool>();
+
+        if (pB->isScalar())
+        {
+            return pB->getFirst();
+        }
+    }
+
+    std::wostringstream os;
+    os << _W("An error occurred in overload function ") << wstFuncName << "." << std::endl;
+    throw ast::InternalError(os.str());
 }
 
 bool InternalType::neg(InternalType *& /*out*/)

@@ -48,6 +48,11 @@ public :
     virtual double          copyValue(double _dblData);
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
+    bool isTrue()
+    {
+        return getDegree() != -INFINITY;
+    }
+
     bool                    setZeros();
     int                     getRank();
     double                  getDegree();

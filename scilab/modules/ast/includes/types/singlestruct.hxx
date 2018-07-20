@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -73,6 +73,21 @@ public :
 
     bool                                    operator==(const InternalType& it);
     bool                                    operator!=(const InternalType& it);
+
+    bool isTrue()
+    {
+        for (int i = 0; i < m_Data.size(); ++i)
+        {
+            InternalType* e = m_Data[i];
+
+            if ((e->isGenericType() && !e->isString() && e->getAs<GenericType>()->getSize()) || e->isTrue())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring                    getTypeStr() const

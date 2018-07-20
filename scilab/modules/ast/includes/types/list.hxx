@@ -17,6 +17,7 @@
 #define __LIST_HH__
 
 #include <list>
+#include "bool.hxx"
 #include "container.hxx"
 
 namespace types
@@ -126,6 +127,10 @@ public :
     }
 
     virtual bool                    operator==(const InternalType& it);
+
+    bool isTrue();
+
+    virtual bool neg(InternalType*&);
 
 protected :
     std::vector<InternalType *>*    m_plData;
