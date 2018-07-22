@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
 <!--
-            /*
-            *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-            *  Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
-            *
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,20 +13,19 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-            *
-            */
-            Scilab
-            Interface description. In this file, we define the list of the function which
-            will be available into Scilab and the link to the "native" function.
+ *
+ */
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
 
-            Don't touch if you do not know what you are doing !
-        -->
+ Don't touch if you do not know what you are doing !
+-->
 <module name="scicos">
     <gateway type="0" name="sci_sctree" function="sctree"/>
     <gateway type="0" name="sci_tree2" function="sci_tree2"/>
     <gateway type="0" name="sci_tree3" function="sci_tree3"/>
     <gateway type="0" name="sci_tree4" function="sci_tree4"/>
-    <gateway type="0" name="sci_model2blk" function="model2blk"/>
     <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
     <!-- C++ Gateways -->
     <gateway type="1" name="sci_buildouttb" function="buildouttb"/>
