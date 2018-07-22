@@ -97,43 +97,26 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
         if (pIT != _pIT)
         {
             //check macro redefinition
-            if (_pIT->isMacro())
+            if (pIT->isCallable())
             {
                 int iFuncProt = ConfigVariable::getFuncprot();
-                if (iFuncProt != 0)
+
+                if (iFuncProt)
                 {
-                    bool bEquals = true;
-                    if (pIT && pIT->isCallable())
+                    if (iFuncProt == 2)
                     {
-                        if (pIT->isMacroFile())
-                        {
-                            types::MacroFile* pMF = pIT->getAs<types::MacroFile>();
-                            bEquals = *pMF->getMacro() == *_pIT;
-                        }
-                        else if (pIT->isMacro())
-                        {
-                            types::Macro* pM = pIT->getAs<types::Macro>();
-                            bEquals = *pM == *_pIT;
-                        }
+                        wchar_t pwstError[1024];
+                        os_swprintf(pwstError, 1024, _W("ERROR: Redefining function \"%s\". Use funcprot(0) to avoid this error.\n").c_str(), name.getName().c_str());
+
+                        throw ast::InternalError(pwstError);
                     }
 
-                    if (bEquals == false)
+                    if (ConfigVariable::getWarningMode())
                     {
-                        if (iFuncProt == 2)
-                        {
-                            return false;
-                        }
+                        char* pstFuncName = wide_string_to_UTF8(name.getName().c_str());
 
-                        if (ConfigVariable::getWarningMode())
-                        {
-                            wchar_t pwstFuncName[1024];
-                            os_swprintf(pwstFuncName, 1024, L"%-24ls", name.getName().c_str());
-                            char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
-
-                            sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
-                            sciprint("\n");
-                            FREE(pstFuncName);
-                        }
+                        sciprint(_("WARNING: Redefining function \"%s\". Use funcprot(0) to avoid this message.\n"), pstFuncName);
+                        FREE(pstFuncName);
                     }
                 }
             }
@@ -141,12 +124,10 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
             // _pIT may contained in pIT
             // so increases ref of _pIT before kill pIT
             top()->m_pIT = _pIT;
-            if (pIT)
-            {
-                _pIT->IncreaseRef();
-                pIT->DecreaseRef();
-                pIT->killMe();
-            }
+
+            _pIT->IncreaseRef();
+            pIT->DecreaseRef();
+            pIT->killMe();
         }
     }
 
