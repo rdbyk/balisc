@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,7 +21,7 @@
 
 extern "C"
 {
-#include "sciprint.h"
+#include "Sciwarning.h"
 }
 
 namespace symbol
@@ -99,25 +99,25 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
             //check macro redefinition
             if (pIT->isCallable())
             {
-                int iFuncProt = ConfigVariable::getFuncprot();
-
-                if (iFuncProt)
+                switch (ConfigVariable::getFuncprot())
                 {
-                    if (iFuncProt == 2)
-                    {
-                        wchar_t pwstError[1024];
-                        os_swprintf(pwstError, 1024, _W("ERROR: Redefining function \"%s\". Use funcprot(0) to avoid this error.\n").c_str(), name.getName().c_str());
+                    case 1:
+                        {
+                            char pstWarning[1024];
+                            char* pstFuncName = wide_string_to_UTF8(name.getName().c_str());
+                            snprintf(pstWarning, 1024, _("WARNING: Redefining function \"%s\". Use funcprot(0) to avoid this message.\n"), pstFuncName);
+                            FREE(pstFuncName);
+                            Sciwarning(pstWarning);
+                        }
+                        break;
 
-                        throw ast::InternalError(pwstError);
-                    }
-
-                    if (ConfigVariable::getWarningMode())
-                    {
-                        char* pstFuncName = wide_string_to_UTF8(name.getName().c_str());
-
-                        sciprint(_("WARNING: Redefining function \"%s\". Use funcprot(0) to avoid this message.\n"), pstFuncName);
-                        FREE(pstFuncName);
-                    }
+                    case 2:
+                        {
+                            wchar_t pwstError[1024];
+                            os_swprintf(pwstError, 1024, _W("ERROR: Redefining function \"%s\". Use funcprot(0) to avoid this error.\n").c_str(), name.getName().c_str());
+                            throw ast::InternalError(pwstError);
+                        }
+                        break;
                 }
             }
 
