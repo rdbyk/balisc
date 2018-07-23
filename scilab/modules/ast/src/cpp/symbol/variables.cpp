@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,7 +21,7 @@
 
 extern "C"
 {
-#include "sciprint.h"
+#include "Sciwarning.h"
 }
 
 namespace symbol
@@ -97,56 +97,37 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
         if (pIT != _pIT)
         {
             //check macro redefinition
-            if (_pIT->isMacro())
+            if (pIT->isCallable())
             {
-                int iFuncProt = ConfigVariable::getFuncprot();
-                if (iFuncProt != 0)
+                switch (ConfigVariable::getFuncprot())
                 {
-                    bool bEquals = true;
-                    if (pIT && pIT->isCallable())
-                    {
-                        if (pIT->isMacroFile())
+                    case 1:
                         {
-                            types::MacroFile* pMF = pIT->getAs<types::MacroFile>();
-                            bEquals = *pMF->getMacro() == *_pIT;
-                        }
-                        else if (pIT->isMacro())
-                        {
-                            types::Macro* pM = pIT->getAs<types::Macro>();
-                            bEquals = *pM == *_pIT;
-                        }
-                    }
-
-                    if (bEquals == false)
-                    {
-                        if (iFuncProt == 2)
-                        {
-                            return false;
-                        }
-
-                        if (ConfigVariable::getWarningMode())
-                        {
-                            wchar_t pwstFuncName[1024];
-                            os_swprintf(pwstFuncName, 1024, L"%-24ls", name.getName().c_str());
-                            char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
-
-                            sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
-                            sciprint("\n");
+                            char pstWarning[1024];
+                            char* pstFuncName = wide_string_to_UTF8(name.getName().c_str());
+                            snprintf(pstWarning, 1024, _("WARNING: Redefining function \"%s\". Use funcprot(0) to avoid this message.\n"), pstFuncName);
                             FREE(pstFuncName);
+                            Sciwarning(pstWarning);
                         }
-                    }
+                        break;
+
+                    case 2:
+                        {
+                            wchar_t pwstError[1024];
+                            os_swprintf(pwstError, 1024, _W("ERROR: Redefining function \"%s\". Use funcprot(0) to avoid this error.\n").c_str(), name.getName().c_str());
+                            throw ast::InternalError(pwstError);
+                        }
+                        break;
                 }
             }
 
             // _pIT may contained in pIT
             // so increases ref of _pIT before kill pIT
             top()->m_pIT = _pIT;
-            if (pIT)
-            {
-                _pIT->IncreaseRef();
-                pIT->DecreaseRef();
-                pIT->killMe();
-            }
+
+            _pIT->IncreaseRef();
+            pIT->DecreaseRef();
+            pIT->killMe();
         }
     }
 

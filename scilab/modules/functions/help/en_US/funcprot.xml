@@ -5,11 +5,11 @@
           xml:lang="en" xml:id="funcprot">
     <refnamediv>
         <refname>funcprot</refname>
-        <refpurpose>switch scilab functions protection mode</refpurpose>
+        <refpurpose>function protection mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>funcprot(prot)
+        <synopsis>
             previousprot = funcprot(prot)
             prot = funcprot()
         </synopsis>
@@ -34,23 +34,27 @@
     <refsection>
         <title>Description</title>
         <para>
-            Scilab functions are variable, <function>funcprot</function> allows the user to specify
-            what Scilab do when such  variables are redefined.
+            Scilab functions are variables. The function protection mode <function>funcprot</function> defines the behaviour, whenever
+            the redefinition of a function is detected.
+        </para>
+        <para>
+            Please note, that only redefinitions in the current scope are detected, i.e.
+            possible shadowing of function definitions remain undetected.
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    If <code>prot == 0</code> nothing special is done.
+                    If <code>prot == 0</code> nothing is done.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    If <code>prot == 1</code> Scilab issues a warning message when a function is redefined (default mode).
+                    If <code>prot == 1</code> a warning is issued (default).
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    If <code>prot == 2</code> Scilab issues an error when a function is redefined.
+                    If <code>prot == 2</code> an error is raised.
                 </para>
             </listitem>
         </itemizedlist>
@@ -73,7 +77,10 @@ funcprot(previousprot)
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="predef">predef</link>
+                <link linkend="protect">protect</link>
+            </member>
+            <member>
+                <link linkend="warning">warning</link>
             </member>
         </simplelist>
     </refsection>
@@ -83,6 +90,10 @@ funcprot(previousprot)
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>Previous value is returned as output argument when setting a new value.</revremark>
+            </revision>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Pointed out limitations wrt to the detection of function redefinitions.</revremark>
             </revision>
         </revhistory>
     </refsection>
