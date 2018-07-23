@@ -116,7 +116,7 @@ mfprintf(fd,'This line is built with a row vector (26:28) %d.\n',[26:28]);
 A = rand(3,6);
 mfprintf(fd,'This line is built with a matrix %.3f.\n',A);
 mclose(fd);
-if (isdef('editor') | (funptr('editor')<>0)) then
+if isdef('editor' || typeof(editor) == 'function' then
   editor(TMPDIR+'/text.txt')
 end
 mfprintf(0,'stderr output.\n');

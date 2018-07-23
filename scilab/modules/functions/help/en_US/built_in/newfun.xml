@@ -55,8 +55,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-     absptr=funptr("abs");// get the function_ptr associated with the abs function
-     newfun("abs_bis",absptr) // create an alias of the abs function
+     newfun("abs_bis","abs") // create an alias of the abs function
      abs_bis(-1+%i)
      clearfun("abs") // remove abs as a known function
 
@@ -73,9 +72,6 @@
         <simplelist type="inline">
             <member>
                 <link linkend="clearfun">clearfun</link>
-            </member>
-            <member>
-                <link linkend="funptr">funptr</link>
             </member>
             <member>
                 <link linkend="ilib_build">ilib_build</link>

@@ -75,7 +75,7 @@ function y = foo(a,b,c)
 endfunction
 
 path = help_skeleton('foo', TMPDIR)
-if (isdef('editor') | (funptr('editor')&lt;&gt;0)) then
+if isdef('editor' || typeof(editor) == 'function' then
    editor(path);
 end
          ]]></programlisting>
