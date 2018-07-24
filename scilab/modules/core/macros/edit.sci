@@ -50,7 +50,7 @@ function edit(macroname,linenumber)
             found = %t;
         else
             tmpfile = tmpdir + macroname + ".sci";
-            if funptr(macroname)<>0 then
+            if isdef(macroname) && typeof(evstr(macroname))=="fptr" then
                 error(msprintf(gettext("%s: %s is an uneditable hard coded function.\n"), "edit", macroname));
             end
             libr = whereis(macroname);

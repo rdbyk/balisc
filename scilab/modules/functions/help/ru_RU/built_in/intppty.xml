@@ -83,9 +83,6 @@ foo(A,1+2)
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="funptr">funptr</link>
-            </member>
-            <member>
                 <link linkend="addinter">addinter</link>
             </member>
         </simplelist>

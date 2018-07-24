@@ -29,7 +29,7 @@ function [sci_equiv]=getvar2sci(var,lhslist)
         scinam=varname
 
         // If Matlab variable name is a function name in Scilab
-        if funptr(varname)<>0 then
+        if isdef(varname) && typeof(evstr(varname))=="fptr" then
             scinam="%"+varname
         end
 

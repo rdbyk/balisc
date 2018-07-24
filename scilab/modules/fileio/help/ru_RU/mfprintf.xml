@@ -109,7 +109,7 @@ mfprintf(fd,'Эта строка построена с помощью векто
 A = rand(3,6);
 mfprintf(fd,'Эта строка построена с помощью матрицы %.3f.\n',A);
 mclose(fd);
-if (isdef('editor') | (funptr('editor')<>0)) then
+if isdef('editor' || typeof(editor) == 'function' then
   editor(TMPDIR+'/text.txt')
 end
 mfprintf(0,'stderr output.\n');

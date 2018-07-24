@@ -1,9 +1,8 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,11 +10,10 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function demo_viewCode(this_script)
 
-    if (~isdef("editor") & (funptr("editor")==0)) then
+    if (~isdef("editor") || typeof(editor) <> ["function","fptr"]) then
         return
     end
 

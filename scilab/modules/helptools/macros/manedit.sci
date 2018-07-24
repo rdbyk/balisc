@@ -31,7 +31,7 @@ function manedit(manitem)
     end
 
     if path <> [] then
-        if (isdef("editor") | (funptr("editor")<>0)) then
+        if (isdef("editor") && or(typeof(editor) == ["function","fptr"])) then
             editor(path);
         end
     end

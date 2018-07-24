@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -35,7 +36,7 @@ if ~c_link('libintertest') then
   exec loader.sce ;
   
   //  check addinter add scifun1
-  if ( funptr('scifun1') == 0 ) then pause;end 
+  if ~isdef('scifun1') then pause;end 
   
   if norm(scifun1(%pi)- sin(%pi+1)/%pi ) > %eps then pause;end 
   

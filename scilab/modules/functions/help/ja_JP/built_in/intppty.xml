@@ -181,12 +181,6 @@ foo(A,1+2)
 
             <member>
 
-                <link linkend="funptr">funptr</link>
-
-            </member>
-
-            <member>
-
                 <link linkend="addinter">addinter</link>
 
             </member>

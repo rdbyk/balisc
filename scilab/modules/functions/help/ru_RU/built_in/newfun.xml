@@ -59,8 +59,7 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-     absptr=funptr("abs");// получить function_ptr, связанный с функцией abs
-     newfun("abs_bis",absptr) // создать псевдоним функции abs
+     newfun("abs_bis","abs") // создать псевдоним функции abs
      abs_bis(-1+%i)
      clearfun("abs") // удалить abs, как известную функцию
 
@@ -77,9 +76,6 @@
         <simplelist type="inline">
             <member>
                 <link linkend="clearfun">clearfun</link>
-            </member>
-            <member>
-                <link linkend="funptr">funptr</link>
             </member>
             <member>
                 <link linkend="ilib_build">ilib_build</link>

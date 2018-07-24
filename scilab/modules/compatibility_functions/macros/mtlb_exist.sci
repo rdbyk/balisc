@@ -13,7 +13,12 @@
 function r=mtlb_exist(nam,wh)
     // Emulation function for exist() Matlab function
 
-    fptr=funptr(nam)
+    if isdef(nam) && typeof(evstr(nam)) == "fptr" then
+        fptr = nam
+    else
+        fptr = 0
+    end
+
     r=0
     if nargin==1 then
         if fptr<>0 then
