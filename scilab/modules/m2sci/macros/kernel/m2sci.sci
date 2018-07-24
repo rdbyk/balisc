@@ -69,7 +69,8 @@ function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
     global("varslist")
     varslist=list()
     for k=1:macrhs
-        if funptr(mtlbtree.inputs(k).name)<>0 then // Matlab variable name corresponding to a Scilab function name
+        input_name = mtlbtree.inputs(k).name
+        if isdef(input_name) && typeof(evstr(input_name)) == "fptr" then // Matlab variable name corresponding to a Scilab function name
             varslist($+1)=M2scivar("%"+mtlbtree.inputs(k).name,mtlbtree.inputs(k).name,Infer())
             mtlbtree.inputs(k).name="%"+mtlbtree.inputs(k).name,
         elseif mtlbtree.inputs(k).name=="varargin" then
@@ -94,7 +95,8 @@ function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
     // Translated function output arguments
     maclhs=size(mtlbtree.outputs)
     for k=1:maclhs
-        if funptr(mtlbtree.outputs(k).name)<>0 then
+        output_name = mtlbtree.outputs(k).name
+        if isdef(output_name) && typeof(evstr(output_name)) == "fptr" then
             varslist($+1)=M2scivar("%"+mtlbtree.outputs(k).name,mtlbtree.outputs(k).name,Infer(list(0,0),Type(Double,Real)))
             mtlbtree.outputs(k).name="%"+mtlbtree.outputs(k).name
         else

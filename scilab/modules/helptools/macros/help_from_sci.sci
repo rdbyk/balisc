@@ -153,7 +153,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
         ];
 
         mputl(helptxt, TMPDIR + filesep() + "function_template.sci");
-        if (isdef("editor") | (funptr("editor") <> 0)) then
+        if (isdef("editor") && or(typeof(editor) == ["function","fptr"])) then
             editor(TMPDIR + filesep() + "function_template.sci");
         end
         [helptxt, demotxt] = help_from_sci("TMPDIR/function_template");

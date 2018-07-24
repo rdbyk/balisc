@@ -60,7 +60,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"intppty", &sci_intppty, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"newfun", &sci_newfun, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"clearfun", &sci_clearfun, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"funptr", &sci_funptr, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"analyzerOptions", &sci_analyzeroptions, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"macr2tree", &sci_macr2tree, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"predef", &sci_predef, MODULE_NAME));

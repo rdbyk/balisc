@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,7 +32,7 @@ function tree=default_trad(tree)
 
     ispriminame=%f;
     //true if the name function is the name of scilab function primitive
-    if funptr(tree.name)<>0 then
+    if isdef(tree.name) && typeof(evstr(tree.name)) == "fptr" then
         name1="%"+tree.name
         tree.name=name1
         ispriminame=%t;

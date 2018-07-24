@@ -69,7 +69,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_clear.cpp \
 	sci_gateway/cpp/sci_clearfun.cpp \
 	sci_gateway/cpp/sci_newfun.cpp \
-	sci_gateway/cpp/sci_funptr.cpp \
 	sci_gateway/cpp/sci_quit.cpp \
 	sci_gateway/cpp/sci_exit.cpp \
 	sci_gateway/cpp/sci_argn.cpp \
