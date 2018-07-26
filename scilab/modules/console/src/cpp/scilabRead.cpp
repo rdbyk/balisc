@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,13 +37,14 @@ void setScilabInputMethod(SCILAB_INPUT_METHOD reader)
     _reader = reader;
 }
 
-void C2F(scilabread)(char* strRead, int len)
+void C2F(scilabread)(char* strRead)
 {
     scilabRead();
     char* str = ConfigVariable::getConsoleReadStr();
-    int size = std::min(static_cast<int>(strlen(str)), len - 1);
-    strncpy(strRead, str, size);
-    strRead[size] = '\0';
+    // strRead is a fortran string of size 4096
+    // cf.  modules/core/src/fortran/read_inter.f
+    int size = std::min(static_cast<int>(strlen(str)), 4096);
+    memcpy(strRead, str, size);
     FREE(str);
 }
 

@@ -1,8 +1,8 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c Copyright (C) ENPC
-c
 c Copyright (C) 2012 - 2016 - Scilab Enterprises
+c Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 c
 c This file is hereby licensed under the terms of the GNU GPL v2.0,
 c pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -116,18 +116,23 @@ c along with this program.
       character form*(*)
       integer siz,ierr
 
-      string=' '
+      string = ' '
       call scilabread(string,len(string))
       read(string,form,end=10,err=20) dat
+
       mn = lch
-128   mn=mn-1
-      if(dat(mn:mn).eq.' ') goto 128
-            siz=max(1,mn)
+      do while (mn.ge.1)
+        if (dat(mn:mn).ne.' ') goto 128
+        mn =  mn -1
+      end do
+
+128   continue
+      siz = max(0,mn)
       return
 
-10      ierr = 1
+10    ierr = 1
       return
-20      ierr = 2
+20    ierr = 2
       return
 
       end
