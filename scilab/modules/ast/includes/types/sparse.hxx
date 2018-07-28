@@ -360,7 +360,7 @@ struct Sparse : GenericType
        @return ptr to a new Sparse matrix where each element is the result of the logical operator
         '!=' between the elements of *this and those of o.
      */
-    SparseBool* newNotEqualTo(Sparse const&o) const;
+    SparseBool* newNotEqualTo(Sparse &o);
 
     /* coefficient wise relational operator <= between *this sparse matrix and another.
        Matrices must have the same dimensions except if one of them is of size (1,1)

@@ -2756,8 +2756,6 @@ InternalType* compnoequal_M_M<Sparse, Double, Bool>(Sparse* _pL, Double* _pR)
 template<class T, class U, class O>
 InternalType* compnoequal_M_SP(T* _pL, U* _pR)
 {
-    //pending changes
-
     //D -> SP != SP
     Sparse* pspConvert = NULL;
     types::SparseBool* pOut = NULL;
@@ -2765,23 +2763,16 @@ InternalType* compnoequal_M_SP(T* _pL, U* _pR)
 
     if (_pL->isScalar())
     {
-        int iSizeOut = _pR->getSize();
         if (_pL->isComplex())
         {
-            pspConvert = new Sparse(_pR->getRows(), _pR->getCols(), true);
+            pspConvert = new Sparse(1, 1, true);
             std::complex<double> stComplex((double)_pL->getFirst(), (double)_pL->getImgFirst());
-            for (int i = 0; i < iSizeOut; i++)
-            {
-                pspConvert->set(i, stComplex, false);
-            }
+            pspConvert->set(0, stComplex, false);
         }
         else
         {
-            pspConvert = new Sparse(_pR->getRows(), _pR->getCols(), _pR->isComplex());
-            for (int i = 0; i < iSizeOut; i++)
-            {
-                pspConvert->set(i, (double)_pL->getFirst(), false);
-            }
+            pspConvert = new Sparse(1,1, _pR->isComplex());
+            pspConvert->set(0, (double)_pL->getFirst(), false);
         }
     }
     else
@@ -2823,30 +2814,21 @@ InternalType* compnoequal_M_SP(T* _pL, U* _pR)
 template<class T, class U, class O>
 InternalType* compnoequal_SP_M(T* _pL, U* _pR)
 {
-    //pending changes
-
     Sparse* pspConvert = NULL;
     types::SparseBool* pOut = NULL;
 
     if (_pR->isScalar())
     {
-        int iSizeOut = _pL->getSize();
         if (_pR->isComplex())
         {
-            pspConvert = new Sparse(_pL->getRows(), _pL->getCols(), true);
+            pspConvert = new Sparse(1, 1, true);
             std::complex<double> stComplex((double)_pR->getFirst(), (double)_pR->getImgFirst());
-            for (int i = 0; i < iSizeOut; i++)
-            {
-                pspConvert->set(i, stComplex, false);
-            }
+            pspConvert->set(0, stComplex, false);
         }
         else
         {
-            pspConvert = new Sparse(_pL->getRows(), _pL->getCols(), _pL->isComplex());
-            for (int i = 0; i < iSizeOut; i++)
-            {
-                pspConvert->set(i, (double)_pR->getFirst(), false);
-            }
+            pspConvert = new Sparse(1, 1, _pL->isComplex());
+            pspConvert->set(0, (double)_pR->getFirst(), false);
         }
     }
     else
