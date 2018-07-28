@@ -13,15 +13,12 @@ We don't know, but you may try running this
 ```scilab
 A=string(rand(1000,1000));
 tic;B=strcat(A);toc
-```
-
-first, and then
-
-```scilab
 tic;strsubst(B,"3","X");toc
+S=sprand(5000,5000,0.001);
+tic;S==0.5;toc
 ```
 
-under current [**_Scilab 6.x_**](http://www.scilab.org/en/development/nightly_builds/master). In the meantime, you might think about compiling **_Balisc_** by yourself (cf. below) and executing the very same instuctions on your freshly built **_Balisc_**. This could confront you with a result like this.
+under current [**_Scilab 6.x_**](http://www.scilab.org/en/development/nightly_builds/master). In the meantime, you might think about compiling **_Balisc_** by yourself (cf. below) and executing the very same instuctions on your freshly built **_Balisc_**. This could confront you with results like this.
 
 ```scilab
 --> A=string(rand(1000,1000));
@@ -31,9 +28,13 @@ under current [**_Scilab 6.x_**](http://www.scilab.org/en/development/nightly_bu
 --> tic;strsubst(B,"3","X");toc
  ans  =
    0.095663
+--> a=sprand(5000,5000,0.001);
+--> tic;a==0.5;toc
+ ans  =
+   0.233446
 ```
 
-Please, don't take this example too seriously, it is just an extreme example chosen for pedagogic reasons. *Scilab is a very powerful and comprehensive tool*.
+Please, don't take these examples too seriously, they are just extremes chosen for pedagogic reasons. *Scilab is a very powerful and comprehensive tool*.
 
 #### You want to Protect Just One Variable?
 With the unique functions `protect`, `unprotect`, and `isprotected` of **_Balisc_**, you might do this 
