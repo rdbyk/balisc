@@ -2649,96 +2649,133 @@ void Sparse::opposite(void)
     }
 }
 
-SparseBool* Sparse::newLessThan(Sparse &o)
+SparseBool* Sparse::newLessThan(Sparse &r)
 {
-    //only real values !
+    int mode = 2*isScalar() + r.isScalar();
 
-    //return cwiseOp<std::less>(*this, o);
-    int rowL = getRows();
-    int colL = getCols();
+    int rows = 0;
+    int cols = 0;
 
-    int rowR = o.getRows();
-    int colR = o.getCols();
-    int row = std::max(rowL, rowR);
-    int col = std::max(colL, colR);
-
-    //create a boolean sparse matrix with dims of sparses
-    types::SparseBool* ret = new types::SparseBool(row, col);
-    if (isScalar() && o.isScalar())
+    switch (mode)
     {
-        double l = getFirst();
-        double r = o.getFirst();
-        ret->set(0, 0, l < r, false);
-    }
-    else if (isScalar())
-    {
-        int nnzR = static_cast<int>(o.nonZeros());
-        std::vector<int> rowcolR(nnzR * 2, 0);
-        o.outputRowCol(rowcolR.data());
+        case 0: // m < m
+        case 1: // m < s
+        case 3: // s < s
+            rows = getRows();
+            cols = getCols();
+            break;
 
-        //compare all items of R with R[0]
-        double l = getFirst();
-        if (l < 0)
-        {
-            //set true
-            ret->setTrue(false);
-        }
-
-        for (int i = 0; i < nnzR; ++i)
-        {
-            double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
-            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l < r, false);
-        }
-    }
-    else if (o.isScalar())
-    {
-        int nnzL = static_cast<int>(nonZeros());
-        std::vector<int> rowcolL(nnzL * 2, 0);
-        outputRowCol(rowcolL.data());
-
-        double r = o.getFirst();
-        if (r > 0)
-        {
-            ret->setTrue(true);
-        }
-
-        for (int i = 0; i < nnzL; ++i)
-        {
-            double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
-            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l < r, false);
-        }
-    }
-    else
-    {
-        int nnzR = static_cast<int>(o.nonZeros());
-        std::vector<int> rowcolR(nnzR * 2, 0);
-        o.outputRowCol(rowcolR.data());
-        int nnzL = static_cast<int>(nonZeros());
-        std::vector<int> rowcolL(nnzL * 2, 0);
-        outputRowCol(rowcolL.data());
-        //set all values to %t
-        ret->setFalse(false);
-
-        for (int i = 0; i < nnzL; ++i)
-        {
-            double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
-            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l < 0, false);
-        }
-        ret->finalize();
-
-        //set _pR[i] == _pL[i] for each _pR values
-        for (int i = 0; i < nnzR; ++i)
-        {
-            //get l and r following non zeros value of R
-            double l = get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
-            double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
-            //set value following non zeros value of R
-            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l < r, false);
-        }
+        case 2: // s < m
+            rows = r.getRows();
+            cols = r.getCols();
+            break;
     }
 
-    ret->finalize();
-    return ret;
+    std::vector<BoolTriplet_t> tripletList;
+    tripletList.reserve(rows * cols);
+
+    RealSparse_t* ll = matrixReal;
+    RealSparse_t* rr = r.matrixReal;
+
+    switch (mode)
+    {
+        case 0: // m < m
+
+            for (int i = 0; i < rows; ++i)
+            {
+                for (int j = 0; j < cols; ++j)
+                {
+                    if (ll->coeff(i, j) < rr->coeff(i, j))
+                    {
+                        tripletList.emplace_back(i, j, true);
+                    }
+                }
+            }
+
+            break;
+
+        case 2: // s < m
+            {
+                double s = ll->coeff(0, 0);
+
+                if (s >= 0)
+                {
+                    for (int k = 0; k < rr->outerSize(); ++k)
+                    {
+                        for (RealSparse_t::InnerIterator it(*rr, k); it; ++it)
+                        {
+                            if (it.value() > s)
+                            {
+                                tripletList.emplace_back(it.row(), it.col(), true);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < rows; ++i)
+                    {
+                        for (int j = 0; j < cols; ++j)
+                        {
+                            if (rr->coeff(i, j) > s)
+                            {
+                                tripletList.emplace_back(i, j, true);
+                            }
+                        }
+                    }
+                }
+            }
+
+            break;
+
+        case 1: // m < s
+            {
+                double s = rr->coeff(0, 0);
+
+                if (s <= 0)
+                {
+                    for (int k = 0; k < ll->outerSize(); ++k)
+                    {
+                        for (RealSparse_t::InnerIterator it(*ll, k); it; ++it)
+                        {
+                            if (it.value() < s)
+                            {
+                                tripletList.emplace_back(it.row(), it.col(), true);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < rows; ++i)
+                    {
+                        for (int j = 0; j < cols; ++j)
+                        {
+                            if (ll->coeff(i, j) < s)
+                            {
+                                tripletList.emplace_back(i, j, true);
+                            }
+                        }
+                    }
+                }
+            }
+
+            break;
+
+        case 3: // s < s
+
+            if (rr->coeff(0, 0) < ll->coeff(0, 0))
+            {
+                tripletList.emplace_back(0, 0, true);
+            }
+
+            break;
+    }
+
+    SparseBool::BoolSparse_t *oo = new SparseBool::BoolSparse_t(rows, cols);
+    oo->setFromTriplets(tripletList.begin(), tripletList.end());
+
+    return new SparseBool(oo);
 }
 
 SparseBool* Sparse::newNotEqualTo(Sparse &r)
@@ -2779,6 +2816,7 @@ SparseBool* Sparse::newNotEqualTo(Sparse &r)
             case 0: // m != m
 
                 for (int i = 0; i < rows; ++i)
+                {
                     for (int j = 0; j < cols; ++j)
                     {
                         if (ll->coeff(i, j) != rr->coeff(i, j))
@@ -2786,37 +2824,48 @@ SparseBool* Sparse::newNotEqualTo(Sparse &r)
                             tripletList.emplace_back(i, j, true);
                         }
                     }
+                }
 
                 break;
+
+            case 2: // s == m
+                {
+                    CplxSparse_t* tmp = ll;
+                    ll = rr;
+                    rr = tmp;
+                }
+                // fall through
 
             case 1: // m != s
                 {
                     std::complex<double> s = rr->coeff(0, 0);
 
-                    for (int i = 0; i < rows; ++i)
-                        for (int j = 0; j < cols; ++j)
+                    if (s == std::complex<double>(0, 0))
+                    {
+                        for (int k = 0; k < ll->outerSize(); ++k)
                         {
-                            if (ll->coeff(i, j) != s)
+                            for (CplxSparse_t::InnerIterator it(*ll, k); it; ++it)
                             {
-                                tripletList.emplace_back(i, j, true);
+                                if (it.value() != std::complex<double>(0, 0))
+                                {
+                                    tripletList.emplace_back(it.row(), it.col(), true);
+                                }
                             }
                         }
-                }
-
-                break;
-
-            case 2: // s != m
-                {
-                    std::complex<double> s = ll->coeff(0, 0);
-
-                    for (int i = 0; i < rows; ++i)
-                        for (int j = 0; j < cols; ++j)
+                    }
+                    else
+                    {
+                        for (int i = 0; i < rows; ++i)
                         {
-                            if (s != rr->coeff(i, j))
+                            for (int j = 0; j < cols; ++j)
                             {
-                                tripletList.emplace_back(i, j, true);
+                                if (ll->coeff(i, j) != s)
+                                {
+                                    tripletList.emplace_back(i, j, true);
+                                }
                             }
                         }
+                    }
                 }
 
                 break;
@@ -2851,36 +2900,44 @@ SparseBool* Sparse::newNotEqualTo(Sparse &r)
 
                 break;
 
-            case 1: // m != s
-                {
-                    // FIXME: for s == 0 iterate over nnz elements only
-                    double s = rr->coeff(0, 0);
-
-                    for (int i = 0; i < rows; ++i)
-                        for (int j = 0; j < cols; ++j)
-                        {
-                            if (ll->coeff(i, j) != s)
-                            {
-                                tripletList.emplace_back(i, j, true);
-                            }
-                        }
-                }
-
-                break;
-
             case 2: // s == m
                 {
-                    // FIXME: for s == 0 iterate over nnz elements only
-                    double s = ll->coeff(0, 0);
+                    RealSparse_t* tmp = ll;
+                    ll = rr;
+                    rr = tmp;
+                }
+                // fall through
 
-                    for (int i = 0; i < rows; ++i)
-                        for (int j = 0; j < cols; ++j)
+            case 1: // m != s
+                {
+                    double s = rr->coeff(0, 0);
+
+                    if (s == 0)
+                    {
+                        for (int k = 0; k < ll->outerSize(); ++k)
                         {
-                            if (s != rr->coeff(i, j))
+                            for (RealSparse_t::InnerIterator it(*ll, k); it; ++it)
                             {
-                                tripletList.emplace_back(i, j, true);
+                                if (it.value() != 0)
+                                {
+                                    tripletList.emplace_back(it.row(), it.col(), true);
+                                }
                             }
                         }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < rows; ++i)
+                        {
+                            for (int j = 0; j < cols; ++j)
+                            {
+                                if (ll->coeff(i, j) != s)
+                                {
+                                    tripletList.emplace_back(i, j, true);
+                                }
+                            }
+                        }
+                    }
                 }
 
                 break;
@@ -2902,96 +2959,133 @@ SparseBool* Sparse::newNotEqualTo(Sparse &r)
     return new SparseBool(oo);
 }
 
-SparseBool* Sparse::newLessOrEqual(Sparse &o)
+SparseBool* Sparse::newLessOrEqual(Sparse &r)
 {
-    //only real values !
+    int mode = 2*isScalar() + r.isScalar();
 
-    //return cwiseOp<std::less>(*this, o);
-    int rowL = getRows();
-    int colL = getCols();
+    int rows = 0;
+    int cols = 0;
 
-    int rowR = o.getRows();
-    int colR = o.getCols();
-    int row = std::max(rowL, rowR);
-    int col = std::max(colL, colR);
-
-    //create a boolean sparse matrix with dims of sparses
-    types::SparseBool* ret = new types::SparseBool(row, col);
-    if (isScalar() && o.isScalar())
+    switch (mode)
     {
-        double l = getFirst();
-        double r = o.getFirst();
-        ret->set(0, 0, l <= r, false);
-    }
-    else if (isScalar())
-    {
-        int nnzR = static_cast<int>(o.nonZeros());
-        std::vector<int> rowcolR(nnzR * 2, 0);
-        o.outputRowCol(rowcolR.data());
+        case 0: // m <= m
+        case 1: // m <= s
+        case 3: // s <= s
+            rows = getRows();
+            cols = getCols();
+            break;
 
-        //compare all items of R with R[0]
-        double l = getFirst();
-        if (l <= 0)
-        {
-            //set true
-            ret->setTrue(false);
-        }
-
-        for (int i = 0; i < nnzR; ++i)
-        {
-            double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
-            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l <= r, false);
-        }
-    }
-    else if (o.isScalar())
-    {
-        int nnzL = static_cast<int>(nonZeros());
-        std::vector<int> rowcolL(nnzL * 2, 0);
-        outputRowCol(rowcolL.data());
-
-        double r = o.getFirst();
-        if (r > 0)
-        {
-            ret->setTrue(true);
-        }
-
-        for (int i = 0; i < nnzL; ++i)
-        {
-            double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
-            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l <= r, false);
-        }
-    }
-    else
-    {
-        int nnzR = static_cast<int>(o.nonZeros());
-        std::vector<int> rowcolR(nnzR * 2, 0);
-        o.outputRowCol(rowcolR.data());
-        int nnzL = static_cast<int>(nonZeros());
-        std::vector<int> rowcolL(nnzL * 2, 0);
-        outputRowCol(rowcolL.data());
-        //set all values to %t
-        ret->setTrue(false);
-
-        for (int i = 0; i < nnzL; ++i)
-        {
-            double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
-            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l <= 0, false);
-        }
-        ret->finalize();
-
-        //set _pR[i] == _pL[i] for each _pR values
-        for (int i = 0; i < nnzR; ++i)
-        {
-            //get l and r following non zeros value of R
-            double l = get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
-            double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
-            //set value following non zeros value of R
-            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l <= r, false);
-        }
+        case 2: // s <= m
+            rows = r.getRows();
+            cols = r.getCols();
+            break;
     }
 
-    ret->finalize();
-    return ret;
+    std::vector<BoolTriplet_t> tripletList;
+    tripletList.reserve(rows * cols);
+
+    RealSparse_t* ll = matrixReal;
+    RealSparse_t* rr = r.matrixReal;
+
+    switch (mode)
+    {
+        case 0: // m <= m
+
+            for (int i = 0; i < rows; ++i)
+            {
+                for (int j = 0; j < cols; ++j)
+                {
+                    if (ll->coeff(i, j) <= rr->coeff(i, j))
+                    {
+                        tripletList.emplace_back(i, j, true);
+                    }
+                }
+            }
+
+            break;
+
+        case 2: // s <= m
+            {
+                double s = ll->coeff(0, 0);
+
+                if (s > 0)
+                {
+                    for (int k = 0; k < rr->outerSize(); ++k)
+                    {
+                        for (RealSparse_t::InnerIterator it(*rr, k); it; ++it)
+                        {
+                            if (it.value() >= s)
+                            {
+                                tripletList.emplace_back(it.row(), it.col(), true);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < rows; ++i)
+                    {
+                        for (int j = 0; j < cols; ++j)
+                        {
+                            if (rr->coeff(i, j) >= s)
+                            {
+                                tripletList.emplace_back(i, j, true);
+                            }
+                        }
+                    }
+                }
+            }
+
+            break;
+
+        case 1: // m <= s
+            {
+                double s = rr->coeff(0, 0);
+
+                if (s < 0)
+                {
+                    for (int k = 0; k < ll->outerSize(); ++k)
+                    {
+                        for (RealSparse_t::InnerIterator it(*ll, k); it; ++it)
+                        {
+                            if (it.value() <= s)
+                            {
+                                tripletList.emplace_back(it.row(), it.col(), true);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < rows; ++i)
+                    {
+                        for (int j = 0; j < cols; ++j)
+                        {
+                            if (ll->coeff(i, j) <= s)
+                            {
+                                tripletList.emplace_back(i, j, true);
+                            }
+                        }
+                    }
+                }
+            }
+
+            break;
+
+        case 3: // s <= s
+
+            if (rr->coeff(0, 0) <= ll->coeff(0, 0))
+            {
+                tripletList.emplace_back(0, 0, true);
+            }
+
+            break;
+    }
+
+    SparseBool::BoolSparse_t *oo = new SparseBool::BoolSparse_t(rows, cols);
+    oo->setFromTriplets(tripletList.begin(), tripletList.end());
+
+    return new SparseBool(oo);
 }
 
 SparseBool* Sparse::newEqualTo(Sparse &r)
@@ -3032,6 +3126,7 @@ SparseBool* Sparse::newEqualTo(Sparse &r)
             case 0: // m == m
 
                 for (int i = 0; i < rows; ++i)
+                {
                     for (int j = 0; j < cols; ++j)
                     {
                         if (ll->coeff(i, j) == rr->coeff(i, j))
@@ -3039,37 +3134,48 @@ SparseBool* Sparse::newEqualTo(Sparse &r)
                             tripletList.emplace_back(i, j, true);
                         }
                     }
-
-                break;
-
-            case 1: // m == s
-                {
-                    std::complex<double> s = rr->coeff(0, 0);
-
-                    for (int i = 0; i < rows; ++i)
-                        for (int j = 0; j < cols; ++j)
-                        {
-                            if (ll->coeff(i, j) == s)
-                            {
-                                tripletList.emplace_back(i, j, true);
-                            }
-                        }
                 }
 
                 break;
 
             case 2: // s == m
                 {
-                    std::complex<double> s = ll->coeff(0, 0);
+                    CplxSparse_t* tmp = ll;
+                    ll = rr;
+                    rr = tmp;
+                }
+                // fall through
 
-                    for (int i = 0; i < rows; ++i)
-                        for (int j = 0; j < cols; ++j)
+            case 1: // m == s
+                {
+                    std::complex<double> s = rr->coeff(0, 0);
+
+                    if (s != std::complex<double>(0,0))
+                    {
+                        for (int k = 0; k < ll->outerSize(); ++k)
                         {
-                            if (s == rr->coeff(i, j))
+                            for (CplxSparse_t::InnerIterator it(*ll, k); it; ++it)
                             {
-                                tripletList.emplace_back(i, j, true);
+                                if (it.value() == s)
+                                {
+                                    tripletList.emplace_back(it.row(), it.col(), true);
+                                }
                             }
                         }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < rows; ++i)
+                        {
+                            for (int j = 0; j < cols; ++j)
+                            {
+                                if (ll->coeff(i, j) == std::complex<double>(0,0))
+                                {
+                                    tripletList.emplace_back(i, j, true);
+                                }
+                            }
+                        }
+                    }
                 }
 
                 break;
@@ -3104,36 +3210,44 @@ SparseBool* Sparse::newEqualTo(Sparse &r)
 
                 break;
 
-            case 1: // m == s
-                {
-                    // FIXME: for s != 0 iterate over nnz elements only
-                    double s = rr->coeff(0, 0);
-
-                    for (int i = 0; i < rows; ++i)
-                        for (int j = 0; j < cols; ++j)
-                        {
-                            if (ll->coeff(i, j) == s)
-                            {
-                                tripletList.emplace_back(i, j, true);
-                            }
-                        }
-                }
-
-                break;
-
             case 2: // s == m
                 {
-                    // FIXME: for s != 0 iterate over nnz elements only
-                    double s = ll->coeff(0, 0);
+                    RealSparse_t* tmp = ll;
+                    ll = rr;
+                    rr = tmp;
+                }
+                // fall through
 
-                    for (int i = 0; i < rows; ++i)
-                        for (int j = 0; j < cols; ++j)
+            case 1: // m == s
+                {
+                    double s = rr->coeff(0, 0);
+
+                    if (s != 0)
+                    {
+                        for (int k = 0; k < ll->outerSize(); ++k)
                         {
-                            if (s == rr->coeff(i, j))
+                            for (RealSparse_t::InnerIterator it(*ll, k); it; ++it)
                             {
-                                tripletList.emplace_back(i, j, true);
+                                if (it.value() == s)
+                                {
+                                    tripletList.emplace_back(it.row(), it.col(), true);
+                                }
                             }
                         }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < rows; ++i)
+                        {
+                            for (int j = 0; j < cols; ++j)
+                            {
+                                if (ll->coeff(i, j) == 0)
+                                {
+                                    tripletList.emplace_back(i, j, true);
+                                }
+                            }
+                        }
+                    }
                 }
 
                 break;
