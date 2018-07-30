@@ -434,10 +434,6 @@ struct Sparse : GenericType
         return IdSparse;
     }
 
-
-
-    SparseBool* newLesserThan(Sparse const&o);
-
     typedef Eigen::SparseMatrix<double, 0x1, int>                   RealSparse_t;
     typedef Eigen::SparseMatrix<std::complex<double>, 0x1, int>     CplxSparse_t;
     /**
