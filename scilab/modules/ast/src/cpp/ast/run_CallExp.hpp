@@ -227,12 +227,12 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     if (pIT->isCallable())
                     {
                         char* strFName = wide_string_to_UTF8(pIT->getAs<types::Callable>()->getName().c_str());
-                        os_sprintf(szError, _("%s: Wrong number of output argument(s): %lu expected.\n"), strFName, out.size());
+                        os_sprintf(szError, _("%s: Wrong number of output arguments: %lu expected.\n"), strFName, out.size());
                         FREE(strFName);
                     }
                     else
                     {
-                        os_sprintf(szError, _("%s: Wrong number of output argument(s): %lu expected.\n"), "extract", out.size());
+                        os_sprintf(szError, _("%s: Wrong number of output arguments: %lu expected.\n"), "extract", out.size());
                     }
 
                     wchar_t* wError = to_wide_string(szError);
