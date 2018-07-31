@@ -606,10 +606,8 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 double start = getIndex(pIL->getStart());
                 double step = getIndex(pIL->getStep());
                 double end = getIndex(pIL->getEnd());
-                double dsize = (end - start) / step + 1;
-                int size = static_cast<int>(dsize);
 
-                pCurrentArg = (std::isnan(dsize) || start < 1 || start + (size - 1)*step < 1) ? NULL : pIL->extractFullMatrix()->getAs<Double>();
+                pCurrentArg = (start < 1 && step > 0 || end < 1 && step < 0) ? NULL : pIL->extractFullMatrix()->getAs<Double>();
             }
 
             pIL->killMe();
