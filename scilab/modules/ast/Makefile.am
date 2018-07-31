@@ -22,6 +22,7 @@ src/c/operations/matrix_kronecker.c \
 src/c/operations/matrix_multiplication.c \
 src/c/operations/matrix_power.c \
 src/c/operations/matrix_transpose.c \
+src/c/types/dtoa.c \
 src/cpp/ast/expHistory.cpp \
 src/cpp/ast/macrovarvisitor.cpp \
 src/cpp/ast/printvisitor.cpp \
@@ -450,6 +451,7 @@ includes/types/colon.hxx \
 includes/types/container.hxx \
 includes/types/cpp_gateway_prototype.hxx \
 includes/types/double.hxx \
+includes/types/dtoa.h \
 includes/types/file.hxx \
 includes/types/function.hxx \
 includes/types/gatewaystruct.hxx \

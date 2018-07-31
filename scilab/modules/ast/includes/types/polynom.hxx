@@ -138,6 +138,8 @@ public :
         return true;
     }
 
+    bool getMemory(int* _piSize, int* _piSizePlusType);
+
     bool transpose(InternalType *& out);
     bool adjoint(InternalType *& out);
 

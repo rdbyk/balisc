@@ -452,6 +452,17 @@ int Macro::getNbOutputArgument(void)
     return iOutputArgs;
 }
 
+bool Macro::getMemory(int* _piSize, int* _piSizePlusType)
+{
+    ast::SerializeVisitor serialMacro(m_body);
+    unsigned char* macroSerial = serialMacro.serialize(false, false);
+    unsigned int macroSize = *((unsigned int*)macroSerial);
+
+    *_piSize = macroSize;
+    *_piSizePlusType = *_piSize + sizeof(Macro);
+    return true;
+}
+
 bool Macro::operator==(const InternalType& it)
 {
     if (const_cast<InternalType &>(it).isMacro() == false)

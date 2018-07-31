@@ -80,7 +80,7 @@ public class GraphicController {
      * Returns the controller
      * @return the controller
      */
-    public static GraphicController getController() {
+    public synchronized static GraphicController getController() {
         if (me == null) {
             me = new GraphicController();
         }
@@ -344,7 +344,7 @@ public class GraphicController {
         if (oldParent != null && oldParent instanceof Integer) {
             Integer oldParentId = (Integer) oldParent;
 
-            if (oldParentId == parentId) {
+            if (oldParentId.equals(parentId)) {
                 return;
             }
 

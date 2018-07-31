@@ -41,7 +41,7 @@ function [P,r]=macglov(Sl)
     Ap=A;
     Bp=[-H*R12,B];
     Cp=[C;zeros(nb,n);C];
-    Dp=[R12,0*C*B;zeros(nb,nc),eye(nb,nb);R12,D];
+    Dp=[R12,zeros(C*B);zeros(nb,nc),eye(nb,nb);R12,D];
     P=syslin("c",Ap,Bp,Cp,Dp);
 
     if flag==1 then

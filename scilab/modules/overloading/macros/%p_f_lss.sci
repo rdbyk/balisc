@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,8 +14,8 @@ function [s]=%p_f_lss(d1,s2)
     //[s]=%p_f_lss(d1,s2)  <=> s=[d1,s2]
     //!
 
-    [a2,b2,c2,d2,x2,dom2]=s2(2:7)
-    [n2,m2]=size(c2);[p1,m1]=size(d1)
-    s=tlist(["lss","A","B","C","D","X0","dt"],a2,b2,[zeros(p1,m2);c2],[d1;d2],x2,dom2)
-
+    [a2,b2,c2,d2,x2,dom2] = s2(2:7)
+    [n2,m2] = size(c2);
+    [p1,m1] = size(d1)
+    s = tlist(["lss","A","B","C","D","X0","dt"], a2, b2,[zeros(p1,m2);c2], [d1;d2], x2, dom2)
 endfunction

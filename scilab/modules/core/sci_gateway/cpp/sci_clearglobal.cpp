@@ -38,13 +38,13 @@ Function::ReturnValue sci_clearglobal(typed_list &in, int _iRetCount, typed_list
 
     if (in.size() == 0)
     {
-        std::list<std::wstring> gVars;
+        std::list<std::pair<std::wstring,int>> gVars;
 
-        pCtx->getGlobalNameForWho(gVars, false);
+        pCtx->getGlobalInfoForWho(gVars, false);
 
         for (auto g : gVars)
         {
-            if (pCtx->isprotected(Symbol(g)))
+            if (pCtx->isprotected(Symbol(g.first)))
             {
                 Scierror(999, _("%s: Redefining permanent variable.\n"), fname);
                 return Function::Error;
@@ -53,7 +53,7 @@ Function::ReturnValue sci_clearglobal(typed_list &in, int _iRetCount, typed_list
 
         for (auto g : gVars)
         {
-            pCtx->removeGlobal(Symbol(g));
+            pCtx->removeGlobal(Symbol(g.first));
         }
     }
     else

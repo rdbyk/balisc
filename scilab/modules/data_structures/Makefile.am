@@ -56,7 +56,7 @@ libscidata_structures_la_etc_DATA = \
     etc/data_structures.quit \
     etc/data_structures.start
 
-#### data_structures : gateway declaration ####
+#### data_structures : gateway declaration ####
 libscidata_structures_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 
 include $(top_srcdir)/Makefile.incl.am
