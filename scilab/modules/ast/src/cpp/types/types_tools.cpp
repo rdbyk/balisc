@@ -357,21 +357,20 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 double step = evalute(pIL->getStep(), sizeRef);
                 double end = evalute(pIL->getEnd(), sizeRef);
 
-                double dsize = (end - start) / step + 1;
-                int size = static_cast<int>(dsize);
-
-                if (std::isnan(dsize) || start < 1 || start + (size - 1)*step < 1)
-                {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
-                    throw ast::InternalError(szError);
-                }
+                int size = (end - start) / step + 1;
 
                 if (size <= 0)
                 {
                     //manage implicit that return []
                     index.clear();
                     return true;
+                }
+
+                if ((start < 1 && step > 0) || (end < 1 & step < 0))
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
+                    throw ast::InternalError(szError);
                 }
 
                 std::vector<int> idx(size);
@@ -517,6 +516,8 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 int size = pCurrentArg->getSize();
                 double* idx = pCurrentArg->get();
                 double min_idx = _pRef && _pRef->isList() ? 0 : 1;
+                //double min_idx = _pRef==NULL || _pRef->isList()==false ? 1 : 0;
+
                 for (int j = 0; j < size; ++j)
                 {
                     int idxj = idx[j];
