@@ -1,10 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+//
 // <-- Non-regression test for bug 4810 -->
 //
 // <-- Bugzilla URL -->
@@ -16,9 +20,7 @@
 sp = sparse([1,2,4,5,3,10]);
 ref = sparse([10,5,4,3,2,1]);
 A = gsort(sp);
-if and(ref == A) <> %t then pause,end
+assert_checkequal(ref, A)
 
 sp = sparse([1,2;4,5;3,10]);
-ierr = execstr("A = gsort(sp);","errcatch");
-if ierr <> 10000 then pause,end
-
+assert_checktrue(execstr("A = gsort(sp);","errcatch") <> 0);
