@@ -6,6 +6,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+// <-- ENGLISH IMPOSED -->
+
 // <-- Non-regression test for bug 1962 -->
 //
 // <-- Bugzilla URL -->
@@ -14,9 +18,10 @@
 // <-- Short Description -->
 // primitive commands does not work as expected when overloaded by a macro
 
-// <-- ENGLISH IMPOSED -->
-
 funcprot(0);
+unprotect("clear") // cf. etc/scilab.start
+
+%f // initialize ans
 
 function ok=clear(varargin),ok=%t,endfunction
 clear xxyyzz

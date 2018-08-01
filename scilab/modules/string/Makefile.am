@@ -137,13 +137,13 @@ modulename=string
 libscistring_la_rootdir = $(mydatadir)
 libscistring_la_root_DATA =  license.txt
 
-####�string : init scripts ####
+#### string : init scripts ####
 libscistring_la_etcdir = $(mydatadir)/etc
 libscistring_la_etc_DATA = \
     etc/string.quit \
     etc/string.start
 
-####�string : gateway declaration ####
+#### string : gateway declaration ####
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 
 #### string : include files ####
@@ -165,6 +165,4 @@ includes/stristr.h \
 includes/strsubst.h
 
 
-
 include $(top_srcdir)/Makefile.incl.am
-

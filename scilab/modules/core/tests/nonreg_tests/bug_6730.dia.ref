@@ -1,17 +1,6 @@
-//<-- CLI SHELL MODE -->
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2005-2010 - INRIA - Serge.Steer@inria.fr
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- Non-regression test for bug6730 -->
-//
-// <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=6730
-//
-// <-- Short Description -->
-//problem with function calls when seen has member of an mlist
+funcprot(0)
+ ans  =
+   1.
 function [x,y,z]=myfun(varargin), x=varargin,y=2;z=3;,endfunction
 function fun=%foo_e(name,M);  fun=myfun;endfunction
 a=mlist('foo');

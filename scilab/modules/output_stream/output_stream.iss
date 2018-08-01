@@ -36,8 +36,6 @@ Source: modules\{#OUTPUT_STREAM}\includes\do_error_number.h; DestDir: {app}\modu
 Source: modules\{#OUTPUT_STREAM}\includes\dynlib_output_stream.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\includes\scilabWrite.hxx; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#OUTPUT_STREAM}\sci_gateway\{#OUTPUT_STREAM}_gateway.xml; DestDir: {app}\modules\{#OUTPUT_STREAM}\sci_gateway; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#OUTPUT_STREAM}\etc\{#OUTPUT_STREAM}.quit; DestDir: {app}\modules\{#OUTPUT_STREAM}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\etc\{#OUTPUT_STREAM}.start; DestDir: {app}\modules\{#OUTPUT_STREAM}\etc; Components: {#COMPN_SCILAB}
 ;

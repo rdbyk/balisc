@@ -79,6 +79,8 @@ struct Sparse : GenericType
         return true;
     }
     void finalize();
+    
+    bool getMemory(int *_piSize, int* _piSizePlusType);
 
     /*data management member function defined for compatibility with the Double API*/
     void set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
@@ -511,6 +513,8 @@ struct SparseBool : GenericType
         return true;
     }
     void finalize();
+
+    bool getMemory(int *_piSize, int* _piSizePlusType);
 
     bool toString(std::wostringstream& ostr);
 

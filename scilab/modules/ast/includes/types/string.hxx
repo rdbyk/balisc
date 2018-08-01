@@ -87,6 +87,8 @@ public :
 
     virtual bool neg(InternalType *& /*out*/);
 
+    bool getMemory(int* _piSize, int* _piSizePlusType);
+
     virtual bool transpose(InternalType *& out);
 
     virtual ast::Exp*       getExp(const Location& loc);

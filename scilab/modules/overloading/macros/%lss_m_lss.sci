@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [SS]=%lss_m_lss(S1,S2)
+function [SS] = %lss_m_lss(S1,S2)
     //S=%lss_m_lss(S1,S2)  computes S1*S2 in state-space form.
     //  --> S2 --> S1 -->
     //!
@@ -28,32 +28,32 @@ function [SS]=%lss_m_lss(S1,S2)
     end
     //improper systems
 
-    J=[A1,B1*C2;zeros(B1*C2)',A2];
-    Ls=[C1 D1*C2]'
-    Ms=[B1*D2;B2]
+    J = [A1, B1*C2; zeros(B1*C2)', A2];
+    Ls = [C1 D1*C2]'
+    Ms = [B1*D2;B2]
 
-    if Ms==[]|Ls==[] then
-        SS=tlist(["lss","A","B","C","D","X0","dt"],[],[],[],D1*D2,[x1;x2],dom1)
-        return;
+    if Ms==[] | Ls==[] then
+        SS = tlist(["lss","A","B","C","D","X0","dt"],[],[],[],D1*D2,[x1;x2],dom1)
+        return
     end
     //
     if type(D1*D2)~=1
-        s=poly(0,varn(D1*D2));
+        s = poly(0,varn(D1*D2));
     end
-    deg=max(degree(Ms));
-    B=coeff(Ms,deg);
-    Ps=0*B
-    for i=1:deg
-        Ps=s*Ps+B
-        B=J*B+coeff(Ms,deg-i)
+    deg = max(degree(Ms));
+    B = coeff(Ms,deg);
+    Ps = 0*B
+    for i = 1:deg
+        Ps = s*Ps+B
+        B = J*B+coeff(Ms,deg-i)
     end
     //
-    deg=max(degree(Ls));  J=J'
-    C=coeff(Ls,deg);
-    pps=0*C
+    deg = max(degree(Ls));  J=J'
+    C = coeff(Ls,deg);
+    pps = 0*C
     for i=1:deg
-        pps=s*pps+C
-        C=J*C+coeff(Ls,deg-i)
+        pps = s*pps+C
+        C = J*C+coeff(Ls,deg-i)
     end
     //
     C=C';

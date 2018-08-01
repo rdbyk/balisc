@@ -309,7 +309,6 @@ libscielementary_functions_la_DEPENDENCIES =  \
 	libscielementary_functions-algo.la $(am__DEPENDENCIES_1)
 am__objects_7 = sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_testmatrix.lo \
-	sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_base2dec.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_dec2base.lo
 am__objects_8 =  \
@@ -366,7 +365,8 @@ am__objects_8 =  \
 	sci_gateway/cpp/libscielementary_functions_la-sci_sign.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo \
-	sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo
+	sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
 	$(am__objects_8)
 libscielementary_functions_la_OBJECTS =  \
@@ -980,7 +980,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
-    sci_gateway/c/sci_nearfloat.c \
     sci_gateway/c/sci_base2dec.c \
     sci_gateway/c/sci_dec2base.c
 
@@ -1038,7 +1037,8 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_sign.cpp \
     sci_gateway/cpp/sci_sqrt.cpp \
     sci_gateway/cpp/sci_issquare.cpp \
-    sci_gateway/cpp/sci_isvector.cpp
+    sci_gateway/cpp/sci_isvector.cpp \
+    sci_gateway/cpp/sci_nearfloat.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -1719,9 +1719,6 @@ sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo:  \
 sci_gateway/c/libscielementary_functions_la-sci_testmatrix.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscielementary_functions_la-sci_base2dec.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -1896,6 +1893,9 @@ sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo:  \
 sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscielementary_functions.la: $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_DEPENDENCIES) $(EXTRA_libscielementary_functions_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscielementary_functions_la_rpath) $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_LIBADD) $(LIBS)
@@ -1924,7 +1924,6 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_base2dec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_dec2base.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_number_properties.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_testmatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-elem_func_gw.Plo@am__quote@
@@ -1964,6 +1963,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_matrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_max.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_ndims.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_ones.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_prod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_rand.Plo@am__quote@
@@ -2110,13 +2110,6 @@ sci_gateway/c/libscielementary_functions_la-sci_testmatrix.lo: sci_gateway/c/sci
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_testmatrix.c' object='sci_gateway/c/libscielementary_functions_la-sci_testmatrix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscielementary_functions_la-sci_testmatrix.lo `test -f 'sci_gateway/c/sci_testmatrix.c' || echo '$(srcdir)/'`sci_gateway/c/sci_testmatrix.c
-
-sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo: sci_gateway/c/sci_nearfloat.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/c/sci_nearfloat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nearfloat.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Tpo sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_nearfloat.c' object='sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/c/sci_nearfloat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_nearfloat.c
 
 sci_gateway/c/libscielementary_functions_la-sci_base2dec.lo: sci_gateway/c/sci_base2dec.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_base2dec.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_base2dec.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_base2dec.lo `test -f 'sci_gateway/c/sci_base2dec.c' || echo '$(srcdir)/'`sci_gateway/c/sci_base2dec.c
@@ -2722,6 +2715,13 @@ sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo: sci_gateway/cpp/s
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_isvector.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo `test -f 'sci_gateway/cpp/sci_isvector.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isvector.cpp
+
+sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo: sci_gateway/cpp/sci_nearfloat.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/cpp/sci_nearfloat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_nearfloat.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_nearfloat.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/cpp/sci_nearfloat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_nearfloat.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

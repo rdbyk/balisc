@@ -7,6 +7,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // unit tests for issquare function
 // =============================================================================
@@ -18,7 +19,7 @@ assert_checkequal(issquare([1 2; 1 2]), %t);
 assert_checkequal(issquare(1), %t);
 assert_checkequal(issquare(rand(2,1,2)), %t);
 assert_checkequal(issquare(rand(2,2,3)), %f);
-assert_checkequal(issquare([]), %f);
+assert_checkequal(issquare([]), %t);
 
 // Strings
 assert_checkequal(issquare(["s" "t" "u"]), %f);
@@ -53,7 +54,7 @@ assert_checkequal(issquare(sparse(0)), %t);
 
 // Structures
 clear s;
-assert_checkequal(issquare(struct()), %f); // Empty structure
+assert_checkequal(issquare(struct()), %t); // Empty structure
 s.a = "test";
 assert_checkequal(issquare(s), %t); // Scalar structure
 clear s;
@@ -73,7 +74,7 @@ s(2,1,2).a = %s;
 assert_checkequal(issquare(s), %t); // 3D structure array with singleton (square)
 
 // Cells
-assert_checkequal(issquare(cell()), %f); // Empty cell
+assert_checkequal(issquare(cell()), %t); // Empty cell
 a = cell(1);
 a{1} = 1;
 assert_checkequal(issquare(a), %t); // Scalar case

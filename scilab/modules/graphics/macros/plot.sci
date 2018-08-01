@@ -2,7 +2,6 @@
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +15,9 @@ function plot(varargin)
     // plot(x,y,'X',1:10); // where X stands for Xdata (Matlab recognizes
     //it and treats it well...)
 
-    if ~nargin
+    [lhs,rhs]=argn(0);
+
+    if ~rhs
         //LineSpec and PropertySpec examples:
         t = 0:%pi/20:2*%pi;
         tt = t';
@@ -30,8 +31,12 @@ function plot(varargin)
         return;
     end
 
+
+
     CurColor = 0; // current color used if no color specified via LineSpec
     // nor PropertyName
+
+
 
     ListArg = varargin;
 
@@ -47,7 +52,9 @@ function plot(varargin)
         end
     end
 
+
     nv = size(ListArg)
+
 
     argTypes=[];
     couple=[];
@@ -73,6 +80,7 @@ function plot(varargin)
         end
 
     end
+
 
     if (couple==[]) // No data couple found
         // Search for at least a single data , i.e.: plot(y)
@@ -113,6 +121,8 @@ function plot(varargin)
                 return;
             end
         end
+
+
 
         if (modulo(nv-(couple($)+1),2)<>0) then
             P1 = couple($)+3 // Position of the first PropertyName field
@@ -155,6 +165,8 @@ function plot(varargin)
         end
     end
 
+
+
     // delay the drawing commands
     // smart drawlater
     current_figure=gcf();
@@ -191,43 +203,52 @@ function plot(varargin)
 
         if (provided_data == 2) then
 
-            if (type(ListArg(xyIndexLineSpec(i,2))) == 13 | type(ListArg(xyIndexLineSpec(i,2))) == 130)
-                // A function (macro or primitive) is given. We need to build the vector or matrix.
+            // A function (macro or primitive) is given:
+            if (type(ListArg(xyIndexLineSpec(i,2))) == 13 | ..
+                type(ListArg(xyIndexLineSpec(i,2))) == 130)
+                //   We need to build the vector or matrix.
                 sizefirstarg = size(ListArg(xyIndexLineSpec(i,1)));
                 buildFunc = ListArg(xyIndexLineSpec(i,2));
                 firstarg = ListArg(xyIndexLineSpec(i,1));
-                tmp = [];
-
-                for ii=1:sizefirstarg(1,2)
-                    for jj=1:sizefirstarg(1,1)
-
-                        // function evaluation may fail
-                        // try/cacth is buggy for now
-                        // so use execstr until the bug is fixed
-                        err = execstr("tmp(jj,ii) = buildFunc(firstarg(jj,ii))","errcatch","n");
-
-                        if (err <> 0) then
-                            // reset data
-                            ResetFigureDDM(current_figure, cur_draw_mode);
-
-                            // get error
-                            [err_message, err_number, err_line, err_func] = lasterror(%t);
-
-                            clear buildFunc;
-                            // print it
-                            if (err_func <> "") then
-                                // ascii(10) = \n
-                                error(msprintf(gettext("%s: Error : unable to evaluate input function ''%s''.") + ascii(10) + gettext("Error %d at line %d of the function: ''%s''"), "plot", err_func,err_number, err_line, err_message));
-                            else
-                                error(msprintf(gettext("%s: Error : unable to evaluate input function.") + ascii(10) + gettext("Error %d at line %d of the function: ''%s''"), "plot", err_number, err_line, err_message));
-                            end
-                            // exit function
-                            return;
-                        end
-
-                    end
+                // We test if the function is vectorized:
+                isvectorized = %t;
+                try
+                    s1 = min(2,sizefirstarg(1,1))
+                    s2 = min(2,sizefirstarg(1,2))
+                    tmp = buildFunc(firstarg(1:s1,1:s2))
+                    isvectorized = and(size(tmp)==[s1 s2]);
+                catch
+                    isvectorized = %f;
                 end
 
+                // We evaluate ordinates accordingly:
+                try
+                    if isvectorized
+                        tmp = buildFunc(firstarg);
+                    else
+                        tmp = [];
+                        for ii = 1:sizefirstarg(1,2)
+                            for jj = 1:sizefirstarg(1,1)
+                                tmp(jj,ii) = buildFunc(firstarg(jj,ii));
+                            end
+                        end
+                    end
+                catch // An error has occurred:
+                    // reset data
+                    ResetFigureDDM(current_figure, cur_draw_mode);
+
+                    // get error info
+                    [err_message, err_number, err_line, err_func] = lasterror(%t);
+
+                    // yield it
+                    if err_func~="", err_func = """"+err_func+"""", end
+                    msg1 = gettext("%s: Error : unable to evaluate input function %s.")
+                    msg2 = gettext("Error %d at line %d of the function: ''%s''")
+                    error(msprintf(msg1 + ascii(10) + msg2, "plot", ..
+                        err_func, err_number, err_line, err_message));
+                end
+
+                // All right: go on plotting:
                 ListArg(xyIndexLineSpec(i,2)) = tmp;
                 // if there is another iteration, we will have error message redefining function.
                 // we need to clear here and not before, because user must see the warning if needed.
@@ -316,6 +337,8 @@ function plot(varargin)
             Property = Property+2;
         end
 
+
+
         //Now we have an array xyIndexLineSpec [numplot x 3] containing indices pointing on T for :
         // - x (<>0 if existing)
         // - y
@@ -327,6 +350,8 @@ function plot(varargin)
         //plot2  i2|i3 |0    <=> plot(x,y)
         //plot3  i4|i5 |i6   <=> plot(x,y,LINESPEC)
         //...
+
+
 
         if (xyIndexLineSpec(i,3)<>0) then // if we have a line spec <=> index <> 0
             [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(xyIndexLineSpec(i,3)),current_figure,cur_draw_mode);
@@ -395,6 +420,8 @@ function plot(varargin)
     //PropertyName and PropertyValue //
     ///////////////////////////////////
 
+
+
     // Those properties will be applied to Agreg children
     Agreg = glue(FinalAgreg(1:$))
 
@@ -430,6 +457,8 @@ function plot(varargin)
     if  isFirstPlot & curAxes.x_location <> "origin" & curAxes.y_location <> "origin" then
         curAxes.box = "on";
     end
+
+
 
     //postponed drawings are done now !
     // smart drawnow

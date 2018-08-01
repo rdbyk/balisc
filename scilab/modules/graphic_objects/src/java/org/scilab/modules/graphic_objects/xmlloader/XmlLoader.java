@@ -127,12 +127,11 @@ public class XmlLoader extends DefaultHandler {
         }
 
         // clean model before leave.
-        Set<String> entries = models.keySet();
-        for (String key : entries) {
-            HashMap<String, Entry<Integer, Map<String, String>>> map = models.get(key);
-            Set<String> entries2 = map.keySet();
-            for (String key2 : entries2) {
-                deleteObject(map.get(key2).getKey());
+        Set<Entry<String, HashMap<String, Entry<Integer, Map<String, String>>>>> modelsEntries = models.entrySet();
+        for (Entry<String, HashMap<String, Entry<Integer, Map<String, String>>>> model : modelsEntries) {
+            Set<Entry<String, Entry<Integer, Map<String, String>>>> objectEntries = model.getValue().entrySet();
+            for (Map.Entry<String, Entry<Integer, Map<String, String>>> object : objectEntries) {
+                deleteObject(object.getValue().getKey());
             }
         }
 
@@ -366,15 +365,15 @@ public class XmlLoader extends DefaultHandler {
                     controller.setProperty(newGo, __GO_UI_FRAME_BORDER__, newChild);
                 } else { //__GO_UI_FRAME_BORDER__
                     Integer border = (Integer) controller.getProperty(root, __GO_UI_FRAME_BORDER_TITLE__);
-                    if (border == children[i]) {
+                    if (border.equals(children[i])) {
                         controller.setProperty(newGo, __GO_UI_FRAME_BORDER_TITLE__, newChild);
                     } else {
                         border = (Integer) controller.getProperty(root, __GO_UI_FRAME_BORDER_OUT_BORDER__);
-                        if (border == children[i]) {
+                        if (border.equals(children[i])) {
                             controller.setProperty(newGo, __GO_UI_FRAME_BORDER_OUT_BORDER__, newChild);
                         } else {
                             border = (Integer) controller.getProperty(root, __GO_UI_FRAME_BORDER_OUT_BORDER__);
-                            if (border == children[i]) {
+                            if (border.equals(children[i])) {
                                 controller.setProperty(newGo, __GO_UI_FRAME_BORDER_OUT_BORDER__, newChild);
                             }
                         }

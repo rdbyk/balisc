@@ -72,6 +72,8 @@ public :
 
     bool                            toString(std::wostringstream& ostr);
 
+    bool                            getMemory(int* _piSize, int* _piSizePlusType);
+
 private :
 };
 }

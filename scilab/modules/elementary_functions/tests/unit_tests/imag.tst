@@ -1,10 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // Unit test for imag
 assert_checkequal(imag([]),[]);
@@ -38,7 +40,7 @@ assert_checkequal(imag(s),i);
 // With a scalar polynomial
 r = rand(1, 10) - 0.5;
 p = poly(r, "x", "coeff");
-assert_checkequal(imag(p), 0*%z);
+assert_checkequal(imag(p), 0*poly(0,"x"));
 pc = poly(complex(r,-r), "x", "coeff");
 assert_checkequal(imag(pc), -p);
 // With a matrix of real and complex polynomials

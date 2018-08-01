@@ -65,8 +65,21 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        pSpOut = new types::Sparse((int)pDblRows->getFirst(), (int)pDblCols->getFirst(), false);
+        if (pDblRows->getFirst() != (double) ((unsigned int) pDblRows->getFirst()))
+        {
 
+            Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "spzeros", 1);
+            return types::Function::Error;
+        }
+
+        if (pDblCols->getFirst() != (double) ((unsigned int) pDblCols->getFirst()))
+        {
+
+            Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "spzeros", 2);
+            return types::Function::Error;
+        }
+
+        pSpOut = new types::Sparse((int)pDblRows->getFirst(), (int)pDblCols->getFirst(), false);
     }
     else // in.size() == 1
     {

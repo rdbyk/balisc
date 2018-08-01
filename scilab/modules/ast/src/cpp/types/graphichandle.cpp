@@ -227,4 +227,10 @@ bool GraphicHandle::neg(InternalType*& out)
     return true;
 }
 
+bool GraphicHandle::getMemory(int* _piSize, int* _piSizePlusType)
+{
+    *_piSize = sizeof(long long)*getSize();
+    *_piSizePlusType = *_piSize + sizeof(GraphicHandle);
+    return true;
+}
 }

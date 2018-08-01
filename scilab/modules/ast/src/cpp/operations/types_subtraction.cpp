@@ -1655,7 +1655,12 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         delete[] pRankOut;
         delete[] pRank2;
-        pOut->updateRank();
+
+        if (pOut != NULL)
+        {
+            pOut->updateRank();
+        }
+
         return pOut;
     }
 
@@ -1743,7 +1748,12 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
         delete[] pRankOut;
         delete[] pRank1;
-        pOut->updateRank();
+
+        if (pOut != NULL)
+        {
+            pOut->updateRank();
+        }
+
         return pOut;
     }
 
@@ -1838,7 +1848,11 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     delete[] pRank1;
     delete[] pRank2;
 
-    pOut->updateRank();
+    if (pOut != NULL)
+    {
+        pOut->updateRank();
+    }
+
     return pOut;
 }
 
@@ -2364,12 +2378,12 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         if (bComplex2)
         {
             std::complex<double> dbl = _pR->getFirst();
-            pOut->set(0, dbl.real() - pOut->getFirst());
+            pOut->set(0, pOut->getFirst() - dbl.real());
             pOut->setImg(0, pOut->getImgFirst() - dbl.imag());
         }
         else
         {
-            pOut->set(0, pOut->getFirst() - _pL->getFirst());
+            pOut->set(0, pOut->getFirst() - _pR->getFirst());
         }
 
         return pOut;
@@ -2523,8 +2537,13 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
         if (bComplex1)
         {
             std::complex<double> dbl = _pL->getFirst();
-            pOut->set(0, pOut->getFirst() - dbl.real());
+            pOut->set(0, dbl.real() - pOut->getFirst());
             pOut->setImg(0, dbl.imag() - pOut->getImgFirst());
+        }
+        else if (bComplex2)
+        {
+            pOut->set(0, _pL->get(0, 0) - pOut->get(0));
+            pOut->setImg(0, - pOut->getImg(0));
         }
         else
         {

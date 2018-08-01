@@ -400,9 +400,9 @@ msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 65
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 136
-msgid "Invalid exponent: expected real exponents.\n"
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 66
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 137
+msgid "Invalid exponent: expected finite integer exponents.\n"
 msgstr ""
 
 #

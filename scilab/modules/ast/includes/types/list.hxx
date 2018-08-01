@@ -42,7 +42,9 @@ public :
     {
         return IdList;
     }
-
+    
+    bool                            getMemory(int* _piSize, int* _piSizePlusType);
+    
     /**
     ** append(InternalType *_typedValue)
     ** Append the given value to the end of the List
