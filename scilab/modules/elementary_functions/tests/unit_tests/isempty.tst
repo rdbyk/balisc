@@ -2,11 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // unit tests for isempty function
 // =============================================================================
@@ -24,9 +26,6 @@ assert_checkfalse(isempty([ ' ' , '' ; '' , '' ]));
 // empty list
 assert_checktrue(isempty(list()));
 
-// list with only undefined elements
-assert_checktrue(isempty(list(,)));
-
 // empty structure()
 assert_checktrue(isempty(struct()));
 
@@ -34,7 +33,7 @@ assert_checktrue(isempty(struct()));
 assert_checktrue(isempty({}));
 
 // nested empty containers
-assert_checktrue(isempty(list({}, list("",,[]), [], struct())));
+assert_checktrue(isempty(list({}, list("",[]), [], struct())));
 s.r = [];
 s.c = {};
 s.L = list();
