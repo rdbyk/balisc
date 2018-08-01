@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -8,6 +9,7 @@
 // <-- Non-regression test for bug 8086 -->
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=8086
@@ -39,7 +41,7 @@ macros_error_type_1 = ["isscalar"; ..
 "csch"; ..
 "csgn"; ..
 "factor"; ..
-"fix"; ..
+"int"; ..
 "hex2dec"; ..
 "isempty"; ..
 "isinf"; ..
@@ -64,7 +66,6 @@ macros_error_type_1 = ["isscalar"; ..
 "squarewave"; ..
 "sub2ind"; ..
 "tand"; ..
-"toeplitz"; ..
 ];
 msg_error_ref_1 = _("%s: Wrong number of input arguments: %d expected.\n");
 for i=1:size(macros_error_type_1, "*")
