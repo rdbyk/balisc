@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge.Steer@inria.fr
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -16,6 +17,9 @@
 //
 // <-- Short Description -->
 // It is possible create many different variables with the same name in the same scope!!
+
+funcprot(0)
+
 clear M
 
 function ldcsv(),
