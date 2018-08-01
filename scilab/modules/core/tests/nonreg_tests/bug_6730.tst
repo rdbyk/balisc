@@ -2,6 +2,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2010 - INRIA - Serge.Steer@inria.fr
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -14,13 +15,13 @@
 // <-- Short Description -->
 //problem with function calls when seen has member of an mlist
 
+funcprot(0)
+
 function [x,y,z]=myfun(varargin), x=varargin,y=2;z=3;,endfunction
 function fun=%foo_e(name,M);  fun=myfun;endfunction
 a=mlist('foo'); 
 b=mlist(['foo','hello'],myfun); 
 c=mlist(['foo','hello'],list('xxxx','yyyyy','zzzzz')); 
-
-
 
 [x,y,z]=b.hello()
 if x<>list()|y<>2|z<>3 then pause,end
@@ -34,11 +35,9 @@ if x<>'xxxx'|y<>'yyyyy'|z<>'zzzzz' then pause,end
 function [x,y,z]=myfun(varargin), x=varargin,y=2;z=3;,endfunction
 function fun=%foo_e(name,M);  fun=myfun;endfunction
 
-
 a=mlist('foo'); 
 b=mlist(['foo','hello'],myfun); 
 c=mlist(['foo','hello'],list('xxxx','yyyyy','zzzzz')); 
-
 
 if b.hello()<>list()  then pause,end
 if a.hello()<>list()  then pause,end
