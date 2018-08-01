@@ -17,7 +17,7 @@ function ind=vectorfind(m,v,job)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "vectorfind", 2, 3));
     end
 
-    if rhs == 2 then
+    if nargin == 2 then
         job = "r";
     end
 
