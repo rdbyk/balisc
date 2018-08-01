@@ -1,32 +1,16 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
 funcprot(0);
-// simple
-//
 deff("[x,y]=t1(a,b)","x=a+b,y=a-b")
 [u,v]=t1(1,2);
 if u<> 3 then bugmes();quit;end
 if v<>-1 then bugmes();quit;end
-//
-//with arguments
 b=2;
 if t1(1)<>t1(1,2) then bugmes();quit;end
 t2=t1;
-//
 [u,v]=t1(1,2);
 if u<> 3 then bugmes();quit;end
 if v<>-1 then bugmes();quit;end
 b=2;
 if t1(1)<>t1(1,2) then bugmes();quit;end
-//
-//resume
-//
 deff("[x,y]=t3(a,b)","x=a+b,y=a-b,z=return(a*a)")
 [u,v]=t3(1,2);
 if u<> 3 then bugmes();quit;end
@@ -45,9 +29,6 @@ clear z
 b=2;
 if t3(1)<>t3(1,2) then bugmes();quit;end
 if z<>1 then bugmes();quit;end
-//
-// macro + clauses
-//
 text = ["if n>0 then x=1"
 "y=0;for k=1:n,y=y+k,end"
 "else x=-1"
@@ -61,7 +42,6 @@ text = ["if n>0 then x=1"
 "case 1 then x=''pos'' ,tt=return(''ok''),"
 "case -1 then x=''neg'' ,"
 "end"];
-//
 deff("[x,y]=t5(n)",text)
 [u,v]=t5(5);
 if u<>"pos" then bugmes();quit;end
@@ -98,9 +78,6 @@ clear tt
 u=t5(-4);
 if u<>"neg" then bugmes();quit;end
 if exists("tt")==1 then bugmes();quit;end
-//
-// complex clauses
-//
 text = ["if n>0 then x=1"
 "y=0;for k=1:b(n),y=y+b(k),end"
 "else x=-1"
@@ -169,7 +146,6 @@ clear tt
 u=t5(-4);
 if u<>"neg" then bugmes();quit;end
 if exists("tt")==1 then bugmes();quit;end
-//
 clear u v tt
 [u,v]=t5(5);
 if u<>"pos" then bugmes();quit;end
@@ -188,9 +164,7 @@ clear tt
 u=t5(-4);
 if u<>"neg" then bugmes();quit;end
 if exists("tt")==1 then bugmes();quit;end
-//more complex
 deff("[x]=b(a)","if a==1 then x=1,else x=a,prod([1 1]),end")
-//
 deff("[x,y]=t5(n)",text)
 [u,v]=t5(5);
 if u<>"pos" then bugmes();quit;end
@@ -227,7 +201,6 @@ clear tt
 u=t5(-4);
 if u<>"neg" then bugmes();quit;end
 if exists("tt")==1 then bugmes();quit;end
-//
 deff("[x,y]=t5(n)",text)
 [u,v]=t5(5);
 if u<>"pos" then bugmes();quit;end
@@ -246,7 +219,6 @@ clear tt
 u=t5(-4);
 if u<>"neg" then bugmes();quit;end
 if exists("tt")==1 then bugmes();quit;end
-//
 clear u v tt
 [u,v]=t5(5);
 if u<>"pos" then bugmes();quit;end
@@ -265,23 +237,15 @@ clear tt
 u=t5(-4);
 if u<>"neg" then bugmes();quit;end
 if exists("tt")==1 then bugmes();quit;end
-// resume
 deff("[]=t6(a)","x=return(a)")
-clear ans x
+clear x
 t6(15)
 if x<>15 then bugmes();quit;end
-if exists("ans")==1 then bugmes();quit;end
-//
-clear ans x
+clear x
 t6(15)
 if x<>15 then bugmes();quit;end
-if exists("ans")==1 then bugmes();quit;end
-//
-//
-//
 deff("[ydot]=simul(t,y,a)","ydot=a")
 a=2;
-//appel le plus imple
 y=ode(0,0,1:2,simul)
  y  = 
    2.   4.
@@ -290,7 +254,6 @@ y=ode(0,0,1:2,simul)
  y  = 
    2.   4.
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
-//appel avec passage d'arguments supplementaires
 deff("[ydot]=simul(t,y,a)","ydot=a")
 y=ode(0,0,1:2,list(simul,a))
  y  = 
@@ -300,14 +263,10 @@ y=ode(0,0,1:2,list(simul,a))
  y  = 
    2.   4.
 if norm(y-[a 2*a]) >1000*%eps then bugmes();quit;end
-//
-//non linear
-//
 text=["for k=1:n,"
 "y=ode(a*(k-1),k-1,k,simul),"
 "x=[x,y],"
 "end"];
-//
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=a")
 x=[];
@@ -323,7 +282,6 @@ deff("[ydot]=simul(t,y,a)","ydot=a")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
-//
 text(2)="y=ode(a*(k-1),k-1,k,list(simul,a)),";
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=a")
@@ -340,7 +298,6 @@ deff("[ydot]=simul(t,y,a)","ydot=a")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
-//resume in external
 deff("[ydot]=simul(t,y,a)","ydot=a,tt=return([tt,t])")
 tt=[]
  tt  = 
@@ -360,15 +317,11 @@ deff("[ydot]=simul(t,y,a)","ydot=a")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
-//
-//external calls a macro
-//
 deff("[x]=b(a)","if a==1 then x=a,prod([1 1]),else x=a,prod([1 1]),end")
 text=["for k=1:n,"
 "y=ode(a*(k-1),k-1,k,simul),"
 "x=[x,y],"
 "end"];
-//
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=b(a)")
 x=[];
@@ -384,7 +337,6 @@ deff("[ydot]=simul(t,y,a)","ydot=b(a)")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
-//
 text(2)="y=ode(a*(k-1),k-1,k,list(simul,a)),";
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=b(a)")
@@ -401,7 +353,6 @@ deff("[ydot]=simul(t,y,a)","ydot=b(a)")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
-//
 deff("[ydot]=simul(t,y,a)","ydot=b(a),tt=return([tt,t])")
 tt=[]
  tt  = 
@@ -425,7 +376,6 @@ text=["for k=1:n,"
 "y=ode(a*(k-1),k-1,k,simul),"
 "x=[x,y],"
 "end"];
-//
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=b(a)")
 x=[];
@@ -441,7 +391,6 @@ deff("[ydot]=simul(t,y,a)","ydot=b(a)")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
-//
 text(2)="y=ode(a*(k-1),k-1,k,list(simul,a)),";
 deff("[x]=calcul(n)",text)
 deff("[ydot]=simul(t,y,a)","ydot=b(a)")
@@ -458,7 +407,6 @@ deff("[ydot]=simul(t,y,a)","ydot=b(a)")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
-//
 deff("[ydot]=simul(t,y,a)","ydot=b(a),tt=return([tt,t])")
 tt=[]
  tt  = 
@@ -478,9 +426,6 @@ deff("[ydot]=simul(t,y,a)","ydot=b(a)")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then bugmes();quit;end
-//
-//macro defining ,compiling and executing a macro
-//
 text=["deff(''[x]=b(a)'',''if a==1 then x=1,else x=a,prod([1 1]),end''),"
 "b,"
 "x=b(n),"]
@@ -495,8 +440,6 @@ y=t8(10);
 if y<>10 then bugmes();quit;end
 y=t8(10);
 if y<>10 then bugmes();quit;end
-//
-//
 s=poly(0,"s");z=poly(0,"z");
 deff("[ok]=cplist(l1,l2)",["ok=1;"
 "if size(l1)<>size(l2) then ok=0,return,end"
@@ -523,21 +466,15 @@ if cplist(h,rlist(1,s,[]))==0 then bugmes();quit;end
 h1=(z-1)/(z+1);
 hrn=horner(h,h1);
 if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
-//
 hrn=horner(h,h1);
 if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
-//
 h=1/s;
 if cplist(h,rlist(1,s,[]))==0 then bugmes();quit;end
 h1=(z-1)/(z+1);
 hrn=horn(h,h1);
 if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
-//
 hrn=horn(h,h1);
 if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
-//
-//
-//
 text=["aa=1,if a==2 then aa=b(a),end"]
  text  = 
  aa=1,if a==2 then aa=b(a),end
@@ -569,7 +506,6 @@ aa=1,if a==2 then aa=b(a),end
  y  = 
    2.
 if y<>2 then bugmes();quit;end
-//
 deff("[x]=t9(a)","exec(TMPDIR+''/test_macro_exec''),x=aa")
 y=t9(2)
 aa=1,if a==2 then aa=b(a),end

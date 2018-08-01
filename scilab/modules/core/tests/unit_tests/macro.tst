@@ -267,15 +267,13 @@ if u<>"neg" then pause,end
 if exists("tt")==1 then pause,end
 // resume
 deff("[]=t6(a)","x=return(a)")
-clear ans x
+clear x
 t6(15)
 if x<>15 then pause,end
-if exists("ans")==1 then pause,end
 //
-clear ans x
+clear x
 t6(15)
 if x<>15 then pause,end
-if exists("ans")==1 then pause,end
 //
 //
 //
