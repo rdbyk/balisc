@@ -4,7 +4,7 @@
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -399,7 +399,9 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             {
                 case types::InternalType::ScilabDouble:
                 {
-                    wchar_t pwstTemp[bsiz];
+                    wchar_t* pwstTemp;
+                    size_t sz;
+                    FILE* fwstTemp = open_wmemstream(&pwstTemp, &sz);
                     double dblVal = in[tok->pos]->getAs<types::Double>()->get(j, tok->col);
 
                     if (std::isfinite(dblVal))
@@ -408,22 +410,22 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, tok->prec, dblVal);
+                                fwprintf(fwstTemp, tok->pwstToken, tok->width, tok->prec, dblVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, dblVal);
+                                fwprintf(fwstTemp, tok->pwstToken, tok->width, dblVal);
                             }
                         }
                         else
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->prec, dblVal);
+                                fwprintf(fwstTemp, tok->pwstToken, tok->prec, dblVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, dblVal);
+                                fwprintf(fwstTemp, tok->pwstToken, dblVal);
                             }
                         }
                     }
@@ -433,26 +435,30 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                         if (std::isnan(dblVal))
                         {
-                            os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                            fwprintf(fwstTemp, newToken, NanString);
                         }
                         else if (std::signbit(dblVal))
                         {
-                            os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
+                            fwprintf(fwstTemp, newToken, NegInfString);
                         }
                         else
                         {
-                            os_swprintf(pwstTemp, bsiz, newToken, InfString);
+                            fwprintf(fwstTemp, newToken, InfString);
                         }
 
                         delete[] newToken;
                     }
 
+                    fclose(fwstTemp);
                     oFirstOutput << pwstTemp;
+                    FREE(pwstTemp);
                     break;
                 }
                 case types::InternalType::ScilabInt64:
                 {
-                    wchar_t pwstTemp[bsiz];
+                    wchar_t* pwstTemp;
+                    size_t sz;
+                    FILE* fwstTemp = open_wmemstream(&pwstTemp, &sz);
                     double dblVal = in[tok->pos]->getAs<types::Double>()->get(j, tok->col);
                     long long iVal = (long long)dblVal;
 
@@ -463,22 +469,22 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, tok->prec, iVal);
+                                fwprintf(fwstTemp, tok->pwstToken, tok->width, tok->prec, iVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, iVal);
+                                fwprintf(fwstTemp, tok->pwstToken, tok->width, iVal);
                             }
                         }
                         else
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->prec, iVal);
+                                fwprintf(fwstTemp, tok->pwstToken, tok->prec, iVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, iVal);
+                                fwprintf(fwstTemp, tok->pwstToken, iVal);
                             }
                         }
                     }
@@ -488,29 +494,33 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                         if (std::isnan(dblVal))
                         {
-                            os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                            fwprintf(fwstTemp, newToken, NanString);
                         }
                         else
                         {
                             if (std::signbit(dblVal))
                             {
-                                os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
+                                fwprintf(fwstTemp, newToken, NegInfString);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, newToken, InfString);
+                                fwprintf(fwstTemp, newToken, InfString);
                             }
                         }
 
                         delete[] newToken;
                     }
 
+                    fclose(fwstTemp);
                     oFirstOutput << pwstTemp;
+                    FREE(pwstTemp);
                     break;
                 }
                 case types::InternalType::ScilabUInt64:
                 {
-                    wchar_t pwstTemp[bsiz];
+                    wchar_t* pwstTemp;
+                    size_t sz;
+                    FILE* fwstTemp = open_wmemstream(&pwstTemp, &sz);
                     double dblVal = in[tok->pos]->getAs<types::Double>()->get(j, tok->col);
                     unsigned long long iVal = (unsigned long long)dblVal;
 
@@ -521,22 +531,22 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, tok->prec, iVal);
+                                fwprintf(fwstTemp, tok->pwstToken, tok->width, tok->prec, iVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, iVal);
+                                fwprintf(fwstTemp, tok->pwstToken, tok->width, iVal);
                             }
                         }
                         else
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->prec, iVal);
+                                fwprintf(fwstTemp, tok->pwstToken, tok->prec, iVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, iVal);
+                                fwprintf(fwstTemp, tok->pwstToken, iVal);
                             }
                         }
                     }
@@ -546,24 +556,26 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                         if (std::isnan(dblVal))
                         {
-                            os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                            fwprintf(fwstTemp, newToken, NanString);
                         }
                         else
                         {
                             if (std::signbit(dblVal))
                             {
-                                os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
+                                fwprintf(fwstTemp, newToken, NegInfString);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, newToken, InfString);
+                                fwprintf(fwstTemp, newToken, InfString);
                             }
                         }
 
                         delete[] newToken;
                     }
 
+                    fclose(fwstTemp);
                     oFirstOutput << pwstTemp;
+                    FREE(pwstTemp);
                     break;
                 }
                 case types::InternalType::ScilabString:
