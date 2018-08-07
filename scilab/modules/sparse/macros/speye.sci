@@ -11,7 +11,17 @@
 // along with this program.
 
 function [sp]=speye(m,n)
-    if nargin==1 then [m,n]=size(m),end
-    mn=min(m,n)
-    sp=sparse([(1:mn)' (1:mn)'],ones(mn,1),[m,n])
+
+    if nargin == 1 then
+        [m,n] = size(m)
+    end
+
+    mn = min(m,n)
+
+    if mn < 1 then
+        sp=sparse([],[])
+    else
+        sp=sparse([(1:mn)' (1:mn)'],ones(mn,1),[m,n])
+    end
+
 endfunction

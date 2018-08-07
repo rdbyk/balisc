@@ -130,29 +130,23 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             }
         }
 
-        //Double* pDims( (in.size()==3) ? in[2]->getAs<Double>() : 0);
-        types::Double* pDims = NULL;
-        if (in.size() == 3)
-        {
-            pDims = in[2]->getAs<types::Double>();
-            if (pDims->getRows() != 1 || pDims->getCols() != 2)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), fname, 3, 1, 2);
-                return types::Function::Error;
-            }
-
-            if (pDims->getFirst() * pDims->get(1) == 0)
-            {
-                out.push_back(types::Double::Empty());
-                return types::Function::OK;
-            }
-        }
-
         types::Double* ij = in[0]->getAs<types::Double>();
 
         if (ij->getSize() > 0 && ij->getCols() != 2)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A m-by-2 matrix expected.\n"), fname, 1);
+            return types::Function::Error;
+        }
+
+        int size = ij->getRows();
+        double* i = ij->get();
+        double* j = i + ij->getRows();
+        double row_idx_max = *std::max_element(i, i + size);
+        double col_idx_max = *std::max_element(j, j + size);
+
+        if (size && (row_idx_max < 1 || col_idx_max < 1))
+        {
+            Scierror(999, _("%s: Wrong value(s) for input argument #%d: elements greater or equal to 1.0 expected.\n"), fname, 1);
             return types::Function::Error;
         }
 
@@ -164,16 +158,54 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             return types::Function::Error;
         }
 
+        types::Double* pDims = NULL;
         bool alloc = false;
-        if (pDims == nullptr)
+
+        if (in.size() == 3)
         {
-            int size = ij->getRows();
-            double* i = ij->get();
-            double* j = i + ij->getRows();
-            pDims = new types::Double(1, 2, false);
-            pDims->set(0, *std::max_element(i, i + size));
-            pDims->set(1, *std::max_element(j, j + size));
-            alloc = true;
+            pDims = in[2]->getAs<types::Double>();
+
+            if (pDims->getRows() != 1 || pDims->getCols() != 2)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), fname, 3, 1, 2);
+                return types::Function::Error;
+            }
+
+            double out_rows = pDims->getFirst();
+            double out_cols = pDims->get(1);
+
+            if (size && (row_idx_max > out_rows || col_idx_max > out_cols))
+            {
+                Scierror(999, _("%s: Wrong value(s) for input argument #%d: greater or equal to [%d,%d] expected.\n"), fname, 3, static_cast<int>(row_idx_max), static_cast<int>(col_idx_max));
+                return types::Function::Error;
+            }
+
+            if (out_rows <= 0 || out_cols <= 0)
+            {
+                out.push_back(types::Double::Empty());
+                return types::Function::OK;
+            }
+
+            if (out_rows >= INT_MAX || out_cols >= INT_MAX)
+            {
+                Scierror(999, _("%s: Wrong value(s) for input argument #%d: elements less than %d expected.\n"), fname, 3, INT_MAX);
+                return types::Function::Error;
+            }
+        }
+        else
+        {
+            if (size)
+            {
+                pDims = new types::Double(1, 2, false);
+                pDims->set(0, row_idx_max);
+                pDims->set(1, col_idx_max);
+                alloc = true;
+            }
+            else
+            {
+                out.push_back(types::Double::Empty());
+                return types::Function::OK;
+            }
         }
 
         if (in[1]->isDouble())
