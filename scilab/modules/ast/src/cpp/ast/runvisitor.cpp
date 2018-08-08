@@ -254,6 +254,7 @@ void RunVisitorT<T>::visitprivate(const CellExp & e)
     int iColMax = 0;
 
     exps_t lines = e.getLines();
+
     //check dimmension
     for (row = lines.begin(); row != lines.end(); ++row)
     {
@@ -294,17 +295,28 @@ void RunVisitorT<T>::visitprivate(const CellExp & e)
                 CoverageInstance::stopChrono((void*)&e);
                 throw;
             }
+
             types::InternalType *pIT = getResult();
-            if (pIT->isImplicitList())
+
+            if (pIT)
             {
-                types::InternalType * _pIT = pIT->getAs<types::ImplicitList>()->extractFullMatrix();
-                pC->set(i, j, _pIT);
-                _pIT->killMe();
+                if (pIT->isImplicitList())
+                {
+                    types::InternalType * _pIT = pIT->getAs<types::ImplicitList>()->extractFullMatrix();
+                    pC->set(i, j, _pIT);
+                    _pIT->killMe();
+                }
+                else
+                {
+                    pC->set(i, j, pIT);
+                }
             }
             else
             {
-                pC->set(i, j, pIT);
+                CoverageInstance::stopChrono((void*)&e);
+                throw InternalError(_W("Evaluation of element in cell expression failed.\n"), 999, e.getLocation());
             }
+
             clearResult();
         }
     }
