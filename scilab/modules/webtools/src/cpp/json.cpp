@@ -1,10 +1,10 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2016 - Scilab Enterprises - Antoine ELIAS
-*
-* Copyright (C) 2012 - 2016 - Scilab Enterprises
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Scilab Enterprises - Antoine ELIAS
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ *
+ */
 
 #include "json.hxx"
 
@@ -785,12 +785,28 @@ JSONVar* import_data(const jsmntok_t* t)
             for (int i = 0; i < size; ++i)
             {
                 JSONVar* s = getJSONVar(t[token_offset++]);
-                std::string key(s->s1);
-                delete s;
 
-                JSONVar* data = import_data(t);
-                v->fields.push_back(key);
-                v->o1[key] = data;
+                if (s && s->kind == JSON_STRING)
+                {
+                    std::string key(s->s1);
+                    delete s;
+
+                    JSONVar* data = import_data(t);
+
+                    if (data)
+                    {
+                        v->fields.push_back(key);
+                        v->o1[key] = data;
+                    }
+                    else
+                    {
+                        return nullptr;
+                    }
+                }
+                else
+                {
+                    return nullptr;
+                }
             }
 
             return v;
@@ -1188,15 +1204,19 @@ types::InternalType* fromJSON(const std::string& s)
     }
 
     token_offset = 0;
-    JSONVar* v = import_data(t);
 
+    JSONVar* v = import_data(t);
     delete[] t;
-    scilabVar var = createScilabVar(nullptr, v);
-    delete v;
-    if (var == nullptr)
+
+    if (v)
+    {
+        scilabVar var = createScilabVar(nullptr, v);
+        delete v;
+
+        return (types::InternalType*)var;
+    }
+    else
     {
         return nullptr;
     }
-
-    return (types::InternalType*)var;
 }
