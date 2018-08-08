@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2012 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -68,8 +68,7 @@
                 </td>
                 <td>
                     <programlisting role="example">function H = hankel(C, R)
-                        [lhs, rhs] = argn(0);
-                        if rhs == 1 then
+                        if nargin == 1 then
                         N = size(C, "*");
                         COV = [matrix(C, 1, -1), zeros(1, N)];
                         H = hank(N, N, COV);

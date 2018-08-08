@@ -2,6 +2,7 @@
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,9 +16,7 @@ function plot(varargin)
     // plot(x,y,'X',1:10); // where X stands for Xdata (Matlab recognizes
     //it and treats it well...)
 
-    [lhs,rhs]=argn(0);
-
-    if ~rhs
+    if ~nargin
         //LineSpec and PropertySpec examples:
         t = 0:%pi/20:2*%pi;
         tt = t';

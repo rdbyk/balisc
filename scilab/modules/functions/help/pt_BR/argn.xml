@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  * Copyright (C) 2018 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,7 +19,7 @@
         xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
         xmlns:scilab="http://www.scilab.org" xml:id="argn" xml:lang="pt">
     <refnamediv>
-        <refname>argn</refname>
+        <refname>argn (OBSOLETE)</refname>
         <refpurpose>número de argumentos na chamada de uma função</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -250,5 +250,14 @@ endfunction
                 <link linkend="nargout">nargout</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Tagged as OBSOLETE (to be removed in Balisc 3).</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
