@@ -49,9 +49,6 @@ test2(1,2); // Erreur
             <member>
                 <link linkend="nargout">nargout</link>
             </member>
-            <member>
-                <link linkend="argn">argn</link>
-            </member>
         </simplelist>
     </refsection>
     <refsection>

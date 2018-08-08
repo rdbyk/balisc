@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -50,7 +50,7 @@
             入力引数の名前となります.
         </para>
         <para>
-            実際の入力引数の総数は,<code>argn(2)</code>で取得できます.
+            実際の入力引数の総数は,<code>nargin</code>で取得できます.
         </para>
     </refsection>
     <refsection>
@@ -79,8 +79,7 @@ endfunction
         <title>例</title>
         <programlisting role="example"><![CDATA[
 function exampl(a,varargin)
-    [lhs,rhs]=argn(0)
-    if rhs>=1 then
+    if nargin >= 1 then
         disp(varargin)
     end
 endfunction
@@ -95,7 +94,7 @@ exampl(1,l(2:3))
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="argn">argn</link>
+                <link linkend="nargin">nargin</link>
             </member>
             <member>
                 <link linkend="function">function</link>

@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,10 +22,15 @@ extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
+#include "sciprint.h"
 }
 
 types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), "argn");
+    sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "'nargin', and 'nargout'");
+    sciprint(_("%s: This feature will be permanently removed in Scilab / %s.\n"), _("Warning"), "Balisc 3");
+
     int iRhs = static_cast<int>(in.size());
     //check input arguments
     if (iRhs > 1)

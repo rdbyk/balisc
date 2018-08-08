@@ -61,9 +61,6 @@ test2(1,2); // aucun argument de sortie n'est mentionné
             <member>
                 <link linkend="nargin">nargin</link>
             </member>
-            <member>
-                <link linkend="argn">argn</link>
-            </member>
         </simplelist>
     </refsection>
     <refsection>
