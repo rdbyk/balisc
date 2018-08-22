@@ -111,6 +111,7 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
 {
     int iH5File = 0;
     bool bAppendMode = false;
+    bool isNewFile = true;
     int rhs = static_cast<int>(in.size());
     std::string filename;
     std::map<std::string, InternalType*> vars;
@@ -234,6 +235,7 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
         }
         else
         {
+            isNewFile = false;
             int iVersion = getSODFormatAttribute(iH5File);
             if (iVersion != SOD_FILE_VERSION)
             {
@@ -290,9 +292,12 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
         if (iDataset == -1)
         {
             closeHDF5File(iH5File);
-            deleteafile(filename.data());
+            if (isNewFile)
+            {
+                deleteafile(filename.data());
+            }
             Scierror(999, _("%s: Unable to export variable \'%s\' in file \'%s\'.\n"), fname, var.first.data(), filename.data());
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -982,24 +987,24 @@ static int export_macro(int parent, const std::string& name, Macro* data)
     return dset;
 }
 
-static int export_usertype(int parent, const std::string& name, UserType* data)
+static int export_usertype(int parent, const std::string& name, types::UserType* data)
 {
-    InternalType* it = data->save();
+    types::InternalType* it = data->save();
     if (it == nullptr)
     {
-        typed_list in;
+        types::typed_list in;
         in.push_back(data);
 
-        typed_list out;
+        types::typed_list out;
         //overload
         // rational case
         std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_save";
 
         try
         {
-            Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
+            types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
 
-            if (ret != Callable::OK)
+            if (ret != types::Callable::OK)
             {
                 return -1;
             }
@@ -1030,15 +1035,15 @@ static int export_usertype(int parent, const std::string& name, UserType* data)
     }
 
     //create a struct around "usertype" to be able to restore it.
-    Struct* str = new Struct(1, 1);
-    SingleStruct* ss = str->get()[0];
+    types::Struct* str = new types::Struct(1, 1);
+    types::SingleStruct* ss = str->get()[0];
 
     //add fields
     ss->addField(L"type");
     ss->addField(L"data");
 
     //assign values to new fields
-    ss->set(L"type", new String(data->getShortTypeStr().data()));
+    ss->set(L"type", new types::String(data->getShortTypeStr().data()));
     ss->set(L"data", it);
 
     int ret = export_struct(parent, name, str, g_SCILAB_CLASS_USERTYPE);
