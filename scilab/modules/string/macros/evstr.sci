@@ -3,7 +3,7 @@
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
 // Copyright (C) 2016, 2017, 2018 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [%val, %ierr] = evstr(%str)
 
@@ -55,6 +54,7 @@ function [%val, %ierr] = evstr(%str)
         %t1(1) = "%val=[" + %t1(1);
         %t1($) = part(%t1($), 1:length(%t1($)) - 1);
         %t1($+1)="]";
+        clear k tmp vars vals regExp comm %str
         %ierr = execstr(%t1, "errcatch");
         if nargout == 1 & %ierr~=0 then
             error(_("%s: Argument #%d: Some expression can''t be evaluated (%s)."), "evstr", 1, strcat(lasterror()))
@@ -70,14 +70,13 @@ function [%val, %ierr] = evstr(%str)
             error(_("%s: Argument #%d: Both list components must be of text type."), "evstr", 1);
         end
         %sexp = %str(2),
-        %nstr = prod(size(%sexp));
         % = list();
 
-        for %k_ = 1:%nstr,
+        for %k_ = 1:prod(size(%sexp))
             [%w, %ierr] = evstr(%sexp(%k_));
             %(%k_) = %w;
-            if %ierr <>0  then
-                if nargout==2
+            if %ierr <> 0  then
+                if nargout == 2
                     %val = [];
                     return;
                 else
@@ -85,7 +84,8 @@ function [%val, %ierr] = evstr(%str)
                 end
             end
         end
-        if nargout==2
+
+        if nargout == 2
             [%val, %ierr] = evstr(%str(1));
         else
             %val = evstr(%str(1));
