@@ -171,7 +171,7 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         return iErr;
     }
 
-    if (_pDouble1->isScalar())
+    /*if (_pDouble1->isScalar())
     {
         if (_pDouble2->getDims() > 2)
         {
@@ -269,11 +269,17 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         delete pdblTemp;
         return iErr;
     }
-
-    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getCols() != _pDouble2->getCols())
+    */
+    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2)
     {
         //not managed
         return 0;
+    }
+    
+    if (_pDouble1->getCols() != _pDouble2->getCols())
+    {
+        // matrix dimensions do not agree
+        return 1;
     }
 
     // eye() / eye() = eye()
