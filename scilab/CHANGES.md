@@ -509,6 +509,7 @@ Known issues
 * [#15187](http://bugzilla.scilab.org/show_bug.cgi?id=15187): Super block diagram title (on the window bar) was not set.
 * [#15263](http://bugzilla.scilab.org/show_bug.cgi?id=15263): Assignments in an array of structures often overwrote some untargeted elements.
 * [#15279](http://bugzilla.scilab.org/show_bug.cgi?id=15279): `unique` could not be used on sets of complex numbers.
+* [#15310](http://bugzilla.scilab.org/show_bug.cgi?id=15310): `isdef` considered void arguments as defined (regression)
 * [#15346](http://bugzilla.scilab.org/show_bug.cgi?id=15346): In an array of rationals, there was no way to address components with their linearized indices.
 * [#15404](http://bugzilla.scilab.org/show_bug.cgi?id=15404): `surf()` and `mesh()` did not allow to specify `foreground`, `facecolor`, `markforeground` and `markbackground` global properties colors as a predefined named color out of a list of the 9 main color names. Colors specifications as "#RRGGBB" hexa code or Colors indices in the color map were nor allowed.
 * [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
@@ -598,18 +599,23 @@ Known issues
 * [#15685](http://bugzilla.scilab.org/show_bug.cgi?id=15685): The page of `file()` needed to be updated about error numbers, and improved.
 * [#15692](http://bugzilla.scilab.org/show_bug.cgi?id=15692): listvarinfile() crashes when listing a boolean sparse matrix (regression)
 * [#15693](http://bugzilla.scilab.org/show_bug.cgi?id=15693): listvarinfile() misses displaying the size of polynomial variables (regression)
+* [#15698](http://bugzilla.scilab.org/show_bug.cgi?id=15698): `intg` raised a roundoff error with a trivial integral
 * [#15710](http://bugzilla.scilab.org/show_bug.cgi?id=15710): The Xcos EXPRESSION block did not accept expressions including some `&` or `~` characters.
 * [#15718](http://bugzilla.scilab.org/show_bug.cgi?id=15718): `bitand`, `bitxor` and `bitor` might miswork with some `uint64` inputs.
 * [#15721](http://bugzilla.scilab.org/show_bug.cgi?id=15721): An error while using `save(File, "-append", ..)` deleted the existing file.
+* [#15724](http://bugzilla.scilab.org/show_bug.cgi?id=15724): `[]^3` displayed error messages about xerbla lapack library (regression)
 * [#15733](http://bugzilla.scilab.org/show_bug.cgi?id=15733): Some fixes after `deg(0*%s)` => `-%inf`.
 * [#15735](http://bugzilla.scilab.org/show_bug.cgi?id=15735): `interp1` yielded some []+n warnings.
 * [#15736](http://bugzilla.scilab.org/show_bug.cgi?id=15736): `unique` failed with complex numbers.
+* [#15740](http://bugzilla.scilab.org/show_bug.cgi?id=15740): now `(%s == %z) == %f` and `(%s ~= %z) == %t` 
+* [#15741](http://bugzilla.scilab.org/show_bug.cgi?id=15741):  Operations between 2 polynomials with distinct variables no longer called the corresponding overloads (Regression)
 * [#15746](http://bugzilla.scilab.org/show_bug.cgi?id=15746): `1/[1 2 3]` and `[1 2 3]'\1` did not raise an error
 * [#15747](http://bugzilla.scilab.org/show_bug.cgi?id=15747): no output in overloaded operator crashed Scilab
 * [#15753](http://bugzilla.scilab.org/show_bug.cgi?id=15753): `issparse()` returned 0 instead of 1 for sparse booleans.
 * [#15757](http://bugzilla.scilab.org/show_bug.cgi?id=15757): The public function `xcosPalAddBlock` did not load scicos_scicoslib when needed, and then yielded an error. When the block is specified as a .sod file and the file does not exist, the error message was obscur.
 * [#15758](http://bugzilla.scilab.org/show_bug.cgi?id=15758): sparse([0 0],1) crashes scilab (regression)
 * [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.
+* [#15770](http://bugzilla.scilab.org/show_bug.cgi?id=15770): zp2ss and zp2tf unitary tests were failing
 * [#15774](http://bugzilla.scilab.org/show_bug.cgi?id=15774): `clean()` failed on sparse complex matrix.
 * [#15778](http://bugzilla.scilab.org/show_bug.cgi?id=15778): Deleting some rows or columns of a boolean sparse array with `= []` crashed Scilab
 * [#15779](http://bugzilla.scilab.org/show_bug.cgi?id=15779): `test_run` did not accept the wildcard * in tests names.
@@ -618,6 +624,7 @@ Known issues
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.
 * [#15854](http://bugzilla.scilab.org/show_bug.cgi?id=15854): `horner(1:$,4)` yielded an error. Extractions from `cblock` tables were impacted.
+* [#15740](http://bugzilla.scilab.org/show_bug.cgi?id=15740): now `(%s == %z) == %f` and `(%s ~= %z) == %t` 
 
 
 ### Bugs fixed in 6.0.1:
