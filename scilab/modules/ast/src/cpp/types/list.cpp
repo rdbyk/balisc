@@ -300,7 +300,9 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
                 while ((int)m_plData->size() < iInsIndex)
                 {
                     //incease list size and fill with "Undefined"
-                    m_plData->push_back(new ListUndefined());
+                    InternalType* pLU = new ListUndefined();
+                    pLU->IncreaseRef();
+                    m_plData->push_back(pLU);
                 }
                 (*m_plData)[iInsIndex - 1] = pInsert;
             }
