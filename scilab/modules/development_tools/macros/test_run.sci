@@ -4,6 +4,7 @@
 // Copyright (C) 2010-2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2016 - 2018 - Samuel GOUGEON
 // Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -379,10 +380,12 @@ function status = test_module(_params)
             for j = 1:size(directories, "*")
                 currentDir = directories(j);
                 testFile = currentDir + filesep() + _params.tests_mat(i) + ".tst";
-
-                if isfile(testFile) then
-                    tests($+1, [1,2]) = [currentDir, _params.tests_mat(i)];
-                    bFind = %t;
+                testFile = listfiles(testFile);  // allows *pattern*
+                for File = testFile'
+                    if isfile(File) then
+                        tests($+1, [1,2]) = [currentDir, basename(File)];
+                        bFind = %t;
+                    end
                 end
             end
 
