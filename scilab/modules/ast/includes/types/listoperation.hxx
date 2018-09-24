@@ -46,7 +46,7 @@ public :
     bool                    toString(std::wostringstream& ostr);
     virtual bool            isAssignable(void)
     {
-        return false;
+        return true;
     }
 
     /* return type as string ( double, int, cell, list, ... )*/

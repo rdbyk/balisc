@@ -69,22 +69,6 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (pIT->isAssignable() == false)
             {
-                if (pIT->isListDelete())
-                {
-                    //used to delete a variable in current scope
-                    symbol::Symbol sym = pVar->getSymbol();
-                    if (ctx->isprotected(sym) == false)
-                    {
-                        ctx->remove(sym);
-                    }
-                    else
-                    {
-                        std::wostringstream os;
-                        os << _W("Redefining permanent variable.\n");
-                        throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
-                    }
-                }
-
                 setResult(NULL);
                 CoverageInstance::stopChrono((void*)&e);
                 return;
