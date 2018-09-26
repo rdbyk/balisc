@@ -3685,7 +3685,7 @@ InternalType* compequal_LT_LT(T *_pL, U *_pR)
 
     for (int i = 0; i < _pL->getSize(); i++)
     {
-        pb[i] = *_pL->get(i) == *_pR->get(i) && _pL->get(i)->getType() != types::InternalType::ScilabVoid;
+        pb[i] = *_pL->get(i) == *_pR->get(i);
     }
 
     return pB;
