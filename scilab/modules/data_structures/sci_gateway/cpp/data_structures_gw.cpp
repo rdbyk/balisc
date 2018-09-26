@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +26,7 @@ int DataStructuresModule::Load()
     Context* pCtx = Context::getInstance();
     pCtx->addFunction(Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
     pCtx->addFunction(Function::createFunction(L"setfield", &sci_setfield, MODULE_NAME));
+    pCtx->addFunction(Function::createFunction(L"rmfield", &sci_rmfield, MODULE_NAME));
     pCtx->addFunction(Function::createFunction(L"rlist", &sci_rlist, MODULE_NAME));
     pCtx->addFunction(Function::createFunction(L"definedfields", &sci_definedfields, MODULE_NAME));
     return 1;

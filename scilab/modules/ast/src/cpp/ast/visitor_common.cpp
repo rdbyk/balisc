@@ -2125,23 +2125,17 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     throw ast::InternalError(os.str(), 999, e.getLocation());
                 }
 
-                if (_pInsert->isListDelete())
+                /* Add a field */
+                pStruct = pStruct->copyAs<types::Struct>();
+                pStruct->addField(pS->getFirst());
+
+                int size = pStruct->getSize();
+
+                for (int i = 0; i < size; i++)
                 {
-                    /* Remove a field */
-                    pStruct = pStruct->copyAs<types::Struct>();
-                    pStruct->removeField(pS->getFirst());
+                    pStruct->get(i)->set(pS->getFirst(), _pInsert);
                 }
-                else
-                {
-                    /* Add a field */
-                    pStruct = pStruct->copyAs<types::Struct>();
-                    pStruct->addField(pS->getFirst());
-                    int size = pStruct->getSize();
-                    for (int i = 0; i < size; i++)
-                    {
-                        pStruct->get(i)->set(pS->getFirst(), _pInsert);
-                    }
-                }
+
                 pOut = pStruct;
             }
             else // insert something in a struct

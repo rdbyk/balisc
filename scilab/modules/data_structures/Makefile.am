@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -8,6 +9,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/data_structures_gw.cpp \
     sci_gateway/cpp/sci_getfield.cpp \
     sci_gateway/cpp/sci_setfield.cpp \
+    sci_gateway/cpp/sci_rmfield.cpp \
     sci_gateway/cpp/sci_rlist.cpp \
     sci_gateway/cpp/sci_definedfields.cpp
 

@@ -16,6 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -172,6 +173,7 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = sci_gateway/cpp/libscidata_structures_la-data_structures_gw.lo \
 	sci_gateway/cpp/libscidata_structures_la-sci_getfield.lo \
 	sci_gateway/cpp/libscidata_structures_la-sci_setfield.lo \
+	sci_gateway/cpp/libscidata_structures_la-sci_rmfield.lo \
 	sci_gateway/cpp/libscidata_structures_la-sci_rlist.lo \
 	sci_gateway/cpp/libscidata_structures_la-sci_definedfields.lo
 am_libscidata_structures_la_OBJECTS = $(am__objects_1)
@@ -546,6 +548,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/data_structures_gw.cpp \
     sci_gateway/cpp/sci_getfield.cpp \
     sci_gateway/cpp/sci_setfield.cpp \
+    sci_gateway/cpp/sci_rmfield.cpp \
     sci_gateway/cpp/sci_rlist.cpp \
     sci_gateway/cpp/sci_definedfields.cpp
 
@@ -760,6 +763,9 @@ sci_gateway/cpp/libscidata_structures_la-sci_getfield.lo:  \
 sci_gateway/cpp/libscidata_structures_la-sci_setfield.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscidata_structures_la-sci_rmfield.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscidata_structures_la-sci_rlist.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -782,6 +788,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_definedfields.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_getfield.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_rlist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_rmfield.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_setfield.Plo@am__quote@
 
 .cpp.o:
@@ -828,6 +835,13 @@ sci_gateway/cpp/libscidata_structures_la-sci_setfield.lo: sci_gateway/cpp/sci_se
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_setfield.cpp' object='sci_gateway/cpp/libscidata_structures_la-sci_setfield.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscidata_structures_la-sci_setfield.lo `test -f 'sci_gateway/cpp/sci_setfield.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_setfield.cpp
+
+sci_gateway/cpp/libscidata_structures_la-sci_rmfield.lo: sci_gateway/cpp/sci_rmfield.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscidata_structures_la-sci_rmfield.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_rmfield.Tpo -c -o sci_gateway/cpp/libscidata_structures_la-sci_rmfield.lo `test -f 'sci_gateway/cpp/sci_rmfield.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_rmfield.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_rmfield.Tpo sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_rmfield.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_rmfield.cpp' object='sci_gateway/cpp/libscidata_structures_la-sci_rmfield.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscidata_structures_la-sci_rmfield.lo `test -f 'sci_gateway/cpp/sci_rmfield.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_rmfield.cpp
 
 sci_gateway/cpp/libscidata_structures_la-sci_rlist.lo: sci_gateway/cpp/sci_rlist.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscidata_structures_la-sci_rlist.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscidata_structures_la-sci_rlist.Tpo -c -o sci_gateway/cpp/libscidata_structures_la-sci_rlist.lo `test -f 'sci_gateway/cpp/sci_rlist.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_rlist.cpp
