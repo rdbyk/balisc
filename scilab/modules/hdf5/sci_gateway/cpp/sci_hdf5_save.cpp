@@ -99,7 +99,6 @@ static int export_usertype(int parent, const std::string& name, UserType* data);
 
 static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data);
 static int export_handles(int parent, const std::string& name, GraphicHandle* data);
-static int export_void(int parent, const std::string& name);
 static int export_undefined(int parent, const std::string& name);
 
 static const char fname[] = "save";
@@ -397,9 +396,6 @@ int export_data(int parent, const std::string& name, InternalType* data)
         case InternalType::ScilabCell:
             dataset = export_cell(parent, name, data->getAs<Cell>());
             break;
-        case InternalType::ScilabVoid:
-            dataset = export_void(parent, name);
-            break;
         case InternalType::ScilabListUndefinedOperation:
             dataset = export_undefined(parent, name);
             break;
@@ -600,11 +596,6 @@ static int export_struct(int parent, const std::string& name, Struct* data, cons
     }
 
     return dset;
-}
-
-static int export_void(int parent, const std::string& name)
-{
-    return writeVoid6(parent, name.data());
 }
 
 static int export_undefined(int parent, const std::string& name)

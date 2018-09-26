@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -70,7 +70,6 @@ int openList6(int parent, const char *name, const char* type);
 int closeList6(int lst);
 int addItemStruct6(int dataset, hobj_ref_t * refs, int pos, const char *name);
 int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t * refs);
-int writeVoid6(int parent, const char* name);
 int writeUndefined6(int parent, const char* name);
 
 #endif /* !__H5_WRITEDATATOFILE_H__ */
