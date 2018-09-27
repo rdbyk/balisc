@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Scilab Enterprises - Nicolas Carrez
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -17,7 +18,7 @@
 // fieldnames failed for empty struct, tlist & mlist
 
 a.r = 1;
-a.r = null();
+rmfield("r",a);
 assert_checkequal(fieldnames(a), []);
 
 u = mlist("v");

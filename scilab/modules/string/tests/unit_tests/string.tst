@@ -52,7 +52,7 @@ assert_checkequal(out, "y");
 assert_checkequal(in, "x");
 assert_checkequal(text, [" "; "y = x + 1"; " "]);
 //===============================
-mymacro = null();
+clear mymacro;
 deff("y = mymacro(x)", "y = x + 1");
 [out, in, text]=string(mymacro);
 assert_checkequal(out, "y");

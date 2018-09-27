@@ -83,7 +83,7 @@ function  [%cpr,ok] = do_compile(scs_m)
     end
 
 
-    scs_m = null() ;
+    clear scs_m;
 
     if ~ok then %cpr=list()
         return

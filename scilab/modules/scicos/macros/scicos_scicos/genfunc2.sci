@@ -60,7 +60,7 @@ function [ok,tt,dep_ut]=genfunc2(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             "as a function of "+depp],txt1)
             if txt1==[] then return,end
             // check if txt defines y from u
-            mac=null();
+            clear mac;
             if execstr("deff(""[]=mac()"",txt1)", "errcatch") <> 0 then
                 messagebox(["Incorrect syntax: ";lasterror()],"modal")
             else
@@ -97,7 +97,7 @@ function [ok,tt,dep_ut]=genfunc2(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             "as  function(s) of "+depp],txt0)
 
             if txt0==[] then return,end
-            mac=null();
+            clear mac;
             if execstr("deff(""[]=mac()"",txt0)", "errcatch") <> 0 then
                 messagebox(["Incorrect syntax: ";lasterror()],"modal")
             else
@@ -128,7 +128,7 @@ function [ok,tt,dep_ut]=genfunc2(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             t1
             "at event time, as functions of "+depp],txt2)
             if txt2==[] then return,end
-            mac=null();
+            clear mac;
             if execstr("deff(""[]=mac()"",txt2)", "errcatch") <> 0 then
                 messagebox(["Incorrect syntax: ";lasterror()],"modal")
             else
@@ -152,7 +152,7 @@ function [ok,tt,dep_ut]=genfunc2(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             "vector of output time events t_evo (size:"+string(nco)+")"
             "at event time. "],txt3)
             if txt3==[] then return,end
-            mac=null();
+            clear mac;
             if execstr("deff(""[]=mac()"",txt3)", "errcatch") <> 0 then
                 messagebox(["Incorrect syntax: ";lasterror()],"modal")
             else
@@ -185,7 +185,7 @@ function [ok,tt,dep_ut]=genfunc2(tt,inp,out,nci,nco,nx,nz,nrp,type_)
         t1
         "as  function(s) of "+depp],txt4)
         if txt4==[] then return,end
-        mac=null();
+        clear mac;
         if execstr("deff(""[]=mac()"",txt4)", "errcatch") <> 0 then
             messagebox(["Incorrect syntax: ";lasterror()],"modal")
         else
@@ -212,7 +212,7 @@ function [ok,tt,dep_ut]=genfunc2(tt,inp,out,nci,nco,nx,nz,nrp,type_)
         t1
         "as  function(s) of "+depp],txt5)
         if txt5==[] then return,end
-        mac=null();
+        clear mac;
         if execstr("deff(""[]=mac()"",txt5)", "errcatch") <> 0 then
             messagebox(["Incorrect syntax: ";lasterror()],"modal")
         else
@@ -248,7 +248,7 @@ function [ok,tt,dep_ut]=genfunc2(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             "as a function of "+depp],txt6)
             if txt6==[] then return,end
 
-            mac=null();
+            clear mac;
             if execstr("deff(""[]=mac()"",txt6)", "errcatch") <> 0 then
                 messagebox(["Incorrect syntax: ";lasterror()],"modal")
             else

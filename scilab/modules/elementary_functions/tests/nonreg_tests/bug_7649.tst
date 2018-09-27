@@ -28,5 +28,5 @@ s(2).w = struct();
 s(3).w = {};
 s(4).w = [];
 assert_checktrue(isempty(s));
-s.w = null();
+rmfield("w",s);
 assert_checktrue(isempty(s));

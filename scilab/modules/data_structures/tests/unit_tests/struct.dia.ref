@@ -1,13 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- ENGLISH IMPOSED -->
-// <-- CLI SHELL MODE -->
-// unit tests for structs
-// =============================================================================
 date_st=struct('jour',25,'mois','DEC','annee',2006);
 if date_st.jour <> 25 then bugmes();quit;end
 if date_st.mois <> 'DEC' then bugmes();quit;end
@@ -20,7 +10,6 @@ date_st.annee=1973;
 if date_st.annee <> 1973 then bugmes();quit;end
 date_st.semaine=32;
 if date_st.semaine <> 32 then bugmes();quit;end
-// Example from bug #7244
 clear;
 foo(1) = 1;
 foo(2) = 2;
@@ -52,7 +41,9 @@ if or(size(out) <> [2 3]) then bugmes();quit;end
 s=struct("txt","Hello","num",%pi,"pol",%z^2+1);
 if s.pol <> %z^2+1 then bugmes();quit;end
 if s.txt <> "Hello" then bugmes();quit;end
-s.txt=null();s.num=null();s.pol=null();
+rmfield("txt",s);
+rmfield("num",s);
+rmfield("pol",s);
 if isfield( s , "txt"  ) then bugmes();quit;end
 if isfield( s , "num"  ) then bugmes();quit;end
 if isfield( s , "pol"  ) then bugmes();quit;end
