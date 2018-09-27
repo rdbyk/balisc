@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -67,7 +68,9 @@ s=struct("txt","Hello","num",%pi,"pol",%z^2+1);
 if s.pol <> %z^2+1 then pause, end
 if s.txt <> "Hello" then pause, end
 
-s.txt=null();s.num=null();s.pol=null();
+rmfield("txt",s);
+rmfield("num",s);
+rmfield("pol",s);
 if isfield( s , "txt"  ) then pause, end
 if isfield( s , "num"  ) then pause, end
 if isfield( s , "pol"  ) then pause, end

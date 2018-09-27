@@ -111,7 +111,7 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
     if size(connectmat, 2) == 6 then
         connectmat = connectmat(:,[1 2 4 5]);
     end
-    scs_m = null();
+    clear scs_m;
 
     icpr = list();
     if exists(%scicos_solver) == 0 | (exists(%scicos_solver) <> 0 & %scicos_solver < 100) then

@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -20,7 +21,7 @@ s = struct("txt","Hello","num",%pi,"pol",%z^2+1);
 if or(getfield(1,s)<>["st", "dims", "txt", "num", "pol"]) then pause; end
 
 // Delete the field called 'num'
-s.num = null();
+rmfield("num",s);
 
 // Check that 'num' field has been deleted
 if or(getfield(1,s)<>["st", "dims", "txt", "pol"]) then pause; end
@@ -28,5 +29,3 @@ if or(getfield(1,s)<>["st", "dims", "txt", "pol"]) then pause; end
 // Check that remaining fields have the right value
 if s.txt<>"Hello" then pause; end
 if s.pol<>%z^2+1 then pause; end
-
-
