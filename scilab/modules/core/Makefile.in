@@ -279,7 +279,7 @@ am__libscicore_la_SOURCES_DIST = sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/cpp/sci_mlist.cpp sci_gateway/cpp/sci_isfield.cpp \
 	sci_gateway/cpp/sci_isprotected.cpp \
 	sci_gateway/cpp/sci_protect.cpp \
-	sci_gateway/cpp/sci_unprotect.cpp \
+	sci_gateway/cpp/sci_unprotect.cpp sci_gateway/cpp/sci_void.cpp \
 	sci_gateway/cpp/sci_fieldnames.cpp \
 	sci_gateway/cpp/sci_checkNamedArguments.cpp \
 	sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
@@ -350,6 +350,7 @@ am__objects_6 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_isprotected.lo \
 	sci_gateway/cpp/libscicore_la-sci_protect.lo \
 	sci_gateway/cpp/libscicore_la-sci_unprotect.lo \
+	sci_gateway/cpp/libscicore_la-sci_void.lo \
 	sci_gateway/cpp/libscicore_la-sci_fieldnames.lo \
 	sci_gateway/cpp/libscicore_la-sci_checkNamedArguments.lo \
 	$(am__objects_5)
@@ -841,7 +842,7 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_mlist.cpp sci_gateway/cpp/sci_isfield.cpp \
 	sci_gateway/cpp/sci_isprotected.cpp \
 	sci_gateway/cpp/sci_protect.cpp \
-	sci_gateway/cpp/sci_unprotect.cpp \
+	sci_gateway/cpp/sci_unprotect.cpp sci_gateway/cpp/sci_void.cpp \
 	sci_gateway/cpp/sci_fieldnames.cpp \
 	sci_gateway/cpp/sci_checkNamedArguments.cpp $(am__append_1)
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
@@ -1381,6 +1382,9 @@ sci_gateway/cpp/libscicore_la-sci_protect.lo:  \
 sci_gateway/cpp/libscicore_la-sci_unprotect.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicore_la-sci_void.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicore_la-sci_fieldnames.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1488,6 +1492,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_typename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_typeof.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_unprotect.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_void.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_warning.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_what.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_where.Plo@am__quote@
@@ -2199,6 +2204,13 @@ sci_gateway/cpp/libscicore_la-sci_unprotect.lo: sci_gateway/cpp/sci_unprotect.cp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_unprotect.cpp' object='sci_gateway/cpp/libscicore_la-sci_unprotect.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_unprotect.lo `test -f 'sci_gateway/cpp/sci_unprotect.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_unprotect.cpp
+
+sci_gateway/cpp/libscicore_la-sci_void.lo: sci_gateway/cpp/sci_void.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_void.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_void.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_void.lo `test -f 'sci_gateway/cpp/sci_void.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_void.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_void.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_void.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_void.cpp' object='sci_gateway/cpp/libscicore_la-sci_void.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_void.lo `test -f 'sci_gateway/cpp/sci_void.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_void.cpp
 
 sci_gateway/cpp/libscicore_la-sci_fieldnames.lo: sci_gateway/cpp/sci_fieldnames.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_fieldnames.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_fieldnames.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_fieldnames.lo `test -f 'sci_gateway/cpp/sci_fieldnames.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fieldnames.cpp
