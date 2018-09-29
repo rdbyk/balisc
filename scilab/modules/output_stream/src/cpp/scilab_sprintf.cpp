@@ -430,7 +430,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         {
                             if (tok->precStar)
                             {
-                                fwprintf(fwstTemp, tok->token, tok->prec, dblVal);
+                                fwprintf(fwstTemp, token, tok->prec, dblVal);
                             }
                             else
                             {

@@ -496,13 +496,15 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
     if (iSeqCount < 0)
     {
         //manage : and $ in creation by insertion
+        int *piSourceDims = getDimsArray();
+        int iSourceDims = getDims();
         int iSource = 0;
         int iNbColon = 0;
         for (int i = 0; i < iDims; ++i)
         {
             if (pArg[i] == NULL)
             {
-                ++NbColon;
+                ++iNbColon;
             }
         }
 
