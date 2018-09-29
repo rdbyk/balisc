@@ -207,7 +207,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
     "else";
     "  [btn, xc, yc, win, str] = xclick();";
     "end;";
-    "if btn == -100 then";
+    "if btn == -1000 then";
     "  if win == curwin then";
     "    Cmenu = ''Quit'';";
     "  else";

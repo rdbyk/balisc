@@ -115,9 +115,9 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
 
         end;
         //
-        degnum=max(degree(den));
-        yp=[zeros(al,degnum+1-adeg),yp(:,(adeg-1):-1:1)];
-        up=[zeros(mmu,degnum+1-bdeg),up(:,(bdeg-1):-1:1)];
+        degnum=max(0,degree(den));
+        yp=[ zeros(al,degnum+1-adeg),yp(:,(adeg-1):-1:1)];
+        up=[ zeros(mmu,degnum+1-bdeg),up(:,(bdeg-1):-1:1)];
         y=rtitr(num,den,u,up,yp);
         // truncate the solution to only keep y_1,..y_Nu
         // (if b0=0 rtitr computes y_{Nu+1})
@@ -127,8 +127,8 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         matd= d*((s.^[ddeg-1:-1:0]).*.eye(al,al))';
         num=matd*s**(adeg-1)
         den=mata*s**(ddeg-1);
-        degnum=max(degree(den));
-        ep=[zeros(al,degnum+1-ddeg),ep(:,(ddeg-1):-1:1)];
+        degnum=max(0,degree(den));
+        ep=[ zeros(al,degnum+1-ddeg),ep(:,(ddeg-1):-1:1)];
         // Normal noise
         br=sig*rand(al,Nu,"normal")
         bru=rtitr(num,den,br,ep,zeros(ep));

@@ -22,6 +22,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -58,21 +62,27 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
     public void generateSource() {
         new FirstPass().getMacroUsage();
         for (String file : files) {
+            Reader input = null;
             try {
                 File f = new File(file);
                 System.out.println(f);
-                Reader input = new BufferedReader(new FileReader(f));
+                input = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
                 currentCommand = f.getName().split("\\.")[0];
-                buffer = new FileWriter(outputDirectory + File.separator + currentCommand + ".html");
+                buffer = new OutputStreamWriter(new FileOutputStream(outputDirectory + File.separator + currentCommand + ".html"), "UTF-8");
                 buffer.append(entete);
                 buffer.append("<div style=\"code\"><pre>");
                 scilabLexer.convert(this, input, false);
                 buffer.append("</pre></div>\n</body>\n</html>");
-                ((Writer) buffer).flush();
-                ((Writer) buffer).close();
-                input.close();
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    ((Writer) buffer).flush();
+                    ((Writer) buffer).close();
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -135,7 +145,7 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
         files = new ArrayList<String>();
         mapId = new HashMap<String, String>();
         try {
-            input = new BufferedReader(new FileReader(filename));
+            input = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
             String line = null;
             while ((line = input.readLine()) != null) {
                 files.add(line);
@@ -162,7 +172,7 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
             for (String file : files) {
                 try {
                     File f = new File(file);
-                    Reader input = new BufferedReader(new FileReader(f));
+                    Reader input = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
                     currentCommand = f.getName().split("\\.")[0];
                     scilabLexer.convert(this, input, false);
                 } catch (IOException e) {

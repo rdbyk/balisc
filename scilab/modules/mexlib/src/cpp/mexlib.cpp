@@ -379,7 +379,8 @@ void mxDestroyArray(mxArray *ptr)
 {
     if (mxGetClassID(ptr) != mxUNKNOWN_CLASS)
     {
-        delete (types::InternalType*)ptr->ptr;
+        types::InternalType* pIT = (types::InternalType*)ptr->ptr;
+        pIT->killMe();
     }
 
     delete ptr;
@@ -696,7 +697,7 @@ int mxIsSparse(const mxArray *ptr)
 
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
-    if (pGT->isSparse() == true)
+    if (pGT->isSparse() == true || pGT->isSparseBool() == true)
         return 1;
     else
         return 0;
@@ -742,8 +743,7 @@ char *mxArrayToString(const mxArray *ptr)
 
 char *mxArrayToUTF8String(const mxArray *array_ptr)
 {
-    //TODO
-    return NULL;
+    return mxArrayToString(array_ptr);
 }
 
 int mxGetString(const mxArray *ptr, char *str, int strl)
@@ -910,7 +910,15 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
     }
     else if (mxIsSparse(array_ptr))
     {
-        //TODO
+        int temp_dim = 0;
+        
+        for (int i = 0; i < ndim; i++)
+        {
+            temp_dim += dims[i];
+        }
+
+        ((types::Sparse *)array_ptr->ptr)->resize(temp_dim, 1);
+        ((types::Sparse *)array_ptr->ptr)->reshape((int *)dims, ndim);
     }
     else if (mxIsInt8(array_ptr))
     {
@@ -959,16 +967,12 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 int mxGetNumberOfElements(const mxArray *ptr)
 {
     types::InternalType *pIT = (types::InternalType *)ptr->ptr;
-    if (pIT == NULL)
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return 0;
     }
 
     types::GenericType *pGT = dynamic_cast<types::GenericType *>(pIT);
-    if (pGT == NULL)
-    {
-        return 0;
-    }
 
     return pGT->getSize();
 }
@@ -1602,8 +1606,22 @@ void mxSetCell(mxArray *array_ptr, int lindex, mxArray *value)
 
 int mxGetNzmax(const mxArray *ptr)
 {
-    // TODO
-    return 0;
+    if (mxIsSparse(ptr) == 0)
+    {
+        return 0;
+    }
+
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
+    {
+        return 0;
+    }
+    
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
+    int nzmax = ((types::Sparse *)pGT)->nonZeros();
+    
+    return nzmax;
 }
 
 void mxSetNzmax(mxArray *array_ptr, int nzmax)
@@ -1613,8 +1631,14 @@ void mxSetNzmax(mxArray *array_ptr, int nzmax)
 
 int *mxGetIr(const mxArray *ptr)
 {
-    // TODO
-    return NULL;
+    if ( mxIsSparse(ptr) == 0)
+    {
+        return NULL;
+    }
+    int innercount = 0;
+    int *ir = ((types::Sparse *)ptr->ptr)->getInnerPtr(&innercount);
+
+    return ir;
 }
 
 void mxSetIr(mxArray *array_ptr, int *ir_data)
@@ -1624,8 +1648,24 @@ void mxSetIr(mxArray *array_ptr, int *ir_data)
 
 int *mxGetJc(const mxArray *ptr)
 {
-    // TODO
-    return NULL;
+    if (mxIsSparse(ptr) == 0)
+    {
+        return NULL;
+    }
+
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
+    {
+        return NULL;
+    }
+                    
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
+    int nzmax = ((types::Sparse *)pGT)->nonZeros();
+    int *colPos = new int[nzmax];
+    ((types::Sparse *)pGT)->getColPos(colPos);
+
+    return colPos;
 }
 
 void mxSetJc(mxArray *array_ptr, int *jc_data)

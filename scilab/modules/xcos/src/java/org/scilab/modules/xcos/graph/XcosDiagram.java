@@ -999,12 +999,16 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         // snap the center of the split block on the grid
-        mxGeometry geom = splitBlock.getGeometry();
-        double x = snap(splitPoint.getX()) - (SplitBlock.DEFAULT_SIZE / 2.);
-        double y = snap(splitPoint.getY()) - (SplitBlock.DEFAULT_SIZE / 2.);
-        geom.setX(x);
-        geom.setY(y);
-        splitBlock.setGeometry(geom);
+        try {
+            mxGeometry geom = splitBlock.getGeometry();
+            double x = snap(splitPoint.getX()) - (SplitBlock.DEFAULT_SIZE / 2.);
+            double y = snap(splitPoint.getY()) - (SplitBlock.DEFAULT_SIZE / 2.);
+            geom.setX(x);
+            geom.setY(y);
+            splitBlock.setGeometry(geom);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         getModel().beginUpdate();
         try {
@@ -2078,7 +2082,11 @@ public class XcosDiagram extends ScilabGraph {
                         while (ex instanceof RuntimeException) {
                             ex = ex.getCause();
                         }
-                        instance.setLastError(ex.getMessage());
+                        try {
+                            instance.setLastError(ex.getMessage());
+                        } catch (NullPointerException exp) {
+                            exp.printStackTrace();
+                        }
                     }
                     instance.notify();
                 }
@@ -2430,7 +2438,7 @@ public class XcosDiagram extends ScilabGraph {
             // read the structure
             result = handler.readContext();
         } catch (final InterpreterException e) {
-            info("Unable to evaluate the contexte");
+            info("Unable to evaluate the context");
             e.printStackTrace();
         } finally {
             handler.release();
