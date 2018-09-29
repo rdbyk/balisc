@@ -85,6 +85,7 @@ CPP_GATEWAY_PROTOTYPE(sci_isfield);
 CPP_GATEWAY_PROTOTYPE(sci_isprotected);
 CPP_GATEWAY_PROTOTYPE(sci_protect);
 CPP_GATEWAY_PROTOTYPE(sci_unprotect);
+CPP_GATEWAY_PROTOTYPE(sci_void);
 CPP_GATEWAY_PROTOTYPE(sci_fieldnames);
 CPP_GATEWAY_PROTOTYPE(sci_checkNamedArguments);
 

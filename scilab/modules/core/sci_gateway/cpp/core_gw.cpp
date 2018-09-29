@@ -79,6 +79,7 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isprotected", &sci_isprotected, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"protect", &sci_protect, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"unprotect", &sci_unprotect, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"void", &sci_void, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"checkNamedArguments", &sci_checkNamedArguments, MODULE_NAME));
 
 #ifndef NDEBUG
