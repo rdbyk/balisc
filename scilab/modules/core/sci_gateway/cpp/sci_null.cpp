@@ -1,24 +1,48 @@
-/*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
- *
- */
+// Balisc (https://github.com/rdbyk/balisc/)
+//
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+// 02110-1301, USA.
 
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "listdelete.hxx"
 
-types::Function::ReturnValue sci_null(types::typed_list &in, int _piRetCount, types::typed_list &out)
+extern "C"
 {
-    out.push_back(new types::ListDelete());
-    return types::Function::OK;
+#include "Scierror.h"
+#include "localization.h"
+}
+
+using types::Function;
+using types::ListDelete;
+using types::typed_list;
+
+static const char fname[] = "null";
+
+Function::ReturnValue sci_null(typed_list &in, int _iRetCount, typed_list &out)
+{
+    if (in.size() == 0)
+    {
+        out.push_back(new ListDelete());
+        return Function::OK;
+    }
+    else
+    {
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected."), fname, 0);
+        return Function::Error;
+    }
 }

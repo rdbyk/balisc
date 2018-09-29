@@ -1,5 +1,5 @@
 // Balisc (https://github.com/rdbyk/balisc/)
-// 
+//
 // Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
@@ -14,7 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 // 02110-1301, USA.
 
 #include "core_gw.hxx"
@@ -42,7 +42,7 @@ Function::ReturnValue sci_void(typed_list &in, int _iRetCount, typed_list &out)
     }
     else
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected."), "void", 0);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected."), fname, 0);
         return Function::Error;
     }
 }
