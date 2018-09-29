@@ -79,12 +79,15 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
                 out.push_back(types::Double::Empty());
             }
         }
+
+        pDbl->killMe();
         return types::Function::OK;
     }
 
     if ((pDbl->getRows() == -1) || (pDbl->getCols() == -1)) // manage eye case
     {
         Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "qr", 1);
+        pDbl->killMe();
         return types::Function::Error;
     }
 
@@ -103,6 +106,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
             if (_iRetCount == 4)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "qr", 2);
+                pDbl->killMe();
                 return types::Function::Error;
             }
 
@@ -116,6 +120,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), "qr", 2);
+            pDbl->killMe();
             return types::Function::Error;
         }
     }
@@ -130,6 +135,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), "qr");
             vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+            pDbl->killMe();
             return types::Function::Error;
         }
     }
@@ -230,5 +236,6 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         out.push_back(pDblE);
     }
 
+    pDbl->killMe();
     return types::Function::OK;
 }

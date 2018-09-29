@@ -439,8 +439,8 @@ template <typename T>
 GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 {
     bool bComplex = getImg() != NULL;
-
     std::vector<int> dims;
+
     if (getArgsDims(_pArgs, dims))
     {
         InternalType *pOut = NULL;
@@ -480,8 +480,6 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
     int iDims = (int)_pArgs->size();
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
-    bool bUndefine = false;
-    bool bIsImpli = false;
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(NULL, _pArgs, &pArg, piMaxDim, piCountDim);
@@ -497,33 +495,18 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 
     if (iSeqCount < 0)
     {
-        iSeqCount = -iSeqCount;
-        bUndefine = true;
-    }
-
-    if (bUndefine)
-    {
         //manage : and $ in creation by insertion
-        int iCompteurNull = 0;
-        int iLastNull = 0;
-        for (int i = 0; i < iDims; i++)
+        int iSource = 0;
+        int iNbColon = 0;
+        for (int i = 0; i < iDims; ++i)
         {
             if (pArg[i] == NULL)
             {
-                iCompteurNull++;
-                iLastNull = i;
-            }
-            else
-            {
-                if ((*_pArgs)[i]->isImplicitList())
-                {
-                    bIsImpli = true;
-                }
+                ++NbColon;
             }
         }
 
-        //if all index are : -> a = x
-        if (iCompteurNull == pArg.size())
+        if (iNbColon == iDims)
         {
             delete[] piMaxDim;
             delete[] piCountDim;
@@ -533,44 +516,53 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
         }
 
         //vector case
-        if (isVector() && iCompteurNull == 1)
+        if (iNbColon == 1 && isVector())
         {
-            piMaxDim[iLastNull] = getSize();
-            pArg[iLastNull] = createDoubleVector(piMaxDim[iLastNull]);
+            iSourceDims = 1;
+            piSourceDims[0] = getSize();
         }
-        else
+        
+        //vector or matrix case
+        for (int i = 0; i < iDims; ++i)
         {
-            //matrix and hypermatrix case
-            if (iCompteurNull < getDims())
+            //if these do not match another following explicit index, replace ":" by known source dimensions
+            if (pArg[i] == NULL)
             {
-                delete[] piMaxDim;
-                delete[] piCountDim;
-                //free pArg content
-                cleanIndexesArguments(_pArgs, &pArg);
-                //contain bad index, like <= 0, ...
-                return NULL;
-            }
-
-            // replace ":" by known source dimensions
-            int *piSourceDims = getDimsArray();
-            int iSourceDims = getDims();
-            int iSource = 0;
-            for (int i = 0; i < iDims; ++i)
-            {
-                if (pArg[i] == NULL)
+                if (iSource < iSourceDims)
                 {
-                    if (iSource < iSourceDims)
+                    //by default, replace colon by current source dimension
+                    piMaxDim[i] = piSourceDims[iSource];
+                    //if there are more index dimensions left than source dimensions left
+                    if (iDims-i > iSourceDims-iSource)
                     {
-                        piMaxDim[i] = piSourceDims[iSource++];
-                        pArg[i] = createDoubleVector(piMaxDim[i]);
+                        for (int j = i+1; j < iDims - iSourceDims + iSource +1; ++j)
+                        {
+                            //when first explicit index is reached
+                            if (pArg[j] != NULL)
+                            {
+                                //if future index #j and current source dimensions match
+                                if (piCountDim[j] == piSourceDims[iSource])
+                                {
+                                    piMaxDim[i] = 1;
+                                    --iSource;
+                                }
+                                break;
+                            }
+                        }
                     }
-                    else
-                    {
-                        // fill dimensions after getDims() with 1
-                        piMaxDim[i] = 1;
-                        pArg[i] = createDoubleVector(1);
-                    }
+                    ++iSource;
                 }
+                else
+                {
+                    //fill dimensions after iSourceDims with 1
+                    piMaxDim[i] = 1;
+                }
+                pArg[i] = createDoubleVector(piMaxDim[i]);
+                --iNbColon;
+            }
+            else if (piCountDim[i] == piSourceDims[iSource] && (piCountDim[i]>1 || iNbColon < iSourceDims))
+            {
+                ++iSource;
             }
         }
     }
@@ -662,14 +654,6 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
     //    }
     //}
 
-    if (bIsImpli && (pArrayOut->getSize() != getSize()))
-    {
-        delete[] piMaxDim;
-        delete[] piCountDim;
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        return NULL;
-    }
     //insert values in new matrix
     ArrayOf* pOut2 = pArrayOut->insert(&pArg, this);
     if (pOut != pOut2)

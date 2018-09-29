@@ -272,6 +272,7 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
     *_iDims = H5Sget_simple_extent_ndims(space);
     if (*_iDims < 0)
     {
+        H5Tclose(data_type);
         H5Sclose(space);
         return -1;
     }
@@ -282,6 +283,8 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
         hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) **_iDims);
         if (H5Sget_simple_extent_dims(space, dims, NULL) < 0)
         {
+            H5Tclose(data_type);
+            H5Sclose(space);
             FREE(dims);
             return -1;
         }
@@ -301,6 +304,7 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
         iSize = 0;
     }
 
+    H5Tclose(data_type);
     H5Sclose(space);
     return iSize;
 }

@@ -15,8 +15,13 @@ function x = %hm_and(m,d)
     if nargin==1 | d=="*" then
         x=and(matrix(m,length(m),1));
         return
+    else
+        if d=="r"
+            d = 1;
+        elseif d=="c"
+            d = 2;
+        end
     end
-
     dims = size(m);
 
     if d=="m" then

@@ -2450,7 +2450,6 @@ ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg)
         unsigned char* astbin = s->serialize();
         //call ocamlpro typer
         //char *newast = ocamlpro_typer(astbin);
-        //free(astbin);
 
         //for debug
         newast = astbin;
@@ -2470,7 +2469,6 @@ ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg)
 
         //call ocamlpro typer
         //char *newast = ocamlpro_typer(astbin);
-        //free(astbin);
 
         //for debug
         newast = astbin;
@@ -2481,7 +2479,6 @@ ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg)
         timer.check(msgD.c_str());
     }
 
-    free(newast);
     delete s;
     delete d;
     return newTree;
