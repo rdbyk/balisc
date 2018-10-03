@@ -75,7 +75,7 @@ public:
     property(const std::wstring& prop, getter_t g, setter_t s) : original_index(fields.size()), name(prop), get(g), set(s) {};
     ~property() {};
 
-    size_t original_index;
+    int original_index;
     std::wstring name;
     getter_t get;
     setter_t set;

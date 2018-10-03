@@ -139,7 +139,6 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             CellCallExp *pCell = static_cast<CellCallExp*>(&e.getLeftExp());
             types::InternalType *pOut = NULL;
 
-            // a is a cell?
             if (pCell->getName().isSimpleVar())
             {
                 ast::SimpleVar* var = pCell->getName().getAs<ast::SimpleVar>();
@@ -147,6 +146,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
                 if (pIT && pIT->isCell() == false)
                 {
+                    CoverageInstance::stopChrono((void*)&e);
                     std::wostringstream os;
                     os << _W("Cell indexing \"{..}\" of non-cell objects is not allowed.\n");
                     throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
