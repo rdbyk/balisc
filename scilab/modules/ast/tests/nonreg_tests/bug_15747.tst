@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Stéphane MOTTELET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -17,8 +18,10 @@
 // For t of type "test", 2.*t  calls %s_x_test() (OK) and then crashes Scilab (Regression)
 
 t = tlist("test")
+
 function %s_x_test(a,b)
     disp("%s_x_test")
 endfunction
-msg = sprintf(_("%s: Wrong number of arguments: %d expected while %d given.\n"), "%s_x_test", 0, 1);
+
+msg = sprintf(_("Overloaded operator does not return a result.\n"));
 assert_checkerror("2.*t", msg);
