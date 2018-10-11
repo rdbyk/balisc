@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -50,7 +50,7 @@ double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err)
             else if ((pStr[i] >= char_A) && (pStr[i] <= char_Z))
             {
                 int vTmp = (int)pStr[i] - char_A + 10;
-                if (vTmp > numberbase)
+                if (vTmp >= numberbase)
                 {
                     *err = ERROR_CONVERTBASE_INVALID_REPRESENTATION;
                     return 0;
@@ -63,7 +63,7 @@ double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err)
             else if ((pStr[i] >= char_a) && (pStr[i] <= char_z))
             {
                 int vTmp = (int)pStr[i] - char_a + 10;
-                if ( vTmp > numberbase)
+                if ( vTmp >= numberbase)
                 {
                     *err = ERROR_CONVERTBASE_INVALID_REPRESENTATION;
                     return 0;
