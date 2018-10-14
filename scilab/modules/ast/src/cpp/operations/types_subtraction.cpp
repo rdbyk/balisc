@@ -1383,13 +1383,17 @@ InternalType* sub_IC_MC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_I_S(T *_pL, U *_pR)
 {
-    return sub_S_S<T, U, O>(_pL, _pR);
+    O* pOut = new O(0);
+    sub(_pL->getFirst(), _pR->getFirst(), pOut->get());
+    return pOut;
 }
 
 template<class T, class U, class O>
 InternalType* sub_IC_S(T *_pL, U *_pR)
 {
-    return sub_SC_S<T, U, O>(_pL, _pR);
+    O* pOut = new O(0.0, 0.0);
+    sub(_pL->get(), _pL->getImg(), (size_t)1, _pR->getFirst(), pOut->get(), pOut->getImg());
+    return pOut;
 }
 
 template<class T, class U, class O>
@@ -1401,7 +1405,9 @@ InternalType* sub_I_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_IC_SC(T *_pL, U *_pR)
 {
-    return sub_SC_SC<T, U, O>(_pL, _pR);
+    O* pOut = new O(0.0, 0.0);
+    sub(_pL->get(), _pL->getImg(), 1, _pR->getFirst(), _pR->getImgFirst(), pOut->get(), pOut->getImg());
+    return pOut;
 }
 
 template<class T, class U, class O> InternalType* sub_M_I(T *_pL, U *_pR)
@@ -1487,7 +1493,7 @@ template<class T, class U, class O> InternalType* sub_MC_IC(T *_pL, U *_pR)
 
 template<class T, class U, class O> InternalType* sub_S_I(T *_pL, U *_pR)
 {
-    return sub_S_S<T, U, O>(_pL, _pR);
+    return sub_I_S<T, U, O>(_pL, _pR);
 }
 
 template<class T, class U, class O> InternalType* sub_SC_I(T *_pL, U *_pR)
@@ -1497,12 +1503,14 @@ template<class T, class U, class O> InternalType* sub_SC_I(T *_pL, U *_pR)
 
 template<class T, class U, class O> InternalType* sub_S_IC(T *_pL, U *_pR)
 {
-    return sub_S_SC<T, U, O>(_pL, _pR);
+    O* pOut = new O(0.0, 0.0);
+    sub(_pL->get(), 1, _pR->getFirst(), _pR->getImgFirst(), pOut->get(), pOut->getImg());
+    return pOut;
 }
 
 template<class T, class U, class O> InternalType* sub_SC_IC(T *_pL, U *_pR)
 {
-    return sub_SC_SC<T, U, O>(_pL, _pR);
+    return sub_IC_SC<T, U, O>(_pL, _pR);
 }
 
 template<class T, class U, class O> InternalType* sub_I_I(T *_pL, U *_pR)
