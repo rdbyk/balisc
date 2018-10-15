@@ -67,7 +67,9 @@ function [] = fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
     fch_v=feval(fch_xr,fch_yr,mmm);
 
     if isempty(opts) then
-        opts = "";
+        execstr("champ(fch_xr,fch_yr,real(fch_v),imag(fch_v))")
+    else
+        execstr("champ(fch_xr,fch_yr,real(fch_v),imag(fch_v),"+strcat(opts,",")+")")
     end
-    execstr("champ(fch_xr,fch_yr,real(fch_v),imag(fch_v),"+strcat(opts,",")+")")
+
 endfunction

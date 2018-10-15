@@ -213,6 +213,7 @@
         <para>
             The following figure shows the output of the bloc :
         </para>
+<!-- FIXME
         <scilab:image><![CDATA[
 // overload messagebox to avoid the "modelica compiler" message
 function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
@@ -222,6 +223,7 @@ endfunction
 importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
+-->
     </refsection>
     <refsection id="Interfacingfunction_OUTIMPL_f">
         <title>Interfacing function</title>
