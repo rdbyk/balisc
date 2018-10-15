@@ -210,49 +210,56 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
     {
         for (int i = 1; i < rhs; ++i)
         {
-            if (in[i]->getId() != InternalType::IdScalarString)
+            if (!in[i]->isString())
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, i+1);
                 return Function::Error;
             }
 
-            wchar_t* wvar = in[i]->getAs<String>()->get()[0];
+            String *pS = in[i]->getAs<types::String>();
+            wchar_t* wvar = in[i]->getAs<String>()->getFirst();
+
             if (wcscmp(wvar, L"-append") == 0)
             {
                 bAppendMode = true;
                 continue;
             }
 
-            InternalType* pIT = ctx->get(Symbol(wvar));
-            if (pIT == NULL)
+            for (int j = 0; j < pS->getSize(); j++)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
-                return Function::Error;
-            }
+                wvar = pS->get(j);
+                InternalType* pIT = ctx->get(Symbol(wvar));
 
-            if (pIT->isHandle())
-            {
-                GraphicHandle* pGH = pIT->getAs<GraphicHandle>();
-
-                int i = pGH->getSize();
-                while (--i >= 0 && getObjectFromHandle(pGH->get(i)));
-
-                if (i >= 0)
+                if (pIT == NULL)
                 {
-                    Sciwarning(_("WARNING: %s: invalid graphic handle is ignored.\n"), fname);
-                    continue;
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
+                    return Function::Error;
                 }
+
+		        if (pIT->isHandle())
+		        {
+		            GraphicHandle* pGH = pIT->getAs<GraphicHandle>();
+
+		            int i = pGH->getSize();
+		            while (--i >= 0 && getObjectFromHandle(pGH->get(i)));
+
+		            if (i >= 0)
+		            {
+		                Sciwarning(_("WARNING: %s: invalid graphic handle is ignored.\n"), fname);
+		                continue;
+		            }
+		        }
+
+                char* cvar = wide_string_to_UTF8(wvar);
+                std::string var(cvar);
+                FREE(cvar);
+
+                //check var exists
+                vars[var] = pIT;                
             }
-
-            char* cvar = wide_string_to_UTF8(wvar);
-            std::string var(cvar);
-            FREE(cvar);
-
-            //check var exists
-            vars[var] = pIT;
         }
     }
-
+   
     if (bAppendMode)
     {
         iH5File = openHDF5File(filename.data(), bAppendMode);
