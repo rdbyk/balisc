@@ -437,6 +437,7 @@ Grammar
   362         | "try"
   363         | "catch"
   364         | "return"
+  365         | "continue"
 
 
 Terminals, with rules where they appear
@@ -510,7 +511,7 @@ error (256) 34
 "while" (314) 313 359
 "do" (315) 308 309 318 319 320 328 329 330 360
 "break" (316) 30 361
-"continue" (317) 31
+"continue" (317) 31 365
 "try" (318) 334 335 362
 "catch" (319) 334 363
 "return" (320) 342 343 344 364
@@ -685,7 +686,7 @@ lineEnd (144)
     on left: 347 348, on right: 75
 keywords (145)
     on left: 349 350 351 352 353 354 355 356 357 358 359 360 361 362
-    363 364, on right: 160 163 230 233
+    363 364 365, on right: 160 163 230 233
 
 
 State 0
@@ -6937,6 +6938,7 @@ State 116
   362         | . "try"
   363         | . "catch"
   364         | . "return"
+  365         | . "continue"
 
     "if"           shift, and go to state 237
     "then"         shift, and go to state 238
@@ -6951,12 +6953,13 @@ State 116
     "while"        shift, and go to state 247
     "do"           shift, and go to state 248
     "break"        shift, and go to state 249
-    "try"          shift, and go to state 250
-    "catch"        shift, and go to state 251
-    "return"       shift, and go to state 252
-    "identifier"   shift, and go to state 253
+    "continue"     shift, and go to state 250
+    "try"          shift, and go to state 251
+    "catch"        shift, and go to state 252
+    "return"       shift, and go to state 253
+    "identifier"   shift, and go to state 254
 
-    keywords  go to state 254
+    keywords  go to state 255
 
 
 State 117
@@ -7053,11 +7056,11 @@ State 118
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 255
+    functionCall        go to state 256
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 256
+    variable            go to state 257
     cell                go to state 41
     matrix              go to state 42
 
@@ -7149,11 +7152,11 @@ State 119
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 257
+    functionCall        go to state 258
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 258
+    variable            go to state 259
     cell                go to state 41
     matrix              go to state 42
 
@@ -7245,11 +7248,11 @@ State 120
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 259
+    functionCall        go to state 260
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 260
+    variable            go to state 261
     cell                go to state 41
     matrix              go to state 42
 
@@ -7341,11 +7344,11 @@ State 121
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 261
+    functionCall        go to state 262
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 262
+    variable            go to state 263
     cell                go to state 41
     matrix              go to state 42
 
@@ -7437,11 +7440,11 @@ State 122
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 263
+    functionCall        go to state 264
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 264
+    variable            go to state 265
     cell                go to state 41
     matrix              go to state 42
 
@@ -7533,11 +7536,11 @@ State 123
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 265
+    functionCall        go to state 266
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 266
+    variable            go to state 267
     cell                go to state 41
     matrix              go to state 42
 
@@ -7629,11 +7632,11 @@ State 124
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 267
+    functionCall        go to state 268
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 268
+    variable            go to state 269
     cell                go to state 41
     matrix              go to state 42
 
@@ -7725,11 +7728,11 @@ State 125
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 269
+    functionCall        go to state 270
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 270
+    variable            go to state 271
     cell                go to state 41
     matrix              go to state 42
 
@@ -7821,11 +7824,11 @@ State 126
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 271
+    functionCall        go to state 272
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 272
+    variable            go to state 273
     cell                go to state 41
     matrix              go to state 42
 
@@ -7917,11 +7920,11 @@ State 127
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 273
+    functionCall        go to state 274
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 274
+    variable            go to state 275
     cell                go to state 41
     matrix              go to state 42
 
@@ -8013,11 +8016,11 @@ State 128
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 275
+    functionCall        go to state 276
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 276
+    variable            go to state 277
     cell                go to state 41
     matrix              go to state 42
 
@@ -8109,11 +8112,11 @@ State 129
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 277
+    functionCall        go to state 278
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 278
+    variable            go to state 279
     cell                go to state 41
     matrix              go to state 42
 
@@ -8205,11 +8208,11 @@ State 130
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 279
+    functionCall        go to state 280
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 280
+    variable            go to state 281
     cell                go to state 41
     matrix              go to state 42
 
@@ -8301,11 +8304,11 @@ State 131
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 281
+    functionCall        go to state 282
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 282
+    variable            go to state 283
     cell                go to state 41
     matrix              go to state 42
 
@@ -8397,11 +8400,11 @@ State 132
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 283
+    functionCall        go to state 284
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 284
+    variable            go to state 285
     cell                go to state 41
     matrix              go to state 42
 
@@ -8493,11 +8496,11 @@ State 133
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 285
+    functionCall        go to state 286
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 286
+    variable            go to state 287
     cell                go to state 41
     matrix              go to state 42
 
@@ -8589,11 +8592,11 @@ State 134
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 287
+    functionCall        go to state 288
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 288
+    variable            go to state 289
     cell                go to state 41
     matrix              go to state 42
 
@@ -8685,11 +8688,11 @@ State 135
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 289
+    functionCall        go to state 290
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 290
+    variable            go to state 291
     cell                go to state 41
     matrix              go to state 42
 
@@ -8781,11 +8784,11 @@ State 136
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 291
+    functionCall        go to state 292
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 292
+    variable            go to state 293
     cell                go to state 41
     matrix              go to state 42
 
@@ -8877,11 +8880,11 @@ State 137
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 293
+    functionCall        go to state 294
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 294
+    variable            go to state 295
     cell                go to state 41
     matrix              go to state 42
 
@@ -8973,11 +8976,11 @@ State 138
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 295
+    functionCall        go to state 296
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 296
+    variable            go to state 297
     cell                go to state 41
     matrix              go to state 42
 
@@ -9069,11 +9072,11 @@ State 139
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 297
+    functionCall        go to state 298
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 298
+    variable            go to state 299
     cell                go to state 41
     matrix              go to state 42
 
@@ -9165,11 +9168,11 @@ State 140
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 299
+    functionCall        go to state 300
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 300
+    variable            go to state 301
     cell                go to state 41
     matrix              go to state 42
 
@@ -9261,11 +9264,11 @@ State 141
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 301
+    functionCall        go to state 302
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 302
+    variable            go to state 303
     cell                go to state 41
     matrix              go to state 42
 
@@ -9357,11 +9360,11 @@ State 142
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 303
+    functionCall        go to state 304
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 304
+    variable            go to state 305
     cell                go to state 41
     matrix              go to state 42
 
@@ -9453,11 +9456,11 @@ State 143
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 305
+    functionCall        go to state 306
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 306
+    variable            go to state 307
     cell                go to state 41
     matrix              go to state 42
 
@@ -9554,14 +9557,14 @@ State 144
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 307
+    functionCall        go to state 308
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 308
+    variable            go to state 309
     cell                go to state 41
     matrix              go to state 42
-    returnControl       go to state 309
+    returnControl       go to state 310
 
 
 State 145
@@ -9584,7 +9587,7 @@ State 147
   155            | listableBegin . ":" functionCall
   156            | listableBegin .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "'", "~", "$", ",", ";", "(", ")", "[", "]", "{", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    ":"  shift, and go to state 310
+    ":"  shift, and go to state 311
 
     $default  reduce using rule 156 (listableEnd)
 
@@ -9719,7 +9722,7 @@ State 150
 
     functionCall         go to state 224
     simpleFunctionCall   go to state 36
-    functionArgs         go to state 311
+    functionArgs         go to state 312
     comparison           go to state 38
     operation            go to state 39
     variable             go to state 226
@@ -9760,8 +9763,9 @@ State 151
   362         | . "try"
   363         | . "catch"
   364         | . "return"
+  365         | . "continue"
 
-    "("            shift, and go to state 312
+    "("            shift, and go to state 313
     "if"           shift, and go to state 237
     "then"         shift, and go to state 238
     "else"         shift, and go to state 239
@@ -9775,14 +9779,15 @@ State 151
     "while"        shift, and go to state 247
     "do"           shift, and go to state 248
     "break"        shift, and go to state 249
-    "try"          shift, and go to state 250
-    "catch"        shift, and go to state 251
-    "return"       shift, and go to state 252
-    "identifier"   shift, and go to state 313
+    "continue"     shift, and go to state 250
+    "try"          shift, and go to state 251
+    "catch"        shift, and go to state 252
+    "return"       shift, and go to state 253
+    "identifier"   shift, and go to state 314
 
-    functionCall        go to state 314
+    functionCall        go to state 315
     simpleFunctionCall  go to state 36
-    keywords            go to state 315
+    keywords            go to state 316
 
 
 State 152
@@ -9879,11 +9884,11 @@ State 153
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 316
+    functionCall        go to state 317
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 317
+    variable            go to state 318
     cell                go to state 41
     matrix              go to state 42
 
@@ -9975,11 +9980,11 @@ State 154
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 318
+    functionCall        go to state 319
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 319
+    variable            go to state 320
     cell                go to state 41
     matrix              go to state 42
 
@@ -10097,14 +10102,14 @@ State 158
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 320
+    functionCall        go to state 321
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 321
+    variable            go to state 322
     cell                go to state 41
     matrix              go to state 42
-    returnControl       go to state 322
+    returnControl       go to state 323
 
 
 State 159
@@ -10338,12 +10343,12 @@ State 161
   277                     | . ","
   278                     | . ";"
 
-    "end of line"   shift, and go to state 323
-    ","             shift, and go to state 324
-    ";"             shift, and go to state 325
-    "line comment"  shift, and go to state 326
+    "end of line"   shift, and go to state 324
+    ","             shift, and go to state 325
+    ";"             shift, and go to state 326
+    "line comment"  shift, and go to state 327
 
-    selectConditionBreak  go to state 327
+    selectConditionBreak  go to state 328
 
 
 State 162
@@ -10440,7 +10445,7 @@ State 162
     ";"             shift, and go to state 181
     "("             shift, and go to state 9
     "["             shift, and go to state 54
-    "]"             shift, and go to state 328
+    "]"             shift, and go to state 329
     "{"             shift, and go to state 11
     "+"             shift, and go to state 12
     "-"             shift, and go to state 13
@@ -10575,7 +10580,7 @@ State 163
 
     functionCall         go to state 224
     simpleFunctionCall   go to state 36
-    functionArgs         go to state 329
+    functionArgs         go to state 330
     comparison           go to state 38
     operation            go to state 39
     variable             go to state 226
@@ -10606,6 +10611,7 @@ State 164
   362         | . "try"
   363         | . "catch"
   364         | . "return"
+  365         | . "continue"
 
     "if"           shift, and go to state 237
     "then"         shift, and go to state 238
@@ -10620,12 +10626,13 @@ State 164
     "while"        shift, and go to state 247
     "do"           shift, and go to state 248
     "break"        shift, and go to state 249
-    "try"          shift, and go to state 250
-    "catch"        shift, and go to state 251
-    "return"       shift, and go to state 252
-    "identifier"   shift, and go to state 330
+    "continue"     shift, and go to state 250
+    "try"          shift, and go to state 251
+    "catch"        shift, and go to state 252
+    "return"       shift, and go to state 253
+    "identifier"   shift, and go to state 331
 
-    keywords  go to state 331
+    keywords  go to state 332
 
 
 State 165
@@ -10741,7 +10748,7 @@ State 165
 
     functionCall         go to state 224
     simpleFunctionCall   go to state 36
-    functionArgs         go to state 332
+    functionArgs         go to state 333
     comparison           go to state 38
     operation            go to state 39
     variable             go to state 226
@@ -10779,8 +10786,9 @@ State 166
   362         | . "try"
   363         | . "catch"
   364         | . "return"
+  365         | . "continue"
 
-    "("            shift, and go to state 312
+    "("            shift, and go to state 313
     "if"           shift, and go to state 237
     "then"         shift, and go to state 238
     "else"         shift, and go to state 239
@@ -10794,14 +10802,15 @@ State 166
     "while"        shift, and go to state 247
     "do"           shift, and go to state 248
     "break"        shift, and go to state 249
-    "try"          shift, and go to state 250
-    "catch"        shift, and go to state 251
-    "return"       shift, and go to state 252
-    "identifier"   shift, and go to state 333
+    "continue"     shift, and go to state 250
+    "try"          shift, and go to state 251
+    "catch"        shift, and go to state 252
+    "return"       shift, and go to state 253
+    "identifier"   shift, and go to state 334
 
-    functionCall        go to state 334
+    functionCall        go to state 335
     simpleFunctionCall  go to state 36
-    keywords            go to state 335
+    keywords            go to state 336
 
 
 State 167
@@ -10891,11 +10900,11 @@ State 167
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 336
+    functionCall        go to state 337
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 337
+    variable            go to state 338
     cell                go to state 41
     matrix              go to state 42
 
@@ -10994,11 +11003,11 @@ State 169
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 338
+    functionCall        go to state 339
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 339
+    variable            go to state 340
     cell                go to state 41
     matrix              go to state 42
 
@@ -11097,11 +11106,11 @@ State 171
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 340
+    functionCall        go to state 341
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 341
+    variable            go to state 342
     cell                go to state 41
     matrix              go to state 42
 
@@ -11210,7 +11219,7 @@ State 174
     "$"             shift, and go to state 6
     "("             shift, and go to state 9
     "["             shift, and go to state 54
-    "]"             shift, and go to state 342
+    "]"             shift, and go to state 343
     "{"             shift, and go to state 11
     "+"             shift, and go to state 12
     "-"             shift, and go to state 13
@@ -11229,7 +11238,7 @@ State 174
     cell                 go to state 41
     matrix               go to state 42
     matrixOrCellLine     go to state 177
-    matrixOrCellColumns  go to state 343
+    matrixOrCellColumns  go to state 344
 
 
 State 175
@@ -11326,7 +11335,7 @@ State 175
     ";"             shift, and go to state 181
     "("             shift, and go to state 9
     "["             shift, and go to state 54
-    "]"             shift, and go to state 344
+    "]"             shift, and go to state 345
     "{"             shift, and go to state 11
     "+"             shift, and go to state 12
     "-"             shift, and go to state 13
@@ -11456,7 +11465,7 @@ State 178
     ";"             shift, and go to state 181
     "("             shift, and go to state 9
     "["             shift, and go to state 54
-    "]"             shift, and go to state 345
+    "]"             shift, and go to state 346
     "{"             shift, and go to state 11
     "+"             shift, and go to state 12
     "-"             shift, and go to state 13
@@ -11748,8 +11757,8 @@ State 186
   209                      | matrixOrCellLineBreak . ";"
   210 matrixOrCellLine: matrixOrCellColumns matrixOrCellLineBreak .  ["%t or %T", "%f or %F", "~", "$", "(", "[", "]", "{", "}", "+", "-", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 346
-    ";"            shift, and go to state 347
+    "end of line"  shift, and go to state 347
+    ";"            shift, and go to state 348
 
     $default  reduce using rule 210 (matrixOrCellLine)
 
@@ -11838,7 +11847,7 @@ State 187
     "%f or %F"      shift, and go to state 4
     "~"             shift, and go to state 5
     "$"             shift, and go to state 6
-    ","             shift, and go to state 348
+    ","             shift, and go to state 349
     ";"             shift, and go to state 181
     "("             shift, and go to state 9
     "["             shift, and go to state 54
@@ -11850,16 +11859,16 @@ State 187
     "integer"       shift, and go to state 25
     "float"         shift, and go to state 26
     "number"        shift, and go to state 27
-    "line comment"  shift, and go to state 349
+    "line comment"  shift, and go to state 350
 
-    functionCall           go to state 350
+    functionCall           go to state 351
     simpleFunctionCall     go to state 36
     comparison             go to state 38
     operation              go to state 39
-    variable               go to state 351
+    variable               go to state 352
     cell                   go to state 41
     matrix                 go to state 42
-    matrixOrCellLineBreak  go to state 352
+    matrixOrCellLineBreak  go to state 353
 
 
 State 188
@@ -11960,7 +11969,7 @@ State 189
     "("             shift, and go to state 9
     "["             shift, and go to state 54
     "{"             shift, and go to state 11
-    "}"             shift, and go to state 353
+    "}"             shift, and go to state 354
     "+"             shift, and go to state 12
     "-"             shift, and go to state 13
     "string"        shift, and go to state 23
@@ -11978,7 +11987,7 @@ State 189
     cell                 go to state 41
     matrix               go to state 42
     matrixOrCellLine     go to state 177
-    matrixOrCellColumns  go to state 354
+    matrixOrCellColumns  go to state 355
 
 
 State 190
@@ -12076,7 +12085,7 @@ State 190
     "("             shift, and go to state 9
     "["             shift, and go to state 54
     "{"             shift, and go to state 11
-    "}"             shift, and go to state 355
+    "}"             shift, and go to state 356
     "+"             shift, and go to state 12
     "-"             shift, and go to state 13
     "string"        shift, and go to state 23
@@ -12199,7 +12208,7 @@ State 192
     "("             shift, and go to state 9
     "["             shift, and go to state 54
     "{"             shift, and go to state 11
-    "}"             shift, and go to state 356
+    "}"             shift, and go to state 357
     "+"             shift, and go to state 12
     "-"             shift, and go to state 13
     "string"        shift, and go to state 23
@@ -12239,7 +12248,7 @@ State 195
   248 ifConditionBreak: "," .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "then", "else", "elseif", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   249                 | "," . "end of line"
 
-    "end of line"  shift, and go to state 357
+    "end of line"  shift, and go to state 358
 
     $default  reduce using rule 248 (ifConditionBreak)
 
@@ -12249,7 +12258,7 @@ State 196
   246 ifConditionBreak: ";" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "then", "else", "elseif", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   247                 | ";" . "end of line"
 
-    "end of line"  shift, and go to state 358
+    "end of line"  shift, and go to state 359
 
     $default  reduce using rule 246 (ifConditionBreak)
 
@@ -12270,7 +12279,7 @@ State 197
 
     $default  reduce using rule 251 (then)
 
-    ifConditionBreak  go to state 359
+    ifConditionBreak  go to state 360
 
 
 State 198
@@ -12279,7 +12288,7 @@ State 198
   253     | ifConditionBreak . "then" "end of line"
   255     | ifConditionBreak .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "else", "elseif", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "then"  shift, and go to state 360
+    "then"  shift, and go to state 361
 
     $default  reduce using rule 255 (then)
 
@@ -12455,7 +12464,7 @@ State 199
     "elseif"  reduce using rule 243 (thenBody)
     "end"     reduce using rule 243 (thenBody)
 
-    expressions           go to state 361
+    expressions           go to state 362
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -12471,7 +12480,7 @@ State 199
     assignable            go to state 44
     multipleResults       go to state 45
     ifControl             go to state 46
-    thenBody              go to state 362
+    thenBody              go to state 363
     selectControl         go to state 47
     select                go to state 48
     forControl            go to state 49
@@ -12485,7 +12494,7 @@ State 200
    63 functionDeclaration: "function" "[" "]" . "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
    67                    | "function" "[" "]" . "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
 
-    "="  shift, and go to state 363
+    "="  shift, and go to state 364
 
 
 State 201
@@ -12500,7 +12509,7 @@ State 202
    62 functionDeclaration: "function" "[" functionDeclarationReturns . "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
    66                    | "function" "[" functionDeclarationReturns . "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
 
-    "]"  shift, and go to state 364
+    "]"  shift, and go to state 365
 
 
 State 203
@@ -12508,7 +12517,7 @@ State 203
    69 functionDeclarationReturns: idList .  ["]"]
    73 idList: idList . "," "identifier"
 
-    ","  shift, and go to state 365
+    ","  shift, and go to state 366
 
     $default  reduce using rule 69 (functionDeclarationReturns)
 
@@ -12520,10 +12529,10 @@ State 204
    73 idList: . idList "," "identifier"
    74       | . "identifier"
 
-    ")"           shift, and go to state 366
+    ")"           shift, and go to state 367
     "identifier"  shift, and go to state 201
 
-    idList  go to state 367
+    idList  go to state 368
 
 
 State 205
@@ -12531,7 +12540,7 @@ State 205
    61 functionDeclaration: "function" "identifier" "=" . "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
    65                    | "function" "identifier" "=" . "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
 
-    "identifier"  shift, and go to state 368
+    "identifier"  shift, and go to state 369
 
 
 State 206
@@ -12546,20 +12555,20 @@ State 206
   347 lineEnd: . "end of line"
   348        | . "line comment" "end of line"
 
-    "end of line"   shift, and go to state 369
-    ","             shift, and go to state 370
-    ";"             shift, and go to state 371
-    "line comment"  shift, and go to state 372
+    "end of line"   shift, and go to state 370
+    ","             shift, and go to state 371
+    ";"             shift, and go to state 372
+    "line comment"  shift, and go to state 373
 
-    functionDeclarationBreak  go to state 373
-    lineEnd                   go to state 374
+    functionDeclarationBreak  go to state 374
+    lineEnd                   go to state 375
 
 
 State 207
 
   300 forControl: "for" "(" "identifier" . "=" forIterator ")" forConditionBreak forBody "end"
 
-    "="  shift, and go to state 375
+    "="  shift, and go to state 376
 
 
 State 208
@@ -12650,14 +12659,14 @@ State 208
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 376
+    functionCall        go to state 377
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 377
+    variable            go to state 378
     cell                go to state 41
     matrix              go to state 42
-    forIterator         go to state 378
+    forIterator         go to state 379
 
 
 State 209
@@ -12672,7 +12681,7 @@ State 210
   316 whileConditionBreak: "," .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   326                    | "," . "end of line"
 
-    "end of line"  shift, and go to state 379
+    "end of line"  shift, and go to state 380
 
     $default  reduce using rule 316 (whileConditionBreak)
 
@@ -12682,7 +12691,7 @@ State 211
   317 whileConditionBreak: ";" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   327                    | ";" . "end of line"
 
-    "end of line"  shift, and go to state 380
+    "end of line"  shift, and go to state 381
 
     $default  reduce using rule 317 (whileConditionBreak)
 
@@ -12696,9 +12705,9 @@ State 212
   332                    | "then" . "," "end of line"
   333                    | "then" . ";" "end of line"
 
-    "end of line"  shift, and go to state 381
-    ","            shift, and go to state 382
-    ";"            shift, and go to state 383
+    "end of line"  shift, and go to state 382
+    ","            shift, and go to state 383
+    ";"            shift, and go to state 384
 
     $default  reduce using rule 321 (whileConditionBreak)
 
@@ -12712,9 +12721,9 @@ State 213
   329                    | "do" . "," "end of line"
   330                    | "do" . ";" "end of line"
 
-    "end of line"  shift, and go to state 384
-    ","            shift, and go to state 385
-    ";"            shift, and go to state 386
+    "end of line"  shift, and go to state 385
+    ","            shift, and go to state 386
+    ";"            shift, and go to state 387
 
     $default  reduce using rule 318 (whileConditionBreak)
 
@@ -12723,7 +12732,7 @@ State 214
 
   324 whileConditionBreak: "line comment" . "end of line"
 
-    "end of line"  shift, and go to state 387
+    "end of line"  shift, and go to state 388
 
 
 State 215
@@ -12893,7 +12902,7 @@ State 215
 
     "end"  reduce using rule 315 (whileBody)
 
-    expressions           go to state 388
+    expressions           go to state 389
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -12913,7 +12922,7 @@ State 215
     select                go to state 48
     forControl            go to state 49
     whileControl          go to state 50
-    whileBody             go to state 389
+    whileBody             go to state 390
     tryControl            go to state 51
     returnControl         go to state 52
 
@@ -13141,7 +13150,7 @@ State 220
     forControl            go to state 49
     whileControl          go to state 50
     tryControl            go to state 51
-    catchBody             go to state 390
+    catchBody             go to state 391
     returnControl         go to state 52
 
 
@@ -13301,8 +13310,8 @@ State 225
    59             | functionArgs . "," ":"
    60             | functionArgs . "," variableDeclaration
 
-    ","  shift, and go to state 391
-    ")"  shift, and go to state 392
+    ","  shift, and go to state 392
+    ")"  shift, and go to state 393
 
 
 State 226
@@ -13441,15 +13450,15 @@ State 229
    59             | functionArgs . "," ":"
    60             | functionArgs . "," variableDeclaration
 
-    ","  shift, and go to state 391
-    "}"  shift, and go to state 393
+    ","  shift, and go to state 392
+    "}"  shift, and go to state 394
 
 
 State 230
 
    45 implicitCallable: implicitCallable "." . "identifier"
 
-    "identifier"  shift, and go to state 394
+    "identifier"  shift, and go to state 395
 
 
 State 231
@@ -13469,7 +13478,7 @@ State 231
 
     $default  reduce using rule 7 (expressions)
 
-    expressionLineBreak  go to state 395
+    expressionLineBreak  go to state 396
 
 
 State 232
@@ -13770,8 +13779,8 @@ State 236
   181 variable: functionCall "(" functionArgs . ")"
   237 assignable: functionCall "(" functionArgs . ")"
 
-    ","  shift, and go to state 391
-    ")"  shift, and go to state 396
+    ","  shift, and go to state 392
+    ")"  shift, and go to state 397
 
 
 State 237
@@ -13867,26 +13876,33 @@ State 249
 
 State 250
 
+  365 keywords: "continue" .
+
+    $default  reduce using rule 365 (keywords)
+
+
+State 251
+
   362 keywords: "try" .
 
     $default  reduce using rule 362 (keywords)
 
 
-State 251
+State 252
 
   363 keywords: "catch" .
 
     $default  reduce using rule 363 (keywords)
 
 
-State 252
+State 253
 
   364 keywords: "return" .
 
     $default  reduce using rule 364 (keywords)
 
 
-State 253
+State 254
 
   162 variable: functionCall "." "identifier" .  ["end of file", "end of line", "'", ",", ":", ";", "(", ")", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
   232 assignable: functionCall "." "identifier" .  ["="]
@@ -13895,7 +13911,7 @@ State 253
     $default  reduce using rule 162 (variable)
 
 
-State 254
+State 255
 
   163 variable: functionCall "." keywords .  ["end of file", "end of line", "'", ",", ":", ";", "(", ")", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
   233 assignable: functionCall "." keywords .  ["="]
@@ -13904,7 +13920,7 @@ State 254
     $default  reduce using rule 163 (variable)
 
 
-State 255
+State 256
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -14032,7 +14048,7 @@ State 255
     Conflict between rule 125 and token "||" resolved as reduce ("||" < PLUS).
 
 
-State 256
+State 257
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -14161,7 +14177,7 @@ State 256
     Conflict between rule 124 and token "||" resolved as reduce ("||" < PLUS).
 
 
-State 257
+State 258
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -14289,7 +14305,7 @@ State 257
     Conflict between rule 127 and token "||" resolved as reduce ("||" < MINUS).
 
 
-State 258
+State 259
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -14418,7 +14434,7 @@ State 258
     Conflict between rule 126 and token "||" resolved as reduce ("||" < MINUS).
 
 
-State 259
+State 260
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -14534,7 +14550,7 @@ State 259
     Conflict between rule 129 and token "||" resolved as reduce ("||" < TIMES).
 
 
-State 260
+State 261
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -14651,7 +14667,7 @@ State 260
     Conflict between rule 128 and token "||" resolved as reduce ("||" < TIMES).
 
 
-State 261
+State 262
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -14767,7 +14783,7 @@ State 261
     Conflict between rule 131 and token "||" resolved as reduce ("||" < DOTTIMES).
 
 
-State 262
+State 263
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -14884,7 +14900,7 @@ State 262
     Conflict between rule 130 and token "||" resolved as reduce ("||" < DOTTIMES).
 
 
-State 263
+State 264
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -15000,7 +15016,7 @@ State 263
     Conflict between rule 133 and token "||" resolved as reduce ("||" < KRONTIMES).
 
 
-State 264
+State 265
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -15117,7 +15133,7 @@ State 264
     Conflict between rule 132 and token "||" resolved as reduce ("||" < KRONTIMES).
 
 
-State 265
+State 266
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -15233,7 +15249,7 @@ State 265
     Conflict between rule 135 and token "||" resolved as reduce ("||" < CONTROLTIMES).
 
 
-State 266
+State 267
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -15350,7 +15366,7 @@ State 266
     Conflict between rule 134 and token "||" resolved as reduce ("||" < CONTROLTIMES).
 
 
-State 267
+State 268
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -15466,7 +15482,7 @@ State 267
     Conflict between rule 137 and token "||" resolved as reduce ("||" < RDIVIDE).
 
 
-State 268
+State 269
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -15583,7 +15599,7 @@ State 268
     Conflict between rule 136 and token "||" resolved as reduce ("||" < RDIVIDE).
 
 
-State 269
+State 270
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -15699,7 +15715,7 @@ State 269
     Conflict between rule 139 and token "||" resolved as reduce ("||" < DOTRDIVIDE).
 
 
-State 270
+State 271
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -15816,7 +15832,7 @@ State 270
     Conflict between rule 138 and token "||" resolved as reduce ("||" < DOTRDIVIDE).
 
 
-State 271
+State 272
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -15932,7 +15948,7 @@ State 271
     Conflict between rule 143 and token "||" resolved as reduce ("||" < CONTROLRDIVIDE).
 
 
-State 272
+State 273
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -16049,7 +16065,7 @@ State 272
     Conflict between rule 142 and token "||" resolved as reduce ("||" < CONTROLRDIVIDE).
 
 
-State 273
+State 274
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -16165,7 +16181,7 @@ State 273
     Conflict between rule 141 and token "||" resolved as reduce ("||" < KRONRDIVIDE).
 
 
-State 274
+State 275
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -16282,7 +16298,7 @@ State 274
     Conflict between rule 140 and token "||" resolved as reduce ("||" < KRONRDIVIDE).
 
 
-State 275
+State 276
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -16398,7 +16414,7 @@ State 275
     Conflict between rule 145 and token "||" resolved as reduce ("||" < LDIVIDE).
 
 
-State 276
+State 277
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -16515,7 +16531,7 @@ State 276
     Conflict between rule 144 and token "||" resolved as reduce ("||" < LDIVIDE).
 
 
-State 277
+State 278
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -16631,7 +16647,7 @@ State 277
     Conflict between rule 147 and token "||" resolved as reduce ("||" < DOTLDIVIDE).
 
 
-State 278
+State 279
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -16748,7 +16764,7 @@ State 278
     Conflict between rule 146 and token "||" resolved as reduce ("||" < DOTLDIVIDE).
 
 
-State 279
+State 280
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -16864,7 +16880,7 @@ State 279
     Conflict between rule 151 and token "||" resolved as reduce ("||" < CONTROLLDIVIDE).
 
 
-State 280
+State 281
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -16981,7 +16997,7 @@ State 280
     Conflict between rule 150 and token "||" resolved as reduce ("||" < CONTROLLDIVIDE).
 
 
-State 281
+State 282
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -17097,7 +17113,7 @@ State 281
     Conflict between rule 149 and token "||" resolved as reduce ("||" < KRONLDIVIDE).
 
 
-State 282
+State 283
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -17214,7 +17230,7 @@ State 282
     Conflict between rule 148 and token "||" resolved as reduce ("||" < KRONLDIVIDE).
 
 
-State 283
+State 284
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -17330,7 +17346,7 @@ State 283
     Conflict between rule 115 and token "||" resolved as reduce ("||" < POWER).
 
 
-State 284
+State 285
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -17447,7 +17463,7 @@ State 284
     Conflict between rule 114 and token "||" resolved as reduce ("||" < POWER).
 
 
-State 285
+State 286
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -17563,7 +17579,7 @@ State 285
     Conflict between rule 119 and token "||" resolved as reduce ("||" < DOTPOWER).
 
 
-State 286
+State 287
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -17680,7 +17696,7 @@ State 286
     Conflict between rule 118 and token "||" resolved as reduce ("||" < DOTPOWER).
 
 
-State 287
+State 288
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -17811,7 +17827,7 @@ State 287
     Conflict between rule 95 and token "||" resolved as reduce ("||" < EQ).
 
 
-State 288
+State 289
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -17943,7 +17959,7 @@ State 288
     Conflict between rule 94 and token "||" resolved as reduce ("||" < EQ).
 
 
-State 289
+State 290
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -18074,7 +18090,7 @@ State 289
     Conflict between rule 97 and token "||" resolved as reduce ("||" < NE).
 
 
-State 290
+State 291
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -18206,7 +18222,7 @@ State 290
     Conflict between rule 96 and token "||" resolved as reduce ("||" < NE).
 
 
-State 291
+State 292
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -18337,7 +18353,7 @@ State 291
     Conflict between rule 101 and token "||" resolved as reduce ("||" < LT).
 
 
-State 292
+State 293
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -18469,7 +18485,7 @@ State 292
     Conflict between rule 100 and token "||" resolved as reduce ("||" < LT).
 
 
-State 293
+State 294
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -18600,7 +18616,7 @@ State 293
     Conflict between rule 105 and token "||" resolved as reduce ("||" < LE).
 
 
-State 294
+State 295
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -18732,7 +18748,7 @@ State 294
     Conflict between rule 104 and token "||" resolved as reduce ("||" < LE).
 
 
-State 295
+State 296
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -18863,7 +18879,7 @@ State 295
     Conflict between rule 99 and token "||" resolved as reduce ("||" < GT).
 
 
-State 296
+State 297
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -18995,7 +19011,7 @@ State 296
     Conflict between rule 98 and token "||" resolved as reduce ("||" < GT).
 
 
-State 297
+State 298
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -19126,7 +19142,7 @@ State 297
     Conflict between rule 103 and token "||" resolved as reduce ("||" < GE).
 
 
-State 298
+State 299
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -19258,7 +19274,7 @@ State 298
     Conflict between rule 102 and token "||" resolved as reduce ("||" < GE).
 
 
-State 299
+State 300
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -19395,7 +19411,7 @@ State 299
     Conflict between rule 87 and token "||" resolved as reduce ("||" < AND).
 
 
-State 300
+State 301
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -19533,7 +19549,7 @@ State 300
     Conflict between rule 86 and token "||" resolved as reduce ("||" < AND).
 
 
-State 301
+State 302
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -19670,7 +19686,7 @@ State 301
     Conflict between rule 89 and token "||" resolved as reduce ("||" < ANDAND).
 
 
-State 302
+State 303
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -19808,7 +19824,7 @@ State 302
     Conflict between rule 88 and token "||" resolved as reduce ("||" < ANDAND).
 
 
-State 303
+State 304
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -19947,7 +19963,7 @@ State 303
     Conflict between rule 91 and token "||" resolved as reduce (%left "||").
 
 
-State 304
+State 305
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -20087,7 +20103,7 @@ State 304
     Conflict between rule 90 and token "||" resolved as reduce (%left "||").
 
 
-State 305
+State 306
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -20226,7 +20242,7 @@ State 305
     Conflict between rule 93 and token "||" resolved as reduce (%left "||").
 
 
-State 306
+State 307
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -20366,7 +20382,7 @@ State 306
     Conflict between rule 92 and token "||" resolved as reduce (%left "||").
 
 
-State 307
+State 308
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -20475,7 +20491,7 @@ State 307
     listableEnd      go to state 148
 
 
-State 308
+State 309
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -20585,14 +20601,14 @@ State 308
     listableEnd      go to state 157
 
 
-State 309
+State 310
 
   228 variableDeclaration: functionCall "=" returnControl .
 
     $default  reduce using rule 228 (variableDeclaration)
 
 
-State 310
+State 311
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -20679,16 +20695,16 @@ State 310
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 397
+    functionCall        go to state 398
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 398
+    variable            go to state 399
     cell                go to state 41
     matrix              go to state 42
 
 
-State 311
+State 312
 
    57 functionArgs: functionArgs . "," variable
    58             | functionArgs . "," functionCall
@@ -20697,11 +20713,11 @@ State 311
   180 variable: variable "(" functionArgs . ")"
   236 assignable: variable "(" functionArgs . ")"
 
-    ","  shift, and go to state 391
-    ")"  shift, and go to state 399
+    ","  shift, and go to state 392
+    ")"  shift, and go to state 400
 
 
-State 312
+State 313
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -20711,14 +20727,14 @@ State 312
    51                   | . "identifier" "(" ")"
    52                   | . "identifier" "{" "}"
 
-    "("           shift, and go to state 312
-    "identifier"  shift, and go to state 400
+    "("           shift, and go to state 313
+    "identifier"  shift, and go to state 401
 
-    functionCall        go to state 401
+    functionCall        go to state 402
     simpleFunctionCall  go to state 36
 
 
-State 313
+State 314
 
    49 simpleFunctionCall: "identifier" . "(" functionArgs ")"
    50                   | "identifier" . "{" functionArgs "}"
@@ -20736,7 +20752,7 @@ State 313
     Conflict between rule 159 and token "(" resolved as shift (UPLEVEL < "(").
 
 
-State 314
+State 315
 
   161 variable: variable "." functionCall .  ["end of file", "end of line", "'", ",", ":", ";", "(", ")", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
   231 assignable: variable "." functionCall .  ["="]
@@ -20745,7 +20761,7 @@ State 314
     $default  reduce using rule 161 (variable)
 
 
-State 315
+State 316
 
   160 variable: variable "." keywords .  ["end of file", "end of line", "'", ",", ":", ";", "(", ")", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
   230 assignable: variable "." keywords .  ["="]
@@ -20754,7 +20770,7 @@ State 315
     $default  reduce using rule 160 (variable)
 
 
-State 316
+State 317
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -20870,7 +20886,7 @@ State 316
     Conflict between rule 113 and token "||" resolved as reduce ("||" < POWER).
 
 
-State 317
+State 318
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -20987,7 +21003,7 @@ State 317
     Conflict between rule 112 and token "||" resolved as reduce ("||" < POWER).
 
 
-State 318
+State 319
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -21103,7 +21119,7 @@ State 318
     Conflict between rule 117 and token "||" resolved as reduce ("||" < DOTPOWER).
 
 
-State 319
+State 320
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -21220,7 +21236,7 @@ State 319
     Conflict between rule 116 and token "||" resolved as reduce ("||" < DOTPOWER).
 
 
-State 320
+State 321
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -21329,7 +21345,7 @@ State 320
     listableEnd      go to state 148
 
 
-State 321
+State 322
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -21439,41 +21455,41 @@ State 321
     listableEnd      go to state 157
 
 
-State 322
+State 323
 
   227 variableDeclaration: assignable "=" returnControl .
 
     $default  reduce using rule 227 (variableDeclaration)
 
 
-State 323
+State 324
 
   274 selectConditionBreak: "end of line" .
 
     $default  reduce using rule 274 (selectConditionBreak)
 
 
-State 324
+State 325
 
   275 selectConditionBreak: "," . "end of line"
   277                     | "," .  ["case", "line comment"]
 
-    "end of line"  shift, and go to state 402
+    "end of line"  shift, and go to state 403
 
     $default  reduce using rule 277 (selectConditionBreak)
 
 
-State 325
+State 326
 
   276 selectConditionBreak: ";" . "end of line"
   278                     | ";" .  ["case", "line comment"]
 
-    "end of line"  shift, and go to state 403
+    "end of line"  shift, and go to state 404
 
     $default  reduce using rule 278 (selectConditionBreak)
 
 
-State 326
+State 327
 
   268 selectControl: select selectable "line comment" . selectConditionBreak casesControl "end"
   269              | select selectable "line comment" . selectConditionBreak casesControl defaultCase elseBody "end"
@@ -21483,14 +21499,14 @@ State 326
   277                     | . ","
   278                     | . ";"
 
-    "end of line"  shift, and go to state 323
-    ","            shift, and go to state 324
-    ";"            shift, and go to state 325
+    "end of line"  shift, and go to state 324
+    ","            shift, and go to state 325
+    ";"            shift, and go to state 326
 
-    selectConditionBreak  go to state 404
+    selectConditionBreak  go to state 405
 
 
-State 327
+State 328
 
   266 selectControl: select selectable selectConditionBreak . casesControl "end"
   267              | select selectable selectConditionBreak . casesControl defaultCase elseBody "end"
@@ -21503,21 +21519,21 @@ State 327
   345 comments: . "line comment" "end of line"
   346         | . comments "line comment" "end of line"
 
-    "case"          shift, and go to state 405
-    "line comment"  shift, and go to state 406
+    "case"          shift, and go to state 406
+    "line comment"  shift, and go to state 407
 
-    casesControl  go to state 407
-    comments      go to state 408
+    casesControl  go to state 408
+    comments      go to state 409
 
 
-State 328
+State 329
 
   200 matrix: "[" matrixOrCellColumns "]" .
 
     $default  reduce using rule 200 (matrix)
 
 
-State 329
+State 330
 
    57 functionArgs: functionArgs . "," variable
    58             | functionArgs . "," functionCall
@@ -21525,25 +21541,25 @@ State 329
    60             | functionArgs . "," variableDeclaration
   181 variable: functionCall "(" functionArgs . ")"
 
-    ","  shift, and go to state 391
-    ")"  shift, and go to state 409
+    ","  shift, and go to state 392
+    ")"  shift, and go to state 410
 
 
-State 330
+State 331
 
   162 variable: functionCall "." "identifier" .
 
     $default  reduce using rule 162 (variable)
 
 
-State 331
+State 332
 
   163 variable: functionCall "." keywords .
 
     $default  reduce using rule 163 (variable)
 
 
-State 332
+State 333
 
    57 functionArgs: functionArgs . "," variable
    58             | functionArgs . "," functionCall
@@ -21551,11 +21567,11 @@ State 332
    60             | functionArgs . "," variableDeclaration
   180 variable: variable "(" functionArgs . ")"
 
-    ","  shift, and go to state 391
-    ")"  shift, and go to state 410
+    ","  shift, and go to state 392
+    ")"  shift, and go to state 411
 
 
-State 333
+State 334
 
    49 simpleFunctionCall: "identifier" . "(" functionArgs ")"
    50                   | "identifier" . "{" functionArgs "}"
@@ -21572,21 +21588,21 @@ State 333
     Conflict between rule 159 and token "{" resolved as shift (UPLEVEL < "{").
 
 
-State 334
+State 335
 
   161 variable: variable "." functionCall .
 
     $default  reduce using rule 161 (variable)
 
 
-State 335
+State 336
 
   160 variable: variable "." keywords .
 
     $default  reduce using rule 160 (variable)
 
 
-State 336
+State 337
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -21695,7 +21711,7 @@ State 336
     listableEnd      go to state 148
 
 
-State 337
+State 338
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -21805,7 +21821,7 @@ State 337
     listableEnd      go to state 157
 
 
-State 338
+State 339
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -21914,7 +21930,7 @@ State 338
     listableEnd      go to state 148
 
 
-State 339
+State 340
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -22024,7 +22040,7 @@ State 339
     listableEnd      go to state 157
 
 
-State 340
+State 341
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -22133,7 +22149,7 @@ State 340
     listableEnd      go to state 148
 
 
-State 341
+State 342
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -22243,14 +22259,14 @@ State 341
     listableEnd      go to state 157
 
 
-State 342
+State 343
 
   197 matrix: "[" "end of line" matrixOrCellLines "]" .
 
     $default  reduce using rule 197 (matrix)
 
 
-State 343
+State 344
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -22344,7 +22360,7 @@ State 343
     ";"             shift, and go to state 181
     "("             shift, and go to state 9
     "["             shift, and go to state 54
-    "]"             shift, and go to state 411
+    "]"             shift, and go to state 412
     "{"             shift, and go to state 11
     "+"             shift, and go to state 12
     "-"             shift, and go to state 13
@@ -22366,49 +22382,49 @@ State 343
     matrixOrCellColumnsBreak  go to state 187
 
 
-State 344
+State 345
 
   201 matrix: "[" "end of line" matrixOrCellColumns "]" .
 
     $default  reduce using rule 201 (matrix)
 
 
-State 345
+State 346
 
   198 matrix: "[" matrixOrCellLines matrixOrCellColumns "]" .
 
     $default  reduce using rule 198 (matrix)
 
 
-State 346
+State 347
 
   208 matrixOrCellLineBreak: matrixOrCellLineBreak "end of line" .
 
     $default  reduce using rule 208 (matrixOrCellLineBreak)
 
 
-State 347
+State 348
 
   209 matrixOrCellLineBreak: matrixOrCellLineBreak ";" .
 
     $default  reduce using rule 209 (matrixOrCellLineBreak)
 
 
-State 348
+State 349
 
   221 matrixOrCellColumnsBreak: matrixOrCellColumnsBreak "," .
 
     $default  reduce using rule 221 (matrixOrCellColumnsBreak)
 
 
-State 349
+State 350
 
   217 matrixOrCellColumns: matrixOrCellColumns matrixOrCellColumnsBreak "line comment" .
 
     $default  reduce using rule 217 (matrixOrCellColumns)
 
 
-State 350
+State 351
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -22521,7 +22537,7 @@ State 350
     Conflict between rule 213 and token "-" resolved as shift (HIGHLEVEL < "-").
 
 
-State 351
+State 352
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -22635,26 +22651,26 @@ State 351
     Conflict between rule 212 and token "-" resolved as shift (HIGHLEVEL < "-").
 
 
-State 352
+State 353
 
   208 matrixOrCellLineBreak: matrixOrCellLineBreak . "end of line"
   209                      | matrixOrCellLineBreak . ";"
   211 matrixOrCellLine: matrixOrCellColumns matrixOrCellColumnsBreak matrixOrCellLineBreak .  ["%t or %T", "%f or %F", "~", "$", "(", "[", "]", "{", "}", "+", "-", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 346
-    ";"            shift, and go to state 347
+    "end of line"  shift, and go to state 347
+    ";"            shift, and go to state 348
 
     $default  reduce using rule 211 (matrixOrCellLine)
 
 
-State 353
+State 354
 
   189 cell: "{" "end of line" matrixOrCellLines "}" .
 
     $default  reduce using rule 189 (cell)
 
 
-State 354
+State 355
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -22749,7 +22765,7 @@ State 354
     "("             shift, and go to state 9
     "["             shift, and go to state 54
     "{"             shift, and go to state 11
-    "}"             shift, and go to state 412
+    "}"             shift, and go to state 413
     "+"             shift, and go to state 12
     "-"             shift, and go to state 13
     "string"        shift, and go to state 23
@@ -22770,59 +22786,59 @@ State 354
     matrixOrCellColumnsBreak  go to state 187
 
 
-State 355
+State 356
 
   193 cell: "{" "end of line" matrixOrCellColumns "}" .
 
     $default  reduce using rule 193 (cell)
 
 
-State 356
+State 357
 
   190 cell: "{" matrixOrCellLines matrixOrCellColumns "}" .
 
     $default  reduce using rule 190 (cell)
 
 
-State 357
+State 358
 
   249 ifConditionBreak: "," "end of line" .
 
     $default  reduce using rule 249 (ifConditionBreak)
 
 
-State 358
+State 359
 
   247 ifConditionBreak: ";" "end of line" .
 
     $default  reduce using rule 247 (ifConditionBreak)
 
 
-State 359
+State 360
 
   254 then: "then" ifConditionBreak .
 
     $default  reduce using rule 254 (then)
 
 
-State 360
+State 361
 
   252 then: ifConditionBreak "then" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "else", "elseif", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   253     | ifConditionBreak "then" . "end of line"
 
-    "end of line"  shift, and go to state 413
+    "end of line"  shift, and go to state 414
 
     $default  reduce using rule 252 (then)
 
 
-State 361
+State 362
 
   242 thenBody: expressions .
 
     $default  reduce using rule 242 (thenBody)
 
 
-State 362
+State 363
 
   239 ifControl: "if" condition then thenBody . "end"
   240          | "if" condition then thenBody . else elseBody "end"
@@ -22837,54 +22853,54 @@ State 362
   264              | . "elseif" condition then thenBody else elseBody
   265              | . "elseif" condition then thenBody elseIfControl
 
-    "else"    shift, and go to state 414
-    "elseif"  shift, and go to state 415
-    "end"     shift, and go to state 416
+    "else"    shift, and go to state 415
+    "elseif"  shift, and go to state 416
+    "end"     shift, and go to state 417
 
-    else           go to state 417
-    elseIfControl  go to state 418
-
-
-State 363
-
-   63 functionDeclaration: "function" "[" "]" "=" . "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
-   67                    | "function" "[" "]" "=" . "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
-
-    "identifier"  shift, and go to state 419
+    else           go to state 418
+    elseIfControl  go to state 419
 
 
 State 364
 
-   62 functionDeclaration: "function" "[" functionDeclarationReturns "]" . "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
-   66                    | "function" "[" functionDeclarationReturns "]" . "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
+   63 functionDeclaration: "function" "[" "]" "=" . "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
+   67                    | "function" "[" "]" "=" . "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
 
-    "="  shift, and go to state 420
+    "identifier"  shift, and go to state 420
 
 
 State 365
 
-   73 idList: idList "," . "identifier"
+   62 functionDeclaration: "function" "[" functionDeclarationReturns "]" . "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
+   66                    | "function" "[" functionDeclarationReturns "]" . "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
 
-    "identifier"  shift, and go to state 421
+    "="  shift, and go to state 421
 
 
 State 366
+
+   73 idList: idList "," . "identifier"
+
+    "identifier"  shift, and go to state 422
+
+
+State 367
 
    71 functionDeclarationArguments: "(" ")" .
 
     $default  reduce using rule 71 (functionDeclarationArguments)
 
 
-State 367
+State 368
 
    70 functionDeclarationArguments: "(" idList . ")"
    73 idList: idList . "," "identifier"
 
-    ","  shift, and go to state 365
-    ")"  shift, and go to state 422
+    ","  shift, and go to state 366
+    ")"  shift, and go to state 423
 
 
-State 368
+State 369
 
    61 functionDeclaration: "function" "identifier" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
    65                    | "function" "identifier" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
@@ -22896,44 +22912,44 @@ State 368
 
     $default  reduce using rule 72 (functionDeclarationArguments)
 
-    functionDeclarationArguments  go to state 423
+    functionDeclarationArguments  go to state 424
 
 
-State 369
+State 370
 
   347 lineEnd: "end of line" .
 
     $default  reduce using rule 347 (lineEnd)
 
 
-State 370
+State 371
 
    78 functionDeclarationBreak: "," .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "endfunction", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
    79                         | "," . "end of line"
 
-    "end of line"  shift, and go to state 424
+    "end of line"  shift, and go to state 425
 
     $default  reduce using rule 78 (functionDeclarationBreak)
 
 
-State 371
+State 372
 
    76 functionDeclarationBreak: ";" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "endfunction", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
    77                         | ";" . "end of line"
 
-    "end of line"  shift, and go to state 425
+    "end of line"  shift, and go to state 426
 
     $default  reduce using rule 76 (functionDeclarationBreak)
 
 
-State 372
+State 373
 
   348 lineEnd: "line comment" . "end of line"
 
-    "end of line"  shift, and go to state 426
+    "end of line"  shift, and go to state 427
 
 
-State 373
+State 374
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -23102,14 +23118,14 @@ State 373
     "end"          reduce using rule 81 (functionBody)
     "endfunction"  reduce using rule 81 (functionBody)
 
-    expressions           go to state 427
+    expressions           go to state 428
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
     functionCall          go to state 35
     simpleFunctionCall    go to state 36
     functionDeclaration   go to state 37
-    functionBody          go to state 428
+    functionBody          go to state 429
     comparison            go to state 38
     operation             go to state 39
     variable              go to state 40
@@ -23127,14 +23143,14 @@ State 373
     returnControl         go to state 52
 
 
-State 374
+State 375
 
    75 functionDeclarationBreak: lineEnd .
 
     $default  reduce using rule 75 (functionDeclarationBreak)
 
 
-State 375
+State 376
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -23222,17 +23238,17 @@ State 375
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 376
+    functionCall        go to state 377
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 377
+    variable            go to state 378
     cell                go to state 41
     matrix              go to state 42
-    forIterator         go to state 429
+    forIterator         go to state 430
 
 
-State 376
+State 377
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -23345,7 +23361,7 @@ State 376
     Conflict between rule 301 and token "-" resolved as shift (UPLEVEL < "-").
 
 
-State 377
+State 378
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -23459,7 +23475,7 @@ State 377
     Conflict between rule 302 and token "-" resolved as shift (UPLEVEL < "-").
 
 
-State 378
+State 379
 
   299 forControl: "for" "identifier" "=" forIterator . forConditionBreak forBody "end"
   303 forConditionBreak: . "end of line"
@@ -23471,113 +23487,113 @@ State 378
   309                  | . "do" "end of line"
   310                  | . %empty  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 430
-    ","            shift, and go to state 431
-    ";"            shift, and go to state 432
-    "do"           shift, and go to state 433
+    "end of line"  shift, and go to state 431
+    ","            shift, and go to state 432
+    ";"            shift, and go to state 433
+    "do"           shift, and go to state 434
 
     $default  reduce using rule 310 (forConditionBreak)
 
-    forConditionBreak  go to state 434
+    forConditionBreak  go to state 435
 
 
-State 379
+State 380
 
   326 whileConditionBreak: "," "end of line" .
 
     $default  reduce using rule 326 (whileConditionBreak)
 
 
-State 380
+State 381
 
   327 whileConditionBreak: ";" "end of line" .
 
     $default  reduce using rule 327 (whileConditionBreak)
 
 
-State 381
+State 382
 
   331 whileConditionBreak: "then" "end of line" .
 
     $default  reduce using rule 331 (whileConditionBreak)
 
 
-State 382
+State 383
 
   322 whileConditionBreak: "then" "," .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   332                    | "then" "," . "end of line"
 
-    "end of line"  shift, and go to state 435
+    "end of line"  shift, and go to state 436
 
     $default  reduce using rule 322 (whileConditionBreak)
 
 
-State 383
+State 384
 
   323 whileConditionBreak: "then" ";" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   333                    | "then" ";" . "end of line"
 
-    "end of line"  shift, and go to state 436
+    "end of line"  shift, and go to state 437
 
     $default  reduce using rule 323 (whileConditionBreak)
 
 
-State 384
+State 385
 
   328 whileConditionBreak: "do" "end of line" .
 
     $default  reduce using rule 328 (whileConditionBreak)
 
 
-State 385
+State 386
 
   319 whileConditionBreak: "do" "," .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   329                    | "do" "," . "end of line"
 
-    "end of line"  shift, and go to state 437
+    "end of line"  shift, and go to state 438
 
     $default  reduce using rule 319 (whileConditionBreak)
 
 
-State 386
+State 387
 
   320 whileConditionBreak: "do" ";" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   330                    | "do" ";" . "end of line"
 
-    "end of line"  shift, and go to state 438
+    "end of line"  shift, and go to state 439
 
     $default  reduce using rule 320 (whileConditionBreak)
 
 
-State 387
+State 388
 
   324 whileConditionBreak: "line comment" "end of line" .
 
     $default  reduce using rule 324 (whileConditionBreak)
 
 
-State 388
+State 389
 
   314 whileBody: expressions .
 
     $default  reduce using rule 314 (whileBody)
 
 
-State 389
-
-  313 whileControl: "while" condition whileConditionBreak whileBody . "end"
-
-    "end"  shift, and go to state 439
-
-
 State 390
 
-  334 tryControl: "try" catchBody "catch" catchBody . "end"
+  313 whileControl: "while" condition whileConditionBreak whileBody . "end"
 
     "end"  shift, and go to state 440
 
 
 State 391
+
+  334 tryControl: "try" catchBody "catch" catchBody . "end"
+
+    "end"  shift, and go to state 441
+
+
+State 392
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -23671,7 +23687,7 @@ State 391
     "%f or %F"    shift, and go to state 4
     "~"           shift, and go to state 5
     "$"           shift, and go to state 6
-    ":"           shift, and go to state 441
+    ":"           shift, and go to state 442
     "("           shift, and go to state 9
     "["           shift, and go to state 10
     "{"           shift, and go to state 11
@@ -23683,40 +23699,40 @@ State 391
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall         go to state 442
+    functionCall         go to state 443
     simpleFunctionCall   go to state 36
     comparison           go to state 38
     operation            go to state 39
-    variable             go to state 443
+    variable             go to state 444
     cell                 go to state 41
     matrix               go to state 42
-    variableDeclaration  go to state 444
+    variableDeclaration  go to state 445
     assignable           go to state 44
     multipleResults      go to state 45
 
 
-State 392
+State 393
 
    49 simpleFunctionCall: "identifier" "(" functionArgs ")" .
 
     $default  reduce using rule 49 (simpleFunctionCall)
 
 
-State 393
+State 394
 
    50 simpleFunctionCall: "identifier" "{" functionArgs "}" .
 
     $default  reduce using rule 50 (simpleFunctionCall)
 
 
-State 394
+State 395
 
    45 implicitCallable: implicitCallable "." "identifier" .
 
     $default  reduce using rule 45 (implicitCallable)
 
 
-State 395
+State 396
 
    11 recursiveExpression: recursiveExpression expression "line comment" expressionLineBreak .  ["end of file", error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "else", "elseif", "end", "select", "case", "function", "endfunction", "for", "while", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
    17 expressionLineBreak: expressionLineBreak . ";"
@@ -23730,7 +23746,7 @@ State 395
     $default  reduce using rule 11 (recursiveExpression)
 
 
-State 396
+State 397
 
   181 variable: functionCall "(" functionArgs ")" .  ["end of file", "end of line", "'", ",", ":", ";", "(", ")", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
   237 assignable: functionCall "(" functionArgs ")" .  ["="]
@@ -23739,7 +23755,7 @@ State 396
     $default  reduce using rule 181 (variable)
 
 
-State 397
+State 398
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -23869,7 +23885,7 @@ State 397
     Conflict between rule 155 and token "||" resolved as reduce ("||" < COLON).
 
 
-State 398
+State 399
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -24000,7 +24016,7 @@ State 398
     Conflict between rule 154 and token "||" resolved as reduce ("||" < COLON).
 
 
-State 399
+State 400
 
   180 variable: variable "(" functionArgs ")" .  ["end of file", "end of line", "'", ",", ":", ";", "(", ")", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "else", "elseif", "end", "case", "endfunction", "catch", "line comment"]
   236 assignable: variable "(" functionArgs ")" .  ["="]
@@ -24009,7 +24025,7 @@ State 399
     $default  reduce using rule 180 (variable)
 
 
-State 400
+State 401
 
    49 simpleFunctionCall: "identifier" . "(" functionArgs ")"
    50                   | "identifier" . "{" functionArgs "}"
@@ -24020,28 +24036,28 @@ State 400
     "{"  shift, and go to state 96
 
 
-State 401
+State 402
 
    48 functionCall: "(" functionCall . ")"
 
     ")"  shift, and go to state 168
 
 
-State 402
+State 403
 
   275 selectConditionBreak: "," "end of line" .
 
     $default  reduce using rule 275 (selectConditionBreak)
 
 
-State 403
+State 404
 
   276 selectConditionBreak: ";" "end of line" .
 
     $default  reduce using rule 276 (selectConditionBreak)
 
 
-State 404
+State 405
 
   268 selectControl: select selectable "line comment" selectConditionBreak . casesControl "end"
   269              | select selectable "line comment" selectConditionBreak . casesControl defaultCase elseBody "end"
@@ -24054,14 +24070,14 @@ State 404
   345 comments: . "line comment" "end of line"
   346         | . comments "line comment" "end of line"
 
-    "case"          shift, and go to state 405
-    "line comment"  shift, and go to state 406
+    "case"          shift, and go to state 406
+    "line comment"  shift, and go to state 407
 
-    casesControl  go to state 445
-    comments      go to state 408
+    casesControl  go to state 446
+    comments      go to state 409
 
 
-State 405
+State 406
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -24148,23 +24164,23 @@ State 405
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 446
+    functionCall        go to state 447
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 447
+    variable            go to state 448
     cell                go to state 41
     matrix              go to state 42
 
 
-State 406
+State 407
 
   345 comments: "line comment" . "end of line"
 
-    "end of line"  shift, and go to state 448
+    "end of line"  shift, and go to state 449
 
 
-State 407
+State 408
 
   257 else: . "else"
   258     | . "else" ","
@@ -24178,60 +24194,60 @@ State 407
   283 casesControl: casesControl . "case" variable caseControlBreak caseBody
   284             | casesControl . "case" functionCall caseControlBreak caseBody
 
-    "else"  shift, and go to state 414
-    "end"   shift, and go to state 449
-    "case"  shift, and go to state 450
+    "else"  shift, and go to state 415
+    "end"   shift, and go to state 450
+    "case"  shift, and go to state 451
 
-    else         go to state 451
-    defaultCase  go to state 452
+    else         go to state 452
+    defaultCase  go to state 453
 
 
-State 408
+State 409
 
   281 casesControl: comments . "case" variable caseControlBreak caseBody
   282             | comments . "case" functionCall caseControlBreak caseBody
   346 comments: comments . "line comment" "end of line"
 
-    "case"          shift, and go to state 453
-    "line comment"  shift, and go to state 454
+    "case"          shift, and go to state 454
+    "line comment"  shift, and go to state 455
 
 
-State 409
+State 410
 
   181 variable: functionCall "(" functionArgs ")" .
 
     $default  reduce using rule 181 (variable)
 
 
-State 410
+State 411
 
   180 variable: variable "(" functionArgs ")" .
 
     $default  reduce using rule 180 (variable)
 
 
-State 411
+State 412
 
   199 matrix: "[" "end of line" matrixOrCellLines matrixOrCellColumns "]" .
 
     $default  reduce using rule 199 (matrix)
 
 
-State 412
+State 413
 
   191 cell: "{" "end of line" matrixOrCellLines matrixOrCellColumns "}" .
 
     $default  reduce using rule 191 (cell)
 
 
-State 413
+State 414
 
   253 then: ifConditionBreak "then" "end of line" .
 
     $default  reduce using rule 253 (then)
 
 
-State 414
+State 415
 
   257 else: "else" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   258     | "else" . ","
@@ -24240,14 +24256,14 @@ State 414
   261     | "else" . "," "end of line"
   262     | "else" . ";" "end of line"
 
-    "end of line"  shift, and go to state 455
-    ","            shift, and go to state 456
-    ";"            shift, and go to state 457
+    "end of line"  shift, and go to state 456
+    ","            shift, and go to state 457
+    ";"            shift, and go to state 458
 
     $default  reduce using rule 257 (else)
 
 
-State 415
+State 416
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -24339,7 +24355,7 @@ State 415
 
     functionCall        go to state 77
     simpleFunctionCall  go to state 36
-    condition           go to state 458
+    condition           go to state 459
     comparison          go to state 38
     operation           go to state 39
     variable            go to state 79
@@ -24347,14 +24363,14 @@ State 415
     matrix              go to state 42
 
 
-State 416
+State 417
 
   239 ifControl: "if" condition then thenBody "end" .
 
     $default  reduce using rule 239 (ifControl)
 
 
-State 417
+State 418
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -24521,7 +24537,7 @@ State 417
 
     "end"  reduce using rule 245 (elseBody)
 
-    expressions           go to state 459
+    expressions           go to state 460
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -24537,7 +24553,7 @@ State 417
     assignable            go to state 44
     multipleResults       go to state 45
     ifControl             go to state 46
-    elseBody              go to state 460
+    elseBody              go to state 461
     selectControl         go to state 47
     select                go to state 48
     forControl            go to state 49
@@ -24546,14 +24562,14 @@ State 417
     returnControl         go to state 52
 
 
-State 418
+State 419
 
   241 ifControl: "if" condition then thenBody elseIfControl . "end"
 
-    "end"  shift, and go to state 461
+    "end"  shift, and go to state 462
 
 
-State 419
+State 420
 
    63 functionDeclaration: "function" "[" "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
    67                    | "function" "[" "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
@@ -24565,32 +24581,32 @@ State 419
 
     $default  reduce using rule 72 (functionDeclarationArguments)
 
-    functionDeclarationArguments  go to state 462
+    functionDeclarationArguments  go to state 463
 
 
-State 420
+State 421
 
    62 functionDeclaration: "function" "[" functionDeclarationReturns "]" "=" . "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
    66                    | "function" "[" functionDeclarationReturns "]" "=" . "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
 
-    "identifier"  shift, and go to state 463
+    "identifier"  shift, and go to state 464
 
 
-State 421
+State 422
 
    73 idList: idList "," "identifier" .
 
     $default  reduce using rule 73 (idList)
 
 
-State 422
+State 423
 
    70 functionDeclarationArguments: "(" idList ")" .
 
     $default  reduce using rule 70 (functionDeclarationArguments)
 
 
-State 423
+State 424
 
    61 functionDeclaration: "function" "identifier" "=" "identifier" functionDeclarationArguments . functionDeclarationBreak functionBody "endfunction"
    65                    | "function" "identifier" "=" "identifier" functionDeclarationArguments . functionDeclarationBreak functionBody "end"
@@ -24602,97 +24618,97 @@ State 423
   347 lineEnd: . "end of line"
   348        | . "line comment" "end of line"
 
-    "end of line"   shift, and go to state 369
-    ","             shift, and go to state 370
-    ";"             shift, and go to state 371
-    "line comment"  shift, and go to state 372
+    "end of line"   shift, and go to state 370
+    ","             shift, and go to state 371
+    ";"             shift, and go to state 372
+    "line comment"  shift, and go to state 373
 
-    functionDeclarationBreak  go to state 464
-    lineEnd                   go to state 374
+    functionDeclarationBreak  go to state 465
+    lineEnd                   go to state 375
 
 
-State 424
+State 425
 
    79 functionDeclarationBreak: "," "end of line" .
 
     $default  reduce using rule 79 (functionDeclarationBreak)
 
 
-State 425
+State 426
 
    77 functionDeclarationBreak: ";" "end of line" .
 
     $default  reduce using rule 77 (functionDeclarationBreak)
 
 
-State 426
+State 427
 
   348 lineEnd: "line comment" "end of line" .
 
     $default  reduce using rule 348 (lineEnd)
 
 
-State 427
+State 428
 
    80 functionBody: expressions .
 
     $default  reduce using rule 80 (functionBody)
 
 
-State 428
+State 429
 
    64 functionDeclaration: "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody . "endfunction"
    68                    | "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody . "end"
 
-    "end"          shift, and go to state 465
-    "endfunction"  shift, and go to state 466
-
-
-State 429
-
-  300 forControl: "for" "(" "identifier" "=" forIterator . ")" forConditionBreak forBody "end"
-
-    ")"  shift, and go to state 467
+    "end"          shift, and go to state 466
+    "endfunction"  shift, and go to state 467
 
 
 State 430
+
+  300 forControl: "for" "(" "identifier" "=" forIterator . ")" forConditionBreak forBody "end"
+
+    ")"  shift, and go to state 468
+
+
+State 431
 
   303 forConditionBreak: "end of line" .
 
     $default  reduce using rule 303 (forConditionBreak)
 
 
-State 431
+State 432
 
   306 forConditionBreak: "," .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   307                  | "," . "end of line"
 
-    "end of line"  shift, and go to state 468
+    "end of line"  shift, and go to state 469
 
     $default  reduce using rule 306 (forConditionBreak)
 
 
-State 432
+State 433
 
   304 forConditionBreak: ";" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   305                  | ";" . "end of line"
 
-    "end of line"  shift, and go to state 469
+    "end of line"  shift, and go to state 470
 
     $default  reduce using rule 304 (forConditionBreak)
 
 
-State 433
+State 434
 
   308 forConditionBreak: "do" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   309                  | "do" . "end of line"
 
-    "end of line"  shift, and go to state 470
+    "end of line"  shift, and go to state 471
 
     $default  reduce using rule 308 (forConditionBreak)
 
 
-State 434
+State 435
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -24859,7 +24875,7 @@ State 434
 
     "end"  reduce using rule 312 (forBody)
 
-    expressions           go to state 471
+    expressions           go to state 472
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -24878,62 +24894,62 @@ State 434
     selectControl         go to state 47
     select                go to state 48
     forControl            go to state 49
-    forBody               go to state 472
+    forBody               go to state 473
     whileControl          go to state 50
     tryControl            go to state 51
     returnControl         go to state 52
 
 
-State 435
+State 436
 
   332 whileConditionBreak: "then" "," "end of line" .
 
     $default  reduce using rule 332 (whileConditionBreak)
 
 
-State 436
+State 437
 
   333 whileConditionBreak: "then" ";" "end of line" .
 
     $default  reduce using rule 333 (whileConditionBreak)
 
 
-State 437
+State 438
 
   329 whileConditionBreak: "do" "," "end of line" .
 
     $default  reduce using rule 329 (whileConditionBreak)
 
 
-State 438
+State 439
 
   330 whileConditionBreak: "do" ";" "end of line" .
 
     $default  reduce using rule 330 (whileConditionBreak)
 
 
-State 439
+State 440
 
   313 whileControl: "while" condition whileConditionBreak whileBody "end" .
 
     $default  reduce using rule 313 (whileControl)
 
 
-State 440
+State 441
 
   334 tryControl: "try" catchBody "catch" catchBody "end" .
 
     $default  reduce using rule 334 (tryControl)
 
 
-State 441
+State 442
 
    59 functionArgs: functionArgs "," ":" .
 
     $default  reduce using rule 59 (functionArgs)
 
 
-State 442
+State 443
 
    58 functionArgs: functionArgs "," functionCall .  [",", ")", "}"]
    85 comparison: functionCall . rightComparable
@@ -25049,7 +25065,7 @@ State 442
     listableEnd      go to state 148
 
 
-State 443
+State 444
 
    57 functionArgs: functionArgs "," variable .  [",", ")", "}"]
    84 comparison: variable . rightComparable
@@ -25163,14 +25179,14 @@ State 443
     listableEnd      go to state 157
 
 
-State 444
+State 445
 
    60 functionArgs: functionArgs "," variableDeclaration .
 
     $default  reduce using rule 60 (functionArgs)
 
 
-State 445
+State 446
 
   257 else: . "else"
   258     | . "else" ","
@@ -25184,15 +25200,15 @@ State 445
   283 casesControl: casesControl . "case" variable caseControlBreak caseBody
   284             | casesControl . "case" functionCall caseControlBreak caseBody
 
-    "else"  shift, and go to state 414
-    "end"   shift, and go to state 473
-    "case"  shift, and go to state 450
+    "else"  shift, and go to state 415
+    "end"   shift, and go to state 474
+    "case"  shift, and go to state 451
 
-    else         go to state 451
-    defaultCase  go to state 474
+    else         go to state 452
+    defaultCase  go to state 475
 
 
-State 446
+State 447
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -25273,11 +25289,11 @@ State 446
   297                 | . "then" ";" "end of line"
   298                 | . %empty  [error, "%t or %T", "%f or %F", "~", "$", "[", "{", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 475
+    "end of line"  shift, and go to state 476
     "'"            shift, and go to state 113
-    ","            shift, and go to state 476
+    ","            shift, and go to state 477
     ":"            shift, and go to state 114
-    ";"            shift, and go to state 477
+    ";"            shift, and go to state 478
     "("            shift, and go to state 163
     "."            shift, and go to state 164
     ".'"           shift, and go to state 117
@@ -25307,7 +25323,7 @@ State 446
     "&&"           shift, and go to state 141
     "|"            shift, and go to state 142
     "||"           shift, and go to state 143
-    "then"         shift, and go to state 478
+    "then"         shift, and go to state 479
 
     $default  reduce using rule 298 (caseControlBreak)
 
@@ -25315,14 +25331,14 @@ State 446
     rightOperand      go to state 146
     listableBegin     go to state 147
     listableEnd       go to state 148
-    caseControlBreak  go to state 479
+    caseControlBreak  go to state 480
 
     Conflict between rule 298 and token "(" resolved as shift (CONTROLBREAK < "(").
     Conflict between rule 298 and token "+" resolved as shift (CONTROLBREAK < "+").
     Conflict between rule 298 and token "-" resolved as shift (CONTROLBREAK < "-").
 
 
-State 447
+State 448
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -25404,11 +25420,11 @@ State 447
   297                 | . "then" ";" "end of line"
   298                 | . %empty  [error, "%t or %T", "%f or %F", "~", "$", "[", "{", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 475
+    "end of line"  shift, and go to state 476
     "'"            shift, and go to state 149
-    ","            shift, and go to state 476
+    ","            shift, and go to state 477
     ":"            shift, and go to state 114
-    ";"            shift, and go to state 477
+    ";"            shift, and go to state 478
     "("            shift, and go to state 165
     "."            shift, and go to state 166
     ".'"           shift, and go to state 152
@@ -25438,7 +25454,7 @@ State 447
     "&&"           shift, and go to state 141
     "|"            shift, and go to state 142
     "||"           shift, and go to state 143
-    "then"         shift, and go to state 478
+    "then"         shift, and go to state 479
 
     $default  reduce using rule 298 (caseControlBreak)
 
@@ -25446,28 +25462,28 @@ State 447
     rightOperand      go to state 156
     listableBegin     go to state 147
     listableEnd       go to state 157
-    caseControlBreak  go to state 480
+    caseControlBreak  go to state 481
 
     Conflict between rule 298 and token "(" resolved as shift (CONTROLBREAK < "(").
     Conflict between rule 298 and token "+" resolved as shift (CONTROLBREAK < "+").
     Conflict between rule 298 and token "-" resolved as shift (CONTROLBREAK < "-").
 
 
-State 448
+State 449
 
   345 comments: "line comment" "end of line" .
 
     $default  reduce using rule 345 (comments)
 
 
-State 449
+State 450
 
   266 selectControl: select selectable selectConditionBreak casesControl "end" .
 
     $default  reduce using rule 266 (selectControl)
 
 
-State 450
+State 451
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -25554,23 +25570,23 @@ State 450
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 481
+    functionCall        go to state 482
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 482
+    variable            go to state 483
     cell                go to state 41
     matrix              go to state 42
 
 
-State 451
+State 452
 
   271 defaultCase: else .
 
     $default  reduce using rule 271 (defaultCase)
 
 
-State 452
+State 453
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -25737,7 +25753,7 @@ State 452
 
     "end"  reduce using rule 245 (elseBody)
 
-    expressions           go to state 459
+    expressions           go to state 460
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -25753,7 +25769,7 @@ State 452
     assignable            go to state 44
     multipleResults       go to state 45
     ifControl             go to state 46
-    elseBody              go to state 483
+    elseBody              go to state 484
     selectControl         go to state 47
     select                go to state 48
     forControl            go to state 49
@@ -25762,7 +25778,7 @@ State 452
     returnControl         go to state 52
 
 
-State 453
+State 454
 
    47 functionCall: . simpleFunctionCall
    48             | . "(" functionCall ")"
@@ -25849,50 +25865,50 @@ State 453
     "float"       shift, and go to state 26
     "number"      shift, and go to state 27
 
-    functionCall        go to state 484
+    functionCall        go to state 485
     simpleFunctionCall  go to state 36
     comparison          go to state 38
     operation           go to state 39
-    variable            go to state 485
+    variable            go to state 486
     cell                go to state 41
     matrix              go to state 42
 
 
-State 454
+State 455
 
   346 comments: comments "line comment" . "end of line"
 
-    "end of line"  shift, and go to state 486
+    "end of line"  shift, and go to state 487
 
 
-State 455
+State 456
 
   260 else: "else" "end of line" .
 
     $default  reduce using rule 260 (else)
 
 
-State 456
+State 457
 
   258 else: "else" "," .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   261     | "else" "," . "end of line"
 
-    "end of line"  shift, and go to state 487
+    "end of line"  shift, and go to state 488
 
     $default  reduce using rule 258 (else)
 
 
-State 457
+State 458
 
   259 else: "else" ";" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   262     | "else" ";" . "end of line"
 
-    "end of line"  shift, and go to state 488
+    "end of line"  shift, and go to state 489
 
     $default  reduce using rule 259 (else)
 
 
-State 458
+State 459
 
   246 ifConditionBreak: . ";"
   247                 | . ";" "end of line"
@@ -25917,31 +25933,31 @@ State 458
     $default  reduce using rule 256 (then)
 
     ifConditionBreak  go to state 198
-    then              go to state 489
+    then              go to state 490
 
 
-State 459
+State 460
 
   244 elseBody: expressions .
 
     $default  reduce using rule 244 (elseBody)
 
 
-State 460
+State 461
 
   240 ifControl: "if" condition then thenBody else elseBody . "end"
 
-    "end"  shift, and go to state 490
+    "end"  shift, and go to state 491
 
 
-State 461
+State 462
 
   241 ifControl: "if" condition then thenBody elseIfControl "end" .
 
     $default  reduce using rule 241 (ifControl)
 
 
-State 462
+State 463
 
    63 functionDeclaration: "function" "[" "]" "=" "identifier" functionDeclarationArguments . functionDeclarationBreak functionBody "endfunction"
    67                    | "function" "[" "]" "=" "identifier" functionDeclarationArguments . functionDeclarationBreak functionBody "end"
@@ -25953,16 +25969,16 @@ State 462
   347 lineEnd: . "end of line"
   348        | . "line comment" "end of line"
 
-    "end of line"   shift, and go to state 369
-    ","             shift, and go to state 370
-    ";"             shift, and go to state 371
-    "line comment"  shift, and go to state 372
+    "end of line"   shift, and go to state 370
+    ","             shift, and go to state 371
+    ";"             shift, and go to state 372
+    "line comment"  shift, and go to state 373
 
-    functionDeclarationBreak  go to state 491
-    lineEnd                   go to state 374
+    functionDeclarationBreak  go to state 492
+    lineEnd                   go to state 375
 
 
-State 463
+State 464
 
    62 functionDeclaration: "function" "[" functionDeclarationReturns "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "endfunction"
    66                    | "function" "[" functionDeclarationReturns "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
@@ -25974,10 +25990,10 @@ State 463
 
     $default  reduce using rule 72 (functionDeclarationArguments)
 
-    functionDeclarationArguments  go to state 492
+    functionDeclarationArguments  go to state 493
 
 
-State 464
+State 465
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -26146,14 +26162,14 @@ State 464
     "end"          reduce using rule 81 (functionBody)
     "endfunction"  reduce using rule 81 (functionBody)
 
-    expressions           go to state 427
+    expressions           go to state 428
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
     functionCall          go to state 35
     simpleFunctionCall    go to state 36
     functionDeclaration   go to state 37
-    functionBody          go to state 493
+    functionBody          go to state 494
     comparison            go to state 38
     operation             go to state 39
     variable              go to state 40
@@ -26171,21 +26187,21 @@ State 464
     returnControl         go to state 52
 
 
-State 465
+State 466
 
    68 functionDeclaration: "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end" .
 
     $default  reduce using rule 68 (functionDeclaration)
 
 
-State 466
+State 467
 
    64 functionDeclaration: "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction" .
 
     $default  reduce using rule 64 (functionDeclaration)
 
 
-State 467
+State 468
 
   300 forControl: "for" "(" "identifier" "=" forIterator ")" . forConditionBreak forBody "end"
   303 forConditionBreak: . "end of line"
@@ -26197,59 +26213,59 @@ State 467
   309                  | . "do" "end of line"
   310                  | . %empty  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "end", "select", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 430
-    ","            shift, and go to state 431
-    ";"            shift, and go to state 432
-    "do"           shift, and go to state 433
+    "end of line"  shift, and go to state 431
+    ","            shift, and go to state 432
+    ";"            shift, and go to state 433
+    "do"           shift, and go to state 434
 
     $default  reduce using rule 310 (forConditionBreak)
 
-    forConditionBreak  go to state 494
+    forConditionBreak  go to state 495
 
 
-State 468
+State 469
 
   307 forConditionBreak: "," "end of line" .
 
     $default  reduce using rule 307 (forConditionBreak)
 
 
-State 469
+State 470
 
   305 forConditionBreak: ";" "end of line" .
 
     $default  reduce using rule 305 (forConditionBreak)
 
 
-State 470
+State 471
 
   309 forConditionBreak: "do" "end of line" .
 
     $default  reduce using rule 309 (forConditionBreak)
 
 
-State 471
+State 472
 
   311 forBody: expressions .
 
     $default  reduce using rule 311 (forBody)
 
 
-State 472
+State 473
 
   299 forControl: "for" "identifier" "=" forIterator forConditionBreak forBody . "end"
 
-    "end"  shift, and go to state 495
+    "end"  shift, and go to state 496
 
 
-State 473
+State 474
 
   268 selectControl: select selectable "line comment" selectConditionBreak casesControl "end" .
 
     $default  reduce using rule 268 (selectControl)
 
 
-State 474
+State 475
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -26416,7 +26432,7 @@ State 474
 
     "end"  reduce using rule 245 (elseBody)
 
-    expressions           go to state 459
+    expressions           go to state 460
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -26432,7 +26448,7 @@ State 474
     assignable            go to state 44
     multipleResults       go to state 45
     ifControl             go to state 46
-    elseBody              go to state 496
+    elseBody              go to state 497
     selectControl         go to state 47
     select                go to state 48
     forControl            go to state 49
@@ -26441,34 +26457,34 @@ State 474
     returnControl         go to state 52
 
 
-State 475
+State 476
 
   290 caseControlBreak: "end of line" .
 
     $default  reduce using rule 290 (caseControlBreak)
 
 
-State 476
+State 477
 
   288 caseControlBreak: "," .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   292                 | "," . "end of line"
 
-    "end of line"  shift, and go to state 497
+    "end of line"  shift, and go to state 498
 
     $default  reduce using rule 288 (caseControlBreak)
 
 
-State 477
+State 478
 
   289 caseControlBreak: ";" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   293                 | ";" . "end of line"
 
-    "end of line"  shift, and go to state 498
+    "end of line"  shift, and go to state 499
 
     $default  reduce using rule 289 (caseControlBreak)
 
 
-State 478
+State 479
 
   287 caseControlBreak: "then" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   291                 | "then" . "end of line"
@@ -26477,14 +26493,14 @@ State 478
   296                 | "then" . ";"
   297                 | "then" . ";" "end of line"
 
-    "end of line"  shift, and go to state 499
-    ","            shift, and go to state 500
-    ";"            shift, and go to state 501
+    "end of line"  shift, and go to state 500
+    ","            shift, and go to state 501
+    ";"            shift, and go to state 502
 
     $default  reduce using rule 287 (caseControlBreak)
 
 
-State 479
+State 480
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -26653,7 +26669,7 @@ State 479
     "end"   reduce using rule 286 (caseBody)
     "case"  reduce using rule 286 (caseBody)
 
-    expressions           go to state 502
+    expressions           go to state 503
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -26671,14 +26687,14 @@ State 479
     ifControl             go to state 46
     selectControl         go to state 47
     select                go to state 48
-    caseBody              go to state 503
+    caseBody              go to state 504
     forControl            go to state 49
     whileControl          go to state 50
     tryControl            go to state 51
     returnControl         go to state 52
 
 
-State 480
+State 481
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -26847,7 +26863,7 @@ State 480
     "end"   reduce using rule 286 (caseBody)
     "case"  reduce using rule 286 (caseBody)
 
-    expressions           go to state 502
+    expressions           go to state 503
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -26865,14 +26881,14 @@ State 480
     ifControl             go to state 46
     selectControl         go to state 47
     select                go to state 48
-    caseBody              go to state 504
+    caseBody              go to state 505
     forControl            go to state 49
     whileControl          go to state 50
     tryControl            go to state 51
     returnControl         go to state 52
 
 
-State 481
+State 482
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -26953,11 +26969,11 @@ State 481
   297                 | . "then" ";" "end of line"
   298                 | . %empty  [error, "%t or %T", "%f or %F", "~", "$", "[", "{", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 475
+    "end of line"  shift, and go to state 476
     "'"            shift, and go to state 113
-    ","            shift, and go to state 476
+    ","            shift, and go to state 477
     ":"            shift, and go to state 114
-    ";"            shift, and go to state 477
+    ";"            shift, and go to state 478
     "("            shift, and go to state 163
     "."            shift, and go to state 164
     ".'"           shift, and go to state 117
@@ -26987,7 +27003,7 @@ State 481
     "&&"           shift, and go to state 141
     "|"            shift, and go to state 142
     "||"           shift, and go to state 143
-    "then"         shift, and go to state 478
+    "then"         shift, and go to state 479
 
     $default  reduce using rule 298 (caseControlBreak)
 
@@ -26995,14 +27011,14 @@ State 481
     rightOperand      go to state 146
     listableBegin     go to state 147
     listableEnd       go to state 148
-    caseControlBreak  go to state 505
+    caseControlBreak  go to state 506
 
     Conflict between rule 298 and token "(" resolved as shift (CONTROLBREAK < "(").
     Conflict between rule 298 and token "+" resolved as shift (CONTROLBREAK < "+").
     Conflict between rule 298 and token "-" resolved as shift (CONTROLBREAK < "-").
 
 
-State 482
+State 483
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -27084,11 +27100,11 @@ State 482
   297                 | . "then" ";" "end of line"
   298                 | . %empty  [error, "%t or %T", "%f or %F", "~", "$", "[", "{", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 475
+    "end of line"  shift, and go to state 476
     "'"            shift, and go to state 149
-    ","            shift, and go to state 476
+    ","            shift, and go to state 477
     ":"            shift, and go to state 114
-    ";"            shift, and go to state 477
+    ";"            shift, and go to state 478
     "("            shift, and go to state 165
     "."            shift, and go to state 166
     ".'"           shift, and go to state 152
@@ -27118,7 +27134,7 @@ State 482
     "&&"           shift, and go to state 141
     "|"            shift, and go to state 142
     "||"           shift, and go to state 143
-    "then"         shift, and go to state 478
+    "then"         shift, and go to state 479
 
     $default  reduce using rule 298 (caseControlBreak)
 
@@ -27126,21 +27142,21 @@ State 482
     rightOperand      go to state 156
     listableBegin     go to state 147
     listableEnd       go to state 157
-    caseControlBreak  go to state 506
+    caseControlBreak  go to state 507
 
     Conflict between rule 298 and token "(" resolved as shift (CONTROLBREAK < "(").
     Conflict between rule 298 and token "+" resolved as shift (CONTROLBREAK < "+").
     Conflict between rule 298 and token "-" resolved as shift (CONTROLBREAK < "-").
 
 
-State 483
+State 484
 
   267 selectControl: select selectable selectConditionBreak casesControl defaultCase elseBody . "end"
 
-    "end"  shift, and go to state 507
+    "end"  shift, and go to state 508
 
 
-State 484
+State 485
 
    85 comparison: functionCall . rightComparable
    86 rightComparable: . "&" variable
@@ -27221,11 +27237,11 @@ State 484
   297                 | . "then" ";" "end of line"
   298                 | . %empty  [error, "%t or %T", "%f or %F", "~", "$", "[", "{", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 475
+    "end of line"  shift, and go to state 476
     "'"            shift, and go to state 113
-    ","            shift, and go to state 476
+    ","            shift, and go to state 477
     ":"            shift, and go to state 114
-    ";"            shift, and go to state 477
+    ";"            shift, and go to state 478
     "("            shift, and go to state 163
     "."            shift, and go to state 164
     ".'"           shift, and go to state 117
@@ -27255,7 +27271,7 @@ State 484
     "&&"           shift, and go to state 141
     "|"            shift, and go to state 142
     "||"           shift, and go to state 143
-    "then"         shift, and go to state 478
+    "then"         shift, and go to state 479
 
     $default  reduce using rule 298 (caseControlBreak)
 
@@ -27263,14 +27279,14 @@ State 484
     rightOperand      go to state 146
     listableBegin     go to state 147
     listableEnd       go to state 148
-    caseControlBreak  go to state 508
+    caseControlBreak  go to state 509
 
     Conflict between rule 298 and token "(" resolved as shift (CONTROLBREAK < "(").
     Conflict between rule 298 and token "+" resolved as shift (CONTROLBREAK < "+").
     Conflict between rule 298 and token "-" resolved as shift (CONTROLBREAK < "-").
 
 
-State 485
+State 486
 
    84 comparison: variable . rightComparable
    86 rightComparable: . "&" variable
@@ -27352,11 +27368,11 @@ State 485
   297                 | . "then" ";" "end of line"
   298                 | . %empty  [error, "%t or %T", "%f or %F", "~", "$", "[", "{", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
-    "end of line"  shift, and go to state 475
+    "end of line"  shift, and go to state 476
     "'"            shift, and go to state 149
-    ","            shift, and go to state 476
+    ","            shift, and go to state 477
     ":"            shift, and go to state 114
-    ";"            shift, and go to state 477
+    ";"            shift, and go to state 478
     "("            shift, and go to state 165
     "."            shift, and go to state 166
     ".'"           shift, and go to state 152
@@ -27386,7 +27402,7 @@ State 485
     "&&"           shift, and go to state 141
     "|"            shift, and go to state 142
     "||"           shift, and go to state 143
-    "then"         shift, and go to state 478
+    "then"         shift, and go to state 479
 
     $default  reduce using rule 298 (caseControlBreak)
 
@@ -27394,35 +27410,35 @@ State 485
     rightOperand      go to state 156
     listableBegin     go to state 147
     listableEnd       go to state 157
-    caseControlBreak  go to state 509
+    caseControlBreak  go to state 510
 
     Conflict between rule 298 and token "(" resolved as shift (CONTROLBREAK < "(").
     Conflict between rule 298 and token "+" resolved as shift (CONTROLBREAK < "+").
     Conflict between rule 298 and token "-" resolved as shift (CONTROLBREAK < "-").
 
 
-State 486
+State 487
 
   346 comments: comments "line comment" "end of line" .
 
     $default  reduce using rule 346 (comments)
 
 
-State 487
+State 488
 
   261 else: "else" "," "end of line" .
 
     $default  reduce using rule 261 (else)
 
 
-State 488
+State 489
 
   262 else: "else" ";" "end of line" .
 
     $default  reduce using rule 262 (else)
 
 
-State 489
+State 490
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -27593,7 +27609,7 @@ State 489
     "elseif"  reduce using rule 243 (thenBody)
     "end"     reduce using rule 243 (thenBody)
 
-    expressions           go to state 361
+    expressions           go to state 362
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -27609,7 +27625,7 @@ State 489
     assignable            go to state 44
     multipleResults       go to state 45
     ifControl             go to state 46
-    thenBody              go to state 510
+    thenBody              go to state 511
     selectControl         go to state 47
     select                go to state 48
     forControl            go to state 49
@@ -27618,14 +27634,14 @@ State 489
     returnControl         go to state 52
 
 
-State 490
+State 491
 
   240 ifControl: "if" condition then thenBody else elseBody "end" .
 
     $default  reduce using rule 240 (ifControl)
 
 
-State 491
+State 492
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -27794,14 +27810,14 @@ State 491
     "end"          reduce using rule 81 (functionBody)
     "endfunction"  reduce using rule 81 (functionBody)
 
-    expressions           go to state 427
+    expressions           go to state 428
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
     functionCall          go to state 35
     simpleFunctionCall    go to state 36
     functionDeclaration   go to state 37
-    functionBody          go to state 511
+    functionBody          go to state 512
     comparison            go to state 38
     operation             go to state 39
     variable              go to state 40
@@ -27819,7 +27835,7 @@ State 491
     returnControl         go to state 52
 
 
-State 492
+State 493
 
    62 functionDeclaration: "function" "[" functionDeclarationReturns "]" "=" "identifier" functionDeclarationArguments . functionDeclarationBreak functionBody "endfunction"
    66                    | "function" "[" functionDeclarationReturns "]" "=" "identifier" functionDeclarationArguments . functionDeclarationBreak functionBody "end"
@@ -27831,25 +27847,25 @@ State 492
   347 lineEnd: . "end of line"
   348        | . "line comment" "end of line"
 
-    "end of line"   shift, and go to state 369
-    ","             shift, and go to state 370
-    ";"             shift, and go to state 371
-    "line comment"  shift, and go to state 372
+    "end of line"   shift, and go to state 370
+    ","             shift, and go to state 371
+    ";"             shift, and go to state 372
+    "line comment"  shift, and go to state 373
 
-    functionDeclarationBreak  go to state 512
-    lineEnd                   go to state 374
+    functionDeclarationBreak  go to state 513
+    lineEnd                   go to state 375
 
 
-State 493
+State 494
 
    61 functionDeclaration: "function" "identifier" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody . "endfunction"
    65                    | "function" "identifier" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody . "end"
 
-    "end"          shift, and go to state 513
-    "endfunction"  shift, and go to state 514
+    "end"          shift, and go to state 514
+    "endfunction"  shift, and go to state 515
 
 
-State 494
+State 495
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -28016,7 +28032,7 @@ State 494
 
     "end"  reduce using rule 312 (forBody)
 
-    expressions           go to state 471
+    expressions           go to state 472
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -28035,89 +28051,89 @@ State 494
     selectControl         go to state 47
     select                go to state 48
     forControl            go to state 49
-    forBody               go to state 515
+    forBody               go to state 516
     whileControl          go to state 50
     tryControl            go to state 51
     returnControl         go to state 52
 
 
-State 495
+State 496
 
   299 forControl: "for" "identifier" "=" forIterator forConditionBreak forBody "end" .
 
     $default  reduce using rule 299 (forControl)
 
 
-State 496
+State 497
 
   269 selectControl: select selectable "line comment" selectConditionBreak casesControl defaultCase elseBody . "end"
 
-    "end"  shift, and go to state 516
+    "end"  shift, and go to state 517
 
 
-State 497
+State 498
 
   292 caseControlBreak: "," "end of line" .
 
     $default  reduce using rule 292 (caseControlBreak)
 
 
-State 498
+State 499
 
   293 caseControlBreak: ";" "end of line" .
 
     $default  reduce using rule 293 (caseControlBreak)
 
 
-State 499
+State 500
 
   291 caseControlBreak: "then" "end of line" .
 
     $default  reduce using rule 291 (caseControlBreak)
 
 
-State 500
+State 501
 
   294 caseControlBreak: "then" "," .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   295                 | "then" "," . "end of line"
 
-    "end of line"  shift, and go to state 517
+    "end of line"  shift, and go to state 518
 
     $default  reduce using rule 294 (caseControlBreak)
 
 
-State 501
+State 502
 
   296 caseControlBreak: "then" ";" .  [error, "%t or %T", "%f or %F", "~", "$", "(", "[", "{", "+", "-", "if", "else", "end", "select", "case", "function", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   297                 | "then" ";" . "end of line"
 
-    "end of line"  shift, and go to state 518
+    "end of line"  shift, and go to state 519
 
     $default  reduce using rule 296 (caseControlBreak)
 
 
-State 502
+State 503
 
   285 caseBody: expressions .
 
     $default  reduce using rule 285 (caseBody)
 
 
-State 503
+State 504
 
   280 casesControl: "case" functionCall caseControlBreak caseBody .
 
     $default  reduce using rule 280 (casesControl)
 
 
-State 504
+State 505
 
   279 casesControl: "case" variable caseControlBreak caseBody .
 
     $default  reduce using rule 279 (casesControl)
 
 
-State 505
+State 506
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -28286,7 +28302,7 @@ State 505
     "end"   reduce using rule 286 (caseBody)
     "case"  reduce using rule 286 (caseBody)
 
-    expressions           go to state 502
+    expressions           go to state 503
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -28304,14 +28320,14 @@ State 505
     ifControl             go to state 46
     selectControl         go to state 47
     select                go to state 48
-    caseBody              go to state 519
+    caseBody              go to state 520
     forControl            go to state 49
     whileControl          go to state 50
     tryControl            go to state 51
     returnControl         go to state 52
 
 
-State 506
+State 507
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -28480,7 +28496,7 @@ State 506
     "end"   reduce using rule 286 (caseBody)
     "case"  reduce using rule 286 (caseBody)
 
-    expressions           go to state 502
+    expressions           go to state 503
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -28498,21 +28514,21 @@ State 506
     ifControl             go to state 46
     selectControl         go to state 47
     select                go to state 48
-    caseBody              go to state 520
+    caseBody              go to state 521
     forControl            go to state 49
     whileControl          go to state 50
     tryControl            go to state 51
     returnControl         go to state 52
 
 
-State 507
+State 508
 
   267 selectControl: select selectable selectConditionBreak casesControl defaultCase elseBody "end" .
 
     $default  reduce using rule 267 (selectControl)
 
 
-State 508
+State 509
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -28681,7 +28697,7 @@ State 508
     "end"   reduce using rule 286 (caseBody)
     "case"  reduce using rule 286 (caseBody)
 
-    expressions           go to state 502
+    expressions           go to state 503
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -28699,14 +28715,14 @@ State 508
     ifControl             go to state 46
     selectControl         go to state 47
     select                go to state 48
-    caseBody              go to state 521
+    caseBody              go to state 522
     forControl            go to state 49
     whileControl          go to state 50
     tryControl            go to state 51
     returnControl         go to state 52
 
 
-State 509
+State 510
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -28875,7 +28891,7 @@ State 509
     "end"   reduce using rule 286 (caseBody)
     "case"  reduce using rule 286 (caseBody)
 
-    expressions           go to state 502
+    expressions           go to state 503
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -28893,14 +28909,14 @@ State 509
     ifControl             go to state 46
     selectControl         go to state 47
     select                go to state 48
-    caseBody              go to state 522
+    caseBody              go to state 523
     forControl            go to state 49
     whileControl          go to state 50
     tryControl            go to state 51
     returnControl         go to state 52
 
 
-State 510
+State 511
 
   257 else: . "else"
   258     | . "else" ","
@@ -28915,25 +28931,25 @@ State 510
   265              | . "elseif" condition then thenBody elseIfControl
   265              | "elseif" condition then thenBody . elseIfControl
 
-    "else"    shift, and go to state 414
-    "elseif"  shift, and go to state 415
+    "else"    shift, and go to state 415
+    "elseif"  shift, and go to state 416
 
     $default  reduce using rule 263 (elseIfControl)
 
-    else           go to state 523
-    elseIfControl  go to state 524
+    else           go to state 524
+    elseIfControl  go to state 525
 
 
-State 511
+State 512
 
    63 functionDeclaration: "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody . "endfunction"
    67                    | "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody . "end"
 
-    "end"          shift, and go to state 525
-    "endfunction"  shift, and go to state 526
+    "end"          shift, and go to state 526
+    "endfunction"  shift, and go to state 527
 
 
-State 512
+State 513
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -29102,14 +29118,14 @@ State 512
     "end"          reduce using rule 81 (functionBody)
     "endfunction"  reduce using rule 81 (functionBody)
 
-    expressions           go to state 427
+    expressions           go to state 428
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
     functionCall          go to state 35
     simpleFunctionCall    go to state 36
     functionDeclaration   go to state 37
-    functionBody          go to state 527
+    functionBody          go to state 528
     comparison            go to state 38
     operation             go to state 39
     variable              go to state 40
@@ -29127,77 +29143,77 @@ State 512
     returnControl         go to state 52
 
 
-State 513
+State 514
 
    65 functionDeclaration: "function" "identifier" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end" .
 
     $default  reduce using rule 65 (functionDeclaration)
 
 
-State 514
+State 515
 
    61 functionDeclaration: "function" "identifier" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction" .
 
     $default  reduce using rule 61 (functionDeclaration)
 
 
-State 515
+State 516
 
   300 forControl: "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody . "end"
 
-    "end"  shift, and go to state 528
+    "end"  shift, and go to state 529
 
 
-State 516
+State 517
 
   269 selectControl: select selectable "line comment" selectConditionBreak casesControl defaultCase elseBody "end" .
 
     $default  reduce using rule 269 (selectControl)
 
 
-State 517
+State 518
 
   295 caseControlBreak: "then" "," "end of line" .
 
     $default  reduce using rule 295 (caseControlBreak)
 
 
-State 518
+State 519
 
   297 caseControlBreak: "then" ";" "end of line" .
 
     $default  reduce using rule 297 (caseControlBreak)
 
 
-State 519
+State 520
 
   284 casesControl: casesControl "case" functionCall caseControlBreak caseBody .
 
     $default  reduce using rule 284 (casesControl)
 
 
-State 520
+State 521
 
   283 casesControl: casesControl "case" variable caseControlBreak caseBody .
 
     $default  reduce using rule 283 (casesControl)
 
 
-State 521
+State 522
 
   282 casesControl: comments "case" functionCall caseControlBreak caseBody .
 
     $default  reduce using rule 282 (casesControl)
 
 
-State 522
+State 523
 
   281 casesControl: comments "case" variable caseControlBreak caseBody .
 
     $default  reduce using rule 281 (casesControl)
 
 
-State 523
+State 524
 
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
@@ -29364,7 +29380,7 @@ State 523
 
     "end"  reduce using rule 245 (elseBody)
 
-    expressions           go to state 459
+    expressions           go to state 460
     recursiveExpression   go to state 31
     expression            go to state 33
     implicitFunctionCall  go to state 34
@@ -29380,7 +29396,7 @@ State 523
     assignable            go to state 44
     multipleResults       go to state 45
     ifControl             go to state 46
-    elseBody              go to state 529
+    elseBody              go to state 530
     selectControl         go to state 47
     select                go to state 48
     forControl            go to state 49
@@ -29389,58 +29405,58 @@ State 523
     returnControl         go to state 52
 
 
-State 524
+State 525
 
   265 elseIfControl: "elseif" condition then thenBody elseIfControl .
 
     $default  reduce using rule 265 (elseIfControl)
 
 
-State 525
+State 526
 
    67 functionDeclaration: "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end" .
 
     $default  reduce using rule 67 (functionDeclaration)
 
 
-State 526
+State 527
 
    63 functionDeclaration: "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction" .
 
     $default  reduce using rule 63 (functionDeclaration)
 
 
-State 527
+State 528
 
    62 functionDeclaration: "function" "[" functionDeclarationReturns "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody . "endfunction"
    66                    | "function" "[" functionDeclarationReturns "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody . "end"
 
-    "end"          shift, and go to state 530
-    "endfunction"  shift, and go to state 531
+    "end"          shift, and go to state 531
+    "endfunction"  shift, and go to state 532
 
 
-State 528
+State 529
 
   300 forControl: "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end" .
 
     $default  reduce using rule 300 (forControl)
 
 
-State 529
+State 530
 
   264 elseIfControl: "elseif" condition then thenBody else elseBody .
 
     $default  reduce using rule 264 (elseIfControl)
 
 
-State 530
+State 531
 
    66 functionDeclaration: "function" "[" functionDeclarationReturns "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end" .
 
     $default  reduce using rule 66 (functionDeclaration)
 
 
-State 531
+State 532
 
    62 functionDeclaration: "function" "[" functionDeclarationReturns "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "endfunction" .
 

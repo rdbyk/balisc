@@ -2243,7 +2243,10 @@ YY_RULE_SETUP
 case 18:
 YY_RULE_SETUP
 {
-	ParserSingleInstance::pushControlStatus(Parser::WithinTry);
+    if (last_token != DOT)
+    {
+        ParserSingleInstance::pushControlStatus(Parser::WithinTry);
+    }
 	BEGIN(INITIAL);
 	return scan_throw(TRY);
 }
@@ -2251,9 +2254,12 @@ YY_RULE_SETUP
 case 19:
 YY_RULE_SETUP
 {
-    // Pop to step out TRY
-	ParserSingleInstance::popControlStatus();
-	ParserSingleInstance::pushControlStatus(Parser::WithinCatch);
+    if (last_token != DOT)
+    {
+        // Pop to step out TRY
+        ParserSingleInstance::popControlStatus();
+        ParserSingleInstance::pushControlStatus(Parser::WithinCatch);
+    }
 	BEGIN(INITIAL);
 	return scan_throw(CATCH);
 }

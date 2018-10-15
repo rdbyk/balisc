@@ -1685,6 +1685,7 @@ IF              { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"if"));           
 | TRY           { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"try"));          print_rules("keywords", "TRY");}
 | CATCH         { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"catch"));        print_rules("keywords", "CATCH");}
 | RETURN        { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"return"));       print_rules("keywords", "RETURN");}
+| CONTINUE      { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"continue"));     print_rules("keywords", "CONTINUE");}
 ;
 
 %%
