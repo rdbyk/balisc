@@ -38,16 +38,18 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
     end
 
 
-    opts="";
+    opts=[];
     if exists("style","local")==1 then opts=[opts,"style=style"],end
     if exists("strf","local")==1 then opts=[opts,"strf=strf"],end
     if exists("rect","local")==1 then opts=[opts,"rect=rect"],end
     if exists("nax","local")==1 then opts=[opts,"nax=nax"],end
     if exists("frameflag","local")==1 then opts=[opts,"frameflag=frameflag"],end
     if exists("axesflag","local")==1 then opts=[opts,"axesflag=axesflag"],end
-    if opts==[] then
-        opts = ""
+
+    if opts == []
+        execstr("grayplot(x,y,feval(x,y,f))")
+    else
+        execstr("grayplot(x,y,feval(x,y,f),"+strcat(opts,",")+")")
     end
 
-    execstr("grayplot(x,y,feval(x,y,f),"+strcat(opts,",")+")")
 endfunction

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2018 Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="insert">
+    <refnamediv>
+        <refname>insert</refname>
+        <refpurpose>insert list element</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            a = insert()
+            a = insert(e)
+            b(i) = insert()
+            b(i) = insert(e)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+            <term>a</term>
+            <listitem>
+                <para>any non-list type.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>b</term>
+            <listitem>
+                <para>a list.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>e</term>
+            <listitem>
+                <para>any type.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>a = insert(e)</literal> assigns a list insertion object to a variable <literal>a</literal>.
+        </para>
+        <para>
+            <literal>b(i) = insert(e)</literal> inserts <literal>e</literal> at the i<superscript>th</superscript> position in a list <literal>b</literal>. 
+        </para>
+        <para>
+            Please note, that <literal>insert()</literal> is a shorthand for <literal>insert(void())</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// a list
+L=list(1,2)
+
+// insertion of undefined object at 2nd position
+L(2)=insert()
+
+// assign an insertion object to a variable ...
+c=insert("Hi")
+
+// ... and use it
+L(1)=c
+L(7)=c
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="null">null</link>
+            </member>
+            <member>
+                <link linkend="void">void</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Help page for <function>insert</function> was written.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
