@@ -13,6 +13,8 @@
  *
  */
 
+#include <cstring>
+
 #include "arrayof.hxx"
 #include "double.hxx"
 #include "bool.hxx"
@@ -496,8 +498,9 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
     if (iSeqCount < 0)
     {
         //manage : and $ in creation by insertion
-        int *piSourceDims = getDimsArray();
         int iSourceDims = getDims();
+        int *piSourceDims = new int[iSourceDims];
+        std::memcpy(piSourceDims, getDimsArray(), iSourceDims * sizeof(int));
         int iSource = 0;
         int iNbColon = 0;
         for (int i = 0; i < iDims; ++i)
@@ -567,6 +570,8 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
                 ++iSource;
             }
         }
+
+        delete [] piSourceDims;
     }
 
     // removing trailing dims of size 1
