@@ -318,7 +318,7 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                 int iPos = getIndex(_piDims);
                 InternalType* pIT = get(iPos);
 
-                if (pIT->isAssignable())
+                if (pIT->isAssignable() && pIT->isListOperation() == false)
                 {
                     //compute number of digits to write dimensions
                     int iTypeLen = 0;
@@ -358,7 +358,7 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                 InternalType* pIT = get(iPos);
 
                 ostr << L"  [";
-                if (pIT->isAssignable())
+                if (pIT->isAssignable() && pIT->isListOperation() == false)
                 {
                     if (pIT->isGenericType())
                     {
