@@ -143,7 +143,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 ast::SimpleVar* var = pCell->getName().getAs<ast::SimpleVar>();
                 types::InternalType* pIT = ctx->getCurrentLevel(var->getStack());
-
+                pIT = pIT ? pIT : ctx->get(var->getSymbol());
                 if (pIT && pIT->isCell() == false)
                 {
                     CoverageInstance::stopChrono((void*)&e);
