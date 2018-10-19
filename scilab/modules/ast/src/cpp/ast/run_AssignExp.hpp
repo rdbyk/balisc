@@ -143,13 +143,28 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 ast::SimpleVar* var = pCell->getName().getAs<ast::SimpleVar>();
                 types::InternalType* pIT = ctx->getCurrentLevel(var->getStack());
-                pIT = pIT ? pIT : ctx->get(var->getSymbol());
-                if (pIT && pIT->isCell() == false)
+
+                if (pIT)
                 {
-                    CoverageInstance::stopChrono((void*)&e);
-                    std::wostringstream os;
-                    os << _W("Cell indexing \"{..}\" of non-cell objects is not allowed.\n");
-                    throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
+                    if (pIT->isCell() == false)
+                    {
+                        CoverageInstance::stopChrono((void*)&e);
+                        std::wostringstream os;
+                        os << _W("Cell indexing \"{..}\" of non-cell objects is not allowed.\n");
+                        throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
+                    }
+                }
+                else
+                {
+                    pIT = ctx->get(var->getSymbol());
+
+                    if (pIT && pIT->isCallable())
+                    {
+                        CoverageInstance::stopChrono((void*)&e);
+                        std::wostringstream os;
+                        os << _W("Cell indexing \"{..}\" of non-cell objects is not allowed.\n");
+                        throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
+                    }
                 }
             }
 
