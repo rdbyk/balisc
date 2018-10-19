@@ -111,9 +111,6 @@ write('foo',A)
                 <link linkend="fileinfo">fileinfo</link>
             </member>
             <member>
-                <link linkend="writb">writb</link>
-            </member>
-            <member>
                 <link linkend="read">read</link>
             </member>
             <member>

@@ -4,6 +4,7 @@
  * Copyright (C) XXXX-2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2018 - Samuel GOUGEON
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -276,8 +277,7 @@
             ユニット番号<literal>unit</literal>に関連付けることができます.
             このユニット番号は,この後,このファイルに関する処理や
             <literal>read</literal>, <literal>write</literal>,
-            <literal>readb</literal>,
-            <literal>writb</literal>,<literal>save</literal>, <literal>load</literal>
+            <literal>save</literal>, <literal>load</literal>
             関数コールにおいてファイル記述子と同様に使用することができます.
         </para>
         <para>
@@ -323,13 +323,7 @@ mclose(u2);
                 <link linkend="read">read</link>
             </member>
             <member>
-                <link linkend="readb">readb</link>
-            </member>
-            <member>
                 <link linkend="write">write</link>
-            </member>
-            <member>
-                <link linkend="writb">writb</link>
             </member>
             <member>
                 <link linkend="mopen">mopen</link>

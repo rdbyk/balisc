@@ -17,12 +17,8 @@ IO_CPP_SOURCES = \
     src/cpp/readwrite.cpp
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_read4b.c \
-    sci_gateway/c/sci_readb.c \
     sci_gateway/c/sci_getenv.c \
-    sci_gateway/c/sci_writeb.c \
-    sci_gateway/c/sci_setenv.c \
-    sci_gateway/c/sci_write4b.c
+    sci_gateway/c/sci_setenv.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_genlib.cpp \
