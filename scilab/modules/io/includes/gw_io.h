@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,10 +26,6 @@ int sci_setenv(char *fname, void* pvApiCtx);
 //int sci_read(char *fname, unsigned long fname_len);
 int sci_oldsave(char *fname, unsigned long fname_len);
 //int sci_write(char *fname, unsigned long fname_len);
-int sci_readb(char *fname, unsigned long fname_len);
-int sci_writb(char *fname, unsigned long fname_len);
-int sci_read4b(char *fname, unsigned long fname_len);
-int sci_write4b(char *fname, unsigned long fname_len);
 int sci_save(char *fname, void *pvApiCtx);
 int sci_percent_load(char *fname, unsigned long fname_len);
 C_GATEWAY_PROTOTYPE(sci_getio);

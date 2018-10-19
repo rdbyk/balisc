@@ -127,9 +127,6 @@ read(%io(1), 1, 1, '(a)')  // espera por entrada do usuário
                 <link linkend="file">file</link>
             </member>
             <member>
-                <link linkend="readb">readb</link>
-            </member>
-            <member>
                 <link linkend="write">write</link>
             </member>
             <member>

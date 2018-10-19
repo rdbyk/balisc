@@ -275,8 +275,7 @@
             <literal>unit</literal>. Este número de unidade pode ser utilizado para
             ações futuras no arquivo, ou como descritor de arquivo em chamadas às
             funções <literal>read</literal>, <literal>write</literal>,
-            <literal>readb</literal>,
-            <literal>writb</literal>,<literal>save</literal>,
+            <literal>save</literal>,
             <literal>load</literal>.
         </para>
         <para>
@@ -323,13 +322,7 @@ mclose(u2);
                 <link linkend="read">read</link>
             </member>
             <member>
-                <link linkend="readb">readb</link>
-            </member>
-            <member>
                 <link linkend="write">write</link>
-            </member>
-            <member>
-                <link linkend="writb">writb</link>
             </member>
             <member>
                 <link linkend="mopen">mopen</link>

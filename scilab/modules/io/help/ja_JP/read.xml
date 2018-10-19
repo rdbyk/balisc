@@ -139,9 +139,6 @@ read(%io(1),1,1,'(a)')  // ユーザ入力を待つ
                 <link linkend="file">file</link>
             </member>
             <member>
-                <link linkend="readb">readb</link>
-            </member>
-            <member>
                 <link linkend="x_dialog">x_dialog</link>
             </member>
             <member>
