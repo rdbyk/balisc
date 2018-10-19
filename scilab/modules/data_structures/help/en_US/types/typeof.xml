@@ -2,9 +2,9 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2015 - 2017 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2015 - 2017 - Samuel GOUGEON
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -262,9 +262,29 @@
             </tr>
             <tr>
                 <td>
-                    <emphasis role="bold">void</emphasis>
+                    <emphasis role="bold">listinsert</emphasis>
                 </td>
-                <td>is the typeof undefined elements in lists.</td>
+                <td>
+                    is returned by
+                    <function>
+                        typeof(<literal>insert()</literal>)
+                    </function>
+                    .
+                    See  <link linkend="insert">insert()</link>.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">listundefined</emphasis>
+                </td>
+                <td>
+                    is returned by
+                    <function>
+                        typeof(<literal>void()</literal>)
+                    </function>
+                    .
+                    See  <link linkend="void">void()</link>.
+                </td>
             </tr>
             <tr>
                 <td colspan="2"></td>
@@ -633,6 +653,12 @@ h5close(a)
                 <link linkend="null">null</link>
             </member>
             <member>
+                <link linkend="insert">insert</link>
+            </member>
+            <member>
+                <link linkend="void">void</link>
+            </member>
+            <member>
                 <link linkend="sparse">sparse</link>
             </member>
             <member>
@@ -681,6 +707,15 @@ h5close(a)
                             typeof "size implicit" renamed "implicitlist" (<literal>1:$</literal>)
                         </listitem>
                         <listitem>Help page reviewed.</listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>removed typeof "void".</listitem>
+                        <listitem>typeof "listinsert" and "listundefined" added. </listitem>
                     </itemizedlist>
                 </revdescription>
             </revision>

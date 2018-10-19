@@ -2,9 +2,9 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * Copyright (C) 2017 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Samuel GOUGEON
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -157,10 +157,8 @@
             <varlistentry>
                 <term>0</term>
                 <listitem>
-                    An undefined element of a list (with a typeof <literal>void</literal>, such as
-                    in the function call <literal>foo(a,,b)</literal>, or in
-                    <literal>list(%pi,,%i,,,%z)</literal>), or a null object of typeof
-                    <literal>listdelete</literal> returned by <literal>null()</literal>.
+                    a list operation object (<link linkend="null">null</link>, <link linkend="insert">insert</link>,
+                    or <link linkend="void">void</link>).
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -297,6 +295,12 @@ type(r)                     // rational fractions
             <member>
                 <link linkend="null">null</link>
             </member>
+            <member>
+                <link linkend="insert">insert</link>
+            </member>
+            <member>
+                <link linkend="void">void</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
@@ -313,6 +317,13 @@ type(r)                     // rational fractions
                        <literal>type(:)</literal> now returns 129 instead of 1.
                     </member>
                 </simplelist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revdescription>
+                    <para>Type of all list operations (null, insert, void) is 0.
+                    </para>
                 </revdescription>
             </revision>
         </revhistory>

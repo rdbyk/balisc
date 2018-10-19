@@ -51,11 +51,6 @@ public :
     {
         return L"listinsert";
     }
-    /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr() const
-    {
-        return L"";
-    }
 
 private :
     InternalType*           m_pInsert;
