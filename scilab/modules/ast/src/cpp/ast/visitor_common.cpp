@@ -1061,15 +1061,15 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             pStruct->getFirst()->set(pwcsFieldname, pIT);
                         }
 
-                        ExpHistory* pEHChield = new ExpHistory(pEH,
+                        ExpHistory* pEHChild = new ExpHistory(pEH,
                             (*iterFields)->getExp(),
                             (*iterFields)->getArgs(),
                             (*iterFields)->getLevel(),
                             (*iterFields)->isCellExp(),
                             pIT);
 
-                        pEHChield->setWhereReinsert(0);
-                        workFields.push_back(pEHChield);
+                        pEHChild->setWhereReinsert(0);
+                        workFields.push_back(pEHChild);
 
                         pLOut->killMe();
                     }
@@ -1153,7 +1153,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     types::InternalType* pExtract = NULL;
                     std::wstring pwcsFieldname = L"";
                     bool bReinsert = false;
-                    ExpHistory* pEHChield = NULL;
+                    ExpHistory* pEHChild = NULL;
 
                     pwcsFieldname = (*iterFields)->getExpAsString();
 
@@ -1205,12 +1205,12 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             pExtract = pTL->getField(pwcsFieldname);
                         }
 
-                        pEHChield = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract);
-                        workFields.push_back(pEHChield);
+                        pEHChild = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract);
+                        workFields.push_back(pEHChild);
 
                         if (bReinsert)
                         {
-                            pEHChield->setReinsertion();
+                            pEHChild->setReinsertion();
                         }
                     }
                 }
@@ -1425,16 +1425,16 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 if ((*iterFields)->getExp() == NULL)
                                 {
                                     // a{x}(y)
-                                    ExpHistory* pEHChield = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pIT);
-                                    pEHChield->setWhereReinsert(iCell);
-                                    workFields.push_back(pEHChield);
+                                    ExpHistory* pEHChild = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pIT);
+                                    pEHChild->setWhereReinsert(iCell);
+                                    workFields.push_back(pEHChild);
                                 }
                                 else
                                 {
                                     // a{x}.b
-                                    ExpHistory* pEHChield = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), false, pIT);
-                                    pEHChield->setWhereReinsert(iCell);
-                                    workFields.push_front(pEHChield);
+                                    ExpHistory* pEHChild = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), false, pIT);
+                                    pEHChild->setWhereReinsert(iCell);
+                                    workFields.push_front(pEHChild);
                                 }
                             }
                         }
