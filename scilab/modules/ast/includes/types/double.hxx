@@ -66,8 +66,6 @@ public :
     bool                        isEmpty();
 
     Double*                     clone();
-    void fillFromCol(int _iCols, Double *_poSource);
-    void fillFromRow(int _iRows, Double *_poSource);
     void append(int _iRows, int _iCols, InternalType* _poSource);
 
     //bool                        append(int _iRows, int _iCols, Double *_poSource);
