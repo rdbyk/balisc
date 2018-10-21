@@ -840,41 +840,6 @@ Double* Double::clone()
     return pReturn;
 }
 
-void Double::fillFromCol(int _iCols, Double *_poSource)
-{
-    int iDestOffset = _iCols * m_iRows;
-    int iMemSize = _poSource->getSize() * sizeof(double);
-
-    memmove(m_pRealData + iDestOffset, _poSource->getReal(), iMemSize);
-
-    if (m_pImgData != NULL)
-    {
-        memmove(m_pImgData + iDestOffset, _poSource->getImg(), iMemSize);
-    }
-}
-
-void Double::fillFromRow(int _iRows, Double *_poSource)
-{
-    if (m_pImgData != NULL)
-    {
-    }
-    else
-    {
-        int iCols = _poSource->getCols();
-        
-        for (int i = 0 ; i < iCols ; i++)
-        {
-            int iDestOffset     = i * m_iRows + _iRows;
-            int iOrigOffset     = i * _poSource->getRows();
-            int iSize           = _poSource->getRows();
-            double* pdblDest    = m_pRealData + iDestOffset;
-            double* pdblSource  = _poSource->getReal() + iOrigOffset;
-            
-            memmove(pdblDest, pdblSource, iSize * sizeof(double));
-        }
-    }
-}
-
 bool Double::operator==(const InternalType& it)
 {
     if (const_cast<InternalType &>(it).isDouble() == false)
