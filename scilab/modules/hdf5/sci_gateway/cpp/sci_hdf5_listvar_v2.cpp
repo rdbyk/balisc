@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <hdf5.h>
 extern "C"
@@ -59,7 +59,7 @@ static bool read_sparse(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
 static bool read_boolean_sparse(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
 static bool read_poly(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
 static bool read_list(int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
-static bool read_void(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
+static bool read_delete(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
 static bool read_undefined(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
 
 static void generateInfo(VarInfo* _pInfo, const char* _pstType);
@@ -307,9 +307,9 @@ static bool read_data(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* 
             bRet = read_boolean_sparse(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-        case sci_void:             //void item only on list variable
+        case sci_delete:             //void item only on list variable
         {
-            bRet = read_void(_iDatasetId, _iItemPos, _piAddress, _pInfo);
+            bRet = read_delete(_iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
         case sci_undefined:        //undefined item only on list variable
@@ -578,7 +578,7 @@ static bool read_list(int _iDatasetId, int _iVarType, int _iItemPos, int *_piAdd
     return true;
 }
 
-static bool read_void(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo)
+static bool read_delete(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo)
 {
     _pInfo->iSize = 1;
     closeDataSet(_iDatasetId);

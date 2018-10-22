@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -54,7 +54,7 @@ static bool import_boolean_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos,
 static bool import_poly_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_delete_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 
 static const std::string fname("load");
@@ -261,12 +261,12 @@ static bool import_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
             bRet = import_boolean_sparse_v1(pvCtx, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-        case sci_void:             //void item only on list variable
+        case sci_delete:
         {
-            bRet = import_void_v1(pvCtx, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            bRet = import_delete_v1(pvCtx, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
-        case sci_undefined:        //undefined item only on list variable
+        case sci_undefined:
         {
             bRet = import_undefined_v1(pvCtx, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
@@ -288,13 +288,13 @@ static bool import_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
     return bRet;
 }
 
-static bool import_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_delete_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     SciErr sciErr;
 
     if (_piAddress)
     {
-        sciErr = createVoidInNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos);
+        sciErr = createDeleteInNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos);
     }
     else
     {

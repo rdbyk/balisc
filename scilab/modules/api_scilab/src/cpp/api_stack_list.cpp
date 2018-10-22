@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,16 +10,17 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-* Please note that piece of code will be rewrited for the Scilab 6 family
-* However, the API (profile of the functions in the header files) will be
-* still available and supported in Scilab 6.
-*/
+ *
+ * Please note that piece of code will be rewrited for the Scilab 6 family
+ * However, the API (profile of the functions in the header files) will be
+ * still available and supported in Scilab 6.
+ */
 
 #include <vector>
 #include <map>
 #include <string>
 #include "list.hxx"
+#include "listdelete.hxx"
 #include "listundefined.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
@@ -31,7 +32,6 @@
 #include "string.hxx"
 #include "int.hxx"
 #include "context.hxx"
-#include "void.hxx"
 #include "sparse.hxx"
 
 extern "C"
@@ -555,11 +555,11 @@ static SciErr createCommonListInList(void* _pvCtx, const char* _pstName, int* _p
 /******************************
 * Void and defined functions *
 ******************************/
-SciErr createVoidInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos)
+SciErr createDeleteInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos)
 {
     SciErr sciErr   = sciErrInit();
 
-    sciErr = checkListItemPosition(_pvCtx, _piParent, _iItemPos, API_ERROR_CREATE_VOID_IN_LIST, "createVoidInNamedList");
+    sciErr = checkListItemPosition(_pvCtx, _piParent, _iItemPos, API_ERROR_CREATE_DELETE_IN_LIST, "createDeleteInNamedList");
     if (sciErr.iErr)
     {
         return sciErr;
@@ -568,11 +568,11 @@ SciErr createVoidInNamedList(void* _pvCtx, const char* _pstName, int* _piParent,
     types::List* pL = (types::List*)_piParent;
     if (pL == NULL)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "createVoidInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "createDeleteInNamedList");
         return sciErr;
     }
 
-    pL->set(_iItemPos - 1, new types::Void());
+    pL->set(_iItemPos - 1, new types::ListDelete());
     return sciErr;
 }
 
@@ -580,7 +580,7 @@ SciErr createUndefinedInNamedList(void* _pvCtx, const char* _pstName, int* _piPa
 {
     SciErr sciErr   = sciErrInit();
 
-    sciErr = checkListItemPosition(_pvCtx, _piParent, _iItemPos, API_ERROR_CREATE_VOID_IN_LIST, "createUndefinedInNamedList");
+    sciErr = checkListItemPosition(_pvCtx, _piParent, _iItemPos, API_ERROR_CREATE_UNDEFINED_IN_LIST, "createUndefinedInNamedList");
     if (sciErr.iErr)
     {
         return sciErr;

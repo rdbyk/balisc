@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -259,13 +259,13 @@ SciErr createMListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent
  *********************************/
 
 /**
- * Create a void item in a named list
+ * Create a delete item in a named list
  * @param[in] _pstName variable name
  * @param[in] _piParent pointer to the parent
  * @param[in] _iItemPos position of the created mlist in the parent list
  * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createVoidInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos);
+SciErr createDeleteInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos);
 
 /**
  * Create a undefined item in a named list
