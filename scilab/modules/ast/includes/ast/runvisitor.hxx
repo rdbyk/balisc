@@ -24,7 +24,6 @@
 #include "polynom.hxx"
 #include "colon.hxx"
 #include "string.hxx"
-#include "void.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "scilabWrite.hxx"

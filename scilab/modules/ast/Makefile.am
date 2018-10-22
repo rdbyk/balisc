@@ -105,7 +105,6 @@ src/cpp/types/tlist.cpp \
 src/cpp/types/tostring_common.cpp \
 src/cpp/types/types.cpp \
 src/cpp/types/types_tools.cpp \
-src/cpp/types/void.cpp \
 src/cpp/analysis/AnalysisVisitor.cpp \
 src/cpp/analysis/ArgnAnalyzer.cpp \
 src/cpp/analysis/Block.cpp \
@@ -487,7 +486,6 @@ includes/types/types.hxx \
 includes/types/types_tools.hxx \
 includes/types/type_traits.hxx \
 includes/types/user.hxx \
-includes/types/void.hxx \
 src/cpp/ast/run_AssignExp.hpp \
 src/cpp/ast/run_CallExp.hpp \
 src/cpp/ast/run_MatrixExp.hpp \

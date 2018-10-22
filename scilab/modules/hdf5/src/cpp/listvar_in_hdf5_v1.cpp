@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <hdf5.h>
 extern "C"
@@ -53,7 +53,7 @@ static bool read_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
 static bool read_boolean_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
 static bool read_poly_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
 static bool read_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_delete_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
 static bool read_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
 
 static void generateInfo_v1(VarInfo_v1* _pInfo, const char* _pstType);
@@ -278,9 +278,9 @@ static bool read_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAdd
             bRet = read_boolean_sparse_v1(pvCtx, _iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
-        case sci_void:             //void item only on list variable
+        case sci_delete:             //void item only on list variable
         {
-            bRet = read_void_v1(pvCtx, _iDatasetId, _iItemPos, _piAddress, _pInfo);
+            bRet = read_delete_v1(pvCtx, _iDatasetId, _iItemPos, _piAddress, _pInfo);
             break;
         }
         case sci_undefined:        //undefined item only on list variable
@@ -558,7 +558,7 @@ static bool read_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemP
     return true;
 }
 
-static bool read_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_delete_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     _pInfo->iSize = 1;
     return true;

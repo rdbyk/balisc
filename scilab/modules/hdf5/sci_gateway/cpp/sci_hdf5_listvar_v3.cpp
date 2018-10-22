@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <vector>
 #include "function.hxx"
@@ -57,7 +57,7 @@ static bool read_sparse(int dataset, VarInfo6& info);
 static bool read_boolean_sparse(int dataset, VarInfo6& info);
 static bool read_poly(int dataset, VarInfo6& info);
 static bool read_list(int dataset, VarInfo6& info, std::string type);
-static bool read_void(int dataset, VarInfo6& info);
+static bool read_delete(int dataset, VarInfo6& info);
 static bool read_undefined(int dataset, VarInfo6& info);
 static bool read_struct(int dataset, VarInfo6& info);
 static bool read_cell(int dataset, VarInfo6& info);
@@ -280,9 +280,9 @@ static bool read_short_data(int dataset, VarInfo6& info)
     {
         info.type = sci_boolean_sparse;
     }
-    else if (type == g_SCILAB_CLASS_VOID)
+    else if (type == g_SCILAB_CLASS_DELETE)
     {
-        info.type = sci_void;
+        info.type = sci_delete;
     }
     else if (type == g_SCILAB_CLASS_UNDEFINED)
     {
@@ -387,10 +387,10 @@ static bool read_data(int dataset, VarInfo6& info)
         return read_boolean_sparse(dataset, info);
     }
 
-    if (type == g_SCILAB_CLASS_VOID)
+    if (type == g_SCILAB_CLASS_DELETE)
     {
-        info.type = sci_void;
-        return read_void(dataset, info);
+        info.type = sci_delete;
+        return read_delete(dataset, info);
     }
 
     if (type == g_SCILAB_CLASS_UNDEFINED)
@@ -662,7 +662,7 @@ static bool read_list(int dataset, VarInfo6& info, std::string type)
     return true;
 }
 
-static bool read_void(int dataset, VarInfo6& info)
+static bool read_delete(int dataset, VarInfo6& info)
 {
     info.size = 0;
     closeDataSet(dataset);

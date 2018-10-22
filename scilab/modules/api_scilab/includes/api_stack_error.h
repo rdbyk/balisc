@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*/
+ */
 
 #ifndef __STACK_ERROR_API__
 #define __STACK_ERROR_API__
@@ -170,7 +170,9 @@ extern "C" {
 #define API_ERROR_ITEM_LIST_NUMBER                          1511
 #define API_ERROR_NON_ORDERED_INSERTION                     1512
 #define API_ERROR_ALLOC_IN_LIST                             1513
-#define API_ERROR_CREATE_VOID_IN_LIST                       1514
+#define API_ERROR_CREATE_DELETE_IN_LIST                     1514
+#define API_ERROR_CREATE_UNDEFINED_IN_LIST                  1515
+
 /*double in list*/
 #define API_ERROR_GET_DOUBLE_IN_LIST                        1520
 #define API_ERROR_ALLOC_DOUBLE_IN_LIST                      1521
