@@ -831,6 +831,10 @@ static int export_cell(int parent, const std::string& name, Cell* data)
     {
         std::string refname(std::to_string(i));
         int ref = export_data(refs, refname, it[i]);
+        if (ref == -1)
+        {
+            return -1;
+        }
     }
 
 
