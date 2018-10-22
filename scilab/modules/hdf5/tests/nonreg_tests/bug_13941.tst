@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Vincent COUVERT
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -8,6 +9,7 @@
 // <-- Non-regression test for bug 13941 -->
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/13941

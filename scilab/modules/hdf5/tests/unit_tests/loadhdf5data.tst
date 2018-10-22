@@ -1,14 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Sylvestre LEDRU
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // Load previously saved data (check backward compatibility)
-
 
 ///// Empty matrix
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/emptymatrix.sod");
@@ -180,11 +181,3 @@ undefinedelement_ref=list(2,%i,"f",ones(3,3));
 undefinedelement_ref(6)="toto";
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/undefinedelement.sod");
 assert_checkequal(undefinedelement, undefinedelement_ref);
-
-
-// void
-voidelement_ref=list(1,,3);
-load(SCI+"/modules/hdf5/tests/sample_scilab_data/voidelement.sod");
-// Commented because of bug 9529
-//assert_checkequal(voidelement, voidelement_ref);
-
