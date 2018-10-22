@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - SCILAB ENTERPRISES - Simon GARESTE
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "h5read", 1, 6);
 assert_checkerror("h5read()",msgerr,77);

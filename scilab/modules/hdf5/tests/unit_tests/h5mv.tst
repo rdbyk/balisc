@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - SCILAB ENTERPRISES - Simon GARESTE
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "h5mv", 2, 4);
 assert_checkerror("h5mv()",msgerr,77);
@@ -64,8 +66,7 @@ assert_checkerror("h5mv(12.0,a)",msgerr);
 msgerr = msprintf(gettext("Undefined variable: %s\n"), "d");
 assert_checkerror("h5mv(a,d)",msgerr);
 
-msgerr = msprintf(gettext("%s: %s\n"), "h5mv", gettext("Cannot copy object."));
-msgerr($+1) = gettext("HDF5 description") + ": " + "no destination name specified.";
+msgerr = msprintf(gettext("%s: %s\n"), "h5mv", gettext("Invalid H5Object."));
 assert_checkerror("h5mv(a,c)",msgerr);
 
 msgerr = msprintf(gettext("%s: Invalid number of arguments: more than %d expected.\n"), "h5mv", 2);
@@ -81,5 +82,3 @@ a=h5open(TMPDIR+"/test.h5","a");
 msgerr = msprintf(gettext("%s: Error in retrieving field content:\n%s\n"), "%H5Object_e", msprintf(gettext("Invalid field: %s"), "Group_1"));
 assert_checkerror("h5ls(a.root.Group_1)",msgerr,999);
 assert_checkequal(h5ls(TMPDIR+"/test1.h5"),["BGrp" "group" ; "grp2" "group"]);
-
-
