@@ -821,6 +821,68 @@ int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_r
     return dset;
 }
 
+int writeDelete(int parent, const char* name)
+{
+    hsize_t piDims[1] = {1};
+    herr_t status = 0;
+    hid_t iSpace = 0;
+    hid_t iDataset = 0;
+    hid_t iCompress = 0;
+    hid_t dprop = 0;
+    char cData = 0;
+
+    //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+    iSpace = H5Screate_simple(1, piDims, NULL);
+    if (iSpace < 0)
+    {
+        return -1;
+    }
+    //Create the dataset and write the array data to it.
+    iCompress = enableCompression(9, 1, piDims);
+
+    dprop = H5Pcreate(H5P_DATASET_CREATE);
+    H5Pset_obj_track_times(dprop, 0);
+    iDataset = H5Dcreate(parent, name, H5T_NATIVE_INT8, iSpace, iCompress, dprop, H5P_DEFAULT);
+    if (iDataset < 0)
+    {
+        return -1;
+    }
+
+    status = H5Dwrite(iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, &cData);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    //Add attribute SCILAB_Class = double to dataset
+    status = addAttribute(iDataset, g_SCILAB_CLASS, g_SCILAB_CLASS_DELETE);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    //Close and release resources.
+    status = H5Dclose(iDataset);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    status = H5Pclose(dprop);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    status = H5Sclose(iSpace);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    return 0;
+}
+
 int writeUndefined6(int parent, const char* name)
 {
     hsize_t piDims[1] = {1};

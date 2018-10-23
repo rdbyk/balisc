@@ -1081,7 +1081,7 @@ int getScilabTypeFromDataSet(int _iDatasetId)
 
     if (pstScilabClass == NULL)
     {
-        return unknow_type;
+        return unknown_type;
     }
     /* HDF5 Float type + SCILAB_Class = double <=> double */
     if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_DOUBLE) == 0)
@@ -1131,6 +1131,10 @@ int getScilabTypeFromDataSet(int _iDatasetId)
     else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_UNDEFINED) == 0)
     {
         iVarType = sci_undefined;
+    }
+    else if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_INSERT) == 0)
+    {
+        iVarType = sci_insert;
     }
 
     FREE(pstScilabClass);
