@@ -42,6 +42,7 @@ static const char g_SCILAB_CLASS_TLIST[]        = "tlist";
 static const char g_SCILAB_CLASS_MLIST[]        = "mlist";
 static const char g_SCILAB_CLASS_DELETE[]       = "delete";
 static const char g_SCILAB_CLASS_UNDEFINED[]    = "undefined";
+static const char g_SCILAB_CLASS_INSERT[]       = "insert";
 static const char g_SCILAB_CLASS_STRUCT[]       = "struct";
 static const char g_SCILAB_CLASS_CELL[]         = "cell";
 static const char g_SCILAB_CLASS_HANDLE[]       = "handle";

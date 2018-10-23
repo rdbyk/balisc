@@ -25,6 +25,7 @@
 #include "int.hxx"
 #include "polynom.hxx"
 #include "sparse.hxx"
+#include "listinsert.hxx"
 #include "macrofile.hxx"
 #include "graphichandle.hxx"
 #include "user.hxx"
@@ -63,6 +64,7 @@ using types::Int32;
 using types::Int64;
 using types::InternalType;
 using types::List;
+using types::ListInsert;
 using types::Macro;
 using types::MacroFile;
 using types::Polynom;
@@ -99,7 +101,9 @@ static int export_usertype(int parent, const std::string& name, UserType* data);
 
 static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data);
 static int export_handles(int parent, const std::string& name, GraphicHandle* data);
+static int export_delete(int parent, const std::string& name);
 static int export_undefined(int parent, const std::string& name);
+static int export_insert(int parent, const std::string& name, ListInsert* data);
 
 static const char fname[] = "save";
 
@@ -396,8 +400,14 @@ int export_data(int parent, const std::string& name, InternalType* data)
         case InternalType::ScilabCell:
             dataset = export_cell(parent, name, data->getAs<Cell>());
             break;
+        case InternalType::ScilabListDeleteOperation:
+            dataset = export_delete(parent, name);
+            break;
         case InternalType::ScilabListUndefinedOperation:
             dataset = export_undefined(parent, name);
+            break;
+        case InternalType::ScilabListInsertOperation:
+            dataset = export_insert(parent, name, data->getAs<ListInsert>());
             break;
         case InternalType::ScilabMacro:
             dataset = export_macro(parent, name, data->getAs<Macro>());
@@ -598,9 +608,32 @@ static int export_struct(int parent, const std::string& name, Struct* data, cons
     return dset;
 }
 
+static int export_delete(int parent, const std::string& name)
+{
+    return writeDelete(parent, name.data());
+}
+
 static int export_undefined(int parent, const std::string& name)
 {
     return writeUndefined6(parent, name.data());
+}
+
+static int export_insert(int parent, const std::string& name, ListInsert* data)
+{
+    int dset = openList6(parent, name.data(), g_SCILAB_CLASS_INSERT);
+
+    if (export_data(dset, std::to_string(0).data(), data->getInsert()) == -1)
+    {
+        closeList6(dset);
+        return -1;
+    }
+
+    if (closeList6(dset) == -1)
+    {
+        return -1;
+    }
+
+    return dset;
 }
 
 static int export_poly(int parent, const std::string& name, Polynom* data)

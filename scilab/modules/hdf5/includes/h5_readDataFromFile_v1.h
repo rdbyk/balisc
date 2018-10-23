@@ -18,7 +18,7 @@
 
 #include <hdf5.h>
 
-#define unknow_type     -2
+#define unknown_type    -2
 #define sci_undefined   -1
 #define sci_delete       0
 

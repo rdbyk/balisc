@@ -33,6 +33,7 @@
 #include "macro.hxx"
 #include "listdelete.hxx"
 #include "listundefined.hxx"
+#include "listinsert.hxx"
 #include "context.hxx"
 #include "handle_properties.hxx"
 #include "deserializervisitor.hxx"
@@ -71,6 +72,7 @@ static types::InternalType* import_handles(int dataset);
 static types::InternalType* import_sparse(int dataset);
 static types::InternalType* import_boolean_sparse(int dataset);
 static types::InternalType* import_macro(int dataset);
+static types::InternalType* import_insert(int dataset);
 static types::InternalType* import_usertype(int dataset);
 
 
@@ -285,6 +287,11 @@ types::InternalType* import_data(int dataset)
     {
         closeDataSet(dataset);
         return new types::ListUndefined();
+    }
+
+    if (type == g_SCILAB_CLASS_INSERT)
+    {
+        return import_insert(dataset);
     }
 
     if (type == g_SCILAB_CLASS_USERTYPE)
@@ -1119,6 +1126,35 @@ static types::InternalType* import_macro(int dataset)
     delete body;
     closeList6(dataset);
     return macro;
+}
+
+static types::InternalType* import_insert(int dataset)
+{
+    int count = 0;
+    int ret  = getListDims6(dataset, &count);
+    if (ret || count != 1)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
+
+    // get insertion value
+    int data = getDataSetIdFromName(dataset, std::to_string(0).data());
+    if (data <= 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
+
+    types::InternalType* insert = import_data(data);
+    if (insert == nullptr)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
+
+    closeList6(dataset);
+    return new types::ListInsert(insert);
 }
 
 static types::InternalType* import_usertype(int dataset)

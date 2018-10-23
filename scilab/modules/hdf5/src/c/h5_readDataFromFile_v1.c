@@ -1157,7 +1157,7 @@ int getScilabTypeFromDataSet_v1(int _iDatasetId)
 
     if (pstScilabClass == NULL)
     {
-        return unknow_type;
+        return unknown_type;
     }
     /* HDF5 Float type + SCILAB_Class = double <=> double */
     if (balisc_strcmp(pstScilabClass, g_SCILAB_CLASS_DOUBLE) == 0)
