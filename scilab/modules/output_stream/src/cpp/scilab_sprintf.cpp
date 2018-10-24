@@ -705,9 +705,9 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     }
 
     // write last line
-    if(oFirstOutput.str().length())
+    if(oFirstOutput.str().length() || outputIter == 0)
     {
-        pwstOutput[outputIter++] = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
+        pwstOutput[outputIter] = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
     }
 
     for (auto & tok : token)
