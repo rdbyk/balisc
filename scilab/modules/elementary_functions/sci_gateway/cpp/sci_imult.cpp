@@ -98,7 +98,6 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
     {
         types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
         types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
-        pPolyOut->setComplex(true);
 
         double* dataImg  = NULL;
         double* dataReal = NULL;
@@ -112,7 +111,7 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
             {
                 for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = pPolyIn->get(i)->getImg()[j] * -1;
+                    dataReal[j] = - pPolyIn->get(i)->getImg()[j];
                     dataImg[j]  = pPolyIn->get(i)->get()[j];
                 }
             }
@@ -127,7 +126,6 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
 
             pPolyOut->set(i, pSP);
             delete pSP;
-            pSP = NULL;
         }
 
         out.push_back(pPolyOut);
