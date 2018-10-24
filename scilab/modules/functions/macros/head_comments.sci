@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function head_comments(name, %paths)
+function head_comments(name)
     // Displays the first comments of a function
 
     if nargin < 1 then
