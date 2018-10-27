@@ -359,16 +359,6 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             ast::exps_t exps = e.getArgs();
             types::typed_list *pArgs = GetArgumentList(exps);
 
-            if (pArgs->size() == 0)
-            {
-                // Case a{}
-                delete pArgs;
-                std::wostringstream os;
-                os << _W("Cell : Cannot extract without arguments.\n");
-                CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalError(os.str(), 999, e.getFirstLocation());
-            }
-
             types::List* pList = pIT->getAs<types::Cell>()->extractCell(pArgs);
 
             if (pList == NULL)

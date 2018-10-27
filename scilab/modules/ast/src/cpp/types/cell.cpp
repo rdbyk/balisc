@@ -437,21 +437,41 @@ bool Cell::operator!=(const InternalType& it)
 
 List* Cell::extractCell(typed_list* _pArgs)
 {
-    InternalType* pIT = extract(_pArgs);
-    if (pIT == NULL || pIT->isCell() == false)
+    // FIXME: extract(_pArgs) crashes for _pArgs->size() == 0,
+    // thus this is only a workaround ... and actually ArrayOf:extract
+    // should be fixed ...
+    if (_pArgs->size() == 0)
     {
-        return NULL;
+        List* pList = new List();
+
+        for (int i = 0 ; i < getSize() ; i++)
+        {
+            pList->append(get(i));
+        }
+
+        return pList;
     }
-
-    List* pList = new List();
-
-    Cell* pCell = pIT->getAs<Cell>();
-    for (int i = 0 ; i < pCell->getSize() ; i++)
+    else
     {
-        pList->append(pCell->get(i));
+        InternalType* pIT = extract(_pArgs);
+
+        if (pIT == NULL || pIT->isCell() == false)
+        {
+            return NULL;
+        }
+
+        List* pList = new List();
+
+        Cell* pCell = pIT->getAs<Cell>();
+
+        for (int i = 0 ; i < pCell->getSize() ; i++)
+        {
+            pList->append(pCell->get(i));
+        }
+        pCell->killMe();
+
+        return pList;
     }
-    pCell->killMe();
-    return pList;
 }
 
 Cell* Cell::insertCell(typed_list* _pArgs, InternalType* _pSource)
