@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDRU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,7 +34,7 @@ void pcre_error(char const * fname, int errorCode)
             Scierror(999, _("%s: No more memory.\n"), fname);
             break;
         case DELIMITER_NOT_ALPHANUMERIC:
-            Scierror(999, _("%s: Delimiter must not be alphameric.\n"), fname);
+            Scierror(999, _("%s: Delimiter must not be alphanumeric.\n"), fname);
             break;
         case CAPTURING_SUBPATTERNS_ERROR:
             Scierror(999, _("%s: Capturing subpatterns error.\n"), fname);
