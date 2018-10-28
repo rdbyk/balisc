@@ -1119,7 +1119,7 @@ LBRACK matrixOrCellLines RBRACK                                 {$$ = new ast::M
 ;
 
 /*
-** -*- MATRIX ORC ELL LINES -*-
+** -*- MATRIX OR CELL LINES -*-
 */
 /* Matrix or Cell Lines : matrixOrCellLine (matrixOrCellline)* */
 matrixOrCellLines :
@@ -1136,8 +1136,7 @@ matrixOrCellLines matrixOrCellLine  {$1->push_back($2);$$ = $1;print_rules("matr
 matrixOrCellLineBreak :
 SEMI                            { /* !! Do Nothing !! */ print_rules("matrixOrCellLineBreak", "SEMI");}
 | EOL                           { /* !! Do Nothing !! */ print_rules("matrixOrCellLineBreak", "EOL");}
-| matrixOrCellLineBreak EOL     { /* !! Do Nothing !! */ print_rules("matrixOrCellLineBreak", "matrixOrCellLineBreak EOL");}
-| matrixOrCellLineBreak SEMI    { /* !! Do Nothing !! */ print_rules("matrixOrCellLineBreak", "matrixOrCellLineBreak SEMI");}
+| SEMI EOL                      { /* !! Do Nothing !! */ print_rules("matrixOrCellLineBreak", "SEMI EOL");}
 ;
 
 /*
@@ -1146,7 +1145,6 @@ SEMI                            { /* !! Do Nothing !! */ print_rules("matrixOrCe
 /* Some matrix/cell columns with a special matrix/cell line break at the end */
 matrixOrCellLine :
 matrixOrCellColumns matrixOrCellLineBreak                               { $$ = new ast::MatrixLineExp(@$, *$1); print_rules("matrixOrCellLine", "matrixOrCellColumns matrixOrCellLineBreak ");}
-| matrixOrCellColumns matrixOrCellColumnsBreak matrixOrCellLineBreak    { $$ = new ast::MatrixLineExp(@$, *$1); print_rules("matrixOrCellLine", "matrixOrCellColumns matrixOrCellColumnsBreak matrixOrCellLineBreak");}
 ;
 
 /*
@@ -1170,8 +1168,8 @@ matrixOrCellColumns matrixOrCellColumnsBreak variable       %prec HIGHLEVEL {$1-
 */
 /* How to tell the column is now ended. */
 matrixOrCellColumnsBreak :
-matrixOrCellColumnsBreak COMMA  { /* !! Do Nothing !! */ print_rules("matrixOrCellColumnsBreak", "matrixOrCellColumnsBreak COMMA");}
-| COMMA                         { /* !! Do Nothing !! */ print_rules("matrixOrCellColumnsBreak", "COMMA");}
+COMMA                         { /* !! Do Nothing !! */ print_rules("matrixOrCellColumnsBreak", "COMMA");}
+| COMMA EOL                   { /* !! Do Nothing !! */ print_rules("matrixOrCellColumnsBreak", "COMMA EOL");}
 ;
 
 /*
