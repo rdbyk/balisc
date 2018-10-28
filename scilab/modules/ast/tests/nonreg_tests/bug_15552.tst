@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Stéphane Mottelet
+// Copyright (C) 2018 - Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -24,5 +25,5 @@ a = [
 
 a = [
   1 // line #1
-  2, // line #2
+  2 // line #2
   ]

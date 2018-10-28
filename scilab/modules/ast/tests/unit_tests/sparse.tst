@@ -2,8 +2,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,6 +14,7 @@
 //
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // sparse function
 
@@ -121,7 +122,7 @@ assert_checkequal(full(sparse([1 1;3 1],[1 5])), v);
 v= zeros(300,1);v(300)=5;v(1)=1;
 assert_checkequal(full(sparse([1 1;300 1],[1 5])), v);
 sp=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[6 6]);
-a=[0,0,3,0,2,1;;5,0,0,4,0,0;0,0,0,0,0,0;0,0,7,6,0,0;8,0,0,0,0,0;0,0,0,0,0,9];
+a=[0,0,3,0,2,1;5,0,0,4,0,0;0,0,0,0,0,0;0,0,7,6,0,0;8,0,0,0,0,0;0,0,0,0,0,9];
 assert_checkequal(full(sp), a);
 sp=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[8 6]);a(8,6)=0;
 assert_checkequal(full(sp), a);
