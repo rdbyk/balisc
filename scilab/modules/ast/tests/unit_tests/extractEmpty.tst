@@ -7,6 +7,7 @@
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 a = [];
 assert_checkequal(a(5), a);
@@ -39,7 +40,7 @@ a = ones(5,5);
 assert_checkequal(a(), a);
 
 a = {1,2;3,4};
-assert_checkequal("a{}", list(1,3,2,4));
+assert_checkequal(a{}, list(1,3,2,4));
 
 a = struct();
 assert_checkequal(a(), a);
