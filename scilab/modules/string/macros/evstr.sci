@@ -53,7 +53,7 @@ function [%val, %ierr] = evstr(%str)
         //
         %t1 = strcat(%str, ",", "c")+";"
         %t1(1) = "%val=[" + %t1(1);
-        %t1($) = part(%t1($), 1:length(%t1($)) - 1)+";";
+        %t1($) = part(%t1($), 1:length(%t1($)) - 1);
         %t1($+1)="]";
         %ierr = execstr(%t1, "errcatch");
         if nargout == 1 & %ierr~=0 then

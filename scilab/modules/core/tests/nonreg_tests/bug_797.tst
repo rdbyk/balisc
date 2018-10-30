@@ -2,6 +2,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -43,6 +44,6 @@ diary(0);
 DIAFILECONTENTS=mgetl(TMPDIR+"/bug797.dia");
 
 REFFILECONTENTS=[" ";
-	"    0.001  ";]
+	"    0.001  "]
 
 if or(DIAFILECONTENTS<>REFFILECONTENTS) then pause,end

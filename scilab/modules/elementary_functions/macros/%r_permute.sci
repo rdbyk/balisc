@@ -25,7 +25,7 @@ function y = %r_permute(x, dims)
     // CHECKING ARGUMENTS
     // ------------------
     if argn(2) <> 2 then
-        msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg, "permute", 2));
     end
 

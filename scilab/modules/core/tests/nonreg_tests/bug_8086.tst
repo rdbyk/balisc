@@ -65,7 +65,7 @@ macros_error_type_1 = ["isscalar"; ..
 "sqrtm"; ..
 "squarewave"; ..
 "sub2ind"; ..
-"tand"; ..
+"tand" ..
 ];
 msg_error_ref_1 = _("%s: Wrong number of input arguments: %d expected.\n");
 for i=1:size(macros_error_type_1, "*")
@@ -81,7 +81,7 @@ macros_error_type_2 = ["base2dec"; ..
 "permute"; ..
 "pmodulo"; ..
 "setdiff"; ..
-"union"; ..
+"union" ..
 ];
 msg_error_ref_2 = _("%s: Wrong number of input arguments: %d expected.\n");
 for i=1:size(macros_error_type_2, "*")
