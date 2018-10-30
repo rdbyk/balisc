@@ -105,7 +105,7 @@ function txt=call_block42(bk,pt,flag)
 
     //** add comment
     txt=[txt;
-    get_comment("call_blk",list(funs(bk),funtyp(bk),bk,labels(bk)));]
+    get_comment("call_blk",list(funs(bk),funtyp(bk),bk,labels(bk)))]
 
     //** set nevprt and flag for called block
     txt=[txt;
@@ -390,7 +390,7 @@ function txt=call_block4(bk)
     end
 
     //** add comment
-    txt=[get_comment("call_blk",list(funs(bk),funtyp(bk),bk,labels(bk)));]
+    txt=[get_comment("call_blk",list(funs(bk),funtyp(bk),bk,labels(bk)))]
 
     //** write nevprt activation
     //   nclock=abs(pt);
@@ -1838,7 +1838,7 @@ function [txt]=BlockProto(bk)
     end
 
     //** add comment
-    txt=[get_comment("proto_blk",list(funs(bk),funtyp(bk),bk,labels(bk)));]
+    txt=[get_comment("proto_blk",list(funs(bk),funtyp(bk),bk,labels(bk)))]
 
     select ftyp
         //** zero funtyp
@@ -1865,7 +1865,7 @@ function [txt]=BlockProto(bk)
 
         //*********** prototype definition ***********//
         txtp=["(int *, int *, double *, double *, double *, int *, double *, \";
-        " int *, double *, int *, double *, int *,int *, int *";]
+        " int *, double *, int *, double *, int *,int *, int *"]
         if (funtyp(bk)>2000 & funtyp(bk)<3000)
             blank = get_blank("void "+funs(bk)+"(");
             txtp(1) = "void "+funs(bk)+txtp(1);
@@ -2376,7 +2376,7 @@ function make_computational42(filename)
 
         //** add comment
         mputl([""
-        "      "+get_comment("set_blk",list(funs(kf),funtyp(kf),kf,labels(kf)));], fd);
+        "      "+get_comment("set_blk",list(funs(kf),funtyp(kf),kf,labels(kf)))], fd);
 
         for k=1:nin
             lprt=inplnk(inpptr(kf)-1+k);
@@ -2401,7 +2401,7 @@ function make_computational42(filename)
             mputl(["      block_"+rdnom+"["+string(kf-1)+"].g         = &(g["+...
             string(zcptr(kf)-1)+"]);"], fd);
         else
-            mputl(["      block_"+rdnom+"["+string(kf-1)+"].g         = &(zero);";], fd);
+            mputl(["      block_"+rdnom+"["+string(kf-1)+"].g         = &(zero);"], fd);
         end
         if nmode <> 0 then
             mputl(["      block_"+rdnom+"["+string(kf-1)+"].mode      = &(mode["+...
@@ -2516,8 +2516,8 @@ function make_computational42(filename)
                 ];
                 txt3=[txt3;
                 Indent2+"  case "+string(0)+" : "+...
-                get_comment("ev",list(0))
-                "    "+txt;
+                get_comment("ev",list(0));
+                "    "+txt
                 ];
                 txt3=[txt3;"      break;";""]
             end
@@ -2622,7 +2622,7 @@ function make_computational42(filename)
 
         //** add comment
         mputl([""
-        "    "+get_comment("set_blk",list(funs(kf),funtyp(kf),kf,labels(kf)));], fd);
+        "    "+get_comment("set_blk",list(funs(kf),funtyp(kf),kf,labels(kf)))], fd);
 
         mputl(["    block_"+rdnom+"["+string(kf-1)+"].type   = "+...
         string(funtyp(kf))+";";
@@ -2646,7 +2646,7 @@ function make_computational42(filename)
             mputl(["    block_"+rdnom+"["+string(kf-1)+"].g      = &(g["+...
             string(zcptr(kf)-1)+"]);"], fd);
         else
-            mputl(["    block_"+rdnom+"["+string(kf-1)+"].g      = &(zero);";], fd);
+            mputl(["    block_"+rdnom+"["+string(kf-1)+"].g      = &(zero);"], fd);
         end
         if nmode <> 0 then
             mputl(["    block_"+rdnom+"["+string(kf-1)+"].mode   = &(mode["+...
@@ -2757,7 +2757,7 @@ function make_computational42(filename)
             "    if ((block_"+rdnom+"["+string(kf-1)+"].ozsz  = "+...
             "malloc(2*sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].noz))== NULL) return 0;";
             "    if ((block_"+rdnom+"["+string(kf-1)+"].oztyp = "+...
-            "malloc(sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].noz))== NULL) return 0;";], fd);
+            "malloc(sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].noz))== NULL) return 0;"], fd);
 
             //** ozptr **//
             for k=1:noz
@@ -2804,7 +2804,7 @@ function make_computational42(filename)
                 "    if ((block_"+rdnom+"["+string(kf-1)+"].oparsz  = "+...
                 "malloc(2*sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].nopar))== NULL) return 0;";
                 "    if ((block_"+rdnom+"["+string(kf-1)+"].opartyp = "+...
-                "malloc(sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].nopar))== NULL) return 0;";
+                "malloc(sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].nopar))== NULL) return 0;"
                 ], fd);
                 nopar = opptr(kf+1)-opptr(kf);
                 //** oparptr **//
@@ -2897,7 +2897,7 @@ function make_computational42(filename)
 
         //** add comment
         txt=mputl([""
-        "    "+get_comment("set_blk",list(funs(kf),funtyp(kf),kf,labels(kf)));], fd);
+        "    "+get_comment("set_blk",list(funs(kf),funtyp(kf),kf,labels(kf)))], fd);
 
         for k=1:nin
             lprt=inplnk(inpptr(kf)-1+k);
@@ -3617,7 +3617,7 @@ function make_standalone42(filename)
                     "     Gui name of block: "+strcat(string(OO.gui));
                     //'/* Name block: '+strcat(string(cpr.sim.funs(i)));
                     //'Object number in diagram: '+strcat(string(cpr.corinv(i)));
-                    "     Compiled structure index: "+strcat(string(i));], fd);
+                    "     Compiled structure index: "+strcat(string(i))], fd);
                     if stripblanks(OO.model.label)~=emptystr() then
                         mputl([cformatline("     Label: "+strcat(string(OO.model.label)),70)], fd);
                     end
@@ -3716,7 +3716,7 @@ function make_standalone42(filename)
 
         //** add comment
         mputl([""
-        "  "+get_comment("set_blk",list(funs(kf),funtyp(kf),kf,labels(kf)));], fd);
+        "  "+get_comment("set_blk",list(funs(kf),funtyp(kf),kf,labels(kf)))], fd);
 
         mputl(["  block_"+rdnom+"["+string(kf-1)+"].type   = "+string(funtyp(kf))+";";
         "  block_"+rdnom+"["+string(kf-1)+"].ztyp   = "+string(ztyp(kf))+";";
@@ -3729,7 +3729,7 @@ function make_standalone42(filename)
         "  block_"+rdnom+"["+string(kf-1)+"].nin    = "+string(inpptr(kf+1)-inpptr(kf))+";";
         "  block_"+rdnom+"["+string(kf-1)+"].nout   = "+string(outptr(kf+1)-outptr(kf))+";";
         "  block_"+rdnom+"["+string(kf-1)+"].nevout = "+string(clkptr(kf+1)-clkptr(kf))+";";
-        "  block_"+rdnom+"["+string(kf-1)+"].nmode  = "+string(modptr(kf+1)-modptr(kf))+";";], fd);
+        "  block_"+rdnom+"["+string(kf-1)+"].nmode  = "+string(modptr(kf+1)-modptr(kf))+";"], fd);
 
         if nx <> 0 then
             mputl(["  block_"+rdnom+"["+string(kf-1)+"].nx = "+string(nx)+";";
@@ -3835,7 +3835,7 @@ function make_standalone42(filename)
                 "  if ((block_"+rdnom+"["+string(kf-1)+"].oparsz  = "+...
                 "malloc(2*sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].nopar))== NULL ) return 0;";
                 "  if ((block_"+rdnom+"["+string(kf-1)+"].opartyp = "+...
-                "malloc(sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].nopar))== NULL ) return 0;";
+                "malloc(sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].nopar))== NULL ) return 0;"
                 ], fd);
                 nopar = opptr(kf+1)-opptr(kf);
                 //** oparptr **//
@@ -3867,7 +3867,7 @@ function make_standalone42(filename)
                 "  if ((block_"+rdnom+"["+string(kf-1)+"].ozsz  = "+...
                 "malloc(2*sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].noz))== NULL) return 0;";
                 "  if ((block_"+rdnom+"["+string(kf-1)+"].oztyp = "+...
-                "malloc(sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].noz))== NULL) return 0;";], fd);
+                "malloc(sizeof(int)*block_"+rdnom+"["+string(kf-1)+"].noz))== NULL) return 0;"], fd);
                 //** ozptr **//
                 for k=1:noz
                     mputl(["  block_"+rdnom+"["+string(kf-1)+"].ozptr["+string(k-1)+...
@@ -3963,9 +3963,9 @@ function make_standalone42(filename)
             txt = write_code_cdoit(flag);
 
             if txt <> [] then
-                txt3=[""
-                "    "+get_comment("ev",list(0))
-                txt;
+                txt3=["";
+                "    "+get_comment("ev",list(0));
+                txt
                 ];
             end
         end
@@ -5072,7 +5072,7 @@ function [txt]=write_code_cdoit(flag)
             elsetxt=write_code_doit(clkptr(bk)+1,flag);
             if thentxt<>[] | elsetxt<>[] then
                 txt=[txt;
-                "    "+get_comment("ifthenelse_blk",list(bk));]
+                "    "+get_comment("ifthenelse_blk",list(bk))]
                 //** C **//
                 tmp_="*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5084,7 +5084,7 @@ function [txt]=write_code_cdoit(flag)
                     //** C **//
                     txt=[txt;
                     "    }";
-                    "    else {";]
+                    "    else {"]
                     //*******//
                     txt=[txt;
                     Indent+elsetxt];
@@ -5107,7 +5107,7 @@ function [txt]=write_code_cdoit(flag)
             end
             if II<>[] then
                 txt=[txt;
-                "    "+get_comment("evtselect_blk",list(bk));]
+                "    "+get_comment("evtselect_blk",list(bk))]
                 //** C **//
                 tmp_="*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5119,10 +5119,10 @@ function [txt]=write_code_cdoit(flag)
                 for i=II
                     //** C **//
                     txt=[txt;
-                    "     case "+string(i)+" :";]
+                    "     case "+string(i)+" :"]
                     //*******//
                     txt=[txt;
-                    BigIndent+write_code_doit(clkptr(bk)+i-1,flag);]
+                    BigIndent+write_code_doit(clkptr(bk)+i-1,flag)]
                     //** C **//
                     txt=[txt;
                     BigIndent+"break;"]
@@ -5184,7 +5184,7 @@ function [txt]=write_code_doit(ev,flag)
             elsetxt=write_code_doit(clkptr(bk)+1,flag);
             if thentxt<>[] | elsetxt<>[] then
                 txt=[txt;
-                "    "+get_comment("ifthenelse_blk",list(bk));]
+                "    "+get_comment("ifthenelse_blk",list(bk))]
                 //** C **//
                 tmp_ = "*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5196,7 +5196,7 @@ function [txt]=write_code_doit(ev,flag)
                     //** C **//
                     txt=[txt;
                     "    }";
-                    "    else {";]
+                    "    else {"]
                     //*******//
                     txt=[txt;
                     Indent+elsetxt];
@@ -5219,7 +5219,7 @@ function [txt]=write_code_doit(ev,flag)
             end
             if II<>[] then
                 txt=[txt;
-                "    "+get_comment("evtselect_blk",list(bk));]
+                "    "+get_comment("evtselect_blk",list(bk))]
                 tmp_="*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 //** C **//
                 txt=[txt;
@@ -5231,10 +5231,10 @@ function [txt]=write_code_doit(ev,flag)
                 for i=II
                     //** C **//
                     txt=[txt;
-                    "     case "+string(i)+" :";]
+                    "     case "+string(i)+" :"]
                     //*******//
                     txt=[txt;
-                    BigIndent+write_code_doit(clkptr(bk)+i-1,flag);]
+                    BigIndent+write_code_doit(clkptr(bk)+i-1,flag)]
                     //** C **//
                     txt=[txt;
                     BigIndent+"break;"]
@@ -5295,7 +5295,7 @@ function [txt]=write_code_idoit()
             elsetxt=write_code_doit(clkptr(bk)+1,1);
             if thentxt<>[] | elsetxt<>[] then
                 txt=[txt;
-                "    "+get_comment("ifthenelse_blk",list(bk));]
+                "    "+get_comment("ifthenelse_blk",list(bk))]
                 //** C **//
                 tmp_ = "*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5307,7 +5307,7 @@ function [txt]=write_code_idoit()
                     //** C **//
                     txt=[txt;
                     "    }";
-                    "    else {";]
+                    "    else {"]
                     //*******//
                     txt=[txt;
                     Indent+elsetxt];
@@ -5330,7 +5330,7 @@ function [txt]=write_code_idoit()
             end
             if II<>[] then
                 txt=[txt;
-                "    "+get_comment("evtselect_blk",list(bk));]
+                "    "+get_comment("evtselect_blk",list(bk))]
                 //** C **//
                 tmp_="*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5343,10 +5343,10 @@ function [txt]=write_code_idoit()
                 for i=II
                     //** C **//
                     txt=[txt;
-                    "     case "+string(i)+" :";]
+                    "     case "+string(i)+" :"]
                     //*******//
                     txt=[txt;
-                    BigIndent+write_code_doit(clkptr(bk)+i-1,1);]
+                    BigIndent+write_code_doit(clkptr(bk)+i-1,1)]
                     //** C **//
                     txt=[txt;
                     BigIndent+"break;"]
@@ -5396,7 +5396,7 @@ function [txt]=write_code_odoit(flag)
             elsetxt=write_code_ozdoit(clkptr(bk)+1,flag);
             if thentxt<>[] | elsetxt<>[] then
                 txt=[txt;
-                "    "+get_comment("ifthenelse_blk",list(bk));]
+                "    "+get_comment("ifthenelse_blk",list(bk))]
                 //** C **//
                 tmp_="*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5419,7 +5419,7 @@ function [txt]=write_code_odoit(flag)
                     " && "+tmp_+"<=0)"+...
                     " || \"
                     "              (block_"+rdnom+"["+string(bk-1)+"].nmode>0"+...
-                    " && block_"+rdnom+"["+string(bk-1)+"].mode[0]==2)) {";]
+                    " && block_"+rdnom+"["+string(bk-1)+"].mode[0]==2)) {"]
                     //*******//
                     txt=[txt;
                     Indent+elsetxt]
@@ -5442,7 +5442,7 @@ function [txt]=write_code_odoit(flag)
             end
             if II<>[] then
                 txt=[txt;
-                "    "+get_comment("evtselect_blk",list(bk));]
+                "    "+get_comment("evtselect_blk",list(bk))]
                 //** C **//
                 tmp_="*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5460,10 +5460,10 @@ function [txt]=write_code_odoit(flag)
                 for i=II
                     //** C **//
                     txt=[txt;
-                    "     case "+string(i)+" :";]
+                    "     case "+string(i)+" :"]
                     //*******//
                     txt=[txt;
-                    BigIndent+write_code_ozdoit(clkptr(bk)+i-1,flag);]
+                    BigIndent+write_code_ozdoit(clkptr(bk)+i-1,flag)]
                     //** C **//
                     txt=[txt;
                     BigIndent+"break;"]
@@ -5521,7 +5521,7 @@ function [txt]=write_code_ozdoit(ev,flag)
             elsetxt=write_code_ozdoit(clkptr(bk)+1,flag);
             if thentxt<>[] | elsetxt<>[] then
                 txt=[txt;
-                "    "+get_comment("ifthenelse_blk",list(bk));]
+                "    "+get_comment("ifthenelse_blk",list(bk))]
                 //** C **//
                 tmp_ = "*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5548,7 +5548,7 @@ function [txt]=write_code_ozdoit(ev,flag)
                     " || \"
                     "               ((phase!=1"+...
                     " && block_"+rdnom+"["+string(bk-1)+"].nmode!=0)"+...
-                    " && block_"+rdnom+"["+string(bk-1)+"].mode[0]==2)) {";]
+                    " && block_"+rdnom+"["+string(bk-1)+"].mode[0]==2)) {"]
                     //*******//
                     txt=[txt;
                     Indent+elsetxt]
@@ -5571,7 +5571,7 @@ function [txt]=write_code_ozdoit(ev,flag)
             end
             if II<>[] then
                 txt=[txt;
-                "    "+get_comment("evtselect_blk",list(bk));]
+                "    "+get_comment("evtselect_blk",list(bk))]
                 //** C **//
                 tmp_="*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5589,10 +5589,10 @@ function [txt]=write_code_ozdoit(ev,flag)
                 for i=II
                     //** C **//
                     txt=[txt;
-                    "     case "+string(i)+" :";]
+                    "     case "+string(i)+" :"]
                     //*******//
                     txt=[txt;
-                    BigIndent+write_code_ozdoit(clkptr(bk)+i-1,flag);]
+                    BigIndent+write_code_ozdoit(clkptr(bk)+i-1,flag)]
                     //** C **//
                     txt=[txt;
                     BigIndent+"break;"]
@@ -5652,7 +5652,7 @@ function [txt]=write_code_zdoit()
             elsetxt=write_code_ozdoit(clkptr(bk)+1,1);
             if thentxt<>[] | elsetxt<>[] then
                 txt=[txt;
-                "    "+get_comment("ifthenelse_blk",list(bk));]
+                "    "+get_comment("ifthenelse_blk",list(bk))]
                 //** C **//
                 tmp_ = "*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5679,7 +5679,7 @@ function [txt]=write_code_zdoit()
                     " || \"
                     "               ((phase!=1"+...
                     " && block_"+rdnom+"["+string(bk-1)+"].nmode!=0)"+...
-                    " && block_"+rdnom+"["+string(bk-1)+"].mode[0]==2)) {";]
+                    " && block_"+rdnom+"["+string(bk-1)+"].mode[0]==2)) {"]
                     //*******//
                     txt=[txt;
                     Indent+elsetxt]
@@ -5702,7 +5702,7 @@ function [txt]=write_code_zdoit()
             end
             if II<>[] then
                 txt=[txt;
-                "    "+get_comment("evtselect_blk",list(bk));]
+                "    "+get_comment("evtselect_blk",list(bk))]
                 //** C **//
                 tmp_="*(("+TYPE+" *)"+rdnom+"_block_outtbptr["+string(ix)+"])"
                 txt=[txt;
@@ -5719,10 +5719,10 @@ function [txt]=write_code_zdoit()
                 for i=II
                     //** C **//
                     txt=[txt;
-                    "       case "+string(i)+" :";]
+                    "       case "+string(i)+" :"]
                     //*******//
                     txt=[txt;
-                    BigIndent+write_code_ozdoit(clkptr(bk)+i-1,1);]
+                    BigIndent+write_code_ozdoit(clkptr(bk)+i-1,1)]
                     //** C **//
                     txt=[txt;
                     BigIndent+"break;"]
@@ -5770,7 +5770,7 @@ function [txt]=write_code_zdoit()
             thentxt=write_code_zzdoit(clkptr(bk),9);
             elsetxt=write_code_zzdoit(clkptr(bk)+1,9);
             txt=[txt;
-            "    "+get_comment("ifthenelse_blk",list(bk));]
+            "    "+get_comment("ifthenelse_blk",list(bk))]
             //** C **//
             txt=[txt;
             "    g["+string(zcptr(bk)-1)+"]=(double)"+tmp_+";"]
@@ -5825,7 +5825,7 @@ function [txt]=write_code_zdoit()
                 if switchtxt(i)<>[] then II=[II i];end
             end
             txt=[txt;
-            "    "+get_comment("evtselect_blk",list(bk));]
+            "    "+get_comment("evtselect_blk",list(bk))]
             if II<>[] then
                 //** C **//
                 txt=[txt;
@@ -5838,10 +5838,10 @@ function [txt]=write_code_zdoit()
                 for i=II
                     //** C **//
                     txt=[txt;
-                    "     case "+string(j)+" :";]
+                    "     case "+string(j)+" :"]
                     //*******//
                     txt=[txt;
-                    BigIndent+write_code_zzdoit(clkptr(bk)+i-1,9);]
+                    BigIndent+write_code_zzdoit(clkptr(bk)+i-1,9)]
                     //** C **//
                     txt=[txt;
                     BigIndent+"break;"]
@@ -5912,7 +5912,7 @@ function [txt]=write_code_zzdoit(ev,flag)
             thentxt=write_code_zzdoit(clkptr(bk),9);
             elsetxt=write_code_zzdoit(clkptr(bk)+1,9);
             txt=[txt;
-            "    "+get_comment("ifthenelse_blk",list(bk));]
+            "    "+get_comment("ifthenelse_blk",list(bk))]
             //** C **//
             txt=[txt;
             "    g["+string(zcptr(bk)-1)+"]=(double)"+tmp_+";"]
@@ -5968,7 +5968,7 @@ function [txt]=write_code_zzdoit(ev,flag)
                 if switchtxt(i)<>[] then II=[II i];end
             end
             txt=[txt;
-            "    "+get_comment("evtselect_blk",list(bk));]
+            "    "+get_comment("evtselect_blk",list(bk))]
             if II<>[] then
                 //** C **//
                 txt=[txt;
@@ -5981,10 +5981,10 @@ function [txt]=write_code_zzdoit(ev,flag)
                 for i=II
                     //** C **//
                     txt=[txt;
-                    "     case "+string(j)+" :";]
+                    "     case "+string(j)+" :"]
                     //*******//
                     txt=[txt;
-                    BigIndent+write_code_zzdoit(clkptr(bk)+i-1,9);]
+                    BigIndent+write_code_zzdoit(clkptr(bk)+i-1,9)]
                     //** C **//
                     txt=[txt;
                     BigIndent+"break;"]

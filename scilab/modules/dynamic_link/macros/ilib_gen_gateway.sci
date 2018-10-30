@@ -109,7 +109,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
             "#define MODULE_NAME L""" + tname + """";
             "";
             "int " + tname + "(wchar_t* _pwstFuncName)";
-            "{";];
+            "{"];
 
             for kGw = 1:size(names, "*")
                 if or(table(kGw, 3) == ["cmex" "fmex" "Fmex"]) then

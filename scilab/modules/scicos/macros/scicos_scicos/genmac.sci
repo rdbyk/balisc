@@ -84,7 +84,7 @@ function mac=genmac(tt,nin,nout)
     "  t_evo=[]";
     "  xd=[]";
     set_y
-    "end";]
+    "end"]
 
     deff("[xd,t_evo,z,x,y]=mac(%_flag,n_evi,t,x,z,rpar,ipar,u)",mac_txt)
 endfunction
