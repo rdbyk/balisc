@@ -195,7 +195,7 @@ function bOK = generateLoader(name, tables, libs, libname, flag, loadername)
             for x = table(1:$,1)'
                 if withoutSpace then
                     withoutSpace = %F;
-                    mfprintf(fd, "''%s'';\n", x);
+                    mfprintf(fd, "''%s''\n", x);
                 else
                     mfprintf(fd, "                   ''%s'';\n", x);
                 end
@@ -214,7 +214,7 @@ function bOK = generateLoader(name, tables, libs, libname, flag, loadername)
 
                 mfprintf(fd, "list_functions = [ ''%s'';\n", table(1,1));
                 for x = table(2:$, 1)'
-                    mfprintf(fd, "                  ''%s'';\n", x);
+                    mfprintf(fd, "                  ''%s''\n", x);
                 end
                 mfprintf(fd, "];\n");
 
