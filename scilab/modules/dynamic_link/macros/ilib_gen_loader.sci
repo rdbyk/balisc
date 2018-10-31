@@ -197,7 +197,7 @@ function bOK = generateLoader(name, tables, libs, libname, flag, loadername)
                     withoutSpace = %F;
                     mfprintf(fd, "''%s''\n", x);
                 else
-                    mfprintf(fd, "                   ''%s'';\n", x);
+                    mfprintf(fd, "                   ''%s''\n", x);
                 end
             end
             mfprintf(fd, "];\n");
