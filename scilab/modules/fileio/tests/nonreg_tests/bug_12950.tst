@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - SCilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 12950 -->
 //
@@ -25,7 +27,7 @@ instr = "getURL(''http://www.scilab.org'', ''scilab_homepage.html'');";
 if getos() == 'Windows' then
   errReason = "Could not resolve proxy: 123aa; Host not found";
 else
-  errReason = "Couldn''t resolve proxy ''123aa''";
+  errReason = "Could not resolve proxy: 123aa";
 end
 errMsg =  msprintf(gettext("Transfer did not complete successfully: %s\n"), errReason);
 assert_checkerror(instr, errMsg);
