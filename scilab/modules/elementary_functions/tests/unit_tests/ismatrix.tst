@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -33,7 +34,7 @@ assert_checkequal(ismatrix([1+s 2+s]), %t);
 assert_checkequal(ismatrix([1+s 2+s]'), %t);
 assert_checkequal(ismatrix([1+s 2+s 3+s; 3+s 4+s 5+s]), %t);
 assert_checkequal(ismatrix(1+s), %t);
-assert_checkequal(ismatrix(matrix([s;s;s;s;s;s;s;s;], [2,2,2])), %f);
+assert_checkequal(ismatrix(matrix([s;s;s;s;s;s;s;s], [2,2,2])), %f);
 
 // Booleans
 assert_checkequal(ismatrix([%t %f]), %t);

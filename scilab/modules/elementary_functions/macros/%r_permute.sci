@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013, 2016 - Samuel GOUGEON
 // Copyright (C) 2018 - Stéphane MOTTELET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,7 +25,7 @@ function y = %r_permute(x, dims)
 
     // CHECKING ARGUMENTS
     // ------------------
-    if argn(2) <> 2 then
+    if nargin <> 2 then
         msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
         error(msprintf(msg, "permute", 2));
     end
