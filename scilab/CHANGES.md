@@ -462,6 +462,7 @@ Known issues
 * [#12147](http://bugzilla.scilab.org/show_bug.cgi?id=12147): `mfile2sci()` produced an error when 1) the {function} block is closed with {end}; 2) the macro's name matches a variable existing in the environment.
 * [#12198](http://bugzilla.scilab.org/show_bug.cgi?id=12198): Scilab control and block keywords `break case ... try while` and `clear()` could be overloaded as regular assignable variables.
 * [#12275](http://bugzilla.scilab.org/show_bug.cgi?id=12275): `msprintf("%s",ascii(97*ones(1,4097)))` produced "An error occurred: Buffer too small."
+* [#12345](http://bugzilla.scilab.org/show_bug.cgi?id=12345): `tree_show` is a list-specific function. Its page was expected in the data_structures chapter rather than in the general GUI chapter. It is moved.
 * [#12402](http://bugzilla.scilab.org/show_bug.cgi?id=12402): The menu `Applications => Scinotes` could launch the external editor instead of Scinotes.
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Variable browser did not display the size of the variables.
 * [#12529](http://bugzilla.scilab.org/show_bug.cgi?id=12529): The `listvarinfile` help page needed to be updated.
