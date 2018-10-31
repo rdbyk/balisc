@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -17,18 +18,17 @@
 
 //==============================================================
 ierr = execstr("r = stripblanks(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
 ierr = execstr("r = cd(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
 ierr = execstr("r = ls(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
 ierr = execstr("r = dir(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
 ierr = execstr("r = help(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
-
