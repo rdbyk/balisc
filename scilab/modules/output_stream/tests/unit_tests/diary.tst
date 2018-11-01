@@ -2,6 +2,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -140,7 +141,7 @@ mdelete(TMPDIR + '/checkname');
 // =============================================================================
 r = [];
 for i = 1:100
-  r = [r, diary(TMPDIR + '/test'+string(i)+'.diary','new');];
+  r = [r, diary(TMPDIR + '/test'+string(i)+'.diary','new')];
   if ( fileinfo(TMPDIR + '/test'+string(i)+'.diary') == []) then pause,end
 end
 
@@ -152,4 +153,3 @@ for i = 1:100
 	if ( fileinfo(TMPDIR + '/test'+string(i)+'.diary') <> []) then pause,end
 end
 // =============================================================================
-
