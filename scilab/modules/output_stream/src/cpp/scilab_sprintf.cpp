@@ -38,6 +38,7 @@ static wchar_t* addl(TokenDef* token);
 static void updatel(TokenDef* token);
 static void replace_lu_llu(TokenDef* token);
 static void replace_ld_lld(TokenDef* token);
+static void print_infinite(FILE *str, double v);
 
 #define NanString L"Nan"
 #define InfString L"Inf"
@@ -440,22 +441,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     }
                     else
                     {
-                        wchar_t* newToken = addl(tok);
-
-                        if (std::isnan(dblVal))
-                        {
-                            fwprintf(fwstTemp, newToken, NanString);
-                        }
-                        else if (std::signbit(dblVal))
-                        {
-                            fwprintf(fwstTemp, newToken, NegInfString);
-                        }
-                        else
-                        {
-                            fwprintf(fwstTemp, newToken, InfString);
-                        }
-
-                        delete[] newToken;
+                        print_infinite(fwstTemp, dblVal);
                     }
 
                     fclose(fwstTemp);
@@ -499,25 +485,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     }
                     else
                     {
-                        wchar_t* newToken = addl(tok);
-
-                        if (std::isnan(dblVal))
-                        {
-                            fwprintf(fwstTemp, newToken, NanString);
-                        }
-                        else
-                        {
-                            if (std::signbit(dblVal))
-                            {
-                                fwprintf(fwstTemp, newToken, NegInfString);
-                            }
-                            else
-                            {
-                                fwprintf(fwstTemp, newToken, InfString);
-                            }
-                        }
-
-                        delete[] newToken;
+                        print_infinite(fwstTemp, dblVal);
                     }
 
                     fclose(fwstTemp);
@@ -561,25 +529,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     }
                     else
                     {
-                        wchar_t* newToken = addl(tok);
-
-                        if (std::isnan(dblVal))
-                        {
-                            fwprintf(fwstTemp, newToken, NanString);
-                        }
-                        else
-                        {
-                            if (std::signbit(dblVal))
-                            {
-                                fwprintf(fwstTemp, newToken, NegInfString);
-                            }
-                            else
-                            {
-                                fwprintf(fwstTemp, newToken, InfString);
-                            }
-                        }
-
-                        delete[] newToken;
+                        print_infinite(fwstTemp, dblVal);
                     }
 
                     fclose(fwstTemp);
@@ -856,4 +806,20 @@ static void replace_ld_lld(TokenDef* token)
         }
     }
 #endif
+}
+
+static void print_infinite(FILE *str, double v)
+{
+    if (std::isnan(v))
+    {
+        fwprintf(str, NanString);
+    }
+    else if (std::signbit(v))
+    {
+        fwprintf(str, NegInfString);
+    }
+    else
+    {
+        fwprintf(str, InfString);
+    }
 }
