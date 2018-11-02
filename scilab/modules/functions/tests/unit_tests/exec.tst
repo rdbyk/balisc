@@ -1,10 +1,13 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+//<-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 tab_ref = [
 "世界您好",
@@ -34,7 +37,6 @@ if isdef("a")<> %t then pause,end
 if isdef("b")<> %t then pause,end
 assert_checkequal(a, 1);
 assert_checkequal(b, 2);
-
 
 // create a function
 deff("y=foo(x)","a=x+1;y=a^2");

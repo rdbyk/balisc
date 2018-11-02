@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -21,6 +22,8 @@
 //Can't go to directory getd(pwd())
 //at line 14 of function cd called by :
 //cd getd(pwd())
+
+funcprot(0)
 
 my_dir          = pathconvert(TMPDIR+"/bug_1966",%F,%F);
 my_file         = pathconvert(my_dir+"/bug_1966_tst.sci",%F,%F);

@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2006-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -19,6 +20,7 @@
 
 //test of line numbering in  functions, handling initial comments
 
+funcprot(0)
 
 // ================ Test 1 =====================================================
 
@@ -27,14 +29,6 @@ L=macr2tree(foo);
 R1=L(6)==1&size(L)==6;
 if ~R1 then pause,end
 clear foo;
-
-// ================ Test 2 =====================================================
-// known syntax error in scilab 6
-//function foo,,endfunction
-//L=macr2tree(foo);
-//R2=L(6)==1&size(L)==6
-//if ~R2 then pause,end
-//clear foo;
 
 // ================ Test 3 =====================================================
 

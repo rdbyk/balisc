@@ -1,7 +1,7 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -18,9 +18,6 @@ assert_checkequal(whereis("sci2exp"), "stringlib");
 assert_checkequal(whereis(sci2exp), "stringlib");
 assert_checkequal(whereis("getshell"), "corelib");
 assert_checkequal(whereis(getshell), "corelib");
-
-a = corelib;
-assert_checkequal(whereis("with_tk"), ["a" ; "corelib"]);
 
 //builtin
 assert_checkequal(whereis("exit"), "core");

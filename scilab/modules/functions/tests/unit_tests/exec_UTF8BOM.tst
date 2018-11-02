@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 //<-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 ﻿
 tab_ref = [
 "世界您好",
@@ -36,7 +38,6 @@ if isdef('b')<> %t then pause,end
 if a <> 1 then pause,end
 if b <> 2 then pause,end
 
-
 // create a function
 deff('y=foo(x)','a=x+1;y=a^2');
 clear a b
@@ -51,4 +52,3 @@ clear k y
 exec(foo);
 if isdef('y')<> %t then pause,end
 if y <> 25 then pause,end
-
