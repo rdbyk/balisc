@@ -1,18 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
-// <-- Non-regression test for bug 6783 -->
-//
-// <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=6783
-//
-// <-- Short Description -->
-// Solving a system of linear equation by backslash ("\") will cause a crash to Scilab 5.2.1, when using complex numbers.
-// Replication Code
 S=[
 1.3     24      4.1     29      0.9     33
 0.6     258     0.7     265     0.2     39
@@ -154,11 +139,11 @@ end
 S0_a=fac.*S0(:,1);
 S0_w=S0(:,2).*%pi/180;
 S0c=S0_a.*exp(%i*S0_w);
-S0_c2=S0(:,1).*exp(%i*S0_w); // ohne Faktor!!!!
+S0_c2=S0(:,1).*exp(%i*S0_w);
 S02_a=fac.*S02(:,1);
 S02_w=S02(:,2).*%pi/180;
 S02c=S02_a.*exp(%i*S02_w);
-S02_c2=S02(:,1).*exp(%i*S02_w); // ohne Faktor
+S02_c2=S02(:,1).*exp(%i*S02_w);
 S_a=S(:,1:2:$).*[fac fac fac];
 S_wdeg=S(:,2:2:$);
 S_w=S_wdeg*%pi/180;
