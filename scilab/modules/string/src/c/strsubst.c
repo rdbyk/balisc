@@ -289,9 +289,9 @@ wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wch
         pwstPos = wcsstr(pwstPos, _pwstSearch);
         if (pwstPos)
         {
-            piStart[iOccurs++]  = pwstPos - _pwstInput;
-            iOffset             += iReplace - iSearch;
-            pwstPos++;
+            piStart[iOccurs++] = pwstPos - _pwstInput;
+            iOffset += iReplace - iSearch;
+            pwstPos += iSearch;
         }
     }
 
