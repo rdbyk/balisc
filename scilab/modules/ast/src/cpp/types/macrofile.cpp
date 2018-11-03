@@ -26,10 +26,10 @@
 #include "deserializervisitor.hxx"
 #include "scilabWrite.hxx"
 
-extern "C"
-{
-#include "Scierror.h"
+extern "C" {
+#include "machine.h"
 }
+
 namespace types
 {
 MacroFile::MacroFile(const std::wstring& _stName, const std::wstring& _stPath, const std::wstring& _stModule) :
@@ -81,24 +81,43 @@ bool MacroFile::parse(void)
 {
     if (m_pMacro == NULL)
     {
-        //load file, only for the first call
+        // on first call load binary macro file
         char* pstPath = wide_string_to_UTF8(m_stPath.c_str());
-        std::ifstream f(pstPath, std::ios::in | std::ios::binary | std::ios::ate);
-        if (f.is_open() == false)
-        {
-            Scierror(999, _("Unable to open : %s.\n"), pstPath);
-            FREE(pstPath);
-            return false;
-        }
-        FREE(pstPath);
 
-        int size = (int)f.tellg();
+        FILE *f = fopen(pstPath, "rb");
+
+        if (f == NULL)
+        {
+            char errorMsg[bsiz];
+            snprintf(errorMsg, bsiz, _("Unable to open: %s\n"), pstPath);
+            FREE(pstPath);
+            throw ast::InternalError(errorMsg);
+        }
+
+        fseek(f, 0L, SEEK_END);
+
+        int size = ftell(f);
         unsigned char* binAst = new unsigned char[size];
-        f.seekg(0);
-        f.read((char*)binAst, size);
-        f.close();
+
+        rewind(f);
+
+        if (fread((char*)binAst, sizeof(unsigned char), size, f) != size)
+        {
+            fclose(f);
+            delete[] binAst;
+
+            char errorMsg[bsiz];
+            snprintf(errorMsg, bsiz, _("Unexpected read size: %s\n"), pstPath);
+            FREE(pstPath);
+            throw ast::InternalError(errorMsg);
+        }
+
+        FREE(pstPath);
+        fclose(f);
+
         ast::DeserializeVisitor d(binAst);
         ast::Exp* tree = d.deserialize();
+
         delete[] binAst;
 
         //find FunctionDec
