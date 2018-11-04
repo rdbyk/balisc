@@ -655,10 +655,13 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             bArgList = true;
             pList = (*pCurrentArgs)[0]->getAs<types::List>();
             //pList->IncreaseRef();
-            pCurrentArgs->clear();
-            pCurrentArgs->push_back(pList->get(iListIncr));
             iListSize = pList->getSize();
+            pCurrentArgs->clear();
 
+            if (iListSize)
+            {
+                pCurrentArgs->push_back(pList->get(iListIncr));
+            }
         }
 
         do
