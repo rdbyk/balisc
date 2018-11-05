@@ -1,4 +1,3 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
@@ -6,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // <-- JAVA NOT MANDATORY -->
 //
 // <-- Non-regression test for bug 11110 -->

@@ -486,7 +486,7 @@ pp1(1:4)=pp2';if pp1<> pp2' then pause,end
 pp1((1:4)')=pp2';if pp1<> pp2' then pause,end
 pp1=p1;pp2=p2;
 pp1(6)=-8;if pp1 <> [p1;0;-8] then pause,end
-pp2(7)=+z**3;,if pp2 <> [p2,0,0,+z**3;] then pause,end
+pp2(7)=+z**3;,if pp2 <> [p2,0,0,+z**3] then pause,end
 pp1=p1;pp2=p2;
 pp1(5:8)=p1;if pp1 <> [p1;p1] then pause,end
 pp2(6:9)=p2;if pp2 <> [p2 0 p2] then pause,end
@@ -517,7 +517,7 @@ pp1(1:4)=conj(pp2');if pp1<> conj(pp2') then pause,end
 pp1((1:4)')=conj(pp2');if pp1<> conj(pp2') then pause,end
 pp1=p1;pp2=p2;
 pp1(6)=-8;if pp1 <> [p1;0;-8] then pause,end
-pp2(7)=+s**3;,if pp2 <> [p2,0,0,+s**3;] then pause,end
+pp2(7)=+s**3;,if pp2 <> [p2,0,0,+s**3] then pause,end
 pp1=p1;pp2=p2;
 pp1(5:8)=p1;if pp1 <> [p1;p1] then pause,end
 pp2(6:9)=p2;if pp2 <> [p2 0 p2] then pause,end
