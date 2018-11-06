@@ -134,8 +134,8 @@ function tbx_build_loader(name, path)
         unloadertxt = [
         "    // Unregister the library of macros. This does not unregister its macros"
         "    clear " + name + "lib"
-        "    // Del help chapter";
-        "    if or(getscilabmode() == [""NW"";""STD""]) then";
+        "    // Del help chapter"
+        "    if or(getscilabmode() == [""NW"";""STD""]) then"
         "       mprintf(""\tRemove help chapter\n"");"
         "       del_help_chapter("""+name+""", %F);"
         "    end"
