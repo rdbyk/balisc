@@ -3140,7 +3140,7 @@ YY_RULE_SETUP
     str += yytext;
     str += "\' after line break with .. or ...";
     yy_pop_state();
-    ParserSingleInstance::popControlStatus();
+    ParserSingleInstance::resetControlStatus();
     BEGIN(INITIAL);
     yyerror(str);
     return scan_throw(FLEX_ERROR);
