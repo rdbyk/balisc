@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -199,7 +199,7 @@ static char* computeSCIHOME(const char* path)
 #define BASEDIR ".Scilab"
     int ierr   = 0;
     int buflen = PATH_MAX;
-    int iflag  = 0;
+    int iflag  = 1;
     char USERPATHSCILAB[PATH_MAX];
     char USERHOMESYSTEM[PATH_MAX];
     char SCIHOMEPATH[PATH_MAX * 2];
@@ -208,7 +208,7 @@ static char* computeSCIHOME(const char* path)
     getenvc(&ierr, HOME, USERHOMESYSTEM, &buflen, &iflag);
     if (ierr)
     {
-        return NULL;
+        exit(1);
     }
 
     /* Set SCIHOME environment variable */
