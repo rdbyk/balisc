@@ -100,7 +100,7 @@ function [c,lagindex]=xcorr(x,varargin)
     //extract requested lags
     padding=zeros(maxlags-n+1,1)
     if maxlags<n then
-        c=[c($-maxlags+1:$);c(1:maxlags+1);]
+        c=[c($-maxlags+1:$);c(1:maxlags+1)]
     else
         padding=zeros(maxlags-n+1,1)
         c = [padding;

@@ -77,7 +77,7 @@ function [%ODEOPTIONS] = odeoptions(%ODEOPTIONS)
     gettext("column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc");
     " ";
     gettext("Default values are given in square brackets");
-    gettext("If the function is called without argument, default values are used");
+    gettext("If the function is called without argument, default values are used")
     ]
 
     dims = list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,..

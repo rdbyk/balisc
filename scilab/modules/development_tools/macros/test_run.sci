@@ -759,7 +759,7 @@ function status = test_single(_module, _testPath, _testName)
         head;
         "prot=funcprot(); funcprot(0);";
         "loadXcosLibs(); loadScicos();";
-        "funcprot(prot);";
+        "funcprot(prot);"
         ];
     end
 
@@ -784,7 +784,7 @@ function status = test_single(_module, _testPath, _testName)
         "   errmsg = ""<--""+""Error on the test script file""+""-->"";";
         "   printf(""%s\n"",errmsg);";
         "   lasterror()";
-        "end";
+        "end"
         ];
     end
 

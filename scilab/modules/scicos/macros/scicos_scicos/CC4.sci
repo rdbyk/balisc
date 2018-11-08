@@ -26,8 +26,8 @@ function [ok,tt,cancel]=CC4(funam,tt)
     if tt==[] then
 
         textmp=["#include ""scicos_block4.h""";
-        ""
-        "void "+funam+"(scicos_block *block,int flag)";
+        "";
+        "void "+funam+"(scicos_block *block,int flag)"
         ];
         ttext=[];
         textmp($+1)="{"

@@ -165,7 +165,7 @@ function clean_help(dirs)
 
             files_to_delete = listfiles([ ..
             dirs_m(k)+"/.list*"; ..
-            dirs_m(k)+"/.last*"; ..
+            dirs_m(k)+"/.last*"
             ]);
 
             for i=1:size(files_to_delete,"*")
@@ -184,7 +184,7 @@ function clean_help(dirs)
             files_to_delete = listfiles([ ..
             dirs_c(k)+"/.list*"; ..
             dirs_c(k)+"/.last*"; ..
-            dirs_c(k)+"/master_help.xml"; ..
+            dirs_c(k)+"/master_help.xml"
             ]);
 
             for i=1:size(files_to_delete,"*")
@@ -237,7 +237,7 @@ function clean_help(dirs)
             files_to_delete = listfiles([ ..
             dirs(k)+"/.list*"; ..
             dirs(k)+"/.last*"; ..
-            dirs(k)+"/master_help.xml"; ..
+            dirs(k)+"/master_help.xml"
             ]);
 
             for i=1:size(files_to_delete,"*")

@@ -30,7 +30,7 @@ function [ok,tt,cancel]=CFORTR2(funam,tt)
         "#include <math.h>";
         "#include <stdlib.h>";
         "#include <scicos_block.h>";
-        "void "+funam+"(scicos_block *block,int flag)";
+        "void "+funam+"(scicos_block *block,int flag)"
         ];
         ttext=[];
         textmp($+1)="{"

@@ -356,7 +356,9 @@ static void print_rules(const std::string& _parent, const double _value)
 %type<t_cell_exp>           cell
 %type<t_list_exp>           matrixOrCellColumns
 %type<t_matrixline_exp>     matrixOrCellLine
+%type<t_matrixline_exp>     matrixOrCellLastLine
 %type<t_list_mline>         matrixOrCellLines
+%type<t_list_mline>         matrixOrCellLastLines
 
 %type<mute>                 expressionLineBreak
 
@@ -1074,8 +1076,8 @@ variableFields COMMA variable        {
 ** -*- CELL -*-
 */
 cell :
-LBRACE matrixOrCellLines RBRACE                             { $$ = new ast::CellExp(@$, *$2); print_rules("cell", "LBRACE matrixOrCellLines RBRACE");}
-| LBRACE EOL matrixOrCellLines RBRACE                       { $$ = new ast::CellExp(@$, *$3); print_rules("cell", "variable COMMA functionCall");}
+LBRACE matrixOrCellLastLines RBRACE                             { $$ = new ast::CellExp(@$, *$2); print_rules("cell", "LBRACE matrixOrCellLines RBRACE");}
+| LBRACE EOL matrixOrCellLastLines RBRACE                       { $$ = new ast::CellExp(@$, *$3); print_rules("cell", "variable COMMA functionCall");}
 | LBRACE matrixOrCellLines matrixOrCellColumns RBRACE       {
                                   print_rules("cell", "LBRACE matrixOrCellLines matrixOrCellColumns RBRACE");
                                   $2->push_back(new ast::MatrixLineExp(@3, *$3));
@@ -1108,8 +1110,8 @@ LBRACE matrixOrCellLines RBRACE                             { $$ = new ast::Cell
 */
 /* How Matrix are written */
 matrix :
-LBRACK matrixOrCellLines RBRACK                                 {$$ = new ast::MatrixExp(@$, *$2); print_rules("matrix", "LBRACK matrixOrCellLines RBRACK");}
-| LBRACK EOL matrixOrCellLines RBRACK                           {$$ = new ast::MatrixExp(@$, *$3); print_rules("matrix", "LBRACK EOL matrixOrCellLines RBRACK");}
+LBRACK matrixOrCellLastLines RBRACK                                 {$$ = new ast::MatrixExp(@$, *$2); print_rules("matrix", "LBRACK matrixOrCellLastLines RBRACK");}
+| LBRACK EOL matrixOrCellLastLines RBRACK                           {$$ = new ast::MatrixExp(@$, *$3); print_rules("matrix", "LBRACK EOL matrixOrCellLastLines RBRACK");}
 | LBRACK matrixOrCellLines matrixOrCellColumns RBRACK           {$2->push_back(new ast::MatrixLineExp(@3, *$3));$$ = new ast::MatrixExp(@$, *$2);print_rules("matrix", "LBRACK matrixOrCellLines matrixOrCellColumns RBRACK");}
 | LBRACK EOL matrixOrCellLines matrixOrCellColumns RBRACK       {$3->push_back(new ast::MatrixLineExp(@4, *$4));$$ = new ast::MatrixExp(@$, *$3);print_rules("matrix", "BRACK EOL matrixOrCellLines matrixOrCellColumns RBRACK");}
 | LBRACK matrixOrCellColumns RBRACK                             {ast::exps_t* tmp = new ast::exps_t;tmp->push_back(new ast::MatrixLineExp(@2, *$2));$$ = new ast::MatrixExp(@$, *tmp);print_rules("matrix", "LBRACK matrixOrCellColumns RBRACK");}
@@ -1125,8 +1127,12 @@ LBRACK matrixOrCellLines RBRACK                                 {$$ = new ast::M
 matrixOrCellLines :
 matrixOrCellLines matrixOrCellLine  {$1->push_back($2);$$ = $1;print_rules("matrixOrCellLines", "matrixOrCellLines matrixOrCellLine");}
 | matrixOrCellLine                  {$$ = new ast::exps_t;$$->push_back($1);print_rules("matrixOrCellLines", "matrixOrCellLine");}
-//| matrixOrCellLines lineEnd {}
-//| COMMENT EOL {}
+;
+
+/* Matrix or Cell Lines : matrixOrCellLine (matrixOrCellline)* */
+matrixOrCellLastLines :
+matrixOrCellLines matrixOrCellLastLine  {$1->push_back($2);$$ = $1;print_rules("matrixOrCellLastLines", "matrixOrCellLines matrixOrCellLastLine");}
+| matrixOrCellLastLine                  {$$ = new ast::exps_t;$$->push_back($1);print_rules("matrixOrCellLastLines", "matrixOrCellLastLine");}
 ;
 
 /*
@@ -1145,6 +1151,11 @@ SEMI                            { /* !! Do Nothing !! */ print_rules("matrixOrCe
 /* Some matrix/cell columns with a special matrix/cell line break at the end */
 matrixOrCellLine :
 matrixOrCellColumns matrixOrCellLineBreak                               { $$ = new ast::MatrixLineExp(@$, *$1); print_rules("matrixOrCellLine", "matrixOrCellColumns matrixOrCellLineBreak ");}
+;
+
+/* Some matrix/cell columns with a special matrix/cell line break at the end */
+matrixOrCellLastLine :
+matrixOrCellColumns EOL                              { $$ = new ast::MatrixLineExp(@$, *$1); print_rules("matrixOrCellLastLine", "matrixOrCellColumns matrixOrCellLastLineBreak ");}
 ;
 
 /*
