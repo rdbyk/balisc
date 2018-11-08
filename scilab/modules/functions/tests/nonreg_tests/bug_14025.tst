@@ -1,10 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Charlotte Hecquet
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 14025 -->
 //
 // <-- Bugzilla URL -->
@@ -12,7 +16,7 @@
 //
 // <-- Short Description -->
 // head_comments did not take into account compiled functions
-// <-- CLI SHELL MODE -->
+
 function test()
     // heading comment L#1
     // heading comment L#2

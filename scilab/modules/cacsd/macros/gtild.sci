@@ -86,22 +86,21 @@ function Gt=gtild(G,flag)
         Gt=G';return;
     end
 
-
-
 endfunction
+
 function mpt=dp_tilde(mp)
     //mp(z) =  polynomial matrix
     // mpt(i,j)= z^n*conj(mp(j,i))(1/z)
     [m,n]=size(mp),z=varn(mp)
     //max degree
-    nmax=max(0,degree(mp));
+    nmax=max(0,max(degree(mp)));
     for i=1:m
         for j=1:n
             mpt(j,i)=poly(coeff(conj(mp(i,j)),nmax:-1:0),z,"c")
         end
     end
-
 endfunction
+
 function mpt=cp_tilde(mp)
     //mp(s) =  polynomial matrix
     // mpt(i,j)= conj(mp(j,i))(s)

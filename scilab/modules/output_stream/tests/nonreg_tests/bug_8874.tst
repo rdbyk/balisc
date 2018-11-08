@@ -1,22 +1,23 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 8874 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=8874
 //
-// <-- ENGLISH IMPOSED -->
-
 // <-- Short Description -->
 // Wrong display of complex numbers with Inf or Nan real or Imaginary
 // parts
-setlanguage("en_US");
+
 A=[complex(-1,%inf),complex(1,%nan),complex(%inf,%nan),complex(%nan,%nan);
 1                2               3                  4];
 As=sparse(A);

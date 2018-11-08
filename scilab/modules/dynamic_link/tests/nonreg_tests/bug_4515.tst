@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -33,21 +34,22 @@ a=[1,2,3];b=[4,5,6];n=3;
 c=call('ext1c',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');     
 if or(c <> [5 7 9]) <> %f then pause,end
 
-f2 = ['#include <math.h>',
-'#include <stdlib.h>';
-'int ext1c(int *n, double *a, double *b, double *c, double *g)',
-'{int k;',
-'  for (k = 0; k < *n; ++k){ ',
-'      c[k] = 2.0 *a[k] + b[k];',
-'      g[k] = 3.0 + a[k] * b[k];',
-'      a[k] = 2.5 * b[k];',
-'      g[k] = 3.0 + a[k] * b[k];}',
-'  return(0);}'];
+f2 = [
+'#include <math.h>'
+'#include <stdlib.h>'
+'int ext1c(int *n, double *a, double *b, double *c, double *g)'
+'{int k;'
+'  for (k = 0; k < *n; ++k){ '
+'      c[k] = 2.0 *a[k] + b[k];'
+'      g[k] = 3.0 + a[k] * b[k];'
+'      a[k] = 2.5 * b[k];'
+'      g[k] = 3.0 + a[k] * b[k];}'
+'  return(0);'
+'}'
+];
 
 ilib_for_link('ext1c','fun1.c',[],"c");
 exec loader.sce;
 
 c=call('ext1c',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');     
 if or(c <> [5 7 9]) <> %f then pause,end
-
-// =============================================================================

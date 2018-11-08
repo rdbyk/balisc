@@ -54,7 +54,7 @@ assert_checktrue(and(string(p)==["          8    15   18"; "- iz - 3iz + 4z - iz
 // Matrix of polynomials
 ps = "[0*z, 3+0*%i*z; -z, -%i*z;  -z^17, -%i*z^17;  "+..
      "1-z+5*z^3+41*z^20, (1+(1-%i)*z)^3-1;  "+..
-     "-z+z^3+3*z^4, (%i-2)-3*z-3*%i*z^13+(1+7*%i)*z^20; ]";
+     "-z+z^3+3*z^4, (%i-2)-3*z-3*%i*z^13+(1+7*%i)*z^20 ]";
 z = poly(0,"x");
 p = evstr(ps);
 refS = [" "                   " "
@@ -130,4 +130,3 @@ refS = ["                        2"  "                                    2     
         "(2-i) + ABC"                "(2-11i) + (9-12i)ABC + (6-3i)ABC + ABC"
        ];
 assert_checktrue(and(string(p)==refS));
-

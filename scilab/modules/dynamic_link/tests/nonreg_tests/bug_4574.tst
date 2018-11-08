@@ -37,5 +37,5 @@ mputl(i,'intfun2.c');
 
 cmdstr = "ilib_build(''foo'',[''scifun1'',''intfun2''],''intfun2.c'',[]);"
 ierr = execstr(cmdstr, 'errcatch');
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 

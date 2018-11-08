@@ -1,24 +1,6 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
-// <-- Non-regression test for bug 1966 -->
-//
-// <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=1966
-//
-// <-- Short Description -->
-//
-//     getd doesn't work
-//
-//-->getd(pwd())
-// !--error 998
-//Can't go to directory getd(pwd())
-//at line 14 of function cd called by :
-//cd getd(pwd())
+funcprot(0)
+ ans  =
+   1.
 my_dir          = pathconvert(TMPDIR+"/bug_1966",%F,%F);
 my_file         = pathconvert(my_dir+"/bug_1966_tst.sci",%F,%F);
 my_function_str = ["function c=bug_1966_tst(a,b)"; ..

@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017 - Samuel GOUGEON
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -53,9 +54,9 @@ rc = evstr(tc);
 assert_checkequal(rc,c);
 
 // Scalar structure:
-s = struct("r",1.234-5.6*%i,"b",%f,"t","Hello","i",int8([123 -76]),"l",list(4,,%i));
+s = struct("r",1.234-5.6*%i,"b",%f,"t","Hello","i",int8([123 -76]),"l",list(4,%i));
 ss = sci2exp(s);
-ssref = "struct(""r"",1.234-%i*5.6, ""b"",%f, ""t"",""Hello"", ""i"",int8([123,-76]), ""l"",list(4,,%i))";
+ssref = "struct(""r"",1.234-%i*5.6, ""b"",%f, ""t"",""Hello"", ""i"",int8([123,-76]), ""l"",list(4,%i))";
 assert_checkequal(ss, ssref);
 assert_checkequal(evstr(ss), s);
 

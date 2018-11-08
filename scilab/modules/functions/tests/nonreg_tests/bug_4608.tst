@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 4608 -->
 //
@@ -21,7 +23,7 @@ ref = pathconvert(SCI + '/modules/core/macros/ver.sci',%f);
 if getlongpathname(r) <> getlongpathname(ref) then pause,end
 
 ierr = execstr('get_function_path(1)','errcatch');
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 
 ierr = execstr('get_function_path([''ver'',''typeof''])','errcatch');
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end

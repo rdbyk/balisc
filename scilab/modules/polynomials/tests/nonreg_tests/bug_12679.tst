@@ -8,6 +8,7 @@
 // <-- Non-regression test for bug 12679 -->
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=12679
@@ -53,8 +54,8 @@ assert_checkequal(pp, [2*s^2 + 5*s^3 + 4*s^4 + s^5]);
 // Normal behavior, with integers
 V = [2^2*3^5 2^3*3^2 2^2*3^4*5];
 V_int = int32(V);
-assert_checkequal(lcm(V), int32(9720));
-assert_checkequal(lcm(V_int), int32(9720));
+assert_checkequal(lcm(V), 9720);
+assert_checkequal(lcm(V_int), 9720);
 // Trying to use booleans, strings or decimals should yield an error
 refMsg4 = msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "lcm", 1);
 assert_checkerror("lcm(%t);", refMsg4);

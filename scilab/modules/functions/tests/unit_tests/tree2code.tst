@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -14,10 +15,10 @@ fp = funcprot(0);
 // Test the output prototype:
 // -------------------------
 protos = [
-"function test()"
-"function test(x)"
-"function test(x,y)"
-"function test(x,y,varargin)"
+"function [] = test()"
+"function [] = test(x)"
+"function [] = test(x,y)"
+"function [] = test(x,y,varargin)"
 "function [z] = test()"
 "function [z] = test(x)"
 "function [z] = test(x,y)"

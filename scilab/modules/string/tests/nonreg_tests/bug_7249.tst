@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -67,7 +68,7 @@ assert_checkequal(text, [" "; "y = x + 1"; " "]);
 // =============================================================================
 [out, in, text] = string(sinc);
 assert_checkequal(out, "y");
-assert_checkequal(in, ["x", "fl"]);
+assert_checkequal(in, "x");
 assert_checkequal(text <> [], %t);
 // =============================================================================
 function y=foo(x);y=x+1;endfunction

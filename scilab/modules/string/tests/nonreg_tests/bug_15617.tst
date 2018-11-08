@@ -51,5 +51,5 @@ assert_checkerror("evstr(list([""sin(4)"" ""a+%(3)""],[""2"" ""2*a""]))", msprin
 
 msg = _("%s: Argument #%d: Some expression can''t be evaluated (%s).\n");
 submsg = msprintf(_("Function not defined for given argument type(s),\n"));
-submsg = submsg + msprintf(_("  check arguments or define function %s for overloading.\n"), "%c_cos");
+submsg = submsg + msprintf(_("check arguments or define function %s for overloading.\n"), "%c_cos");
 assert_checkerror("evstr(""cos(""""s"""")"")", msprintf(msg, "evstr", 1, submsg));
