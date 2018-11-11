@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Scilab Enterprises - 2015 - 2012 - Juergen Koch <juergen.koch@hs-esslingen.de>
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,13 +10,12 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function polyLine = scatter3(varargin)
-
-    warnobsolete("scatter3d()", "6.1.x")
+function polyLine = scatter3d(varargin)
 
     polyLine = 0;
+    [lhs,rhs] = argn(0);
 
-    if ~nargin
+    if ~rhs
         clf;
         z = linspace(0,25,200);
         x = z.*cos(z);
