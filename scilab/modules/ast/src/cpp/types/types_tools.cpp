@@ -678,7 +678,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             //if pRef == NULL, use 0 insteadof, to allow a($+1) on new variable
             if (_pRef)
             {
-                iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                iMaxDim = _pRef->isImplicitList() ? 3 : _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
             }
 
 #ifdef _SCILAB_DEBUGREF_
