@@ -655,16 +655,9 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
 
     if (iDims == 1 && iSeqCount == 1)
     {
-        if (piMaxDim[0] > 0 && piMaxDim[0] <= 3)
-        {
-            //standard case a(1)
-            Double* pDbl = pArg[0]->getAs<Double>();
-            index = (int)pDbl->get()[0] - 1;
-        }
-        else
-        {
-            index = 0;
-        }
+        // standard case a(1)
+        Double* pDbl = pArg[0]->getAs<Double>();
+        index = (int)pDbl->get()[0] - 1;
     }
     else
     {
