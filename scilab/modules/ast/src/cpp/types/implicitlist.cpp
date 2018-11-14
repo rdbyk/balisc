@@ -650,6 +650,8 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
+        delete[] piMaxDim;
+        delete[] piCountDim;
         return Double::Empty();
     }
 
