@@ -541,7 +541,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
             if (bIsComputable == false)
             {
-                //: or $
+                // : (colon)
                 if (_pRef == NULL)
                 {
                     if (pIL->getStep()->isDouble() &&
@@ -561,8 +561,8 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 }
                 else
                 {
-                    //evalute polynom with "MaxDim"
-                    int iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                    // evalute polynom with "MaxDim"
+                    int iMaxDim = _pRef->isImplicitList() ? 3 : _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
 #if defined(_SCILAB_DEBUGREF_)
                     Double* pdbl = new Double(iMaxDim);
 #else
