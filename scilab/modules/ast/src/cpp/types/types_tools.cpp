@@ -533,8 +533,11 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         }
 
         //previous  if can update pIT to Colon
-        if (pIT->isColon() || pIT->isImplicitList())
+        if (pIT->isImplicitList())
         {
+            // FIXME: the code in this branch should be refactored,
+            // because it is a messy hack ...
+
             //: or a:b:c
             ImplicitList* pIL = pIT->getAs<ImplicitList>()->clone()->getAs<ImplicitList>();
             bool bIsComputable = pIL->isComputable();
@@ -558,6 +561,17 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                         pIL->killMe();
                         continue;
                     }
+                }
+                else if (_pRef->isImplicitList()
+                      && _pRef->getAs<ImplicitList>()->isComputable() == false
+                      && pIT->isColon())
+                {
+                    // : (colon)
+                    double* d;
+                    pCurrentArg = new Double(3, 1, &d);
+                    d[0] = 1;
+                    d[1] = 2;
+                    d[2] = 3;
                 }
                 else
                 {
@@ -602,7 +616,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 }
             }
 
-            if (_pRef || bIsComputable)
+            if (pCurrentArg == NULL && (_pRef || bIsComputable))
             {
                 double start = getIndex(pIL->getStart());
                 double step = getIndex(pIL->getStep());
