@@ -637,62 +637,104 @@ bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetC
 InternalType* ImplicitList::extract(typed_list* _pArgs)
 {
     int iDims = (int)_pArgs->size();
+
+    if (iDims > 1)
+    {
+        // invalid index
+        return NULL;
+    }
+
     typed_list pArg;
     InternalType* pOut = NULL;
-    int index = 0;
 
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
-    if (iSeqCount == 0)
-    {
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        delete[] piMaxDim;
-        delete[] piCountDim;
-        return Double::Empty();
-    }
-
-    if (iDims == 1 && iSeqCount == 1)
-    {
-        // standard case a(1)
-        Double* pDbl = pArg[0]->getAs<Double>();
-        index = (int)pDbl->get()[0] - 1;
-    }
-    else
-    {
-        if (iSeqCount > 0) // FIXME: is this really needed?
-        {
-            for (int i = 0; i < iDims; i++)
-            {
-                index += (int)pArg[i]->getAs<Double>()->get()[iSeqCount - 1] - 1;
-            }
-        }
-    }
-
-    switch (index)
-    {
-        case 0 :
-            pOut = getStart();
-            break;
-        case 1 :
-            pOut = getStep();
-            break;
-        case 2 :
-            pOut = getEnd();
-            break;
-        default :
-            pOut = NULL;
-            break;
-    }
-
-    //free pArg content
-    cleanIndexesArguments(_pArgs, &pArg);
 
     delete[] piMaxDim;
     delete[] piCountDim;
+
+    if (iSeqCount == 0)
+    {
+        // free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
+        return Double::Empty();
+    }
+
+    if (iSeqCount > 0)
+    {
+        bool bResultAsDouble = true;
+        Double* arg = pArg[0]->getAs<Double>();
+        double* idx1 = arg->get();
+        InternalType* elem[iSeqCount];
+
+        for (int i = 0; i < iSeqCount; ++i)
+        {
+            switch (static_cast<int>(idx1[i]))
+            {
+                case 1:
+                    elem[i] = getStart();
+                    break;
+                case 2:
+                    elem[i] = getStep();
+                    break;
+                case 3:
+                    elem[i] = getEnd();
+                    break;
+                default:
+                    // invalid index
+                    cleanIndexesArguments(_pArgs, &pArg);
+                    return NULL;
+            }
+
+            if (elem[i]->isPoly())
+            {
+                bResultAsDouble = false;
+            }
+        }
+
+        if (bResultAsDouble)
+        {
+            Double* pRes = new Double(arg->getDims(), arg->getDimsArray());
+
+            for (int i = 0; i < iSeqCount; ++i)
+            {
+                pRes->set(i, elem[i]->getAs<Double>()->getFirst());
+            }
+
+            pOut = pRes;
+        }
+        else
+        {
+            Polynom* pRes = new Polynom(L"$", arg->getDims(), arg->getDimsArray());
+            SinglePoly* e = new SinglePoly();
+
+            for (int i = 0; i < iSeqCount; ++i)
+            {
+                if (elem[i]->isPoly())
+                {
+                    pRes->set(i, elem[i]->getAs<Polynom>()->getFirst());
+                }
+                else
+                {
+                    double c = elem[i]->getAs<Double>()->getFirst();
+
+                    e->setCoef(&c, NULL);
+                    pRes->set(i, e);
+                }
+            }
+
+            delete e;
+
+            pOut = pRes;
+        }
+    }
+
+    // free pArg content
+    cleanIndexesArguments(_pArgs, &pArg);
+
     return pOut;
 }
 
