@@ -164,13 +164,12 @@ bool Cell::transpose(InternalType *& out)
 
     if (m_iDims == 2)
     {
-        Cell * pC = new Cell();
-        out = pC;
-        InternalType** pIT = NULL;
-        int piDims[2] = {getCols(), getRows()};
-        pC->create(piDims, 2, &pIT, NULL);
+        InternalType** pOutData = new InternalType*[getSize()];
 
-        Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pC->m_pRealData);
+        Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pOutData);
+        out = new Cell(getCols(), getRows(), pOutData);
+
+        delete[] pOutData;
 
         return true;
     }
