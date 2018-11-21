@@ -35,7 +35,7 @@ int closeList6(int lst);
 int addItemStruct6(int dataset, hobj_ref_t* refs, int pos, const char* name);
 int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t* refs, hid_t xfer_plist);
 
-int writeVoid6(int parent, const char* name, hid_t xfer_plist);
+int writeDelete(int parent, const char* name, hid_t xfer_plist);
 int writeUndefined6(int parent, const char* name, hid_t xfer_plist);
 
 #endif /* !__H5_WRITEDATATOFILE_H__ */

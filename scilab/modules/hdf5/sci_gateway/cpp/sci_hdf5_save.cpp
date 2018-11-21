@@ -86,22 +86,22 @@ using symbol::Symbol;
 static bool isVarExist(int _iFile, const char* _pstVarName);
 static int extractVarNameList(int* pvCtx, int _iStart, int _iEnd, char** _pstNameList);
 
-int export_data(int parent, const std::string& name, types::InternalType* data, hid_t xfer_plist_id);
-static int export_double(int parent, const std::string& name, types::Double* data, hid_t xfer_plist_id);
-static int export_string(int parent, const std::string& name, types::String* data, hid_t xfer_plist_id);
-static int export_boolean(int parent, const std::string& name, types::Bool* data, hid_t xfer_plist_id);
-static int export_list(int parent, const std::string& name, types::List* data, hid_t xfer_plist_id);
-static int export_struct(int parent, const std::string& name, types::Struct* data, const char* type, hid_t xfer_plist_id);
+int export_data(int parent, const std::string& name, InternalType* data, hid_t xfer_plist_id);
+static int export_double(int parent, const std::string& name, Double* data, hid_t xfer_plist_id);
+static int export_string(int parent, const std::string& name, String* data, hid_t xfer_plist_id);
+static int export_boolean(int parent, const std::string& name, Bool* data, hid_t xfer_plist_id);
+static int export_list(int parent, const std::string& name, List* data, hid_t xfer_plist_id);
+static int export_struct(int parent, const std::string& name, Struct* data, const char* type, hid_t xfer_plist_id);
 template <class T> static int export_int(int parent, const std::string& name, int type, const char* prec, T* data, hid_t xfer_plist_id);
-static int export_poly(int parent, const std::string& name, types::Polynom* data, hid_t xfer_plist_id);
-static int export_sparse(int parent, const std::string& name, types::Sparse* data, hid_t xfer_plist_id);
-static int export_cell(int parent, const std::string& name, types::Cell* data, hid_t xfer_plist_id);
-static int export_macro(int parent, const std::string& name, types::Macro* data, hid_t xfer_plist_id);
-static int export_usertype(int parent, const std::string& name, types::UserType* data, hid_t xfer_plist_id);
+static int export_poly(int parent, const std::string& name, Polynom* data, hid_t xfer_plist_id);
+static int export_sparse(int parent, const std::string& name, Sparse* data, hid_t xfer_plist_id);
+static int export_cell(int parent, const std::string& name, Cell* data, hid_t xfer_plist_id);
+static int export_macro(int parent, const std::string& name, Macro* data, hid_t xfer_plist_id);
+static int export_usertype(int parent, const std::string& name, UserType* data, hid_t xfer_plist_id);
 
-static int export_boolean_sparse(int parent, const std::string& name, types::SparseBool* data, hid_t xfer_plist_id);
-static int export_handles(int parent, const std::string& name, types::GraphicHandle* data, hid_t xfer_plist_id);
-static int export_void(int parent, const std::string& name, hid_t xfer_plist_id);
+static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data, hid_t xfer_plist_id);
+static int export_handles(int parent, const std::string& name, GraphicHandle* data, hid_t xfer_plist_id);
+static int export_delete(int parent, const std::string& name, hid_t xfer_plist_id);
 static int export_undefined(int parent, const std::string& name, hid_t xfer_plist_id);
 static int export_insert(int parent, const std::string& name, ListInsert* data, hid_t xfer_plist_id);
 
@@ -131,10 +131,10 @@ struct CustomXFER
         delete[] bkg;
     }
 };
-/*--------------------------------------------------------------------------*/
-static const std::string fname("save");
-/*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount, types::typed_list &out)
+
+static const char fname[] = "save";
+
+Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &out)
 {
     int iH5File = 0;
     bool bAppendMode = false;
@@ -327,7 +327,7 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
                 deleteafile(filename.data());
             }
             Scierror(999, _("%s: Unable to export variable \'%s\' in file \'%s\'.\n"), fname, var.first.data(), filename.data());
-            return types::Function::Error;
+            return Function::Error;
         }
     }
 
@@ -383,73 +383,73 @@ int export_data(int parent, const std::string& name, InternalType* data, hid_t x
     switch (data->getType())
     {
         case InternalType::ScilabDouble:
-            dataset = export_double(parent, name, data->getAs<types::Double>(), xfer_plist_id);
+            dataset = export_double(parent, name, data->getAs<Double>(), xfer_plist_id);
             break;
         case InternalType::ScilabString:
-            dataset = export_string(parent, name, data->getAs<types::String>(), xfer_plist_id);
+            dataset = export_string(parent, name, data->getAs<String>(), xfer_plist_id);
             break;
         case InternalType::ScilabBool:
-            dataset = export_boolean(parent, name, data->getAs<types::Bool>(), xfer_plist_id);
+            dataset = export_boolean(parent, name, data->getAs<Bool>(), xfer_plist_id);
             break;
         case InternalType::ScilabTList:
         case InternalType::ScilabList:
         case InternalType::ScilabMList:
-            dataset = export_list(parent, name, data->getAs<types::List>(), xfer_plist_id);
+            dataset = export_list(parent, name, data->getAs<List>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabInt8:
-            dataset = export_int(parent, name, H5T_NATIVE_INT8, "8", data->getAs<types::Int8>(), xfer_plist_id);
+        case InternalType::ScilabInt8:
+            dataset = export_int(parent, name, H5T_NATIVE_INT8, "8", data->getAs<Int8>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabInt16:
-            dataset = export_int(parent, name, H5T_NATIVE_INT16, "16", data->getAs<types::Int16>(), xfer_plist_id);
+        case InternalType::ScilabInt16:
+            dataset = export_int(parent, name, H5T_NATIVE_INT16, "16", data->getAs<Int16>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabInt32:
-            dataset = export_int(parent, name, H5T_NATIVE_INT32, "32", data->getAs<types::Int32>(), xfer_plist_id);
+        case InternalType::ScilabInt32:
+            dataset = export_int(parent, name, H5T_NATIVE_INT32, "32", data->getAs<Int32>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabInt64:
-            dataset = export_int(parent, name, H5T_NATIVE_INT64, "64", data->getAs<types::Int64>(), xfer_plist_id);
+        case InternalType::ScilabInt64:
+            dataset = export_int(parent, name, H5T_NATIVE_INT64, "64", data->getAs<Int64>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabUInt8:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT8, "u8", data->getAs<types::UInt8>(), xfer_plist_id);
+        case InternalType::ScilabUInt8:
+            dataset = export_int(parent, name, H5T_NATIVE_UINT8, "u8", data->getAs<UInt8>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabUInt16:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT16, "u16", data->getAs<types::UInt16>(), xfer_plist_id);
+        case InternalType::ScilabUInt16:
+            dataset = export_int(parent, name, H5T_NATIVE_UINT16, "u16", data->getAs<UInt16>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabUInt32:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT32, "u32", data->getAs<types::UInt32>(), xfer_plist_id);
+        case InternalType::ScilabUInt32:
+            dataset = export_int(parent, name, H5T_NATIVE_UINT32, "u32", data->getAs<UInt32>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabUInt64:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT64, "u64", data->getAs<types::UInt64>(), xfer_plist_id);
+        case InternalType::ScilabUInt64:
+            dataset = export_int(parent, name, H5T_NATIVE_UINT64, "u64", data->getAs<UInt64>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabStruct:
-            dataset = export_struct(parent, name, data->getAs<types::Struct>(), g_SCILAB_CLASS_STRUCT, xfer_plist_id);
+        case InternalType::ScilabStruct:
+            dataset = export_struct(parent, name, data->getAs<Struct>(), g_SCILAB_CLASS_STRUCT, xfer_plist_id);
             break;
-        case types::InternalType::ScilabPolynom:
-            dataset = export_poly(parent, name, data->getAs<types::Polynom>(), xfer_plist_id);
+        case InternalType::ScilabPolynom:
+            dataset = export_poly(parent, name, data->getAs<Polynom>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabSparse:
-            dataset = export_sparse(parent, name, data->getAs<types::Sparse>(), xfer_plist_id);
+        case InternalType::ScilabSparse:
+            dataset = export_sparse(parent, name, data->getAs<Sparse>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabSparseBool :
-            dataset = export_boolean_sparse(parent, name, data->getAs<types::SparseBool>(), xfer_plist_id);
+        case InternalType::ScilabSparseBool :
+            dataset = export_boolean_sparse(parent, name, data->getAs<SparseBool>(), xfer_plist_id);
             break;
-        case types::InternalType::ScilabCell:
-            dataset = export_cell(parent, name, data->getAs<types::Cell>(), xfer_plist_id);
+        case InternalType::ScilabCell:
+            dataset = export_cell(parent, name, data->getAs<Cell>(), xfer_plist_id);
             break;
         case InternalType::ScilabListDeleteOperation:
-            dataset = export_delete(parent, name, , xfer_plist_id);
+            dataset = export_delete(parent, name, xfer_plist_id);
             break;
-        case types::InternalType::ScilabListUndefinedOperation:
+        case InternalType::ScilabListUndefinedOperation:
             dataset = export_undefined(parent, name, xfer_plist_id);
             break;
         case InternalType::ScilabListInsertOperation:
-            dataset = export_insert(parent, name, data->getAs<ListInsert>());
+            dataset = export_insert(parent, name, data->getAs<ListInsert>(), xfer_plist_id);
             break;
         case InternalType::ScilabMacro:
-            dataset = export_macro(parent, name, data->getAs<Macro>());
+            dataset = export_macro(parent, name, data->getAs<Macro>(), xfer_plist_id);
             break;
         case InternalType::ScilabMacroFile:
         {
-            MacroFile* pMF = data->getAs<types::MacroFile>();
+            MacroFile* pMF = data->getAs<MacroFile>();
             dataset = export_macro(parent, name, pMF->getMacro(), xfer_plist_id);
             break;
         }
@@ -506,7 +506,7 @@ static int export_list(int parent, const std::string& name, List* data, hid_t xf
     }
     return dset;
 }
-static int export_double(int parent, const std::string& name, types::Double* data, hid_t xfer_plist_id)
+static int export_double(int parent, const std::string& name, Double* data, hid_t xfer_plist_id)
 {
     int dataset = -1;
 
@@ -527,7 +527,7 @@ static int export_int(int parent, const std::string& name, int type, const char*
 {
     return writeIntegerMatrix6(parent, name.data(), type, prec, data->getDims(), data->getDimsArray(), data->get(), xfer_plist_id);
 }
-static int export_string(int parent, const std::string& name, types::String* data, hid_t xfer_plist_id)
+static int export_string(int parent, const std::string& name, String* data, hid_t xfer_plist_id)
 {
     int size = data->getSize();
     wchar_t** s = data->get();
@@ -549,11 +549,11 @@ static int export_string(int parent, const std::string& name, types::String* dat
 
     return dset;
 }
-static int export_boolean(int parent, const std::string& name, types::Bool* data, hid_t xfer_plist_id)
+static int export_boolean(int parent, const std::string& name, Bool* data, hid_t xfer_plist_id)
 {
     return writeBooleanMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get(), xfer_plist_id);
 }
-static int export_struct(int parent, const std::string& name, types::Struct* data, const char* type, hid_t xfer_plist_id)
+static int export_struct(int parent, const std::string& name, Struct* data, const char* type, hid_t xfer_plist_id)
 {
     //create a group with struct name
     int dset = openList6(parent, name.data(), type);
@@ -639,9 +639,9 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
     return dset;
 }
 
-static int export_void(int parent, const std::string& name, hid_t xfer_plist_id)
+static int export_delete(int parent, const std::string& name, hid_t xfer_plist_id)
 {
-    return writeVoid6(parent, name.data(), xfer_plist_id);
+    return writeDelete(parent, name.data(), xfer_plist_id);
 }
 
 static int export_undefined(int parent, const std::string& name, hid_t xfer_plist_id)
@@ -649,11 +649,11 @@ static int export_undefined(int parent, const std::string& name, hid_t xfer_plis
     return writeUndefined6(parent, name.data(), xfer_plist_id);
 }
 
-static int export_insert(int parent, const std::string& name, ListInsert* data)
+static int export_insert(int parent, const std::string& name, ListInsert* data, hid_t xfer_plist_id)
 {
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_INSERT);
 
-    if (export_data(dset, std::to_string(0).data(), data->getInsert()) == -1)
+    if (export_data(dset, std::to_string(0).data(), data->getInsert(), xfer_plist_id) == -1)
     {
         closeList6(dset);
         return -1;
@@ -667,7 +667,7 @@ static int export_insert(int parent, const std::string& name, ListInsert* data)
     return dset;
 }
 
-static int export_poly(int parent, const std::string& name, Polynom* data)
+static int export_poly(int parent, const std::string& name, Polynom* data, hid_t xfer_plist_id)
 {
     //create a group with struct name
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_POLY);
@@ -738,7 +738,7 @@ static int export_poly(int parent, const std::string& name, Polynom* data)
 
     return dset;
 }
-static int export_sparse(int parent, const std::string& name, types::Sparse* data, hid_t xfer_plist_id)
+static int export_sparse(int parent, const std::string& name, Sparse* data, hid_t xfer_plist_id)
 {
     int nnz = static_cast<int>(data->nonZeros());
     int row = data->getRows();
@@ -818,7 +818,7 @@ static int export_sparse(int parent, const std::string& name, types::Sparse* dat
     return dset;
 
 }
-static int export_boolean_sparse(int parent, const std::string& name, types::SparseBool* data, hid_t xfer_plist_id)
+static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data, hid_t xfer_plist_id)
 {
     int nnz = static_cast<int>(data->nbTrue());
     int row = data->getRows();
@@ -1011,24 +1011,24 @@ static int export_macro(int parent, const std::string& name, Macro* data, hid_t 
     return dset;
 }
 
-static int export_usertype(int parent, const std::string& name, types::UserType* data, hid_t xfer_plist_id)
+static int export_usertype(int parent, const std::string& name, UserType* data, hid_t xfer_plist_id)
 {
-    types::InternalType* it = data->save();
+    InternalType* it = data->save();
     if (it == nullptr)
     {
-        types::typed_list in;
+        typed_list in;
         in.push_back(data);
 
-        types::typed_list out;
+        typed_list out;
         //overload
         // rational case
         std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_save";
 
         try
         {
-            types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
+            Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
 
-            if (ret != types::Callable::OK)
+            if (ret != Callable::OK)
             {
                 return -1;
             }
@@ -1059,15 +1059,15 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
     }
 
     //create a struct around "usertype" to be able to restore it.
-    types::Struct* str = new types::Struct(1, 1);
-    types::SingleStruct* ss = str->get()[0];
+    Struct* str = new Struct(1, 1);
+    SingleStruct* ss = str->get()[0];
 
     //add fields
     ss->addField(L"type");
     ss->addField(L"data");
 
     //assign values to new fields
-    ss->set(L"type", new types::String(data->getShortTypeStr().data()));
+    ss->set(L"type", new String(data->getShortTypeStr().data()));
     ss->set(L"data", it);
 
     int ret = export_struct(parent, name, str, g_SCILAB_CLASS_USERTYPE, xfer_plist_id);
