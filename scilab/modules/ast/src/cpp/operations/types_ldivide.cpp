@@ -35,12 +35,8 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
 
     int iResult = 0;
 
-    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
-    {
-        return Double::Empty();
-    }
-
-    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
+    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty() ||
+        _pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
     {
         return Double::Empty();
     }
@@ -112,7 +108,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         return RDivideDoubleByDouble(_pDouble2, _pDouble1, _pDoubleOut);
     }
 
-    /* if (_pDouble2->isScalar())
+    if (_pDouble2->isScalar())
     {
         // eye() \ x = x
         if (_pDouble1->isIdentity() )
@@ -148,18 +144,12 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         }
 
         _pDouble2 = pDblTmp;
-    }*/
+    }
 
-    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2)
+    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getRows() != _pDouble2->getRows())
     {
         //not managed
         return 0;
-    }
-
-    if (_pDouble1->getRows() != _pDouble2->getRows())
-    {
-        // matrix dimensions do not agree
-        return 1;
     }
 
     // eye() \ eye() = eye()
