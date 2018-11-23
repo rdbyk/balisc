@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2018- Stéphane MOTTELET
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2018 - Stéphane MOTTELET
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * For more information, see the COPYING file which you should have received
@@ -141,13 +142,13 @@ types::Function::ReturnValue sci_permute(types::typed_list& in, int _iRetCount, 
 {
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "permute", 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "permute", 2);
         return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "permute", 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected."), "permute", 1);
         return types::Function::Error;
     }
 
