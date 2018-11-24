@@ -15,7 +15,7 @@ function M=%c_i_s(varargin)
     N=varargin(nargin-1)//inserted matrix
     index=varargin(1) //
     if size(M,"*")<>0 then
-        error(msprintf(_("%s: Affection of a string in a matrix of numbers is not implemented.\n"),"%c_i_s"));
+        error(_("%s: Affection of a string in a matrix of numbers is not implemented."), "%c_i_s");
     end
     if nargin==3 then
         if type(index)==10 then  //M.x=N or M.entries=N
