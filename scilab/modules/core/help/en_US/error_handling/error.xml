@@ -36,11 +36,10 @@
                 <term>format</term>
                 <listitem>
                     <para>
-                        String. The <term>format</term> defines how
-                        the error message is built by calling
-                        <literal>msprintf(format, a1, ..., an)</literal>.
-                        Providing an error message translated with <literal>gettext(…)</literal>
-                        is a good practice.
+                        Array of strings. A newline character <literal>'\n'</literal> is appended
+                        to the elements of <term>format</term>, unless the last one, and then
+                        concatenated to a single format string <literal>fmt</literal>. Which defines
+                        how the error message is built by <literal>msprintf(fmt, a1, ..., an)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,7 +48,7 @@
                 <listitem>
                     <para>
                         Optional arguments, which are converted, formatted
-                        and output into error message according to the chosen <term>format</term>
+                        and output into the error message according to the <term>format</term>
                         string.
                     </para>
                 </listitem>
@@ -78,7 +77,7 @@
                     displays in the console the recursive calling tree leading to the error,
                 </listitem>
                 <listitem>
-                    displays the error message built by <literal>msprintf(format, a1, ..., an)</literal>,
+                    displays the error message built by <literal>msprintf(fmt, a1, ..., an)</literal> (cf. above),
                 </listitem>
                 <listitem>
                     and resumes to the prompt level.
@@ -92,11 +91,11 @@
         </para>
         <para>
             <literal>error(format, a1, ..., an)</literal> yields an error #10000 (and displays the error
-            message built by <literal>msprintf(format, a1, ..., an)</literal>).
+            message built by <literal>msprintf(fmt, a1, ..., an)</literal> (cf. above)).
         </para>
         <para>
             <literal>error(n, format, a1, ..., an)</literal> displays an error message built by
-            <literal>msprintf(format, a1, ..., an)</literal>. The numerical identifier <varname>n</varname>
+            <literal>msprintf(fmt, a1, ..., an)</literal> (cf. above). The numerical identifier <varname>n</varname>
             is ascribed to the error.
         </para>
         <para>
@@ -119,7 +118,7 @@ endfunction
 
 // ----------
 
-error('A multi line\nerror message')
+error(['A multi line';'error message'])
 error(500, 'Error: my error message')
 [m, n] = lasterror()
 
@@ -178,9 +177,6 @@ test: Wrong number of input arguments: 1 expected.
             <member>
                 <link linkend="msprintf">msprintf</link>
             </member>
-            <member>
-                <link linkend="gettext">gettext</link>
-            </member>
         </simplelist>
     </refsection>
     <refsection>
@@ -212,8 +208,7 @@ test: Wrong number of input arguments: 1 expected.
                     Modified and improved interface of <literal>error(…)</literal> function.
                     The <literal>error(message, n)</literal> syntax is not supported any more.
                     Existing code containing <literal>error(message)</literal>, and 
-                    <literal>error(n, message)</literal> will work as before, as long as
-                    <varname>message</varname> is a single string.
+                    <literal>error(n, message)</literal> will work as before.
                 </revremark>
             </revision>
         </revhistory>
