@@ -1,9 +1,11 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
 
 // test des insertions dans les listes
@@ -204,11 +206,11 @@ function M=%to_e(varargin)
     M = varargin($),
     select varargin(1)
     case "row2" then
-        M.N = M.N(2, eye())
-        M.V = M.V(2, eye())
+        M.N = M.N(2,:)
+        M.V = M.V(2,:)
     case "row1" then
-        M.N = M.N(1, eye())
-        M.V = M.V(1, eye())
+        M.N = M.N(1,:)
+        M.V = M.V(1,:)
     else
         M.N = M.N(varargin(1:$ - 1))
         M.V = M.V(varargin(1:$ - 1))

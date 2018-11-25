@@ -28,8 +28,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
 
     //  Check that an instruction produces the expected error.
     if ( nargin < 2 ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong number of input argument: At least %d expected.\n") , "assert_checkerror" , 2 )
-        error(errmsg)
+        error(_("%s: Wrong number of input argument: At least %d expected."), "assert_checkerror", 2)
     end
     //
     // Get arguments
@@ -39,35 +38,30 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     //
     // Check types of variables
     if ( typeof(instr) <> "string" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkerror" , 1 )
-        error(errmsg)
+        error(_("%s: Wrong type for input argument #%d: Matrix of strings expected."), "assert_checkerror", 1)
     end
     if (expectedmsg<>[]) then
         if ( typeof(expectedmsg) <> "string" ) then
-            errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix of strings expected.\n") , "assert_checkerror" , 2 )
-            error(errmsg)
+            error(_("%s: Wrong type for input argument #%d: Matrix of strings expected."), "assert_checkerror", 2)
         end
     end
     if ( typeof(expectederrnb) <> "constant" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkerror" , 3 )
-        error(errmsg)
+        error(_("%s: Wrong type for input argument #%d: Matrix expected."), "assert_checkerror", 3)
     end
     //
     // Check sizes of variables
     if ( size(instr,"*") <> 1 ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n") , "assert_checkerror" , 1 , 1 , 1 )
+        error(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected."), "assert_checkerror", 1, 1, 1)
         error(errmsg)
     end
     if (expectedmsg<>[]) then
         if ((size(expectedmsg, "r") > 1) & (size(expectedmsg, "c") > 1))
-            errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: A string vector expected.\n") , "assert_checkerror" , 2 );
-            error(errmsg)
+            error(_("%s: Wrong size for input argument #%d: A string vector expected."), "assert_checkerror", 2);
         end
     end
     if ( expectederrnb <> [] ) then
         if ( size(expectederrnb,"*") <> 1 ) then
-            errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n") , "assert_checkerror" , 3 , 1 , 1 )
-            error(errmsg)
+            error(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected."), "assert_checkerror", 3, 1, 1)
         end
     end
     //
@@ -75,16 +69,14 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     if (expectedmsg<>[]) then
         if ( expectederrnb <> [] ) then
             if ( expectederrnb < 0 ) then
-                errmsg = sprintf ( gettext ( "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"  ) , "assert_checkerror" , 3 )
-                error(errmsg)
+                error(_("%s: Wrong value for input argument #%d: Non-negative integers expected."), "assert_checkerror", 3)
             end
         end
     else
         // If the message is empty (arg #2), check that the error
         // number is not empty (arg #3).
         if ( expectederrnb == [] ) then
-            errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"  ) , "assert_checkerror" , 3 )
-            error(errmsg)
+            error(_("%s: Wrong size for input argument #%d: Non-empty matrix expected."), "assert_checkerror", 3)
         end
     end
     //
@@ -93,9 +85,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     //
     // Check that an error is produced
     if ( compierr == 0 ) then
-        localstr = gettext ( "%s: No error was produced while evaluating ""%s"".")
-        errmsg = sprintf ( localstr , "assert_checkerror" , instr )
-        error(errmsg)
+        error(_("%s: No error was produced while evaluating ""%s""."), "assert_checkerror", instr)
     end
     //
     // Get the error
@@ -113,8 +103,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
         if ( ierr <> 0 ) then
             fmterrmsg = lasterror();
             localstr = gettext ( "%s: Error while formatting the error message: ""%s""")
-            errmsg = sprintf ( localstr , "assert_checkerror" , fmterrmsg )
-            error(errmsg)
+            error(_("%s: Error while formatting the error message: ""%s"""), "assert_checkerror", fmterrmsg)
         end
     end
     //
@@ -130,11 +119,9 @@ function [flag,errmsg] = assert_checkerror ( varargin )
             if size(expectedmsg, "*") <> 1 then
                 expectedmsg = sci2exp(expectedmsg);
             end
-            localstr = gettext("%s: Assertion failed: expected error message = ""%s"" while computed error message = ""%s"".")
-            errmsg = msprintf(localstr,"assert_checkerror", expectedmsg, compmsg)
             if ( nargout < 2 ) then
                 // If no output variable is given, generate an error
-                error ( errmsg )
+                error(_("%s: Assertion failed: expected error message = ""%s"" while computed error message = ""%s""."), "assert_checkerror", expectedmsg, compmsg)
             else
                 return
             end
@@ -145,11 +132,9 @@ function [flag,errmsg] = assert_checkerror ( varargin )
         // Check the error number
         if ( expectederrnb <> compierr ) then
             flag = %f
-            localstr = gettext("%s: Assertion failed: expected error number = %d while computed error number = %d.")
-            errmsg = msprintf(localstr,"assert_checkerror",expectederrnb,compierr)
             if ( nargout < 2 ) then
                 // If no output variable is given, generate an error
-                error ( errmsg )
+                error(_("%s: Assertion failed: expected error number = %d while computed error number = %d."), "assert_checkerror", expectederrnb, compierr)
             else
                 return
             end

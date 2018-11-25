@@ -1,11 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
-// test des insertions dans les listes
 a=1;b=3;c=2;d=[1 2 3];e=[3 4 5];f=[10;20];g=[44 55];
 h=5;i=4;a0=10;c0=20;b0=30;g0=[44 55 66; 10 20 30];
 l=list();l(0)=a;if l<>list(a) then bugmes();quit;end
@@ -23,14 +15,12 @@ l=list(a,c,b);l(2)=e;if l<>list(a,e,b) then bugmes();quit;end
 l=list(a,e,b);l(2)=a;if l<>list(a,c,b) then bugmes();quit;end
 l=list();l(0)=null();if l<>list() then bugmes();quit;end
 l=list();l(1)=null();if l<>list() then bugmes();quit;end
-//
 l=list(a);l(0)=list(c,b);if l<>list(list(c,b),a) then bugmes();quit;end
 l=list(a);l(2)=list(c,b);if l<>list(a,list(c,b)) then bugmes();quit;end
 l=list(a,list(c,b));l(3)=i;if l<>list(a,list(c,b),i) then bugmes();quit;end
 l=list(a,list(c,b),i);l(1)=null();if l<>list(list(c,b),i) then bugmes();quit;end
 l=list(a,list(c,b),i);l(2)=null();if l<>list(a,i) then bugmes();quit;end
 l=list(a,list(c,b),i);l(3)=null();if l<>list(a,list(c,b)) then bugmes();quit;end
-//
 l=list(a,list(c,b,i),h);l(2)(2)=a0;if l<>list(a,list(c,a0,i),h) then bugmes();quit;end
 l=list(a,list(c,b,i),h);l(2)(2)=f;if l<>list(a,list(c,f,i),h) then bugmes();quit;end
 l=list(a,list(c,f,i),h);l(2)(2)=b;if l<>list(a,list(c,b,i),h) then bugmes();quit;end
@@ -80,8 +70,6 @@ l=list(a,1/%s,g);l(2)("num")(1,1)=%s+1;if l<>list(a,(%s+1)/%s,g) then bugmes();q
 l=list(a,1/%s,g);l(2)("den")(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then bugmes();quit;end
 l=list(a,1/%s,g);l(2)("num")(1,2)=33;l(2)("den")(1,2)=%s+1;
 if l<>list(a,[1 33]./[%s %s+1],g) then bugmes();quit;end
-//a=1;b=3;c=2;d=[1 2 3];e=[3 4 5];f=[10;20];g=[44 55];
-//h=5;i=4;a0=10;c0=20;b0=30;g0=[44 55 66; 10 20 30];
 l=list(a);l(1)(1)=3;x=a;x(1)=3;if l<>list(x) then bugmes();quit;end
 l=list(e);l(1)(2)=[];x=e;x(2)=[];if l<>list(x) then bugmes();quit;end
 l=list(a);l(1)(1,1)=3;x=a;x(1,1)=3;if l<>list(x) then bugmes();quit;end
@@ -113,14 +101,12 @@ l=list(a,c,b);l(2)=e;if l<>list(a,e,b) then bugmes();quit;end
 l=list(a,e,b);l(2)=a;if l<>list(a,c,b) then bugmes();quit;end
 l=list();l(0)=null();if l<>list() then bugmes();quit;end
 l=list();l(1)=null();if l<>list() then bugmes();quit;end
-//
 l=list(a);l(0)=list(c,b);if l<>list(list(c,b),a) then bugmes();quit;end
 l=list(a);l(2)=list(c,b);if l<>list(a,list(c,b)) then bugmes();quit;end
 l=list(a,list(c,b));l(3)=i;if l<>list(a,list(c,b),i) then bugmes();quit;end
 l=list(a,list(c,b),i);l(1)=null();if l<>list(list(c,b),i) then bugmes();quit;end
 l=list(a,list(c,b),i);l(2)=null();if l<>list(a,i) then bugmes();quit;end
 l=list(a,list(c,b),i);l(3)=null();if l<>list(a,list(c,b)) then bugmes();quit;end
-//
 l=list(a,list(c,b,i),h);l(2)(2)=a0;if l<>list(a,list(c,a0,i),h) then bugmes();quit;end
 l=list(a,list(c,b,i),h);l(2)(2)=f;if l<>list(a,list(c,f,i),h) then bugmes();quit;end
 l=list(a,list(c,f,i),h);l(2)(2)=b;if l<>list(a,list(c,b,i),h) then bugmes();quit;end
@@ -168,16 +154,15 @@ l=list(a,1/%s,g);l(2)("num")(1,1)=%s+1;if l<>list(a,(%s+1)/%s,g) then bugmes();q
 l=list(a,1/%s,g);l(2)("den")(1,1)=%s^1+1;if l<>list(a,1/(%s^2+1),g) then bugmes();quit;end
 l=list(a,1/%s,g);l(2)("num")(1,2)=33;l(2)("den")(1,2)=%s+1;
 if l<>list(a,[1 33]./[%s %s+1],g) then bugmes();quit;end
-//test with field names not defined in the structure here row1 and row2
 function M=%to_e(varargin)
     M = varargin($),
     select varargin(1)
     case "row2" then
-        M.N = M.N(2, eye())
-        M.V = M.V(2, eye())
+        M.N = M.N(2,:)
+        M.V = M.V(2,:)
     case "row1" then
-        M.N = M.N(1, eye())
-        M.V = M.V(1, eye())
+        M.N = M.N(1,:)
+        M.V = M.V(1,:)
     else
         M.N = M.N(varargin(1:$ - 1))
         M.V = M.V(varargin(1:$ - 1))
@@ -211,7 +196,6 @@ assert_checkequal(M.V, [1 4 3;4 5 6]);
 assert_checkequal(M.N, ["a","d","c";"d","e","f"]);
 l(1)="foo";
 assert_checkequal(l(1), "foo");
-//test of insertion in structs (a particular mlist)
 clear S;
 S.a=11;
 S(2).a=12;
@@ -284,7 +268,6 @@ clear S;
 S(2).a(3).b=1;
 assert_checkequal(S(1).a, []);
 assert_checkequal(S(2).a.b, list([],[], 1));
-//
 S = struct("a", "1");
 S(1,1,2).a = "2";
 S(1).b = 2;

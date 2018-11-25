@@ -15,7 +15,4 @@
 // <-- Short Description -->
 // rlist() returned an error
 
-
 rlist()
-
-
