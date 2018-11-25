@@ -19,7 +19,7 @@ function [m, k] = %sp_max(varargin)
     // matrices in list
     if type(varargin(1)) == 15 then
         if nargin <> 1 then
-            error(msprintf(_("%s: Wrong size of input argument: %d expected.\n"), "%sp_max", 1))
+            error(_("%s: Wrong size of input argument: %d expected."), "%sp_max", 1)
         end
 
         nargin = length(varargin(1));
@@ -28,7 +28,7 @@ function [m, k] = %sp_max(varargin)
 
         // If the second argument of list is not a sparse -> ERROR
         if nargin == 2 & type(elements(2)) <> 5 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", 1))
+            error(_("%s: Wrong type for input argument #%d: A sparse matrix expected."), "%sp_max", 1)
         end
     end
 
@@ -39,7 +39,7 @@ function [m, k] = %sp_max(varargin)
 
         // Check if A is a sparse
         if type(A1)<> 5 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", 1))
+            error(_("%s: Wrong type for input argument #%d: A sparse matrix expected."), "%sp_max", 1)
         end
 
         // Retrieves entries of sparse matrix
@@ -126,14 +126,14 @@ function [m, k] = %sp_max(varargin)
         // matrix
     case 2
         if nargout == 2 then
-            error(msprintf(_("%s: Wrong number of output argument: %d expected.\n"), "%sp_max", 1));
+            error(_("%s: Wrong number of output argument: %d expected."), "%sp_max", 1);
         end
 
         A1 = elements(1);
 
         // Check if A is a sparse
         if type(A1) <> 5  then
-            error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", 1));
+            error(_("%s: Wrong type for input argument #%d: A sparse matrix expected."), "%sp_max", 1);
         end
 
         select type(elements(2))
@@ -143,7 +143,7 @@ function [m, k] = %sp_max(varargin)
             // Opts can be : 'c' 'r' or 'm'
             ind = find(opts == ["c","r","m"]);
             if (ind == []) then
-                error(msprintf(_("%s: Wrong value for input argument #%d: [''r'' ''c'' ''m''] expected.\n"),"%sp_max",2));
+                error(_("%s: Wrong value for input argument #%d: [''r'' ''c'' ''m''] expected."), "%sp_max", 2);
             end
 
             [ij, v, mn] = spget(A1);
@@ -211,7 +211,7 @@ function [m, k] = %sp_max(varargin)
 
             // Check the size of A2
             if (m1 <> m2 | n1 <> n2) then
-                error(msprintf(_("%s: Wrong size of input argument #%d: Same size as input argument #%d expected.\n"), "%sp_max", 2, 1));
+                error(_("%s: Wrong size of input argument #%d: Same size as input argument #%d expected."), "%sp_max", 2, 1);
             end
 
             // Retrieve the indices of non-zeros
@@ -230,13 +230,13 @@ function [m, k] = %sp_max(varargin)
             end
 
         else
-            error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix or a character expected.\n"), "%sp_max", 2));
+            error(_("%s: Wrong type for input argument #%d: A sparse matrix or a character expected."), "%sp_max", 2);
         end
 
         // Case : max(A1,A2,A3,..,An) or max(list(A1,A2,A3,..,An))
     else
         if nargout == 2 then
-            error(msprintf(_("%s: Wrong number of output argument: %d expected.\n"), "%sp_max", 1));
+            error(_("%s: Wrong number of output argument: %d expected."), "%sp_max", 1);
         end
         // m is the first matrix
         m = elements(1);
@@ -247,9 +247,9 @@ function [m, k] = %sp_max(varargin)
             // Check if An is a sparse
             if type(An) <> 5 then
                 if error_list then
-                    error(msprintf(_("%s: Wrong type for input argument #%d (List element: %d): A sparse matrix expected.\n"), "%sp_max", 1, i))
+                    error(_("%s: Wrong type for input argument #%d (List element: %d): A sparse matrix expected."), "%sp_max", 1, i)
                 else
-                    error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", i))
+                    error(_("%s: Wrong type for input argument #%d: A sparse matrix expected."), "%sp_max", i)
                 end
             end
 
@@ -259,9 +259,9 @@ function [m, k] = %sp_max(varargin)
             // Check size
             if (m1 <> m2 | n1 <> n2) then
                 if error_list then
-                    error(msprintf(_("%s: Wrong size of input argument #%d (List element: %d): Same size as input argument #%d expected.\n"), "%sp_max", 1, i, 1))
+                    error(_("%s: Wrong size of input argument #%d (List element: %d): Same size as input argument #%d expected."), "%sp_max", 1, i, 1)
                 else
-                    error(msprintf(_("%s: Wrong size of input argument #%d: Same size as input argument #%d expected.\n"), "%sp_max", i, 1))
+                    error(_("%s: Wrong size of input argument #%d: Same size as input argument #%d expected."), "%sp_max", i, 1)
                 end
             end
 
