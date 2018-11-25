@@ -143,45 +143,52 @@ wchar_t *expandPathVariableW(const wchar_t *wcstr)
 
 char *expandPathVariable(const char* str)
 {
-    size_t n = strcspn(str, FILESEPS_STR);
-
-    if (n)
+    if (str)
     {
-        char* e = strndup(str, n);
-        struct alias* a = Hash::lookup_alias(e, n);
-        FREE(e);
+        size_t n = strcspn(str, FILESEPS_STR);
 
-        if (a)
+        if (n)
         {
-            wchar_t* w = getVariableValueDefinedInScilab(a);
+            char* e = strndup(str, n);
+            struct alias* a = Hash::lookup_alias(e, n);
+            FREE(e);
 
-            if (w)
+            if (a)
             {
-                char* v = wide_string_to_UTF8(w);
-                FREE(w);
+                wchar_t* w = getVariableValueDefinedInScilab(a);
 
-                char* p = (char*)MALLOC((balisc_strlen(str) + balisc_strlen(v) - n + 1) * sizeof(char));
-                if (p)
+                if (w)
                 {
-                    strcat(stpcpy(p, v), &(str[n]));
-                    FileSep::Normalize(p);
+                    char* v = wide_string_to_UTF8(w);
+                    FREE(w);
+
+                    char* p = (char*)MALLOC((balisc_strlen(str) + balisc_strlen(v) - n + 1) * sizeof(char));
+                    if (p)
+                    {
+                        strcat(stpcpy(p, v), &(str[n]));
+                        FileSep::Normalize(p);
+                    }
+
+                    FREE(v);
+
+                    return p;
                 }
-
-                FREE(v);
-
-                return p;
             }
         }
+
+        char* p = os_strdup(str);
+
+        if (p)
+        {
+            FileSep::Normalize(p);
+        }
+
+        return p;
     }
-
-    char* p = os_strdup(str);
-
-    if (p)
+    else
     {
-        FileSep::Normalize(p);
+        return NULL;
     }
-
-    return p;
 }
 
 void resetVariableValueDefinedInScilab(void)
