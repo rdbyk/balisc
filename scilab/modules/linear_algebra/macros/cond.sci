@@ -21,7 +21,7 @@ function c = cond(varargin)
         A = varargin(1);
         if type(A) == 1 then
             if or(isnan(A)) | or (isinf(A)) then
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: must not contain %s or %s.\n"), "cond", 1, "%nan", "%inf"));
+                error(_("%s: Wrong value for input argument #%d: must not contain %s or %s."), "cond", 1, "%nan", "%inf");
             end
             if A == [] then
                 c = 0;
@@ -34,7 +34,7 @@ function c = cond(varargin)
                 c = s(1)/s($);
             end
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A matrix expected.\n"), "cond", 1));
+            error(_("%s: Wrong type for input argument #%d: A matrix expected."), "cond", 1);
         end
     case 2
         // c = cond(A, p) where p = 1, %inf, fro, ..
@@ -44,18 +44,18 @@ function c = cond(varargin)
         p = varargin(2);
         [m,n] = size(A);
         if type(A) <> 1 | m <> n then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A square matrix expected.\n"),"cond", 1));
+            error(_("%s: Wrong type for input argument #%d: A square matrix expected."),"cond", 1);
         end
         if and(type(p) <> [1, 10]) then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar or a string expected.\n"),"cond", 2));
+            error(_("%s: Wrong type for input argument #%d: A scalar or a string expected."),"cond", 2);
         end
         if and(p <> [1 2 %inf] & p <> ["inf","fro"]) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: must be %d, %d, %s, ''%s'' or ''%s''.\n"), "cond", 2, 1, 2, "%inf", "inf", "fro"));
+            error(_("%s: Wrong value for input argument #%d: must be %d, %d, %s, ''%s'' or ''%s''."), "cond", 2, 1, 2, "%inf", "inf", "fro");
         end
 
         c = norm(A, p) * norm(inv(A), p);
     else
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "cond", 1, 2));
+        error(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "cond", 1, 2);
     end
 
 endfunction
