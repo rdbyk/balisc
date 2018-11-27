@@ -1,26 +1,3 @@
-//
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
-//
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
-//
-// This file is hereby licensed under the terms of the GNU GPL v2.0,
-// pursuant to article 5.3.4 of the CeCILL v.2.1.
-// This file was originally licensed under the terms of the CeCILL v2.1,
-// and continues to be available under such terms.
-// For more information, see the COPYING file which you should have received
-// along with this program.
-//
-//
-// <-- CLI SHELL MODE -->
-// <-- ENGLISH IMPOSED -->
-//
-// This test is to check how overloading names are
-// built then called.
-// use mlist to define unknown type function.
-//
-// This test is base on the diary output.
-//
 overloadingNames = [
     "%unknown_p" // Display
     "%unknown_e" // Extraction
@@ -56,7 +33,6 @@ overloadingNames = [
     "%unknown_4_unknown" // >=
     "%unknown_5" // not
 ];
-// Generate all overloading functions...
 for name = overloadingNames
   execstr("function r="+name+"(varargin); " + ...
          "disp(""Calling "+name+"...""); " + ...
@@ -66,7 +42,7 @@ end
 M = mlist("unknown");
 if typeof(M) <> "unknown" then bugmes();quit;end
 M
-M  = 
+ M  = 
  Calling %unknown_p...
 M(1)
  Calling %unknown_e...
@@ -159,7 +135,6 @@ M .^ M
  Calling %unknown_j_unknown...
  ans  =
     []
-// M .** M <-- This does not exists in Scilab ... Wired ...
 M:M
  Calling %unknown_b_unknown...
  ans  =
@@ -173,10 +148,6 @@ M <> M
  ans  =
     []
 M ~= M
- Calling %unknown_n_unknown...
- ans  =
-    []
-M @= M
  Calling %unknown_n_unknown...
  ans  =
     []
@@ -205,14 +176,8 @@ M & M
  ans  =
     []
 ~M
- Calling %unknown_5...
  ans  =
-    []
-@M
- Calling %unknown_5...
- ans  =
-    []
-// Clear all added functions
+  F
 for name = overloadingNames
   execstr("clear "+name);
 end
