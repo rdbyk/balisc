@@ -176,6 +176,9 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     min_nv=min(nv);
     max_nv=max(nv);
 
+    initDrawingMode = gcf().immediate_drawing;
+    gcf().immediate_drawing = "off";
+
     plot2d([min(xx);max(xx)],[min(yy);max(yy)],0,strf,leg,rect,nax);
 
     // Plot patches in order of decreasing size. This makes sure that
@@ -190,7 +193,6 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     H=[];
     [FA,IA]=gsort(abs(Area));
 
-    drawlater(); // postpone the drawing here
     ax = gca();
     old_foreground = ax.foreground;
     pat = old_foreground;
@@ -210,7 +212,7 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
         contour2d(xx,yy,zz,nv,style,"000",leg,rect,nax);
     end
     ax.foreground = old_foreground;
-    drawnow(); // draw all now!
 
+    gcf().immediate_drawing = initDrawingMode;
 endfunction
 

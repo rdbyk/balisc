@@ -26,7 +26,7 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
     status = %f;
 
     // call loadXcosLibs if not loaded
-    if exists("scicos_diagram", "a") == 0 then loadXcosLibs(); end
+    if exists("Electricallib", "a") == 0 then loadXcosLibs(); end
 
     if nargin < 2 | nargin > 6 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "generateBlockImage", 2, 4));

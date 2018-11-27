@@ -86,24 +86,51 @@ using symbol::Symbol;
 static bool isVarExist(int _iFile, const char* _pstVarName);
 static int extractVarNameList(int* pvCtx, int _iStart, int _iEnd, char** _pstNameList);
 
-int export_data(int parent, const std::string& name, InternalType* data);
-static int export_double(int parent, const std::string& name, Double* data);
-static int export_string(int parent, const std::string& name, String* data);
-static int export_boolean(int parent, const std::string& name, Bool* data);
-static int export_list(int parent, const std::string& name, List* data);
-static int export_struct(int parent, const std::string& name, Struct* data, const char* type = g_SCILAB_CLASS_STRUCT);
-template <class T> static int export_int(int parent, const std::string& name, int type, const char* prec, T* data);
-static int export_poly(int parent, const std::string& name, Polynom* data);
-static int export_sparse(int parent, const std::string& name, Sparse* data);
-static int export_cell(int parent, const std::string& name, Cell* data);
-static int export_macro(int parent, const std::string& name, Macro* data);
-static int export_usertype(int parent, const std::string& name, UserType* data);
+int export_data(int parent, const std::string& name, InternalType* data, hid_t xfer_plist_id);
+static int export_double(int parent, const std::string& name, Double* data, hid_t xfer_plist_id);
+static int export_string(int parent, const std::string& name, String* data, hid_t xfer_plist_id);
+static int export_boolean(int parent, const std::string& name, Bool* data, hid_t xfer_plist_id);
+static int export_list(int parent, const std::string& name, List* data, hid_t xfer_plist_id);
+static int export_struct(int parent, const std::string& name, Struct* data, const char* type, hid_t xfer_plist_id);
+template <class T> static int export_int(int parent, const std::string& name, int type, const char* prec, T* data, hid_t xfer_plist_id);
+static int export_poly(int parent, const std::string& name, Polynom* data, hid_t xfer_plist_id);
+static int export_sparse(int parent, const std::string& name, Sparse* data, hid_t xfer_plist_id);
+static int export_cell(int parent, const std::string& name, Cell* data, hid_t xfer_plist_id);
+static int export_macro(int parent, const std::string& name, Macro* data, hid_t xfer_plist_id);
+static int export_usertype(int parent, const std::string& name, UserType* data, hid_t xfer_plist_id);
 
-static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data);
-static int export_handles(int parent, const std::string& name, GraphicHandle* data);
-static int export_delete(int parent, const std::string& name);
-static int export_undefined(int parent, const std::string& name);
-static int export_insert(int parent, const std::string& name, ListInsert* data);
+static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data, hid_t xfer_plist_id);
+static int export_handles(int parent, const std::string& name, GraphicHandle* data, hid_t xfer_plist_id);
+static int export_delete(int parent, const std::string& name, hid_t xfer_plist_id);
+static int export_undefined(int parent, const std::string& name, hid_t xfer_plist_id);
+static int export_insert(int parent, const std::string& name, ListInsert* data, hid_t xfer_plist_id);
+
+/*--------------------------------------------------------------------------*/
+// Custom properties for raw data transfer
+//
+// Passing plist_id as XFER parameter will let H5Dwrite re-use the same
+// internal buffers around.
+struct CustomXFER
+{
+    // from HDF5 doc, "the default value for the maximum buffer is 1 Mb."
+    const hsize_t size = 1024 * 1024;
+
+    hid_t plist_id;
+    uint8_t* tconv;
+    uint8_t* bkg;
+
+    CustomXFER() : plist_id(H5Pcreate(H5P_DATASET_XFER)), tconv(new uint8_t[size]), bkg(new uint8_t[size])
+    {
+        H5Pset_buffer(plist_id, size, tconv, bkg);
+    }
+
+    ~CustomXFER()
+    {
+        H5Pclose(plist_id);
+        delete[] tconv;
+        delete[] bkg;
+    }
+};
 
 static const char fname[] = "save";
 
@@ -111,6 +138,7 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
 {
     int iH5File = 0;
     bool bAppendMode = false;
+    bool isNewFile = true;
     int rhs = static_cast<int>(in.size());
     std::string filename;
     std::map<std::string, InternalType*> vars;
@@ -182,49 +210,56 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
     {
         for (int i = 1; i < rhs; ++i)
         {
-            if (in[i]->getId() != InternalType::IdScalarString)
+            if (!in[i]->isString())
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, i+1);
                 return Function::Error;
             }
 
-            wchar_t* wvar = in[i]->getAs<String>()->get()[0];
+            String *pS = in[i]->getAs<types::String>();
+            wchar_t* wvar = in[i]->getAs<String>()->getFirst();
+
             if (wcscmp(wvar, L"-append") == 0)
             {
                 bAppendMode = true;
                 continue;
             }
 
-            InternalType* pIT = ctx->get(Symbol(wvar));
-            if (pIT == NULL)
+            for (int j = 0; j < pS->getSize(); j++)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
-                return Function::Error;
-            }
+                wvar = pS->get(j);
+                InternalType* pIT = ctx->get(Symbol(wvar));
 
-            if (pIT->isHandle())
-            {
-                GraphicHandle* pGH = pIT->getAs<GraphicHandle>();
-
-                int i = pGH->getSize();
-                while (--i >= 0 && getObjectFromHandle(pGH->get(i)));
-
-                if (i >= 0)
+                if (pIT == NULL)
                 {
-                    Sciwarning(_("WARNING: %s: invalid graphic handle is ignored.\n"), fname);
-                    continue;
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
+                    return Function::Error;
                 }
+
+		        if (pIT->isHandle())
+		        {
+		            GraphicHandle* pGH = pIT->getAs<GraphicHandle>();
+
+		            int i = pGH->getSize();
+		            while (--i >= 0 && getObjectFromHandle(pGH->get(i)));
+
+		            if (i >= 0)
+		            {
+		                Sciwarning(_("WARNING: %s: invalid graphic handle is ignored.\n"), fname);
+		                continue;
+		            }
+		        }
+
+                char* cvar = wide_string_to_UTF8(wvar);
+                std::string var(cvar);
+                FREE(cvar);
+
+                //check var exists
+                vars[var] = pIT;                
             }
-
-            char* cvar = wide_string_to_UTF8(wvar);
-            std::string var(cvar);
-            FREE(cvar);
-
-            //check var exists
-            vars[var] = pIT;
         }
     }
-
+   
     if (bAppendMode)
     {
         iH5File = openHDF5File(filename.data(), bAppendMode);
@@ -234,6 +269,7 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
         }
         else
         {
+            isNewFile = false;
             int iVersion = getSODFormatAttribute(iH5File);
             if (iVersion != SOD_FILE_VERSION)
             {
@@ -264,6 +300,9 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
         return Function::Error;
     }
 
+    // share common work buffers for all serialized data
+    CustomXFER xfer;
+
     // export data
     for (const auto var : vars)
     {
@@ -286,11 +325,14 @@ Function::ReturnValue sci_hdf5_save(typed_list &in, int _iRetCount, typed_list &
             }
         }
 
-        int iDataset = export_data(iH5File, var.first, var.second);
+        int iDataset = export_data(iH5File, var.first, var.second, xfer.plist_id);
         if (iDataset == -1)
         {
             closeHDF5File(iH5File);
-            deleteafile(filename.data());
+            if (isNewFile)
+            {
+                deleteafile(filename.data());
+            }
             Scierror(999, _("%s: Unable to export variable \'%s\' in file \'%s\'.\n"), fname, var.first.data(), filename.data());
             return Function::Error;
         }
@@ -342,87 +384,87 @@ static bool isVarExist(int _iFile, const char* _pstVarName)
     return false;
 }
 
-int export_data(int parent, const std::string& name, InternalType* data)
+int export_data(int parent, const std::string& name, InternalType* data, hid_t xfer_plist_id)
 {
     int dataset = -1;
     switch (data->getType())
     {
         case InternalType::ScilabDouble:
-            dataset = export_double(parent, name, data->getAs<Double>());
+            dataset = export_double(parent, name, data->getAs<Double>(), xfer_plist_id);
             break;
         case InternalType::ScilabString:
-            dataset = export_string(parent, name, data->getAs<String>());
+            dataset = export_string(parent, name, data->getAs<String>(), xfer_plist_id);
             break;
         case InternalType::ScilabBool:
-            dataset = export_boolean(parent, name, data->getAs<Bool>());
+            dataset = export_boolean(parent, name, data->getAs<Bool>(), xfer_plist_id);
             break;
         case InternalType::ScilabTList:
         case InternalType::ScilabList:
         case InternalType::ScilabMList:
-            dataset = export_list(parent, name, data->getAs<List>());
+            dataset = export_list(parent, name, data->getAs<List>(), xfer_plist_id);
             break;
         case InternalType::ScilabInt8:
-            dataset = export_int(parent, name, H5T_NATIVE_INT8, "8", data->getAs<Int8>());
+            dataset = export_int(parent, name, H5T_NATIVE_INT8, "8", data->getAs<Int8>(), xfer_plist_id);
             break;
         case InternalType::ScilabInt16:
-            dataset = export_int(parent, name, H5T_NATIVE_INT16, "16", data->getAs<Int16>());
+            dataset = export_int(parent, name, H5T_NATIVE_INT16, "16", data->getAs<Int16>(), xfer_plist_id);
             break;
         case InternalType::ScilabInt32:
-            dataset = export_int(parent, name, H5T_NATIVE_INT32, "32", data->getAs<Int32>());
+            dataset = export_int(parent, name, H5T_NATIVE_INT32, "32", data->getAs<Int32>(), xfer_plist_id);
             break;
         case InternalType::ScilabInt64:
-            dataset = export_int(parent, name, H5T_NATIVE_INT64, "64", data->getAs<Int64>());
+            dataset = export_int(parent, name, H5T_NATIVE_INT64, "64", data->getAs<Int64>(), xfer_plist_id);
             break;
         case InternalType::ScilabUInt8:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT8, "u8", data->getAs<UInt8>());
+            dataset = export_int(parent, name, H5T_NATIVE_UINT8, "u8", data->getAs<UInt8>(), xfer_plist_id);
             break;
         case InternalType::ScilabUInt16:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT16, "u16", data->getAs<UInt16>());
+            dataset = export_int(parent, name, H5T_NATIVE_UINT16, "u16", data->getAs<UInt16>(), xfer_plist_id);
             break;
         case InternalType::ScilabUInt32:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT32, "u32", data->getAs<UInt32>());
+            dataset = export_int(parent, name, H5T_NATIVE_UINT32, "u32", data->getAs<UInt32>(), xfer_plist_id);
             break;
         case InternalType::ScilabUInt64:
-            dataset = export_int(parent, name, H5T_NATIVE_UINT64, "u64", data->getAs<UInt64>());
+            dataset = export_int(parent, name, H5T_NATIVE_UINT64, "u64", data->getAs<UInt64>(), xfer_plist_id);
             break;
         case InternalType::ScilabStruct:
-            dataset = export_struct(parent, name, data->getAs<Struct>());
+            dataset = export_struct(parent, name, data->getAs<Struct>(), g_SCILAB_CLASS_STRUCT, xfer_plist_id);
             break;
         case InternalType::ScilabPolynom:
-            dataset = export_poly(parent, name, data->getAs<Polynom>());
+            dataset = export_poly(parent, name, data->getAs<Polynom>(), xfer_plist_id);
             break;
         case InternalType::ScilabSparse:
-            dataset = export_sparse(parent, name, data->getAs<Sparse>());
+            dataset = export_sparse(parent, name, data->getAs<Sparse>(), xfer_plist_id);
             break;
         case InternalType::ScilabSparseBool :
-            dataset = export_boolean_sparse(parent, name, data->getAs<SparseBool>());
+            dataset = export_boolean_sparse(parent, name, data->getAs<SparseBool>(), xfer_plist_id);
             break;
         case InternalType::ScilabCell:
-            dataset = export_cell(parent, name, data->getAs<Cell>());
+            dataset = export_cell(parent, name, data->getAs<Cell>(), xfer_plist_id);
             break;
         case InternalType::ScilabListDeleteOperation:
-            dataset = export_delete(parent, name);
+            dataset = export_delete(parent, name, xfer_plist_id);
             break;
         case InternalType::ScilabListUndefinedOperation:
-            dataset = export_undefined(parent, name);
+            dataset = export_undefined(parent, name, xfer_plist_id);
             break;
         case InternalType::ScilabListInsertOperation:
-            dataset = export_insert(parent, name, data->getAs<ListInsert>());
+            dataset = export_insert(parent, name, data->getAs<ListInsert>(), xfer_plist_id);
             break;
         case InternalType::ScilabMacro:
-            dataset = export_macro(parent, name, data->getAs<Macro>());
+            dataset = export_macro(parent, name, data->getAs<Macro>(), xfer_plist_id);
             break;
         case InternalType::ScilabMacroFile:
         {
             MacroFile* pMF = data->getAs<MacroFile>();
-            dataset = export_macro(parent, name, pMF->getMacro());
+            dataset = export_macro(parent, name, pMF->getMacro(), xfer_plist_id);
             break;
         }
         case InternalType::ScilabHandle:
-            dataset = export_handles(parent, name, data->getAs<GraphicHandle>());
+            dataset = export_handles(parent, name, data->getAs<GraphicHandle>(), xfer_plist_id);
             break;
         case InternalType::ScilabUserType:
-            dataset = export_usertype(parent, name, data->getAs<UserType>());
+            dataset = export_usertype(parent, name, data->getAs<UserType>(), xfer_plist_id);
             break;
         default:
         {
@@ -433,7 +475,7 @@ int export_data(int parent, const std::string& name, InternalType* data)
     return dataset;
 }
 
-static int export_list(int parent, const std::string& name, List* data)
+static int export_list(int parent, const std::string& name, List* data, hid_t xfer_plist_id)
 {
     int size = data->getSize();
 
@@ -458,7 +500,7 @@ static int export_list(int parent, const std::string& name, List* data)
 
     for (int i = 0; i < size; ++i)
     {
-        if (export_data(dset, std::to_string(i).data(), data->get(i)) == -1)
+        if (export_data(dset, std::to_string(i).data(), data->get(i), xfer_plist_id) == -1)
         {
             closeList6(dset);
             return -1;
@@ -471,30 +513,28 @@ static int export_list(int parent, const std::string& name, List* data)
     }
     return dset;
 }
-
-static int export_double(int parent, const std::string& name, Double* data)
+static int export_double(int parent, const std::string& name, Double* data, hid_t xfer_plist_id)
 {
     int dataset = -1;
 
     if (data->isComplex())
     {
-        dataset = writeDoubleComplexMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get(), data->getImg());
+        dataset = writeDoubleComplexMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get(), data->getImg(), xfer_plist_id);
     }
     else
     {
-        dataset = writeDoubleMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get());
+        dataset = writeDoubleMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get(), xfer_plist_id);
     }
 
     return dataset;
 }
 
 template <class T>
-static int export_int(int parent, const std::string& name, int type, const char* prec, T* data)
+static int export_int(int parent, const std::string& name, int type, const char* prec, T* data, hid_t xfer_plist_id)
 {
-    return writeIntegerMatrix6(parent, name.data(), type, prec, data->getDims(), data->getDimsArray(), data->get());
+    return writeIntegerMatrix6(parent, name.data(), type, prec, data->getDims(), data->getDimsArray(), data->get(), xfer_plist_id);
 }
-
-static int export_string(int parent, const std::string& name, String* data)
+static int export_string(int parent, const std::string& name, String* data, hid_t xfer_plist_id)
 {
     int size = data->getSize();
     wchar_t** s = data->get();
@@ -506,7 +546,7 @@ static int export_string(int parent, const std::string& name, String* data)
         v[i] = wide_string_to_UTF8(s[i]);
     }
 
-    int dset = writeStringMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), v.data());
+    int dset = writeStringMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), v.data(), xfer_plist_id);
 
     //release memory
     for (int i = 0; i < size; ++i)
@@ -516,19 +556,17 @@ static int export_string(int parent, const std::string& name, String* data)
 
     return dset;
 }
-
-static int export_boolean(int parent, const std::string& name, Bool* data)
+static int export_boolean(int parent, const std::string& name, Bool* data, hid_t xfer_plist_id)
 {
-    return writeBooleanMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get());
+    return writeBooleanMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get(), xfer_plist_id);
 }
-
-static int export_struct(int parent, const std::string& name, Struct* data, const char* type)
+static int export_struct(int parent, const std::string& name, Struct* data, const char* type, hid_t xfer_plist_id)
 {
     //create a group with struct name
     int dset = openList6(parent, name.data(), type);
     //store struct dimensions
     std::vector<int> dims = {1, data->getDims()};
-    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray());
+    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray(), xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -558,7 +596,7 @@ static int export_struct(int parent, const std::string& name, Struct* data, cons
     wchar_t** pfields = fields->get();
 
     //save fields list in vector to keep order
-    export_string(dset, "__fields__", fields);
+    export_string(dset, "__fields__", fields, xfer_plist_id);
 
     std::vector<hobj_ref_t> vrefs(size);
     //fill main group with struct field name
@@ -573,7 +611,7 @@ static int export_struct(int parent, const std::string& name, Struct* data, cons
             std::string refname(cfield);
             refname += "_" + std::to_string(j);
             //export data in refs group
-            int ref = export_data(refs, refname, val);
+            int ref = export_data(refs, refname, val, xfer_plist_id);
             //create reference of data
             ret = addItemStruct6(refs, vrefs.data(), j, refname.data());
             if (ret)
@@ -584,7 +622,7 @@ static int export_struct(int parent, const std::string& name, Struct* data, cons
             }
         }
 
-        ret = writeStructField6(dset, cfield, data->getDims(), data->getDimsArray(), vrefs.data());
+        ret = writeStructField6(dset, cfield, data->getDims(), data->getDimsArray(), vrefs.data(), xfer_plist_id);
         FREE(cfield);
         if (ret < 0)
         {
@@ -608,21 +646,21 @@ static int export_struct(int parent, const std::string& name, Struct* data, cons
     return dset;
 }
 
-static int export_delete(int parent, const std::string& name)
+static int export_delete(int parent, const std::string& name, hid_t xfer_plist_id)
 {
-    return writeDelete(parent, name.data());
+    return writeDelete(parent, name.data(), xfer_plist_id);
 }
 
-static int export_undefined(int parent, const std::string& name)
+static int export_undefined(int parent, const std::string& name, hid_t xfer_plist_id)
 {
-    return writeUndefined6(parent, name.data());
+    return writeUndefined6(parent, name.data(), xfer_plist_id);
 }
 
-static int export_insert(int parent, const std::string& name, ListInsert* data)
+static int export_insert(int parent, const std::string& name, ListInsert* data, hid_t xfer_plist_id)
 {
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_INSERT);
 
-    if (export_data(dset, std::to_string(0).data(), data->getInsert()) == -1)
+    if (export_data(dset, std::to_string(0).data(), data->getInsert(), xfer_plist_id) == -1)
     {
         closeList6(dset);
         return -1;
@@ -636,13 +674,13 @@ static int export_insert(int parent, const std::string& name, ListInsert* data)
     return dset;
 }
 
-static int export_poly(int parent, const std::string& name, Polynom* data)
+static int export_poly(int parent, const std::string& name, Polynom* data, hid_t xfer_plist_id)
 {
     //create a group with struct name
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_POLY);
     //store struct dimensions
     std::vector<int> dims = {1, data->getDims()};
-    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray());
+    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray(), xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -651,7 +689,7 @@ static int export_poly(int parent, const std::string& name, Polynom* data)
     //store variable name
     std::vector<int> vardims = {1, 1};
     char* varname = wide_string_to_UTF8(data->getVariableName().data());
-    ret = writeStringMatrix6(dset, "__varname__", 2, vardims.data(), &varname);
+    ret = writeStringMatrix6(dset, "__varname__", 2, vardims.data(), &varname, xfer_plist_id);
     FREE(varname);
     if (ret < 0)
     {
@@ -679,11 +717,11 @@ static int export_poly(int parent, const std::string& name, Polynom* data)
         std::string polyname(std::to_string(j));
         if (complex)
         {
-            writeDoubleComplexMatrix6(refs, polyname.data(), 2, ssdims.data(), val->get(), val->getImg());
+            writeDoubleComplexMatrix6(refs, polyname.data(), 2, ssdims.data(), val->get(), val->getImg(), xfer_plist_id);
         }
         else
         {
-            writeDoubleMatrix6(refs, polyname.data(), 2, ssdims.data(), val->get());
+            writeDoubleMatrix6(refs, polyname.data(), 2, ssdims.data(), val->get(), xfer_plist_id);
         }
 
         //create reference of data
@@ -707,8 +745,7 @@ static int export_poly(int parent, const std::string& name, Polynom* data)
 
     return dset;
 }
-
-static int export_sparse(int parent, const std::string& name, Sparse* data)
+static int export_sparse(int parent, const std::string& name, Sparse* data, hid_t xfer_plist_id)
 {
     int nnz = static_cast<int>(data->nonZeros());
     int row = data->getRows();
@@ -716,7 +753,7 @@ static int export_sparse(int parent, const std::string& name, Sparse* data)
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_SPARSE);
     //store sparse dimensions
     std::vector<int> dims = {1, data->getDims()};
-    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray());
+    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray(), xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -724,7 +761,7 @@ static int export_sparse(int parent, const std::string& name, Sparse* data)
 
     //store numbers of non zero by rows.
     std::vector<int> dimsnnz = {1, 1};
-    ret = writeIntegerMatrix6(dset, "__nnz__", H5T_NATIVE_INT32, "32", 2, dimsnnz.data(), &nnz);
+    ret = writeIntegerMatrix6(dset, "__nnz__", H5T_NATIVE_INT32, "32", 2, dimsnnz.data(), &nnz, xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -734,7 +771,7 @@ static int export_sparse(int parent, const std::string& name, Sparse* data)
     int innercount = 0;
     int* inner = data->getInnerPtr(&innercount);
     std::vector<int> dimsinner = {1, nnz};
-    ret = writeIntegerMatrix6(dset, "__inner__", H5T_NATIVE_INT32, "32", 2, dimsinner.data(), inner);
+    ret = writeIntegerMatrix6(dset, "__inner__", H5T_NATIVE_INT32, "32", 2, dimsinner.data(), inner, xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -743,7 +780,7 @@ static int export_sparse(int parent, const std::string& name, Sparse* data)
     int outercount = 0;
     int* outer = data->getOuterPtr(&outercount);
     std::vector<int> dimsouter = {1, outercount + 1};
-    ret = writeIntegerMatrix6(dset, "__outer__", H5T_NATIVE_INT32, "32", 2, dimsouter.data(), outer);
+    ret = writeIntegerMatrix6(dset, "__outer__", H5T_NATIVE_INT32, "32", 2, dimsouter.data(), outer, xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -762,7 +799,7 @@ static int export_sparse(int parent, const std::string& name, Sparse* data)
 
 
         std::vector<int> dimsdata = {1, nnz};
-        ret = writeDoubleComplexMatrix6(dset, "__data__", 2, dimsdata.data(), real, img);
+        ret = writeDoubleComplexMatrix6(dset, "__data__", 2, dimsdata.data(), real, img, xfer_plist_id);
         delete[] real;
         delete[] img;
         if (ret < 0)
@@ -773,7 +810,7 @@ static int export_sparse(int parent, const std::string& name, Sparse* data)
     else
     {
         std::vector<int> dimsdata = {1, nnz};
-        ret = writeDoubleMatrix6(dset, "__data__", 2, dimsdata.data(), data->get());
+        ret = writeDoubleMatrix6(dset, "__data__", 2, dimsdata.data(), data->get(), xfer_plist_id);
         if (ret < 0)
         {
             return -1;
@@ -788,8 +825,7 @@ static int export_sparse(int parent, const std::string& name, Sparse* data)
     return dset;
 
 }
-
-static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data)
+static int export_boolean_sparse(int parent, const std::string& name, SparseBool* data, hid_t xfer_plist_id)
 {
     int nnz = static_cast<int>(data->nbTrue());
     int row = data->getRows();
@@ -797,7 +833,7 @@ static int export_boolean_sparse(int parent, const std::string& name, SparseBool
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_BSPARSE);
     //store sparse dimensions
     std::vector<int> dims = {1, data->getDims()};
-    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray());
+    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray(), xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -805,7 +841,7 @@ static int export_boolean_sparse(int parent, const std::string& name, SparseBool
 
     //store numbers of non zero by rows.
     std::vector<int> dimsnnz = {1, 1};
-    ret = writeIntegerMatrix6(dset, "__nnz__", H5T_NATIVE_INT32, "32", 2, dimsnnz.data(), &nnz);
+    ret = writeIntegerMatrix6(dset, "__nnz__", H5T_NATIVE_INT32, "32", 2, dimsnnz.data(), &nnz, xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -815,7 +851,7 @@ static int export_boolean_sparse(int parent, const std::string& name, SparseBool
     int innercount = 0;
     int* inner = data->getInnerPtr(&innercount);
     std::vector<int> dimsinner = {1, nnz};
-    ret = writeIntegerMatrix6(dset, "__inner__", H5T_NATIVE_INT32, "32", 2, dimsinner.data(), inner);
+    ret = writeIntegerMatrix6(dset, "__inner__", H5T_NATIVE_INT32, "32", 2, dimsinner.data(), inner, xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -824,7 +860,7 @@ static int export_boolean_sparse(int parent, const std::string& name, SparseBool
     int outercount = 0;
     int* outer = data->getOuterPtr(&outercount);
     std::vector<int> dimsouter = {1, outercount + 1};
-    ret = writeIntegerMatrix6(dset, "__outer__", H5T_NATIVE_INT32, "32", 2, dimsouter.data(), outer);
+    ret = writeIntegerMatrix6(dset, "__outer__", H5T_NATIVE_INT32, "32", 2, dimsouter.data(), outer, xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -837,14 +873,14 @@ static int export_boolean_sparse(int parent, const std::string& name, SparseBool
 
     return dset;
 }
-
-static int export_cell(int parent, const std::string& name, Cell* data)
+/*--------------------------------------------------------------------------*/
+static int export_cell(int parent, const std::string& name, Cell* data, hid_t xfer_plist_id)
 {
     //create a group with cell name
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_CELL);
     //store cell dimensions
     std::vector<int> dims = {1, data->getDims()};
-    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray());
+    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray(), xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -863,7 +899,7 @@ static int export_cell(int parent, const std::string& name, Cell* data)
     for (int i = 0; i < size; ++i)
     {
         std::string refname(std::to_string(i));
-        int ref = export_data(refs, refname, it[i]);
+        int ref = export_data(refs, refname, it[i], xfer_plist_id);
         if (ref == -1)
         {
             return -1;
@@ -884,13 +920,13 @@ static int export_cell(int parent, const std::string& name, Cell* data)
     return dset;
 }
 
-static int export_handles(int parent, const std::string& name, GraphicHandle* data)
+static int export_handles(int parent, const std::string& name, GraphicHandle* data, hid_t xfer_plist_id)
 {
     //create a group with cell name
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_HANDLE);
     //store cell dimensions
     std::vector<int> dims = {1, data->getDims()};
-    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray());
+    int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray(), xfer_plist_id);
     if (ret < 0)
     {
         return -1;
@@ -912,7 +948,7 @@ static int export_handles(int parent, const std::string& name, GraphicHandle* da
         //get handle uid
         int hl = getObjectFromHandle(static_cast<long>(ll[i]));
         std::string refname(std::to_string(i));
-        if (export_handle(refs, refname, hl) == false)
+        if (export_handle(refs, refname, hl, xfer_plist_id) == false)
         {
             closeList6(refs);
             closeList6(dset);
@@ -925,7 +961,7 @@ static int export_handles(int parent, const std::string& name, GraphicHandle* da
     return dset;
 }
 
-static int export_macro(int parent, const std::string& name, Macro* data)
+static int export_macro(int parent, const std::string& name, Macro* data, hid_t xfer_plist_id)
 {
     int dims[2];
 
@@ -942,7 +978,7 @@ static int export_macro(int parent, const std::string& name, Macro* data)
 
     dims[0] = 1;
     dims[1] = static_cast<int>(inputNames.size());
-    writeStringMatrix6(dset, "inputs", 2, dims, inputNames.data());
+    writeStringMatrix6(dset, "inputs", 2, dims, inputNames.data(), xfer_plist_id);
 
     for (auto & in : inputNames)
     {
@@ -959,7 +995,7 @@ static int export_macro(int parent, const std::string& name, Macro* data)
 
     dims[0] = 1;
     dims[1] = static_cast<int>(outputNames.size());
-    writeStringMatrix6(dset, "outputs", 2, dims, outputNames.data());
+    writeStringMatrix6(dset, "outputs", 2, dims, outputNames.data(), xfer_plist_id);
 
     for (auto & in : outputNames)
     {
@@ -976,13 +1012,13 @@ static int export_macro(int parent, const std::string& name, Macro* data)
 
     dims[0] = 1;
     dims[1] = size;
-    writeIntegerMatrix6(dset, "body", H5T_NATIVE_UINT8, "u8", 2, dims, serialAst);
+    writeIntegerMatrix6(dset, "body", H5T_NATIVE_UINT8, "u8", 2, dims, serialAst, xfer_plist_id);
 
     closeList6(dset);
     return dset;
 }
 
-static int export_usertype(int parent, const std::string& name, UserType* data)
+static int export_usertype(int parent, const std::string& name, UserType* data, hid_t xfer_plist_id)
 {
     InternalType* it = data->save();
     if (it == nullptr)
@@ -1041,7 +1077,7 @@ static int export_usertype(int parent, const std::string& name, UserType* data)
     ss->set(L"type", new String(data->getShortTypeStr().data()));
     ss->set(L"data", it);
 
-    int ret = export_struct(parent, name, str, g_SCILAB_CLASS_USERTYPE);
+    int ret = export_struct(parent, name, str, g_SCILAB_CLASS_USERTYPE, xfer_plist_id);
 
     //protect data against delete
     it->IncreaseRef();

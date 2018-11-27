@@ -23,19 +23,19 @@ int updateScilabVersion(int _iFile);
 
 int deleteHDF5Var(int _iFile, const char* _pstName);
 
-int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, double* data);
-int writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img);
-int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char** data);
-int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int* data);
-int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data);
+int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, double* data, hid_t xfer_plist);
+int writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img, hid_t xfer_plist);
+int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char** data, hid_t xfer_plist);
+int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int* data, hid_t xfer_plist);
+int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data, hid_t xfer_plist);
 
-int openList6(int parent, const char *name, const char* type);
+int openList6(int parent, const char* name, const char* type);
 int closeList6(int lst);
 
-int addItemStruct6(int dataset, hobj_ref_t * refs, int pos, const char *name);
-int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t * refs);
+int addItemStruct6(int dataset, hobj_ref_t* refs, int pos, const char* name);
+int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t* refs, hid_t xfer_plist);
 
-int writeDelete(int parent, const char* name);
-int writeUndefined6(int parent, const char* name);
+int writeDelete(int parent, const char* name, hid_t xfer_plist);
+int writeUndefined6(int parent, const char* name, hid_t xfer_plist);
 
 #endif /* !__H5_WRITEDATATOFILE_H__ */
