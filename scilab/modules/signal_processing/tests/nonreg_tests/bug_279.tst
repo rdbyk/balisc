@@ -1,10 +1,13 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+//<-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 279 -->
 //
@@ -13,8 +16,6 @@
 //
 // <-- Short Description -->
 //   Wrong zeros values
-
-
 
 format(20);
 
@@ -40,4 +41,5 @@ deltas= 10.00**(0.05* gstop) ;
 
 [cells,fact,zers,pols]=eqiir('bp','el',om,deltap,deltas);
 
-if zers($)==0 | zers($-1)==0 then pause,end
+assert_checktrue(zers($) <> 0)
+assert_checktrue(zers($-1) <> 0)
