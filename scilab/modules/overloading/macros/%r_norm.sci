@@ -16,6 +16,6 @@ function y=%r_norm(A,flag)
     elseif flag==%inf|flag=="inf" then
         y=h_norm(A)
     else
-        error(msprintf(_("%s: Wrong value for input argument #%d: %d or %s expected.\n"),"%r_norm",2,2,"inf"));
+        error(_("%s: Wrong value for input argument #%d: %d or %s expected.\n"),"%r_norm",2,2,"inf");
     end
 endfunction
