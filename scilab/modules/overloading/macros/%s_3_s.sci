@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0, pursuant
 // to article 5.3.4 of the CeCILL v.2.1.
@@ -19,8 +19,7 @@ function TF = %s_3_s(A, B)
         if isdef("%s_3_s_custom") & type(%s_3_s_custom)==13
             TF = %s_3_s_custom(A,B);
         else
-            msg = _("Complex comparison not supported. Please define %s_3_s_custom() or check your code.");
-            error(msg);
+            error(_("Complex comparison not supported. Please define %s or check your code."), "%s_3_s_custom()");
         end
     end
 endfunction

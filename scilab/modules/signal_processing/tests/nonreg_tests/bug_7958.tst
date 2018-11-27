@@ -1,11 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 //<-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 7958 -->
 //
 // <-- Bugzilla URL -->
@@ -32,5 +35,3 @@ assert_checkerror("mrfit(w, mag, 4, 1)", refMsg);
 assert_checkfalse(execstr("mrfit(w, mag, 4, ones(1, length(w)))"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Argument #%d: Column expected.\n"), "mrfit", 4);
 assert_checkerror("mrfit(w, mag, 4, ones(1, length(w)))", refMsg);
-
-

@@ -57,8 +57,7 @@ function [%val, %ierr] = evstr(%str)
         %t1($+1)="]";
         %ierr = execstr(%t1, "errcatch");
         if nargout == 1 & %ierr~=0 then
-            msg = _("%s: Argument #%d: Some expression can''t be evaluated (%s).\n")
-            error(msprintf(msg, "evstr", 1, strcat(lasterror())))
+            error(_("%s: Argument #%d: Some expression can''t be evaluated (%s)."), "evstr", 1, strcat(lasterror()))
         end
 
     case 15 then
@@ -68,8 +67,7 @@ function [%val, %ierr] = evstr(%str)
             error(msprintf(msg, "evstr", 1, 2));
         end
         if type(%str(1))~=10 | type(%str(2))~=10
-            msg = _("%s: Argument #%d: Both list components must be of text type.\n")
-            error(msprintf(msg, "evstr", 1));
+            error(_("%s: Argument #%d: Both list components must be of text type."), "evstr", 1);
         end
         %sexp = %str(2),
         %nstr = prod(size(%sexp));
@@ -83,8 +81,7 @@ function [%val, %ierr] = evstr(%str)
                     %val = [];
                     return;
                 else
-                    msg = _("%s: Argument #1(2): The expression #%d = ""%s"" can''t be evaluated (%s).\n")
-                    error(msprintf(msg, "evstr", %k_, %sexp(%k_), strcat(lasterror())))
+                    error(_("%s: Argument #1(2): The expression #%d = ""%s"" can''t be evaluated (%s)."), "evstr", %k_, %sexp(%k_), strcat(lasterror()))
                 end
             end
         end
@@ -98,9 +95,9 @@ function [%val, %ierr] = evstr(%str)
         // real or complex constant matrix
         %val = %str;
     else
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of character strings or list expected.\n"), "evstr", 1));
+        error(_("%s: Wrong type for input argument #%d: Matrix of character strings or list expected."), "evstr", 1);
     end
     if exists("%val", "local") == 0 then
-        error(msprintf(_("%s: Given expression has no value.\n"), "evstr"));
+        error(_("%s: Given expression has no value."), "evstr");
     end
 endfunction

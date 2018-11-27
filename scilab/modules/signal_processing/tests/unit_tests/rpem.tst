@@ -1,11 +1,14 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte Hecquet
 // Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+//<-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 nbPoints = 5; // Number of points computed
 

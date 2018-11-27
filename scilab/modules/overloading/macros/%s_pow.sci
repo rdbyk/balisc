@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,10 +26,10 @@ function x=%s_pow(a,p)
     [m,n] = size(a)
     [mp,np] = size(p)
     if (m*n == 1) && (mp <> np) then
-        error(msprintf(_("%s: Wrong size for input argument #%d: Square matrix expected.\n"), "%s_pow", 2));
+        error(_("%s: Wrong size for input argument #%d: Square matrix expected."), "%s_pow", 2);
     end
     if (mp*np == 1) && (m <> n) then
-        error(msprintf(_("%s: Wrong size for input argument #%d: Square matrix expected.\n"), "%s_pow", 1));
+        error(_("%s: Wrong size for input argument #%d: Square matrix expected."), "%s_pow", 1);
     end
     if (m*n == 1) && (mp==np) then  //a^P
         flag = or(p <> p')
@@ -63,7 +63,7 @@ function x=%s_pow(a,p)
             r = and(imag(a) == 0)
             [s, u, bs] = bdiag(a + 0*%i);
             if (max(bs) > 1) then
-                error(msprintf(_("%s: Unable to diagonalize.\n"),"%s_pow"));
+                error(_("%s: Unable to diagonalize."), "%s_pow");
             end
             x = u * diag(diag(s) .^ p) * inv(u);
         end
@@ -71,6 +71,6 @@ function x=%s_pow(a,p)
             x = real(x);
         end
     else
-        error(msprintf(_("Not implemented in scilab...\n")));
+        error(_("Not implemented in scilab..."));
     end
 endfunction

@@ -19,6 +19,8 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "overload.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -28,110 +30,116 @@ extern "C"
 #include "charEncoding.h"
 }
 
+using types::Callable;
+using types::Double;
+using types::Function;
+using types::String;
+using types::typed_list;
+
 #define DEFAULT_ERROR_CODE 10000
 
 static const char fname[] = "error";
 
-types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::typed_list &out)
+Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
 {
     int iErrorCode = DEFAULT_ERROR_CODE;
-    types::String* pStrError = NULL;
+    String* pStrError = NULL;
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "error", 1);
-        return types::Function::Error;
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
+        return Function::Error;
     }
 
-    if (in.size() != 1 && in.size() != 2)
+    if (in.empty())
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 2);
-        return types::Function::Error;
+        Scierror(77, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 1, 2);
+        return Function::Error;
     }
 
-    if (in.size() == 1)
+    if (in.size() == 1 && in[0]->isString() == false)
     {
-        // RHS == 1
-        if (in[0]->isString() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
-            return types::Function::Error;
-        }
-
-        pStrError = in[0]->getAs<types::String>();
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+        return Function::Error;
     }
-    else
+
+    if (in.size() > 1 && in[0]->isDouble())
     {
-        types::Double* pDbl = NULL;
-        int iPosDouble = 1;
-        int iPosString = 1;
-        // RHS = 2 according to previous check.
-        if (in[0]->isDouble() == false && in[0]->isString() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
-            return types::Function::Error;
-        }
-
-        if (in[1]->isString() == false && in[1]->isDouble() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
-            return types::Function::Error;
-        }
-
-        if ((in[0]->isDouble() == false && in[1]->isDouble() == false) ||
-                (in[0]->isString() == false && in[1]->isString() == false) )
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
-            return types::Function::Error;
-        }
-
-        if (in[0]->isDouble())
-        {
-            iPosString = 2;
-            pDbl = in[0]->getAs<types::Double>();
-            pStrError = in[1]->getAs<types::String>();
-        }
-        else
-        {
-            iPosDouble = 2;
-            pDbl = in[1]->getAs<types::Double>();
-            pStrError = in[0]->getAs<types::String>();
-        }
+        Double* pDbl = in[0]->getAs<Double>();
 
         if (pDbl->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, iPosDouble);
-            return types::Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
+            return Function::Error;
         }
 
         if (pDbl->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, iPosDouble);
-            return types::Function::Error;
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
+            return Function::Error;
         }
 
         if (pDbl->getFirst() <= 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, iPosDouble);
-            return types::Function::Error;
+            Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, 1);
+            return Function::Error;
         }
 
-        iErrorCode = (int) pDbl->get(0);
+        iErrorCode = (int) pDbl->getFirst();
+
+        in.erase(in.begin());
     }
 
+    Callable::ReturnValue ret;
+    typed_list msprintf_out;
+
+    if (in[0]->isString() && in[0]->getAs<String>()->getSize() > 1)
+    {
+        typed_list msprintf_in = in;
+        String* pFormatArg = msprintf_in[0]->getAs<String>();
+
+        std::wstring fmt = pFormatArg->getFirst();
+
+        for (int i = 1; i < pFormatArg->getSize(); ++i)
+        {
+            fmt += L"\n";
+            fmt += pFormatArg->get(i);
+        }
+
+        msprintf_in[0] = new String(fmt.c_str());
+        ret = Overload::call(L"msprintf", msprintf_in, 1, msprintf_out);
+        delete msprintf_in[0];
+    }
+    else
+    {
+        ret = Overload::call(L"msprintf", in, 1, msprintf_out);
+    }
+
+    if (ret != Callable::OK)
+    {
+        ConfigVariable::setLastErrorMessage(L"error: "+ ConfigVariable::getLastErrorMessage());
+        return ret;
+    }
+
+    pStrError = msprintf_out[0]->getAs<String>();
+
     std::string strErr = "";
+
     for (int i = 0; i < pStrError->getSize(); i++)
     {
         char *pstErrorLine = wide_string_to_UTF8(pStrError->get(i));
+
         strErr.append(pstErrorLine);
+
         if (i < pStrError->getSize() - 1)
         {
             strErr.append("\n");
         }
+
         FREE(pstErrorLine);
     }
 
     Scierror(iErrorCode, "%s", strErr.c_str());
 
-    return types::Function::Error;
+    return Function::Error;
 }
