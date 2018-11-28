@@ -932,7 +932,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
                 return;
             }
 
-            //return or resume
+            // return
             ConfigVariable::DecreasePauseLevel();
             ConfigVariable::macroFirstLine_end();
             CoverageInstance::stopChrono((void*)&e);
@@ -945,14 +945,14 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
     }
     else
     {
-        //return(x)
+        // return(x)
 
         if (e.getParent() == nullptr || e.getParent()->isAssignExp() == false)
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(_W("With input arguments, return / resume expects output arguments.\n"), 999, e.getLocation());
+            throw InternalError(_W("With input arguments, return expects output arguments.\n"), 999, e.getLocation());
         }
-        //in case of CallExp, we can return only one value
+        // in case of CellExp, we can return only one value
         int iSaveExpectedSize = getExpectedSize();
         setExpectedSize(1);
         try

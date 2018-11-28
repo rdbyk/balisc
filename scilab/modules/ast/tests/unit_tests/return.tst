@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,12 +9,10 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
-//
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
-
 
 function v = while_return()
     v = 0;
@@ -69,5 +67,4 @@ assert_checkequal(while_return(), 1);
 assert_checkequal(while_if_return(), 1);
 assert_checkequal(for_return(), 1);
 assert_checkequal(for_if_return(), 1);
-assert_checkerror("foo()", "With input arguments, return / resume expects output arguments.");
-
+assert_checkerror("foo()", "With input arguments, return expects output arguments.");
