@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,8 +17,7 @@ function f=%p_p_s(p,s)
 
     if s==[] then f=[],return,end
     if  or(imag(s)<>0)|or(int(s)<>s) then
-        msg = _("%s: Wrong type for input argument #%d: An integer matrix expected.\n")
-        error(msprintf(msg, fname, 2))
+        error(_("%s: Wrong type for input argument #%d: An integer matrix expected."), fname, 2)
     end
     [m,n]=size(p)
     [ms,ns]=size(s)
@@ -26,8 +25,7 @@ function f=%p_p_s(p,s)
         if m==1|n==1 then //Element wise exponentiation p.^s with p vector
             if s<0 then
                 if or(abs(coeff(p(:)))*ones(max(0,max(degree(p)))+1,1)==0) then
-                    msg = _("%s: Division by zero...")
-                    error(msprintf(msg, fname))
+                    error(_("%s: Division by zero..."), fname)
                 end
                 f = rlist(ones(p),p.^(-s),[])
             else // this case is in fact hard coded
@@ -43,13 +41,11 @@ function f=%p_p_s(p,s)
                 for k=2:s,f=f*p;end
             end
         else
-            msg = _("%s: Argument #%d: Square matrix expected.\n")
-            error(msprintf(msg, fname, 1))
+            error(_("%s: Argument #%d: Square matrix expected."), fname, 1)
         end
     elseif ms==1|ns==1 then // Element wise exponentiation f.^s with f "scalar"
         if m<>1 | n<>1 then
-            msg = _("%s: Non implemented feature.\n")
-            error(msprintf(msg, fname))
+            error(_("%s: Non implemented feature."), fname)
         end
 
         kp=find(s>=0)
@@ -58,14 +54,12 @@ function f=%p_p_s(p,s)
         den=ones(s)
         num(kp)=p.^s(kp)
         if abs(coeff(p))*ones(max(0,degree(p))+1,1)==0 then
-            msg = _("%s: Division by zero...")
-            error(msprintf(msg, fname))
+            error(_("%s: Division by zero..."), fname)
         end
         den(kn)=p.^(-s(kn))
         f = rlist(num,den,[])
     else
-        msg = _("%s: Non implemented feature.\n")
-        error(msprintf(msg, fname))
+        error(_("%s: Non implemented feature."), fname)
     end
 
 endfunction
