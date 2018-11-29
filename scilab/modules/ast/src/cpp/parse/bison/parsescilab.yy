@@ -1651,9 +1651,9 @@ expressions         {
 */
 /* Make a break in a function or make the variable getting one scope up. */
 returnControl :
-RETURN                  { $$ = new ast::ReturnExp(@$); print_rules("returnControl", "RETURN");}
-| RETURN variable       { $$ = new ast::ReturnExp(@$, $2); print_rules("returnControl", "RETURN variable");}
-| RETURN functionCall   { $$ = new ast::ReturnExp(@$, $2); print_rules("returnControl", "RETURN functionCall");}
+RETURN                                { $$ = new ast::ReturnExp(@$); print_rules("returnControl", "RETURN");}
+| RETURN LPAREN variable RPAREN       { $$ = new ast::ReturnExp(@$, $3); print_rules("returnControl", "RETURN LPAREN variable RPAREN");}
+| RETURN LPAREN variableFields RPAREN { $$ = new ast::ReturnExp(@$, new ast::ArrayListExp(@$, *$3)); print_rules("returnControl", "RETURN LPAREN variableFiels RPAREN");}
 ;
 
 /*

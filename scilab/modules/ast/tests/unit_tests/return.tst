@@ -60,7 +60,7 @@ endfunction
 
 function y=foo()
     y = [];
-    return y;
+    return(y);
 end
 
 assert_checkequal(while_return(), 1);
