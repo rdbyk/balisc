@@ -952,9 +952,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
             CoverageInstance::stopChrono((void*)&e);
             throw InternalError(_W("With input arguments, return expects output arguments.\n"), 999, e.getLocation());
         }
-        // in case of CellExp, we can return only one value
-        int iSaveExpectedSize = getExpectedSize();
-        setExpectedSize(1);
+
         try
         {
             e.getExp().accept(*this);
@@ -964,7 +962,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
             CoverageInstance::stopChrono((void*)&e);
             throw;
         }
-        setExpectedSize(iSaveExpectedSize);
+
         const_cast<ReturnExp*>(&e)->setReturn();
     }
 
