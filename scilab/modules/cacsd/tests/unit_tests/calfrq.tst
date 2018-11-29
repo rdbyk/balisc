@@ -1,10 +1,14 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2016 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 K=0.001;      // Minimum relative prediction error in the nyquist plan
 Epss=0.002;   // minimum frequency distance with a singularity
 nptmax=5000;  //maximum number of discretization points
@@ -12,7 +16,6 @@ pas=100/(2*%pi);
 s=%s;
 
 h=syslin("c",1/%s);n=1;
-
 
 [f,bnds,split]=calfrq(h,0.01,100);
 assert_checktrue(split==1);
@@ -57,8 +60,6 @@ assert_checkalmostequal(bnds,bnds1);
 assert_checkequal(split,split1);
 
 
-
-
 h=syslin("c",(%s^2+2*0.9*10*%s+100)/(%s^2+2*0.3*10.1*%s+102.01));
 //h=h*syslin('c',(%s)/(%s^2+81)) ;
 n=1;
@@ -93,6 +94,7 @@ ks=split(2);
 assert_checktrue(abs(f(ks-1)-f(ks))*2*%pi>=Epss);
 assert_checktrue(f(ks-1)<=sing&f(ks)>=sing);
 
+
 //finite difference derivative estimate
 f1=f(1:ks-15);//remove points near singularity for which pasmin constraint may be active
 rf=freq(h.num,h.den,2*%pi*%i*f1);
@@ -125,7 +127,6 @@ n=1;
 assert_checkalmostequal(f,f1);
 assert_checkalmostequal(bnds,bnds1);
 assert_checkequal(split,split1);
-
 
 
 //discrete case

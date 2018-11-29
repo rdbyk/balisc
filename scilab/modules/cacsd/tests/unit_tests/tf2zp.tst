@@ -1,10 +1,14 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 function y=csort(x)
   eps=1e-10
   y=gsort(real(x(abs(imag(x))<eps)),"g","i")
@@ -60,5 +64,3 @@ assert_checkalmostequal(k,[3/2;5/2]);
 assert_checkalmostequal(csort(z(:,1)),csort([-0.5;-1;-4]));
 assert_checkalmostequal(csort(z(:,2)),csort([-0.5+%i*0.5;-0.5-%i*0.5;-1.4]));
 assert_checkalmostequal(csort(p),csort(roots(lcm(h.den))));
-
-

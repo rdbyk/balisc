@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 3796 -->
 //
@@ -13,9 +15,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3796
 //
 // <-- Short Description -->
-
-//In some situation the "tf2ss()" function is not capable to compute
-//correctly the state space representation of a transfer function.
+// In some situation the "tf2ss()" function is not capable to compute
+// correctly the state space representation of a transfer function.
 
 s = poly(0,'s');
 
@@ -50,4 +51,4 @@ uno = syslin('c',1,1);
 Wds =Lds/.uno;
 
 Wds_ss = tf2ss(Wds);
-if size(Wds_ss.A)<>5 then pause,end
+assert_checkequal(size(Wds_ss.A), 5)

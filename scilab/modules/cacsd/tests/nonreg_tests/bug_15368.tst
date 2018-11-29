@@ -5,10 +5,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-//
+
 // <-- Non-regression test for bug 15368 -->
 //
 // <-- Bugzilla URL -->
@@ -30,4 +30,3 @@ assert_checkalmostequal(ff, 0.32447218051387, 1e-14);
 SLBF = sltaud2/(1+sltaud2); //THE CLOSE LOOP OF sltau2
 fr6 = freson(SLBF);
 assert_checkalmostequal(fr6, 0.48257117694410, 1e-14);
-
