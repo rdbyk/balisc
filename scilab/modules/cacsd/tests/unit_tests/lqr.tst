@@ -1,10 +1,14 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - INRIA - Serge Steer
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 Q=diag([2,5]);R=2;S=[1 1];
 //full state LQ controller Continuous time plant
 //----------------------------------------------

@@ -6,8 +6,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- NO CHECK REF -->
 // <-- TEST WITH GRAPHIC -->
 // <-- ENGLISH IMPOSED -->
+
 old=driver("null");
 function r=checknyquist(Args,leg)
     if size(Args)==1 then Args($+1)=1d-3; Args($+1)=1d+3;end
