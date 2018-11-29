@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,16 +16,14 @@ function f = %p_j_s(p,s)
 
     if s==[] then f=[],return,end
     if  or(imag(s)<>0)|or(int(s)<>s) then
-        msg = _("%s: Wrong type for input argument #%d: An integer matrix expected.\n")
-        error(msprintf(msg, "%p_j_s", 2))
+        error(_("%s: Wrong type for input argument #%d: An integer matrix expected."), "%p_j_s", 2)
     end
     [m,n] = size(p)
     [ms,ns] = size(s)
     if ms==1 & ns==1 then
         if s<0 then
             if or(abs(coeff(p(:)))*ones(max(0,max(degree(p)))+1,1)==0) then
-                msg = _("%s: Division by 0...\n")
-                error(msprintf(msg, "%p_j_s"))
+                error(_("%s: Division by 0..."), "%p_j_s")
             end
             f=rlist(ones(p),p.^(-s),[])
         else // this case is in fact hard coded
@@ -49,15 +47,13 @@ function f = %p_j_s(p,s)
         den=ones(s)
         num(kp)=num(kp).^s(kp)
         if or(abs(coeff(p(kn)))*ones(max(0,max(degree(p(kn))))+1,1)==0) then
-            msg = _("%s: Division by 0...\n")
-            error(msprintf(msg, "%p_j_s"))
+            error(_("%s: Division by 0..."), "%p_j_s")
         end
         num(kn)=ones(p(kn))
         den(kn)=p(kn).^(-s(kn))
         f = rlist(matrix(num,n,m),matrix(den,n,m),[])
     else
-        msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
-        error(msprintf(msg, "%p_j_s", 1, 2))
+        error(_("%s: Arguments #%d and #%d: Incompatible sizes."), "%p_j_s", 1, 2)
     end
 
 endfunction
