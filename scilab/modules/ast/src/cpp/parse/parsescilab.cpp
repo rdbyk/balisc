@@ -5423,13 +5423,13 @@ yyreduce:
 
   case 345:
 
-    { (yyval.t_return_exp) = new ast::ReturnExp((yyloc), (yyvsp[-1].t_exp)); print_rules("returnControl", "RETURN variable");}
+    { (yyval.t_return_exp) = new ast::ReturnExp((yyloc), (yyvsp[-1].t_exp)); print_rules("returnControl", "RETURN LPAREN variable RPAREN");}
 
     break;
 
   case 346:
 
-    { (yyval.t_return_exp) = new ast::ReturnExp((yyloc), new ast::ArrayListExp((yyloc), *(yyvsp[-1].t_list_exp))); print_rules("returnControl", "RETURN variable");}
+    { (yyval.t_return_exp) = new ast::ReturnExp((yyloc), new ast::ArrayListExp((yyloc), *(yyvsp[-1].t_list_exp))); print_rules("returnControl", "RETURN LPAREN variableFiels RPAREN");}
 
     break;
 
