@@ -22,35 +22,9 @@ Main new features
 For a high-level description of the main new features of this release, please consult the [embedded help](modules/helptools/data/pages/homepage-en_US.html). It is also available as the "What's new" page of the help, by simply typing `help` in Scilab console.
 
 In summary, the main new features are:
-* New language parser and interpreter, ensuring:
-  - Support for bigger data sets, thanks to dynamic memory usage. No need for `stacksize` anymore.
-  - Better performance for some objects (cells and structs).
-  - Clearer, less ambiguous, language syntax.
-  - Executor reuse of specialization and custom engines.
-  - Xcos also uses the new re-written Scilab engine.
-* New code productivity features: full-featured debugger, profiler/coverage tool, and "lint"-like commands.
-* Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.
-* Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0
-It is still also available under the terms of the CeCILL v2.1.
-* A `tbx_make()` function is added to build a toolbox following the toolbox directory structure convention
-* ATOMS builder functions are now less dependent on the script files in the macros, `help`, `etc`, `src` and `sci_gateway` directories. These functions will do nothing (but warn the user) if they find no target to build:
-  - `tbx_builder_macros`: compiles the `.sci` files present in `macros/` directory into the toolbox library. If `buildmacros.sce` or `builder.sce` script in `macros/` are present, executes them instead;
-  - `tbx_builder_help`: compiles the help for each language (`la_LA`) directories in `help/`. If `builder_help` script is present in help, executes it instead;
-  - `tbx_build_loader`: builds a default loader that mimics the skeleton `.start` files. If a `.start` file is found in `etc/` builds a loader calling this script;
-  - `tbx_builder_src`: scans the subdirectories under `src` for builder files and executes them
-  - `tbx_builder_gateway`: scans the subdirectories under `sci_gateway` for builder files and executes them
 
-
-Windows starting changes:
-
-The options `-nw` and `-nwni` are no longer supported by binaries (WScilex.exe, WScilex-cli.exe and Scilex.exe). Each binary already matches an execution mode and batch file `Scilab.bat` has been added to select the right binary depending on the option flag:
-
- * `scilab` starts `WScilex.exe` : Scilab with GUI and full functionnalities.
- * `scilab -nw` starts `WScilex-cli.exe`: Scilab CLI with full functionnalities.
- * `scilab -nwni` starts `Scilex.exe`: Scilab CLI without Java, Graphics, Xcos, etc.
-
-Others flags are forwarded to binaries as before.
-
+* Webtools utilities added for HTTP protocol, JSON data usage
+* Profiled values are available as Scilab values 
 
 Installation
 ------------
@@ -139,125 +113,21 @@ See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/From
 Feature changes and additions
 -----------------------------
 
-* `scatter/scatter3` plot with different mark colors is now available.
-* `parulacolormap` is now available.
-* `name2rgb` can now handle a single string and a matrix of strings.
-* `isoview`, `isoview on`, `isoview off`, `isoview(idGraphics, "on"|"off")` are now supported.
-* `twinkle` and `twinkle(n)` are now supported: by default, the current element `gce` blinks.
-* `replot` has been upgraded:
-  - a bound set to `%inf` now gets the position of the most marginal object,
-  - `replot` can now be used to reframe axes to all their contents,
-  - option `tigh_limits` added,
-  - Any handle having some Axes as direct children -- as uicontrol-frame -- is now supported.
-* `householder` can now return the reflection matrix and has a demo.
-* `ndgrid` can now work with any types of homogeneous data
-* `permute` now supports arrays of rationals.
-* `bench_run` can now return its results and/or record them in a file
-* `typeof(.., "overload")` allows now to get the overloading type-code of an object
-* `sign` can now handle a sparse matrix.
-* `sleep(..,'s')` allows now to specify the duration in seconds.
-* `real`, `imag`, `conj` and `isreal` now accept rational fractions.
-* A call stack limit has been introduced. Default maximum depth is set up to `1000`
-and can be changed by `recursionlimit` or through the Preferences interface.
-* The floating point exception mode `ieee` is now set to `2` by default: floating
-point exceptions now produce `Inf` or `Nan`, and do not cause any error.
-The previous behavior can be recalled by simply calling: `ieee(0)`.
-* Datatips:
-  - The property `z_component = 'on|off'` is renamed to `display_components = 'xyz'`.
-  It is now possible to choose which components to display, and in which order.
-  The `.z_component` property will be ignored in former `SCG` files.
-  - A new `detached_position` property is available to display the datatip away from but linked to its anchor on the curve.
-  - A new `Polyline.datatip_display_mode` property now allows to display each datatip of the curve only on `mouseover` its anchor or only on `mouseclick`.
-* Valgrind error detection added to `test_run` (on Linux only).
-* `amell` now:
-  - checks if its parameters are real numbers,
-  - throws an error if the second parameter is not a scalar.
-* The use of I/O console is now allowed with the following functions: `mget`,
-`mgetl`, `mgetstr`, `mput`, `mputl` and `mputstr`.
-* `mclearerr` now returns a flag indicating the file identifier validity.
-* `fileinfo` can now take a row vector as input.
-* `msprintf` does not return an error message anymore when there are too many
-input arguments (more values that format needs).
-* `deletefile` can delete multiple files at once.
-* `exec` of macro executes the body in the current scope, but the prototype must have zero
-input and output arguments.
-* `error`: absolute error numbers are no longer supported. Providing an explicit error message is now mandatory.
-* `impl`: Recall `impl` with the same parameters as in its previous stop is now available.
-* `ode`: `y0` is restricted to a column vector.
-* `pppdiv`: Returns a scalar of type 'constant' when the rank is 0.
-* `pdiv`: Returns a matrix of type 'constant' when all the rank is 0.
-* `assert_checkalmostequal` can now work with polynomials.
-* `test_run` can now take `[]` as argument to be used on console; for instance: `test_run string [] no_check_ref`.
-* `type(:)` now returns `129` instead of `1`.
-* `typeof(:)` and `typeof(n:$)` now return `"implicitlist"` instead of respectively `"constant"` and `"size implicit"`.
-* `linspace(a, b, n<=0)` now returns `[]` instead of b.
-* `strange([])` now returns `%nan` instead of `[]`, as all other functions for statistical dispersion.
-* `stdev(x, dir>ndims(x))` now yields an error instead of returning `zeros(x)`.
-* `mean` and `stdev` can now be overloaded.
-* `write`: Writing string or string matrix in a file does not add blank space before each value.
-* `bitor`, `bitxor` and `bitand` are upgraded:
-   - positive signed encoded integers are now accepted.
-   - inputs with new `int64` or `uint64` encodings are now accepted.
-   - operands with mixed types or/and integer types are now accepted.
-   - distributive input scalars as in `bit###(scalar, array)` or `bit###(array, scalar)` are now accepted.
-   - results with decimal-encoded integers > 2^32 are now correct.
-   - decimal-encoded integers > 2^52 are now supported up to the biggest 1.80D+308.
-   - `bitxor` is now vectorized and fast.
-* `resize_matrix`: Its conversion option is extended to the new `int64` and `uint64` integer types.
-* Interactively setting a common zoom box on multiple neighboring or overlaying axes, and with bounds selected out of the axes areas is now restored, after the Scilab 5.4 regression.
-* Scroll to zoom:
-  - Scrolling over overlaying axes now zooms all of them together.
-  - Pressing CTRL while scrolling now zooms all axes in the current figure.
-* `MPI_Create_comm` creates a new communicator from MPI_COMM_WORLD using MPI world ranks.
-* The `grand` non-free `fsultra` generator is no longer available.
-* The original `rpoly` algorithm is removed in favor of a C++11 implementation
-* When `Axes.view=="2d"`, the rotation is now impossible.
-* The zero-pole-gain (zpk) representation is now available for linear dynamical systems.
-* On a figure, the contextual menu now proposes an entry `Label -> Title` to interactively set the title of any axes.
-* `getPreferencesValue` can now read a tag having multiple occurrences, and accepts the path to a preference file instead of its XML handle.
-* The function `stripblanks` now supports an option to remove trailing or leading spaces or both.
-* `atomsSetConfig` does not update cache.
-* `lqe` has been upgraded: The process noise variance and the measurement noise variance and covariance can now be specified to the linear quadratic estimator.
-* `lqg` has been upgraded: The linear quadradic compensator can now be applied to a nominal plant, with a weighting matrix and a covariance matrix. Then, a matrix weigthing integral terms, and the degrees of freedom of the controler can be specified as options.
-* `lqi` function added to compute "linear quadratic integral compensator".
-* A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected in a dynamical list set from Scinotes favorite and most recent directories.
-* The console `File => Open a file` menu allows now to open xcos, zcos, scg or lib files with the proper Scilab component, and other files with the proper OS application. All files were opened in Scinotes and could freeze it.
-* `size` is now overloadable for `tlist` lists, as it already could for `mlist` lists.
-* For arrays of cells or structures, `length` now returns their number of elements.
-* `gcd` and `lcm`
-   - now accept `int64` and `uint64` integers.
-   - For input integers, the result is now always positive.
-   - The input can now be an array instead of a row vector.
-* `lcm` of some integers now returns decimal integers instead of int32.
-* `cat` has been rewritten. It is now fast and can process heavy arrays at high dimensions.
-* Warnings from `fplot3d1` called without an option were removed.
-* `whereis` has been upgraded:
-  - It can now be used for built-in functions.
-  - When the same function name is registered in several libraries, `whereis` now returns all of them instead of only the last loaded one.
-  - For unregistered user-defined macros, `"script"` is now returned instead of `[]`.
-* `mgetl` speed has been improved for files with a lot of lines.
-* `ndgrid(x)` now accepts only one input `x`, with by default `y=x`.
-* `banner()` updated with ESI Group a 2017-2018 copyright.
-* `%io` is now protected (read-only).
-* The demo GUI can now be set as not-dockable through the Preferences => General => Demos.
-* Compatibility functions `mtlb_int8` `mtlb_int16` `mtlb_int32` `mtlb_uint8` `mtlb_uint16` `mtlb_uint32` have been rewritten to actually comply with Matlab versions. `mtlb_int64` and `mtlb_uint64` have been added.
-* `gamma()` can now process an hypermatrix.
-* `surf()` and `mesh()`: It is now possible to specify the `foreground`, `facecolor`, `markforeground` and `markbackground` global properties with any color name of the full predefined colors list. Up to now, only the 9 main colors names were usable. Moreover, colors can now be specified with their "#RRGGBB" hexa code or their indices in the color map.
-* `unique` can now unduplicate a set of complex numbers.
-* `save()` can now process lists with undefined components.
-* `surf(x,y,fun)` and `surf(x,y,list(fun,params))` syntaxes are now supported, with a function identifier `fun`.
-* Figure editor's terms have been clarify to ease usage.
-* `plot(x, list(fun, params))` is now supported.
-* `savematfile` has been upgraded:
-   - `savematfile(File)` now saves only user variables instead of all current ones.
-   - In formats 6, 7 and 7.3, `savematfile()` no longer breaks the saving when an unsupported type is encountered. A warning is now softly yielded.
-   - Input variables can no longer be corrupted by internal values before being saved.
-   - When an error occurs, the output file is now closed and unlocked.
-   - Encoded integers can now be saved in `-v4` format.
-* `sci2exp` now uses `%s` or `%z` in literal expressions of polynomials in `s` or `z`.
-* `min` and `max` hardly worked with sparse-encoded inputs. They are now fully enabled.
-* `cond([])` now yields 0 as `cond([],2)`, instead of 1.
-* `rcond([])` now yields `Inf` instead of `[]`, consistently with `cond([])==0`.
+* Empty strings are used as the default values on String allocation
+* HTTP get, post, put, upload, patch, delete functions added
+* JSON encoding / decoding for Scilab datatypes added
+* Memory invalid accesses have been greatly reduced thanks to :
+  - PVS-Studio inspections blog report
+  - Coverity scan weekly source analysis
+* bitget() is upgraded:
+  - It now accepts positive Signed encoded integers.
+  - It now supports the new uint64 and int64 types of encoded integers.
+  - For decimal numbers: bits with indices > 52 can now be retrieved (up to `log2(number_properties("huge"))` = 1024).
+  - For decimal numbers `x > 2^52`, querried bits below `%eps` (indices < log2(x)-52) now return `Nan` instead of 0.
+  - Several bits can now be retrieved from each component of an input array.
+* `edit` now accepts a line number as text (like "23").
+* `profileEnable`, `profileDisable`, `profileGetInfo` could be used to instrument functions and gather execution information within Scilab.
+
 
 Help pages:
 -----------
