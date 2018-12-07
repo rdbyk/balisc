@@ -169,6 +169,9 @@ std::wstring File::getFileTypeAsString()
         case 3 :
             return L"STD";
             break;
+        case 4:
+            return L"PIPE";
+            break;
         default :
             return L"Error";
             break;

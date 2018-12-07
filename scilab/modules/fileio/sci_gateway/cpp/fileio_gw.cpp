@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -78,5 +78,7 @@ int FileioModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"movefile", &sci_movefile, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"splitURL", &sci_splitURL, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tempname", &sci_tempname, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fflush", &sci_fflush, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"popen", &sci_popen, MODULE_NAME));
     return 1;
 }

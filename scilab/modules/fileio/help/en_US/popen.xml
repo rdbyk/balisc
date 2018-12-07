@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="popen" xml:lang="en">
+    <refnamediv>
+        <refname>popen</refname>
+        <refpurpose>start a process and connect a pipe</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[fd] = popen(command [, type])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>command</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>
+                        integer double
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>popen</function> may be used to start a process by executing a <varname>command</varname>
+            and connect a pipe (stream) to it. The descriptor <varname>fd</varname> of the created pipe will be
+            returned.
+        </para>
+        <para>
+            The <varname>type</varname> parameter specifies how the pipe is connected to the process:
+            <variablelist>
+                <varlistentry>
+                    <listitem>
+                        <para><literal>'r'</literal>: pipe will be read-only and connected to the standard output of the process.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <listitem>
+                        <para><literal>'w'</literal>: pipe will be write-only and connected to the standard input of the process.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </para>
+        <para>
+            The default value for <varname>type</varname> is <literal>'r'</literal> (pipe is read-only and
+            connected to the standard output of the process).
+        </para>
+        <para>
+            <function>mclose</function> may be used to close a pipe created by <function>popen</function>.
+        </para>
+        <para>
+            <function>mfprintf</function>, <function>fprintfMat</function>, <function>mput</function>,
+            <function>mputl</function>, and <function>mputstr</function> may be used for writing to a pipe.
+        </para>
+        <para>
+            <function>mfscanf</function>, <function>fscanffMat</function>, <function>mget</function>,
+            <function>mgetl</function>, and <function>mgetstr</function> may be used for reading from a pipe.
+        </para>
+        <para>
+            Writing to a pipe is buffered, thus it might be necessary to use the <function>fflush</function> to
+            actually perform the writing.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// start gnuplot and connect a pipe to its standard input
+p = popen("gnuplot -p", "w")
+
+// use (gnu)plot command, which reads data from standard input
+mputl("plot ''-'' using 1 w l", p)
+
+// send random data
+mfprintf(p, "%f\n", rand(10,1))
+
+// indicate end of data
+mputl("e", p)
+
+// force writing to buffered pipe, i.e. gnuplot
+fflush(p)
+
+// close the pipe
+mclose(p)
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="merror">merror</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetl">mgetl</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputl">mputl</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="fflush">fflush</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Function <function>popen</function> was introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
