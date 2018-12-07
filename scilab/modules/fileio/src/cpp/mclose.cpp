@@ -3,7 +3,7 @@
  * Copyright (C) 2007 - INRIA
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,6 +14,11 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
 #include "filemanager.hxx"
 #include "configvariable.hxx"
 
@@ -79,6 +84,27 @@ int mclose(int _iID)
             if (iRet != 0)
             {
                 return 1;
+            }
+
+            FileManager::deleteFile(_iID);
+        }
+        else if (pFile->getFileType() == 4)
+        {
+            FILE* fs = pFile->getFiledesc();
+
+            if (fcntl(fileno(fs), F_GETFD) != -1)
+            {
+                int iRet = pclose(fs);
+                int e = errno;
+
+                if (iRet != 0)
+                {
+                    if (ConfigVariable::getWarningMode())
+                    {
+                        sciprint(_("%s: Cannot close pipe whose descriptor is %d: %s.\n"), "mclose", _iID, strerror(e));
+                    }
+                    return 1;
+                }
             }
 
             FileManager::deleteFile(_iID);

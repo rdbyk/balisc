@@ -87,7 +87,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mfscanf.cpp \
 	sci_gateway/cpp/sci_mscanf.cpp \
 	sci_gateway/cpp/sci_msscanf.cpp \
-	sci_gateway/cpp/sci_getdrives.cpp
+	sci_gateway/cpp/sci_getdrives.cpp \
+	sci_gateway/cpp/sci_fflush.cpp \
+	sci_gateway/cpp/sci_popen.cpp
 
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \

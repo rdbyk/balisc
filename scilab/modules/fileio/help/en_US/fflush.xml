@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fflush" xml:lang="en">
+    <refnamediv>
+        <refname>fflush</refname>
+        <refpurpose>fflush a stream</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[ret] = fflush(fd)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>ret</term>
+                <listitem>
+                    <para>
+                        double
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>
+                        double
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The descriptor <varname>fd</varname> designates a stream, which was opened
+            by <function>popen</function> or <function>mopen</function>.
+        </para>
+        <para>
+            For  output streams, <function>fflush</function> forces a write of
+            data for the given stream.
+            For input streams, <function>fflush</function> discards any buffered data,
+            that has not been consumed.
+        </para>
+        <para>
+            A <varname>ret</varname> value <literal>0</literal> indicates successful completion.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// start gnuplot and connect a pipe to its standard input
+p = popen("gnuplot -p", "w")
+
+// use (gnu)plot command, which reads data from standard input
+mputl("plot ''-'' using 1 w l", p)
+
+// send random data
+mfprintf(p, "%f\n", rand(10,1))
+
+// indicate end of data
+mputl("e", p)
+
+// force writing to show the plot
+fflush(p)
+
+// wait 10s
+sleep(10000)
+
+// now plot something else
+mputl("plot sin(x)", p)
+
+// close the pipe
+mclose(p)
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="popen">popen</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 1</revnumber>
+                <revremark>Function <function>fflush</function> was introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
