@@ -472,7 +472,6 @@ gammaln
 genlib
 geom3d
 get
-getURL
 get_absolute_file_path
 get_fftw_wisdom
 getblocklabel
@@ -793,7 +792,6 @@ spget
 splin
 splin2d
 splin3d
-splitURL
 spones
 spzeros
 sqrt

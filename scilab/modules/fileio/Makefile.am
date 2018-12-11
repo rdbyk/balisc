@@ -35,7 +35,6 @@ FILEIO_C_SOURCES = \
     src/c/fscanfMat.c \
     src/c/fprintfMat.c \
     src/c/createtempfilename.c \
-	src/c/dlManager.c \
 	src/c/convert_tools.c
 
 GATEWAY_C_SOURCES = \
@@ -45,9 +44,7 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_pwd.c \
     sci_gateway/c/sci_copyfile.c \
     sci_gateway/c/sci_tempname.c \
-    sci_gateway/c/sci_movefile.c \
-	sci_gateway/c/sci_getURL.c \
-	sci_gateway/c/sci_splitURL.c
+    sci_gateway/c/sci_movefile.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/fileio_gw.cpp \
