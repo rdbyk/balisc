@@ -362,7 +362,6 @@ coserror
 createdir
 cshep2d
 csvDefault
-csvIsnum
 csvRead
 csvStringToDouble
 csvTextScan
