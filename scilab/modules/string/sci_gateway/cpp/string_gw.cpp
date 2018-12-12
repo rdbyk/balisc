@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,42 +24,40 @@
 #include "context.hxx"
 #include "function.hxx"
 
-#define MODULE_NAME L"string"
-
 wchar_t* StringModule::pwstToken = NULL;
+wchar_t StringModule::Name[] = L"string";
 
 int StringModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"grep", &sci_grep, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"stripblanks", &sci_stripblanks, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"regexp", &sci_regexp, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"part", &sci_part, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"length", &sci_length, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strindex", &sci_strindex, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strsubst", &sci_strsubst, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strsplit", &sci_strsplit, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ascii", &sci_ascii, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strcat", &sci_strcat, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"string", &sci_string, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"convstr", &sci_convstr, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strncpy", &sci_strncpy, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strrchr", &sci_strrchr, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strchr", &sci_strchr, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strstr", &sci_strstr, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strrev", &sci_strrev, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strtod", &sci_strtod, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tokens", &sci_tokens, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strcmp", &sci_strcmp, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isletter", &sci_isletter, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strcspn", &sci_strcspn, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strtok", &sci_strtok, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strspn", &sci_strspn, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isalphanum", &sci_isalphanum, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isdigit", &sci_isdigit, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isascii", &sci_isascii, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isnum", &sci_isnum, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"csvIsnum", &sci_isnum, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"emptystr", &sci_emptystr, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"grep", &sci_grep, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"stripblanks", &sci_stripblanks, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"regexp", &sci_regexp, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"part", &sci_part, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"length", &sci_length, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strindex", &sci_strindex, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strsubst", &sci_strsubst, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strsplit", &sci_strsplit, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ascii", &sci_ascii, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strcat", &sci_strcat, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"string", &sci_string, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"convstr", &sci_convstr, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strncpy", &sci_strncpy, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strrchr", &sci_strrchr, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strchr", &sci_strchr, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strstr", &sci_strstr, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strrev", &sci_strrev, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strtod", &sci_strtod, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tokens", &sci_tokens, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strcmp", &sci_strcmp, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isletter", &sci_isletter, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strcspn", &sci_strcspn, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strtok", &sci_strtok, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strspn", &sci_strspn, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isalphanum", &sci_isalphanum, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isdigit", &sci_isdigit, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isascii", &sci_isascii, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isnum", &sci_isnum, StringModule::Name));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"emptystr", &sci_emptystr, StringModule::Name));
     return 1;
 }
 
