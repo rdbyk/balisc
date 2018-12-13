@@ -55,10 +55,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     {
         clearResult();
         cleanIn(inTmp, outTmp);
-        std::wostringstream os;
-        os << _W("Cannot extract from nothing.") << std::endl;
         CoverageInstance::stopChrono((void*)&e);
-        throw ast::InternalError(os.str(), 999, e.getLocation());
+        throw ast::InternalError(_W("Cannot extract from nothing.\n"), 999, e.getLocation());
     }
 
     types::typed_list out;
@@ -70,10 +68,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     {
         clearResult();
         cleanIn(inTmp, outTmp);
-        std::wostringstream os;
-        os << _W("Wrong number of output arguments.\n") << std::endl;
         CoverageInstance::stopChrono((void*)&e);
-        throw ast::InternalError(os.str(), 999, e.getLocation());
+        throw ast::InternalError(_W("Wrong number of output arguments.\n"), 999, e.getLocation());
     }
 
     if (pIT->isCallable())
@@ -183,10 +179,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     {
                         pListArg->DecreaseRef();
                         pListArg->killMe();
-
-                        std::wostringstream os;
-                        os << _W("Invalid index.\n");
-                        throw ast::InternalError(os.str(), 999, e.getFirstLocation());
+                        throw ast::InternalError(_W("Invalid index.\n"), 999, e.getFirstLocation());
                     }
                 }
                 else
@@ -276,9 +269,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             }
             else
             {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
-                throw ast::InternalError(os.str(), 999, e.getFirstLocation());
+                throw ast::InternalError(_W("Invalid index.\n"), 999, e.getFirstLocation());
             }
         }
 
@@ -364,11 +355,8 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             if (pList == NULL)
             {
                 delete pArgs;
-                std::wostringstream os;
-                os << _W("inconsistent row/column dimensions\n");
-                //os << ((*e.args_get().begin())->getLocation()).getLocationString() << std::endl;
                 CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalError(os.str(), 999, e.getFirstLocation());
+                throw ast::InternalError(_W("inconsistent row/column dimensions\n"), 999, e.getFirstLocation());
             }
 
             if (pList->getSize() == 1)
@@ -418,10 +406,8 @@ void RunVisitor::getInputs(const CallExp& e, exps_t& args, types::typed_list& in
                 Exp* pL = &pAssign->getLeftExp();
                 if (!pL->isSimpleVar())
                 {
-                    std::wostringstream os;
-                    os << _W("left side of optional parameter must be a variable") << std::endl;
                     CoverageInstance::stopChrono((void*)&e);
-                    throw ast::InternalError(os.str(), 999, e.getLocation());
+                    throw ast::InternalError(_W("left side of optional parameter must be a variable.\n"), 999, e.getLocation());
                 }
 
                 SimpleVar* pVar = pL->getAs<SimpleVar>();

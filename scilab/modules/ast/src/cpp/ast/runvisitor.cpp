@@ -266,11 +266,8 @@ void RunVisitorT<T>::visitprivate(const CellExp & e)
 
         if (iColMax != static_cast<int>(cols.size()))
         {
-            std::wostringstream os;
-            os << _W("inconsistent row/column dimensions\n");
-            //os << ((Location)(*row)->getLocation()).getLocationString() << std::endl;
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(os.str(), 999, (*row)->getLocation());
+            throw InternalError(_W("inconsistent row/column dimensions\n"), 999, (*row)->getLocation());
         }
     }
 
@@ -338,10 +335,8 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
     if (!e.getTail()->isSimpleVar())
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n").c_str());
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(szError, 999, e.getLocation());
+        throw InternalError(_W("/!\\ Unmanaged FieldExp.\n"), 999, e.getLocation());
     }
 
     try
@@ -356,10 +351,8 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
     if (getResult() == NULL)
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(szError, 999, e.getLocation());
+        throw InternalError(_W("Attempt to reference field of non-structure array.\n"), 999, e.getLocation());
     }
 
     // TODO: handle case where getSize() > 1
@@ -368,10 +361,8 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (getResultSize() > 1)
     {
         clearResult();
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Not yet implemented in Scilab.\n").c_str());
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(szError, 999, e.getLocation());
+        throw InternalError(_W("Not yet implemented in Scilab.\n"), 999, e.getLocation());
     }
 
     SimpleVar * psvRightMember = static_cast<SimpleVar *>(const_cast<Exp *>(e.getTail()));
@@ -397,10 +388,8 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         if (pReturn == NULL)
         {
-            std::wostringstream os;
-            os << _W("Invalid index.\n");
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(os.str(), 999, e.getLocation());
+            throw InternalError(_W("Invalid index.\n"), 999, e.getLocation());
         }
 
         setResult(pReturn);
@@ -488,10 +477,8 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     else
     {
         pValue->killMe();
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(szError, 999, e.getLocation());
+        throw InternalError(_W("Attempt to reference field of non-structure array.\n"), 999, e.getLocation());
     }
 
     CoverageInstance::stopChrono((void*)&e);
@@ -690,10 +677,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
         if (ctx->isprotected(var))
         {
-            std::wostringstream os;
-            os << _W("Redefining permanent variable.\n");
             CoverageInstance::stopChrono((void*)&e);
-            throw ast::InternalError(os.str(), 999, e.getVardec().getLocation());
+            throw ast::InternalError(_W("Redefining permanent variable.\n"), 999, e.getVardec().getLocation());
         }
 
         ctx->put(var, pIL);
@@ -728,10 +713,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                         //update me ( must decrease ref of a )
                         if (ctx->isprotected(var))
                         {
-                            std::wostringstream os;
-                            os << _W("Redefining permanent variable.\n");
                             CoverageInstance::stopChrono((void*)&e);
-                            throw ast::InternalError(os.str(), 999, e.getVardec().getLocation());
+                            throw ast::InternalError(_W("Redefining permanent variable.\n"), 999, e.getVardec().getLocation());
                         }
 
                         ctx->put(var, pIL);
@@ -793,10 +776,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
             if (ctx->isprotected(var))
             {
-                std::wostringstream os;
-                os << _W("Redefining permanent variable.\n");
                 CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalError(os.str(), 999, e.getVardec().getLocation());
+                throw ast::InternalError(_W("Redefining permanent variable.\n"), 999, e.getVardec().getLocation());
             }
             ctx->put(var, pNew);
 
@@ -861,10 +842,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
             if (ctx->isprotected(var))
             {
-                std::wostringstream os;
-                os << _W("Redefining permanent variable.\n");
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(os.str(), 999, e.getVardec().getLocation());
+                throw InternalError(_W("Redefining permanent variable.\n"), 999, e.getVardec().getLocation());
             }
             ctx->put(var, pNew);
 
@@ -1448,10 +1427,8 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     if (ctx->isprotected(symbol::Symbol(pMacro->getName())))
     {
         delete pMacro;
-        std::wostringstream os;
-        os << _W("Redefining permanent variable.\n");
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(os.str(), 999, e.getLocation());
+        throw InternalError(_W("Redefining permanent variable.\n"), 999, e.getLocation());
     }
 
     if (ctx->addMacro(pMacro) == false)

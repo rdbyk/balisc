@@ -624,9 +624,7 @@ bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetC
         InternalType * _out = extract(&in);
         if (!_out)
         {
-            std::wostringstream os;
-            os << _W("Invalid index.\n");
-            throw ast::InternalError(os.str(), 999, e.getLocation());
+            throw ast::InternalError(_W("Invalid index.\n"), 999, e.getLocation());
         }
         out.push_back(_out);
     }
