@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - Allan Cornet <allan.cornet@inria.fr>
+// Copyright (C) 2008 INRIA - Allan Cornet <allan.cornet@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,13 +19,9 @@
 //
 // See the file ../license.txt
 //
-//------------------------------------
-// INRIA 2008
-// Allan CORNET
-//------------------------------------
+
 if (isdef("genlib") == %f) then
-    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
+    exec(SCI + "/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
-//------------------------------------
-genlib("Branchinglib","SCI/modules/scicos_blocks/macros/Branching",%f,%t);
-//------------------------------------
+
+genlib("Branchinglib", SCI + "/modules/scicos_blocks/macros/Branching",%f,%t);

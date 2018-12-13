@@ -25,7 +25,7 @@ function packages = atomsGetInstalled(section)
     // Load Atoms Internals lib if it's not already loaded
     // =========================================================================
     if ~ exists("atomsinternalslib") then
-        load("SCI/modules/atoms/macros/atoms_internals/lib");
+        load(SCI + "/modules/atoms/macros/atoms_internals/lib");
     end
 
     packages = [];

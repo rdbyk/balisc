@@ -1,8 +1,7 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2006-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,7 +26,7 @@ modules=getmodules();
 index=size(modules);
 
 for i=1:index(1) do
-    Directories=[Directories;"SCI/modules/"+modules(i)+"/macros"];
+    Directories=[Directories; SCI + "/modules/" + modules(i) + "/macros"];
 end
 clear modules index i
 

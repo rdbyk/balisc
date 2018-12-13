@@ -1,6 +1,7 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +22,7 @@
 
 // Load dynamic_link Internal lib if it's not already loaded
 if ~ exists("dynamic_linkutilslib") then
-    load("SCI/modules/dynamic_link/macros/utils/lib");
+    load(SCI + "/modules/dynamic_link/macros/utils/lib");
 end
 
 lines(0);

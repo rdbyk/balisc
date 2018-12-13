@@ -50,7 +50,7 @@ end
 // loads modules ======================================================
 modules    = getmodules();
 for i=1:size(modules,"*")
-  startFile = "SCI/modules/" + modules(i) + "/etc/" + modules(i) + ".start";
+  startFile = SCI + "/modules/" + modules(i) + "/etc/" + modules(i) + ".start";
   ierr=exec(startFile, 'errcatch', -1);
   if ierr <> 0 then
      disp(msprintf(gettext("Failed to execute %s:"),startFile));
