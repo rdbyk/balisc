@@ -287,9 +287,7 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
             {
                 //free pArg content
                 cleanIndexesArguments(_pArgs, &pArg);
-                std::wostringstream os;
-                os << _W("Index out of bounds.\n");
-                throw ast::InternalError(os.str());
+                throw ast::InternalError(_W("Index out of bounds.\n"));
             }
 
             InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert();

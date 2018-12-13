@@ -154,16 +154,12 @@ InternalType* SingleStruct::insert(typed_list* _pArgs, InternalType* _pSource)
     //check input param
     if (_pArgs->size() != 1)
     {
-        std::wostringstream os;
-        os << _W("Unable to insert multiple item in a struct.\n");
-        throw ast::InternalError(os.str());
+        throw ast::InternalError(_W("Unable to insert multiple item in a struct.\n"));
     }
 
     if ((*_pArgs)[0]->isString() == false)
     {
-        std::wostringstream os;
-        os << _W("Assignment between unlike types is not allowed.\n");
-        throw ast::InternalError(os.str());
+        throw ast::InternalError(_W("Assignment between unlike types is not allowed.\n"));
     }
 
     String* pstKey = (*_pArgs)[0]->getAs<String>();

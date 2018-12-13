@@ -368,9 +368,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
 
                 if ((start < 1 && step > 0) || (end < 1 & step < 0))
                 {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
-                    throw ast::InternalError(szError);
+                    throw ast::InternalError(_W("Invalid index.\n"));
                 }
 
                 std::vector<int> idx(size);
@@ -837,17 +835,14 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         }
         else
         {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
-
             delete[] _piMaxDim;
             delete[] _piCountDim;
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
 
-            throw ast::InternalError(szError);
+            throw ast::InternalError(_W("Invalid index.\n"));
         }
-        _pArgsOut->push_back(pCurrentArg);
 
+        _pArgsOut->push_back(pCurrentArg);
     }
 
 

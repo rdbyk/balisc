@@ -614,9 +614,7 @@ wchar_t* String::copyValue(wchar_t* _pwstData)
     }
     catch (std::bad_alloc & /*e*/)
     {
-        char message[bsiz];
-        os_sprintf(message, _("Can not allocate data.\n"));
-        throw ast::InternalError(message);
+        throw ast::InternalError(_("Can not allocate data.\n"));
     }
 
     return NULL;
