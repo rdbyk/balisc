@@ -7,6 +7,7 @@
 //
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 9344 -->
 //
@@ -19,5 +20,5 @@
 errmsg = ["mclose(1";"^";"Error: syntax error, unexpected end of line, expecting "","" or )"];
 assert_checkerror("execstr(""mclose(1"")", errmsg);
 
-errmsg = ["mclose(1°";"        ^~^";"Error: syntax error, unexpected identifier, expecting "","" or )"];
+errmsg = ["mclose(1°";"       ^~~^";"Error: syntax error, unexpected identifier, expecting end of file"];
 assert_checkerror("execstr(""mclose(1°"")", errmsg);
