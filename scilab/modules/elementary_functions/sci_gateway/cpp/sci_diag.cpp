@@ -27,15 +27,13 @@ extern "C"
 #include "localization.h"
 }
 
-static const char fname[] = "diag";
-
 types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iStartPos = 0;
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
@@ -55,7 +53,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
     {
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 2);
+            Scierror(93, 2);
             return types::Function::Error;
         }
 
@@ -63,7 +61,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 2);
+            Scierror(93, 2);
             return types::Function::Error;
         }
 

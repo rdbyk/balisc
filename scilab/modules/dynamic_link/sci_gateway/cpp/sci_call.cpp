@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Scilab Enterprises - 2015 - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -58,14 +58,14 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
     wchar_t* interf = NULL;
     if (nin < 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return 1;
     }
 
     //1st is the interface name
     if (scilab_isString(env, in[0]) == 0 || scilab_isScalar(env, in[0]) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return 1;
     }
 
@@ -98,14 +98,14 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
         int type = 0;
         if (nin < pos + 2)
         {
-            Scierror(77, _("%s: Wrong number of input argument(s).\n"), fname);
+            Scierror(70);
             return 1;
         }
 
         type = scilab_getType(env, in[pos]);
         if (type != sci_matrix && type != sci_strings)
         {
-            Scierror(77, _("%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"), fname, pos + 1);
+            Scierror(90, pos + 1, _("real matrix or a string"), fname, pos + 1);
             return 1;
         }
 
@@ -114,7 +114,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
         //position
         if (scilab_isDouble(env, in[pos + 1]) == 0 || scilab_isScalar(env, in[pos + 1]) == 0)
         {
-            Scierror(77, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, pos + 2);
+            Scierror(93, pos + 2);
             return 1;
         }
 
@@ -124,7 +124,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
         //type
         if (scilab_isString(env, in[pos + 2]) == 0 || scilab_isScalar(env, in[pos + 2]) == 0)
         {
-            Scierror(77, _("%s: Wrong type for input argument #%d : string expected.\n"), fname, pos + 3);
+            Scierror(91, pos + 3);
             return 1;
         }
 
@@ -139,7 +139,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
         {
             if (param_type[0] != L'c' || type != sci_strings)
             {
-                Scierror(77, _("%s: Wrong type for input argument #%d : string expected.\n"), fname, pos + 1);
+                Scierror(91, pos + 1);
                 return 1;
             }
         }
@@ -195,7 +195,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
             }
             default:
             {
-                Scierror(77, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), fname, pos + 3, "d", "r", "i", "c");
+                Scierror(110, pos + 3, _("'d', 'r', 'i', or 'c'"));
                 return 1;
             }
         }
@@ -222,7 +222,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
             //check if is 3 or 1 arg ...
             if (scilab_isDouble(env, in[pos]) == 0)
             {
-                Scierror(77, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), fname, pos + 1);
+                Scierror(94, pos + 1);
                 return 1;
             }
 
@@ -233,7 +233,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
                 int order = (int)dorder;
                 if (params[order - 1].data == nullptr)
                 {
-                    Scierror(77, _("%s: Wrong value for input argument #%d.\n"), fname, pos + 1);
+                    Scierror(110, pos + 1, _("non-null pointer"));
                     return 1;
                 }
 
@@ -260,7 +260,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
                 //pos
                 if (scilab_isDouble(env, in[pos + 1]) == 0 || scilab_isScalar(env, in[pos + 1]) == 0)
                 {
-                    Scierror(77, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, pos + 2);
+                    Scierror(93, pos + 2);
                     return 1;
                 }
 
@@ -270,7 +270,7 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
                 //type
                 if (scilab_isString(env, in[pos + 2]) == 0 || scilab_isScalar(env, in[pos + 2]) == 0)
                 {
-                    Scierror(77, _("%s: Wrong type for input argument #%d : string expected.\n"), fname, pos + 3);
+                    Scierror(91, pos + 3);
                     return 1;
                 }
 

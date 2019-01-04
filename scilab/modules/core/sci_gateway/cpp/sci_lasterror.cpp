@@ -26,21 +26,19 @@ extern "C"
 #include "Scierror.h"
 }
 
-static const char fname[] = "lasterror";
-
 types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bClearError = true;
 
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected."), fname, 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 4)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 4);
+        Scierror(82, 1, 4);
         return types::Function::Error;
     }
 
@@ -48,7 +46,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
     {
         if (in[0]->isBool() == false || in[0]->getAs<types::Bool>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), fname, 1);
+            Scierror(90, 1, _("Boolean vector"));
             return types::Function::Error;
         }
         bClearError = in[0]->getAs<types::Bool>()->get()[0] == 1; //convert int to bool

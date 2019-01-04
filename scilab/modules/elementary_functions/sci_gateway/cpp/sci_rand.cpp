@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         types::String* pS = in[0]->getAs<types::String>();
         if (pS->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
+            Scierror(102, 1);
             return types::Function::Error;
         }
 
@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             //info
             if (iSizeIn > 1)
             {
-                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+                Scierror(71, 1);
                 return types::Function::Error;
             }
 
@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             {
                 if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
                 {
-                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
+                    Scierror(101, 2);
                     return types::Function::Error;
                 }
 
@@ -107,7 +107,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+                Scierror(71, 2);
                 return types::Function::Error;
             }
         }
@@ -125,7 +125,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             types::String* pS = in[iSizeIn - 1]->getAs<types::String>();
             if (pS->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, iSizeIn);
+                Scierror(102, iSizeIn);
                 return types::Function::Error;
             }
 
@@ -148,7 +148,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             switch (iDims)
             {
                 case -1:
-                    Scierror(21, _("Invalid index.\n"));
+                    Scierror(2);
                     break;
                 case 1:
                 {

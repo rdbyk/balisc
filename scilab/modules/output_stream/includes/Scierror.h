@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,19 +25,11 @@ extern "C" {
 #include "do_error_number.h"
 
 #define bsiz 4096
-/*
-* as sciprint but with an added first argument
-* which is ignored (used in do_printf)
-* @param iv error code
-* @param fmt
-* @param ...
-*/
-int  Scierror(int iv, const char *fmt, ...);
-//int  ScierrorW(int iv, const wchar_t *fmt,...);
 
+int  Scierror(int iv, ...);
 
 #ifdef __cplusplus
 }
 #endif
+
 #endif /* __SCIERROR__ */
-/*--------------------------------------------------------------------------*/

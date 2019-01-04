@@ -48,7 +48,8 @@ CORE_CPP_SOURCES = \
     src/cpp/getmacrosname.cpp \
     src/cpp/getfunctionsname.cpp \
     src/cpp/InitScilab.cpp \
-    src/cpp/setformat.cpp
+    src/cpp/setformat.cpp \
+    src/cpp/errmsgs.cpp
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \

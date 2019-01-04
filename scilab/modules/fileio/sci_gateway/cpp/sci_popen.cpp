@@ -46,7 +46,7 @@ Function::ReturnValue sci_popen(typed_list &in, int _iRetCount, typed_list &out)
     {
         if (in[0]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+            Scierror(91, 1);
             return Function::Error;
         }
 
@@ -54,7 +54,7 @@ Function::ReturnValue sci_popen(typed_list &in, int _iRetCount, typed_list &out)
      
         if (pCommand->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname , 1);
+            Scierror(102, 1);
             return Function::Error;
         }
         
@@ -64,7 +64,7 @@ Function::ReturnValue sci_popen(typed_list &in, int _iRetCount, typed_list &out)
         {
             if (in[1]->isString() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+                Scierror(91, 2);
                 return Function::Error;
             }
 
@@ -73,13 +73,13 @@ Function::ReturnValue sci_popen(typed_list &in, int _iRetCount, typed_list &out)
             
             if (pMode->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname , 2);
+                Scierror(102 , 2);
                 return Function::Error;
             }
         }
         else if (in.size() > 2)
         {
-            Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname , 1, 2);
+            Scierror(72, 1, 2);
             return Function::Error;
         }
 
@@ -111,7 +111,7 @@ Function::ReturnValue sci_popen(typed_list &in, int _iRetCount, typed_list &out)
     }
     else
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname , 1, 2);
+        Scierror(72, 1, 2);
         return Function::Error;
     }
 }

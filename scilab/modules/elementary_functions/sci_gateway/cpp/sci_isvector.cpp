@@ -21,19 +21,17 @@ extern "C"
 #include "gw_elementary_functions.h"
 }
 
-static const char fname[] = "isvector";
-
 int sci_isvector(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
 {
     if (nin != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return 1;
     }
 
     if (nout != 1)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
+        Scierror(81, 1);
         return 1;
     }
 

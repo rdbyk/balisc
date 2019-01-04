@@ -31,8 +31,6 @@ extern "C"
 #include "expandPathVariable.h"
 }
 
-static const char fname[] = "mputl";
-
 types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFileID     = 0;
@@ -41,7 +39,7 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 2)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
@@ -62,19 +60,19 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
             switch (iErr)
             {
                 case MOPEN_NO_MORE_LOGICAL_UNIT:
-                    Scierror(66, _("%s: Too many files opened!\n"), fname);
+                    Scierror(33);
                     break;
                 case MOPEN_CAN_NOT_OPEN_FILE:
-                    Scierror(999, _("%s: Cannot open file %s.\n"), fname, pst);
+                    Scierror(32, pst);
                     break;
                 case MOPEN_NO_MORE_MEMORY:
-                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    Scierror(1);
                     break;
                 case MOPEN_INVALID_FILENAME:
-                    Scierror(999, _("%s: invalid filename %s.\n"), fname, pst);
+                    Scierror(34, pst);
                     break;
                 default: //MOPEN_INVALID_STATUS
-                    Scierror(999, _("%s: invalid status.\n"), fname);
+                    Scierror(35);
                     break;
             }
             FREE(pst);
@@ -86,14 +84,14 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
     else
     {
         //Error
-        Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), fname, 2);
+        Scierror(90, 2, _("%string or integer"));
         return types::Function::Error;
     }
 
     //String vextor, row or col
     if (in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), fname, 1);
+        Scierror(100, _("1-by-n or m-by-1 array"));
         return types::Function::Error;
     }
 
@@ -102,7 +100,7 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
     switch (iFileID)
     {
         case 5: // stdin
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), fname, iFileID);
+            Scierror(30, iFileID);
             return types::Function::Error;
         default :
             iErr = mputl(iFileID, pS->get(), pS->getSize());

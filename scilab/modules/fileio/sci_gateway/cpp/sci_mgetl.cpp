@@ -3,7 +3,7 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
@@ -32,7 +32,8 @@ extern "C"
 #include "freeArrayOfPtrs.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "mgetl";
+
 types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFileID = 0;
@@ -43,7 +44,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgetl" , 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::OK;
     }
 
@@ -52,19 +53,19 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
         //number of lines
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "mgetl", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
         if (in[1]->getAs<types::Double>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: An integer value expected.\n"), "mgetl", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: An integer value expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
         if (in[1]->getAs<types::Double>()->getFirst() != (int)in[1]->getAs<types::Double>()->getFirst())
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "mgetl", 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -87,19 +88,19 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
             switch (iErr)
             {
                 case MOPEN_NO_MORE_LOGICAL_UNIT:
-                    Scierror(66, _("%s: Too many files opened!\n"), "mgetl");
+                    Scierror(66, _("%s: Too many files opened!\n"), fname);
                     break;
                 case MOPEN_CAN_NOT_OPEN_FILE:
-                    Scierror(999, _("%s: Cannot open file %s.\n"), "mgetl", pst);
+                    Scierror(999, _("%s: Cannot open file %s.\n"), fname, pst);
                     break;
                 case MOPEN_NO_MORE_MEMORY:
-                    Scierror(999, _("%s: No more memory.\n"), "mgetl");
+                    Scierror(999, _("%s: No more memory.\n"), fname);
                     break;
                 case MOPEN_INVALID_FILENAME:
-                    Scierror(999, _("%s: invalid filename %s.\n"), "mgetl", pst);
+                    Scierror(999, _("%s: invalid filename %s.\n"), fname, pst);
                     break;
                 default: //MOPEN_INVALID_STATUS
-                    Scierror(999, _("%s: invalid status.\n"), "mgetl");
+                    Scierror(999, _("%s: invalid status.\n"), fname);
                     break;
             }
 
@@ -113,7 +114,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
     else
     {
         //Error
-        Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), "mgetl", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -121,7 +122,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
     {
         case 0: // stderr
         case 6: // stdout
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mgetl", iFileID);
+            Scierror(30, iFileID);
             return types::Function::Error;
         default :
         {
@@ -129,7 +130,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
             // file opened with fortran open function
             if (pFile == NULL || pFile->getFileType() == 1)
             {
-                Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mgetl", iFileID);
+                Scierror(30, iFileID);
                 return types::Function::Error;
             }
 
@@ -165,4 +166,3 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

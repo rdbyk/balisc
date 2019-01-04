@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "funcmanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
@@ -33,7 +33,8 @@ extern "C"
 #include "getrelativefilename.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "getrelativefilename";
+
 types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t* wcsAbsDir  = NULL;
@@ -46,13 +47,13 @@ types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int 
 
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "getrelativefilename", 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "getrelativefilename", 1);
+        Scierror(90, 1, _("matrix of strings"));
         return types::Function::Error;
     }
 
@@ -60,7 +61,7 @@ types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int 
 
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "getrelativefilename", 2);
+        Scierror(90, 2, _("matrix of strings"));
         return types::Function::Error;
     }
 
@@ -68,7 +69,7 @@ types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int 
 
     if (pStrDir->getSize() != pStrFile->getSize())
     {
-        Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same size expected.\n"), "getrelativefilename", 1, 2);
+        Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same size expected.\n"), fname, 1, 2);
         return types::Function::Error;
     }
 
@@ -79,7 +80,7 @@ types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int 
         wcsAbsDir = expandPathVariableW(pStrDir->get(i));
         if (wcslen(wcsAbsDir) > PATH_MAX)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 1, PATH_MAX);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), fname, 1, PATH_MAX);
             FREE(wcsAbsDir);
             delete pStrOut;
             return types::Function::Error;
@@ -88,7 +89,7 @@ types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int 
         wcsAbsFile = expandPathVariableW(pStrFile->get(i));
         if (wcslen(wcsAbsFile) > PATH_MAX)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 2, PATH_MAX);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), fname, 2, PATH_MAX);
             FREE(wcsAbsFile);
             FREE(wcsAbsDir);
             delete pStrOut;
@@ -107,4 +108,3 @@ types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int 
     out.push_back(pStrOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

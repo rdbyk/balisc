@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2011 - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,6 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include "dynamic_link_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -27,9 +26,9 @@ extern "C"
 #include "dynamic_link.h"
 }
 
-void unLinkAll();
-void unLink(int _iLib);
-/*--------------------------------------------------------------------------*/
+static void unLinkAll();
+static void unLink(int _iLib);
+
 types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     /* environment variable used (linux) to detect a PROFILING tools */
@@ -41,7 +40,7 @@ types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "ulink", 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
 
@@ -60,13 +59,13 @@ types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: real scalar expected.\n"), "ulink", 1);
+        Scierror(93, 1);
         return types::Function::Error;
     }
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
+
 void unLinkAll()
 {
     std::vector<ConfigVariable::DynamicLibraryStr*>* pDLLIst =  ConfigVariable::getDynamicLibraryList();
@@ -75,7 +74,7 @@ void unLinkAll()
         unLink(i);
     }
 }
-/*--------------------------------------------------------------------------*/
+
 void unLink(int _iLib)
 {
     ConfigVariable::DynamicLibraryStr* pStr = ConfigVariable::getDynamicLibrary(_iLib);
@@ -86,4 +85,3 @@ void unLink(int _iLib)
         Sci_dlclose(iLib);
     }
 }
-/*--------------------------------------------------------------------------*/

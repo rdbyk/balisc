@@ -13,23 +13,23 @@
 function c=cross(a,b)
 
     if nargin <> 2 then
-        error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "cross",2));
+        error(_("%s: Wrong number of input arguments: %d expected."), "cross", 2);
     end
 
     if type(a) > 8 | type(a) == 6 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: A real, complex, boolean or polynomial matrix expected.\n"), "cross", 1));
+        error(_("%s: Wrong type for input argument #%d: A real, complex, boolean or polynomial matrix expected."), "cross", 1);
     end
 
     if type(b) > 8 | type(b) == 6 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: A real, complex, boolean or polynomial matrix expected.\n"), "cross", 2));
+        error(_("%s: Wrong type for input argument #%d: A real, complex, boolean or polynomial matrix expected."), "cross", 2);
     end
 
     if size(a,1) <> size(b,1) | size(a,2)<>size(b,2) then
-        error(msprintf(_("%s: Wrong size for input arguments: Same sizes expected.\n"), "cross"));
+        error(_("%s: Wrong size for input arguments: Same sizes expected."), "cross");
     end
 
     if (size(a,1)<>1 | size(a,2)<>3) & size(a,1)<>3 then
-        error(msprintf(_("%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN expected.\n"), "cross", 1));
+        error(_("%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN expected."), "cross", 1);
     end
 
     if size(a,2)==3 & size(a,1)==1 then

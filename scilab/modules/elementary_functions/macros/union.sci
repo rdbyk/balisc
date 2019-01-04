@@ -16,7 +16,7 @@ function [x,ka,kb] = union(a, b, orient)
     // author Serge Steer INRIA
 
     if nargin < 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "union", 2));
+        error(71, 2);
     end
 
     if nargin < 3 then
@@ -54,7 +54,7 @@ function [x,ka,kb] = union(a, b, orient)
             end
 
         else
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"),"unique",3,1,"r",2,"c"));
+            error(_("%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected."), "unique", 3, 1, "r", 2, "c");
         end
     end
 endfunction

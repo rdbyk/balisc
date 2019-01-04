@@ -48,7 +48,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 3);
+        Scierror(71, 1, 3);
         return types::Function::Error;
     }
 
@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pStr->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), fname, 2);
+                Scierror(102, 2);
                 return types::Function::Error;
             }
 
@@ -151,7 +151,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"), fname, 2);
+            Scierror(90, 2, _("real matrix or a string"), fname, 2);
             return types::Function::Error;
         }
     }
@@ -160,7 +160,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     {
         if (in[2]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+            Scierror(91, fname, 3);
             return types::Function::Error;
         }
 
@@ -168,7 +168,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
         if (pStr->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), fname, 3);
+            Scierror(102, 3);
             return types::Function::Error;
         }
 
@@ -184,7 +184,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), fname, 3, "\"native\"", "\"double\"");
+            Scierror(110, 3, _("'native' or 'double'"));
             return types::Function::Error;
         }
     }

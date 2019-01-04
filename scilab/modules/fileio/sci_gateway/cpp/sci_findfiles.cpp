@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include "fileio_gw.hxx"
 #include "function.hxx"
@@ -32,13 +31,15 @@ extern "C"
 #include "scicurdir.h"
 #include "freeArrayOfPtrs.h"
 }
-/*--------------------------------------------------------------------------*/
+
 #ifdef _MSC_VER
 #define DEFAULT_FILESPEC L"*.*"
 #else
 #define DEFAULT_FILESPEC L"*"
 #endif
-/*--------------------------------------------------------------------------*/
+
+static const char fname[] = "findfiles";
+
 types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t* pwstPath   = NULL;
@@ -47,7 +48,7 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
 
     if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "findfiles", 0, 2);
+        Scierror(72, 0, 2);
         return types::Function::Error;
     }
 
@@ -65,7 +66,7 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
         //user path
         if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "findfiles", 1);
+            Scierror(91, 1);
             return types::Function::Error;
         }
 
@@ -76,7 +77,7 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
             //user file spec
             if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "findfiles", 2);
+                Scierror(91, 2);
                 FREE(pwstPath);
                 return types::Function::Error;
             }
@@ -115,4 +116,3 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

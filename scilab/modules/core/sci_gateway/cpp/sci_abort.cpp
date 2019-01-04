@@ -30,7 +30,7 @@ types::Function::ReturnValue sci_abort(types::typed_list &in, int _iRetCount, ty
 {
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "abort", 0);
+        Scierror(71, 0);
         return types::Function::Error;
     }
 

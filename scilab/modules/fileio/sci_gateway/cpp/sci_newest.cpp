@@ -1,9 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
- *
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
@@ -31,7 +30,8 @@ extern "C"
 #include "newest.h"
 #include "freeArrayOfPtrs.h"
 }
-/*--------------------------------------------------------------------------*/
+
+static const char fname[] = "newest";
 
 types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A String(s) expected.\n"), "newest", 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A String(s) expected.\n"), fname, 1);
                 return types::Function::Error;
             }
         }
@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
             if (in[iNbrString]->isString() == FALSE)
             {
                 FREE(pwcsStringInput);
-                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "newest", iNbrString + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, iNbrString + 1);
                 return types::Function::Error;
             }
             pwcsStringInput[iNbrString] = in[iNbrString]->getAs<types::String>()->getFirst();
@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
         if (in[1]->getAs<types::String>()->isScalar() == false)
         {
             FREE(pwcsStringInput);
-            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "newest", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
             return types::Function::Error;
         }
 
@@ -109,4 +109,3 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

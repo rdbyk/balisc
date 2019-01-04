@@ -51,13 +51,13 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 1);
+        Scierror(74, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
 
         if (iCountElem == 0)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: Non empty list expected.\n"), fname, 1);
+            Scierror(100, 1, _("non empty list"));
             return types::Function::Error;
         }
 
@@ -169,7 +169,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: r, c, m or * expected.\n"), fname, 2);
+            Scierror(100, 2, _("'r', 'c', 'm', or '*'"));
             return types::Function::Error;
         }
         iCountElem = 1;
@@ -207,7 +207,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
                 pDbl = inputs[i]->getAs<types::Double>();
                 if (pDbl->isComplex())
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), fname, i + 1);
+                    Scierror(94, i + 1);
                     return types::Function::Error;
                 }
 
@@ -269,7 +269,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
             }
             default:
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), fname, i + 1);
+                Scierror(90, i + 1, _("real or integer matrix"));
                 return types::Function::Error;
             }
         }
@@ -280,7 +280,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         }
         else if (iDims != pDbl->getDims())
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), fname, i + 1);
+            Scierror(100, i + 1, _("arguments of same size"));
             return types::Function::Error;
         }
         else
@@ -290,7 +290,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
             {
                 if (iCurrentDimsArray[iterDims] != piDimsArray[iterDims])
                 {
-                    Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), fname, i + 1);
+                    Scierror(100, i + 1, _("arguments of same size"));
                     return types::Function::Error;
                 }
             }

@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
 
     if (pDblIn->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 1);
+        Scierror(90, 1, _("real array"));
         return types::Function::Error;
     }
 

@@ -57,7 +57,7 @@ Function::ReturnValue sci_fflush(typed_list &in, int _iRetCount, typed_list &out
             
             if (d->getSize() != 1 || d->isComplex())
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 1);
+                Scierror(93, 1);
                 return Function::Error;
             }
 
@@ -65,19 +65,19 @@ Function::ReturnValue sci_fflush(typed_list &in, int _iRetCount, typed_list &out
             
             if (iFileID < 0)
             {
-                Scierror(999, _("%s: Invalid file descriptor: %d.\n"), fname, iFileID);
+                Scierror(30, iFileID);
                 return Function::Error;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname, 1);
+            Scierror(93, 1);
             return Function::Error;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 0, 1);
+        Scierror(72, 0, 1);
         return Function::Error;
     }
 

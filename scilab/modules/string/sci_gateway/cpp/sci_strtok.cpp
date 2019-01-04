@@ -31,8 +31,6 @@ extern "C"
 #include <stdio.h>
 }
 
-static const char fname[] = "strtok";
-
 types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     static wchar_t *pwstState  = NULL;
@@ -41,19 +39,19 @@ types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     if (in.size() == 2 && (in[1]->isString() == false || in[1]->getAs<types::String>()->isScalar() == false))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+        Scierror(91, 2);
         return types::Function::Error;
     }
 

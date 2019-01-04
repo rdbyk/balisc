@@ -69,13 +69,13 @@ Function::ReturnValue sci_isprotected(typed_list &in, int _iRetCount, typed_list
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
     

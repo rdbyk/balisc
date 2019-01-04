@@ -38,19 +38,19 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
 
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+        Scierror(91, 2);
         return types::Function::Error;
     }
 
@@ -59,19 +59,19 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
 
     if (pString->getSize() == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), fname, 1);
+        Scierror(100, 1, _("matrix of strings"));
         return types::Function::Error;
     }
 
     if (pStrSample->getSize() == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), fname, 2);
+        Scierror(100, 1, _("matrix of strings"));
         return types::Function::Error;
     }
 
     if (pString->getSize() != pStrSample->getSize() && pStrSample->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+        Scierror(100, 2, _("string or matrix of strings with same size as argument #1"));
         return types::Function::Error;
     }
 
@@ -100,7 +100,7 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
                 {
                     delete pOutString;
                     FREE(ptrwstrstr);
-                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    Scierror(1);
                     return types::Function::Error;
                 }
             }
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
                 {
                     delete pOutString;
                     FREE(ptrwstrstr);
-                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    Scierror(1);
                     return types::Function::Error;
                 }
             }

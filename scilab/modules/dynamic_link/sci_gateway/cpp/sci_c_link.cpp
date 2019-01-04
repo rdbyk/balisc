@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2011 - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,8 +13,6 @@
  * along with this program.
  *
  */
-
-/*--------------------------------------------------------------------------*/
 
 #include "dynamic_link_gw.hxx"
 #include "function.hxx"
@@ -30,8 +28,8 @@ extern "C"
 #include "Scierror.h"
 }
 
-bool isLink(wchar_t* _pwstEntryPoint, int* _piLib);
-/*--------------------------------------------------------------------------*/
+static bool isLink(wchar_t* _pwstEntryPoint, int* _piLib);
+
 types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iLib = -1;
@@ -39,13 +37,13 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "c_link", 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "c_link", 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 
@@ -54,7 +52,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
         types::Double* pDId = in[1]->getAs<types::Double>();
         if (pDId == NULL || pDId->isScalar() == false)
         {
-            Scierror(999 , _("%s : second argument must be a unique id of a shared library.\n"), "c_link");
+            Scierror(110, 2, _("unique id of a shared library"));
             return types::Function::Error;
         }
 
@@ -64,7 +62,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        Scierror(999 , _("%s : Wrong type for input argument #%d: string expected.\n"), "c_link", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -79,7 +77,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
+
 bool isLink(wchar_t* _pwstEntryPoint, int* _piLib)
 {
     ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(_pwstEntryPoint, *_piLib);
@@ -92,4 +90,3 @@ bool isLink(wchar_t* _pwstEntryPoint, int* _piLib)
     *_piLib = pEP->iLibIndex;
     return true;
 }
-/*--------------------------------------------------------------------------*/

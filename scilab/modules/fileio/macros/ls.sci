@@ -2,8 +2,8 @@
 // Copyright (C) INRIA - Serge STEER
 // Copyright (C) INRIA - Allan CORNET
 // Copyright (C) INRIA - Sylvestre LEDRU
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +23,7 @@ function files=ls(varargin)
     else
         path = varargin(1);
         if type(path) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"ls",1));
+            error(91, 1);
         end
         for k=2:size(varargin)
             opts = [opts varargin(k)];

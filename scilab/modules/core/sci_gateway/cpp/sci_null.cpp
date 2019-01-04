@@ -31,8 +31,6 @@ using types::Function;
 using types::ListDelete;
 using types::typed_list;
 
-static const char fname[] = "null";
-
 Function::ReturnValue sci_null(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() == 0)
@@ -42,7 +40,7 @@ Function::ReturnValue sci_null(typed_list &in, int _iRetCount, typed_list &out)
     }
     else
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected."), fname, 0);
+        Scierror(71, 0);
         return Function::Error;
     }
 }

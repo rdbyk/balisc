@@ -28,8 +28,6 @@ extern "C"
 #include "Scierror.h"
 }
 
-static const char fname[] = "strcspn";
-
 types::Function::ReturnValue sci_strcspn(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pOutDouble = NULL;
@@ -39,19 +37,19 @@ types::Function::ReturnValue sci_strcspn(types::typed_list &in, int _iRetCount, 
 
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+        Scierror(91, 2);
         return types::Function::Error;
     }
 
@@ -60,7 +58,7 @@ types::Function::ReturnValue sci_strcspn(types::typed_list &in, int _iRetCount, 
 
     if (pString->getSize() != pStrSample->getSize() && pStrSample->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+        Scierror(102, 2);
         return types::Function::Error;
     }
 

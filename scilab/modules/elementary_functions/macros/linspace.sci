@@ -22,38 +22,32 @@ function y = linspace(d1, d2, n)
     // CHECKING ARGUMENTS
     // ------------------
     if nargin < 2 then
-        msg = gettext("%s: Wrong number of input arguments: %d to %d expected.\n")
-        error(msprintf(msg, "linspace", 2, 3));
+        error(72, 2, 3);
     end
     if size(d1,2)<>1 then
-        msg = gettext("%s: Argument #%d: Column expected.\n")
-        error(msprintf(msg, "linspace", 1));
+        error(_("%s: Argument #%d: Column expected."), "linspace", 1);
     end
     if or(size(d1) <> size(d2)) then
-        msg = gettext("%s: Arguments #%d and #%d: Same sizes expected.\n")
-        error(msprintf(msg, "linspace", 1, 2));
+        error(_("%s: Arguments #%d and #%d: Same sizes expected."), "linspace", 1, 2);
     end
-    msg = gettext("%s: Argument #%d: Number(s) expected.\n")
     if type(d1) <> [1 5 8] then
-        error(msprintf(msg, "linspace", 1));
+        error(_("%s: Argument #%d: Number(s) expected."), "linspace", 1);
     end
     if type(d2) <> [1 5 8] then
-        error(msprintf(msg, "linspace", 2));
+        error(_("%s: Argument #%d: Number(s) expected."), "linspace", 2);
     end
-    msg = gettext("%s: Argument #%d: %%nan and %%inf values are forbidden.\n")
     if or(isinf(d1)) || or(isnan(d1)) then
-        error(msprintf(msg, "linspace", 1));
+        error(_("%s: Argument #%d: %%nan and %%inf values are forbidden"), "linspace", 1);
     end
     if or(isinf(d2)) || or(isnan(d2)) then
-        error(msprintf(msg, "linspace", 2));
+        error(_("%s: Argument #%d: %%nan and %%inf values are forbidden"), "linspace", 2);
     end
 
     if nargin == 2 then
         n = 100;
     else
         if type(n)<>[1 8] || size(n,"*")<>1 || int(n)<>n then
-            msg = gettext("%s: Argument #%d: An integer value expected.\n")
-            error(msprintf(msg, "linspace",3));
+            error(_("%s: Argument #%d: An integer value expected."), "linspace",3);
         end
         n = double(n); // Convert for the operations to come
     end

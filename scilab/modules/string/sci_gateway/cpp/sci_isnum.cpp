@@ -30,8 +30,6 @@ extern "C"
 #include "BOOL.h"
 }
 
-static const char fname[] = "isnum";
-
 types::Function::ReturnValue sci_isnum(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Bool* pOutBool   = NULL;
@@ -41,13 +39,13 @@ types::Function::ReturnValue sci_isnum(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 

@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "triu", 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
     {
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "triu", 2);
+            Scierror(93, 2);
             return types::Function::Error;
         }
 
@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
 
         if (pDblOffset->isScalar() == false || pDblOffset->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "triu", 2);
+            Scierror(93, 2);
             return types::Function::Error;
         }
 

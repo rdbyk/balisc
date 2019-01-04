@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,8 +26,9 @@ extern "C"
 #include "localization.h"
 }
 
-/*--------------------------------------------------------------------------*/
-bool isValidName(wchar_t* _pwstName)
+static const char fname[] = "newfun";
+
+static bool isValidName(wchar_t* _pwstName)
 {
     if (_pwstName == NULL)
     {
@@ -51,12 +52,12 @@ bool isValidName(wchar_t* _pwstName)
     }
     return true;
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 2)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "newfun" , 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
@@ -65,14 +66,14 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
 
     if (pIT1->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "newfun", 1);
+        Scierror(91, fname, 1);
         return types::Function::Error;
     }
 
     types::String* pS1 = pIT1->getAs<types::String>();
     if (pS1->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "newfun", 1);
+        Scierror(102, 1);
         return types::Function::Error;
     }
 
@@ -81,20 +82,20 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
     //check is a valid name
     if (isValidName(pwcsNewName) == false)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: Valid function name expected.\n"), "newfun", 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: Valid function name expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (pIT2->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "newfun", 2);
+        Scierror(91, 2);
         return types::Function::Error;
     }
 
     types::String* pS2 = pIT2->getAs<types::String>();
     if (pS2->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "newfun", 2);
+        Scierror(102, 2);
         return types::Function::Error;
     }
 
@@ -135,7 +136,7 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
 
     if (pFunc == NULL)
     {
-        Scierror(999, _("%s: function-name is incorrect.\n"), "newfun");
+        Scierror(999, _("%s: function-name is incorrect.\n"), fname);
         return types::Function::Error;
     }
 
@@ -178,4 +179,3 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

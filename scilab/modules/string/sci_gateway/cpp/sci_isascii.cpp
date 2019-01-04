@@ -27,15 +27,13 @@ extern "C"
 #include "isascii.h"
 }
 
-static const char fname[] = "isascii";
-
 types::Function::ReturnValue sci_isascii(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Bool* pBOut = NULL;
 
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -85,7 +83,7 @@ types::Function::ReturnValue sci_isascii(types::typed_list &in, int _iRetCount, 
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string or matrix expected.\n"), fname, 1);
+        Scierror(90, 1, _("matrix of strings or real matrix"));
         return types::Function::Error;
     }
 

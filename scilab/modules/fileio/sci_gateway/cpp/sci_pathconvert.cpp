@@ -32,8 +32,6 @@ extern "C"
 #define _UNIX_TYPE      "u"
 #define _WINDOWS_TYPE   "w"
 
-static const char fname[] = "pathconvert";
-
 types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     PathConvertType PType   = AUTO_STYLE;
@@ -42,7 +40,7 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
 
     if (in.size() < 1 || in.size() > 4)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname , 1, 4);
+        Scierror(72, 1, 4);
         return types::Function::Error;
     }
 
@@ -51,7 +49,7 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
     {
         if (in[3]->isString() == false || in[3]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 4);
+            Scierror(91, 4);
             return types::Function::Error;
         }
 
@@ -66,7 +64,7 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 4, _UNIX_TYPE, _WINDOWS_TYPE);
+            Scierror(90, 4, _("'u' or 'w'"));
             return types::Function::Error;
         }
     }
@@ -75,7 +73,7 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
     {
         if (in[2]->isBool() == false || in[2]->getAs<types::Bool>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
+            Scierror(90, 3, _("boolean"));
             return types::Function::Error;
         }
 
@@ -86,7 +84,7 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
     {
         if (in[1]->isBool() == false || in[1]->getAs<types::Bool>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
+            Scierror(90, 2, _("boolean"));
             return types::Function::Error;
         }
 
@@ -101,7 +99,7 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
+        Scierror(90, 1, _("matrix of strings"));
         return types::Function::Error;
     }
 

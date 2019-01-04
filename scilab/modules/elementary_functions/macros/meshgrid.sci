@@ -13,9 +13,9 @@
 function  varargout=meshgrid(varargin)
 
     if nargout>3 then
-        error(msprintf(gettext("%s: Wrong number of output arguments: At most %d expected.\n"),"meshgrid",3));
+        error(_("%s: Wrong number of output arguments: At most %d expected."), "meshgrid", 3);
     elseif nargin>3 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: At most %d expected.\n"),"meshgrid",3));
+        error(_("%s: Wrong number of input arguments: At most %d expected."), "meshgrid", 3);
     end
 
     if or(nargout==[1 2]) & nargin==1 then
@@ -40,7 +40,7 @@ function  varargout=meshgrid(varargin)
             varargout(3)=permute(z,[2,1,3]);
         end
     else
-        error(msprintf(gettext("%s: Wrong number of output arguments vs. input arguments: Same number expected.\n"),"meshgrid"));
+        error(_("%s: Wrong number of output arguments vs. input arguments: Same number expected."),"meshgrid");
     end
 
 endfunction

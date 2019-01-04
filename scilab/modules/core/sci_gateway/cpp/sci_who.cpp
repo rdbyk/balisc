@@ -29,6 +29,8 @@ extern "C"
 #include "sciprint.h"
 }
 
+static const char fname[] = "who";
+
 types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, types::typed_list& out)
 {
     std::wstring wcsWhat(L"");
@@ -38,13 +40,13 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
 
     if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "who", 0, 2);
+        Scierror(72, 0, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "who", 0, 2);
+        Scierror(82, 0, 2);
         return types::Function::Error;
     }
 
@@ -61,7 +63,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "who", 2);
+            Scierror(91, 2);
             return types::Function::Error;
         }
 
@@ -88,7 +90,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     {
         if (in[0]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "who", 1);
+            Scierror(91, 1);
             return types::Function::Error;
         }
 

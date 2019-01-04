@@ -43,7 +43,7 @@ Function::ReturnValue sci_find(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.size() == 0 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "find", 1, 2);
+        Scierror(72, 1, 2);
         return Function::Error;
     }
 
@@ -51,14 +51,14 @@ Function::ReturnValue sci_find(typed_list &in, int _iRetCount, typed_list &out)
     {
         if (in[1]->isDouble() == false || in[1]->getAs<Double>()->isScalar() == false)
         {
-            Scierror(999, _("%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"), "find", 2);
+            Scierror(90, 2, _("positive integer value"));
             return Function::Error;
         }
 
         iMax = (int)in[1]->getAs<Double>()->get()[0];
         if (iMax <= 0 && iMax != -1)
         {
-            Scierror(999, _("%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"), "find", 2);
+            Scierror(110, 2, _("%positive integer value"));
             return Function::Error;
         }
 

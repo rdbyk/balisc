@@ -27,8 +27,6 @@ extern "C"
 #include "isdigit.h"
 }
 
-static const char fname[] = "isdigit";
-
 types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pStrIn   = NULL;
@@ -38,13 +36,13 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
 
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -52,7 +50,7 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
 
     if (pStrIn->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar String expected.\n"), fname, 1);
+        Scierror(102, 1);
         return types::Function::Error;
     }
 

@@ -29,8 +29,6 @@ using types::Double;
 using types::Function;
 using types::typed_list;
 
-static const char fname[] = "expm";
-
 Function::ReturnValue sci_expm(typed_list &in, int _iRetCount, typed_list &out)
 {
     Double* pDblIn = NULL;
@@ -38,7 +36,7 @@ Function::ReturnValue sci_expm(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return Function::Error;
     }
 
@@ -63,7 +61,7 @@ Function::ReturnValue sci_expm(typed_list &in, int _iRetCount, typed_list &out)
 
     if (pDblIn->getCols() != pDblIn->getRows())
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : A square matrix expected.\n"), fname, 1);
+        Scierror(103, 1);
         return Function::Error;
     }
 

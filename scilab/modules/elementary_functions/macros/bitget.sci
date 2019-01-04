@@ -18,9 +18,8 @@ function z = bitget(x, pos)
 
     // CHECKING ARGUMENTS
     // ==================
-    if nargin~=2 then
-        msg = _("%s: Wrong number of input arguments: %d expected.\n");
-        error(msprintf(msg, fname, 2));
+    if nargin <> 2 then
+        error(71, 2);
     end
 
     // case empty matrix
@@ -32,15 +31,13 @@ function z = bitget(x, pos)
     // check for positive integers
     if  (type(x)<>1  & type(x)<>8) || or(x<0) || ..
         (type(x)==1  & (or((x-floor(x))<>0) | or(imag(x)~=0)))
-        msg = gettext("%s: Argument #%d: Non-negative integers expected.\n")
-        error(msprintf(msg, fname, 1));
+        error(_("%s: Argument #%d: Non-negative integers expected."), fname, 1);
     elseif type(x)==1
-        msg = gettext("%s: Argument #%d: Non-negative integers expected.\n")
         x = real(x);
     end
     if  (type(pos)<>1  & type(pos)<>8) || or(pos<0) || ..
         (type(pos)==1  & (or((pos - floor(pos))<>0) | or(imag(pos)~=0)))
-        error(msprintf(msg, fname, 2));
+        error(_("%s: Argument #%d: Non-negative integers expected."), fname, 2);
     elseif type(pos)==1
         pos = real(pos);
     end
@@ -67,8 +64,7 @@ function z = bitget(x, pos)
         posmax = posmax - 1     // => sign bit reserved
     end
     if or(pos>posmax) | or(pos<1) then
-        msg = _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n")
-        error(msprintf(msg, fname, 2, 1, posmax));
+        error(_("%s: Wrong value for input argument #%d: Must be between %d and %d."), fname, 2, 1, posmax);
     end
 
     // PROCESSING

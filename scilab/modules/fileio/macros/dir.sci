@@ -17,7 +17,7 @@ function L=dir(str)
 
     if nargin == 1 then
         if type(str) <> 10 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "dir", 1));
+            error(91, "dir", 1);
         end
 
         files = listfiles(str);

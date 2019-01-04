@@ -33,8 +33,6 @@ using types::ListInsert;
 using types::ListUndefined;
 using types::typed_list;
 
-static const char fname[] = "insert";
-
 Function::ReturnValue sci_insert(typed_list &in, int _iRetCount, typed_list &out)
 {
     switch(in.size())
@@ -48,7 +46,7 @@ Function::ReturnValue sci_insert(typed_list &in, int _iRetCount, typed_list &out
             break;
 
         default:
-            Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected."), fname, 0, 1);
+            Scierror(72, 0, 1);
             return Function::Error;
     }
 

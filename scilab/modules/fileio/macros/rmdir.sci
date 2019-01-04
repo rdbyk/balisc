@@ -14,7 +14,7 @@ function [status,msg]=rmdir(varargin)
 
     select nargin
     case 0
-        error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"rmdir"));
+        error(70);
         break
     case 1
         DirName = varargin(1);
@@ -26,11 +26,11 @@ function [status,msg]=rmdir(varargin)
         if (SubDir == "S") then
             SubDirMode = %T;
         else
-            error(msprintf(_("%s: Wrong value for input argument #%d: Must be ''%s''.\n"),"rmdir",2,"s"));
+            error(110, 2, "''s''");
         end
         break
     else
-        error(msprintf(_("%s: Wrong number of input argument(s).\n"),"rmdir"));
+        error(70);
     end
 
     if SubDirMode then

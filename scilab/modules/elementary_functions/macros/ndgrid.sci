@@ -14,8 +14,7 @@
 function [varargout] = ndgrid(varargin)
     nbdim = length(varargin)
     if nbdim < 1 then
-        msg = _("%s: Wrong number of input arguments: At least %d expected.\n")
-        error(msprintf(msg, "ndgrid", 1))
+        error(_("%s: Wrong number of input arguments: At least %d expected."), "ndgrid", 1)
     end
     if nbdim==1 then
         varargin(2) = varargin(1)
@@ -25,8 +24,7 @@ function [varargout] = ndgrid(varargin)
     dim = zeros(1,nbdim)
     for k = 1:nbdim
         if and(type(varargin(k)) ~= [1 2 4 8 10]) & typeof(varargin(k))~="rational"
-            msg = _("%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, Polynomials, Rationals or Texts expected.\n")
-            error(msprintf(msg, "ndgrid", k))
+            error(_("%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, Polynomials, Rationals or Texts expected."), "ndgrid", k)
         end
         dim(k) = size(varargin(k),"*")
         varargin(k) = matrix(varargin(k),1,-1) // force row form

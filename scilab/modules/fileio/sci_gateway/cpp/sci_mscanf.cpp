@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
     if (size < 1 || size > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     {
         if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), fname, 1);
+            Scierror(93, 1);
             return types::Function::Error;
         }
         iNiter = static_cast<int>(in[0]->getAs<types::Double>()->getFirst());
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
     if (in[size - 1]->isString() == false || in[size - 1]->getAs<types::String>()->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, size);
+        Scierror(91, size);
         return types::Function::Error;
     }
 
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
                 case DO_XXPRINTF_MEM_LACK:
                     Free_Scan(rowcount, ncol, type_s, &data);
-                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    Scierror(1);
                     return types::Function::Error;
             }
         }

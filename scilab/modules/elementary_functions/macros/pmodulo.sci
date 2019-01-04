@@ -16,8 +16,7 @@
 function i = pmodulo(n, m)
 
     if nargin <> 2 then
-        msg = _("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "pmodulo", 2))
+        error(71, 2)
     end
 
     mt = type(m)
@@ -26,18 +25,15 @@ function i = pmodulo(n, m)
     // -----------------------  Checking arguments --------------------------
 
     if and(nt <> [1 2 8]) | (nt==1 & ~isreal(n)) then
-        msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
-        error(msprintf(msg, "pmodulo", 1))
+        error(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected."), "pmodulo", 1)
     end
 
     if and(mt <> [1 2 8]) | (mt==1 & ~isreal(m)) then
-        msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
-        error(msprintf(msg, "pmodulo", 2))
+        error(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected."), "pmodulo", 2)
     end
 
-    if (nt==8 | mt==8)  & nt~=mt
-        msg = _("%s: Incompatible input arguments: Same types expected.\n")
-        error(msprintf(msg, "pmodulo"))
+    if (nt==8 | mt==8)  & nt <> mt
+        error(_("%s: Incompatible input arguments: Same types expected."), "pmodulo")
     end
 
     // --------------------------  Processing ------------------------
@@ -51,8 +47,7 @@ function i = pmodulo(n, m)
     else
         m = abs(m)  // else returns i<0 for m<0 : http://bugzilla.scilab.org/12373
         if length(n)>1 & length(m)>1 & or(size(n)<>size(m)) then
-            msg = _("%s: Wrong size for input arguments: Same size expected.\n")
-            error(msprintf(msg, "pmodulo"))
+            error(_("%s: Wrong size for input arguments: Same size expected."), "pmodulo")
         end
         i = n - floor(n ./ m) .* m
         k = find(i<0)           // this may occur for encoded integers

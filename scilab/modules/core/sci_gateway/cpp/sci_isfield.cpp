@@ -28,25 +28,23 @@ extern "C"
 #include "charEncoding.h"
 }
 
-static const char fname[] = "isfield";
-
 types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 2)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
     if (!(in[0]->isStruct() || in[0]->isTList() || in[0]->isMList()))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: struct array or tlist or mlist expected.\n"), fname, 1);
+        Scierror(90, 1, _("struct array or tlist or mlist"));
         return types::Function::Error;
     }
 
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+        Scierror(91, 2);
         return types::Function::Error;
     }
 

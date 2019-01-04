@@ -47,7 +47,7 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
 
     if (in.size() < 2 )
     {
-        Scierror(77, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 2);
+        Scierror(71, 2);
         return Function::Error;
     }
 
@@ -83,7 +83,7 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
     {
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), fname, 2);
+            Scierror(94, 2);
             return Function::Error;
         }
 
@@ -91,7 +91,7 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
 
         if (pDblNewSize->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), fname, 2);
+            Scierror(94, 2);
             return Function::Error;
         }
 
@@ -134,7 +134,7 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
         {
             if (in[i]->isDouble() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, i + 1);
+                Scierror(93, i + 1);
                 delete[] piSizes;
                 return Function::Error;
             }
@@ -143,7 +143,7 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
 
             if (pDblNewSize->isComplex() || pDblNewSize->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, i + 1);
+                Scierror(93, i + 1);
                 delete[] piSizes;
                 return Function::Error;
             }

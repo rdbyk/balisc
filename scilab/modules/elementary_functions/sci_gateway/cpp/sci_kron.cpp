@@ -33,7 +33,7 @@ types::Function::ReturnValue sci_kron(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "kron", 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 

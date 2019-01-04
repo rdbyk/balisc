@@ -14,11 +14,11 @@
 function d = hex2dec(h)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"hex2dec", 1));
+        error(71, 1);
     end
 
-    if type(h)<> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"hex2dec",1));
+    if type(h) <> 10 then
+        error(90, 1, _("matrix of strings"));
     end
 
     d = base2dec(h, 16);

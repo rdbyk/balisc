@@ -27,19 +27,17 @@ extern "C"
 #include "localization.h"
 }
 
-static const char fname[] = "fileext";
-
 types::Function::ReturnValue sci_fileext(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname , 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
+        Scierror(90, 1, _("matrix of strings"));
         return types::Function::Error;
     }
 

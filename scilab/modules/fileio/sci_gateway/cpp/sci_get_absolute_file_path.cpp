@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "funcmanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
@@ -29,7 +29,8 @@ extern "C"
 #include "freeArrayOfPtrs.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "get_absolute_file_path";
+
 types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t* wcsFileName = NULL;
@@ -39,13 +40,13 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "get_absolute_file_path", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "get_absolute_file_path", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -81,8 +82,7 @@ types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, i
     freeArrayOfPtrs((void**)wcsFilesOpened, FileManager::getOpenedCount());
 
     char* pstFile = wide_string_to_UTF8(wcsFileName);
-    Scierror(999, _("%s: The file %s is not opened in scilab.\n"), "get_absolute_file_path", pstFile);
+    Scierror(999, _("%s: The file %s is not opened in scilab.\n"), fname, pstFile);
     FREE(pstFile);
     return types::Function::Error;
 }
-/*--------------------------------------------------------------------------*/

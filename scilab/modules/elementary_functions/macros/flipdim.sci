@@ -15,27 +15,21 @@
 function y = flipdim(x, dim, sb)
 
     if nargin < 2 then
-        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n");
-        error(msprintf(msg, "flipdim", 2, 3));
+        error(72, 2, 3);
     end
 
     if size(dim, "*") <> 1 then
-        msg = _("%s: Wrong size for input argument #%d: A positive integer expected.\n")
-        error(msprintf(msg, "flipdim", 2));
+        error(_("%s: Wrong size for input argument #%d: A positive integer expected."), "flipdim", 2);
     elseif type(dim) <> 8 & (type(dim) <> 1 | dim < 1 ) then
-        msg = _("%s: Wrong type for input argument #%d: A positive integer expected.\n");
-        error(msprintf(msg, "flipdim", 2));
+        error(_("%s: Wrong type for input argument #%d: A positive integer expected."), "flipdim", 2);
     end
     if nargin >= 3 then
         if size(sb, "*") <> 1 then
-            msg = _("%s: Wrong size for input argument #%d: A positive integer expected.\n")
-            error(msprintf(msg, "flipdim", 3));
+            error(_("%s: Wrong size for input argument #%d: A positive integer expected."), "flipdim", 3);
         elseif type(sb) <> 8 & (type(sb) <> 1 | sb < 1 ) then
-            msg = _("%s: Wrong type for input argument #%d: A positive integer expected.\n");
-            error(msprintf(msg, "flipdim", 3));
+            error(_("%s: Wrong type for input argument #%d: A positive integer expected."), "flipdim", 3);
         elseif dim > 2 then
-            msg = _("%s: Cannot flip hypermatrix blockwise. %d input arguments expected.\n");
-            error(msprintf(msg, "flipdim", 2));
+            error(_("%s: Cannot flip hypermatrix blockwise. %d input arguments expected."), "flipdim", 2);
         end
     else
         sb = 1;
@@ -55,8 +49,7 @@ function y = flipdim(x, dim, sb)
 
         nC = size(x, 2);
         if modulo(nC, sb) ~= 0 then
-            msg = _("%s: Wrong value for input argument #%d: A divisor of the selected dimension size expected.\n");
-            error(msprintf(msg, "flipdim", 3));
+            error(_("%s: Wrong value for input argument #%d: A divisor of the selected dimension size expected."), "flipdim", 3);
         end
         nb = nC/sb; // Number of blocks.
         c2 = ((nb:-1:1).*.ones(1,sb))*sb + ones(1, nb).*.(1-sb:0);

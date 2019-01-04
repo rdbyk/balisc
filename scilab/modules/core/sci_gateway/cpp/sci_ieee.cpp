@@ -33,7 +33,7 @@ types::Function::ReturnValue sci_ieee(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
 
@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_ieee(types::typed_list &in, int _iRetCount, typ
     {
         if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), fname, 1);
+            Scierror(93, 1);
             return types::Function::Error;
         }
 
@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_ieee(types::typed_list &in, int _iRetCount, typ
 
         if (pdblIeee < 0 || pdblIeee > 2)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d : 0, 1 or 2 expected.\n"), fname, 1);
+            Scierror(110, 1, _("0, 1 or 2"));
             return types::Function::Error;
         }
 

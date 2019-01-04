@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,6 +12,7 @@
  * along with this program.
  *
  */
+
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "core_gw.hxx"
@@ -25,7 +26,7 @@ extern "C"
 #include "os_string.h"
 #include "sci_malloc.h"
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int n1 = 0, m1 = 0;
@@ -33,7 +34,7 @@ types::Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetC
 
     if (in.size() != 0)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "getscilabmode", 0);
+        Scierror(71, 0);
         return types::Function::Error;
     }
 
@@ -43,4 +44,3 @@ types::Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetC
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

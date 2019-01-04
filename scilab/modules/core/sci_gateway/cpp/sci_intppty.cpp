@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "core_gw.hxx"
 #include "double.hxx"
 #include "string.hxx"
@@ -26,13 +26,15 @@ extern "C"
 #include "localization.h"
 #include "os_string.h"
 }
-/*--------------------------------------------------------------------------*/
+
+static const char fname[] = "intppty";
+
 types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bAdd = true;
     if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected."), "intppty", 0, 2);
+        Scierror(72, 0, 2);
         return types::Function::Error;
     }
 
@@ -40,7 +42,7 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
     {
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: a string expected.\n"), "intppty", 2);
+            Scierror(102, 2);
             return types::Function::Error;
         }
 
@@ -55,7 +57,7 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "intppty", 2, "add", "remove");
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "add", "remove");
             return types::Function::Error;
         }
 
@@ -65,7 +67,7 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
     {
         if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: a string expected.\n"), "intppty", 1);
+            Scierror(102, 1);
             return types::Function::Error;
         }
 

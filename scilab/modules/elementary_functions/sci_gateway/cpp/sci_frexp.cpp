@@ -30,13 +30,13 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount != 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 2);
+        Scierror(81, fname, 2);
         return types::Function::Error;
     }
 
@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
 
     if (pDblIn->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 1);
+        Scierror(94, 1);
         return types::Function::Error;
     }
 

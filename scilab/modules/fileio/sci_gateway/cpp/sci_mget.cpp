@@ -1,10 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Allan CORNET
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-* ...
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * ...
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,9 +12,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
+
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
@@ -31,7 +31,8 @@ extern "C"
 #include "os_string.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "mget";
+
 types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     char* pstType   = os_strdup("l");//default type value : long
@@ -41,7 +42,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mget", 1, 3);
+        Scierror(72, 1, 3);
         FREE(pstType);
         return types::Function::Error;
     }
@@ -49,7 +50,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     //check parameter 1
     if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A positive integer value expected.\n"), "mget", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A positive integer value expected.\n"), fname, 1);
         FREE(pstType);
         return types::Function::Error;
     }
@@ -57,7 +58,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     types::Double* pDoubleTest = in[0]->getAs<types::Double>();
     if ((pDoubleTest->getFirst() != (int)pDoubleTest->getFirst()) || (pDoubleTest->getFirst() < 0))
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), "mget", 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), fname, 1);
         FREE(pstType);
         return types::Function::Error;
     }
@@ -69,7 +70,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
         //export format
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "mget", 2);
+            Scierror(91, 2);
             FREE(pstType);
             return types::Function::Error;
         }
@@ -82,7 +83,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     {
         if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mget", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname, 3);
             FREE(pstType);
             return types::Function::Error;
         }
@@ -95,7 +96,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
         case 0: // stderr
         case 6: // stdout
             FREE(pstType);
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mget", iFile);
+            Scierror(30, iFile);
             return types::Function::Error;
     }
 
@@ -104,7 +105,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     if (pFile == NULL || pFile->getFileType() == 1)
     {
         FREE(pstType);
-        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mget", iFile);
+        Scierror(30, iFile);
         return types::Function::Error;
     }
 
@@ -139,4 +140,3 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     out.push_back(pD);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

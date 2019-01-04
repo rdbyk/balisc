@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,7 +31,6 @@ extern "C"
 #include "locale.h"
 }
 
-
 types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pOutDouble = NULL;
@@ -47,12 +46,12 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "strtod", 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "strtod", 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 
@@ -69,7 +68,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), "strtod", 1);
+        Scierror(90, 1, _("matrix of strings or empty matrix"));
         return types::Function::Error;
     }
 
@@ -86,7 +85,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "strtod", 2);
+            Scierror(91, 2);
             pOutDouble->killMe();
             if (_iRetCount == 2)
             {
@@ -100,7 +99,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
 
         if (pwstr != L"." && pwstr != L",")
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '.' or ',' expected.\n"), "strtod", 2);
+            Scierror(110, 2, _("'.' or ','"));
             pOutDouble->killMe();
             if (_iRetCount == 2)
             {
@@ -211,4 +210,3 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
 
     return types::Function::OK;
 }
-

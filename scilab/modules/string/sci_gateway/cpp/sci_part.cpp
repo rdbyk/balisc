@@ -36,13 +36,11 @@ using types::typed_list;
 
 static wchar_t **partfunctionW(wchar_t** _pwstStringInput, const int _iSize, const int *_piVectInput, const int _iVectSize);
 
-static const char fname[] = "part";
-
 Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 2)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        Scierror(71, 2);
         return Function::Error;
     }
 
@@ -71,7 +69,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
     if (pD->isVector() == false && pD->isEmpty() == false)
     {
         //non vector
-        Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 2);
+        Scierror(100, 2, _("vector of integer values"));
         return Function::Error;
     }
 
@@ -81,7 +79,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
         piIndex[i] = static_cast<int>(pD->getReal()[i]);
         if (piIndex[i] < 1)
         {
-            Scierror(36, _("%s: Wrong values for input argument #%d: Must be >= 1.\n"), fname, 2);
+            Scierror(110, 2, _("values greater than 1"));
             delete[] piIndex;
             return Function::Error;
         }

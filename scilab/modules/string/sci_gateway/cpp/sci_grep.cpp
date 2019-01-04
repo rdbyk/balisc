@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,10 +12,6 @@
  * along with this program.
  *
  */
-
-/* desc : search position of a character string in another string
-using regular express .                                         */
-/*------------------------------------------------------------------------*/
 
 #include "string_gw.hxx"
 #include "function.hxx"
@@ -29,17 +25,16 @@ extern "C"
 #include "localization.h"
 #include "pcre.h"
 #include "pcreposix.h"
-#include "sci_malloc.h" /* MALLOC */
+#include "sci_malloc.h"
 #include "charEncoding.h"
 #include "pcre_private.h"
 #include "pcre_error.h"
 }
 
-/*------------------------------------------------------------------------*/
 #define GREP_OK             0
 #define GREP_ERROR          1
 #define MEMORY_ALLOC_ERROR -1
-/*------------------------------------------------------------------------*/
+
 typedef struct grep_results
 {
     int sizeArraysMax;
@@ -47,24 +42,23 @@ typedef struct grep_results
     int *values;
     int *positions;
 } GREPRESULTS;
-/*------------------------------------------------------------------------*/
+
 static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two);
 static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two);
-/*------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bRegularExpression = false;
 
-    //check input paramters
     if (in.size() < 2 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "grep", 2, 3);
+        Scierror(72, 2, 3);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "grep", 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 
@@ -80,14 +74,14 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
         //"r" for regular expression
         if (in[2]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 3);
+            Scierror(91, 3);
             return types::Function::Error;
         }
 
         types::String* pS = in[2]->getAs<types::String>();
         if (pS->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "grep", 3);
+            Scierror(102, 3);
             return types::Function::Error;
         }
 
@@ -99,13 +93,13 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 2);
+        Scierror(91, 2);
         return types::Function::Error;
     }
 
@@ -117,7 +111,7 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
     {
         if ((pS2->get(i))[0] == L'\0')
         {
-            Scierror(249, _("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"), "grep", 2);
+            Scierror(110, 2, _("non-empty strings"));
             return types::Function::Error;
         }
     }
@@ -218,7 +212,7 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
         break;
 
         case MEMORY_ALLOC_ERROR :
-            Scierror(999, _("%s: No more memory.\n"), "grep");
+            Scierror(1);
         //no break, to free reserved memory.
         case GREP_ERROR :
         {
@@ -239,62 +233,7 @@ types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, typ
 
     return types::Function::OK;
 }
-//Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
-//{
-//	CheckRhs(2,3);
-//	CheckLhs(1,2);
-//
-//	if (VarType(1) == sci_matrix)
-//	{
-//		int m1 = 0, n1 = 0;
-//		char **Str=NULL;
-//
-//		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&Str);
-//
-//		if ((m1 == 0) && (n1 == 0))
-//		{
-//			int l = 0;
-//			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
-//			LhsVar(1) = Rhs+1 ;
-//			C2F(putlhsvar)();
-//
-//			return 0;
-//		}
-//	}
-//
-//	if (Rhs == 3)
-//	{
-//		if (VarType(3) == sci_strings)
-//		{
-//			char typ = 'd'; /*default */
-//			int m3 = 0,n3 = 0,l3 = 0;
-//
-//			GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-//			if ( m3*n3 != 0) typ = cstk(l3)[0];
-//
-//			if (typ == 'r' )
-//			{
-//				sci_grep_common(fname,TRUE);
-//			}
-//			else
-//			{
-//				Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),fname,3,"s");
-//				return 0;
-//			}
-//		}
-//		else
-//		{
-//			Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,3);
-//			return 0;
-//		}
-//	}
-//	else /* Rhs == 2 */
-//	{
-//		sci_grep_common(fname,FALSE);
-//	}
-//	return 0;
-//}
-/*-----------------------------------------------------------------------------------*/
+
 static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two)
 {
     int x = 0, y = 0;
@@ -353,7 +292,7 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
 
     return iRet;
 }
-/*-----------------------------------------------------------------------------------*/
+
 static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two)
 {
     int x = 0, y = 0;
@@ -392,98 +331,3 @@ static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
     }
     return GREP_OK;
 }
-/*-----------------------------------------------------------------------------------*/
-//static int sci_grep_common(char *fname,BOOL new_grep)
-//{
-//	int i = 0;
-//
-//	int m1 = 0, n1 = 0;
-//	char **Strings_Input_One = NULL;
-//	int m1n1 = 0; /* m1 * n1 */
-//
-//	int m2 = 0, n2 = 0;
-//	char **Strings_Input_Two = NULL;
-//	int m2n2 = 0; /* m2 * n2 */
-//
-//	GREPRESULTS grepresults;
-//	int code_error_grep = GREP_OK;
-//
-//	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Strings_Input_One);
-//	m1n1 = m1*n1;
-//	GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Strings_Input_Two);
-//	m2n2 = m2*n2;
-//
-//	for (i = 0;i < m2n2;i++)
-//	{
-//		if ( strlen(Strings_Input_Two[i]) == 0)
-//		{
-//			freeArrayOfPtrs((void**)Strings_Input_One,m1n1);
-//			freeArrayOfPtrs((void**)Strings_Input_Two,m2n2);
-//			Scierror(249,_("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"),fname,2);
-//			return 0;
-//		}
-//	}
-//
-//	grepresults.currentLength = 0;
-//	grepresults.sizeArraysMax = 0;
-//	grepresults.positions = NULL;
-//	grepresults.values = NULL;
-//
-//	if (new_grep)
-//	{
-//		code_error_grep = GREP_NEW(&grepresults,Strings_Input_One,m1n1,Strings_Input_Two,m2n2);
-//	}
-//	else
-//	{
-//		code_error_grep = GREP_OLD(&grepresults,Strings_Input_One,m1n1,Strings_Input_Two,m2n2);
-//	}
-//
-//	freeArrayOfPtrs((void**)Strings_Input_One,m1n1);
-//	freeArrayOfPtrs((void**)Strings_Input_Two,m2n2);
-//
-//	switch (code_error_grep)
-//	{
-//	case GREP_OK :
-//		{
-//			int x = 0;
-//			int numRow   = 0;
-//			int outIndex = 0;
-//
-//			numRow   = 1;  /* Output values[]*/
-//			outIndex = 0;
-//			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&grepresults.currentLength,&outIndex);
-//			for ( x = 0 ; x < grepresults.currentLength ; x++ )
-//			{
-//				stk(outIndex)[x] = (double)grepresults.values[x] ;
-//			}
-//			LhsVar(1) = Rhs+1 ;
-//			if (Lhs == 2)
-//			{
-//				/* Output positions[]*/
-//				numRow   = 1;
-//				outIndex = 0;
-//				CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&grepresults.currentLength,&outIndex);
-//				for ( x = 0 ; x < grepresults.currentLength ; x++ )
-//				{
-//					stk(outIndex)[x] = (double)grepresults.positions[x] ;
-//				}
-//				LhsVar(2) = Rhs+2;
-//			}
-//			C2F(putlhsvar)();
-//			if (grepresults.values) {FREE(grepresults.values); grepresults.values = NULL;}
-//			if (grepresults.positions) {FREE(grepresults.positions); grepresults.positions = NULL;}
-//		}
-//		break;
-//
-//	case MEMORY_ALLOC_ERROR :
-//		{
-//			if (grepresults.values) {FREE(grepresults.values); grepresults.values = NULL;}
-//			if (grepresults.positions) {FREE(grepresults.positions); grepresults.positions = NULL;}
-//			Scierror(999,_("%s: No more memory.\n"),fname);
-//		}
-//		break;
-//	}
-//	return 0;
-//}
-
-/*-----------------------------------------------------------------------------------*/

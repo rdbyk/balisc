@@ -24,21 +24,19 @@ extern "C"
 #include "localization.h"
 }
 
-static const char fname[] = "convstr";
-
 types::Function::ReturnValue sci_convstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iConvertMode = -1; // Default is TO_LOWER
 
     if (in.size() != 1 && in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false && !(in[0]->isDouble() == true && in[0]->getAs<types::Double>()->isEmpty() == true))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 2);
+        Scierror(90, 2, _("matrix of strings"));
         return types::Function::Error;
     }
 
@@ -47,22 +45,22 @@ types::Function::ReturnValue sci_convstr(types::typed_list &in, int _iRetCount, 
         types::String *pInConvertMode = in[1]->getAs<types::String>();
         if (pInConvertMode->getSize() != 1 || wcslen(pInConvertMode->getFirst()) != 1)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), fname, 2);
+            Scierror(110, 2, _("'u' or 'l'"));
             return types::Function::Error;
         }
 
         wchar_t wcConvertMode = pInConvertMode->getFirst()[0];
-        if (wcConvertMode == L'l' || wcConvertMode == L'L' )
+        if (wcConvertMode == L'l')
         {
             iConvertMode = -1;
         }
-        else if (wcConvertMode == L'u' || wcConvertMode == L'U')
+        else if (wcConvertMode == L'u')
         {
             iConvertMode = 1;
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) expected.\n"), fname, 2);
+            Scierror(110, 2, _("'u' or 'l'"));
             return types::Function::Error;
         }
     }

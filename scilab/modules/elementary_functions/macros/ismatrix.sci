@@ -13,7 +13,7 @@
 function r = ismatrix(A)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"ismatrix", 1));
+        error(71, 1);
     end
 
     if type(A) == 15 then

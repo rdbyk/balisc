@@ -42,7 +42,7 @@ types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, ty
         switch (iDims)
         {
             case -1:
-                Scierror(21, _("Invalid index.\n"));
+                Scierror(2);
                 break;
             case 1:
             {

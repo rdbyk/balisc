@@ -31,8 +31,6 @@ extern "C"
 #include "BOOL.h"
 }
 
-static const char fname[] = "isletter";
-
 types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Bool* pOutBool   = NULL;
@@ -42,20 +40,20 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     pString = in[0]->getAs<types::String>();
     if (pString->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
+        Scierror(102, 1);
         return types::Function::Error;
     }
 

@@ -33,21 +33,19 @@ extern "C"
 #include "Sciwarning.h"
 }
 
-static const char fname[] = "warning";
-
 types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String *psInput = NULL;
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -123,7 +121,6 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
             Sciwarning("");
         }
     }
-
 
     return types::Function::OK;
 }
