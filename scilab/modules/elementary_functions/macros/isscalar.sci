@@ -14,12 +14,9 @@
 function bOK = isscalar(VarInput)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"isscalar", 1));
+        error(71, 1);
     end
 
-    bOK = %F;
-    if size(VarInput)==1 then
-        bOK = %T;
-    end
+    bOK = size(VarInput,'*') == 1
 
 endfunction

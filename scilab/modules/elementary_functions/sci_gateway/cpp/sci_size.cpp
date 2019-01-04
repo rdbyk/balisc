@@ -45,7 +45,7 @@ Function::ReturnValue sci_size(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), "size", 1);
+        Scierror(74, 1);
         return Function::Error;
     }
 
@@ -72,7 +72,7 @@ Function::ReturnValue sci_size(typed_list &in, int _iRetCount, typed_list &out)
         {
             if (in.size() > 1)
             {
-                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "size", 1);
+                Scierror(71, 1);
                 return Function::Error;
             }
 
@@ -92,7 +92,7 @@ Function::ReturnValue sci_size(typed_list &in, int _iRetCount, typed_list &out)
 
             if (in.size() > 2)
             {
-                Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "size", 1, 2);
+                Scierror(72, 1, 2);
                 return Function::Error;
             }
 
@@ -100,7 +100,7 @@ Function::ReturnValue sci_size(typed_list &in, int _iRetCount, typed_list &out)
             {
                 if (_iRetCount == 2)
                 {
-                    Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "size", 1);
+                    Scierror(81, 1);
                     return Function::Error;
                 }
 
@@ -196,7 +196,7 @@ int getMode(InternalType* in)
 
         if (pS->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", 2, 1, 1);
+            Scierror(102, 2);
         }
 
         wchar_t * w = pS->getFirst();
@@ -215,14 +215,14 @@ int getMode(InternalType* in)
                     iMode = 0;
                     break;
                 default:
-                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), "size", 2, "*" , "r", "c");
+                    Scierror(110, 2, _("'r', 'c', or '*'"));
                     iMode = -2;
                     break;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), "size", 2, "*" , "r", "c");
+            Scierror(110, 2, _("'r', 'c', or '*'"));
             iMode = -2;
         }
     }
@@ -232,7 +232,7 @@ int getMode(InternalType* in)
 
         if (pD->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", 2, 1, 1);
+            Scierror(93, 2);
             iMode = -2;
         }
         else
@@ -241,7 +241,7 @@ int getMode(InternalType* in)
 
             if (pD->getReal()[0] != static_cast<double>(iMode))
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "size", 2);
+                Scierror(111, 2);
                 iMode = -2;
             }
 
@@ -254,7 +254,7 @@ int getMode(InternalType* in)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string or scalar expected.\n"), "size", 2);
+        Scierror(90, 2, _("string or real scalar"), "size", 2);
         iMode = -2;
     }
 

@@ -13,15 +13,15 @@
 function x=sinhm(a)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"sinhm",1));
+        error(71, 1);
     end
 
     if type(a)<>1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sinhm",1));
+        error(95, 1);
     end
 
     if ~issquare(a) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"sinhm",1));
+        error(103, 1);
     end
 
     x=(expm(a)-expm(-a))/2;

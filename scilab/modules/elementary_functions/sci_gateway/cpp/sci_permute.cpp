@@ -140,13 +140,13 @@ types::Function::ReturnValue sci_permute(types::typed_list& in, int _iRetCount, 
 {
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "permute", 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected."), "permute", 1);
+        Scierror(81, 1);
         return types::Function::Error;
     }
 

@@ -1,8 +1,8 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "core_gw.hxx"
 #include "function.hxx"
@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_recursionlimit(types::typed_list &in, int _iRet
 {
     if (in.size() > 1)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
 
@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_recursionlimit(types::typed_list &in, int _iRet
         types::String* s = in[0]->getAs<types::String>();
         if (s->isScalar() == false || wcscmp(s->get()[0], L"current") != 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 1, "current");
+            Scierror(110, "current");
             return types::Function::Error;
         }
 
@@ -69,7 +69,6 @@ types::Function::ReturnValue sci_recursionlimit(types::typed_list &in, int _iRet
         return types::Function::OK;
     }
 
-    Scierror(999, _("%s: Wrong type for input argument #%d: String or integer expected.\n"), fname, 1);
+    Scierror(90, 1, _("string or integer"));
     return types::Function::Error;
-
 }

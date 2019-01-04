@@ -14,12 +14,13 @@
 function s = squarewave(t, percentPositive)
 
     if nargin < 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "squarewave", 1));
+        error(71, 1);
     end
 
     if nargin < 2 then
         percentPositive=50;
     end
+
     s = 2*bool2s(pmodulo(t,2*%pi) < 0.02*%pi*percentPositive) - 1;
 
 endfunction

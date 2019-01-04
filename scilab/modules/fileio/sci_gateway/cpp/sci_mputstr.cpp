@@ -1,11 +1,11 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Allan CORNET
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,9 +13,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
+
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
@@ -31,7 +31,6 @@ extern "C"
 #include "charEncoding.h"
 }
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFile               = -1; //default file : last opened file
@@ -42,13 +41,13 @@ types::Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, 
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mputstr", 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "mputstr", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -58,7 +57,7 @@ types::Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, 
     {
         if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mputstr", 2);
+            Scierror(93, 2);
             return types::Function::Error;
         }
         iFile = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
@@ -67,7 +66,7 @@ types::Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, 
     switch (iFile)
     {
         case 5: // stdin
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mputstr", iFile);
+            Scierror(30, iFile);
             return types::Function::Error;
         default :
             iErr = mputl(iFile, pString->get(), 1, FALSE);
@@ -77,4 +76,3 @@ types::Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, 
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

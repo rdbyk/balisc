@@ -4,7 +4,7 @@
  * Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
  * Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_exit(types::typed_list &in, int _iRetCount, typ
     // in[0] Should be a scalar double value.
     if (in.size() > 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected."), "exit", 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
 
@@ -46,21 +46,21 @@ types::Function::ReturnValue sci_exit(types::typed_list &in, int _iRetCount, typ
         types::InternalType* pIT = in[0];
         if (pIT->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "exit", 1);
+            Scierror(93, 1);
             return types::Function::Error;
         }
 
         types::Double* pD = pIT->getAs<types::Double>();
         if (pD->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "exit", 1);
+            Scierror(101, 1);
             return types::Function::Error;
         }
 
         dExit = pD->getFirst();
         if (dExit != (int) dExit)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "exit", 1);
+            Scierror(111, 1);
             return types::Function::Error;
         }
     }

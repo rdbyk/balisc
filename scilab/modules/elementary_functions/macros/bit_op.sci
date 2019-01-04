@@ -17,8 +17,7 @@ function z = bit_op(x, y, fname)
     // Check input arguments
     // =====================
     if ~(nargin==3 && or(fname==["bitor" "bitxor" "bitand"]))
-        msg = gettext("%s: unknown bitwise function ""%s"".\n")
-        error(msprintf(msg, "bit_op", fname))
+        error(_("%s: unknown bitwise function ""%s"".\n"), "bit_op", fname)
     end
 
     if x==[] | y==[]
@@ -27,8 +26,7 @@ function z = bit_op(x, y, fname)
     end
 
     if size(x,"*")>1 && size(y, "*")>1 && or(size(x)<>size(y)) then
-        msg = gettext("%s: Arguments #%d and #%d: Same sizes expected.\n")
-        error(msprintf(msg, fname, 1, 2))
+        error(_("%s: Arguments #%d and #%d: Same sizes expected."), msg, fname, 1, 2)
     else
         if size(x,"*")==1
             x = x .* ones(y)
@@ -38,12 +36,10 @@ function z = bit_op(x, y, fname)
     end
 
     if  (type(x)<>1  & type(x)<>8) || or(x<0) || (type(x)==1  & or((x-floor(x))<>0))
-        msg = gettext("%s: Argument #%d: Integers >=0 expected.\n")
-        error(msprintf(msg, fname, 1))
+        error(_("%s: Argument #%d: Integers >=0 expected."), fname, 1)
     end
     if  (type(y)<>1  & type(y)<>8) || or(y<0) || (type(y)==1  & or((y-floor(y))<>0))
-        msg = gettext("%s: Argument #%d: Integers >=0 expected.\n")
-        error(msprintf(msg, fname, 2))
+        error(_("%s: Argument #%d: Integers >=0 expected."), fname, 2)
     end
 
     // Casting

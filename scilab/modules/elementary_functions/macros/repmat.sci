@@ -13,7 +13,7 @@
 function B = repmat(A,varargin)
 
     if nargin < 2 then
-        error(msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"), "repmat", 2))
+        error(71, 2)
     end
 
     narg=size(varargin);
@@ -22,18 +22,18 @@ function B = repmat(A,varargin)
     if narg==1 then
         // Scalar of vector needed
         if typeof(varargin(1)) <> "constant" then
-            error(msprintf(_("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
+            error(90, 2, _("real scalar or vector"))
         end
         if size(varargin(1),"*")<>1 & isempty(find(size(varargin(1))==1)) then
-            error(msprintf(_("%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
+            error(100, 2, _("real scalar or vector"))
         end
     else
         for i=1:narg
             if typeof(varargin(i)) <> "constant" then
-                error(msprintf(_("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "repmat", i+1))
+                error(93, i+1)
             end
             if size(varargin(i),"*")<>1 then
-                error(msprintf(_("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "repmat", i+1))
+                error(101, i+1)
             end
         end
     end
@@ -66,7 +66,7 @@ function B = repmat(A,varargin)
     nd=size(siz)
     if or(type(A)==[5 6]) then //sparse matrices
         if nd>2 then
-            error(msprintf(_("%s: Wrong number of output matrix dimensions required: %d expected for sparse matrices.\n"), "repmat", 2))
+            error(_("%s: Wrong number of output matrix dimensions required: %d expected for sparse matrices."), "repmat", 2)
         end
     end
 
@@ -118,7 +118,7 @@ function B = repmat(A,varargin)
                             varargin(i)=varargin_temp(1)(i);
                         end
                     else
-                        error(msprintf(_("%s: Wrong size for input argument #%d: a vector expected.\n"),"repmat",2));
+                        error(_("%s: Wrong size for input argument #%d: a vector expected."),"repmat",2);
                     end
                 end
             end

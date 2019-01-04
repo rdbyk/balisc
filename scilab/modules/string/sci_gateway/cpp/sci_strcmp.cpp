@@ -33,8 +33,6 @@ extern "C"
 #define CHAR_I 'i'
 #define CHAR_S 's'
 
-static const char fname[] = "strcmp";
-
 types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pOutDouble   = NULL;
@@ -45,19 +43,19 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 2 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 2, 3);
+        Scierror(72, 2, 3);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+        Scierror(91, 2);
         return types::Function::Error;
     }
 
@@ -66,7 +64,7 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
 
     if (pString1->getSize() != pString2->getSize() && pString2->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+        Scierror(102, 2);
         return types::Function::Error;
     }
 
@@ -74,14 +72,14 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
     {
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false || wcslen(in[2]->getAs<types::String>()->getFirst()) != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Char expected.\n"), fname, 3);
+            Scierror(90, 3, _("character"));
             return types::Function::Error;
         }
 
         pwcChar3 = in[2]->getAs<types::String>()->getFirst();
         if ( (pwcChar3[0] != CHAR_I) && (pwcChar3[0] != CHAR_S))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), fname, 3, "'i' (stricmp)", "'s' (strcmp)");
+            Scierror(110, 3, _("'i' or 's'"));
             return types::Function::Error;
         }
 
@@ -101,7 +99,7 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
     }
     else
     {
-        Scierror(999, _("%s : No more memory.\n"), fname);
+        Scierror(1);
     }
 
     out.push_back(pOutDouble);

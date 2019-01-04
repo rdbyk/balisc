@@ -131,7 +131,7 @@ function [nb, loc] = members(A, S, varargin)
         return
     end
     if nargin < 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: at least %d expected.\n"), "members", 2));
+        error(_("%s: Wrong number of input arguments: at least %d expected."), "members", 2);
     end
     if A == [] then
         if nargout > 1 then
@@ -151,16 +151,16 @@ function [nb, loc] = members(A, S, varargin)
     type_A = type(A(:));
     type_S = type(S(:));
     if type_A ~= type_S then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: expected same type as first argument.\n"), "members", 2));
+        error(_("%s: Wrong type for input argument #%d: expected same type as first argument."), "members", 2);
     end
     if and(type_A ~= [1 2 4 8 10]) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, booleans, polynomials or strings expected.\n"), "members", 1));
+        error(_("%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, booleans, polynomials or strings expected."), "members", 1);
     end
     if and(type_S ~= [1 2 4 8 10]) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, booleans, polynomials or strings expected.\n"), "members", 2));
+        error(_("%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, booleans, polynomials or strings expected."), "members", 2);
     end
     if or(isnan(S)) then
-        error(msprintf(gettext("%s: Wrong value for argument #%d: Must not contain NaN.\n"), "members", 2));
+        error(_("%s: Wrong value for argument #%d: Must not contain NaN."), "members", 2);
     end
 
     // Checking optional flags (if any):
@@ -344,22 +344,18 @@ function [nb, loc] = members(A, S, varargin)
         // Additional input checking:
         A = squeeze(A);
         if ~ismatrix(A) then
-            msg = _("%s: Wrong type for argument #%d: Matrix expected.\n"); // error #209
-            error(msprintf(msg, "members", 1))
+            error(_("%s: Wrong type for argument #%d: Matrix expected."), "members", 1)
         end
 
         S = squeeze(S);
         if ~ismatrix(S) then
-            msg = _("%s: Wrong type for argument #%d: Matrix expected.\n"); // error #209
-            error(msprintf(msg, "members", 2))
+            error(_("%s: Wrong type for argument #%d: Matrix expected."), "members", 2)
         end
 
         if direction == "rows" & size(A, 2) ~= size(S, 2) then
-            msg = _("%s: Incompatible input arguments #%d and #%d: Same number of columns expected.\n");
-            error(msprintf(msg, "members", 1, 2))
+            error(_("%s: Incompatible input arguments #%d and #%d: Same number of columns expected."), "members", 1, 2)
         elseif direction == "cols" & size(A, 1) ~= size(S, 1) then
-            msg = _("%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n");
-            error(msprintf(msg, "members", 1, 2))
+            error(_("%s: Incompatible input arguments #%d and #%d: Same number of rows expected."), "members", 1, 2)
         end
 
         // Column-wise = Row-wise after transposition

@@ -5,7 +5,7 @@
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
@@ -31,7 +31,8 @@ extern "C"
 #include "mgetstr.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "mgetstr";
+
 types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFile                   = -1; //default file : last opened file
@@ -41,13 +42,13 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgetstr", 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
     if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mgetstr", 1);
+        Scierror(93, 1);
         return types::Function::Error;
     }
 
@@ -57,7 +58,7 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
     {
         if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mgetstr", 2);
+            Scierror(93, 2);
             return types::Function::Error;
         }
         iFile = static_cast<int>(in[1]->getAs<types::Double>()->getFirst());
@@ -66,7 +67,7 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
     {
         case 0: // stderr
         case 6: // stdout
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mgetstr", iFile);
+            Scierror(30, iFile);
             return types::Function::Error;
         default :
             pwstOut = mgetstr(iFile, iSizeToRead);
@@ -74,7 +75,7 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
 
     if (pwstOut == NULL)
     {
-        Scierror(999, _("%s: Unable to read file %d.\n"), "mgetstr", iFile);
+        Scierror(31, iFile);
         return types::Function::Error;
     }
 
@@ -82,4 +83,3 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
     FREE(pwstOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

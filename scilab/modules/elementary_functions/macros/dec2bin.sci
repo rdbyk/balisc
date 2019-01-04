@@ -13,8 +13,8 @@
 
 function y = dec2bin(x, n)
 
-    if (nargin < 1 | nargin > 2) then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "dec2bin", 1, 2));
+    if nargin < 1 || nargin > 2 then
+        error(72, 1, 2);
     end
 
     if nargin == 2 then
@@ -22,4 +22,5 @@ function y = dec2bin(x, n)
     else
         y = dec2base(double(x), 2);
     end
+
 endfunction

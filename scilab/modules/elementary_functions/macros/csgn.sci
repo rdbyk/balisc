@@ -18,13 +18,11 @@ function s = csgn(z)
     //  A. Iserles & M.J.D. Powell, eds, Clarendon Press, Oxford, 1987, 165-210.
 
     if nargin <> 1 then
-        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "csgn", 1));
+        error(71, 1);
     end
     
     if type(z) <> [1 5] then
-        msg = _("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n")
-        error(msprintf(msg, "csgn", 1));
+        error(95, 1);
     end
 
     s = -ones(z);

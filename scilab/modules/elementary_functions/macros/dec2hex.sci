@@ -14,7 +14,7 @@
 function h = dec2hex(v)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "dec2hex", 1));
+        error(71, 1);
     end
 
     h = dec2base(double(v), 16);

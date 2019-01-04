@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
@@ -26,7 +26,7 @@ extern "C"
 #include "getdrives.h"
 #include "freeArrayOfPtrs.h"
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t **wcsDrives = NULL;
@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount
 
     if (in.size() > 0)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "getdrives", 0);
+        Scierror(71, 0);
         return types::Function::Error;
     }
 
@@ -57,4 +57,3 @@ types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

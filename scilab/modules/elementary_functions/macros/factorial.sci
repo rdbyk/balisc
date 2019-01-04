@@ -17,11 +17,11 @@ function y=factorial(n)
     // Output : y, a scalar/vector/matrix/hypermat
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"factorial",1));
+        error(71, 1);
     end
 
     if (type(n) <> 1) || (n <> [] && (or((n-floor(n) <> 0)) || or(n < 0))) then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of positive integers expected.\n"),"factorial",1));
+        error(_("%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of positive integers expected."), "factorial", 1);
     elseif n == []
         y=n
         return

@@ -14,13 +14,11 @@
 function y=sinc(x)
 
     if nargin < 1 then
-        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "sinc", 1));
+        error(71, 1);
     end
     
     if type(x) <> [1 5] then
-        msg = _("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n")
-        error(msprintf(msg, "sinc", 1));
+        error(90, 1 ,_("real or complex array"));
     end
 
     y = ones(x);

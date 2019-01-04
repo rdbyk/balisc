@@ -42,13 +42,11 @@ static void and_all(const int *v, int m, int n, int *r);
 static void and_rows(const int *v, int m, int n, int *r);
 static void and_cols(const int *v, int m, int n, int *r);
 
-static const char fname[] = "and";
-
 Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
 {
     if ((in.size() < 1) || (in.size() > 2))
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(72, 1, 2);
         return Function::Error;
     }
 
@@ -76,7 +74,7 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
     {
         if (in[1]->getAs<GenericType>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+            Scierror(100, 2, _("real scalar or a string"));
             return Function::Error;
         }
 
@@ -107,14 +105,14 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
                 }
                 default:
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                    Scierror(110, 2, _("'r' or 'c'"));
                     return Function::Error;
                 }
             }
 
             if (bNotLengthOne)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                Scierror(110, 2, _("'r' or 'c'"));
                 return Function::Error;
             }
         }
@@ -123,14 +121,14 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
             Double *pdblIn = in[1]->getAs<Double>();
             if (pdblIn->isComplex())
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                Scierror(111, 2);
                 return Function::Error;
             }
 
             int opt = static_cast<int>(pdblIn->getFirst());
             if (opt != pdblIn->getFirst())
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
+                Scierror(111, 2);
                 return Function::Error;
             }
 
@@ -156,14 +154,14 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
                 }
                 default:
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
+                    Scierror(110, 2, _("1 or 2"));
                     return Function::Error;
                 }
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
+            Scierror(90, _("real scalar or a string"));
             return Function::Error;
         }
     }

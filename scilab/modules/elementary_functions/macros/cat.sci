@@ -18,16 +18,14 @@ function  y = cat(dim, varargin)
     // y : concatenated array
 
     if nargin < 2 then
-        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg,"cat", 1));
+        error(71, 1);
     end
 
     // dim must be a positive real
     if type(dim)==1 & dim>=0 & size(dim,"*")==1
         dim = max(1,round(dim));
     else
-        msg = gettext("%s: Wrong type for input argument #%d: A positive real expected.\n");
-        error(msprintf(msg, "cat", 1));
+        error(_("%s: Wrong type for input argument #%d: A positive real expected."), "cat", 1);
     end
 
     // CHECK INPUT ARRAYS
@@ -59,17 +57,15 @@ function  y = cat(dim, varargin)
         s(dim) = -1;
         s(find(s==0)) = 1;
         if ~and(s==S)
-            msg = gettext("%s: Wrong size for input arguments: Same size expected.\n");
-            error(msprintf(msg, "cat"));
+            error(_("%s: Wrong size for input arguments: Same size expected."), "cat");
         end
     end
     // They must be all of the same type: cell, struct, or other
     T = typeof(v)
     for i = 2:size(varargin)
         v = varargin(i)
-        if typeof(v)~=T
-            msg = gettext("%s: Wrong type for input arguments: Same types expected.\n");
-            error(msprintf(msg, "cat"));
+        if typeof(v) <> T
+            error(_("%s: Wrong type for input arguments: Same types expected."), "cat");
         end
     end
 

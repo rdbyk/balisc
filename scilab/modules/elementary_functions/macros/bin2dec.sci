@@ -16,11 +16,11 @@
 function y = bin2dec(str)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"bin2dec", 1));
+        error(71, 1);
     end
 
     if type(str)<>10
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"bin2dec",1));
+        error(90, 1, _("matrix of strings"));
     end
 
     // delete all spaces included in the str

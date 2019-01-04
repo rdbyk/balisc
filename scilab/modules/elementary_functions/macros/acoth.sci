@@ -14,14 +14,14 @@
 function y = acoth(x)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "acoth", 1));
+        error(71, 1);
     end
     
     if type(x) <> [1 5] then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix expected.\n"), "acoth", 1));
+        error(94, 1);
     end
 
-    if isreal(x) & abs(x)>=1 then //the result is real
+    if isreal(x) && abs(x)>=1 then //the result is real
         y = atanh(ones(x)./x)
     else
         y = atanh(x) + %i*%pi/2*csgn(%i*(x-1));

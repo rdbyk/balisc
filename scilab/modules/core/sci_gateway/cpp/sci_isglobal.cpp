@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,21 +33,21 @@ types::Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount,
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "isglobal", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
     else
     {
         if (in[0]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "isglobal", 1);
+            Scierror(91, 1);
             return types::Function::Error;
         }
 
         types::String* pS = in[0]->getAs<types::String>();
         if (pS->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "isglobal", 1);
+            Scierror(91, 1);
             return types::Function::Error;
         }
 

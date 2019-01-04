@@ -27,8 +27,6 @@ extern "C"
 #include "Scierror.h"
 }
 
-static const char fname[] = "emptystr";
-
 types::Function::ReturnValue sci_emptystr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* ret = nullptr;
@@ -65,13 +63,13 @@ types::Function::ReturnValue sci_emptystr(types::typed_list &in, int _iRetCount,
         {
             if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), fname, 1);
+                Scierror(90, 1, _("matrix of integer values"));
                 return types::Function::Error;
             }
 
             if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), fname, 2);
+                Scierror(90, 2, _("matrix of integer values"));
                 return types::Function::Error;
             }
 

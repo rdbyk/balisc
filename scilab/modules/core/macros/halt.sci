@@ -20,15 +20,15 @@ function []=halt(varargin)
     if (nargin > 0) then
 
         if nargin > 1  then
-            error(msprintf(gettext("%s: Wrong number of input argument.\n"),"halt"));
+            error(72, 0, 1);
         end
 
         if type(varargin(1)) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"halt",1));
+            error(91, 1);
         end
 
         if size(varargin(1),"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"halt",1));
+            error(_("%s: Wrong size for input argument #%d: string expected."), "halt", 1);
         end
 
         msg = string(varargin(1));

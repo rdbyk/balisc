@@ -24,15 +24,15 @@ function y=factor(x)
     // y : a vector of primes numbers
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"factor", 1));
+        error(71, 1);
     end
 
     if size(x,"*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"factor",1));
+        error(_("%s: Wrong size for input argument #%d: An integer expected."), "factor", 1);
     elseif(type(x)<>1) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer expected.\n"),"factor",1));
+        error(_("%s: Wrong type for input argument #%d: An integer expected."), "factor", 1);
     elseif x<0 | x-floor(x)<>0
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"),"factor",1));
+        error(_("%s: Wrong value for input argument #%d: Scalar positive integer expected."), "factor", 1);
     elseif or(x==[0 1 2 3])
         y=x
     else

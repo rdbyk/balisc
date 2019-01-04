@@ -15,10 +15,10 @@ function [a, ka] = setdiff(a, b)
     // returns a values which are not in b
 
     if nargin <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "setdiff", 2));
+        error(71, 2);
     end
 
-    if b == [] then //b is empty reurn a!
+    if b == [] then //b is empty return a!
         ka = 1:size(a,"*");
         return
     end

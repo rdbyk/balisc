@@ -14,13 +14,11 @@
 function mdelete(filename)
 
     if nargin <> 1 then
-        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "mdelete", 1));
+        error(71, 1);
     end
 
     if type(filename) <> 10 | size(filename,"*") <> 1 then
-        msg = gettext("%s: Wrong type for input argument: String expected.\n")
-        error(msprintf(msg, "mdelete"));
+        error(91, 1);
     end
 
     // Handle file path

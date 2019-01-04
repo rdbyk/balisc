@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,6 +12,7 @@
  * along with this program.
  *
  */
+
 #include "internal.hxx"
 #include "core_gw.hxx"
 #include "function.hxx"
@@ -26,11 +27,13 @@ extern "C" {
 
 #define OPTION L"overload"
 
+static const char fname[] = "typeof";
+
 types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "typeof", 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
@@ -66,7 +69,7 @@ types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, t
     // Check second argument is a string
     if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "typeof", 2);
+        Scierror(91, 2);
         return types::Function::Error;
     }
 
@@ -77,7 +80,7 @@ types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, t
     }
     else
     {
-        Scierror(999, _("%s: Wrong values for input argument #%d: '%s' expected .\n"), "typeof", 2, OPTION);
+        Scierror(999, _("%s: Wrong values for input argument #%d: '%s' expected .\n"), fname, 2, OPTION);
         return types::Function::Error;
     }
 

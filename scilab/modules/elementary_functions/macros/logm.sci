@@ -14,11 +14,11 @@
 function x=logm(a)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"logm", 1));
+        error(71, 1);
     end
 
     if ~issquare(a) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"logm",1));
+        error(103 ,1);
     end
 
     flag = or(a<>a');
@@ -48,7 +48,7 @@ function x=logm(a)
         rmax = max(norm(a, 1), 1 / sqrt(%eps));
         [s, u, bs] = bdiag(a, rmax);
         if max(bs)>1 then
-            error(msprintf(gettext("%s: Unable to diagonalize.\n"),"logm"));
+            error(_("%s: Unable to diagonalize.\n"), "logm");
             return
         end
         w = diag(s);

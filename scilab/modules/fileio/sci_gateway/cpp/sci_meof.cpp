@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "fileio_gw.hxx"
 #include "string.hxx"
 #include "double.hxx"
@@ -31,7 +31,8 @@ extern "C"
 #include "PATH_MAX.h"
 }
 
-/*--------------------------------------------------------------------------*/
+static const char fname[] = "meof";
+
 types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iRet  = 0;
@@ -39,14 +40,14 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "meof", 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
     if (in.size() == 1)
     {
         if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "meof", 1);
+            Scierror(93, 1);
             return types::Function::Error;
         }
 
@@ -56,7 +57,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
             case 0: // stderr
             case 5: // stdin
             case 6: // stdout
-                Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "meof", iFile);
+                Scierror(30, iFile);
                 return types::Function::Error;
         }
     }
@@ -70,7 +71,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
     {
         if (ConfigVariable::getWarningMode())
         {
-            sciprint(_("%ls: Cannot check the end of file whose descriptor is %d: File is not active.\n"), "meof", iFile);
+            sciprint(_("%ls: Cannot check the end of file whose descriptor is %d: File is not active.\n"), fname, iFile);
         }
         return types::Function::OK;
     }
@@ -79,4 +80,3 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

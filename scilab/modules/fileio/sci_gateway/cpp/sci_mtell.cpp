@@ -5,7 +5,7 @@
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
@@ -29,20 +29,22 @@ extern "C"
 #include "mtell.h"
 }
 
+static const char fname[] = "mtell";
+
 types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFile = -1; // default file : last opened file
 
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mtell", 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
     if (in.size() == 1)
     {
         if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mtell", 1);
+            Scierror(93, 1);
             return types::Function::Error;
         }
 
@@ -54,14 +56,14 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
         case 0: // stderr
         case 5: // stdin
         case 6: // stdout
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mtell", iFile);
+            Scierror(30, iFile);
             return types::Function::Error;
     }
 
     long long offset = mtell(iFile);
     if (offset < 0)
     {
-        Scierror(999, _("%s: Error while opening, reading or writing.\n"), "mtell");
+        Scierror(999, _("%s: Error while opening, reading or writing.\n"), fname);
         return types::Function::Error;
     }
 
@@ -69,4 +71,3 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

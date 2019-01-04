@@ -14,9 +14,9 @@
 // along with this program.
 
 function a = toeplitz(c, r)
+
     if nargin < 1 then
-        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n");
-        error(msprintf(msg, "toeplitz", 1, 2));
+        error(72, 1, 2);
     end
 
     if nargin == 1 then
@@ -32,8 +32,7 @@ function a = toeplitz(c, r)
     c = matrix(c, 1, -1);
     tmp = [c(1,1) r(1,1)];
     if tmp(1,1) <> tmp(1,2) then
-        msg = _("%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r(1).\n");
-        error(msprintf(msg, "toeplitz", 1, 2));
+        error(_("%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to r(1)."), "toeplitz", 1, 2);
     end
 
     // Processing

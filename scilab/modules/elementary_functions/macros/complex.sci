@@ -14,7 +14,7 @@
 function  y=complex(varargin)
 
     if nargin < 1 | nargin > 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"complex",1,2));
+        error(72, 1, 2);
     end
 
     a = varargin(1)
@@ -25,24 +25,25 @@ function  y=complex(varargin)
     end
 
     if typeof(a) <> "constant"  then
-        error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"),"complex",1));
+        error(94, 1);
     end
 
     if typeof(b) <> "constant" then
-        error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"),"complex",2));
+        error(94, 2);
     end
 
     if size(a,"*") <> 1 & size(b,"*") <> 1 & size(a)<>size(b) then
-        error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"complex",1,2));
+        error(_("%s: Incompatible input arguments #%d and #%d: Same sizes expected."), "complex", 1, 2);
     end
 
     if ~isreal(a) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"complex",1));
-    end
-    if ~isreal(b) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"complex",2));
+        error(94, 1);
     end
 
-    y = a+imult(b);
+    if ~isreal(b) then
+        error(94, 2);
+    end
+
+    y = a + imult(b);
 
 endfunction

@@ -18,23 +18,21 @@ function edit(macroname,linenumber)
     // linenumber : line number (as decimal number or literal one)
 
     if (nargin > 2) then
-        error(sprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "edit", 1));
+        error(72, 0, 1);
     end
 
     if (nargin >= 1 & type(macroname) ~= 10) then
-        error(sprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"edit",1));
+        error(91, 1);
     end
 
     if nargin == 2 then
         if type(linenumber) <> [1 10] then
-            msg = _("%s: Wrong type for input argument #%d: Number expected.\n")
-            error(msprintf(msg, "edit", 2));
+            error(_("%s: Wrong type for input argument #%d: Number expected."), "edit", 2);
         end
         if type(linenumber) == 10
             linenumber = strtod(linenumber(1))
             if linenumber==%nan then
-                msg = _("%s: Wrong type for input argument #%d: Number expected.\n")
-                error(msprintf(msg, "edit", 2))
+                error(_("%s: Wrong type for input argument #%d: Number expected."), "edit", 2)
             end
         end
     end
@@ -51,7 +49,7 @@ function edit(macroname,linenumber)
         else
             tmpfile = tmpdir + macroname + ".sci";
             if isdef(macroname) && typeof(evstr(macroname))=="fptr" then
-                error(msprintf(gettext("%s: %s is an uneditable hard coded function.\n"), "edit", macroname));
+                error(_("%s: %s is an uneditable hard coded function."), "edit", macroname);
             end
             libr = whereis(macroname);
             if libr <> [] then // macroname is the name of a defined function

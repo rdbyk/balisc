@@ -33,21 +33,19 @@ using types::InternalType;
 using types::String;
 using types::typed_list;
 
-static const char fname[] = "nearfloat";
-
 Function::ReturnValue sci_nearfloat(typed_list &in, int _iRetCount, typed_list &out)
 {
     double dblMode;
 
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        Scierror(71, 2);
         return Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
+        Scierror(81, 1);
         return Function::Error;
     }
 
@@ -58,7 +56,7 @@ Function::ReturnValue sci_nearfloat(typed_list &in, int _iRetCount, typed_list &
 
         if (pStr->getSize() > 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), fname, 1);
+            Scierror(102, 1);
             return Function::Error;
         }
 
@@ -73,13 +71,13 @@ Function::ReturnValue sci_nearfloat(typed_list &in, int _iRetCount, typed_list &
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, 1, "\"succ\",\"pred\"");
+            Scierror(110, 1, _("'succ' or 'pred'"));
             return Function::Error;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+        Scierror(91, 1);
         return Function::Error;
     }
 
@@ -94,7 +92,7 @@ Function::ReturnValue sci_nearfloat(typed_list &in, int _iRetCount, typed_list &
     Double* pDblIn = pIT->getAs<Double>();
     if (pDblIn->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), fname, 2);
+        Scierror(94, 2);
         return Function::Error;
     }
 

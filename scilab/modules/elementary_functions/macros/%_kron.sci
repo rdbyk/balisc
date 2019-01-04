@@ -13,11 +13,11 @@
 function x = %_kron(a, b)
 
     if nargin <> 2 then
-        error(msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "kron", 2));
+        error(71, 2);
     end
 
     if nargout <> 1 then
-        error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "kron", 1));
+        error(81, 1);
     end
 
     x = a .*. b;

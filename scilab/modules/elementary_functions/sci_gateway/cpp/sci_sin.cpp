@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "sin", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 

@@ -16,8 +16,7 @@
 function i = modulo(n, m)
 
     if nargin <> 2 then
-        msg = _("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "modulo", 2))
+        error(71, 2)
     end
 
     mt = type(m)
@@ -25,18 +24,15 @@ function i = modulo(n, m)
     // -----------------------  Checking arguments --------------------------
 
     if ~or(nt==[1 2 8]) | (nt==1 & ~isreal(n))
-        msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
-        error(msprintf(msg, "modulo", 1))
+        error(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected."), "modulo", 1)
     end
 
     if ~or(mt==[1 2 8]) | (mt==1 & ~isreal(m))
-        msg = _("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected.\n")
-        error(msprintf(msg, "modulo", 2))
+        error(_("%s: Wrong type for input argument #%d: Real, integer or polynomial matrix expected."), "modulo", 2)
     end
 
     if (nt==8 | mt==8)  & nt~=mt
-        msg = _("%s: Incompatible input arguments #%d and #%d: Same types expected.\n")
-        error(msprintf(msg, "modulo", 1, 2))
+        error(_("%s: Incompatible input arguments #%d and #%d: Same types expected."), "modulo", 1, 2)
     end
 
     // --------------------------  Processing ----------------------------
@@ -47,8 +43,7 @@ function i = modulo(n, m)
     end
     if or(mt==[1 8]) & mt==nt then
         if length(n)>1 & length(m)>1 & or(size(n) <> size(m)) then
-            msg = _("%s: Wrong size for input arguments: Same size expected.\n")
-            error(msprintf(msg, "modulo"))
+            error(_("%s: Wrong size for input arguments: Same size expected."), "modulo")
         end
         i = n - int(n ./ m) .* m
         i = iconvert(i, inttype(n))

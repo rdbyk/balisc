@@ -26,15 +26,13 @@ function y = %r_permute(x, dims)
     // CHECKING ARGUMENTS
     // ------------------
     if nargin <> 2 then
-        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "permute", 2));
+        error(71, 2);
     end
 
     // Verify if the size of dims corresponds to dimension of x
     if ~(or(type(dims)==[1 8]) && and(int(dims)==dims) && ..
         and(gsort(dims(:)',"g","i")==(1:max(length(dims),ndims(x))))) then
-        msg = _("%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>%d] integers.\n")
-        error(msprintf(msg, "permute", 2, ndims(x)-1));
+        error(_("%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>%d] integers."), "permute", 2, ndims(x)-1);
     end
 
     y=x;

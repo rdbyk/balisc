@@ -26,15 +26,13 @@ extern "C"
 #include "Scierror.h"
 }
 
-static const char fname[] = "basename";
-
 types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iExpand = 1;
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 3);
+        Scierror(72, 1, 3);
         return types::Function::Error;
     }
 
@@ -42,13 +40,13 @@ types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount,
     {
         if (in[2]->isBool() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
+            Scierror(110, 3, _("scalar boolean"));
             return types::Function::Error;
         }
 
         if (in[2]->getAs<types::Bool>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar boolean expected.\n"), fname, 3);
+            Scierror(110, 3, _("scalar boolean"));
             return types::Function::Error;
         }
 
@@ -59,13 +57,13 @@ types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount,
     {
         if (in[1]->isBool() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
+            Scierror(110, 2, _("scalar boolean"));
             return types::Function::Error;
         }
 
         if (in[1]->getAs<types::Bool>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar boolean expected.\n"), fname, 2);
+            Scierror(110, 2, _("scalar boolean"));
             return types::Function::Error;
         }
     }
@@ -77,7 +75,7 @@ types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount,
     }
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"), fname, 1);
+        Scierror(90, 1, _("matrix of strings"));
         return types::Function::Error;
     }
 

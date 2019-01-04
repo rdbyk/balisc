@@ -14,17 +14,17 @@
 function x = signm(a)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"signm", 1));
+        error(71, 1);
     end
 
     [m, n] = size(a);
 
     if m <> n then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"signm",1));
+        error(103, 1);
     end
 
     if or(a <> a') then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"),"signm",1));
+        error(110, 1, _("hermitian matrix"));
     end
 
     [u, s] = schur(a);

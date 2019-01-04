@@ -24,13 +24,11 @@ extern "C"
 #include "localization.h"
 }
 
-static const char fname[] = "errclear";
-
 types::Function::ReturnValue sci_errclear(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() > 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname , 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
 
@@ -42,7 +40,7 @@ types::Function::ReturnValue sci_errclear(types::typed_list &in, int _iRetCount,
     {
         if (in[0]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 1);
+            Scierror(93, 1);
             return types::Function::Error;
         }
 
@@ -50,14 +48,14 @@ types::Function::ReturnValue sci_errclear(types::typed_list &in, int _iRetCount,
 
         if (pDblIn->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
+            Scierror(101, 1);
             return types::Function::Error;
         }
 
         int iScilabError = (int)pDblIn->getFirst();
         if (pDblIn->getFirst() != (double)iScilabError)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 1);
+            Scierror(111, 1);
             return types::Function::Error;
         }
 

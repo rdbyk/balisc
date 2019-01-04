@@ -35,8 +35,6 @@ using types::SinglePoly;
 using types::Sparse;
 using types::typed_list;
 
-static const char fname[] = "clean";
-
 Function::ReturnValue sci_clean(typed_list &in, int _iRetCount, typed_list &out)
 {
     Double* pDblOut      = NULL;
@@ -57,7 +55,7 @@ Function::ReturnValue sci_clean(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 3);
+        Scierror(72, 1, 3);
         return Function::Error;
     }
 
@@ -109,7 +107,7 @@ Function::ReturnValue sci_clean(typed_list &in, int _iRetCount, typed_list &out)
     {
         if (in[2]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 3);
+            Scierror(93, 3);
             if (in[0]->isSparse())
             {
                 delete pSparseOut;
@@ -127,7 +125,7 @@ Function::ReturnValue sci_clean(typed_list &in, int _iRetCount, typed_list &out)
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 3);
+            Scierror(93, 3);
             if (in[0]->isSparse())
             {
                 delete pSparseOut;
@@ -148,7 +146,7 @@ Function::ReturnValue sci_clean(typed_list &in, int _iRetCount, typed_list &out)
     {
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 2);
+            Scierror(93, 2);
             if (in[0]->isSparse())
             {
                 delete pSparseOut;
@@ -166,7 +164,7 @@ Function::ReturnValue sci_clean(typed_list &in, int _iRetCount, typed_list &out)
 
         if (pDbl->isScalar() == false || pDbl->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), fname, 2);
+            Scierror(93, 2);
             if (in[0]->isSparse())
             {
                 delete pSparseOut;

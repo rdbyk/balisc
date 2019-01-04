@@ -30,6 +30,8 @@ extern "C"
 #include "charEncoding.h"
 }
 
+#include "errmsgs.h"
+
 using types::Callable;
 using types::Double;
 using types::Function;
@@ -43,23 +45,22 @@ static const char fname[] = "error";
 Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
 {
     int iErrorCode = DEFAULT_ERROR_CODE;
-    String* pStrError = NULL;
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
+        Scierror(81, 1);
         return Function::Error;
     }
 
     if (in.empty())
     {
-        Scierror(77, _("%s: Wrong number of input arguments: At least %d expected.\n"), fname, 1, 2);
+        Scierror(74, 2);
         return Function::Error;
     }
 
     if (in.size() == 1 && in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+        Scierror(91, 1);
         return Function::Error;
     }
 
@@ -69,13 +70,13 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
 
         if (pDbl->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
+            Scierror(93, 1);
             return Function::Error;
         }
 
         if (pDbl->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
+            Scierror(101, 1);
             return Function::Error;
         }
 
@@ -86,60 +87,92 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
         }
 
         iErrorCode = (int) pDbl->getFirst();
-
         in.erase(in.begin());
     }
 
     Callable::ReturnValue ret;
     typed_list msprintf_out;
 
-    if (in[0]->isString() && in[0]->getAs<String>()->getSize() > 1)
+    char *predefErrorMsg = ErrorMessageByNumber(iErrorCode);
+
+    if (predefErrorMsg)
     {
-        typed_list msprintf_in = in;
-        String* pFormatArg = msprintf_in[0]->getAs<String>();
+        typed_list msprintf_in;
+        const ConfigVariable::WhereVector& where = ConfigVariable::getWhere();
 
-        std::wstring fmt = pFormatArg->getFirst();
-
-        for (int i = 1; i < pFormatArg->getSize(); ++i)
+        if (where.size() > 1)
         {
-            fmt += L"\n";
-            fmt += pFormatArg->get(i);
+            std::string fmt("%s: ");
+            fmt += predefErrorMsg;
+            msprintf_in.push_back(new String(fmt.c_str()));
+            msprintf_in.push_back(new String((--where.rbegin())->call->getName().c_str()));
+        }
+        else
+        {
+            msprintf_in.push_back(new String(predefErrorMsg));
         }
 
-        msprintf_in[0] = new String(fmt.c_str());
+        // remaining args
+        for (int i = 0; i < in.size(); ++i)
+        {
+            msprintf_in.push_back(in[i]);
+        }
+
         ret = Overload::call(L"msprintf", msprintf_in, 1, msprintf_out);
+
         delete msprintf_in[0];
+        if (where.size() > 1)
+        {
+            delete msprintf_in[1];
+        }
     }
     else
     {
-        ret = Overload::call(L"msprintf", in, 1, msprintf_out);
+        // user defined error
+        if (in[0]->isString() && in[0]->getAs<String>()->getSize() > 1)
+        {
+            typed_list msprintf_in = in;
+            String* pFormatArg = msprintf_in[0]->getAs<String>();
+
+            std::wstring fmt = pFormatArg->getFirst();
+
+            for (int i = 1; i < pFormatArg->getSize(); ++i)
+            {
+                fmt += L"\n";
+                fmt += pFormatArg->get(i);
+            }
+
+            msprintf_in[0] = new String(fmt.c_str());
+            ret = Overload::call(L"msprintf", msprintf_in, 1, msprintf_out);
+            delete msprintf_in[0];
+        }
+        else
+        {
+            ret = Overload::call(L"msprintf", in, 1, msprintf_out);
+        }
     }
 
     if (ret != Callable::OK)
     {
-        ConfigVariable::setLastErrorMessage(L"error: "+ ConfigVariable::getLastErrorMessage());
+        ConfigVariable::setLastErrorMessage(L"error: " + ConfigVariable::getLastErrorMessage());
         return ret;
     }
 
-    pStrError = msprintf_out[0]->getAs<String>();
+    String* pStrError = msprintf_out[0]->getAs<String>();
 
-    std::string strErr = "";
+    std::wstring wstrErr = L"";
 
     for (int i = 0; i < pStrError->getSize(); i++)
     {
-        char *pstErrorLine = wide_string_to_UTF8(pStrError->get(i));
-
-        strErr.append(pstErrorLine);
+        wstrErr.append(pStrError->get(i));
 
         if (i < pStrError->getSize() - 1)
         {
-            strErr.append("\n");
+            wstrErr.append(L"\n");
         }
-
-        FREE(pstErrorLine);
     }
 
-    Scierror(iErrorCode, "%s", strErr.c_str());
+    setLastError(iErrorCode, wstrErr.c_str(), 0, NULL);
 
     return Function::Error;
 }

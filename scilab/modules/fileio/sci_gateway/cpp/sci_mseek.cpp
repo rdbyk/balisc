@@ -1,11 +1,11 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Allan CORNET
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,9 +13,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
+
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
@@ -29,18 +29,17 @@ extern "C"
 #include "Scierror.h"
 #include "mseek.h"
 }
-/*--------------------------------------------------------------------------*/
+
 #if (defined(sun) && !defined(SYSV))
 char *strerror (int errcode);
 #endif
-/*--------------------------------------------------------------------------*/
+
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
 #define SEEK_SET 0
 #define SEEK_CUR 1
 #define SEEK_END 2
 #endif
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFile           = -1; //default file : last opened file
@@ -51,13 +50,13 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mseek", 1, 3);
+        Scierror(72, 1, 3);
         return types::Function::Error;
     }
 
     if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mseek", 1);
+        Scierror(93, 1);
         return types::Function::Error;
     }
 
@@ -75,7 +74,7 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real or String expected.\n"), "mseek", 2);
+            Scierror(93, 2, _("real scalar or string"));
             return types::Function::Error;
         }
     }
@@ -84,12 +83,12 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
     {
         if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mseek", 2);
+            Scierror(93, 2);
             return types::Function::Error;
         }
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mseek", 3);
+            Scierror(91, 3);
             return types::Function::Error;
         }
 
@@ -102,7 +101,7 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
         case 0: // stderr
         case 5: // stdin
         case 6: // stdout
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mseek", iFile);
+            Scierror(30, iFile);
             return types::Function::Error;
     }
 
@@ -122,7 +121,7 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), "mseek", 3, "set", "cur", "end");
+            Scierror(110, 3, _("'set', 'cur', or 'end'"));
             return types::Function::Error;
         }
     }
@@ -136,4 +135,3 @@ types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, ty
     out.push_back(new types::Bool(!iErr));
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

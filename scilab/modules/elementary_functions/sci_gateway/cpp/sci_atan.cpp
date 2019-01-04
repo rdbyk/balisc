@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(72, fname, 1, 2);
         return types::Function::Error;
     }
 
@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
 
         if (pDblX->isComplex() || pDblY->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), fname, 2);
+            Scierror(94, 2);
             return types::Function::Error;
         }
 

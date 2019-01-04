@@ -37,7 +37,7 @@ Function::ReturnValue sci_real(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "real", 1);
+        Scierror(71, 1);
         return Function::Error;
     }
 

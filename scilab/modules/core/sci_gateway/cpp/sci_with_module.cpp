@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,33 +20,32 @@
 #include "bool.hxx"
 #include "configvariable.hxx"
 
-
 extern "C"
 {
 #include "charEncoding.h"
 #include "Scierror.h"
 #include "localization.h"
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pStr = NULL;
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "with_module", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "with_module", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     pStr = in[0]->getAs<types::String>();
     if (pStr->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "with_module", 1);
+        Scierror(102, 1);
         return types::Function::Error;
     }
 
@@ -67,6 +66,3 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-
-

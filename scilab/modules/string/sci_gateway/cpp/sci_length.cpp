@@ -45,7 +45,7 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "length", 1);
+        Scierror(71, 1);
         return Function::Error;
     }
 
@@ -82,7 +82,7 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument(s).\n"), "length");
+        Scierror(90, 1, _("array, container, library, or user type"));
         return Function::Error;
     }
 }

@@ -29,7 +29,7 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: At least %d expected.\n"), "round", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 

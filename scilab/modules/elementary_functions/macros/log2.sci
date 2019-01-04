@@ -14,13 +14,14 @@
 function [f, e] = log2(x)
     // x may be positive, negative, or complex
     if nargin <> 1 then
-        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "log2", 1))
+        error(71, 1)
     end
+
     if nargout == 1 then
         // 1/log(2) = 1.4426950408889633870047
         f = log(x) * 1.4426950408889633870047
     else
         [f, e] = frexp(x)
     end
+
 endfunction

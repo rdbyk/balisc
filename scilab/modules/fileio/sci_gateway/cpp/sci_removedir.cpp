@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
@@ -31,18 +31,20 @@ extern "C"
 #include "localization.h"
 #include "PATH_MAX.h"
 }
-/*--------------------------------------------------------------------------*/
+
+static const char fname[] = "removedir";
+
 types::Function::ReturnValue sci_removedir(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "removedir", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "removedir", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -52,7 +54,7 @@ types::Function::ReturnValue sci_removedir(types::typed_list &in, int _iRetCount
     {
         if (ConfigVariable::getWarningMode())
         {
-            sciprint(_("%s: Warning: Directory '%ls' does not exist.\n"), "removedir", pwstPath);
+            sciprint(_("%s: Warning: Directory '%ls' does not exist.\n"), fname, pwstPath);
         }
     }
     else
@@ -66,4 +68,3 @@ types::Function::ReturnValue sci_removedir(types::typed_list &in, int _iRetCount
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

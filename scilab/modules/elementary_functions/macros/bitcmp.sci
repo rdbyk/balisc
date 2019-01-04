@@ -14,9 +14,9 @@
 function y = bitcmp(x,n)
 
     if nargin == 0 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"bitcmp",1));
+        error(_("%s: Wrong number of input arguments: At least %d expected."), "bitcmp", 1);
     elseif (type(x) == 1) & (nargin == 1) then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"bitcmp",2));
+        error(72, 2);
     end
 
     // check type
@@ -25,7 +25,7 @@ function y = bitcmp(x,n)
         | (type(x)==8  & (inttype(x)<10)) ..
         | (type(x)<>1  & type(x)<>8) then
 
-        error(msprintf(gettext("%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitcmp",1));
+        error(_("%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected."), "bitcmp", 1);
     end
 
     if  (nargin == 2) & ( ..
@@ -34,7 +34,7 @@ function y = bitcmp(x,n)
         | (type(n)<>1  & type(n)<>8) ..
         | (size(n,"*")<>1) ) then
 
-        error(msprintf(gettext("%s: Wrong input argument #%d: An unsigned integer expected.\n"),"bitcmp",2));
+        error(_("%s: Wrong input argument #%d: An unsigned integer expected."), "bitcmp", 2);
     end
 
     // check n value
@@ -48,7 +48,7 @@ function y = bitcmp(x,n)
     if nargin > 1 then
 
         if (n>nmax) | (n<1) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"bitcmp",2,1,nmax));
+            error(_("%s: Wrong value for input argument #%d: Must be between %d and %d."), "bitcmp", 2, 1, nmax);
         end
 
     else

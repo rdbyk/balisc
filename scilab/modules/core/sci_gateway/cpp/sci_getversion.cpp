@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
 {
     if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 0, 2);
+        Scierror(72, 0, 2);
         return types::Function::Error;
     }
 
@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
     {
         if (_iRetCount > 2)
         {
-            Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 2);
+            Scierror(82, 1, 2);
             return types::Function::Error;
         }
 
@@ -71,13 +71,13 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
     {
         if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
+            Scierror(102, 1);
             return types::Function::Error;
         }
 
         if (_iRetCount != 1)
         {
-            Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), fname, 1);
+            Scierror(81, 1);
             return types::Function::Error;
         }
 
@@ -102,13 +102,13 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
     {
         if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
+            Scierror(102, 1);
             return types::Function::Error;
         }
 
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
+            Scierror(102, 2);
             return types::Function::Error;
         }
 

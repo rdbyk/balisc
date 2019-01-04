@@ -14,8 +14,7 @@
 function r = isinf(x)
 
     if nargin <> 1 then
-        msg = _("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "isinf", 1))
+        error(71, 1)
     end
 
     if x==[] then

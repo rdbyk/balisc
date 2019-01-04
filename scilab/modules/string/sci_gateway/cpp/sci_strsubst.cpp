@@ -45,7 +45,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
     bool bRegExp = false;
     if (in.size() < 3 || in.size() > 4)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 3, 4);
+        Scierror(72, 3, 4);
         return Function::Error;
     }
 
@@ -53,7 +53,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
     {
         if (in[3]->isString() == false && in[3]->getAs<String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 4);
+            Scierror(91, 4);
         }
 
         if (in[3]->getAs<String>()->getFirst()[0] == WCHAR_R)
@@ -66,14 +66,14 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"), fname, 4);
+            Scierror(110, 4, _("'s' or 'r'"));
             return Function::Error;
         }
     }
 
     if (in[2]->isString() == false || in[2]->getAs<String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+        Scierror(91, 3);
         return Function::Error;
     }
 
@@ -81,7 +81,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
 
     if (in[1]->isString() == false || in[1]->getAs<String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+        Scierror(91, 2);
         return Function::Error;
     }
 
@@ -95,7 +95,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"), fname, 1);
+        Scierror(90, 1, _("matrix of strings"));
         return Function::Error;
     }
 

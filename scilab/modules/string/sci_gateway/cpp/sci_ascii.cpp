@@ -58,16 +58,16 @@ printf("\nDUREE 1 = %d seconds\n\n",duree);
 /* scilab 5.4.0 : 32 s */
 /* scilab 6 dev : 15 s */
 
-/*----------------------------------------------------------------------------*/
+
 types::Double* StringToDouble(types::String* _pst);
 template <typename Y, class T>
 types::String* TypeToString(T* _pI);
-/*----------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_ascii(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "ascii", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -105,20 +105,20 @@ types::Function::ReturnValue sci_ascii(types::typed_list &in, int _iRetCount, ty
             pOut = TypeToString<unsigned long long>(in[0]->getAs<types::UInt64>());
             break;
         default :
-            Scierror(999, _("%s: Wrong type for argument #%d: Matrix of strings or Integer matrix expected.\n"), "ascii", 1);
+            Scierror(90, 1, _("matrix of strings or integer matrix"));
             return types::Function::Error;
     }
 
     if (pOut == NULL)
     {
-        Scierror(999, _("%s : wrong UTF-8 sequence.\n"), "ascii");
+        Scierror(110, 1, _("UTF-8 sequence"));
         return types::Function::Error;
     }
 
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
+
 template <typename Y, class T>
 types::String* TypeToString(T* _pI)
 {
@@ -164,7 +164,7 @@ types::String* TypeToString(T* _pI)
     FREE(pst);
     return pOut;
 }
-/*--------------------------------------------------------------------------*/
+
 types::Double* StringToDouble(types::String* _pst)
 {
     types::Double* pOut = NULL;
@@ -216,4 +216,3 @@ types::Double* StringToDouble(types::String* _pst)
     delete[] pst;
     return pOut;
 }
-/*--------------------------------------------------------------------------*/

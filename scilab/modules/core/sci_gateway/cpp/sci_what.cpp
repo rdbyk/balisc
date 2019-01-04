@@ -47,8 +47,6 @@ void printVarList(const char* title, const char* const* vars, int size)
     sciprint("\n");
 }
 
-static const char fname[] = "what";
-
 types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     char **pOutStringFctTmp = NULL;
@@ -58,13 +56,13 @@ types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 0);
+        Scierror(71, 0);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 

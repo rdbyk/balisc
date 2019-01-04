@@ -3,7 +3,7 @@
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2011 - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,6 @@
  *
  */
 
-/*-----------------------------------------------------------------------------------*/
 #include "dynamic_link_gw.hxx"
 #include "configvariable.hxx"
 #include "function.hxx"
@@ -33,9 +32,9 @@ extern "C"
 #include "sciprint.h"
 }
 
-void displayDynLibInfo(void);
-types::Double* getLibraryIDs(void);
-/*-----------------------------------------------------------------------------------*/
+static void displayDynLibInfo(void);
+static types::Double* getLibraryIDs(void);
+
 types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iSizeSubNames       = 0;
@@ -46,7 +45,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "c_link", 0, 3);
+        Scierror(72, 0, 3);
         return types::Function::Error;
     }
 
@@ -74,7 +73,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         //flag
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
         {
-            Scierror(999 , _("%s : Wrong type for input argument #%d: string expected.\n"), "link", 3);
+            Scierror(91, 3);
             return types::Function::Error;
         }
 
@@ -86,7 +85,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         }
         else if (pwstFlag[0] != L'f' || pwstFlag[1] != L'\0')
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "link", 3, "f", "c");
+            Scierror(110, 3, _("'f' or 'c'"));
             return types::Function::Error;
         }
 
@@ -97,7 +96,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         //sub names
         if (in[1]->isString() == false || ( in[1]->getAs<types::String>()->isVector() == false && in[1]->getAs<types::String>()->isScalar() == false))
         {
-            Scierror(999, _("%s Wrong type for input argument #%d: string or string vector expected.\n"), "link", 2);
+            Scierror(90, 2, _("vector of strings"));
             return types::Function::Error;
         }
 
@@ -113,7 +112,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
             types::Double* pD = in[0]->getAs<types::Double>();
             if (pD->isScalar() == false)
             {
-                Scierror(999, _("%s : Wrong value for argument #%d: %s\n"), "link", 1, _("Unique id of a shared library expected."));
+                Scierror(110, 1, _("unique id of a shared library"));
                 return types::Function::Error;
             }
 
@@ -124,7 +123,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
             types::String* pS = in[0]->getAs<types::String>();
             if (pS->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "link", 1);
+                Scierror(91, 1);
                 return types::Function::Error;
             }
 
@@ -141,7 +140,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar or a string expected.\n"), "link", 1);
+            Scierror(90, 1, _("real scalar or a string"));
             return types::Function::Error;
         }
     }
@@ -164,7 +163,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
     out.push_back(new types::Double(iRetID));
     return types::Function::OK;
 }
-/*-----------------------------------------------------------------------------------*/
+
 void displayDynLibInfo(void)
 {
     std::list<ConfigVariable::EntryPointStr*>* pEPList = ConfigVariable::getEntryPointList();
@@ -214,7 +213,7 @@ void displayDynLibInfo(void)
         }
     }
 }
-/*-----------------------------------------------------------------------------------*/
+
 types::Double* getLibraryIDs(void)
 {
     std::vector<ConfigVariable::DynamicLibraryStr*>* pDLList = ConfigVariable::getDynamicLibraryList();
@@ -247,4 +246,3 @@ types::Double* getLibraryIDs(void)
 
     return pOut;
 }
-/*-----------------------------------------------------------------------------------*/

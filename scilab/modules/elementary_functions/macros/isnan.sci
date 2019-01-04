@@ -15,8 +15,7 @@
 function r = isnan(x)
 
     if nargin <> 1 then
-        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "isnan", 1));
+        error(71, 1);
     end
 
     if x == [] then

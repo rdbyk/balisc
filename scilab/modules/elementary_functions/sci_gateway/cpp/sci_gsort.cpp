@@ -28,8 +28,6 @@ extern "C"
 #include "localization.h"
 }
 
-static const char fname[] = "gsort";
-
 types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     //
@@ -66,13 +64,13 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 3);
+        Scierror(72, 1, 3);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 
@@ -82,14 +80,14 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), fname, 3);
+            Scierror(91, 3);
             return types::Function::Error;
         }
 
         wstrWay = in[2]->getAs<types::String>()->getFirst();
         if (wstrWay != L"i" && wstrWay != L"d")
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"), fname, 3);
+            Scierror(110, 3, _("'i' or 'd'"));
             return types::Function::Error;
         }
     }
@@ -100,7 +98,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), fname, 2);
+            Scierror(91, 2);
             return types::Function::Error;
         }
 
@@ -112,7 +110,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
                 wstrProcess != L"lc" &&
                 wstrProcess != L"lr")
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"), fname, 2);
+            Scierror(110, 2, _("'g', 'r', 'c', 'lc', or 'lr'"));
             return types::Function::Error;
         }
     }

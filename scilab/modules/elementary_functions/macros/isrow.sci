@@ -13,7 +13,7 @@
 function r = isrow(v)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"isrow", 1));
+        error(71, 1);
     end
 
     s = size(v)

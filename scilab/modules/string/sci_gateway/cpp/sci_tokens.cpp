@@ -33,8 +33,6 @@ extern "C"
 
 #include <sciprint.h>
 
-static const char fname[] = "tokens";
-
 types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pOutString   = NULL;
@@ -45,7 +43,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
 
     if (in.size() > 2 || in.size() == 0)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
@@ -57,14 +55,14 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     pString = in[0]->getAs<types::String>();
     if (pString->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
+        Scierror(102, 1);
         return types::Function::Error;
     }
 
@@ -79,14 +77,14 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+            Scierror(91, 2);
             return types::Function::Error;
         }
         pCharSample = in[1]->getAs<types::String>();
 
         if (pCharSample->getSize() == 0)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+            Scierror(102, 2);
             return types::Function::Error;
         }
         sizeSeps = pCharSample->getSize();
@@ -96,7 +94,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
             int iLen = (int)wcslen(pCharSample->get(i));
             if (iLen > 1 || iLen < 0)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), fname, 2);
+                Scierror(110, 2, _("vector of characters"));
                 delete pOutString;
                 FREE(seps);
                 return types::Function::Error;

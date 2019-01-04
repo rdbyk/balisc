@@ -28,20 +28,18 @@ extern "C"
 #include "Scierror.h"
 }
 
-static const char fname[] = "macr2tree";
-
 types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected."), fname, 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     types::InternalType* pIT = in[0];
     if (pIT->isMacro() == false && pIT->isMacroFile() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: macro expected.\n"), fname, 1);
+        Scierror(90, 1, _("macro"));
         return types::Function::Error;
     }
 

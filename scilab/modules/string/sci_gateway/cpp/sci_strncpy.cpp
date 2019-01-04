@@ -29,8 +29,6 @@ extern "C"
 #include "Scierror.h"
 }
 
-static const char fname[] = "strncpy";
-
 types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pString      = NULL;
@@ -39,19 +37,19 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
 
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
+        Scierror(90, 1, _("matrix of strings"));
         return types::Function::Error;
     }
 
     if (in[1]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), fname, 2);
+        Scierror(90, 2, _("matrix of integer values"));
         return types::Function::Error;
     }
 
@@ -60,14 +58,14 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
 
     if (pDouble->getSize() == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"), fname, 2);
+        Scierror(90, 2, _("non-empty real matrix"));
         return types::Function::Error;
     }
 
     //same dimension or 2nd arg scalar
     if (pString->getSize() != pDouble->getSize() && pDouble->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+        Scierror(100, 2, _("real scalar or matrix with same size as argument #1"));
         return types::Function::Error;
     }
 
@@ -114,7 +112,7 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
         else
         {
             delete pOutString;
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return types::Function::Error;
         }
     }
@@ -122,4 +120,3 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
     out.push_back(pOutString);
     return types::Function::OK;
 }
-

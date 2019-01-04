@@ -15,8 +15,7 @@
 function answ = isempty(m)
 
     if nargin <> 1 then
-        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "isempty", 1))
+        error(71, 1)
     end
 
     m_type = type(m);
@@ -85,8 +84,7 @@ function answ = isempty(m)
 
     else
         if( (m_type >= 11) & (m_type <= 13) | (m_type >= 128) ) then
-            msg = gettext("%s: Wrong type for input argument #%d.\n")
-            error(msprintf(msg, "isempty", 1))
+            error(_("%s: Wrong type for input argument #%d."), "isempty", 1)
         elseif m_type~=0
             answ = size(m,"*")==0
         else

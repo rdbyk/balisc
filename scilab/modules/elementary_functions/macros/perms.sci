@@ -14,13 +14,13 @@
 function y = perms(x)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"perms", 1));
+        error(71, 1);
     end
 
     if size(x,"*")==1 | size(x,"*")==0 then
         y = x;
     elseif size(x,1)<>1 & size(x,2)<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"),"perms"));
+        error(100, 1, _("vector"));
     else
         xsize = size(x, "*");
         indrec = perms(1:xsize-1);

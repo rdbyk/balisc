@@ -15,16 +15,16 @@
 function z = atand(x,y)
 
     if nargin < 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atand", 1));
+        error(71, 1);
     end
 
     if type(x) <> 1 | ~isreal(x) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"atand",1));
+        error(94, 1);
     end
 
     if nargin==2 then
         if type(y) <> 1 | ~isreal(y) then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"atand",2));
+            error(94, 2);
         end
         z = 180/%pi*atan(x,y);
     else

@@ -31,6 +31,7 @@ extern "C"
 static const wchar_t* pstShortTypeName[NB_OF_TYPE] = {L"s", L"p", L"b", L"sp", L"spb", L"msp", L"i", L"h", L"c",
                                                    L"m", L"mc", L"f", L"l", L"tl", L"ml", L"ptr", L"ip", L"fptr"
                                                   };
+
 static const double pstShortTypeNum[NB_OF_TYPE] = {1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 128, 129, 130};
 
 types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -38,14 +39,14 @@ types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount,
     /* Check the number of input argument */
     if (in.size() != 0)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "typename" , 0);
+        Scierror(71, 0);
         return types::Function::Error;
     }
 
     /* Check the number of output argument */
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "typename", 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 
@@ -68,4 +69,3 @@ types::Function::ReturnValue sci_typename(types::typed_list &in, int _iRetCount,
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

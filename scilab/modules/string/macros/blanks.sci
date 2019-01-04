@@ -17,15 +17,15 @@
 function str = blanks(n)
 
     if ~or(type(n)==[1,8]) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer expected.\n"),"blanks",1));
+        error(92, 1);
     end
 
-    if size(n,"*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"),"blanks",1));
+    if size(n,"*") <> 1 then
+        error(101, 1);
     end
 
     if n<0 then
-        error(msprintf(gettext("%s: Wrong values for input argument #%d: An non-negative integer expected.\n"),"blanks",1));
+        error(110, 1, _("non-negative integer value"));
     else
         str = part(" ",ones(1,n));
     end

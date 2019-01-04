@@ -58,8 +58,7 @@ function [x,k]=unique(x,orient)
                     end
                     x = complex(x(1:sz(1),:), x(sz(1)+1:$,:));
                 else
-                    msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
-                    error(msprintf(msg, "unique", 2, "1,""r"",2,""c"""));
+                    error(_("%s: Argument #%d: Must be in the set {%s}."), "unique", 2, "1,""r"",2,""c""");
                 end
                 return
             end
@@ -108,7 +107,6 @@ function [x,k]=unique(x,orient)
             x(:, find(and(x(:,2:$) == x(:,1:$-1),"r")) ) = [];
         end
     else
-        msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
-        error(msprintf(msg, "unique", 2, "1,""r"",2,""c"""));
+        error(_("%s: Argument #%d: Must be in the set {%s}."), "unique", 2, "1,""r"",2,""c""");
     end
 endfunction

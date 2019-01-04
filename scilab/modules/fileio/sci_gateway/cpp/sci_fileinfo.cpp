@@ -3,8 +3,8 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,6 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include "function.hxx"
 #include "string.hxx"
@@ -30,24 +29,23 @@ extern "C"
 #include "Scierror.h"
 }
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_fileinfo(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "fileinfo", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false )
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "fileinfo", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "fileinfo", 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 
@@ -94,5 +92,3 @@ types::Function::ReturnValue sci_fileinfo(types::typed_list &in, int _iRetCount,
     FREE(pData);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-

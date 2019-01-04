@@ -14,11 +14,11 @@
 function y = acot(x)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "acot", 1));
+        error(71, 1);
     end
 
     if type(x) <> 1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"), "acot", 1));
+        error(94, 1);
     end
 
     y = 0.5*%pi - atan(x);

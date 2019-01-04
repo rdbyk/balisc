@@ -13,8 +13,7 @@
 function z = bitxor(x, y)
 
     if nargin <> 2 then
-        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
-        error(msprintf(msg, "bitxor", 2))
+        error(71, 2)
     end
 
     z = bit_op(x, y, "bitxor")

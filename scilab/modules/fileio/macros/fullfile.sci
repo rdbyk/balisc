@@ -14,7 +14,7 @@
 function f = fullfile(varargin)
 
     if size(varargin) < 1 then
-        error(msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"), "fullfile",1));
+        error(74, 1);
     end
 
     fs = ["/" "\"];
@@ -22,11 +22,11 @@ function f = fullfile(varargin)
 
     if ~isempty(f) then
         if type(f) <> 10 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", 1));
+            error(91, 1);
         end
 
         if size(f,"*") <> 1 then
-            error(msprintf(_("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", 1));
+            error(102, 1);
         end
         f = stripblanks(f);
     end
@@ -44,20 +44,20 @@ function f = fullfile(varargin)
             // check arg is a scalar string
             // and set f as arg
             if type(arg) <> 10 then
-                error(msprintf(_("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", k));
+                error(91, k);
             end
 
             if (size(arg,"*") <> 1) && (k <> nbParameters) then
-                error(msprintf(_("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", k));
+                error(102, k);
             end
             f = arg;
         else //arg and f are not empty
             if type(arg) <> 10 then
-                error(msprintf(_("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", k));
+                error(91, k);
             end
 
             if (size(arg,"*") <> 1) && (k <> nbParameters) then
-                error(msprintf(_("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", k));
+                error(102, k);
             end
 
             if or(part(f, length(f)) == fs) && or(part(arg, 1) == fs)

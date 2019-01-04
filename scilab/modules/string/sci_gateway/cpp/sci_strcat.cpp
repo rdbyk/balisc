@@ -34,10 +34,9 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
     int iMode               = 0;
     wchar_t* pwstToInsert   = NULL;
 
-    //check input paramters
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "strcat", 1, 3);
+        Scierror(71, 1, 3);
         return types::Function::Error;
     }
 
@@ -45,7 +44,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
     {
         if (in[i]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "strcat", i + 1);
+            Scierror(90, i + 1, _("matrix of strings"));
             return types::Function::Error;
         }
     }
@@ -57,7 +56,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
     }
     else if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcat", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -73,7 +72,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
                 iMode = 2;
                 break;
             default :
-                Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "strcat", 3, "c", "r");
+                Scierror(110, 2, _("'r' or 'c'"));
                 return types::Function::Error;
         }
     }
@@ -82,7 +81,7 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
     {
         if (in[1]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcat", 2);
+            Scierror(91, 2);
             return types::Function::Error;
         }
 

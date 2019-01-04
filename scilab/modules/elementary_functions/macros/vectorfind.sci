@@ -14,7 +14,7 @@
 function ind=vectorfind(m,v,job)
 
     if nargin < 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "vectorfind", 2, 3));
+        error(72, 2, 3);
     end
 
     if nargin == 2 then
@@ -22,16 +22,16 @@ function ind=vectorfind(m,v,job)
     end
 
     if typeof(m) <> typeof(v) then
-        error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same type expected.\n"), "vectorfind", 1, 2));
+        error(_("%s: Incompatible input arguments #%d and #%d: Same type expected."), "vectorfind", 1, 2);
     end
 
     if min(size(v))<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"),"vectorfind",2));
+        error(_("%s: Wrong size for input argument #%d: Vector expected."),"vectorfind",2);
     end
 
     if convstr(part(job,1))=="r" then
         if size(v,"*")<>size(m,2) then
-            error(msprintf(gettext("%s: Wrong size for input arguments: Incompatible sizes.\n"),"vectorfind"));
+            error(_("%s: Wrong size for input arguments: Incompatible sizes."), "vectorfind");
         end
         ind=1:size(m,1)
         for k=1:size(m,2)
@@ -42,7 +42,7 @@ function ind=vectorfind(m,v,job)
         end
     elseif convstr(part(job,1))=="c" then
         if size(v,"*")<>size(m,1) then
-            error(msprintf(gettext("%s: Wrong size for input arguments: Incompatible sizes.\n"),"vectorfind"));
+            error(_("%s: Wrong size for input arguments: Incompatible sizes."), "vectorfind");
         end
         ind=1:size(m,2)
         for k=1:size(m,1)
@@ -52,7 +52,7 @@ function ind=vectorfind(m,v,job)
             end
         end
     else
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"vectorfind",3,"r[ow]","c[olumn]"));
+        error(_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected."), "vectorfind", 3, "r[ow]", "c[olumn]");
     end
 
 endfunction

@@ -13,11 +13,11 @@
 function x=tanhm(a)
 
     if nargin <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"tanhm",1));
+        error(71, 1);
     end
     
     if type(a) <> [1, 5] then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix expected.\n"), "tanhm", 1));
+        error(95, 1);
     end
 
     if a==[] then
@@ -26,14 +26,14 @@ function x=tanhm(a)
     end
 
     if ~issquare(a) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"tanhm",1));
+        error(103, 1);
     end
 
     //diagonalization
     [x,t,bs]=bdiag(a+0*%i,1/%eps)
 
     if find(bs>1) then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"),"tanhm",1));
+        error(_("%s: Wrong value for input argument #%d: Matrix is not diagonalisable."), "tanhm", 1);
     end
 
     x=t*diag(tanh(diag(x)))/t;

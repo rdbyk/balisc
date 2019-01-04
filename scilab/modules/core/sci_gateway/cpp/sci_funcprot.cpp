@@ -24,15 +24,13 @@ extern "C"
 #include "Scierror.h"
 }
 
-static const char fname[] = "funcprot";
-
 types::Function::ReturnValue sci_funcprot(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFuncprotMode = 0;
 
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected."), fname, 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
 
@@ -45,7 +43,7 @@ types::Function::ReturnValue sci_funcprot(types::typed_list &in, int _iRetCount,
 
     if (in[0]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 1);
+        Scierror(93, 1);
         return types::Function::Error;
     }
 
@@ -53,7 +51,7 @@ types::Function::ReturnValue sci_funcprot(types::typed_list &in, int _iRetCount,
 
     if (pDblIn->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
+        Scierror(101, 1);
         return types::Function::Error;
     }
 
@@ -61,13 +59,13 @@ types::Function::ReturnValue sci_funcprot(types::typed_list &in, int _iRetCount,
 
     if (pDblIn->getFirst() != (double)iFuncprotMode)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 1);
+        Scierror(111, 1);
         return types::Function::Error;
     }
 
     if (iFuncprotMode != 0 && iFuncprotMode != 1 && iFuncprotMode != 2)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"), fname, 1);
+        Scierror(110, 1, _("0, 1 or 2"));
         return types::Function::Error;
     }
 

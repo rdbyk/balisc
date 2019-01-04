@@ -43,13 +43,13 @@ Function::ReturnValue sci_global(typed_list &in, int _iRetCount, typed_list &out
     {
         if (in[i]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, i + 1);
+            Scierror(91, fname, i + 1);
             return Function::Error;
         }
 
         if (in[i]->getAs<String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, i + 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: single string expected.\n"), fname, i + 1);
             return Function::Error;
         }
 
