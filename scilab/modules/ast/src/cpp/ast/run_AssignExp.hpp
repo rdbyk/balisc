@@ -71,15 +71,6 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 return;
             }
 
-            if (pIT->isList() && pIT->getRef() > 0)
-            {
-                // Prevent modification of all scilab variable
-                // which point to this container when it is used
-                // in setfield scilab function.
-                // A clone on a container will not clone what it contain.
-                pIT = pIT->clone();
-            }
-
             if (e.getRightExp().isReturnExp())
             {
                 // ReturnExp so, put the value in the

@@ -25,7 +25,7 @@ class MList : public TList
 {
 public :
     MList() : TList() {}
-    //Destructor uses ~TList()
+    ~MList();
 
     virtual MList*                  clone() override
     {

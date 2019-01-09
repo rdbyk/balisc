@@ -38,6 +38,8 @@ public:
 
     static int getEnvId(char * fname, const int envId, void * pvApiCtx);
 
+    static int clear(char* fname, const int envId, void* pvApiCtx);
+
     static int getsetOptions(char * fname, const int envId, ScilabAbstractOptionsSetter & setter, void * pvApiCtx);
 
     static int addToClasspath(char * fname, const int envId, void * pvApiCtx);
@@ -76,7 +78,7 @@ public:
 
     static int getClassName(char * fname, const int envId, void * pvApiCtx);
 
-    static int getEnvironmentName(char * fname, const int envId, void * pvApiCtx);
+    static int getEnvironmentName(char* fname, const int envId, void* pvApiCtx);
 
     static int getEnvironmentInfos(char * fname, const int envId, void * pvApiCtx);
 
