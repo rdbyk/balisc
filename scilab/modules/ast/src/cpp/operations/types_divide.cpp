@@ -92,7 +92,7 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
         switch (iResult)
         {
             case 1 :
-                throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+                throw ast::InternalRowColDimensionsError();
             case 2 :
                 throw ast::InternalError(_W("With NaN or Inf a division by scalar expected.\n"));
             case 3 :

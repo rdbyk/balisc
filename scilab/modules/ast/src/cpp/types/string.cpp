@@ -614,7 +614,7 @@ wchar_t* String::copyValue(wchar_t* _pwstData)
     }
     catch (std::bad_alloc & /*e*/)
     {
-        throw ast::InternalError(_("Can not allocate data.\n"));
+        throw ast::InternalError(_("Memory allocation failed.\n"));
     }
 
     return NULL;
@@ -687,9 +687,7 @@ wchar_t** String::allocData(int _iSize)
     }
     catch (std::bad_alloc & /*e*/)
     {
-        char message[bsiz];
-        os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
-        throw ast::InternalError(message);
+        throw ast::InternalError(_("Memory allocation failed.\n"));
     }
 }
 

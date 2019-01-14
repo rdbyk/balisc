@@ -23,6 +23,7 @@ extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 }
 
 using types::Double;

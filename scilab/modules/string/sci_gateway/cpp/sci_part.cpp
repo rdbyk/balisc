@@ -27,6 +27,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfPtrs.h"
+#include "sci_malloc.h"
 }
 
 using types::Double;

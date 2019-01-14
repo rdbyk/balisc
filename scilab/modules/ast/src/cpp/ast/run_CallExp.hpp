@@ -179,7 +179,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     {
                         pListArg->DecreaseRef();
                         pListArg->killMe();
-                        throw ast::InternalError(_W("Invalid index.\n"), 999, e.getFirstLocation());
+                        throw ast::InternalInvalidIndexError(e.getFirstLocation());
                     }
                 }
                 else
@@ -269,7 +269,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             }
             else
             {
-                throw ast::InternalError(_W("Invalid index.\n"), 999, e.getFirstLocation());
+                throw ast::InternalInvalidIndexError(e.getFirstLocation());
             }
         }
 
@@ -356,7 +356,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             {
                 delete pArgs;
                 CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalError(_W("inconsistent row/column dimensions\n"), 999, e.getFirstLocation());
+                throw ast::InternalRowColDimensionsError(e.getFirstLocation());
             }
 
             if (pList->getSize() == 1)

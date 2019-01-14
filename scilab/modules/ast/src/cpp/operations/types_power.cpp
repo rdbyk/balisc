@@ -42,7 +42,7 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = PowerDoubleByDouble(pL, pR, (Double**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
 
         return pResult;
@@ -61,7 +61,7 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
         switch (iResult)
         {
             case 1 :
-                throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+                throw ast::InternalRowColDimensionsError();
             case 2 :
                 throw ast::InternalError(_W("Invalid exponent: expected finite integer exponents.\n"));
             default:
@@ -97,7 +97,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         int iResult = DotPowerDoubleByDouble(pL, pR, (Double**)&pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
 
         return pResult;
@@ -113,7 +113,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         int iResult = DotPowerSparseByDouble(pL, pR, &pResult);
         if (iResult)
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
         return pResult;
 
@@ -132,7 +132,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         switch (iResult)
         {
             case 1 :
-                throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+                throw ast::InternalRowColDimensionsError();
             case 2 :
                 throw ast::InternalError(_W("Invalid exponent: expected finite integer exponents.\n"));
             default:
@@ -653,7 +653,7 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
         case 1 :
         {
             delete pPolyOut;
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
         case 2 :
         {

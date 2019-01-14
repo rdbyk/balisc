@@ -26,6 +26,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
+#include "sci_malloc.h"
 }
 
 using types::Function;

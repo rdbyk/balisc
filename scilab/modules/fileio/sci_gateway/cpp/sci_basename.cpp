@@ -24,6 +24,7 @@ extern "C"
 #include "localization.h"
 #include "basename.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 }
 
 types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount, types::typed_list &out)

@@ -21,6 +21,11 @@
 #include "polynom.hxx"
 #include "configvariable.hxx"
 
+extern "C"
+{
+#include "sci_malloc.h"
+}
+
 namespace types
 {
 Polynom::Polynom()

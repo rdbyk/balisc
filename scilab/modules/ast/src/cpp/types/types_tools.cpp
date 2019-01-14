@@ -368,7 +368,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
 
                 if ((start < 1 && step > 0) || (end < 1 & step < 0))
                 {
-                    throw ast::InternalError(_W("Invalid index.\n"));
+                    throw ast::InternalInvalidIndexError();
                 }
 
                 std::vector<int> idx(size);
@@ -815,9 +815,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 //checks if size < size(int)
                 if (pCurrentArg->get(j) >= INT_MAX)
                 {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("variable size exceeded : less than %d expected.\n").c_str(), INT_MAX);
-                    throw ast::InternalError(szError);
+                    throw ast::InternalError(_("Value of index exceeds maximum of 2147483647.\n"));
                 }
 
                 int d = static_cast<int>(pCurrentArg->get(j));
@@ -839,7 +837,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             delete[] _piCountDim;
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
 
-            throw ast::InternalError(_W("Invalid index.\n"));
+            throw ast::InternalInvalidIndexError();
         }
 
         _pArgsOut->push_back(pCurrentArg);

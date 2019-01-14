@@ -19,6 +19,11 @@
 #include <list>
 #include <all.hxx>
 
+extern "C"
+{
+#include "sci_malloc.h"
+}
+
 namespace ast
 {
 class DeserializeVisitor

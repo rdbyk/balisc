@@ -287,7 +287,7 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
             {
                 //free pArg content
                 cleanIndexesArguments(_pArgs, &pArg);
-                throw ast::InternalError(_W("Index out of bounds.\n"));
+                throw ast::InternalError(_("Index out of bounds.\n"));
             }
 
             InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert();

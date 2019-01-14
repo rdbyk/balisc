@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include <vector>
 #include "string.hxx"
 #include "double.hxx"
@@ -25,12 +25,8 @@ extern "C"
 #include "elem_common.h"
 #include "scioptimfunctions.h"
 #include "localization.h"
+#include "sci_malloc.h"
 }
-
-/*
-** optimization functions
-** \{
-*/
 
 std::vector<OptimizationFunctions*> Optimization::m_OptimizationFunctions;
 
@@ -50,12 +46,6 @@ OptimizationFunctions* Optimization::getOptimizationFunctions()
     return m_OptimizationFunctions.back();
 }
 
-/*
-** \}
-*/
-
-
-/*--------------------------------------------------------------------------*/
 OptimizationFunctions::OptimizationFunctions(const std::wstring& callerName)
 {
     m_iXRows = 0;

@@ -228,7 +228,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         pGT->killMe();
                     }
-                    throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"), 999, row->getLocation());
+                    throw ast::InternalRowColDimensionsError(row->getLocation());
                 }
 
                 // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
@@ -380,7 +380,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult->killMe();
                 }
-                throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"), 999, (*e.getLines().begin())->getLocation());
+                throw ast::InternalRowColDimensionsError((*e.getLines().begin())->getLocation());
             }
 
             // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]

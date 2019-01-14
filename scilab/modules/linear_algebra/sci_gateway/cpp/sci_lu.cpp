@@ -24,6 +24,7 @@ extern "C"
 #include "Scierror.h"
 #include "lu.h"
 #include "doublecomplex.h"
+#include "sci_malloc.h"
 }
 
 types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types::typed_list &out)

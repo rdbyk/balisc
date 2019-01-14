@@ -16,10 +16,6 @@
  *
  */
 
-/*------------------------------------------------------------------------*/
-/* file: sci_xset.cpp                                                      */
-/* desc : interface for xset routine                                      */
-/*------------------------------------------------------------------------*/
 #include "graphics_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -49,8 +45,9 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "deleteGraphicObject.h"
 #include "sciprint.h"
+#include "sci_malloc.h"
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t* pwcsWhat = NULL;

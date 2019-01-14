@@ -23,6 +23,7 @@ src/c/operations/matrix_multiplication.c \
 src/c/operations/matrix_power.c \
 src/c/operations/matrix_transpose.c \
 src/c/types/dtoa.c \
+src/cpp/ast/scilabexception.cpp \
 src/cpp/ast/expHistory.cpp \
 src/cpp/ast/macrovarvisitor.cpp \
 src/cpp/ast/printvisitor.cpp \

@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - INRIA - Serge STEER
-* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - INRIA - Serge STEER
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,28 +11,31 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include "fftw_gw.hxx"
 #include "function.hxx"
 #include "fftw_common.hxx"
+
 extern "C"
 {
 #include "localization.h"
 #include "charEncoding.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
+
     extern int WITHMKL;
 }
-/*-----------------------------------------------------------------------------------*/
+
 static int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn, guru_dim_struct gdim, int iopt);
-/*-----------------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_dct(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     std::wstring name(L"dct");
     return fftw_common(name, in, _iRetCount, out, sci_dct_gen);
 }
-/*-----------------------------------------------------------------------------------*/
+
 int sci_dct_gen(const char *fname, types::Double* A, types::Double** O, int isn, guru_dim_struct gdim, int iopt)
 {
     *O = A->clone()->getAs<types::Double>();

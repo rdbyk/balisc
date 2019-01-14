@@ -28,7 +28,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (isSingleResult() == false)
         {
             clearResult();
-            throw ast::InternalError(_W("Incompatible output argument.\n"), 999, e.getRight().getLocation());
+            throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
         }
 
         pITL = getResult();
@@ -47,7 +47,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (isSingleResult() == false)
         {
             clearResult();
-            throw ast::InternalError(_W("Incompatible output argument.\n"), 999, e.getRight().getLocation());
+            throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
         }
 
         pITR = getResult();
@@ -251,7 +251,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         pITL = getResult();
         if (isSingleResult() == false)
         {
-            throw ast::InternalError(_W("Incompatible output argument.\n"), 999, e.getRight().getLocation());
+            throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
         }
 
         setResult(NULL);
@@ -285,7 +285,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 pITR = getResult();
                 if (isSingleResult() == false)
                 {
-                    throw ast::InternalError(_W("Incompatible output argument.\n"), 999, e.getRight().getLocation());
+                    throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
                 }
 
                 if (pITR->getType() == types::InternalType::ScilabImplicitList)
@@ -335,7 +335,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 pITR = getResult();
                 if (isSingleResult() == false)
                 {
-                    throw ast::InternalError(_W("Incompatible output argument.\n"), 999, e.getRight().getLocation());
+                    throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
                 }
 
                 if (pITR->getType() == types::InternalType::ScilabImplicitList)
@@ -379,7 +379,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
             if (isSingleResult() == false)
             {
                 clearResult();
-                throw ast::InternalError(_W("Incompatible output argument.\n"), 999, e.getRight().getLocation());
+                throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
             }
 
             if (pITR->getType() == types::InternalType::ScilabImplicitList)
@@ -453,7 +453,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
             }
             if (!out.size())
             {
-                throw ast::InternalError(_W("Overloaded operator does not return a result.\n"));
+                throw ast::InternalError(_("Overloaded operator does not return a result.\n"));
             }
         }
         catch (const ast::InternalError& e)
@@ -480,7 +480,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
         }
         if (!out.size())
         {
-            throw ast::InternalError(_W("Overloaded operator does not return a result.\n"));
+            throw ast::InternalError(_("Overloaded operator does not return a result.\n"));
         }
     }
     catch (const ast::InternalError& e)
