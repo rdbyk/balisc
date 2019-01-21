@@ -122,7 +122,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
     {
         case 0: // stderr
         case 6: // stdout
-            Scierror(30, iFileID);
+            Scierror(50, iFileID);
             return types::Function::Error;
         default :
         {
@@ -130,7 +130,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
             // file opened with fortran open function
             if (pFile == NULL || pFile->getFileType() == 1)
             {
-                Scierror(30, iFileID);
+                Scierror(50, iFileID);
                 return types::Function::Error;
             }
 

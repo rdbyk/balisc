@@ -32,77 +32,47 @@ extern "C"
 namespace ast
 {
 
-ScilabException::ScilabException() : m_wstErrorMessage(), m_iErrorNumber(0), m_ErrorLocation(), m_type(TYPE_ERROR)
-{
-}
-
-ScilabException::ScilabException(const std::wstring& _wstErrorMesssage)
-{
-    m_type = TYPE_EXCEPTION;
-    createScilabException(_wstErrorMesssage, 999, Location());
-}
-
 ScilabException::ScilabException(const std::string& _stErrorMesssage)
 {
-    m_type = TYPE_EXCEPTION;
     wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
     createScilabException(pwst, 999, Location());
     FREE(pwst);
 }
 
-ScilabException::ScilabException(const std::wstring& _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
+InternalError::InternalError(const std::wstring& _wstErrorMesssage)
 {
-    m_type = TYPE_EXCEPTION;
-    createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
+    createScilabException(_wstErrorMesssage, 999, Location());
+    setLastError(m_iErrorNumber, _wstErrorMesssage.c_str(), m_ErrorLocation.first_line, NULL);
 }
 
-void ScilabException::createScilabException(const std::wstring& _wstErrorMessage, int _iErrorNumber, const Location& _ErrorLocation)
+InternalError::InternalError(std::string _stErrorMesssage)
 {
-    m_wstErrorMessage = _wstErrorMessage;
-    m_iErrorNumber = _iErrorNumber;
-    m_ErrorLocation = _ErrorLocation;
-}
-
-InternalError::InternalError(const std::wstring& _wstErrorMesssage) : ScilabException(_wstErrorMesssage)
-{
-    m_type = TYPE_ERROR;
-    setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
-}
-
-InternalError::InternalError(std::string _stErrorMesssage) : ScilabException(_stErrorMesssage)
-{
-    m_type = TYPE_ERROR;
+    wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
+    createScilabException(pwst, 999, Location());
+    FREE(pwst);
     setLastError(999, m_wstErrorMessage.c_str(), 0, NULL);
 }
 
-InternalError::InternalError(const std::wstring& _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation) : ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation)
+InternalError::InternalError(const std::wstring& _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
 {
-    m_type = TYPE_ERROR;
+    createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
     setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), _ErrorLocation.first_line, NULL);
 }
 
-InternalRowColDimensionsError::InternalRowColDimensionsError() : InternalError(_W(ErrorMessageByNumber(3)))
+InternalError::InternalError(int _iErrorNumber)
 {
+    wchar_t* pwst = to_wide_string(ErrorMessageByNumber(_iErrorNumber));
+    createScilabException(pwst, _iErrorNumber, Location());
+    FREE(pwst);
+    setLastError(m_iErrorNumber, m_wstErrorMessage.c_str(), m_ErrorLocation.first_line, NULL);
 }
 
-InternalRowColDimensionsError::InternalRowColDimensionsError(const Location& loc) : InternalError(_W(ErrorMessageByNumber(3)), 3, loc) 
+InternalError::InternalError(int _iErrorNumber, const Location& _ErrorLocation)
 {
-}
-
-InternalInvalidIndexError::InternalInvalidIndexError() : InternalError(_W(ErrorMessageByNumber(2)))
-{
-}
-
-InternalInvalidIndexError::InternalInvalidIndexError(const Location& loc) : InternalError(_W(ErrorMessageByNumber(2)), 2, loc)
-{
-}
-
-InternalProtectedVariableError::InternalProtectedVariableError(const Location& loc) : InternalError(_W(ErrorMessageByNumber(4)), 4, loc)
-{
-}
-
-InternalIncompatibleOutputError::InternalIncompatibleOutputError(const Location& loc) : InternalError(_W(ErrorMessageByNumber(5)), 5, loc)
-{
+    wchar_t* pwst = to_wide_string(ErrorMessageByNumber(_iErrorNumber));
+    createScilabException(pwst, _iErrorNumber, _ErrorLocation);
+    FREE(pwst);
+    setLastError(m_iErrorNumber, m_wstErrorMessage.c_str(), m_ErrorLocation.first_line, NULL);
 }
 
 }

@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
             case 0: // stderr
             case 5: // stdin
             case 6: // stdout
-                Scierror(30, iFile);
+                Scierror(50, iFile);
                 return types::Function::Error;
         }
     }

@@ -97,7 +97,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     {
         case 0: // stderr
         case 6: // stdout
-            Scierror(30, iFile);
+            Scierror(50, iFile);
             return types::Function::Error;
         default :
             break;
@@ -109,14 +109,14 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     types::File* pFile = FileManager::getFile(iFile);
     if (pFile == NULL)
     {
-        Scierror(31, iFile);
+        Scierror(51, iFile);
         return types::Function::Error;
     }
 
     // file opened with fortran open function
     if (pFile->getFileType() == 1)
     {
-        Scierror(30, iFile);
+        Scierror(50, iFile);
         return types::Function::Error;
     }
 

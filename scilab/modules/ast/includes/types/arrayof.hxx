@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -117,7 +117,7 @@ protected :
                 // overflow of iTmpSize ?
                 if (iTmpSize / m_iSize != m_piDims[i])
                 {
-                    throw ast::InternalError(_("Requested number of array elements exceeds maximum of 2147483647.\n"));
+                    throw ast::InternalError(34);
                 }
 
                 m_iSize = iTmpSize;
@@ -149,7 +149,7 @@ protected :
         }
         catch (std::bad_alloc & /*e*/)
         {
-            throw ast::InternalError(_("Memory allocation failed.\n"));
+            throw ast::InternalError(1);
         }
 
         m_iSizeMax = m_iSize;

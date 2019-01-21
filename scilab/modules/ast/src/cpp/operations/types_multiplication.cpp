@@ -57,7 +57,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;
@@ -74,7 +74,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplyDoubleByPoly(pL, pR, (Polynom**)&pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;
@@ -91,7 +91,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplyPolyByDouble(pL, pR, (Polynom**)&pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;
@@ -114,7 +114,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
 
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;
@@ -131,7 +131,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplySparseBySparse(pL, pR, (Sparse**)&pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;
@@ -148,7 +148,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplyDoubleBySparse(pL, pR, (GenericType**)&pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;
@@ -165,7 +165,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = MultiplySparseByDouble(pL, pR, (GenericType**)&pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;

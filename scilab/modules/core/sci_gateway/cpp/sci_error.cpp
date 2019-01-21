@@ -28,6 +28,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "charEncoding.h"
+#include "lasterror.h"
 }
 
 #include "errmsgs.h"

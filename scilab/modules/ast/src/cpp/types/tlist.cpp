@@ -339,12 +339,11 @@ bool TList::toString(std::wostringstream& ostr)
     }
     catch (ast::InternalError& e)
     {
-        if (e.GetErrorType() == ast::TYPE_ERROR)
-        {
-            DecreaseRef();
-            throw e;
-        }
-
+        DecreaseRef();
+        throw;
+    }
+    catch (ast::ScilabException& e)
+    {
         // avoid error message about undefined overload %type_p
         ConfigVariable::resetError();
     }

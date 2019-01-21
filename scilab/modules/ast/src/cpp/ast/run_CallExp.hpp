@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -56,7 +56,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         clearResult();
         cleanIn(inTmp, outTmp);
         CoverageInstance::stopChrono((void*)&e);
-        throw ast::InternalError(_W("Cannot extract from nothing.\n"), 999, e.getLocation());
+        throw ast::InternalError(33, e.getLocation());
     }
 
     types::typed_list out;
@@ -69,7 +69,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         clearResult();
         cleanIn(inTmp, outTmp);
         CoverageInstance::stopChrono((void*)&e);
-        throw ast::InternalError(_W("Wrong number of output arguments.\n"), 999, e.getLocation());
+        throw ast::InternalError(80, e.getLocation());
     }
 
     if (pIT->isCallable())
@@ -179,7 +179,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     {
                         pListArg->DecreaseRef();
                         pListArg->killMe();
-                        throw ast::InternalInvalidIndexError(e.getFirstLocation());
+                        throw ast::InternalError(2, e.getFirstLocation());
                     }
                 }
                 else
@@ -269,7 +269,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             }
             else
             {
-                throw ast::InternalInvalidIndexError(e.getFirstLocation());
+                throw ast::InternalError(2, e.getFirstLocation());
             }
         }
 
@@ -343,7 +343,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             if (pIT->isCell() == false)
             {
                 CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalError(_W("Cell indexing \"{..}\" of non-cell objects is not allowed.\n"), 999, e.getFirstLocation());
+                throw ast::InternalError(8, e.getFirstLocation());
             }
 
             //Create list of indexes
@@ -356,7 +356,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             {
                 delete pArgs;
                 CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalRowColDimensionsError(e.getFirstLocation());
+                throw ast::InternalError(3, e.getFirstLocation());
             }
 
             if (pList->getSize() == 1)
@@ -407,7 +407,7 @@ void RunVisitor::getInputs(const CallExp& e, exps_t& args, types::typed_list& in
                 if (!pL->isSimpleVar())
                 {
                     CoverageInstance::stopChrono((void*)&e);
-                    throw ast::InternalError(_W("left side of optional parameter must be a variable.\n"), 999, e.getLocation());
+                    throw ast::InternalError(32, e.getLocation());
                 }
 
                 SimpleVar* pVar = pL->getAs<SimpleVar>();

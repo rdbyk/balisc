@@ -88,7 +88,7 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
     switch (iFile)
     {
         case 5: // stdin
-            Scierror(30, iFile);
+            Scierror(50, iFile);
             FREE(pstType);
             return types::Function::Error;
     }

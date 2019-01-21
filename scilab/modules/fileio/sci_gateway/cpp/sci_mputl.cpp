@@ -60,19 +60,19 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
             switch (iErr)
             {
                 case MOPEN_NO_MORE_LOGICAL_UNIT:
-                    Scierror(33);
+                    Scierror(53);
                     break;
                 case MOPEN_CAN_NOT_OPEN_FILE:
-                    Scierror(32, pst);
+                    Scierror(52, pst);
                     break;
                 case MOPEN_NO_MORE_MEMORY:
                     Scierror(1);
                     break;
                 case MOPEN_INVALID_FILENAME:
-                    Scierror(34, pst);
+                    Scierror(54, pst);
                     break;
                 default: //MOPEN_INVALID_STATUS
-                    Scierror(35);
+                    Scierror(55);
                     break;
             }
             FREE(pst);
@@ -100,7 +100,7 @@ types::Function::ReturnValue sci_mputl(types::typed_list &in, int _iRetCount, ty
     switch (iFileID)
     {
         case 5: // stdin
-            Scierror(30, iFileID);
+            Scierror(50, iFileID);
             return types::Function::Error;
         default :
             iErr = mputl(iFileID, pS->get(), pS->getSize());

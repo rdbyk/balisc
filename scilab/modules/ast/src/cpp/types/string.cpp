@@ -614,7 +614,7 @@ wchar_t* String::copyValue(wchar_t* _pwstData)
     }
     catch (std::bad_alloc & /*e*/)
     {
-        throw ast::InternalError(_("Memory allocation failed.\n"));
+        throw ast::InternalError(1);
     }
 
     return NULL;
@@ -687,7 +687,7 @@ wchar_t** String::allocData(int _iSize)
     }
     catch (std::bad_alloc & /*e*/)
     {
-        throw ast::InternalError(_("Memory allocation failed.\n"));
+        throw ast::InternalError(1);
     }
 }
 

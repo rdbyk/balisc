@@ -65,7 +65,7 @@ Function::ReturnValue sci_fflush(typed_list &in, int _iRetCount, typed_list &out
             
             if (iFileID < 0)
             {
-                Scierror(30, iFileID);
+                Scierror(50, iFileID);
                 return Function::Error;
             }
         }

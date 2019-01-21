@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
 
     if (FileManager::getFile(iFile) == NULL)
     {
-        Scierror(30, iFile);
+        Scierror(50, iFile);
         return types::Function::Error;
     }
 
@@ -119,7 +119,7 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
             isSTD = TRUE;
             break;
         case 5:
-            Scierror(30, iFile);
+            Scierror(50, iFile);
             return types::Function::Error;
         default:
             isSTD = FALSE;
@@ -127,7 +127,7 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
             // file opened with fortran open function
             if (!pFile || pFile->getFileType() == 1)
             {
-                Scierror(30, iFile);
+                Scierror(50, iFile);
                 return types::Function::Error;
             }
             ifileMode = pFile->getFileModeAsInt();

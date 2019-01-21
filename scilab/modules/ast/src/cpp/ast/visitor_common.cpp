@@ -436,7 +436,7 @@ const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
     }
     else
     {
-        throw ast::InternalError(_W("Unknown expression"), 999, _pExp->getLocation());
+        throw ast::InternalError(20, _pExp->getLocation());
     }
     return NULL;
 }
@@ -745,7 +745,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
         if (ctx->isprotected(pFirstField->getExp()->getSymbol()))
         {
-            throw ast::InternalProtectedVariableError(_pExp->getLocation());
+            throw ast::InternalError(4, _pExp->getLocation());
         }
 
         ast::SimpleVar* spMainExp = pFirstField->getExp();
@@ -817,7 +817,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
             if (pEH->isCellExp() && pITCurrent->isCell() == false)
             {
-                throw ast::InternalError(_W("Wrong insertion : use extraction with {} only on a Cell."), 999, _pExp->getLocation());
+                throw ast::InternalError(11, _pExp->getLocation());
             }
 
             if (pITCurrent->isStruct())
@@ -838,7 +838,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     if (pEH->getArgsDims() == 1)
                     {
-                        throw ast::InternalInvalidIndexError(_pExp->getLocation());
+                        throw ast::InternalError(2, _pExp->getLocation());
                     }
 
                     // resize current struct
@@ -886,7 +886,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         // Avoid insertion in most of one element.
                         if (pStruct->isScalar() == false)
                         {
-                            throw ast::InternalError(_W("Unable to insert multiple item in a Struct."), 999, _pExp->getLocation());
+                            throw ast::InternalError(18, _pExp->getLocation());
                         }
 
                         // extract field x and append it to elements for next recursion.
@@ -961,7 +961,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         if (pList->getSize() > 1)
                         {
                             pList->killMe();
-                            throw ast::InternalError(_W("Unable to insert multiple item in a List."), 999, _pExp->getLocation());
+                            throw ast::InternalError(19, _pExp->getLocation());
                         }
 
                         double* pdblArgs = (*pArgs)[0]->getAs<types::Double>()->get();
@@ -1059,7 +1059,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 types::List* pL = pITCurrent->getAs<types::List>();
                 if (pEH->getParent() && pEH->getParent()->getLevel() == pEH->getLevel())
                 {
-                    throw ast::InternalError(_W("Wrong insertion."), 999, _pExp->getLocation());
+                    throw ast::InternalError(21, _pExp->getLocation());
 
                     //                    // pITCurrent is an extraction of other Type
                     //                    for (int iLoop = 0; iLoop < pL->getSize(); iLoop++)
@@ -1189,7 +1189,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
                     if (pExtract == NULL)
                     {
-                        throw ast::InternalInvalidIndexError(_pExp->getLocation());
+                        throw ast::InternalError(2, _pExp->getLocation());
                     }
 
                     if ((*iterFields)->getExp() == NULL)
@@ -1280,7 +1280,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             {
                                 if (pEH->getArgsDims() == 1)
                                 {
-                                    throw ast::InternalInvalidIndexError(_pExp->getLocation());
+                                    throw ast::InternalError(2, _pExp->getLocation());
                                 }
 
                                 // resize current Cell
@@ -1304,7 +1304,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             {
                                 if (pEH->getArgsDims() == 1)
                                 {
-                                    throw ast::InternalInvalidIndexError(_pExp->getLocation());
+                                    throw ast::InternalError(2, _pExp->getLocation());
                                 }
 
                                 // resize current Cell
@@ -1319,13 +1319,13 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         else
                         {
                             // only a(x)
-                            throw ast::InternalError(_W("Wrong insertion in a Cell."), 999, _pExp->getLocation());
+                            throw ast::InternalError(22, _pExp->getLocation());
                         }
                     }
                 }
                 else
                 {
-                    throw ast::InternalError(_W("Wrong insertion in a Cell."), 999, _pExp->getLocation());
+                    throw ast::InternalError(2, _pExp->getLocation());
                 }
             }
             else if (pITCurrent->isUserType()) // not a Scilab defined datatype, access field after field
@@ -1471,7 +1471,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             // should never occur
             if (pArgs == NULL || pArgs->size() == 0)
             {
-                throw ast::InternalError(_W("Wrong insertion : Cannot insert without arguments."), 999, _pExp->getLocation());
+                throw ast::InternalError(7, _pExp->getLocation());
             }
 
             if (pEH->isCellExp())
@@ -1480,14 +1480,14 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 // insert "something" in b{x}
                 if ((*pArgs)[0]->isString())
                 {
-                    throw ast::InternalError(_W("Wrong insertion in a Cell."), 999, _pExp->getLocation());
+                    throw ast::InternalError(2, _pExp->getLocation());
                 }
 
                 pCell->insertCell(pArgs, _pAssignValue);
             }
             else if (pEH->getCurrent() && pEH->getCurrent()->isCallable())
             {
-                throw ast::InternalError(_W("Unexpected redefinition of Scilab function."), 999, _pExp->getLocation());
+                throw ast::InternalError(17, _pExp->getLocation());
             }
             else
             {
@@ -1495,7 +1495,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 types::InternalType* pIT = insertionCall(*_pExp, pArgs, pEH->getCurrent(), _pAssignValue);
                 if (pIT == NULL)
                 {
-                    throw ast::InternalError(_W("Submatrix incorrectly defined.\n"), 999, _pExp->getLocation());
+                    throw ast::InternalError(6, _pExp->getLocation());
                 }
 
                 pEH->setCurrent(pIT);
@@ -1582,7 +1582,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 types::InternalType* pIT = insertionCall(*_pExp, pParentArgs, pEHParent->getCurrent(), pEH->getCurrent());
                 if (pIT == NULL)
                 {
-                    throw ast::InternalError(_W("Submatrix incorrectly defined.\n"), 999, _pExp->getLocation());
+                    throw ast::InternalError(6, _pExp->getLocation());
                 }
 
                 pEHParent->setCurrent(pIT);
@@ -1648,7 +1648,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
     // case m=x; m()=x;
     if (_pArgs->size() == 0)
     {
-        throw ast::InternalError(_W("Wrong insertion : Cannot insert without arguments."), 999, e.getLocation());
+        throw ast::InternalError(7, e.getLocation());
     }
 
     // first extract implicit list
@@ -1756,7 +1756,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     pIL->killMe();
                 }
 
-                throw ast::InternalInvalidIndexError(e.getLocation());
+                throw ast::InternalError(2, e.getLocation());
             }
 
             types::Struct* pStr = new types::Struct(1, 1);
@@ -1940,7 +1940,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                         pIL->killMe();
                     }
 
-                    throw ast::InternalInvalidIndexError(e.getLocation());
+                    throw ast::InternalError(2, e.getLocation());
                 }
 
                 /* Add a field */
@@ -2048,7 +2048,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                             pIL->killMe();
                         }
 
-                        throw ast::InternalInvalidIndexError(e.getLocation());
+                        throw ast::InternalError(2, e.getLocation());
                     }
 
                     if (_pInsert->isListDelete())
@@ -2212,7 +2212,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             }
             else
             {
-                throw ast::InternalError(_W("Wrong insertion: A Cell expected: use {...} instead of (...).\n"), 999, e.getLocation());
+                throw ast::InternalError(11, e.getLocation());
             }
         }
         else if (_pVar->getType() == _pInsert->getType())

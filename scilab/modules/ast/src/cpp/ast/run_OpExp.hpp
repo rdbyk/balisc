@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,7 +28,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (isSingleResult() == false)
         {
             clearResult();
-            throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
+            throw ast::InternalError(5, e.getRight().getLocation());
         }
 
         pITL = getResult();
@@ -47,7 +47,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (isSingleResult() == false)
         {
             clearResult();
-            throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
+            throw ast::InternalError(5, e.getRight().getLocation());
         }
 
         pITR = getResult();
@@ -251,7 +251,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         pITL = getResult();
         if (isSingleResult() == false)
         {
-            throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
+            throw ast::InternalError(5, e.getRight().getLocation());
         }
 
         setResult(NULL);
@@ -285,7 +285,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 pITR = getResult();
                 if (isSingleResult() == false)
                 {
-                    throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
+                    throw ast::InternalError(5, e.getRight().getLocation());
                 }
 
                 if (pITR->getType() == types::InternalType::ScilabImplicitList)
@@ -335,7 +335,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 pITR = getResult();
                 if (isSingleResult() == false)
                 {
-                    throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
+                    throw ast::InternalError(5, e.getRight().getLocation());
                 }
 
                 if (pITR->getType() == types::InternalType::ScilabImplicitList)
@@ -379,7 +379,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
             if (isSingleResult() == false)
             {
                 clearResult();
-                throw ast::InternalIncompatibleOutputError(e.getRight().getLocation());
+                throw ast::InternalError(5, e.getRight().getLocation());
             }
 
             if (pITR->getType() == types::InternalType::ScilabImplicitList)
@@ -453,7 +453,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
             }
             if (!out.size())
             {
-                throw ast::InternalError(_("Overloaded operator does not return a result.\n"));
+                throw ast::InternalError(23);
             }
         }
         catch (const ast::InternalError& e)
@@ -480,7 +480,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
         }
         if (!out.size())
         {
-            throw ast::InternalError(_("Overloaded operator does not return a result.\n"));
+            throw ast::InternalError(23);
         }
     }
     catch (const ast::InternalError& e)

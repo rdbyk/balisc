@@ -97,7 +97,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
         case 0: // stderr
         case 6: // stdout
             FREE(pstType);
-            Scierror(30, iFile);
+            Scierror(50, iFile);
             return types::Function::Error;
     }
 
@@ -106,7 +106,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     if (pFile == NULL || pFile->getFileType() == 1)
     {
         FREE(pstType);
-        Scierror(30, iFile);
+        Scierror(50, iFile);
         return types::Function::Error;
     }
 

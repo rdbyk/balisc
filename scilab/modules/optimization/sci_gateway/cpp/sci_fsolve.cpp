@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 
 #include "optimization_gw.hxx"
@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
 
         if (bOK == false)
         {
-            Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
+            Scierror(999, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
             FREE(pst);
             Optimization::removeOptimizationFunctions();
             return types::Function::Error;
@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
         types::List* pList = in[1]->getAs<types::List>();
         if (pList->getSize() == 0)
         {
-            Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "fsolve", 2, "(string empty)");
+            Scierror(999, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "fsolve", 2, "(string empty)");
             Optimization::removeOptimizationFunctions();
             return types::Function::Error;
         }
@@ -122,7 +122,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
 
             if (bOK == false)
             {
-                Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
+                Scierror(999, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
                 FREE(pst);
                 Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
@@ -170,7 +170,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
 
             if (bOK == false)
             {
-                Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
+                Scierror(999, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
                 FREE(pst);
                 Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
@@ -184,7 +184,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
             types::List* pList = in[2]->getAs<types::List>();
             if (pList->getSize() == 0)
             {
-                Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "fsolve", 3, "(string empty)");
+                Scierror(999, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "fsolve", 3, "(string empty)");
                 Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
             }
@@ -197,7 +197,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
 
                 if (bOK == false)
                 {
-                    Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
+                    Scierror(999, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
                     FREE(pst);
                     Optimization::removeOptimizationFunctions();
                     return types::Function::Error;

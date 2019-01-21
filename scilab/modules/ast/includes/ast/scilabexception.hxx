@@ -28,40 +28,20 @@
 namespace ast
 {
 
-enum ExceptionType
-{
-    TYPE_ERROR,
-    TYPE_EXCEPTION
-};
-
 class ScilabException : public std::exception
 {
 public :
-    ScilabException();
-    ScilabException(const std::wstring& _wstErrorMesssage);
+    ScilabException() : m_wstErrorMessage(), m_iErrorNumber(0), m_ErrorLocation()
+    {
+    }
+
     ScilabException(const std::string& _stErrorMesssage);
-    ScilabException(const std::wstring& _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation);
 
     virtual ~ScilabException() throw() {};
-
-    void SetErrorMessage(const std::wstring& _wstErrorMesssage)
-    {
-        m_wstErrorMessage = _wstErrorMesssage;
-    }
 
     std::wstring GetErrorMessage(void) const
     {
         return m_wstErrorMessage;
-    }
-
-    void SetErrorNumber(int _iErrorNumber)
-    {
-        m_iErrorNumber = _iErrorNumber;
-    }
-
-    int GetErrorNumber(void) const
-    {
-        return m_iErrorNumber;
     }
 
     void SetErrorLocation(const Location& _ErrorLocation)
@@ -74,22 +54,16 @@ public :
         return m_ErrorLocation;
     }
 
-    void SetErrorType(ExceptionType _type)
-    {
-        m_type = _type;
-    }
-
-    ExceptionType GetErrorType(void)
-    {
-        return m_type;
-    }
-
 protected :
-    void createScilabException(const std::wstring& _wstErrorMessage, int _iErrorNumber, const Location& _ErrorLocation);
+    void createScilabException(const std::wstring& _wstErrorMessage, int _iErrorNumber, const Location& _ErrorLocation)
+    {
+        m_wstErrorMessage = _wstErrorMessage;
+        m_iErrorNumber = _iErrorNumber;
+        m_ErrorLocation = _ErrorLocation;
+    }
     std::wstring m_wstErrorMessage;
     int m_iErrorNumber;
     Location m_ErrorLocation;
-    ExceptionType m_type;
 };
 
 class InternalError : public ScilabException
@@ -98,32 +72,8 @@ public :
     InternalError(const std::wstring& _wstErrorMesssage);
     InternalError(std::string _stErrorMesssage);
     InternalError(const std::wstring& _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation);
-};
-
-class InternalRowColDimensionsError : public InternalError
-{
-public:
-    InternalRowColDimensionsError();
-    InternalRowColDimensionsError(const Location& loc);
-};
-
-class InternalInvalidIndexError : public InternalError
-{
-public:
-    InternalInvalidIndexError();
-    InternalInvalidIndexError(const Location& loc);
-};
-
-class InternalProtectedVariableError : public InternalError
-{
-public:
-    InternalProtectedVariableError(const Location& loc);
-};
-
-class InternalIncompatibleOutputError : public InternalError
-{
-public:
-    InternalIncompatibleOutputError(const Location& loc);
+    InternalError(int _iErrorNumber);
+    InternalError(int _iErrorNumber, const Location& _ErrorLocation);
 };
 
 class InternalAbort : public ScilabException

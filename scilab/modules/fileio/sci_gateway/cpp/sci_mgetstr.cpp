@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
     {
         case 0: // stderr
         case 6: // stdout
-            Scierror(30, iFile);
+            Scierror(50, iFile);
             return types::Function::Error;
         default :
             pwstOut = mgetstr(iFile, iSizeToRead);
@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, 
 
     if (pwstOut == NULL)
     {
-        Scierror(31, iFile);
+        Scierror(51, iFile);
         return types::Function::Error;
     }
 

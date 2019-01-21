@@ -3,7 +3,7 @@
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -101,7 +101,7 @@ InternalType* dotdiv_M_M<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -131,7 +131,7 @@ InternalType* dotdiv_M_MC<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -159,7 +159,7 @@ InternalType* dotdiv_MC_MC<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -960,7 +960,7 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
                 if (ConfigVariable::getIeee() == 0)
                 {
                     pResult->killMe();
-                    throw ast::InternalError(_("Division by zero...\n"));
+                    throw ast::InternalError(36);
                 }
 
                 if (ConfigVariable::getIeee() == 1)
@@ -1002,7 +1002,7 @@ InternalType* dotdiv_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1032,7 +1032,7 @@ InternalType* dotdiv_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1103,7 +1103,7 @@ InternalType* dotdiv_MC_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1133,7 +1133,7 @@ InternalType* dotdiv_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1402,7 +1402,7 @@ InternalType* dotdiv_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
     //check dimensions
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
-        throw ast::InternalRowColDimensionsError();
+        throw ast::InternalError(3);
     }
 
     Sparse* pSparseOut = _pL->dotDivide(*_pR);
@@ -1947,7 +1947,7 @@ InternalType* dotdiv_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 

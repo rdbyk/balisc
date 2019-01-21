@@ -228,7 +228,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         pGT->killMe();
                     }
-                    throw ast::InternalRowColDimensionsError(row->getLocation());
+                    throw ast::InternalError(3, row->getLocation());
                 }
 
                 // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
@@ -380,7 +380,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult->killMe();
                 }
-                throw ast::InternalRowColDimensionsError((*e.getLines().begin())->getLocation());
+                throw ast::InternalError(3, (*e.getLines().begin())->getLocation());
             }
 
             // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
