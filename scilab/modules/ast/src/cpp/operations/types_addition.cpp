@@ -102,7 +102,7 @@ InternalType* add_M_M<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -130,7 +130,7 @@ InternalType* add_M_MC<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -158,7 +158,7 @@ InternalType* add_MC_MC<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1216,7 +1216,7 @@ InternalType* add_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1244,7 +1244,7 @@ InternalType* add_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1303,7 +1303,7 @@ InternalType* add_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1669,7 +1669,7 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 

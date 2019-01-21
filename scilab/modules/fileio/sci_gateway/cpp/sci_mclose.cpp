@@ -87,7 +87,7 @@ types::Function::ReturnValue sci_mclose(types::typed_list &in, int _iRetCount, t
                 case 0: // stderr
                 case 5: // stdin
                 case 6: // stdout
-                    Scierror(30, iVal);
+                    Scierror(50, iVal);
                     return types::Function::Error;
             }
             iRet = mclose(iVal);

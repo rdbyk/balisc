@@ -96,7 +96,7 @@ Function::ReturnValue exists(typed_list &in, int _iRetCount, typed_list &out)
         }
         else
         {
-            Scierror(36, _("%s: Wrong input argument %d.\n"), fname[W], 2);
+            Scierror(110, _("\'a\', \'l\', or \'n\'"));
             delete pOut;
             return Function::Error;
         }

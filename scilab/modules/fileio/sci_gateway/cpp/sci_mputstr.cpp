@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, 
     switch (iFile)
     {
         case 5: // stdin
-            Scierror(30, iFile);
+            Scierror(50, iFile);
             return types::Function::Error;
         default :
             iErr = mputl(iFile, pString->get(), 1, FALSE);

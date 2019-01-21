@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -42,7 +42,7 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
         int iResult = PowerDoubleByDouble(pL, pR, (Double**)&pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;
@@ -61,9 +61,9 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
         switch (iResult)
         {
             case 1 :
-                throw ast::InternalRowColDimensionsError();
+                throw ast::InternalError(3);
             case 2 :
-                throw ast::InternalError(_W("Invalid exponent: expected finite integer exponents.\n"));
+                throw ast::InternalError(38);
             default:
                 //OK
                 break;
@@ -97,7 +97,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         int iResult = DotPowerDoubleByDouble(pL, pR, (Double**)&pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;
@@ -113,7 +113,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         int iResult = DotPowerSparseByDouble(pL, pR, &pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
         return pResult;
 
@@ -132,9 +132,9 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         switch (iResult)
         {
             case 1 :
-                throw ast::InternalRowColDimensionsError();
+                throw ast::InternalError(3);
             case 2 :
-                throw ast::InternalError(_W("Invalid exponent: expected finite integer exponents.\n"));
+                throw ast::InternalError(38);
             default:
                 //OK
                 break;
@@ -517,7 +517,7 @@ int DotPowerSparseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
         delete[] Col;
         delete[] Row;
         delete[] iPositVal;
-        throw ast::InternalError(_W("Invalid exponent.\n"));
+        throw ast::InternalError(37);
         return 1;
     }
 
@@ -603,7 +603,7 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
     else
     {
         delete[] pDblPower;
-        throw ast::InternalError(_W("Invalid exponent.\n"));
+        throw ast::InternalError(37);
     }
 
     InternalType* pITTempOut    = NULL;
@@ -653,12 +653,12 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
         case 1 :
         {
             delete pPolyOut;
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
         case 2 :
         {
             delete pPolyOut;
-            throw ast::InternalError(_W("Invalid exponent.\n"));
+            throw ast::InternalError(37);
         }
         default:
             //OK

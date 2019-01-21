@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -92,11 +92,11 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
         switch (iResult)
         {
             case 1 :
-                throw ast::InternalRowColDimensionsError();
+                throw ast::InternalError(3);
             case 2 :
-                throw ast::InternalError(_W("With NaN or Inf a division by scalar expected.\n"));
+                throw ast::InternalError(39);
             case 3 :
-                throw ast::InternalError(_W("Division by zero...\n"));
+                throw ast::InternalError(36);
             case 4 :
                 if (ConfigVariable::getWarningMode())
                 {

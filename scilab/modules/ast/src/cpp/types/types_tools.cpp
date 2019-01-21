@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -368,7 +368,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
 
                 if ((start < 1 && step > 0) || (end < 1 & step < 0))
                 {
-                    throw ast::InternalInvalidIndexError();
+                    throw ast::InternalError(2);
                 }
 
                 std::vector<int> idx(size);
@@ -815,7 +815,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 //checks if size < size(int)
                 if (pCurrentArg->get(j) >= INT_MAX)
                 {
-                    throw ast::InternalError(_("Value of index exceeds maximum of 2147483647.\n"));
+                    throw ast::InternalError(34);
                 }
 
                 int d = static_cast<int>(pCurrentArg->get(j));
@@ -837,7 +837,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             delete[] _piCountDim;
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
 
-            throw ast::InternalInvalidIndexError();
+            throw ast::InternalError(2);
         }
 
         _pArgsOut->push_back(pCurrentArg);

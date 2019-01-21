@@ -624,7 +624,7 @@ bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetC
         InternalType * _out = extract(&in);
         if (!_out)
         {
-            throw ast::InternalInvalidIndexError(e.getLocation());
+            throw ast::InternalError(2, e.getLocation());
         }
         out.push_back(_out);
     }

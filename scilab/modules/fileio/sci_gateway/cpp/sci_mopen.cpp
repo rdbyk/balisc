@@ -136,7 +136,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 case MOPEN_CAN_NOT_OPEN_FILE:
                 {
                     char* pst = wide_string_to_UTF8(pstFilename);
-                    Scierror(32, pst);
+                    Scierror(52, pst);
                     FREE(pst);
                     FREE(pstFilename);
                     FREE(pwstTemp);
@@ -145,7 +145,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 }
                 case MOPEN_INVALID_FILENAME:
                 {
-                    Scierror(34);
+                    Scierror(54);
                     FREE(pstFilename);
                     FREE(pwstTemp);
                     pstFilename = NULL;
@@ -153,7 +153,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 }
                 case MOPEN_INVALID_STATUS:
                 {
-                    Scierror(35);
+                    Scierror(55);
                     FREE(pstFilename);
                     FREE(pwstTemp);
                     pstFilename = NULL;

@@ -128,9 +128,7 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
             }
 
             FREE(pstFuncName);
-            ast::InternalError ie(pstError1);
-            ie.SetErrorType(ast::TYPE_EXCEPTION);
-            throw ie;
+            throw ast::ScilabException(pstError1);
         }
 
         if (ConfigVariable::increaseRecursion())

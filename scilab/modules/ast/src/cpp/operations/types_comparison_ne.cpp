@@ -3750,7 +3750,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     /* check dimension*/
     if (_pL->getDims() != _pR->getDims())
     {
-        throw ast::InternalRowColDimensionsError();
+        throw ast::InternalError(3);
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -3760,7 +3760,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -233,7 +233,7 @@ void RunVisitorT<T>::visitprivate(const VarDec & e)
         }
         else
         {
-            throw InternalError(_W("for expression : No value for assignment to loop variable.\n"), 999, e.getLocation());
+            throw InternalError(16, e.getLocation());
         }
     }
     catch (const InternalError& error)
@@ -267,7 +267,7 @@ void RunVisitorT<T>::visitprivate(const CellExp & e)
         if (iColMax != static_cast<int>(cols.size()))
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw ast::InternalRowColDimensionsError((*row)->getLocation());
+            throw ast::InternalError(3, (*row)->getLocation());
         }
     }
 
@@ -311,7 +311,7 @@ void RunVisitorT<T>::visitprivate(const CellExp & e)
             else
             {
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(_W("Evaluation of element in cell expression failed.\n"), 999, e.getLocation());
+                throw InternalError(27, e.getLocation());
             }
 
             clearResult();
@@ -336,7 +336,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (!e.getTail()->isSimpleVar())
     {
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(_W("/!\\ Unmanaged FieldExp.\n"), 999, e.getLocation());
+        throw InternalError(26, e.getLocation());
     }
 
     try
@@ -352,7 +352,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (getResult() == NULL)
     {
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(_W("Attempt to reference field of non-structure array.\n"), 999, e.getLocation());
+        throw InternalError(9, e.getLocation());
     }
 
     // TODO: handle case where getSize() > 1
@@ -362,7 +362,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         clearResult();
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(_W("Not yet implemented in Scilab.\n"), 999, e.getLocation());
+        throw InternalError(24, e.getLocation());
     }
 
     SimpleVar * psvRightMember = static_cast<SimpleVar *>(const_cast<Exp *>(e.getTail()));
@@ -389,7 +389,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         if (pReturn == NULL)
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw ast::InternalInvalidIndexError(e.getLocation());
+            throw ast::InternalError(2, e.getLocation());
         }
 
         setResult(pReturn);
@@ -478,7 +478,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         pValue->killMe();
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(_W("Attempt to reference field of non-structure array.\n"), 999, e.getLocation());
+        throw InternalError(9, e.getLocation());
     }
 
     CoverageInstance::stopChrono((void*)&e);
@@ -678,7 +678,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         if (ctx->isprotected(var))
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw ast::InternalProtectedVariableError(e.getVardec().getLocation());
+            throw ast::InternalError(4, e.getVardec().getLocation());
         }
 
         ctx->put(var, pIL);
@@ -714,7 +714,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                         if (ctx->isprotected(var))
                         {
                             CoverageInstance::stopChrono((void*)&e);
-                            throw ast::InternalProtectedVariableError(e.getVardec().getLocation());
+                            throw ast::InternalError(4, e.getVardec().getLocation());
                         }
 
                         ctx->put(var, pIL);
@@ -777,7 +777,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             if (ctx->isprotected(var))
             {
                 CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalProtectedVariableError(e.getVardec().getLocation());
+                throw ast::InternalError(4, e.getVardec().getLocation());
             }
             ctx->put(var, pNew);
 
@@ -824,7 +824,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             pIT->DecreaseRef();
             pIT->killMe();
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(_W("for expression can only manage 1 or 2 dimensions variables\n"), 999, e.getVardec().getLocation());
+            throw InternalError(15, e.getVardec().getLocation());
         }
 
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
@@ -837,13 +837,13 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                 pIT->DecreaseRef();
                 pIT->killMe();
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
+                throw InternalError(14, e.getVardec().getLocation());
             }
 
             if (ctx->isprotected(var))
             {
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalProtectedVariableError(e.getVardec().getLocation());
+                throw InternalError(4, e.getVardec().getLocation());
             }
             ctx->put(var, pNew);
 
@@ -886,7 +886,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         pIT->DecreaseRef();
         pIT->killMe();
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
+        throw InternalError(14, e.getVardec().getLocation());
     }
 
     pIT->DecreaseRef();
@@ -929,7 +929,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
         if (e.getParent() == nullptr || e.getParent()->isAssignExp() == false)
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(_W("With input arguments, return expects output arguments.\n"), 999, e.getLocation());
+            throw InternalError(25, e.getLocation());
         }
 
         try
@@ -1428,7 +1428,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     {
         delete pMacro;
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalProtectedVariableError(e.getLocation());
+        throw InternalError(4, e.getLocation());
     }
 
     if (ctx->addMacro(pMacro) == false)

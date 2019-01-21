@@ -129,7 +129,7 @@ InternalType* sub_M_M<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -157,7 +157,7 @@ InternalType* sub_M_MC<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -185,7 +185,7 @@ InternalType* sub_MC_M<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -213,7 +213,7 @@ InternalType* sub_MC_MC<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1030,7 +1030,7 @@ InternalType* sub_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1058,7 +1058,7 @@ InternalType* sub_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1111,7 +1111,7 @@ InternalType* sub_MC_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1139,7 +1139,7 @@ InternalType* sub_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -1781,7 +1781,7 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     {
         if (piDims1[i] != piDims2[i])
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
     }
 
@@ -2362,7 +2362,7 @@ template<> InternalType* sub_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _p
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
         //dimensions not match
-        throw ast::InternalRowColDimensionsError();
+        throw ast::InternalError(3);
     }
 
     types::Sparse* pSPOut = _pL->substract(*_pR);
@@ -2524,7 +2524,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
     }
     else
     {
-        throw ast::InternalRowColDimensionsError();
+        throw ast::InternalError(3);
     }
 }
 
@@ -2652,7 +2652,7 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
 
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
-        throw ast::InternalRowColDimensionsError();
+        throw ast::InternalError(3);
     }
 
     //SP - D

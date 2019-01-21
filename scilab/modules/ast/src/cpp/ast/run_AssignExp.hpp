@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -45,7 +45,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     // avoid double deletion when rhs is deleted from exp and cleanResult
                     setResult(NULL);
-                    throw ast::InternalError(_W("Can not assign multiple value in a single variable.\n"), 999, e.getRightExp().getLocation());
+                    throw ast::InternalError(29, e.getRightExp().getLocation());
                 }
 
                 pIT = getResult();
@@ -106,7 +106,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 }
                 else
                 {
-                    throw ast::InternalProtectedVariableError(e.getLeftExp().getLocation());
+                    throw ast::InternalError(4, e.getLeftExp().getLocation());
                 }
             }
 
@@ -143,7 +143,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     if (pIT->isCell() == false)
                     {
                         CoverageInstance::stopChrono((void*)&e);
-                        throw ast::InternalError(_W("Cell indexing \"{..}\" of non-cell objects is not allowed.\n"), 999, e.getLeftExp().getLocation());
+                        throw ast::InternalError(8, e.getLeftExp().getLocation());
                     }
                 }
                 else
@@ -153,7 +153,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     if (pIT && pIT->isCallable())
                     {
                         CoverageInstance::stopChrono((void*)&e);
-                        throw ast::InternalError(_W("Cell indexing \"{..}\" of non-cell objects is not allowed.\n"), 999, e.getLeftExp().getLocation());
+                        throw ast::InternalError(8, e.getLeftExp().getLocation());
                     }
                 }
             }
@@ -171,7 +171,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             if (pITR == NULL)
             {
                 // if the right hand is NULL.
-                throw ast::InternalError(_W("Unable to extract right part expression.\n"), 999, e.getLeftExp().getLocation());
+                throw ast::InternalError(13, e.getLeftExp().getLocation());
             }
 
             std::list<ExpHistory*> fields;
@@ -182,7 +182,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     delete *i;
                 }
 
-                throw ast::InternalError(_W("Get fields from expression failed."), 999, e.getRightExp().getLocation());
+                throw ast::InternalError(12, e.getRightExp().getLocation());
             }
 
             try
@@ -211,7 +211,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (pOut == NULL)
             {
-                throw ast::InternalError(_W("Fields evaluation failed."), 999, e.getRightExp().getLocation());
+                throw ast::InternalError(10, e.getRightExp().getLocation());
             }
 
             if (pOut != NULL)
@@ -230,7 +230,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             }
             else
             {
-                throw ast::InternalInvalidIndexError(e.getRightExp().getLocation());
+                throw ast::InternalError(2, e.getRightExp().getLocation());
             }
 
             CoverageInstance::stopChrono((void*)&e);
@@ -245,8 +245,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (e.getRightExp().isReturnExp())
             {
-                // We can't put in the previous scope a variable create like that : a(2)=resume(1)
-                throw ast::InternalError(_W("Indexing not allowed for output arguments of resume.\n"), 79, e.getLeftExp().getLocation());
+                // We can't put in the previous scope a variable create like that : a(2)=return(1)
+                throw ast::InternalError(28, e.getLeftExp().getLocation());
             }
 
             /*getting what to assign*/
@@ -262,7 +262,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             if (pITR == NULL)
             {
                 // if the right hand is NULL.
-                throw ast::InternalError(_W("Unable to extract right part expression.\n"), 999, e.getLeftExp().getLocation());
+                throw ast::InternalError(13, e.getLeftExp().getLocation());
             }
 
             bool alreadyProcessed = false;
@@ -275,7 +275,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     if (ctx->isprotected(var->getStack()))
                     {
-                        throw ast::InternalProtectedVariableError(pCall->getLocation());
+                        throw ast::InternalError(4, pCall->getLocation());
                     }
 
                     // prevent delete after extractFullMatrix
@@ -310,7 +310,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
                     if (pOut == NULL)
                     {
-                        throw ast::InternalError(_W("Submatrix incorrectly defined.\n"), 999, e.getLocation());
+                        throw ast::InternalError(6, e.getLocation());
                     }
 
 
@@ -334,7 +334,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                         delete *i;
                     }
 
-                    throw ast::InternalError(_W("Instruction left hand side: waiting for a name."), 999, e.getRightExp().getLocation());
+                    throw ast::InternalError(31, e.getRightExp().getLocation());
                 }
 
                 // prevent delete after extractFullMatrix
@@ -369,7 +369,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
                 if (pOut == NULL)
                 {
-                    throw ast::InternalError(_W("Fields evaluation failed."), 999, e.getRightExp().getLocation());
+                    throw ast::InternalError(10, e.getRightExp().getLocation());
                 }
             }
 
@@ -483,7 +483,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     delete *i;
                 }
 
-                throw ast::InternalError(_W("Get fields from expression failed."), 999, e.getRightExp().getLocation());
+                throw ast::InternalError(12, e.getRightExp().getLocation());
             }
 
             try
@@ -495,7 +495,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                         delete *i;
                     }
 
-                    throw ast::InternalError(_W("Fields evaluation failed."), 999, e.getRightExp().getLocation());
+                    throw ast::InternalError(10, e.getRightExp().getLocation());
                 }
             }
             catch (const InternalError& error)
@@ -534,7 +534,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             return;
         }
 
-        throw ast::InternalError(_W("unknown script form"), 999, e.getRightExp().getLocation());
+        throw ast::InternalError(30, e.getRightExp().getLocation());
     }
     catch (const InternalError& error)
     {

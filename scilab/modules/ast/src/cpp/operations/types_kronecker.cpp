@@ -39,7 +39,7 @@ types::InternalType *GenericKrontimes(types::InternalType *_pLeftOperand, types:
         int iResult = KroneckerMultiplyDoubleByDouble(pL, pR, &pResult);
         if (iResult)
         {
-            throw ast::InternalRowColDimensionsError();
+            throw ast::InternalError(3);
         }
 
         return pResult;
@@ -112,7 +112,7 @@ types::InternalType *GenericKronrdivide(types::InternalType *_pLeftOperand, type
         int iErr = KroneckerRDivideDoubleByDouble(pL, pR, &pResult);
         if (iErr == 1)
         {
-            throw ast::InternalError(_W("Division by zero...\n"));
+            throw ast::InternalError(36);
         }
         else if (iErr == 2)
         {
@@ -171,7 +171,7 @@ types::InternalType *GenericKronldivide(types::InternalType *_pLeftOperand, type
         int iErr = KroneckerLDivideDoubleByDouble(pL, pR, &pResult);
         if (iErr == 1)
         {
-            throw ast::InternalError(_W("Division by zero...\n"));
+            throw ast::InternalError(36);
         }
         else if (iErr == 2)
         {

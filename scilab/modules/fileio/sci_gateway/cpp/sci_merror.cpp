@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            Scierror(31, iFile);
+            Scierror(51, iFile);
             return types::Function::Error;
         }
     }
