@@ -117,9 +117,7 @@ protected :
                 // overflow of iTmpSize ?
                 if (iTmpSize / m_iSize != m_piDims[i])
                 {
-                    char message[bsiz];
-                    os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
-                    throw ast::InternalError(message);
+                    throw ast::InternalError(_("Requested number of array elements exceeds maximum of 2147483647.\n"));
                 }
 
                 m_iSize = iTmpSize;
@@ -151,9 +149,7 @@ protected :
         }
         catch (std::bad_alloc & /*e*/)
         {
-            char message[bsiz];
-            os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(m_iSize * sizeof(T)) / 1.e6);
-            throw ast::InternalError(message);
+            throw ast::InternalError(_("Memory allocation failed.\n"));
         }
 
         m_iSizeMax = m_iSize;

@@ -267,7 +267,7 @@ void RunVisitorT<T>::visitprivate(const CellExp & e)
         if (iColMax != static_cast<int>(cols.size()))
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(_W("inconsistent row/column dimensions\n"), 999, (*row)->getLocation());
+            throw ast::InternalRowColDimensionsError((*row)->getLocation());
         }
     }
 
@@ -389,7 +389,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         if (pReturn == NULL)
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(_W("Invalid index.\n"), 999, e.getLocation());
+            throw ast::InternalInvalidIndexError(e.getLocation());
         }
 
         setResult(pReturn);
@@ -678,7 +678,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         if (ctx->isprotected(var))
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw ast::InternalError(_W("Redefining permanent variable.\n"), 999, e.getVardec().getLocation());
+            throw ast::InternalProtectedVariableError(e.getVardec().getLocation());
         }
 
         ctx->put(var, pIL);
@@ -714,7 +714,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                         if (ctx->isprotected(var))
                         {
                             CoverageInstance::stopChrono((void*)&e);
-                            throw ast::InternalError(_W("Redefining permanent variable.\n"), 999, e.getVardec().getLocation());
+                            throw ast::InternalProtectedVariableError(e.getVardec().getLocation());
                         }
 
                         ctx->put(var, pIL);
@@ -777,7 +777,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             if (ctx->isprotected(var))
             {
                 CoverageInstance::stopChrono((void*)&e);
-                throw ast::InternalError(_W("Redefining permanent variable.\n"), 999, e.getVardec().getLocation());
+                throw ast::InternalProtectedVariableError(e.getVardec().getLocation());
             }
             ctx->put(var, pNew);
 
@@ -843,7 +843,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             if (ctx->isprotected(var))
             {
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(_W("Redefining permanent variable.\n"), 999, e.getVardec().getLocation());
+                throw InternalProtectedVariableError(e.getVardec().getLocation());
             }
             ctx->put(var, pNew);
 
@@ -1428,7 +1428,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     {
         delete pMacro;
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(_W("Redefining permanent variable.\n"), 999, e.getLocation());
+        throw InternalProtectedVariableError(e.getLocation());
     }
 
     if (ctx->addMacro(pMacro) == false)

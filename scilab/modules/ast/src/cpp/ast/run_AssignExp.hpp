@@ -106,7 +106,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 }
                 else
                 {
-                    throw ast::InternalError(_W("Redefining permanent variable.\n"), 999, e.getLeftExp().getLocation());
+                    throw ast::InternalProtectedVariableError(e.getLeftExp().getLocation());
                 }
             }
 
@@ -230,8 +230,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             }
             else
             {
-                //manage error
-                throw ast::InternalError(_W("Invalid index.\n"), 999, e.getRightExp().getLocation());
+                throw ast::InternalInvalidIndexError(e.getRightExp().getLocation());
             }
 
             CoverageInstance::stopChrono((void*)&e);
@@ -276,7 +275,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     if (ctx->isprotected(var->getStack()))
                     {
-                        throw ast::InternalError(_W("Redefining permanent variable.\n"), 999, pCall->getLocation());
+                        throw ast::InternalProtectedVariableError(pCall->getLocation());
                     }
 
                     // prevent delete after extractFullMatrix

@@ -193,10 +193,11 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/c/operations/matrix_multiplication.c \
 	src/c/operations/matrix_power.c \
 	src/c/operations/matrix_transpose.c src/c/types/dtoa.c \
-	src/cpp/ast/expHistory.cpp src/cpp/ast/macrovarvisitor.cpp \
-	src/cpp/ast/printvisitor.cpp src/cpp/ast/runvisitor.cpp \
-	src/cpp/ast/shortcutvisitor.cpp src/cpp/ast/treevisitor.cpp \
-	src/cpp/ast/visitor_common.cpp src/cpp/ast/consoledebugger.cpp \
+	src/cpp/ast/scilabexception.cpp src/cpp/ast/expHistory.cpp \
+	src/cpp/ast/macrovarvisitor.cpp src/cpp/ast/printvisitor.cpp \
+	src/cpp/ast/runvisitor.cpp src/cpp/ast/shortcutvisitor.cpp \
+	src/cpp/ast/treevisitor.cpp src/cpp/ast/visitor_common.cpp \
+	src/cpp/ast/consoledebugger.cpp \
 	src/cpp/ast/debuggervisitor.cpp src/cpp/ast/debugmanager.cpp \
 	src/cpp/ast/prettyprintvisitor.cpp \
 	src/cpp/operations/operations.cpp \
@@ -385,6 +386,7 @@ am_libsciast_la_OBJECTS =  \
 	src/c/operations/libsciast_la-matrix_power.lo \
 	src/c/operations/libsciast_la-matrix_transpose.lo \
 	src/c/types/libsciast_la-dtoa.lo \
+	src/cpp/ast/libsciast_la-scilabexception.lo \
 	src/cpp/ast/libsciast_la-expHistory.lo \
 	src/cpp/ast/libsciast_la-macrovarvisitor.lo \
 	src/cpp/ast/libsciast_la-printvisitor.lo \
@@ -1000,10 +1002,11 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/c/operations/matrix_multiplication.c \
 	src/c/operations/matrix_power.c \
 	src/c/operations/matrix_transpose.c src/c/types/dtoa.c \
-	src/cpp/ast/expHistory.cpp src/cpp/ast/macrovarvisitor.cpp \
-	src/cpp/ast/printvisitor.cpp src/cpp/ast/runvisitor.cpp \
-	src/cpp/ast/shortcutvisitor.cpp src/cpp/ast/treevisitor.cpp \
-	src/cpp/ast/visitor_common.cpp src/cpp/ast/consoledebugger.cpp \
+	src/cpp/ast/scilabexception.cpp src/cpp/ast/expHistory.cpp \
+	src/cpp/ast/macrovarvisitor.cpp src/cpp/ast/printvisitor.cpp \
+	src/cpp/ast/runvisitor.cpp src/cpp/ast/shortcutvisitor.cpp \
+	src/cpp/ast/treevisitor.cpp src/cpp/ast/visitor_common.cpp \
+	src/cpp/ast/consoledebugger.cpp \
 	src/cpp/ast/debuggervisitor.cpp src/cpp/ast/debugmanager.cpp \
 	src/cpp/ast/prettyprintvisitor.cpp \
 	src/cpp/operations/operations.cpp \
@@ -1614,6 +1617,9 @@ src/cpp/ast/$(am__dirstamp):
 src/cpp/ast/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/ast/$(DEPDIR)
 	@: > src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
+src/cpp/ast/libsciast_la-scilabexception.lo:  \
+	src/cpp/ast/$(am__dirstamp) \
+	src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
 src/cpp/ast/libsciast_la-expHistory.lo: src/cpp/ast/$(am__dirstamp) \
 	src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
 src/cpp/ast/libsciast_la-macrovarvisitor.lo:  \
@@ -2473,6 +2479,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-prettyprintvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-printvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-runvisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-scilabexception.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-shortcutvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-treevisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-visitor_common.Plo@am__quote@
@@ -2659,6 +2666,13 @@ src/c/types/libsciast_la-dtoa.lo: src/c/types/dtoa.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
+src/cpp/ast/libsciast_la-scilabexception.lo: src/cpp/ast/scilabexception.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/ast/libsciast_la-scilabexception.lo -MD -MP -MF src/cpp/ast/$(DEPDIR)/libsciast_la-scilabexception.Tpo -c -o src/cpp/ast/libsciast_la-scilabexception.lo `test -f 'src/cpp/ast/scilabexception.cpp' || echo '$(srcdir)/'`src/cpp/ast/scilabexception.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/ast/$(DEPDIR)/libsciast_la-scilabexception.Tpo src/cpp/ast/$(DEPDIR)/libsciast_la-scilabexception.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ast/scilabexception.cpp' object='src/cpp/ast/libsciast_la-scilabexception.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/ast/libsciast_la-scilabexception.lo `test -f 'src/cpp/ast/scilabexception.cpp' || echo '$(srcdir)/'`src/cpp/ast/scilabexception.cpp
 
 src/cpp/ast/libsciast_la-expHistory.lo: src/cpp/ast/expHistory.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/ast/libsciast_la-expHistory.lo -MD -MP -MF src/cpp/ast/$(DEPDIR)/libsciast_la-expHistory.Tpo -c -o src/cpp/ast/libsciast_la-expHistory.lo `test -f 'src/cpp/ast/expHistory.cpp' || echo '$(srcdir)/'`src/cpp/ast/expHistory.cpp

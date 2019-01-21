@@ -23,6 +23,7 @@
 
 extern "C"
 {
+#include "sci_malloc.h"
 #include "matrix_addition.h"
 #include "elem_common.h" //dset
 #include "Sciwarning.h"
@@ -101,7 +102,7 @@ InternalType* add_M_M<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -129,7 +130,7 @@ InternalType* add_M_MC<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -157,7 +158,7 @@ InternalType* add_MC_MC<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -1215,7 +1216,7 @@ InternalType* add_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -1243,7 +1244,7 @@ InternalType* add_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -1302,7 +1303,7 @@ InternalType* add_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -1668,7 +1669,7 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -2443,65 +2444,6 @@ template<> InternalType* add_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 //sp + sp
 template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
 {
-    Sparse* pOut = NULL;
-
-    //check scalar hidden in a sparse ;)
-    /* if (_pL->getRows() == 1 && _pL->getCols() == 1)
-     {
-         //do scalar + sp
-         Double* pDbl = NULL;
-         if (_pL->isComplex())
-         {
-             std::complex<double> dbl = _pL->getFirst();
-             pDbl = new Double(dbl.real(), dbl.imag());
-         }
-         else
-         {
-             pDbl = new Double(_pL->getFirst());
-         }
-
-         AddSparseToDouble(_pR, pDbl, (GenericType**)pOut);
-         delete pDbl;
-         return pOut;
-     }
-
-     if (_pR->getRows() == 1 && _pR->getCols() == 1)
-     {
-         //do sp + scalar
-         Double* pDbl = NULL;
-         if (_pR->isComplex())
-         {
-             std::complex<double> dbl = _pR->getFirst();
-             pDbl = new Double(dbl.real(), dbl.imag());
-         }
-         else
-         {
-             pDbl = new Double(_pR->getFirst());
-         }
-
-         AddSparseToDouble(_pL, pDbl, (GenericType**)pOut);
-         delete pDbl;
-         return 0;
-     }
-
-     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
-     {
-         //dimensions not match
-         throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
-     }
-
-     if (_pL->nonZeros() == 0)
-     {
-         //sp([]) + sp
-         return _pR;
-     }
-
-     if (_pR->nonZeros() == 0)
-     {
-         //sp + sp([])
-         return _pL;
-     }*/
-
     return _pL->add(*_pR);
 }
 

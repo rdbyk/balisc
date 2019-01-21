@@ -24,6 +24,7 @@ extern "C"
 #include "Scierror.h"
 #include "lsq.h"
 #include "doublecomplex.h"
+#include "sci_malloc.h"
 }
 
 types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, types::typed_list &out)

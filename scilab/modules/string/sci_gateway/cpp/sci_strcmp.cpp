@@ -28,6 +28,7 @@ extern "C"
 #include "Scierror.h"
 #include "BOOL.h"
 #include "stringsCompare.h"
+#include "sci_malloc.h"
 }
 
 #define CHAR_I 'i'

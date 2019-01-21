@@ -3,7 +3,7 @@
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) 2015 - Scilab Enterprises - Vincent COUVERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,6 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include "jvm_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
@@ -26,8 +25,9 @@ extern "C"
 #include "system_setproperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sci_malloc.h"
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_system_setproperty(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     if (in.size() != 2)
@@ -75,4 +75,3 @@ types::Function::ReturnValue sci_system_setproperty(types::typed_list &in, int _
     return types::Function::OK;
 
 }
-/*--------------------------------------------------------------------------*/

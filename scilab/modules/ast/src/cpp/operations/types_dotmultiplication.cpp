@@ -92,7 +92,7 @@ InternalType* dotmul_M_M<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -122,7 +122,7 @@ InternalType* dotmul_M_MC<Double, Double, Double>(Double *_pL, Double *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -922,7 +922,7 @@ InternalType* dotmul_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -952,7 +952,7 @@ InternalType* dotmul_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -1017,7 +1017,7 @@ InternalType* dotmul_MC_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -1047,7 +1047,7 @@ InternalType* dotmul_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -1307,7 +1307,7 @@ InternalType* dotmul_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
     //check dimensions
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalRowColDimensionsError();
     }
 
     return _pL->dotMultiply(*_pR);
@@ -1519,7 +1519,7 @@ InternalType* dotmul_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -1707,7 +1707,7 @@ InternalType* dotmul_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 

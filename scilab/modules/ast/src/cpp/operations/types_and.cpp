@@ -66,7 +66,7 @@ InternalType* and_M_M<Bool, Bool, Bool>(Bool *_pL, Bool *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -606,7 +606,7 @@ InternalType* and_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -695,7 +695,7 @@ InternalType* and_int_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalRowColDimensionsError();
         }
     }
 
@@ -764,7 +764,7 @@ InternalType* and_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Spars
 
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalRowColDimensionsError();
     }
 
     return _pL->newLogicalAnd(*_pR);

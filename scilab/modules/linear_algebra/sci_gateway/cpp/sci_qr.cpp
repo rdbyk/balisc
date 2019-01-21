@@ -25,6 +25,7 @@ extern "C"
 #include "Scierror.h"
 #include "qr.h"
 #include "doublecomplex.h"
+#include "sci_malloc.h"
 }
 
 types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types::typed_list &out)

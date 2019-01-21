@@ -23,6 +23,7 @@
 extern "C"
 {
 #include "Sciwarning.h"
+#include "sci_malloc.h"
 }
 
 namespace symbol

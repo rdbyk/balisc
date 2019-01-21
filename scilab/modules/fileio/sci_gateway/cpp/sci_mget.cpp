@@ -29,6 +29,7 @@ extern "C"
 #include "Scierror.h"
 #include "charEncoding.h"
 #include "os_string.h"
+#include "sci_malloc.h"
 }
 
 static const char fname[] = "mget";

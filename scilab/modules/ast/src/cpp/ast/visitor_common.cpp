@@ -745,7 +745,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
         if (ctx->isprotected(pFirstField->getExp()->getSymbol()))
         {
-            throw ast::InternalError(_W("Redefining permanent variable.\n"), 999, _pExp->getLocation());
+            throw ast::InternalProtectedVariableError(_pExp->getLocation());
         }
 
         ast::SimpleVar* spMainExp = pFirstField->getExp();
@@ -838,7 +838,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     if (pEH->getArgsDims() == 1)
                     {
-                        throw ast::InternalError(_W("Invalid index.\n"), 999, _pExp->getLocation());
+                        throw ast::InternalInvalidIndexError(_pExp->getLocation());
                     }
 
                     // resize current struct
@@ -1189,7 +1189,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
                     if (pExtract == NULL)
                     {
-                        throw ast::InternalError(_W("Invalid index.\n"), 999, _pExp->getLocation());
+                        throw ast::InternalInvalidIndexError(_pExp->getLocation());
                     }
 
                     if ((*iterFields)->getExp() == NULL)
@@ -1280,7 +1280,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             {
                                 if (pEH->getArgsDims() == 1)
                                 {
-                                    throw ast::InternalError(_W("Invalid index.\n"), 999, _pExp->getLocation());
+                                    throw ast::InternalInvalidIndexError(_pExp->getLocation());
                                 }
 
                                 // resize current Cell
@@ -1304,7 +1304,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             {
                                 if (pEH->getArgsDims() == 1)
                                 {
-                                    throw ast::InternalError(_W("Invalid index.\n"), 999, _pExp->getLocation());
+                                    throw ast::InternalInvalidIndexError(_pExp->getLocation());
                                 }
 
                                 // resize current Cell
@@ -1756,7 +1756,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     pIL->killMe();
                 }
 
-                throw ast::InternalError(_W("Invalid index.\n"), 999, e.getLocation());
+                throw ast::InternalInvalidIndexError(e.getLocation());
             }
 
             types::Struct* pStr = new types::Struct(1, 1);
@@ -1940,7 +1940,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                         pIL->killMe();
                     }
 
-                    throw ast::InternalError(_W("Invalid index.\n"), 999, e.getLocation());
+                    throw ast::InternalInvalidIndexError(e.getLocation());
                 }
 
                 /* Add a field */
@@ -2048,7 +2048,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                             pIL->killMe();
                         }
 
-                        throw ast::InternalError(_W("Invalid index.\n"), 999, e.getLocation());
+                        throw ast::InternalInvalidIndexError(e.getLocation());
                     }
 
                     if (_pInsert->isListDelete())

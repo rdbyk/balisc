@@ -24,6 +24,11 @@
 #include "context.hxx"
 #include "function.hxx"
 
+extern "C"
+{
+#include "sci_malloc.h"
+}
+
 wchar_t* StringModule::pwstToken = NULL;
 wchar_t StringModule::Name[] = L"string";
 

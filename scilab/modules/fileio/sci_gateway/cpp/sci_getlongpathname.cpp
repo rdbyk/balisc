@@ -24,6 +24,7 @@ extern "C"
 #include "getlongpathname.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sci_malloc.h"
 }
 
 types::Function::ReturnValue sci_getlongpathname(types::typed_list &in, int _iRetCount, types::typed_list &out)

@@ -34,6 +34,7 @@ extern "C"
 #include "StringConvert.h"
 #include "mtell.h"
 #include "mseek.h"
+#include "sci_malloc.h"
 }
 
 types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, types::typed_list &out)

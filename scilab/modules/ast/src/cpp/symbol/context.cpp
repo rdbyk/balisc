@@ -27,6 +27,7 @@ extern "C"
 {
 #include "getmemory.h"
 #include "os_string.h"
+#include "sci_malloc.h"
 }
 
 namespace symbol

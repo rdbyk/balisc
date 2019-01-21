@@ -25,6 +25,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "isascii.h"
+#include "sci_malloc.h"
 }
 
 types::Function::ReturnValue sci_isascii(types::typed_list &in, int _iRetCount, types::typed_list &out)

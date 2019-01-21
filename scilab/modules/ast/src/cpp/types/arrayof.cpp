@@ -391,7 +391,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
-            throw ast::InternalError(_W("Invalid index.\n"));
+            throw ast::InternalInvalidIndexError();
         }
 
         if (pSource->isScalar())
@@ -1632,7 +1632,7 @@ bool ArrayOf<T>::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCou
         InternalType * _out = extract(&in);
         if (!_out)
         {
-            throw ast::InternalError(_W("Invalid index.\n"), 999, e.getLocation());
+            throw ast::InternalInvalidIndexError(e.getLocation());
         }
         out.push_back(_out);
     }
