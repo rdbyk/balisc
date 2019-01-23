@@ -41,7 +41,7 @@ function [x,y,typ]=BOUNCEXY(job,arg1,arg2)
             "Xmin";
             "Xmax";
             "Ymin";
-            "Ymax";
+            "Ymax"
             ],..
             list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then

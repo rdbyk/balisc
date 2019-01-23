@@ -35,7 +35,7 @@ function [x,y,typ]=ROOTCOEF(job,arg1,arg2)
         end //compatiblity
         while %t do
             [ok,typ,inp,exprs]=scicos_getvalue("Set ROOTCOEF Block",..
-            ["Datatype(1=real double  2=Complex)";"input row size";],list("vec",1,"vec",1),label)
+            ["Datatype(1=real double  2=Complex)";"input row size"],list("vec",1,"vec",1),label)
             if ~ok then
                 break,
             end

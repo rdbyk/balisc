@@ -143,7 +143,7 @@ function [x,y,typ]=LOOKUP_c(job,arg1,arg2)
                         orpar=[xy(:,1);xy(:,2);orpar];
                     else
                         if (METHOD=="zero order-below"|METHOD=="linear"|METHOD=="zero order-above"|METHOD=="zero order-nearest") then
-                            orpar=[xy(:,1);xy(:,2);]
+                            orpar=[xy(:,1);xy(:,2)]
                         end
                     end
                     exprs(1)=sci2exp(mtd);// pour le cas methode>7 | method<0
@@ -607,7 +607,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
                 rpar=[xy(:,1);xy(:,2);rpar];
             else
                 if (METHOD=="zero order-below"|METHOD=="linear"|METHOD=="zero order-above"|METHOD=="zero order-nearest")
-                    rpar=[xy(:,1);xy(:,2);]
+                    rpar=[xy(:,1);xy(:,2)]
                 end
             end
 

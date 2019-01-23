@@ -172,7 +172,7 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
     "sign";"abs";"max";"min";
     "asin";"acos";"atan";"asinh";"acosh";"atanh";
     "atan2";
-    "log10";
+    "log10"
     ]; // ops above 100
     %num_arg=[1;1;1;1;1;
     1;1;1
@@ -180,7 +180,7 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
     1;1;2;2;
     1;1;1;1;1;1;
     2;
-    1;
+    1
     ];  //number of arguments
     %OP = emptystr(32, 1); // ops
     %OP(1) = "+";

@@ -35,7 +35,7 @@ function [x,y,typ]=INIMPL_f(job,arg1,arg2)
         end //compatibility
         while %t do
             [ok,prt,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INIMPL_f");" "; ..
-            gettext("Implicit input port");" ";], "Port Number", ..
+            gettext("Implicit input port");" "], "Port Number", ..
             list("vec",1), exprs);
             if ~ok then
                 break

@@ -34,18 +34,18 @@ if getos() == "Windows" then
 end
 
 CurrentDirScicosBlocks=pwd();
-SubDirsScicosBlocks=["Branching",
-"Events",
-"Linear",
-"Misc",
-"NonLinear",
-"Sinks",
-"Sources",
-"MatrixOp",
-"Threshold",
-"Hydraulics",
-"Electrical",
-"PDE",
+SubDirsScicosBlocks=["Branching";
+"Events";
+"Linear";
+"Misc";
+"NonLinear";
+"Sinks";
+"Sources";
+"MatrixOp";
+"Threshold";
+"Hydraulics";
+"Electrical";
+"PDE";
 "IntegerOp"];
 
 Dim=size(SubDirsScicosBlocks);

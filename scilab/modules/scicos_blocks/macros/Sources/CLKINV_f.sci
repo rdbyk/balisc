@@ -34,7 +34,7 @@ function [x,y,typ]=CLKINV_f(job,arg1,arg2)
         exprs=exprs(1) // compatibility
         while %t do
             [ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "CLKINV_f");" "; ..
-            gettext("Event input port");" ";], "Port Number", ..
+            gettext("Event input port");" "], "Port Number", ..
             list("vec", 1),exprs);
             prt=int(prt)
             if ~ok then
