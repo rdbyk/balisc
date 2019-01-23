@@ -31,7 +31,7 @@ function [x,y,typ]=RATELIMITER(job,arg1,arg2)
         model=arg1.model;
         while %t do
             [ok,maxp,minp,exprs]=scicos_getvalue("Set rate limiter parameters",..
-            ["max slope";"min slope";],list("vec",1,"vec",1),exprs)
+            ["max slope";"min slope"],list("vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end

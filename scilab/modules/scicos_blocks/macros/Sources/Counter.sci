@@ -34,7 +34,7 @@ function [x,y,typ] = Counter(job,arg1,arg2)
             [ok,minim,maxim,rule,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "Counter"); " "; ..
             gettext("Integer counter generator");" "], ..
             [gettext("Minimum"); gettext("Maximum"); ..
-            gettext("Rule (1:Increment, 2:Decrement)");], ..
+            gettext("Rule (1:Increment, 2:Decrement)")], ..
             list("vec",1,"vec",1,"vec",1),exprs);
 
             if ~ok then

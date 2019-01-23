@@ -136,7 +136,7 @@ function [x,y,typ]=CURVE_c(job,arg1,arg2)
                         orpar=[xy(:,1);xy(:,2);orpar];
                     else
                         if (METHOD=="zero order"|METHOD=="linear")
-                            orpar=[xy(:,1);xy(:,2);]
+                            orpar=[xy(:,1);xy(:,2)]
                         end
                     end
                     exprs(1)=sci2exp(mtd);// pour le cas methode>7 | method<0
@@ -584,7 +584,7 @@ function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
                 rpar=[xy(:,1);xy(:,2);rpar];
             else
                 if (METHOD=="zero order"|METHOD=="linear")
-                    rpar=[xy(:,1);xy(:,2);]
+                    rpar=[xy(:,1);xy(:,2)]
                 end
             end
 
