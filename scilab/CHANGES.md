@@ -165,7 +165,7 @@ The previous behavior can be recalled by simply calling: `ieee(0)`.
 * Datatips:
   - The property `z_component = 'on|off'` is renamed to `display_components = 'xyz'`.
   It is now possible to choose which components to display, and in which order.
-  The `.z_component` property will be ignored in former `*.scg` files.
+  The `.z_component` property will be ignored in former `SCG` files.
   - A new `detached_position` property is available to display the datatip away from but linked to its anchor on the curve.
   - A new `Polyline.datatip_display_mode` property now allows to display each datatip of the curve only on `mouseover` its anchor or only on `mouseclick`.
 * Valgrind error detection added to `test_run` (on Linux only).
@@ -248,6 +248,16 @@ input and output arguments.
 * `surf(x,y,fun)` and `surf(x,y,list(fun,params))` syntaxes are now supported, with a function identifier `fun`.
 * Figure editor's terms have been clarify to ease usage.
 * `plot(x, list(fun, params))` is now supported.
+* `savematfile` has been upgraded:
+   - `savematfile(File)` now saves only user variables instead of all current ones.
+   - In formats 6, 7 and 7.3, `savematfile()` no longer breaks the saving when an unsupported type is encountered. A warning is now softly yielded.
+   - Input variables can no longer be corrupted by internal values before being saved.
+   - When an error occurs, the output file is now closed and unlocked.
+   - Encoded integers can now be saved in `-v4` format.
+* `sci2exp` now uses `%s` or `%z` in literal expressions of polynomials in `s` or `z`.
+* `min` and `max` hardly worked with sparse-encoded inputs. They are now fully enabled.
+* `cond([])` now yields 0 as `cond([],2)`, instead of 1.
+* `rcond([])` now yields `Inf` instead of `[]`, consistently with `cond([])==0`.
 
 Help pages:
 -----------
@@ -261,7 +271,7 @@ Help pages:
   `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`,
   `iconvert`, `cond`, `Globalproperty`, `unique`, `intdec`, `plus`, `minus`, `varn`, `savematfile`,
   `empty`, `modulo`, `pdiv`, `unix_g`, `unix_s`, `unix_w`, `unix_x`, `dos`, `listvarinfile`, `surf`, `plot`
-* rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
+* rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`, `sci2exp`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `lcm`, `isglobal`,
  `whereis`, `mode`, `%onprompt`, `toeplitz`, `param3d`, `param3d1`, `argn`, `powershell`, `gettext`, `poly`,
@@ -401,6 +411,7 @@ Known issues
 
 
 ### Bugs fixed in 6.0.2:
+* [#2247](http://bugzilla.scilab.org/show_bug.cgi?id=2247): The axes_properties page did not show how to yield vertical x-tick labels. `.grid_style`, `.grid_thickness`, and `.axes_bounds` inside a uicontrol frame were not documented.
 * [#2464](http://bugzilla.scilab.org/show_bug.cgi?id=2464): `null()` was poorly documented.
 * [#4050](http://bugzilla.scilab.org/show_bug.cgi?id=4050): `ged()` did not support graphical texts with a font size > 5.
 * [#4953](http://bugzilla.scilab.org/show_bug.cgi?id=4953): The `clean` function does not work when the matrix contains %inf.
@@ -413,6 +424,7 @@ Known issues
 * [#6548](http://bugzilla.scilab.org/show_bug.cgi?id=6548): `gamma` did not accept an hypermatrix and could not be overloaded for complex numbers.
 * [#6729](http://bugzilla.scilab.org/show_bug.cgi?id=6729): The compatibility functions `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_uint8`, `mtlb_uint16` and `mtlb_uint32` were not actually Matlab-like. Their documentation was neither correct nor up-to-date. `mtlb_int64` and `mtlb_int64` were missing.
 * [#6737](http://bugzilla.scilab.org/show_bug.cgi?id=6737): mouse events were not correctly reported to an event handler function.
+* [#6777](http://bugzilla.scilab.org/show_bug.cgi?id=6777): `gcf().anti_aliasing` was poorly documented and was not illustrated.
 * [#6939](http://bugzilla.scilab.org/show_bug.cgi?id=6939): `nearfloat("succ",rand(2,2,2))` returned a (2,2) matrix with no error.
 * [#6990](http://bugzilla.scilab.org/show_bug.cgi?id=6990): `or(hm,"r")`, `or(hm,"c")`, `and(hm,"r")` and `and(hm,"c")` generated an error for any hypermatrix hm of booleans, encoded integers, or doubles.
 * [#7107](http://bugzilla.scilab.org/show_bug.cgi?id=7107): The `graphics_entities` page missed listing the console_properties, root_properties, uicontrol_properties, and uimenu_properties. References to `getsystemmetrics` and to `setlookandfeel` were missing in the `See also` section.
@@ -440,7 +452,9 @@ Known issues
 * [#10171](http://bugzilla.scilab.org/show_bug.cgi?id=10171): `loadmatfile()` did not load files containing a matlab cell structure.
 * [#10190](http://bugzilla.scilab.org/show_bug.cgi?id=10190): Xcos blocks and labels positioning were not aligned to the grid on creation.
 * [#10197](http://bugzilla.scilab.org/show_bug.cgi?id=10197): creating implicit vector of integers could fail.
+* [#10411](http://bugzilla.scilab.org/show_bug.cgi?id=10411): Pivoting blocks drew out of bounds icons.
 * [#10639](http://bugzilla.scilab.org/show_bug.cgi?id=10639): The page of `intersect` poorly described the arguments. Examples were not illustrated.
+* [#10668](http://bugzilla.scilab.org/show_bug.cgi?id=10668): Some words in the `bloc2ss` page were inaccurate or misleading.
 * [#10918](http://bugzilla.scilab.org/show_bug.cgi?id=10918): After `a=5`, `a([%t ; %f])` returned `[5 ; 2.1e-314]` instead of `5`.
 * [#11240](http://bugzilla.scilab.org/show_bug.cgi?id=11240): `A=[]; clear B; [A($+1),B]=1;` crashed Scilab.
 * [#11435](http://bugzilla.scilab.org/show_bug.cgi?id=11435): The demo `Simulation => Flow => Blackhole` reliability had to be checked. Its displayed speed value was truncated.
@@ -452,6 +466,7 @@ Known issues
 * [#12147](http://bugzilla.scilab.org/show_bug.cgi?id=12147): `mfile2sci()` produced an error when 1) the {function} block is closed with {end}; 2) the macro's name matches a variable existing in the environment.
 * [#12198](http://bugzilla.scilab.org/show_bug.cgi?id=12198): Scilab control and block keywords `break case ... try while` and `clear()` could be overloaded as regular assignable variables.
 * [#12275](http://bugzilla.scilab.org/show_bug.cgi?id=12275): `msprintf("%s",ascii(97*ones(1,4097)))` produced "An error occurred: Buffer too small."
+* [#12345](http://bugzilla.scilab.org/show_bug.cgi?id=12345): `tree_show` is a list-specific function. Its page was expected in the data_structures chapter rather than in the general GUI chapter. It is moved.
 * [#12402](http://bugzilla.scilab.org/show_bug.cgi?id=12402): The menu `Applications => Scinotes` could launch the external editor instead of Scinotes.
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Variable browser did not display the size of the variables.
 * [#12529](http://bugzilla.scilab.org/show_bug.cgi?id=12529): The `listvarinfile` help page needed to be updated.
@@ -461,9 +476,11 @@ Known issues
 * [#12659](http://bugzilla.scilab.org/show_bug.cgi?id=12659): Crash on big modulo.
 * [#12711](http://bugzilla.scilab.org/show_bug.cgi?id=12711): Zoom with mouseWheel was always centered at the center of viewing box and was not using cursor position.
 * [#12810](http://bugzilla.scilab.org/show_bug.cgi?id=12810): support added to build RTL help pages.
+* [#12835](http://bugzilla.scilab.org/show_bug.cgi?id=12835): Calling without LHS a function returning varargout set to list() yielded an error.
 * [#12926](http://bugzilla.scilab.org/show_bug.cgi?id=12926): `~%f==1` was parsed as `~(%f==1)` instead of `(~%f)==1`.
 * [#13306](http://bugzilla.scilab.org/show_bug.cgi?id=13306): Evaluating a function set as a structure field could fail.
 * [#13197](http://bugzilla.scilab.org/show_bug.cgi?id=13197): The documentation of `lib()` needed to be updated for Scilab 6.
+* [#13231](http://bugzilla.scilab.org/show_bug.cgi?id=13231): `[X,D]=spec(rand(2000,2000))` yielded a segmentation fault.
 * [#13374](http://bugzilla.scilab.org/show_bug.cgi?id=13374): When setting an erroneous Xcos context, the error message printed in console could easily be missed.
 * [#13039](http://bugzilla.scilab.org/show_bug.cgi?id=13039): In Scinotes, the "File => Save file in" action opened the parent of the targeted directory.
 * [#13466](http://bugzilla.scilab.org/show_bug.cgi?id=13466): Since Scilab 5.5.0, it was no longer possible to dock the demo GUI.
@@ -477,12 +494,15 @@ Known issues
 * [#13915](http://bugzilla.scilab.org/show_bug.cgi?id=13915): On Windows, reinstalling an ATOMS toolbox with an archive already present failed.
 * [#13936](http://bugzilla.scilab.org/show_bug.cgi?id=13936): The exponentiation of a matrix was much slower than its multiple products.
 * [#14010](http://bugzilla.scilab.org/show_bug.cgi?id=14010): Browsevar was not displaying dimensions > 2 of hypermatrix
+* [#14122](http://bugzilla.scilab.org/show_bug.cgi?id=14122): Some SCI/.atoms/tmp_<unix_timestamp> could be created instead of in TMPDIR, and remained in case of installation error.
 * [#14218](http://bugzilla.scilab.org/show_bug.cgi?id=14218): Karmarkar post-process fails on some problems.
 * [#14282](http://bugzilla.scilab.org/show_bug.cgi?id=14282): `listvarinfile(fn)` and `load(fn)` yielded some memory leak.
 * [#14296](http://bugzilla.scilab.org/show_bug.cgi?id=14296): Xcos labels moving after creating blocks using scripts crashed Scilab.
 * [#14318](http://bugzilla.scilab.org/show_bug.cgi?id=14318): There was a memory leak when writing a HDF5 file.
 * [#14355](http://bugzilla.scilab.org/show_bug.cgi?id=14355): `powershell` was poorly documented.
+* [#14373](http://bugzilla.scilab.org/show_bug.cgi?id=14373): the `xcosAddToolMenu` callback did not work without selecting a block.
 * [#14386](http://bugzilla.scilab.org/show_bug.cgi?id=14386): `string(macro)` commented some `end` (missing `\n`).
+* [#14388](http://bugzilla.scilab.org/show_bug.cgi?id=14388): Feeding a cell component or clearing a cell array often crashed Scilab.
 * [#14460](http://bugzilla.scilab.org/show_bug.cgi?id=14460): sparse boolean indices were not supported.
 * [#14489](http://bugzilla.scilab.org/show_bug.cgi?id=14489): clicking the scinotes icon did not bring its window in the foreground.
 * [#14506](http://bugzilla.scilab.org/show_bug.cgi?id=14506): An `atomsInstallList` error message had a wrong number of input arguments.
@@ -492,6 +512,7 @@ Known issues
 * [#14536](http://bugzilla.scilab.org/show_bug.cgi?id=14536): `xpoly` crashed Scilab when it is used in logarithmic mode for points with negative or null coordinates.
 * [#14539](http://bugzilla.scilab.org/show_bug.cgi?id=14539): It was not possible to build Scilab with hdf5 1.10.0.
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
+* [#14670](http://bugzilla.scilab.org/show_bug.cgi?id=14670): Superblocks could be opened more than once.
 * [#14701](http://bugzilla.scilab.org/show_bug.cgi?id=14701): `poly(c,v,"coeff")` did not ignore null high order coefficients.
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.
 * [#14708](http://bugzilla.scilab.org/show_bug.cgi?id=14708): polynomial operators `+` `-` `/` `./` `*` `.*` no longer simplified null high orders coefficients from result
@@ -499,6 +520,7 @@ Known issues
 * [#14897](http://bugzilla.scilab.org/show_bug.cgi?id=14897): `xinfo` is poor and useless. It is declared obsolete.
 * [#14906](http://bugzilla.scilab.org/show_bug.cgi?id=14906): The `histplot` normalization was broken.
 * [#14915](http://bugzilla.scilab.org/show_bug.cgi?id=14915): `ascii(10)` makes `mprintf()` stop printing (REGRESSION).
+* [#14946](http://bugzilla.scilab.org/show_bug.cgi?id=14946): `slint()` expected the predefined variables `%s`, `%z` and `home` to be initialized..
 * [#14988](http://bugzilla.scilab.org/show_bug.cgi?id=14988): The example of Xcos diagram on the DERIV help page was distorted.
 * [#14989](http://bugzilla.scilab.org/show_bug.cgi?id=14989): The example of Xcos diagram on the INTEGRAL_m help page was distorted.
 * [#14990](http://bugzilla.scilab.org/show_bug.cgi?id=14990): The example of Xcos diagram on the NEGTOPOS_f help page was distorted.
@@ -513,10 +535,13 @@ Known issues
 * [#15157](http://bugzilla.scilab.org/show_bug.cgi?id=15157): min/max on tlist or mlist did not call good overload.
 * [#15182](http://bugzilla.scilab.org/show_bug.cgi?id=15182): The result of `a.*.b` with mixed integer/decimal operands introduced in Scilab 6 returned some doubles instead of integers, inconsistently wrt the `*` and `.*` products.
 * [#15187](http://bugzilla.scilab.org/show_bug.cgi?id=15187): Super block diagram title (on the window bar) was not set.
+* [#15259](http://bugzilla.scilab.org/show_bug.cgi?id=15259): LaTeX images did not have alt='..' attribute providing the LaTeX formula as text.
 * [#15263](http://bugzilla.scilab.org/show_bug.cgi?id=15263): Assignments in an array of structures often overwrote some untargeted elements.
 * [#15279](http://bugzilla.scilab.org/show_bug.cgi?id=15279): `unique` could not be used on sets of complex numbers.
+* [#15284](http://bugzilla.scilab.org/show_bug.cgi?id=15284): Port names are not set to the corresponding I/O block labels.
 * [#15310](http://bugzilla.scilab.org/show_bug.cgi?id=15310): `isdef` considered void arguments as defined (regression)
 * [#15346](http://bugzilla.scilab.org/show_bug.cgi?id=15346): In an array of rationals, there was no way to address components with their linearized indices.
+* [#15403](http://bugzilla.scilab.org/show_bug.cgi?id=15403): `bar(..,"stacked")` could start from y<>0. Input arguments and possible syntaxes were poorly tested.
 * [#15404](http://bugzilla.scilab.org/show_bug.cgi?id=15404): `surf()` and `mesh()` did not allow to specify `foreground`, `facecolor`, `markforeground` and `markbackground` global properties colors as a predefined named color out of a list of the 9 main color names. Colors specifications as "#RRGGBB" hexa code or Colors indices in the color map were nor allowed.
 * [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
 * [#15423](http://bugzilla.scilab.org/show_bug.cgi?id=15423): `tbx_make(myModule,sections)` executed the existing builder (if any), instead of targeting only selected module sections. Otherwise, tbx_make(myModule, "help"|"macros") yielded an error, and tbx_make(myModule,"localization") never built it.
@@ -538,6 +563,7 @@ Known issues
 * [#15476](http://bugzilla.scilab.org/show_bug.cgi?id=15476): In the Electrical palette, the Resistor, Inductor, Capacitor, and ConstantVoltage icons did not show the parameter's value.
 * [#15484](http://bugzilla.scilab.org/show_bug.cgi?id=15484): On Windows, `isdir("w:")`, `isdir("w:/")`, and `isdir("w:\")` returned %T whenever the W: drive does not exist.
 * [#15489](http://bugzilla.scilab.org/show_bug.cgi?id=15489): Help pages of `covStart`, `covStop`, `covWrite` and `covMerge` were not built for the fr, ja, pt and ru languages, and were unreachable from a session in non `en_US` language.
+* [#15490](http://bugzilla.scilab.org/show_bug.cgi?id=15490): Error message of grand function was incoherent
 * [#15495](http://bugzilla.scilab.org/show_bug.cgi?id=15495): SampleCLK simple demo failed to simulate.
 * [#15496](http://bugzilla.scilab.org/show_bug.cgi?id=15496): Scinotes `File > Open recent` menu was not updated when it should.
 * [#15499](http://bugzilla.scilab.org/show_bug.cgi?id=15499): Scinotes menus were inactive after session restore under OSX.
@@ -546,6 +572,7 @@ Known issues
 * [#15508](http://bugzilla.scilab.org/show_bug.cgi?id=15508): `int8..uint64` and `iconvert` help pages had errors and were not up to date.
 * [#15510](http://bugzilla.scilab.org/show_bug.cgi?id=15510): 'Initialization problem' error did not provide extra information.
 * [#15511](http://bugzilla.scilab.org/show_bug.cgi?id=15511): Keyboard ctrl-left ctrl-right shortcuts could not be used for slider under OSX.
+* [#15512](http://bugzilla.scilab.org/show_bug.cgi?id=15512): After aborting a running script or macro (with abort or other), console print was not working
 * [#15525](http://bugzilla.scilab.org/show_bug.cgi?id=15525): Memory allocation crashed with a simple Scilab script.
 * [#15526](http://bugzilla.scilab.org/show_bug.cgi?id=15526): fscanfMat could fail with large text files.
 * [#15527](http://bugzilla.scilab.org/show_bug.cgi?id=15527): `ode` gave incorrect results with %ODEOPTIONS(1)=2.
@@ -574,6 +601,7 @@ Known issues
 * [#15594](http://bugzilla.scilab.org/show_bug.cgi?id=15594): The `bool2s` page was alone in a main chapter instead of being with the `boolean` page.
 * [#15598](http://bugzilla.scilab.org/show_bug.cgi?id=15598): `string(handle)` returned "" instead of calling `%h_string()`
 * [#15599](http://bugzilla.scilab.org/show_bug.cgi?id=15599): degree of zero polynomial was 0 instead of -Inf.
+* [#15600](http://bugzilla.scilab.org/show_bug.cgi?id=15600): `savematfile(File)` was fragile and had many pitfalls.
 * [#15601](http://bugzilla.scilab.org/show_bug.cgi?id=15601): `tbx_generate_pofile` failed when the absolute toolbox path includes some spaces, or when the toolbox has no XML files.
 * [#15605](http://bugzilla.scilab.org/show_bug.cgi?id=15605): CLR and DLR Xcos blocks did not accept expressions including "%" like "%i"
 * [#15609](http://bugzilla.scilab.org/show_bug.cgi?id=15609): (1:1):2 crashed Scilab.
@@ -590,8 +618,9 @@ Known issues
 * [#15632](http://bugzilla.scilab.org/show_bug.cgi?id=15632): `x=[];x()=1` crashed Scilab.
 * [#15635](http://bugzilla.scilab.org/show_bug.cgi?id=15635): `dellip(1,4)` terminated with neither output nor error (regression)
 * [#15636](http://bugzilla.scilab.org/show_bug.cgi?id=15636): Clicking on its icon did not always give focus to Help browser
-* [#15645](http://bugzilla.scilab.org/show_bug.cgi?id=15645): `deff('y=f(x)','z=x^2'),fsolve(1,f)` crashed scilab
+* [#15638](http://bugzilla.scilab.org/show_bug.cgi?id=15638): `colorbar()`: Both colors on the bar tips spanned an interval twice smaller than for other colors. This made almost impossible to choose a convenient number of colors to share the whole values interval in a simple way.
 * [#15642](http://bugzilla.scilab.org/show_bug.cgi?id=15642):A(:) gave incorrect display when A is sparse boolean (regression)
+* [#15645](http://bugzilla.scilab.org/show_bug.cgi?id=15645): `deff('y=f(x)','z=x^2'),fsolve(1,f)` crashed scilab
 * [#15647](http://bugzilla.scilab.org/show_bug.cgi?id=15647): `spzeros(-1,-1)` yielded a corrupted result
 * [#15648](http://bugzilla.scilab.org/show_bug.cgi?id=15648): `sparse([1 1],1,[-1 -1])` crashed scilab
 * [#15652](http://bugzilla.scilab.org/show_bug.cgi?id=15652): An appended comment // after a comma in an multiline literal array now generates an error (regression).
@@ -610,6 +639,7 @@ Known issues
 * [#15718](http://bugzilla.scilab.org/show_bug.cgi?id=15718): `bitand`, `bitxor` and `bitor` might miswork with some `uint64` inputs.
 * [#15721](http://bugzilla.scilab.org/show_bug.cgi?id=15721): An error while using `save(File, "-append", ..)` deleted the existing file.
 * [#15724](http://bugzilla.scilab.org/show_bug.cgi?id=15724): `[]^3` displayed error messages about xerbla lapack library (regression)
+* [#15728](http://bugzilla.scilab.org/show_bug.cgi?id=15728): `evstr(s)` returns bad results (and errors) for s being "k" "tmp" "lhs" "rhs" "comm" "vars" "vals"..
 * [#15733](http://bugzilla.scilab.org/show_bug.cgi?id=15733): Some fixes after `deg(0*%s)` => `-%inf`.
 * [#15735](http://bugzilla.scilab.org/show_bug.cgi?id=15735): `interp1` yielded some []+n warnings.
 * [#15736](http://bugzilla.scilab.org/show_bug.cgi?id=15736): `unique` failed with complex numbers.
@@ -617,24 +647,58 @@ Known issues
 * [#15741](http://bugzilla.scilab.org/show_bug.cgi?id=15741):  Operations between 2 polynomials with distinct variables no longer called the corresponding overloads (Regression)
 * [#15746](http://bugzilla.scilab.org/show_bug.cgi?id=15746): `1/[1 2 3]` and `[1 2 3]'\1` did not raise an error
 * [#15747](http://bugzilla.scilab.org/show_bug.cgi?id=15747): no output in overloaded operator crashed Scilab
+* [#15748](http://bugzilla.scilab.org/show_bug.cgi?id=15748): `min(Sparse,"r"|"c")` and `max(Sparse,"r"|"c")` always returned vectors of zeros. In addition, with sparse inputs,  `min` and `max` did not compute indices as second output.
+* [#15751](http://bugzilla.scilab.org/show_bug.cgi?id=15751): `min(sparse([],[])) returned 0 instead of []. `max()` as well.
+* [#15752](http://bugzilla.scilab.org/show_bug.cgi?id=15752): `min` and `max` did not ignore `Nan` values in sparse inputs.
 * [#15753](http://bugzilla.scilab.org/show_bug.cgi?id=15753): `issparse()` returned 0 instead of 1 for sparse booleans.
+* [#15755](http://bugzilla.scilab.org/show_bug.cgi?id=15755): `min(A1,A2,..)` and `max(A1,A2,..)` did not allow mixing sparse with scalar inputs.
 * [#15757](http://bugzilla.scilab.org/show_bug.cgi?id=15757): The public function `xcosPalAddBlock` did not load scicos_scicoslib when needed, and then yielded an error. When the block is specified as a .sod file and the file does not exist, the error message was obscur.
 * [#15758](http://bugzilla.scilab.org/show_bug.cgi?id=15758): sparse([0 0],1) crashes scilab (regression)
 * [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.
 * [#15770](http://bugzilla.scilab.org/show_bug.cgi?id=15770): zp2ss and zp2tf unitary tests were failing
 * [#15774](http://bugzilla.scilab.org/show_bug.cgi?id=15774): `clean()` failed on sparse complex matrix.
+* [#15776](http://bugzilla.scilab.org/show_bug.cgi?id=15776): `assert_checktrue` and `assert_checkfalse` did not accept a sparse boolean input. When failing, their error message did not indicate the index of the failing entry. The failing message of `assert_checkfalse` was wrong.
 * [#15778](http://bugzilla.scilab.org/show_bug.cgi?id=15778): Deleting some rows or columns of a boolean sparse array with `= []` crashed Scilab
 * [#15779](http://bugzilla.scilab.org/show_bug.cgi?id=15779): `test_run` did not accept the wildcard * in tests names.
+* [#15796](http://bugzilla.scilab.org/show_bug.cgi?id=15796): Display after `mprintf("")` crashed Scilab (regression)
+* [#15799](http://bugzilla.scilab.org/show_bug.cgi?id=15799): `ifftshift()` could not invert `fftshift(x, along)` directional actions.
+* [#15800](http://bugzilla.scilab.org/show_bug.cgi?id=15800): Distributive assignments of a property values in a vector of handles were not supported.
+* [#15805](http://bugzilla.scilab.org/show_bug.cgi?id=15805): `colorbar()` ticking was poor and most often irrelevant or puzzling, set to not simple values, with useless unreadable minor ticks.
+* [#15806](http://bugzilla.scilab.org/show_bug.cgi?id=15806): `colorbar(..)` missed some simple syntaxes with default umin, umax and colminmax values, such as `colorbar()`.
+* [#15808](http://bugzilla.scilab.org/show_bug.cgi?id=15808): `[5i]` was parsed as `[5,i]`
 * [#15809](http://bugzilla.scilab.org/show_bug.cgi?id=15809): HDF5 load/save was super slow for nested lists.
+* [#15811](http://bugzilla.scilab.org/show_bug.cgi?id=15811): comparison of containers with cell failed.
+* [#15813](http://bugzilla.scilab.org/show_bug.cgi?id=15813): In polarplot mode, datatips displayed irrelevant cartesian coordinates instead of polar ones.
 * [#15814](http://bugzilla.scilab.org/show_bug.cgi?id=15814): Selecting graphic children with booleans yielded an error.
 * [#15815](http://bugzilla.scilab.org/show_bug.cgi?id=15815): After `polarplot()`, reversing axes or switching `gca().rotation_angles` shifted all angular and radial labels.
 * [#15816](http://bugzilla.scilab.org/show_bug.cgi?id=15816): `polarplot()`, `pie()`, `mesh()` and  `contourf()` ignored / canceled any upstream `drawlater`.
 * [#15817](http://bugzilla.scilab.org/show_bug.cgi?id=15817): `ascii(c)` with c>=128 crashed on OSX.
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
 * [#15827](http://bugzilla.scilab.org/show_bug.cgi?id=15828): After `bode(..'rad')`, abscissae were titled 'Fréquence' instead of 'Pulsation' in french, and datatips still shew 'Hz' instead of 'rad/s'.
+* [#15830](http://bugzilla.scilab.org/show_bug.cgi?id=15830): `linspace` was not reliable for series of encoded integers.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.
+* [#15850](http://bugzilla.scilab.org/show_bug.cgi?id=15850): Adding a space after a string increases its size.
+* [#15853](http://bugzilla.scilab.org/show_bug.cgi?id=15853): `mlist("cblock")` displayed endlessly "operation +: Warning adding..."
 * [#15854](http://bugzilla.scilab.org/show_bug.cgi?id=15854): `horner(1:$,4)` yielded an error. Extractions from `cblock` tables were impacted.
-* [#15740](http://bugzilla.scilab.org/show_bug.cgi?id=15740): now `(%s == %z) == %f` and `(%s ~= %z) == %t` 
+* [#15858](http://bugzilla.scilab.org/show_bug.cgi?id=15858): `size(cblock,'r'|'c'|'*'|1|2)` did not take the option into account. `size()` of an empty cblock table yielded an error.
+* [#15859](http://bugzilla.scilab.org/show_bug.cgi?id=15859): `isempty` could not be overloaded for custom mlist or tlist typeof.
+* [#15860](http://bugzilla.scilab.org/show_bug.cgi?id=15860): Horizontal concatenations with cblock tables had troubles.
+* [#15866](http://bugzilla.scilab.org/show_bug.cgi?id=15866): Unlike all other set functions, `setdiff` did not accept any "r" or "c" option.
+* [#15867](http://bugzilla.scilab.org/show_bug.cgi?id=15867): For input encoded integers, `setdiff` returned selected elements in decreasing order.
+* [#15873](http://bugzilla.scilab.org/show_bug.cgi?id=15873): In average, `sprand(100, 100, 0.8)` yielded ~8800 non-zero values instead of ~8000.
+* [#15878](http://bugzilla.scilab.org/show_bug.cgi?id=15878): `sgrid` and `evans` were broken.
+* [#15880](http://bugzilla.scilab.org/show_bug.cgi?id=15880): `sgrid` needed some improvements: Labeling was sometimes ambiguous ; large circles were not labeled ; data_bounds did not always take the input wn into account ; named and #RRGGBB colors specifications could not be used. `evans` needed some improvements: the block of legends hid data ; asymptotes were too visible.
+* [#15881](http://bugzilla.scilab.org/show_bug.cgi?id=15881): Demos about stems, bars and histograms were spread in several subsections.
+* [#15884](http://bugzilla.scilab.org/show_bug.cgi?id=15884): `bode` frequencies ticking and grid style were poor. With legends, the phase plot was vertically shrunk and some graphical space was lost below it.
+* [#15886](http://bugzilla.scilab.org/show_bug.cgi?id=15886): Display of polynomials was broken.
+* [#15890](http://bugzilla.scilab.org/show_bug.cgi?id=15890): `evstr` sometimes yielded some `+[]` warnings.
+* [#15891](http://bugzilla.scilab.org/show_bug.cgi?id=15891): Help pages of matrix-wise trigonometrical functions deserved a dedicated subsection.
+* [#15898](http://bugzilla.scilab.org/show_bug.cgi?id=15898): `edit` failed 1) for any user-defined macro  2) for a native macro recompiled from Scinotes  3) for a native macro addressed through an alias (as sine=sind)
+* [#15899](http://bugzilla.scilab.org/show_bug.cgi?id=15899): `tree2code(tree, prettyprint=%t)` ignored the indentation width declared in Scinotes preferences.
+* [#15907](http://bugzilla.scilab.org/show_bug.cgi?id=15907): `filter` was corrupting its input state array
+* [#15920](http://bugzilla.scilab.org/show_bug.cgi?id=15920): genlib() did not regenerate a missing .bin if the .sci was unchanged (Scilab 6 regression)
+* [#15922](http://bugzilla.scilab.org/show_bug.cgi?id=15922): `rcond([])` returned `[]` instead of `Inf` consistently with `cond([])==0`.
+* [#15924](http://bugzilla.scilab.org/show_bug.cgi?id=15924): sparse inequality to 0 yielded a wrong result.
 
 
 ### Bugs fixed in 6.0.1:
@@ -859,6 +923,7 @@ Known issues
 * [#11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375): When a localized help subdirectory has only a `CHAPTER` file specifying the section title, this one was ignored.
 * [#11476](http://bugzilla.scilab.org/show_bug.cgi?id=11476): `clf("reset")` used on a docked figure resized and moved the whole docked block like the Scilab desktop.
 * [#11692](http://bugzilla.scilab.org/show_bug.cgi?id=11692): The summary of a help section built from both default `en_US` and localized files was never sorted overall.
+* [#11933](http://bugzilla.scilab.org/show_bug.cgi?id=11933): For polynomials in `s` or `z`, `sci2exp` did not use `%s` and `%z` to generate a valid expression. For other polynomials, no how-to was documented.
 * [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Selecting a zoom area starting on some axes borders was hard and tricky.
 * [#12017](http://bugzilla.scilab.org/show_bug.cgi?id=12017): The on-screen rendering according to `figure.pixel_drawing_mode` was out of work since Scilab 5.4
 * [#12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110): Zooming multiple side-by-side or overlaying axes at once was out of work since Scilab 5.4

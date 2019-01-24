@@ -12,7 +12,7 @@
 
 fp = funcprot(0);
 
-// Test the output prototype:
+// Tests the output prototype:
 // -------------------------
 protos = [
 "function [] = test()"
@@ -40,3 +40,13 @@ for p = protos'
 end
 
 funcprot(fp);
+
+// Tests the indentation width
+// ---------------------------
+function test()
+ disp(2)
+endfunction
+txt = tree2code(macr2tree(test), %t);
+path = "//interface/scinotes/display/body/scinotes-display";
+tmp = evstr(getPreferencesValue(path, "indent-size", "SCIHOME/XConfiguration.xml"));
+assert_checkequal(txt(2), blanks(tmp)+"disp(2)");

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -93,7 +93,7 @@ function mpt=dp_tilde(mp)
     // mpt(i,j)= z^n*conj(mp(j,i))(1/z)
     [m,n]=size(mp),z=varn(mp)
     //max degree
-    nmax=max(0,max(degree(mp)));
+    nmax=max([0;degree(mp(:))]);
     for i=1:m
         for j=1:n
             mpt(j,i)=poly(coeff(conj(mp(i,j)),nmax:-1:0),z,"c")

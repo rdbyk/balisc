@@ -1,7 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Vincent Couvert
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -67,13 +68,20 @@ function C=tree2code(P,bprettyprintformat)
     end
 
     // For each statement, generate corresponding code
-    for i=1:size(I)-2 // -2 to ignore last return+EOL
-        if bprettyprintformat then
-            C=cat_code(C,"  "+instruction2code(I(i),bprettyprintformat));
+    header = ""
+    if bprettyprintformat then
+        File = "SCIHOME/XConfiguration.xml"
+        if isfile(File)
+            path = "//interface/scinotes/display/body/scinotes-display"
+            tmp = evstr(getPreferencesValue(path, "indent-size", File))
         else
-            C=cat_code(C,instruction2code(I(i),bprettyprintformat));
+            tmp = 4
         end
-        C = format_txt(C,I(i),bprettyprintformat,I(i+1));
+        header = blanks(tmp)
+    end
+    for i = 1:size(I)-2 // -2 to ignore last return+EOL
+        C = cat_code(C, header + instruction2code(I(i), bprettyprintformat));
+        C = format_txt(C, I(i), bprettyprintformat, I(i+1));
     end
 
     if P.name<>"" then // Not a batch file
@@ -81,4 +89,3 @@ function C=tree2code(P,bprettyprintformat)
         C=cat_code(C,"");
     end
 endfunction
-

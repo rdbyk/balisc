@@ -3,7 +3,7 @@
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2018 - Samuel GOUGEON
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,6 +30,14 @@ extern "C"
 
 types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    // In all cases, to later test in[0]:
+    if (in.size() < 1)
+    {
+        Scierror(74, 1);
+        return types::Function::Error;
+    }
+    // The maximal number of input args may depend on the input data type, due to specific options
+
     //
     // Special cases
     //
@@ -62,7 +70,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     // Common case
     //
 
-    if (in.size() < 1 || in.size() > 3)
+    if (in.size() > 3)
     {
         Scierror(72, 1, 3);
         return types::Function::Error;
