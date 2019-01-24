@@ -7,6 +7,7 @@
 // ============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
 //
 
@@ -21,10 +22,10 @@ a=[1 2;3 4];
 a=[1 2:4;5:7 3];
 a=[1 2:4 [];[] [] 5:7 [] 3];
 a=[1 2;sin(3) 4];
-assert_checkerror("a=[1 2;3 4 5]", "inconsistent row/column dimensions");
+assert_checkerror("a=[1 2;3 4 5]", [], 3);
 assert_checkerror("a=[1 2;list(3) 4]", msprintf("Undefined operation for the given operands.\n" + "%s", msprintf("check or define function %s for overloading.\n", "%l_c_s")));
 function y=%l_c_s(l, x);y=[l(1)+1 x];end
 assert_checkequal([1 2;list(3) 4], [1 2;4 4]);
 function y=%l_c_s(l, x);y=[l(1) l(1) x];end
-assert_checkerror("a=[1 2;list(3) 4]", "inconsistent row/column dimensions");
+assert_checkerror("a=[1 2;list(3) 4]", [], 3);
 a=[1 2 3; 7 sprand(1,2,0.5)];
