@@ -322,13 +322,15 @@ bool TList::toString(std::wostringstream& ostr)
     //call overload %type_p if exists
     types::typed_list in;
     types::typed_list out;
+    Function::ReturnValue ret = Function::OK;
 
     IncreaseRef();
     in.push_back(this);
 
     try
     {
-        if (Overload::generateNameAndCall(L"p", in, 1, out) == Function::Error)
+        ret = Overload::generateNameAndCall(L"p", in, 1, out);
+        if (ret == Function::Error)
         {
             ConfigVariable::setError();
         }
@@ -339,13 +341,16 @@ bool TList::toString(std::wostringstream& ostr)
     }
     catch (ast::InternalError& e)
     {
-        DecreaseRef();
-        throw;
-    }
-    catch (ast::ScilabException& e)
-    {
-        // avoid error message about undefined overload %type_p
-        ConfigVariable::resetError();
+        if (ret == Function::Error)
+        {
+            DecreaseRef();
+            throw;
+        }
+        else
+        {
+            // avoid error message about undefined overload %type_p
+            ConfigVariable::resetError();
+        }
     }
 
     DecreaseRef();
