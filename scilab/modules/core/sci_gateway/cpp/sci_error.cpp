@@ -41,8 +41,6 @@ using types::typed_list;
 
 #define DEFAULT_ERROR_CODE 10000
 
-static const char fname[] = "error";
-
 Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
 {
     int iErrorCode = DEFAULT_ERROR_CODE;
@@ -59,13 +57,13 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-    if (in.size() == 1 && in[0]->isString() == false)
+    if (in.size() >= 1 && in[0]->isString() == false && in[0]->isDouble() == false)
     {
-        Scierror(91, 1);
+        Scierror(90, 1, _("real scalar or a string"));
         return Function::Error;
     }
 
-    if (in.size() > 1 && in[0]->isDouble())
+    if (in.size() >= 1 && in[0]->isDouble())
     {
         Double* pDbl = in[0]->getAs<Double>();
 
@@ -83,7 +81,7 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
 
         if (pDbl->getFirst() <= 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, 1);
+            Scierror(110, 1, _("real value greater than 0"));
             return Function::Error;
         }
 
