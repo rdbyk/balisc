@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -234,7 +234,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     else if (iInputArgsActual > iInputArgsExpected)
     {
         char* pstMacroName = wide_string_to_UTF8(getName().c_str());
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), pstMacroName, iInputArgsExpected);
+        Scierror(71, _("%s: Wrong number of input arguments: %d expected.\n"), pstMacroName, iInputArgsExpected);
         FREE(pstMacroName);
 
         pContext->scope_end();

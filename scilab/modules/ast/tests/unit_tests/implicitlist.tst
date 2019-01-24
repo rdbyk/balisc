@@ -50,7 +50,7 @@ i2 = int8(2);
 i8 = int8(8);
 
 assert_checkequal(i1:i2:i8, int8([1,3,5,7]));
-checkCallOverload("i1:i2:8");
+assert_checkerror("i1:i2:8", [], 71);
 assert_checkequal(i1:2:i8,  int8([1,3,5,7]));
 assert_checkequal(i1:2:8,   int8([1,3,5,7]));
 assert_checkequal(1:i2:i8,  int8([1,3,5,7]));
@@ -68,12 +68,12 @@ ii2 = int16(2);
 ii8 = int16(8);
 
 assert_checkequal(i1:i2:i8, int8([1,3,5,7]));
-checkCallOverload("i1:i2:ii8");
-checkCallOverload("i1:ii2:i8");
-checkCallOverload("i1:ii2:ii8");
-checkCallOverload("ii1:i2:i8");
-checkCallOverload("ii1:i2:ii8");
-checkCallOverload("ii1:ii2:i8");
+assert_checkerror("i1:i2:ii8", [], 71);
+assert_checkerror("i1:ii2:i8", [], 71);
+assert_checkerror("i1:ii2:ii8", [], 71);
+assert_checkerror("ii1:i2:i8", [], 71);
+assert_checkerror("ii1:i2:ii8", [], 71);
+assert_checkerror("ii1:ii2:i8", [], 71);
 assert_checkequal(ii1:ii2:ii8, int16([1,3,5,7]));
 
 // bool
@@ -84,7 +84,7 @@ checkCallOverload("t:2:%t");
 checkCallOverload("t:2:8");
 checkCallOverload("1:t:%t");
 checkCallOverload("1:t:8");
-assert_checkerror("1:2:t", [], 10000);
+assert_checkerror("1:2:t", [], 24);
 
 // poly
 assert_checktrue(execstr("$:$:$", "errcatch") == 0);
@@ -109,7 +109,7 @@ checkCallOverload("t:2:%t");
 checkCallOverload("t:2:8");
 checkCallOverload("1:t:%t");
 checkCallOverload("1:t:8");
-assert_checkerror("1:2:t", [], 10000);
+assert_checkerror("1:2:t", [], 24);
 
 // rational
 t = list();
@@ -119,10 +119,8 @@ checkCallOverload("t:2:%t");
 checkCallOverload("t:2:8");
 checkCallOverload("1:t:%t");
 checkCallOverload("1:t:8");
-assert_checkerror("1:2:t", [], 10000);
+assert_checkerror("1:2:t", [], 24);
 
 // extraction
 assert_checkerror("vect=1:3;vect(1:4)", msprintf(gettext("Invalid index.\n")));
 assert_checkerror("vect=1:3;vect(4:-1:1)", msprintf(gettext("Invalid index.\n")));
-
-
