@@ -19,7 +19,7 @@ function a = sprand(m, n, density, law)
     if nargin < 3 | nargin > 4 then
         error(73, 3, 4);
     end
-    if rhs < 4 then
+    if nargin < 4 then
         law = "unf";
     end
     if m==0 | n==0 then
