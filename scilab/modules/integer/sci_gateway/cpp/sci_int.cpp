@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,7 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
  */
-/*--------------------------------------------------------------------------*/
+
 #include <limits>
 
 #include "int.hxx"
@@ -129,13 +129,13 @@ types::Callable::ReturnValue commonInt(types::typed_list &in, int _iRetCount, ty
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), _stName.c_str(), 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isDouble() == false && in[0]->isInt() == false && in[0]->isBool() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"), _stName.c_str(), 1, "integer", "boolean", "double");
+        Scierror(90, 1, _("integer, boolean, real, or complex"));
         return types::Function::Error;
     }
 
@@ -192,4 +192,3 @@ types::Callable::ReturnValue sci_uinteger64(types::typed_list &in, int _iRetCoun
 {
     return commonInt<types::UInt64>(in, _iRetCount, out, "uint64");
 }
-/*--------------------------------------------------------------------------*/

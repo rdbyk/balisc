@@ -3,7 +3,7 @@
  * Copyright (C) INRIA
  * Copyright (C) 2010 - DIGITEO - ELIAS Antoine
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,7 +31,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "double", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -43,7 +43,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
     }
     else if (in[0]->isInt() == false && in[0]->isBool() == false)
     {
-        Scierror(999, _("%s: Wrong type of input arguments: integer, boolean or double expected.\n"), "double");
+        Scierror(90, 1, _("integer, boolean, real, or complex"));
         return types::Function::Error;
     }
 
@@ -161,7 +161,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
 
         default :
         {
-            Scierror(999, _("Never occur"));
+            Scierror(0);
             return types::Function::Error;
         }
     }

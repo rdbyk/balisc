@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,13 +30,12 @@ Function::ReturnValue sci_iconvert(typed_list &in, int _iRetCount, typed_list &o
 {
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "iconvert", 2);
+        Scierror(71, 2);
         return Function::Error;
     }
 
     if (!(in[0]->isInt() || in[0]->isDouble() || in[0]->isBool()))
     {
-        // call overload
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_iconvert";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }

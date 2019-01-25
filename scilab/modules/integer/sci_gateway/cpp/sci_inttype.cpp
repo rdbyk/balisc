@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,10 +26,9 @@ extern "C"
 
 types::Function::ReturnValue sci_inttype(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    /* First check if there is only 1 input of type int */
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "inttype", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -37,7 +36,7 @@ types::Function::ReturnValue sci_inttype(types::typed_list &in, int _piRetCount,
 
     if (pitValue->isInt() == false && pitValue->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : int or double expected.\n"), "inttype", 1);
+        Scierror(90, 1, _("integer, real, or complex"));
         return types::Function::Error;
     }
 

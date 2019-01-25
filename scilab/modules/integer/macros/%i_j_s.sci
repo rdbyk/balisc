@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,8 +19,7 @@ function r=%i_j_s(a,n)
             r=iconvert(double(a).^n,inttype(a))
         else
             if size(n,"*")<>1 then
-                msg = _("%s: Non implemented feature.\n")
-                error(msprintf(msg, "%i_j_s"))
+                error(24)
             else
                 r=a
                 for i=2:n,r=r.*a,end

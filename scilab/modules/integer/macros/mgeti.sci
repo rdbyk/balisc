@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
 function x = mgeti(varargin)
 
     if nargin == 0 | nargin > 3 then
-        error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgeti", 1, 3));
+        error(72, 1, 3);
     end
 
     if nargin == 1 then
@@ -22,11 +22,11 @@ function x = mgeti(varargin)
         type = varargin(2);
 
         if typeof(type) <> "string" then
-            error(msprintf(_("%s: Wrong type for argument #%d: string expected.\n"), "mgeti", 2));
+            error(91, 2);
         end
 
         if size(type, '*') <> 1 then
-            error(msprintf(_("%s: Wrong size for argument #%d: A single string expected.\n"), "mgeti", 2));
+            error(102, 2);
         end
 
         typeToConvert = 0;
@@ -34,7 +34,7 @@ function x = mgeti(varargin)
         partPos = 1;
 
         if len == 0 | len > 3 then
-            error(msprintf(_("%s: Wrong size for argument #%d: A single string of size %d to %d expected.\n"), "mgeti", 2, 1, 3));
+            error(100, 2, _("string of size 1 to 3"), "mgeti", 2, 1, 3);
         end
 
         // unsigne
