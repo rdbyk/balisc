@@ -80,7 +80,6 @@ macros_error_type_2 = ["base2dec"; ..
 "modulo"; ..
 "permute"; ..
 "pmodulo"; ..
-"setdiff"; ..
 "union" ..
 ];
 msg_error_ref_2 = _("%s: Wrong number of input arguments: %d expected.\n");
