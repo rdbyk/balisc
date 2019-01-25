@@ -15,7 +15,6 @@ assert_checktrue(xp.size > 0);
 
 links = xmlAsText(xp);
 assert_checktrue(or(links=="https://www.scilab.org/"));
-
 htmlWrite(doc, TMPDIR + "/foo.html");
 xmlDelete(doc);
 doc = htmlRead(TMPDIR + "/foo.html");
