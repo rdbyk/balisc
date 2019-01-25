@@ -77,7 +77,7 @@ public :
         return L"function";
     }
 
-    const std::wstring&         getFileName()
+    const std::wstring&         getFileName() const
     {
         return m_stPath;
     }

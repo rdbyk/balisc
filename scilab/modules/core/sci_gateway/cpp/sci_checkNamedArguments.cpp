@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2017 - ESI - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,13 +28,13 @@ extern "C"
 #include "sciprint.h"
 }
 
-const char fname[] = "checkNamedArguments";
+static char fname[] = "checkNamedArguments";
 
 types::Function::ReturnValue sci_checkNamedArguments(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int size = 0;
     symbol::Context* ctx = symbol::Context::getInstance();
-    int rhs = static_cast<int>(in.size());		
+    int rhs = static_cast<int>(in.size());
     std::vector<std::wstring> proto;
 
     if (ctx->getScopeLevel() < 2)
@@ -74,20 +74,21 @@ types::Function::ReturnValue sci_checkNamedArguments(types::typed_list &in, int 
         size = (int)proto.size();
     }
 
-    std::list<std::wstring> lst;
+    typedef std::pair<std::wstring, int> lst_entry_t;
+    std::list<lst_entry_t> lst;
     int count = ctx->getCurrentScope(lst, true);
 
-	//remove nargin/nargout//varargin
-	lst.remove(L"nargin");
-	lst.remove(L"nargout");
-	lst.remove(L"varargin");
+    // remove nargin/nargout//varargin
+    lst.remove_if([](const lst_entry_t& p) -> bool { return p.first == L"nargin"; });
+    lst.remove_if([](const lst_entry_t& p) -> bool { return p.first == L"nargout"; });
+    lst.remove_if([](const lst_entry_t& p) -> bool { return p.first == L"varargin"; });
 
-	for (int i = 0; i < size; ++i)
+    for (int i = 0; i < size; ++i)
     {
-		lst.remove(proto[i]);
+        lst.remove_if([&](const lst_entry_t& p) -> bool { return p.first == proto[i]; });
     }
 
-	count = (int)lst.size();
+    count = (int)lst.size();
     if (count == 0)
     {
         out.push_back(types::Double::Empty());
@@ -98,7 +99,7 @@ types::Function::ReturnValue sci_checkNamedArguments(types::typed_list &in, int 
     int i = 0;
     for (auto v : lst)
     {
-        pOut->set(i++, v.data());
+        pOut->set(i++, v.first.data());
     }
 
     out.push_back(pOut);

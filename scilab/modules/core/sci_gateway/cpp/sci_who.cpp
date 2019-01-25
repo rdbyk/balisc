@@ -3,7 +3,7 @@
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,8 +28,6 @@ extern "C"
 #include "localization.h"
 #include "sciprint.h"
 }
-
-static const char fname[] = "who";
 
 types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, types::typed_list& out)
 {
@@ -71,7 +69,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
 
         if (pStrSorted->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "who", 2);
+            Scierror(91, 2);
             return types::Function::Error;
         }
 
@@ -81,7 +79,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: 'sorted' expected.\n"), "who", 2);
+            Scierror(110, 2, "'sorted'");
             return types::Function::Error;
         }
     }
@@ -98,7 +96,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
 
         if (pStrWhat->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "who", 1);
+            Scierror(91, 1);
             return types::Function::Error;
         }
 
@@ -108,6 +106,10 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     if (wcsWhat == L"local" || wcsWhat == L"get")
     {
         size = symbol::Context::getInstance()->getVarsInfoForWho(lstVarWithSize, bSorted);
+    }
+    else if (wcsWhat == L"scope" || wcsWhat == L"current")
+    {
+        size = symbol::Context::getInstance()->getCurrentScope(lstVarWithSize, bSorted);
     }
     else if (wcsWhat == L"global")
     {
@@ -126,11 +128,11 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     {
         if (bSorted)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: 'local', 'get' or 'global' expected.\n"), "who", 1);
+            Scierror(110, 1, _("'local', 'get' or 'global'n"));
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: 'local', 'get', 'global' or 'sorted' expected.\n"), "who", 1);
+            Scierror(110, 1, _("'local', 'get', 'global' or 'sorted'"));
         }
 
         return types::Function::Error;
