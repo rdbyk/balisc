@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -39,7 +39,6 @@ extern "C"
 #define MUTE_FLAG       L"n"
 #define NO_MUTE_FLAG    L"m"
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iErr            = 0;
@@ -52,7 +51,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "execstr" , 1, 3);
+        Scierror(72 , 1, 3);
         return types::Function::Error;
     }
 
@@ -62,7 +61,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         //errcatch
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "execstr", 2);
+            Scierror(91, 2);
             return types::Function::Error;
         }
 
@@ -73,7 +72,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "execstr", 2);
+            Scierror(110, 2, "'errcatch'");
             return types::Function::Error;
         }
 
@@ -85,7 +84,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
     {
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "execstr", 3);
+            Scierror(91, 3);
             return types::Function::Error;
         }
 
@@ -99,7 +98,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "execstr", 3, MUTE_FLAG, NO_MUTE_FLAG);
+            Scierror(110, 3, _("'n' or 'm'"));
             return types::Function::Error;
         }
     }
@@ -114,7 +113,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
 
     if (in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), "execstr", 1);
+        Scierror(90, 1, _("vector of strings"));
         return types::Function::Error;
     }
 
@@ -269,4 +268,3 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
     delete pExp;
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

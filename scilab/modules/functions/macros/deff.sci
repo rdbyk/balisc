@@ -1,7 +1,7 @@
 function deff(head, body)
 
     if nargin <> 2  then
-        error(msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "deff", 2));
+        error(71, 2);
     end
 
     execstr(["function " + head; body(:); "endfunction"]);
