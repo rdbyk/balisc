@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-
 
 #include <string.h>
 #include "io_gw.hxx"
@@ -31,7 +30,7 @@ types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, typ
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "host", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -39,7 +38,7 @@ types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, typ
 
     if (pIT->isString() == false || pIT->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(89, _("%s: Wrong size for input argument #%d: string expected.\n"), "host", 1);
+        Scierror(102, 1);
         return types::Function::Error;
     }
 

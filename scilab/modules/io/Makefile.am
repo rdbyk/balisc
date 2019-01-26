@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -25,7 +25,6 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_file.cpp \
     sci_gateway/cpp/sci_getpid.cpp \
     sci_gateway/cpp/sci_host.cpp \
-    sci_gateway/cpp/sci_unix.cpp \
     sci_gateway/cpp/sci_read.cpp \
     sci_gateway/cpp/sci_write.cpp \
     sci_gateway/cpp/sci_lib.cpp \

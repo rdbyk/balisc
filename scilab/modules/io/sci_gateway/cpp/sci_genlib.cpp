@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -56,14 +56,11 @@ extern "C"
 #include <stdlib.h> // for qsort
 }
 
-
 xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName);
 void closeXMLFile(xmlTextWriterPtr _pWriter);
 bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const std::wstring& file, const std::wstring& md5);
 static int cmp(const void* p1, const void* p2);
 
-
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int succes = 1;
@@ -83,7 +80,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
     if (in.size() < 1 || in.size() > 4)
     {
-        Scierror(78, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "genlib", 1, 4);
+        Scierror(72, 1, 4);
         return types::Function::Error;
     }
 
@@ -91,14 +88,14 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
     types::InternalType* pIT = in[0];
     if (pIT->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "genlib", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
     types::String *pS = pIT->getAs<types::String>();
     if (pS->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "genlib", 1);
+        Scierror(102, 1);
         return types::Function::Error;
     }
     pstLibName = pS->getFirst();
@@ -109,7 +106,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         pIT = in[1];
         if (pIT->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "genlib", 2);
+            Scierror(91, 2);
             return types::Function::Error;
         }
     }
@@ -124,7 +121,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
     pS = pIT->getAs<types::String>();
     if (pS->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "genlib", 2);
+        Scierror(102, 2);
         return types::Function::Error;
     }
 
@@ -134,14 +131,14 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         pIT = in[2];
         if (pIT->isBool() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
+            Scierror(90, 3, _("scalar boolean"));
             return types::Function::Error;
         }
 
         types::Bool* p = pIT->getAs<types::Bool>();
         if (p->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
+            Scierror(100, 3, _("scalar boolean"));
             return types::Function::Error;
         }
 
@@ -154,14 +151,14 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         pIT = in[3];
         if (pIT->isBool() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
+            Scierror(90, 3, _("scalar boolean"));
             return types::Function::Error;
         }
 
         types::Bool* p = pIT->getAs<types::Bool>();
         if (p->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
+            Scierror(100, 3, _("scalar boolean"));
             return types::Function::Error;
         }
 
@@ -236,7 +233,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
             if (fmdf5 == NULL)
             {
                 char* pstr = wide_string_to_UTF8(stFullPath.data());
-                Scierror(999, _("%s: Cannot open file ''%s''.\n"), "genlib", pstr);
+                Scierror(52, pstr);
                 FREE(pstr);
                 FREE(pstParsePath);
                 freeArrayOfPtrs((void**)pstPath, iNbFile);
@@ -349,7 +346,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            Scierror(999, _("Redefining permanent variable.\n"));
+            Scierror(4);
 
             freeArrayOfPtrs((void**)pstPath, iNbFile);
             FREE(pstParsePath);
@@ -560,9 +557,7 @@ bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const st
     return true;
 }
 
-
 static int cmp(const void* p1, const void* p2)
 {
     return wcscmp(* (wchar_t * const *) p1, * (wchar_t * const *) p2);
 }
-

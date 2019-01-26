@@ -3,7 +3,7 @@
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
 
     if (iRhs < 3 || iRhs > 5)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "read", 2, 4);
+        Scierror(72, 2, 4);
         return types::Function::Error;
     }
 
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
 
         if (pSPath->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "read", 1);
+            Scierror(102, 1);
             return types::Function::Error;
         }
 
@@ -108,7 +108,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
         types::Double* pDId = in[0]->getAs<types::Double>();
         if (pDId->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "read", 1);
+            Scierror(101, 1);
             return types::Function::Error;
         }
 
@@ -120,7 +120,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar or file descriptor expected.\n"), "read", 1);
+        Scierror(90, 1, _("real scalar or a string"));
         return types::Function::Error;
     }
 
@@ -130,7 +130,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
         if (in[iPos]->isString() == false)
         {
             closeFile(in[0], iID);
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "read", iRhs);
+            Scierror(91, iRhs);
             return types::Function::Error;
         }
 
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
         if (pSFormat->isScalar() == false)
         {
             closeFile(in[0], iID);
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "read", iRhs);
+            Scierror(102, iRhs);
             return types::Function::Error;
         }
 
@@ -165,7 +165,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
         }
 
         closeFile(in[0], iID);
-        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), "read", 2);
+        Scierror(93, 2);
         return types::Function::Error;
     }
 
@@ -177,7 +177,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
             FREE(pstFormat);
         }
         closeFile(in[0], iID);
-        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar integer value expected.\n"), "read", 2);
+        Scierror(101, 2);
         return types::Function::Error;
     }
 
@@ -188,7 +188,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
             FREE(pstFormat);
         }
         closeFile(in[0], iID);
-        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), "read", 3);
+        Scierror(93, 3);
         return types::Function::Error;
     }
 
@@ -200,7 +200,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
             FREE(pstFormat);
         }
         closeFile(in[0], iID);
-        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar integer value expected.\n"), "read", 3);
+        Scierror(101, 3);
         return types::Function::Error;
     }
 
@@ -366,7 +366,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
                         FREE(pstFormat);
                     }
                     closeFile(in[0], iID);
-                    Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "read", 2);
+                    Scierror(91, 2);
                     return types::Function::Error;
                 }
             }
@@ -588,7 +588,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
                         FREE(pstFormat);
                     }
 
-                    Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "read", 2);
+                    Scierror(91, 2);
                     closeFile(in[0], iID);
                     return types::Function::Error;
                 }

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
 #include "gw_io.h"
@@ -22,7 +21,7 @@
 #include "sci_malloc.h" /* MALLOC */
 #include "Scierror.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/
+
 int sci_setenv(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -48,7 +47,7 @@ int sci_setenv(char *fname, void* pvApiCtx)
 
     if (isStringType(pvApiCtx, piAddr1) == 0 || isScalar(pvApiCtx, piAddr1) == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
+        Scierror(91, 1);
         return 0;
     }
 
@@ -62,7 +61,7 @@ int sci_setenv(char *fname, void* pvApiCtx)
 
     if (isStringType(pvApiCtx, piAddr2) == 0 || isScalar(pvApiCtx, piAddr2) == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
+        Scierror(91, 2);
         return 0;
     }
 
@@ -96,7 +95,7 @@ int sci_setenv(char *fname, void* pvApiCtx)
 
     if (createScalarBoolean(pvApiCtx, Rhs + 1, ret))
     {
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -104,4 +103,3 @@ int sci_setenv(char *fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
-/*--------------------------------------------------------------------------*/
