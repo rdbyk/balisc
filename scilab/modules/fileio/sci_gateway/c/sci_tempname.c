@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include <string.h>
 #include "api_scilab.h"
 #include "createtempfilename.h"
@@ -21,9 +21,9 @@
 #include "localization.h"
 #include "sci_malloc.h"
 #include "os_string.h"
-/*--------------------------------------------------------------------------*/
+
 #define DEFAULT_PREFIX L"SCI"
-/*--------------------------------------------------------------------------*/
+
 int sci_tempname(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -65,7 +65,7 @@ int sci_tempname(char *fname, void* pvApiCtx)
                     freeAllocatedSingleWideString(wcprefix);
                 }
 
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 return 0;
             }
 
@@ -81,7 +81,7 @@ int sci_tempname(char *fname, void* pvApiCtx)
         else
         {
             freeAllocatedSingleWideString(wcprefix);
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+            Scierror(91, 1);
             return 0;
         }
     }
@@ -90,14 +90,14 @@ int sci_tempname(char *fname, void* pvApiCtx)
     freeAllocatedSingleWideString(wcprefix);
     if (wcTempFilename == NULL)
     {
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
     if (createSingleWideString(pvApiCtx, Rhs + 1, wcTempFilename))
     {
         FREE(wcTempFilename);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -106,4 +106,3 @@ int sci_tempname(char *fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
-/*--------------------------------------------------------------------------*/

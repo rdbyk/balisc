@@ -4,7 +4,7 @@
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * ...
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,8 +32,6 @@ extern "C"
 #include "sci_malloc.h"
 }
 
-static const char fname[] = "mget";
-
 types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     char* pstType   = os_strdup("l");//default type value : long
@@ -51,7 +49,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     //check parameter 1
     if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A positive integer value expected.\n"), fname, 1);
+        Scierror(93, 1);
         FREE(pstType);
         return types::Function::Error;
     }
@@ -59,7 +57,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     types::Double* pDoubleTest = in[0]->getAs<types::Double>();
     if ((pDoubleTest->getFirst() != (int)pDoubleTest->getFirst()) || (pDoubleTest->getFirst() < 0))
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), fname, 1);
+        Scierror(110, 1, _("positive integer value"));
         FREE(pstType);
         return types::Function::Error;
     }
@@ -84,7 +82,7 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     {
         if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname, 3);
+            Scierror(93, 3);
             FREE(pstType);
             return types::Function::Error;
         }

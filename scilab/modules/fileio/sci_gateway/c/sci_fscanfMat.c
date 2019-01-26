@@ -3,7 +3,7 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include <string.h>
 #include "api_scilab.h"
 #include "sci_malloc.h"
@@ -25,14 +25,12 @@
 #include "os_string.h"
 #include "fscanfMat.h"
 
-/*--------------------------------------------------------------------------*/
 #define NB_DEFAULT_SUPPORTED_SEPARATORS 2
 /* bug 8148 */
 /* default separator can be a space or a tabulation */
 static const char *supportedSeparators[NB_DEFAULT_SUPPORTED_SEPARATORS] = {DEFAULT_FSCANFMAT_SEPARATOR, "\t"};
 
 static void freeVar(char** filename, char** expandedFilename, char** Format, char** separator);
-/*--------------------------------------------------------------------------*/
 
 int sci_fscanfMat(char *fname, void* pvApiCtx)
 {
@@ -68,14 +66,14 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
         if (isStringType(pvApiCtx, piAddressVarThree) == 0 || isScalar(pvApiCtx, piAddressVarThree) == 0)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+            Scierror(91, 3);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarThree, &separator))
         {
             freeVar(&filename, &expandedFilename, &Format, &separator);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -109,14 +107,14 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
         if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
         {
             freeVar(&filename, &expandedFilename, &Format, &separator);
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+            Scierror(91, 2);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarTwo, &Format))
         {
             freeVar(&filename, &expandedFilename, &Format, &separator);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
     }
@@ -137,14 +135,14 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
         freeVar(&filename, &expandedFilename, &Format, &separator);
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+        Scierror(91, 1);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &filename))
     {
         freeVar(&filename, &expandedFilename, &Format, &separator);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -178,7 +176,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     if (results == NULL)
     {
         freeVar(&filename, &expandedFilename, &Format, &separator);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -195,7 +193,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
                     FREE(filename);
                     freeFscanfMatResult(results);
                     printError(&sciErr, 0);
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     return 0;
                 }
             }
@@ -205,7 +203,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
                 {
                     FREE(filename);
                     freeFscanfMatResult(results);
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     return 0;
                 }
             }
@@ -222,7 +220,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
                         FREE(filename);
                         freeFscanfMatResult(results);
                         printError(&sciErr, 0);
-                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                        Scierror(1);
                         return 0;
                     }
                 }
@@ -232,7 +230,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
                     {
                         FREE(filename);
                         freeFscanfMatResult(results);
-                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                        Scierror(1);
                         return 0;
                     }
                 }
@@ -247,38 +245,38 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
         }
         case FSCANFMAT_MOPEN_ERROR:
         {
-            Scierror(999, _("%s: can not open file %s.\n"), fname, filename);
+            Scierror(52, filename);
             FREE(filename);
             return 0;
         }
         case FSCANFMAT_READLINES_ERROR:
         {
-            Scierror(999, _("%s: can not read file %s.\n"), fname, filename);
+            Scierror(51, filename);
             FREE(filename);
             return 0;
         }
         case FSCANFMAT_FORMAT_ERROR:
         {
-            Scierror(999, _("%s: Invalid format.\n"), fname);
+            Scierror(56);
             FREE(filename);
             return 0;
         }
         case FSCANFMAT_MEMORY_ALLOCATION:
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             FREE(filename);
             return 0;
         }
         default:
         case FSCANFMAT_ERROR:
         {
-            Scierror(999, _("%s: error.\n"), fname);
+            Scierror(0);
             FREE(filename);
             return 0;
         }
     }
 }
-/*--------------------------------------------------------------------------*/
+
 static void freeVar(char** filename, char** expandedFilename, char** Format, char** separator)
 {
     if (filename && *filename)

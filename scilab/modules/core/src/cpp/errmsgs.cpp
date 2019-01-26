@@ -77,6 +77,7 @@ static const std::map<int, const char*> errmsgs =
     { 53, _("Too many files opened!\n") },
     { 54, _("invalid filename %s.\n") },
     { 55, _("invalid status.\n") },
+    { 56, _("Invalid format.\n") },
 
     { 70, _("Wrong number of input arguments.\n") },
     { 71, _("Wrong number of input arguments: %d expected.\n") },

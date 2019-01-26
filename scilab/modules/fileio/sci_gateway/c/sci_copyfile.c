@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 
 #ifndef _MSC_VER
 #include <errno.h>
@@ -86,7 +86,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
             freeAllocatedSingleWideString(pStVarOne);
         }
 
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -98,7 +98,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
         }
 
         freeAllocatedSingleWideString(pStVarOne);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -115,7 +115,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
             FREE(pStVarTwoExpanded);
         }
 
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -126,7 +126,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
             FREE(pStVarOneExpanded);
         }
 
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -173,7 +173,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
                     {
                         FREE(pStVarOneExpanded);
                         FREE(pStVarTwoExpanded);
-                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                        Scierror(1);
                         return 0;
                     }
                 }
@@ -187,7 +187,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
             {
                 FREE(pStVarOneExpanded);
                 FREE(pStVarTwoExpanded);
-                Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+                Scierror(110, 1, _("valid filename or directory"));
                 return 1;
             }
         }
@@ -205,7 +205,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
     {
         FREE(pStVarOneExpanded);
         FREE(pStVarTwoExpanded);
-        Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+        Scierror(110, 1, _("valid filename or directory"));
         return 1;
     }
 
@@ -272,7 +272,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(buffer) + 1));
         if (sciError == NULL)
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -284,7 +284,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
         if (sciError == NULL)
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
         wcscpy(sciError, L"");
@@ -298,7 +298,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         sciError = to_wide_string(strerror(errno));
         if (sciError == NULL)
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
     }
@@ -308,7 +308,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
         if (sciError == NULL)
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
         wcscpy(sciError, L"");
