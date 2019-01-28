@@ -3,7 +3,7 @@
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, ty
         ++var;
         if (pIT->isString() == false)
         {
-            Scierror(207, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "clear", var);
+            Scierror(90, var, _("matrix of strings"));
             return types::Function::Error;
         }
     }
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, ty
             {
                 if (bShow == false)
                 {
-                    Scierror(999, _("Redefining permanent variable.\n"));
+                    Scierror(4);
                     bShow = true;
                 }
             }

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -79,10 +79,9 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
 
     wchar_t* pwcsNewName = pS1->getFirst();
 
-    //check is a valid name
     if (isValidName(pwcsNewName) == false)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: Valid function name expected.\n"), fname, 1);
+        Scierror(110, 1, _("valid function name"));
         return types::Function::Error;
     }
 
