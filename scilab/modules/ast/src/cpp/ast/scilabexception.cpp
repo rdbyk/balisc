@@ -53,6 +53,14 @@ InternalError::InternalError(std::string _stErrorMesssage)
     setLastError(999, m_wstErrorMessage.c_str(), 0, NULL);
 }
 
+InternalError::InternalError(const std::string _stErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
+{
+    wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
+    createScilabException(pwst, 999, Location());
+    FREE(pwst);
+    setLastError(_iErrorNumber, m_wstErrorMessage.c_str(), _ErrorLocation.first_line, NULL);
+}
+
 InternalError::InternalError(const std::wstring& _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
 {
     createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);

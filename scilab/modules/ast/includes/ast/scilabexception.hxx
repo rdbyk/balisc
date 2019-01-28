@@ -71,6 +71,7 @@ class InternalError : public ScilabException
 public :
     InternalError(const std::wstring& _wstErrorMesssage);
     InternalError(std::string _stErrorMesssage);
+    InternalError(const std::string _stErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation);
     InternalError(const std::wstring& _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation);
     InternalError(int _iErrorNumber);
     InternalError(int _iErrorNumber, const Location& _ErrorLocation);

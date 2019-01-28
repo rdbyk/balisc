@@ -70,7 +70,10 @@ static const std::map<int, const char*> errmsgs =
     { 37, _("Invalid exponent.\n") },
     { 38, _("Invalid exponent: expected finite integer exponents.\n") },
     { 39, _("With NaN or Inf a division by scalar expected.\n") },
-    
+    { 40, _("Undefined variable: '%s'.\n") },
+    { 41, _("'%s': Wrong type for operand #%d: real scalar expected.\n") },
+    { 42, _("'%s': Evaluation of operand #%d yields no result.\n") },
+
     { 50, _("Wrong file descriptor: %d.\n") },
     { 51, _("Cannot read file %d.\n") },
     { 52, _("Cannot open file %s.\n") },

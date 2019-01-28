@@ -35,11 +35,11 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (pITL == nullptr)
         {
             clearResult();
-            std::wostringstream os;
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("Operation '%ls': there is no left operand.\n").c_str(), e.getString().c_str());
-            os << szError;
-            throw ast::InternalError(os.str(), 999, e.getLeft().getLocation());
+            char pstError[bsiz];
+            char* strOp = wide_string_to_UTF8(e.getString().c_str());
+            os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 1);
+            FREE(strOp);
+            throw InternalError(pstError, 42,  e.getLeft().getLocation());
         }
 
         /*getting what to assign*/
@@ -54,11 +54,11 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (pITR == nullptr)
         {
             clearResult();
-            std::wostringstream os;
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("Operation '%ls': there is no right operand.\n").c_str(), e.getString().c_str());
-            os << szError;
-            throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
+            char pstError[bsiz];
+            char* strOp = wide_string_to_UTF8(e.getString().c_str());
+            os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 2);
+            FREE(strOp);
+            throw InternalError(pstError, 42, e.getRight().getLocation());
         }
 
         if (pITL->getType() == types::InternalType::ScilabImplicitList)
