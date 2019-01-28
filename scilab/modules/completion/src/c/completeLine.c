@@ -57,9 +57,14 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
         }
     }
 
-    //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
+    // as we try to "find" within "string", "find" should be smaller than or equal to "string"
+    if (strlen(pointerOnFindCopy) > strlen(string))
+    {
+        pointerOnFindCopy[strlen(string)] = '\0';
+    }
     movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
 
+    //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
     while ( movingPointerOnFindCopy )
     {
         //find the last occurence of last char of string in tmpfind
@@ -70,21 +75,6 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
         }
         // Cut tmpfind at this position
         movingPointerOnFindCopy[0] = '\0';
-        // if a prefix is already found and could not grow anymore, return what we found
-        if (stringLength < strlen(pointerOnFindCopy))
-        {
-            FREE(pointerOnFindCopy);
-            pointerOnFindCopy = NULL;
-
-            if (pointerOnString)
-            {
-                return (int)(pointerOnString - string);
-            }
-            else
-            {
-                return stringLength;
-            }
-        }
         //Check if the cutted tmpfind match with the suffix of string that has adequat length
         size_t lenPointerOnFindCopy = strlen(pointerOnFindCopy);
         pointerOnString = (char*)(string + stringLength - 1 - lenPointerOnFindCopy);
