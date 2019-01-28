@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005 - INRIA - Pierre MARECHAL
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,11 +16,11 @@ function [Y,M,D,h,m,s] = datevec(N)
     leap_year   = [0,31,60,91,121,152,182,213,244,274,305,335,366];
 
     if nargin<>1 then
-        error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"datevec",1));
+        error(71, 1);
     end
 
     if type(N) <> 1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"datevec",1));
+        error(94, 1);
     end
 
     [nr,nc] = size(N);

@@ -1,9 +1,8 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,24 +13,23 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include "gw_time.h"
 #include "api_scilab.h"
 #include "sci_malloc.h"
 #include "Scierror.h"
 #include "transposeMatrix.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/
+
 static int isBissextile (unsigned year);
 static unsigned months_to_days (unsigned month);
 static long years_to_days (unsigned year);
 static long ymd_to_scalar (unsigned year, unsigned month, unsigned day);
-/*--------------------------------------------------------------------------*/
+
 #define NBRDAY 7
 #define NBRWEEK 6
-/*--------------------------------------------------------------------------*/
-int days[12]    = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-/*--------------------------------------------------------------------------*/
+
+static int days[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
 int sci_calendar(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -56,7 +54,7 @@ int sci_calendar(char *fname, void* pvApiCtx)
 
     if (getScalarDouble(pvApiCtx, p1_in_address, &dblReal))
     {
-        Scierror(999, _("%s: Wrong type for input arguments: Scalar values expected.\n"), fname);
+        Scierror(93, 1);
         return 0;
     }
 
@@ -65,7 +63,7 @@ int sci_calendar(char *fname, void* pvApiCtx)
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &p1_in_address);
     if (getScalarDouble(pvApiCtx, p1_in_address, &dblReal))
     {
-        Scierror(999, _("%s: Wrong type for input arguments: Scalar values expected.\n"), fname);
+        Scierror(93, 2);
         return 0;
     }
 
@@ -73,13 +71,13 @@ int sci_calendar(char *fname, void* pvApiCtx)
 
     if ( (year < 1800) || (year > 3000) )
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 2, 1800, 3000);
+        Scierror(110, 2, _("value between 1800 and 3000"));
         return 0;
     }
 
     if ( (month < 1) || (month > 12) )
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 1, 1, 12);
+        Scierror(110, 1, _("value between 1 and 12"));
         return 0;
     }
 
@@ -136,22 +134,22 @@ int sci_calendar(char *fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
-/*--------------------------------------------------------------------------*/
+
 static int isBissextile (unsigned year)
 {
     return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
 }
-/*--------------------------------------------------------------------------*/
+
 static unsigned months_to_days (unsigned month)
 {
     return (month * 3057 - 3007) / 100;
 }
-/*--------------------------------------------------------------------------*/
+
 static long years_to_days (unsigned year)
 {
     return year * 365L + year / 4 - year / 100 + year / 400;
 }
-/*--------------------------------------------------------------------------*/
+
 static long ymd_to_scalar (unsigned year, unsigned month, unsigned day)
 {
     long scalaire;
@@ -164,5 +162,3 @@ static long ymd_to_scalar (unsigned year, unsigned month, unsigned day)
     scalaire += years_to_days(year);
     return scalaire;
 }
-/*--------------------------------------------------------------------------*/
-

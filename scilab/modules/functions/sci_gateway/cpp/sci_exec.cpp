@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,7 +48,7 @@ extern "C"
 #include "PATH_MAX.h"
 }
 
-void closeFile(std::ifstream* file, int fileId, const std::wstring& wstFile, ast::Exp* pExp)
+static void closeFile(std::ifstream* file, int fileId, const std::wstring& wstFile, ast::Exp* pExp)
 {
     if (file)
     {
@@ -67,7 +67,7 @@ void closeFile(std::ifstream* file, int fileId, const std::wstring& wstFile, ast
         }
     }
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int promptMode      = 0;//default value at startup, overthise 3 or verbose ";"
@@ -99,7 +99,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() < 1 || in.size() > 3)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "exec" , 1, 3);
+        Scierror(72, 1, 3);
         return types::Function::Error;
     }
 
@@ -117,7 +117,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
+                Scierror(110, 2, "'errcatch'");
                 return types::Function::Error;
             }
 
@@ -127,7 +127,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->isScalar() == false)
                 {
                     //mode
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "exec", 3);
+                    Scierror(92, 3);
                     return types::Function::Error;
                 }
 
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() > 2)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
+                Scierror(110, 2, "'errcatch'");
                 return types::Function::Error;
             }
             //mode
@@ -147,7 +147,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         else
         {
             //not managed
-            Scierror(999, _("%s: Wrong type for input argument #%d: A integer or string expected.\n"), "exec", 2);
+            Scierror(90, 2, _("%integer or a string"), "exec", 2);
             return types::Function::Error;
         }
     }
@@ -175,7 +175,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             closeFile(file, iID, wstFile, pExp);
             FREE(pwstTemp);
-            Scierror(999, _("%s: Cannot open file %s.\n"), "exec", stFile.data());
+            Scierror(52, stFile.data());
             return types::Function::Error;
         }
 
@@ -261,7 +261,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         if ((inputs->size() != 0 && (inputs->back()->getSymbol().getName() == L"varargin")) ||
                 (outputs->size() != 0 && (outputs->back()->getSymbol().getName() == L"varargout")))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A macro without varargin and varargout expected.\n"), "exec", 1);
+            Scierror(90, 1, _("macro without varargin and varargout"));
             return types::Function::Error;
         }
 
@@ -276,7 +276,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "exec", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 

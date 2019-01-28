@@ -3,7 +3,7 @@
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
     if (iRhs < 2 || iRhs > 4)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "write", 2, 4);
+        Scierror(72, 2, 4);
         return types::Function::Error;
     }
 
@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
         if (pSPath->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 1);
+            Scierror(91, 1);
             return types::Function::Error;
         }
 
@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
         types::Double* pDId = in[0]->getAs<types::Double>();
         if (pDId->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "write", 1);
+            Scierror(93, 1);
             return types::Function::Error;
         }
 
@@ -106,7 +106,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar or file descriptor expected.\n"), "write", 1);
+        Scierror(90, 1, _("real scalar or a string"));
         return types::Function::Error;
     }
 
@@ -117,7 +117,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
     if(in[1]->isGenericType() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix or column vector expected.\n"), "write", 2);
+        Scierror(90, 2, _("real matrix or column vector"));
         return types::Function::Error;
     }
 
@@ -143,7 +143,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
         if (in[iPos]->isString() == false)
         {
             closeFile(in[0], iID);
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", iRhs);
+            Scierror(91, iRhs);
             return types::Function::Error;
         }
 
@@ -151,7 +151,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
         if (pSFormat->isScalar() == false)
         {
             closeFile(in[0], iID);
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", iRhs);
+            Scierror(102, iRhs);
             return types::Function::Error;
         }
 
@@ -194,7 +194,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
             default:
             {
                 closeFile(in[0], iID);
-                Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
+                Scierror(91, 2);
                 return types::Function::Error;
             }
         }
@@ -309,7 +309,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                 break;
                 default:
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
+                    Scierror(91, 2);
                     closeFile(in[0], iID);
                     FREE(pstFormat);
                     return types::Function::Error;
@@ -425,7 +425,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                 break;
                 default:
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
+                    Scierror(91, 2);
                     FREE(pstFormat);
                     return types::Function::Error;
                 }

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,20 +31,20 @@ extern "C"
 }
 
 using namespace types;
-static const std::string fname("laod");
-/*--------------------------------------------------------------------------*/
+static const std::string fname("load");
+
 Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), fname.data(), 1);
+        Scierror(74, 1);
         return types::Function::Error;
     }
 
     InternalType* pIT = in[0];
     if (pIT->getId() != InternalType::IdScalarString)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname.data(), 1);
+        Scierror(91, 1);
         return Function::Error;
     }
 
@@ -84,7 +84,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
                 }
                 case 2:
                 {
-                    Scierror(999, "%s: %s", fname.data(), _("Redefining permanent variable.\n"));
+                    Scierror(4);
                     return Function::Error;
                 }
                 default:
@@ -99,7 +99,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
     }
     else
     {
-        Scierror(999, _("%s: Unable to open file: \"%ls\".\n"), fname.data(), pwstPathLib);
+        Scierror(52, pstPath);
         FREE(pstPath);
         FREE(pwstPathLib);
         return Function::Error;
@@ -107,6 +107,3 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
 
     return Function::OK;
 }
-
-
-/*--------------------------------------------------------------------------*/

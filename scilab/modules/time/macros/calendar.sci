@@ -23,15 +23,16 @@ function listcal = calendar(varargin)
         M=varargin(2);
         if (size(Y) == [1,1]) & (size(M) == [1,1]) then
         else
-            error(msprintf(gettext("%s: Wrong type for input arguments: Must be scalars.\n"),"calendar"));
+            error(_("%s: Wrong type for input arguments: Must be scalars.\n"),"calendar");
         end
-        if (M < 1) | (M > 12) then error(msprintf(gettext("%s: Wrong value for input argument: Must be between %d and %d.\n"),"calendar",1,12));,end
+        if (M < 1) | (M > 12) then 
+            error(_("%s: Wrong value for input argument: Must be between %d and %d.\n"), "calendar", 1, 12);
+        end
         c=[Y,M,1];
         break
     else
-        error(msprintf(gettext("%s: Wrong number of input arguments.\n"),"calendar"));
+        error(_("%s: Wrong number of input arguments.\n"), "calendar");
     end
-
 
     mths = [gettext("Jan"); ..
     gettext("Feb"); ..

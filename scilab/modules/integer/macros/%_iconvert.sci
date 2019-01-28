@@ -13,15 +13,15 @@
 function x = %_iconvert(a,typeToConvert)
 
     if type(a) == 1 & isreal(a) == %f then
-        error(msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"), "iconvert", 1));
+        error(94, 1);
     end
 
     if floor(typeToConvert) <> typeToConvert then
-        error(msprintf(_("%s: Wrong value for input argument #%d: An integer value expected.\n"), "iconvert", 2));
+        error(111, 2);
     end
 
     if type(typeToConvert) <> 1 | size(typeToConvert, "*") <> 1 then
-        error(msprintf(_("%s: Wrong size for argument #%d: Real scalar expected.\n"), "iconvert", 2));
+        error(101, 2);
     end
 
     select typeToConvert
@@ -44,7 +44,7 @@ function x = %_iconvert(a,typeToConvert)
     case 18 then
         x = uint64(a);
     else
-        error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "iconvert", 2, "0, 1, 2, 4, 8, 11, 12, 14, 18"));
+        error(110, 2, _("element of set {0, 1, 2, 4, 8, 11, 12, 14, 18}"));
     end
 
 endfunction

@@ -3,7 +3,7 @@
  * Copyright (C) INRIA
  * Copyright (C) DIGITEO - 2010 - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,7 +25,7 @@
 #include "fprintfMat.h"
 
 static void freeVar(char** filename, char** expandedFilename, char*** textAdded, int m4n4, char** Format, char** separator);
-/*--------------------------------------------------------------------------*/
+
 int sci_fprintfMat(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -64,7 +64,7 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
 
         if (isStringType(pvApiCtx, piAddressVarThree) == 0 || isScalar(pvApiCtx, piAddressVarThree) == 0)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+            Scierror(91, 3);
             return 0;
         }
 
@@ -75,7 +75,7 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
                 freeAllocatedSingleString(Format);
             }
 
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
     }
@@ -103,7 +103,7 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
                 (isScalar(pvApiCtx, piAddressVarFour) == FALSE && isVector(pvApiCtx, piAddressVarFour) == FALSE))
         {
             freeVar(&filename, &expandedFilename, &textAdded, m4n4, &Format, &separator);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), fname, 1);
+            Scierror(100, 1, _("1-by-n or m-by-1 matrix"));
             return 0;
         }
 
@@ -133,14 +133,14 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
                 isScalar(pvApiCtx, piAddressVarFive) == 0)
         {
             freeVar(&filename, &expandedFilename, &textAdded, m4n4, &Format, &separator);
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+            Scierror(91, 1);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarFive, &separator))
         {
             freeVar(&filename, &expandedFilename, &textAdded, m4n4, &Format, &separator);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
     }
@@ -161,7 +161,7 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
     if (isDoubleType(pvApiCtx, piAddressVarTwo) == 0 || isVarComplex(pvApiCtx, piAddressVarTwo))
     {
         freeVar(&filename, &expandedFilename, &textAdded, m4n4, &Format, &separator);
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of floating point numbers expected.\n"), fname, 2);
+        Scierror(94, 2);
         return 0;
     }
 
@@ -186,14 +186,14 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
     if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
         freeVar(&filename, &expandedFilename, &textAdded, m4n4, &Format, &separator);
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
+        Scierror(102, 1);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &filename))
     {
         freeVar(&filename, &expandedFilename, &textAdded, m4n4, &Format, &separator);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -210,18 +210,18 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
         break;
         case FPRINTFMAT_FOPEN_ERROR:
         {
-            Scierror(999, _("%s: can not open file %s.\n"), fname, filename);
+            Scierror(52, filename);
         }
         break;
         case FPRINTMAT_FORMAT_ERROR:
         {
-            Scierror(999, _("%s: Invalid format.\n"), fname);
+            Scierror(56);
         }
         break;
         default:
         case FPRINTFMAT_ERROR:
         {
-            Scierror(999, _("%s: error.\n"), fname);
+            Scierror(0);
         }
         break;
     }
@@ -229,7 +229,7 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
     freeVar(&filename, &expandedFilename, &textAdded, m4n4, &Format, &separator);
     return 0;
 }
-/*--------------------------------------------------------------------------*/
+
 static void freeVar(char** filename, char** expandedFilename, char*** textAdded, int m4n4, char** Format, char** separator)
 {
     if (filename && *filename)

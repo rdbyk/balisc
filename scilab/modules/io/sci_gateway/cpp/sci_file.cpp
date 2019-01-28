@@ -4,7 +4,7 @@
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,6 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "filemanager.hxx"
@@ -39,17 +38,17 @@ extern "C"
     extern int C2F(backspaceinter)(int*);
     extern int C2F(readinter)(int*, char const*, int);
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);
 types::Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::String* pSAction = NULL;
 
     if (in.size() > 6)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "file", 0, 6);
+        Scierror(72, 0, 6);
         return types::Function::Error;
     }
 
@@ -66,7 +65,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
     // get action
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "file", 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -74,7 +73,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
 
     if (pSAction->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A single string expected.\n"), "file", 1);
+        Scierror(102, 1);
         return types::Function::Error;
     }
 
@@ -94,7 +93,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
         // get path
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "file", 2);
+            Scierror(91, 2);
             return types::Function::Error;
         }
 
@@ -102,7 +101,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
 
         if (pSPath->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A single string expected.\n"), "file", 2);
+            Scierror(102, 2);
             return types::Function::Error;
         }
 
@@ -118,7 +117,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                 pSRecl = in[i]->getAs<types::Double>();
                 if (pSRecl->isScalar() == false)
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "file", i + 1);
+                    Scierror(93, i + 1);
                     return types::Function::Error;
                 }
 
@@ -128,13 +127,13 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "file", i + 1);
+                Scierror(91, i + 1);
                 return types::Function::Error;
             }
 
             if (pSOption->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A single string expected.\n"), "file", i + 1);
+                Scierror(102, i + 1);
                 return types::Function::Error;
             }
 
@@ -198,7 +197,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "file", i + 1);
+                Scierror(110, i+1, _("'new', 'old', 'scratch', 'unknown', 'sequential', 'direct', 'formatted', or 'unformatted'"));
                 return types::Function::Error;
             }
         }
@@ -217,10 +216,10 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                         Scierror(iErr, _("%s: %d logical unit already used.\n"), "file", lunit);
                         break;
                     case 66  :
-                        Scierror(iErr, _("%s: Too many files opened!\n"), "file");
+                        Scierror(53);
                         break;
                     case 67  :
-                        Scierror(iErr, _("%s: Unknown file format.\n"), "file");
+                        Scierror(56);
                         break;
                     case 240 :
                         Scierror(iErr, _("%s: File \"%s\" already exists or directory write access denied.\n"), "file", pstFilename);
@@ -229,7 +228,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
                         Scierror(iErr, _("%s: File \"%s\" does not exist or read access denied.\n"), "file", pstFilename);
                         break;
                     default  :
-                        Scierror(iErr, _("%s: Can not open File \"%s\"\n"), "file", pstFilename);
+                        Scierror(52, pstFilename);
                 }
 
                 return types::Function::Error;
@@ -257,19 +256,19 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
     {
         if (_iRetCount != 1)
         {
-            Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "file", 1);
+            Scierror(81, 1);
             return types::Function::Error;
         }
 
         if (in.size() != 2)
         {
-            Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "file", 2);
+            Scierror(71, 2);
             return types::Function::Error;
         }
 
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "file", 2);
+            Scierror(94, 2);
             return types::Function::Error;
         }
 
@@ -303,7 +302,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(999, _("%s: Unknown file format.\n"), "file");
+                Scierror(56);
                 return types::Function::Error;
             }
         }
@@ -323,7 +322,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(67, _("%s: Unknown file format.\n"), "file");
+                Scierror(56);
                 return types::Function::Error;
             }
         }
@@ -346,7 +345,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
 
                 if (iErr == 2)
                 {
-                    Scierror(999, _("%s: \n"), "file");
+                    Scierror(0);
                     return types::Function::Error;
                 }
 
@@ -354,20 +353,20 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(67, _("%s: Unknown file format.\n"), "file");
+                Scierror(56);
                 return types::Function::Error;
             }
         }
     }
     else
     {
-        Scierror(49, _("%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s\" \n"), "file", 1, "open", "close", "rewind", "backspace", "last");
+        Scierror(110, 1, _("'open', 'close', 'rewind', 'backspace', or 'last'"));
         return types::Function::Error;
     }
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iCount = FileManager::getOpenedCount();
@@ -447,12 +446,12 @@ types::Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCou
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->getSize() != 1)
     {
-        Scierror(201, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "file", 1);
+        Scierror(93, 1);
         return types::Function::Error;
     }
 
@@ -462,7 +461,7 @@ types::Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCo
     //check if double value is an integer to exclude decimal values
     if (static_cast<double>(iID) != pD->getReal()[0])
     {
-        Scierror(201, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "file", 1);
+        Scierror(93, 1);
         return types::Function::Error;
     }
 

@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +23,7 @@
 #include "getenvc.h"
 #include "PATH_MAX.h"
 #include "api_scilab.h"
-/*--------------------------------------------------------------------------*/
+
 int sci_getenv(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -56,7 +56,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
 
         if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
+            Scierror(91, 2);
             return 0;
         }
 
@@ -90,7 +90,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
         {
             freeAllocatedSingleString(pStVarTwo);
         }
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+        Scierror(91, 2);
         return 0;
     }
 
@@ -119,7 +119,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
             {
                 freeAllocatedSingleString(pStVarOne);
                 freeAllocatedSingleString(pStVarTwo);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 return 0;
             }
             else
@@ -146,7 +146,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
     if (env_value == NULL)
     {
         freeAllocatedSingleString(pStVarOne);
-        Scierror(999, _("%s: No more memory.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -158,7 +158,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
     {
         FREE(env_value);
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -169,4 +169,3 @@ int sci_getenv(char *fname, void* pvApiCtx)
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/

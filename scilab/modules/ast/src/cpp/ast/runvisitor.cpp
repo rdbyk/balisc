@@ -49,6 +49,8 @@
 
 #include "coverage_instance.hxx"
 
+#include "errmsgs.h"
+
 extern "C"
 {
 #include "sciprint.h"
@@ -144,17 +146,11 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
     else
     {
         char pstError[bsiz];
-        wchar_t* pwstError;
-
         char* strErr = wide_string_to_UTF8(e.getSymbol().getName().c_str());
-
-        os_sprintf(pstError, _("Undefined variable: %s\n"), strErr);
-        pwstError = to_wide_string(pstError);
+        os_sprintf(pstError, ErrorMessageByNumber(40), strErr);
         FREE(strErr);
-        std::wstring wstError(pwstError);
-        FREE(pwstError);
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(wstError, 999, e.getLocation());
+        throw InternalError(pstError, 40, e.getLocation());
         //Err, SimpleVar doesn't exist in Scilab scopes.
     }
     CoverageInstance::stopChrono((void*)&e);
@@ -1518,18 +1514,18 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
             ERROR_START:
                 piStart->killMe();
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
+                char pstError[bsiz];
+                os_sprintf(pstError, ErrorMessageByNumber(41), ":", 1);
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(szError, 999, e.getLocation());
+                throw InternalError(pstError, 41, e.getLocation());
         }
     }
     else
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Evaluation of argument %d yields no result.\n").c_str(), L"':'", 1);
+        char pstError[bsiz];
+        os_sprintf(pstError, ErrorMessageByNumber(42), ":", 1);
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(szError, 999, e.getLocation());
+        throw InternalError(pstError, 42, e.getLocation());
     }
 
     try
@@ -1595,19 +1591,19 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             ERROR_STEP:
                 piStart->killMe();
                 piStep->killMe();
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
+                char pstError[bsiz];
+                os_sprintf(pstError, ErrorMessageByNumber(41), ":", 2);
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(szError, 999, e.getLocation());
+                throw InternalError(pstError, 41, e.getLocation());
         }
     }
     else
     {
         piStart->killMe();
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Evaluation of argument %d yields no result.\n").c_str(), L"':'", 2);
+        char pstError[bsiz];
+        os_sprintf(pstError, ErrorMessageByNumber(42), ":", 2);
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(szError, 999, e.getLocation());
+        throw InternalError(pstError, 42, e.getLocation());
     }
 
     try
@@ -1674,20 +1670,20 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                 piStart->killMe();
                 piStep->killMe();
                 piEnd->killMe();
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2 + e.hasExplicitStep());
+                char pstError[bsiz];
+                os_sprintf(pstError, ErrorMessageByNumber(41), ":", 2 + e.hasExplicitStep());
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(szError, 999, e.getLocation());
+                throw InternalError(pstError, 41, e.getLocation());
         }
     }
     else
     {
         piStart->killMe();
         piStep->killMe();
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Evaluation of argument %d yields no result.\n").c_str(), L"':'", 2 + e.hasExplicitStep());
+        char pstError[bsiz];
+        os_sprintf(pstError, ErrorMessageByNumber(42), ":", 2 + e.hasExplicitStep());
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(szError, 999, e.getLocation());
+        throw InternalError(pstError, 42, e.getLocation());
     }
 
     ////check if implicitlist is 1:$ to replace by ':'

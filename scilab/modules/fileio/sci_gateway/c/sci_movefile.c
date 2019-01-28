@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #ifndef _MSC_VER
 #include <errno.h>
@@ -31,10 +30,10 @@
 #include "splitpath.h"
 #include "charEncoding.h"
 #include "expandPathVariable.h"
-/*--------------------------------------------------------------------------*/
+
 static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename);
 static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx);
-/*--------------------------------------------------------------------------*/
+
 int sci_movefile(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -85,7 +84,7 @@ int sci_movefile(char *fname, void* pvApiCtx)
             freeAllocatedSingleWideString(pStVarOne);
         }
 
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -93,7 +92,7 @@ int sci_movefile(char *fname, void* pvApiCtx)
     {
         freeAllocatedSingleWideString(pStVarOne);
         freeAllocatedSingleWideString(pStVarTwo);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -147,7 +146,7 @@ int sci_movefile(char *fname, void* pvApiCtx)
                 {
                     FREE(pStVarOneExpanded);
                     FREE(pStVarTwoExpanded);
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     return 0;
                 }
             }
@@ -161,7 +160,7 @@ int sci_movefile(char *fname, void* pvApiCtx)
         {
             FREE(pStVarOneExpanded);
             FREE(pStVarTwoExpanded);
-            Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+            Scierror(110, 1, _("valid filename or directory"));
             return 0;
         }
 
@@ -169,7 +168,7 @@ int sci_movefile(char *fname, void* pvApiCtx)
     }
     else
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+        Scierror(110, 1, _("valid filename or directory"));
     }
 
     FREE(pStVarOneExpanded);
@@ -178,7 +177,6 @@ int sci_movefile(char *fname, void* pvApiCtx)
     return 0;
 }
 
-/*--------------------------------------------------------------------------*/
 static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename)
 {
     wchar_t *wcfilename = NULL;
@@ -208,7 +206,7 @@ static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename)
     }
     return wcfilename;
 }
-/*--------------------------------------------------------------------------*/
+
 static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
 {
     double dError = 0.;
@@ -234,7 +232,7 @@ static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(buffer) + 1));
         if (sciError == NULL)
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -246,7 +244,7 @@ static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
         if (sciError == NULL)
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
         wcscpy(sciError, L"");
@@ -261,7 +259,7 @@ static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         sciError = to_wide_string(strerror(errno));
         if (sciError == NULL)
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
     }
@@ -271,7 +269,7 @@ static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         sciError = (wchar_t *) MALLOC(sizeof(wchar_t) * 1);
         if (sciError == NULL)
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
         wcscpy(sciError, L"");
@@ -292,4 +290,3 @@ static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
-/*--------------------------------------------------------------------------*/

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Pierre MARECHAL
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,18 +15,18 @@
 function E=eomday(Y,M)
 
     if nargin <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"eomday", 2));
+        error(71, 2);
     end
 
     common_year = [31,28,31,30,31,30,31,31,30,31,30,31];
     leap_year   = [31,29,31,30,31,30,31,31,30,31,30,31];
 
     if type(Y) <> 1 | ~isreal(Y) | int(Y) <> Y then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"), "eomday", 1));
+        error(111, 1);
     end
 
     if type(M) <> 1 | ~isreal(M) | int(M) <> M then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"), "eomday", 2))
+        error(111, 2);
     end
 
     if or(size(Y) <> size(M)) then
@@ -34,7 +34,7 @@ function E=eomday(Y,M)
     end
 
     if (min(M) < 1) | (max(M) > 12) then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"eomday",2,1,12));
+        error(110, 2, _("value between 1 and 12"));
     end
 
     [nr,nc] = size(M);

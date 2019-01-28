@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,13 +13,12 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include "gw_time.h"
 #include "realtime.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/
+
 int sci_realtimeinit(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -50,13 +49,13 @@ int sci_realtimeinit(char *fname, void* pvApiCtx)
 
     if (iType != sci_matrix)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+        Scierror(93, 1);
         return 1;
     }
 
     if (isScalar(pvApiCtx, p1_in_address) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+        Scierror(93, 1);
         return 1;
     }
 
@@ -74,7 +73,7 @@ int sci_realtimeinit(char *fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
-/*--------------------------------------------------------------------------*/
+
 int sci_realtime(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -104,13 +103,13 @@ int sci_realtime(char *fname, void* pvApiCtx)
 
     if (iType != sci_matrix)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+        Scierror(93, 1);
         return 1;
     }
 
     if (isScalar(pvApiCtx, p1_in_address) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+        Scierror(93, 1);
         return 1;
     }
 
@@ -129,4 +128,3 @@ int sci_realtime(char *fname, void* pvApiCtx)
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/

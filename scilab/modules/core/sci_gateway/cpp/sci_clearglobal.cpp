@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,8 +30,6 @@ using types::typed_list;
 using symbol::Context;
 using symbol::Symbol;
 
-static const char fname[] = "clearglobal";
-
 Function::ReturnValue sci_clearglobal(typed_list &in, int _iRetCount, typed_list &out)
 {
     Context *pCtx = Context::getInstance();
@@ -46,7 +44,7 @@ Function::ReturnValue sci_clearglobal(typed_list &in, int _iRetCount, typed_list
         {
             if (pCtx->isprotected(Symbol(g.first)))
             {
-                Scierror(999, _("%s: Redefining permanent variable.\n"), fname);
+                Scierror(4);
                 return Function::Error;
             }
         }
@@ -62,7 +60,7 @@ Function::ReturnValue sci_clearglobal(typed_list &in, int _iRetCount, typed_list
         {
             if (in[i]->isString() == false || in[i]->getAs<String>()->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, i + 1);
+                Scierror(91, i + 1);
                 return Function::Error;
             }
 
@@ -70,7 +68,7 @@ Function::ReturnValue sci_clearglobal(typed_list &in, int _iRetCount, typed_list
 
             if (pCtx->isprotected(Symbol(wcsVarName)))
             {
-                Scierror(999, _("%s: Redefining permanent variable.\n"), fname);
+                Scierror(4);
                 return Function::Error;
             }
         }

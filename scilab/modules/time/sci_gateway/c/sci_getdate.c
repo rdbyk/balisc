@@ -3,7 +3,7 @@
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include <stdio.h>
 #include <string.h>
 #include "gw_time.h"
@@ -23,7 +23,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "strcmp.h"
-/*--------------------------------------------------------------------------*/
+
 int sci_getdate(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -39,7 +39,7 @@ int sci_getdate(char *fname, void* pvApiCtx)
 
         if (iErr)
         {
-            Scierror(999, _("%s: An error occurred.\n"), fname);
+            Scierror(0);
             if (dDate)
             {
                 FREE(dDate);
@@ -57,13 +57,13 @@ int sci_getdate(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 return 0;
             }
         }
         else
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
     }
@@ -87,7 +87,7 @@ int sci_getdate(char *fname, void* pvApiCtx)
                 char *pStr = NULL;
                 if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pStr) != 0)
                 {
-                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    Scierror(1);
                     return 0;
                 }
 
@@ -106,13 +106,13 @@ int sci_getdate(char *fname, void* pvApiCtx)
 
                 if (createScalarDouble(pvApiCtx, Rhs + 1, dTime) != 0)
                 {
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     return 0;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
+                Scierror(102, 1);
                 return 0;
             }
         }
@@ -122,7 +122,7 @@ int sci_getdate(char *fname, void* pvApiCtx)
             {
                 if (createEmptyMatrix(pvApiCtx, Rhs + 1) != 0)
                 {
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     return 0;
                 }
             }
@@ -148,7 +148,7 @@ int sci_getdate(char *fname, void* pvApiCtx)
                 {
                     if (dValues[i] < 0.)
                     {
-                        Scierror(999, _("%s: Wrong value for input argument #%d: Must be > %d.\n"), fname, 1, 0);
+                        Scierror(110, 1, _("positive value"));
                         return 0;
                     }
                 }
@@ -158,13 +158,13 @@ int sci_getdate(char *fname, void* pvApiCtx)
                 if (iErr == 2)
                 {
                     FREE(dResults);
-                    Scierror(999, _("%s: An error occurred.\n"), fname);
+                    Scierror(0);
                     return 0;
                 }
 
                 if (dResults == NULL)
                 {
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     return 0;
                 }
 
@@ -177,13 +177,13 @@ int sci_getdate(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     return 0;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A real expected.\n"), fname, 1);
+                Scierror(94, 1);
                 return 0;
             }
         }
@@ -198,5 +198,4 @@ int sci_getdate(char *fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
-/*--------------------------------------------------------------------------*/
 
