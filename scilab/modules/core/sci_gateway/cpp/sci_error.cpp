@@ -104,7 +104,7 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
             std::string fmt("%s: ");
             fmt += predefErrorMsg;
             msprintf_in.push_back(new String(fmt.c_str()));
-            msprintf_in.push_back(new String((--where.rbegin())->call->getName().c_str()));
+            msprintf_in.push_back(new String((++where.rbegin())->call->getName().c_str()));
         }
         else
         {
