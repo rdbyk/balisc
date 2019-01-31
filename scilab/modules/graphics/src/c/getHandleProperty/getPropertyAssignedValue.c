@@ -23,7 +23,6 @@
 #include "api_scilab.h"
 #include "localization.h"
 #include "sci_malloc.h"
-#include "freeArrayOfPtrs.h"
 #include "Scierror.h"
 #include "os_string.h"
 /*--------------------------------------------------------------------------*/

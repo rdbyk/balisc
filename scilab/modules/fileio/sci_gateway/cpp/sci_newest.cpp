@@ -28,7 +28,6 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "newest.h"
-#include "freeArrayOfPtrs.h"
 }
 
 types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, types::typed_list &out)
