@@ -2,7 +2,7 @@
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,7 +18,6 @@ extern "C"
 #include <stdio.h>
 #include <stdlib.h>
 #include "mgetl.h"
-#include "freeArrayOfPtrs.h"
 #include "charEncoding.h"
 #include "sci_malloc.h"
 #include "strcmp.h"

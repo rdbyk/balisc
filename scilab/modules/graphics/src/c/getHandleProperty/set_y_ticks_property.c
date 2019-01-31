@@ -6,7 +6,7 @@
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,7 +33,6 @@
 #include "CheckTicksProperty.h"
 #include "sci_malloc.h"
 #include "BasicAlgos.h"
-#include "freeArrayOfPtrs.h"
 #include "loadTextRenderingAPI.h"
 #include "sci_types.h"
 

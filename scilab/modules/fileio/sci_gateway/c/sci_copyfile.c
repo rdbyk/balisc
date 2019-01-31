@@ -29,7 +29,6 @@
 #include "FileExist.h"
 #include "isdir.h"
 #include "splitpath.h"
-#include "freeArrayOfPtrs.h"
 #include "charEncoding.h"
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/

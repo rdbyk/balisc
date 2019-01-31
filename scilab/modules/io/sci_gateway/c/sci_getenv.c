@@ -17,7 +17,6 @@
 #include <stdlib.h> /* _MAX_ENV */
 #include "gw_io.h"
 #include "sci_malloc.h"
-#include "freeArrayOfPtrs.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "getenvc.h"
