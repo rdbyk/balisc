@@ -370,6 +370,9 @@ header = 2;
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="csvTextScan">csvTextScan</link>
+            </member>
+            <member>
                 <link linkend="csvWrite">csvWrite</link>
             </member>
         </simplelist>

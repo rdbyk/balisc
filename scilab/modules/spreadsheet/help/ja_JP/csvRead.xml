@@ -384,6 +384,9 @@ header = 2;
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="csvTextScan">csvTextScan</link>
+            </member>
+            <member>
                 <link linkend="csvWrite">csvWrite</link>
             </member>
         </simplelist>
