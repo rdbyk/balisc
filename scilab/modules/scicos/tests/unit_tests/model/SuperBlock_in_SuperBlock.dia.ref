@@ -38,10 +38,12 @@ Xcos trace:   propertyUpdated( 3 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace:   objectReferenced( 3 , LINK ) : 1
-Xcos trace:   objectReferenced( 3 , LINK ) : 2
 Xcos debug:   propertyUpdated( 3 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 3 , LINK , PARENT_BLOCK ) : NO_CHANGES
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 3 , LINK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 2 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 3 , LINK ) : 0
 Xcos debug:   propertyUpdated( 2 , DIAGRAM , VERSION_NUMBER ) : SUCCESS
@@ -84,10 +86,12 @@ Xcos trace:   propertyUpdated( 5 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 5 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 5 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace:   objectReferenced( 5 , LINK ) : 1
-Xcos trace:   objectReferenced( 5 , LINK ) : 2
 Xcos trace:   propertyUpdated( 5 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 5 , LINK , PARENT_BLOCK ) : SUCCESS
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 5 , LINK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 4 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 5 , LINK ) : 0
 Xcos trace:   objectUnreferenced( 3 , LINK ) : 0
@@ -167,10 +171,12 @@ Xcos trace:   propertyUpdated( 8 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 8 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 7 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace:   objectReferenced( 7 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 7 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 7 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 6 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 0
 diag.objs(1)
@@ -352,10 +358,12 @@ Xcos trace:   propertyUpdated( 11 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 11 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 Xcos trace:   propertyUpdated( 10 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 10 , BLOCK , PARENT_BLOCK ) : SUCCESS
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 9 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 0
@@ -550,7 +558,11 @@ Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
  ans  =
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
+<<<<<<< HEAD
 wpar = [6,45,0,0,6,45]
+=======
+wpar = [600,450,0,0,600,450]
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 title = ["Quat_Conj";""]
 tol = []
 tf = []

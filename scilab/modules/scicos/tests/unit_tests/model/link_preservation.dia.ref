@@ -55,11 +55,9 @@ Xcos trace:   propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 3 , DIAGRAM ) : 0
 Xcos trace:   objectReferenced( 2 , LINK ) : 1
-Xcos trace:   objectReferenced( 2 , LINK ) : 2
 Xcos debug:   propertyUpdated( 2 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 2 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
-Xcos trace:   objectUnreferenced( 2 , LINK ) : 1
 Xcos debug:   propertyUpdated( 3 , DIAGRAM , VERSION_NUMBER ) : SUCCESS
 Xcos trace:   objectUnreferenced( 2 , LINK ) : 0
 b.model.rpar = d;
@@ -87,10 +85,12 @@ Xcos trace:   propertyUpdated( 4 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 4 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 4 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace:   objectReferenced( 4 , LINK ) : 1
-Xcos trace:   objectReferenced( 4 , LINK ) : 2
 Xcos trace:   propertyUpdated( 4 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 4 , LINK , PARENT_BLOCK ) : SUCCESS
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 4 , LINK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 1 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 4 , LINK ) : 0
 Xcos trace:   objectUnreferenced( 2 , LINK ) : 0
@@ -619,10 +619,12 @@ Xcos trace:   propertyUpdated( 20 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 21 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 20 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 20 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 20 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 20 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 20 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 20 , BLOCK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 19 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 20 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 20 , BLOCK ) : 1
@@ -681,10 +683,12 @@ Xcos trace:   propertyUpdated( 24 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 23 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 22 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 22 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 22 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 22 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 22 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 22 , BLOCK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 19 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 22 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 20 , BLOCK ) : 0
@@ -711,13 +715,15 @@ Xcos trace:   propertyUpdated( 26 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 26 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 26 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace:   objectReferenced( 26 , LINK ) : 1
-Xcos trace:   objectReferenced( 26 , LINK ) : 2
 Xcos debug:   propertyUpdated( 26 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 26 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 24 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 24 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos debug:   propertyUpdated( 26 , LINK , SOURCE_PORT ) : SUCCESS
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 26 , LINK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 19 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 26 , LINK ) : 0
 Xcos trace:   objectUnreferenced( 20 , BLOCK ) : 0
@@ -793,16 +799,18 @@ Xcos trace:   propertyUpdated( 29 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 28 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 27 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 27 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 27 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 27 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 27 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 28 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 <<<<<<< HEAD
 =======
 Xcos debug:   propertyUpdated( 19 , DIAGRAM , CHILDREN ) : SUCCESS
+<<<<<<< HEAD
 >>>>>>> ac2b097... Scicos: fix programmation typo that invalidate some behaviors
 Xcos trace:   objectUnreferenced( 27 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 19 , DIAGRAM , CHILDREN ) : SUCCESS
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos trace:   objectUnreferenced( 27 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 20 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 22 , BLOCK ) : 0
@@ -832,7 +840,6 @@ Xcos trace:   propertyUpdated( 32 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 32 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 32 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace:   objectReferenced( 32 , LINK ) : 1
-Xcos trace:   objectReferenced( 32 , LINK ) : 2
 Xcos debug:   propertyUpdated( 32 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 32 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 29 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
@@ -841,7 +848,10 @@ Xcos debug:   propertyUpdated( 32 , LINK , SOURCE_PORT ) : SUCCESS
 Xcos trace:   propertyUpdated( 21 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 21 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos debug:   propertyUpdated( 32 , LINK , DESTINATION_PORT ) : SUCCESS
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 32 , LINK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 19 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 32 , LINK ) : 0
 Xcos trace:   objectUnreferenced( 20 , BLOCK ) : 0
@@ -875,7 +885,6 @@ Xcos trace:   propertyUpdated( 34 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 34 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 34 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace:   objectReferenced( 34 , LINK ) : 1
-Xcos trace:   objectReferenced( 34 , LINK ) : 2
 Xcos debug:   propertyUpdated( 34 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 34 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 30 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
@@ -884,7 +893,10 @@ Xcos debug:   propertyUpdated( 34 , LINK , SOURCE_PORT ) : SUCCESS
 Xcos trace:   propertyUpdated( 23 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 23 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos debug:   propertyUpdated( 34 , LINK , DESTINATION_PORT ) : SUCCESS
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 34 , LINK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 19 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 34 , LINK ) : 0
 Xcos trace:   objectUnreferenced( 20 , BLOCK ) : 0
@@ -1295,27 +1307,21 @@ Xcos trace:   propertyUpdated( 48 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 48 , LINK , SOURCE_PORT ) : SUCCESS
 Xcos debug:   propertyUpdated( 48 , LINK , DESTINATION_PORT ) : SUCCESS
 Xcos trace:   objectReferenced( 37 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 39 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 42 , LINK ) : 1
-Xcos trace:   objectReferenced( 43 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 47 , LINK ) : 1
-Xcos trace:   objectReferenced( 48 , LINK ) : 1
-Xcos trace:   objectReferenced( 37 , BLOCK ) : 2
 Xcos trace:   propertyUpdated( 37 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 37 , BLOCK , PARENT_BLOCK ) : SUCCESS
-Xcos trace:   objectReferenced( 39 , BLOCK ) : 2
+Xcos trace:   objectReferenced( 39 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 39 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 39 , BLOCK , PARENT_BLOCK ) : SUCCESS
-Xcos trace:   objectReferenced( 42 , LINK ) : 2
+Xcos trace:   objectReferenced( 42 , LINK ) : 1
 Xcos trace:   propertyUpdated( 42 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 42 , LINK , PARENT_BLOCK ) : SUCCESS
-Xcos trace:   objectReferenced( 43 , BLOCK ) : 2
+Xcos trace:   objectReferenced( 43 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 43 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 43 , BLOCK , PARENT_BLOCK ) : SUCCESS
-Xcos trace:   objectReferenced( 47 , LINK ) : 2
+Xcos trace:   objectReferenced( 47 , LINK ) : 1
 Xcos trace:   propertyUpdated( 47 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 47 , LINK , PARENT_BLOCK ) : SUCCESS
-Xcos trace:   objectReferenced( 48 , LINK ) : 2
+Xcos trace:   objectReferenced( 48 , LINK ) : 1
 Xcos trace:   propertyUpdated( 48 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 48 , LINK , PARENT_BLOCK ) : SUCCESS
 Xcos debug:   propertyUpdated( 38 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -1330,12 +1336,15 @@ Xcos trace:   propertyUpdated( 42 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 44 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos debug:   propertyUpdated( 44 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos debug:   propertyUpdated( 42 , LINK , DESTINATION_PORT ) : SUCCESS
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 37 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 39 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 42 , LINK ) : 1
 Xcos trace:   objectUnreferenced( 43 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 47 , LINK ) : 1
 Xcos trace:   objectUnreferenced( 48 , LINK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 35 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 37 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 39 , BLOCK ) : 0
@@ -1471,23 +1480,18 @@ Xcos trace:   propertyUpdated( 51 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 51 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 51 , DIAGRAM ) : 0
 Xcos trace:   objectReferenced( 5 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 35 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 49 , LINK ) : 1
-Xcos trace:   objectReferenced( 50 , LINK ) : 1
-Xcos trace:   objectReferenced( 5 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 5 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
+Xcos trace:   objectReferenced( 7 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 7 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 7 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectReferenced( 35 , BLOCK ) : 2
+Xcos trace:   objectReferenced( 35 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 35 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 35 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectReferenced( 49 , LINK ) : 2
+Xcos trace:   objectReferenced( 49 , LINK ) : 1
 Xcos debug:   propertyUpdated( 49 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 49 , LINK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectReferenced( 50 , LINK ) : 2
+Xcos trace:   objectReferenced( 50 , LINK ) : 1
 Xcos debug:   propertyUpdated( 50 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 50 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 6 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
@@ -1503,11 +1507,6 @@ Xcos trace:   propertyUpdated( 9 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 9 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos debug:   propertyUpdated( 50 , LINK , DESTINATION_PORT ) : SUCCESS
 Xcos debug:   propertyUpdated( 51 , DIAGRAM , CHILDREN ) : SUCCESS
-Xcos trace:   objectUnreferenced( 5 , BLOCK ) : 1
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
-Xcos trace:   objectUnreferenced( 35 , BLOCK ) : 1
-Xcos trace:   objectUnreferenced( 49 , LINK ) : 1
-Xcos trace:   objectUnreferenced( 50 , LINK ) : 1
 Xcos debug:   propertyUpdated( 51 , DIAGRAM , VERSION_NUMBER ) : SUCCESS
 Xcos trace:   objectUnreferenced( 5 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 0
@@ -1706,7 +1705,10 @@ Xcos trace:   propertyUpdated( 54 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 55 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 54 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 54 , BLOCK ) : 1
+<<<<<<< HEAD
 Xcos trace:   objectReferenced( 54 , BLOCK ) : 2
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 51 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   propertyUpdated( 5 , BLOCK , INPUTS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 5 , BLOCK , OUTPUTS ) : SUCCESS
@@ -1718,7 +1720,10 @@ Xcos info:    objectDeleted( 5 , BLOCK )
 Xcos debug:   propertyUpdated( 54 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 54 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 55 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+<<<<<<< HEAD
 Xcos trace:   objectUnreferenced( 54 , BLOCK ) : 1
+=======
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 51 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 54 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 0
