@@ -3,7 +3,7 @@
  * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -247,14 +247,14 @@ int getMode(InternalType* in)
 
             if (iMode <= 0)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "size", 2);
+                Scierror(110, 2, _("positive integer value"));
                 iMode = -2;
             }
         }
     }
     else
     {
-        Scierror(90, 2, _("string or real scalar"), "size", 2);
+        Scierror(90, 2, _("string or real scalar"));
         iMode = -2;
     }
 

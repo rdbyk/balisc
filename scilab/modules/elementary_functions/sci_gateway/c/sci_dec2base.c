@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include <math.h>
 #include "gw_elementary_functions.h"
 #include "sci_malloc.h"
@@ -21,7 +21,7 @@
 #include "localization.h"
 #include "convertbase.h"
 #include "freeArrayOfPtrs.h"
-/*--------------------------------------------------------------------------*/
+
 int sci_dec2base(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -54,19 +54,19 @@ int sci_dec2base(char *fname, void* pvApiCtx)
 
         if (!isDoubleType(pvApiCtx, piAddressVarThree))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), fname, 3);
+            Scierror(111, 3);
             return 1;
         }
 
         if (!isScalar(pvApiCtx, piAddressVarThree))
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar integer value expected.\n"), fname, 3);
+            Scierror(111, 3);
             return 1;
         }
 
         if (getScalarDouble(pvApiCtx, piAddressVarThree, &dParamThree) != 0)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 1;
         }
 
@@ -74,7 +74,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
 
         if (dParamThree != (double)iParamThree)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 3);
+            Scierror(111, 3);
             return 1;
         }
 
@@ -91,32 +91,32 @@ int sci_dec2base(char *fname, void* pvApiCtx)
 
     if (!isDoubleType(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 2);
+        Scierror(111, 2);
         return 1;
     }
 
     if (!isScalar(pvApiCtx, piAddressVarTwo))
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 2);
+        Scierror(101, 2);
         return 1;
     }
 
     if (getScalarDouble(pvApiCtx, piAddressVarTwo, &dBaseUsed) != 0)
     {
-        Scierror(999, _("%s: No more memory.\n"), fname);
+        Scierror(1);
         return 1;
     }
 
     iBaseUsed = (unsigned int)dBaseUsed;
     if (dBaseUsed != (double)iBaseUsed)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), fname, 2);
+        Scierror(111, 2);
         return 1;
     }
 
     if (iBaseUsed < 2 || iBaseUsed > 36)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d."), fname, 2, 2, 36);
+        Scierror(110, 2, _("value between 2 and 36"));
         return 1;
     }
 
@@ -132,7 +132,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
     {
         if (createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1) != 0)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 1;
         }
         else
@@ -145,13 +145,13 @@ int sci_dec2base(char *fname, void* pvApiCtx)
 
     if (!isDoubleType(pvApiCtx, piAddressVarOne))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"), fname, 1);
+        Scierror(110, 1, _("matrix of integer values"));
         return 1;
     }
 
     if (isVarComplex(pvApiCtx, piAddressVarOne))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"), fname, 1);
+        Scierror(110, 1, _("matrix of integer values"));
         return 1;
     }
 
@@ -172,20 +172,20 @@ int sci_dec2base(char *fname, void* pvApiCtx)
         switch (err)
         {
             case ERROR_CONVERTBASE_NOT_INTEGER_VALUE:
-                Scierror(999, _("%s: Wrong value(s) for input argument #%d: A matrix of positive integer values expected.\n"), fname, 1);
+                Scierror(110, 1, _("matrix of positive integer values"));
                 return 1;
 
             case ERROR_CONVERTBASE_NOT_IN_INTERVAL:
-                Scierror(999, _("%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"), fname, 1);
+                Scierror(110, 1, _("integer between 0 and 2^52"));
                 return 1;
 
             case ERROR_CONVERTBASE_ALLOCATION:
-                Scierror(999, _("%s: No more memory.\n"), fname);
+                Scierror(1);
                 return 1;
 
             case ERROR_CONVERTBASE_NOK:
             default:
-                Scierror(999, _("%s: Wrong value for input argument #%d: cannot convert value(s).\n"), fname, 1);
+                Scierror(110, 1, _("convertible value(s)"));
                 return 1;
         }
     }
@@ -197,7 +197,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 1;
     }
 
@@ -205,4 +205,3 @@ int sci_dec2base(char *fname, void* pvApiCtx)
     ReturnArguments(pvApiCtx);
     return 0;
 }
-/*--------------------------------------------------------------------------*/

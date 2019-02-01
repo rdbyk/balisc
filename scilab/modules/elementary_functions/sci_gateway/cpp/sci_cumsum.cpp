@@ -110,7 +110,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
                     pDblIn->killMe();
                 }
 
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), fname, 2);
+                Scierror(101, 2);
                 return types::Function::Error;
             }
 
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
                     pDblIn->killMe();
                 }
 
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), fname, 2);
+                Scierror(110, 2, _("positive real value"));
                 return types::Function::Error;
             }
         }
@@ -266,7 +266,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
                 pDblIn->killMe();
             }
 
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), fname, 3, "\"native\"", "\"double\"");
+            Scierror(110, 3, _("'native' or 'double'"));
             return types::Function::Error;
         }
     }
