@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2017 - Scilab Enterprises - ELIAS Antoine
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,8 +29,6 @@ extern "C"
 #include "sci_malloc.h"
 }
 
-static const char fname[] = "print";
-
 types::Function::ReturnValue sci_print(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int fid = 0;
@@ -39,7 +37,7 @@ types::Function::ReturnValue sci_print(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() <= 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), fname, 2);
+        Scierror(74, 2);
         return types::Function::Error;
     }
 
@@ -48,7 +46,7 @@ types::Function::ReturnValue sci_print(types::typed_list &in, int _iRetCount, ty
         types::String* pS = in[0]->getAs<types::String>();
         if (pS->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 1);
+            Scierror(102, 1);
             return types::Function::Error;
         }
 
@@ -62,19 +60,19 @@ types::Function::ReturnValue sci_print(types::typed_list &in, int _iRetCount, ty
             switch (iErr)
             {
                 case MOPEN_NO_MORE_LOGICAL_UNIT:
-                    Scierror(66, _("%s: Too many files opened!\n"), "mgetl");
+                    Scierror(53);
                     break;
                 case MOPEN_CAN_NOT_OPEN_FILE:
-                    Scierror(999, _("%s: Cannot open file %s.\n"), "mgetl", pst);
+                    Scierror(52, pst);
                     break;
                 case MOPEN_NO_MORE_MEMORY:
-                    Scierror(999, _("%s: No more memory.\n"), "mgetl");
+                    Scierror(1);
                     break;
                 case MOPEN_INVALID_FILENAME:
-                    Scierror(999, _("%s: invalid filename %s.\n"), "mgetl", pst);
+                    Scierror(54, pst);
                     break;
                 default: //MOPEN_INVALID_STATUS
-                    Scierror(999, _("%s: invalid status.\n"), "mgetl");
+                    Scierror(55);
                     break;
             }
 
@@ -91,7 +89,7 @@ types::Function::ReturnValue sci_print(types::typed_list &in, int _iRetCount, ty
         types::Double* pD = in[0]->getAs<types::Double>();
         if (pD->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
+            Scierror(101, 1);
             return types::Function::Error;
         }
 
@@ -99,13 +97,13 @@ types::Function::ReturnValue sci_print(types::typed_list &in, int _iRetCount, ty
         //stdin
         if (fid == 5)
         {
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), fname, fid);
+            Scierror(50, fid);
             return types::Function::Error;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real or String expected.\n"), fname, 1);
+        Scierror(90, 1, _("real or string"));
         return types::Function::Error;
     }
 

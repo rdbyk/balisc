@@ -1332,11 +1332,8 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 
     if (getResultSize() != 1)
     {
-        clearResult();
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Can not transpose multiple elements.\n").c_str(), L"Transpose");
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(szError, 999, e.getLocation());
+        throw InternalError(48, e.getLocation());
     }
 
     types::InternalType * pValue = getResult();

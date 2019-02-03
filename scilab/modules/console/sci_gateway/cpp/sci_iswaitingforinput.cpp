@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include "console_gw.hxx"
 #include "function.hxx"
@@ -24,25 +23,20 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "ConsoleIsWaitingForInput.h"
-#include "configvariable_interface.h" /* FIXME: enum scilabMode */
+#include "configvariable_interface.h"
 }
-/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_iswaitingforinput(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    BOOL res = FALSE;
-
     if (ConfigVariable::getScilabMode() == SCILAB_STD)
     {
-        res = ConsoleIsWaitingForInput();
+        BOOL res = ConsoleIsWaitingForInput();
+        out.push_back(new types::Bool(res));
+        return types::Function::OK;
     }
     else
     {
-        Scierror(999, _("%s: Not implemented in this mode.\n"), "iswaitingforinput");
+        Scierror(140, getScilabModeString());
         return types::Function::Error;
     }
-
-    out.push_back(new types::Bool(res));
-    return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

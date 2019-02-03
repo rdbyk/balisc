@@ -31,7 +31,7 @@ void pcre_error(char const * fname, int errorCode)
             /*No match */
             break;
         case NOT_ENOUGH_MEMORY_FOR_VECTOR:
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             break;
         case DELIMITER_NOT_ALPHANUMERIC:
             Scierror(999, _("%s: Delimiter must not be alphanumeric.\n"), fname);
@@ -64,7 +64,7 @@ void pcre_error(char const * fname, int errorCode)
             Scierror(999, _("%s: Current PCRE library does not support UTF-8.\n"), fname);
             break;
         default:
-            Scierror(999, _("%s: Unknown error.\n"), fname);
+            Scierror(0);
             break;
     }
 }

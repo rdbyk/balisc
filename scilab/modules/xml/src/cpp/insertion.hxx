@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,13 +31,11 @@ extern "C"
 
 using namespace org_modules_xml;
 
-/*--------------------------------------------------------------------------*/
 #define __XML_CHECK_TYPE__(TYPEIN,REQUIREDTYPE,FIELD) if (typeid(TYPEIN) != typeid(REQUIREDTYPE)) \
     {                                                                   \
-        Scierror(999, gettext("%s: Wrong type to set %s field.\n"), fname, FIELD); \
+        Scierror(162, FIELD); \
         return false;                                                   \
     }
-/*--------------------------------------------------------------------------*/
 
 /**
  * Sets the properties of a XMLDocument
@@ -54,7 +52,7 @@ bool setProperty(char * fname, org_modules_xml::XMLDocument & doc, const char * 
     {
         if (typeid(T &) != typeid(XMLElement &) && typeid(T &) != typeid(std::string &))
         {
-            Scierror(999, gettext("%s: Wrong type to set %s field.\n"), fname, "root");
+            Scierror(162, "root");
             return false;
         }
         if (typeid(T &) == typeid(XMLElement &))
@@ -79,13 +77,12 @@ bool setProperty(char * fname, org_modules_xml::XMLDocument & doc, const char * 
     }
     else
     {
-        Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
+        Scierror(161, field);
         return false;
     }
 
     return true;
 }
-/*--------------------------------------------------------------------------*/
 
 /**
  * Sets the properties of a XMLElement
@@ -115,12 +112,12 @@ bool setProperty(char * fname, XMLElement & elem, const char * field, T & value)
     }
     else if (!balisc_strcmp("type", field))
     {
-        Scierror(999, gettext("%s: Field %s is not modifiable: %s\n"), fname, "type");
+        Scierror(163, "type");
         return false;
     }
     else if (!balisc_strcmp("parent", field))
     {
-        Scierror(999, gettext("%s: Field %s is not modifiable: %s\n"), fname, "parent");
+        Scierror(163, "parent");
         return false;
     }
     else if (!balisc_strcmp("attributes", field))
@@ -132,7 +129,7 @@ bool setProperty(char * fname, XMLElement & elem, const char * field, T & value)
     {
         if (typeid(T &) != typeid(XMLElement &) && typeid(T &) != typeid(XMLNodeList &) && typeid(T &) != typeid(std::string &))
         {
-            Scierror(999, gettext("%s: Wrong type to set %s field.\n"), fname, "children");
+            Scierror(162, fname, "children");
             return false;
         }
         if (typeid(T &) == typeid(XMLElement &))
@@ -150,13 +147,12 @@ bool setProperty(char * fname, XMLElement & elem, const char * field, T & value)
     }
     else
     {
-        Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
+        Scierror(161, field);
         return false;
     }
 
     return true;
 }
-/*--------------------------------------------------------------------------*/
 
 /**
  * Function to handle insertion in different XMLObjects
@@ -183,13 +179,13 @@ int sci_insertion(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
     if (!isStringType(pvApiCtx, fieldaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: string expected.\n"), fname, 1);
+        Scierror(91, 1);
         return 0;
     }
 
@@ -197,7 +193,7 @@ int sci_insertion(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(47, 2);
         return 0;
     }
 
@@ -205,13 +201,13 @@ int sci_insertion(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+        Scierror(47, 3);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, fieldaddr, &field) != 0)
     {
-        Scierror(999, _("%s: No more memory.\n"), fname);
+        Scierror(1);
         return 0;
     }
     lhsid = getXMLObjectId(lhsaddr, pvApiCtx);
@@ -220,7 +216,7 @@ int sci_insertion(char * fname, void* pvApiCtx)
     if (!a)
     {
         freeAllocatedSingleString(field);
-        Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+        Scierror(160, _("XML object"));
         return 0;
     }
 
@@ -228,7 +224,7 @@ int sci_insertion(char * fname, void* pvApiCtx)
     if (!success)
     {
         freeAllocatedSingleString(field);
-        Scierror(999, gettext("%s: Error in getting rhs argument.\n"), fname);
+        Scierror(164);
         return 0;
     }
 

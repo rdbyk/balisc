@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,7 +38,6 @@ using namespace org_modules_hdf5;
   - h5close(obj)
 */
 
-/*--------------------------------------------------------------------------*/
 int sci_h5close(char *fname, int* pvApiCtx)
 {
     int id;
@@ -59,7 +58,7 @@ int sci_h5close(char *fname, int* pvApiCtx)
             if (err.iErr)
             {
                 printError(&err, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
+                Scierror(47, i);
                 return 0;
             }
 
@@ -82,13 +81,13 @@ int sci_h5close(char *fname, int* pvApiCtx)
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A H5Object expected.\n"), fname, i);
+                    Scierror(90, i, "H5Object");
                     return 0;
                 }
             }
             catch (std::exception & /*e*/)
             {
-                Scierror(999, _("%s: Cannot remove H5Object.\n"), fname);
+                Scierror(131);
                 return 0;
             }
         }
@@ -99,5 +98,3 @@ int sci_h5close(char *fname, int* pvApiCtx)
 
     return 0;
 }
-
-/*--------------------------------------------------------------------------*/

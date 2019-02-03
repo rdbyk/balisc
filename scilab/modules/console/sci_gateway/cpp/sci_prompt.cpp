@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
 {
     if (in.size() > 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "prompt", 0, 1);
+        Scierror(72, 0, 1);
         return types::Function::Error;
     }
 
@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
     {
         if (_iRetCount > 2)
         {
-            Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "prompt", 1, 2);
+            Scierror(82, 1, 2);
             return types::Function::Error;
         }
 
@@ -57,13 +57,13 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
     {
         if (_iRetCount > 1)
         {
-            Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "prompt", 1);
+            Scierror(81, 1);
             return types::Function::Error;
         }
 
         if ((in[0]->isString() == false) || !in[0]->getAs<types::String>()->isScalar())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "prompt", 1);
+            Scierror(91, 1);
             return types::Function::Error;
         }
 

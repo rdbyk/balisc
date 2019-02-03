@@ -74,7 +74,7 @@ int sci_getdate(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            Scierror(47, 1);
             return 0;
         }
 
@@ -95,7 +95,7 @@ int sci_getdate(char *fname, void* pvApiCtx)
                 {
                     freeAllocatedSingleString(pStr);
                     pStr = NULL;
-                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 1, "s");
+                    Scierror(110, 1, "'s'");
                     return 0;
                 }
 
@@ -138,7 +138,7 @@ int sci_getdate(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    Scierror(47, 1);
                     return 0;
                 }
 
@@ -189,7 +189,7 @@ int sci_getdate(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"), fname, 1, "s");
+            Scierror(90, 1, _("real scalar or string"));
             return 0;
         }
     }

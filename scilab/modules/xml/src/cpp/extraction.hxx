@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,8 +38,6 @@ extern "C"
 }
 
 using namespace org_modules_xml;
-
-/*--------------------------------------------------------------------------*/
 
 /**
  * Creates a string on stack
@@ -94,7 +92,7 @@ int createStringOnStack(char * fname, const char * str, int pos, void* pvApiCtx)
 
     return 1;
 }
-/*--------------------------------------------------------------------------*/
+
 /**
  * Creates a new variable on stack according to the requested field
  * @param fname the function name
@@ -121,11 +119,10 @@ int createVariableOnStack(char * fname, org_modules_xml::XMLDocument & doc, cons
     }
     else
     {
-        Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
+        Scierror(161, field);
         return 0;
     }
 }
-/*--------------------------------------------------------------------------*/
 
 /**
  * Creates a new variable on stack according to the requested field
@@ -193,7 +190,7 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
         if (err.iErr)
         {
             printError(&err, 0);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -201,11 +198,10 @@ int createVariableOnStack(char * fname, XMLElement & elem, const char * field, i
     }
     else
     {
-        Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
+        Scierror(161, field);
     }
     return 0;
 }
-/*--------------------------------------------------------------------------*/
 
 /**
  * Creates a new variable on stack according to the requested field
@@ -227,11 +223,10 @@ int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos,
     }
     else
     {
-        Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
+        Scierror(161, field);
         return 0;
     }
 }
-/*--------------------------------------------------------------------------*/
 
 /**
  * Function to handle extraction in different XMLObjects
@@ -261,7 +256,7 @@ int sci_extraction(char * fname, void* pvApiCtx)
 
     if (!isStringType(pvApiCtx, fieldaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: string expected.\n"), fname, 1);
+        Scierror(91, 1);
         return 0;
     }
 
@@ -269,13 +264,13 @@ int sci_extraction(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(47, 2);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, fieldaddr, &field) != 0)
     {
-        Scierror(999, _("%s: No more memory.\n"), fname);
+        Scierror(1);
         return 0;
     }
     id = getXMLObjectId(mlistaddr, pvApiCtx);
@@ -284,7 +279,7 @@ int sci_extraction(char * fname, void* pvApiCtx)
     if (!t)
     {
         freeAllocatedSingleString(field);
-        Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+        Scierror(160, _("XML object"));
         return 0;
     }
 

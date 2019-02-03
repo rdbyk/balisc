@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * Copyright (C) 2010 - DIGITEO - ELIAS Antoine
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,18 +28,17 @@ extern "C"
 #include "freeArrayOfPtrs.h"
 }
 
-/*--------------------------------------------------------------------------*/
 types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "msprintf", 1);
+        Scierror(74, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "msprintf" , 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -68,4 +67,3 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
     out.push_back(pOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

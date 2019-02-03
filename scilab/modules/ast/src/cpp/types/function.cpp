@@ -706,11 +706,11 @@ Callable::ReturnValue DynamicFunction::Init()
 
             if (hLib == 0)
             {
-                Scierror(999, _("An error has been detected while loading %s: %s\n"), pstLibName, pstError);
+                Scierror(45, pstLibName, pstError);
                 FREE(pstError);
 
                 pstError = GetLastDynLibError();
-                Scierror(999, _("An error has been detected while loading %s: %s\n"), pstPathToLib, pstError);
+                Scierror(45, pstPathToLib, pstError);
 
                 FREE(pstLibName);
                 FREE(pstPathToLib);
@@ -720,7 +720,7 @@ Callable::ReturnValue DynamicFunction::Init()
             FREE(pstError);
 #else
             char* pstError = wide_string_to_UTF8(m_wstLibName.c_str());
-            Scierror(999, _("Impossible to load %s library\n"), pstError);
+            Scierror(45, pstError);
             FREE(pstError);
             FREE(pstLibName);
             return Error;
@@ -769,7 +769,7 @@ Callable::ReturnValue DynamicFunction::Init()
     {
         char* pstEntry = wide_string_to_UTF8(m_wstEntryPoint.c_str());
         char* pstLib = wide_string_to_UTF8(m_wstLibName.c_str());
-        Scierror(999, _("Impossible to load %s function in %s library: %s\n"), pstEntry, pstLib, GetLastDynLibError());
+        Scierror(46, pstEntry, pstLib, GetLastDynLibError());
         FREE(pstEntry);
         FREE(pstLib);
         return Error;

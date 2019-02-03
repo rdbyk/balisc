@@ -73,7 +73,15 @@ static const std::map<int, const char*> errmsgs =
     { 40, _("Undefined variable: '%s'.\n") },
     { 41, _("'%s': Wrong type for operand #%d: real scalar expected.\n") },
     { 42, _("'%s': Evaluation of operand #%d yields no result.\n") },
+    { 43, _("Wrong type for 'varargout': list expected.\n") },
+    { 44, _("Element #%d in 'varargout' is undefined.\n") },
+    { 45, _("An error has been detected while loading %s: %s.\n") },
+    { 45, _("Impossible to load %s library.\n") },
+    { 46, _("Impossible to load %s function in %s library: %s.\n") },
+    { 47, _("Can not read input argument #%d.\n") },
+    { 48, _("Can not apply \"'\" to several elements.\n") },
 
+    // fileio
     { 50, _("Wrong file descriptor: %d.\n") },
     { 51, _("Cannot read file %d.\n") },
     { 52, _("Cannot open file %s.\n") },
@@ -103,9 +111,30 @@ static const std::map<int, const char*> errmsgs =
     { 101, _("Wrong size for input argument #%d: real scalar expected.\n") },
     { 102, _("Wrong size for input argument #%d: string expected.\n") },
     { 103, _("Wrong size for input argument #%d: square matrix expected.\n") },
-    
+
     { 110, _("Wrong value for input argument #%d: %s expected.\n") },
     { 111, _("Wrong value for input argument #%d: integer value expected.\n") },
+
+    // localization
+    { 120, _("Unable to add new domain %s.\n") },
+
+    // hdf5
+    { 130, _("Invalid H5Object.\n") },
+    { 131, _("Cannot remove H5Object.\n") },
+    { 132, _("HDF5 exception '%s' caught.\n") },
+
+    // console
+    { 140, _("Not implemented in mode '%s'.\n") },
+
+    // output_stream
+    { 150, _("Number or types of input arguments do not match format.\n") },
+
+    // xml
+    { 160, _("%s does not exist.\n") },
+    { 161, _("Unknown field: %s.\n") },
+    { 162, _("Wrong type to set %s field.\n") },
+    { 163, _("Field %s is not modifiable.\n") },
+    { 164, _("Error in getting rhs argument.\n") },
 };
 
 char* ErrorMessageByNumber(int n)

@@ -58,7 +58,7 @@ Function::ReturnValue sci_find(typed_list &in, int _iRetCount, typed_list &out)
         iMax = (int)in[1]->getAs<Double>()->get()[0];
         if (iMax <= 0 && iMax != -1)
         {
-            Scierror(110, 2, _("%positive integer value"));
+            Scierror(110, 2, _("positive integer value"));
             return Function::Error;
         }
 

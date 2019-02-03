@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -86,13 +86,13 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
 
     if (rhs < 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), fname.data(), 1);
+        Scierror(74, 1);
         return types::Function::Error;
     }
 
     if (in[0]->getId() != types::InternalType::IdScalarString)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname.data(), 1);
+        Scierror(102, 1);
         return types::Function::Error;
     }
 
@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
     int iFile = openHDF5File(filename.data(), 0);
     if (iFile < 0)
     {
-        Scierror(999, _("%s: Unable to open file: %s\n"), fname.data(), filename.data());
+        Scierror(52, filename.data());
         return types::Function::Error;
     }
 

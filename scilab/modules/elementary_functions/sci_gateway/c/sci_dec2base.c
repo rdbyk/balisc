@@ -48,7 +48,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+            Scierror(47, 3);
             return 1;
         }
 
@@ -85,7 +85,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(47, 2);
         return 1;
     }
 
@@ -124,7 +124,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 1;
     }
 
@@ -159,7 +159,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 1;
     }
 

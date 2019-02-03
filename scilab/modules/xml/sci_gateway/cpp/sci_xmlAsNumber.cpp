@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,7 +28,6 @@ extern "C"
 
 using namespace org_modules_xml;
 
-/*--------------------------------------------------------------------------*/
 int sci_xmlAsNumber(char *fname, void* pvApiCtx)
 {
     int id;
@@ -44,13 +43,13 @@ int sci_xmlAsNumber(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
     if (!isXMLList(addr, pvApiCtx) && !isXMLSet(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"), fname, 1);
+        Scierror(90, 1, _("XMLSet or XMLList"));
         return 0;
     }
 
@@ -58,7 +57,7 @@ int sci_xmlAsNumber(char *fname, void* pvApiCtx)
     list = XMLObject::getFromId < XMLList > (id);
     if (!list)
     {
-        Scierror(999, gettext("%s: XMLSet or XMLList does not exist.\n"), fname);
+        Scierror(160, _("XMLSet or XMLList"));
         return 0;
     }
 
@@ -86,5 +85,3 @@ int sci_xmlAsNumber(char *fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
-
-/*--------------------------------------------------------------------------*/

@@ -41,7 +41,7 @@ int sci_base2dec(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 1;
     }
 
@@ -54,7 +54,7 @@ int sci_base2dec(char *fname, void* pvApiCtx)
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
     if (sciErr.iErr)
     {
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(47, 2);
         printError(&sciErr, 0);
         return 1;
     }

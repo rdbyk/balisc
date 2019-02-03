@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,6 +23,7 @@ extern "C"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
+#include "localization.h"
 }
 
 namespace org_modules_xml
@@ -129,7 +130,7 @@ private:
         *obj = XMLObject::getFromId < T > (id);
         if (!*obj)
         {
-            Scierror(999, "%s: XML object does not exist\n", fname);
+            Scierror(160, _("XML object"));
             return false;
         }
 
