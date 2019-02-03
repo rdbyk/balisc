@@ -4,7 +4,7 @@
  * Copyright (C) 2009-2012 - DIGITEO - Allan CORNET
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
+
 #include <string.h>
 #include <stdlib.h>
 #include "sci_malloc.h"
@@ -27,9 +28,8 @@
 #include "strcmp.h"
 #include "strchr.h"
 
-/*--------------------------------------------------------------------------*/
 static char *convertString_dgettext(const char *domain, const char *pStr);
-/*--------------------------------------------------------------------------*/
+
 int sci_gettext(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
@@ -61,13 +61,13 @@ int sci_gettext(char *fname, void* pvApiCtx)
 
         if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, iCurrentRhs);
+            Scierror(102, iCurrentRhs);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pstDomain))
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -83,14 +83,14 @@ int sci_gettext(char *fname, void* pvApiCtx)
 
     if (isStringType(pvApiCtx, piAddressVarOne) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(91, 1);
         freeAllocatedSingleString(pstDomain);
         return 0;
     }
 
     if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &m, &n, &StringsToTranslate) != 0)
     {
-        Scierror(999, _("%s: No more memory.\n"), fname);
+        Scierror(1);
         freeAllocatedSingleString(pstDomain);
         return 0;
     }
@@ -98,7 +98,7 @@ int sci_gettext(char *fname, void* pvApiCtx)
     TranslatedStrings = (char **)MALLOC(sizeof(char*) * (m * n));
     if (TranslatedStrings == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"), fname);
+        Scierror(1);
         freeAllocatedSingleString(pstDomain);
         freeAllocatedMatrixOfString(m, n, StringsToTranslate);
         StringsToTranslate = NULL;
@@ -129,7 +129,7 @@ int sci_gettext(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -137,7 +137,7 @@ int sci_gettext(char *fname, void* pvApiCtx)
     PutLhsVar();
     return 0;
 }
-/*--------------------------------------------------------------------------*/
+
 static char *convertString_dgettext(const char *domain, const char *pStr)
 {
     char *pStrConverted = NULL;
@@ -281,4 +281,3 @@ static char *convertString_dgettext(const char *domain, const char *pStr)
     }
     return pStrConverted;
 }
-/*--------------------------------------------------------------------------*/

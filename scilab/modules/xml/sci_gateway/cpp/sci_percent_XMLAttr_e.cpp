@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,7 +30,6 @@ extern "C"
 
 using namespace org_modules_xml;
 
-/*--------------------------------------------------------------------------*/
 int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
 {
     XMLAttr *attr;
@@ -53,7 +52,7 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -62,7 +61,7 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
         err = getMatrixOfDouble(pvApiCtx, prefixaddr, &rows, &cols, &indexes);
         if (rows != 1 || cols != 1)
         {
-            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A real scalar expected.\n"), fname, 1);
+            Scierror(101, 1);
             return 0;
         }
     }
@@ -70,13 +69,13 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
     {
         if (!isStringType(pvApiCtx, prefixaddr) || !checkVarDimension(pvApiCtx, prefixaddr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+            Scierror(91, 1);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, prefixaddr, &prefix) != 0)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -87,21 +86,21 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
             {
                 freeAllocatedSingleString(prefix);
                 printError(&err, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+                Scierror(47, 2);
                 return 0;
             }
 
             if (!isStringType(pvApiCtx, nameaddr) || !checkVarDimension(pvApiCtx, nameaddr, 1, 1))
             {
                 freeAllocatedSingleString(prefix);
-                Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+                Scierror(91, 2);
                 return 0;
             }
 
             if (getAllocatedSingleString(pvApiCtx, nameaddr, &name) != 0)
             {
                 freeAllocatedSingleString(prefix);
-                Scierror(999, _("%s: No more memory.\n"), fname);
+                Scierror(1);
                 return 0;
             }
         }
@@ -119,7 +118,7 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
             freeAllocatedSingleString(name);
         }
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, Rhs);
+        Scierror(47, Rhs);
         return 0;
     }
 
@@ -136,7 +135,7 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
         {
             freeAllocatedSingleString(name);
         }
-        Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+        Scierror(160, _("XML object"));
         return 0;
     }
 
@@ -177,7 +176,7 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 

@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,8 +30,6 @@ extern "C"
 
 using namespace org_modules_xml;
 
-/*--------------------------------------------------------------------------*/
-
 /**
  * Function to handle insertion in XMLNodeList
  * @param fname the function name
@@ -57,13 +55,13 @@ int sci_XMLList_insertion(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
     if (!isDoubleType(pvApiCtx, indexaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A double expected.\n"), fname, 1);
+        Scierror(93, 1);
         return 0;
     }
 
@@ -73,7 +71,7 @@ int sci_XMLList_insertion(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(47, 2);
         return 0;
     }
 
@@ -81,7 +79,7 @@ int sci_XMLList_insertion(char * fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+        Scierror(47, 3);
         return 0;
     }
 
@@ -89,14 +87,14 @@ int sci_XMLList_insertion(char * fname, void* pvApiCtx)
     a = XMLObject::getFromId<XMLNodeList>(lhsid);
     if (!a)
     {
-        Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+        Scierror(160, _("XML object"));
         return 0;
     }
 
     success = XMLRhsValue::get(fname, rhsaddr, &b, pvApiCtx);
     if (!success)
     {
-        Scierror(999, gettext("%s: Error in getting rhs argument.\n"), fname);
+        Scierror(164);
         return 0;
     }
 

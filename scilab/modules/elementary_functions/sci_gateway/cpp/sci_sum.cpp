@@ -4,7 +4,7 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pDbl->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), fname, 2);
+                Scierror(101, 2);
                 return types::Function::Error;
             }
 
@@ -81,7 +81,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (iOrientation <= 0)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), fname, 2);
+                Scierror(110, 2, _("positive real value"));
                 return types::Function::Error;
             }
         }

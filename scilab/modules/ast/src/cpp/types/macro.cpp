@@ -233,9 +233,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else if (iInputArgsActual > iInputArgsExpected)
     {
-        char* pstMacroName = wide_string_to_UTF8(getName().c_str());
-        Scierror(71, _("%s: Wrong number of input arguments: %d expected.\n"), pstMacroName, iInputArgsExpected);
-        FREE(pstMacroName);
+        Scierror(71, iInputArgsExpected);
 
         pContext->scope_end();
         ConfigVariable::macroFirstLine_end();
@@ -358,10 +356,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             cleanCall(pContext, oldVal);
 
             char* pstArgName = wide_string_to_UTF8(arg->getSymbol().getName().c_str());
-            char* pstMacroName = wide_string_to_UTF8(getName().c_str());
-            Scierror(999, _("%s: Undefined variable '%s'.\n"), pstMacroName, pstArgName);
+            Scierror(40, pstArgName);
             FREE(pstArgName);
-            FREE(pstMacroName);
             return Callable::Error;
         }
     }
@@ -373,18 +369,14 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         if (pOut == NULL)
         {
             cleanCall(pContext, oldVal);
-            char* pstMacroName = wide_string_to_UTF8(getName().c_str());
-            Scierror(999, _("%s: Undefined variable '%s'.\n"), pstMacroName, "varargout");
-            FREE(pstMacroName);
+            Scierror(40, "varargout");
             return Callable::Error;
         }
 
         if (pOut->isList() == false)
         {
             cleanCall(pContext, oldVal);
-            char* pstMacroName = wide_string_to_UTF8(getName().c_str());
-            Scierror(999, _("%s: Wrong type for '%s': A list expected.\n"), pstMacroName, "varargout");
-            FREE(pstMacroName);
+            Scierror(43);
             return Callable::Error;
         }
 
@@ -403,9 +395,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 out.clear();
                 cleanCall(pContext, oldVal);
 
-                char* pstMacroName = wide_string_to_UTF8(getName().c_str());
-                Scierror(999, _("%s: Element number #%d in '%s' is undefined.\n"), pstMacroName, i + 1, "varargout");
-                FREE(pstMacroName);
+                Scierror(44, i + 1);
                 return Callable::Error;
             }
 

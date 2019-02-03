@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -54,7 +54,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -62,7 +62,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -70,7 +70,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -78,13 +78,13 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
     {
         if (row != 1 || col != 1)
         {
-            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: string or double expected.\n"), fname, 1);
+            Scierror(100, _("string or real scalar"));
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, daddr, &field) != 0)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 0;
         }
         err = getVarAddressFromPosition(pvApiCtx, 2, &mlistaddr);
@@ -92,7 +92,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
         {
             freeAllocatedSingleString(field);
             printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            Scierror(47, 2);
             return 0;
         }
 
@@ -101,7 +101,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
         if (!list)
         {
             freeAllocatedSingleString(field);
-            Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+            Scierror(160, _("XML object"));
             return 0;
         }
 
@@ -128,7 +128,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
             if (err.iErr)
             {
                 printError(&err, 0);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 freeAllocatedSingleString(field);
                 return 0;
             }
@@ -146,7 +146,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
             if (err.iErr)
             {
                 printError(&err, 0);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 freeAllocatedSingleString(field);
                 return 0;
             }
@@ -156,7 +156,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, gettext("%s: Unknown field: %s\n"), fname, field);
+            Scierror(161, field);
         }
         freeAllocatedSingleString(field);
 
@@ -165,13 +165,13 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
 
     if (row != 1 || col != 1 || typ != sci_matrix)
     {
-        Scierror(999, gettext("%s: Wrong dimension for input argument #%d: Single double expected.\n"), fname, 1);
+        Scierror(101, 1);
         return 0;
     }
 
     if (isVarComplex(pvApiCtx, daddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: Double expected.\n"), fname, 1);
+        Scierror(93, 1);
         return 0;
     }
 
@@ -179,7 +179,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -187,7 +187,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(47, 2);
         return 0;
     }
 
@@ -195,7 +195,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
     list = XMLObject::getFromId < XMLList > (id);
     if (!list)
     {
-        Scierror(999, gettext("%s: XML object does not exist.\n"), fname);
+        Scierror(160, _("XML object"));
         return 0;
     }
 

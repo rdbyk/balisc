@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -63,7 +63,7 @@ int sci_h5cp(char *fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -72,7 +72,7 @@ int sci_h5cp(char *fname, int* pvApiCtx)
         sobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
         if (!sobj)
         {
-            Scierror(999, _("%s: Invalid H5Object.\n"), fname);
+            Scierror(130);
             return 0;
         }
     }
@@ -80,13 +80,13 @@ int sci_h5cp(char *fname, int* pvApiCtx)
     {
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+            Scierror(91, 1);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -100,7 +100,7 @@ int sci_h5cp(char *fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(47, 2);
         return 0;
     }
 
@@ -109,7 +109,7 @@ int sci_h5cp(char *fname, int* pvApiCtx)
         dobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
         if (!dobj)
         {
-            Scierror(999, _("%s: Invalid H5Object.\n"), fname);
+            Scierror(130);
             return 0;
         }
     }
@@ -117,13 +117,13 @@ int sci_h5cp(char *fname, int* pvApiCtx)
     {
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+            Scierror(91, 2);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -137,7 +137,7 @@ int sci_h5cp(char *fname, int* pvApiCtx)
         if (err.iErr)
         {
             printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+            Scierror(47, 3);
             return 0;
         }
 
@@ -146,7 +146,7 @@ int sci_h5cp(char *fname, int* pvApiCtx)
             dobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
             if (!dobj)
             {
-                Scierror(999, _("%s: Invalid H5Object.\n"), fname);
+                Scierror(130);
                 return 0;
             }
         }
@@ -154,13 +154,13 @@ int sci_h5cp(char *fname, int* pvApiCtx)
         {
             if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+                Scierror(91, 3);
                 return 0;
             }
 
             if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
             {
-                Scierror(999, _("%s: No more memory.\n"), fname);
+                Scierror(1);
                 return 0;
             }
 
@@ -191,19 +191,19 @@ int sci_h5cp(char *fname, int* pvApiCtx)
             if (err.iErr)
             {
                 printError(&err, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
+                Scierror(47, 4);
                 return 0;
             }
 
             if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+                Scierror(91, 3);
                 return 0;
             }
 
             if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
             {
-                Scierror(999, _("%s: No more memory.\n"), fname);
+                Scierror(1);
                 return 0;
             }
 
@@ -239,7 +239,7 @@ int sci_h5cp(char *fname, int* pvApiCtx)
     }
     catch (const std::exception & e)
     {
-        Scierror(999, _("%s: %s\n"), fname, e.what());
+        Scierror(132, e.what());
         return 0;
     }
 

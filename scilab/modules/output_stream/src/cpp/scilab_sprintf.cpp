@@ -4,7 +4,7 @@
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -148,7 +148,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             {
                 if (itPos == inPos.end())
                 {
-                    Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                    Scierror(150);
                     *_piOutputRows = 0;
                     return nullptr;
                 }
@@ -157,7 +157,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 //input data use to set width
                 if (in[p]->getId() != types::InternalType::IdScalarDouble)
                 {
-                    Scierror(999, _("%s: Wrong type of input arguments #%d: A real scalar expected.\n"), funcname.data(), p);
+                    Scierror(93, p);
                     *_piOutputRows = 0;
                     return nullptr;
                 }
@@ -199,7 +199,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 {
                     if (itPos == inPos.end())
                     {
-                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                        Scierror(150);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -208,7 +208,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     //input data use to set prec
                     if (in[p]->getId() != types::InternalType::IdScalarDouble)
                     {
-                        Scierror(999, _("%s: Wrong type of input arguments #%d: A real scalar expected.\n"), funcname.data(), p + 1);
+                        Scierror(93, p + 1);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -241,7 +241,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     if (itPos == inPos.end())
                     {
                         FREE(pwstFirstOutput);
-                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                        Scierror(150);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -251,7 +251,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
-                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                        Scierror(150);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -270,7 +270,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     if (itPos == inPos.end())
                     {
                         FREE(pwstFirstOutput);
-                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                        Scierror(150);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -280,7 +280,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
-                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                        Scierror(150);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -300,7 +300,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     if (itPos == inPos.end())
                     {
                         FREE(pwstFirstOutput);
-                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                        Scierror(150);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -310,7 +310,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
-                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                        Scierror(150);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -327,7 +327,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     if (itPos == inPos.end())
                     {
                         FREE(pwstFirstOutput);
-                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                        Scierror(150);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -337,7 +337,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     if (in[p]->getType() != types::InternalType::ScilabString)
                     {
                         FREE(pwstFirstOutput);
-                        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                        Scierror(150);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
@@ -355,7 +355,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 }
                 default:
                     FREE(pwstFirstOutput);
-                    Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                    Scierror(150);
                     *_piOutputRows = 0;
                     return nullptr;
                     break;

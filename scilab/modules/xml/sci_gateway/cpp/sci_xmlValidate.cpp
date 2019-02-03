@@ -33,7 +33,6 @@ extern "C"
 
 using namespace org_modules_xml;
 
-/*--------------------------------------------------------------------------*/
 int sci_xmlValidate(char *fname, void* pvApiCtx)
 {
     XMLValidation *validation = 0;
@@ -57,7 +56,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -65,7 +64,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
     {
         if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &path) != 0)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 0;
         }
     }
@@ -75,13 +74,13 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
         doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (id);
         if (!doc)
         {
-            Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
+            Scierror(160, _("XML document"));
             return 0;
         }
     }
     else
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc expected.\n"), fname, 1);
+        Scierror(90, 1, _("matrix of strings or a XMLDoc"));
         return 0;
     }
 
@@ -91,7 +90,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
         if (err.iErr)
         {
             printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            Scierror(47, 2);
             if (path)
             {
                 freeAllocatedMatrixOfString(row, col, path);
@@ -101,7 +100,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
 
         if (!isXMLValid(addr, pvApiCtx))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLValid");
+            Scierror(90, _("XMLValid"));
             if (path)
             {
                 freeAllocatedMatrixOfString(row, col, path);
@@ -113,7 +112,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
         validation = XMLObject::getFromId < XMLValidation > (id);
         if (!validation)
         {
-            Scierror(999, gettext("%s: XML validation file does not exist.\n"), fname);
+            Scierror(160, _("XML validation file"));
             if (path)
             {
                 freeAllocatedMatrixOfString(row, col, path);
@@ -180,7 +179,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -189,5 +188,3 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
 
     return 0;
 }
-
-/*--------------------------------------------------------------------------*/

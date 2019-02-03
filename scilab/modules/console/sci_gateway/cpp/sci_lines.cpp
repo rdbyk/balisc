@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011-2014 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2014 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,9 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
 
 #include "console_gw.hxx"
 #include "function.hxx"
@@ -24,13 +23,12 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 }
-/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_lines(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "lines", 0, 2);
+        Scierror(72, 0, 2);
         return types::Function::Error;
     }
 
@@ -48,7 +46,7 @@ types::Function::ReturnValue sci_lines(types::typed_list &in, int _iRetCount, ty
     {
         if ((in[0]->isDouble() == false))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 1);
+            Scierror(93, 1);
             return types::Function::Error;
         }
 
@@ -66,7 +64,7 @@ types::Function::ReturnValue sci_lines(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 1);
+            Scierror(100, 1, _("real scalar or (1,2)-matrix"));
             return types::Function::Error;
         }
 
@@ -75,23 +73,23 @@ types::Function::ReturnValue sci_lines(types::typed_list &in, int _iRetCount, ty
 
     if ((in[0]->isDouble() == false) || in[0]->getAs<types::Double>()->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 1);
+        Scierror(93, 1);
         return types::Function::Error;
     }
 
     if ((in[1]->isDouble() == false) || in[1]->getAs<types::Double>()->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 2);
+        Scierror(93, 2);
         return types::Function::Error;
     }
     if (in[1]->getAs<types::Double>()->getFirst() < 0)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"), "lines", 2);
+        Scierror(100, 2, _("non-negative real"));
         return types::Function::Error;
     }
     if (in[0]->getAs<types::Double>()->getFirst() < 0)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"), "lines", 1);
+        Scierror(100, 1, _("non-negative real"));
         return types::Function::Error;
     }
 
@@ -100,4 +98,3 @@ types::Function::ReturnValue sci_lines(types::typed_list &in, int _iRetCount, ty
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

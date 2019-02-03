@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include "diary_manager.hxx"
 /*--------------------------------------------------------------------------*/
@@ -106,7 +106,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
         LhsVar(1) = Rhs + 1;
@@ -124,7 +124,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 return 0;
             }
             LhsVar(1) = Rhs + 1;
@@ -132,7 +132,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
     }
@@ -149,7 +149,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 return 0;
             }
 
@@ -167,7 +167,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     return 0;
                 }
 
@@ -175,7 +175,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
             }
             else
             {
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 return 0;
             }
         }
@@ -196,7 +196,7 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -204,7 +204,7 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -268,7 +268,7 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     freeArrayOfPtrs((void**)wcFilenames, sizewcFilenames);
                     return 0;
                 }
@@ -283,7 +283,7 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
-                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                        Scierror(1);
                         freeArrayOfPtrs((void**)wcFilenames, sizewcFilenames);
                         FREE(wfilenameUsed[0]);
                         delete[] wfilenameUsed;
@@ -333,7 +333,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         FREE(wcArgumentTwo);
         wcArgumentTwo = NULL;
         return 0;
@@ -355,7 +355,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                Scierror(47, 1);
                 return 0;
             }
 
@@ -378,7 +378,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                Scierror(47, 1);
                 return 0;
             }
 
@@ -405,7 +405,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                Scierror(47, 1);
                 return 0;
             }
 
@@ -432,7 +432,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                Scierror(47, 1);
                 return 0;
             }
 
@@ -458,7 +458,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                Scierror(47, 1);
                 return 0;
             }
 
@@ -482,7 +482,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                Scierror(47, 1);
                 return 0;
             }
 
@@ -506,7 +506,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                Scierror(47, 1);
                 return 0;
             }
 
@@ -615,7 +615,7 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                Scierror(47, 1);
                 FREE(wcArgumentTwo);
                 return 0;
             }
@@ -628,7 +628,7 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    Scierror(47, 1);
                     return 0;
                 }
 
@@ -650,7 +650,7 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    Scierror(47, 1);
                     return 0;
                 }
 
@@ -673,12 +673,12 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
         }
     }
     else
     {
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
     }
     return 0;
 }
@@ -696,7 +696,7 @@ static double *getInputArgumentOneIDs(char *fname, void* pvApiCtx, int *sizeRetu
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -705,7 +705,7 @@ static double *getInputArgumentOneIDs(char *fname, void* pvApiCtx, int *sizeRetu
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -715,7 +715,7 @@ static double *getInputArgumentOneIDs(char *fname, void* pvApiCtx, int *sizeRetu
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            Scierror(47, 1);
             return 0;
         }
 
@@ -731,7 +731,7 @@ static double *getInputArgumentOneIDs(char *fname, void* pvApiCtx, int *sizeRetu
         }
         else
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 1);
+            Scierror(100, 1, _("vector"));
             *ierror = 1;
         }
     }
@@ -757,7 +757,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -766,7 +766,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -778,7 +778,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            Scierror(47, 1);
             return 0;
         }
 
@@ -792,7 +792,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
             lenStVarOne = (int *)MALLOC(sizeof(int) * (m1 * n1));
             if (lenStVarOne == NULL)
             {
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 *ierror = 1;
             }
             else
@@ -802,7 +802,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                 {
                     FREE(lenStVarOne);
                     printError(&sciErr, 0);
-                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                    Scierror(47, 1);
                     *ierror = 1;
                     return NULL;
                 }
@@ -810,7 +810,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                 wcFilenames = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m1 * n1));
                 if (wcFilenames == NULL)
                 {
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     *ierror = 1;
                     FREE(lenStVarOne);
                 }
@@ -821,7 +821,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                         wcFilenames[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenStVarOne[i] + 1));
                         if (wcFilenames[i] == NULL)
                         {
-                            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                            Scierror(1);
                             *ierror = 1;
                             for (int j = 0; j < i; j++)
                             {
@@ -838,7 +838,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
-                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                        Scierror(47, 1);
                         *ierror = 1;
                         for (int i = 0; i < m1 * n1; i++)
                         {
@@ -854,13 +854,13 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
         }
         else
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 1);
+            Scierror(100, 1, _("vector"), fname, 1);
             *ierror = 1;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+        Scierror(91, 1);
         *ierror = 1;
     }
     return wcFilenames;
@@ -878,7 +878,7 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -887,7 +887,7 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -904,7 +904,7 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
 
         if ( (m2 != n2) && (n2 != 1) )
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
+            Scierror(102, 2);
             *ierror = 1;
         }
         else
@@ -914,7 +914,7 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+                Scierror(47, 2);
                 return 0;
             }
 
@@ -922,7 +922,7 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
 
             if (wcInputArgumentTwo == NULL)
             {
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 *ierror = 1;
             }
 
@@ -930,14 +930,14 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+                Scierror(47, 2);
                 return 0;
             }
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+        Scierror(91, 2);
         *ierror = 1;
     }
     return wcInputArgumentTwo;
@@ -956,7 +956,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+        Scierror(47, 3);
         return 0;
     }
 
@@ -965,7 +965,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+        Scierror(47, 3);
         return 0;
     }
 
@@ -977,7 +977,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+            Scierror(47, 3);
             return 0;
         }
 
@@ -991,7 +991,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
             lenStVarThree = (int *)MALLOC(sizeof(int) * (m3 * n3));
             if (lenStVarThree == NULL)
             {
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 *ierror = 1;
             }
             else
@@ -1001,7 +1001,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
                 {
                     FREE(lenStVarThree);
                     printError(&sciErr, 0);
-                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+                    Scierror(47, 3);
                     *ierror = 1;
                     return NULL;
                 }
@@ -1010,7 +1010,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
                 if (wcInputArgumentThree == NULL)
                 {
                     FREE(lenStVarThree);
-                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(1);
                     *ierror = 1;
                 }
                 else
@@ -1025,7 +1025,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
-                        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+                        Scierror(47, 3);
                         for (int i = 0; i < m3 * n3; i++)
                         {
                             FREE(wcInputArgumentThree[i]);
@@ -1040,13 +1040,13 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
         }
         else
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 3);
+            Scierror(100, 3, _("vector"));
             *ierror = 1;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+        Scierror(91, 3);
         *ierror = 1;
     }
     return wcInputArgumentThree;
@@ -1321,7 +1321,7 @@ static int ExistByFilenames(char *fname, void* pvApiCtx)
     if (resultExist == NULL)
     {
         freeArrayOfPtrs((void**)wcFilenames, dIDs_size);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -1343,7 +1343,7 @@ static int ExistByFilenames(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         FREE(resultExist);
         return 0;
     }
@@ -1370,7 +1370,7 @@ static int ExistByIds(char *fname, void* pvApiCtx)
     int *resultExist = (int*)MALLOC(sizeof(int) * dIDs_size);
     if (resultExist == NULL)
     {
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
@@ -1391,7 +1391,7 @@ static int ExistByIds(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(1);
         FREE(resultExist);
         return 0;
     }
@@ -1454,7 +1454,7 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -1468,7 +1468,7 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 FREE(wfilenameUsed[0]);
                 delete[] wfilenameUsed;
                 return 0;
@@ -1545,7 +1545,7 @@ static int NewByFilenames(char *fname, void* pvApiCtx,
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 FREE(wfilenameUsed[0]);
                 delete[] wfilenameUsed;
                 return 0;
@@ -1560,9 +1560,8 @@ static int NewByFilenames(char *fname, void* pvApiCtx,
     else
     {
         freeArrayOfPtrs((void**)wcFilenames, dIDs_size);
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
+        Scierror(102, 1);
     }
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/

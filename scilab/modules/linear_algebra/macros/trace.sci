@@ -20,7 +20,7 @@
 function y=trace(u)
 
     if nargin < 1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"trace",1));
+        error(71, 1);
     end
 
     if type(u)<>[1:8,16,17] then
@@ -28,7 +28,7 @@ function y=trace(u)
     end
 
     if ~issquare(u) then
-        error(msprintf(gettext("%s: Wrong size of input argument #%d: expected a square matrix.\n"),"trace",1));
+        error(103, 1);
     end
 
     y = sum(diag(u));

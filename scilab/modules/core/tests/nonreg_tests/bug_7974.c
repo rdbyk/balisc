@@ -43,7 +43,7 @@ int sci_call_xerbla(char *fname)
 
         if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &param1) != 0)
         {
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            Scierror(1);
             return 0;
         }
     }
@@ -72,7 +72,7 @@ int sci_call_xerbla(char *fname)
         {
             if (getScalarDouble(pvApiCtx, piAddressVarTwo, &dParam2) != 0)
             {
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                Scierror(1);
                 return 0;
             }
             param2 = (int) dParam2;

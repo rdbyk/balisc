@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,7 +37,6 @@ using namespace org_modules_hdf5;
   - h5ls(filename, name)
 */
 
-/*--------------------------------------------------------------------------*/
 int sci_h5ls(char *fname, int* pvApiCtx)
 {
     H5Object * hobj = 0;
@@ -58,7 +57,7 @@ int sci_h5ls(char *fname, int* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
@@ -67,7 +66,7 @@ int sci_h5ls(char *fname, int* pvApiCtx)
         hobj = HDF5Scilab::getH5Object(addr, pvApiCtx);
         if (!hobj)
         {
-            Scierror(999, _("%s: Can not print H5Object: invalid object.\n"), fname);
+            Scierror(130);
             return 0;
         }
     }
@@ -75,13 +74,13 @@ int sci_h5ls(char *fname, int* pvApiCtx)
     {
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+            Scierror(91, 1);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 0;
         }
         expandedPath = expandPathVariable(str);
@@ -96,19 +95,19 @@ int sci_h5ls(char *fname, int* pvApiCtx)
         if (err.iErr)
         {
             printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            Scierror(47, 2);
             return 0;
         }
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+            Scierror(91, 2);
             return 0;
         }
 
         if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            Scierror(1);
             return 0;
         }
 
@@ -121,19 +120,19 @@ int sci_h5ls(char *fname, int* pvApiCtx)
             if (err.iErr)
             {
                 printError(&err, 0);
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+                Scierror(47, 3);
                 return 0;
             }
 
             if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
             {
-                Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+                Scierror(91, 3);
                 return 0;
             }
 
             if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
             {
-                Scierror(999, _("%s: No more memory.\n"), fname);
+                Scierror(1);
                 return 0;
             }
 
@@ -169,7 +168,7 @@ int sci_h5ls(char *fname, int* pvApiCtx)
     }
     catch (const std::exception & e)
     {
-        Scierror(999, _("%s: %s\n"), fname, e.what());
+        Scierror(132, e.what());
         return 0;
     }
 
@@ -178,4 +177,3 @@ int sci_h5ls(char *fname, int* pvApiCtx)
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/

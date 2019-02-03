@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -34,20 +34,18 @@ using types::Function;
 using types::String;
 using types::typed_list;
 
-static const char fname[] = "sleep";
-
 Function::ReturnValue sci_sleep(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname , 1, 2);
+        Scierror(73, 1, 2);
         return Function::Error;
     }
 
     if (in[0]->isDouble() == false)
     {
         
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+        Scierror(93, 1);
         return Function::Error;
     }
     
@@ -56,14 +54,14 @@ Function::ReturnValue sci_sleep(typed_list &in, int _iRetCount, typed_list &out)
     if (d->getSize() != 1)
     {
         
-        Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 1);
+        Scierror(101, 1);
         return Function::Error;
     }
 
     if (d->getFirst() <= 0.0)
     {
         
-        Scierror(999, _("%s: Wrong value for input argument #%d: A positive real expected.\n"), fname, 1);
+        Scierror(110, _("positive real"));
         return Function::Error;
     }
 
@@ -73,7 +71,7 @@ Function::ReturnValue sci_sleep(typed_list &in, int _iRetCount, typed_list &out)
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 2);
+            Scierror(91, 2);
             return Function::Error;
         }
         
@@ -81,13 +79,13 @@ Function::ReturnValue sci_sleep(typed_list &in, int _iRetCount, typed_list &out)
         
         if (opt->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 2);
+            Scierror(102, 2);
             return Function::Error;
         }
         
         if (wcscmp(opt->getFirst(), L"s") != 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: 's' expected.\n"), fname, 2);
+            Scierror(110, 2, "'s'");
             return Function::Error;
         }
 

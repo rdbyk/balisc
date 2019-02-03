@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,7 +29,6 @@ extern "C"
 
 using namespace org_modules_xml;
 
-/*--------------------------------------------------------------------------*/
 int sci_xmlElement(char *fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc = 0;
@@ -45,20 +44,20 @@ int sci_xmlElement(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(47, 1);
         return 0;
     }
 
     if (!isXMLDoc(addr, pvApiCtx))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A %s expected.\n"), fname, 1, "XMLDoc");
+        Scierror(90, 1, _("XMLDoc"));
         return 0;
     }
 
     doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
-        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
+        Scierror(160, _("XML document"));
         return 0;
     }
 
@@ -66,26 +65,26 @@ int sci_xmlElement(char *fname, void* pvApiCtx)
     if (err.iErr)
     {
         printError(&err, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(47, 2);
         return 0;
     }
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+        Scierror(91, 2);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, addr, &name) != 0)
     {
-        Scierror(999, _("%s: No more memory.\n"), fname);
+        Scierror(1);
         return 0;
     }
 
     if ((name[0] == '\0') || xmlValidateName((const xmlChar *)name, 0))
     {
         freeAllocatedSingleString(name);
-        Scierror(999, gettext("%s: Bad input argument #%d: A valid XML name expected.\n"), fname, 2);
+        Scierror(110, 2, _("valid XML name"));
         return 0;
     }
 
@@ -101,5 +100,3 @@ int sci_xmlElement(char *fname, void* pvApiCtx)
 
     return 0;
 }
-
-/*--------------------------------------------------------------------------*/
