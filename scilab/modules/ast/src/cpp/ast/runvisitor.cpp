@@ -1433,13 +1433,10 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
         char pstError[1024];
         char* pstFuncName = wide_string_to_UTF8(e.getSymbol().getName().c_str());
         os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
-        wchar_t* pwstError = to_wide_string(pstError);
-        std::wstring wstError(pwstError);
         FREE(pstFuncName);
-        FREE(pwstError);
         pMacro->killMe();
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(wstError, 999, e.getLocation());
+        throw InternalError(pstError, 999, e.getLocation());
     }
 
     CoverageInstance::stopChrono((void*)&e);

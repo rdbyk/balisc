@@ -228,10 +228,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                         os_sprintf(szError, _("%s: Wrong number of output arguments: %lu expected.\n"), "extract", out.size());
                     }
 
-                    wchar_t* wError = to_wide_string(szError);
-                    std::wstring err(wError);
-                    FREE(wError);
-                    throw InternalError(err, 999, e.getLocation());
+                    throw InternalError(szError, 999, e.getLocation());
                 }
 
                 setExpectedSize(iSaveExpectedSize);

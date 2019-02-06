@@ -31,10 +31,12 @@
 #include "user.hxx"
 
 #include "alltypes.hxx"
+#include "errmsgs.h"
 
 extern "C"
 {
 #include "storeCommand.h"
+#include "Sciwarning.h"
 }
 
 static void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
@@ -1423,16 +1425,10 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
                 if (ret == false || out.size() != 1 || out[0]->isHandle() == false)
                 {
-                    char szError[bsiz];
-                    char* strFName = wide_string_to_UTF8(pITCurrent->getAs<types::Callable>()->getName().c_str());
-                    os_sprintf(szError, _("Wrong insertion: insertion in output of '%s' is not allowed.\n"), strFName);
-                    FREE(strFName);
-
-                    wchar_t* wError = to_wide_string(szError);
-                    std::wstring err(wError);
-                    FREE(wError);
-
-                    throw ast::InternalError(err, 999, pEH->getExp()->getLocation());
+                    if (ConfigVariable::getFuncprot())
+                    {
+                        FuncprotErrorOrWarning(pITCurrent->getAs<types::Callable>()->getName(), pEH->getExp()->getLocation());
+                    }
                 }
 
                 pEH->setCurrent(out[0]);
@@ -1485,12 +1481,19 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
                 pCell->insertCell(pArgs, _pAssignValue);
             }
-            else if (pEH->getCurrent() && pEH->getCurrent()->isCallable())
-            {
-                throw ast::InternalError(17, _pExp->getLocation());
-            }
             else
             {
+
+// NOTE: We do not really need "function protection" here. In case of
+// functions/macros the "insertionCall" will just try to call %xxx_i_fptr
+// or "%xxx_i_function" ... which is just fine ...
+//
+//                if (pEH->getCurrent() && pEH->getCurrent()->isCallable() && ConfigVariable::getFuncprot())
+//                {
+//                    FuncprotErrorOrWarning(pEH->getCurrent()->getAs<types::Callable>()->getName(), _pExp->getLocation());
+//                }
+//
+
                 // insert "something" in b(x,y)
                 types::InternalType* pIT = insertionCall(*_pExp, pArgs, pEH->getCurrent(), _pAssignValue);
                 if (pIT == NULL)
@@ -2441,4 +2444,29 @@ void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _b
 
     scilabWrite(st.c_str());
 }
-/*--------------------------------------------------------------------------*/
+
+void FuncprotErrorOrWarning(const std::wstring name, const Location& loc)
+{
+    switch (ConfigVariable::getFuncprot())
+    {
+        case 1:
+            {
+                char pstWarning[1024];
+                char* pstFuncName = wide_string_to_UTF8(name.c_str());
+                snprintf(pstWarning, 1024, ErrorMessageByNumber(17), "WARNING", pstFuncName);
+                FREE(pstFuncName);
+                Sciwarning(pstWarning);
+            }
+            break;
+
+        case 2:
+            {
+                char pstError[1024];
+                char* pstFuncName = wide_string_to_UTF8(name.c_str());
+                snprintf(pstError, 1024, ErrorMessageByNumber(17), "ERROR", pstFuncName);
+                FREE(pstFuncName);
+                throw ast::InternalError(pstError, 17, loc);
+            }
+            break;
+    }
+}

@@ -47,7 +47,7 @@ static const std::map<int, const char*> errmsgs =
     { 14, _("for expression : Wrong type for loop iterator.\n") },
     { 15, _("for expression can only manage 1 or 2 dimensions variables.\n") },
     { 16, _("for expression : No value for assignment to loop variable.\n") },
-    { 17, _("Unexpected redefinition of Scilab function.\n") },
+    { 17, _("%s: Redefining function '%s'. Use 'funcprot(0)' to avoid this message.\n") },
     { 18, _("Unable to insert multiple item in a Struct.\n") },
     { 19, _("Unable to insert multiple item in a List.\n") },
     { 20, _("Unknown expression.\n") },
@@ -80,6 +80,7 @@ static const std::map<int, const char*> errmsgs =
     { 46, _("Impossible to load %s function in %s library: %s.\n") },
     { 47, _("Can not read input argument #%d.\n") },
     { 48, _("Can not apply \"'\" to several elements.\n") },
+    { 49, _("Not enough values for assignation to several variables.\n") },
 
     // fileio
     { 50, _("Wrong file descriptor: %d.\n") },

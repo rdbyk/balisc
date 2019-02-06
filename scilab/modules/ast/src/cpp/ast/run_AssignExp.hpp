@@ -87,13 +87,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     char pstError[1024];
                     char* pstFuncName = wide_string_to_UTF8(pVar->getSymbol().getName().data());
                     os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
-                    wchar_t* pwstError = to_wide_string(pstError);
-                    std::wstring wstError(pwstError);
                     FREE(pstFuncName);
-                    FREE(pwstError);
                     pIT->killMe();
                     CoverageInstance::stopChrono((void*)&e);
-                    throw InternalError(wstError, 999, e.getLocation());
+                    throw InternalError(pstError, 999, e.getLocation());
                 }
 
                 ((AssignExp*)&e)->setReturn();
@@ -406,10 +403,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (exec.getResultSize() < iLhsCount)
             {
-                std::wostringstream os;
-                os << _W("Incompatible assignation: trying to assign ") << exec.getResultSize();
-                os << _W(" values in ") << iLhsCount << _W(" variables.") << std::endl;
-                throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
+                throw ast::InternalError(49, e.getRightExp().getLocation());
             }
 
             exps_t::const_reverse_iterator it;
