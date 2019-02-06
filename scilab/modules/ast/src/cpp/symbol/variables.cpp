@@ -19,6 +19,7 @@
 #include "macro.hxx"
 #include "macrofile.hxx"
 #include "types_tools.hxx"
+#include "visitor_common.hxx"
 
 extern "C"
 {
@@ -99,28 +100,9 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
         if (pIT != _pIT)
         {
             //check macro redefinition
-            if (pIT->isCallable())
+            if (pIT->isCallable() && ConfigVariable::getFuncprot())
             {
-                switch (ConfigVariable::getFuncprot())
-                {
-                    case 1:
-                        {
-                            char pstWarning[1024];
-                            char* pstFuncName = wide_string_to_UTF8(name.getName().c_str());
-                            snprintf(pstWarning, 1024, _("WARNING: Redefining function \"%s\". Use funcprot(0) to avoid this message.\n"), pstFuncName);
-                            FREE(pstFuncName);
-                            Sciwarning(pstWarning);
-                        }
-                        break;
-
-                    case 2:
-                        {
-                            wchar_t pwstError[1024];
-                            os_swprintf(pwstError, 1024, _W("ERROR: Redefining function \"%s\". Use funcprot(0) to avoid this error.\n").c_str(), name.getName().c_str());
-                            throw ast::InternalError(pwstError);
-                        }
-                        break;
-                }
+                FuncprotErrorOrWarning(name.getName());
             }
 
             // _pIT may contained in pIT
