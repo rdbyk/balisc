@@ -262,10 +262,10 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         if (!properties->isString())
         {
             Scierror(999, _("%s: Could not read the argument #%d properties.\n"), "getfield", 2);
-            delete one[0];
+            one[0]->killMe();
             return types::Function::Error;
         }
-        delete one[0];
+        one[0]->killMe();
 
         types::String* propertiesStr = properties->getAs<types::String>();
 
@@ -274,11 +274,13 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         if (floor(index) != index)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "getfield", 1);
+            properties->killMe();
             return types::Function::Error;
         }
         if (index < 1 || index > 1 + propertiesStr->getSize())
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: At most %d expected.\n"), "getfield", 1, 1 + propertiesStr->getSize());
+            properties->killMe();
             return types::Function::Error;
         }
 
@@ -301,9 +303,7 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
             out.push_back(field);
         }
 
-        properties->DecreaseRef();
         properties->killMe();
-
         return types::Function::OK;
     }
     else

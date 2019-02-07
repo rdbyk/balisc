@@ -119,7 +119,10 @@ Xcos trace:   objectReferenced( 5 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 5 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace:   propertyUpdated( 5 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 5 , BLOCK , EXPRS ) : NO_CHANGES
+<<<<<<< HEAD
 Xcos trace:   propertyUpdated( 5 , BLOCK , INPUTS ) : NO_CHANGES
+=======
+>>>>>>> ac2b097... Scicos: fix programmation typo that invalidate some behaviors
 Xcos trace:   propertyUpdated( 5 , BLOCK , OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
