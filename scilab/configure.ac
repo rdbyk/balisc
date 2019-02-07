@@ -1954,10 +1954,11 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXTW],[L"$shrext_cmds"],[Extension of a shared library ( wide string )])
 
 #########
-## Make sure that the libstdc++ libgcc and libgfortran can be compiled as
-## static if requested
+## Check extra CC / CXX compiler flags to ease runtime behaviors
 #########
 AC_CHECK_STDCPP_STATIC()
+AC_CHECK_ADDRESS_SANTIZER()
+
 
 #################
 ## stop on warning
