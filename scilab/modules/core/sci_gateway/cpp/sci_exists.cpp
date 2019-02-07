@@ -3,7 +3,7 @@
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,8 +38,6 @@ using types::typed_list;
 #define FNAME_EXISTS 0
 #define FNAME_ISDEF  1
 
-static const char* fname[] = {"exists", "isdef"};
-
 template <typename T, typename U, int W>
 Function::ReturnValue exists(typed_list &in, int _iRetCount, typed_list &out)
 {
@@ -47,19 +45,19 @@ Function::ReturnValue exists(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.size() != 1 && in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected."), fname[W], 1, 2);
+        Scierror(72, 1, 2);
         return Function::Error;
     }
 
     if (!in[0]->isString())
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), fname[W], 1);
+        Scierror(90, 1, _("matrix of strings"));
         return Function::Error;
     }
 
     if (in.size() == 2 && (!in[1]->isString() || in[1]->getAs<String>()->getSize() != 1))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname[W], 2);
+        Scierror(91, 2);
         return Function::Error;
     }
 
@@ -96,7 +94,7 @@ Function::ReturnValue exists(typed_list &in, int _iRetCount, typed_list &out)
         }
         else
         {
-            Scierror(110, _("\'a\', \'l\', or \'n\'"));
+            Scierror(110, 2, _("'a', 'l', or 'n'"));
             delete pOut;
             return Function::Error;
         }
