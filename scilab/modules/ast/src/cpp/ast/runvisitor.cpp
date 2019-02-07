@@ -1428,16 +1428,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
         throw InternalError(4, e.getLocation());
     }
 
-    if (ctx->addMacro(pMacro) == false)
-    {
-        char pstError[1024];
-        char* pstFuncName = wide_string_to_UTF8(e.getSymbol().getName().c_str());
-        os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
-        FREE(pstFuncName);
-        pMacro->killMe();
-        CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(pstError, 999, e.getLocation());
-    }
+    ctx->addMacro(pMacro);
 
     CoverageInstance::stopChrono((void*)&e);
 }
