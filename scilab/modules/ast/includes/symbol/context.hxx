@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -129,9 +129,8 @@ public:
     //clear();
     bool removeAll();
 
-    bool addFunction(types::Function *_info);
+    void addFunction(types::Function *_info);
     void addMacro(types::Macro *_info);
-    bool addMacroFile(types::MacroFile *_info);
     void print(std::wostream& ostr, bool bSorted = false) const;
     int getScopeLevel();
     bool isValidVariableName(const wchar_t*);
