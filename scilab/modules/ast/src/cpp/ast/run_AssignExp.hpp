@@ -81,8 +81,18 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (e.getRightExp().isReturnExp())
             {
-                //ReturnExp so, put the value in the previous scope
-                ctx->putInPreviousScope(pVar->getStack(), pIT);
+                // ReturnExp so, put the value in the
+                if (ctx->getScopeLevel() > SCOPE_CONSOLE)
+                {
+                    // previous scope
+                    ctx->putInPreviousScope(pVar->getStack(), pIT);
+                }
+                else
+                {
+                    // or console scope
+                    ctx->put(pVar->getStack(), pIT);
+                }
+
                 ((AssignExp*)&e)->setReturn();
             }
             else
