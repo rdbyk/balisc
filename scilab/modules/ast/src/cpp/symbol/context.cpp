@@ -400,9 +400,9 @@ bool Context::addFunction(types::Function *_info)
     return true;
 }
 
-bool Context::addMacro(types::Macro *_info)
+void Context::addMacro(types::Macro *_info)
 {
-    return put(Symbol(_info->getName()), _info);
+    put(Symbol(_info->getName()), _info);
 }
 
 bool Context::addMacroFile(types::MacroFile *_info)

@@ -82,17 +82,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             if (e.getRightExp().isReturnExp())
             {
                 //ReturnExp so, put the value in the previous scope
-                if (ctx->putInPreviousScope(pVar->getStack(), pIT) == false)
-                {
-                    char pstError[1024];
-                    char* pstFuncName = wide_string_to_UTF8(pVar->getSymbol().getName().data());
-                    os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
-                    FREE(pstFuncName);
-                    pIT->killMe();
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw InternalError(pstError, 999, e.getLocation());
-                }
-
+                ctx->putInPreviousScope(pVar->getStack(), pIT);
                 ((AssignExp*)&e)->setReturn();
             }
             else

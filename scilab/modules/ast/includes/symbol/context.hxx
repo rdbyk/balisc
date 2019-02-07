@@ -130,7 +130,7 @@ public:
     bool removeAll();
 
     bool addFunction(types::Function *_info);
-    bool addMacro(types::Macro *_info);
+    void addMacro(types::Macro *_info);
     bool addMacroFile(types::MacroFile *_info);
     void print(std::wostream& ostr, bool bSorted = false) const;
     int getScopeLevel();
