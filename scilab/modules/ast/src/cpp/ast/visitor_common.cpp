@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -570,10 +570,7 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
 
         if (ret == types::Function::Error)
         {
-            //manage error
-            std::wostringstream os;
-            os << _W("Error in overload function: ") << function_name << std::endl;
-            throw ast::InternalError(os.str(), 999, e.getLocation());
+            throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
         }
     }
 
@@ -1321,7 +1318,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         else
                         {
                             // only a(x)
-                            throw ast::InternalError(22, _pExp->getLocation());
+                            throw ast::InternalError(21, _pExp->getLocation());
                         }
                     }
                 }

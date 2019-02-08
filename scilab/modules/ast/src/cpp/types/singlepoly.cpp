@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -96,30 +96,14 @@ SinglePoly* SinglePoly::createEmpty(int /*_iDims*/, int* _piDims, bool _bComplex
 
 double* SinglePoly::allocData(int _iSize)
 {
-    double* pDbl = NULL;
     try
     {
-        if (_iSize < 0)
-        {
-            m_pRealData = NULL;
-            m_pImgData = NULL;
-            char message[bsiz];
-            os_sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
-            throw ast::InternalError(message);
-        }
-        else
-        {
-            pDbl = new double[_iSize];
-        }
+        return new double[_iSize];
     }
     catch (std::bad_alloc &/*e*/)
     {
-        char message[bsiz];
-        os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
-        throw ast::InternalError(message);
+        throw ast::InternalError(1);
     }
-
-    return pDbl;
 }
 
 double SinglePoly::copyValue(double _dblData)
