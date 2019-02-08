@@ -332,7 +332,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (!e.getTail()->isSimpleVar())
     {
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(26, e.getLocation());
+        throw InternalError(24, e.getLocation());
     }
 
     try
@@ -2100,10 +2100,8 @@ void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
             }
 
             //print msg about recursion limit and trigger an error
-            wchar_t sz[1024];
-            os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
             CoverageInstance::stopChrono((void*)&e);
-            throw ast::InternalError(sz);
+            throw ast::InternalError(22);
         }
 
     }
