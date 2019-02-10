@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,11 @@
 
 extern "C" {
 #include "matrix_kronecker.h"
+#include "Sciwarning.h"
 }
+
+static int KroneckerLDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut);
+static int KroneckerRDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut);
 
 // DOUBLE .*. DOUBLE
 types::InternalType *GenericKrontimes(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand)
@@ -36,11 +40,7 @@ types::InternalType *GenericKrontimes(types::InternalType *_pLeftOperand, types:
             return NULL;
         }
 
-        int iResult = KroneckerMultiplyDoubleByDouble(pL, pR, &pResult);
-        if (iResult)
-        {
-            throw ast::InternalError(3);
-        }
+        KroneckerMultiplyDoubleByDouble(pL, pR, &pResult);
 
         return pResult;
     }
@@ -49,7 +49,7 @@ types::InternalType *GenericKrontimes(types::InternalType *_pLeftOperand, types:
     return NULL;
 }
 
-int KroneckerMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut)
+void KroneckerMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut)
 {
     bool bComplex1 = _pDouble1->isComplex();
     bool bComplex2 = _pDouble2->isComplex();
@@ -93,8 +93,6 @@ int KroneckerMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pD
                 _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
                 (*_pDoubleOut)->getReal(), iRowResult);
     }
-
-    return 0; //No Error;
 }
 
 // DOUBLE ./. DOUBLE
@@ -110,17 +108,17 @@ types::InternalType *GenericKronrdivide(types::InternalType *_pLeftOperand, type
         types::Double *pR = _pRightOperand->getAs<types::Double>();
 
         int iErr = KroneckerRDivideDoubleByDouble(pL, pR, &pResult);
-        if (iErr == 1)
+
+        if (iErr)
         {
-            throw ast::InternalError(36);
-        }
-        else if (iErr == 2)
-        {
-            throw ast::InternalError(_W("Bad value in the left or right operand.\n"));
-        }
-        else if (iErr == 3)
-        {
-            throw ast::InternalError(_W("Bad size for left or right operand.\n"));
+            if (iErr == 1)
+            {
+                throw ast::InternalError(36);
+            }
+            else
+            {
+                Sciwarning("WARNING: Division by zero...\n");
+            }
         }
 
         return pResult;
@@ -144,15 +142,8 @@ int KroneckerRDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDo
         iErr = conv_real_input(clone->get(), clone->getSize());
     }
 
-    if (iErr)
-    {
-        delete clone;
-        return iErr;
-    }
-
-    iErr = KroneckerMultiplyDoubleByDouble(_pDouble1, clone, _pDoubleOut);
+    KroneckerMultiplyDoubleByDouble(_pDouble1, clone, _pDoubleOut);
     delete clone;
-
     return iErr;
 }
 
@@ -169,13 +160,17 @@ types::InternalType *GenericKronldivide(types::InternalType *_pLeftOperand, type
         types::Double *pR = _pRightOperand->getAs<types::Double>();
 
         int iErr = KroneckerLDivideDoubleByDouble(pL, pR, &pResult);
-        if (iErr == 1)
+
+        if (iErr)
         {
-            throw ast::InternalError(36);
-        }
-        else if (iErr == 2)
-        {
-            throw ast::InternalError(_W("Bad value in the left operand.\n"));
+            if (iErr == 1)
+            {
+                throw ast::InternalError(36);
+            }
+            else
+            {
+                Sciwarning("WARNING: Division by zero...\n");
+            }
         }
 
         return pResult;
@@ -198,15 +193,8 @@ int KroneckerLDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDo
         iErr = conv_real_input(clone->get(), clone->getSize());
     }
 
-    if (iErr)
-    {
-        delete clone;
-        return iErr;
-    }
-
-    iErr = KroneckerMultiplyDoubleByDouble(clone, _pDouble2, _pDoubleOut);
+    KroneckerMultiplyDoubleByDouble(clone, _pDouble2, _pDoubleOut);
     delete clone;
-
     return iErr;
 }
 
