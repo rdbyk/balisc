@@ -40,9 +40,7 @@ extern "C"
 // dummy function definition for non nwni compatible modules
 static void dummy()
 {
-    char* fname = wide_string_to_UTF8(ConfigVariable::getWhere().back().call->getName().c_str());
-    Scierror(999, _("Scilab '%s' function disabled in -nogui or -nwni mode.\n"), fname);
-    FREE(fname);
+    Scierror(26);
 }
 static types::Function::ReturnValue sci_dummy_in_NWNI(types::typed_list &/*in*/, int /*_iRetCount*/, types::typed_list &/*out*/)
 {
@@ -667,7 +665,7 @@ Callable::ReturnValue DynamicFunction::Init()
     /*Load library*/
     if (m_wstLibName.empty())
     {
-        Scierror(999, _("%s: Library name must not be empty\n."), m_wstName.c_str());
+        Scierror(45, m_wstLibName.c_str());
         return Error;
     }
 
