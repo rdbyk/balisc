@@ -3,7 +3,7 @@
  * Copyright (C) 2011 - DIGITEO - Antoine Elias
  * Copyright (C) 2011 - DIGITEO - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -87,40 +87,73 @@ void vKronC(double* _pdblRealIn1, double* _pdblImgIn1, int _iIncIn1, int _iRowsI
 // convert : a => 1 ./ a
 int conv_real_input(double* _pdblData, int _iSize)
 {
+    int div_by_zero = 0;
+
     int i;
     for (i = 0 ; i < _iSize ; i++)
     {
-        if (_pdblData[i] != 0)
+        div_by_zero = _pdblData[0] == 0.0;
+        _pdblData[i] = 1.0 / _pdblData[i];
+    }
+
+    if (div_by_zero)
+    {
+        int mode = getieee();
+
+        if (mode == 2)
         {
-            _pdblData[i] = 1.0 / _pdblData[i];
+            return 0; // ok
         }
-        else
+        else if (mode == 1)
         {
-            return 1;
+            return 2; // warning
+        }
+        else // mode = 0
+        {
+            return 1; // error
         }
     }
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
 
 int conv_img_input(double* _pdblReal, double* _pdblImg, int _iSize)
 {
+    int div_by_zero = 0;
+
     int i;
     for (i = 0 ; i < _iSize ; i++)
     {
         double dblR = _pdblReal[i];
         double dblI = _pdblImg[i];
-
         double dblTemp	= dblR * dblR + dblI * dblI;
-        if (dblTemp != 0)
+        double dblTempInv = 1.0 / dblTemp;
+        div_by_zero = dblTemp == 0.0;
+        _pdblReal[i] = _pdblReal[i]	* dblTempInv;
+        _pdblImg[i] = - _pdblImg[i] * dblTempInv;
+    }
+
+    if (div_by_zero)
+    {
+        int mode = getieee();
+
+        if (mode == 2)
         {
-            double dblTempInv = 1.0 / dblTemp;
-            _pdblReal[i] = _pdblReal[i]	* dblTempInv;
-            _pdblImg[i] = - _pdblImg[i] * dblTempInv;
+            return 0; // ok
         }
-        else
+        else if (mode == 1)
         {
-            return 1;
+            return 2; // warning
+        }
+        else // mode = 0
+        {
+            return 1; // error
         }
     }
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
