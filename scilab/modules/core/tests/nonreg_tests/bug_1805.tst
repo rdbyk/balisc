@@ -8,15 +8,13 @@
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-// <-- ENGLISH IMPOSED -->
 
 // <-- Non-regression test for bug 1805 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=1805
+// http://bugzilla.scilab.org/1805
 //
 // <-- Short Description -->
-//    avaragout oddities
 
 funcprot(0);
 
