@@ -67,8 +67,7 @@ function values = xmlGetValues(xpath, attributes, doc)
             if delDoc then
                 xmlDelete(doc);
             end
-            msg = gettext("%s: Target node is not a XML_ELEMENT_NODE.")
-            error(msprintf(msg, "xmlGetValues"));
+            error(_("%s: Target node is not a XML_ELEMENT_NODE."), "xmlGetValues");
         end
 
         attr = node.attributes;
@@ -81,8 +80,7 @@ function values = xmlGetValues(xpath, attributes, doc)
                 if delDoc then
                     xmlDelete(doc);
                 end
-                msg = gettext("%s: Invalid attribute name: %s.")
-                error(msprintf(msg, "xmlGetValues", a));
+                error(_("%s: Invalid attribute name: %s."), "xmlGetValues", a);
             end
         end
     end
