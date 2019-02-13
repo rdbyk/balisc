@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
 // Copyright (C) 2017 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,43 +12,36 @@
 // along with this program.
 
 function values = xmlGetValues(xpath, attributes, doc)
-    rhs = argn(2);
 
-    if (rhs ~= 2 & rhs ~= 3) then
-        msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
-        error(msprintf(msg, "xmlGetValues", 2, 3));
+    if (nargin ~= 2 & nargin ~= 3) then
+        error(73, 2, 3);
     end
 
     if type(xpath) <> 10 then
-        msg = _("%s: Wrong type for input argument #%d: String expected.\n")
-        error(msprintf(msg, "xmlGetValues", 1));
+        error(91, 1);
     end
 
     if type(attributes) <> 10 then
-        msg = _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n")
-        error(msprintf(msg, "xmlGetValues", 2));
+        error(90, 2, _("matrix of strings"));
     end
 
-    if rhs == 2 then
+    if nargin == 2 then
         doc = SCIHOME + "/XConfiguration.xml"
     end
     doc0 = doc
-    delDoc = (rhs == 2 | type(doc0)==10)
+    delDoc = (nargin == 2 | type(doc0)==10)
     if type(doc)==10 then
         if isfile(doc)
             try
                 doc = xmlRead(doc0);
             catch
-                msg = _("%s: Invalid ""%s"" file.\n")
-                error(msprintf(msg, "xmlGetValues", tokens(doc0,["/" "\"])($)));
+                error(_("%s: Invalid ""%s"" file.\n"), "xmlGetValues", tokens(doc0,["/" "\"])($));
             end
         else
-            msg = _("%s: The file ""%s"" does not exist.\n")
-            error(msprintf(msg, "xmlGetValues", doc));
+            error(52, doc);
         end
     elseif typeof(doc) ~= "XMLDoc" then
-        msg = _("%s: Wrong type for input argument #%d: A XMLDoc expected.\n")
-        error(msprintf(msg, "xmlGetValues", 3));
+        error(90, 3, _("XMLDoc"));
     end
 
     try
@@ -57,16 +50,14 @@ function values = xmlGetValues(xpath, attributes, doc)
         if delDoc then
             xmlDelete(doc);
         end
-        msg = gettext("%s: Invalid XPath request.\n")
-        error(msprintf(msg, "xmlGetValues"));
+        error(_("%s: Invalid XPath request.\n"), "xmlGetValues");
     end
 
     if xp.size == 0 then
         if delDoc then
             xmlDelete(doc);
         end
-        msg = gettext("%s: Invalid XPath request.")
-        error(msprintf(msg, "xmlGetValues"));
+        error(_("%s: Invalid XPath request."), "xmlGetValues");
     end
 
     values = [];
