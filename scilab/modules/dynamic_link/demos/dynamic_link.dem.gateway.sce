@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
-// Copyright (C) 2018 - ESI Group - Clement DAVID
+// Copyright (C) 2018 - ESI Group - Clement 
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
@@ -15,7 +16,7 @@ function subdemolist = demo_gateway()
     _("Call a Fortran subroutine")                          , "call_fortran.sce" ;
     _("Call a Fortran subroutine (with Fortran intrinsics)"), "call_fortran_stdlib.sce" ;
     _("Call a C++ function")                                , "call_cxx.sce" ;
-    _("Call a C++ function (using C++ Standard Library)")   , "call_cxx_stdlib.sce" ;];
+    _("Call a C++ function (using C++ Standard Library)")   , "call_cxx_stdlib.sce" ];
 
     subdemolist(:,2) = demopath + subdemolist(:,2)
 endfunction

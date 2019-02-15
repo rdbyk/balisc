@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
@@ -13,7 +14,7 @@ subdemolist=[                                                                   
 "Set of rectangles"                                , "basic_functions_5.dem.sce" ; ...
 "Colored matrix"                                   , "basic_functions_6.dem.sce" ; ...
 "Pie Chart"                                        , "basic_functions_8.dem.sce" ; ...
-"Xarrows"                                          , "basic_functions_xarrows.dem.sce"; ];
+"Xarrows"                                          , "basic_functions_xarrows.dem.sce" ];
 
 subdemolist(:, 2) = demopath + subdemolist(:, 2);
 clear demopath;

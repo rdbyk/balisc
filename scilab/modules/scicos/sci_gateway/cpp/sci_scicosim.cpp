@@ -178,13 +178,13 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
 
     if (in.size() != 6)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), funname.data(), 6);
+        Scierror(71, 6);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), funname.data(), 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 
@@ -859,7 +859,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
 
     if (static_cast<int>(l_sim_nb[0]) != nblk) // Value of 'nb' must be equal to 'nblk'
     {
-        Scierror(42, _("%s : Incompatible sim.nb RHS parameter.\n"), funname.data());
+        Scierror(999, _("%s : Incompatible sim.nb RHS parameter.\n"), funname.data());
         il_state->DecreaseRef();
         il_state->killMe();
         il_tcur->DecreaseRef();
@@ -1171,7 +1171,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     }
     else
     {
-        Scierror(44, _("%s: Wrong value for input argument #%d : ""%s"", ""%s"" ""%s"" ""%s"" or ""%s"" expected.\n"), funname.data(), 5,
+        Scierror(999, _("%s: Wrong value for input argument #%d : ""%s"", ""%s"" ""%s"" ""%s"" or ""%s"" expected.\n"), funname.data(), 5,
                  "start", "run", "finish", "linear", "Kinsol");
         il_state->DecreaseRef();
         il_state->killMe();
@@ -1301,7 +1301,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     if (err_check != 0)
     {
         // Please write an error table here
-        Scierror(42, _("%s : error in cross variable size checking : %d\n"), funname.data(), err_check);
+        Scierror(999, _("%s : error in cross variable size checking : %d\n"), funname.data(), err_check);
         il_state->DecreaseRef();
         il_state->killMe();
         il_tcur->DecreaseRef();

@@ -305,10 +305,12 @@
                             </inlinemediaobject>
                         </link>
                     </para>
+<!--
                     <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/LOGIC_en_US.zcos");
 xcos_simulate(scs_m, 4);
         ]]></scilab:image>
+-->
         </refsect3>
     </refsection>
 

@@ -147,6 +147,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
+<!--
             <scilab:image localized="true"><![CDATA[
 loadScicos();
 loadXcosLibs();
@@ -158,6 +159,7 @@ function messagebox(msg, Title)
 endfunction
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
+-->
         </para>
     </refsection>
     <refsection>

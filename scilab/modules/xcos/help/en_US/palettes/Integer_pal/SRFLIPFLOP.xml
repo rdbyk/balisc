@@ -306,10 +306,12 @@
                 </inlinemediaobject>
             </link>
         </para>
+<!--
         <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/SRFLIPFLOP_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
+-->
     </refsection>
 
     <refsection id="Interfacingfunction_SRFLIPFLOP">
