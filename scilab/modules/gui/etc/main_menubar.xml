@@ -144,8 +144,8 @@
         </submenu>
         <separator/>
         <submenu label="&amp;Links">
-            <submenu label="Scilab &amp;Web Site">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite" type="3"/>
+            <submenu label="Balisc &amp;Web Site">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openBaliscWebSite" type="3"/>
             </submenu>
             <separator/>
             <submenu label="Scilab &amp;Online Help">
@@ -175,12 +175,14 @@
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openBugzilla" type="3"/>
             </submenu>
         </submenu>
+<!--
         <separator/>
         <submenu label="&amp;Scilab Enterprises">
             <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openSE" type="3"/>
         </submenu>
+-->
         <separator/>
-        <submenu label="&amp;About Scilab..." accelerator="shift F1">
+        <submenu label="&amp;About Balisc..." accelerator="shift F1">
             <callback instruction="about()" type="0"/>
         </submenu>
     </menu>

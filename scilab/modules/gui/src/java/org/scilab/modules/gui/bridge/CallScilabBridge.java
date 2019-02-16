@@ -622,8 +622,8 @@ public class CallScilabBridge {
     /**
      * Open a Browser on Scilab Web Site
      */
-    public static void openScilabWebSite() {
-        WebBrowser.openUrl("http://www.scilab.org/");
+    public static void openBaliscWebSite() {
+        WebBrowser.openUrl("https://github.com/rdbyk/balisc/");
     }
 
     /**
