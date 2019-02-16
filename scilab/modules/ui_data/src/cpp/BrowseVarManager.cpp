@@ -292,7 +292,8 @@ void SetBrowseVarData()
 /*--------------------------------------------------------------------------*/
 static std::set<string> createScilabDefaultVariablesSet()
 {
-    string arr[] = { "home",
+    string arr[] = { "%balisc",
+                     "home",
                      "PWD",
                      "%tk",
                      "%pvm",
@@ -332,7 +333,7 @@ static std::set<string> createScilabDefaultVariablesSet()
                    };
     int i = 0;
 
-#define NBELEMENT 37
+#define NBELEMENT 38
     std::set<string> ScilabDefaultVariables;
 
     for (i = 0; i < NBELEMENT; i++)

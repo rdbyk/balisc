@@ -3,7 +3,7 @@
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -1207,7 +1207,7 @@ static void Add_io(void)
 
 static void Add_balisc(void)
 {
-    Add_Double_Constant(L"%balisc", 0);
+    Add_Double_Constant(L"%balisc", 1);
 }
 
 static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdbl)
