@@ -28,7 +28,7 @@ static const unsigned char UTF8_BOM[] = { 0xEF, 0xBB, 0xBF, 0x00 };
 
 static void remove_linebreak(char* line, size_t n)
 {
-    if (n && line[--n] == '\n')
+    if (line[--n] == '\n')
     {
         line[n] = '\0';
         if (n && line[--n] == '\r')
@@ -73,6 +73,11 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
         }
     }
 
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t nread;
+    int iReadLineCount = 0;
+
     if (iLineCount > 0)
     {
         *pwstLines = (wchar_t**)MALLOC(iLineCount * sizeof(wchar_t*));
@@ -81,27 +86,14 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
             return -1;
         }
 
-        char *line = NULL;
-        size_t len = 0;
-        ssize_t nread;
-        int iReadLineCount = 0;
-
         while (iReadLineCount < iLineCount && (nread = getline(&line, &len, fd)) != -1)
         {
             remove_linebreak(line, nread);
             (*pwstLines)[iReadLineCount++] = to_wide_string(line);
         }
-
-        FREE(line);
-        return iReadLineCount;
     }
     else
     {
-        char *line = NULL;
-        size_t len = 0;
-        ssize_t nread;
-        int iReadLineCount = 0;
-
         while ((nread = getline(&line, &len, fd)) != -1)
         {
             wchar_t **pwstLinesNew = (wchar_t**)REALLOC(*pwstLines, (iReadLineCount + 1) * sizeof(wchar_t*));
@@ -116,8 +108,8 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
             remove_linebreak(line, nread);
             (*pwstLines)[iReadLineCount++] = to_wide_string(line);
         }
-
-        FREE(line);
-        return iReadLineCount;
     }
+
+    FREE(line);
+    return iReadLineCount;
 }
