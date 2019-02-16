@@ -44,7 +44,11 @@ xcos_simulate(scs_m, 4);
 !                                                                     !
 !messagebox:                                                          !
 !                                                                     !
+<<<<<<< HEAD
 !messagebox: Generated files path: TMPDIR/          !
+=======
+!messagebox: Generated files path: TMPDIR/         !
+>>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 !                                                                     !
 !messagebox:                                                          !
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.

@@ -727,7 +727,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
                     break;
 
                 default :
-                    Scierror(42, _("%s: Type not handle yet"), fname);
+                    Scierror(999, _("%s: Type not handle yet"), fname);
                     freeAllocatedSingleString(pStVarOne);
                     return 0;
             }
@@ -834,7 +834,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
             }
             break;
         default:
-            Scierror(42, _("%s: Type not handle yet"), fname);
+            Scierror(999, _("%s: Type not handle yet"), fname);
             freeAllocatedSingleString(pStVarOne);
             return 0;
     }

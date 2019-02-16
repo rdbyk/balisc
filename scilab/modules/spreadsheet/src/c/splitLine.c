@@ -106,7 +106,9 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
     /* in a string like foo;bar;;;, replace all the ;;, not only the first and last one */
     while (strstr(substitutedstring, tokenstring_to_search) != NULL)
     {
+        char* previous = substitutedstring;
         substitutedstring = strsub(substitutedstring, tokenstring_to_search, tokenreplacement_string);
+        FREE(previous);
     }
 
     if (strncmp(substitutedstring, sep, balisc_strlen(sep)) == 0)

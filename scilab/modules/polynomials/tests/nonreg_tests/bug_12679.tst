@@ -57,7 +57,8 @@ V_int = int32(V);
 assert_checkequal(lcm(V), 9720);
 assert_checkequal(lcm(V_int), 9720);
 // Trying to use booleans, strings or decimals should yield an error
-refMsg4 = msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "lcm", 1);
-assert_checkerror("lcm(%t);", refMsg4);
-assert_checkerror("lcm(1.5);", refMsg4);
-assert_checkerror("lcm(""string"");", refMsg4);
+msg = msprintf(_("%s: Wrong type for argument #%d: Array of integers or polynomials expected.\n"), "lcm", 1);
+assert_checkerror("lcm(%t);", msg);
+assert_checkerror("lcm(""string"");", msg);
+msg = msprintf(_("%s: Wrong values for argument #%d: Integer values expected.\n"),"lcm", 1);
+assert_checkerror("lcm(1.5);", msg);

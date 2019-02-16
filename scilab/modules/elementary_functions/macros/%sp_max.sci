@@ -127,6 +127,7 @@ function [m, k] = %sp_max(varargin)
             k = ones(m)
         end
         [m1, n1] = size(m)
+
         // Loop on the number of input arguments
         for i = 2:nargin
             An = elements(i)
@@ -144,10 +145,6 @@ function [m, k] = %sp_max(varargin)
             // Check size
             if (m1 <> m2 | n1 <> n2) & or([m2 n2]~=[1 1]) then
                 error(_("%s: Wrong size of input argument #%d (List element: %d): Same size as input argument #%d expected."), "%sp_max", 1, i, 1)
-            end
-            // If An is a scalar: check that it is negative
-            if and([m2 n2]==[1 1]) & An>0 then
-                error(_("%s: Wrong size of input argument #%d: Same size as input argument #%d expected."), "%sp_max", i, 1)
             end
 
             // Processing:

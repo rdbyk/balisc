@@ -2,7 +2,7 @@
 // Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
 // Copyright (C) 2017 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,6 +12,8 @@
 // along with this program.
 
 function values = getPreferencesValue(xpath, attributes, doc)
+
+    warnobsolete("xmlGetValues", "6.1");
 
     if (nargin ~= 2 & nargin ~= 3) then
         msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
@@ -78,7 +80,7 @@ function values = getPreferencesValue(xpath, attributes, doc)
             msg = gettext("%s: Target node is not a XML_ELEMENT_NODE.")
             error(msprintf(msg, "getPreferencesValue"));
         end
-    
+
         attr = node.attributes;
         for j = 1:size(attributes,"*")
             a = attributes(j)

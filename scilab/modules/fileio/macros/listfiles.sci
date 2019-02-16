@@ -49,32 +49,18 @@ function files= listfiles(paths,flag,flagexpand)
     end
 
     for i=1:size(paths,"*")  // Loop on the file/path list
-        [path,fname,extension]=fileparts(paths(i)); // Retrieve the information
-        // about the file
         if isdir(paths(i)) then // It is a directory then returns all the file in the dir
             path = paths(i) + filesep();
-            fname="*";
-            if bMulti then
-                if getos() == "Windows" // Don't want this case under Linux/Unix
-                    // Windows will return the file toto even if you provided toto.*
-                    extension=".*";
-                end
-            else
-                extension="";
-            end
-        else
-            // It is a file
+            fname = "*";
+            extension = "";
+        else //isfile
+            [path, fname, extension] = fileparts(paths(i)); // Retrieve the information
             if path == "" then
-                path="./"
+                path = "./";
             end
-
-            if getos() == "Windows" // Don't want this case under Linux/Unix
-                // Windows will return the file toto even if you provided toto.*
-                if extension == "" then extension=".*",end;
-            end
-
+            
             if fname == "" then
-                fname="*"
+                fname = "*";
             end
         end
 

@@ -295,7 +295,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             str.append(std::max(0, (int)(iDecpt - str.length())), '0');
             str.insert(iDecpt, ".");
         }
-        else
+        else 
         {
             str.append(std::max(0, (int)(iDecpt - str.length())), '0');
             iWidth--;

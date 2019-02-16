@@ -2,6 +2,7 @@
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2016 - Scilab Enterprises - Paul Bignier
 // Copyright (C) 2017 - Samuel GOUGEON
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
@@ -163,7 +164,7 @@ function demo_colormaps()
      "uu = ones(u);";
      "x = (5.*cos(u)+cos(u).*cos(v))";
      "y = (5.*sin(u)+sin(u).*cos(v))";
-     "z = (uu.*sin(v))";])
+     "z = (uu.*sin(v))"])
 
     nx=60;
     Nx=(0:nx)/nx;

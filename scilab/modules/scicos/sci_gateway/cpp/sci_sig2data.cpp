@@ -78,9 +78,6 @@ extern "C"
 
 static const std::string funname = "sig2data";
 
-static const std::wstring Values(L"values");
-static const std::wstring Time(L"time");
-
 types::Function::ReturnValue sci_sig2data(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
@@ -107,26 +104,26 @@ types::Function::ReturnValue sci_sig2data(types::typed_list &in, int _iRetCount,
         Scierror(999, _("%s: Wrong size for input argument #%d : A single struct expected.\n"), funname.data(), 1);
         return types::Function::Error;
     }
-    types::String* fields = B->getFirst()->getFieldNames();
-    if (fields->getSize() != 2)
+    auto fields = B->getFirst()->getFields();
+    if (fields.size() != 2)
     {
         Scierror(999, _("%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 1, "values", "time");
         return types::Function::Error;
     }
-    if (fields->getFirst() != Values)
+    if (fields.find(L"values") == fields.end())
     {
         Scierror(999, _("%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 1, "values", "time");
         return types::Function::Error;
     }
-    if (fields->get(1) != Time)
+    if (fields.find(L"time") == fields.end())
     {
         Scierror(999, _("%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 1, "values", "time");
         return types::Function::Error;
     }
 
     // Values
-    types::InternalType* A = B->getFirst()->get(Values);
-    types::InternalType* timeValues = B->getFirst()->get(Time);
+    types::InternalType* A = B->getFirst()->getData()[B->get(0)->getFieldIndex(L"values")];
+    types::InternalType* timeValues = B->getFirst()->getData()[B->getFirst()->getFieldIndex(L"time")];
 
     out.push_back(A);
     if (_iRetCount == 2)

@@ -20,19 +20,19 @@ function result = atomsGetConfig(field)
     // Check number of input arguments
     // =========================================================================
     if nargin > 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"), "atomsGetConfig", 0, 1));
+        error(72, 0, 1);
     end
 
     // Check input parameters type
     // =========================================================================
     if (nargin > 0) & (type(field) <> 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsGetConfig", 1));
+        error(91, 1);
     end
 
     // Check input parameters dimensions
     // =========================================================================
     if (nargin > 0) & (size(field, "*") <> 1) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "atomsGetConfig", 1));
+        error(102, 1);
     end
 
 
@@ -43,7 +43,7 @@ function result = atomsGetConfig(field)
         "verbose", "downloadTool", "downloadTimeout", "updateTime"];
 
         if ~or(convstr(supported_field) == convstr(field)) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d.\n"),"atomsGetConfig", 1));
+            error(_("%s: Wrong value for input argument #%d.\n"),"atomsGetConfig", 1);
         end
     end
 
@@ -65,7 +65,7 @@ function result = atomsGetConfig(field)
     else
         i = find(pref_attrs(1, :) == field);
         if ~isempty(i) then
-            result = getPreferencesValue("//web/body/proxy", pref_attrs(2, i));
+            result = xmlGetValues("//web/body/proxy", pref_attrs(2, i));
             if result == "true" then
                 result = "True";
             elseif result == "false" then
@@ -88,7 +88,7 @@ function result = atomsGetConfig(field)
         config_lines = mgetl(atoms_directory + "config");
     else
         if (nargin == 0)
-            values = getPreferencesValue("//web/body/proxy", pref_attrs(2, :));
+            values = xmlGetValues("//web/body/proxy", pref_attrs(2, :));
             for i = 1:size(pref_attrs, "c")
                 if ~isempty(values(i)) then
                     if values(i) == "true" then
@@ -124,12 +124,12 @@ function result = atomsGetConfig(field)
                 result(current_field) = current_value;
             end
         else
-            error(msprintf(gettext("%s: The config file (''%s'') is not well formatted at line %d\n"),"atomsGetConfig",atoms_directory+"config",i));
+            error(_("%s: The config file (''%s'') is not well formatted at line %d\n"),"atomsGetConfig",atoms_directory+"config",i);
         end
     end
 
     if (nargin == 0)
-        values = getPreferencesValue("//web/body/proxy", pref_attrs(2, :));
+        values = xmlGetValues("//web/body/proxy", pref_attrs(2, :));
         for i = 1:size(pref_attrs, "c")
             if ~isempty(values(i)) then
                 if values(i) == "true" then
