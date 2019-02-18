@@ -16,7 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -199,9 +199,7 @@ am__v_lt_1 =
 am__DEPENDENCIES_1 =
 libscilinear_algebra_la_DEPENDENCIES = libscilinear_algebra-algo.la \
 	$(am__DEPENDENCIES_1)
-am__objects_4 =  \
-	sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo \
-	sci_gateway/c/libscilinear_algebra_la-sci_norm.lo
+am__objects_4 = sci_gateway/c/libscilinear_algebra_la-sci_norm.lo
 am__objects_5 =  \
 	sci_gateway/cpp/libscilinear_algebra_la-linear_algebra_gw.lo \
 	sci_gateway/cpp/libscilinear_algebra_la-sci_chol.lo \
@@ -640,7 +638,6 @@ LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/find.f
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/assembleEigenvectors.c \
     sci_gateway/c/sci_norm.c
 
 GATEWAY_CPP_SOURCES = \
@@ -922,9 +919,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscilinear_algebra_la-sci_norm.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -996,7 +990,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-assembleEigenvectors.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-sci_norm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscilinear_algebra_la-linear_algebra_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscilinear_algebra_la-sci_balanc.Plo@am__quote@
@@ -1134,13 +1127,6 @@ src/c/libscilinear_algebra_algo_la-norm.lo: src/c/norm.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/norm.c' object='src/c/libscilinear_algebra_algo_la-norm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscilinear_algebra_algo_la-norm.lo `test -f 'src/c/norm.c' || echo '$(srcdir)/'`src/c/norm.c
-
-sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo: sci_gateway/c/assembleEigenvectors.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-assembleEigenvectors.Tpo -c -o sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo `test -f 'sci_gateway/c/assembleEigenvectors.c' || echo '$(srcdir)/'`sci_gateway/c/assembleEigenvectors.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-assembleEigenvectors.Tpo sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-assembleEigenvectors.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/assembleEigenvectors.c' object='sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo `test -f 'sci_gateway/c/assembleEigenvectors.c' || echo '$(srcdir)/'`sci_gateway/c/assembleEigenvectors.c
 
 sci_gateway/c/libscilinear_algebra_la-sci_norm.lo: sci_gateway/c/sci_norm.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscilinear_algebra_la-sci_norm.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-sci_norm.Tpo -c -o sci_gateway/c/libscilinear_algebra_la-sci_norm.lo `test -f 'sci_gateway/c/sci_norm.c' || echo '$(srcdir)/'`sci_gateway/c/sci_norm.c
