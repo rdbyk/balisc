@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -28,7 +28,6 @@ LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/find.f
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/assembleEigenvectors.c \
     sci_gateway/c/sci_norm.c
 
 GATEWAY_CPP_SOURCES = \
