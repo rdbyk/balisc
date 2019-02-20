@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -150,7 +150,6 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                                 poResult->killMe();
                             }
 
-                            pIT->killMe();
                             throw error;
                         }
                     }
@@ -192,7 +191,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 if (pGT->isList() || poRow->isList() ||
                     pGT->isStruct() || poRow->isStruct() ||
                     pGT->isUserType() || poRow->isUserType() ||
-                    poRow->isImplicitList() || pGT->getDims() > 2 ||
+                    poRow->isImplicitList() || poRow->isListOperation() ||
+                    pGT->getDims() > 2 ||
                     (pGT->isPoly() && poRow->isPoly() &&
                      pGT->getAs<types::Polynom>()->getVariableName() != poRow->getAs<types::Polynom>()->getVariableName()))
                 {
@@ -326,8 +326,9 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 continue;
             }
 
-            // management of concatenation with 1:$
-            if (poRow->isImplicitList() || poResult->isImplicitList())
+            // concatenation with 1:$, null(), insert(), or void()
+            if (poRow->isImplicitList() || poResult->isImplicitList() ||
+                poRow->isListOperation() || poResult->isListOperation())
             {
                 try
                 {
@@ -476,14 +477,14 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& s
         else
         {
             std::wstring fun;
-            fun.reserve((_paramL->getAs<types::List>()->getShortTypeStr()).size() + strType.size() + 
-                        (_paramR->getAs<types::List>()->getShortTypeStr()).size() + 3);
+            fun.reserve((_paramL->getShortTypeStr()).size() + strType.size() +
+                        (_paramR->getShortTypeStr()).size() + 3);
             fun += L"%";
-            fun += _paramL->getAs<types::List>()->getShortTypeStr();
+            fun += _paramL->getShortTypeStr();
             fun += L"_"; 
             fun += strType;
             fun += L"_";
-            fun += _paramR->getAs<types::List>()->getShortTypeStr();
+            fun += _paramR->getShortTypeStr();
             Ret = Overload::call(fun, in, 1, out, true);
         }
     }
