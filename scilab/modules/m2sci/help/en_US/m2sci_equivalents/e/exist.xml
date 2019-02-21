@@ -40,7 +40,7 @@ exist
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-exists, isfile, isdir, getscilabkeywords
+exists, isfile, isdir
 ]]></programlisting>
                 </td>
             </tr>
