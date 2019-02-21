@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -68,7 +68,6 @@ CPP_GATEWAY_PROTOTYPE(sci_newfun);
 CPP_GATEWAY_PROTOTYPE(sci_clearfun);
 CPP_GATEWAY_PROTOTYPE(sci_analyzeroptions);
 CPP_GATEWAY_PROTOTYPE(sci_macr2tree);
-CPP_GATEWAY_PROTOTYPE(sci_predef);
 CPP_GATEWAY_PROTOTYPE(sci_debug);
 CPP_GATEWAY_PROTOTYPE(sci_recursionlimit);
 CPP_GATEWAY_PROTOTYPE(sci_type);

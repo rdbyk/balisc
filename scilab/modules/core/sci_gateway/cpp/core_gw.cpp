@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -62,7 +62,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"clearfun", &sci_clearfun, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"analyzerOptions", &sci_analyzeroptions, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"macr2tree", &sci_macr2tree, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"predef", &sci_predef, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"debug", &sci_debug, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"recursionlimit", &sci_recursionlimit, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"list", &sci_list_gw, MODULE_NAME));

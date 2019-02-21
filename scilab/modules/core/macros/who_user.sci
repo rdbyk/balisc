@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,7 @@
 function ret = who_user(%__bPrint__)
     //get user variables
     [nams,mem] = who("get"); //get all variables
-    p = predef("names");
+    p = isprotected();
     excluded=["nargin" "nargout" "demolist","%helps","%helps_modules","who_user", "%__bPrint__"];
     p = [p' excluded];
 
