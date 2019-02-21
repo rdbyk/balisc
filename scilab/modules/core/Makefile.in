@@ -17,7 +17,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -270,7 +270,7 @@ am__libscicore_la_SOURCES_DIST = sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/cpp/sci_intppty.cpp \
 	sci_gateway/cpp/sci_analyzeroptions.cpp \
 	sci_gateway/cpp/sci_macr2tree.cpp \
-	sci_gateway/cpp/sci_predef.cpp sci_gateway/cpp/sci_debug.cpp \
+	sci_gateway/cpp/sci_debug.cpp \
 	sci_gateway/cpp/sci_recursionlimit.cpp \
 	sci_gateway/cpp/sci_type.cpp sci_gateway/cpp/sci_list.cpp \
 	sci_gateway/cpp/sci_struct.cpp sci_gateway/cpp/sci_insert.cpp \
@@ -334,7 +334,6 @@ am__objects_6 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_intppty.lo \
 	sci_gateway/cpp/libscicore_la-sci_analyzeroptions.lo \
 	sci_gateway/cpp/libscicore_la-sci_macr2tree.lo \
-	sci_gateway/cpp/libscicore_la-sci_predef.lo \
 	sci_gateway/cpp/libscicore_la-sci_debug.lo \
 	sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo \
 	sci_gateway/cpp/libscicore_la-sci_type.lo \
@@ -834,7 +833,7 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_intppty.cpp \
 	sci_gateway/cpp/sci_analyzeroptions.cpp \
 	sci_gateway/cpp/sci_macr2tree.cpp \
-	sci_gateway/cpp/sci_predef.cpp sci_gateway/cpp/sci_debug.cpp \
+	sci_gateway/cpp/sci_debug.cpp \
 	sci_gateway/cpp/sci_recursionlimit.cpp \
 	sci_gateway/cpp/sci_type.cpp sci_gateway/cpp/sci_list.cpp \
 	sci_gateway/cpp/sci_struct.cpp sci_gateway/cpp/sci_insert.cpp \
@@ -1335,9 +1334,6 @@ sci_gateway/cpp/libscicore_la-sci_analyzeroptions.lo:  \
 sci_gateway/cpp/libscicore_la-sci_macr2tree.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscicore_la-sci_predef.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicore_la-sci_debug.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1485,7 +1481,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_newfun.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_null.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_pause.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_predef.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_protect.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_quit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_recursionlimit.Plo@am__quote@
@@ -2097,13 +2092,6 @@ sci_gateway/cpp/libscicore_la-sci_macr2tree.lo: sci_gateway/cpp/sci_macr2tree.cp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_macr2tree.cpp' object='sci_gateway/cpp/libscicore_la-sci_macr2tree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_macr2tree.lo `test -f 'sci_gateway/cpp/sci_macr2tree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_macr2tree.cpp
-
-sci_gateway/cpp/libscicore_la-sci_predef.lo: sci_gateway/cpp/sci_predef.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_predef.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_predef.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_predef.lo `test -f 'sci_gateway/cpp/sci_predef.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_predef.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_predef.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_predef.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_predef.cpp' object='sci_gateway/cpp/libscicore_la-sci_predef.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_predef.lo `test -f 'sci_gateway/cpp/sci_predef.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_predef.cpp
 
 sci_gateway/cpp/libscicore_la-sci_debug.lo: sci_gateway/cpp/sci_debug.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_debug.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_debug.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_debug.lo `test -f 'sci_gateway/cpp/sci_debug.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_debug.cpp

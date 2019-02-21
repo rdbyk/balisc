@@ -1,7 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -101,7 +101,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_intppty.cpp \
 	sci_gateway/cpp/sci_analyzeroptions.cpp \
 	sci_gateway/cpp/sci_macr2tree.cpp \
-	sci_gateway/cpp/sci_predef.cpp \
 	sci_gateway/cpp/sci_debug.cpp \
 	sci_gateway/cpp/sci_recursionlimit.cpp \
 	sci_gateway/cpp/sci_type.cpp \
