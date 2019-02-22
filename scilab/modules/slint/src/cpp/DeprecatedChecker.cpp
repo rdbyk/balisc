@@ -230,7 +230,6 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"ricc_old", L"ricc");
     map.emplace(L"showalluimenushandles", L"set(get(0), \"ShowHiddenHandles\", \"on\")");
     map.emplace(L"with_pvm", L"getversion");
-    map.emplace(L"with_texmacs", L"");
     map.emplace(L"xbasr", L"");
     map.emplace(L"xselect", L"show_window");
 

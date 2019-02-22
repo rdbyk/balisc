@@ -292,15 +292,6 @@ evstr(a(i+2))*2
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>--texmacs</term>
-                <listitem>
-                    <para>このオプションは TeXMacs用に予約されています.</para>
-                    <para>
-                        ATOMSモジュールをインストールしてください: <programlisting role="">atomsInstall('texmacs')</programlisting>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>-version</term>
                 <listitem>
                     <para>このオプションはプロダクトのバージョンを出力し,終了します.</para>
