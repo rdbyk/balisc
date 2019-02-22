@@ -1650,7 +1650,6 @@ getColorIndex
 getLineSpec
 getPlotPropertyName
 getSurfPropertyName
-getTitleLabelPropertyNam
 get_figure_handle
 getcolor
 ghdl2tree
@@ -1693,7 +1692,6 @@ secto3d
 setDefaultColor
 setPlotProperty
 setSurfProperty
-setTitleLabelProperty
 seteventhandler
 springcolormap
 subplot
