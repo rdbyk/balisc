@@ -220,12 +220,6 @@ evstr(a(i+2))*2
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>--texmacs</term>
-                <listitem>
-                    <para>Esta opção é reservada para TexMacs.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>-version</term>
                 <listitem>
                     <para>Esta opção imprime a versão do Scilab.</para>

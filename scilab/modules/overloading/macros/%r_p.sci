@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2012 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,80 +13,75 @@
 
 function %r_p(h)
 
-    if exists("with_texmacs")==1 & typeof(with_texmacs)=="function" then
-        texout(h);
-    else
-        //used to display rational fraction with complex coefficients
-        //The real case is hard coded
-        if size(size(h),"*")>2 then
-            //hypermatrix case
-            %hmr_p(h)
-            return
-        end
+    //used to display rational fraction with complex coefficients
+    //The real case is hard coded
+    if size(size(h),"*")>2 then
+        //hypermatrix case
+        %hmr_p(h)
+        return
+    end
 
-        [m, n]=size(h);
-        if (m == 0) | (n == 0) then
-            return
+    [m, n]=size(h);
+    if (m == 0) | (n == 0) then
+        return
+    end
+    del=" "
+    blank=" "
+    if m*n==1 then del=" ",end
+    height=zeros(m,1)  // to store "height" of each row do be displayed
+    width=zeros(1,n) // to store "width" of each column do be displayed
+    T=list() // to store display of each entry of the rational
+    for k=1:n
+        for l=1:m
+            tlk=r2str(h(l,k))
+            height(l)=max(size(tlk,1),height(l))
+            width(k)=max(max(length(tlk)),width(k))
+            T($+1)=tlk
         end
-        del=" "
-        blank=" "
-        if m*n==1 then del=" ",end
-        height=zeros(m,1)  // to store "height" of each row do be displayed
-        width=zeros(1,n) // to store "width" of each column do be displayed
-        T=list() // to store display of each entry of the rational
-        for k=1:n
-            for l=1:m
-                tlk=r2str(h(l,k))
-                height(l)=max(size(tlk,1),height(l))
-                width(k)=max(max(length(tlk)),width(k))
-                T($+1)=tlk
+    end
+    ll=lines()
+    k0=0
+
+    //manage column display
+    while %t
+        // find how many columns can be displayed simultaneously
+        last=find(cumsum(width+2)<ll(1)-3);last=last($);
+        if last==[] then last=1,end
+        // form display of these columns
+        txt=[]
+        for l=1:m
+            txtr=emptystr(height(l),1)
+            for k=1:last
+                txtr=txtr+part(blank(ones(height(l),1)),1:2)
+                tlk=T(l+(k0+k-1)*m)
+                txtr=txtr+[part(tlk,1:width(k));emptystr(height(l)-size(tlk,1),1)]
             end
+            txt=[txt;txtr]
         end
-        ll=lines()
-        k0=0
+        // add matrix delimiter and columns title and display
+        nt=size(txt,1)
+        txt=part(txt,1:max(length(txt)))
 
-        //manage column display
-        while %t
-            // find how many columns can be displayed simultaneously
-            last=find(cumsum(width+2)<ll(1)-3);last=last($);
-            if last==[] then last=1,end
-            // form display of these columns
-            txt=[]
-            for l=1:m
-                txtr=emptystr(height(l),1)
-                for k=1:last
-                    txtr=txtr+part(blank(ones(height(l),1)),1:2)
-                    tlk=T(l+(k0+k-1)*m)
-                    txtr=txtr+[part(tlk,1:width(k));emptystr(height(l)-size(tlk,1),1)]
-                end
-                txt=[txt;txtr]
+        if k0==0&last==n then
+            r = del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1));
+            for i=1:size(r,"*")
+                mprintf("%s\n", r(i))
             end
-            // add matrix delimiter and columns title and display
-            nt=size(txt,1)
-            txt=part(txt,1:max(length(txt)))
-
-            if k0==0&last==n then
-                r = del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1));
-                for i=1:size(r,"*")
-                    mprintf("%s\n", r(i))
-                end
+        else
+            if last==1 then
+                leg="column "+string(k0+1)
             else
-                if last==1 then
-                    leg="column "+string(k0+1)
-                else
-                    leg="column "+string(k0+1)+" to "+string(k0+last)
-                end
-
-                r = [" "; leg; " ";del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1))];
-                for i=1:size(r,"*")
-                    mprintf("%s\n", r(i))
-                end
+                leg="column "+string(k0+1)+" to "+string(k0+last)
             end
-            width(1:last)=[]
-            k0=last
-            if width==[] then break,end
-        end
 
+            r = [" "; leg; " ";del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1))];
+            for i=1:size(r,"*")
+                mprintf("%s\n", r(i))
+            end
+        end
+        width(1:last)=[]
+        k0=last
+        if width==[] then break,end
     end
 
 endfunction

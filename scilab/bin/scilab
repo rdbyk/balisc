@@ -6,6 +6,7 @@
 # Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2010-2011 - Bruno JOFRET
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
+# Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -1046,7 +1047,6 @@ do_help()
     echo     "  -args           : accept all extra arguments and make them available through sciargs"
     echo     "  -version        : print product version and exit."
     echo     "  -h/--help       : display help about this command."
-    echo     "  --texmacs       : reserved for TeXMacs."
     echo     "  -scihome dir    : Force SCIHOME to given dir."
     echo     " "
 
@@ -1135,7 +1135,7 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|-nocolor|--texmacs)
+            -nogui|-version|-ns|-nb|-nouserstartup|-noatomsautoload|-nocolor)
                 ;;
             -nw)
                 if test "$SCILAB_MODE" = "nwni"; then

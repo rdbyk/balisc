@@ -290,14 +290,6 @@ evstr(a(i+2))*2
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>--texmacs</term>
-                <listitem>
-                    <para>This option is reserved for the external TeXMacs module.
-                        This one can be priorly installed with <code>atomsInstall('texmacs')</code>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>-version</term>
                 <listitem>
                     <para>displays the Scilab's version (before the main Scilab's startup).</para>
