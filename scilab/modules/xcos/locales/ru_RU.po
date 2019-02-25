@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-09-22 15:24+0000\n"
+"PO-Revision-Date: 2019-19-01 07:04+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -433,8 +433,8 @@ msgstr "Название шрифта"
 msgid "Font style"
 msgstr "Стиль шрифта"
 
-msgid "Text settings"
-msgstr "Настройки текста"
+msgid "Block legend"
+msgstr ""
 
 msgid "Image path"
 msgstr "Изображение"
@@ -664,14 +664,14 @@ msgstr "По нижнему краю"
 msgid "Middle"
 msgstr "По середине"
 
-msgid "Border Color"
-msgstr "Цвет границы"
+msgid "Block edge"
+msgstr ""
 
-msgid "Fill Color"
-msgstr "Цвет заливки"
+msgid "Block background"
+msgstr ""
 
-msgid "Text Color"
-msgstr "Цвет текста"
+msgid "Legend color"
+msgstr ""
 
 msgid "Link Style"
 msgstr "Стиль соединений"
@@ -1217,6 +1217,10 @@ msgstr "%s: Не удалось загрузить блок из %s: ожида�
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
 msgstr "%s: Не удалось загрузить блок из %s: переменной «scs_m» не найдено.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: Missing file.\n"
+msgstr "%s: Не удалось загрузить блок из %s: ожидался файл hdf5.\n"
 
 #, c-format
 msgid ""

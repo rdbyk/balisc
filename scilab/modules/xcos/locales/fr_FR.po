@@ -436,8 +436,8 @@ msgstr "Nom de la police"
 msgid "Font style"
 msgstr "Style de police"
 
-msgid "Text settings"
-msgstr "Paramétrage du texte"
+msgid "Block legend"
+msgstr "Légende du bloc"
 
 msgid "Image path"
 msgstr "Chemin de l'image"
@@ -669,14 +669,14 @@ msgstr "Bas"
 msgid "Middle"
 msgstr "Milieu"
 
-msgid "Border Color"
-msgstr "Couleur du cadre"
+msgid "Block edge"
+msgstr "Entourage du bloc"
 
-msgid "Fill Color"
-msgstr "Couleur de remplissage"
+msgid "Block background"
+msgstr "Couleur du bloc"
 
-msgid "Text Color"
-msgstr "Couleur du texte"
+msgid "Legend color"
+msgstr "Couleur légende"
 
 msgid "Link Style"
 msgstr "Style de liens"
