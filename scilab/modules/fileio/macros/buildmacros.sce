@@ -10,4 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-genlib("fileiolib", SCI + "/modules/fileio/macros",%f,%t);
+genlib("fileiolib","SCI/modules/fileio/macros",%f,%t);
+genlib("fileioguilib","SCI/modules/fileio/macros/importgui",%f,%t);

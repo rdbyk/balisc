@@ -10,7 +10,8 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-load(SCI + "/modules/fileio/macros/lib")
+load('SCI/modules/fileio/macros/lib');
+load('SCI/modules/fileio/macros/importgui/lib');
 
 // Initialize CURL environment
 // =============================================================================
