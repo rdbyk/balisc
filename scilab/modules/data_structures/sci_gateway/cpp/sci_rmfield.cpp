@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -34,25 +34,23 @@ using types::String;
 using types::Struct;
 using types::typed_list;
 
-static const char fname[] = "rmfield";
-
 Function::ReturnValue sci_rmfield(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
+        Scierror(71, 2);
         return Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix of strings expected.\n"), fname, 1);
+        Scierror(90, 1, _("matrix of strings"));
         return Function::Error;
     }
     
     if (in[1]->isStruct() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : Struct expected.\n"), fname, 2);
+        Scierror(90, 2, _("struct"));
         return Function::Error;
     }
 

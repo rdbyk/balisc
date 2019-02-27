@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Antoine Elias
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,6 @@
  *
  */
 
-/*--------------------------------------------------------------------------*/
 #include "data_structures_gw.hxx"
 #include "internal.hxx"
 #include "function.hxx"
@@ -36,12 +35,11 @@ extern "C"
 static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, int _iRetCount, types::typed_list &out);
 static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
-/*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "getfield", 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
@@ -60,7 +58,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
     types::InternalType* pIndex = in[0];
     if (in[1]->isList() == false && in[1]->isMList() == false && in[1]->isTList() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: List expected.\n"), "getfield", 2);
+        Scierror(90, 2, _("list"));
         return types::Function::Error;
     }
 
@@ -87,7 +85,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
             std::wstring wst = pS->get(i);
             if (pT->exists(wst) == false)
             {
-                Scierror(999, _("%s: Invalid index.\n"), "getfield");
+                Scierror(2);
                 return types::Function::Error;
             }
 
@@ -106,7 +104,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
 
     if (pITOut == NULL)
     {
-        Scierror(999, _("Invalid index.\n"));
+        Scierror(2);
         return types::Function::Error;
     }
 
@@ -115,7 +113,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
 
     if (_iRetCount < iListSize)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "getfield", iListSize);
+        Scierror(81, iListSize);
         return types::Function::Error;
     }
 
@@ -198,7 +196,6 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
 
     return types::Function::OK;
 }
-/*-----------------------------------------------------------------------------------*/
 
 static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -229,13 +226,13 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
 
     if (vectResult.size() == 0)
     {
-        Scierror(78, _("%s: Invalid index.\n"), "getfield");
+        Scierror(2);
         return types::Function::Error;
     }
 
     if (_iRetCount != static_cast<int>(vectResult.size()))
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "getfield", vectResult.size());
+        Scierror(81, vectResult.size());
         return types::Function::Error;
     }
 
@@ -246,7 +243,6 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
 
     return types::Function::OK;
 }
-/*-----------------------------------------------------------------------------------*/
 
 static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, int /*_iRetCount*/, types::typed_list &out)
 {
@@ -273,7 +269,7 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         int index = pIndex->getFirst();
         if (floor(index) != index)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "getfield", 1);
+            Scierror(111, 1);
             properties->killMe();
             return types::Function::Error;
         }
@@ -308,8 +304,7 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Integer expected.\n"), "getfield", 1);
+        Scierror(92, 1);
         return types::Function::Error;
     }
 }
-/*-----------------------------------------------------------------------------------*/
