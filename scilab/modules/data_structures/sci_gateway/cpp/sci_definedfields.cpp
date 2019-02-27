@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "data_structures_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -28,19 +28,18 @@ extern "C"
 #include "localization.h"
 }
 
-/*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_definedfields(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "definedfields", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     types::List* pL = in[0]->getAs<types::List>();
     if (pL->isList() == false && pL->isMList() == false && pL->isTList() == false)
     {
-        Scierror(999, _("%s:  Wrong type for input argument #%d: List expected.\n"), "getfield", 2);
+        Scierror(90, 2, _("list"));
         return types::Function::Error;
     }
 
@@ -61,4 +60,3 @@ types::Function::ReturnValue sci_definedfields(types::typed_list &in, int _iRetC
     delete[] res;
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

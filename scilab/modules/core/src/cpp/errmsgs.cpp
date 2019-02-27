@@ -96,6 +96,8 @@ static const std::map<int, const char*> errmsgs =
     { 72, _("Wrong number of input arguments: %d to %d expected.\n") },
     { 73, _("Wrong number of input arguments: %d or %d expected.\n") },
     { 74, _("Wrong number of input arguments: at least %d expected.\n") },
+    { 75, _("Wrong number of input arguments: at most %d expected.\n") },
+    { 76, _("Wrong number of input arguments: %s expected.\n") },
 
     { 80, _("Wrong number of output arguments.\n") },
     { 81, _("Wrong number of output arguments: %d expected.\n") },
