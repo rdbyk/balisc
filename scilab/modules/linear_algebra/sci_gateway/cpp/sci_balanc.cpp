@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
 
 #include "linear_algebra_gw.hxx"
 #include "function.hxx"
@@ -27,7 +26,6 @@ extern "C"
 #include "balanc.h"
 #include "doublecomplex.h"
 }
-/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -38,13 +36,13 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
     if (in.size() != 1 && in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "balanc", 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount != 2 * in.size())
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "balanc", 2 * in.size());
+        Scierror(81, 2 * in.size());
         return types::Function::Error;
     }
 
@@ -95,7 +93,7 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
     if (pDbl[0]->getRows() != pDbl[0]->getCols())
     {
-        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "balanc", 1);
+        Scierror(103, 1);
         return types::Function::Error;
     }
 
@@ -106,7 +104,7 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
             pData[i] = (double*)oGetDoubleComplexFromPointer(pDbl[i]->getReal(), pDbl[i]->getImg(), pDbl[i]->getSize());
             if (!pData[i])
             {
-                Scierror(999, _("%s: Cannot allocate more memory.\n"), "balanc");
+                Scierror(1);
                 return types::Function::Error;
             }
         }
@@ -122,7 +120,7 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
     if (iRet != 0)
     {
-        Scierror(999, _("%s: LAPACK error n°%d.\n"), "balanc", iRet);
+        Scierror(180, iRet);
         return types::Function::Error;
     }
 
@@ -150,5 +148,3 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-
