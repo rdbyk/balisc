@@ -3,7 +3,7 @@
  * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -43,13 +43,13 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
 
     if (in.size() != 1 && in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "qr", 1, 2);
+        Scierror(72, 1, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 4)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "qr", 1, 4);
+        Scierror(82, 1, 4);
         return types::Function::Error;
     }
 
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
 
             if (_iRetCount == 4)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "qr", 2);
+                Scierror(93, 2);
                 return types::Function::Error;
             }
 
@@ -116,7 +116,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real or a string expected.\n"), "qr", 2);
+            Scierror(90, 2, _("real scalar or string"));
             return types::Function::Error;
         }
     }
@@ -129,7 +129,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
         pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         if (!pData)
         {
-            Scierror(999, _("%s: Cannot allocate more memory.\n"), "qr");
+            Scierror(1);
             vFreeDoubleComplexFromPointer((doublecomplex*)pData);
             return types::Function::Error;
         }
@@ -167,7 +167,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
 
     if (iRet != 0)
     {
-        Scierror(999, _("%s: LAPACK error n°%d.\n"), "qr", iRet);
+        Scierror(180, iRet);
 
         if (pDbl->isComplex())
         {

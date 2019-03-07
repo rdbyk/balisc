@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,13 +40,13 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
 
     if (in.size() < 2 || in.size() > 3)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "lsq", 2, 3);
+        Scierror(72, 2, 3);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "lsq", 1, 2);
+        Scierror(82, 1, 2);
         return types::Function::Error;
     }
 
@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
     {
         if ((in[2]->isDouble() == false) || (in[2]->getAs<types::Double>()->isComplex()) || (in[2]->getAs<types::Double>()->isScalar() == false))
         {
-            Scierror(256, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "lsq", 3);
+            Scierror(93, 3);
             return types::Function::Error;
         }
 
@@ -118,7 +118,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
             pData[i] = (double*)oGetDoubleComplexFromPointer(pDbl[i]->getReal(), pDbl[i]->getImg(), pDbl[i]->getSize());
             if (!pData[i])
             {
-                Scierror(999, _("%s: Cannot allocate more memory.\n"), "lsq");
+                Scierror(1);
                 vFreeDoubleComplexFromPointer((doublecomplex*)pData[i]);
                 delete pDbl[i]; // because of cloning, cf. above
                 return types::Function::Error;
@@ -147,11 +147,11 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
     {
         if (iRet == -1)
         {
-            Scierror(999, _("%s: Allocation failed.\n"),  "lsq");
+            Scierror(1);
         }
         else
         {
-            Scierror(999, _("%s: LAPACK error n°%d.\n"),  "lsq", iRet);
+            Scierror(180, iRet);
         }
 
         if (bComplexArgs)

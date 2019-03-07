@@ -138,6 +138,10 @@ static const std::map<int, const char*> errmsgs =
     { 162, _("Wrong type to set %s field.\n") },
     { 163, _("Field %s is not modifiable.\n") },
     { 164, _("Error in getting rhs argument.\n") },
+
+    // linear_algebra
+    { 180, _("LAPACK error #%d.\n") },
+
 };
 
 char* ErrorMessageByNumber(int n)

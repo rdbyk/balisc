@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,13 +40,13 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "lu", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount < 2 || _iRetCount > 3)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "lu", 2, 3);
+        Scierror(82, 2, 3);
         return types::Function::Error;
     }
 
@@ -98,8 +98,9 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         if (!pData)
         {
-            Scierror(999, _("%s: Cannot allocate more memory.\n"), "lu");
+            Scierror(1);
             vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+            delete pDbl; // because of cloning, cf. above
             return types::Function::Error;
         }
     }
@@ -133,7 +134,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
 
     if (iRet != 0)
     {
-        Scierror(999, _("%s: LAPACK error n°%d.\n"), "lu", iRet);
+        Scierror(180, iRet);
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
         FREE((doublecomplex*)pdL);
         FREE((doublecomplex*)pdU);

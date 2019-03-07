@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,24 +30,22 @@ using types::Double;
 using types::Function;
 using types::typed_list;
 
-static const char fname[] = "det";
-
 Function::ReturnValue sci_det(typed_list &in, int _iRetCount, typed_list &out)
 {
     Double* pDbl             = NULL;
     Double* pDblMantissa     = NULL;
     Double* pDblExponent     = NULL;
-    double* pData                   = NULL;
+    double* pData            = NULL;
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
+        Scierror(71, 1);
         return Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname, 1, 2);
+        Scierror(82, 1, 2);
         return Function::Error;
     }
 
@@ -61,7 +59,7 @@ Function::ReturnValue sci_det(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in0->getRows() != in0->getCols())
     {
-        Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
+        Scierror(103, 1);
         return Function::Error;
     }
 
@@ -83,7 +81,7 @@ Function::ReturnValue sci_det(typed_list &in, int _iRetCount, typed_list &out)
         pData = (double *)oGetDoubleComplexFromPointer(in0->getReal(), in0->getImg(), in0->getSize());
         if (!pData)
         {
-            Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            Scierror(1);
             return Function::Error;
         }
     }
@@ -110,7 +108,7 @@ Function::ReturnValue sci_det(typed_list &in, int _iRetCount, typed_list &out)
             delete pDbl;
         }
 
-        Scierror(999, _("%s: LAPACK error n°%d.\n"), fname, iRet);
+        Scierror(180, iRet);
         return Function::Error;
     }
 
