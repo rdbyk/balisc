@@ -42,7 +42,6 @@ extern "C"
 
     extern int C2F(readstringfile)(int* ID, char* form, char* dat, int* siz, int* err, int);
     extern int C2F(readstring)(char* form, char* dat, int* siz, int* err, int);
-
 }
 
 template<typename T>
@@ -53,8 +52,6 @@ bool is_of_type(const std::string & Str)
     T tmp;
     return (iss >> tmp) && (iss.eof());
 }
-
-/*--------------------------------------------------------------------------*/
 
 static int piMode[2] = { -1, 0};
 
@@ -228,43 +225,63 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
                 case types::InternalType::ScilabDouble:
                 {
                     iRows = 1;
-                    types::Double* pD = new types::Double(iRows, iCols, false);
+                    types::Double* pD = NULL;
+                    double *data = NULL;
 
                     if (pstFormat == NULL)
                     {
-                        double* pdData = new double[iCols];
                         while (error == 0)
                         {
-                            C2F(readdoublelinefile)(&iID, pdData, &iCols, &error);
+                            double* data_new = (double*)REALLOC(data, iRows * iCols * sizeof(double));
+                            if (data_new)
+                            {
+                                data = data_new;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            C2F(readdoublelinefile)(&iID, &(data[(iRows - 1)* iCols]), &iCols, &error);
                             if (error == 0)
                             {
-                                pD->resize(iRows, iCols);
-                                for (int i = 0; i < iCols; ++i)
-                                {
-                                    pD->set((iRows - 1), i, pdData[i]);
-                                }
                                 ++iRows;
                             }
                         }
-                        delete[] pdData;
                     }
                     else
                     {
-                        double* pdData = new double[iCols];
                         while (error == 0)
                         {
-                            C2F(readdoublelinefileform)(&iID, pstFormat, pdData, &iCols, &error, (int)balisc_strlen(pstFormat));
+                            double* data_new = (double*)REALLOC(data, iRows * iCols * sizeof(double));
+                            if (data_new)
+                            {
+                                data = data_new;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            C2F(readdoublelinefileform)(&iID, pstFormat, &(data[(iRows - 1)* iCols]), &iCols, &error, (int)balisc_strlen(pstFormat));
                             if (error == 0)
                             {
-                                pD->resize(iRows, iCols);
-                                for (int i = 0; i < iCols; ++i)
-                                {
-                                    pD->set((iRows - 1), i, pdData[i]);
-                                }
                                 ++iRows;
                             }
                         }
-                        delete[] pdData;
+                    }
+
+                    if (data)
+                    {
+                        pD = new types::Double(iCols, iRows - 1, false);
+                        pD->set(data);
+                        FREE(data);
+                        types::InternalType* it = NULL;
+                        pD->transpose(it);
+                        delete pD;
+                        pD = it->getAs<types::Double>();
+                    }
+                    else
+                    {
+                        pD = types::Double::Empty();
                     }
 
                     if (error != 2)
