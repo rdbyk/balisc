@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - 2016 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -42,8 +42,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     //!
 
     if nargin<3 then
-        msg = _("%s: Wrong number of input arguments: At least %d expected.\n");
-        error(msprintf(msg, "csim", 3));
+        error(74, 3);
     end
     sltyp=typeof(sl)
     if and(sltyp<>["state-space" "rational" "zpk"]) then
@@ -174,6 +173,10 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         end;
         k=k+n
     end;
-    y = c*x + d*ut
+    if c <> []
+        y = c*x + d*ut
+    else
+        y = d*ut
+    end
     if nargout==2 then x=v1*v2*x,end
 endfunction
