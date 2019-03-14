@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -180,7 +180,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
 
 int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut)
 {
-    if (_pDouble1->isScalar())
+    if (_pDouble1->isScalar() || _pDouble1->isIdentity())
     {
         bool bComplex1  = _pDouble1->isComplex();
         bool bComplex2  = _pDouble2->isComplex();
@@ -209,7 +209,7 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         return 0;
     }
 
-    if (_pDouble2->isScalar())
+    if (_pDouble2->isScalar() || _pDouble2->isIdentity())
     {
         bool bComplex1  = _pDouble1->isComplex();
         bool bComplex2  = _pDouble2->isComplex();
@@ -258,17 +258,6 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
     bool bComplex1  = _pDouble1->isComplex();
     bool bComplex2  = _pDouble2->isComplex();
     (*_pDoubleOut) = new Double(r1, c2, bComplex1 | bComplex2);
-
-    // FIXME: find a better way to detect "eye()*eye()"
-    if (r1 == -1)
-    {
-        // we pretend, that the eye() factors are 1x1-matrices in order
-        // to make the following low-level multiplication routines happy
-        r1 = 1;
-        c1 = 1;
-        r2 = 1;
-        c2 = 1;
-    }
 
     if (bComplex1 == false && bComplex2 == false)
     {
