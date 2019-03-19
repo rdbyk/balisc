@@ -6,7 +6,7 @@
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2014-2015 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -67,20 +67,10 @@ static void updateXYZDataBounds(int iSubwinUID, double rect[6]);
  * ensuite il reste qu'appeler la fonction du dessin de l'objet
  *-----------------------------------------------*/
 
-void Objrect (double* x         ,
-              double* y         ,
-              double* width     ,
-              double* height    ,
-              int    * foreground,
-              int    * background,
-              BOOL     isfilled  ,
-              BOOL     isline    ,
-              long   * hdl )
+int Objrect (double* x, double* y, double* width, double* height,
+             int *foreground, int * background, BOOL isfilled, BOOL isline)
 {
-    int iNewObjUID = 0;
-    int iSubwinUID = 0;
-
-    iSubwinUID = getCurrentSubWin();
+    int iSubwinUID = getCurrentSubWin();
 
     /* check if the auto_clear property is on and then erase everything */
     checkRedrawing();
@@ -99,20 +89,18 @@ void Objrect (double* x         ,
     /*newObjUID = ConstructRectangle(iSubwinUID , *x, *y, *height, *width,
       foreground, background, isfilled, isline);*/
 
-    iNewObjUID = createRect(iSubwinUID, *x, *y, *height, *width,
+    int iNewObjUID = createRect(iSubwinUID, *x, *y, *height, *width,
                             foreground == NULL ? -1 : *foreground,
                             background == NULL ? -1 : *background,
                             (int)isfilled, (int)isline);
 
-    if (iNewObjUID == 0)
+    if (iNewObjUID != 0)
     {
-        /* an error occurred */
-        *hdl = -1;
-        return;
+        /* rectangle was created */
+        setCurrentObject(iNewObjUID);
     }
 
-    setCurrentObject(iNewObjUID);
-    *hdl = getHandle(iNewObjUID);
+    return iNewObjUID;
 }
 
 
@@ -923,24 +911,6 @@ void Objdrawaxis (char     dir    ,
     }
 
     setCurrentObject(iObjUID);
-}
-
-/*-----------------------------------------------------------
- * Objnumb:
- *-----------------------------------------------------------*/
-
-void Objnumb(char          * fname    ,
-             unsigned long   fname_len,
-             int         n        ,
-             int         flag     ,
-             double          x        ,
-             double          y        ,
-             double        * angle    ,
-             double        * box )
-{
-    /*** faire une macro scilab sur xstring ****/
-
-
 }
 
 /*------------------------------------------------

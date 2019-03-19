@@ -5,7 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -35,7 +35,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
-/*--------------------------------------------------------------------------*/
+
 int sci_xrects(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
@@ -46,7 +46,6 @@ int sci_xrects(char *fname, void *pvApiCtx)
     int* l2 = NULL;
 
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
-    long  hdl = 0;
     int i = 0;
     int iSubwinUID = 0;
 
@@ -131,13 +130,16 @@ int sci_xrects(char *fname, void *pvApiCtx)
 
     iSubwinUID = getOrCreateDefaultSubwin();
 
-    // Create compound.
-    iCompoundUID = createGraphicObject(__GO_COMPOUND__);
-    /* Sets the parent-child relationship for the Compound */
-    setGraphicObjectRelationship(iSubwinUID, iCompoundUID);
-
     /** Get Subwin line color */
     getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
+
+    int* objid = (int*)MALLOC(n1 * sizeof(int));
+
+    if (objid == NULL)
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
 
     for (i = 0; i < n1; ++i)
     {
@@ -147,8 +149,8 @@ int sci_xrects(char *fname, void *pvApiCtx)
             /** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
             /* color setting is done now */
 
-            Objrect((l1 + (4 * i)), (l1 + (4 * i) + 1), (l1 + (4 * i) + 2), (l1 + (4 * i) + 3),
-                    &foreground, NULL, FALSE, TRUE, &hdl);
+            objid[i] = Objrect((l1 + (4 * i)), (l1 + (4 * i) + 1), (l1 + (4 * i) + 2), (l1 + (4 * i) + 3),
+                            &foreground, NULL, FALSE, TRUE);
         }
         else
         {
@@ -156,25 +158,25 @@ int sci_xrects(char *fname, void *pvApiCtx)
             {
                 /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
                 int tmp = - (*(int*)(l2 + i));
-                Objrect((l1 + (4 * i)), (l1 + (4 * i) + 1), (l1 + (4 * i) + 2), (l1 + (4 * i) + 3),
-                        &tmp, NULL, FALSE, TRUE, &hdl);
+                objid[i] = Objrect((l1 + (4 * i)), (l1 + (4 * i) + 1), (l1 + (4 * i) + 2), (l1 + (4 * i) + 3),
+                                &tmp, NULL, FALSE, TRUE);
             }
             else
             {
                 /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
-                Objrect((l1 + (4 * i)), (l1 + (4 * i) + 1), (l1 + (4 * i) + 2), (l1 + (4 * i) + 3),
-                        NULL, l2 + i, TRUE, FALSE, &hdl);
+                objid[i] = Objrect((l1 + (4 * i)), (l1 + (4 * i) + 1), (l1 + (4 * i) + 2), (l1 + (4 * i) + 3),
+                                 NULL, l2 + i, TRUE, FALSE);
             }
         }
-        // Add newly created object to Compound
-        setGraphicObjectRelationship(iCompoundUID, getObjectFromHandle(hdl));
     }
 
-    /** make Compound current object **/
+    /* construct Compound and make it current object */
+    iCompoundUID = createCompound(iSubwinUID, objid, n1);
+    FREE(objid);
     setCurrentObject(iCompoundUID);
+
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/
