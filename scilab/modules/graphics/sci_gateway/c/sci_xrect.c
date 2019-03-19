@@ -5,7 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -50,7 +50,7 @@ int sci_xrect(char *fname, void *pvApiCtx)
     int* piAddrl4 = NULL;
     double* l4 = NULL;
 
-    long hdl = 0;
+    int objid = 0;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0;
     int iSubwinUID = 0;
 
@@ -92,17 +92,17 @@ int sci_xrect(char *fname, void *pvApiCtx)
 
             if (balisc_strcmp(fname, "xrect") == 0)
             {
-                Objrect ((l1), (l1 + 1), (l1 + 2), (l1 + 3),
-                         &foreground, NULL, FALSE, TRUE, &hdl);
+                objid = Objrect((l1), (l1 + 1), (l1 + 2), (l1 + 3),
+                                &foreground, NULL, FALSE, TRUE);
             }
             else
             {
                 /* xfrect case */
-                Objrect ((l1), (l1 + 1), (l1 + 2), (l1 + 3),
-                         NULL, &foreground, TRUE, FALSE, &hdl);
+                objid = Objrect((l1), (l1 + 1), (l1 + 2), (l1 + 3),
+                        NULL, &foreground, TRUE, FALSE);
             }
 
-            if (hdl < 0)
+            if (objid == 0)
             {
                 break;
             }
@@ -191,16 +191,16 @@ int sci_xrect(char *fname, void *pvApiCtx)
 
             if (balisc_strcmp(fname, "xrect") == 0)
             {
-                Objrect ((l1), (l2), (l3), (l4),
-                         &foreground, NULL, FALSE, TRUE, &hdl);
+                objid = Objrect((l1), (l2), (l3), (l4),
+                                &foreground, NULL, FALSE, TRUE);
             }
             else
             {
-                Objrect ((l1), (l2), (l3), (l4),
-                         NULL, &foreground, TRUE, FALSE, &hdl);
+                objid = Objrect((l1), (l2), (l3), (l4),
+                                NULL, &foreground, TRUE, FALSE);
             }
 
-            if (hdl < 0)
+            if (objid == 0)
             {
                 break;
             }
@@ -211,9 +211,9 @@ int sci_xrect(char *fname, void *pvApiCtx)
             break;
     }
 
-    if (hdl > 0)
+    if (objid != 0)
     {
-        setGraphicObjectRelationship(iSubwinUID, getObjectFromHandle(hdl));
+        setGraphicObjectRelationship(iSubwinUID, objid);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
@@ -221,4 +221,3 @@ int sci_xrect(char *fname, void *pvApiCtx)
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/
