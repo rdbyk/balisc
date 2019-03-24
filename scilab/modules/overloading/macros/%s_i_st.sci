@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer <serge.steer@inria.fr>
 // Copyright (C) 2018 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -35,8 +35,7 @@ function out=%s_i_st(varargin)
             for k=Ndims+1:nindex
                 i=varargin(k)
                 if size(i,"*")>1|(i<>1&i<>eye()) then
-                    msg = _("%s: A null assignment can have only one non-colon index.\n")
-                    error(msprintf(msg, "%s_i_st"));
+                    error(_("%s: A null assignment can have only one non-colon index."), "%s_i_st");
                 end
             end
             nindex=Ndims
@@ -66,8 +65,7 @@ function out=%s_i_st(varargin)
                 ind=floor(ind);
                 //check if index is valid
                 if ~isreal(ind)|or(ind<=0) then
-                    msg = _("%s: Invalid index\n");
-                    error(msprintf(msg, "%s_i_st"))
+                    error(2)
                 end
                 //remove indices that exceed the associated struct dimension
                 ind(ind>dims(k))=[];
@@ -77,8 +75,7 @@ function out=%s_i_st(varargin)
                     cj=ind
                     loc=k,
                 else
-                    msg = _("%s: A null assignment can have only one non-colon index.\n")
-                    error(msprintf(msg, "%s_i_st"));
+                    error(_("%s: A null assignment can have only one non-colon index."), "%s_i_st");
                 end
             end
         end
@@ -88,7 +85,7 @@ function out=%s_i_st(varargin)
             Fout=getfield(1,out)
             Fout=Fout(3:$)
             for f=Fout
-                out(f)=list()
+                out(f)=[]
             end
         else
             //replace st(:,j,:,:)=[] by st=st(:,cj,:,:) where cj is the
@@ -103,6 +100,6 @@ function out=%s_i_st(varargin)
         out=varargin(3);
         out=generic_i_st(i,in,out)
     else
-        error(msprintf(_("%s: Not yet implemented.\n"),"%s_i_st"));
+        error(24);
     end
 endfunction
