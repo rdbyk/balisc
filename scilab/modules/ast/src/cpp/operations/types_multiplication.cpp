@@ -180,7 +180,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
 
 int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut)
 {
-    if (_pDouble1->isScalar() || _pDouble1->isIdentity())
+    if (_pDouble1->isScalar() || _pDouble1->isIdentity() && _pDouble2->isScalar() == false )
     {
         bool bComplex1  = _pDouble1->isComplex();
         bool bComplex2  = _pDouble2->isComplex();
