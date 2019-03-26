@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -167,7 +167,7 @@ bool Struct::extract(const std::wstring & name, InternalType *& out)
     {
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n").c_str(), name.c_str());
-        throw std::wstring(szError);
+        throw ast::InternalError(szError);
     }
 
     return true;
@@ -494,7 +494,7 @@ typed_list Struct::extractFields(std::vector<std::wstring> _wstFields)
 
     for (int i = 0 ; i < (int)_wstFields.size() ; i++)
     {
-        ResultList[i] = extractField(_wstFields[i]);
+        extract(_wstFields[i], ResultList[i]);
     }
 
     return ResultList;
