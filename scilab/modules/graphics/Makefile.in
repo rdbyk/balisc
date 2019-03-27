@@ -19,7 +19,7 @@
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2010 - Pierre MARECHAL
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -515,7 +515,6 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/libscigraphics_algo_la-pixel_mode.lo \
 	src/c/libscigraphics_algo_la-Format.lo \
 	src/c/libscigraphics_algo_la-Champ.lo \
-	src/c/libscigraphics_algo_la-StringMatrix.lo \
 	src/c/libscigraphics_algo_la-FeC.lo \
 	src/c/libscigraphics_algo_la-Plo2dEch.lo \
 	src/c/libscigraphics_algo_la-Plo2dn.lo \
@@ -1369,7 +1368,6 @@ GRAPHICS_C_SOURCES = \
     src/c/pixel_mode.c \
     src/c/Format.c \
     src/c/Champ.c \
-    src/c/StringMatrix.c \
     src/c/FeC.c \
     src/c/Plo2dEch.c \
     src/c/Plo2dn.c \
@@ -2744,8 +2742,6 @@ src/c/libscigraphics_algo_la-Format.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-Champ.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscigraphics_algo_la-StringMatrix.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-FeC.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-Plo2dEch.lo: src/c/$(am__dirstamp) \
@@ -3183,7 +3179,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-Plo2dn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-SetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-StringBox.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-StringMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-TerminateGraphics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-addColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-axesScale.Plo@am__quote@
@@ -5881,13 +5876,6 @@ src/c/libscigraphics_algo_la-Champ.lo: src/c/Champ.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/Champ.c' object='src/c/libscigraphics_algo_la-Champ.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-Champ.lo `test -f 'src/c/Champ.c' || echo '$(srcdir)/'`src/c/Champ.c
-
-src/c/libscigraphics_algo_la-StringMatrix.lo: src/c/StringMatrix.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-StringMatrix.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-StringMatrix.Tpo -c -o src/c/libscigraphics_algo_la-StringMatrix.lo `test -f 'src/c/StringMatrix.c' || echo '$(srcdir)/'`src/c/StringMatrix.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscigraphics_algo_la-StringMatrix.Tpo src/c/$(DEPDIR)/libscigraphics_algo_la-StringMatrix.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/StringMatrix.c' object='src/c/libscigraphics_algo_la-StringMatrix.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-StringMatrix.lo `test -f 'src/c/StringMatrix.c' || echo '$(srcdir)/'`src/c/StringMatrix.c
 
 src/c/libscigraphics_algo_la-FeC.lo: src/c/FeC.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-FeC.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-FeC.Tpo -c -o src/c/libscigraphics_algo_la-FeC.lo `test -f 'src/c/FeC.c' || echo '$(srcdir)/'`src/c/FeC.c

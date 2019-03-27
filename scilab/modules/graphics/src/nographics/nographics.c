@@ -26,6 +26,7 @@
 #include "getDictionaryGetProperties.h"
 #include "getDictionarySetProperties.h"
 #include "graphicModuleLoad.h"
+#include "sciMatrix.h"
 /*--------------------------------------------------------------------------*/
 
 /*
@@ -169,7 +170,7 @@ void deleteMatrix(sciMatrix * mat)
 }
 
 /*--------------------------------------------------------------------------*/
-StringMatrix *computeDefaultTicsLabels(int pobjUID)
+sciMatrix *computeDefaultTicsLabels(int pobjUID)
 {
     return NULL;
 }
@@ -187,7 +188,7 @@ BOOL sciisTextEmpty(int iIdentifier)
 }
 
 /*--------------------------------------------------------------------------*/
-char **getStrMatData(const StringMatrix * mat)
+char **getStrMatData(const sciMatrix * mat)
 {
     return NULL;
 }

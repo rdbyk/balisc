@@ -7,7 +7,7 @@
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,7 +34,6 @@
 #include "sci_malloc.h"
 #include "string.h"
 #include "strcmp.h"
-#include "StringMatrix.h"
 #include "Format.h"
 
 #include "getGraphicObjectProperty.h"
@@ -47,7 +46,7 @@ int set_format_n_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
     BOOL status = FALSE;
     char* format = NULL;
     char * oldFormat = NULL;
-    StringMatrix * labels = NULL;
+    sciMatrix* labels = NULL;
 
     if (valueType != sci_strings)
     {
@@ -76,7 +75,7 @@ int set_format_n_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
         labels = computeDefaultTicsLabels(iObjUID);
         if (labels != NULL)
         {
-            char ** data = getStrMatData(labels);
+            char** data = (char**)labels->data;
             setGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, data, jni_string_vector, labels->nbCol * labels->nbRow);
             deleteMatrix(labels);
         }
