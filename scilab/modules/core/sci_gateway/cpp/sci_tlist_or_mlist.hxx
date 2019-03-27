@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,35 +33,37 @@ types::Function::ReturnValue sci_tlist_or_mlist(types::typed_list &in, int _piRe
 {
     TorMList* pRetVal = NULL;
 
-    char* pstrFunName = wide_string_to_UTF8(_pstrFunName);
-
     //check input parameters
     if (in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), pstrFunName , 1);
-        FREE(pstrFunName);
+        Scierror(74, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), pstrFunName, 1);
-        FREE(pstrFunName);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
-    //check uniqueness of fields name
     types::String* pS = in[0]->getAs<types::String>();
+
+    if (pS->isVector() == false)
+    {
+        Scierror(100, 1, _("vector of strings"));
+        return types::Function::Error;
+    }
+
+    // FIXME: check uniqueness of field names
 
     //check for rational type
     if (pS->getSize() > 0 && wcscmp(pS->getFirst(), L"r") == 0)
     {
+        char* pstrFunName = wide_string_to_UTF8(_pstrFunName);
         Scierror(999, _("%s: Can not create a %s with input argument #%d.\n"), pstrFunName, pstrFunName, 1);
         FREE(pstrFunName);
         return types::Function::Error;
     }
-
-    FREE(pstrFunName);
 
     pRetVal = new TorMList();
     for (unsigned int i = 0 ; i < in.size() ; i++)
