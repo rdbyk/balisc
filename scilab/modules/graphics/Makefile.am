@@ -3,7 +3,7 @@
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2010 - Pierre MARECHAL
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -364,7 +364,6 @@ GRAPHICS_C_SOURCES = \
     src/c/pixel_mode.c \
     src/c/Format.c \
     src/c/Champ.c \
-    src/c/StringMatrix.c \
     src/c/FeC.c \
     src/c/Plo2dEch.c \
     src/c/Plo2dn.c \

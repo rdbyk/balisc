@@ -7,7 +7,7 @@
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,6 +48,7 @@
 #include "machine.h"
 #include "numericconstants_interface.h"
 #include "strcmp.h"
+#include "os_string.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -1174,9 +1175,9 @@ int ComputeXIntervals(int iObjUID, char xy_type, double ** vector, int * N, int 
  * @return a string matrix containing the labels.
  *         Actually it is a row vector.
  */
-StringMatrix * computeDefaultTicsLabels(int iObjUID)
+sciMatrix* computeDefaultTicsLabels(int iObjUID)
 {
-    StringMatrix * ticsLabels = NULL  ;
+    sciMatrix* ticsLabels = NULL  ;
     int            nbTics     = 0     ;
     char           tempFormat[5]      ;
     char         * c_format   = NULL  ;
@@ -1234,7 +1235,14 @@ StringMatrix * computeDefaultTicsLabels(int iObjUID)
     {
         sprintf(curLabelBuffer, c_format, vector[i]) ; /* we can't know for sure the size of the label */
         /* That's why it is first stored in a big array */
-        copyStrMatElement(ticsLabels, 0, i, curLabelBuffer);
+        /* copyStrMatElement(ticsLabels, 0, i, curLabelBuffer); */
+        char* oldLabel = (char*)ticsLabels->data[i * ticsLabels->nbRow];
+        if (oldLabel != NULL)
+        {
+            FREE(oldLabel);
+        }
+
+        ticsLabels->data[i * ticsLabels->nbRow] = os_strdup(curLabelBuffer);
     }
 
     FREE(vector);

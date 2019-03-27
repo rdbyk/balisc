@@ -862,7 +862,7 @@ void Objdrawaxis (char     dir    ,
     if (val == NULL)
     {
         char **matData;
-        StringMatrix *tics_labels;
+        sciMatrix* tics_labels;
 
         tics_labels = computeDefaultTicsLabels(iObjUID);
 
@@ -872,7 +872,7 @@ void Objdrawaxis (char     dir    ,
             return;
         }
 
-        matData = getStrMatData(tics_labels);
+        matData = (char**)tics_labels->data;
 
         /*
          * The labels vector size must be computed using the matrix's dimensions.
