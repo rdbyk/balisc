@@ -543,6 +543,7 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_direction_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_auto_margins_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-hashtable.lo \
 	src/c/libscigraphics_algo_la-name2rgb.lo \
 	src/c/libscigraphics_algo_la-addColor.lo \
 	src/c/libscigraphics_algo_la-DllmainGraphics.lo
@@ -1396,6 +1397,7 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_direction_property.c \
     src/c/getHandleProperty/set_auto_margins_property.c \
     src/c/getHandleProperty/get_auto_margins_property.c \
+    src/c/getHandleProperty/hashtable.c \
     src/c/name2rgb.c \
     src/c/addColor.c \
     src/c/DllmainGraphics.c
@@ -2814,6 +2816,9 @@ src/c/getHandleProperty/libscigraphics_algo_la-set_auto_margins_property.lo:  \
 src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-hashtable.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-name2rgb.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-addColor.lo: src/c/$(am__dirstamp) \
@@ -3360,6 +3365,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_z_ticks_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_zoom_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_zoom_state_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-hashtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-setGetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_alignment_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_ambient_color_property.Plo@am__quote@
@@ -6072,6 +6078,13 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo: src
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_auto_margins_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo `test -f 'src/c/getHandleProperty/get_auto_margins_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_auto_margins_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-hashtable.lo: src/c/getHandleProperty/hashtable.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-hashtable.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-hashtable.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-hashtable.lo `test -f 'src/c/getHandleProperty/hashtable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/hashtable.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-hashtable.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-hashtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/hashtable.c' object='src/c/getHandleProperty/libscigraphics_algo_la-hashtable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-hashtable.lo `test -f 'src/c/getHandleProperty/hashtable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/hashtable.c
 
 src/c/libscigraphics_algo_la-name2rgb.lo: src/c/name2rgb.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-name2rgb.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-name2rgb.Tpo -c -o src/c/libscigraphics_algo_la-name2rgb.lo `test -f 'src/c/name2rgb.c' || echo '$(srcdir)/'`src/c/name2rgb.c

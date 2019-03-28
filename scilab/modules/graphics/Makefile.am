@@ -392,6 +392,7 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_direction_property.c \
     src/c/getHandleProperty/set_auto_margins_property.c \
     src/c/getHandleProperty/get_auto_margins_property.c \
+    src/c/getHandleProperty/hashtable.c \
     src/c/name2rgb.c \
     src/c/addColor.c \
     src/c/DllmainGraphics.c
