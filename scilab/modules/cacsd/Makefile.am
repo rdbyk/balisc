@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -150,7 +150,8 @@ CACSD_FORTRAN_SOURCES = \
     src/fortran/storl2.f \
     src/fortran/calsca.f \
     src/fortran/qitz.f \
-    src/fortran/front.f
+    src/fortran/front.f \
+    src/fortran/dmdspf.f
 
 CACSD_C_SOURCES = \
     src/c/dmp2pm.c
