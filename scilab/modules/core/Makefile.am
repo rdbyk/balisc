@@ -34,7 +34,6 @@ CORE_C_SOURCES = \
     src/c/suspendProcess.c \
     src/c/saveCWDInPreferences.c \
     src/c/hashtable/hashtable.c \
-    src/c/hashtable/hashtable_utility.c \
     src/c/InitializePreferences.c
 
 CORE_CPP_SOURCES = \
@@ -231,7 +230,6 @@ includes/getmemory.h \
 includes/getos.h \
 includes/getversion.h \
 includes/hashtable.h \
-includes/hashtable_utility.h \
 includes/machine.h \
 includes/PATH_MAX.h \
 includes/scilabDefaults.h \
