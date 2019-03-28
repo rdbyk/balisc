@@ -16,7 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -183,7 +183,8 @@ am__objects_1 = src/fortran/jacl2.lo src/fortran/onface.lo \
 	src/fortran/domout.lo src/fortran/rootgp.lo src/fortran/feq.lo \
 	src/fortran/fout.lo src/fortran/deg1l2.lo src/fortran/modul.lo \
 	src/fortran/scapol.lo src/fortran/giv.lo src/fortran/storl2.lo \
-	src/fortran/calsca.lo src/fortran/qitz.lo src/fortran/front.lo
+	src/fortran/calsca.lo src/fortran/qitz.lo src/fortran/front.lo \
+	src/fortran/dmdspf.lo
 am__objects_2 = src/slicot/sb04pd.lo src/slicot/ib01ad.lo \
 	src/slicot/tb01wd.lo src/slicot/ib01py.lo src/slicot/mb01rx.lo \
 	src/slicot/ib01md.lo src/slicot/sb02ru.lo src/slicot/sb04nw.lo \
@@ -802,7 +803,8 @@ CACSD_FORTRAN_SOURCES = \
     src/fortran/storl2.f \
     src/fortran/calsca.f \
     src/fortran/qitz.f \
-    src/fortran/front.f
+    src/fortran/front.f \
+    src/fortran/dmdspf.f
 
 CACSD_C_SOURCES = \
     src/c/dmp2pm.c
@@ -1113,6 +1115,8 @@ src/fortran/calsca.lo: src/fortran/$(am__dirstamp) \
 src/fortran/qitz.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/front.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/dmdspf.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/slicot/$(am__dirstamp):
 	@$(MKDIR_P) src/slicot

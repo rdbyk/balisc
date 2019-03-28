@@ -19,7 +19,7 @@
 # Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 # Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -195,7 +195,7 @@ am__objects_2 = src/cpp/libscioutput_stream_algo_la-Diary.lo \
 	src/cpp/libscioutput_stream_algo_la-basout.lo \
 	src/cpp/libscioutput_stream_algo_la-Sciwarning.lo \
 	src/cpp/libscioutput_stream_algo_la-Scierror.lo
-am__objects_3 = src/fortran/fmttyp.lo src/fortran/dmdspf.lo
+am__objects_3 = src/fortran/fmttyp.lo
 am_libscioutput_stream_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libscioutput_stream_algo_la_OBJECTS =  \
@@ -641,8 +641,7 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/error.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = \
-	src/fortran/fmttyp.f \
-	src/fortran/dmdspf.f
+	src/fortran/fmttyp.f
 
 libscioutput_stream_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -904,8 +903,6 @@ src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran/$(DEPDIR)
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/fmttyp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/dmdspf.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscioutput_stream-algo.la: $(libscioutput_stream_algo_la_OBJECTS) $(libscioutput_stream_algo_la_DEPENDENCIES) $(EXTRA_libscioutput_stream_algo_la_DEPENDENCIES) 

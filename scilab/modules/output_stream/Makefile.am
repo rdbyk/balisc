@@ -3,7 +3,7 @@
 # Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 # Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -40,8 +40,7 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/error.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = \
-	src/fortran/fmttyp.f \
-	src/fortran/dmdspf.f
+	src/fortran/fmttyp.f
 
 
 libscioutput_stream_la_CPPFLAGS= \
