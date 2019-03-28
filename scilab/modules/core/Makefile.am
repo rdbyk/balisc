@@ -33,7 +33,6 @@ CORE_C_SOURCES = \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
     src/c/saveCWDInPreferences.c \
-    src/c/hashtable/hashtable.c \
     src/c/InitializePreferences.c
 
 CORE_CPP_SOURCES = \
@@ -229,7 +228,6 @@ includes/freeArrayOfPtrs.h \
 includes/getmemory.h \
 includes/getos.h \
 includes/getversion.h \
-includes/hashtable.h \
 includes/machine.h \
 includes/PATH_MAX.h \
 includes/scilabDefaults.h \
