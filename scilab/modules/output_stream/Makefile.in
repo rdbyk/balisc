@@ -181,8 +181,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscioutput_stream_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/c/libscioutput_stream_algo_la-msgstxt.lo \
-	src/c/libscioutput_stream_algo_la-sciprint.lo \
+am__objects_1 = src/c/libscioutput_stream_algo_la-sciprint.lo \
 	src/c/libscioutput_stream_algo_la-error.lo
 am__objects_2 = src/cpp/libscioutput_stream_algo_la-Diary.lo \
 	src/cpp/libscioutput_stream_algo_la-scilabWrite.lo \
@@ -634,7 +633,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_print.cpp
 
 OUTPUT_STREAM_C_SOURCES = \
-	src/c/msgstxt.c \
 	src/c/sciprint.c \
 	src/c/error.c
 
@@ -860,8 +858,6 @@ src/c/$(am__dirstamp):
 src/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/c/$(DEPDIR)
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscioutput_stream_algo_la-msgstxt.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscioutput_stream_algo_la-sciprint.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscioutput_stream_algo_la-error.lo: src/c/$(am__dirstamp) \
@@ -952,7 +948,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioutput_stream_la-sci_msprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioutput_stream_la-sci_print.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-error.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioutput_stream_algo_la-sciprint.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-Diary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-DiaryList.Plo@am__quote@
@@ -988,13 +983,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-src/c/libscioutput_stream_algo_la-msgstxt.lo: src/c/msgstxt.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioutput_stream_algo_la-msgstxt.lo -MD -MP -MF src/c/$(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Tpo -c -o src/c/libscioutput_stream_algo_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Tpo src/c/$(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/msgstxt.c' object='src/c/libscioutput_stream_algo_la-msgstxt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioutput_stream_algo_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
 
 src/c/libscioutput_stream_algo_la-sciprint.lo: src/c/sciprint.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioutput_stream_algo_la-sciprint.lo -MD -MP -MF src/c/$(DEPDIR)/libscioutput_stream_algo_la-sciprint.Tpo -c -o src/c/libscioutput_stream_algo_la-sciprint.lo `test -f 'src/c/sciprint.c' || echo '$(srcdir)/'`src/c/sciprint.c
