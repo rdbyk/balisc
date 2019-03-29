@@ -3,7 +3,7 @@
  * Copyright (C) 2006-2008 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -53,10 +53,7 @@ extern "C"
 }
 
 #include "configvariable.hxx"
-#include "exit_status.hxx"
 #include "scilabWrite.hxx"
-
-#define INTERACTIVE     -1
 
 extern "C"
 {
@@ -127,7 +124,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         else if (!balisc_strcmp("--help", argv[i]))
         {
             usage();
-            exit(WELL_DONE);
+            exit(EXIT_SUCCESS);
         }
         else if (!balisc_strcmp("--AST-trace", argv[i]))
         {
@@ -236,7 +233,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
 #else
             printf("Argument \"-nw\" is no longer supported.\nSee help page: https://help.scilab.org/scilab \n");
 #endif
-            exit(-1);
+            exit(EXIT_FAILURE);
 #endif
         }
         else if (!balisc_strcmp("-nwni", argv[i]))
@@ -249,7 +246,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
 #else
             printf("Argument \"-nwni\" is no longer supported.\nSee help page: https://help.scilab.org/scilab \n");
 #endif
-            exit(-1);
+            exit(EXIT_FAILURE);
 #endif
         }
         else if (!balisc_strcmp("-ns", argv[i]))
@@ -482,7 +479,7 @@ int main(int argc, char *argv[])
     if (pSEI->iShowVersion == 1)
     {
         disp_scilab_version();
-        exit(0);
+        exit(EXIT_SUCCESS);
     }
 
     int val = setjmp(ScilabJmpEnv);
@@ -509,4 +506,3 @@ int main(int argc, char *argv[])
     LocalFree(szArglist);
 #endif
 }
-
