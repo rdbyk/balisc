@@ -16,7 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyrigth (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -179,7 +179,8 @@ am__objects_1 =  \
 	src/c/libscidifferential_equations_algo_la-Ex-odedc.lo \
 	src/c/libscidifferential_equations_algo_la-Ex-ode.lo \
 	src/c/libscidifferential_equations_algo_la-Ex-daskr.lo \
-	src/c/libscidifferential_equations_algo_la-errmds.lo
+	src/c/libscidifferential_equations_algo_la-errmds.lo \
+	src/c/libscidifferential_equations_algo_la-msgstxt.lo
 am__objects_2 = src/fortran/rscar1.lo src/fortran/bcomp.lo \
 	src/fortran/lcomp.lo src/fortran/loren.lo src/fortran/prja.lo \
 	src/fortran/vnorm.lo src/fortran/lsoda.lo \
@@ -656,7 +657,8 @@ DIFFERENTIAL_EQUATIONS_C_SOURCES = \
     src/c/Ex-odedc.c \
     src/c/Ex-ode.c \
     src/c/Ex-daskr.c \
-    src/c/errmds.c
+    src/c/errmds.c \
+    src/c/msgstxt.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
     src/fortran/rscar1.f \
@@ -967,6 +969,8 @@ src/c/libscidifferential_equations_algo_la-Ex-daskr.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscidifferential_equations_algo_la-errmds.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscidifferential_equations_algo_la-msgstxt.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/fortran/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran
 	@: > src/fortran/$(am__dirstamp)
@@ -1206,6 +1210,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-dassl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-errmds.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-feval.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-msgstxt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-rk4.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscidifferential_equations_algo_la-checkodeerror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscidifferential_equations_algo_la-differentialequationfunctions.Plo@am__quote@
@@ -1297,6 +1302,13 @@ src/c/libscidifferential_equations_algo_la-errmds.lo: src/c/errmds.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/errmds.c' object='src/c/libscidifferential_equations_algo_la-errmds.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscidifferential_equations_algo_la-errmds.lo `test -f 'src/c/errmds.c' || echo '$(srcdir)/'`src/c/errmds.c
+
+src/c/libscidifferential_equations_algo_la-msgstxt.lo: src/c/msgstxt.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscidifferential_equations_algo_la-msgstxt.lo -MD -MP -MF src/c/$(DEPDIR)/libscidifferential_equations_algo_la-msgstxt.Tpo -c -o src/c/libscidifferential_equations_algo_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscidifferential_equations_algo_la-msgstxt.Tpo src/c/$(DEPDIR)/libscidifferential_equations_algo_la-msgstxt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/msgstxt.c' object='src/c/libscidifferential_equations_algo_la-msgstxt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscidifferential_equations_algo_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\

@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+# Copyrigth (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -19,7 +19,8 @@ DIFFERENTIAL_EQUATIONS_C_SOURCES = \
     src/c/Ex-odedc.c \
     src/c/Ex-ode.c \
     src/c/Ex-daskr.c \
-    src/c/errmds.c
+    src/c/errmds.c \
+    src/c/msgstxt.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
     src/fortran/rscar1.f \
