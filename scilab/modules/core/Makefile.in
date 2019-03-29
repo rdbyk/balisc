@@ -214,7 +214,8 @@ am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-signal_mgmt.lo \
 	src/c/libscicore_algo_la-suspendProcess.lo \
 	src/c/libscicore_algo_la-saveCWDInPreferences.lo \
-	src/c/libscicore_algo_la-InitializePreferences.lo
+	src/c/libscicore_algo_la-InitializePreferences.lo \
+	src/c/libscicore_algo_la-cluni0.lo
 am__objects_2 = src/cpp/libscicore_algo_la-demangle.lo \
 	src/cpp/libscicore_algo_la-backtrace_print.lo \
 	src/cpp/libscicore_algo_la-storeCommand.lo \
@@ -775,7 +776,8 @@ CORE_C_SOURCES = \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
     src/c/saveCWDInPreferences.c \
-    src/c/InitializePreferences.c
+    src/c/InitializePreferences.c \
+    src/c/cluni0.c
 
 CORE_CPP_SOURCES = \
     src/cpp/demangle.cpp \
@@ -1138,6 +1140,8 @@ src/c/libscicore_algo_la-saveCWDInPreferences.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-InitializePreferences.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscicore_algo_la-cluni0.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp
 	@: > src/cpp/$(am__dirstamp)
@@ -1480,6 +1484,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-GetXmlFileEncoding.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-InitializePreferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-backtrace.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-cluni0.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-commandwords.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfPtrs.Plo@am__quote@
@@ -1689,6 +1694,13 @@ src/c/libscicore_algo_la-InitializePreferences.lo: src/c/InitializePreferences.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/InitializePreferences.c' object='src/c/libscicore_algo_la-InitializePreferences.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-InitializePreferences.lo `test -f 'src/c/InitializePreferences.c' || echo '$(srcdir)/'`src/c/InitializePreferences.c
+
+src/c/libscicore_algo_la-cluni0.lo: src/c/cluni0.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-cluni0.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-cluni0.Tpo -c -o src/c/libscicore_algo_la-cluni0.lo `test -f 'src/c/cluni0.c' || echo '$(srcdir)/'`src/c/cluni0.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-cluni0.Tpo src/c/$(DEPDIR)/libscicore_algo_la-cluni0.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cluni0.c' object='src/c/libscicore_algo_la-cluni0.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-cluni0.lo `test -f 'src/c/cluni0.c' || echo '$(srcdir)/'`src/c/cluni0.c
 
 sci_gateway/c/libscicore_la-sci_getdebuginfo.lo: sci_gateway/c/sci_getdebuginfo.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicore_la-sci_getdebuginfo.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicore_la-sci_getdebuginfo.Tpo -c -o sci_gateway/c/libscicore_la-sci_getdebuginfo.lo `test -f 'sci_gateway/c/sci_getdebuginfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdebuginfo.c

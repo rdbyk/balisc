@@ -33,7 +33,8 @@ CORE_C_SOURCES = \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
     src/c/saveCWDInPreferences.c \
-    src/c/InitializePreferences.c
+    src/c/InitializePreferences.c \
+    src/c/cluni0.c
 
 CORE_CPP_SOURCES = \
     src/cpp/demangle.cpp \

@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -20,7 +20,6 @@ FILEIO_C_SOURCES = \
     src/c/isdir.c \
     src/c/isDrive.c \
     src/c/removedir.c \
-    src/c/cluni0.c \
     src/c/scicurdir.c \
     src/c/fullpath.c \
     src/c/fileinfo.c \
