@@ -11,16 +11,18 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
 function y = cotd(x)
 
     if nargin <> 1 then
         error(71, 1);
     end
     
-    if type(x) <> 1 | ~isreal(x) then
+    if ~or(type(x)==[1 5]) | ~isreal(x) then
         error(94, 1);
     end
 
     y = ones(x)./tand(x);
 
 endfunction
+
