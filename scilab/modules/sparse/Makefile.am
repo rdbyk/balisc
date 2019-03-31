@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -13,10 +14,6 @@ SPARSE_C_SOURCES = \
     src/c/spSolve.c
 
 SPARSE_FORTRAN_SOURCES = \
-    src/fortran/isort1.f \
-    src/fortran/spt.f \
-    src/fortran/sz2ptr.f \
-    src/fortran/spreshape.f \
     src/fortran/ordmmd.f \
 	src/fortran/blkfc1.f \
 	src/fortran/blkfct.f \
