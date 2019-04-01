@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -154,7 +154,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/dexpm1.f \
     src/fortran/wwdiv.f \
     src/fortran/wdotcr.f \
-    src/fortran/iset.f \
     src/fortran/lnblnk.f \
     src/fortran/entier.f \
     src/fortran/round.f \
@@ -192,7 +191,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/orthes.f \
     src/fortran/waxpy.f \
     src/fortran/coef.f \
-    src/fortran/arcosh.f \
     src/fortran/wexpm1.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \

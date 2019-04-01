@@ -17,7 +17,7 @@ c
   10  adeg = log(1.0d+0/acap12)/log(vsn)
       return
 c
-  20  adeg = arcosh(1.0d+0/acap12)/arcosh(vsn)
+  20  adeg = acosh(1.0d+0/acap12)/acosh(vsn)
       return
 c
   30  de = 1.0d+0

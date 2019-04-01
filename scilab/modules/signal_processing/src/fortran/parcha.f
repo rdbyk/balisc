@@ -22,7 +22,7 @@ c
       go to (10, 20, 20, 30), iapro
   10  acap12 = vsn**(-adeg)
         go to 40
-  20  q = arcosh(vsn)*adeg
+  20  q = acosh(vsn)*adeg
       acap12 = 1.0d+0/cosh(q)
       go to 40
   30  call bounn (adeg,acap12,vsn)

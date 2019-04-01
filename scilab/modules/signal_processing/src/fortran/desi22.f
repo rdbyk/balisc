@@ -48,7 +48,7 @@ ccccccccccccccccccccccccccccccccccccccccccccc
       go to 50
   40  sfa = ack
       q = ac
-  50  q = arsinh(q)/dble(ndeg)
+  50  q = asinh(q)/dble(ndeg)
       qr = sinh(q)
       qi = cosh(q)
       if (iapro.eq.3) go to 70
