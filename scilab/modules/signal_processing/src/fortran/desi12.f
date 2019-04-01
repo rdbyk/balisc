@@ -16,7 +16,7 @@ c
 c
       pi=4.0d+0*atan(1.0d+0)
       flma=2.0d+0**(int(slamch('l'))-2)
-      adelta = cosh(real(ndeg)*arcosh(vsn))
+      adelta = cosh(real(ndeg)*acosh(vsn))
 c
         fa = 1.0d+0
         nh = ndeg/2

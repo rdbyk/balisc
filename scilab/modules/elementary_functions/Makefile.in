@@ -261,11 +261,10 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/corth.lo src/fortran/mtran.lo \
 	src/fortran/wclmat.lo src/fortran/dsort.lo src/fortran/cerr.lo \
 	src/fortran/orthes.lo src/fortran/waxpy.lo src/fortran/coef.lo \
-	src/fortran/arcosh.lo src/fortran/wexpm1.lo \
-	src/fortran/wdotci.lo src/fortran/dmcopy.lo \
-	src/fortran/wexchn.lo src/fortran/infinity.lo \
-	src/fortran/wmul.lo src/fortran/dad.lo src/fortran/dset.lo \
-	src/fortran/dtild.lo src/fortran/i1mach.lo \
+	src/fortran/wexpm1.lo src/fortran/wdotci.lo \
+	src/fortran/dmcopy.lo src/fortran/wexchn.lo \
+	src/fortran/infinity.lo src/fortran/wmul.lo src/fortran/dad.lo \
+	src/fortran/dset.lo src/fortran/dtild.lo src/fortran/i1mach.lo \
 	src/fortran/dclmat.lo src/fortran/ortran.lo \
 	src/fortran/bdiag.lo src/fortran/dmmul.lo src/fortran/wsqrt.lo \
 	src/fortran/rat.lo src/fortran/old_pythag.lo
@@ -958,7 +957,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/orthes.f \
     src/fortran/waxpy.f \
     src/fortran/coef.f \
-    src/fortran/arcosh.f \
     src/fortran/wexpm1.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
@@ -1606,8 +1604,6 @@ src/fortran/orthes.lo: src/fortran/$(am__dirstamp) \
 src/fortran/waxpy.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/coef.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/arcosh.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wexpm1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

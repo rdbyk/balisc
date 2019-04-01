@@ -191,7 +191,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/orthes.f \
     src/fortran/waxpy.f \
     src/fortran/coef.f \
-    src/fortran/arcosh.f \
     src/fortran/wexpm1.f \
     src/fortran/wdotci.f \
     src/fortran/dmcopy.f \
