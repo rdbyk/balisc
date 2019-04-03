@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2017 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -127,7 +127,7 @@ function [c] = getcolor(Title,cini)
     end;
 
     k1 = min(max(cini,1),N);
-    xrects(rects(eye(),k1),-k1);
+    xrects(rects(:,k1),-k1);
     e = gce();
     rector = e.children;
     rector.thickness = 4;
@@ -167,7 +167,7 @@ function [c] = getcolor(Title,cini)
                 rector.foreground = color(255*(1-cmap(k,1)),255*(1-cmap(k,2)),255*(1-cmap(k,3)));
             end;
             k1 = k;
-            name = rgb2name(cmap(k,eye())*255);
+            name = rgb2name(cmap(k,:)*255);
             txt = msprintf("RGB(%d)=[%d %d %d]",k,cmap(k,1:3)*255);
             if name~=[]
                 txt = txt + " : """ + name(1) + """"
