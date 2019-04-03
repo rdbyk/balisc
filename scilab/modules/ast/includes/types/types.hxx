@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -59,6 +59,19 @@ public :
             return true;
         }
         return false;
+    }
+
+    inline bool isVector() //only one dim must be != 1
+    {
+        int count = 2;
+
+        int i = 0;
+        while (i < m_iDims && count)
+        {
+            count -= (m_piDims[i++] != 1);
+        }
+
+        return count;
     }
 
     /*commun functions*/

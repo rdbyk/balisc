@@ -1,40 +1,73 @@
-/*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
- *
- */
+// Balisc (https://github.com/rdbyk/balisc/)
+//
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+// 02110-1301, USA.
+
+#include "elem_func_gw.hxx"
+#include "function.hxx"
+#include "types.hxx"
+#include "internal.hxx"
+#include "arrayof.hxx"
+#include "overload.hxx"
 
 extern "C"
 {
-#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "gw_elementary_functions.h"
 }
 
-int sci_isvector(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
+using types::ArrayOf;
+using types::Bool;
+using types::Function;
+using types::GenericType;
+using types::InternalType;
+using types::typed_list;
+
+Function::ReturnValue sci_isvector(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if (nin != 1)
+    if (in.size() != 1)
     {
         Scierror(71, 1);
-        return 1;
+        return Function::Error;
     }
 
-    if (nout != 1)
+    switch (in[0]->getType())
     {
-        Scierror(81, 1);
-        return 1;
+        case InternalType::ScilabMList:
+        case InternalType::ScilabTList:
+        case InternalType::ScilabUserType:
+        {
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_isvector";
+            return Overload::call(wstFuncName, in, _iRetCount, out);
+            break;
+        }
+        default:
+        {
+            if (in[0]->isArrayOf())
+            {
+                GenericType* g = in[0]->getAs<GenericType>();
+                out.push_back(new Bool(g->isVector() && g->getSize() > 1));
+            }
+            else
+            {
+                out.push_back(Bool::False());
+            }
+            return Function::OK;
+            break;
+        }
     }
-
-    out[0] = scilab_createBoolean(env, scilab_isVector(env, in[0]));
-    return 0;
 }

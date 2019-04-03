@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +23,6 @@ STACK_GATEWAY_PROTOTYPE(sci_number_properties);
 STACK_GATEWAY_PROTOTYPE(sci_testmatrix);
 STACK_GATEWAY_PROTOTYPE(sci_base2dec);
 STACK_GATEWAY_PROTOTYPE(sci_dec2base);
-C_GATEWAY_PROTOTYPE(sci_isvector);
 C_GATEWAY_PROTOTYPE(sci_issquare);
 
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */

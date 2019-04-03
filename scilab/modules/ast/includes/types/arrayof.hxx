@@ -178,19 +178,6 @@ public :
     // so it will create a cyclic dependency... so the body of the function is in bool.hxx after the Bool definition.
     virtual bool neg(InternalType *& out);
 
-    virtual bool isVector() //only one dim must be != 1
-    {
-        int count = 2;
-
-        int i = 0;
-        while (i < m_iDims && count)
-        {
-            count -= (m_piDims[i++] != 1);
-        }
-
-        return count;
-    }
-
     virtual bool isComplex()
     {
         return m_pImgData != NULL;
