@@ -97,10 +97,14 @@ function t=sci2exp(a,nom,lmax)
     case 15 then
         t = list2exp(a, lmax);
     case 16 then
-        t = tlist2exp(a, lmax);
+        if typeof(a)=="rational"
+            t = rlist2exp(a, lmax);
+        else
+            t = tlist2exp(a, lmax);
+        end
     case 17 then            // cells, struct, mlists
-        if typeof(a)=="st" & length(a)==1
-            t = scalarstruct2exp(a, lmax);
+        if typeof(a)=="st"
+            t = struct2exp(a, lmax);
         else
             t = mlist2exp(a, lmax);
         end
@@ -370,11 +374,41 @@ function t=pol2exp(a,lmax)
     end
 endfunction
 
+function t = list2exp(l, lmax)
+    t = glist2exp("list", l, lmax)
+endfunction
+function t = mlist2exp(l, lmax)
+    t = glist2exp("mlist", l, lmax)
+endfunction
+function t = tlist2exp(l, lmax)
+    t = glist2exp("tlist", l, lmax)
+endfunction
+function t = rlist2exp(l, lmax)
+    t = sci2expAdd("rlist(", sci2exp(l.num, lmax))
+    t($) = t($)+","
+    t = sci2expAdd(t, sci2exp(l.den, lmax))
+    t($) = t($)+")"
+endfunction
+
+function r = sci2expAdd(head,t,lmax)
+    h = head($)
+    if ~lmax | length(h+t(1))<=lmax then
+        head($) = h + t(1)
+        r = [head ; t(2:$)]
+    else
+        r = [head + "."+"." ; t]
+    end
+endfunction
+
 function t = glist2exp(listType, l, lmax)
     if nargin<3 then lmax = 0, end
     dots = "."+".";
     isCell = typeof(l)=="ce";
     if isCell then
+        if length(l)==0
+            t = "{}"
+            return
+        end
         s = size(l);
         s = strcat(msprintf("%d\n",s(:)),",");  // Literal list of sizes
         t = "makecell(";
@@ -405,17 +439,17 @@ function t = glist2exp(listType, l, lmax)
     for k = 1:L
         sep = ",", if k==1 then sep = "", end
         clear lk
-        if listType ~= "mlist"
+        if isCell | listType ~= "mlist"
             lk = l(k)
         else
             lk = getfield(k,l)
         end
-        if ~isdef("lk","local")
-            t1 = ""
+        if ~isdef("lk","local") | type(lk)==0
+            t1 = ""  // undefined element as in list(2,,5)
         else
             t1 = sci2exp(lk, lmax)
         end
-        if size(t1,"*")==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
+        if size(t1,"*")==1 & (lmax==0|max(length(t1))+length(t($))<lmax) then
             t($) = t($)+sep+t1
         else
             t($) = t($)+sep+dots
@@ -425,35 +459,40 @@ function t = glist2exp(listType, l, lmax)
     t($) = t($)+")"
 endfunction
 
-function t = list2exp(l, lmax)
-    t = glist2exp("list", l, lmax)
-endfunction
-function t = tlist2exp(l, lmax)
-    t = glist2exp("tlist", l, lmax)
-endfunction
-function t = mlist2exp(l, lmax)
-    t = glist2exp("mlist", l, lmax)
-endfunction
-
-function t = scalarstruct2exp(l, lmax)
-    if nargin<2 then lmax = 0, end
+function t = struct2exp(l, lmax)
+    if argn(2)<2 then lmax = 0, end
     dots = "."+".";
+    stSize = size(l);
+    stIsScalar = isscalar(l);
     t = "struct(";
+    if ~stIsScalar & (stSize(1)>1 | length(stSize)>2)
+        t = "matrix(" + t;
+    end
     fields = fieldnames(l);
     n = size(fields,"*");
     for i = 1:n
-        if ~lmax | lmax>(12+length(fields(i)))
+        if ~lmax | lmax>(length(t($))+length(fields(i))+3)
             t($) = t($) + """"+fields(i)+""",";
         else
-            t($) = t($) + " " + dots;
+            t($) = t($) + "" + dots;
             t = [t; """"+fields(i)+""","];
         end
         clear lk
         lk = l(fields(i));
-        if ~isdef("lk","local")
+        if ~isdef("lk","local") | type(lk)==0
             t1 = "";
         else
             t1 = sci2exp(lk, lmax)
+            if ~stIsScalar  // "list(..)" => "{..}"
+                if size(t1,1)==1
+                    t1 = "{" + part(t1,6:$-1) + "}"
+                else
+                    t1 = ["{" + part(t1(1),6:$)
+                          t1(2:$-1)
+                          part(t1($),1:$-1) + "}"
+                          ]
+                end
+            end
         end
         if i<n then
             tmp = ", ";
@@ -463,11 +502,14 @@ function t = scalarstruct2exp(l, lmax)
         if size(t1,"*")==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
             t($) = t($) + t1 + tmp;
         else
-            t($) = t($) + " ..";
+            t($) = t($) + "..";
             t = [t; t1 + tmp]
         end
     end
     t($) = t($)+")"
+    if ~stIsScalar & (stSize(1)>1 | length(stSize)>2)   // matrix(.., sizes)
+        t($) = t($) + ",[" + strcat(msprintf("%d\n",stSize(:))," ") + "])"
+    end
 endfunction
 
 function t=log2exp(a,lmax)
