@@ -3,7 +3,7 @@
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2016 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,20 +18,6 @@ function r = isnan(x)
         error(71, 1);
     end
 
-    if x == [] then
-        r = [];
-    else
-        if or(type(x)==[1 5])   // for dense and sparse decimal encodings
-            if isreal(x)
-                r = (x ~= x);
-            else
-                r = (x~=x | (abs(real(x))==%inf & abs(imag(x))==%inf) )
-            end
-        else
-            r = ~(x == x);
-            // the case of polynomials will be better managed apart,
-            // after merging this first fix for complex numbers
-        end
-    end
+    r = x <> x
 
 endfunction
