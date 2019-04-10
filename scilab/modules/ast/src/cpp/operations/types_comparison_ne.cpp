@@ -4,7 +4,7 @@
  * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -2987,8 +2987,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                     }
                     else
                     {
-                        bPoise = true;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
+                        bPoise = false;
+                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
                         {
                             compnoequal(pSPR[0]->get(j), pSPR[0]->getImg(j), pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
                         }
@@ -3007,8 +3007,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                     }
                     else
                     {
-                        bPoise = true;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
+                        bPoise = false;
+                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
                         {
                             compnoequal(pSPR[0]->get(j), (double)0, pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
                         }
@@ -3029,8 +3029,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                     }
                     else
                     {
-                        bPoise = true;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
+                        bPoise = false;
+                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
                         {
                             compnoequal(pSPR[0]->get(j), pSPR[0]->getImg(j), pSPL[i]->get(j), (double)0, &bPoise);
                         }
@@ -3048,8 +3048,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                     }
                     else
                     {
-                        bPoise = true;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
+                        bPoise = false;
+                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
                         {
                             compnoequal(pSPR[0]->get(j), pSPL[i]->get(j), &bPoise);
                         }
@@ -3079,8 +3079,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                         }
                         else
                         {
-                            bPoise = true;
-                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
+                            bPoise = false;
+                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
                             {
                                 compnoequal(pSPL[0]->get(j), pSPL[0]->getImg(j), pSPR[i]->get(j), pSPR[i]->getImg(j), &bPoise);
                             }
@@ -3098,8 +3098,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                         }
                         else
                         {
-                            bPoise = true;
-                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
+                            bPoise = false;
+                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
                             {
                                 compnoequal(pSPL[0]->get(j), pSPL[0]->getImg(j), pSPR[i]->get(j), (double)0, &bPoise);
                             }
@@ -3121,8 +3121,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                         }
                         else
                         {
-                            bPoise = true;
-                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
+                            bPoise = false;
+                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
                             {
                                 compnoequal(pSPL[0]->get(j), (double)0, pSPR[i]->get(j), pSPR[i]->get(j), &bPoise);
                             }
@@ -3140,8 +3140,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                         }
                         else
                         {
-                            bPoise = true;
-                            for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
+                            bPoise = false;
+                            for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
                             {
                                 compnoequal(pSPL[0]->get(j), pSPR[i]->get(j), &bPoise);
                             }
@@ -3185,8 +3185,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                     }
                     else
                     {
-                        bPoise = true;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
+                        bPoise = false;
+                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
                         {
                             compnoequal(pSPR[i]->get(j), pSPR[i]->getImg(j), pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
                         }
@@ -3204,8 +3204,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                     }
                     else
                     {
-                        bPoise = true;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
+                        bPoise = false;
+                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
                         {
                             compnoequal(pSPL[i]->get(j), pSPL[i]->getImg(j), pSPR[i]->get(j), (double)0, &bPoise);
                         }
@@ -3226,8 +3226,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                     }
                     else
                     {
-                        bPoise = true;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
+                        bPoise = false;
+                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
                         {
                             compnoequal(pSPR[i]->get(j), pSPR[i]->getImg(j), pSPL[i]->get(j), (double)0, &bPoise);
                         }
@@ -3245,8 +3245,8 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
                     }
                     else
                     {
-                        bPoise = true;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
+                        bPoise = false;
+                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
                         {
                             compnoequal(pSPR[i]->get(j), pSPL[i]->get(j), &bPoise);
                         }
