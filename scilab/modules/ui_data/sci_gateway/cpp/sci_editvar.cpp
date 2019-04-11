@@ -163,7 +163,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
 
     if (Rhs == 3)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d, %d or %d expected.\n"), fname, 1, 2, 4);
+        Scierror(76, _("1, 2, or 4"));
         return 0;
     }
 
@@ -186,7 +186,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
 
     if (iType != sci_strings)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname, 1);
+        Scierror(91, 1);
         return 0;
     }
 
@@ -197,49 +197,11 @@ int sci_editvar(char * fname, void* pvApiCtx)
         return 0;
     }
 
-    if (balisc_strcmp(pStVarOne, "ans") == 0)
-    {
-        Scierror(999, _("%s: ans cannot be edited.\n"), fname);
-        freeAllocatedSingleString(pStVarOne);
-        return 0;
-    }
-
     /* get address of the variable*/
     sciErr = getVarAddressFromName(pvApiCtx, pStVarOne, &piAddr);
     if (sciErr.iErr)
     {
-        Scierror(4, _("%s: Undefined variable: %s.\n"), fname, pStVarOne);
-        freeAllocatedSingleString(pStVarOne);
-        return 0;
-    }
-
-    /* Workaround to check for permanent variable.*/
-
-    if (balisc_strcmp(pStVarOne, "$")			    == 0 ||
-            balisc_strcmp(pStVarOne, "%e")		    == 0 ||
-            balisc_strcmp(pStVarOne, "%eps")   	== 0 ||
-            balisc_strcmp(pStVarOne, "%fftw")  	== 0 ||
-            balisc_strcmp(pStVarOne, "%f")		    == 0 ||
-            balisc_strcmp(pStVarOne, "%F")		    == 0 ||
-            balisc_strcmp(pStVarOne, "%gui")		== 0 ||
-            balisc_strcmp(pStVarOne, "%i")		    == 0 ||
-            balisc_strcmp(pStVarOne, "%io")		== 0 ||
-            balisc_strcmp(pStVarOne, "%inf")		== 0 ||
-            balisc_strcmp(pStVarOne, "%nan")		== 0 ||
-            balisc_strcmp(pStVarOne, "%pi")		== 0 ||
-            balisc_strcmp(pStVarOne, "%s")	    	== 0 ||
-            balisc_strcmp(pStVarOne, "%tk")		== 0 ||
-            balisc_strcmp(pStVarOne, "%t")	    	== 0 ||
-            balisc_strcmp(pStVarOne, "%T")	    	== 0 ||
-            balisc_strcmp(pStVarOne, "%z")	    	== 0 ||
-            balisc_strcmp(pStVarOne, "evoid")	    == 0 ||
-            balisc_strcmp(pStVarOne, "home")		== 0 ||
-            balisc_strcmp(pStVarOne, "PWD")		== 0 ||
-            balisc_strcmp(pStVarOne, "SCI")		== 0 ||
-            balisc_strcmp(pStVarOne, "SCIHOME")	== 0 ||
-            balisc_strcmp(pStVarOne, "TMPDIR") 	== 0 )
-    {
-        Scierror(13, _("Redefining permanent variable.\n"), fname);
+        Scierror(40, pStVarOne);
         freeAllocatedSingleString(pStVarOne);
         return 0;
     }
@@ -250,7 +212,7 @@ int sci_editvar(char * fname, void* pvApiCtx)
         sciErr = getVarAddressFromName(pvApiCtx, pStVarOne, &piAddr);
         if (sciErr.iErr)
         {
-            Scierror(4, _("%s: Undefined variable: %s.\n"), fname, pStVarOne);
+            Scierror(40, pStVarOne);
             freeAllocatedSingleString(pStVarOne);
             return 0;
         }
