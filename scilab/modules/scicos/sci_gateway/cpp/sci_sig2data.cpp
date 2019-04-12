@@ -110,12 +110,16 @@ types::Function::ReturnValue sci_sig2data(types::typed_list &in, int _iRetCount,
         Scierror(999, _("%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 1, "values", "time");
         return types::Function::Error;
     }
-    if (fields.find(L"values") == fields.end())
+
+    int valuesIdx = B->getFirst()->getFieldIndex(L"values");
+    if (valuesIdx < 0)
     {
         Scierror(999, _("%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 1, "values", "time");
         return types::Function::Error;
     }
-    if (fields.find(L"time") == fields.end())
+
+    int timeIdx = B->get(0)->getFieldIndex(L"time");
+    if (timeIdx < 0)
     {
         Scierror(999, _("%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 1, "values", "time");
         return types::Function::Error;
