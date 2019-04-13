@@ -12,6 +12,7 @@
  * along with this program.
  *
  */
+
 #include "struct.hxx"
 #include "string.hxx"
 #include "double.hxx"
@@ -431,6 +432,15 @@ Struct* Struct::removeField(const std::wstring& _sKey)
         get(j)->removeField(_sKey);
     }
 
+    if (getFieldNames()->getSize() == 0)
+    {
+        // no fields are left, thus resize to empty struct array
+        int piDims[2] = {0, 0};
+        m_bDisableCloneInCopyValue = true;
+        ArrayOf<SingleStruct*>::resize(piDims, 2)->getAs<Struct>();
+        m_bDisableCloneInCopyValue = false;
+    }
+
     return this;
 }
 
@@ -438,7 +448,7 @@ bool Struct::toString(std::wostringstream& ostr)
 {
     if (getSize() == 0)
     {
-        ostr << L"0x0 struct array with no field.";
+        ostr << L"  0x0 struct array with no field.";
     }
     else if (getSize() == 1)
     {
@@ -446,7 +456,7 @@ bool Struct::toString(std::wostringstream& ostr)
         String* pwstFields =  pSS->getFieldNames();
         if (pwstFields->getSize() == 0)
         {
-            ostr << L"1x1 struct array with no field.";
+            ostr << L"  1x1 struct array with no field.";
         }
 
         for (int i = 0 ; i < pwstFields->getSize() ; i++)
