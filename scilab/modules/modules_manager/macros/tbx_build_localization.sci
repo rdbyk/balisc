@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2016, 2018 - Samuel GOUGEON
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2016, 2018, 2019 - Samuel GOUGEON
+// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -78,7 +78,7 @@ function tbx_build_localization(tbx_name, tbx_path)
 
     // find list of .po files
     // ----------------------
-    poFiles = gsort(findfiles(localePath, "*.po"), "lr", "i");
+    poFiles = gsort(listfiles(localePath + "*.po"), "lr", "i");
 
     if getos() == "Windows" then
         cmd = SCI + filesep() + "tools/gettext/msgfmt";
@@ -96,10 +96,9 @@ function tbx_build_localization(tbx_name, tbx_path)
         poFile = moFile + tbx_name + ".po";
         moFile = moFile + tbx_name + ".mo";
 
-
         //check mo file is newest po, don't need to generate it
         if newest(poFiles(i), moFile) == 1 then
-            copyfile(localePath + poFiles(i), poFile);
+            copyfile(poFiles(i), poFile);
             cmd1 = cmd + " -o " + moFile + " " + poFile;
             host(cmd1)
         end
