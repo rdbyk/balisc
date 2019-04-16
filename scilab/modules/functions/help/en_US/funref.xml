@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2019 Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="funref">
+    <refnamediv>
+        <refname>funref</refname>
+        <refpurpose>reference to function or macro</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>ref = funref(name)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+            <term>name</term>
+            <listitem>
+                <para>string.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ref</term>
+            <listitem>
+                <para>function, macro, or empty matrix.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utility to get a reference to a function or macro by its <term>name</term>.
+            If there is no function or macro named <term>name</term> defined, then an empty
+            matrix will be returned.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// let's call "directly" the builtin "sin" function
+funref("sin")(1)
+
+// assign reference to "sinm" to variable ...
+sm=funref("sinm")
+
+// ... and use it later to call "sinm" ...
+sm(eye(2,2))
+
+// ... we don't need it any more, thus ... 
+clear sm
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
+                <link linkend="macro">macro</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 2</revnumber>
+                <revremark>Function <function>funref</function> was introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
