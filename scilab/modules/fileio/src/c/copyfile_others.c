@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -43,10 +43,6 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir);
 /*--------------------------------------------------------------------------*/
 int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
 {
-    if (os_wcsicmp(DestinationFilename, SourceFilename) == 0)
-    {
-        return EPERM;
-    }
     return CopyFileFunction_others(DestinationFilename, SourceFilename);
 }
 /*--------------------------------------------------------------------------*/
