@@ -1659,91 +1659,89 @@ void fillComparisonEqualFunction()
     //Cell
     scilab_fill_comparisonequal(Cell, Cell, M_M, Cell, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, Empty, M_E, Cell, Double, Bool);
-    scilab_fill_comparisonequal(Empty, Cell, E_M, Double, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Empty, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(Empty, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, Double, M_E, Cell, Double, Bool);
-    scilab_fill_comparisonequal(Double, Cell, M_E, Double, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, DoubleComplex, M_E, Cell, Double, Bool);
-    scilab_fill_comparisonequal(DoubleComplex, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Double, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(Double, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, DoubleComplex, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(DoubleComplex, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, ScalarDouble, M_E, Cell, Double, Bool);
-    scilab_fill_comparisonequal(ScalarDouble, Cell, M_E, Double, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, ScalarDoubleComplex, M_E, Cell, Double, Bool);
-    scilab_fill_comparisonequal(ScalarDoubleComplex, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarDouble, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarDouble, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarDoubleComplex, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarDoubleComplex, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, Empty, M_E, Cell, Double, Bool);
-    scilab_fill_comparisonequal(Empty, Cell, M_E, Double, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, Identity, M_E, Cell, Double, Bool);
-    scilab_fill_comparisonequal(Identity, Cell, M_E, Double, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, IdentityComplex, M_E, Cell, Double, Bool);
-    scilab_fill_comparisonequal(IdentityComplex, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Identity, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(Identity, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, IdentityComplex, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(IdentityComplex, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, Int8, M_E, Cell, Int8, Bool);
-    scilab_fill_comparisonequal(Int8, Cell, M_E, Int8, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, UInt8, M_E, Cell, UInt8, Bool);
-    scilab_fill_comparisonequal(UInt8, Cell, M_E, UInt8, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Int8, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(Int8, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, UInt8, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(UInt8, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, Int16, M_E, Cell, Int16, Bool);
-    scilab_fill_comparisonequal(Int16, Cell, M_E, Int16, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, UInt16, M_E, Cell, UInt16, Bool);
-    scilab_fill_comparisonequal(UInt16, Cell, M_E, UInt16, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Int16, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(Int16, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, UInt16, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(UInt16, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, Int32, M_E, Cell, Int32, Bool);
-    scilab_fill_comparisonequal(Int32, Cell, M_E, Int32, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, UInt32, M_E, Cell, UInt32, Bool);
-    scilab_fill_comparisonequal(UInt32, Cell, M_E, UInt32, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Int32, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(Int32, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, UInt32, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(UInt32, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, Int64, M_E, Cell, Int64, Bool);
-    scilab_fill_comparisonequal(Int64, Cell, M_E, Int64, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, UInt64, M_E, Cell, UInt64, Bool);
-    scilab_fill_comparisonequal(UInt64, Cell, M_E, UInt64, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Int64, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(Int64, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, UInt64, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(UInt64, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, ScalarInt8, M_E, Cell, Int8, Bool);
-    scilab_fill_comparisonequal(ScalarInt8, Cell, M_E, Int8, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, ScalarUInt8, M_E, Cell, UInt8, Bool);
-    scilab_fill_comparisonequal(ScalarUInt8, Cell, M_E, UInt8, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarInt8, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarInt8, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarUInt8, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarUInt8, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, ScalarInt16, M_E, Cell, Int16, Bool);
-    scilab_fill_comparisonequal(ScalarInt16, Cell, M_E, Int16, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, ScalarUInt16, M_E, Cell, UInt16, Bool);
-    scilab_fill_comparisonequal(ScalarUInt16, Cell, M_E, UInt16, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarInt16, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarInt16, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarUInt16, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarUInt16, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, ScalarInt32, M_E, Cell, Int32, Bool);
-    scilab_fill_comparisonequal(ScalarInt32, Cell, M_E, Int32, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, ScalarUInt32, M_E, Cell, UInt32, Bool);
-    scilab_fill_comparisonequal(ScalarUInt32, Cell, M_E, UInt32, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarInt32, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarInt32, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarUInt32, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarUInt32, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, ScalarInt64, M_E, Cell, Int64, Bool);
-    scilab_fill_comparisonequal(ScalarInt64, Cell, M_E, Int64, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, ScalarUInt64, M_E, Cell, UInt64, Bool);
-    scilab_fill_comparisonequal(ScalarUInt64, Cell, M_E, UInt64, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarInt64, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarInt64, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarUInt64, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarUInt64, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, String, M_E, Cell, String, Bool);
-    scilab_fill_comparisonequal(String, Cell, M_E, String, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, ScalarString, M_E, Cell, String, Bool);
-    scilab_fill_comparisonequal(ScalarString, Cell, M_E, String, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, String, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(String, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarString, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(ScalarString, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, SparseComplex, M_E, Cell, Sparse, Bool);
-    scilab_fill_comparisonequal(SparseComplex, Cell, M_E, Sparse, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, SparseComplex, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(SparseComplex, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, Sparse, M_E, Cell, Sparse, Bool);
-    scilab_fill_comparisonequal(Sparse, Cell, M_E, Sparse, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Sparse, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(Sparse, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, SparseBool, M_E, Cell, SparseBool, Bool);
-    scilab_fill_comparisonequal(SparseBool, Cell, M_E, SparseBool, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, SparseBool, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(SparseBool, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, Struct, M_E, Cell, Struct, Bool);
-    scilab_fill_comparisonequal(Struct, Cell, M_E, Struct, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Struct, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(Struct, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, List, M_E, Cell, List, Bool);
-    scilab_fill_comparisonequal(List, Cell, M_E, List, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, List, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(List, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, TList, M_E, Cell, TList, Bool);
-    scilab_fill_comparisonequal(TList, Cell, M_E, TList, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, TList, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(TList, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparisonequal(Cell, MList, M_E, Cell, MList, Bool);
-    scilab_fill_comparisonequal(MList, Cell, M_E, MList, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, MList, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparisonequal(MList, Cell, IT_CE, InternalType, Cell, Bool);
 
     //Handle
     scilab_fill_comparisonequal(Handle, Handle, M_M, GraphicHandle, GraphicHandle, Bool);
@@ -1834,8 +1832,8 @@ void fillComparisonEqualFunction()
     scilab_fill_comparisonequal(Handle, MList, M_E, GraphicHandle, MList, Bool);
     scilab_fill_comparisonequal(MList, Handle, M_E, MList, GraphicHandle, Bool);
 
-    scilab_fill_comparisonequal(Handle, Cell, M_E, GraphicHandle, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, Handle, M_E, Cell, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Handle, CE_IT, Cell, InternalType, Bool);
 
     //Macro
     scilab_fill_comparisonequal(Macro, Macro, MCR_MCR, Macro, Macro, Bool);
@@ -1931,8 +1929,8 @@ void fillComparisonEqualFunction()
     scilab_fill_comparisonequal(Macro, MList, M_E, Macro, MList, Bool);
     scilab_fill_comparisonequal(MList, Macro, M_E, MList, Macro, Bool);
 
-    scilab_fill_comparisonequal(Macro, Cell, M_E, Macro, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, Macro, M_E, Cell, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Macro, CE_IT, Cell, InternalType, Bool);
 
     scilab_fill_comparisonequal(Macro, Handle, M_E, Macro, GraphicHandle, Bool);
     scilab_fill_comparisonequal(Handle, Macro, M_E, GraphicHandle, Macro, Bool);
@@ -2020,8 +2018,8 @@ void fillComparisonEqualFunction()
     scilab_fill_comparisonequal(MacroFile, MList, M_E, MacroFile, MList, Bool);
     scilab_fill_comparisonequal(MList, MacroFile, M_E, MList, MacroFile, Bool);
 
-    scilab_fill_comparisonequal(MacroFile, Cell, M_E, MacroFile, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, MacroFile, M_E, Cell, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, MacroFile, CE_IT, Cell, InternalType, Bool);
 
     scilab_fill_comparisonequal(MacroFile, Handle, M_E, MacroFile, GraphicHandle, Bool);
     scilab_fill_comparisonequal(Handle, MacroFile, M_E, GraphicHandle, MacroFile, Bool);
@@ -2117,8 +2115,8 @@ void fillComparisonEqualFunction()
     scilab_fill_comparisonequal(ScalarHandle, MList, M_E, GraphicHandle, MList, Bool);
     scilab_fill_comparisonequal(MList, ScalarHandle, M_E, MList, GraphicHandle, Bool);
 
-    scilab_fill_comparisonequal(ScalarHandle, Cell, M_E, GraphicHandle, Cell, Bool);
-    scilab_fill_comparisonequal(Cell, ScalarHandle, M_E, Cell, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(ScalarHandle, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarHandle, CE_IT, Cell, InternalType, Bool);
 
     scilab_fill_comparisonequal(ScalarHandle, Macro, M_E, GraphicHandle, Macro, Bool);
     scilab_fill_comparisonequal(Macro, ScalarHandle, M_E, Macro, GraphicHandle, Bool);
@@ -3819,6 +3817,24 @@ InternalType* compequal_MCR_MCR(T *_pL, U *_pR)
     }
 
     return new Bool(ret);
+}
+
+// Cell == InternalType
+template<>
+InternalType* compequal_CE_IT<Cell, InternalType, Bool>(Cell* _pL, InternalType* _pR)
+{
+    types::Cell* pC = new Cell(1, 1);
+    pC->set(0, _pR);
+    types::InternalType* pOut = compequal_M_M<Cell, Cell, Bool>(_pL, pC);
+    delete pC;
+    return pOut;
+}
+
+// InternalType == Cell
+template<>
+InternalType* compequal_IT_CE<InternalType, Cell, Bool>(InternalType* _pL, Cell* _pR)
+{
+    return compequal_CE_IT<Cell, InternalType, Bool>(_pR, _pL);
 }
 
 //UserType
