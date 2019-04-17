@@ -3702,6 +3702,31 @@ types::InternalType* compequal_M_M<Cell, Cell, Bool>(types::Cell* _pL, types::Ce
     int* piDimsL = _pL->getDimsArray();
     int* piDimsR = _pR->getDimsArray();
 
+    if (_pL->isScalar() && _pR->getSize() > 0)
+    {
+        Bool *pB = new Bool(_pR->getDims(), piDimsR);
+        int* pb = pB->get();
+
+        for (int i = 0; i < _pR->getSize(); i++)
+        {
+            pb[i] = *_pL->getFirst() == *_pR->get(i);
+        }
+
+        return pB;
+    }
+    else if (_pR->isScalar() && _pL->getSize() > 0)
+    {
+        Bool *pB = new Bool(_pL->getDims(), piDimsL);
+        int* pb = pB->get();
+
+        for (int i = 0; i < _pL->getSize(); i++)
+        {
+            pb[i] = *_pL->get(i) == *_pR->getFirst();
+        }
+
+        return pB;
+    }
+
     for (int i = 0; i < _pL->getDims(); i++)
     {
         if (piDimsL[i] != piDimsR[i])
