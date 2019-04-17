@@ -4,7 +4,7 @@
  * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -3694,7 +3694,36 @@ InternalType* compequal_LT_LT(T *_pL, U *_pR)
 template<>
 types::InternalType* compequal_M_M<Cell, Cell, Bool>(types::Cell* _pL, types::Cell* _pR)
 {
-    return new Bool(*_pL == *_pR);
+    if (_pL->getDims() != _pR->getDims())
+    {
+        return new Bool(false);
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0; i < _pL->getDims(); i++)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            return new Bool(false);
+        }
+    }
+
+    if (_pL->getSize() == 0)
+    {
+        return new Bool(true);
+    }
+
+    Bool *pB = new Bool(_pL->getDims(), piDimsL);
+    int* pb = pB->get();
+
+    for (int i = 0; i < _pL->getSize(); i++)
+    {
+        pb[i] = *_pL->get(i) == *_pR->get(i);
+    }
+
+    return pB;
 }
 
 template<>
