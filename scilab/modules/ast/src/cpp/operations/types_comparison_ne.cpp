@@ -1659,91 +1659,89 @@ void fillComparisonNoEqualFunction()
     //Cell
     scilab_fill_comparison_no_equal(Cell, Cell, M_M, Cell, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, Empty, M_E, Cell, Double, Bool);
-    scilab_fill_comparison_no_equal(Empty, Cell, E_M, Double, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Empty, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(Empty, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, Double, M_E, Cell, Double, Bool);
-    scilab_fill_comparison_no_equal(Double, Cell, M_E, Double, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, DoubleComplex, M_E, Cell, Double, Bool);
-    scilab_fill_comparison_no_equal(DoubleComplex, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Double, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(Double, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, DoubleComplex, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(DoubleComplex, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, ScalarDouble, M_E, Cell, Double, Bool);
-    scilab_fill_comparison_no_equal(ScalarDouble, Cell, M_E, Double, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, ScalarDoubleComplex, M_E, Cell, Double, Bool);
-    scilab_fill_comparison_no_equal(ScalarDoubleComplex, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarDouble, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarDouble, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarDoubleComplex, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarDoubleComplex, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, Empty, M_E, Cell, Double, Bool);
-    scilab_fill_comparison_no_equal(Empty, Cell, M_E, Double, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, Identity, M_E, Cell, Double, Bool);
-    scilab_fill_comparison_no_equal(Identity, Cell, M_E, Double, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, IdentityComplex, M_E, Cell, Double, Bool);
-    scilab_fill_comparison_no_equal(IdentityComplex, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Identity, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(Identity, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, IdentityComplex, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(IdentityComplex, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, Int8, M_E, Cell, Int8, Bool);
-    scilab_fill_comparison_no_equal(Int8, Cell, M_E, Int8, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, UInt8, M_E, Cell, UInt8, Bool);
-    scilab_fill_comparison_no_equal(UInt8, Cell, M_E, UInt8, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Int8, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(Int8, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, UInt8, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(UInt8, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, Int16, M_E, Cell, Int16, Bool);
-    scilab_fill_comparison_no_equal(Int16, Cell, M_E, Int16, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, UInt16, M_E, Cell, UInt16, Bool);
-    scilab_fill_comparison_no_equal(UInt16, Cell, M_E, UInt16, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Int16, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(Int16, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, UInt16, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(UInt16, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, Int32, M_E, Cell, Int32, Bool);
-    scilab_fill_comparison_no_equal(Int32, Cell, M_E, Int32, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, UInt32, M_E, Cell, UInt32, Bool);
-    scilab_fill_comparison_no_equal(UInt32, Cell, M_E, UInt32, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Int32, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(Int32, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, UInt32, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(UInt32, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, Int64, M_E, Cell, Int64, Bool);
-    scilab_fill_comparison_no_equal(Int64, Cell, M_E, Int64, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, UInt64, M_E, Cell, UInt64, Bool);
-    scilab_fill_comparison_no_equal(UInt64, Cell, M_E, UInt64, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Int64, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(Int64, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, UInt64, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(UInt64, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, ScalarInt8, M_E, Cell, Int8, Bool);
-    scilab_fill_comparison_no_equal(ScalarInt8, Cell, M_E, Int8, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, ScalarUInt8, M_E, Cell, UInt8, Bool);
-    scilab_fill_comparison_no_equal(ScalarUInt8, Cell, M_E, UInt8, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarInt8, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt8, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarUInt8, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt8, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, ScalarInt16, M_E, Cell, Int16, Bool);
-    scilab_fill_comparison_no_equal(ScalarInt16, Cell, M_E, Int16, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, ScalarUInt16, M_E, Cell, UInt16, Bool);
-    scilab_fill_comparison_no_equal(ScalarUInt16, Cell, M_E, UInt16, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarInt16, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt16, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarUInt16, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt16, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, ScalarInt32, M_E, Cell, Int32, Bool);
-    scilab_fill_comparison_no_equal(ScalarInt32, Cell, M_E, Int32, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, ScalarUInt32, M_E, Cell, UInt32, Bool);
-    scilab_fill_comparison_no_equal(ScalarUInt32, Cell, M_E, UInt32, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarInt32, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt32, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarUInt32, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt32, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, ScalarInt64, M_E, Cell, Int64, Bool);
-    scilab_fill_comparison_no_equal(ScalarInt64, Cell, M_E, Int64, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, ScalarUInt64, M_E, Cell, UInt64, Bool);
-    scilab_fill_comparison_no_equal(ScalarUInt64, Cell, M_E, UInt64, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarInt64, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt64, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarUInt64, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt64, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, String, M_E, Cell, String, Bool);
-    scilab_fill_comparison_no_equal(String, Cell, M_E, String, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, ScalarString, M_E, Cell, String, Bool);
-    scilab_fill_comparison_no_equal(ScalarString, Cell, M_E, String, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, String, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(String, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarString, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(ScalarString, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, SparseComplex, M_E, Cell, Sparse, Bool);
-    scilab_fill_comparison_no_equal(SparseComplex, Cell, M_E, Sparse, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, SparseComplex, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(SparseComplex, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, Sparse, M_E, Cell, Sparse, Bool);
-    scilab_fill_comparison_no_equal(Sparse, Cell, M_E, Sparse, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Sparse, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(Sparse, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, SparseBool, M_E, Cell, SparseBool, Bool);
-    scilab_fill_comparison_no_equal(SparseBool, Cell, M_E, SparseBool, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, SparseBool, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(SparseBool, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, Struct, M_E, Cell, Struct, Bool);
-    scilab_fill_comparison_no_equal(Struct, Cell, M_E, Struct, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Struct, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(Struct, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, List, M_E, Cell, List, Bool);
-    scilab_fill_comparison_no_equal(List, Cell, M_E, List, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, List, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(List, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, TList, M_E, Cell, TList, Bool);
-    scilab_fill_comparison_no_equal(TList, Cell, M_E, TList, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, TList, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(TList, Cell, IT_CE, InternalType, Cell, Bool);
 
-    scilab_fill_comparison_no_equal(Cell, MList, M_E, Cell, MList, Bool);
-    scilab_fill_comparison_no_equal(MList, Cell, M_E, MList, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, MList, CE_IT, Cell, InternalType, Bool);
+    scilab_fill_comparison_no_equal(MList, Cell, IT_CE, InternalType, Cell, Bool);
 
 
     //Handle
@@ -1835,8 +1833,8 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(Handle, MList, M_E, GraphicHandle, MList, Bool);
     scilab_fill_comparison_no_equal(MList, Handle, M_E, MList, GraphicHandle, Bool);
 
-    scilab_fill_comparison_no_equal(Handle, Cell, M_E, GraphicHandle, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, Handle, M_E, Cell, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Handle, CE_IT, Cell, InternalType, Bool);
 
     //Macro
     scilab_fill_comparison_no_equal(Macro, Macro, MCR_MCR, Macro, Macro, Bool);
@@ -1932,8 +1930,8 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(Macro, MList, M_E, Macro, MList, Bool);
     scilab_fill_comparison_no_equal(MList, Macro, M_E, MList, Macro, Bool);
 
-    scilab_fill_comparison_no_equal(Macro, Cell, M_E, Macro, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, Macro, M_E, Cell, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Macro, CE_IT, Cell, InternalType, Bool);
 
     scilab_fill_comparison_no_equal(Macro, Handle, M_E, Macro, GraphicHandle, Bool);
     scilab_fill_comparison_no_equal(Handle, Macro, M_E, GraphicHandle, Macro, Bool);
@@ -2021,8 +2019,8 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(MacroFile, MList, M_E, MacroFile, MList, Bool);
     scilab_fill_comparison_no_equal(MList, MacroFile, M_E, MList, MacroFile, Bool);
 
-    scilab_fill_comparison_no_equal(MacroFile, Cell, M_E, MacroFile, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, MacroFile, M_E, Cell, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, MacroFile, CE_IT, Cell, InternalType, Bool);
 
     scilab_fill_comparison_no_equal(MacroFile, Handle, M_E, MacroFile, GraphicHandle, Bool);
     scilab_fill_comparison_no_equal(Handle, MacroFile, M_E, GraphicHandle, MacroFile, Bool);
@@ -2119,8 +2117,8 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(ScalarHandle, MList, M_E, GraphicHandle, MList, Bool);
     scilab_fill_comparison_no_equal(MList, ScalarHandle, M_E, MList, GraphicHandle, Bool);
 
-    scilab_fill_comparison_no_equal(ScalarHandle, Cell, M_E, GraphicHandle, Cell, Bool);
-    scilab_fill_comparison_no_equal(Cell, ScalarHandle, M_E, Cell, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, Cell, IT_CE, InternalType, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarHandle, CE_IT, Cell, InternalType, Bool);
 
     scilab_fill_comparison_no_equal(ScalarHandle, Macro, M_E, GraphicHandle, Macro, Bool);
     scilab_fill_comparison_no_equal(Macro, ScalarHandle, M_E, Macro, GraphicHandle, Bool);
@@ -3696,7 +3694,6 @@ InternalType* compnoequal_LT_LT(T *_pL, U *_pR)
 template<>
 types::InternalType* compnoequal_M_M<Cell, Cell, Bool>(types::Cell* _pL, types::Cell* _pR)
 {
-    /* check dimension*/
     if (_pL->getDims() != _pR->getDims())
     {
         return new Bool(true);
@@ -3715,7 +3712,6 @@ types::InternalType* compnoequal_M_M<Cell, Cell, Bool>(types::Cell* _pL, types::
 
     if (_pL->getSize() == 0)
     {
-        //{} == {} -> return true
         return new Bool(false);
     }
 
@@ -3798,6 +3794,33 @@ InternalType* compnoequal_MCR_MCR(T *_pL, U *_pR)
     }
 
     return new Bool(ret);
+}
+
+// Cell <> InternalType
+template<>
+InternalType* compnoequal_CE_IT<Cell, InternalType, Bool>(Cell* _pL, InternalType* _pR)
+{
+    if (_pL->getSize() == 0)
+    {
+        return new Bool(true);
+    }
+
+    Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
+    int* pb = pB->get();
+
+    for (int i = 0; i < _pL->getSize(); i++)
+    {
+        pb[i] = !(*_pL->get(i) == *_pR);
+    }
+
+    return pB;
+}
+
+// InternalType <> Cell
+template<>
+InternalType* compnoequal_IT_CE<InternalType, Cell, Bool>(InternalType* _pL, Cell* _pR)
+{
+    return compnoequal_CE_IT<Cell, InternalType, Bool>(_pR, _pL);
 }
 
 //UserType

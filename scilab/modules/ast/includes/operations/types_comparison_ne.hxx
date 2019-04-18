@@ -3,7 +3,7 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -101,6 +101,8 @@ DECLARE_COMPARISON_NO_EQUAL_PROTO(compnoequal_MCR_MCR);
 
 DECLARE_COMPARISON_NO_EQUAL_PROTO(compnoequal_UT_UT);
 
+DECLARE_COMPARISON_NO_EQUAL_PROTO(compnoequal_CE_IT);
+DECLARE_COMPARISON_NO_EQUAL_PROTO(compnoequal_IT_CE);
 
 #undef DECLARE_COMPARISON_NO_EQUAL_PROTO
 
@@ -125,6 +127,9 @@ template<> types::InternalType* compnoequal_M_M<types::GraphicHandle, types::Gra
 template<> types::InternalType* compnoequal_M_M<types::SparseBool, types::SparseBool, types::SparseBool>(types::SparseBool* _pL, types::SparseBool* _pR);
 template<> types::InternalType* compnoequal_M_M<types::Bool, types::SparseBool, types::SparseBool>(types::Bool* _pL, types::SparseBool* _pR);
 template<> types::InternalType* compnoequal_M_M<types::SparseBool, types::Bool, types::SparseBool>(types::SparseBool* _pL, types::Bool* _pR);
+
+template<> types::InternalType* compnoequal_CE_IT<types::Cell, types::InternalType, types::Bool>(types::Cell* _pL, types::InternalType* _pR);
+template<> types::InternalType* compnoequal_IT_CE<types::InternalType, types::Cell, types::Bool>(types::InternalType* _pL, types::Cell* _pR);
 
 //x1 != x1
 template<typename T, typename U, typename O> inline static void compnoequal(T l, U r, O* o)
