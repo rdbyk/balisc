@@ -3700,31 +3700,6 @@ types::InternalType* compequal_M_M<Cell, Cell, Bool>(types::Cell* _pL, types::Ce
     int* piDimsL = _pL->getDimsArray();
     int* piDimsR = _pR->getDimsArray();
 
-    if (_pL->isScalar() && _pR->getSize() > 0)
-    {
-        Bool *pB = new Bool(_pR->getDims(), piDimsR);
-        int* pb = pB->get();
-
-        for (int i = 0; i < _pR->getSize(); i++)
-        {
-            pb[i] = *_pL->getFirst() == *_pR->get(i);
-        }
-
-        return pB;
-    }
-    else if (_pR->isScalar() && _pL->getSize() > 0)
-    {
-        Bool *pB = new Bool(_pL->getDims(), piDimsL);
-        int* pb = pB->get();
-
-        for (int i = 0; i < _pL->getSize(); i++)
-        {
-            pb[i] = *_pL->get(i) == *_pR->getFirst();
-        }
-
-        return pB;
-    }
-
     for (int i = 0; i < _pL->getDims(); i++)
     {
         if (piDimsL[i] != piDimsR[i])
@@ -3823,11 +3798,20 @@ InternalType* compequal_MCR_MCR(T *_pL, U *_pR)
 template<>
 InternalType* compequal_CE_IT<Cell, InternalType, Bool>(Cell* _pL, InternalType* _pR)
 {
-    types::Cell* pC = new Cell(1, 1);
-    pC->set(0, _pR);
-    types::InternalType* pOut = compequal_M_M<Cell, Cell, Bool>(_pL, pC);
-    delete pC;
-    return pOut;
+    if (_pL->getSize() == 0)
+    {
+        return new Bool(false);
+    }
+
+    Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
+    int* pb = pB->get();
+
+    for (int i = 0; i < _pL->getSize(); i++)
+    {
+        pb[i] = *_pL->get(i) == *_pR;
+    }
+
+    return pB;
 }
 
 // InternalType == Cell
