@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -1029,6 +1029,8 @@ NOT variable                %prec NOT       { $$ = new ast::NotExp(@$, *$2); pri
 | comparison                                { $$ = $1; print_rules("variable", "comparison");}
 | variable LPAREN functionArgs RPAREN       { $$ = new ast::CallExp(@$, *$1, *$3); print_rules("variable", "variable LPAREN functionArgs RPAREN");}
 | functionCall LPAREN functionArgs RPAREN   { $$ = new ast::CallExp(@$, *$1, *$3); print_rules("variable", "functionCall LPAREN functionArgs RPAREN");}
+| variable LPAREN RPAREN                    { $$ = $1; print_rules("variable", "variable LPAREN RPAREN");}
+| functionCall LPAREN RPAREN                { $$ = $1; print_rules("variable", "functionCall LPAREN RPAREN");}
 ;
 
 /*
