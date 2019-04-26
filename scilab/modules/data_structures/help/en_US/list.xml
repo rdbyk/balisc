@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="list">
     <refnamediv>
         <refname>list</refname>
-        <refpurpose>a Scilab object and a list definition function</refpurpose>
+        <refpurpose>create a list</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -58,7 +58,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>append an element in queue</term>
+                <term>append an element</term>
                 <listitem>
                     <para>
                         <code>L($+1)=e</code>.
@@ -66,15 +66,14 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>append an element in head</term>
+                <term>prepend an element</term>
                 <listitem>
                     <para>
                         <code>L(0)=e</code>.
                         <note>
                             After this
-                            operation <literal>e</literal> is an index 1,
-                            the initial elements being shifted on the
-                            right.
+                            operation <literal>e</literal> is the first element (index 1),
+                            the initial elements being shifted on the right.
                         </note>
                     </para>
                 </listitem>
@@ -93,7 +92,7 @@
                 <term>concatenation of two lists</term>
                 <listitem>
                     <para>
-                        <code>L3 = lstcat(L1,L2)</code>.
+                        <code>L3 = list(L1(:),L2(:))</code>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -124,11 +123,7 @@
         <para>
             Scilab provides also other kinds of list, the <link linkend="tlist">tlist</link> type (typed list) and
             the <link linkend="mlist">mlist</link> type which are useful to define a new data type with operator
-            <link linkend="overloading">overloading</link> facilities (<link linkend="hypermatrices">hypermatrices</link> which are
-            multidimensional arrays in Scilab are in fact <emphasis>mlist</emphasis>).
-        </para>
-        <para>
-            Matlab <emphasis>struct</emphasis> are also available.
+            <link linkend="overloading">overloading</link> facilities.
         </para>
     </refsection>
     <refsection>
@@ -163,9 +158,6 @@ size(lter) - size(lbis) - size(l)  // must be zero
                 <link linkend="null">null</link>
             </member>
             <member>
-                <link linkend="lstcat">lstcat</link>
-            </member>
-            <member>
                 <link linkend="tlist">tlist</link>
             </member>
             <member>
@@ -191,7 +183,14 @@ size(lter) - size(lbis) - size(l)  // must be zero
             <revision>
                 <revnumber>Balisc 1</revnumber>
                 <revdescription>
-                    Using an array <literal>i</literal> of indices allows multiple insertions and deletions at once. 
+                    Using an array <literal>i</literal> of indices allows multiple insertions and deletions at once.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>Balisc 2</revnumber>
+                <revdescription>
+                    Removed reference to <function>lstcat</function>, describe usage of <function>list</function> for
+                    concatentation of lists.
                 </revdescription>
             </revision>
         </revhistory>
