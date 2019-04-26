@@ -12,7 +12,7 @@
             are not assigned. <literal>ans</literal> contains the last unassigned evaluated expression.
         </para>
         <para>
-            Variable <literal>ans</literal> is not protected by <function>predef</function>.
+            Please note, <literal>ans</literal> is a protected variable.
         </para>
     </refsection>
     <refsection>
@@ -30,7 +30,7 @@ isdef("ans") // F
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="predef">predef</link>
+                <link linkend="protect">protect</link>
             </member>
         </simplelist>
     </refsection>

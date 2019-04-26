@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -88,7 +88,7 @@
             When all <literal>.sci</literal> files have been processed, <literal>genlib</literal> creates a
             library variable named <literal>lib_name</literal> and saves it in the file
             <literal>lib</literal> in <literal>dir_name</literal>. If the Scilab variable
-            <literal>lib_name</literal> is not protected (see <link linkend="predef">predef</link>) this
+            <literal>lib_name</literal> is not protected (see <link linkend="protect">protect</link>) this
             variable is updated.
         </para>
         <para>
