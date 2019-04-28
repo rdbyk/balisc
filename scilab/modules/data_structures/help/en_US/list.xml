@@ -147,7 +147,7 @@ l(3) = rand(1,2) // Override my vector of string
 l(3) = null() // Remove the third element
 
 lbis = list("gewurtz", "caipirina" ,"debug") // Declare a new list
-lter = lstcat(l,lbis) // Merge the two list
+lter = list(l(:),lbis(:)) // Merge the two list
 size(lter) - size(lbis) - size(l)  // must be zero
  ]]></programlisting>
     </refsection>
