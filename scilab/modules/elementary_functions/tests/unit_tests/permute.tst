@@ -2,7 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
 // Copyright (C) 2016 - Samuel GOUGEON
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -92,3 +92,6 @@ assert_checkerror("permute(x, [1 2]);", refMsg);
 assert_checkerror("permute(x, [1 2 4]);", refMsg);
 assert_checkerror("permute(x, [1 3.1 2]);", refMsg);
 assert_checkerror("permute(x, [1 2 3 5]);", refMsg);
+
+// try to exceed maximum number of dimensions
+assert_checkerror("permute([2,2],33:-1:1)", [], 100)
