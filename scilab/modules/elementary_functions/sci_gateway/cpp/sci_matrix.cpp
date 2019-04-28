@@ -45,9 +45,9 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
     int newSize     = 1;
     bool bOk        = false;
 
-    if (in.size() < 2 )
+    if (in.size() < 2 || in.size() > MAX_DIMS + 1)
     {
-        Scierror(71, 2);
+        Scierror(72, 2, MAX_DIMS + 1);
         return Function::Error;
     }
 
@@ -60,6 +60,12 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
     }
 
     GenericType* pGTIn = in[0]->getAs<GenericType>();
+
+    if ((pGTIn->isSparse() || pGTIn->isSparseBool()) && in.size() > 3)
+    {
+        Scierror(72, 2, 3);
+        return Function::Error;
+    }
 
     if (pGTIn->getSize() == 0)
     {
@@ -180,11 +186,23 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
         piSizes[iLeastOne] = (int)pGTIn->getSize() / newSize;
     }
 
-    if (pGTIn->isSparse() && iDims > 2)
+    if (pGTIn->isSparse() || pGTIn->isSparseBool())
     {
-        Scierror(110, 1, _("sparse matrix with no more than 2 dimensions"));
-        delete[] piSizes;
-        return Function::Error;
+        if (iDims > 2)
+        {
+            Scierror(110, 2, _("vector with at most 2 elements"));
+            delete[] piSizes;
+            return Function::Error;
+        }
+    }
+    else if (iDims > MAX_DIMS)
+    {
+        if (iDims > 2)
+        {
+            Scierror(110, 2, _("vector with at most 32 elements"));
+            delete[] piSizes;
+            return Function::Error;
+        }
     }
 
     GenericType* pGTOut = pGTIn->getRef() > 1 ? pGTIn->clone()->getAs<GenericType>() : pGTIn;
