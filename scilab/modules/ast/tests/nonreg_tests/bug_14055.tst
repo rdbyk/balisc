@@ -1,11 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 14055 -->
 //
 // <-- Bugzilla URL -->
@@ -15,7 +18,7 @@
 // overload on matrix concatenation failed with []
 
 function L = %l_c_s(L,N)
-    L = lstcat(L, N)
+    L = list(L(:), N)
     assert_checkequal(N, check);
 endfunction
 
