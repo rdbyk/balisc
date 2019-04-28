@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -163,7 +163,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga2(ga_f, po
         ToCompute_I2 = ToCompute_I2 & %F;
 
         // We merge all the individuals in one list ...
-        All_Pop  = lstcat(Pop, Indiv1, Indiv2);
+        All_Pop  = list(Pop(:), Indiv1(:), Indiv2(:));
         All_FObj = [FObj_Pop' FObj_Indiv1' FObj_Indiv2']';
 
         // Compute the domination rank on all the population

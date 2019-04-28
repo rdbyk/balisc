@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +23,7 @@ function [Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_ga_rand
 
     pop_size = length(Pop_in);
 
-    Total_Pop  = lstcat(Pop_in, Indiv1, Indiv2);
+    Total_Pop  = list(Pop_in(:), Indiv1(:), Indiv2(:));
     Total_FObj = [FObj_Pop_in' FObj_Indiv1' FObj_Indiv2']';
 
     // Normalization of the efficiency
@@ -50,4 +50,3 @@ function [Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_ga_rand
 
     Total_Pop = list(); // Reinitialisation of Total_Pop
 endfunction
-

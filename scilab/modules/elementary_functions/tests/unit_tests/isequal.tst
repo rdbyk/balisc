@@ -1,6 +1,7 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Simon MARCHETTO
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
@@ -59,16 +60,16 @@ end
 // "constant" type
 real_scalars = list(1, -1, 3.2, 3.2000005, %pi, %e, %inf, -%inf, %eps, []);
 real_matrices = list([1.1, 2.2], [1.1 2.2; 3.3 4.4], [1.1 2.2; 3.3 4.4; 5.5 6.6], [1.1 2.2 3.3; 4.4 5.5 6.6]);
-reals = lstcat(real_scalars, real_matrices);
+reals = list(real_scalars(:), real_matrices(:));
 
 // TODO: check %nan is not equal to anything
 
 complex_scalars = list(%i, 3.2*%i, -%i, 1+0.5*%i);
 complex_matrices = list([1+%i, 2+2*%i], [1+%i 2+2*%i; 3+3*%i 4+4*%i], ..
     [1+%i 2+2*%i; 3+3*%i 4+4*%i; 5+5*%i 6+6*%i], [1+%i 2+2*%i 3+3*%i; 4+4*%i 5+5*%i 6+6*%i]);
-complexs = lstcat(complex_scalars, complex_matrices);
+complexs = list(complex_scalars(:), complex_matrices(:));
 
-constants = lstcat(reals, complexs);
+constants = list(reals(:), complexs(:));
 constants(0) = 'constants';
 
 // "polynomial" type
@@ -78,7 +79,7 @@ polynoms(0) = 'polynoms';
 // boolean type
 bool_scalars = list(%t, %f);
 bool_matrices = list([%t, %f], [%t %f; %t %f], [%t %f; %t %f; %t %f], [%t %f %t; %t %f %t]);
-bools = lstcat(bool_scalars, bool_matrices);
+bools = list(bool_scalars(:), bool_matrices(:));
 bools(0) = 'bools';
 
 // "sparse" type
@@ -94,7 +95,7 @@ boolean_sparses(0) = 'boolean_sparses';
 // integer types
 int8s_scalars = list(int8(1), int8(-1));
 int8s_matrices = list(int8([1, 2]), int8([1 2; 3 4]), int8([1 2; 3 4; 5 6]), int8([1 2 3; 4 5 6]));
-int8s = lstcat(int8s_scalars, int8s_matrices);
+int8s = list(int8s_scalars(:), int8s_matrices(:));
 
 function int_type_values = convert_to_int_type(type_values, int_type)
     int_type_values = list();
@@ -111,7 +112,7 @@ uint32s = convert_to_int_type(int8s, 14);
 int64s = convert_to_int_type(int8s, 8);
 uint64s = convert_to_int_type(int8s, 18);
 
-ints = lstcat(int8s, uint8s, int16s, uint16s, int32s, uint32s, int64s, uint64s);
+ints = list(int8s(:), uint8s(:), int16s(:), uint16s(:), int32s(:), uint32s(:), int64s(:), uint64s(:));
 ints(0) = 'ints';
 
 // "handle" type
@@ -120,7 +121,7 @@ ints(0) = 'ints';
 string_scalars = list("", " ", "a", "A", "à", ascii(13), "aaaa", "aaab", "aaaa" + ascii(13));
 string_matrices = list(["", ""], [" ", " "], ["a", "a"], ["a", "A"], ["a", "à"], ..
     ["a" "b"; "c" "d"], ["a" "b"; "c" "d"; "e" "f"], ["a" "b" "c"; "d" "e" "f"]);
-strings = lstcat(string_scalars, string_matrices);
+strings = list(string_scalars(:), string_matrices(:));
 strings(0) = 'strings';
 
 // "function" type
@@ -167,5 +168,3 @@ structs(0) = 'structs';
 types = list(constants, polynoms, bools, sparses, boolean_sparses, ints, strings, lists, tlists, mlists, structs);
 
 check_types(types);
-
-

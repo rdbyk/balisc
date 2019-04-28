@@ -8,7 +8,7 @@
 //
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
 // Copyright (C) Scilab Enterprises - 2012 - Bruno JOFRET
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -1109,7 +1109,7 @@ function ok=gen_gui42();
     "    "+sci2exp(cpr.state.z,"z",70); //initial discrete state
     "    work=zeros("+string(nblk)+",1)";
     "    Z=[z;work]";
-    "    "+sci2exp(lstcat(cpr.state.oz,cpr.state.outtb),"odstate",70);
+    "    "+sci2exp(list(cpr.state.oz(:),cpr.state.outtb(:)),"odstate",70);
     "    "+sci2exp(cpr.sim.rpar,"rpar",70); //real parameters
     "    "+sci2exp(cpr.sim.ipar,"ipar",70); //integer parameters
     "    "+sci2exp(cpr.sim.opar,"opar",70); //object parameters

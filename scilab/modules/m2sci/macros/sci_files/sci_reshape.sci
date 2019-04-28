@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -77,11 +77,11 @@ function dims=lhsdimsearch(rhs)
     // LHSDIMSEARCH function searches dimensions size of the lhs
     // dims : a list which contains the size of the lhs
     if typeof(rhs)=="operation" then
-        dims=lstcat(rhs.operands(2).value,dims)
+        dims=list(rhs.operands(2).value,dims(:))
         if typeof(rhs.operands(1))=="operation" then
             dims=lhsdimsearch(rhs.operands(1))
         else
-            dims=lstcat(rhs.operands(1).value,dims)
+            dims=list(rhs.operands(1).value,dims(:))
         end
     end
 endfunction
