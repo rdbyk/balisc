@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2009 - DIGITEO - Allan CORNET
+# Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -9,6 +10,7 @@ GATEWAY_CPP_SOURCES =  \
     sci_gateway/cpp/sci_whereis.cpp \
     sci_gateway/cpp/sci_execstr.cpp \
     sci_gateway/cpp/sci_macrovar.cpp \
+    sci_gateway/cpp/sci_macrofile.cpp \
     sci_gateway/cpp/sci_libraryinfo.cpp \
     sci_gateway/cpp/sci_librarieslist.cpp \
     sci_gateway/cpp/sci_testGVN.cpp \
