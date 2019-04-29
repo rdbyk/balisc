@@ -144,12 +144,6 @@ types::Function::ReturnValue sci_permute(types::typed_list& in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
-    {
-        Scierror(81, 1);
-        return types::Function::Error;
-    }
-
     if (in[0]->isArrayOf() == false)
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_permute";
