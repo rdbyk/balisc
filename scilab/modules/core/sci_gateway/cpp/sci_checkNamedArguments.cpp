@@ -49,12 +49,6 @@ types::Function::ReturnValue sci_checkNamedArguments(types::typed_list &in, int 
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
-    {
-        Scierror(81, 1);
-        return types::Function::Error;
-    }
-
     //get before last where
     const ConfigVariable::WhereEntry& where = *(++ConfigVariable::getWhere().crbegin());
     if (where.call->isMacro())

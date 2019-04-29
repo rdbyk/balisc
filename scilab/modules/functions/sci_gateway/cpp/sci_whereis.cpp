@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,9 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
 
 #include "functions_gw.hxx"
 #include "context.hxx"
@@ -24,20 +23,11 @@ extern "C" {
 #include "localization.h"
 }
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    /* Check the number of input argument */
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "whereis", 1);
-        return types::Function::Error;
-    }
-
-    /* Check the number of output argument */
-    if (_iRetCount != 1)
-    {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "whereis", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -47,7 +37,7 @@ types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, 
 
         if (pS->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "whereis", 1);
+            Scierror(91, 1);
             return types::Function::Error;
         }
 
@@ -98,4 +88,3 @@ types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, 
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

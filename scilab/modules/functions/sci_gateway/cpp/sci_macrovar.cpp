@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,20 +13,12 @@
  *
  */
 
-#include <string.h>
-#include "parser.hxx"
-#include "funcmanager.hxx"
-#include "context.hxx"
 #include "functions_gw.hxx"
 #include "macrovarvisitor.hxx"
 #include "string.hxx"
 #include "list.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
-
-#include <iostream>
-#include <fstream>
-#include <string>
 
 extern "C"
 {
@@ -42,13 +34,7 @@ types::Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount,
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "macrovar" , 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount != 1)
-    {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "macrovar" , 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -67,7 +53,7 @@ types::Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount,
             break;
         }
         default :
-            Scierror(999, _("%s: Wrong type for input arguments: macro expected.\n"), "macrovar");
+            Scierror(90, 1, _("macro"));
             return types::Function::Error;
     }
 

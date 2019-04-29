@@ -3,7 +3,7 @@
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,19 +31,13 @@ types::Function::ReturnValue sci_system_getproperty(types::typed_list &in, int _
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "system_getproperty", 1);
-        return types::Function::Error;
-    }
-
-    if (_piRetCount != 1)
-    {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "system_getproperty", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "system_getproperty" , 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 

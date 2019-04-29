@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "cacsd_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -28,7 +28,6 @@ extern "C"
     extern void C2F(expan)(double*, int*, double*, int*, double*, int*);
 }
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     double** pdblCoef1  = NULL;
@@ -43,13 +42,7 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() != 3)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "ldiv", 3);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount != 1)
-    {
-        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "ldiv", 1);
+        Scierror(71, 3);
         return types::Function::Error;
     }
 
@@ -235,4 +228,3 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
     out.push_back(pDblOut);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/

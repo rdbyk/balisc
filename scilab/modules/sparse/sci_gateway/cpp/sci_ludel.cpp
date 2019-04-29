@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,22 +30,15 @@ types::Function::ReturnValue sci_ludel(types::typed_list &in, int _iRetCount, ty
     int *fmatindex  = NULL;
     const void *pData = NULL;
 
-    //check input parameters
     if (in.size() != 1 )
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d  expected.\n"), "ludel", 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount != 1)
-    {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "ludel", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isPointer() == false)
     {
-        Scierror(999, _("%s: Wrong type for argument %d:  Handle to sparse lu factors expected.\n"), "ludel", 1);
+        Scierror(90, 1, _("handle to sparse LU factors"));
         return types::Function::Error;
     }
 
@@ -56,7 +49,7 @@ types::Function::ReturnValue sci_ludel(types::typed_list &in, int _iRetCount, ty
     C2F(ludel1)(fmatindex, &ierr);
     if (ierr != 0)
     {
-        Scierror(999, _("Wrong value for argument #%d: the lu handle is no more valid.\n"), 1);
+        Scierror(110, 1, _("valid LU handle"));
         return types::Function::Error;
     }
 
