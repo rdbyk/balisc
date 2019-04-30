@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -759,27 +759,35 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     //coord must represent all values on a dimension
     for (int i = 0; i < iDims; i++)
     {
-        pbFull[i] = false;
-        int iDimToCheck = getVarMaxDim(i, iDims);
-        int iIndexSize = pArg[i]->getAs<GenericType>()->getSize();
-
-        //we can have index more than once
-        if (iIndexSize >= iDimToCheck)
+        if ((*_pArgs)[i]->isColon())
         {
-            //size is good, now check datas
-            double* pIndexes = pArg[i]->getAs<Double>()->get();
-            for (int j = 0; j < iDimToCheck; j++)
+            pbFull[i] = true;
+        }
+        else
+        {
+            pbFull[i] = false;
+
+            int iDimToCheck = getVarMaxDim(i, iDims);
+            int iIndexSize = pArg[i]->getAs<GenericType>()->getSize();
+
+            //we can have index more than once
+            if (iIndexSize >= iDimToCheck)
             {
-                bool bFind = false;
-                for (int k = 0; k < iIndexSize; k++)
+                //size is good, now check datas
+                double* pIndexes = pArg[i]->getAs<Double>()->get();
+                for (int j = 0; j < iDimToCheck; j++)
                 {
-                    if ((int)pIndexes[k] == j + 1)
+                    bool bFind = false;
+                    for (int k = 0; k < iIndexSize; k++)
                     {
-                        bFind = true;
-                        break;
+                        if ((int)pIndexes[k] == j + 1)
+                        {
+                            bFind = true;
+                            break;
+                        }
                     }
+                    pbFull[i] = bFind;
                 }
-                pbFull[i] = bFind;
             }
         }
     }
