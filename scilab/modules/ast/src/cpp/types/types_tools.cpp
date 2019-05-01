@@ -858,22 +858,18 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
 void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew)
 {
-    if (_pArgsNew)
+    for (int iArg = 0; iArg < _pArgsNew->size(); ++iArg)
     {
-        //free pArg content
-        for (int iArg = 0; iArg < _pArgsNew->size(); iArg++)
+        if ((*_pArgsNew)[iArg] != (*_pArgsOrig)[iArg])
         {
-            if ((*_pArgsNew)[iArg] != (*_pArgsOrig)[iArg])
+            if ((*_pArgsNew)[iArg])
             {
-                if ((*_pArgsNew)[iArg])
-                {
-                    (*_pArgsNew)[iArg]->killMe();
-                }
+                (*_pArgsNew)[iArg]->killMe();
             }
         }
-
-        _pArgsNew->clear();
     }
+
+    _pArgsNew->clear();
 }
 
 void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims)
