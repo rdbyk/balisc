@@ -755,17 +755,13 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         return this;
     }
 
-    bool* pbFull = new bool[iDims];
+    int iNotEntire = -1;
     //coord must represent all values on a dimension
     for (int i = 0; i < iDims; i++)
     {
-        if ((*_pArgs)[i]->isColon())
+        if ((*_pArgs)[i]->isColon() == false)
         {
-            pbFull[i] = true;
-        }
-        else
-        {
-            pbFull[i] = false;
+            bool bFull= false;
 
             int iDimToCheck = getVarMaxDim(i, iDims);
             int iIndexSize = pArg[i]->getAs<GenericType>()->getSize();
@@ -786,41 +782,29 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
                             break;
                         }
                     }
-                    pbFull[i] = bFind;
+                    bFull = bFind;
+                }
+            }
+
+            // only one dims can be not full/entire
+            if (bFull == false)
+            {
+                if (iNotEntire < 0)
+                {
+                    iNotEntire = i;
+                }
+                else
+                {
+                    // free pArg content
+                    cleanIndexesArguments(_pArgs, &pArg);
+                    return NULL;
                 }
             }
         }
     }
 
-    //only one dims can be not full/entire
-    bool bNotEntire = false;
-    int iNotEntire = 0;
-    bool bTooMuchNotEntire = false;
-    for (int i = 0; i < iDims; i++)
-    {
-        if (pbFull[i] == false)
-        {
-            if (bNotEntire == false)
-            {
-                bNotEntire = true;
-                iNotEntire = i;
-            }
-            else
-            {
-                bTooMuchNotEntire = true;
-                break;
-            }
-        }
-    }
+    iNotEntire = std::max(0, iNotEntire);
 
-    delete[] pbFull;
-
-    if (bTooMuchNotEntire == true)
-    {
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        return NULL;
-    }
 
     //find index to keep
     int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();
