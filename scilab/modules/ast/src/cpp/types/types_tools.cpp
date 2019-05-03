@@ -231,19 +231,15 @@ bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
 
 static double evalute(InternalType* pIT, int sizeRef)
 {
-    double real;
-    double img;
     if (pIT->getId() == InternalType::IdScalarPolynom)
     {
         SinglePoly* pSP = pIT->getAs<Polynom>()->get()[0];
-        pSP->evaluate(sizeRef, 0, &real, &img);
+        return pSP->evaluate(sizeRef);
     }
     else
     {
-        real = getIndex(pIT);
+        return getIndex(pIT);
     }
-
-    return real;
 }
 
 bool getScalarImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<double>& index)

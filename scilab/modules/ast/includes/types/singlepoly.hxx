@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -59,7 +59,8 @@ public :
     bool                    setRank(int _iRank, bool bSave = false);
     bool                    setCoef(Double *_poPow);
     bool                    setCoef(const double *_pdblCoefR, const double *_pdblCoefI);
-    bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
+    void                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
+    double evaluate(double x);
     void                    updateRank(void);
 
     void                    toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);

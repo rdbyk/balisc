@@ -239,14 +239,10 @@ bool SinglePoly::setCoef(const double* _pdblCoefR, const double* _pdblCoefI)
     return true;
 }
 
-bool SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI)
+void SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI)
 {
     *_pdblOutR = 0;
     *_pdblOutI = 0;
-    if (m_iSize == 0)
-    {
-        return true;
-    }
 
     for (int i = 0 ; i < m_iSize ; i++)
     {
@@ -261,8 +257,18 @@ bool SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, dou
         }
         *_pdblOutI += m_pRealData[i] * std::pow(_dblInI, i);
     }
+}
 
-    return true;
+double SinglePoly::evaluate(double x)
+{
+    double res = m_pRealData[m_iSize - 1];
+
+    for (int i = m_iSize - 2; i >= 0;  --i)
+    {
+        res = res * x + m_pRealData[i];
+    }
+
+    return res;
 }
 
 void SinglePoly::updateRank(void)
