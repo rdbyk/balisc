@@ -1,7 +1,8 @@
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // <-- TEST WITH GRAPHIC -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for issue 625 -->
 //
