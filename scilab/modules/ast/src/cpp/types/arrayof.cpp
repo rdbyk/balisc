@@ -757,11 +757,14 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
 
     int iToDelIndex = -1;
     std::vector<int> toDelIndexVect;
+    std::vector<int> viewDims;
+    viewDims.reserve(iDims);
 
     // dimensions not subject to deletion must be indexed with colon or equivalent
     for (int i = 0; i < iDims; i++)
     {
         int iDimToCheck = getVarMaxDim(i, iDims);
+        viewDims[i] = iDimToCheck;
         int iIndexSize = pArg[i]->getAs<GenericType>()->getSize();
         if ((*_pArgs)[i]->isColon() == false)
         {
@@ -803,7 +806,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     }
 
     // check eventual out of bounds indexes
-    int iKeepSize = getVarMaxDim(iToDelIndex, iDims);
+    int iKeepSize = viewDims[iToDelIndex];
     if (toDelIndexVect.front() < 1 || toDelIndexVect.back() > iKeepSize)
     {
         //free pArg content
@@ -851,23 +854,19 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     }
 
     // find a way to copy existing data to new variable ...
-    int* piViewDims = new int[iOrigDims];
     int* piOffset = new int[iOrigDims+1];
 
     // offsets
     piOffset[0] = 1;
     for (int i = 0; i < iOrigDims; i++)
     {
-        piViewDims[i] = getVarMaxDim(i, iOrigDims);
-        piOffset[i+1] = piViewDims[i]*piOffset[i];
+        piOffset[i+1] = viewDims[i] * piOffset[i];
     }
 
     // indexes to remove -> [ 0, toDelIndexVect, piViewDims[iToDelIndex]+1 ] to facilitate loop
-    toDelIndexVect.insert(toDelIndexVect.begin(),0);
-    toDelIndexVect.push_back(piViewDims[iToDelIndex]+1);
+    toDelIndexVect.insert(toDelIndexVect.begin(), 0);
+    toDelIndexVect.push_back(viewDims[iToDelIndex] + 1);
 
-    int iStart;
-    int iSize;
     int iOffset1 = piOffset[iToDelIndex];
     int iOffset2 = piOffset[iToDelIndex+1];
     int iNbChunks = getSize()/iOffset2;
@@ -877,11 +876,11 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     {
         for (int k = 0, iDest = 0; k < iNbChunks; k++)
         {
-            iStart = k*iOffset2;
+            int iStart = k*iOffset2;
             // loop on indexes to remove
             for (int j = 0; j < toDelIndexVect.size()-1; j++)
             {
-                iSize =  (toDelIndexVect[j+1]-toDelIndexVect[j]-1)*iOffset1;
+                int iSize = (toDelIndexVect[j+1]-toDelIndexVect[j]-1)*iOffset1;
                 memcpy(pOut->m_pRealData + iDest, m_pRealData + iStart, iSize*sizeof(T));
 
                 if (m_pImgData != NULL)
@@ -896,13 +895,13 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     }
     else
     {
-            for (int k = 0, iDest = 0; k < iNbChunks; k++)
+        for (int k = 0, iDest = 0; k < iNbChunks; k++)
         {
-            iStart = k*iOffset2;
+            int iStart = k*iOffset2;
             // loop on indexes to remove
             for (int j = 0; j < toDelIndexVect.size()-1; j++)
             {
-                iSize =  (toDelIndexVect[j+1]-toDelIndexVect[j]-1)*iOffset1;
+                int iSize =  (toDelIndexVect[j+1]-toDelIndexVect[j]-1)*iOffset1;
 
                 for (int i = iStart; i < iStart+iSize; i++, iDest++)
                 {
@@ -924,7 +923,6 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
-    delete[] piViewDims;
     delete[] piOffset;
     delete[] piNewDims;
 
