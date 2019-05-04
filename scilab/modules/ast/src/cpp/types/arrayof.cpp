@@ -819,7 +819,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     int* piNewDims = new int[iDims];
     for (int i = 0; i < iDims; i++)
     {
-        piNewDims[i] = getVarMaxDim(i, iDims);
+        piNewDims[i] = viewDims[i];
     }
     piNewDims[iToDelIndex] = iNewDimSize;
 
@@ -854,21 +854,19 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     }
 
     // find a way to copy existing data to new variable ...
-    int* piOffset = new int[iOrigDims+1];
-
-    // offsets
-    piOffset[0] = 1;
-    for (int i = 0; i < iOrigDims; i++)
-    {
-        piOffset[i+1] = viewDims[i] * piOffset[i];
-    }
 
     // indexes to remove -> [ 0, toDelIndexVect, piViewDims[iToDelIndex]+1 ] to facilitate loop
     toDelIndexVect.insert(toDelIndexVect.begin(), 0);
     toDelIndexVect.push_back(viewDims[iToDelIndex] + 1);
 
-    int iOffset1 = piOffset[iToDelIndex];
-    int iOffset2 = piOffset[iToDelIndex+1];
+    // Offsets
+    int iOffset1 = 1;
+    for (int i = 0; i < iToDelIndex; ++i)
+    {
+        iOffset1 = viewDims[i] * iOffset1;
+    }
+    int iOffset2 = viewDims[iToDelIndex] * iOffset1;
+
     int iNbChunks = getSize()/iOffset2;
 
     // fast algorithm (allowing in place removal if necessary)
@@ -923,7 +921,6 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
-    delete[] piOffset;
     delete[] piNewDims;
 
     //free pArg content
