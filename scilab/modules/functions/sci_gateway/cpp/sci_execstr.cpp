@@ -29,11 +29,9 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#include "os_string.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "os_string.h"
 }
 
 #define MUTE_FLAG       L"n"
@@ -66,7 +64,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         }
 
         types::String* pS = in[1]->getAs<types::String>();
-        if (os_wcsicmp(pS->getFirst(), L"errcatch") == 0)
+        if (wcscmp(pS->getFirst(), L"errcatch") == 0)
         {
             bErrCatch = true;
         }
@@ -88,11 +86,11 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        if (os_wcsicmp(in[2]->getAs<types::String>()->getFirst(), MUTE_FLAG) == 0)
+        if (wcscmp(in[2]->getAs<types::String>()->getFirst(), MUTE_FLAG) == 0)
         {
             bMute = true;
         }
-        else if (os_wcsicmp(in[2]->getAs<types::String>()->getFirst(), NO_MUTE_FLAG) == 0)
+        else if (wcscmp(in[2]->getAs<types::String>()->getFirst(), NO_MUTE_FLAG) == 0)
         {
             bMute = false;
         }

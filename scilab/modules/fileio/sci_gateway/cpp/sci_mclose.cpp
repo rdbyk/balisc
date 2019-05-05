@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,7 +25,6 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "mclose.h"
-#include "os_string.h"
 }
 #include "stdio.h"
 
@@ -62,13 +61,13 @@ types::Function::ReturnValue sci_mclose(types::typed_list &in, int _iRetCount, t
                 }
                 iRet = mclose(iFileID);
             }
-            else if (os_wcsicmp(pS->getFirst(), L"all") == 0)
+            else if (wcscmp(pS->getFirst(), L"all") == 0)
             {
                 iRet = mcloseAll();
             }
             else
             {
-                Scierror(999, _("%s: Wrong input arguments: '%s' expected.\n"), fname, "all");
+                Scierror(110, 1, "'all'");
                 return types::Function::Error;
             }
         }
