@@ -805,13 +805,12 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         return pOut;
     }
 
-    // check eventual out of bounds indexes
+    // check for out of bounds indexes
     int iKeepSize = viewDims[iToDelIndex];
-    if (toDelIndexVect.front() < 1 || toDelIndexVect.back() > iKeepSize)
+    if (toDelIndexVect.front() > iKeepSize)
     {
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        return NULL;
+        // nothing to remove, thus ...
+        return this;
     }
 
     int iNewDimSize = iKeepSize - toDelIndexVect.size();
@@ -863,7 +862,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     int iOffset1 = 1;
     for (int i = 0; i < iToDelIndex; ++i)
     {
-        iOffset1 = viewDims[i] * iOffset1;
+        iOffset1 *= viewDims[i];
     }
     int iOffset2 = viewDims[iToDelIndex] * iOffset1;
 
