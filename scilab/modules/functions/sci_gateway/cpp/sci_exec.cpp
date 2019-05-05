@@ -36,12 +36,10 @@
 
 extern "C"
 {
-#include "os_string.h"
 #include "expandPathVariable.h"
 #include "prompt.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "os_string.h"
 #include "mopen.h"
 #include "mclose.h"
 #include "fullpath.h"
@@ -111,7 +109,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             //errcatch
             types::String* pS = in[1]->getAs<types::String>();
-            if (os_wcsicmp(pS->getFirst(), L"errcatch") == 0)
+            if (wcscmp(pS->getFirst(), L"errcatch") == 0)
             {
                 bErrCatch = true;
             }
