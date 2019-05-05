@@ -755,47 +755,41 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         return this;
     }
 
-    int iNotEntire = -1;
-    //coord must represent all values on a dimension
+    int iToDelIndex = -1;
+    std::vector<int> toDelIndexVect;
+    std::vector<int> viewDims;
+    viewDims.reserve(iDims);
+
+    // dimensions not subject to deletion must be indexed with colon or equivalent
     for (int i = 0; i < iDims; i++)
     {
+        int iDimToCheck = getVarMaxDim(i, iDims);
+        viewDims[i] = iDimToCheck;
+        int iIndexSize = pArg[i]->getAs<GenericType>()->getSize();
         if ((*_pArgs)[i]->isColon() == false)
         {
-            bool bFull= false;
-
-            int iDimToCheck = getVarMaxDim(i, iDims);
-            int iIndexSize = pArg[i]->getAs<GenericType>()->getSize();
-
-            //we can have index more than once
-            if (iIndexSize >= iDimToCheck)
+            //if equivalent to colon, should be 1:iDimToCheck after sorting and removing duplicates
+            double* pIndexes = pArg[i]->getAs<Double>()->get();
+            std::vector<int> pIndexesVect(pIndexes, pIndexes + iIndexSize);
+            std::sort(pIndexesVect.begin(),pIndexesVect.end());
+            pIndexesVect.erase(std::unique(pIndexesVect.begin(), pIndexesVect.end()), pIndexesVect.end());
+            //remove index > iDimToCheck to allow a[10, 10](1, 1:100) = [] and a[10, 10]([1 5 20], :) = []
+            auto lastUnique = std::find(pIndexesVect.begin(), pIndexesVect.end(), iDimToCheck);
+            if (lastUnique != pIndexesVect.end())
             {
-                //size is good, now check datas
-                double* pIndexes = pArg[i]->getAs<Double>()->get();
-                for (int j = 0; j < iDimToCheck; j++)
-                {
-                    bool bFind = false;
-                    for (int k = 0; k < iIndexSize; k++)
-                    {
-                        if ((int)pIndexes[k] == j + 1)
-                        {
-                            bFind = true;
-                            break;
-                        }
-                    }
-                    bFull = bFind;
-                }
+                pIndexesVect.erase(++lastUnique, pIndexesVect.end());
             }
 
-            // only one dims can be not full/entire
-            if (bFull == false)
+            if (pIndexesVect.size() != iDimToCheck || pIndexesVect.front() != 1 || pIndexesVect.back() != iDimToCheck)
             {
-                if (iNotEntire < 0)
+                if (iToDelIndex < 0)
                 {
-                    iNotEntire = i;
+                    iToDelIndex = i;
+                    toDelIndexVect = pIndexesVect;
                 }
                 else
                 {
-                    // free pArg content
+                    //free pArg content
                     cleanIndexesArguments(_pArgs, &pArg);
                     return NULL;
                 }
@@ -803,48 +797,30 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
-    iNotEntire = std::max(0, iNotEntire);
-
-
-    //find index to keep
-    int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();
-    double* piNotEntireIndex = pArg[iNotEntire]->getAs<Double>()->get();
-    int iKeepSize = getVarMaxDim(iNotEntire, iDims);
-
-    int iNewDimSize = iKeepSize;
-
-    bool* pbKeep = new bool[iKeepSize];
-    std::fill_n(pbKeep, iKeepSize, true);
-    for (int i = 0; i < iNotEntireSize; i++)
+    // overall removal x(:,...,:) = []
+    if (iToDelIndex < 0)
     {
-        int idx = (int)piNotEntireIndex[i] - 1;
-
-        // ignore out-of-range index
-        if (idx < iKeepSize)
-        {
-            // ignore already handled index
-            if (pbKeep[idx])
-            {
-                pbKeep[idx] = false;
-                --iNewDimSize;
-            }
-        }
+        int piDims[2] = {0,0};
+        pOut = createEmpty(2,piDims,false);
+        return pOut;
     }
-    delete[] pbKeep;
 
+    // check for out of bounds indexes
+    int iKeepSize = viewDims[iToDelIndex];
+    if (toDelIndexVect.front() > iKeepSize)
+    {
+        // nothing to remove, thus ...
+        return this;
+    }
+
+    int iNewDimSize = iKeepSize - toDelIndexVect.size();
 
     int* piNewDims = new int[iDims];
     for (int i = 0; i < iDims; i++)
     {
-        if (i == iNotEntire)
-        {
-            piNewDims[i] = iNewDimSize;
-        }
-        else
-        {
-            piNewDims[i] = getVarMaxDim(i, iDims);
-        }
+        piNewDims[i] = viewDims[i];
     }
+    piNewDims[iToDelIndex] = iNewDimSize;
 
     int iOrigDims = iDims;
 
@@ -854,14 +830,6 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         --iDims;
     }
 
-    if (iNewDimSize == 0)
-    {
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        delete[] piNewDims;
-        return createEmpty();
-    }
-
     if (iDims == 1)
     {
         //two cases, depends of original matrix/vector
@@ -869,94 +837,87 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         {
             //special case for row vector
             int piRealDim[2] = {1, iNewDimSize};
-            pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
             //in this case we have to care of 2nd dimension
-            //iNotEntire = 1;
+            //iToDelIndex = 1;
+            pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
         }
         else
         {
             int piRealDim[2] = {iNewDimSize, 1};
             pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
         }
+    }
+    else
+    {
+        pOut = createEmpty(iDims, piNewDims, m_pImgData != NULL);
+    }
 
+    // find a way to copy existing data to new variable ...
+
+    // indexes to remove -> [ 0, toDelIndexVect, piViewDims[iToDelIndex]+1 ] to facilitate loop
+    toDelIndexVect.insert(toDelIndexVect.begin(), 0);
+    toDelIndexVect.push_back(viewDims[iToDelIndex] + 1);
+
+    // Offsets
+    int iOffset1 = 1;
+    for (int i = 0; i < iToDelIndex; ++i)
+    {
+        iOffset1 *= viewDims[i];
+    }
+    int iOffset2 = viewDims[iToDelIndex] * iOffset1;
+
+    int iNbChunks = getSize()/iOffset2;
+
+    // fast algorithm (allowing in place removal if necessary)
+    if (isNativeType())
+    {
+        for (int k = 0, iDest = 0; k < iNbChunks; k++)
         {
-            int iNewPos = 0;
-            int size = getSize();
-
-            //try to sort piNotEntireIndex
-            std::sort(piNotEntireIndex, piNotEntireIndex + iNotEntireSize);
-
-            int last = 0;
-            for (int i = 0; i < iNotEntireSize; ++i)
+            int iStart = k*iOffset2;
+            // loop on indexes to remove
+            for (int j = 0; j < toDelIndexVect.size()-1; j++)
             {
-                int ii = piNotEntireIndex[i] - 1;
-                for (int j = last; j < ii; ++j)
-                {
-                    pOut->set(iNewPos, get(j));
-                    if (m_pImgData != NULL)
-                    {
-                        pOut->setImg(iNewPos, getImg(j));
-                    }
-                    iNewPos++;
-                }
+                int iSize = (toDelIndexVect[j+1]-toDelIndexVect[j]-1)*iOffset1;
+                memcpy(pOut->m_pRealData + iDest, m_pRealData + iStart, iSize*sizeof(T));
 
-                last = ii + 1;
-            }
-
-            for (int i = last; i < size; ++i)
-            {
-                pOut->set(iNewPos, get(i));
                 if (m_pImgData != NULL)
                 {
-                    pOut->setImg(iNewPos, getImg(i));
+                    memcpy(pOut->m_pImgData + iDest, m_pImgData + iStart, iSize*sizeof(T));
                 }
-                iNewPos++;
+
+                iDest += iSize;
+                iStart += iSize + iOffset1;
             }
         }
     }
     else
     {
-        pOut = createEmpty(iDims, piNewDims, m_pImgData != NULL);
-
-        //find a way to copy existing data to new variable ...
-        int iNewPos = 0;
-        int* piIndexes = new int[iOrigDims];
-        int* piViewDims = new int[iOrigDims];
-        for (int i = 0; i < iOrigDims; i++)
+        for (int k = 0, iDest = 0; k < iNbChunks; k++)
         {
-            piViewDims[i] = getVarMaxDim(i, iOrigDims);
-        }
-
-        for (int i = 0; i < getSize(); i++)
-        {
-            bool bByPass = false;
-            getIndexesWithDims(i, piIndexes, piViewDims, iOrigDims);
-
-            //check if piIndexes use removed indexes
-            for (int j = 0; j < iNotEntireSize; j++)
+            int iStart = k*iOffset2;
+            // loop on indexes to remove
+            for (int j = 0; j < toDelIndexVect.size()-1; j++)
             {
-                if ((piNotEntireIndex[j] - 1) == piIndexes[iNotEntire])
+                int iSize =  (toDelIndexVect[j+1]-toDelIndexVect[j]-1)*iOffset1;
+
+                for (int i = iStart; i < iStart+iSize; i++, iDest++)
                 {
-                    //by pass this value
-                    bByPass = true;
-                    break;
+                    pOut->set(iDest,get(i));
                 }
-            }
 
-            if (bByPass == false)
-            {
-                //compute new index
-                pOut->set(iNewPos, get(i));
                 if (m_pImgData != NULL)
                 {
-                    pOut->setImg(iNewPos, getImg(i));
+                    iDest -= iSize;
+
+                    for (int i = iStart; i < iStart+iSize; i++, iDest++)
+                    {
+                        pOut->setImg(iDest,getImg(i));
+                    }
                 }
-                iNewPos++;
+
+                iStart += iSize + iOffset1;
             }
         }
-
-        delete[] piIndexes;
-        delete[] piViewDims;
     }
 
     delete[] piNewDims;
