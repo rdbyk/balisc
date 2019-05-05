@@ -473,7 +473,6 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
     for (int i = 0; i < iDims; i++)
     {
-        bool bDeleteNeeded = false;
         InternalType* pIT = (*_pArgsIn)[i];
         Double *pCurrentArg = NULL;
 
@@ -485,13 +484,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 return 0;
             }
 
-            if (pCurrentArg->isIdentity())
-            {
-                //extract with eye() <=> :
-                pIT = new Colon();
-                bDeleteNeeded = true;
-            }
-            else if (pIT->isDeletable())
+            if (pIT->isDeletable())
             {
                 // Clone pIT when this ref is equal to zero
                 // will prevent double delete.
@@ -795,11 +788,6 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     break;
                 }
             }
-        }
-
-        if (bDeleteNeeded)
-        {
-            pIT->killMe();
         }
 
         if (pCurrentArg)
