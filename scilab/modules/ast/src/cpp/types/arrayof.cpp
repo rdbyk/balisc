@@ -1057,75 +1057,38 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
-    if (iSeqCount == 0)
+    if (iSeqCount <= 0 || getSize() == 0 /* a = {};a(1:2, 1:2) -> {} */)
     {
         delete[] piMaxDim;
         delete[] piCountDim;
-        //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
-        return createEmpty();
-    }
-
-    if (iSeqCount < 0)
-    {
-        delete[] piMaxDim;
-        delete[] piCountDim;
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        return NULL;
-    }
-
-    //a = {};a(1:2, 1:2) -> {}
-    if (getSize() == 0)
-    {
-        delete[] piMaxDim;
-        delete[] piCountDim;
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        return createEmpty();
+        return iSeqCount < 0 ? NULL : createEmpty();
     }
 
     if (iDims < m_iDims)
     {
-        for (int i = 0; i < iDims; i++)
-        {
-            int iDimToCheck = 0;
-            if (i == (iDims - 1))
-            {
-                iDimToCheck = getVarMaxDim(i, iDims);
-            }
-            else
-            {
-                iDimToCheck = m_piDims[i];
-            }
+        bool bInvalidIndex = false;
 
-            if (piMaxDim[i] > iDimToCheck)
+        int i = 0;
+        for ( ; i < iDims - 1; ++i)
+        {
+            if (piMaxDim[i] > m_piDims[i])
             {
-                delete[] piMaxDim;
-                delete[] piCountDim;
-                //free pArg content
-                cleanIndexesArguments(_pArgs, &pArg);
-                return NULL;
+                bInvalidIndex = true;
+                break;
             }
+        }
+
+        if (bInvalidIndex || piMaxDim[i] > getVarMaxDim(i, iDims))
+        {
+            delete[] piMaxDim;
+            delete[] piCountDim;
+            cleanIndexesArguments(_pArgs, &pArg);
+            return NULL;
         }
     }
     else
     {
-        if (iDims > m_iDims)
-        {
-            for (int i = m_iDims; i < iDims; i++)
-            {
-                if (piMaxDim[i] > 1)
-                {
-                    delete[] piMaxDim;
-                    delete[] piCountDim;
-                    //free pArg content
-                    cleanIndexesArguments(_pArgs, &pArg);
-                    return NULL;
-                }
-            }
-        }
-
         //check MaxDim
         for (int i = 0; i < m_iDims; i++)
         {
@@ -1133,13 +1096,24 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             {
                 delete[] piMaxDim;
                 delete[] piCountDim;
-                //free pArg content
                 cleanIndexesArguments(_pArgs, &pArg);
-                //exrtact must be in dimension limits
+                return NULL;
+            }
+        }
+
+        for (int i = m_iDims; i < iDims; i++)
+        {
+            if (piMaxDim[i] > 1)
+            {
+                delete[] piMaxDim;
+                delete[] piCountDim;
+                cleanIndexesArguments(_pArgs, &pArg);
                 return NULL;
             }
         }
     }
+
+    delete[] piMaxDim;
 
     // removing trailing dims of size 1
     while (iDims > 2 && piCountDim[iDims - 1] == 1)
@@ -1152,9 +1126,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
     {
         if (piCountDim[0] == 0)
         {
-            delete[] piMaxDim;
             delete[] piCountDim;
-            //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return createEmpty();
         }
@@ -1184,12 +1156,11 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
     }
     else
     {
-        //matrix
         pOut = createEmpty(iDims, piCountDim, m_pImgData != NULL);
     }
 
-    int* piIndex = new int[_pArgs->size()]();
-    int* piCoord = new int[_pArgs->size()];
+    int* piIndex = new int[(int)_pArgs->size()]();
+    int* piCoord = new int[(int)_pArgs->size()];
     int* piViewDims = new int[iDims];
 
     for (int i = 0; i < iDims; i++)
@@ -1202,8 +1173,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         //increment last dimension
         computeTuples(piCountDim, (int)_pArgs->size() - 1, piIndex);
 
-        //std::cout << "[";
-        for (int j = 0; j < (int)_pArgs->size(); j++)
+        for (int j = 0; j < (int)_pArgs->size(); ++j)
         {
             piCoord[j] = static_cast<int>(pArg[j]->getAs<Double>()->get(piIndex[j])) - 1;
 
@@ -1213,38 +1183,14 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
                 delete[] piIndex;
                 delete[] piCoord;
                 delete[] piViewDims;
-                delete[] piMaxDim;
                 delete[] piCountDim;
-
-                //free pArg content
                 cleanIndexesArguments(_pArgs, &pArg);
                 return NULL;
             }
         }
 
-        //std::cout << "]" << std::endl;
-
-        int iPos = 0;
-        //put vlaue in the new matrix
-        if ((int)_pArgs->size() < m_iDims)
-        {
-            //compute index based on viewed matrix
-            iPos = getIndexWithDims(piCoord, piViewDims, iDims);
-        }
-        else
-        {
-            //compute vector index
-            iPos = getIndex(piCoord);
-        }
-
-        //convert flat dimension to 0
-        for (int j = 0; j < iDims; j++)
-        {
-            if (piCountDim[j] == 1)
-            {
-                piCoord[j] = 0;
-            }
-        }
+        // put value in the new matrix
+        int iPos = (int)_pArgs->size() < m_iDims ? getIndexWithDims(piCoord, piViewDims, iDims) : getIndex(piCoord);
 
         pOut->set(i, get(iPos));
         if (m_pImgData != NULL)
@@ -1252,17 +1198,14 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             pOut->setImg(i, getImg(iPos));
         }
 
-
         piIndex[0]++;
     }
 
-    //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
 
     delete[] piIndex;
     delete[] piCoord;
     delete[] piViewDims;
-    delete[] piMaxDim;
     delete[] piCountDim;
 
     return pOut;
