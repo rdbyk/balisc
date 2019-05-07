@@ -218,6 +218,9 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     //only scalar can be used to ".=" operation
     if (iSeqCount != pSource->getSize() && pSource->isScalar() == false)
     {
+        delete[] piCountDim;
+        delete[] piMaxDim;
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
