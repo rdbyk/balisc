@@ -774,13 +774,11 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
             std::sort(pIndexesVect.begin(),pIndexesVect.end());
             pIndexesVect.erase(std::unique(pIndexesVect.begin(), pIndexesVect.end()), pIndexesVect.end());
             //remove index > iDimToCheck to allow a[10, 10](1, 1:100) = [] and a[10, 10]([1 5 20], :) = []
-            auto lastUnique = std::find(pIndexesVect.begin(), pIndexesVect.end(), iDimToCheck);
-            if (lastUnique != pIndexesVect.end())
-            {
-                pIndexesVect.erase(++lastUnique, pIndexesVect.end());
-            }
+            auto lastUnique = std::find_if(pIndexesVect.begin(), pIndexesVect.end(),
+                                           [&iDimToCheck](int idx) { return idx > iDimToCheck; });
+            pIndexesVect.erase(lastUnique, pIndexesVect.end());
 
-            if (pIndexesVect.size() != iDimToCheck || pIndexesVect.front() != 1 || pIndexesVect.back() != iDimToCheck)
+            if (pIndexesVect.size() != iDimToCheck)
             {
                 if (iToDelIndex < 0)
                 {
@@ -789,7 +787,6 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
                 }
                 else
                 {
-                    //free pArg content
                     cleanIndexesArguments(_pArgs, &pArg);
                     return NULL;
                 }
@@ -802,33 +799,41 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     {
         int piDims[2] = {0,0};
         pOut = createEmpty(2,piDims,false);
+        cleanIndexesArguments(_pArgs, &pArg);
         return pOut;
     }
 
     // check for out of bounds indexes
-    int iKeepSize = viewDims[iToDelIndex];
-    if (toDelIndexVect.front() > iKeepSize)
+    if (toDelIndexVect.size() == 0)
     {
         // nothing to remove, thus ...
+        cleanIndexesArguments(_pArgs, &pArg);
         return this;
     }
 
-    int iNewDimSize = iKeepSize - toDelIndexVect.size();
+    int iOldDimSize = viewDims[iToDelIndex];
+    int iNewDimSize = iOldDimSize - toDelIndexVect.size();
 
-    int* piNewDims = new int[iDims];
-    for (int i = 0; i < iDims; i++)
+    // compute offsets for copying of data based on old dimensions
+    int iOffset1 = 1;
+    for (int i = 0; i < iToDelIndex; ++i)
     {
-        piNewDims[i] = viewDims[i];
+        iOffset1 *= viewDims[i];
     }
-    piNewDims[iToDelIndex] = iNewDimSize;
+    int iOffset2 = iOldDimSize * iOffset1;
 
-    int iOrigDims = iDims;
+    int iNbChunks = getSize() / iOffset2;
+
+    // use new dimensions for creation of result
+    viewDims[iToDelIndex] = iNewDimSize;
 
     // removing trailing dims of size 1
-    while (iDims > 2 && piNewDims[iDims - 1] == 1)
+    while (iDims > 2 && viewDims[iDims - 1] == 1)
     {
         --iDims;
     }
+
+    // create empty output variable with new dimensions
 
     if (iDims == 1)
     {
@@ -849,24 +854,14 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     }
     else
     {
-        pOut = createEmpty(iDims, piNewDims, m_pImgData != NULL);
+        pOut = createEmpty(iDims, viewDims.data(), m_pImgData != NULL);
     }
 
-    // find a way to copy existing data to new variable ...
+    // copy data to output variable
 
     // indexes to remove -> [ 0, toDelIndexVect, piViewDims[iToDelIndex]+1 ] to facilitate loop
     toDelIndexVect.insert(toDelIndexVect.begin(), 0);
-    toDelIndexVect.push_back(viewDims[iToDelIndex] + 1);
-
-    // Offsets
-    int iOffset1 = 1;
-    for (int i = 0; i < iToDelIndex; ++i)
-    {
-        iOffset1 *= viewDims[i];
-    }
-    int iOffset2 = viewDims[iToDelIndex] * iOffset1;
-
-    int iNbChunks = getSize()/iOffset2;
+    toDelIndexVect.push_back(iOldDimSize + 1);
 
     // fast algorithm (allowing in place removal if necessary)
     if (isNativeType())
@@ -902,16 +897,10 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
 
                 for (int i = iStart; i < iStart+iSize; i++, iDest++)
                 {
-                    pOut->set(iDest,get(i));
-                }
-
-                if (m_pImgData != NULL)
-                {
-                    iDest -= iSize;
-
-                    for (int i = iStart; i < iStart+iSize; i++, iDest++)
+                    pOut->set(iDest, get(i));
+                    if (m_pImgData != NULL)
                     {
-                        pOut->setImg(iDest,getImg(i));
+                        pOut->setImg(iDest, getImg(i));
                     }
                 }
 
@@ -920,11 +909,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
-    delete[] piNewDims;
-
-    //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
-
     return pOut;
 }
 
