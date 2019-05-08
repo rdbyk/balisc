@@ -1,7 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -75,7 +75,7 @@ if isfield( s , "txt"  ) then pause, end
 if isfield( s , "num"  ) then pause, end
 if isfield( s , "pol"  ) then pause, end
 if or(isfield( s , ["pol", "num", "txt"]  )) then pause, end
-if or(size(s) <> [1 1]) then pause, end
+if or(size(s) <> [0 0]) then pause, end
 
 z.y = 42;
 y.o = z;
@@ -96,4 +96,4 @@ if ~isfield(z,"b") then pause, end
 if ~isfield(z.b,"c") then pause, end
 
 z(1).x.x = 1;
-if execstr('z(42).x','errcatch')<>999 then pause,end
+if execstr('z(42).x','errcatch')<>2 then pause,end

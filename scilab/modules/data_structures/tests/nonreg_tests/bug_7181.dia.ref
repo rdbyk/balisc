@@ -1,4 +1,4 @@
 s = struct("txt","Hello","num",%pi,"pol",%z^2+1);
 rmfield(["txt","num","pol"],s);
 disp(s)
-1x1 struct array with no fields.
+  0x0 struct array with no field.
