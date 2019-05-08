@@ -48,7 +48,7 @@ if isfield( s , "txt"  ) then bugmes();quit;end
 if isfield( s , "num"  ) then bugmes();quit;end
 if isfield( s , "pol"  ) then bugmes();quit;end
 if or(isfield( s , ["pol", "num", "txt"]  )) then bugmes();quit;end
-if or(size(s) <> [1 1]) then bugmes();quit;end
+if or(size(s) <> [0 0]) then bugmes();quit;end
 z.y = 42;
 y.o = z;
 y.d.e = z;
@@ -66,4 +66,4 @@ if z.b.c.z <> 21 then bugmes();quit;end
 if ~isfield(z,"b") then bugmes();quit;end
 if ~isfield(z.b,"c") then bugmes();quit;end
 z(1).x.x = 1;
-if execstr('z(42).x','errcatch')<>999 then bugmes();quit;end
+if execstr('z(42).x','errcatch')<>2 then bugmes();quit;end
