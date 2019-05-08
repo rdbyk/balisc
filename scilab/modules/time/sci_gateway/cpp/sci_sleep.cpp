@@ -61,7 +61,7 @@ Function::ReturnValue sci_sleep(typed_list &in, int _iRetCount, typed_list &out)
     if (d->getFirst() <= 0.0)
     {
         
-        Scierror(110, _("positive real"));
+        Scierror(110, 1, _("positive real"));
         return Function::Error;
     }
 
