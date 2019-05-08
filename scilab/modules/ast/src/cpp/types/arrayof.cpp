@@ -800,10 +800,8 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     // overall removal x(:,...,:) = []
     if (iToDelIndex < 0)
     {
-        int piDims[2] = {0,0};
-        pOut = createEmpty(2,piDims,false);
         cleanIndexesArguments(_pArgs, &pArg);
-        return pOut;
+        return createEmpty();
     }
 
     // check for out of bounds indexes
