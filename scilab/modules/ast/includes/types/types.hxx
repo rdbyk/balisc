@@ -35,12 +35,16 @@ namespace types
 class GenericType : public InternalType
 {
 protected :
-    int                         m_iRows;
-    int                         m_iCols;
+    union {
+        struct {
+            int m_iRows;
+            int m_iCols;
+        };
+        int m_piDims[MAX_DIMS];
+    };
     int                         m_iSize;
-    int                         m_iSizeMax;
-    int                         m_piDims[MAX_DIMS];
     int                         m_iDims;
+    int                         m_iSizeMax;
 
     GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0), m_iSizeMax(0), m_iDims(0) {}
 

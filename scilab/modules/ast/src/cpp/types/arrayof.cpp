@@ -1248,8 +1248,6 @@ ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
         }
     }
 
-    m_iRows = m_piDims[0];
-    m_iCols = m_piDims[1];
     m_iSize = iNewSize;
     m_iDims = _iDims;
 
@@ -1481,8 +1479,6 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
     }
 
     m_iDims = _iDims;
-    m_iRows = m_piDims[0];
-    m_iCols = m_piDims[1];
     m_iSize = iNewSize;
     return this;
 }

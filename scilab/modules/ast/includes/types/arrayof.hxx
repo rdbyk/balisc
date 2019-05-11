@@ -153,8 +153,6 @@ protected :
         }
 
         m_iSizeMax = m_iSize;
-        m_iRows = m_piDims[0];
-        m_iCols = m_piDims[1];
     }
 
     virtual T               getNullValue() = 0;

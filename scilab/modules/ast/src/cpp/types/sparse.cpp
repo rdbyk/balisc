@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -370,8 +370,6 @@ Sparse::Sparse(Sparse const& src)
     m_iCols = const_cast<Sparse*>(&src)->getCols();
     m_iSize = m_iRows * m_iCols;
     m_iDims = 2;
-    m_piDims[0] = m_iRows;
-    m_piDims[1] = m_iCols;
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -385,8 +383,6 @@ Sparse::Sparse(int _iRows, int _iCols, bool cplx)
     m_iCols = _iCols;
     m_iSize = _iRows * _iCols;
     m_iDims = 2;
-    m_piDims[0] = _iRows;
-    m_piDims[1] = _iCols;
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -445,9 +441,6 @@ Sparse::Sparse(RealSparse_t* realSp, CplxSparse_t* cplxSp) : matrixReal(realSp),
     }
     m_iSize = m_iCols * m_iRows;
     m_iDims = 2;
-    m_piDims[0] = m_iRows;
-    m_piDims[1] = m_iCols;
-
     finalize();
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -512,9 +505,6 @@ Sparse::Sparse(int rows, int cols, int nonzeros, int* inner, int* outer, double*
     m_iRows = rows;
     m_iSize = cols * rows;
     m_iDims = 2;
-    m_piDims[0] = m_iRows;
-    m_piDims[1] = m_iCols;
-
     matrixCplx ? matrixCplx->resizeNonZeros(nonzeros) : matrixReal->resizeNonZeros(nonzeros);
     //finalize();
 }
@@ -534,9 +524,6 @@ void Sparse::create(int rows, int cols, Double SPARSE_CONST& src, DestIter o, st
     m_iRows = rows;
     m_iSize = cols * rows;
     m_iDims = 2;
-    m_piDims[0] = m_iRows;
-    m_piDims[1] = m_iCols;
-
     if (src.isComplex())
     {
         matrixReal = 0;
@@ -602,8 +589,6 @@ void Sparse::create2(int rows, int cols, Double SPARSE_CONST& src, Double SPARSE
 
     m_iSize = m_iCols * m_iRows;
     m_iDims = 2;
-    m_piDims[0] = m_iRows;
-    m_piDims[1] = m_iCols;
     finalize();
 }
 
@@ -902,9 +887,6 @@ Sparse* Sparse::resize(int _iNewRows, int _iNewCols)
         m_iRows = _iNewRows;
         m_iCols = _iNewCols;
         m_iSize = _iNewRows * _iNewCols;
-        m_piDims[0] = m_iRows;
-        m_piDims[1] = m_iCols;
-
         res = this;
     }
     catch (...)
@@ -3381,9 +3363,6 @@ Sparse* Sparse::reshape(int _iNewRows, int _iNewCols)
         m_iSize = _iNewRows * _iNewCols;
 
         m_iDims = 2;
-        m_piDims[0] = m_iRows;
-        m_piDims[1] = m_iCols;
-
         finalize();
 
         res = this;
@@ -3460,8 +3439,6 @@ SparseBool::SparseBool(SparseBool const& src) : matrixBool(new BoolSparse_t(*src
     m_iRows = const_cast<SparseBool*>(&src)->getRows();
     m_iCols = const_cast<SparseBool*>(&src)->getCols();
     m_iSize = m_iRows * m_iCols;
-    m_piDims[0] = m_iRows;
-    m_piDims[1] = m_iCols;
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -3473,8 +3450,6 @@ SparseBool::SparseBool(BoolSparse_t* src) : matrixBool(src)
     m_iCols = static_cast<int>(src->cols());
     m_iSize = m_iRows * m_iCols;
     m_iDims = 2;
-    m_piDims[0] = m_iRows;
-    m_piDims[1] = m_iCols;
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -3505,9 +3480,6 @@ SparseBool::SparseBool(int rows, int cols, int trues, int* inner, int* outer)
     m_iRows = rows;
     m_iSize = cols * rows;
     m_iDims = 2;
-    m_piDims[0] = m_iRows;
-    m_piDims[1] = m_iCols;
-
     matrixBool->resizeNonZeros(trues);
 }
 
@@ -3540,8 +3512,6 @@ void SparseBool::create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPAR
     m_iCols = static_cast<int>(matrixBool->cols());
     m_iSize = cols * rows;
     m_iDims = 2;
-    m_piDims[0] = m_iRows;
-    m_piDims[1] = m_iCols;
     finalize();
 }
 
@@ -3602,9 +3572,6 @@ SparseBool* SparseBool::resize(int _iNewRows, int _iNewCols)
         m_iRows = _iNewRows;
         m_iCols = _iNewCols;
         m_iSize = _iNewRows * _iNewCols;
-        m_piDims[0] = m_iRows;
-        m_piDims[1] = m_iCols;
-
         res = this;
     }
     catch (...)
@@ -4755,9 +4722,6 @@ SparseBool* SparseBool::reshape(int _iNewRows, int _iNewCols)
         m_iSize = _iNewRows * _iNewCols;
 
         m_iDims = 2;
-        m_piDims[0] = m_iRows;
-        m_piDims[1] = m_iCols;
-
         finalize();
 
         res = this;
