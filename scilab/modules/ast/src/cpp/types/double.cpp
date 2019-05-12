@@ -959,7 +959,7 @@ void Double::append(int _iRows, int _iCols, InternalType* _poSource)
     int iSize = iRows * iCols;
 
     //insert without resize
-    if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
+    if (iRows + _iRows > getRows() || iCols + _iCols > getCols())
     {
         return;
     }

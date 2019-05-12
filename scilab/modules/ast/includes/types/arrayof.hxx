@@ -362,7 +362,7 @@ public :
     {
         if (m_iDims == 2)
         {
-            return _piIndexes[0] + _piIndexes[1] * m_iRows;
+            return _piIndexes[0] + _piIndexes[1] * getRows();
         }
         else
         {
@@ -384,20 +384,20 @@ public :
     ArrayOf<T>* getColumnValues(int _iPos)
     {
         ArrayOf<T>* pOut = NULL;
-        if (_iPos < m_iCols)
+        if (_iPos < getCols())
         {
-            int piDims[2] = {m_iRows, 1};
+            int piDims[2] = {getRows(), 1};
             pOut = createEmpty(2, piDims, m_pImgData != NULL);
             T* pReal    = pOut->get();
             T* pImg     = pOut->getImg();
-            for (int i = 0 ; i < m_iRows ; i++)
+            for (int i = 0 ; i < getRows() ; i++)
             {
                 pReal[i] = copyValue(get(i, _iPos));
             }
 
             if (m_pImgData != NULL)
             {
-                for (int i = 0 ; i < m_iRows ; i++)
+                for (int i = 0 ; i < getRows() ; i++)
                 {
                     pImg[i] = copyValue(getImg(i, _iPos));
                 }

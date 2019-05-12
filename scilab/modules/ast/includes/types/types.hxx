@@ -79,12 +79,12 @@ public :
     }
 
     /*commun functions*/
-    int getCols()
+    int getCols() const
     {
         return m_iCols;
     }
 
-    int getRows()
+    int getRows() const
     {
         return m_iRows;
     }
@@ -94,7 +94,7 @@ public :
         return m_iSize;
     }
 
-    int getDims()
+    int getDims() const
     {
         return m_iDims;
     }

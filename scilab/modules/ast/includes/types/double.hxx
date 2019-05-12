@@ -181,11 +181,11 @@ public :
 
     inline ScilabId             getId(void)
     {
-        if (m_iRows == m_iCols)
+        if (getRows() == getCols())
         {
             if (m_iDims == 2)
             {
-                switch (m_iRows)
+                switch (getRows())
                 {
                     case -1:
                         return isComplex() ? IdIdentityComplex : IdIdentity;
@@ -231,7 +231,7 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(m_iCols, m_iRows, true);
+            Double * pReturn = new Double(getCols(), getRows(), true);
             out = pReturn;
 
             Transposition::conjugate(m_iSize, m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
@@ -272,15 +272,15 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(m_iCols, m_iRows, isComplex());
+            Double * pReturn = new Double(getCols(), getRows(), isComplex());
             out = pReturn;
             if (isComplex())
             {
-                Transposition::adjoint(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+                Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
             }
             else
             {
-                Transposition::adjoint(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData);
+                Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
             }
 
             return true;
@@ -305,15 +305,15 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(m_iCols, m_iRows, isComplex());
+            Double * pReturn = new Double(getCols(), getRows(), isComplex());
             out = pReturn;
             if (isComplex())
             {
-                Transposition::transpose(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+                Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
             }
             else
             {
-                Transposition::transpose(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData);
+                Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
             }
 
             return true;
