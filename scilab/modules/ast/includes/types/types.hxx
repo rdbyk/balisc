@@ -79,27 +79,27 @@ public :
     }
 
     /*commun functions*/
-    virtual int                  getCols()
+    int getCols()
     {
         return m_iCols;
     }
 
-    virtual int                  getRows()
+    int getRows()
     {
         return m_iRows;
     }
 
-    virtual int                  getSize() const
+    int getSize() const
     {
         return m_iSize;
     }
 
-    virtual int                  getDims()
+    int getDims()
     {
         return m_iDims;
     }
 
-    virtual int*                 getDimsArray()
+    int* getDimsArray()
     {
         return m_piDims;
     }
