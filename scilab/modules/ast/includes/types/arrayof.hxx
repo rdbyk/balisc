@@ -87,10 +87,8 @@ protected :
         //eye detection ^^
         if (m_iDims == 2 && _piDims[0] == -1 && _piDims[1] == -1)
         {
-            m_iDims = 2;
-            m_piDims[0] = -1;
-            m_piDims[1] = -1;
-            m_iSize = 1;
+            m_iRows = -1;
+            m_iCols = -1;
         }
         else
         {
@@ -100,8 +98,8 @@ protected :
                 if (_piDims[i] <= 0)
                 {
                     m_iDims = 2;
-                    m_piDims[0] = 0;
-                    m_piDims[1] = 0;
+                    m_iRows = 0;
+                    m_iCols = 0;
                     m_iSize = 0;
                     break;
                 }
