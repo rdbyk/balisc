@@ -342,23 +342,29 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
     bool bComplex1  = _pPoly->isComplex();
     bool bScalar1   = _pPoly->isScalar();
     double* bImg    = _pDouble->getImg();
-    bool bNumericallyComplex1 = _pDouble->isNumericallyComplex();
-
-    if (!isDoubleFinite(_pDouble))
-    {
-        return 2;
-    }
-
-    if (!bNumericallyComplex1)
-    {
-        return 2;
-    }
 
     if (_pDouble->isEmpty())
     {
         //p ** []
         *_pOut = Double::Empty();
         return 0;
+    }
+
+    if (!isDoubleFinite(_pDouble))
+    {
+        return 2;
+    }
+
+    // is exponent "really" complex?
+    if (bImg)
+    {
+        for (int i = 0; i < _pDouble->getSize(); i++)
+        {
+            if (bImg[i] != 0.0)
+            {
+                return 2;
+            }
+        }
     }
 
     if (bScalar1)
