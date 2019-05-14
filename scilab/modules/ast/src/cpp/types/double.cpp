@@ -188,10 +188,7 @@ bool Double::isEmpty()
 
 Double::~Double()
 {
-    if (isDeletable() == true)
-    {
-        deleteAll();
-    }
+    deleteAll();
 #ifndef NDEBUG
     Inspector::removeItem(this);
 #endif

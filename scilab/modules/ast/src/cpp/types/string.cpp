@@ -36,10 +36,7 @@ namespace types
 {
 String::~String()
 {
-    if (isDeletable() == true)
-    {
-        deleteAll();
-    }
+    deleteAll();
 #ifndef NDEBUG
     Inspector::removeItem(this);
 #endif

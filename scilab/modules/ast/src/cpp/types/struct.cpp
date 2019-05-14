@@ -73,20 +73,17 @@ Struct::Struct(int _iDims, const int* _piDims)
 
 Struct::~Struct()
 {
-    if (isDeletable() == true)
+    for (int i = 0 ; i < m_iSizeMax ; i++)
     {
-        for (int i = 0 ; i < m_iSizeMax ; i++)
+        SingleStruct *pStr = m_pRealData[i];
+        if (pStr)
         {
-            SingleStruct *pStr = m_pRealData[i];
-            if (pStr)
-            {
-                pStr->DecreaseRef();
-                pStr->killMe();
-            }
+            pStr->DecreaseRef();
+            pStr->killMe();
         }
-
-        delete[] m_pRealData;
     }
+
+    delete[] m_pRealData;
 #ifndef NDEBUG
     Inspector::removeItem(this);
 #endif

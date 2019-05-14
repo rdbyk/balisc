@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,15 +48,13 @@ List::List() : Container()
 
 List::~List()
 {
-    if (isDeletable() == true)
+    for (auto data : *m_plData)
     {
-        for (auto data : *m_plData)
-        {
-            data->DecreaseRef();
-            data->killMe();
-        }
-        delete m_plData;
+        data->DecreaseRef();
+        data->killMe();
     }
+
+    delete m_plData;
 #ifndef NDEBUG
     Inspector::removeItem(this);
 #endif

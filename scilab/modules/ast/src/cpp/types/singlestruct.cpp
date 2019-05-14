@@ -33,13 +33,10 @@ SingleStruct::SingleStruct()
 
 SingleStruct::~SingleStruct()
 {
-    if (isDeletable() == true)
+    for (auto data : m_Data)
     {
-        for (auto data : m_Data)
-        {
-            data->DecreaseRef();
-            data->killMe();
-        }
+        data->DecreaseRef();
+        data->killMe();
     }
 #ifndef NDEBUG
     Inspector::removeItem(this);

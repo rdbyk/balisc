@@ -48,15 +48,12 @@ namespace types
 {
 ImplicitList::~ImplicitList()
 {
-    if (isDeletable() == true)
-    {
-        m_poStart->DecreaseRef();
-        m_poStart->killMe();
-        m_poStep->DecreaseRef();
-        m_poStep->killMe();
-        m_poEnd->DecreaseRef();
-        m_poEnd->killMe();
-    }
+    m_poStart->DecreaseRef();
+    m_poStart->killMe();
+    m_poStep->DecreaseRef();
+    m_poStep->killMe();
+    m_poEnd->DecreaseRef();
+    m_poEnd->killMe();
 #ifndef NDEBUG
     Inspector::removeItem(this);
 #endif
