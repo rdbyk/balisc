@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -317,10 +317,7 @@ void Double::setInt(int* _piReal)
 
 void Double::setZeros()
 {
-    if (m_pRealData != NULL)
-    {
-        memset(m_pRealData, 0x00, m_iSize * sizeof(double));
-    }
+    memset(m_pRealData, 0x00, m_iSize * sizeof(double));
 
     if (m_pImgData != NULL)
     {
@@ -330,10 +327,7 @@ void Double::setZeros()
 
 void Double::setOnes()
 {
-    if (m_pRealData != NULL)
-    {
-        std::fill(m_pRealData, m_pRealData + m_iSize, 1);
-    }
+    std::fill(m_pRealData, m_pRealData + m_iSize, 1);
 
     if (m_pImgData != NULL)
     {
