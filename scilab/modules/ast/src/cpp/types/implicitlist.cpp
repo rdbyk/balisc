@@ -19,6 +19,7 @@
 #include "polynom.hxx"
 #include "implicitlist.hxx"
 #include "int.hxx"
+#include "listundefined.hxx"
 #include "configvariable.hxx"
 #include "scilabWrite.hxx"
 #include "type_traits.hxx"
@@ -49,23 +50,12 @@ ImplicitList::~ImplicitList()
 {
     if (isDeletable() == true)
     {
-        if (m_poStart)
-        {
-            m_poStart->DecreaseRef();
-            m_poStart->killMe();
-        }
-
-        if (m_poStep)
-        {
-            m_poStep->DecreaseRef();
-            m_poStep->killMe();
-        }
-
-        if (m_poEnd)
-        {
-            m_poEnd->DecreaseRef();
-            m_poEnd->killMe();
-        }
+        m_poStart->DecreaseRef();
+        m_poStart->killMe();
+        m_poStep->DecreaseRef();
+        m_poStep->killMe();
+        m_poEnd->DecreaseRef();
+        m_poEnd->killMe();
     }
 #ifndef NDEBUG
     Inspector::removeItem(this);
@@ -77,15 +67,18 @@ ImplicitList::ImplicitList()
     m_iSize     = -1;
     m_eOutType  = ScilabGeneric;
     m_bComputed = false;
-    m_poStart   = NULL;
-    m_poStep    = NULL;
-    m_poEnd     = NULL;
+    m_poStart = new ListUndefined();
+    m_poStart->IncreaseRef();
+    m_poStep = m_poStart;
+    m_poStep->IncreaseRef();
+    m_poEnd = m_poStep;
+    m_poEnd->IncreaseRef();
     m_pDblStart = NULL;
     m_pDblStep  = NULL;
     m_pDblEnd   = NULL;
-    m_eStartType = ScilabNull;
-    m_eStepType = ScilabNull;
-    m_eEndType = ScilabNull;
+    m_eStartType = ScilabListUndefinedOperation;
+    m_eStepType = ScilabListUndefinedOperation;
+    m_eEndType = ScilabListUndefinedOperation;
 
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -101,25 +94,16 @@ ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, Intern
     m_pDblEnd   = NULL;
 
     m_poStart = _poStart;
-    if (m_poStart)
-    {
-        m_poStart->IncreaseRef();
-        m_eStartType = m_poStart->getType();
-    }
+    m_poStart->IncreaseRef();
+    m_eStartType = m_poStart->getType();
 
     m_poStep = _poStep;
-    if (m_poStep)
-    {
-        m_poStep->IncreaseRef();
-        m_eStepType = m_poStep->getType();
-    }
+    m_poStep->IncreaseRef();
+    m_eStepType = m_poStep->getType();
 
     m_poEnd = _poEnd;
-    if (m_poEnd)
-    {
-        m_poEnd->IncreaseRef();
-        m_eEndType = m_poEnd->getType();
-    }
+    m_poEnd->IncreaseRef();
+    m_eEndType = m_poEnd->getType();
 
     m_bComputed = false;
 
@@ -152,55 +136,32 @@ InternalType::ScilabType ImplicitList::getEndType()
 
 void ImplicitList::setStart(InternalType *_poIT)
 {
-    if (m_poStart)
-    {
-        //clear previous value
-        m_poStart->DecreaseRef();
-        m_poStart->killMe();
-    }
-
+    m_poStart->DecreaseRef();
+    m_poStart->killMe();
     m_poStart = _poIT;
-    if (m_poStart != NULL)
-    {
-        m_poStart->IncreaseRef();
-        m_eStartType = m_poStart->getType();
-    }
+    m_poStart->IncreaseRef();
+    m_eStartType = m_poStart->getType();
     m_bComputed = false;
 }
 
 void ImplicitList::setStep(InternalType *_poIT)
 {
-    if (m_poStep)
-    {
-        //clear previous value
-        m_poStep->DecreaseRef();
-        m_poStep->killMe();
-    }
-
+    m_poStep->DecreaseRef();
+    m_poStep->killMe();
     m_poStep = _poIT;
-    if (m_poStep != NULL)
-    {
-        m_poStep->IncreaseRef();
-        m_eStepType = m_poStep->getType();
-    }
+    m_poStep->IncreaseRef();
+    m_eStepType = m_poStep->getType();
     m_bComputed = false;
 }
 
 void ImplicitList::setEnd(InternalType* _poIT)
 {
-    if (m_poEnd)
-    {
-        //clear previous value
-        m_poEnd->DecreaseRef();
-        m_poEnd->killMe();
-    }
 
+    m_poEnd->DecreaseRef();
+    m_poEnd->killMe();
     m_poEnd = _poIT;
-    if (m_poEnd != NULL)
-    {
-        m_poEnd->IncreaseRef();
-        m_eEndType = m_poEnd->getType();
-    }
+    m_poEnd->IncreaseRef();
+    m_eEndType = m_poEnd->getType();
     m_bComputed = false;
 }
 
