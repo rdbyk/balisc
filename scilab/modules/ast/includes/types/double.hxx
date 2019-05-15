@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -81,21 +81,6 @@ public :
     bool isComplex()
     {
         return (m_pImgData != NULL) || isViewAsZComplex();
-    }
-
-    inline bool isNumericallyComplex(double tolerance = 0)
-    {
-        if (isComplex())
-        {
-            for (int i = 0; i < m_iSize; i++)
-            {
-                if (std::abs(m_pImgData[i]) > tolerance)
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     bool isTrue();
@@ -181,11 +166,11 @@ public :
 
     inline ScilabId             getId(void)
     {
-        if (m_iRows == m_iCols)
+        if (getRows() == getCols())
         {
             if (m_iDims == 2)
             {
-                switch (m_iRows)
+                switch (getRows())
                 {
                     case -1:
                         return isComplex() ? IdIdentityComplex : IdIdentity;
@@ -231,7 +216,7 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(m_iCols, m_iRows, true);
+            Double * pReturn = new Double(getCols(), getRows(), true);
             out = pReturn;
 
             Transposition::conjugate(m_iSize, m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
@@ -272,15 +257,15 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(m_iCols, m_iRows, isComplex());
+            Double * pReturn = new Double(getCols(), getRows(), isComplex());
             out = pReturn;
             if (isComplex())
             {
-                Transposition::adjoint(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+                Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
             }
             else
             {
-                Transposition::adjoint(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData);
+                Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
             }
 
             return true;
@@ -305,15 +290,15 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(m_iCols, m_iRows, isComplex());
+            Double * pReturn = new Double(getCols(), getRows(), isComplex());
             out = pReturn;
             if (isComplex())
             {
-                Transposition::transpose(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+                Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
             }
             else
             {
-                Transposition::transpose(m_iRows, m_iCols, m_pRealData, pReturn->m_pRealData);
+                Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
             }
 
             return true;

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -188,10 +188,7 @@ bool Double::isEmpty()
 
 Double::~Double()
 {
-    if (isDeletable() == true)
-    {
-        deleteAll();
-    }
+    deleteAll();
 #ifndef NDEBUG
     Inspector::removeItem(this);
 #endif
@@ -220,8 +217,6 @@ Double::Double(int _iRows, int _iCols, bool _bComplex, bool _bZComplex)
 
 Double::Double(double _dblReal)
 {
-    m_piDims[0] = 1;
-    m_piDims[1] = 1;
     m_iDims = 2;
     m_iRows = 1;
     m_iCols = 1;
@@ -231,11 +226,6 @@ Double::Double(double _dblReal)
     setViewAsInteger(false);
     setViewAsZComplex(false);
     m_pRealData[0] = _dblReal;
-
-    //      int piDims[2] = {1, 1};
-    //double *pdblVal;
-    //create(piDims, 2, &pdblVal, NULL);
-    //pdblVal[0] = _dblReal;
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -243,15 +233,17 @@ Double::Double(double _dblReal)
 
 Double::Double(double _dblReal, double _dblImg)
 {
-    static int piDims[2] = {1, 1};
-    double *pdblR;
-    double *pdblI;
+    m_iDims = 2;
+    m_iRows = 1;
+    m_iCols = 1;
+    m_iSize = 1;
+    m_iSizeMax = m_iSize;
+    m_pRealData = new double[1];
+    m_pImgData = new double[1];
     setViewAsInteger(false);
     setViewAsZComplex(false);
-    create(piDims, 2, &pdblR, &pdblI);
-
-    pdblR[0] = _dblReal;
-    pdblI[0] = _dblImg;
+    m_pRealData[0] = _dblReal;
+    m_pImgData[0] = _dblImg;
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -322,10 +314,7 @@ void Double::setInt(int* _piReal)
 
 void Double::setZeros()
 {
-    if (m_pRealData != NULL)
-    {
-        memset(m_pRealData, 0x00, m_iSize * sizeof(double));
-    }
+    memset(m_pRealData, 0x00, m_iSize * sizeof(double));
 
     if (m_pImgData != NULL)
     {
@@ -335,10 +324,7 @@ void Double::setZeros()
 
 void Double::setOnes()
 {
-    if (m_pRealData != NULL)
-    {
-        std::fill(m_pRealData, m_pRealData + m_iSize, 1);
-    }
+    std::fill(m_pRealData, m_pRealData + m_iSize, 1);
 
     if (m_pImgData != NULL)
     {
@@ -959,7 +945,7 @@ void Double::append(int _iRows, int _iCols, InternalType* _poSource)
     int iSize = iRows * iCols;
 
     //insert without resize
-    if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
+    if (iRows + _iRows > getRows() || iCols + _iCols > getCols())
     {
         return;
     }

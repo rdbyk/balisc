@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
- * Copyright Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -86,13 +86,13 @@ struct Sparse : GenericType
     void set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
     void set(int _iIndex, double _dblReal, bool _bFinalize = true)
     {
-        set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal, _bFinalize);
+        set(_iIndex % getRows(), _iIndex / getRows(), _dblReal, _bFinalize);
     }
 
     void set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
     void set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
     {
-        set(_iIndex % m_iRows, _iIndex / m_iRows, v, _bFinalize);
+        set(_iIndex % getRows(), _iIndex / getRows(), v, _bFinalize);
     }
     /*
       set non zero values to 1.
@@ -103,7 +103,7 @@ struct Sparse : GenericType
     double getReal(int r, int c) const;
     double getReal(int _iIndex) const
     {
-        return getReal(_iIndex % m_iRows, _iIndex / m_iRows);
+        return getReal(_iIndex % getRows(), _iIndex / getRows());
     }
 
     double* get();
@@ -111,7 +111,7 @@ struct Sparse : GenericType
     double get(int r, int c) const;
     double get(int _iIndex) const
     {
-        return get(_iIndex % m_iRows, _iIndex / m_iRows);
+        return get(_iIndex % getRows(), _iIndex / getRows());
     }
 
     std::complex<double>* getImg();
@@ -119,7 +119,7 @@ struct Sparse : GenericType
     std::complex<double> getImg(int r, int c) const;
     std::complex<double> getImg(int _iIndex) const
     {
-        return getImg(_iIndex % m_iRows, _iIndex / m_iRows);
+        return getImg(_iIndex % getRows(), _iIndex / getRows());
     }
 
     /* return true if matrix contains complex numbers, false otherwise.
@@ -620,13 +620,13 @@ struct SparseBool : GenericType
     bool get(int r, int c) SPARSE_CONST;
     bool get(int _iIndex) SPARSE_CONST
     {
-        return get(_iIndex % m_iRows, _iIndex / m_iRows);
+        return get(_iIndex % getRows(), _iIndex / getRows());
     }
 
     void set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
     void set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
     {
-        set(_iIndex % m_iRows, _iIndex / m_iRows, b, _bFinalize);
+        set(_iIndex % getRows(), _iIndex / getRows(), b, _bFinalize);
     }
 
     void fill(Bool& dest, int r = 0, int c = 0) SPARSE_CONST;

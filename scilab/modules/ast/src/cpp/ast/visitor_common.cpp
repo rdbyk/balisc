@@ -1652,24 +1652,14 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
     }
 
     // first extract implicit list
-    switch (_pInsert->getType())
+    if (_pInsert->isImplicitList())
     {
-        case types::InternalType::ScilabColon:
-
-            pIL = types::Double::Identity(-1, -1);
+        pIL = _pInsert->getAs<types::ImplicitList>()->extractFullMatrix();
+        if (pIL && pIL->isDeletable())
+        {
             _pInsert->killMe();
             _pInsert = pIL;
-            break;
-
-        case types::InternalType::ScilabImplicitList:
-
-            pIL = _pInsert->getAs<types::ImplicitList>()->extractFullMatrix();
-            if (pIL && pIL->isDeletable())
-            {
-                _pInsert->killMe();
-                _pInsert = pIL;
-            }
-            break;
+        }
     }
 
     bool bInsertIsEmpty =_pInsert->isDouble() && _pInsert->getAs<types::Double>()->isEmpty();

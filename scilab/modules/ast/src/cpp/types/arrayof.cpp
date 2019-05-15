@@ -684,7 +684,7 @@ void ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     int iCols = pGT->getCols();
 
     //insert without resize
-    if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
+    if (iRows + _iRows > getRows() || iCols + _iCols > getCols())
     {
         return;
     }
@@ -839,7 +839,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     if (iDims == 1)
     {
         //two cases, depends of original matrix/vector
-        if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
+        if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && getRows() == 1 && getCols() != 1)
         {
             //special case for row vector
             int piRealDim[2] = {1, iNewDimSize};
@@ -967,7 +967,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             return NULL;
         }
 
-        if (m_iRows == 1 && !isForceColVector)
+        if (getRows() == 1 && !isForceColVector)
         {
             // row vector
             int dims[2] = {1, size};
@@ -1134,7 +1134,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         else
         {
             //two cases, depends of original matrix/vector
-            if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[1] != 1 && m_piDims[0] == 1)
+            if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && getCols() != 1 && getRows() == 1)
             {
                 //special case for row vector
                 int piRealDim[2] = {1, piCountDim[0]};
