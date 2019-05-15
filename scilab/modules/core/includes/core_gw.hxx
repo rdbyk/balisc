@@ -87,6 +87,7 @@ CPP_GATEWAY_PROTOTYPE(sci_unprotect);
 CPP_GATEWAY_PROTOTYPE(sci_void);
 CPP_GATEWAY_PROTOTYPE(sci_fieldnames);
 CPP_GATEWAY_PROTOTYPE(sci_checkNamedArguments);
+CPP_GATEWAY_PROTOTYPE(sci_typecast);
 
 #ifndef NDEBUG
 CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItemCount);

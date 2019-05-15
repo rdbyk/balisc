@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2018 Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="typecast">
+    <refnamediv>
+        <refname>typecast</refname>
+        <refpurpose>reinterpret data of a variable</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            y = typecast(x, t)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+            <term>x</term>
+            <listitem>
+                <para>real, integer, or boolean matrix.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>t</term>
+            <listitem>
+                <para>string.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y</term>
+            <listitem>
+                <para>real, integer, or boolean vector.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Returns a new variable <term>y</term> with the same data in memory
+            as variable <term>x</term>, but interpreted as data of type <term>t</term>.
+        </para>
+        <para>
+            The reinterpretation is defined by a single string <term>t</term>, which must
+            be one of the following: <literal>bool</literal>, <literal>int8</literal>, ..., <literal>int64</literal>, 
+            <literal>uint8</literal>, ..., <literal>uint64</literal>, or <literal>double</literal>.
+        </para>
+        <para>
+            If <term>x</term> is a row vector or a scalar, then <term>y</term> will be a row vector, otherwise <term>y</term> will
+            be a column vector.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// reinterpret a double value 1.0 (8 bytes)
+// as a sequence of 8bit signed integer values
+// on a little-endian machine the expected result
+// is [0 0 0 0 0 0 -16 63]
+typecast(1.0, 'int8')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ascii">ascii</link>
+            </member>
+            <member>
+                <link linkend="iconvert">iconvert</link>
+            </member>
+            <member>
+                <link linkend="inttype">inttype</link>
+            </member>
+            <member>
+                <link linkend="double">double</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 2</revnumber>
+                <revremark>Function <function>typecast</function> was introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
