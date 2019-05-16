@@ -26,4 +26,6 @@ assert_checkequal(typecast(uint64(13830554455654793216),'uint8'),uint8([0 0 0 0 
 
 assert_checkequal(typecast(int8([0 0 0 0 0 0 -16 63]),'int8'),int8([0 0 0 0 0 0 -16 63]))
 
+assert_checkequal(typecast(typecast(int8([1,2;3,4])','int8'),'int8'),int8([1;2;3;4]))
+
 assert_checkequal(typecast([],'uint64'),[])
