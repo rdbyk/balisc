@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2019 Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="swapbytes">
+    <refnamediv>
+        <refname>swapbytes</refname>
+        <refpurpose>reverse byte order of variable data</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            y = swapbytes(x)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+            <term>x, y</term>
+            <listitem>
+                <para>real, complex, integer, or boolean matrix.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Returns the data of a variable <term>x</term> with reversed
+            (swapped) byte order in variable <term>y</term>.
+        </para>
+        <para>
+            This is known as conversion from <emphasis>little-endian</emphasis> to
+            <emphasis>big-endian</emphasis> byte order and vice versa.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// on a little-endian machine
+// 00000000 00000001 => 00000001 00000000
+//         1         =>        256
+swapbytes(int16(1))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="typecast">typecast</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 2</revnumber>
+                <revremark>Function <function>swapbytes</function> was introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
