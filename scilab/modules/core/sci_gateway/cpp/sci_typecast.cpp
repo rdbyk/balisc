@@ -108,15 +108,7 @@ Function::ReturnValue sci_typecast(typed_list &in, int _iRetCount, typed_list &o
         return Function::OK;
     }
 
-    InternalType::ScilabType out_type = found->second.first;
-    InternalType::ScilabType in_type = in[0]->getType();
-    
-    if (in_type == out_type)
-    {
-        out.push_back(in[0]);
-        return Function::OK;
-    }
-
+    // calculate and check size of output
     int out_bits_per_element = found->second.second;
     int in_bytes = bytes_of_data(in[0]);
     size_t in_bits = ((size_t)CHAR_BIT) * in_bytes;
@@ -127,12 +119,48 @@ Function::ReturnValue sci_typecast(typed_list &in, int _iRetCount, typed_list &o
         return Function::Error;
     }
 
-    if (in_bits / out_bits_per_element > INT_MAX)
+    size_t out_size = in_bits / out_bits_per_element;
+
+    if (out_size > INT_MAX)
     {
         Scierror(34);
         return Function::Error;
     }
+
+    // dimensions of output result
+    int out_rows;
+    int out_cols;
+
+    if (in[0]->getAs<GenericType>()->getDims() == 2 &&
+        in[0]->getAs<GenericType>()->getRows() == 1 &&
+        in[0]->getAs<GenericType>()->getCols() >= 1)
+    {
+        // row vector
+        out_rows = 1;
+        out_cols = out_size;
+    }
+    else
+    {
+        // column vector
+        out_rows = out_size;
+        out_cols = 1;
+    }
+
+    InternalType::ScilabType out_type = found->second.first;
+    InternalType::ScilabType in_type = in[0]->getType();
     
+    // if we need not to cast, then the output needs only a reshape
+    if (in_type == out_type)
+    {
+        // InternalType* result = in[0]->getRef() > 0 ? in[0]->clone() : in[0];
+        // FIXME: "reshape" uses the dreadful "checkRef" feature (cf. #137), which
+        // is Ok in this context, but things may change in the future ...
+        int dims[2] = {out_rows, out_cols};
+        InternalType* result = in[0]->getAs<GenericType>()->reshape(dims, 2);
+        out.push_back(result);
+        return Function::OK;
+    }
+
     // ptr to input data
     void* in_data = NULL;
 
@@ -173,25 +201,6 @@ Function::ReturnValue sci_typecast(typed_list &in, int _iRetCount, typed_list &o
             // unknown error
             Scierror(0);
             return Function::Error;
-    }
-
-    // dimensions of output result
-    int out_rows;
-    int out_cols;
-
-    if (in[0]->getAs<GenericType>()->getDims() == 2 &&
-        in[0]->getAs<GenericType>()->getRows() == 1 &&
-        in[0]->getAs<GenericType>()->getCols() >= 1)
-    {
-        // row vector
-        out_rows = 1;
-        out_cols = in_bits / out_bits_per_element;
-    }
-    else
-    {
-        // column vector
-        out_rows = in_bits / out_bits_per_element;
-        out_cols = 1;
     }
     
     // ptr to output data
