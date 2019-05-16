@@ -283,6 +283,7 @@ am__libscicore_la_SOURCES_DIST = sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/cpp/sci_fieldnames.cpp \
 	sci_gateway/cpp/sci_checkNamedArguments.cpp \
 	sci_gateway/cpp/sci_typecast.cpp \
+	sci_gateway/cpp/sci_swapbytes.cpp \
 	sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
 	sci_gateway/cpp/sci_inspectorGetItem.cpp \
 	sci_gateway/cpp/sci_inspectorGetItemCount.cpp \
@@ -353,7 +354,9 @@ am__objects_6 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_void.lo \
 	sci_gateway/cpp/libscicore_la-sci_fieldnames.lo \
 	sci_gateway/cpp/libscicore_la-sci_checkNamedArguments.lo \
-	sci_gateway/cpp/libscicore_la-sci_typecast.lo $(am__objects_5)
+	sci_gateway/cpp/libscicore_la-sci_typecast.lo \
+	sci_gateway/cpp/libscicore_la-sci_swapbytes.lo \
+	$(am__objects_5)
 am_libscicore_la_OBJECTS = $(am__objects_4) $(am__objects_6)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
 libscicore_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
@@ -845,7 +848,8 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_unprotect.cpp sci_gateway/cpp/sci_void.cpp \
 	sci_gateway/cpp/sci_fieldnames.cpp \
 	sci_gateway/cpp/sci_checkNamedArguments.cpp \
-	sci_gateway/cpp/sci_typecast.cpp $(am__append_1)
+	sci_gateway/cpp/sci_typecast.cpp \
+	sci_gateway/cpp/sci_swapbytes.cpp $(am__append_1)
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ -I$(top_srcdir)/modules/ast/includes/ast/ \
 	-I$(top_srcdir)/modules/ast/includes/exps/ \
@@ -1382,6 +1386,9 @@ sci_gateway/cpp/libscicore_la-sci_checkNamedArguments.lo:  \
 sci_gateway/cpp/libscicore_la-sci_typecast.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicore_la-sci_swapbytes.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicore_la-sci_inspectorDeleteUnreferencedItems.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1475,6 +1482,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_recursionlimit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_sciargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_struct.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_swapbytes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_tlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_type.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_typecast.Plo@am__quote@
@@ -2214,6 +2222,13 @@ sci_gateway/cpp/libscicore_la-sci_typecast.lo: sci_gateway/cpp/sci_typecast.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_typecast.cpp' object='sci_gateway/cpp/libscicore_la-sci_typecast.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_typecast.lo `test -f 'sci_gateway/cpp/sci_typecast.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_typecast.cpp
+
+sci_gateway/cpp/libscicore_la-sci_swapbytes.lo: sci_gateway/cpp/sci_swapbytes.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_swapbytes.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_swapbytes.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_swapbytes.lo `test -f 'sci_gateway/cpp/sci_swapbytes.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_swapbytes.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_swapbytes.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_swapbytes.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_swapbytes.cpp' object='sci_gateway/cpp/libscicore_la-sci_swapbytes.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_swapbytes.lo `test -f 'sci_gateway/cpp/sci_swapbytes.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_swapbytes.cpp
 
 sci_gateway/cpp/libscicore_la-sci_inspectorDeleteUnreferencedItems.lo: sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_inspectorDeleteUnreferencedItems.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_inspectorDeleteUnreferencedItems.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_inspectorDeleteUnreferencedItems.lo `test -f 'sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp
