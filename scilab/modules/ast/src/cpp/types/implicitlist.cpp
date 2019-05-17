@@ -214,13 +214,23 @@ bool ImplicitList::compute()
             }
 
             // compute list size
-            m_iSize = std::ceil(dblRange / dblStep);
+            double dSize = dblRange / dblStep;
+            m_iSize = std::ceil(dSize);
+
             if (m_iSize <= 0)
             {
-                // return []
-                m_iSize = 0;
-                m_bComputed = true;
-                return true;
+                if (dSize <= 0.0)
+                {
+                    // return []
+                    m_iSize = 0;
+                    m_bComputed = true;
+                    return true;
+                }
+                else
+                {
+                    // integer overflow
+                    throw ast::InternalError(34);
+                }
             }
             else if (std::fabs(m_iSize * dblStep) <= std::nextafter(std::fabs(dblRange), HUGE_VAL))
             {
