@@ -245,39 +245,6 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     pGTResult->killMe();
                     pGTResult = poRow->getAs<types::GenericType>();
                 }
-                else if (pGT->isDollar() && pGTResult->isDouble())
-                {
-                    int _iRows = pGTResult->getRows();
-                    int _iCols = pGTResult->getCols();
-                    int* piRank = new int[_iRows * _iCols]();
-                    poRow = new types::Polynom(pGT->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
-                    types::Polynom* pP = poRow->getAs<types::Polynom>();
-                    types::SinglePoly** pSS = pP->get();
-                    types::Double* pDb = pGTResult->getAs<types::Double>();
-                    double* pdblR = pDb->get();
-                    if (pDb->isComplex())
-                    {
-                        double* pdblI = pDb->getImg();
-                        pP->setComplex(true);
-                        int size = pDb->getSize();
-                        for (int i = 0; i < size; i++)
-                        {
-                            pSS[i]->setRank(0);
-                            pSS[i]->setCoef(pdblR + i, pdblI + i);
-                        }
-                    }
-                    else
-                    {
-                        int size = pDb->getSize();
-                        for (int i = 0; i < size; i++)
-                        {
-                            pSS[i]->setRank(0);
-                            pSS[i]->setCoef(pdblR + i, NULL);
-                        }
-                    }
-
-                    delete[] piRank;
-                }
 
                 types::InternalType *pNewSize = AddElementToVariable(NULL, poRow, pGTResult->getRows(), pGTResult->getCols() + pGT->getCols());
                 types::InternalType* p = AddElementToVariable(pNewSize, pGT, 0, pGTResult->getCols());
