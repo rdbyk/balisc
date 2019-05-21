@@ -78,7 +78,7 @@ Function::ReturnValue sci_swapbytes(typed_list &in, int _iRetCount, typed_list &
     }
 
     // copy input to result
-    InternalType* res = in[0]->getRef() > 0 ? in[0]->clone() : in[0];
+    InternalType* res = in[0]->getRef() > 1 ? in[0]->clone() : in[0];
     
     // ptr to res data
     void* res_data = NULL;
