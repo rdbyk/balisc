@@ -1007,22 +1007,5 @@ Polynom* Polynom::Dollar()
     return pDollar;
 }
 
-bool Polynom::isDollar()
-{
-    if (m_szVarName != L"$" || getSize() != 1)
-    {
-        return false;
-    }
-
-    double* pCoef = getFirst()->get();
-
-    if (pCoef[0] != 0 && pCoef[1] != 1)
-    {
-        return false;
-    }
-
-    return true;
-}
-
 }
 
