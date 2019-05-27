@@ -1,8 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2019 - Samuel GOUGEON
-// Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,16 +8,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function t=coth(x)
-
-    if nargin <> 1 then
-        error(71, 1);
-    end
-
-    if type(x) <> [1 5] then
-        error(95, 1);
-    end
-
-    t = 1 ./ tanh(full(x))
-
+function t = %sp_tanh(x)
+    // Syntax : t = tanh(x)
+    // hyperbolic tangente for sparse inputs
+    [ij, t, mn] = spget(x)
+    t = sparse(ij, tanh(t), mn)
 endfunction
