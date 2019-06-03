@@ -79,8 +79,9 @@ function [x,y,typ]=CMSCOPE(job,arg1,arg2)
                 ok=%f
             end
             if size(per,"*")<>size(ymin,"*") then
-                mess=[mess;"Size of Refresh Period must equal size of Ymin/Ymax vector";" "]
-                ok=%f
+                mess=[mess ;
+                      "The size of ''Refresh Periods'' must match the Ymin|Ymax''s one";
+                      " "]
             end
             for i=1:1:size(per,"*")
                 if (per(i)<=0) then
@@ -117,28 +118,29 @@ function [x,y,typ]=CMSCOPE(job,arg1,arg2)
                 if wdim==[] then
                     wdim=[-1;-1];
                 end
-                if ok then
-                    period=per(:)';
-                    yy=[ymin(:)';ymax(:)']
-                    rpar=[0;period(:);yy(:)]
-                    clrs=clrs(1:sum(in))
-                    ipar=[win;size(in,"*");N;wpos(:);wdim(:);in(:);clrs(:);heritance]
-                    //if prod(size(dstate))<>(sum(in)+1)*N+1 then
-                    //dstate=-eye((sum(in)+1)*N+1,1),
-                    //end
-                    model.evtin=ones(1-heritance,1)
-                    model.dstate=[]
-                    //model.dstate=dstate;
-                    model.rpar=rpar;
-                    model.ipar=ipar
-                    model.label=nom;
-                    graphics.id=nom;
-                    graphics.exprs=exprs;
-                    x.graphics=graphics;
-                    x.model=model
-                    //pause;
-                    break
-                end
+
+                period=per(:)';
+                yy=[ymin(:)';ymax(:)']
+                rpar=[0;period(:);yy(:)]
+                clrs=clrs(1:sum(in))
+                ipar=[win;size(in,"*");N;wpos(:);wdim(:);in(:);clrs(:);heritance]
+                //if prod(size(dstate))<>(sum(in)+1)*N+1 then
+                //dstate=-eye((sum(in)+1)*N+1,1),
+                //end
+                model.evtin=ones(1-heritance,1)
+                model.dstate=[]
+                //model.dstate=dstate;
+                model.rpar=rpar;
+                model.ipar=ipar
+                model.label=nom;
+                graphics.id=nom;
+                graphics.exprs=exprs;
+                graphics.style = "CMSCOPE;verticalLabelPosition=bottom;" + ..
+                                 "verticalAlign=top;spacing=2;displayedLabel=" + nom
+                x.graphics=graphics;
+                x.model=model
+                //pause;
+                break
             end
         end
     case "define" then
