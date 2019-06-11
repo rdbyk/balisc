@@ -21,6 +21,7 @@
 
 extern "C"
 {
+#include "HistoryManager.h"
 #include "BrowseVarManager.h"
 #include "FileBrowserChDir.h"
 #include "scicurdir.h"
@@ -29,17 +30,23 @@ extern "C"
 }
 
 std::atomic<Runner*> StaticRunner::m_RunMe(nullptr);
+std::atomic<Runner*> StaticRunner::m_CurrentRunner(nullptr);
 std::atomic<bool> StaticRunner::m_bInterruptibleCommand(true);
 
 static bool initialJavaHooks = false;
 
-static void sendExecDoneSignal(Runner* _pRunner)
+void StaticRunner::sendExecDoneSignal()
 {
-    switch (_pRunner->getCommandOrigin())
+    switch (getCurrentRunner()->getCommandOrigin())
     {
         case CONSOLE :
         {
             ThreadManagement::SendConsoleExecDoneSignal();
+            break;
+        }
+        case DEBUGGER :
+        {
+            ThreadManagement::SendDebuggerExecDoneSignal();
             break;
         }
         case TCLSCI :
@@ -62,9 +69,9 @@ int StaticRunner::launch()
     int iRet = 0;
     // get the runner to execute
     std::unique_ptr<Runner> runMe(getRunner());
-    // set if the current comment is interruptible
+    // set if the current command is interruptible
     setInterruptibleCommand(runMe->isInterruptible());
-    debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
+    debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
 
     ConfigVariable::resetExecutionBreak();
 
@@ -143,28 +150,21 @@ int StaticRunner::launch()
         if (ConfigVariable::getPauseLevel())
         {
             ConfigVariable::DecreasePauseLevel();
+            throw;
         }
-        else
+
+        // close all scope before return to console scope
+        symbol::Context* pCtx = symbol::Context::getInstance();
+        while (pCtx->getScopeLevel() > scope)
         {
-            // close all scope before return to console scope
-            symbol::Context* pCtx = symbol::Context::getInstance();
-            while (pCtx->getScopeLevel() > scope)
-            {
-                pCtx->scope_end();
-            }
-
-            // send the good signal about the end of execution
-            sendExecDoneSignal(runMe.get());
-
-            //clean debugger step flag if debugger is not interrupted ( end of debug )
-            manager->resetStep();
+            pCtx->scope_end();
         }
 
-        if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)
-        {
-            UpdateBrowseVar();
-        }
+        // send the good signal about the end of execution
+        sendExecDoneSignal();
 
+        // debugger leave with abort state
+        manager->setAborted();
         throw;
     }
 
@@ -179,6 +179,7 @@ int StaticRunner::launch()
         int err = 0;
 
         UpdateBrowseVar();
+        saveScilabHistoryToFile();
         cwd = scigetcwd(&err);
         if (cwd)
         {
@@ -191,7 +192,7 @@ int StaticRunner::launch()
     ConfigVariable::resetError();
 
     // send the good signal about the end of execution
-    sendExecDoneSignal(runMe.get());
+    sendExecDoneSignal();
 
     //clean debugger step flag if debugger is not interrupted ( end of debug )
     manager->resetStep();
@@ -203,11 +204,22 @@ void StaticRunner::setRunner(Runner* _RunMe)
     m_RunMe = _RunMe;
 }
 
+void StaticRunner::setCurrentRunner(Runner* _RunMe)
+{
+    m_CurrentRunner = _RunMe;
+}
+
 Runner* StaticRunner::getRunner(void)
 {
     Runner* tmp = m_RunMe.exchange(nullptr);
+    setCurrentRunner(tmp);
     ThreadManagement::SendAvailableRunnerSignal();
     return tmp;
+}
+
+Runner* StaticRunner::getCurrentRunner(void)
+{
+    return m_CurrentRunner;
 }
 
 // return true if a Runner is already set in m_RunMe.

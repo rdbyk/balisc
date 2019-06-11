@@ -14,6 +14,7 @@
 CORE_C_SOURCES = \
     src/c/csignal.c \
     src/c/md5.c \
+    src/c/getmodules.c \
     src/c/getmemory.c \
     src/c/isanan.c \
     src/c/returnanan.c \
@@ -21,6 +22,7 @@ CORE_C_SOURCES = \
     src/c/version.c \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
+    src/c/getcommandlineargs.c \
     src/c/commandwords.c \
     src/c/freeArrayOfPtrs.c \
     src/c/getstaticdebuginfo.c \
@@ -33,6 +35,10 @@ CORE_C_SOURCES = \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
     src/c/saveCWDInPreferences.c \
+    src/c/getmaxMALLOC.c \
+    src/c/sci_mem_alloc.c \
+    src/c/hashtable/hashtable.c \
+    src/c/hashtable/hashtable_utility.c \
     src/c/InitializePreferences.c \
     src/c/cluni0.c
 
@@ -47,6 +53,8 @@ CORE_CPP_SOURCES = \
     src/cpp/getmacrosname.cpp \
     src/cpp/getfunctionsname.cpp \
     src/cpp/InitScilab.cpp \
+    src/cpp/parsecommand.cpp \
+    src/cpp/pause.cpp \
     src/cpp/setformat.cpp \
     src/cpp/errmsgs.cpp
 
