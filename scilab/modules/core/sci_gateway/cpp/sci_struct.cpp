@@ -17,6 +17,7 @@
 #include "function.hxx"
 #include "struct.hxx"
 #include "string.hxx"
+#include "cell.hxx"
 
 extern "C"
 {
@@ -27,6 +28,9 @@ extern "C"
 
 types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
+    int* piDimsRef  = NULL;
+    int iDimsRef    = 0;
+
     /* Check number of input arguments: must be even */
     if (in.size() % 2 != 0)
     {
@@ -52,7 +56,50 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
         }
     }
 
-    types::Struct *pOut = new types::Struct(1, 1);
+    /* Second check if dimensions of data are good*/
+    for (itInput = in.begin() + 1; itInput != in.end() ; ((itInput + 1) != in.end()) ? itInput += 2 : itInput += 1)
+    {
+        if ((*itInput)->isCell() && (*itInput)->getAs<types::Cell>()->getSize() > 1)
+        {
+            types::Cell* pCell = (*itInput)->getAs<types::Cell>();
+            if (piDimsRef == NULL)
+            {
+                iDimsRef    = pCell->getDims();
+                piDimsRef   = pCell->getDimsArray();
+            }
+            else
+            {
+                if (iDimsRef == pCell->getDims())
+                {
+                    int* piDims = pCell->getDimsArray();
+                    for (int i = 0 ; i < iDimsRef ; i++)
+                    {
+                        if (piDims[i] != piDimsRef[i])
+                        {
+                            Scierror(999, _("%s: Arguments must be scalar or must have same dimensions.\n"), "struct");
+                            return types::Function::Error;
+                        }
+                    }
+                }
+                else
+                {
+                    Scierror(999, _("%s: Arguments must be scalar or must have same dimensions.\n"), "struct");
+                    return types::Function::Error;
+                }
+            }
+        }
+    }
+
+    types::Struct *pOut = NULL;
+
+    if (piDimsRef)
+    {
+        pOut = new types::Struct(iDimsRef, piDimsRef);
+    }
+    else
+    {
+        pOut = new types::Struct(1, 1);
+    }
 
     types::InternalType *pFieldValue = NULL;
     for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
@@ -64,9 +111,32 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
         //add field in struct
         pOut->addField(wstField);
 
-        for (int i = 0 ; i < pOut->getSize() ; i++)
+        if (pData->isCell() && pData->getAs<types::Cell>()->getSize() > 0)
         {
-            pOut->get(i)->set(wstField, pData);
+            //non scalar cell dispatch cell data in each SingleStruct
+            types::Cell* pCell = pData->getAs<types::Cell>();
+            if (pCell->isScalar())
+            {
+                for (int i = 0 ; i < pOut->getSize() ; i++)
+                {
+                    pOut->get(i)->set(wstField, pCell->getFirst());
+                }
+            }
+            else
+            {
+                for (int i = 0 ; i < pOut->getSize() ; i++)
+                {
+                    pOut->get(i)->set(wstField, pCell->get(i));
+                }
+            }
+        }
+        else
+        {
+            //others
+            for (int i = 0 ; i < pOut->getSize() ; i++)
+            {
+                pOut->get(i)->set(wstField, pData);
+            }
         }
     }
 
