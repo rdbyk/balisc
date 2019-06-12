@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
     /* Second check if dimensions of data are good*/
     for (itInput = in.begin() + 1; itInput != in.end() ; ((itInput + 1) != in.end()) ? itInput += 2 : itInput += 1)
     {
-        if ((*itInput)->isCell() && (*itInput)->getAs<types::Cell>()->isScalar() == false)
+        if ((*itInput)->isCell() && (*itInput)->getAs<types::Cell>()->getSize() > 1)
         {
             types::Cell* pCell = (*itInput)->getAs<types::Cell>();
             if (piDimsRef == NULL)
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCoun
         //add field in struct
         pOut->addField(wstField);
 
-        if (pData->isCell())
+        if (pData->isCell() && pData->getAs<types::Cell>()->getSize() > 0)
         {
             //non scalar cell dispatch cell data in each SingleStruct
             types::Cell* pCell = pData->getAs<types::Cell>();
