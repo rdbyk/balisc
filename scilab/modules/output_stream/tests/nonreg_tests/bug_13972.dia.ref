@@ -1,21 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-//
-// <-- CLI SHELL MODE -->
-//
-// <-- Non-regression test for bug 13972 -->
-//
-// <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=13972
-//
-// <-- Short Description -->
-// use of wildcard '*' in printf expressions was not managed
-//
-//with double
 printf("|%*f|\n", 20, rand());
 |            0.211325|
 printf("|%*f|\n", -20, rand());
@@ -32,7 +14,6 @@ printf("|%*.*f|\n", -20, 8, rand());
 |0.84974524          |
 printf("|%*.*f|\n", -20, -8, rand());
 |0.685731            |
-//with string
 printf("|%s|\n", "test");
 |test|
 printf("|%*s|\n", -10, "test");
@@ -45,7 +26,6 @@ printf("|%*s|\n", 5, "test");
 | test|
 printf("|%*s|\n", 10, "test");
 |      test|
-//multiple
 printf("|%*s|%*s|%*s|%*s|\n", -10, "test", -5, "test", 5, "test", 10, "test");
 |test      |test | test|      test|
 printf("|%*s|\n", -10, ["t";"tt";"ttt";"tttt";"ttttt";"tttttt";"ttttttt";"tttttttt";"ttttttttt";"tttttttttt"]);
