@@ -2962,10 +2962,6 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
     }
 
     Bool* pbOut = NULL;
-    bool bPoise = true;
-
-    SinglePoly** pSPL = _pL->get();
-    SinglePoly** pSPR = _pR->get();
 
     if (_pR->isScalar())
     {
@@ -2973,88 +2969,9 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
         int* pb = pbOut->get();
         int iSize = pbOut->getSize();
 
-        if (_pL->isComplex())
+        for (int i = 0; i < iSize; i++)
         {
-            if (_pR->isComplex())
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[0]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = false;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
-                        {
-                            compnoequal(pSPR[0]->get(j), pSPR[0]->getImg(j), pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
-                        }
-                    }
-                    pb[i] = bPoise;
-
-                }
-            }
-            else
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[0]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = false;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
-                        {
-                            compnoequal(pSPR[0]->get(j), (double)0, pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
-                        }
-                    }
-                    pb[i] = bPoise;
-                }
-            }
-        }
-        else
-        {
-            if (_pR->isComplex())
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[0]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = false;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
-                        {
-                            compnoequal(pSPR[0]->get(j), pSPR[0]->getImg(j), pSPL[i]->get(j), (double)0, &bPoise);
-                        }
-                    }
-                    pb[i] = bPoise;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[0]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = false;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
-                        {
-                            compnoequal(pSPR[0]->get(j), pSPL[i]->get(j), &bPoise);
-                        }
-                    }
-                    pb[i] = bPoise;
-                }
-            }
+            pb[i] = *(_pL->get(i)) != *( _pR->getFirst());
         }
     }
     else if (_pL->isScalar())
@@ -3063,92 +2980,9 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
         int* pb = pbOut->get();
         int iSize = pbOut->getSize();
 
-        if (pSPR[0]->getSize() != 1)
+        for (int i = 0; i < iSize; i++)
         {
-            if (_pL->isComplex())
-            {
-                if (_pR->isComplex())
-                {
-                    for (int i = 0; i < iSize; i++)
-                    {
-                        if (pSPL[0]->getSize() != pSPR[i]->getSize())
-                        {
-                            bPoise = true;
-                        }
-                        else
-                        {
-                            bPoise = false;
-                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
-                            {
-                                compnoequal(pSPL[0]->get(j), pSPL[0]->getImg(j), pSPR[i]->get(j), pSPR[i]->getImg(j), &bPoise);
-                            }
-                        }
-                        pb[i] = bPoise;
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < iSize; i++)
-                    {
-                        if (pSPL[0]->getSize() != pSPR[i]->getSize())
-                        {
-                            bPoise = true;
-                        }
-                        else
-                        {
-                            bPoise = false;
-                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
-                            {
-                                compnoequal(pSPL[0]->get(j), pSPL[0]->getImg(j), pSPR[i]->get(j), (double)0, &bPoise);
-                            }
-                        }
-                        pb[i] = bPoise;
-                    }
-                }
-            }
-            else
-            {
-
-                if (_pR->isComplex())
-                {
-                    for (int i = 0; i < iSize; i++)
-                    {
-                        if (pSPL[0]->getSize() != pSPR[i]->getSize())
-                        {
-                            bPoise = true;
-                        }
-                        else
-                        {
-                            bPoise = false;
-                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == false); j++)
-                            {
-                                compnoequal(pSPL[0]->get(j), (double)0, pSPR[i]->get(j), pSPR[i]->get(j), &bPoise);
-                            }
-                        }
-                        pb[i] = bPoise;
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < iSize; i++)
-                    {
-                        if (pSPL[0]->getSize() != pSPR[i]->getSize())
-                        {
-                            bPoise = true;
-                        }
-                        else
-                        {
-                            bPoise = false;
-                            for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
-                            {
-                                compnoequal(pSPL[0]->get(j), pSPR[i]->get(j), &bPoise);
-                            }
-                        }
-                        pb[i] = bPoise;
-                    }
-                }
-
-            }
+            pb[i] = *(_pL->getFirst()) != *( _pR->get(i));
         }
     }
     else
@@ -3171,87 +3005,9 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
         int* pb = pbOut->get();
         int iSize = pbOut->getSize();
 
-        if (_pL->isComplex())
+        for (int i = 0; i < iSize; i++)
         {
-            if (_pR->isComplex())
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[i]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = false;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
-                        {
-                            compnoequal(pSPR[i]->get(j), pSPR[i]->getImg(j), pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
-                        }
-                    }
-                    pb[i] = bPoise;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[i]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = false;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
-                        {
-                            compnoequal(pSPL[i]->get(j), pSPL[i]->getImg(j), pSPR[i]->get(j), (double)0, &bPoise);
-                        }
-                    }
-                    pb[i] = bPoise;
-                }
-            }
-        }
-        else
-        {
-            if (_pR->isComplex())
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[i]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = false;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
-                        {
-                            compnoequal(pSPR[i]->get(j), pSPR[i]->getImg(j), pSPL[i]->get(j), (double)0, &bPoise);
-                        }
-                    }
-                    pb[i] = bPoise;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[i]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = false;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == false); j++)
-                        {
-                            compnoequal(pSPR[i]->get(j), pSPL[i]->get(j), &bPoise);
-                        }
-                    }
-                    pb[i] = bPoise;
-                }
-            }
+            pb[i] = *(_pL->get(i)) != *( _pR->get(i));
         }
     }
 
