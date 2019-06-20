@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,5 +31,7 @@ int IntegerModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inttype", &sci_inttype, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"double", &sci_double, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"iconvert", &sci_iconvert, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"intmax", &sci_intmax, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"intmin", &sci_intmin, MODULE_NAME));
     return 1;
 }

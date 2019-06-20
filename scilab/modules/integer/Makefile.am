@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -9,7 +9,9 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_inttype.cpp \
     sci_gateway/cpp/sci_double.cpp \
     sci_gateway/cpp/sci_int.cpp \
-    sci_gateway/cpp/sci_iconvert.cpp
+    sci_gateway/cpp/sci_iconvert.cpp \
+    sci_gateway/cpp/sci_intmax.cpp \
+    sci_gateway/cpp/sci_intmin.cpp
 
 libsciinteger_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
