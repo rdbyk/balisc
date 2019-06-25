@@ -2,7 +2,7 @@
 // Copyright (C) INRIA - Pierre MARECHAL
 // Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,10 +17,6 @@ function y = dec2oct(x)
         error(71, 1);
     end
 
-    if or(type(x) <> 8) & (or(type(x) <> 1) | or(x < 0) ) then
-        error(_("%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive integers expected."), "dec2oct", 1);
-    end
-
-    y = dec2base(double(x), 8);
+    y = dec2base(x, 8);
 
 endfunction
