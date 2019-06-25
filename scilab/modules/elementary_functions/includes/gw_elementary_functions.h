@@ -22,7 +22,6 @@
 STACK_GATEWAY_PROTOTYPE(sci_number_properties);
 STACK_GATEWAY_PROTOTYPE(sci_testmatrix);
 STACK_GATEWAY_PROTOTYPE(sci_base2dec);
-STACK_GATEWAY_PROTOTYPE(sci_dec2base);
 C_GATEWAY_PROTOTYPE(sci_issquare);
 
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
