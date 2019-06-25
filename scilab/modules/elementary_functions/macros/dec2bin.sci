@@ -2,7 +2,7 @@
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) DIGITEO - 2011 - Farid BELAHCENE
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,9 +18,9 @@ function y = dec2bin(x, n)
     end
 
     if nargin == 2 then
-        y = dec2base(double(x), 2, n);
+        y = dec2base(x, 2, n);
     else
-        y = dec2base(double(x), 2);
+        y = dec2base(x, 2);
     end
 
 endfunction
