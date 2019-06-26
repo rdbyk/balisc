@@ -296,8 +296,15 @@ void RunVisitorT<T>::visitprivate(const CellExp & e)
                 if (pIT->isImplicitList())
                 {
                     types::InternalType * _pIT = pIT->getAs<types::ImplicitList>()->extractFullMatrix();
-                    pC->set(i, j, _pIT);
-                    _pIT->killMe();
+                    if (_pIT)
+                    {
+                        pC->set(i, j, _pIT);
+                        _pIT->killMe();
+                    }
+                    else
+                    {
+                        pC->set(i, j, pIT);
+                    }
                 }
                 else
                 {
