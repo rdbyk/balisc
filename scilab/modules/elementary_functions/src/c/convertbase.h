@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,15 +34,5 @@ typedef enum
 * @return converted value (decimal)
 */
 double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err);
-
-/**
-* Convert decimal to base N number in string
-* @param[in] array of integer values
-* @param[in] number of elements in dValues array
-* @param[in] number of digits for representation
-* @param[out] error value
-* @return a matrix of string of size mn
-*/
-char **convertMatrixOfDec2Base(const double* dValues, int mn, int numberbase, unsigned int nbDigits, error_convertbase *err);
 
 #endif /* __CONVERTBASE_H__ */
