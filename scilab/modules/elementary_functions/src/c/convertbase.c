@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,9 +28,6 @@
 #define char_Z 'Z'
 #define char_zero '0'
 #define char_nine '9'
-/*--------------------------------------------------------------------------*/
-static char *convertDec2Base(double dValue, int numberbase,
-                             unsigned int nbDigits, error_convertbase *err);
 /*--------------------------------------------------------------------------*/
 double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err)
 {
@@ -81,155 +78,5 @@ double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err)
         *err = ERROR_CONVERTBASE_OK;
     }
     return result;
-}
-/*--------------------------------------------------------------------------*/
-static char *convertDec2Base(double dValue, int numberbase,
-                             unsigned int nbDigits, error_convertbase *err)
-{
-    char symbols[37] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    long long int iDec = (long long int) dValue;
-    char *convertedValue = NULL;
-
-    *err = ERROR_CONVERTBASE_NOK;
-    if (iDec == 0)
-    {
-        convertedValue = (char*)MALLOC(sizeof(char) * 2);
-        if (convertedValue)
-        {
-            strcpy(convertedValue, "0");
-            *err = ERROR_CONVERTBASE_OK;
-        }
-        else
-        {
-            *err = ERROR_CONVERTBASE_ALLOCATION;
-            return NULL;
-        }
-    }
-    else
-    {
-        int count = 0;
-        char chResult[bsiz] = "";
-        char *pChResult = chResult;
-        while (iDec > 0 && count++ < bsiz)
-        {
-            *pChResult = symbols[iDec % numberbase];
-            pChResult++;
-            iDec = iDec / numberbase;
-        }
-
-        convertedValue = (char*)MALLOC(sizeof(char) * (balisc_strlen(chResult) + 1));
-        if (convertedValue)
-        {
-            size_t j = 0;
-            size_t i = balisc_strlen(chResult);
-            int t = !(i % 2) ? 1 : 0;
-            int k = 0;
-            strcpy(convertedValue, chResult);
-            for (j = i - 1; j > (i / 2 - t); j--)
-            {
-                char ch  = chResult[j];
-                chResult[j] = chResult[k];
-                chResult[k++] = ch;
-            }
-            strcpy(convertedValue, chResult);
-            *err = ERROR_CONVERTBASE_OK;
-        }
-        else
-        {
-            *err = ERROR_CONVERTBASE_ALLOCATION;
-            return NULL;
-        }
-    }
-
-    if (*err == ERROR_CONVERTBASE_OK)
-    {
-        size_t lenConvertedValue = balisc_strlen(convertedValue);
-        if ((nbDigits > lenConvertedValue) && (nbDigits > 0))
-        {
-            size_t i = 0;
-            char *tmp = (char*)MALLOC(sizeof(char) * (nbDigits + 1));
-            if (tmp)
-            {
-                for (i = 0; i < nbDigits - lenConvertedValue; i++)
-                {
-                    tmp[i] = '0';
-                }
-                tmp[i] = 0;
-                strcat(tmp, convertedValue);
-                FREE(convertedValue);
-                convertedValue = tmp;
-            }
-        }
-    }
-
-    return convertedValue;
-}
-/*--------------------------------------------------------------------------*/
-char **convertMatrixOfDec2Base(const double* dValues, int mn,
-                               int numberbase, unsigned int nbDigits,
-                               error_convertbase *err)
-{
-    char **convertedValues = NULL;
-    int i = 0;
-    double maxVal = 0.;
-
-    for (i = 0; i < mn; i++)
-    {
-        long long int iValue = (long long int) dValues[i];
-
-        /* search max value */
-        if (dValues[i] > maxVal)
-        {
-            maxVal = dValues[i];
-        }
-
-        /* check if it is an integer value */
-        if (dValues[i] != (double)iValue)
-        {
-            *err = ERROR_CONVERTBASE_NOT_INTEGER_VALUE;
-            return NULL;
-        }
-
-        /* check if it is in the good interval */
-        if ((dValues[i] < 0) || (dValues[i] > pow(2, 52)))
-        {
-            *err = ERROR_CONVERTBASE_NOT_IN_INTERVAL;
-            return NULL;
-        }
-    }
-
-    if ((mn > 1) && (numberbase == 2)) /* Only binary base is uniformed about number of digits */
-    {
-        size_t maxDigits = 0;
-        char *maxBaseString = convertDec2Base(maxVal, numberbase, nbDigits, err);
-        if (maxBaseString)
-        {
-            maxDigits = balisc_strlen(maxBaseString);
-            FREE(maxBaseString);
-            if (maxDigits > nbDigits)
-            {
-                nbDigits = (unsigned int)maxDigits;
-            }
-        }
-    }
-
-    convertedValues = (char **)MALLOC(sizeof(char*) * (mn));
-    if (convertedValues)
-    {
-        for (i = 0; i < mn; i++)
-        {
-            convertedValues[i] = convertDec2Base(dValues[i], numberbase, nbDigits, err);
-            if (*err)
-            {
-                freeArrayOfPtrs((void**)convertedValues, mn);
-                return NULL;
-            }
-        }
-    }
-    else
-    {
-        *err = ERROR_CONVERTBASE_ALLOCATION;
-    }
-    return convertedValues;
 }
 /*--------------------------------------------------------------------------*/
