@@ -10,8 +10,7 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/basic_functions.c \
     src/c/expm.c \
     src/c/dsearch.c \
-    src/c/matrix_generation.c \
-    src/c/convertbase.c
+    src/c/matrix_generation.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
@@ -211,8 +210,7 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_number_properties.c \
-    sci_gateway/c/sci_testmatrix.c \
-    sci_gateway/c/sci_base2dec.c
+    sci_gateway/c/sci_testmatrix.c
 
 GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_isequal.cpp \
@@ -271,7 +269,8 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_isvector.cpp\
     sci_gateway/cpp/sci_nearfloat.cpp\
     sci_gateway/cpp/sci_permute.cpp	\
-    sci_gateway/cpp/sci_dec2base.cpp
+    sci_gateway/cpp/sci_dec2base.cpp \
+    sci_gateway/cpp/sci_base2dec.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
