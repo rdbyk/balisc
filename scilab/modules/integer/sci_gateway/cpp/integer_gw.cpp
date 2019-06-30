@@ -33,5 +33,6 @@ int IntegerModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"iconvert", &sci_iconvert, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"intmax", &sci_intmax, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"intmin", &sci_intmin, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"flintmax", &sci_flintmax, MODULE_NAME));
     return 1;
 }

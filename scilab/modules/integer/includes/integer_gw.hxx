@@ -36,6 +36,7 @@ CPP_GATEWAY_PROTOTYPE(sci_double);
 CPP_GATEWAY_PROTOTYPE(sci_iconvert);
 CPP_GATEWAY_PROTOTYPE(sci_intmax);
 CPP_GATEWAY_PROTOTYPE(sci_intmin);
+CPP_GATEWAY_PROTOTYPE(sci_flintmax);
 //Scilab 6
 CPP_GATEWAY_PROTOTYPE(sci_integer8);
 CPP_GATEWAY_PROTOTYPE(sci_uinteger8);

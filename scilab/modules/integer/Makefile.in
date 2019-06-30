@@ -176,7 +176,8 @@ am__objects_1 = sci_gateway/cpp/libsciinteger_la-integer_gw.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_int.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_iconvert.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_intmax.lo \
-	sci_gateway/cpp/libsciinteger_la-sci_intmin.lo
+	sci_gateway/cpp/libsciinteger_la-sci_intmin.lo \
+	sci_gateway/cpp/libsciinteger_la-sci_flintmax.lo
 am_libsciinteger_la_OBJECTS = $(am__objects_1)
 libsciinteger_la_OBJECTS = $(am_libsciinteger_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -549,7 +550,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_int.cpp \
     sci_gateway/cpp/sci_iconvert.cpp \
     sci_gateway/cpp/sci_intmax.cpp \
-    sci_gateway/cpp/sci_intmin.cpp
+    sci_gateway/cpp/sci_intmin.cpp \
+    sci_gateway/cpp/sci_flintmax.cpp
 
 libsciinteger_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -776,6 +778,9 @@ sci_gateway/cpp/libsciinteger_la-sci_intmax.lo:  \
 sci_gateway/cpp/libsciinteger_la-sci_intmin.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciinteger_la-sci_flintmax.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libsciinteger.la: $(libsciinteger_la_OBJECTS) $(libsciinteger_la_DEPENDENCIES) $(EXTRA_libsciinteger_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libsciinteger_la_rpath) $(libsciinteger_la_OBJECTS) $(libsciinteger_la_LIBADD) $(LIBS)
@@ -790,6 +795,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-integer_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_double.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_flintmax.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_iconvert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_intmax.Plo@am__quote@
@@ -868,6 +874,13 @@ sci_gateway/cpp/libsciinteger_la-sci_intmin.lo: sci_gateway/cpp/sci_intmin.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_intmin.cpp' object='sci_gateway/cpp/libsciinteger_la-sci_intmin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciinteger_la-sci_intmin.lo `test -f 'sci_gateway/cpp/sci_intmin.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_intmin.cpp
+
+sci_gateway/cpp/libsciinteger_la-sci_flintmax.lo: sci_gateway/cpp/sci_flintmax.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciinteger_la-sci_flintmax.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_flintmax.Tpo -c -o sci_gateway/cpp/libsciinteger_la-sci_flintmax.lo `test -f 'sci_gateway/cpp/sci_flintmax.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_flintmax.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_flintmax.Tpo sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_flintmax.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_flintmax.cpp' object='sci_gateway/cpp/libsciinteger_la-sci_flintmax.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciinteger_la-sci_flintmax.lo `test -f 'sci_gateway/cpp/sci_flintmax.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_flintmax.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
