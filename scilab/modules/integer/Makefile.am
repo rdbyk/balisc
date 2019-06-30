@@ -11,7 +11,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_int.cpp \
     sci_gateway/cpp/sci_iconvert.cpp \
     sci_gateway/cpp/sci_intmax.cpp \
-    sci_gateway/cpp/sci_intmin.cpp
+    sci_gateway/cpp/sci_intmin.cpp \
+    sci_gateway/cpp/sci_flintmax.cpp
 
 libsciinteger_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
