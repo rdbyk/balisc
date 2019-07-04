@@ -1097,16 +1097,11 @@ if test "$OS" = "Darwin"; then
     fi
 fi
 
-MORE_OPT=""
-if test "$SCILAB_MODE" = "nw"; then
-    MORE_OPT="-nw"
-fi
-
 # calling Scilab with no argument or special cases of calling Scilab
 rest="no"
 case $# in
     0) # No arg, run Scilab
-        do_scilex $MORE_OPT
+        do_scilex
         ;;
     *)
         case $1 in
@@ -1203,18 +1198,18 @@ if test "$rest" = "yes"; then
     fi
 
     if test -n "$DEBUG"; then
-        start_debug "$@" $MORE_OPT
+        start_debug "$@"
     else
         if test -n "$DEBUG_KDBG"; then
-            start_debug_kdbg "$@" $MORE_OPT
+            start_debug_kdbg "$@"
         else
             if test -n "$PROFILING"; then
-                start_profiling "$@" $MORE_OPT
+                start_profiling "$@"
             else
                 if test -n "$PROFILING_VISU"; then
-                    start_profiling_visu "$@" $MORE_OPT
+                    start_profiling_visu "$@"
                 else
-                    do_scilex "$@" $MORE_OPT
+                    do_scilex "$@"
                 fi # not profiling visu
             fi # not profiling
         fi # not debug kdbg
