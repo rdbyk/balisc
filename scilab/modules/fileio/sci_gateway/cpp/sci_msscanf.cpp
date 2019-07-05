@@ -5,7 +5,7 @@
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,7 +18,7 @@
 
 #include "fileio_gw.hxx"
 #include "string.hxx"
-#include "mlist.hxx"
+#include "cell.hxx"
 #include "function.hxx"
 #include "double.hxx"
 
@@ -284,21 +284,13 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                     }
                 }
 
-                types::MList* pMList = new types::MList();
-                pMList->append(new types::String(L"cblock"));
-                for (int i = 0 ; i < pITTemp.size() ; i++)
+                int dimsArrayOfCell[2] = {1, (int)pITTemp.size()};
+                types::Cell* pCell = new types::Cell(2, dimsArrayOfCell);
+                for (int i = 0; i < pITTemp.size(); i++)
                 {
-                    pMList->append(pITTemp[i]);
+                    pCell->set(i, pITTemp[i]);
                 }
-                out.push_back(pMList);
-
-                //                int dimsArrayOfCell[2] = {1, (int)pITTemp.size()};
-                //                types::Cell* pCell = new types::Cell(2, dimsArrayOfCell);
-                //                for (int i = 0; i < pITTemp.size(); i++)
-                //                {
-                //                    pCell->set(i, pITTemp[i]);
-                //                }
-                //                out.push_back(pCell);
+                out.push_back(pCell);
             }
         }
     }

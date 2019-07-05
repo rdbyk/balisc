@@ -609,12 +609,6 @@ systmat
 %c_rand
 %c_tril
 %c_triu
-%cblock_c_cblock
-%cblock_c_s
-%cblock_e
-%cblock_f_cblock
-%cblock_p
-%cblock_size
 %ce_6
 %ce_e
 %ce_i_s
@@ -943,14 +937,12 @@ systmat
 %s_and
 %s_b_i
 %s_b_s
-%s_c_cblock
 %s_c_lss
 %s_c_r
 %s_c_sp
 %s_d_p
 %s_d_r
 %s_e
-%s_f_cblock
 %s_f_lss
 %s_f_r
 %s_f_sp
