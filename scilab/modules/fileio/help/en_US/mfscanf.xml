@@ -265,9 +265,7 @@ Age=D(:,2)   //numerical values
             <revision>
                 <revnumber>Balisc 2</revnumber>
                 <revdescription>
-                    <itemizedlist>
-                        <listitem>replaced mlist of type "cblock" by cell.</listitem>
-                    </itemizedlist>
+                    replaced mlist of type "cblock" by cell.
                 </revdescription>
             </revision>
         </revhistory>
