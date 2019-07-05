@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -115,9 +115,8 @@
                     <para>
                         if all data are homogeneous they are stored in a unique vector
                         which is returned, otherwise subsequences of same data type are
-                        stored in matrices and a <literal>mlist</literal> (with type
-                        <literal>cblock</literal>) containing all the built matrices is
-                        returned.
+                        stored in matrices and a <literal>cell</literal> containing all
+                        the built matrices is returned.
                     </para>
                 </listitem>
             </varlistentry>
@@ -259,5 +258,16 @@ Age=D(:,2)   //numerical values
                 <link linkend="scanf_conversion">scanf_conversion</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 2</revnumber>
+                <revdescription>
+                    replaced mlist of type "cblock" by cell.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
