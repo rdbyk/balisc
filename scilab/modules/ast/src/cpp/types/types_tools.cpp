@@ -562,8 +562,28 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 }
                 else
                 {
-                    // evalute polynom with "MaxDim"
-                    int iMaxDim = _pRef->isImplicitList() ? 3 : _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                    // evaluate {start, step, end} polynoms with "MaxDim"
+                    int iMaxDim;
+
+                    if (_pRef->isImplicitList())
+                    {
+                        if (_pRef->getAs<ImplicitList>()->isComputable())
+                        {
+                            // ImplicitList is *not* derived from GenericType,
+                            iMaxDim = _pRef->getAs<ImplicitList>()->getSize();
+                        }
+                        else
+                        {
+                            // maximum index for extraction of
+                            // {start, step, end}
+                            iMaxDim = 3;
+                        }
+                    }
+                    else
+                    {
+                        iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                    }
+
 #if defined(_SCILAB_DEBUGREF_)
                     Double* pdbl = new Double(iMaxDim);
 #else
@@ -679,7 +699,24 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             //if pRef == NULL, use 0 insteadof, to allow a($+1) on new variable
             if (_pRef)
             {
-                iMaxDim = _pRef->isImplicitList() ? 3 : _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                if (_pRef->isImplicitList())
+                {
+                    if (_pRef->getAs<ImplicitList>()->isComputable())
+                    {
+                        // ImplicitList is *not* derived from GenericType,
+                        iMaxDim = _pRef->getAs<ImplicitList>()->getSize();
+                    }
+                    else
+                    {
+                        // maximum index for extraction of
+                        // {start, step, end}
+                        iMaxDim = 3;
+                    }
+                }
+                else
+                {
+                    iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+                }
             }
 
 #ifdef _SCILAB_DEBUGREF_
