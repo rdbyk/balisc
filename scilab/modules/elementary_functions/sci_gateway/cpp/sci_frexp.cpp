@@ -24,8 +24,6 @@ extern "C"
 #include "localization.h"
 }
 
-static const char fname[] = "frexp";
-
 types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
@@ -36,7 +34,7 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
 
     if (_iRetCount != 2)
     {
-        Scierror(81, fname, 2);
+        Scierror(81, 2);
         return types::Function::Error;
     }
 
