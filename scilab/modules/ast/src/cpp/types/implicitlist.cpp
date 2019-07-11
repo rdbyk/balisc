@@ -631,43 +631,138 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
 
     if (iSeqCount > 0)
     {
-        bool bResultAsDouble = true;
+        bool bResultAsDoubleOrInteger = true;
         Double* arg = pArg[0]->getAs<Double>();
         double* idx1 = arg->get();
         InternalType* elem[iSeqCount];
 
-        for (int i = 0; i < iSeqCount; ++i)
+        if (isComputable())
         {
-            switch (static_cast<int>(idx1[i]))
+            for (int i = 0; i < iSeqCount; ++i)
             {
-                case 1:
-                    elem[i] = getStart();
-                    break;
-                case 2:
-                    elem[i] = getStep();
-                    break;
-                case 3:
-                    elem[i] = getEnd();
-                    break;
-                default:
+                int idx0 = static_cast<int>(idx1[i]) - 1;
+
+                if (idx0 < getSize())
+                {
+                    InternalType* Val = getInitialType();
+                    extractValue(static_cast<int>(idx1[i]) - 1, Val);
+                    elem[i] = Val;
+                }
+                else
+                {
                     // invalid index
+                    for (int j = 0; j < i; ++j)
+                    {
+                        delete elem[j];
+                    }
                     cleanIndexesArguments(_pArgs, &pArg);
                     return NULL;
-            }
+                }
 
-            if (elem[i]->isPoly())
+                if (elem[i]->isPoly())
+                {
+                    bResultAsDoubleOrInteger = false;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < iSeqCount; ++i)
             {
-                bResultAsDouble = false;
+                switch (static_cast<int>(idx1[i]))
+                {
+                    case 1:
+                        elem[i] = getStart();
+                        break;
+                    case 2:
+                        elem[i] = getStep();
+                        break;
+                    case 3:
+                        elem[i] = getEnd();
+                        break;
+                    default:
+                        // invalid index
+                        cleanIndexesArguments(_pArgs, &pArg);
+                        return NULL;
+                }
+
+                if (elem[i]->isPoly())
+                {
+                    bResultAsDoubleOrInteger = false;
+                }
             }
         }
 
-        if (bResultAsDouble)
+        if (bResultAsDoubleOrInteger)
         {
-            Double* pRes = new Double(arg->getDims(), arg->getDimsArray());
+            InternalType* pRes = NULL;
 
-            for (int i = 0; i < iSeqCount; ++i)
+            switch (getOutputType())
             {
-                pRes->set(i, elem[i]->getAs<Double>()->getFirst());
+                case types::InternalType::ScilabInt8:
+                    pRes = new Int8(arg->getDims(), arg->getDimsArray());
+                    for (int i = 0; i < iSeqCount; ++i)
+                    {
+                        pRes->getAs<Int8>()->set(i, elem[i]->getAs<Int8>()->getFirst());
+                    }
+                    break;
+                case types::InternalType::ScilabUInt8:
+                    pRes = new UInt8(arg->getDims(), arg->getDimsArray());
+                    for (int i = 0; i < iSeqCount; ++i)
+                    {
+                        pRes->getAs<UInt8>()->set(i, elem[i]->getAs<UInt8>()->getFirst());
+                    }
+                    break;
+                case types::InternalType::ScilabInt16:
+                    pRes = new Int16(arg->getDims(), arg->getDimsArray());
+                    for (int i = 0; i < iSeqCount; ++i)
+                    {
+                        pRes->getAs<Int16>()->set(i, elem[i]->getAs<Int16>()->getFirst());
+                    }
+                    break;
+                case types::InternalType::ScilabUInt16:
+                    pRes = new UInt16(arg->getDims(), arg->getDimsArray());
+                    for (int i = 0; i < iSeqCount; ++i)
+                    {
+                        pRes->getAs<UInt16>()->set(i, elem[i]->getAs<UInt16>()->getFirst());
+                    }
+                    break;
+                case types::InternalType::ScilabInt32:
+                    pRes = new Int32(arg->getDims(), arg->getDimsArray());
+                    for (int i = 0; i < iSeqCount; ++i)
+                    {
+                        pRes->getAs<Int32>()->set(i, elem[i]->getAs<Int32>()->getFirst());
+                    }
+                    break;
+                case types::InternalType::ScilabUInt32:
+                    pRes = new UInt32(arg->getDims(), arg->getDimsArray());
+                    for (int i = 0; i < iSeqCount; ++i)
+                    {
+                        pRes->getAs<UInt32>()->set(i, elem[i]->getAs<UInt32>()->getFirst());
+                    }
+                    break;
+                case types::InternalType::ScilabInt64:
+                    pRes = new Int64(arg->getDims(), arg->getDimsArray());
+                    for (int i = 0; i < iSeqCount; ++i)
+                    {
+                        pRes->getAs<Int64>()->set(i, elem[i]->getAs<Int64>()->getFirst());
+                    }
+                    break;
+                case types::InternalType::ScilabUInt64:
+                    pRes = new UInt64(arg->getDims(), arg->getDimsArray());
+                    for (int i = 0; i < iSeqCount; ++i)
+                    {
+                        pRes->getAs<UInt64>()->set(i, elem[i]->getAs<UInt64>()->getFirst());
+                    }
+                    break;
+                //case types::InternalType::ScilabDouble:
+                default:
+                    pRes = new Double(arg->getDims(), arg->getDimsArray());
+                    for (int i = 0; i < iSeqCount; ++i)
+                    {
+                        pRes->getAs<Double>()->set(i, elem[i]->getAs<Double>()->getFirst());
+                    }
+                    break;
             }
 
             pOut = pRes;
@@ -695,6 +790,14 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
             delete e;
 
             pOut = pRes;
+        }
+
+        if (isComputable())
+        {
+            for (int i = 0; i < iSeqCount; ++i)
+            {
+                delete elem[i];
+            }
         }
     }
 
