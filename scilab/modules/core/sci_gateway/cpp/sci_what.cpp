@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, typ
     pOutStringFctTmp = getFunctionsName(&sizeFct);
     pOutStringCmdTmp = getcommandkeywords(&sizeCmd);
 
-    if (_iRetCount == 1)
+    if (_iRetCount <= 1)
     {
         printVarList("Internal Functions", pOutStringFctTmp, sizeFct);
         printVarList("Commands", pOutStringCmdTmp, sizeCmd);

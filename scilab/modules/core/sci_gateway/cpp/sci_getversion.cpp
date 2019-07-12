@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
             return types::Function::Error;
         }
 
-        if (_iRetCount != 1)
+        if (_iRetCount > 1)
         {
             Scierror(81, 1);
             return types::Function::Error;

@@ -35,7 +35,7 @@ int sci_getio(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, in
 		return 1;
 	}
 
-	if (nout != 1)
+	if (nout > 1)
 	{
 		Scierror(81, 1);
 		return 1;

@@ -129,7 +129,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
     if (iErr != MOPEN_NO_ERROR)
     {
         //mange file open errors
-        if (_iRetCount == 1)
+        if (_iRetCount <= 1)
         {
             switch (iErr)
             {

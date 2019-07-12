@@ -29,7 +29,7 @@ int sci_issquare(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt,
         return 1;
     }
 
-    if (nout != 1)
+    if (nout > 1)
     {
         Scierror(81, 1);
         return 1;

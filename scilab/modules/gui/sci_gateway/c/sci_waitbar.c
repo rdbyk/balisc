@@ -49,7 +49,7 @@ int sci_waitbar(char *fname, void* pvApiCtx)
     unsigned long GraphicHandle = 0;
 
     CheckInputArgument(pvApiCtx, 1, 3);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbInputArgument(pvApiCtx) == 1)
     {
@@ -385,7 +385,7 @@ int sci_waitbar(char *fname, void* pvApiCtx)
         }
     }
 
-    if (nbOutputArgument(pvApiCtx) == 1)
+    if (nbOutputArgument(pvApiCtx) <= 1)
     {
         nbRow = 1;
         nbCol = 1;

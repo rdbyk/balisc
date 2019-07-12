@@ -46,6 +46,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     bool bIsContinuStr              = false;
     bool bIsDiscreteStr             = false;
 
+    _iRetCount = std::max(1, _iRetCount);
+
     // *** check number of input args. ***
     if (in.size() < 1 || in.size() > 3)
     {

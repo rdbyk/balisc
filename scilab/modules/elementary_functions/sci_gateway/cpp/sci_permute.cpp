@@ -21,7 +21,7 @@
 extern "C"
 {
 #include "Scierror.h"
-#include "localization.h" 
+#include "localization.h"
 }
 
 void computeOffsets(int iDims, const int* piDimsArray, const std::vector<int>& dimsVect, int* piOffset, int* piMaxOffset)

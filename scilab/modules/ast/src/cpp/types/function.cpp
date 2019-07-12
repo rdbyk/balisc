@@ -28,7 +28,6 @@ extern "C"
 #include "core_math.h"
 #include "charEncoding.h"
 #include "Scierror.h"
-#include "sciprint.h"
 #include "localization.h"
 #include "sci_path.h"
 #include "sci_malloc.h"
@@ -133,7 +132,7 @@ Function* Function::createFunction(const std::wstring& _wstName, const std::wstr
     {
         return new DynamicFunction(_wstName, _wstEntryPointName, _wstLibName, _iType, _pLoadDeps, _wstModule, _bCloseLibAfterCall);
     }
-    
+
     // must never append
     return NULL;
 }
@@ -289,6 +288,7 @@ WrapFunction* WrapFunction::clone()
 
 Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
+
     int ret = 1;
     int inSize = (int)in.size();
     int optSize = (int)opt.size();
@@ -306,9 +306,9 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
 
     ReturnValue retVal = Callable::OK;
     GatewayStruct gStr;
-    _iRetCount = std::max(1, _iRetCount);
     gStr.m_iIn = inSize + optSize;
-    gStr.m_iOut = _iRetCount;
+    gStr.m_iOut = std::max(0, _iRetCount);
+    _iRetCount = std::max(1, _iRetCount);
 
     //copy input parameter to prevent calling gateway modifies input data
     typed_list inCopy;
@@ -466,7 +466,8 @@ WrapMexFunction* WrapMexFunction::clone()
 
 Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out)
 {
-    typedef struct __MAXARRAY__ {
+    typedef struct __MAXARRAY__
+    {
         int* ptr;
     } mxArray;
 
@@ -509,7 +510,7 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
         throw;
     }
 
-    if (_iRetCount == 1 && plhs[0] == NULL)
+    if (_iRetCount <= 1 && plhs[0] == NULL)
     {
         //dont copy empty values, juste return "no value"
         return retVal;
@@ -575,7 +576,7 @@ Function::ReturnValue WrapCFunction::call(typed_list& in, optional_list& opt, in
     {
         GatewayCStruct gcs;
         gcs.name = m_stName;
-        out.resize(_iRetCount, NULL);
+        out.resize(std::max(1, _iRetCount), NULL);
         if (m_pCFunc((void*)&gcs, (int)in.size(), (scilabVar*)(in.data()), (int)opt.size(), (scilabOpt)&opt, _iRetCount, (scilabVar*)(out.data())))
         {
             // just return nothing, to avoid NULLs in "out"
@@ -592,7 +593,7 @@ Function::ReturnValue WrapCFunction::call(typed_list& in, optional_list& opt, in
 
     if (retVal == OK)
     {
-        if (_iRetCount == 1 && out[0] == NULL)
+        if (_iRetCount <= 1 && out[0] == NULL)
         {
             //dont copy empty values, juste return "no value"
             out.clear();
