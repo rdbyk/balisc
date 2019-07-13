@@ -51,7 +51,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     types::InternalType* pIT = getResult();
 
     // pIT can be NULL if one of call return nothing. foo()(1) with foo return nothing.
-    if(pIT == NULL)
+    if (pIT == NULL)
     {
         clearResult();
         cleanIn(inTmp, outTmp);
@@ -189,7 +189,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             }
 
             bool ret = false;
-            if (pIT->isInvokable() == false)
+
+            if (pIT->isInvokable() == false ||
+                (ret = pIT->invoke(in, opt, iRetCount, out, e)) == false && pIT->isUserType())
             {
                 std::wstring fun;
                 fun.reserve((pIT->getShortTypeStr()).size() + 3);
@@ -197,19 +199,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 fun += pIT->getShortTypeStr();
                 fun += L"_e";
                 ret = Overload::call(fun, in, iRetCount, out, true);
-            }
-            else
-            {
-                ret = pIT->invoke(in, opt, iRetCount, out, e);
-                if (ret == false && pIT->isUserType())
-                {
-                    std::wstring fun;
-                    fun.reserve((pIT->getShortTypeStr()).size() + 3);
-                    fun += L"%";
-                    fun += pIT->getShortTypeStr();
-                    fun += L"_e";
-                    ret = Overload::call(fun, in, iRetCount, out, true);
-                }
             }
 
             if (ret)
@@ -220,15 +209,15 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     if (pIT->isCallable())
                     {
                         char* strFName = wide_string_to_UTF8(pIT->getAs<types::Callable>()->getName().c_str());
-                        os_sprintf(szError, _("%s: Wrong number of output arguments: %lu expected.\n"), strFName, out.size());
+                        os_sprintf(szError, ErrorMessageByNumber(81), strFName, static_cast<int>(out.size()));
                         FREE(strFName);
                     }
                     else
                     {
-                        os_sprintf(szError, _("%s: Wrong number of output arguments: %lu expected.\n"), "extract", out.size());
+                        os_sprintf(szError, ErrorMessageByNumber(81), "extract", static_cast<int>(out.size()));
                     }
 
-                    throw InternalError(szError, 999, e.getLocation());
+                    throw InternalError(szError, 81, e.getLocation());
                 }
 
                 setExpectedSize(iSaveExpectedSize);
