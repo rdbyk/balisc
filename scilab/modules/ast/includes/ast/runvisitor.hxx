@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -59,10 +59,7 @@ public:
         {
             for (std::vector<types::InternalType*>::iterator rv = _resultVect.begin() + 1, end = _resultVect.end(); rv != end; ++rv)
             {
-                if (*rv != nullptr)
-                {
-                    (*rv)->killMe();
-                }
+                (*rv)->killMe();
             }
         }
     }
@@ -82,10 +79,7 @@ public:
         {
             for (std::vector<types::InternalType*>::iterator rv = _resultVect.begin(); rv != _resultVect.end(); rv++)
             {
-                if (*rv != nullptr)
-                {
-                    (*rv)->killMe();
-                }
+                (*rv)->killMe();
             }
         }
         _resultVect.clear();
@@ -167,17 +161,6 @@ public:
         }
     }
 
-    void setResult(int _iPos, const types::InternalType *gtVal)
-    {
-        m_bSingleResult = false;
-        if (_iPos >= static_cast<int>(_resultVect.size()))
-        {
-            _resultVect.resize(_iPos + 1, nullptr);
-        }
-
-        _resultVect[_iPos] = const_cast<types::InternalType *>(gtVal);
-    }
-
     inline void setResult(const types::InternalType *gtVal)
     {
         m_bSingleResult = true;
@@ -218,27 +201,18 @@ public:
         {
             for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
             {
-                if (*o)
-                {
-                    (*o)->IncreaseRef();
-                }
+                (*o)->IncreaseRef();
             }
 
             for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
             {
-                if (*i)
-                {
-                    (*i)->DecreaseRef();
-                    (*i)->killMe();
-                }
+                (*i)->DecreaseRef();
+                (*i)->killMe();
             }
 
             for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
             {
-                if (*o)
-                {
-                    (*o)->DecreaseRef();
-                }
+                (*o)->DecreaseRef();
             }
         }
     }
@@ -255,10 +229,7 @@ public:
         {
             for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
             {
-                if (*o)
-                {
-                    (*o)->killMe();
-                }
+                (*o)->killMe();
             }
         }
     }
@@ -269,28 +240,20 @@ public:
         {
             for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
             {
-                if (*o)
-                {
-                    (*o)->IncreaseRef();
-                }
+                (*o)->IncreaseRef();
             }
 
             for (types::optional_list::const_iterator o = opt.begin(); o != opt.end(); ++o)
             {
-                if (o->second)
-                {
-                    //decreasef ref after increaseref in callexp
-                    o->second->DecreaseRef();
-                    o->second->killMe();
-                }
+                //decreasef ref after increaseref in callexp
+                o->second->DecreaseRef();
+                o->second->killMe();
+
             }
 
             for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
             {
-                if (*o)
-                {
-                    (*o)->DecreaseRef();
-                }
+                (*o)->DecreaseRef();
             }
         }
     }
