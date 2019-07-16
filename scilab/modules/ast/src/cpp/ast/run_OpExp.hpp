@@ -250,7 +250,6 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 
     try
     {
-
         /*getting what to assign*/
         e.getLeft().accept(*this);
         pITL = getResult();
@@ -280,137 +279,42 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
             }
         }
 
+        // process left arg only (for shortcut ops)
+        bool bIsShortCut = true;
+
         switch (e.getOper())
         {
             case LogicalOpExp::logicalShortCutAnd:
-            {
                 pResult = GenericShortcutAnd(pITL);
-                if (pResult)
-                {
-                    break;
-                }
-
-                //Continue to logicalAnd
-            }
-            case LogicalOpExp::logicalAnd:
-            {
-                /*getting what to assign*/
-                e.getRight().accept(*this);
-                pITR = getResult();
-                if (pITR == nullptr)
-                {
-                    clearResult();
-                    char pstError[bsiz];
-                    char* strOp = wide_string_to_UTF8(e.getString().c_str());
-                    os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 2);
-                    FREE(strOp);
-                    throw InternalError(pstError, 42, e.getRight().getLocation());
-                }
-                if (isSingleResult() == false)
-                {
-                    throw ast::InternalError(5, e.getRight().getLocation());
-                }
-
-                if (pITR->getType() == types::InternalType::ScilabImplicitList)
-                {
-                    types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
-                    if (pIR->isComputable())
-                    {
-                        pITR = pIR->extractFullMatrix();
-                        pIR->killMe();
-                    }
-                }
-                pResult = GenericLogicalAnd(pITL, pITR);
-
-                if (pResult && e.getOper() == LogicalOpExp::logicalShortCutAnd)
-                {
-                    types::InternalType* pResult2 = GenericShortcutAnd(pResult);
-                    if(pResult != pITL && pResult != pITR)
-                    {
-                        pResult->killMe();
-                    }
-
-                    if (pResult2)
-                    {
-                        pResult = pResult2;
-                    }
-                    else
-                    {
-                        pResult = new types::Bool(1);
-                    }
-                }
                 break;
-            }
+
             case LogicalOpExp::logicalShortCutOr:
-            {
                 pResult = GenericShortcutOr(pITL);
-                if (pResult)
-                {
-                    break;
-                }
-
-                //Continue to logicalAnd
-            }
-            case LogicalOpExp::logicalOr:
-            {
-                /*getting what to assign*/
-                e.getRight().accept(*this);
-                pITR = getResult();
-                if (pITR == nullptr)
-                {
-                    clearResult();
-                    char pstError[bsiz];
-                    char* strOp = wide_string_to_UTF8(e.getString().c_str());
-                    os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 2);
-                    FREE(strOp);
-                    throw InternalError(pstError, 42, e.getRight().getLocation());
-                }
-                if (isSingleResult() == false)
-                {
-                    throw ast::InternalError(5, e.getRight().getLocation());
-                }
-
-                if (pITR->getType() == types::InternalType::ScilabImplicitList)
-                {
-                    types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
-                    if (pIR->isComputable())
-                    {
-                        pITR = pIR->extractFullMatrix();
-                    }
-                }
-                pResult = GenericLogicalOr(pITL, pITR);
-                if (pResult && e.getOper() == LogicalOpExp::logicalShortCutOr)
-                {
-                    types::InternalType* pResult2 = GenericShortcutOr(pResult);
-                    if(pResult != pITL && pResult != pITR)
-                    {
-                        pResult->killMe();
-                    }
-
-                    if (pResult2)
-                    {
-                        pResult = pResult2;
-                    }
-                    else
-                    {
-                        pResult = new types::Bool(0);
-                    }
-                }
                 break;
-            }
 
             default:
+                bIsShortCut = false;
                 break;
         }
-        //overloading
+
+        // process both arguments
         if (pResult == NULL)
         {
-            // We did not have any algorithm matching, so we try to call OverLoad
             e.getRight().accept(*this);
             pITR = getResult();
-            if (isSingleResult() == false)
+
+            if (pITR == nullptr)
             {
                 clearResult();
+                char pstError[bsiz];
+                char* strOp = wide_string_to_UTF8(e.getString().c_str());
+                os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 2);
+                FREE(strOp);
+                throw InternalError(pstError, 42, e.getRight().getLocation());
+            }
+
+            if (isSingleResult() == false)
+            {
                 throw ast::InternalError(5, e.getRight().getLocation());
             }
 
@@ -422,6 +326,47 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     pITR = pIR->extractFullMatrix();
                 }
             }
+
+            switch (e.getOper())
+            {
+                case LogicalOpExp::logicalShortCutAnd:
+                case LogicalOpExp::logicalAnd:
+                    pResult = GenericLogicalAnd(pITL, pITR);
+                    break;
+
+                case LogicalOpExp::logicalShortCutOr:
+                case LogicalOpExp::logicalOr:
+                    pResult = GenericLogicalOr(pITL, pITR);
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (pResult && bIsShortCut)
+            {
+                bool bIsShortCutAnd = e.getOper() == LogicalOpExp::logicalShortCutAnd;
+                types::InternalType* pResult2 = bIsShortCutAnd ? GenericShortcutAnd(pResult) : GenericShortcutOr(pResult);
+
+                if(pResult != pITL && pResult != pITR)
+                {
+                    pResult->killMe();
+                }
+
+                if (pResult2)
+                {
+                    pResult = pResult2;
+                }
+                else
+                {
+                    pResult = new types::Bool(bIsShortCutAnd);
+                }
+            }
+        }
+
+        //overloading
+        if (pResult == NULL)
+        {
             pResult = callOverloadOpExp(e.getOper(), pITL, pITR);
         }
 
