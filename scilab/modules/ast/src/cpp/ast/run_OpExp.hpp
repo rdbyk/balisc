@@ -254,6 +254,15 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         /*getting what to assign*/
         e.getLeft().accept(*this);
         pITL = getResult();
+        if (pITL == nullptr)
+        {
+            clearResult();
+            char pstError[bsiz];
+            char* strOp = wide_string_to_UTF8(e.getString().c_str());
+            os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 1);
+            FREE(strOp);
+            throw InternalError(pstError, 42,  e.getLeft().getLocation());
+        }
         if (isSingleResult() == false)
         {
             throw ast::InternalError(5, e.getRight().getLocation());
@@ -288,6 +297,15 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 /*getting what to assign*/
                 e.getRight().accept(*this);
                 pITR = getResult();
+                if (pITR == nullptr)
+                {
+                    clearResult();
+                    char pstError[bsiz];
+                    char* strOp = wide_string_to_UTF8(e.getString().c_str());
+                    os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 2);
+                    FREE(strOp);
+                    throw InternalError(pstError, 42, e.getRight().getLocation());
+                }
                 if (isSingleResult() == false)
                 {
                     throw ast::InternalError(5, e.getRight().getLocation());
@@ -338,6 +356,15 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 /*getting what to assign*/
                 e.getRight().accept(*this);
                 pITR = getResult();
+                if (pITR == nullptr)
+                {
+                    clearResult();
+                    char pstError[bsiz];
+                    char* strOp = wide_string_to_UTF8(e.getString().c_str());
+                    os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 2);
+                    FREE(strOp);
+                    throw InternalError(pstError, 42, e.getRight().getLocation());
+                }
                 if (isSingleResult() == false)
                 {
                     throw ast::InternalError(5, e.getRight().getLocation());
