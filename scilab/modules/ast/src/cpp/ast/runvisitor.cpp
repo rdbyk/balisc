@@ -1289,6 +1289,14 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
     }
 
     types::InternalType * pValue = getResult();
+    if (pValue == nullptr)
+    {
+        clearResult();
+        char pstError[bsiz];
+        os_sprintf(pstError, ErrorMessageByNumber(42), L"~", 1);
+        CoverageInstance::stopChrono((void*)&e);
+        throw InternalError(pstError, 42,  e.getLocation());
+    }
     types::InternalType * pReturn = NULL;
     if (pValue->neg(pReturn))
     {
