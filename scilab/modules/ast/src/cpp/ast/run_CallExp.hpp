@@ -205,19 +205,17 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 if (iSaveExpectedSize != -1 && iSaveExpectedSize > out.size())
                 {
-                    char szError[bsiz];
                     if (pIT->isCallable())
                     {
                         char* strFName = wide_string_to_UTF8(pIT->getAs<types::Callable>()->getName().c_str());
-                        os_sprintf(szError, ErrorMessageByNumber(81), strFName, static_cast<int>(out.size()));
+                        InternalError ie(81, e.getLocation(), strFName, static_cast<int>(out.size()));
                         FREE(strFName);
+                        throw ie;
                     }
                     else
                     {
-                        os_sprintf(szError, ErrorMessageByNumber(81), "extract", static_cast<int>(out.size()));
+                        throw InternalError(81, e.getLocation(), "extract", static_cast<int>(out.size()));
                     }
-
-                    throw InternalError(szError, 81, e.getLocation());
                 }
 
                 setExpectedSize(iSaveExpectedSize);

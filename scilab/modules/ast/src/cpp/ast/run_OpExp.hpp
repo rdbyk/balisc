@@ -35,11 +35,10 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (pITL == nullptr)
         {
             clearResult();
-            char pstError[bsiz];
             char* strOp = wide_string_to_UTF8(e.getString().c_str());
-            os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 1);
+            InternalError ie(42,  e.getLeft().getLocation(), strOp, 1);
             FREE(strOp);
-            throw InternalError(pstError, 42,  e.getLeft().getLocation());
+            throw ie;
         }
 
         /*getting what to assign*/
@@ -54,11 +53,10 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (pITR == nullptr)
         {
             clearResult();
-            char pstError[bsiz];
             char* strOp = wide_string_to_UTF8(e.getString().c_str());
-            os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 2);
+            InternalError ie(42,  e.getLeft().getLocation(), strOp, 2);
             FREE(strOp);
-            throw InternalError(pstError, 42, e.getRight().getLocation());
+            throw ie;
         }
 
         if (pITL->getType() == types::InternalType::ScilabImplicitList)
@@ -256,11 +254,10 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         if (pITL == nullptr)
         {
             clearResult();
-            char pstError[bsiz];
             char* strOp = wide_string_to_UTF8(e.getString().c_str());
-            os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 1);
+            InternalError ie(42,  e.getLeft().getLocation(), strOp, 1);
             FREE(strOp);
-            throw InternalError(pstError, 42,  e.getLeft().getLocation());
+            throw ie;
         }
         if (isSingleResult() == false)
         {
@@ -306,11 +303,10 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
             if (pITR == nullptr)
             {
                 clearResult();
-                char pstError[bsiz];
                 char* strOp = wide_string_to_UTF8(e.getString().c_str());
-                os_sprintf(pstError, ErrorMessageByNumber(42), strOp, 2);
+                InternalError ie(42,  e.getLeft().getLocation(), strOp, 2);
                 FREE(strOp);
-                throw InternalError(pstError, 42, e.getRight().getLocation());
+                throw ie;
             }
 
             if (isSingleResult() == false)

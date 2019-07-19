@@ -17,6 +17,8 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 // 02110-1301, USA.
 
+#include <stdarg.h>
+
 #include "localization.hxx"
 #include "scilabexception.hxx"
 
@@ -26,7 +28,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "localization.h"
 }
-
+ 
 #include "errmsgs.h"
 
 namespace ast
@@ -75,12 +77,40 @@ InternalError::InternalError(int _iErrorNumber)
     setLastError(m_iErrorNumber, m_wstErrorMessage.c_str(), m_ErrorLocation.first_line, NULL);
 }
 
-InternalError::InternalError(int _iErrorNumber, const Location& _ErrorLocation)
+InternalError::InternalError(int _iErrorNumber, const Location& _ErrorLocation, ...)
 {
-    wchar_t* pwst = to_wide_string(ErrorMessageByNumber(_iErrorNumber));
-    createScilabException(pwst, _iErrorNumber, _ErrorLocation);
-    FREE(pwst);
-    setLastError(m_iErrorNumber, m_wstErrorMessage.c_str(), m_ErrorLocation.first_line, NULL);
+    int retval = 0;
+    char* stptr = NULL;
+    va_list ap;
+
+    char *errmsg = ErrorMessageByNumber(_iErrorNumber);
+
+    va_start(ap, _ErrorLocation);
+
+    if (errmsg)
+    {
+        retval = vasprintf(&stptr, errmsg, ap);
+    }
+    else
+    {
+        const char* fmt = va_arg(ap, const char*);
+        retval = vasprintf(&stptr, fmt, ap);
+    }
+
+    va_end(ap);
+
+    if (retval < 0)
+    {
+        setLastError(_iErrorNumber, NULL, 0, NULL);
+    }
+    else
+    {
+        wchar_t* pwstError = to_wide_string(stptr);
+        FREE(stptr);
+        createScilabException(pwstError, _iErrorNumber, _ErrorLocation);
+        FREE(pwstError);
+        setLastError(m_iErrorNumber, m_wstErrorMessage.c_str(), m_ErrorLocation.first_line, NULL);
+    }
 }
 
 }

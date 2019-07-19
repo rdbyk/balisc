@@ -145,12 +145,11 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
     }
     else
     {
-        char pstError[bsiz];
         char* strErr = wide_string_to_UTF8(e.getSymbol().getName().c_str());
-        os_sprintf(pstError, ErrorMessageByNumber(40), strErr);
+        InternalError ie(40, e.getLocation(), strErr);
         FREE(strErr);
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(pstError, 40, e.getLocation());
+        throw ie;
         //Err, SimpleVar doesn't exist in Scilab scopes.
     }
     CoverageInstance::stopChrono((void*)&e);
@@ -1292,10 +1291,8 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
     if (pValue == nullptr)
     {
         clearResult();
-        char pstError[bsiz];
-        os_sprintf(pstError, ErrorMessageByNumber(42), L"~", 1);
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(pstError, 42,  e.getLocation());
+        throw InternalError(42,  e.getLocation(), "~", 1);
     }
     types::InternalType * pReturn = NULL;
     if (pValue->neg(pReturn))
@@ -1514,18 +1511,14 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
             ERROR_START:
                 piStart->killMe();
-                char pstError[bsiz];
-                os_sprintf(pstError, ErrorMessageByNumber(41), ":", 1);
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(pstError, 41, e.getLocation());
+                throw InternalError(41, e.getLocation(), ":", 1);
         }
     }
     else
     {
-        char pstError[bsiz];
-        os_sprintf(pstError, ErrorMessageByNumber(42), ":", 1);
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(pstError, 42, e.getLocation());
+        throw InternalError(42, e.getLocation(), ":", 1);
     }
 
     try
@@ -1591,19 +1584,15 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             ERROR_STEP:
                 piStart->killMe();
                 piStep->killMe();
-                char pstError[bsiz];
-                os_sprintf(pstError, ErrorMessageByNumber(41), ":", 2);
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(pstError, 41, e.getLocation());
+                throw InternalError(41, e.getLocation(), ":", 2);
         }
     }
     else
     {
         piStart->killMe();
-        char pstError[bsiz];
-        os_sprintf(pstError, ErrorMessageByNumber(42), ":", 2);
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(pstError, 42, e.getLocation());
+        throw InternalError(42, e.getLocation(), ":", 2);
     }
 
     try
@@ -1670,20 +1659,16 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                 piStart->killMe();
                 piStep->killMe();
                 piEnd->killMe();
-                char pstError[bsiz];
-                os_sprintf(pstError, ErrorMessageByNumber(41), ":", 2 + e.hasExplicitStep());
                 CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(pstError, 41, e.getLocation());
+                throw InternalError(41, e.getLocation(), ":", 2 + e.hasExplicitStep());
         }
     }
     else
     {
         piStart->killMe();
         piStep->killMe();
-        char pstError[bsiz];
-        os_sprintf(pstError, ErrorMessageByNumber(42), ":", 2 + e.hasExplicitStep());
         CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(pstError, 42, e.getLocation());
+        throw InternalError(42, e.getLocation(), ":", 2 + e.hasExplicitStep());
     }
 
     ////check if implicitlist is 1:$ to replace by ':'

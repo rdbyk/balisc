@@ -23,6 +23,10 @@
 #include "exp.hxx"
 #include "types_tools.hxx"
 
+extern "C" {
+#include "sci_malloc.h"
+}
+
 namespace types
 {
 Struct::Struct()
@@ -195,9 +199,10 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
                 }
                 else
                 {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n").c_str(), wstField.c_str());
-                    throw ast::InternalError(szError, 999, e.getLocation());
+                    char* field_name = wide_string_to_UTF8(wstField.c_str());
+                    ast::InternalError ie(161, e.getLocation(), field_name);
+                    FREE(field_name);
+                    throw ie;
                 }
             }
 
