@@ -79,7 +79,10 @@ public:
         {
             for (std::vector<types::InternalType*>::iterator rv = _resultVect.begin(); rv != _resultVect.end(); rv++)
             {
-                (*rv)->killMe();
+                if (*rv != nullptr)
+                {
+                    (*rv)->killMe();
+                }
             }
         }
         _resultVect.clear();
@@ -159,6 +162,17 @@ public:
         {
             return &_resultVect;
         }
+    }
+
+    void setResult(int _iPos, const types::InternalType *gtVal)
+    {
+        m_bSingleResult = false;
+        if (_iPos >= static_cast<int>(_resultVect.size()))
+        {
+            _resultVect.resize(_iPos + 1, nullptr);
+        }
+
+        _resultVect[_iPos] = const_cast<types::InternalType *>(gtVal);
     }
 
     inline void setResult(const types::InternalType *gtVal)

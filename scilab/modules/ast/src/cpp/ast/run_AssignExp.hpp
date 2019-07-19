@@ -426,6 +426,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 pAssign.setLrOwner(false);
                 pAssign.setVerbose(e.isVerbose());
                 pAssign.accept(*this);
+                 //clear result to take care of [n,n]
+                exec.setResult(i, NULL);
                 delete pExp;
             }
 
