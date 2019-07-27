@@ -61,7 +61,8 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                     cases, only the first variables from the left are used or set.
                 </para>
                 <para>
-                    The <link linkend="argn">argn</link> function may be used to get
+                    The <link linkend="nargin">nargin</link> and <link linkend="nargout">nargout</link>
+                    variables may be used to get
                     the actual number of calling arguments.
                 </para>
             </listitem>
@@ -170,6 +171,12 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
                 <link linkend="exists">exists</link>
             </member>
             <member>
+                <link linkend="nargin">nargin</link>
+            </member>
+            <member>
+                <link linkend="nargout">nargout</link>
+            </member>
+            <member>
                 <link linkend="varargin">varargin</link>
             </member>
             <member>
@@ -179,5 +186,14 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
                 <link linkend="names">names</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 2</revnumber>
+                <revdescription>Function <code>argn</code> was completely removed.</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
