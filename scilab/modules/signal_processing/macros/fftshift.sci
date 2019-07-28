@@ -25,7 +25,7 @@ function x = fftshift(x, along)
     end
 
     // Checking "along"
-    if argn(2)<2 then
+    if nargin < 2 then
         along = "all"
     end
     if along=="r" then

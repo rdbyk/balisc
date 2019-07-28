@@ -159,7 +159,7 @@ function colorbar(umin, umax, colminmax, fmt)
                 if Type=="Matplot"
                     umin = colminmax(1)
                 else
-                    if argn(2)<2
+                    if nargin < 2
                         c = colminmax // raw bounds (not integers)
                         nc = max(1,floor(colminmax(1)))
                         // recomputing umin matching the rounded colminmax(1)
@@ -198,7 +198,7 @@ function colorbar(umin, umax, colminmax, fmt)
                 if Type=="Matplot"
                     umax = colminmax(2)
                 else
-                    if argn(2)<2
+                    if nargin < 2
                         c = colminmax // raw bounds (not integers)
                         nc = min(nColorsCM,ceil(colminmax(2)))
                         // recomputing umax matching the rounded colminmax(1)
@@ -246,8 +246,7 @@ function colorbar(umin, umax, colminmax, fmt)
     // fmt
     if isdef("fmt","l") then
         if type(fmt)<>10 | size(fmt,"*")<>1 then
-            msg = gettext("%s: Wrong type for input argument #%d: %s expected.\n")
-            error(msprintf(msg, "colorbar", argn(2), "string (containing a C format)"));
+            error(90, nargin, _("string (containing a C format)"));
         end
     else
         fmt = ""

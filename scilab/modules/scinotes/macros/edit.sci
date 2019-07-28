@@ -4,6 +4,7 @@
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,16 +17,15 @@ function edit(macroname, linenumber)
     // macroname : character string giving a macroname
     // linenumber : line number
 
-    [lhs,rhs] = argn(0);
-    if (rhs > 2) then
+    if (nargin > 2) then
         error(sprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "edit", 1));
     end
 
-    if (rhs >= 1 & type(macroname) ~= 10) then
+    if (nargin >= 1 & type(macroname) ~= 10) then
         error(sprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"edit",1));
     end
 
-    if (rhs == 2 & type(linenumber) ~= 1) then
+    if (nargin == 2 & type(linenumber) ~= 1) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Double expected.\n"),"edit",2));
     end
 
@@ -34,7 +34,7 @@ function edit(macroname, linenumber)
     // tmpdir will have trailing / or \
     tmpdir= pathconvert(TMPDIR);
 
-    if rhs >= 1 then // macroname or filename is given
+    if nargin >= 1 then // macroname or filename is given
         if regexp(macroname, "/^([a-zA-Z%_#!$?][0-9a-zA-Z_#!$?]*)$/") == [] then
             // File
             fname = macroname;
@@ -105,7 +105,7 @@ function edit(macroname, linenumber)
     end
 
     // call the editor with the filename
-    if (rhs == 2) then
+    if (nargin == 2) then
         editor(fname, linenumber, macroname);
     else
         editor(fname);
