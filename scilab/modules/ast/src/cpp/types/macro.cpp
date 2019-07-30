@@ -377,20 +377,6 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         for (int i = 0 ; i < size ; ++i)
         {
             InternalType* pIT = pVarOut->get(i);
-            if (pIT->isListUndefined())
-            {
-                for (int j = 0; j < i; ++j)
-                {
-                    out[j]->DecreaseRef();
-                    out[j]->killMe();
-                }
-                out.clear();
-                cleanCall(pContext, oldVal);
-
-                Scierror(44, i + 1);
-                return Callable::Error;
-            }
-
             pIT->IncreaseRef();
             out.push_back(pIT);
         }
