@@ -82,6 +82,7 @@ public:
         {
             delete d.second;
         }
+
         for (auto b : breakpoints)
         {
             delete b;
@@ -134,7 +135,7 @@ public:
         callstack.stack.clear();
     }
 
-    CallStack getCallStack()
+    CallStack& getCallStack()
     {
         return callstack;
     }
@@ -171,7 +172,7 @@ public:
     Breakpoints& getAllBreakPoint();
 
     //watches functions
-    void setWatches(Watches _w);
+    void setWatches(const Watches& _w);
     void removeWatches();
     void updateWatches(int _iScopeLvl = -1);
     Watches& getWatches();
@@ -182,6 +183,7 @@ public:
         action = StepIn;
         level = symbol::Context::getInstance()->getScopeLevel();
     }
+
     inline bool isStepIn()
     {
         int l = symbol::Context::getInstance()->getScopeLevel();
@@ -199,6 +201,7 @@ public:
 
         return true;
     }
+
     inline void resetStepIn()
     {
         if (isStepIn())
@@ -212,11 +215,13 @@ public:
         action = StepOut;
         level = ConfigVariable::getWhere().size();
     }
+
     inline bool isStepOut()
     {
         int l = ConfigVariable::getWhere().size();
         return action == StepOut && l < level;
     }
+
     inline void resetStepOut()
     {
         if (isStepOut())
@@ -229,10 +234,12 @@ public:
     {
         action = Aborted;
     }
+
     inline bool isAborted()
     {
         return action == Aborted;
     }
+
     inline void resetAborted()
     {
         if (isAborted())
@@ -246,12 +253,14 @@ public:
         action = StepNext;
         level = symbol::Context::getInstance()->getScopeLevel();
     }
+
     inline bool isStepNext()
     {
         int l = symbol::Context::getInstance()->getScopeLevel();
         //if stepNext failed ( end of macro ), stepNext become a stepOut
         return action == StepNext && l <= level;
     }
+
     inline void resetStepNext()
     {
         if (isStepNext())
