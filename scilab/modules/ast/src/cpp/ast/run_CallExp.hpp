@@ -205,17 +205,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 if (iSaveExpectedSize != -1 && iSaveExpectedSize > out.size())
                 {
-                    if (pIT->isCallable())
-                    {
-                        char* strFName = wide_string_to_UTF8(pIT->getAs<types::Callable>()->getName().c_str());
-                        InternalError ie(81, e.getLocation(), strFName, static_cast<int>(out.size()));
-                        FREE(strFName);
-                        throw ie;
-                    }
-                    else
-                    {
-                        throw InternalError(81, e.getLocation(), "extract", static_cast<int>(out.size()));
-                    }
+                    int errnum = pIT->isCallable() ? 81 : 44;
+                    throw InternalError(errnum, e.getLocation(), static_cast<int>(out.size()));
                 }
 
                 setExpectedSize(iSaveExpectedSize);
