@@ -64,16 +64,8 @@ Macro::~Macro()
     m_pDblArgIn->killMe();
     m_pDblArgOut->DecreaseRef();
     m_pDblArgOut->killMe();
-
-    if (m_inputArgs)
-    {
-        delete m_inputArgs;
-    }
-
-    if (m_outputArgs)
-    {
-        delete m_outputArgs;
-    }
+    delete m_inputArgs;
+    delete m_outputArgs;
 
     for (const auto & sub : m_submacro)
     {
