@@ -74,7 +74,7 @@ static const std::map<int, const char*> errmsgs =
     { 41, _("'%s': Wrong type for operand #%d: real scalar expected.\n") },
     { 42, _("'%s': Evaluation of operand #%d yields no result.\n") },
     { 43, _("Wrong type for 'varargout': list expected.\n") },
-    { 44, _("Element #%d in 'varargout' is undefined.\n") },
+    { 44, _("'extract' operation expects #%d output arguments.\n") },
     { 45, _("An error has been detected while loading %s: %s.\n") },
     { 45, _("Impossible to load %s library.\n") },
     { 46, _("Impossible to load %s function in %s library: %s.\n") },
