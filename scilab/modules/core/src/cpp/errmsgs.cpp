@@ -142,6 +142,9 @@ static const std::map<int, const char*> errmsgs =
     // linear_algebra
     { 180, _("LAPACK error #%d.\n") },
 
+    // cacsd
+    { 200, _("System is not controllable.\n") },
+
 };
 
 char* ErrorMessageByNumber(int n)
