@@ -200,7 +200,12 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 else
                 {
                     //varargin
-                    pL->append(opt[var]);
+                    char* keyword = wide_string_to_UTF8(in[i]->getAs<ListInsert>()->getInsert()->getAs<String>()->get()[0]);
+                    Scierror(60, keyword);
+                    FREE(keyword);
+                    pContext->scope_end();
+                    ConfigVariable::macroFirstLine_end();
+                    return Callable::Error;
                 }
             }
             else

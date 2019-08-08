@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -53,27 +53,10 @@
         <para>
             The total number of actual input arguments is given by <code>nargin</code>.
         </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
         <para>
-            Named argument syntax like <literal>foo(...,key=value)</literal> is incompatible
-            with the use of <literal>varargin</literal>. The reason is that the names (i.e.
-            keys) associated with values are not stored in the <literal>varargin</literal> list.
-            Consider for instance:
-        </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-function foo(varargin)
-    disp([varargin(1),varargin(2)])
-endfunction
-        ]]></programlisting>
-        <screen><![CDATA[--> foo(a=1, b=2)
- 1.    2.
---> foo(b=1, a=2)
- 1.    2.
-]]></screen>
-        <para>
-            Result is the same, but the arguments were inverted.
+            Only positional arguments are allowed as <literal>varargin</literal> arguments,
+            thus using keyword (named) arguments, e.g. <literal>key=value</literal>,
+            will raise an error.
         </para>
     </refsection>
     <refsection>
@@ -108,5 +91,14 @@ exampl(1,l(2:3))
                 <link linkend="list">list</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 2</revnumber>
+                <revremark>Keyword (named) arguments are not allowed any more.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
