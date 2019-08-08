@@ -980,10 +980,10 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
             pIT->DecreaseRef();
             return ret;
         }
-        catch (const ast::InternalError &ie)
+        catch (const ast::InternalError)
         {
             pIT->DecreaseRef();
-            throw ie;
+            throw;
         }
     }
     else

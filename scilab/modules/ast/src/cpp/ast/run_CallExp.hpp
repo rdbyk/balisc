@@ -254,7 +254,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             pListArg->killMe();
         }
     }
-    catch (InternalAbort & ia)
+    catch (InternalAbort &)
     {
         setExpectedSize(iSaveExpectedSize);
         if (pIT != getResult())
@@ -267,9 +267,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         cleanOpt(opt, out);
         CoverageInstance::stopChrono((void*)&e);
 
-        throw ia;
+        throw;
     }
-    catch (const InternalError& ie)
+    catch (const InternalError&)
     {
         setExpectedSize(iSaveExpectedSize);
         if (pIT != getResult())
@@ -282,7 +282,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         cleanOpt(opt, out);
         CoverageInstance::stopChrono((void*)&e);
 
-        throw ie;
+        throw;
     }
 
     CoverageInstance::stopChrono((void*)&e);
@@ -450,13 +450,13 @@ void RunVisitor::getInputs(const CallExp& e, exps_t& args, types::typed_list& in
             clearResult();
         }
     }
-    catch (const InternalError& ie)
+    catch (const InternalError&)
     {
         clearResult();
         types::typed_list outTmp;
         cleanIn(inTmp, outTmp);
         CoverageInstance::stopChrono((void*)&e);
-        throw ie;
+        throw;
     }
 }
 } /* namespace ast */

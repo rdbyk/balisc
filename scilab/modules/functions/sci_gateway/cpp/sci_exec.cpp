@@ -323,13 +323,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             throw ast::InternalError(sz);
         }
     }
-    catch (const ast::InternalAbort& ia)
+    catch (const ast::InternalAbort&)
     {
         closeFile(file, iID, wstFile, pExp);
         ConfigVariable::setPromptMode(oldVal);
-        throw ia;
+        throw;
     }
-    catch (const ast::InternalError& ie)
+    catch (const ast::InternalError&)
     {
         if (pMacro && ConfigVariable::getLastErrorFunction().empty())
         {
@@ -341,7 +341,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             closeFile(file, iID, wstFile, pExp);
             ConfigVariable::setPromptMode(oldVal);
             ConfigVariable::setExecutedFileID(0);
-            throw ie;
+            throw;
         }
 
         ConfigVariable::resetWhereError();

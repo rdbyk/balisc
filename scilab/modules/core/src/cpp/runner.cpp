@@ -3,7 +3,7 @@
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2014-2015 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -87,13 +87,13 @@ int StaticRunner::launch()
         {
             runMe->getProgram()->accept(*(runMe->getVisitor()));
         }
-        catch (const ast::RecursionException& re)
+        catch (const ast::RecursionException&)
         {
             // management of pause
             if (ConfigVariable::getPauseLevel())
             {
                 ConfigVariable::DecreasePauseLevel();
-                throw re;
+                throw;
             }
 
             //close opened scope during try
@@ -132,7 +132,7 @@ int StaticRunner::launch()
         ConfigVariable::resetWhereError();
         iRet = 1;
     }
-    catch (const ast::InternalAbort& ia)
+    catch (const ast::InternalAbort&)
     {
         if (runMe->getCommandOrigin() == TCLSCI)
         {
@@ -165,7 +165,7 @@ int StaticRunner::launch()
             UpdateBrowseVar();
         }
 
-        throw ia;
+        throw;
     }
 
     if (runMe->getCommandOrigin() == TCLSCI)

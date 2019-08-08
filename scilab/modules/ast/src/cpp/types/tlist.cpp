@@ -174,7 +174,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     {
         ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out);
     }
-    catch (const ast::InternalError &ie)
+    catch (const ast::InternalError&)
     {
         try
         {
@@ -187,7 +187,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
             }
             else
             {
-                throw ie;
+                throw;
             }
         }
         catch (ast::InternalError & /*se*/)

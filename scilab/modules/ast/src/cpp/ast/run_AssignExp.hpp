@@ -187,7 +187,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 pOut = evaluateFields(pCell, fields, pITR);
             }
-            catch (const InternalError& error)
+            catch (const InternalError&)
             {
                 // catch error when call overload
                 for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
@@ -197,7 +197,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 }
 
                 pITR->killMe();
-                throw error;
+                throw;
             }
 
             for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
@@ -286,7 +286,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     {
                         pOut = insertionCall(e, currentArgs, pIT, pITR);
                     }
-                    catch (const InternalError& error)
+                    catch (const InternalError&)
                     {
                         pITR->DecreaseRef();
                         // call killMe on all arguments
@@ -294,7 +294,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                         delete currentArgs;
                         // insertion have done, call killMe on pITR
                         pITR->killMe();
-                        throw error;
+                        throw;
                     }
 
                     pITR->DecreaseRef();
@@ -343,7 +343,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     pOut = evaluateFields(pCall, fields, pITR);
                 }
-                catch (const InternalError& error)
+                catch (const InternalError&)
                 {
                     // catch error when call overload
                     for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
@@ -354,7 +354,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     pITR->DecreaseRef();
                     pITR->killMe();
 
-                    throw error;
+                    throw;
                 }
 
                 for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; ++i)
@@ -493,14 +493,14 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     throw ast::InternalError(10, e.getRightExp().getLocation());
                 }
             }
-            catch (const InternalError& error)
+            catch (const InternalError&)
             {
                 for (auto i : fields)
                 {
                     delete i;
                 }
 
-                throw error;
+                throw;
             }
 
             for (auto i : fields)
@@ -531,10 +531,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
         throw ast::InternalError(30, e.getRightExp().getLocation());
     }
-    catch (const InternalError& error)
+    catch (const InternalError&)
     {
         CoverageInstance::stopChrono((void*)&e);
-        throw error;
+        throw;
     }
 }
 

@@ -71,7 +71,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     col->accept(*this);
                 }
-                catch (const InternalError& error)
+                catch (const InternalError&)
                 {
                     if (poRow)
                     {
@@ -82,7 +82,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                         poResult->killMe();
                     }
 
-                    throw error;
+                    throw;
                 }
 
                 types::InternalType *pIT = getResult();
@@ -116,13 +116,13 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                             {
                                 poRow = callOverloadMatrixExp(L"c", poRow, pIT);
                             }
-                            catch (const InternalError& error)
+                            catch (const InternalError&)
                             {
                                 if (poResult)
                                 {
                                     poResult->killMe();
                                 }
-                                throw error;
+                                throw;
                             }
                         }
 
@@ -143,14 +143,14 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                         {
                             poRow = callOverloadMatrixExp(L"c", poRow, pIT);
                         }
-                        catch (const InternalError& error)
+                        catch (const InternalError&)
                         {
                             if (poResult)
                             {
                                 poResult->killMe();
                             }
 
-                            throw error;
+                            throw;
                         }
                     }
 
@@ -200,13 +200,13 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         poRow = callOverloadMatrixExp(L"c", poRow, pGT);
                     }
-                    catch (const InternalError& error)
+                    catch (const InternalError&)
                     {
                         if (poResult)
                         {
                             poResult->killMe();
                         }
-                        throw error;
+                        throw;
                     }
 
                     continue;
@@ -259,13 +259,13 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
                     }
-                    catch (const InternalError& error)
+                    catch (const InternalError&)
                     {
                         if (poResult)
                         {
                             poResult->killMe();
                         }
-                        throw error;
+                        throw;
                     }
                     continue;
                 }
@@ -301,9 +301,9 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult = callOverloadMatrixExp(L"f", poResult, poRow);
                 }
-                catch (const InternalError& error)
+                catch (const InternalError&)
                 {
-                    throw error;
+                    throw;
                 }
                 continue;
             }
@@ -324,9 +324,9 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
                 }
-                catch (const InternalError& error)
+                catch (const InternalError&)
                 {
-                    throw error;
+                    throw;
                 }
 
                 continue;
@@ -380,9 +380,9 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
                 }
-                catch (const InternalError& error)
+                catch (const InternalError&)
                 {
-                    throw error;
+                    throw;
                 }
                 continue;
             }
@@ -408,11 +408,11 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             setResult(types::Double::Empty());
         }
     }
-    catch (const InternalError& error)
+    catch (const InternalError&)
     {
         setResult(NULL);
         CoverageInstance::invokeAndStartChrono((void*)&e);
-        throw error;
+        throw;
     }
     CoverageInstance::invokeAndStartChrono((void*)&e);
 }
@@ -455,10 +455,10 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& s
             Ret = Overload::call(fun, in, 1, out, true);
         }
     }
-    catch (const InternalError& error)
+    catch (const InternalError&)
     {
         cleanInOut(in, out);
-        throw error;
+        throw;
     }
 
     if (Ret != types::Callable::OK)
