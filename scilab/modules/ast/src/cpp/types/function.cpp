@@ -3,7 +3,7 @@
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -502,11 +502,11 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
     {
         m_pOldFunc(nlhs, (int**)plhs, nrhs, (int**)prhs);
     }
-    catch (const ast::InternalError& ie)
+    catch (const ast::InternalError&)
     {
         delete[] plhs;
         delete[] prhs;
-        throw ie;
+        throw;
     }
 
     if (_iRetCount == 1 && plhs[0] == NULL)
@@ -581,9 +581,9 @@ Function::ReturnValue WrapCFunction::call(typed_list& in, optional_list& opt, in
             retVal = Error;
         }
     }
-    catch (const ast::InternalError& ie)
+    catch (const ast::InternalError&)
     {
-        throw ie;
+        throw;
     }
 
     if (retVal == OK)

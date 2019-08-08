@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -157,7 +157,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 
                         bImplicitCall = true;
                     }
-                    catch (const InternalError& ie)
+                    catch (const InternalError&)
                     {
                         if (ConfigVariable::getLastErrorFunction().empty())
                         {
@@ -165,7 +165,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                             ConfigVariable::setLastErrorLine(e.getLocation().first_line);
                         }
                         CoverageInstance::stopChrono((void*)&e);
-                        throw ie;
+                        throw;
                     }
                 }
                 else if (pIT->isImplicitList())
@@ -265,14 +265,14 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 
             throw ie;
         }
-        catch (const InternalAbort& ia)
+        catch (const InternalAbort&)
         {
             if (file)
             {
                 file->close();
                 delete file;
             }
-            throw ia;
+            throw;
         }
         // If something other than NULL is given to setResult, then that would imply
         // to make a cleanup in visit(ForExp) for example (e.getBody().accept(*this);)

@@ -539,7 +539,7 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
         {
             ret = Overload::call(function_name, in, 1, out);
         }
-        catch (const ast::InternalError& error)
+        catch (const ast::InternalError&)
         {
             // unprotect variables
             for (int i = 0; i < (int)_pArgs->size(); i++)
@@ -553,7 +553,7 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
                 _dest->DecreaseRef();
             }
 
-            throw error;
+            throw;
         }
 
         // unprotect variables
@@ -1411,13 +1411,13 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     ret = pITCurrent->invoke(in, opt, 1, out, *pEH->getExp());
                 }
-                catch (ast::InternalAbort& ia)
+                catch (ast::InternalAbort&)
                 {
-                    throw ia;
+                    throw;
                 }
-                catch (const ast::InternalError& ie)
+                catch (const ast::InternalError&)
                 {
-                    throw ie;
+                    throw;
                 }
 
                 if (ret == false || out.size() != 1 || out[0]->isHandle() == false)
@@ -1617,7 +1617,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
         return pITMain;
     }
-    catch (const ast::InternalError& error)
+    catch (const ast::InternalError&)
     {
         if (bPutInCtx)
         {
@@ -1636,7 +1636,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             delete *i;
         }
 
-        throw error;
+        throw;
     }
 }
 

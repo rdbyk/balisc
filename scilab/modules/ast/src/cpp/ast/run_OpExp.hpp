@@ -429,10 +429,10 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
                 throw ast::InternalError(23);
             }
         }
-        catch (const ast::InternalError& e)
+        catch (const ast::InternalError&)
         {
             _paramR->DecreaseRef();
-            throw e;
+            throw;
         }
 
         _paramR->DecreaseRef();
@@ -456,11 +456,11 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
             throw ast::InternalError(23);
         }
     }
-    catch (const ast::InternalError& e)
+    catch (const ast::InternalError&)
     {
         _paramL->DecreaseRef();
         _paramR->DecreaseRef();
-        throw e;
+        throw;
     }
 
     _paramL->DecreaseRef();

@@ -231,10 +231,10 @@ void RunVisitorT<T>::visitprivate(const VarDec & e)
             throw InternalError(16, e.getLocation());
         }
     }
-    catch (const InternalError& error)
+    catch (const InternalError&)
     {
         CoverageInstance::stopChrono((void*)&e);
-        throw error;
+        throw;
     }
     CoverageInstance::stopChrono((void*)&e);
 }
@@ -345,10 +345,10 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         e.getHead()->accept(*this);
     }
-    catch (const InternalError& error)
+    catch (const InternalError&)
     {
         CoverageInstance::stopChrono((void*)&e);
-        throw error;
+        throw;
     }
 
     if (getResult() == NULL)
@@ -434,7 +434,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         {
             Ret = Overload::call(L"%" + stType + L"_e", in, 1, out, true);
         }
-        catch (const InternalError& ie)
+        catch (const InternalError&)
         {
             try
             {
@@ -447,10 +447,10 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 else
                 {
                     CoverageInstance::stopChrono((void*)&e);
-                    throw ie;
+                    throw;
                 }
             }
-            catch (const InternalError& ie)
+            catch (const InternalError&)
             {
                 // TList or Mlist
                 if (pValue->isList())
@@ -460,7 +460,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 else
                 {
                     CoverageInstance::stopChrono((void*)&e);
-                    throw ie;
+                    throw;
                 }
             }
         }
@@ -730,7 +730,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             {
                 e.getBody().accept(*this);
             }
-            catch (const InternalError& ie)
+            catch (const InternalError&)
             {
                 //unlock loop index and implicit list
                 pIL->DecreaseRef();
@@ -740,7 +740,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
                 setResult(NULL);
                 CoverageInstance::stopChrono((void*)&e);
-                throw ie;
+                throw;
             }
 
             if (e.getBody().isBreak())
@@ -787,14 +787,14 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             {
                 e.getBody().accept(*this);
             }
-            catch (const InternalError& ie)
+            catch (const InternalError&)
             {
                 //implicit list
                 pIT->DecreaseRef();
                 pIT->killMe();
                 setResult(NULL);
                 CoverageInstance::stopChrono((void*)&e);
-                throw ie;
+                throw;
             }
 
             if (e.getBody().isBreak())
@@ -853,14 +853,14 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             {
                 e.getBody().accept(*this);
             }
-            catch (const InternalError& ie)
+            catch (const InternalError&)
             {
                 //implicit list
                 pIT->DecreaseRef();
                 pIT->killMe();
                 setResult(NULL);
                 CoverageInstance::stopChrono((void*)&e);
-                throw ie;
+                throw;
             }
 
             if (e.getBody().isBreak())
@@ -1089,11 +1089,11 @@ void RunVisitorT<T>::visitprivate(const StringSelectExp &e)
                         //the good one
                         body->accept(*this);
                     }
-                    catch (const InternalError& ie)
+                    catch (const InternalError&)
                     {
                         pIT->killMe();
                         CoverageInstance::stopChrono((void*)&e);
-                        throw ie;
+                        throw;
                     }
 
                     if (e.isBreakable() && body->isBreak())
@@ -1187,12 +1187,12 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
                         //the good one
                         pCase->getBody()->accept(*this);
                     }
-                    catch (const InternalError& ie)
+                    catch (const InternalError&)
                     {
                         pIT->DecreaseRef();
                         pIT->killMe();
                         CoverageInstance::stopChrono((void*)&e);
-                        throw ie;
+                        throw;
                     }
 
                     if (e.isBreakable() && pCase->getBody()->isBreak())
@@ -1230,7 +1230,7 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
             //default case
             e.getDefaultCase()->accept(*this);
         }
-        catch (const InternalError& ie)
+        catch (const InternalError&)
         {
             if (pIT)
             {
@@ -1238,7 +1238,7 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
                 pIT->killMe();
             }
             CoverageInstance::stopChrono((void*)&e);
-            throw ie;
+            throw;
         }
 
         if (e.isBreakable() && e.getDefaultCase()->isBreak())
@@ -1744,12 +1744,12 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piEnd->getShortTypeStr(), in, 1, out, true);
         }
     }
-    catch (const InternalError& error)
+    catch (const InternalError&)
     {
         setResult(NULL);
         cleanInOut(in, out);
         CoverageInstance::stopChrono((void*)&e);
-        throw error;
+        throw;
     }
 
     if (Ret != types::Callable::OK)

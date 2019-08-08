@@ -1,8 +1,8 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
- *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -43,19 +43,19 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
             ConfigVariable::where_end();
             ConfigVariable::decreaseRecursion();
         }
-        catch (ast::InternalError & ie)
+        catch (ast::InternalError&)
         {
             ConfigVariable::where_end();
             ConfigVariable::setLastErrorFunction(getName());
             ConfigVariable::decreaseRecursion();
-            throw ie;
+            throw;
         }
-        catch (ast::InternalAbort & ia)
+        catch (ast::InternalAbort&)
         {
             ConfigVariable::where_end();
             ConfigVariable::setLastErrorFunction(getName());
             ConfigVariable::decreaseRecursion();
-            throw ia;
+            throw;
         }
 
         if (Ret == Callable::Error)
