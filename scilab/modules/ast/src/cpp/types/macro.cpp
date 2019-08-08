@@ -163,7 +163,6 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     int iInputArgsExpected = (int)m_inputArgs->size();
     int iOutputArgs = (int)m_outputArgs->size();
     bool bVarargout = false;
-    ReturnValue RetVal = Callable::OK;
     symbol::Context *pContext = symbol::Context::getInstance();
 
     //open a new scope
@@ -274,18 +273,24 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     if (m_pDblArgIn->getRef() > 1)
     {
         m_pDblArgIn->DecreaseRef();
-        m_pDblArgIn = m_pDblArgIn->clone();
+        m_pDblArgIn = new Double(static_cast<double>(iInputArgsActual));
         m_pDblArgIn->IncreaseRef();
     }
-    m_pDblArgIn->set(0, static_cast<double>(iInputArgsActual));
+    else
+    {
+        m_pDblArgIn->set(0, static_cast<double>(iInputArgsActual));
+    }
 
     if (m_pDblArgOut->getRef() > 1)
     {
         m_pDblArgOut->DecreaseRef();
-        m_pDblArgOut = m_pDblArgOut->clone();
+        m_pDblArgOut = new Double(_iRetCount);
         m_pDblArgOut->IncreaseRef();
     }
-    m_pDblArgOut->set(0, _iRetCount);
+    else
+    {
+        m_pDblArgOut->set(0, _iRetCount);
+    }
 
     pContext->put(m_Nargin, m_pDblArgIn);
     pContext->put(m_Nargout, m_pDblArgOut);
@@ -307,15 +312,15 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
     }
-    catch (const ast::InternalError& ie)
+    catch (const ast::InternalError&)
     {
         cleanCall(pContext, oldVal);
-        throw ie;
+        throw;
     }
-    catch (const ast::InternalAbort& ia)
+    catch (const ast::InternalAbort&)
     {
         cleanCall(pContext, oldVal);
-        throw ia;
+        throw;
     }
 
     //nb excepted output without varargout
@@ -323,7 +328,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
     //normal output management
     //for (std::list<symbol::Variable*>::iterator i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
-    for (auto arg : *m_outputArgs)
+    for (auto const& arg : *m_outputArgs)
     {
         if (--iRet < 0)
         {
@@ -358,27 +363,35 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     if (bVarargout)
     {
         InternalType* pOut = pContext->get(m_Varargout);
-        if (pOut == NULL)
+
+        if (pOut && pOut->isList())
+        {
+            List* pVarOut = pOut->getAs<List>();
+            const int size = std::min(pVarOut->getSize(), _iRetCount - (int)out.size());
+
+            for (int i = 0 ; i < size ; ++i)
+            {
+                InternalType* pIT = pVarOut->get(i);
+                pIT->IncreaseRef();
+                out.push_back(pIT);
+            }
+        }
+        else
         {
             cleanCall(pContext, oldVal);
-            Scierror(40, "varargout");
-            return Callable::Error;
-        }
 
-        if (pOut->isList() == false)
-        {
-            cleanCall(pContext, oldVal);
-            Scierror(43);
-            return Callable::Error;
-        }
+            if (pOut)
+            {
+                // 'varargout' is not a list
+                Scierror(43);
+            }
+            else
+            {
+                // 'varargout' is unknown
+                Scierror(40, "varargout");
+            }
 
-        List* pVarOut = pOut->getAs<List>();
-        const int size = std::min(pVarOut->getSize(), _iRetCount - (int)out.size());
-        for (int i = 0 ; i < size ; ++i)
-        {
-            InternalType* pIT = pVarOut->get(i);
-            pIT->IncreaseRef();
-            out.push_back(pIT);
+            return Callable::Error;
         }
     }
 
@@ -390,7 +403,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         (*i)->DecreaseRef();
     }
 
-    return RetVal;
+    return Callable::OK;
 }
 
 std::list<symbol::Variable*>* Macro::getInputs()
