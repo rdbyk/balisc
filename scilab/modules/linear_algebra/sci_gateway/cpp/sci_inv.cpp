@@ -3,7 +3,7 @@
  * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>(); // input data will be modified
+    pDbl = in[0]->getAs<types::Double>();
 
     if (pDbl->getRows() != pDbl->getCols())
     {
@@ -60,6 +60,8 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
+
+    pDbl = pDbl->clone()->getAs<types::Double>();
 
     if (pDbl->isComplex())
     {
@@ -120,6 +122,7 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
 
         if (ret == 19)
         {
+            delete pDbl;
             Scierror(110, 1, _("non-singular matrix"));
             return types::Function::Error;
         }
