@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
+    pDbl = in[0]->getAs<types::Double>();
 
     if (pDbl->getRows() != pDbl->getCols())
     {
@@ -78,11 +78,14 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
+    pDbl = pDbl->clone()->getAs<types::Double>();
+
     if (pDbl->isComplex())
     {
         pData = (double *)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         if (!pData)
         {
+            delete pDbl;
             Scierror(1);
             return types::Function::Error;
         }
@@ -100,6 +103,7 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
             pdH = (double*)MALLOC(pDblH->getSize() * sizeof(doublecomplex));
             if (!pdH)
             {
+                delete pDbl;
                 Scierror(1);
                 pDblH->killMe();
                 return types::Function::Error;
@@ -114,6 +118,7 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
     int iRet = iHessM(pData, pDbl->getCols(), pDbl->isComplex(), pdH);
     if (iRet != 0)
     {
+        delete pDbl;
         Scierror(180, iRet);
         return types::Function::Error;
     }
