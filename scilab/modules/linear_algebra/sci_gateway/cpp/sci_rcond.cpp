@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
+ * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,9 +11,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
-/*--------------------------------------------------------------------------*/
+ *
+ */
 
 #include "linear_algebra_gw.hxx"
 #include "function.hxx"
@@ -27,7 +26,6 @@ extern "C"
 #include "rcond.h"
 #include "doublecomplex.h"
 }
-/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -37,7 +35,7 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "rcond", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -47,11 +45,11 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
+    pDbl = in[0]->getAs<types::Double>();
 
     if (pDbl->getRows() != pDbl->getCols())
     {
-        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "rcond", 1);
+        Scierror(103, 1);
         return types::Function::Error;
     }
 
@@ -66,6 +64,7 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
         return types::Function::OK;
     }
 
+    pDbl = pDbl->clone()->getAs<types::Double>();
     result = new types::Double(1, 1);
 
     if (pDbl->isComplex())
@@ -80,11 +79,10 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
     }
 
     delete pDbl;
-    pDbl = NULL;
 
     if (iRet == -1)
     {
-        Scierror(999, _("%s: Allocation failed.\n"), "rcond");
+        Scierror(1);
         result->killMe();
         return types::Function::Error;
     }
@@ -92,5 +90,3 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
     out.push_back(result);
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
-
