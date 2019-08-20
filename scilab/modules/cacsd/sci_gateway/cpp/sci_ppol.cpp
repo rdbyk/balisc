@@ -47,8 +47,6 @@ Function::ReturnValue sci_ppol(typed_list &in, int _iRetCount, typed_list &out)
     int iSizeP = 0;
     int iColB  = 0;
 
-    bool isDeletable = false;
-
     if (in.size() != 3)
     {
         Scierror(71, 3);
