@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -86,7 +86,7 @@ function %h_p(h)
             "children: "+fmtchildren(h.children)
             "datatips: "+fmtchildren(h.datatips)
             "datatip_display_mode: "+sci2exp(h.datatip_display_mode)
-            "display_function = "++sci2exp(h.display_function)
+            "display_function = "+sci2exp(h.display_function)
             "display_function_data = "+fmtuser_data(h.display_function_data)
             "visible = "+sci2exp(h.visible)
             "data = "+d
