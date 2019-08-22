@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,6 +19,7 @@
 #include "sparse.hxx"
 #include "pointer.hxx"
 #include "overload.hxx"
+#include "numericconstants.hxx"
 
 extern "C"
 {
@@ -58,7 +59,7 @@ types::Function::ReturnValue sci_lufact(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    abstol = nc_eps_machine();
+    abstol = NumericConstants::eps_machine;
 
     //call format
     if (in.size() == 2)
