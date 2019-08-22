@@ -29,7 +29,6 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "basic_functions.h"
 }
 
 static const char fname[] = "sum";
