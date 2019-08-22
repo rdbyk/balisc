@@ -16,6 +16,7 @@
 #include "cacsd_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
+#include "numericconstants.hxx"
 
 extern "C"
 {
@@ -41,7 +42,7 @@ Function::ReturnValue sci_ppol(typed_list &in, int _iRetCount, typed_list &out)
     Double* pDblB = NULL;
     Double* pDblP = NULL;
 
-    double dblEps = 0.1 * sqrt(nc_eps_machine());
+    double dblEps = 0.1 * sqrt(NumericConstants::eps_machine);
 
     int iOne   = 1;
     int iSizeP = 0;

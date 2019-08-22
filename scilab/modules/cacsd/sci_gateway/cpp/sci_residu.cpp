@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,13 +17,13 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
+#include "numericconstants.hxx"
 
 extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
 #include "elem_common.h"
-#include "numericconstants_interface.h"
 
     extern void C2F(residu)(double*, int*, double*, int*, double*, int*, double*, double*, int*);
     extern void C2F(wesidu)(double*, double*, int*, double*, double*, int*,
@@ -43,7 +43,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
     types::Polynom* pPoly[3] = {NULL, NULL, NULL};
     types::Double* pDblOut   = NULL;
 
-    double dblEps   = nc_eps_machine();
+    double dblEps   = NumericConstants::eps_machine;
     double dZero    = 0;
     int iOne        = 1;
     int iSize       = 0;
