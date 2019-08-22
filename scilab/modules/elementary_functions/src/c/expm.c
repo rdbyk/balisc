@@ -3,7 +3,7 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - Digiteo - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,13 +13,11 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
 
 #include <stdio.h>
 #include <string.h>
 #include "expm.h"
 #include "basic_functions.h"
-#include "elementary_functions.h"
 #include "matrix_left_division.h"
 #include "matrix_multiplication.h"
 #include "matrix_right_division.h"

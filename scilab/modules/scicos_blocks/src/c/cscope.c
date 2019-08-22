@@ -1,8 +1,9 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2011-2012 - Scilab Enterprises - Clement DAVID
- *  Copyright (C) 2016-2017 - FOSSEE IIT Bombay - Dipti Ghosalkar
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011-2012 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2016-2017 - FOSSEE IIT Bombay - Dipti Ghosalkar
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,11 +16,9 @@
 
 #include <string.h>
 
-
 #include "scoUtils.h"
 
 #include "sci_malloc.h"
-#include "elementary_functions.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
