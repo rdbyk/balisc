@@ -37,9 +37,9 @@ types::Function::ReturnValue sci_libraryinfo(types::typed_list &in, int _iRetCou
     }
 
     /* Check the number of output argument */
-    if (_iRetCount != 1 && _iRetCount != 2)
+    if (_iRetCount > 2)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "libraryinfo", 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "libraryinfo", 1, 2);
         return types::Function::Error;
     }
 
@@ -69,7 +69,6 @@ types::Function::ReturnValue sci_libraryinfo(types::typed_list &in, int _iRetCou
 
     std::list<std::wstring> names;
     int size = lib->getMacrosName(names);
-
     if (size)
     {
         types::String* pNames = new types::String(size, 1);
