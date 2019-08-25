@@ -96,7 +96,14 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     }
     catch (ast::InternalError & /*se*/)
     {
-        ret = Overload::call(L"%l_e", in, _iRetCount, out);
+        if (ConfigVariable::getLastErrorFunction().empty())
+        {
+            ret = Overload::call(L"%l_e", in, _iRetCount, out);
+        }
+        else
+        {
+            throw;
+        }
     }
 
     // Remove this from "in" for keep "in" unchanged.
