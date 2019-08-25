@@ -436,32 +436,15 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         }
         catch (const InternalError&)
         {
-            try
+            // TList or Mlist
+            if (pValue->isList() && ConfigVariable::getLastErrorFunction().empty())
             {
-                //to compatibility with scilab 5 code.
-                //tlist/mlist name are truncated to 8 first character
-                if (stType.size() > 8 && ConfigVariable::getLastErrorFunction().empty())
-                {
-                    Ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, true);
-                }
-                else
-                {
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw;
-                }
+                Ret = Overload::call(L"%l_e", in, 1, out, true);
             }
-            catch (const InternalError&)
+            else
             {
-                // TList or Mlist
-                if (pValue->isList() && ConfigVariable::getLastErrorFunction().empty())
-                {
-                    Ret = Overload::call(L"%l_e", in, 1, out, true);
-                }
-                else
-                {
-                    CoverageInstance::stopChrono((void*)&e);
-                    throw;
-                }
+                CoverageInstance::stopChrono((void*)&e);
+                throw;
             }
         }
 
