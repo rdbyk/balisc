@@ -180,9 +180,8 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
         {
             //to compatibility with scilab 5 code.
             //tlist/mlist name are truncated to 8 first character
-            if (stType.size() > 8)
+            if (stType.size() > 8 && ConfigVariable::getLastErrorFunction().empty())
             {
-                std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << std::endl;
                 ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, _iRetCount, out);
             }
             else

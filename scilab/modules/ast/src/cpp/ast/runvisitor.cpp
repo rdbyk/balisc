@@ -440,7 +440,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
             {
                 //to compatibility with scilab 5 code.
                 //tlist/mlist name are truncated to 8 first character
-                if (stType.size() > 8)
+                if (stType.size() > 8 && ConfigVariable::getLastErrorFunction().empty())
                 {
                     Ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, true);
                 }
@@ -453,7 +453,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
             catch (const InternalError&)
             {
                 // TList or Mlist
-                if (pValue->isList())
+                if (pValue->isList() && ConfigVariable::getLastErrorFunction().empty())
                 {
                     Ret = Overload::call(L"%l_e", in, 1, out, true);
                 }
