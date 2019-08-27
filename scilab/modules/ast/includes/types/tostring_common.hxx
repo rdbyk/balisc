@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -100,7 +100,7 @@ void getSignedIntFormat(T _TVal, int *_piWidth)
     {
         unsigned long long a = _abs64(_TVal);
         long double b = static_cast<long double>(a);
-        long double c = log10(b + 1);
+        long double c = log10(b) + 1;
         *_piWidth = static_cast<int>(c);
         //*_piWidth = static_cast<int>(log10(static_cast<unsigned long double>(_abs64(_TVal))) + 1);
     }
