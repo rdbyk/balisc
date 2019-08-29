@@ -460,6 +460,7 @@ private :
             }
 
             ostr << ostemp.str();
+            delete[] piSize;
         }
         
         std::flush(ostr);

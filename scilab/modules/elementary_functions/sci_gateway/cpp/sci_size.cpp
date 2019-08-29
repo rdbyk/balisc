@@ -150,7 +150,7 @@ Function::ReturnValue sci_size(typed_list &in, int _iRetCount, typed_list &out)
                     default : //"r"
                         if (iMode > iDims)
                         {
-                            pdbl[0] = 1;
+                            pdbl[0] = (piDims[0]==0)? 0 : 1;
                             out.push_back(pD);
                             return Function::OK;
                         }

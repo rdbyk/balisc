@@ -104,6 +104,7 @@ public :
         ScilabListUndefinedOperation,
         ScilabFile,
         ScilabColon,
+        ScilabThreadId,
         ScilabSparse,
         ScilabSparseBool,
         ScilabHandle,

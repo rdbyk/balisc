@@ -103,6 +103,7 @@ src/cpp/types/string.cpp \
 src/cpp/types/struct.cpp \
 src/cpp/types/test-types.cpp \
 src/cpp/types/tlist.cpp \
+src/cpp/types/threadId.cpp \
 src/cpp/types/tostring_common.cpp \
 src/cpp/types/types.cpp \
 src/cpp/types/types_tools.cpp \
@@ -480,6 +481,7 @@ includes/types/sparse.hxx \
 includes/types/sparseOp.hxx \
 includes/types/string.hxx \
 includes/types/struct.hxx \
+includes/types/threadId.hxx \
 includes/types/tlist.hxx \
 includes/types/tostring_common.hxx \
 includes/types/typesdecl.hxx \

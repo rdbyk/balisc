@@ -75,7 +75,9 @@ class StaticRunner
 public:
     static int launch(void);
     static void setRunner(Runner* _RunMe);
+    static void setCurrentRunner(Runner* _RunMe);
     static Runner* getRunner(void);
+    static Runner* getCurrentRunner(void);
     static bool isRunnerAvailable(void);
     static bool isInterruptibleCommand(void);
     static void setInterruptibleCommand(bool _isInterruptible);
@@ -83,9 +85,11 @@ public:
     static void execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
                             bool _isInterruptible, bool _isPrioritary, command_origin_t _iCommandOrigin);
     static bool exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor);
+    static void sendExecDoneSignal();
 
 private:
     static std::atomic<Runner*> m_RunMe;
+    static std::atomic<Runner*> m_CurrentRunner;
     static std::atomic<bool> m_bInterruptibleCommand;
 };
 

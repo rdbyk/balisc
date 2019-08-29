@@ -24,27 +24,47 @@ extern "C"
 #include "diary.h"
 }
 
-static SCILAB_OUTPUT_METHOD _writer;
+static SCILAB_OUTPUT_METHOD _writer_output;
+static SCILAB_OUTPUT_METHOD _writer_error;
 
 void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer)
 {
-    _writer = writer;
+    _writer_output = writer;
+    _writer_error = writer;
 }
 
-static inline void scilabPrint(const char* _pstText)
+void setScilabErrorStreamMethod(SCILAB_OUTPUT_METHOD writer)
+{
+    _writer_error = writer;
+}
+
+void setScilabOutputStreamMethod(SCILAB_OUTPUT_METHOD writer)
+{
+    _writer_output = writer;
+}
+
+static void scilabPrint(const char* _pstText)
 {
     wchar_t* pwstTemp = to_wide_string(_pstText);
     diaryWrite(pwstTemp, FALSE);
     FREE(pwstTemp);
-    (*_writer)(const_cast<char*>(_pstText));
+    (*_writer_output)(const_cast<char*>(_pstText));
 }
 
 static inline void scilabPrintW(const wchar_t* _pwsText)
 {
     diaryWrite(_pwsText, FALSE);
     char* pstTemp = wide_string_to_UTF8(_pwsText);
-    (*_writer)(const_cast<char*>(pstTemp));
+    (*_writer_output)(const_cast<char*>(pstTemp));
     FREE(pstTemp);
+}
+
+static void scilabPrintError(const char* _pstText)
+{
+    wchar_t* pwstTemp = to_wide_string(_pstText);
+    diaryWrite(pwstTemp, FALSE);
+    FREE(pwstTemp);
+    (*_writer_error)(const_cast<char*>(_pstText));
 }
 
 void scilabWrite(const char* _pstText)
@@ -77,7 +97,7 @@ void scilabError(const char* _pstText)
 {
     if (ConfigVariable::isSilentError() == 0)
     {
-        scilabPrint(const_cast<char*>(_pstText));
+        scilabPrintError(const_cast<char*>(_pstText));
     }
 }
 
@@ -85,6 +105,8 @@ void scilabErrorW(const wchar_t* _pwsText)
 {
     if (ConfigVariable::isSilentError() == 0)
     {
-        scilabPrintW(const_cast<wchar_t*>(_pwsText));
+        char* pstTemp = wide_string_to_UTF8(_pwsText);
+        scilabPrintError(pstTemp);
+        FREE(pstTemp);
     }
 }

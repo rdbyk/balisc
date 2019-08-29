@@ -43,6 +43,7 @@ extern "C"
 namespace types
 {
 class Cell;
+class ThreadId;
 class Callable;
 }
 
@@ -275,10 +276,10 @@ public :
     {
         //if (m_bLastErrorCall == false)
         {
-            m_wstError.clear();
-            m_iError            = 0;
-            m_iErrorLine        = 0;
-            m_wstErrorFunction.clear();
+            m_wstError = L"";
+            m_iError = 0;
+            m_iErrorLine = 0;
+            m_wstErrorFunction = L"";
         }
         m_bLastErrorCall = false;
     }
@@ -451,22 +452,25 @@ public:
 
     // Pause level
 private :
+    static int m_iPauseLevel;
     static std::list<int> m_listScope;
 
 public :
     static void IncreasePauseLevel()
     {
+        m_iPauseLevel++;
         m_listScope.push_back(symbol::Context::getInstance()->getScopeLevel());
     }
 
     static void DecreasePauseLevel()
     {
+        m_iPauseLevel--;
         m_listScope.pop_back();
     }
 
     static int getPauseLevel()
     {
-        return m_listScope.size();
+        return m_iPauseLevel;
     }
 
     static int getActivePauseLevel()
@@ -616,17 +620,25 @@ public :
 
     // where
 public :
+    // On macro call, some information are pushed to the call stack
     struct WhereEntry
     {
         int m_line;
         int m_absolute_line;
+        int m_scope_lvl;
         types::Callable* call;
-        std::wstring m_file_name;
-        WhereEntry(int line, int absolute_line, types::Callable* pCall, const std::wstring& file_name) :
-            m_line(line), m_absolute_line(absolute_line), call(pCall), m_file_name(file_name) {}
+        const std::wstring* m_file_name;
     };
 
-    typedef std::vector<WhereEntry> WhereVector;
+    // On error, every information is copied back as values from the Callable to avoid being freed on call stack return
+    struct WhereErrorEntry
+    {
+        int m_line;
+        int m_absolute_line;
+        int m_first_line;
+        std::wstring m_function_name;
+        std::wstring m_file_name;
+    };
 
     static void where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall);
 
@@ -635,7 +647,7 @@ public :
         m_Where.pop_back();
     }
 
-    static const WhereVector& getWhere()
+    static const std::vector<WhereEntry>& getWhere()
     {
         return m_Where;
     }
@@ -667,15 +679,15 @@ public :
         return m_FirstMacroLine.back();
     }
 
-    static void setFileNameToLastWhere(const std::wstring& _fileName)
+    static void setFileNameToLastWhere(const std::wstring* _fileName)
     {
         m_Where.back().m_file_name = _fileName;
     }
 
     static void whereErrorToString(std::wostringstream &ostr);
 private :
-    static WhereVector m_Where;
-    static WhereVector m_WhereError;
+    static std::vector<WhereEntry> m_Where;
+    static std::vector<WhereErrorEntry> m_WhereError;
     static std::vector<int> m_FirstMacroLine;
     //module called with variable by reference
 private :

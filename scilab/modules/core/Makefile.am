@@ -47,6 +47,8 @@ CORE_CPP_SOURCES = \
     src/cpp/getmacrosname.cpp \
     src/cpp/getfunctionsname.cpp \
     src/cpp/InitScilab.cpp \
+    src/cpp/parsecommand.cpp \
+    src/cpp/pause.cpp \
     src/cpp/setformat.cpp \
     src/cpp/errmsgs.cpp
 

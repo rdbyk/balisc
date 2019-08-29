@@ -26,6 +26,8 @@ extern "C"
 typedef void (*SCILAB_OUTPUT_METHOD)(const char *text);
 
 void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer);
+void setScilabErrorStreamMethod(SCILAB_OUTPUT_METHOD writer);
+void setScilabOutputStreamMethod(SCILAB_OUTPUT_METHOD writer);
 
 void scilabWrite(const char* _pstText);
 

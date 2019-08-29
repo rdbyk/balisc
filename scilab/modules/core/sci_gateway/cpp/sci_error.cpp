@@ -97,7 +97,7 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
     if (predefErrorMsg)
     {
         typed_list msprintf_in;
-        const ConfigVariable::WhereVector& where = ConfigVariable::getWhere();
+        const std::vector<ConfigVariable::WhereEntry>& where = ConfigVariable::getWhere();
 
         if (where.size() > 1)
         {

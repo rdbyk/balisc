@@ -2459,7 +2459,22 @@ template<> InternalType* add_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 //sp + sp
 template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
 {
-    return _pL->add(*_pR);
+    //check scalar hidden in a sparse ;)
+    if (_pL->isScalar() || _pR->isScalar())
+    {
+        // scalar + sp  or  sp + scalar
+        // call Overload
+        return NULL;
+    }
+
+    if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
+    {
+        throw ast::InternalError(3);
+    }
+
+    types::Sparse* pOut = _pL->add(*_pR);
+
+    return pOut;
 }
 
 //d + sp

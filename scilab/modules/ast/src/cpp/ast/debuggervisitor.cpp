@@ -17,32 +17,34 @@
 #include "debugmanager.hxx"
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
+#include "threadId.hxx"
+#include "macrofile.hxx"
+#include "commentexp.hxx"
+#include "UTF8.hxx"
 
 extern "C"
 {
 #include "filemanager_interface.h"
+#include "FileExist.h"
 }
+
+static bool getMacroSourceFile(std::string* filename = nullptr);
 
 namespace ast
 {
 void DebuggerVisitor::visit(const SeqExp  &e)
 {
-    RunVisitor* exec = NULL;
     std::list<Exp *>::const_iterator itExp;
-    debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
-
-    if (ConfigVariable::getEnableDebug() == false)
-    {
-        //enable debugger for next execution
-        ConfigVariable::setEnableDebug(true);
-
-        ExecVisitor exec;
-        e.accept(exec);
-        return;
-    }
+    debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
+    manager->resetAborted();
 
     for (const auto & exp : e.getExps())
     {
+        if (exp->isCommentExp())
+        {
+            continue;
+        }
+
         if (e.isBreakable())
         {
             exp->resetBreak();
@@ -61,34 +63,38 @@ void DebuggerVisitor::visit(const SeqExp  &e)
         }
 
         //debugger check !
+        int iBreakPoint = -1;
         if (ConfigVariable::getEnableDebug())
         {
-            std::vector<ConfigVariable::WhereEntry> lWhereAmI = ConfigVariable::getWhere();
-            int iLine = (exp->getLocation().first_line - ConfigVariable::getMacroFirstLines()) + 1;
-
-            //manage step next
-            if (manager->isStepNext())
-            {
-                manager->resetStepNext();
-                manager->stop(exp, -1);
-            }
-            else if (manager->isStepIn())
+            bool stopExecution = false;
+            if (manager->isStepIn())
             {
                 manager->resetStepIn();
-                manager->stop(exp, -1);
+                stopExecution = true;
+                if(getMacroSourceFile() == false)
+                {
+                    stopExecution = false;
+                    manager->setStepIn();
+                }
             }
-            else if (manager->isStepOut())
+            else if (manager->isStepNext())
             {
-                manager->resetStepOut();
-                manager->stop(exp, -1);
+                manager->resetStepNext();
+                stopExecution = true;
+                if(getMacroSourceFile() == false)
+                {
+                    stopExecution = false;
+                    manager->setStepOut();
+                }
             }
             else
             {
+                const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
                 //set information from debugger commands
                 if (lWhereAmI.size() != 0 && manager->getBreakPointCount() != 0)
                 {
-                    debugger::Breakpoints bps = manager->getAllBreakPoint();
-                    std::wstring functionName = lWhereAmI.back().call->getName();
+                    debugger::Breakpoints& bps = manager->getAllBreakPoint();
+
                     int i = -1;
                     for (const auto & bp : bps)
                     {
@@ -98,68 +104,117 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                             continue;
                         }
 
-                        if (functionName == bp->getFunctioName())
+                        // look for a breakpoint on this line and update breakpoint information when possible
+                        int iLine = exp->getLocation().first_line - ConfigVariable::getMacroFirstLines();
+                        if (bp->hasMacro())
                         {
-                            if (bp->getMacroLine() == -1)
+                            char* functionName = wide_string_to_UTF8(lWhereAmI.back().call->getName().data());
+                            if (bp->getFunctioName().compare(functionName) == 0)
                             {
-                                //first pass in macro.
-                                //update first line with real value
-                                bp->setMacroLine(iLine);
-                            }
-
-                            if (bp->getMacroLine() == iLine)
-                            {
-                                //check condition
-                                if (bp->getConditionExp() != NULL)
+                                if (bp->getMacroLine() == 0)
                                 {
-                                    //do not use debuggervisitor !
-                                    symbol::Context* pCtx = symbol::Context::getInstance();
-                                    try
-                                    {
-                                        ExecVisitor execCond;
-                                        //protect current env during condition execution
-                                        pCtx->scope_begin();
-                                        bp->getConditionExp()->accept(execCond);
-                                        types::InternalType* pIT = pCtx->getCurrentLevel(symbol::Symbol(L"ans"));
-                                        if (pIT == NULL ||
-                                                pIT->isBool() == false ||
-                                                ((types::Bool*)pIT)->isScalar() == false ||
-                                                ((types::Bool*)pIT)->getFirst() == 0)
-                                        {
-                                            pCtx->scope_end();
-                                            //not a boolean, not scalar or false
-                                            continue;
-                                        }
-
-                                        pCtx->scope_end();
-                                        //ok condition is valid and true
-                                    }
-                                    catch (ast::ScilabException &/*e*/)
-                                    {
-                                        pCtx->scope_end();
-                                        //not work !
-                                        //invalid breakpoint
-                                        continue;
-                                    }
+                                    //first pass in macro.
+                                    //update first line with real value
+                                    bp->setMacroLine(iLine);
                                 }
 
-                                //we have a breakpoint !
-                                //stop execution and wait signal from debugger to restart
-                                manager->stop(exp, i);
+                                stopExecution = bp->getMacroLine() == iLine;
+                            }
 
-                                //only one breakpoint can be "call" on same exp
-                                break;
+                            FREE(functionName);
+                        }
+                        else if (bp->hasFile())
+                        {
+                            if (bp->getFileLine() == exp->getLocation().first_line)
+                            {
+                                std::string pFileName;
+                                bool hasSource = getMacroSourceFile(&pFileName);
+                                if (hasSource && bp->getFileName() == pFileName)
+                                {
+                                    stopExecution = true;
+                                    // set function information
+                                    if (lWhereAmI.back().call->getFirstLine())
+                                    {
+                                        bp->setFunctionName(scilab::UTF8::toUTF8(lWhereAmI.back().call->getName()));
+                                        bp->setMacroLine(iLine);
+                                    }
+                                }
                             }
                         }
+
+                        if(stopExecution == false)
+                        {
+                            // no breakpoint for this line
+                            continue;
+                        }
+
+                        // Set the begin of line if not yet done
+                        if(bp->getBeginLine() == 0)
+                        {
+                            bp->setBeginLine(exp->getLocation().first_column);
+                        }
+                        // check if this exp is at the begin of the breakpoint line
+                        else if(bp->getBeginLine() != exp->getLocation().first_column)
+                        {
+                            // stop only if we are at the line begins
+                            stopExecution = false;
+                            continue;
+                        }
+
+                        //check condition
+                        if (bp->getConditionExp() != NULL)
+                        {
+                            //do not use debuggervisitor !
+                            symbol::Context* pCtx = symbol::Context::getInstance();
+                            try
+                            {
+                                ExecVisitor execCond;
+                                //protect current env during condition execution
+                                pCtx->scope_begin();
+                                bp->getConditionExp()->accept(execCond);
+                                types::InternalType* pIT = pCtx->getCurrentLevel(symbol::Symbol(L"ans"));
+                                if (pIT == NULL ||
+                                        pIT->isBool() == false ||
+                                        ((types::Bool*)pIT)->isScalar() == false ||
+                                        ((types::Bool*)pIT)->get(0) == 0)
+                                {
+                                    pCtx->scope_end();
+                                    //not a boolean, not scalar or false
+                                    stopExecution = false;
+                                    continue;
+                                }
+
+                                pCtx->scope_end();
+                                //ok condition is valid and true
+                            }
+                            catch (ast::ScilabException &/*e*/)
+                            {
+                                pCtx->scope_end();
+                                stopExecution = false;
+                                //not work !
+                                //invalid breakpoint
+                                continue;
+                            }
+                        }
+
+                        //we have a breakpoint !
+                        //stop execution and wait signal from debugger to restart
+                        iBreakPoint = i;
+
+                        //only one breakpoint can be "call" on same exp
+                        break;
                     }
                 }
             }
-            exec = this;
-        }
-        else
-        {
-            //change visitor to execvitor instead of debuggervisitor
-            exec = new ExecVisitor();
+
+            if(stopExecution)
+            {
+                manager->stop(exp, iBreakPoint);
+                if (manager->isAborted())
+                {
+                    throw ast::InternalAbort();
+                }
+            }
         }
 
         //copy from runvisitor::seqexp
@@ -169,7 +224,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
             setResult(NULL);
             int iExpectedSize = getExpectedSize();
             setExpectedSize(-1);
-            exp->accept(*exec);
+            exp->accept(*this);
             setExpectedSize(iExpectedSize);
             types::InternalType * pIT = getResult();
 
@@ -272,19 +327,43 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 exp->resetReturn();
                 break;
             }
+
+            // Stop execution at the end of the seqexp of the caller
+            // Do it at the end of the seqexp will make the debugger stop
+            // even if the caller is at the last line
+            // ie: the caller is followed by endfunction
+            if(manager->isStepOut())
+            {
+                manager->resetStepOut();
+                if(getMacroSourceFile() == false)
+                {
+                    // no sources
+                    manager->setStepOut();
+                }
+                else
+                {
+                    manager->stop(exp, iBreakPoint);
+                }
+
+                if (manager->isAborted())
+                {
+                    throw ast::InternalAbort();
+                }
+            }
+
         }
         catch (const InternalError& ie)
         {
             ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
 
-            std::vector<ConfigVariable::WhereEntry> lWhereAmI = ConfigVariable::getWhere();
+            const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
 
             //where can be empty on last stepout, on first calling expression
             if (lWhereAmI.size())
             {
-                std::wstring& filename = lWhereAmI.back().m_file_name;
+                const std::wstring* filename = lWhereAmI.back().m_file_name;
 
-                if (filename.empty())
+                if (filename == nullptr)
                 {
                     //error in a console script
                     std::wstring functionName = lWhereAmI.back().call->getName();
@@ -292,7 +371,13 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 }
                 else
                 {
-                    manager->errorInFile(filename, exp);
+                    manager->errorInFile(*filename, exp);
+                }
+
+                // Debugger just restart after been stopped on an error.
+                if (manager->isAborted())
+                {
+                    throw ast::InternalAbort();
                 }
             }
 
@@ -305,9 +390,76 @@ void DebuggerVisitor::visit(const SeqExp  &e)
 
     }
 
-    //propagate StepNext to parent SeqExp
-    if (ConfigVariable::getEnableDebug())
+    if (e.getParent() == NULL && e.getExecFrom() == SeqExp::SCRIPT && (manager->isStepNext() || manager->isStepIn()))
     {
+        const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
+        if (lWhereAmI.size())
+        {
+            std::wstring functionName = lWhereAmI.back().call->getName();
+            types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(functionName));
+            if (pIT && (pIT->isMacro() || pIT->isMacroFile()))
+            {
+                types::Macro* m = nullptr;
+                if (pIT->isMacroFile())
+                {
+                    types::MacroFile* mf = pIT->getAs<types::MacroFile>();
+                    m = mf->getMacro();
+                }
+                else
+                {
+                    m = pIT->getAs<types::Macro>();
+                }
+
+                //create a fake exp to represente end/enfunction
+
+                //will be deleted by CommentExp
+                std::wstring* comment = new std::wstring(L"end of function");
+                Location loc(m->getLastLine(), m->getLastLine(), 0, 0);
+                CommentExp fakeExp(loc, comment);
+                manager->stop(&fakeExp, -1);
+
+                if (manager->isAborted())
+                {
+                    throw ast::InternalAbort();
+                }
+
+                //transform stepnext after endfunction as a stepout to show line marker on current statement
+                if (manager->isStepNext())
+                {
+                    manager->resetStepNext();
+                    manager->setStepOut();
+                }
+                else if (manager->isStepIn())
+                {
+                    manager->resetStepIn();
+                    manager->setStepOut();
+                }
+            }
+        }
     }
 }
+}
+
+// return false if a file .sci of a file .bin doesn't exists
+// return true for others files or existing .sci
+bool getMacroSourceFile(std::string* filename)
+{
+    const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
+    std::string file = scilab::UTF8::toUTF8(*lWhereAmI.back().m_file_name);
+    if (file.rfind(".bin") != std::string::npos)
+    {
+        file.replace(file.size() - 4, 4, ".sci");
+        // stop on bp only if the file exist
+        if (!FileExist(file.data()))
+        {
+            return false;
+        }
+    }
+
+    if(filename != nullptr)
+    {
+        filename->assign(file);
+    }
+
+    return true;
 }
