@@ -39,7 +39,7 @@ int  Scierror(int iv, ...)
 
     if (errmsg)
     {
-        const ConfigVariable::WhereVector& where = ConfigVariable::getWhere();
+        const std::vector<ConfigVariable::WhereEntry>& where = ConfigVariable::getWhere();
 
         retval = vasprintf(&stptr, errmsg, ap);
 
