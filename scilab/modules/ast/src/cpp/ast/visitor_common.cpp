@@ -1672,13 +1672,6 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
     }
     else if (bInsertIsEmpty && _pVar->isStruct() == false && _pVar->isList() == false)
     {
-        // x(:) = []
-        // FIXME: should this be handled in the "remove" function?
-        if (_pArgs->size() == 1 && (*_pArgs)[0]->isColon())
-        {
-            return types::Double::Empty();
-        }
-
         // insert [] so deletion except for Struct and List which can insert []
         switch(_pVar->getType())
         {

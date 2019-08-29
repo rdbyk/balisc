@@ -741,6 +741,13 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
 {
     ArrayOf<T>* pOut = NULL;
     int iDims = (int)_pArgs->size();
+
+    // x(:)=[] is handled right away, for performance reasons ...
+    if (iDims == 1 && (*_pArgs)[0]->isColon())
+    {
+        return createEmpty();
+    }
+
     typed_list pArg;
 
     int* piMaxDim = new int[iDims];
