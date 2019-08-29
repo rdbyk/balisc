@@ -44,6 +44,7 @@
 #include "tlist.hxx"
 #include "mlist.hxx"
 #include "file.hxx"
+#include "threadId.hxx"
 #include "implicitlist.hxx"
 #include "int.hxx"
 #include "cell.hxx"

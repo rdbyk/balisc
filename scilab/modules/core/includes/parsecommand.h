@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2019-2019 - ESI Group - Cedric Delamarre
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2019-2019 - ESI Group - Cedric Delamarre
+ * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,11 +14,10 @@
 
 #ifndef __PARSECOMMAND_HXX__
 #define __PARSECOMMAND_HXX__
+
 #include <string>
 
 #include "exp.hxx"
-
-#include "dynlib_core.h"
 
 /*** Parse a command
  * command: input, string to parse
@@ -27,8 +27,8 @@
  * the message MUST be delete by the caller
  *
  ***/
-CORE_IMPEXP char* parseCommand(const char* command,  void** tree);
-CORE_IMPEXP char* checkCommand(const char* command);
+char* parseCommand(const char* command,  void** tree);
+char* checkCommand(const char* command);
 
 /*** Parse a file
  * file: input, file name
@@ -39,9 +39,7 @@ CORE_IMPEXP char* checkCommand(const char* command);
  * the message MUST be delete by the caller
  *
  ***/
-CORE_IMPEXP char* parseFile(const char* file, const char* program, void** tree);
-CORE_IMPEXP char* checkFile(const char* file, const char* program);
-
-
+char* parseFile(const char* file, const char* program, void** tree);
+char* checkFile(const char* file, const char* program);
 
 #endif /* !__PARSECOMMAND_HXX__ */

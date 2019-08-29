@@ -24,7 +24,7 @@
 
 namespace debugger
 {
-class DebuggerMagager
+class DebuggerManager
 {
 public:
     enum DebugAction
