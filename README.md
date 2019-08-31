@@ -131,6 +131,53 @@ The vectorized code `heat_vect` was executed 100 times faster under Scilab 6.0.1
 Please don't expect to achieve this speed-up for every piece of code you can think of!
 This is just a motivating little spot light!.
 
+#### You Want Simple Object Oriented Programming
+A few lines of code are necessary for simple object oriented programming, have a look at the following (truly minimal)
+example implemenation of a `number`object with just one member function `square`.
+```scilab
+// constructor for 'number'
+function o = number(v)
+  o = tlist(['number','value'],v)
+end
+
+// overload 'extract' op for type 'number' 
+function mf = %number_e(m, o)
+  global this
+  this = o
+  mf = funref(typeof(this) + '#' + m)
+  if mf == []
+    error("Undefined method: ''%s#%s''.", typeof(this), m)
+  end
+end
+
+// a simple member function
+function y = number#square()
+  global this
+  y = this.value^2
+end
+```
+This `number` object can be used really easily, e.g.:
+```scilab
+--> N=number(9);
+--> N.square
+ ans  =
+
+   81.
+
+--> N.value=7;
+
+--> N.square
+ ans  =
+
+   49.
+
+--> N.cube
+at line     6 of function %number_e 
+
+Undefined method: 'number#cube'.
+```
+If you are in need of more member functions, e.g. `cube`, then just define them, e.g. do `function y=number#cube(),...,end`.
+
 ### Try some of Scilab's Benchmarks
 
 Scilab 6.X is shipped with a sparse set of benchmarks only for some its modules. You may run them as follows:
