@@ -92,6 +92,7 @@ static const std::map<int, const char*> errmsgs =
     { 56, _("Invalid format.\n") },
 
     { 60, _("Unexpected keyword argument '%s'.\n") },
+    { 61, _("Not defined outside of a function.\n") },
 
     { 70, _("Wrong number of input arguments.\n") },
     { 71, _("Wrong number of input arguments: %d expected.\n") },

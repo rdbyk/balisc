@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -39,45 +39,40 @@ using symbol::Symbol;
 
 Function::ReturnValue sci_outer(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if (in.size() == 0)
+    if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(74, 1);
+        Scierror(72, 1, 2);
         return Function::Error;
     }
 
-    for (int i = 0; i < in.size(); ++i)
+    if (in[0]->isString() == false || in[0]->getAs<String>()->isScalar() == false)
     {
-        if (in[i]->isString() == false)
-        {
-            Scierror(91,  i+1);
-            return Function::Error;
-        }
+        Scierror(91, 1);
+        return Function::Error;
     }
 
     Context *ctx = Context::getInstance();
 
-    for (int i = 0; i < in.size(); ++i)
+    if (ctx->getScopeLevel() < 2)
     {
-        String* pS = in[i]->getAs<String>();
-        
-        for (int j = 0; j < pS->getSize(); ++j)
-        {
-            wchar_t* wname = pS->get(j);
-            Symbol sym = Symbol(wname);
-            
-            if (InternalType* value = ctx->getCurrentLevel(sym))
-            {
-                ctx->putInPreviousScope(ctx->getOrCreate(sym), value);
-            }
-            else
-            {
-                char* name = wide_string_to_UTF8(wname);
-                Scierror(40, name);
-                FREE(name);
-                return Function::Error;
-            }
-        }
+        Scierror(61);
+        return Function::Error;
     }
 
-    return Function::OK;
+    wchar_t* name = in[0]->getAs<String>()->getFirst();
+    Symbol symbol = Symbol(name);
+    InternalType* value = (in.size() == 2) ? in[1] : ctx->getCurrentLevel(symbol);
+
+    if (value)
+    {
+        ctx->putInPreviousScope(ctx->getOrCreate(symbol), value);
+        return Function::OK;
+    }
+    else
+    {
+        char* v = wide_string_to_UTF8(name);
+        Scierror(40, v);
+        FREE(v);
+        return Function::Error;
+    }
 }
