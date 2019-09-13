@@ -174,15 +174,8 @@ private :
     static int m_iConsoleWidth;
 
 public :
-    static void setConsoleWidth(int _iConsoleWidth)
-    {
-        m_iConsoleWidth = std::max(ICONSOLEWIDTH_MIN, _iConsoleWidth);
-    }
-    
-    static int getConsoleWidth(void)
-    {
-        return m_iConsoleWidth;
-    }
+    static void setConsoleWidth(int _iConsoleWidth);
+    static int getConsoleWidth(void);
 
     // Screen console lines
 private :
