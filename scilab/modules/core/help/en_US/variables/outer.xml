@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2019 Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="outer">
+    <refnamediv>
+        <refname>outer</refname>
+        <refpurpose>variables in outer scope</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>outer(name)
+            outer(name, value)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+            <term>name</term>
+            <listitem>
+                <para>string.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>value</term>
+            <listitem>
+                <para>arbitrary.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utility function to move or create a variable <term>name</term> to or in the outer
+            (previous) scope.
+        </para>
+        <para>
+            Please note, that <link linkend="return">return</link> provides a similar functionality,
+            i.e. <code>x = return(y)</code>  will create a variable <term>x</term> with value
+            <term>y</term> in the outer (previous) scope. However, it is cumbersome to create an outer
+            variable (using <function>return</function>) whose name is not known a priori.
+        </para>
+        <para>
+        <variablelist>
+            <varlistentry>
+                <term>outer(name)</term>
+                <listitem>
+                    <para>Move an existent variable <term>name</term> to the outer (previous)
+                    scope.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry></varlistentry>
+            <varlistentry>
+                <term>outer(name, value)</term>
+                <listitem>
+                    <para>Creates a variable <term>name</term> in the outer (previous) scope and
+                    assigns a <term>value</term> to it.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+function create_a_var(name), outer(name, 999), end
+
+create_a_var("A")
+A
+clear A
+
+create_a_var("B")
+B
+clear B
+
+function create_a_var_and_init(name,value), outer(name, value), end
+
+create_a_var_and_init("A",123)
+A
+clear A
+
+create_a_var_and_init("B",456)
+B
+clear B
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="return">return</link>
+            </member>
+            <member>
+                <link linkend="isdef">isdef</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 2</revnumber>
+                <revremark>Function <function>outer</function> was introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
