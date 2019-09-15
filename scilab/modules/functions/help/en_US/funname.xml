@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Balisc (https://github.com/rdbyk/balisc/)
+// 
+// Copyright (C) 2019 Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
+// 02110-1301, USA.
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="funname">
+    <refnamediv>
+        <refname>funname</refname>
+        <refpurpose>name of function or macro</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>name = funname(ref)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+            <term>name</term>
+            <listitem>
+                <para>string.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ref</term>
+            <listitem>
+                <para>function or macro.</para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utility to get the name of a function or macro, i.e. it provides
+            the inversion of <function>funref</function>.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a = funref("sin")
+b = funref("sinm")
+
+funname(a)
+funname(b)
+
+clear a b
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="funref">funref</link>
+            </member>
+            <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
+                <link linkend="macro">macro</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>Balisc 2</revnumber>
+                <revremark>Function <function>funname</function> was introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
