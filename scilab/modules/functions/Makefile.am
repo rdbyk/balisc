@@ -7,6 +7,7 @@
 GATEWAY_CPP_SOURCES =  \
     sci_gateway/cpp/sci_exec.cpp \
     sci_gateway/cpp/sci_functionlist.cpp \
+    sci_gateway/cpp/sci_funname.cpp \
     sci_gateway/cpp/sci_funref.cpp \
     sci_gateway/cpp/sci_whereis.cpp \
     sci_gateway/cpp/sci_execstr.cpp \

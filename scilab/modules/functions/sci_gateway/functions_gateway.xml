@@ -25,6 +25,7 @@
     <gateway name="sci_exec"                function="exec"                 type="1" />
     <gateway name="sci_execstr"             function="execstr"              type="1" />
     <gateway name="sci_funclist"            function="funclist"             type="1" />
+    <gateway name="sci_funname"             function="funname"              type="1" />
     <gateway name="sci_funref"              function="funref"               type="1" />
     <gateway name="sci_whereis"             function="whereis"              type="1" />
     <gateway name="sci_macrovar"            function="macrovar"             type="1" />
