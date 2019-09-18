@@ -2,7 +2,7 @@
 // Copyright (C) INRIA -
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2016, 2017 - Samuel GOUGEON
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -59,6 +59,8 @@ function t=sci2exp(a,nom,lmax)
     dots="..";
 
     select type(a)
+    case 0 then
+        t = listop2exp(a)
     case 1 then
         t=mat2exp(a,lmax)
     case 2 then
@@ -109,6 +111,8 @@ function t=sci2exp(a,nom,lmax)
         t = mlist2exp(user2mlist(a), lmax);
     case 129 then
         t = imp2exp(a, lmax);
+    case 130 then
+        t = funname(a);
     else
         //  execstr('t='+typeof(a)+'2exp(a,lmax)')
         msg = _("%s: This feature has not been implemented: Variable translation of type %s.\n");
@@ -857,3 +861,20 @@ function ml = user2mlist(u)
         ml(k) = u(fn(k));
     end
 endfunction
+
+function lo = listop2exp(a)
+    select typeof(a)
+    case "listundefined" then
+        lo = "void()";
+    case "listdelete" then
+        lo = "null()";
+    case "listinsert" then
+        tmp = list();
+        tmp(1) = a;
+        if typeof(tmp(1)) == "listundefined" then
+            lo = "insert()"
+        else
+            lo = msprintf("insert(%s)", sci2exp(tmp(1)));
+        end
+    end
+end
