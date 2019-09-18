@@ -243,20 +243,13 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
         for (i = m_inputArgs->begin(), j = in.begin(); j != in.end(); ++j, ++i)
         {
-            if (*j)
-            {
-                //prevent assignation of NULL value
-                pContext->put(*i, *j);
-            }
+            pContext->put(*i, *j);
         }
 
         //add optional parameters in current scope
         for (const auto& it : opt)
         {
-            if (it.second)
-            {
-                pContext->put(symbol::Symbol(it.first), it.second);
-            }
+            pContext->put(symbol::Symbol(it.first), it.second);
         }
     }
 
