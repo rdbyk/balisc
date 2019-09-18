@@ -116,7 +116,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr.reserve(wstrName.size() + 7);
                 ostr = L" ";
                 ostr += wstrName;
-                ostr += L"  = \n\n";
+                ostr += L"  = \n";
+                if (ConfigVariable::isPrintCompact() == false)
+                {
+                    ostr += L"\n";
+                }
                 scilabWriteW(ostr.c_str());
                 
                 VariableToString(pIT, wstrName.c_str());
