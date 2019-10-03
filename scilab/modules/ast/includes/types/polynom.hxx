@@ -93,8 +93,6 @@ public :
     void set(int _iRows, int _iCols, SinglePoly* _pS) override;
     void set(SinglePoly** _pS);
 
-    std::wstring            getRowString(int* _piDims, int _iDims, bool _bComplex);
-    std::wstring            getColString(int* _piDims, int _iDims, bool _bComplex);
     std::wstring            getMatrixString(int* _piDims, int _iDims, bool _bComplex);
 
     bool                    operator==(const InternalType& it) override;

@@ -63,8 +63,8 @@ public :
     double evaluate(double x);
     void                    updateRank(void);
 
-    void                    toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef);
-    void                    toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef);
+    void                    toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListCoef);
+    void                    toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListCoef);
 
     bool                    toString(std::wostringstream& ostr) override;
 
@@ -92,7 +92,7 @@ protected :
     }
 
 private :
-    void                    toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef);
+    void                    toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListCoef);
 
 };
 
