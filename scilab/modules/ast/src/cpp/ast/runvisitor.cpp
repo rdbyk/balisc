@@ -660,10 +660,11 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         //get index stack
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
 
-        if (ctx->isprotected(var))
+        // implicit list is not computable || loop variable is proteced
+        if (pIL == nullptr || ctx->isprotected(var))
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw ast::InternalError(4, e.getVardec().getLocation());
+            throw ast::InternalError(pIL ? 4 : 14, e.getVardec().getLocation());
         }
 
         ctx->put(var, pIL);
@@ -676,35 +677,29 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             //check if loop index has changed, deleted, copy ...
             if (pIL->getRef() != 2)
             {
-                switch (pIL->getRef())
+                if (pIL->getRef() > 2)
                 {
-                    case 1:
-                        //someone clear me
-                        ctx->put(var, pIL);
-                        break;
-                    default:
-                        //someone assign me to another var
-                        //a = i;
-                        //unlock me
-                        pIL->DecreaseRef();
+                    //someone assign me to another var
+                    //a = i;
+                    //unlock me
+                    pIL->DecreaseRef();
 
-                        //no need to destroy, it already assign to another var
-                        //pIL->killMe();
+                    //no need to destroy, it already assign to another var
+                    //pIL->killMe();
 
-                        //create a new me
-                        pIL = pVar->getInitialType();
-                        //lock loop index
-                        pIL->IncreaseRef();
-                        //update me ( must decrease ref of a )
-                        if (ctx->isprotected(var))
-                        {
-                            CoverageInstance::stopChrono((void*)&e);
-                            throw ast::InternalError(4, e.getVardec().getLocation());
-                        }
-
-                        ctx->put(var, pIL);
-                        break;
+                    //create a new me
+                    pIL = pVar->getInitialType();
+                    //lock loop index
+                    pIL->IncreaseRef();
+                    //update me ( must decrease ref of a )
+                    if (ctx->isprotected(var))
+                    {
+                        CoverageInstance::stopChrono((void*)&e);
+                        throw ast::InternalError(4, e.getVardec().getLocation());
+                    }
                 }
+
+                ctx->put(var, pIL);
             }
 
             pVar->extractValue(i, pIL);
