@@ -285,17 +285,9 @@ bool ImplicitList::compute()
 
 bool ImplicitList::isComputable()
 {
-    if (m_eStartType != ScilabDouble && m_poStart->isInt() == false)
-    {
-        return false;
-    }
-
-    if (m_eStepType != ScilabDouble && m_poStep->isInt() == false)
-    {
-        return false;
-    }
-
-    if (m_eEndType != ScilabDouble && m_poEnd->isInt() == false)
+    if (m_eStartType != ScilabDouble && m_poStart->isInt() == false
+        || m_eStepType != ScilabDouble && m_poStep->isInt() == false
+        || m_eEndType != ScilabDouble && m_poEnd->isInt() == false)
     {
         return false;
     }
@@ -424,11 +416,6 @@ InternalType* ImplicitList::getInitialType()
 //extract single value in a InternalType
 void ImplicitList::extractValue(int _iOccur, InternalType* pIT)
 {
-    if (pIT == nullptr)
-    {
-        return;
-    }
-
     if (compute())
     {
         switch (m_eOutType)
