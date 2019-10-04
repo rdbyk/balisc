@@ -122,7 +122,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_checkNamedArguments.cpp \
 	sci_gateway/cpp/sci_typecast.cpp \
 	sci_gateway/cpp/sci_swapbytes.cpp \
-	sci_gateway/cpp/sci_outer.cpp
+	sci_gateway/cpp/sci_outer.cpp \
+	sci_gateway/cpp/sci_inner.cpp
 
 if ENABLE_DEBUG
 GATEWAY_CPP_SOURCES += \

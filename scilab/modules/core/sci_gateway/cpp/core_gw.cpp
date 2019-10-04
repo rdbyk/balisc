@@ -82,6 +82,7 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"typecast", &sci_typecast, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"swapbytes", &sci_swapbytes, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"outer", &sci_outer, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inner", &sci_inner, MODULE_NAME));
 
 #ifndef NDEBUG
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetItemCount", &sci_inspectorGetItemCount, MODULE_NAME));
