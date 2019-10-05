@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge STEER
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,32 +14,34 @@ function hallchart(modules,args,colors)
     defaultmodules=[-20 -10 -6 -4 -2 2 4 6 10 20];//in dB
     defaultargs=[-90 -60 -45 -30 -15 15 30 45 60 90]; //in degree
     defaultbounds=[-3.5 -2;3 2];
-    if exists("modules","local")==0 then
-        modules=defaultmodules
-    else
-        if type(modules)|~isreal(modules)<>1 then
-            error(msprintf("%s: Wrong type for imput argument ""%s"": real floating point array expected\n"),"hallchart","modules");
+
+    if isdef("modules","local") then
+        if type(modules) <> 1 || ~isreal(modules) then
+            error(94, 1);
         end
         modules=matrix(modules,1,-1)
-    end
-    if exists("args","local")==0 then
-        args=defaultargs
     else
-        if type(args)<>1|~isreal(args) then
-            error(msprintf("%s: Wrong type for imput argument ""%s"": real floating point array expected\n"),"hallchart","args");
-        end
-        args=matrix(args,1,-1)
+        modules=defaultmodules
     end
 
-    if exists("colors","local")==0 then
-        colors=[4 12];
-    else
-        if type(colors)<>1|~isreal(colors) then
-            error(msprintf("%s: Wrong type for imput argument ""%s"": real floating point array expected\n"),"hallchart","colors");
+    if isdef("args","local") then
+        if type(args) <> 1 || ~isreal(args) then
+            error(94, 2);
         end
-        if size(colors,"*")==1 then
+        args=matrix(args,1,-1)
+    else
+        args=defaultargs
+    end
+
+    if isdef("colors","local") then
+        if type(colors) <> 1 || ~isreal(colors) then
+            error(94, 3);
+        end
+        if size(colors,"*") == 1 then
             colors=colors*ones(1,2)
         end
+    else
+        colors=[4 12];
     end
 
     fig=gcf();
