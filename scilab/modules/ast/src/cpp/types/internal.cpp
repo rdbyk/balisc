@@ -312,6 +312,11 @@ bool InternalType::isListUndefined(void)
     return false;
 }
 
+bool InternalType::isNamedArg(void)
+{
+    return false;
+}
+
 bool InternalType::isPointer(void)
 {
     return false;

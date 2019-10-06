@@ -117,7 +117,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 //so add NULL item in in list to keep initial order
                 if (pIT->isMacro() || pIT->isMacroFile())
                 {
-                    in.push_back(new types::ListInsert(new types::String(vectOptName[iterOptName].data())));
+                    in.push_back(new types::NamedArg(vectOptName[iterOptName]));
                 }
 
                 opt[vectOptName[iterOptName++]] = inTmp[iterIn++];

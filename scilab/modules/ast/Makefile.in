@@ -1398,6 +1398,7 @@ includes/types/list.hxx \
 includes/types/listinsert.hxx \
 includes/types/listoperation.hxx \
 includes/types/listundefined.hxx \
+includes/types/namedarg.hxx \
 includes/types/macrofile.hxx \
 includes/types/macro.hxx \
 includes/types/matrixiterator.hxx \
