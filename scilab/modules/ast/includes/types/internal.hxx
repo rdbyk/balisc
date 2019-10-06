@@ -102,6 +102,7 @@ public :
         ScilabListInsertOperation,
         ScilabListDeleteOperation,
         ScilabListUndefinedOperation,
+        ScilabNamedArg,
         ScilabFile,
         ScilabColon,
         ScilabThreadId,
@@ -172,6 +173,7 @@ public :
         IdListInsertOperation,
         IdListDeleteOperation,
         IdListUndefinedOperation,
+        IdNamedArg,
         IdFile,
         IdColon,
         IdThreadId,
@@ -412,6 +414,7 @@ public :
     virtual bool isListDelete(void);
     virtual bool isListInsert(void);
     virtual bool isListUndefined(void);
+    virtual bool isNamedArg(void);
     virtual bool isPointer(void);
     virtual bool isLibrary(void);
     virtual bool isUserType(void);

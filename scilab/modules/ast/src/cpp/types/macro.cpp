@@ -19,7 +19,7 @@
 
 #include "macro.hxx"
 #include "list.hxx"
-#include "listinsert.hxx"
+#include "namedarg.hxx"
 #include "string.hxx"
 #include "context.hxx"
 #include "symbol.hxx"
@@ -188,19 +188,19 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         std::list<symbol::Variable*>::iterator itName = m_inputArgs->begin();
         for (int i = 0; i < iInputArgsActual; ++i)
         {
-            if (in[i]->isListInsert())
+            if (in[i]->isNamedArg())
             {
                 //named
-                std::wstring var(in[i]->getAs<ListInsert>()->getInsert()->getAs<String>()->get()[0]);
                 if (i < iVarPos)
                 {
+                    std::wstring var(in[i]->getAs<NamedArg>()->getName());
                     pContext->put(symbol::Symbol(var), opt[var]);
                     ++itName;
                 }
                 else
                 {
                     //varargin
-                    char* keyword = wide_string_to_UTF8(in[i]->getAs<ListInsert>()->getInsert()->getAs<String>()->get()[0]);
+                    char* keyword = wide_string_to_UTF8(in[i]->getAs<NamedArg>()->getName().c_str());
                     Scierror(60, keyword);
                     FREE(keyword);
                     pContext->scope_end();
@@ -243,7 +243,10 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
         for (i = m_inputArgs->begin(), j = in.begin(); j != in.end(); ++j, ++i)
         {
-            pContext->put(*i, *j);
+            if ((*j)->isNamedArg() == false)
+            {
+                pContext->put(*i, *j);
+            }
         }
 
         //add optional parameters in current scope
