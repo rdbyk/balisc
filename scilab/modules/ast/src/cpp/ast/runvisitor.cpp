@@ -1147,11 +1147,7 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
             setResult(NULL);
             if (pITCase)
             {
-                if (pITCase->isContainer()) //WARNING ONLY FOR CELL
-                {
-                    //check each item
-                }
-                else if (*pITCase == *pIT)
+                if (*pITCase == *pIT)
                 {
                     try
                     {
