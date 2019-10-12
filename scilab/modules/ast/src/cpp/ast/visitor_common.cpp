@@ -2198,7 +2198,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 throw ast::InternalError(11, e.getLocation());
             }
         }
-        else if (_pVar->getType() == _pInsert->getType())
+        else if (_pVar->isListOperation() == false && _pVar->getType() == _pInsert->getType())
         {
             pOut = _pVar->getAs<types::GenericType>()->insert(_pArgs, _pInsert);
         }
