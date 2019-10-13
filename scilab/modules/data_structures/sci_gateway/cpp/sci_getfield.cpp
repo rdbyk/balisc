@@ -154,13 +154,7 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
         return types::Function::Error;
     }
 
-    if (_iRetCount != static_cast<int>(vectResult.size()))
-    {
-        Scierror(81, vectResult.size());
-        return types::Function::Error;
-    }
-
-    for (int i = 0 ; i < _iRetCount ; i++)
+    for (int i = 0 ; i < vectResult.size() ; i++)
     {
         out.push_back(vectResult[i]);
     }
