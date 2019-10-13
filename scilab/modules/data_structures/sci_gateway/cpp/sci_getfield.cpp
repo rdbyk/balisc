@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
         //extraction by fieldnames
         if (pL->isMList() == false && pL->isTList() == false)
         {
-            Scierror(999, _("%s: Soft coded field names not yet implemented.\n"), "getfield");
+            Scierror(2);
             return types::Function::Error;
         }
 
@@ -111,13 +111,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
     types::List* pList = pITOut->getAs<types::List>();
     int iListSize = pList->getSize();
 
-    if (_iRetCount < iListSize)
-    {
-        Scierror(81, iListSize);
-        return types::Function::Error;
-    }
-
-    for (int i = 0 ; i < iListSize ; i++)
+    for (int i = 0; i < iListSize; i++)
     {
         out.push_back(pList->get(i));
     }
