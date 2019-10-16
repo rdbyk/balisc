@@ -578,6 +578,10 @@ Function::ReturnValue WrapCFunction::call(typed_list& in, optional_list& opt, in
         out.resize(_iRetCount, NULL);
         if (m_pCFunc((void*)&gcs, (int)in.size(), (scilabVar*)(in.data()), (int)opt.size(), (scilabOpt)&opt, _iRetCount, (scilabVar*)(out.data())))
         {
+            // just return nothing, to avoid NULLs in "out"
+            // otherwise cleanIn, cleanOut (cf. runvisitor.hxx)
+            // might produce later on a crash ...
+            out.clear();
             retVal = Error;
         }
     }
