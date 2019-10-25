@@ -1,49 +1,31 @@
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - Farid BELAHCENE
-// Copyright (C) 2011 - DIGITEO - Michael Baudin
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Balisc (https://github.com/rdbyk/balisc/)
 //
-// This file is hereby licensed under the terms of the GNU GPL v2.0,
-// pursuant to article 5.3.4 of the CeCILL v.2.1.
-// This file was originally licensed under the terms of the CeCILL v2.1,
-// and continues to be available under such terms.
-// For more information, see the COPYING file which you should have received
-// along with this program.
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+// 02110-1301, USA.
 
-function  y=complex(varargin)
+function  c = complex(a, b)
 
-    if nargin < 1 | nargin > 2 then
-        error(72, 1, 2);
+    select nargin
+        case 1
+            c = a + 0*%i
+        case 2
+            c = a + imult(b)
+        else
+            error(72, 1, 2)
     end
-
-    a = varargin(1)
-    if nargin == 1 then
-        b = zeros(a)
-    else
-        b = varargin(2)
-    end
-
-    if typeof(a) <> "constant"  then
-        error(94, 1);
-    end
-
-    if typeof(b) <> "constant" then
-        error(94, 2);
-    end
-
-    if size(a,"*") <> 1 & size(b,"*") <> 1 & size(a)<>size(b) then
-        error(_("%s: Incompatible input arguments #%d and #%d: Same sizes expected."), "complex", 1, 2);
-    end
-
-    if ~isreal(a) then
-        error(94, 1);
-    end
-
-    if ~isreal(b) then
-        error(94, 2);
-    end
-
-    y = a + imult(b);
 
 endfunction
