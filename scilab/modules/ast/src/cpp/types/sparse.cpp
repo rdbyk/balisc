@@ -512,7 +512,7 @@ Sparse::Sparse(int rows, int cols, int nonzeros, int* inner, int* outer, double*
 
 bool Sparse::getMemory(int *_piSize, int* _piSizePlusType)
 {
-    *_piSize = nonZeros()*sizeof(double)*(isComplex() ? 2 : 1);
+    *_piSize = nonZeros() * sizeof(double) * (isComplex() ? 2 : 1);
     *_piSizePlusType = *_piSize + sizeof(*this);
     return true;
 }
@@ -2617,7 +2617,7 @@ double* Sparse::outputCols(double* out) const
         mycopy_n(matrixReal->innerIndexPtr(), nonZeros(), out);
     }
 
-    return std::transform(out, out, out, std::bind2nd(std::plus<double>(), 1));
+    return std::transform(out, out, out, std::bind(std::plus<double>(), std::placeholders::_1, 1));
 
 }
 
@@ -3483,7 +3483,7 @@ SparseBool::SparseBool(int rows, int cols, int trues, int* inner, int* outer)
 
 bool SparseBool::getMemory(int *_piSize, int* _piSizePlusType)
 {
-    *_piSize = nbTrue()*sizeof(bool);
+    *_piSize = nbTrue() * sizeof(bool);
     *_piSizePlusType = *_piSize + sizeof(*this);
     return true;
 }
