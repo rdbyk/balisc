@@ -16,6 +16,7 @@
 #ifndef __TOSTRING_COMMON_HXX__
 #define __TOSTRING_COMMON_HXX__
 
+#include <type_traits>
 #include <sstream>
 #include "os_string.h"
 
@@ -76,7 +77,10 @@ void printComplexValue(std::wostringstream& ostr, double val_r, double val_i);
 */
 
 template <typename T>
-void getUnsignedIntFormat(T _TVal, int *_piWidth)
+void getIntFormat(T _TVal, int *_piWidth,
+                  typename std::enable_if <
+                  std::is_unsigned<T>::value
+                  >::type* = 0)
 {
     if (_TVal == 0)
     {
@@ -90,7 +94,10 @@ void getUnsignedIntFormat(T _TVal, int *_piWidth)
 }
 
 template <typename T>
-void getSignedIntFormat(T _TVal, int *_piWidth)
+void getIntFormat(T _TVal, int *_piWidth,
+                  typename std::enable_if <
+                  std::is_signed<T>::value
+                  >::type* = 0)
 {
     if (_TVal == 0)
     {
@@ -108,7 +115,10 @@ void getSignedIntFormat(T _TVal, int *_piWidth)
 }
 
 template <typename T>
-void addUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void addIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true,
+                 typename std::enable_if <
+                 std::is_unsigned<T>::value
+                 >::type* = 0)
 {
     const wchar_t * pwstSign = PLUS_STRING;
     wchar_t pwstFormat[32];
@@ -131,7 +141,10 @@ void addUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool
 }
 
 template <typename T>
-void addSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void addIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true,
+                 typename std::enable_if <
+                 std::is_signed<T>::value
+                 >::type* = 0)
 {
     const wchar_t* pwstSign = NULL;
     wchar_t pwstFormat[32];
