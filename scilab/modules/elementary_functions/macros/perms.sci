@@ -2,7 +2,7 @@
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,9 +17,9 @@ function y = perms(x)
         error(71, 1);
     end
 
-    if size(x,"*")==1 | size(x,"*")==0 then
+    if size(x,"*")==1 || size(x,"*")==0 then
         y = x;
-    elseif size(x,1)<>1 & size(x,2)<>1 then
+    elseif size(x,1)<>1 && size(x,2)<>1 then
         error(100, 1, _("vector"));
     else
         xsize = size(x, "*");
