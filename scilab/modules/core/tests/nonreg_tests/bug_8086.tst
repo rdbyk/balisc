@@ -53,7 +53,6 @@ macros_error_type_1 = ["isscalar"; ..
 "ndims"; ..
 "nextpow2"; ..
 "oct2dec"; ..
-"perms"; ..
 "pertrans"; ..
 "primes"; ..
 "sec"; ..
