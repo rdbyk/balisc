@@ -1,18 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
-//
-// <-- Non-regression test for bug 14047 -->
-//
-// <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/14047
-//
-// <-- Short Description -->
-// wrong behaviour of break ( continue ) in if outside of loop
 function y = testBreak()
     if 1 then
         y = 2;
@@ -30,7 +15,6 @@ function y = testContinue()
 endfunction
 assert_checkequal(testContinue(), 3);
 clear testBreak testContinue
-//check normal behaviour
 function y = testBreak()
     y = 0;
     for i = 1:5

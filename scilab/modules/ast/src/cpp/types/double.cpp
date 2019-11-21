@@ -389,9 +389,9 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         int iBlankSize = df.bPrintBlank ? BLANK_SIZE : 0;
 
         //Array with the max printed size of each col
-        int *piSize = new int[getCols()]();
-        int *piRSize = new int[getCols()]();
-        int *piISize = new int[getCols()]();
+        std::vector<int> piSize(getCols());
+        std::vector<int> piRSize(getCols());
+        std::vector<int> piISize(getCols());
 
         if (isComplex() == false)
         {
@@ -430,7 +430,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             ostr << ostemp.str();
                             m_iRows2PrintState = iRows2;
                             m_iCols1PrintState = iLastCol;
-                            delete[] piSize;
                             return false;
                         }
 
@@ -483,7 +482,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     ostr << ostemp.str();
                     m_iRows2PrintState = iRows2;
                     m_iCols1PrintState = iLastCol;
-                    delete[] piSize;
                     return false;
                 }
 
@@ -551,9 +549,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             ostr << ostemp.str();
                             m_iRows2PrintState = iRows2;
                             m_iCols1PrintState = iLastCol;
-                            delete[] piSize;
-                            delete[] piRSize;
-                            delete[] piISize;
                             return false;
                         }
 
@@ -608,8 +603,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     ostr << ostemp.str();
                     m_iRows2PrintState = iRows2;
                     m_iCols1PrintState = iLastCol;
-                    delete[] piSize;
-                    delete[] piRSize;
                     return false;
                 }
 
@@ -638,10 +631,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             }
             ostr << ostemp.str();
         }
-
-        delete[] piSize;
-        delete[] piRSize;
-        delete[] piISize;
     }
     
     std::flush(ostr);
@@ -1060,7 +1049,7 @@ void Double::convertToZComplex()
 
     doublecomplex* pdblZ = NULL;
 
-    pdblZ = oGetDoubleComplexFromPointer(getReal(), getImg() , getSize());
+    pdblZ = oGetDoubleComplexFromPointer(getReal(), getImg(), getSize());
 
     delete[] m_pImgData;
     m_pImgData = NULL;

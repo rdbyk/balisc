@@ -1,96 +1,71 @@
-// ============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - DIGITEO - Antoine ELIAS
-//
-//  This file is distributed under the same license as the Scilab package.
-// ============================================================================
-//
-// <-- CLI SHELL MODE -->
 false = %f;
 true = %t;
-//scalar AND scalar in operation
 assert_checkfalse(false & false);
 assert_checkfalse(false & true);
 assert_checkfalse(true & false);
 assert_checktrue(true & true);
-//scalar OR scalar in operation
 assert_checkfalse(false | false);
 assert_checktrue(false | true);
 assert_checktrue(true | false);
 assert_checktrue(true | true);
-//scalar AND scalar in condition
 if (false & false) <> false then bugmes();quit;end
 if (false & true) <> false then bugmes();quit;end
 if (true & false) <> false then bugmes();quit;end
 if (true & true) <> true then bugmes();quit;end
-//scalar OR scalar in condition
 if (false | false) <> false then bugmes();quit;end
 if (false | true) <> true then bugmes();quit;end
 if (true | false) <> true then bugmes();quit;end
 if (true | true) <> true then bugmes();quit;end
 MF = [false,false;false,false];
 MT = [true,true;true,true];
-//scalar AND matrix in operation
 assert_checkfalse(false & MF);
 assert_checkfalse(false & MT);
 assert_checkfalse(true & MF);
 assert_checktrue(true & MT);
-//scalar OR matrix in operation
 assert_checkfalse(false | MF);
 assert_checktrue(false | MT);
 assert_checktrue(true | MF);
 assert_checktrue(true | MT);
-//scalar AND matrix in condition
 if (false & MF) <> false then bugmes();quit;end
 if (false & MT) <> false then bugmes();quit;end
 if (true & MF) <> false then bugmes();quit;end
 if (true & MT) <> true then bugmes();quit;end
-//scalar OR matrix in condition
 if (false | MF) <> false then bugmes();quit;end
 if (false | MT) <> true then bugmes();quit;end
 if (true | MF) <> true then bugmes();quit;end
 if (true | MT) <> true then bugmes();quit;end
-//matrix AND scalar in operation
 assert_checkfalse(MF & false);
 assert_checkfalse(MF & true);
 assert_checkfalse(MT & false);
 assert_checktrue(MT & true);
-//matrix OR scalar in operation
 assert_checkfalse(MF | false);
 assert_checktrue(MF | true);
 assert_checktrue(MT | false);
 assert_checktrue(MT | true);
-//matrix AND scalar in condition
 if (MF & false) <> false then bugmes();quit;end
 if (MF & true) <> false then bugmes();quit;end
 if (MT & false) <> false then bugmes();quit;end
 if (MT & true) <> true then bugmes();quit;end
-//matrix OR scalar in condition
 if (MF | false) <> false then bugmes();quit;end
 if (MF | true) <> true then bugmes();quit;end
 if (MT | false) <> true then bugmes();quit;end
 if (MT | true) <> true then bugmes();quit;end
-//matrix AND matrix in operation
 assert_checkfalse(MF & MF);
 assert_checkfalse(MF & MT);
 assert_checkfalse(MT & MF);
 assert_checktrue(MT & MT);
-//matrix OR matrix in operation
 assert_checkfalse(MF | MF);
 assert_checktrue(MF | MT);
 assert_checktrue(MT | MF);
 assert_checktrue(MT | MT);
-//matrix AND matrix in condition
 if (MF & MF) <> MF then bugmes();quit;end
 if (MF & MT) <> MF then bugmes();quit;end
 if (MT & MF) <> MF then bugmes();quit;end
 if (MT & MT) <> MT then bugmes();quit;end
-//matrix OR matrix in condition
 if (MF | MF) <> MF then bugmes();quit;end
 if (MF | MT) <> MT then bugmes();quit;end
 if (MT | MF) <> MT then bugmes();quit;end
 if (MT | MT) <> MT then bugmes();quit;end
-//int | int
 b0 = int8(0);
 b1 = int8(1);
 b2 = int8(2);
@@ -107,7 +82,6 @@ b124 = int8(11);
 b134 = int8(13);
 b234 = int8(14);
 b1234 = int8(15);
-//scalar OR scalar in operation
 assert_checktrue((b0 | b0) == b0);
 assert_checktrue((b0 | b1) == b1);
 assert_checktrue((b0 | b2) == b2);
@@ -228,7 +202,6 @@ assert_checktrue((b134 | b1234) == b1234);
 assert_checktrue((b234 | b234) == b234);
 assert_checktrue((b234 | b1234) == b1234);
 assert_checktrue((b1234 | b1234) == b1234);
-//scalar AND scalar in operation
 assert_checktrue((b0 & b0) == b0);
 assert_checktrue((b0 & b1) == b0);
 assert_checktrue((b0 & b2) == b0);
@@ -349,10 +322,7 @@ assert_checktrue((b134 & b1234) == b134);
 assert_checktrue((b234 & b234) == b234);
 assert_checktrue((b234 & b1234) == b234);
 assert_checktrue((b1234 & b1234) == b1234);
-//scalar OR scalar in condition
 if b0 | b0 then bugmes();quit;end
-//others case returns true and we do not want to test with '=='
-//scalar AND scalar in condition
 if b0 & b0 then bugmes();quit;end
 if b0 & b1 then bugmes();quit;end
 if b0 & b2 then bugmes();quit;end
@@ -369,7 +339,6 @@ if b0 & b124 then bugmes();quit;end
 if b0 & b134 then bugmes();quit;end
 if b0 & b234 then bugmes();quit;end
 if b0 & b1234 then bugmes();quit;end
-//others case returns true and we do not want to test with '=='
 A = [0 1; 1 0];
 B = [1 1; 0 0];
 spA = sparse(A);
@@ -428,24 +397,12 @@ assert_checkequal( cA | spB    , sp_resAorB );
 assert_checkequal( spA | cB    , sp_resAorB );
 assert_checkequal( cA | spbB   , sp_resAorB );
 assert_checkequal( spbA | cB   , sp_resAorB );
-// Integer manipulation
-// Integer representation
 i8_A = int8([ -1, 1; 127, -128]);
-// Integer representation of i8_A:
-// [ 1111 1111, 0000 0001 ;
-//   0111 1111, 1000 0000 ]
 i8_B = int8([-2, 0; 126, -127]);
-// Integer representation of i8_A:
-// [ 1111 1110, 0000 0000 ;
-//   0111 1110, 1000 0001 ]
-// Bitwise AND
 resIntAandB = int8([-2, 0; 126, -128]);
 resIntAorB = int8([-1, 1; 127, -127]);
 assert_checkequal( i8_A & i8_B , resIntAandB );
 assert_checkequal( i8_A | i8_B , resIntAorB );
-// Inttype promotion
-// int8 < int16 < int32 < int64
-// uint8 < uint16 < uint32 < uint64
 assert_checkequal( int16(i8_A) & i8_B  , int16(resIntAandB) );
 assert_checkequal( int32(i8_A) & i8_B  , int32(resIntAandB) );
 assert_checkequal( int64(i8_A) & i8_B  , int64(resIntAandB) );
