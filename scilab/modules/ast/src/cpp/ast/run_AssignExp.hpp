@@ -224,7 +224,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     ostr.reserve((*getStructNameFromExp(pCell)).size() + 7);
                     ostr = L" ";
                     ostr += *getStructNameFromExp(pCell);
-                    ostr += L"  = \n\n";
+                    ostr += L"  = \n";
+                    if (ConfigVariable::isPrintCompact() == false)
+                    {
+                        ostr += L"\n";
+                    }
                     scilabWriteW(ostr.c_str());
 
                     VariableToString(pOut, ostr.c_str());
@@ -383,7 +387,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr.reserve(ostrName.size() + 7);
                 ostr = L" ";
                 ostr += ostrName;
-                ostr += L"  = \n\n";
+                ostr += L"  = \n";
+                if (ConfigVariable::isPrintCompact() == false)
+                {
+                    ostr += L"\n";                
+                }
                 scilabWriteW(ostr.c_str());
 
                 VariableToString(pOut, ostrName.c_str());
@@ -522,7 +530,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr.reserve((*pstName).size() + 7);
                 ostr = L" ";
                 ostr += *pstName;
-                ostr += L"  = \n\n";
+                ostr += L"  = \n";
+                if (ConfigVariable::isPrintCompact() == false)
+                {
+                    ostr += L"\n";                
+                }
                 scilabWriteW(ostr.c_str());
 
                 VariableToString(pPrint, (*pstName).c_str());
