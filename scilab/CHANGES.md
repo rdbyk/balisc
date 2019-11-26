@@ -105,6 +105,8 @@ Feature changes and additions
   - Automatic detection of the input data format implemented.
   - `-toStruct` option added, to return results in a structure instead of in the calling environment.
 * `jremove` is optional and `clear` could be used to release Java objects mapped to Scilab.
+* `blockdiag()` is introduced to improve, replace, and extend `sysdiag()` to strings.
+
 
 Help pages:
 -----------
@@ -208,3 +210,4 @@ Bug Fixes
 * [#16264](http://bugzilla.scilab.org/show_bug.cgi?id=16264): After empty for loop iterator was left uninitialized.
 * [#16271](http://bugzilla.scilab.org/show_bug.cgi?id=16271): `loadmatfile()` was never able to automatically detect the input data format.
 * [#16272](http://bugzilla.scilab.org/show_bug.cgi?id=16272): `spzeros(0,n)` and `spzeros(n,0)` were different from `sparse(0,0)`.
+* [#16257](http://bugzilla.scilab.org/show_bug.cgi?id=16257): `blockdiag()` implemented to replace `sysdiag()`, improved and extended to strings.
