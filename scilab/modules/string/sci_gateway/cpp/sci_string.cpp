@@ -31,6 +31,7 @@
 #include "sparse.hxx"
 #include "int.hxx"
 #include "implicitlist.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -53,6 +54,7 @@ using types::InternalType;
 using types::Library;
 using types::Macro;
 using types::MacroFile;
+using types::Polynom;
 using types::Sparse;
 using types::String;
 using types::UInt8;
@@ -332,6 +334,26 @@ Function::ReturnValue implicitListString(ImplicitList* pIL, typed_list &out)
     return Function::OK;
 }
 
+Function::ReturnValue PolynomString(types::Polynom* pPol, types::typed_list &out)
+{
+    int iDims = pPol->getDims();
+    int* piDimsArray = pPol->getDimsArray();
+    String *pStr = new String(iDims, piDimsArray);
+    std::list<std::wstring> listWstPoly;
+
+    for (int iPos=0; iPos < pPol->getSize(); iPos++)
+    {
+        pPol->get(iPos)->toStringRealImg(pPol->getVariableName(), &listWstPoly, INT_MAX);
+        pStr->set(iPos,listWstPoly.front().c_str());
+        listWstPoly.clear();
+    }
+
+    out.push_back(pStr);
+    return Function::OK;
+}
+
+
+
 Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
@@ -498,10 +520,9 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(pBody);
             break;
         }
-        case types::InternalType::ScilabTList:
-        case types::InternalType::ScilabMList:
-        case types::InternalType::ScilabPolynom:
-        case types::InternalType::ScilabHandle:
+        case types::InternalType::ScilabTList :
+        case types::InternalType::ScilabMList :
+        case types::InternalType::ScilabHandle :
         {
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_string";
             return Overload::call(wstFuncName, in, _iRetCount, out);
@@ -536,6 +557,12 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(new String(L""));
             break;
         }
+        case types::InternalType::ScilabPolynom :
+        {
+            return PolynomString(in[0]->getAs<types::Polynom>(), out);
+            break;            
+        }
+        
         default:
         {
             std::wostringstream ostr;
