@@ -100,6 +100,8 @@ void Polynom::createPoly(const std::wstring& _szVarName, int _iDims, const int* 
 
 void Polynom::set(int _iPos, SinglePoly* _pS)
 {
+    bool bComplex = isComplex();
+
     if (m_pRealData[_iPos])
     {
         delete m_pRealData[_iPos];
@@ -107,14 +109,16 @@ void Polynom::set(int _iPos, SinglePoly* _pS)
 
     m_pRealData[_iPos] = copyValue(_pS);
 
-    bool bComplex = isComplex();
-    if (_pS->isComplex() && bComplex == false)
+    if (getSize() > 1)
     {
-        setComplex(true);
-    }
-    else if (_pS->isComplex() == false && bComplex)
-    {
-        m_pRealData[_iPos]->setComplex(true);
+        if (_pS->isComplex() && bComplex == false)
+        {
+            setComplex(true);
+        }
+        else if (_pS->isComplex() == false && bComplex)
+        {
+            m_pRealData[_iPos]->setComplex(true);
+        }
     }
 }
 
