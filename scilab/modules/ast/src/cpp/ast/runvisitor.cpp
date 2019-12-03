@@ -667,82 +667,88 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             throw ast::InternalError(pIL ? 4 : 14, e.getVardec().getLocation());
         }
 
-        ctx->put(var, pIL);
-        //use ref count to lock var against clear and detect any changes
-        pIL->IncreaseRef();
-
         int size = static_cast<int>(pVar->getSize());
-        for (int i = 0; i < size; ++i)
+
+        if (size > 0)
         {
-            //check if loop index has changed, deleted, copy ...
-            if (pIL->getRef() != 2)
+            ctx->put(var, pIL);
+
+            //use ref count to lock var against clear and detect any changes
+            pIL->IncreaseRef();
+
+            for (int i = 0; i < size; ++i)
             {
-                if (pIL->getRef() > 2)
+                //check if loop index has changed, deleted, copy ...
+                if (pIL->getRef() != 2)
                 {
-                    //someone assign me to another var
-                    //a = i;
-                    //unlock me
-                    pIL->DecreaseRef();
-
-                    //no need to destroy, it already assign to another var
-                    //pIL->killMe();
-
-                    //create a new me
-                    pIL = pVar->getInitialType();
-                    //lock loop index
-                    pIL->IncreaseRef();
-                    //update me ( must decrease ref of a )
-                    if (ctx->isprotected(var))
+                    if (pIL->getRef() > 2)
                     {
-                        CoverageInstance::stopChrono((void*)&e);
-                        throw ast::InternalError(4, e.getVardec().getLocation());
+                        //someone assign me to another var
+                        //a = i;
+                        //unlock me
+                        pIL->DecreaseRef();
+
+                        //no need to destroy, it already assign to another var
+                        //pIL->killMe();
+
+                        //create a new me
+                        pIL = pVar->getInitialType();
+                        //lock loop index
+                        pIL->IncreaseRef();
+                        //update me ( must decrease ref of a )
+                        if (ctx->isprotected(var))
+                        {
+                            CoverageInstance::stopChrono((void*)&e);
+                            throw ast::InternalError(4, e.getVardec().getLocation());
+                        }
                     }
+
+                    ctx->put(var, pIL);
                 }
 
-                ctx->put(var, pIL);
+                pVar->extractValue(i, pIL);
+
+                try
+                {
+                    e.getBody().accept(*this);
+                }
+                catch (const InternalError&)
+                {
+                    //unlock loop index and implicit list
+                    pIL->DecreaseRef();
+                    pIL->killMe();
+                    pIT->DecreaseRef();
+                    pIT->killMe();
+
+                    setResult(NULL);
+                    CoverageInstance::stopChrono((void*)&e);
+                    throw;
+                }
+
+                if (e.getBody().isBreak())
+                {
+                    const_cast<Exp&>(e.getBody()).resetBreak();
+                    break;
+                }
+
+                if (e.getBody().isContinue())
+                {
+                    const_cast<Exp&>(e.getBody()).resetContinue();
+                    continue;
+                }
+
+                if (e.getBody().isReturn())
+                {
+                    const_cast<ForExp&>(e).setReturn();
+                    const_cast<Exp&>(e.getBody()).resetReturn();
+                    break;
+                }
             }
 
-            pVar->extractValue(i, pIL);
-
-            try
-            {
-                e.getBody().accept(*this);
-            }
-            catch (const InternalError&)
-            {
-                //unlock loop index and implicit list
-                pIL->DecreaseRef();
-                pIL->killMe();
-                pIT->DecreaseRef();
-                pIT->killMe();
-
-                setResult(NULL);
-                CoverageInstance::stopChrono((void*)&e);
-                throw;
-            }
-
-            if (e.getBody().isBreak())
-            {
-                const_cast<Exp&>(e.getBody()).resetBreak();
-                break;
-            }
-
-            if (e.getBody().isContinue())
-            {
-                const_cast<Exp&>(e.getBody()).resetContinue();
-                continue;
-            }
-
-            if (e.getBody().isReturn())
-            {
-                const_cast<ForExp&>(e).setReturn();
-                const_cast<Exp&>(e.getBody()).resetReturn();
-                break;
-            }
+            //unlock loop index
+            pIL->DecreaseRef();
         }
 
-        //unlock loop index
-        pIL->DecreaseRef();
         pIL->killMe();
     }
     else if (pIT->isList())
