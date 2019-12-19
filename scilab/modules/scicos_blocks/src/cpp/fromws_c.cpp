@@ -126,7 +126,7 @@ void fromws_c(scicos_block* block, int flag)
 
             char* filename = expandPathVariable(env);
             delete[] env;
-            int fd = 0, ierr = 0;
+            hid_t fd = 0, ierr = 0;
             if (filename)
             {
                 /* Open tmp file */

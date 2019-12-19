@@ -18,24 +18,24 @@
 
 #include <hdf5.h>
 
-int updateFileVersion(int _iFile);
-int updateScilabVersion(int _iFile);
+int updateFileVersion(hid_t _iFile);
+int updateScilabVersion(hid_t _iFile);
 
-int deleteHDF5Var(int _iFile, const char* _pstName);
+int deleteHDF5Var(hid_t _iFile, const char* _pstName);
 
-int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, double* data, hid_t xfer_plist);
-int writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img, hid_t xfer_plist);
-int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char** data, hid_t xfer_plist);
-int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int* data, hid_t xfer_plist);
-int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data, hid_t xfer_plist);
+int writeDoubleMatrix6(hid_t parent, const char* name, int dims, int* pdims, double* data, hid_t xfer_plist);
+int writeDoubleComplexMatrix6(hid_t parent, const char* name, int dims, int* pdims, double* real, double* img, hid_t xfer_plist);
+int writeStringMatrix6(hid_t parent, const char* name, int dims, int* pdims, char** data, hid_t xfer_plist);
+int writeBooleanMatrix6(hid_t parent, const char* name, int dims, int* pdims, int* data, hid_t xfer_plist);
+int writeIntegerMatrix6(hid_t parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data, hid_t xfer_plist);
 
-int openList6(int parent, const char* name, const char* type);
-int closeList6(int lst);
+int openList6(hid_t parent, const char* name, const char* type);
+int closeList6(hid_t lst);
 
-int addItemStruct6(int dataset, hobj_ref_t* refs, int pos, const char* name);
-int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t* refs, hid_t xfer_plist);
+int addItemStruct6(hid_t dataset, hobj_ref_t* refs, int pos, const char* name);
+int writeStructField6(hid_t parent, const char* name, int dims, int* pdims, hobj_ref_t* refs, hid_t xfer_plist);
 
-int writeDelete(int parent, const char* name, hid_t xfer_plist);
-int writeUndefined6(int parent, const char* name, hid_t xfer_plist);
+int writeDelete(hid_t parent, const char* name, hid_t xfer_plist);
+int writeUndefined6(hid_t parent, const char* name, hid_t xfer_plist);
 
 #endif /* !__H5_WRITEDATATOFILE_H__ */

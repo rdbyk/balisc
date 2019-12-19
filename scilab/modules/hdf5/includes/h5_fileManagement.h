@@ -16,10 +16,12 @@
 #ifndef __H5_FILEMANAGEMENT_H__
 #define __H5_FILEMANAGEMENT_H__
 
+#include <hdf5.h>
+
 void HDF5cleanup(void);
-int createHDF5File(const char *name);
-int openHDF5File(const char *name, int _iAppendMode);
-void closeHDF5File(int file);
+hid_t createHDF5File(const char *name);
+hid_t openHDF5File(const char *name, int _iAppendMode);
+void closeHDF5File(hid_t file);
 int isHDF5File(const char* _pstFilename);
 
 #endif /* !__H5_FILEMANAGEMENT_H__ */
