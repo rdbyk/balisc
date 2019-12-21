@@ -116,6 +116,8 @@ Feature changes and additions
   - When there is an infinite number of solutions, the err flag has a specific value.
   - The output size gets the input's one.
 * `editvar()` GUI support copy-paste of strings removing quotes.
+* calendar() can now display formated calendars.
+
 
 
 Help pages:
@@ -258,6 +260,7 @@ Bug Fixes
 * [#16265](http://bugzilla.scilab.org/show_bug.cgi?id=16265): The translated pages of the `warning` documentation were not up-to-date.
 * [#16271](http://bugzilla.scilab.org/show_bug.cgi?id=16271): `loadmatfile()` was never able to automatically detect the input data format.
 * [#16272](http://bugzilla.scilab.org/show_bug.cgi?id=16272): `spzeros(0,n)` and `spzeros(n,0)` were different from `sparse(0,0)`.
+* [#16273](http://bugzilla.scilab.org/show_bug.cgi?id=16273): `calendar()` had no formated display mode.
 * [#16275](http://bugzilla.scilab.org/show_bug.cgi?id=16275): `fsolve(x0, fun, tol)` no longer took `tol` into account.
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot()`, `colorbar()` displayed an empty ungraduated color bar.

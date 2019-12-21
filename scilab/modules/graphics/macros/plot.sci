@@ -477,7 +477,7 @@ function varargout = plot(varargin)
     // smart drawnow
     ResetFigureDDM(current_figure, cur_draw_mode)
 
-    if lhs
+    if nargout
         varargout(1) = Curves;
     end
 endfunction
