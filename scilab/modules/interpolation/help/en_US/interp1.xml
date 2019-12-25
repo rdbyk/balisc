@@ -171,7 +171,7 @@ legend(['linear','spline','nearest'], "in_upper_left");
             yy3=interp1(x,y,xx,'nearest');
             plot(xx',[yy1;yy2;yy3]',x,y,'*')
             xtitle('interpolation of square function')
-            legend(['linear','spline','nearest'],a=2)
+            legend(['linear','spline','nearest'],2)
         </scilab:image>
     </refsection>
     <refsection role="see also">

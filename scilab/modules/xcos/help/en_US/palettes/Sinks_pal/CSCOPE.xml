@@ -236,13 +236,14 @@
     <refsection id="Example_CSCOPE">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/CSCOPE_en_US.zcos">
+<!--            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/CSCOPE_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/sinks_pal/en_US/CSCOPE_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
+-->
         </para>
 <!--        <scilab:image><![CDATA[
             importXcosDiagram(SCI + "/modules/xcos/examples/sinks_pal/en_US/CSCOPE_en_US.zcos");
