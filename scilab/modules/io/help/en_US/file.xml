@@ -162,7 +162,7 @@
                     <para>file opening mode. Formed by three digits abc:</para>
                     <table border="0">
                         <tr valign="top">
-                            <th colspan="2">Fortran files</th>
+                            <td colspan="2">><emphasis role="bold">Fortran files</emphasis></td>
                         </tr>
                         <tr valign="top">
                             <th>a</th>
@@ -177,7 +177,7 @@
                             <td>0 stands for "new", 1 for "old", 2 for "scratch" and 3 for "unknown"</td>
                         </tr>
                         <tr valign="top">
-                            <th colspan="2">C files</th>
+                            <td colspan="2"><emphasis role="bold">C files</emphasis></td>
                         </tr>
                         <tr valign="top">
                             <th>a</th>

@@ -365,7 +365,8 @@ am__objects_8 =  \
 	sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_permute.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_dec2base.lo \
-	sci_gateway/cpp/libscielementary_functions_la-sci_base2dec.lo
+	sci_gateway/cpp/libscielementary_functions_la-sci_base2dec.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_linspace.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
 	$(am__objects_8)
 libscielementary_functions_la_OBJECTS =  \
@@ -1035,7 +1036,8 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_nearfloat.cpp\
     sci_gateway/cpp/sci_permute.cpp	\
     sci_gateway/cpp/sci_dec2base.cpp \
-    sci_gateway/cpp/sci_base2dec.cpp
+    sci_gateway/cpp/sci_base2dec.cpp \
+    sci_gateway/cpp/sci_linspace.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -1890,6 +1892,9 @@ sci_gateway/cpp/libscielementary_functions_la-sci_dec2base.lo:  \
 sci_gateway/cpp/libscielementary_functions_la-sci_base2dec.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_linspace.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscielementary_functions.la: $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_DEPENDENCIES) $(EXTRA_libscielementary_functions_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscielementary_functions_la_rpath) $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_LIBADD) $(LIBS)
@@ -1951,6 +1956,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_issquare.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_isvector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_kron.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_linspace.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_log.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_log10.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_log1p.Plo@am__quote@
@@ -2716,6 +2722,13 @@ sci_gateway/cpp/libscielementary_functions_la-sci_base2dec.lo: sci_gateway/cpp/s
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_base2dec.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_base2dec.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_base2dec.lo `test -f 'sci_gateway/cpp/sci_base2dec.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_base2dec.cpp
+
+sci_gateway/cpp/libscielementary_functions_la-sci_linspace.lo: sci_gateway/cpp/sci_linspace.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_linspace.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_linspace.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_linspace.lo `test -f 'sci_gateway/cpp/sci_linspace.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_linspace.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_linspace.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_linspace.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_linspace.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_linspace.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_linspace.lo `test -f 'sci_gateway/cpp/sci_linspace.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_linspace.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

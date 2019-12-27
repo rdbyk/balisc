@@ -79,7 +79,15 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        pSpOut = new types::Sparse((int)pDblRows->getFirst(), (int)pDblCols->getFirst(), false);
+        if (pDblRows->getFirst() == 0. || pDblCols->getFirst() == 0.)
+        {
+            pSpOut = new types::Sparse(0, 0, false);
+        }
+        else
+        {
+            pSpOut = new types::Sparse((int)pDblRows->getFirst(), (int)pDblCols->getFirst(), false);            
+        }
+
     }
     else // in.size() == 1
     {

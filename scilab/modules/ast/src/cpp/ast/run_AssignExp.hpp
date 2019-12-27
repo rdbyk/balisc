@@ -71,15 +71,6 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 return;
             }
 
-            if (pIT->isList() && pIT->getRef() > 0)
-            {
-                // Prevent modification of all scilab variable
-                // which point to this container when it is used
-                // in setfield scilab function.
-                // A clone on a container will not clone what it contain.
-                pIT = pIT->clone();
-            }
-
             if (e.getRightExp().isReturnExp())
             {
                 // ReturnExp so, put the value in the
@@ -116,7 +107,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr.reserve(wstrName.size() + 7);
                 ostr = L" ";
                 ostr += wstrName;
-                ostr += L"  = \n\n";
+                ostr += L"  = \n";
+                if (ConfigVariable::isPrintCompact() == false)
+                {
+                    ostr += L"\n";
+                }
                 scilabWriteW(ostr.c_str());
                 
                 VariableToString(pIT, wstrName.c_str());
@@ -220,7 +215,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     ostr.reserve((*getStructNameFromExp(pCell)).size() + 7);
                     ostr = L" ";
                     ostr += *getStructNameFromExp(pCell);
-                    ostr += L"  = \n\n";
+                    ostr += L"  = \n";
+                    if (ConfigVariable::isPrintCompact() == false)
+                    {
+                        ostr += L"\n";
+                    }
                     scilabWriteW(ostr.c_str());
 
                     VariableToString(pOut, ostr.c_str());
@@ -379,7 +378,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr.reserve(ostrName.size() + 7);
                 ostr = L" ";
                 ostr += ostrName;
-                ostr += L"  = \n\n";
+                ostr += L"  = \n";
+                if (ConfigVariable::isPrintCompact() == false)
+                {
+                    ostr += L"\n";                
+                }
                 scilabWriteW(ostr.c_str());
 
                 VariableToString(pOut, ostrName.c_str());
@@ -407,7 +410,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 throw ast::InternalError(49, e.getRightExp().getLocation());
             }
 
-            exps_t::const_reverse_iterator it;
+            exps_t::const_iterator it;
             exps_t exps = pList->getExps();
             types::InternalType** pIT = new types::InternalType*[iLhsCount];
             int i = 0;
@@ -419,7 +422,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 pIT[i]->IncreaseRef();
             }
 
-            for (i = iLhsCount - 1, it = exps.rbegin(); it != exps.rend(); ++it, i--)
+            for (i = 0, it = exps.begin(); it != exps.end(); ++it, ++i)
             {
                 Exp* pExp = e.getRightExp().clone();
                 AssignExp pAssign((*it)->getLocation(), *(*it), *pExp, pIT[i]);
@@ -518,7 +521,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr.reserve((*pstName).size() + 7);
                 ostr = L" ";
                 ostr += *pstName;
-                ostr += L"  = \n\n";
+                ostr += L"  = \n";
+                if (ConfigVariable::isPrintCompact() == false)
+                {
+                    ostr += L"\n";                
+                }
                 scilabWriteW(ostr.c_str());
 
                 VariableToString(pPrint, (*pstName).c_str());

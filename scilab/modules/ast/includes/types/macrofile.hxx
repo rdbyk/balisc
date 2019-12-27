@@ -31,40 +31,40 @@ public :
     virtual                 ~MacroFile();
 
     //FIXME : Should not return NULL
-    MacroFile*              clone();
+    MacroFile*              clone() override;
 
-    inline ScilabType       getType(void)
+    inline ScilabType       getType(void) override
     {
         return ScilabMacroFile;
     }
-    inline ScilabId         getId(void)
+    inline ScilabId         getId(void) override
     {
         return IdMacroFile;
     }
 
-    bool                    isMacroFile()
+    bool                    isMacroFile() override
     {
         return true;
     }
 
-    bool                    toString(std::wostringstream& ostr);
+    bool                    toString(std::wostringstream& ostr) override;
 
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     bool                    parse(void);
 
     Macro*                  getMacro(void);
 
-    void                    setLines(int _iFirstLine, int _iLastLine);
+    void                    setLines(int _iFirstLine, int _iLastLine) override;
 
-    bool                    getMemory(int* _piSize, int* _piSizePlusType);
+    bool                    getMemory(int* _piSize, int* _piSizePlusType) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr() const
+    virtual std::wstring    getTypeStr() const override
     {
         return L"function";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr() const
+    virtual std::wstring    getShortTypeStr() const override
     {
         return L"function";
     }
@@ -74,10 +74,10 @@ public :
         return m_stPath;
     }
 
-    virtual int getNbInputArgument(void);
-    virtual int getNbOutputArgument(void);
+    virtual int getNbInputArgument(void) override;
+    virtual int getNbOutputArgument(void) override;
 
-    bool operator==(const InternalType& it);
+    bool operator==(const InternalType& it) override;
 
 private :
     std::wstring            m_stPath;

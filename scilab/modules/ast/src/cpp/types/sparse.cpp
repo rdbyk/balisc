@@ -69,11 +69,22 @@ struct Printer
     {
     }
     template<typename T>
-    std::wstring emptyName( /* */) const
+    std::wstring typeName( /* */) const
     {
-        return L" zero";
+        return L"sparse";
     }
 
+    template<typename T>
+    std::wstring emptyName( /* */) const
+    {
+        return L"empty";
+    }
+
+    template<typename T>
+    std::wstring allZeroName( /* */) const
+    {
+        return L"zero";
+    }
     template<typename T>
     std::wstring operator()(T const& t) const
     {
@@ -121,11 +132,22 @@ std::wstring Printer::operator()(std::complex<double > const& c) const
 }
 
 template<>
-std::wstring Printer::emptyName<bool>() const
+std::wstring Printer::typeName<bool>() const
+{
+    return L"sparse boolean";
+}
+
+template<>
+std::wstring Printer::allZeroName<bool>() const
 {
     return L"False";
 }
 
+template<>
+std::wstring Printer::emptyName<bool>() const
+{
+    return L"empty";
+}
 
 template<typename T> std::wstring toString(T const& m, int precision)
 {
@@ -133,21 +155,25 @@ template<typename T> std::wstring toString(T const& m, int precision)
 
     int iWidthRows = 0;
     int iWidthCols = 0;
-    getSignedIntFormat(m.rows(), &iWidthRows);
-    getSignedIntFormat(m.cols(), &iWidthCols);
+    getIntFormat(m.rows(), &iWidthRows);
+    getIntFormat(m.cols(), &iWidthCols);
 
     ostr << L"(";
-    addUnsignedIntValue<unsigned long long>(&ostr, m.rows(), iWidthRows);
+    addIntValue<unsigned long long>(&ostr, m.rows(), iWidthRows);
     ostr << ",";
-    addUnsignedIntValue<unsigned long long>(&ostr, m.cols(), iWidthCols);
+    addIntValue<unsigned long long>(&ostr, m.cols(), iWidthCols);
     ostr << L")";
 
     Printer p(precision);
-    if (!m.nonZeros())
+    if (m.rows()*m.cols() ==0)
     {
         ostr << (p.emptyName<typename Eigen::internal::traits<T>::Scalar>());
     }
-    ostr << L" sparse matrix\n\n";
+    else if (!m.nonZeros())
+    {
+        ostr << (p.allZeroName<typename Eigen::internal::traits<T>::Scalar>());
+    }
+    ostr << " " << p.typeName<typename Eigen::internal::traits<T>::Scalar>() << L" matrix\n\n";
 
     auto * pIColPos      = m.innerIndexPtr();
     auto * pINbItemByRow = m.outerIndexPtr();
@@ -160,9 +186,9 @@ template<typename T> std::wstring toString(T const& m, int precision)
         for (size_t i = pINbItemByRow[j - 1]; i < pINbItemByRow[j]; i++)
         {
             ostr << L"(";
-            addUnsignedIntValue<unsigned long long>(&ostr, (int)j, iWidthRows);
+            addIntValue<unsigned long long>(&ostr, (int)j, iWidthRows);
             ostr << L",";
-            addUnsignedIntValue<unsigned long long>(&ostr, pIColPos[iPos] + 1, iWidthCols);
+            addIntValue<unsigned long long>(&ostr, pIColPos[iPos] + 1, iWidthCols);
             ostr << L")\t" << p(m.valuePtr()[iPos]) << L"\n";
 
             iPos++;
@@ -512,7 +538,7 @@ Sparse::Sparse(int rows, int cols, int nonzeros, int* inner, int* outer, double*
 
 bool Sparse::getMemory(int *_piSize, int* _piSizePlusType)
 {
-    *_piSize = nonZeros()*sizeof(double)*(isComplex() ? 2 : 1);
+    *_piSize = nonZeros() * sizeof(double) * (isComplex() ? 2 : 1);
     *_piSizePlusType = *_piSize + sizeof(*this);
     return true;
 }
@@ -1965,7 +1991,7 @@ GenericType* Sparse::extract(typed_list* _pArgs)
             delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
-            return Double::Empty();
+            return new types::Sparse(0,0,false);
         }
     }
 
@@ -2617,7 +2643,7 @@ double* Sparse::outputCols(double* out) const
         mycopy_n(matrixReal->innerIndexPtr(), nonZeros(), out);
     }
 
-    return std::transform(out, out, out, std::bind2nd(std::plus<double>(), 1));
+    return std::transform(out, out, out, std::bind(std::plus<double>(), std::placeholders::_1, 1));
 
 }
 
@@ -3483,7 +3509,7 @@ SparseBool::SparseBool(int rows, int cols, int trues, int* inner, int* outer)
 
 bool SparseBool::getMemory(int *_piSize, int* _piSizePlusType)
 {
-    *_piSize = nbTrue()*sizeof(bool);
+    *_piSize = nbTrue() * sizeof(bool);
     *_piSizePlusType = *_piSize + sizeof(*this);
     return true;
 }
@@ -4256,7 +4282,7 @@ GenericType* SparseBool::extract(typed_list* _pArgs)
             delete[] piMaxDim;
             delete[] piCountDim;
             //a([])
-            return Double::Empty();
+            return new types::SparseBool(0,0);
         }
     }
 

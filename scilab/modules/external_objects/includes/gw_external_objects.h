@@ -48,5 +48,6 @@ int sci_percent_EObj_t(char * fname, void* pvApiCtx);
 int sci_invoke_lu(char * fname, void* pvApiCtx);
 int sci_doubleExclam_invoke_(char * fname, void* pvApiCtx);
 int sci_percent_EObj_disp(char * fname, void* pvApiCtx);
+int sci_percent_EObj_clear(char* fname, void* pvApiCtx);
 
 #endif /* __GW_EXTERNAL_OBJECTS_H__ */

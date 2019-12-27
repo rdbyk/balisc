@@ -55,26 +55,25 @@ extern "C"
 #include "h5_readDataFromFile.h"
 #include "h5_attributeConstants.h"
 #include "HandleManagement.h"
-
+#include "sciprint.h"
 }
-/*--------------------------------------------------------------------------*/
-static bool import_variable(int file, std::string& name);
-types::InternalType* import_data(int dataset);
-static types::InternalType* import_double(int dataset);
-static types::InternalType* import_string(int dataset);
-static types::InternalType* import_boolean(int dataset);
-static types::InternalType* import_int(int dataset);
-static types::InternalType* import_list(int dataset, types::List* lst);
-static types::InternalType* import_struct(int dataset);
-static types::InternalType* import_poly(int dataset);
-static types::InternalType* import_cell(int dataset);
-static types::InternalType* import_handles(int dataset);
-static types::InternalType* import_sparse(int dataset);
-static types::InternalType* import_boolean_sparse(int dataset);
-static types::InternalType* import_macro(int dataset);
-static types::InternalType* import_insert(int dataset);
-static types::InternalType* import_usertype(int dataset);
 
+static bool import_variable(hid_t file, std::string& name);
+types::InternalType* import_data(hid_t dataset);
+static types::InternalType* import_double(hid_t dataset);
+static types::InternalType* import_string(hid_t dataset);
+static types::InternalType* import_boolean(hid_t dataset);
+static types::InternalType* import_int(hid_t dataset);
+static types::InternalType* import_list(hid_t dataset, types::List* lst);
+static types::InternalType* import_struct(hid_t dataset);
+static types::InternalType* import_poly(hid_t dataset);
+static types::InternalType* import_cell(hid_t dataset);
+static types::InternalType* import_handles(hid_t dataset);
+static types::InternalType* import_sparse(hid_t dataset);
+static types::InternalType* import_boolean_sparse(hid_t dataset);
+static types::InternalType* import_macro(hid_t dataset);
+static types::InternalType* import_insert(hid_t dataset);
+static types::InternalType* import_usertype(hid_t dataset);
 
 /*--------------------------------------------------------------------------*/
 static const std::string fname("load");
@@ -102,7 +101,7 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
     FREE(wfilename);
     FREE(cfilename);
 
-    int iFile = openHDF5File(filename.data(), 0);
+    hid_t iFile = openHDF5File(filename.data(), 0);
     if (iFile < 0)
     {
         Scierror(52, filename.data());
@@ -169,9 +168,9 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
     return types::Function::OK;
 }
 
-static bool import_variable(int file, std::string& name)
+static bool import_variable(hid_t file, std::string& name)
 {
-    int dataset = getDataSetIdFromName(file, name.data());
+    hid_t dataset = getDataSetIdFromName(file, name.data());
     if (dataset <= 0)
     {
         return false;
@@ -200,7 +199,7 @@ static bool import_variable(int file, std::string& name)
     return false;
 }
 
-types::InternalType* import_data(int dataset)
+types::InternalType* import_data(hid_t dataset)
 {
     //get var type
     char* ctype = getScilabTypeFromDataSet6(dataset);
@@ -303,7 +302,7 @@ types::InternalType* import_data(int dataset)
     return nullptr;
 }
 
-static types::InternalType* import_double(int dataset)
+static types::InternalType* import_double(hid_t dataset)
 {
     int complex = 0;
     int dims = 0;
@@ -340,7 +339,7 @@ static types::InternalType* import_double(int dataset)
     return dbl;
 }
 
-static types::InternalType* import_string(int dataset)
+static types::InternalType* import_string(hid_t dataset)
 {
     int complex = 0;
     int dims = 0;
@@ -378,7 +377,7 @@ static types::InternalType* import_string(int dataset)
     return str;
 }
 
-static types::InternalType* import_boolean(int dataset)
+static types::InternalType* import_boolean(hid_t dataset)
 {
     int complex = 0;
     int dims = 0;
@@ -406,7 +405,7 @@ static types::InternalType* import_boolean(int dataset)
     return bools;
 }
 
-static types::InternalType* import_int(int dataset)
+static types::InternalType* import_int(hid_t dataset)
 {
     types::InternalType* pOut = nullptr;
     int complex = 0;
@@ -502,7 +501,7 @@ static types::InternalType* import_int(int dataset)
     return pOut;
 }
 
-static types::InternalType* import_list(int dataset, types::List* lst)
+static types::InternalType* import_list(hid_t dataset, types::List* lst)
 {
     int count = 0;
     int ret  = getListDims6(dataset, &count);
@@ -523,7 +522,7 @@ static types::InternalType* import_list(int dataset, types::List* lst)
 
     for (int i = 0; i < count; ++i)
     {
-        int data = getDataSetIdFromName(dataset, std::to_string(i).data());
+        hid_t data = getDataSetIdFromName(dataset, std::to_string(i).data());
         if (data <= 0)
         {
             closeList6(dataset);
@@ -550,10 +549,10 @@ static types::InternalType* import_list(int dataset, types::List* lst)
     return lst;
 }
 
-static int getDimsNode(int dataset, int* complex, std::vector<int>& dims)
+static int getDimsNode(hid_t dataset, int* complex, std::vector<int>& dims)
 {
     dims.clear();
-    int id = getDataSetIdFromName(dataset, "__dims__");
+    hid_t id = getDataSetIdFromName(dataset, "__dims__");
     if (id < 0)
     {
         return 0;
@@ -582,7 +581,7 @@ static int getDimsNode(int dataset, int* complex, std::vector<int>& dims)
     return size;
 }
 
-static types::InternalType* import_struct(int dataset)
+static types::InternalType* import_struct(hid_t dataset)
 {
     //get struct dims node
     int complex = 0;
@@ -602,6 +601,7 @@ static types::InternalType* import_struct(int dataset)
     types::SingleStruct** sstr = str->get();
 
     int fieldCount = 0;
+
     int ret = getListDims6(dataset, &fieldCount);
     if (ret < 0)
     {
@@ -610,7 +610,7 @@ static types::InternalType* import_struct(int dataset)
     }
 
     //get fields name
-    int dfield = getDataSetIdFromName(dataset, "__fields__");
+    hid_t dfield = getDataSetIdFromName(dataset, "__fields__");
     int dim = 0;
     getDatasetInfo(dfield, &complex, &dim, NULL);
     std::vector<int> d(dim);
@@ -627,14 +627,14 @@ static types::InternalType* import_struct(int dataset)
     readStringMatrix(dfield, fields.data());
 
     //open __refs__ node
-    int refs = getDataSetIdFromName(dataset, "__refs__");
-
+    hid_t refs = getDataSetIdFromName(dataset, "__refs__");
     for (const auto & name : fields)
     {
         wchar_t* field = to_wide_string(name);
         str->addField(field);
 
-        int dataref = getDataSetIdFromName(dataset, name);
+        hid_t dataref = getDataSetIdFromName(dataset, name);
+
         if (dataref < 0)
         {
             closeList6(dataset);
@@ -650,6 +650,7 @@ static types::InternalType* import_struct(int dataset)
         int refcount = getDatasetInfo(dataref, &complex, &refdim, refdims.data());
         std::vector<hobj_ref_t> vrefs(refcount);
         ret = H5Dread(dataref, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, vrefs.data());
+
         if (ret < 0)
         {
             freeStringMatrix(dfield, fields.data());
@@ -662,11 +663,12 @@ static types::InternalType* import_struct(int dataset)
         //import field
         for (int j = 0; j < refcount; ++j)
         {
-            int data = H5Rdereference(refs,
+            hid_t data = H5Rdereference(refs,
 #if H5_VERSION_GE(1,10,0)
-                                      H5P_DATASET_ACCESS_DEFAULT,
+                                        H5P_DATASET_ACCESS_DEFAULT,
 #endif
-                                      H5R_OBJECT, &vrefs[j]);
+                                        H5R_OBJECT, &vrefs[j]);
+
             if (data < 0)
             {
                 freeStringMatrix(dfield, fields.data());
@@ -695,10 +697,11 @@ static types::InternalType* import_struct(int dataset)
     freeStringMatrix(dfield, fields.data());
     closeList6(refs);
     closeList6(dataset);
+
     return str;
 }
 
-static types::InternalType* import_poly(int dataset)
+static types::InternalType* import_poly(hid_t dataset)
 {
     //get poly dims node
     int complex = 0;
@@ -707,7 +710,7 @@ static types::InternalType* import_poly(int dataset)
 
     //get variable name
     char* var = NULL;
-    int varname = getDataSetIdFromName(dataset, "__varname__");
+    hid_t varname = getDataSetIdFromName(dataset, "__varname__");
     readStringMatrix(varname, &var);
     wchar_t* wvar = to_wide_string(var);
     std::wstring wvarname(wvar);
@@ -718,7 +721,7 @@ static types::InternalType* import_poly(int dataset)
     types::SinglePoly** pss = p->get();
 
     //open __refs__ node
-    int refs = getDataSetIdFromName(dataset, "__refs__");
+    hid_t refs = getDataSetIdFromName(dataset, "__refs__");
     size = p->getSize();
 
     //loop on children
@@ -726,7 +729,7 @@ static types::InternalType* import_poly(int dataset)
     {
         //forge name
         std::string polyname(std::to_string(i));
-        int poly = getDataSetIdFromName(refs, polyname.data());
+        hid_t poly = getDataSetIdFromName(refs, polyname.data());
 
         //get dims
         complex = 0;
@@ -771,7 +774,7 @@ static types::InternalType* import_poly(int dataset)
     return p;
 }
 
-static types::InternalType* import_sparse(int dataset)
+static types::InternalType* import_sparse(hid_t dataset)
 {
     types::Sparse* sp = nullptr;
     //get sparse dimensions
@@ -781,7 +784,7 @@ static types::InternalType* import_sparse(int dataset)
 
     //get non zeros count
     int nnz = 0;
-    int datannz = getDataSetIdFromName(dataset, "__nnz__");
+    hid_t datannz = getDataSetIdFromName(dataset, "__nnz__");
     readInteger32Matrix(datannz, &nnz);
 
     if (nnz == 0)
@@ -791,7 +794,7 @@ static types::InternalType* import_sparse(int dataset)
     }
 
     //get inner vector
-    int datain = getDataSetIdFromName(dataset, "__inner__");
+    hid_t datain = getDataSetIdFromName(dataset, "__inner__");
     int dimin = 0;
     int sizein = getDatasetInfo(datain, &complex, &dimin, NULL);
     std::vector<int> dimsin(dimin);
@@ -811,7 +814,7 @@ static types::InternalType* import_sparse(int dataset)
     }
 
     //get outer vector
-    int dataout = getDataSetIdFromName(dataset, "__outer__");
+    hid_t dataout = getDataSetIdFromName(dataset, "__outer__");
     int dimout = 0;
     int sizeout = getDatasetInfo(dataout, &complex, &dimout, NULL);
     std::vector<int> dimsout(dimout);
@@ -831,7 +834,7 @@ static types::InternalType* import_sparse(int dataset)
     }
 
     //get data
-    int ddata = getDataSetIdFromName(dataset, "__data__");
+    hid_t ddata = getDataSetIdFromName(dataset, "__data__");
     int dimdata = 0;
     int sizedata = getDatasetInfo(ddata, &complex, &dimdata, NULL);
     std::vector<int> dimsdata(dimdata);
@@ -872,7 +875,7 @@ static types::InternalType* import_sparse(int dataset)
     return sp;
 }
 
-static types::InternalType* import_boolean_sparse(int dataset)
+static types::InternalType* import_boolean_sparse(hid_t dataset)
 {
     //get sparse dimensions
     int complex = 0;
@@ -881,7 +884,7 @@ static types::InternalType* import_boolean_sparse(int dataset)
 
     //get non zeros count
     int nnz = 0;
-    int datannz = getDataSetIdFromName(dataset, "__nnz__");
+    hid_t datannz = getDataSetIdFromName(dataset, "__nnz__");
     readInteger32Matrix(datannz, &nnz);
 
     if (nnz == 0)
@@ -891,7 +894,7 @@ static types::InternalType* import_boolean_sparse(int dataset)
     }
 
     //get inner vector
-    int datain = getDataSetIdFromName(dataset, "__inner__");
+    hid_t datain = getDataSetIdFromName(dataset, "__inner__");
     int dimin = 0;
     int sizein = getDatasetInfo(datain, &complex, &dimin, NULL);
     std::vector<int> dimsin(dimin);
@@ -911,7 +914,7 @@ static types::InternalType* import_boolean_sparse(int dataset)
     }
 
     //get outer vector
-    int dataout = getDataSetIdFromName(dataset, "__outer__");
+    hid_t dataout = getDataSetIdFromName(dataset, "__outer__");
     int dimout = 0;
     int sizeout = getDatasetInfo(dataout, &complex, &dimout, NULL);
     std::vector<int> dimsout(dimout);
@@ -935,7 +938,7 @@ static types::InternalType* import_boolean_sparse(int dataset)
     return new types::SparseBool(pdims[0], pdims[1], nnz, in.data(), out.data());
 }
 
-static types::InternalType* import_cell(int dataset)
+static types::InternalType* import_cell(hid_t dataset)
 {
     //get sparse dimensions
     int complex = 0;
@@ -949,11 +952,11 @@ static types::InternalType* import_cell(int dataset)
     }
 
     //open __refs__ node
-    int refs = getDataSetIdFromName(dataset, "__refs__");
+    hid_t refs = getDataSetIdFromName(dataset, "__refs__");
     std::vector<types::InternalType*> data(size);
     for (int i = 0; i < size; ++i)
     {
-        int ref = getDataSetIdFromName(refs, std::to_string(i).data());
+        hid_t ref = getDataSetIdFromName(refs, std::to_string(i).data());
         types::InternalType* val = import_data(ref);
         if (val == nullptr)
         {
@@ -970,7 +973,7 @@ static types::InternalType* import_cell(int dataset)
     return cell;
 }
 
-static types::InternalType* import_handles(int dataset)
+static types::InternalType* import_handles(hid_t dataset)
 {
     //get sparse dimensions
     int complex = 0;
@@ -984,14 +987,14 @@ static types::InternalType* import_handles(int dataset)
     }
 
     //open __refs__ node
-    int refs = getDataSetIdFromName(dataset, "__refs__");
+    hid_t refs = getDataSetIdFromName(dataset, "__refs__");
     types::GraphicHandle* handles = new types::GraphicHandle(static_cast<int>(pdims.size()), pdims.data());
     long long* h = handles->get();
 
     if (size == 1)
     {
         //%h_copy
-        int ref = getDataSetIdFromName(refs, std::to_string(0).data());
+        hid_t ref = getDataSetIdFromName(refs, std::to_string(0).data());
         int val = add_current_entity(ref);
         if (val < 0)
         {
@@ -1005,7 +1008,7 @@ static types::InternalType* import_handles(int dataset)
     {
         for (int i = 0; i < size; ++i)
         {
-            int ref = getDataSetIdFromName(refs, std::to_string(i).data());
+            hid_t ref = getDataSetIdFromName(refs, std::to_string(i).data());
             int val = import_handle(ref, -1);
             if (val < 0)
             {
@@ -1034,7 +1037,7 @@ static types::InternalType* import_handles(int dataset)
     return handles;
 }
 
-static types::InternalType* import_macro(int dataset)
+static types::InternalType* import_macro(hid_t dataset)
 {
     int complex = 0;
     int dims = 0;
@@ -1048,7 +1051,7 @@ static types::InternalType* import_macro(int dataset)
     symbol::Context* ctx = symbol::Context::getInstance();
 
     //inputs
-    int inputNode = getDataSetIdFromName(dataset, "inputs");
+    hid_t inputNode = getDataSetIdFromName(dataset, "inputs");
     size = getDatasetInfo(inputNode, &complex, &dims, d.data());
     if (size < 0)
     {
@@ -1079,7 +1082,7 @@ static types::InternalType* import_macro(int dataset)
     }
 
     //outputs
-    int outputNode = getDataSetIdFromName(dataset, "outputs");
+    hid_t outputNode = getDataSetIdFromName(dataset, "outputs");
     size = getDatasetInfo(outputNode, &complex, &dims, d.data());
     if (size < 0)
     {
@@ -1110,7 +1113,7 @@ static types::InternalType* import_macro(int dataset)
     }
 
     //body
-    int bodyNode = getDataSetIdFromName(dataset, "body");
+    hid_t bodyNode = getDataSetIdFromName(dataset, "body");
     size = getDatasetInfo(bodyNode, &complex, &dims, d.data());
     if (size < 0)
     {
@@ -1132,7 +1135,7 @@ static types::InternalType* import_macro(int dataset)
     return macro;
 }
 
-static types::InternalType* import_insert(int dataset)
+static types::InternalType* import_insert(hid_t dataset)
 {
     int count = 0;
     int ret  = getListDims6(dataset, &count);
@@ -1161,7 +1164,7 @@ static types::InternalType* import_insert(int dataset)
     return new types::ListInsert(insert);
 }
 
-static types::InternalType* import_usertype(int dataset)
+static types::InternalType* import_usertype(hid_t dataset)
 {
     types::InternalType* it = import_struct(dataset);
     if (it == nullptr || it->isStruct() == false)

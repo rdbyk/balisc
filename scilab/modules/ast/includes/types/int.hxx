@@ -87,19 +87,19 @@ public :
 #endif
     }
 
-    Int<T>* clone()
+    Int<T>* clone() override
     {
         Int<T> *pbClone = new Int<T>(GenericType::getDims(), GenericType::getDimsArray());
         pbClone->set(ArrayOf<T>::get());
         return pbClone;
     }
 
-    bool isInt()
+    bool isInt() override
     {
         return true;
     }
 
-    bool neg(InternalType *& out)
+    bool neg(InternalType *& out) override
     {
         out = this->getRef() > 0 ? new Int<T>(this->getDims(), this->getDimsArray()) : this;
         type_traits::bin_neg<T, T>(this->m_iSize, this->m_pRealData, static_cast<Int<T> *>(out)->get());
@@ -107,12 +107,12 @@ public :
         return true;
     }
 
-    virtual bool transpose(InternalType *& out)
+    virtual bool transpose(InternalType *& out) override
     {
         return type_traits::transpose(*this, out);
     }
 
-    bool operator==(const InternalType& it)
+    bool operator==(const InternalType& it) override
     {
         if (const_cast<InternalType &>(it).getType() != getType())
         {
@@ -141,16 +141,16 @@ public :
         return true;
     }
 
-    bool operator!=(const InternalType& it)
+    bool operator!=(const InternalType& it) override
     {
         return !(*this == it);
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr() const;
+    virtual std::wstring        getTypeStr() const override;
 
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr() const
+    virtual std::wstring        getShortTypeStr() const override
     {
         return L"i";
     }
@@ -180,8 +180,8 @@ public :
     }
 
 protected :
-    inline InternalType::ScilabType getType(void);
-    inline InternalType::ScilabId   getId(void);
+    inline InternalType::ScilabType getType(void) override;
+    inline InternalType::ScilabId   getId(void) override;
 
 private :
     virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/) override
@@ -194,17 +194,9 @@ private :
         {
             ostr << L"eye *\n\n";
             int iWidth = 0;
-            if (isSigned())
-            {
-                getSignedIntFormat(ArrayOf<T>::getFirst(), &iWidth);
-                addSignedIntValue(&ostr, ArrayOf<T>::getFirst(), iWidth);
-            }
-            else
-            {
-                getUnsignedIntFormat(ArrayOf<T>::getFirst(), &iWidth);
-                addUnsignedIntValue(&ostr, ArrayOf<T>::getFirst(), iWidth);
-            }
-            ostr << L"\n";
+            getIntFormat(ArrayOf<T>::get(0), &iWidth);
+            addIntValue(&ostr, ArrayOf<T>::get(0), iWidth);
+            ostr << std::endl;
         }
         else if (GenericType::isScalar())
         {
@@ -214,17 +206,10 @@ private :
             _piDims[1]  = 0;
             int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-            if (isSigned())
-            {
-                getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                addSignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
-            }
-            else
-            {
-                getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                addUnsignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
-            }
-            ostr << L"\n";
+            getIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+            addIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
+
+            ostr << std::endl;
         }
         else if (GenericType::getCols() == 1)
         {
@@ -238,14 +223,7 @@ private :
                 _piDims[0] = i;
                 int iWidth = 0;
                 int iPos = ArrayOf<T>::getIndex(_piDims);
-                if (isSigned())
-                {
-                    getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                }
-                else
-                {
-                    getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                }
+                getIntFormat(ArrayOf<T>::get(iPos), &iWidth);
                 iWidthMax = (std::max)(iWidthMax, iWidth);
             }
 
@@ -262,15 +240,8 @@ private :
                 _piDims[0]  = i;
                 int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                if (isSigned())
-                {
-                    addSignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
-                }
-                else
-                {
-                    addUnsignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
-                }
-                ostr << L"\n";
+                addIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
+                ostr << std::endl;
             }
         }
         else if (GenericType::getRows() == 1)
@@ -287,14 +258,7 @@ private :
                 _piDims[1]  = i;
                 int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                if (isSigned())
-                {
-                    getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                }
-                else
-                {
-                    getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                }
+                getIntFormat(ArrayOf<T>::get(iPos), &iWidth);
 
                 iLen = iWidth + static_cast<int>(ostemp.str().size());
                 if (iLen > iLineLen && iLastVal != i)
@@ -313,14 +277,7 @@ private :
                     iLastVal = i;
                 }
 
-                if (isSigned())
-                {
-                    addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), iWidth);
-                }
-                else
-                {
-                    addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), iWidth);
-                }
+                addIntValue(&ostemp, ArrayOf<T>::get(iPos), iWidth);
             }
 
             if (iLastVal != 0)
@@ -350,14 +307,7 @@ private :
                     _piDims[1]  = iCols1;
                     int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                    if (isSigned())
-                    {
-                        getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                    }
-                    else
-                    {
-                        getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                    }
+                    getIntFormat(ArrayOf<T>::get(iPos), &iWidth);
                     piSize[iCols1] = (std::max)(piSize[iCols1], iWidth);
                 }
 
@@ -389,14 +339,7 @@ private :
                             _piDims[1]  = iCols2;
                             int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                            if (isSigned())
-                            {
-                                addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
-                            }
-                            else
-                            {
-                                addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
-                            }
+                            addIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
                         }
                         ostemp << L"\n";
                     }
@@ -442,14 +385,7 @@ private :
                     _piDims[1]  = iCols2;
                     int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                    if (isSigned())
-                    {
-                        addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
-                    }
-                    else
-                    {
-                        addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
-                    }
+                    addIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
                 }
                 ostemp << L"\n";
             }
@@ -480,31 +416,31 @@ private :
         }
     }
 
-    virtual T getNullValue()
+    virtual T getNullValue() override
     {
         return T(0);
     }
 
-    virtual Int<T>* createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
+    virtual Int<T>* createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/) override
     {
         return new Int<T>(_iDims, _piDims);
     }
 
-    virtual T copyValue(T _data)
+    virtual T copyValue(T _data) override
     {
         return _data;
     }
 
-    virtual void deleteAll()
+    virtual void deleteAll() override
     {
         delete[] ArrayOf<T>::m_pRealData;
         ArrayOf<T>::m_pRealData = NULL;
         deleteImg();
     }
 
-    virtual void deleteImg() { }
+    virtual void deleteImg() override { }
 
-    virtual T* allocData(int _iSize)
+    virtual T* allocData(int _iSize) override
     {
         return new T[_iSize];
     }
@@ -519,35 +455,35 @@ private :
     };
 
 public:
-    bool isInt8()
+    bool isInt8() override
     {
         return is_same_int<T, char>::value;
     }
-    bool isInt16()
+    bool isInt16() override
     {
         return is_same_int<T, short>::value;
     }
-    bool isInt32()
+    bool isInt32() override
     {
         return is_same_int<T, int>::value;
     }
-    bool isInt64()
+    bool isInt64() override
     {
         return is_same_int<T, long long>::value;
     }
-    bool isUInt8()
+    bool isUInt8() override
     {
         return is_same_int<T, unsigned char>::value;
     }
-    bool isUInt16()
+    bool isUInt16() override
     {
         return is_same_int<T, unsigned short>::value;
     }
-    bool isUInt32()
+    bool isUInt32() override
     {
         return is_same_int<T, unsigned int>::value;
     }
-    bool isUInt64()
+    bool isUInt64() override
     {
         return is_same_int<T, unsigned long long>::value;
     }

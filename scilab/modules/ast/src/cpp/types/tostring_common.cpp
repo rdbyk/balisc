@@ -1,9 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- * Copyright (C) 2018 - Stéphane MOTTELET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2019 - Stéphane MOTTELET
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,7 +30,6 @@ extern "C"
 #include "charEncoding.h"
 }
 
-#define BLANK_SIZE 1
 #define POINT_SIZE 1
 #define EXPOSANT_SIZE 2         //exposant symbol + exposant sign
 
@@ -157,38 +156,8 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
 {
     getDoubleFormat(_dblR, _pDFR);
     getDoubleFormat(_dblI, _pDFI);
-
-    *_piTotalWidth = 0;
-    if (isRealZero(_dblI))
-    {
-        if (isRealZero(_dblR))
-        {
-            *_piTotalWidth += 1;    //"0"
-            _pDFI->iWidth = 0;
-            _pDFI->iSignLen = 0;
-        }
-        else
-        {
-            *_piTotalWidth += _pDFR->iWidth;
-            _pDFI->iWidth = 0;
-            _pDFI->iSignLen = 0;
-        }
-    }
-    else
-    {
-        if (isRealZero(_dblR))
-        {
-            *_piTotalWidth += _pDFI->iWidth;
-            _pDFR->iWidth = 0;
-        }
-        else
-        {
-            *_piTotalWidth += _pDFR->iWidth + _pDFI->iWidth;
-        }
-
-        // i character
-        *_piTotalWidth += 1;
-    }
+    
+    *_piTotalWidth = _pDFR->iWidth + _pDFI->iWidth + 2*(_pDFR->bPrintBlank ? BLANK_SIZE : 0) + BLANK_SIZE + SIZE_SYMBOL_I;
 }
 
 void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat * _pDF)
@@ -301,8 +270,21 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             iWidth--;
         }
 
+        // append trailing zeros, if applicable
+        if (std::atof(str.data()) != fabs(_dblVal) && _pDF->bPrintTrailingZeros == true)
+        {
+            if (_pDF->bPrintPoint)
+            {
+                str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');
+            }
+            else
+            {
+                iWidth = 1+str.length();
+            }
+        }
+
         wchar_t* pwstData = to_wide_string(str.data());
-        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign, iWidth-1, pwstData);
+        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign, iWidth - 1, pwstData);
         FREE(pwstData);
     }
     else if (pwstSign[0] != L'\0')
@@ -317,28 +299,42 @@ void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _d
 {
     std::wostringstream ostemp;
 
-    // real part
+    /*
+     * if R && !C -> R
+     * if R && C -> R + Ci
+     * if !R && !C -> 0
+     * if(!R && C -> Ci
+     */
+
+    // *_postr << "|%" << _iTotalWitdh << "%|";
+
+    //R
     DoubleFormat df;
 
     df.iPrec = _pDFR->iPrec;
     df.bExp = _pDFR->bExp;
-    df.bPrintBlank = _pDFR->bPrintBlank;
-    df.bPaddSign = _pDFR->bPaddSign;
 
-    addDoubleValue(&ostemp, _dblR, &df);
-
-    // imaginary part
+    if (ISNAN(_dblR) || !finite(_dblR))
+    {
+        ostemp << std::left << std::setw(_pDFR->iWidth + 1);
+        addDoubleValue(&ostemp, _dblR, &df);
+    }
+    else
+    {
+        // following line allows to align sign of imaginary part
+        addDoubleValue(&ostemp, _dblR, &df);
+        addSpaces(&ostemp, _pDFR->iWidth - ostemp.tellp() + 1);
+    }
+    //I
     df.iPrec = _pDFI->iPrec;
     df.bExp = _pDFI->bExp;
-    df.bPrintBlank = _pDFI->bPrintBlank;
-    df.bPaddSign = _pDFI->bPaddSign;
     df.bPrintPlusSign = true;
     df.bPrintComplexPlusSpace = true;
     df.bPrintOne = false;
 
     addDoubleValue(&ostemp, _dblI, &df);
     ostemp << std::left << SYMBOL_I;
-    if (_dblI == 1)
+    if (_dblI == 1 && _pDFI->bExp == false)
     {
         addSpaces(&ostemp, 2);
     }
@@ -365,13 +361,21 @@ void configureStream(std::wostringstream * _postr, int _iWidth, int _iPrec, char
 
 void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo)
 {
+    if (ConfigVariable::isPrintCompact() == false && _iFrom != 1)
+    {
+        ostr << L"\n";
+    }
     if (_iFrom == _iTo)
     {
-        ostr << L"\n         column " << _iFrom << L"\n" << std::endl;
+        ostr << L"         column " << _iFrom << L"\n";
     }
     else
     {
-        ostr << L"\n         column " << _iFrom << L" to " << _iTo << L"\n" << std::endl;
+        ostr << L"         column " << _iFrom << L" to " << _iTo << L"\n";
+    }
+    if (ConfigVariable::isPrintCompact() == false)
+    {
+        ostr << L"\n";
     }
 }
 
@@ -383,6 +387,7 @@ void printEmptyString(std::wostringstream& ostr)
 void printDoubleValue(std::wostringstream& ostr, double val)
 {
     DoubleFormat df;
+    df.bPrintTrailingZeros = true;
     getDoubleFormat(val, &df);
     ostr << SPACE_BETWEEN_TWO_VALUES;
     addDoubleValue(&ostr, val, &df);
@@ -391,8 +396,11 @@ void printDoubleValue(std::wostringstream& ostr, double val)
 void printComplexValue(std::wostringstream& ostr, double val_r, double val_i)
 {
     DoubleFormat dfR, dfI;
-    getDoubleFormat(val_r, &dfR);
-    getDoubleFormat(val_i, &dfI);
+    dfR.bPrintTrailingZeros = true;
+    dfI.bPrintTrailingZeros = true;
+
+    int iTotalWidth;
+    getComplexFormat(val_r, val_i, &iTotalWidth, &dfR, &dfI);
     ostr << SPACE_BETWEEN_TWO_VALUES;
-    addDoubleComplexValue(&ostr, val_r, val_i, dfR.iWidth + dfI.iWidth, &dfR, &dfI);
+    addDoubleComplexValue(&ostr, val_r, val_i, iTotalWidth, &dfR, &dfI);
 }

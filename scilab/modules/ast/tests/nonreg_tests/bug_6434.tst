@@ -1,7 +1,7 @@
 // ===================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
-//
+// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 //  This file is distributed under the same license as the Scilab package.
 // ===================================================================
 
@@ -23,7 +23,3 @@ assert_checkequal(corelib.getshell(), getshell());
 // 2 argins
 assert_checkequal(execstr("elementary_functionslib.atand(1,0)", "errcatch"), 0);
 assert_checkequal(elementary_functionslib.atand(1,0), 90);
-
-// 3 argins
-assert_checkequal(execstr("elementary_functionslib.linspace(0,1,3)", "errcatch"), 0);
-assert_checkequal(elementary_functionslib.linspace(0,1,3), linspace(0,1,3));

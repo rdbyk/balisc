@@ -22,10 +22,10 @@ ans(1)
    0.14112   2.   3.
 sin(3)
  ans  =
-   0.14112
+   0.1411200
 ans
  ans  = 
-   0.14112
+   0.1411200
 ans==1
  ans  =
   F
@@ -68,19 +68,19 @@ clear c;c(5)=9
    0.
    9.
 [m,k]=max(1:3)
- k  = 
-   3.
  m  = 
    3.
-[d1f d2f d3f d4f] = (1,2,3,4)
- d4f  = 
-   4.
- d3f  = 
+ k  = 
    3.
- d2f  = 
-   2.
+[d1f d2f d3f d4f] = (1,2,3,4)
  d1f  = 
    1.
+ d2f  = 
+   2.
+ d3f  = 
+   3.
+ d4f  = 
+   4.
 if 10<>3 then disp("abcd"),end
  abcd
 if 10<>3  disp("abcd"),end
@@ -101,13 +101,13 @@ for k=1:2,(1+1),end
  ans  =
    2.
 for k=1:2,[m,k]=max(1:k),end
- k  = 
-   1.
  m  = 
    1.
  k  = 
+   1.
+ m  = 
    2.
- m  = 
+ k  = 
    2.
 for k=1:2,[1,2],end
  ans  =
@@ -121,48 +121,48 @@ for k=1:3 k,end k  =
  k  = 
    3.
 [a(1),b(2)]=(3,4)
- b  = 
-   0.
-   4.
  a  = 
    3.    2.   3.
    44.   5.   6.
+ b  = 
+   0.
+   4.
 [a(1),x,b(2)]=(3,4,5)
- b  = 
-   0.
-   5.
- x  = 
-   4.
  a  = 
    3.    2.   3.
    44.   5.   6.
-[a(1),b(1,2),x]=(3,4,5)
  x  = 
+   4.
+ b  = 
+   0.
    5.
+[a(1),b(1,2),x]=(3,4,5)
+ a  = 
+   3.    2.   3.
+   44.   5.   6.
  b  = 
    0.   4.
    5.   0.
- a  = 
-   3.    2.   3.
-   44.   5.   6.
+ x  = 
+   5.
 I1=list(2,3);I2=list(1,2);
 clear x y;[x,y(I2(:))]=(11,12)
- y  = 
-   0.   12.
  x  = 
    11.
-clear x y;[x(I1(:)),y]=(11,12)
- y  = 
-   12.
- x  = 
-   0.   0.   0. 
-   0.   0.   11.
-clear x y;[x(I1(:)),y(I2(:))]=(11,12)
  y  = 
    0.   12.
+clear x y;[x(I1(:)),y]=(11,12)
  x  = 
    0.   0.   0. 
    0.   0.   11.
+ y  = 
+   12.
+clear x y;[x(I1(:)),y(I2(:))]=(11,12)
+ x  = 
+   0.   0.   0. 
+   0.   0.   11.
+ y  = 
+   0.   12.
 str_l=list();str_l(1)=1;str_l(1)
  ans  =
    1.
@@ -202,29 +202,29 @@ deff("t1=foo()","t1=list();t1(1)= 44;");foo()
        ans(1)
    44.
 deff("[a,b,x]=foo()","[a(1),b(1,2),x]=(3,4,5);");[a,b,x]=foo()
- x  = 
-   5.
- b  = 
-   0.   4.
  a  = 
    3.
+ b  = 
+   0.   4.
+ x  = 
+   5.
 function [a,b,x]=foo(),u=5;[a(1),b(1,2),x]=(3,4,u),a(2)=44,endfunction
 [a,b,x]=foo()
- x  = 
-   5.
+ a  = 
+   3. 
+   44.
  b  = 
    0.   4.
- a  = 
-   3.
-   44.
-function [a,b,x]=foo(),[a,b,x]=(3,4,5),endfunction
-[a,b,x]=foo()
  x  = 
    5.
- b  = 
-   4.
+function [a,b,x]=foo(),[a,b,x]=(3,4,5),endfunction
+[a,b,x]=foo()
  a  = 
    3.
+ b  = 
+   4.
+ x  = 
+   5.
 function x=foo(),INDX=list(2,3); x(INDX(:))=11; endfunction
 foo()
  ans  =
@@ -233,9 +233,9 @@ foo()
 I1=list(2,3);I2=list(1,2);
 function foo(),[x(I1(:)),y(I2(:))]=(11,12);disp(x,y), endfunction
 foo()
-   0.   12.
    0.   0.   0. 
    0.   0.   11.
+   0.   12.
 function l=foo(),l=list(1,2,3);l(3)=null();endfunction
 foo()
  ans  =

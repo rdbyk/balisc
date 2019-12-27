@@ -16,9 +16,11 @@
 #ifndef __TOSTRING_COMMON_HXX__
 #define __TOSTRING_COMMON_HXX__
 
+#include <type_traits>
 #include <sstream>
 #include "os_string.h"
 
+#define BLANK_SIZE 1
 #define SIZE_BETWEEN_TWO_VALUES         1
 #define SPACE_BETWEEN_TWO_VALUES        L" "
 #define SIZE_BOOL                       1
@@ -29,6 +31,7 @@
 #define MINUS_STRING                    L"-"
 #define PLUS_STRING                     L"+"
 #define SYMBOL_I                        L"i"
+#define SIZE_SYMBOL_I                   1
 
 
 #define MAX_LINES                       100
@@ -39,7 +42,9 @@
 
 typedef struct __DOUBLE_FORMAT__
 {
-    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true), bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(SIGN_LENGTH), bPrintBlank(true), bPrintComplexPlusSpace(false) {}
+    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true),
+                    bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(SIGN_LENGTH),
+                    bPrintBlank(true), bPrintComplexPlusSpace(false), bPrintTrailingZeros(false) {}
     int iWidth;
     int iPrec;
     bool bExp;
@@ -50,7 +55,8 @@ typedef struct __DOUBLE_FORMAT__
     int iSignLen;
     bool bPrintBlank;
     bool bPrintComplexPlusSpace;
-} DoubleFormat;
+    bool bPrintTrailingZeros;
+    } DoubleFormat;
 
 /*double*/
 //void getDoubleFormat(double _dblVal, int *_piWidth, int *_piPrec, bool* _pExp);
@@ -76,7 +82,10 @@ void printComplexValue(std::wostringstream& ostr, double val_r, double val_i);
 */
 
 template <typename T>
-void getUnsignedIntFormat(T _TVal, int *_piWidth)
+void getIntFormat(T _TVal, int *_piWidth,
+                  typename std::enable_if <
+                  std::is_unsigned<T>::value
+                  >::type* = 0)
 {
     if (_TVal == 0)
     {
@@ -90,7 +99,10 @@ void getUnsignedIntFormat(T _TVal, int *_piWidth)
 }
 
 template <typename T>
-void getSignedIntFormat(T _TVal, int *_piWidth)
+void getIntFormat(T _TVal, int *_piWidth,
+                  typename std::enable_if <
+                  std::is_signed<T>::value
+                  >::type* = 0)
 {
     if (_TVal == 0)
     {
@@ -108,7 +120,10 @@ void getSignedIntFormat(T _TVal, int *_piWidth)
 }
 
 template <typename T>
-void addUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void addIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true,
+                 typename std::enable_if <
+                 std::is_unsigned<T>::value
+                 >::type* = 0)
 {
     const wchar_t * pwstSign = PLUS_STRING;
     wchar_t pwstFormat[32];
@@ -131,7 +146,10 @@ void addUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool
 }
 
 template <typename T>
-void addSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+void addIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true,
+                 typename std::enable_if <
+                 std::is_signed<T>::value
+                 >::type* = 0)
 {
     const wchar_t* pwstSign = NULL;
     wchar_t pwstFormat[32];

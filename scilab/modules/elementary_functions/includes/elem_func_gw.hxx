@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2010-2011 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2018 - Stéphane Mottelet
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
  *
@@ -11,8 +12,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #ifndef __ELEM_FUNC_GW_HXX__
 #define __ELEM_FUNC_GW_HXX__
@@ -20,6 +21,7 @@
 #include "cpp_gateway_prototype.hxx"
 #include "double.hxx"
 #include "complex"
+#include "function.hxx"
 
 class ElemFuncModule
 {
@@ -65,6 +67,7 @@ CPP_GATEWAY_PROTOTYPE(sci_isequal);
 CPP_GATEWAY_PROTOTYPE(sci_isreal);
 CPP_GATEWAY_PROTOTYPE(sci_isvector);
 CPP_GATEWAY_PROTOTYPE(sci_kron);
+CPP_GATEWAY_PROTOTYPE(sci_linspace);
 CPP_GATEWAY_PROTOTYPE(sci_log);
 CPP_GATEWAY_PROTOTYPE(sci_log10);
 CPP_GATEWAY_PROTOTYPE(sci_log1p);
@@ -129,5 +132,6 @@ typedef double(*func_real)(double);
 typedef std::complex<double>(*func_complex)(const std::complex<double>&);
 
 types::Double* trigo(types::Double* in, func_real func_r, func_complex func_c, bool forceComplex = false);
+types::Function::ReturnValue zerosOrOnesFromValue(types::typed_list& in, int _iRetCount, types::typed_list& out, bool value);
 
 #endif /* __ELEM_FUNC_GW_HXX__ */

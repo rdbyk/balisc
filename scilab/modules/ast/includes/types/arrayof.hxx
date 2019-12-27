@@ -163,18 +163,18 @@ protected :
     virtual void            deleteImg() = 0;
 public :
 
-    bool isArrayOf()
+    bool isArrayOf() override
     {
         return true;
     }
 
-    bool isTrue();
+    bool isTrue() override;
 
     // The function is not write here because we needs to create a Bool which inherits from ArrayOf<int>
     // so it will create a cyclic dependency... so the body of the function is in bool.hxx after the Bool definition.
-    virtual bool neg(InternalType *& out);
+    virtual bool neg(InternalType *& out) override;
 
-    virtual bool isComplex()
+    virtual bool isComplex() override
     {
         return m_pImgData != NULL;
     }
@@ -321,31 +321,31 @@ public :
         return getImg(_iCols * getRows() + _iRows);
     }
 
-    virtual ArrayOf<T>* insert(typed_list* _pArgs, InternalType* _pSource);
+    virtual ArrayOf<T>* insert(typed_list* _pArgs, InternalType* _pSource) override;
     virtual void append(int _iRows, int _iCols, InternalType* _poSource);
-    virtual ArrayOf<T>* resize(int* _piDims, int _iDims);
+    virtual ArrayOf<T>* resize(int* _piDims, int _iDims) override;
 
     // return a GenericType because of [] wich is a types::Double (can't be a ArrayOf<char>)
-    virtual GenericType* remove(typed_list* _pArgs);
-    virtual GenericType* extract(typed_list* _pArgs);
-    virtual GenericType* insertNew(typed_list* _pArgs);
+    virtual GenericType* remove(typed_list* _pArgs) override;
+    virtual GenericType* extract(typed_list* _pArgs) override;
+    virtual GenericType* insertNew(typed_list* _pArgs) override;
 
     virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e) override;
-    virtual bool isInvokable() const;
-    virtual bool hasInvokeOption() const;
-    virtual int getInvokeNbIn();
-    virtual int getInvokeNbOut();
+    virtual bool isInvokable() const override;
+    virtual bool hasInvokeOption() const override;
+    virtual int getInvokeNbIn() override;
+    virtual int getInvokeNbOut() override;
 
-    virtual ArrayOf<T>* reshape(int _iNewRows, int _iNewCols)
+    virtual ArrayOf<T>* reshape(int _iNewRows, int _iNewCols) override
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return reshape(piDims, 2);
     }
 
-    virtual ArrayOf<T>* reshape(int* _piDims, int _iDims);
+    virtual ArrayOf<T>* reshape(int* _piDims, int _iDims) override;
 
 
-    virtual ArrayOf<T>* resize(int _iNewRows, int _iNewCols)
+    virtual ArrayOf<T>* resize(int _iNewRows, int _iNewCols) override
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return resize(piDims, 2);
@@ -377,9 +377,9 @@ public :
 
     void getIndexes(int _iIndex, int* _piIndexes);
 
-    virtual bool getMemory(int* _piSize, int* _piSizePlusType);
+    virtual bool getMemory(int* _piSize, int* _piSizePlusType) override;
 
-    ArrayOf<T>* getColumnValues(int _iPos)
+    ArrayOf<T>* getColumnValues(int _iPos) override
     {
         ArrayOf<T>* pOut = NULL;
         if (_iPos < getCols())
@@ -404,7 +404,7 @@ public :
         return pOut;
     }
 
-    virtual bool toString(std::wostringstream& ostr)
+    virtual bool toString(std::wostringstream& ostr) override
     {
         int* piDims = new int[m_iDims];
         bool bFinish = parseSubMatrix(ostr, piDims, m_iDims, m_iDims - 1);
@@ -469,7 +469,7 @@ public :
 
     virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) = 0;
 
-    virtual std::wstring toStringInLine()
+    virtual std::wstring toStringInLine() override
     {
         std::wostringstream ostr;
         ostr << L"[" << DimsToString<std::wstring>() << L" " << getTypeStr() << L"]";

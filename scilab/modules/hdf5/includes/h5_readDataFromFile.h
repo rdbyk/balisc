@@ -23,67 +23,67 @@
 #define sci_undefined   -1
 #define sci_delete       0
 
-char* getScilabVersionAttribute(int _iFile);
-int getSODFormatAttribute(int _iFile);
+char* getScilabVersionAttribute(hid_t _iFile);
+int getSODFormatAttribute(hid_t _iFile);
 
-int isComplexData(int _iDatasetId);
+int isComplexData(hid_t _iDatasetId);
 
-int getVariableNames(int _iFile, char **pstNameList);
+int getVariableNames(hid_t _iFile, char **pstNameList);
 
-int getDataSetId(int  _iFile);
+hid_t getDataSetId(hid_t _iFile);
 
-int getDataSetIdFromName(int _iFile, const char *_pstName);
-void closeDataSet(int _id);
+hid_t getDataSetIdFromName(hid_t _iFile, const char *_pstName);
+void closeDataSet(hid_t _id);
 
-int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims);
-int getDatasetDims(int _iDatasetId, int *_piRows, int *_piCols);
-int getListDims(int _iDatasetId, int *_piItem);
+int getDatasetInfo(hid_t _iDatasetId, int* _iComplex, int* _iDims, int* _piDims);
+int getDatasetDims(hid_t _iDatasetId, int *_piRows, int *_piCols);
+int getListDims(hid_t _iDatasetId, int *_piItem);
 
-int getScilabTypeFromDataSet(int _iDatasetId);
+int getScilabTypeFromDataSet(hid_t _iDatasetId);
 
-int getDatasetPrecision(int _iDatasetId, int* _piPrec);
+int getDatasetPrecision(hid_t _iDatasetId, int* _piPrec);
 
-int getSparseDimension(int _iDatasetId, int* _piRows, int * _piCols, int* _piNbItem);
+int getSparseDimension(hid_t _iDatasetId, int* _piRows, int * _piCols, int* _piNbItem);
 
-int readEmptyMatrix(int _iDatasetId);
+int readEmptyMatrix(hid_t _iDatasetId);
 
-int readDoubleMatrix(int _iDatasetId, double *_pdblData);
-int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg);
+int readDoubleMatrix(hid_t _iDatasetId, double *_pdblData);
+int readDoubleComplexMatrix(hid_t _iDatasetId, double *_pdblReal, double *_pdblImg);
 
-int readStringMatrix(int _iDatasetId, char **_pstData);
-int freeStringMatrix(int _iDatasetId, char** _pstData);
+int readStringMatrix(hid_t _iDatasetId, char **_pstData);
+int freeStringMatrix(hid_t _iDatasetId, char** _pstData);
 
-int readBooleanMatrix(int _iDatasetId, int* _piData);
+int readBooleanMatrix(hid_t _iDatasetId, int* _piData);
 
-int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iDims, int* _piDims, int* _piNbCoef, double **_pdblData);
-int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iDims, int* _piDims, int* _piNbCoef, double **_pdblReal, double **_pdblImg);
+int readPolyMatrix(hid_t _iDatasetId, char* _pstVarname, int _iDims, int* _piDims, int* _piNbCoef, double **_pdblData);
+int readPolyComplexMatrix(hid_t _iDatasetId, char* _pstVarname, int _iDims, int* _piDims, int* _piNbCoef, double **_pdblReal, double **_pdblImg);
 
-int readInteger8Matrix(int _iDatasetId, char* _pcData);
-int readInteger16Matrix(int _iDatasetId, short* _psData);
-int readInteger32Matrix(int _iDatasetId, int* _piData);
-int readInteger64Matrix(int _iDatasetId, long long* _pllData);
+int readInteger8Matrix(hid_t _iDatasetId, char* _pcData);
+int readInteger16Matrix(hid_t _iDatasetId, short* _psData);
+int readInteger32Matrix(hid_t _iDatasetId, int* _piData);
+int readInteger64Matrix(hid_t _iDatasetId, long long* _pllData);
 
-int readUnsignedInteger8Matrix(int _iDatasetId, unsigned char* _pucData);
-int readUnsignedInteger16Matrix(int _iDatasetId, unsigned short* _pusData);
-int readUnsignedInteger32Matrix(int _iDatasetId, unsigned int* _puiData);
-int readUnsignedInteger64Matrix(int _iDatasetId, unsigned long long* _pullData);
+int readUnsignedInteger8Matrix(hid_t _iDatasetId, unsigned char* _pucData);
+int readUnsignedInteger16Matrix(hid_t _iDatasetId, unsigned short* _pusData);
+int readUnsignedInteger32Matrix(hid_t _iDatasetId, unsigned int* _puiData);
+int readUnsignedInteger64Matrix(hid_t _iDatasetId, unsigned long long* _pullData);
 
-int readSparseComplexMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal, double *_pdblImg);
-int readSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal);
+int readSparseComplexMatrix(hid_t _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal, double *_pdblImg);
+int readSparseMatrix(hid_t _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal);
 
-int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos);
+int readBooleanSparseMatrix(hid_t _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos);
 
-int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef);
+int getListItemReferences(hid_t _iDatasetId, hobj_ref_t** _piItemRef);
 
-int getListItemDataset(int _iDatasetId, void* _piItemRef, int _iItemPos, int* _piItemDataset);
+int getListItemDataset(hid_t _iDatasetId, void* _piItemRef, int _iItemPos, hid_t* _piItemDataset);
 
-int deleteListItemReferences(int _iDatasetId, void* _piItemRef);
+int deleteListItemReferences(hid_t _iDatasetId, void* _piItemRef);
 
- void reset_item_count();
+void reset_item_count();
 
 //Scilab 6
-int getVariableNames6(int _iFile, char **names);
-char* getScilabTypeFromDataSet6(int dataset);
-int getListDims6(int dataset, int* items);
+int getVariableNames6(hid_t _iFile, char **names);
+char* getScilabTypeFromDataSet6(hid_t dataset);
+int getListDims6(hid_t dataset, int* items);
 
 #endif /* !__H5_READDATATOFILE_H__ */

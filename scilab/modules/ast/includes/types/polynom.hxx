@@ -48,19 +48,19 @@ public :
     virtual                 ~Polynom();
 
     // FIXME : Should not return NULL
-    Polynom*                clone();
+    Polynom*                clone() override;
 
     void setCoef(int _iRows, int _iCols, Double *_pdblCoef);
     void setCoef(int _iIdx, Double *_pdblCoef);
 
-    virtual void setComplex(bool _bComplex);
+    virtual void setComplex(bool _bComplex) override;
 
-    inline ScilabType       getType(void)
+    inline ScilabType       getType(void) override
     {
         return ScilabPolynom;
     }
 
-    inline ScilabId         getId(void)
+    inline ScilabId         getId(void) override
     {
         return isScalar() ? isComplex() ? IdScalarPolynomComplex
                : IdScalarPolynom
@@ -68,9 +68,9 @@ public :
                : IdPolynom;
     }
 
-    bool isComplex(void);
+    bool isComplex(void) override;
 
-    inline bool             isPoly()
+    inline bool             isPoly() override
     {
         return true;
     }
@@ -87,31 +87,29 @@ public :
     Double*                 extractCoef(int _iRank);
     bool                    insertCoef(int _iRank, Double* _pCoef);
     void                    setZeros();
-    Polynom*                insert(typed_list* _pArgs, InternalType* _pSource);
+    Polynom*                insert(typed_list* _pArgs, InternalType* _pSource) override;
 
-    void set(int _iPos, SinglePoly* _pS);
-    void set(int _iRows, int _iCols, SinglePoly* _pS);
+    void set(int _iPos, SinglePoly* _pS) override;
+    void set(int _iRows, int _iCols, SinglePoly* _pS) override;
     void set(SinglePoly** _pS);
 
-    std::wstring            getRowString(int* _piDims, int _iDims, bool _bComplex);
-    std::wstring            getColString(int* _piDims, int _iDims, bool _bComplex);
     std::wstring            getMatrixString(int* _piDims, int _iDims, bool _bComplex);
 
-    bool                    operator==(const InternalType& it);
-    bool                    operator!=(const InternalType& it);
+    bool                    operator==(const InternalType& it) override;
+    bool                    operator!=(const InternalType& it) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr() const
+    virtual std::wstring    getTypeStr() const override
     {
         return L"polynomial";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr() const
+    virtual std::wstring    getShortTypeStr() const override
     {
         return L"p";
     }
 
-    bool isTrue()
+    bool isTrue() override
     {
         for (int i = 0; i < m_iSize; ++i)
         {
@@ -137,10 +135,10 @@ public :
         return true;
     }
 
-    bool getMemory(int* _piSize, int* _piSizePlusType);
+    bool getMemory(int* _piSize, int* _piSizePlusType) override;
 
-    bool transpose(InternalType *& out);
-    bool adjoint(InternalType *& out);
+    bool transpose(InternalType *& out) override;
+    bool adjoint(InternalType *& out) override;
 
     static Polynom* Dollar();
 
@@ -151,13 +149,13 @@ protected :
 private :
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
-    virtual SinglePoly*     getNullValue();
-    virtual Polynom*        createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual SinglePoly*     copyValue(SinglePoly* _pData);
-    virtual void            deleteAll();
-    virtual void            deleteImg();
-    virtual SinglePoly**    allocData(int _iSize);
-    virtual void            deleteData(SinglePoly* data);
+    virtual SinglePoly*     getNullValue() override;
+    virtual Polynom*        createEmpty(int _iDims, int* _piDims, bool _bComplex = false) override;
+    virtual SinglePoly*     copyValue(SinglePoly* _pData) override;
+    virtual void            deleteAll() override;
+    virtual void            deleteImg() override;
+    virtual SinglePoly**    allocData(int _iSize) override;
+    virtual void            deleteData(SinglePoly* data) override;
 };
 }
 
