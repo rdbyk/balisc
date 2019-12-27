@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-11-12 18:11+0000\n"
+"PO-Revision-Date: 2020-02-06 18:11+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -124,7 +124,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgid "%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
 msgstr ""
 
 #, c-format
@@ -490,6 +490,25 @@ msgstr ""
 msgid "Fitting function"
 msgstr ""
 
+#, c-format
+msgid "%s: optimization starting, please wait ...\n"
+msgstr ""
+
+msgid "Genetic algorithms"
+msgstr ""
+
+msgid "Genetic algorithms and Ising problem"
+msgstr ""
+
+msgid "MultiObjective Genetic Algorithm"
+msgstr ""
+
+msgid "Niched Sharing Genetic Algorithm"
+msgstr ""
+
+msgid "Niched Sharing Genetic Algorithm II"
+msgstr ""
+
 msgid "LQV"
 msgstr ""
 
@@ -807,9 +826,6 @@ msgstr ""
 msgid "ICSE"
 msgstr ""
 
-msgid "Genetic algorithms"
-msgstr ""
-
 msgid "Simulated Annealing"
 msgstr ""
 
@@ -849,6 +865,45 @@ msgstr ""
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
+
+#, c-format
+msgid "%s: wrong direction"
+msgstr "%s: adreça incorrecta"
+
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr "%s: El ga_f és obligatori"
+
+msgid "optim_moga: ga_f is mandatory"
+msgstr "optim_moga: El ga_f és obligatori"
+
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr "%s: Inicialització de la població\n"
+
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr "optim_nsga2: El ga_f és obligatori"
+
+#, c-format
+msgid "%s: iteration %d / %d \n"
+msgstr ""
+
+#, c-format
+msgid "    min / max value found = %f / %f\n"
+msgstr ""
+
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr "%s: Iteració %d / %d\n"
+
+#, c-format
+msgid "%s: F_in is mandatory"
+msgstr "%s: El F_in és obligatori"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
