@@ -155,6 +155,7 @@ Obsolete functions or features
 * `frexp` becomes an internal. Please use `[m,e]=log2(x)` instead.
 * `champ1()` is obsolete. Please use `champ.colored` instead.
 * `setPreferencesValue` will be removed from Scilab 6.1.x. Please use `xmlSetValues` instead.
+* `%sn()` is obsolete. Please use `ellipj()` instead.
 
 
 Removed Functions
@@ -288,4 +289,3 @@ Bug Fixes
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot()`, `colorbar()` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
-*
