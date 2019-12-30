@@ -133,7 +133,7 @@ int GenericModule::Load(const wchar_t wcsPath[], const wchar_t wcsModule[], dynl
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        pCtx->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, pLoadDeps, wstModuleName));
+        pCtx->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, pLoadDeps, wstPath));
     }
 
     FREE(pwstLibName);
