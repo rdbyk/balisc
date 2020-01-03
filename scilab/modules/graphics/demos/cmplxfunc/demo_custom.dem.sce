@@ -740,6 +740,8 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
         yellow_line.thickness = 3;
     end
 
+    isoview(gcf(), "off")
+
 endfunction
 
 function [xr,yr,zr,xi,yi,zi] = CmplxFacets(R,e,TypeDomain,TypeCut,n,StrFunc)
