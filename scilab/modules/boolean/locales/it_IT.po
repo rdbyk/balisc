@@ -17,33 +17,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 77
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 164
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 79
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 166
+msgid "real scalar or a string"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+#
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 108
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 115
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 110
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 117
+msgid "'r' or 'c'"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
-"intero.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
-
-#, c-format
-msgid ""
-"%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"
+#
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 157
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 159
+msgid "1 or 2"
 msgstr ""
+
+#
+# File: modules/boolean/sci_gateway/cpp/sci_find.cpp, line: 55
+# File: modules/boolean/sci_gateway/cpp/sci_find.cpp, line: 62
+msgid "positive integer value"
+msgstr ""
+
+#~ msgid "%s: Wrong size for input argument #%d.\n"
+#~ msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d.\n"
+#~ msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+#~ "intero.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d.\n"
+#~ msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato.\n"
+
+#, fuzzy
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"

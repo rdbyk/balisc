@@ -497,8 +497,9 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Uncontrollable system.\n"
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 107
+msgid "compatible dimensions"
 msgstr ""
 
 #
@@ -1039,7 +1040,8 @@ msgstr "Asse dei numeri reali"
 msgid "Imaginary axis"
 msgstr "Asse dei numeri immaginari"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "zeri a ciclo aperto"
 
 msgid "open loop poles"
@@ -1095,6 +1097,14 @@ msgstr "Hz"
 msgid "dB"
 msgstr "dB"
 
+#, fuzzy
+msgid "rad/s"
+msgstr "rad/sec"
+
+#, fuzzy
+msgid " dB"
+msgstr "dB"
+
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1122,6 +1132,11 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: guadagno infinito a "
 "frequenza nulla.\n"
+
+#
+# File: modules/cacsd/macros/freson.sci, line: 78
+msgid "freson: Some maxima frequencies may be undetected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
@@ -1569,6 +1584,18 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
 "numeri reali a virgola mobile\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"vettore riga con dimensione >%d.\n"
+
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 86
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"

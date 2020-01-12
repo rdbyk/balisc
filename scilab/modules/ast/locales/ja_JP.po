@@ -27,8 +27,13 @@ msgstr "行列が特異に近いかスケーリング異常です. rcond=%1.4E\n
 msgid "computing least squares solution. (see lsq).\n"
 msgstr "最小二乗解を計算中. (lsq 参照).\n"
 
-#, c-format
-msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in function %s at line %d\n"
+msgstr ""
+"デバッガがブレークポイント (%d)  で停止しました ( 関数 %ls ,  %d 行目)\n"
+
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in file %s at line %d\n"
 msgstr ""
 "デバッガがブレークポイント (%d)  で停止しました ( 関数 %ls ,  %d 行目)\n"
 
@@ -46,125 +51,6 @@ msgstr "デバッガがエラーで停止しました (関数 %ls, %d 行目)\n"
 msgid "Leave debugger.\n"
 msgstr "デバッガを離れます.\n"
 
-#, c-format
-msgid "Undefined variable: %s\n"
-msgstr "未定義の変数: %s\n"
-
-msgid "inconsistent row/column dimensions\n"
-msgstr "行/列の次元が不整合\n"
-
-msgid "/!\\ Unmanaged FieldExp.\n"
-msgstr "/!\\ アンマネージド FieldExp.\n"
-
-msgid "Attempt to reference field of non-structure array.\n"
-msgstr "構造体以外の配列のフィールドを参照しています.\n"
-
-msgid "Not yet implemented in Scilab.\n"
-msgstr "Scilab では未実装です.\n"
-
-msgid "Invalid index.\n"
-msgstr "添字が不正です.\n"
-
-msgid "Redefining permanent variable.\n"
-msgstr "永続的変数を再定義しています.\n"
-
-msgid "for expression can only manage 1 or 2 dimensions variables\n"
-msgstr "for式は、1または2次元の変数のみを扱えます\n"
-
-msgid "for expression : Wrong type for loop iterator.\n"
-msgstr "for 式: 反復イタレータの型が間違っています.\n"
-
-#, c-format
-msgid "%s: function is disabled in debug mode.\n"
-msgstr "%s: 関数がデバッグモードで無効になりました.\n"
-
-msgid "With input arguments, return / resume expects output arguments.\n"
-msgstr "入力引数を指定した場合, return / resume には出力引数を指定します.\n"
-
-#, c-format
-msgid "%ls: Can not transpose multiple elements.\n"
-msgstr "%ls: 複数の要素を転置することはできません.\n"
-
-#, c-format
-msgid ""
-"It is not possible to redefine the %s primitive this way (see clearfun).\n"
-msgstr ""
-"%s プリミティブをこの方法で再定義することはできません (clearfun 参照).\n"
-
-#, c-format
-msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
-msgstr "%ls: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
-
-#
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1519
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1582
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1647
-#, c-format
-msgid "%ls: Evaluation of argument %d yields no result.\n"
-msgstr ""
-
-#, c-format
-msgid "Recursion limit reached (%d).\n"
-msgstr "再帰制限に達しました (%d).\n"
-
-msgid "Unknown expression"
-msgstr "式が不明です"
-
-msgid "Error in overload function: "
-msgstr "オーバーロードされた関数でエラー発生: "
-
-msgid "Wrong insertion : use extraction with {} only on a Cell."
-msgstr "挿入が不正です: {} による展開はセルのみに使用してください."
-
-msgid "Unable to insert multiple item in a Struct."
-msgstr "複数要素を構造体に挿入できません."
-
-msgid "Unable to insert multiple item in a List."
-msgstr "複数要素をリストに挿入できません."
-
-msgid "Wrong insertion."
-msgstr "挿入が間違っています."
-
-msgid "Wrong insertion in a Cell."
-msgstr "セルへの挿入が間違っています."
-
-#, c-format
-msgid "Wrong insertion: insertion in output of '%s' is not allowed.\n"
-msgstr "挿入が間違っています:  '%s' の出力への挿入は許可されていません.\n"
-
-msgid "Wrong insertion : Cannot insert without arguments."
-msgstr "挿入が間違っています: 引数を指定せずに挿入することはできません."
-
-msgid "Unexpected redefinition of Scilab function."
-msgstr "予期されないScilab関数の再定義が行われました."
-
-msgid "Submatrix incorrectly defined.\n"
-msgstr "誤ったサブ行列の定義が行われました.\n"
-
-msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
-msgstr ""
-"挿入が間違っています:  セルでは (...) の代わりに {...} を指定してください.\n"
-
-msgid "Inconsistent row/column dimensions.\n"
-msgstr "行/列の次元が不整合です.\n"
-
-msgid "variables don't have the same formal variable"
-msgstr "変数は同じ形式の変数を有しません."
-
-#, c-format
-msgid ""
-"Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
-msgstr ""
-"エラー:  %ls 演算子: 行列の次元を整合させる必要があります (op1 は %ls, op2 "
-"は %ls).\n"
-
-msgid "With NaN or Inf a division by scalar expected.\n"
-msgstr ""
-"NaN または Inf を指定した場合, スカラーによる割り算を指定してください.\n"
-
-msgid "Division by zero...\n"
-msgstr "ゼロによる割り算...\n"
-
 msgid "Warning : Division by zero...\n"
 msgstr "警告: ゼロ割り...\n"
 
@@ -175,34 +61,12 @@ msgstr "/ 演算子 : エラー %d はまだ管理されていません.\n"
 msgid "Warning : division by zero...\n"
 msgstr "警告: ゼロ割...\n"
 
-msgid "Bad value in the left or right operand.\n"
-msgstr "左または右オペランドの値が不正です.\n"
-
-msgid "Bad size for left or right operand.\n"
-msgstr "左または右オペランドの大きさが不正です.\n"
-
-msgid "Bad value in the left operand.\n"
-msgstr "左オペランドの値が不正です.\n"
-
-msgid "With NaN or Inf a left division by scalar expected.\n"
-msgstr ""
-"NaNまたはInfを指定した場合, スカラーによる左割り算を指定してください.\n"
-
-msgid "Left division by zero...\n"
-msgstr "ゼロによる左割り算...\n"
-
 msgid "Warning : Left division by zero...\n"
 msgstr "警告: ゼロによる左割り算...\n"
 
 #, c-format
 msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr "\\ 演算子: エラー %d は未管理です.\n"
-
-msgid "Invalid exponent: expected real exponents.\n"
-msgstr "指数が誤っています: 実数を指定してください.\n"
-
-msgid "Invalid exponent.\n"
-msgstr "指数が間違っています.\n"
 
 #, c-format
 msgid "%ls: Cannot open file %ls.\n"
@@ -224,13 +88,6 @@ msgstr " %10d 個の要素を使用 (総数: %10d).\n"
 
 msgid "Your global variables are:"
 msgstr "グローバル変数:"
-
-#, c-format
-msgid ""
-"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
-msgstr ""
-"警告: 関数の再定義: %s. このメッセージを回避するには, funcport(0) を使用して"
-"ください"
 
 msgid "in builtin "
 msgstr "組込み "
@@ -272,27 +129,9 @@ msgstr "エラー: %s が見つかりません\n"
 msgid "Error: Could not create %s: %s\n"
 msgstr "エラー: %s を作成できません: %s\n"
 
-#, c-format
-msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
-msgstr "Scilab '%s' 関数は -nogui または -nwni モードでは無効となります.\n"
-
-#, c-format
-msgid ""
-"%s: Library name must not be empty\n"
-"."
-msgstr "%s: ライブラリ名を空にすることはできません"
-
-#, c-format
-msgid "An error has been detected while loading %s: %s\n"
-msgstr "%sを読み込む際にエラーが検出されました: %s\n"
-
-#, c-format
-msgid "Impossible to load %s library\n"
-msgstr "%s ライブラリを読み込むことはできません\n"
-
-#, c-format
-msgid "Impossible to load %s function in %s library: %s\n"
-msgstr "%s 関数を読み込めません(ライブラリ %s) : %s\n"
+#, fuzzy
+msgid "An error occurred in overload function "
+msgstr "オーバーロードされた関数でエラー発生: "
 
 #, fuzzy
 msgid "Functions files location : "
@@ -302,31 +141,15 @@ msgstr "関数ファイルの位置: %s.\n"
 msgid "Unknown field : %ls.\n"
 msgstr "未知のフィールド: %ls.\n"
 
-msgid "Unable to insert multiple item in a list.\n"
-msgstr "リストに複数の要素を挿入することはできません.\n"
-
-msgid "Index out of bounds.\n"
-msgstr "添字が範囲を超えています.\n"
-
 #, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "入力引数の数が間違っています.\n"
-
-#, fuzzy, c-format
-msgid "%s: Undefined variable '%s'.\n"
-msgstr "未定義の変数: %s\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for '%s': A list expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Element number #%d in '%s' is undefined.\n"
-msgstr "リストの要素数 %d が未定義です.\n"
-
-#, c-format
-msgid "Unable to open : %s.\n"
+msgid "Unable to open: %s\n"
 msgstr "オープンできません: %s.\n"
+
+#
+# File: modules/ast/src/cpp/types/macrofile.cpp, line: 110
+#, c-format
+msgid "Unexpected read size: %s\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -342,8 +165,8 @@ msgstr "オーバーロード用の関数 %s を確認または定義してく�
 msgid "Undefined operation for the given operands.\n"
 msgstr "指定したオペランド用の演算子が未定義です.\n"
 
-#, c-format
-msgid "  check arguments or define function %s for overloading.\n"
+#, fuzzy, c-format
+msgid "check arguments or define function %s for overloading.\n"
 msgstr "  引数を確認するか, オーバーロード用の関数 %s を 定義してください.\n"
 
 msgid "Function not defined for given argument type(s),\n"
@@ -352,83 +175,237 @@ msgstr "指定した引数型の関数は定義されていません.\n"
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "入力引数は同じ形式の変数名を有する必要があります.\n"
 
-#, c-format
-msgid "Can not allocate negative size (%d).\n"
-msgstr "負の大きさ (%d) を確保することはできません.\n"
+#~ msgid "Undefined variable: %s\n"
+#~ msgstr "未定義の変数: %s\n"
 
-#, c-format
-msgid "Can not allocate %.2f MB memory.\n"
-msgstr "%.2f MBのメモリを確保することはできません.\n"
+#~ msgid "inconsistent row/column dimensions\n"
+#~ msgstr "行/列の次元が不整合\n"
 
-msgid "Unable to insert multiple item in a struct.\n"
-msgstr "構造体に複数要素を挿入することはできません.\n"
+#~ msgid "/!\\ Unmanaged FieldExp.\n"
+#~ msgstr "/!\\ アンマネージド FieldExp.\n"
 
-msgid "Assignment between unlike types is not allowed.\n"
-msgstr "類似性がない型の間の代入はできません.\n"
+#~ msgid "Attempt to reference field of non-structure array.\n"
+#~ msgstr "構造体以外の配列のフィールドを参照しています.\n"
 
-msgid "Can not allocate data.\n"
-msgstr "データ保持用のメモリを確保できません.\n"
+#~ msgid "Not yet implemented in Scilab.\n"
+#~ msgstr "Scilab では未実装です.\n"
 
-#, c-format
-msgid "Field \"%ls\" does not exists\n"
-msgstr "フィールド \"%ls\" は存在しません.\n"
+#~ msgid "Invalid index.\n"
+#~ msgstr "添字が不正です.\n"
 
-#, c-format
-msgid "variable size exceeded : less than %d expected.\n"
-msgstr "変数の大きさを超えました: %d 未満にしてください.\n"
+#~ msgid "Redefining permanent variable.\n"
+#~ msgstr "永続的変数を再定義しています.\n"
 
-#, c-format
-msgid "%s: Could not find '%s': Please check that macros have been built.\n"
-msgstr ""
-"%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
+#~ msgid "for expression can only manage 1 or 2 dimensions variables\n"
+#~ msgstr "for式は、1または2次元の変数のみを扱えます\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
+#~ msgid "for expression : Wrong type for loop iterator.\n"
+#~ msgstr "for 式: 反復イタレータの型が間違っています.\n"
 
-#, c-format
-msgid "%s: Division by zero..."
-msgstr ""
+#~ msgid "%s: function is disabled in debug mode.\n"
+#~ msgstr "%s: 関数がデバッグモードで無効になりました.\n"
 
-#, c-format
-msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
+#~ msgid "With input arguments, return / resume expects output arguments.\n"
+#~ msgstr "入力引数を指定した場合, return / resume には出力引数を指定します.\n"
 
-#, c-format
-msgid "%s: Non implemented feature.\n"
-msgstr ""
+#~ msgid "%ls: Can not transpose multiple elements.\n"
+#~ msgstr "%ls: 複数の要素を転置することはできません.\n"
 
-msgid "Invalid exponent: expected real exponents."
-msgstr "指数が間違っています: 実数の指数を指定してください."
+#~ msgid ""
+#~ "It is not possible to redefine the %s primitive this way (see clearfun).\n"
+#~ msgstr ""
+#~ "%s プリミティブをこの方法で再定義することはできません (clearfun 参照).\n"
 
-msgid "Division by zero"
-msgstr "ゼロ割"
+#~ msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
+#~ msgstr ""
+#~ "%ls: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
 
-msgid "Not implemented"
-msgstr "実装されていません"
+#~ msgid "Recursion limit reached (%d).\n"
+#~ msgstr "再帰制限に達しました (%d).\n"
 
-msgid "Invalid exponent"
-msgstr "指数が間違っています"
+#~ msgid "Unknown expression"
+#~ msgstr "式が不明です"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 正方行列を指定してください.\n"
+#~ msgid "Wrong insertion : use extraction with {} only on a Cell."
+#~ msgstr "挿入が不正です: {} による展開はセルのみに使用してください."
 
-#, c-format
-msgid "%s: Unable to diagonalize.\n"
-msgstr "%s: 対角化できません。\n"
+#~ msgid "Unable to insert multiple item in a Struct."
+#~ msgstr "複数要素を構造体に挿入できません."
 
-msgid "Not implemented in scilab...\n"
-msgstr "scilabでは実装されていません...\n"
+#~ msgid "Unable to insert multiple item in a List."
+#~ msgstr "複数要素をリストに挿入できません."
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+#~ msgid "Wrong insertion."
+#~ msgstr "挿入が間違っています."
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+#~ msgid "Wrong insertion in a Cell."
+#~ msgstr "セルへの挿入が間違っています."
+
+#~ msgid "Wrong insertion: insertion in output of '%s' is not allowed.\n"
+#~ msgstr "挿入が間違っています:  '%s' の出力への挿入は許可されていません.\n"
+
+#~ msgid "Wrong insertion : Cannot insert without arguments."
+#~ msgstr "挿入が間違っています: 引数を指定せずに挿入することはできません."
+
+#~ msgid "Unexpected redefinition of Scilab function."
+#~ msgstr "予期されないScilab関数の再定義が行われました."
+
+#~ msgid "Submatrix incorrectly defined.\n"
+#~ msgstr "誤ったサブ行列の定義が行われました.\n"
+
+#~ msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
+#~ msgstr ""
+#~ "挿入が間違っています:  セルでは (...) の代わりに {...} を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "Inconsistent row/column dimensions.\n"
+#~ msgstr "行/列の次元が不整合です.\n"
+
+#~ msgid "variables don't have the same formal variable"
+#~ msgstr "変数は同じ形式の変数を有しません."
+
+#~ msgid ""
+#~ "Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is "
+#~ "%ls).\n"
+#~ msgstr ""
+#~ "エラー:  %ls 演算子: 行列の次元を整合させる必要があります (op1 は %ls, "
+#~ "op2 は %ls).\n"
+
+#~ msgid "With NaN or Inf a division by scalar expected.\n"
+#~ msgstr ""
+#~ "NaN または Inf を指定した場合, スカラーによる割り算を指定してください.\n"
+
+#~ msgid "Division by zero...\n"
+#~ msgstr "ゼロによる割り算...\n"
+
+#~ msgid "Bad value in the left or right operand.\n"
+#~ msgstr "左または右オペランドの値が不正です.\n"
+
+#~ msgid "Bad size for left or right operand.\n"
+#~ msgstr "左または右オペランドの大きさが不正です.\n"
+
+#~ msgid "Bad value in the left operand.\n"
+#~ msgstr "左オペランドの値が不正です.\n"
+
+#~ msgid "With NaN or Inf a left division by scalar expected.\n"
+#~ msgstr ""
+#~ "NaNまたはInfを指定した場合, スカラーによる左割り算を指定してください.\n"
+
+#~ msgid "Left division by zero...\n"
+#~ msgstr "ゼロによる左割り算...\n"
+
+#~ msgid "Invalid exponent: expected real exponents.\n"
+#~ msgstr "指数が誤っています: 実数を指定してください.\n"
+
+#~ msgid "Invalid exponent.\n"
+#~ msgstr "指数が間違っています.\n"
+
+#~ msgid ""
+#~ "Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+#~ msgstr ""
+#~ "警告: 関数の再定義: %s. このメッセージを回避するには, funcport(0) を使用し"
+#~ "てください"
+
+#~ msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
+#~ msgstr "Scilab '%s' 関数は -nogui または -nwni モードでは無効となります.\n"
+
+#~ msgid ""
+#~ "%s: Library name must not be empty\n"
+#~ "."
+#~ msgstr "%s: ライブラリ名を空にすることはできません"
+
+#~ msgid "An error has been detected while loading %s: %s\n"
+#~ msgstr "%sを読み込む際にエラーが検出されました: %s\n"
+
+#~ msgid "Impossible to load %s library\n"
+#~ msgstr "%s ライブラリを読み込むことはできません\n"
+
+#~ msgid "Impossible to load %s function in %s library: %s\n"
+#~ msgstr "%s 関数を読み込めません(ライブラリ %s) : %s\n"
+
+#~ msgid "Unable to insert multiple item in a list.\n"
+#~ msgstr "リストに複数の要素を挿入することはできません.\n"
+
+#~ msgid "Index out of bounds.\n"
+#~ msgstr "添字が範囲を超えています.\n"
+
+#, fuzzy
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "入力引数の数が間違っています.\n"
+
+#, fuzzy
+#~ msgid "%s: Undefined variable '%s'.\n"
+#~ msgstr "未定義の変数: %s\n"
+
+#, fuzzy
+#~ msgid "%s: Wrong type for '%s': A list expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+
+#, fuzzy
+#~ msgid "%s: Element number #%d in '%s' is undefined.\n"
+#~ msgstr "リストの要素数 %d が未定義です.\n"
+
+#~ msgid "Can not allocate negative size (%d).\n"
+#~ msgstr "負の大きさ (%d) を確保することはできません.\n"
+
+#~ msgid "Can not allocate %.2f MB memory.\n"
+#~ msgstr "%.2f MBのメモリを確保することはできません.\n"
+
+#~ msgid "Unable to insert multiple item in a struct.\n"
+#~ msgstr "構造体に複数要素を挿入することはできません.\n"
+
+#~ msgid "Assignment between unlike types is not allowed.\n"
+#~ msgstr "類似性がない型の間の代入はできません.\n"
+
+#~ msgid "Can not allocate data.\n"
+#~ msgstr "データ保持用のメモリを確保できません.\n"
+
+#~ msgid "Field \"%ls\" does not exists\n"
+#~ msgstr "フィールド \"%ls\" は存在しません.\n"
+
+#~ msgid "variable size exceeded : less than %d expected.\n"
+#~ msgstr "変数の大きさを超えました: %d 未満にしてください.\n"
+
+#~ msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+#~ msgstr ""
+#~ "%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてくださ"
+#~ "い.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
+
+#~ msgid "%s: Argument #%d: Square matrix expected.\n"
+#~ msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
+
+#~ msgid "Invalid exponent: expected real exponents."
+#~ msgstr "指数が間違っています: 実数の指数を指定してください."
+
+#~ msgid "Division by zero"
+#~ msgstr "ゼロ割"
+
+#~ msgid "Not implemented"
+#~ msgstr "実装されていません"
+
+#~ msgid "Invalid exponent"
+#~ msgstr "指数が間違っています"
+
+#~ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています: 正方行列を指定してください.\n"
+
+#~ msgid "%s: Unable to diagonalize.\n"
+#~ msgstr "%s: 対角化できません。\n"
+
+#~ msgid "Not implemented in scilab...\n"
+#~ msgstr "scilabでは実装されていません...\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
 #~ msgid ""
 #~ "operation +: Warning adding a matrix with the empty matrix old "

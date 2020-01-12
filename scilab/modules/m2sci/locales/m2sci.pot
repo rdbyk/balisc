@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-06-18 10:21+0100\n"
+"Revision-Date: 2020-01-24 16:14+0100\n"
 
 # File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 34
 # File: modules/m2sci/macros/m2sci_gui.sci, line: 283
@@ -60,6 +60,425 @@ msgstr ""
 #
 # File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 194
 msgid "About_M2SCI_tools"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/%msp_i_s.sci, line: 31
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/char.sci, line: 46
+# File: modules/m2sci/macros/compat_functions/char.sci, line: 55
+# File: modules/m2sci/macros/compat_functions/char.sci, line: 69
+# File: modules/m2sci/macros/compat_functions/char.sci, line: 78
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/char.sci, line: 103
+# File: modules/m2sci/macros/compat_functions/mtlb_axes.sci, line: 36
+# File: modules/m2sci/macros/compat_functions/mtlb_box.sci, line: 37
+# File: modules/m2sci/macros/compat_functions/mtlb_close.sci, line: 49
+# File: modules/m2sci/macros/compat_functions/mtlb_delete.sci, line: 21
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/char.sci, line: 106
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/char.sci, line: 121
+# File: modules/m2sci/macros/compat_functions/char.sci, line: 131
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/fseek_origin.sci, line: 29
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/makecell.sci, line: 24
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mstr2sci.sci, line: 21
+#, c-format
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mstr2sci.sci, line: 25
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_axis.sci, line: 37
+#, c-format
+msgid "%s: Wrong size for '%s': Vector expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_axis.sci, line: 52
+# File: modules/m2sci/macros/compat_functions/mtlb_axis.sci, line: 74
+# File: modules/m2sci/macros/compat_functions/mtlb_axis.sci, line: 90
+# File: modules/m2sci/macros/compat_functions/mtlb_axis.sci, line: 105
+# File: modules/m2sci/macros/compat_functions/mtlb_axis.sci, line: 130
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_axis.sci, line: 55
+#, c-format
+msgid "%s: Wrong value for affectation to '%s'.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_axis.sci, line: 95
+#, c-format
+msgid "%s: '%s' only used in 3d mode."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_axis.sci, line: 146
+#, c-format
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_choices.sci, line: 16
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 34
+msgid "Close"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_close.sci, line: 16
+#, c-format
+msgid "%s: '%s' ignored.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_close.sci, line: 52
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_cond.sci, line: 18
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_cond.sci, line: 39
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 46
+msgid "Jan"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 47
+msgid "Feb"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 48
+msgid "Mar"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 49
+msgid "Apr"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 50
+msgid "May"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 51
+msgid "Jun"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 52
+msgid "Jul"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 53
+msgid "Aug"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 54
+msgid "Sep"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 55
+msgid "Oct"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 56
+msgid "Nov"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_dir.sci, line: 57
+msgid "Dec"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_echo.sci, line: 24
+# File: modules/m2sci/macros/compat_functions/mtlb_echo.sci, line: 27
+# File: modules/m2sci/macros/compat_functions/mtlb_hold.sci, line: 29
+# File: modules/m2sci/macros/compat_functions/mtlb_num2str.sci, line: 26
+# File: modules/m2sci/macros/compat_functions/mtlb_realmax.sci, line: 22
+# File: modules/m2sci/macros/compat_functions/mtlb_realmin.sci, line: 22
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_fopen.sci, line: 19
+#, c-format
+msgid "%s: Cannot open file '%s'.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_format.sci, line: 60
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_format.sci, line: 62
+#, c-format
+msgid "%s: Unknown type '%s': IGNORED.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_fprintf.sci, line: 44
+# File: modules/m2sci/macros/compat_functions/mtlb_fprintf.sci, line: 93
+# File: modules/m2sci/macros/compat_functions/mtlb_fprintf.sci, line: 95
+#, c-format
+msgid "%s: %s is not implemented.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_fprintf.sci, line: 58
+# File: modules/m2sci/macros/compat_functions/mtlb_fprintf.sci, line: 115
+#, c-format
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_fread.sci, line: 46
+# File: modules/m2sci/macros/compat_functions/mtlb_fwrite.sci, line: 42
+#, c-format
+msgid "%s: The format '%s' is unknown.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_fread.sci, line: 50
+# File: modules/m2sci/macros/compat_functions/mtlb_fwrite.sci, line: 46
+#, c-format
+msgid "%s: The format '%s' is not yet handled.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_fread.sci, line: 68
+#, c-format
+msgid "%s: End of file reached before all matrix is read.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 26
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 28
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 30
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 32
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 34
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 36
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 38
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 40
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 42
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 47
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 49
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 51
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 53
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 55
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 57
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 59
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 61
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 71
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 73
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 75
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 77
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 79
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 81
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 83
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 85
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 87
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 92
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 94
+# File: modules/m2sci/macros/compat_functions/mtlb_get.sci, line: 98
+#, c-format
+msgid "%s: No equivalent for '%s' property.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_grid.sci, line: 37
+# File: modules/m2sci/macros/compat_functions/mtlb_grid.sci, line: 53
+#, c-format
+msgid "%s: No minor grid in Scilab.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_grid.sci, line: 44
+# File: modules/m2sci/macros/compat_functions/mtlb_grid.sci, line: 60
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_is.sci, line: 19
+# File: modules/m2sci/macros/compat_functions/mtlb_is.sci, line: 35
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_isa.sci, line: 48
+#, c-format
+msgid "%s: Unhandled class '%s'.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_legendre.sci, line: 17
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_max.sci, line: 68
+# File: modules/m2sci/macros/compat_functions/mtlb_min.sci, line: 70
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_plot.sci, line: 131
+#, c-format
+msgid "%s: '%s' option ignored.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_plot.sci, line: 200
+#, c-format
+msgid "%s: Unknown line style found in '%s' -> set to 6.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_plot.sci, line: 218
+#, c-format
+msgid "%s: Unknown color found in '%s' -> set to black.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_qr.sci, line: 17
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_qr.sci, line: 22
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_qz.sci, line: 23
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_realmax.sci, line: 25
+# File: modules/m2sci/macros/compat_functions/mtlb_realmin.sci, line: 25
+# File: modules/m2sci/macros/compat_functions/mtlb_var.sci, line: 33
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_sortrows.sci, line: 29
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_sprintf.sci, line: 41
+#, c-format
+msgid "%s: This particular case is not implemented.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_sscanf.sci, line: 14
+#, c-format
+msgid "%s: '%s' not implemented.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_sscanf.sci, line: 27
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_type.sci, line: 33
+#, c-format
+msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_var.sci, line: 46
+#, c-format
+msgid "%s: The normalization m - 1 factor is zero.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/compat_functions/mtlb_var.sci, line: 53
+#, c-format
+msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr ""
 
 #
@@ -380,46 +799,46 @@ msgid " -- File %s contains more than one function -- "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/lst_funcall.sci, line: 97
+# File: modules/m2sci/macros/kernel/lst_funcall.sci, line: 102
 # File: modules/m2sci/macros/kernel/multi_fun_file.sci, line: 101
 #, c-format
 msgid " -- Each function converted separately: %s -- "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/lst_funcall.sci, line: 98
+# File: modules/m2sci/macros/kernel/lst_funcall.sci, line: 103
 # File: modules/m2sci/macros/kernel/multi_fun_file.sci, line: 102
 #, c-format
 msgid " -- Temporary files put in: %s -- "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 112
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 114
 msgid "// Number of arguments in function call"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 116
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 118
 msgid "// Display mode"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 118
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 120
 msgid "// Display warning for floating point exception"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 143
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 145
 msgid "// Output variables initialisation (not found in input variables)"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 149
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 151
 msgid "TESTING M2SCI: creating varslist file..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 192
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 194
 #, c-format
 msgid ""
 "// Generated by M2SCI\n"
@@ -429,7 +848,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 199
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 201
 #, c-format
 msgid ""
 "// Copyright INRIA (Generated by M2SCI)\n"
@@ -439,18 +858,18 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 267
 # File: modules/m2sci/macros/kernel/m2sci.sci, line: 269
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 271
 msgid "//  dims(i,:) is the ith output argument dimensions vector"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 271
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 273
 msgid "//  prop(i) is the ith output argument property"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci.sci, line: 288
+# File: modules/m2sci/macros/kernel/m2sci.sci, line: 290
 msgid "// Inference for varargout"
 msgstr ""
 
@@ -462,7 +881,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci_syntax.sci, line: 217
+# File: modules/m2sci/macros/kernel/m2sci_syntax.sci, line: 221
 msgid "m2sciassume is obsolete, used m2scideclare instead."
 msgstr ""
 
@@ -599,11 +1018,6 @@ msgid "File"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 34
-msgid "Close"
-msgstr ""
-
-#
 # File: modules/m2sci/macros/m2sci_gui.sci, line: 36
 msgid "?"
 msgstr ""
@@ -736,121 +1150,96 @@ msgid "Convert a whole directory"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/matfile2sci.sci, line: 24
-#, c-format
-msgid "%s: %s module is not installed.\n"
-msgstr ""
-
-#
-# File: modules/m2sci/macros/matfile2sci.sci, line: 28
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/m2sci/macros/matfile2sci.sci, line: 38
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-
-#
-# File: modules/m2sci/macros/matfile2sci.sci, line: 42
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-
-#
-# File: modules/m2sci/macros/matfile2sci.sci, line: 60
-# File: modules/m2sci/macros/matfile2sci.sci, line: 64
-#, c-format
-msgid "%s: Could not read variables in %s"
-msgstr ""
-
-#
-# File: modules/m2sci/macros/mfile2sci.sci, line: 69
+# File: modules/m2sci/macros/mfile2sci.sci, line: 72
 msgid "OFF"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 70
-# File: modules/m2sci/macros/mfile2sci.sci, line: 71
+# File: modules/m2sci/macros/mfile2sci.sci, line: 73
+# File: modules/m2sci/macros/mfile2sci.sci, line: 74
 msgid "NO"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 72
-# File: modules/m2sci/macros/mfile2sci.sci, line: 74
+# File: modules/m2sci/macros/mfile2sci.sci, line: 75
+# File: modules/m2sci/macros/mfile2sci.sci, line: 77
 msgid "YES"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 73
+# File: modules/m2sci/macros/mfile2sci.sci, line: 76
 msgid "ON"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 125
+# File: modules/m2sci/macros/mfile2sci.sci, line: 133
 msgid "****** Beginning of mfile2sci() session ******"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 126
+# File: modules/m2sci/macros/mfile2sci.sci, line: 134
 msgid "File to convert:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 127
+# File: modules/m2sci/macros/mfile2sci.sci, line: 135
 msgid "Result file path:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 128
+# File: modules/m2sci/macros/mfile2sci.sci, line: 136
 msgid "Recursive mode:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 129
+# File: modules/m2sci/macros/mfile2sci.sci, line: 137
 msgid "Only double values used in M-file:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 130
+# File: modules/m2sci/macros/mfile2sci.sci, line: 138
 msgid "Verbose mode:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 131
+# File: modules/m2sci/macros/mfile2sci.sci, line: 139
 msgid "Generate formatted code:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 135
+# File: modules/m2sci/macros/mfile2sci.sci, line: 143
 msgid "M-file reading..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 137
+# File: modules/m2sci/macros/mfile2sci.sci, line: 145
 msgid "M-file reading: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 143
+# File: modules/m2sci/macros/mfile2sci.sci, line: 151
 #, c-format
 msgid "File %s is an empty file.\n"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 149
+# File: modules/m2sci/macros/mfile2sci.sci, line: 157
 msgid "Syntax modification..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 157
+# File: modules/m2sci/macros/mfile2sci.sci, line: 166
 msgid "Syntax modification: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 212
+# File: modules/m2sci/macros/mfile2sci.sci, line: 213
+#, c-format
+msgid "%s: %s does not exist or is not the macro name.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/mfile2sci.sci, line: 219
 #, c-format
 msgid ""
 "Warning: file %s defines function %s instead of %s\n"
@@ -858,56 +1247,56 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 225
+# File: modules/m2sci/macros/mfile2sci.sci, line: 245
 msgid "Macro to tree conversion..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 251
-# File: modules/m2sci/macros/mfile2sci.sci, line: 253
-# File: modules/m2sci/macros/mfile2sci.sci, line: 256
-# File: modules/m2sci/macros/mfile2sci.sci, line: 259
-# File: modules/m2sci/macros/mfile2sci.sci, line: 300
+# File: modules/m2sci/macros/mfile2sci.sci, line: 271
+# File: modules/m2sci/macros/mfile2sci.sci, line: 274
+# File: modules/m2sci/macros/mfile2sci.sci, line: 277
+# File: modules/m2sci/macros/mfile2sci.sci, line: 281
+# File: modules/m2sci/macros/mfile2sci.sci, line: 322
 msgid "resumelogfile.dat"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 258
+# File: modules/m2sci/macros/mfile2sci.sci, line: 279
 msgid "resume"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 286
+# File: modules/m2sci/macros/mfile2sci.sci, line: 308
 #, c-format
 msgid "****** %s: Functions of mfile2sci() session ******"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 288
+# File: modules/m2sci/macros/mfile2sci.sci, line: 310
 #, c-format
 msgid ""
 "%d Matlab Function(s) not yet converted, original calling sequence used:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 291
+# File: modules/m2sci/macros/mfile2sci.sci, line: 313
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 294
+# File: modules/m2sci/macros/mfile2sci.sci, line: 316
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 303
+# File: modules/m2sci/macros/mfile2sci.sci, line: 325
 msgid "Macro to tree conversion: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 338
+# File: modules/m2sci/macros/mfile2sci.sci, line: 360
 msgid ""
 "Translation may be improved: see the //! comments and for all mtlb_<funname> "
 "function call\n"
@@ -916,17 +1305,17 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 341
+# File: modules/m2sci/macros/mfile2sci.sci, line: 363
 msgid "Translation may be wrong (see the //!! comments)."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 347
+# File: modules/m2sci/macros/mfile2sci.sci, line: 369
 msgid "File contains no instruction, no translation made..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 351
+# File: modules/m2sci/macros/mfile2sci.sci, line: 373
 msgid "****** End of mfile2sci() session ******"
 msgstr ""
 
@@ -987,7 +1376,6 @@ msgstr ""
 # File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 22
 # File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
 # File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
@@ -1006,12 +1394,14 @@ msgstr ""
 # File: modules/m2sci/macros/sci_files/sci_find.sci, line: 61
 # File: modules/m2sci/macros/sci_files/sci_int16.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_int32.sci, line: 45
+# File: modules/m2sci/macros/sci_files/sci_int64.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_int8.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_log2.sci, line: 33
 # File: modules/m2sci/macros/sci_files/sci_pow2.sci, line: 38
 # File: modules/m2sci/macros/sci_files/sci_pow2.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_uint16.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_uint32.sci, line: 45
+# File: modules/m2sci/macros/sci_files/sci_uint64.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_uint8.sci, line: 45
 msgid "is Real."
 msgstr ""
@@ -1019,11 +1409,17 @@ msgstr ""
 #
 # File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
 # File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
 "   real part of output of %s will be the opposite of Matlab one."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 23
+#, c-format
+msgid ""
+"If %s < -1, complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
 
 #
@@ -1216,12 +1612,16 @@ msgstr ""
 # File: modules/m2sci/macros/sci_files/sci_int16.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_int32.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_int32.sci, line: 44
+# File: modules/m2sci/macros/sci_files/sci_int64.sci, line: 36
+# File: modules/m2sci/macros/sci_files/sci_int64.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_int8.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_int8.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_uint16.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_uint16.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_uint32.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_uint32.sci, line: 44
+# File: modules/m2sci/macros/sci_files/sci_uint64.sci, line: 36
+# File: modules/m2sci/macros/sci_files/sci_uint64.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_uint8.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_uint8.sci, line: 44
 #, c-format
@@ -1354,10 +1754,10 @@ msgid "%s: Output value set to 'on'."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/translatepaths.sci, line: 56
-# File: modules/m2sci/macros/translatepaths.sci, line: 59
-# File: modules/m2sci/macros/translatepaths.sci, line: 62
-# File: modules/m2sci/macros/translatepaths.sci, line: 66
-# File: modules/m2sci/macros/translatepaths.sci, line: 191
+# File: modules/m2sci/macros/translatepaths.sci, line: 51
+# File: modules/m2sci/macros/translatepaths.sci, line: 55
+# File: modules/m2sci/macros/translatepaths.sci, line: 58
+# File: modules/m2sci/macros/translatepaths.sci, line: 61
+# File: modules/m2sci/macros/translatepaths.sci, line: 179
 msgid "unitfile.dat"
 msgstr ""

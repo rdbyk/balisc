@@ -559,9 +559,9 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d.\n"
 msgstr "%s: помилкова розмірність параметра №%d.\n"
 
-#, c-format
-msgid "%s: Uncontrollable system.\n"
-msgstr "%s: некерована система.\n"
+#, fuzzy
+msgid "compatible dimensions"
+msgstr "%s: несумісні діапазони часу\n"
 
 #, fuzzy, c-format
 msgid "%s: An error occurred in '%s'.\n"
@@ -1091,7 +1091,8 @@ msgstr "Вісь дійсних значень"
 msgid "Imaginary axis"
 msgstr "Вісь уявних значень"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "нулі розімкненої системи"
 
 msgid "open loop poles"
@@ -1152,6 +1153,14 @@ msgstr "Гц"
 msgid "dB"
 msgstr "дБ"
 
+#, fuzzy
+msgid "rad/s"
+msgstr "рад/с"
+
+#, fuzzy
+msgid " dB"
+msgstr "дБ"
+
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1181,6 +1190,11 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: нескінченне підсилення при "
 "нульовій частоті.\n"
+
+#
+# File: modules/cacsd/macros/freson.sci, line: 78
+msgid "freson: Some maxima frequencies may be undetected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
@@ -1641,6 +1655,16 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано масив "
 "дійсних значень з плаваючою крапкою\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+"%s: параметр №%d: мало бути вказано десяткове або комплексне число або "
+"числа.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s: параметр №%d: мало бути %s.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
@@ -1919,6 +1943,9 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути представлення у форматі "
 "моделі з нулями, полюсами і масштабним коефіцієнтом передавальної функції.\n"
+
+#~ msgid "%s: Uncontrollable system.\n"
+#~ msgstr "%s: некерована система.\n"
 
 #~ msgid "%s: The order should be at most %d.\n"
 #~ msgstr "%s: порядок не повинен перевищувати %d.\n"

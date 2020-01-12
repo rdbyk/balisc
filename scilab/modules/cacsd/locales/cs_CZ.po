@@ -485,8 +485,9 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Uncontrollable system.\n"
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 107
+msgid "compatible dimensions"
 msgstr ""
 
 #
@@ -969,7 +970,8 @@ msgstr "Reálná osa"
 msgid "Imaginary axis"
 msgstr "Pomyslná osa"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "otevřené smyčky nul"
 
 msgid "open loop poles"
@@ -1021,6 +1023,14 @@ msgstr "Hz"
 msgid "dB"
 msgstr "dB"
 
+#, fuzzy
+msgid "rad/s"
+msgstr "rad/sek"
+
+#, fuzzy
+msgid " dB"
+msgstr "dB"
+
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1048,6 +1058,11 @@ msgid ""
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Nekonečné zesílení při nulové "
 "frekvenci.\n"
+
+#
+# File: modules/cacsd/macros/freson.sci, line: 78
+msgid "freson: Some maxima frequencies may be undetected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
@@ -1453,6 +1468,18 @@ msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné desetinné pole\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván řádkový vektor s "
+"délkou>%d.\n"
+
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 86
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"

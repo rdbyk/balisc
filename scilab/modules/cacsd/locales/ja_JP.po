@@ -520,9 +520,9 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d.\n"
 msgstr "%s: 引数 #%d の大きさが間違っています.\n"
 
-#, c-format
-msgid "%s: Uncontrollable system.\n"
-msgstr "%s: 不可制御システム.\n"
+#, fuzzy
+msgid "compatible dimensions"
+msgstr "%s: 時間領域に互換性がありません\n"
 
 #, fuzzy, c-format
 msgid "%s: An error occurred in '%s'.\n"
@@ -1079,7 +1079,8 @@ msgstr "実軸"
 msgid "Imaginary axis"
 msgstr "虚軸"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "開ループのゼロ"
 
 msgid "open loop poles"
@@ -1137,6 +1138,14 @@ msgstr "Hzhelp hall"
 msgid "dB"
 msgstr "dB"
 
+#, fuzzy
+msgid "rad/s"
+msgstr "rad/sec"
+
+#, fuzzy
+msgid " dB"
+msgstr "dB"
+
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1166,6 +1175,11 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 周波数0でゲインが無限大です.\n"
+
+#
+# File: modules/cacsd/macros/freson.sci, line: 78
+msgid "freson: Some maxima frequencies may be undetected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
@@ -1610,6 +1624,18 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています : 実数の浮動小数点数の配列を指定してく"
 "ださい\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません:  長さ>%d の行ベクトルを指定して"
+"ください.\n"
+
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 86
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 最大でも%d の引数としてください.\n"
@@ -1882,6 +1908,9 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: ゼロ-極-ゲイン表現で指定してくださ"
 "い.\n"
+
+#~ msgid "%s: Uncontrollable system.\n"
+#~ msgstr "%s: 不可制御システム.\n"
 
 #~ msgid "%s: The order should be at most %d.\n"
 #~ msgstr "%s:  order は%d 以下にしてください.\n"
