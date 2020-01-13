@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,6 +29,7 @@
 #include "deserializervisitor.hxx"
 #include "localization.hxx"
 #include "user.hxx"
+#include "types_tools.hxx"
 
 #include "alltypes.hxx"
 #include "errmsgs.h"
@@ -797,6 +798,31 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         }
 
         iterFields++;
+
+        if (pFirstField->getArgs() && (pFirstField->isCellExp() || fields.size() > 1))
+        {
+            if (pFirstField->getArgs()->size() == 0  && fields.size() > 1)
+            {
+                // a{} or a() is equivalent to a{1} or a(1)
+                types::typed_list* args = new types::typed_list();
+                args->push_back(new types::Double(1.0));
+                pFirstField->setArgs(args);
+            }
+            else
+            {
+                // a{x} or a(x)
+                int* piUselessArgsDimsArray  = new int[pFirstField->getArgs()->size()];
+                types::typed_list* pUselessNewArgs = new types::typed_list();
+                int iSeqCount = types::checkIndexesArguments(NULL, pFirstField->getArgs(), pUselessNewArgs, piUselessArgsDimsArray, NULL);
+                delete[] piUselessArgsDimsArray;
+                delete pUselessNewArgs;
+                if (iSeqCount <= 0)
+                {
+                    // a{[]} or a([])
+                    throw ast::InternalError(12, _pExp->getLocation());
+                }
+            }
+        }
 
         workFields.push_back(new ExpHistory(NULL,
             pFirstField->getExp(),
