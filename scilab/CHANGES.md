@@ -115,6 +115,7 @@ Feature changes and additions
   - When there is no solution, [] is returned.
   - When there is an infinite number of solutions, the err flag has a specific value.
   - The output size gets the input's one.
+* `editvar()` GUI support copy-paste of strings removing quotes.
 
 
 Help pages:
