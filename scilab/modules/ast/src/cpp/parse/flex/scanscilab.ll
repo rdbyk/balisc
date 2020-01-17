@@ -1108,6 +1108,7 @@ assign			"="
     if (comment_level == 0) {
       ParserSingleInstance::popControlStatus();
       yy_pop_state();
+      delete yylval.comment;
       //return scan_throw(BLOCKCOMMENT);
     }
   }

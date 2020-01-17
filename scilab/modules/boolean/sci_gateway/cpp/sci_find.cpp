@@ -40,6 +40,7 @@ static void getCoordFromIndex(int _iIndex, int* _piIndexes, int* _piDims, int _i
 Function::ReturnValue sci_find(typed_list &in, int _iRetCount, typed_list &out)
 {
     int iMax = -1;
+    int iRetCount = std::max(1, _iRetCount);
 
     if (in.size() == 0 || in.size() > 2)
     {
@@ -70,7 +71,7 @@ Function::ReturnValue sci_find(typed_list &in, int _iRetCount, typed_list &out)
     if (in[0]->isGenericType() == false)
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        return Overload::call(wstFuncName, in, iRetCount, out);
     }
 
     GenericType* pGT = in[0]->getAs<GenericType>();
@@ -166,19 +167,19 @@ Function::ReturnValue sci_find(typed_list &in, int _iRetCount, typed_list &out)
         delete[] piIndex;
 
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        return Overload::call(wstFuncName, in, iRetCount, out);
     }
 
     if (iValues == 0)
     {
-        for (int i = 0 ; i < _iRetCount ; i++)
+        for (int i = 0 ; i < iRetCount ; i++)
         {
             out.push_back(Double::Empty());
         }
     }
     else
     {
-        if (_iRetCount == 1)
+        if (iRetCount <= 1)
         {
             Double* dbl = new Double(1, iValues);
             double* p = dbl->get();
@@ -196,8 +197,8 @@ Function::ReturnValue sci_find(typed_list &in, int _iRetCount, typed_list &out)
         int* piRefDims = pGT->getDimsArray();
         int iRefDims = pGT->getDims();
 
-        int* piDims = new int[_iRetCount];
-        int iDims = _iRetCount;
+        int* piDims = new int[iRetCount];
+        int iDims = iRetCount;
 
         if (iDims == iRefDims)
         {
@@ -240,11 +241,11 @@ Function::ReturnValue sci_find(typed_list &in, int _iRetCount, typed_list &out)
         int** piCoord = new int*[iValues];
         for (int i = 0 ; i < iValues ; i++)
         {
-            piCoord[i] = new int[_iRetCount];
+            piCoord[i] = new int[iRetCount];
             getCoordFromIndex(piIndex[i], piCoord[i], piDims, iDims);
         }
 
-        for (int i = 0 ; i < _iRetCount ; i++)
+        for (int i = 0 ; i < iRetCount ; i++)
         {
             Double* pOut = new Double(1, iValues);
             double* pd = pOut->get();

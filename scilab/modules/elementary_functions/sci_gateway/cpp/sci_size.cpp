@@ -116,7 +116,7 @@ Function::ReturnValue sci_size(typed_list &in, int _iRetCount, typed_list &out)
             int iDims = in[0]->getAs<GenericType>()->getDims();
             int* piDims = in[0]->getAs<GenericType>()->getDimsArray();
 
-            if (_iRetCount == 1)
+            if (_iRetCount <= 1)
             {
                 int iRowsOut = 1;
                 int iColsOut = 0;

@@ -47,7 +47,7 @@ int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 0, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbInputArgument(pvApiCtx) == 0)
     {

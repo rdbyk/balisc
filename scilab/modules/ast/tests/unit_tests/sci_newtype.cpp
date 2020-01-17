@@ -17,7 +17,7 @@
 #include "bool.hxx"
 #include "newtype.hxx"
 
-extern "C" 
+extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_newtype(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(81, 1);
         return types::Function::Error;

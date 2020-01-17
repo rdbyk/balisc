@@ -63,8 +63,23 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     types::typed_list in;
     types::optional_list opt;
 
+    int iInvokeNbOut = 0;
+    try
+    {
+        // getInvokeNbOut will parse the file in case of macrofile
+        // this could throw an exception
+        iInvokeNbOut = pIT->getInvokeNbOut();
+    }
+    catch (const InternalError& ie)
+    {
+        clearResult();
+        cleanIn(inTmp, outTmp);
+        CoverageInstance::stopChrono((void*)&e);
+        throw ie;
+    }
+
     // manage case [a,b]=foo() where foo is defined as a=foo()
-    if (pIT->getInvokeNbOut() != -1 && pIT->getInvokeNbOut() < iRetCount)
+    if (iInvokeNbOut != -1 && iInvokeNbOut < iRetCount)
     {
         clearResult();
         cleanIn(inTmp, outTmp);
@@ -151,7 +166,16 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
 
         setExpectedSize(iSaveExpectedSize);
-        iRetCount = std::max(1, iRetCount);
+
+        // override iRetCount only in relevant cases
+        if (pIT->isCallable() && e.getParent()->isSeqExp())
+        {
+            iRetCount = std::max(0, iRetCount);
+        }
+        else
+        {
+            iRetCount = std::max(1, iRetCount);
+        }
 
         for (int i = 0; i < iLoopSize; i++)
         {

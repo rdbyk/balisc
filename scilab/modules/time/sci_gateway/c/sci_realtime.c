@@ -30,7 +30,7 @@ int sci_realtimeinit(char *fname, void* pvApiCtx)
     double zer = 0.0;
 
     CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     /*  checking variable scale */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
@@ -84,7 +84,7 @@ int sci_realtime(char *fname, void* pvApiCtx)
     double * pDblReal = NULL;
 
     CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     /*  checking variable t */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
