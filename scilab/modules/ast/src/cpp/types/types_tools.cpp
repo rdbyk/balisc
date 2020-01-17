@@ -836,6 +836,10 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 //checks if size < size(int)
                 if (pCurrentArg->get(j) >= INT_MAX)
                 {
+                    if(_pRef)
+                    {
+                        _pRef->killMe(); // clean temporary clone if needed
+                    }
                     throw ast::InternalError(34);
                 }
 
@@ -857,7 +861,10 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             delete[] _piMaxDim;
             delete[] _piCountDim;
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
-
+            if(_pRef)
+            {
+                _pRef->killMe(); // clean temporary clone if needed
+            }
             throw ast::InternalError(2);
         }
 

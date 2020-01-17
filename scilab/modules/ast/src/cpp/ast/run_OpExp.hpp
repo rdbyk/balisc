@@ -298,6 +298,10 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         if (pResult == NULL)
         {
             e.getRight().accept(*this);
+            if (pITR)
+            {
+                pITR->killMe();
+            }
             pITR = getResult();
 
             if (pITR == nullptr)

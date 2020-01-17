@@ -539,6 +539,12 @@ int DotPowerSparseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
             std::complex<double> cplx(ppDblGet->getFirst(), ppDblGet->getImgFirst());
             pSpTemp->set(iPositVal[i], cplx, false);
         }
+
+        if (ppDblGet)
+        {
+            ppDblGet->killMe();
+            ppDblGet = NULL;
+        }
     }
 
     delete[] Col;
