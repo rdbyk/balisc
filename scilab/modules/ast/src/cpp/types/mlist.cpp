@@ -26,6 +26,12 @@
 #include "inspector.hxx"
 #endif
 
+extern "C"
+{
+#include "sci_malloc.h"
+#include "sciprint.h"
+}
+
 namespace types
 {
 
@@ -37,16 +43,42 @@ MList::~MList()
     IncreaseRef();
     in.push_back(this);
 
-    try
+    std::wstring stFunc = Overload::buildOverloadName(L"clear", in, 0);
+    InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(stFunc));
+
+    if (pIT && pIT->isCallable())
     {
-        Overload::generateNameAndCall(L"clear", in, 0, out);
-    }
-    catch (ast::InternalError& /*se*/)
-    {
-        // avoid error message about undefined overload %type_clear
-        ConfigVariable::resetError();
-        // reset where error filled by generateNameAndCall
-        ConfigVariable::resetWhereError();
+        bool bError = false;
+
+        try
+        {
+            if (Overload::call(stFunc, in, 0, out) == Callable::Error)
+            {
+                bError = true;
+            }
+        }
+        catch (const ast::InternalError& ie)
+        {
+            bError = true;
+        }
+        catch (const ast::RecursionException& re)
+        {
+            bError = true;
+        }
+
+        if (bError)
+        {
+            // FIXME: provide more detailed info about error
+            if (ConfigVariable::getWarningMode())
+            {
+                char* pstFuncName = wide_string_to_UTF8(stFunc.c_str());
+                sciprint("WARNING: error in %s.\n", pstFuncName);
+                FREE(pstFuncName);
+            }
+
+            ConfigVariable::resetError();
+            ConfigVariable::resetWhereError();
+        }
     }
 
     DecreaseRef();
