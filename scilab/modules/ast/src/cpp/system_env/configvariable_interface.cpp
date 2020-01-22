@@ -210,3 +210,9 @@ int setRecursionLimit(int val)
 {
     return ConfigVariable::setRecursionLimit(val);
 }
+
+int getWebMode()
+{
+    return ConfigVariable::getWebMode() ? 1 : 0;
+}
+

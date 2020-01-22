@@ -72,4 +72,6 @@ void setExecutionBreak();
 void resetExecutionBreak();
 
 int setRecursionLimit(int);
+
+int getWebMode();
 #endif /* !__CONFIGVARIABLE_INTERFACE_H__ */

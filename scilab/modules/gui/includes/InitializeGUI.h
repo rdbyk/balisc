@@ -18,6 +18,6 @@
 
 #include "BOOL.h"
 
-BOOL InitializeGUI(BOOL);
+BOOL InitializeGUI();
 
 #endif /* __INTIALIZEGUI_H__ */
