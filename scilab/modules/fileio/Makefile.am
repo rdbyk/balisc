@@ -177,4 +177,7 @@ libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_includedir=$(pkgincludedir)
 libscifileio_la_include_HEADERS = includes/getFullFilename.h
 
+#### fileio : CSV import GUI library
+MACROSDIRSEXT= macros/importgui
+
 include $(top_srcdir)/Makefile.incl.am
