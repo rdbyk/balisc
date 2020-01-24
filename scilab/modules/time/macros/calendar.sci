@@ -12,21 +12,9 @@
 // along with this program.
 //------------------------------------------------------------------------
 
-function listcal = calendar(varargin)
-    
+function varargout = calendar(varargin)
+
     c = [0,0,0];
-    
-    // Looking for the "display" keyword
-    display = %F
-    if nargin > 0 then
-        v = varargin($)
-        if type(v)==10 & v(1)==part("display",1:length(v))
-            display = %T
-            varargin($) = null()
-            nargin = nargin-1
-            break
-        end
-    end
 
     select nargin
     case 0
@@ -45,18 +33,15 @@ function listcal = calendar(varargin)
         end
         if (M < 1) | (M > 12) then
             msg = gettext("%s: Argument #%d: Must be in the interval [%d, %d].\n")
-            error(msprintf(msg, "calendar", 1, 12));
+            error(msprintf(msg, "calendar", 2, 1, 12));
         end
         c = [Y, M, 1];
         break
     else
         msg = gettext("%s: Wrong number of input arguments: %d or %d expected.\n")
-        if display
-            error(msprintf(msg, "calendar", 1, 3));
-        else
-            error(msprintf(msg, "calendar", 0, 2));
-        end
+        error(msprintf(msg, "calendar", 0, 2));
     end
+
 
     months = [gettext("Jan"); ..
     gettext("Feb"); ..
@@ -77,17 +62,16 @@ function listcal = calendar(varargin)
     //!\\ Glyphs for ja, zh, .. are not monospaced, even in the Monospaced font
     // .po translations have been tuned and tested for alignments with Monospaced 12.
     Title = sprintf("%s %d", month, c(1))
-    if display then
+    if ~nargout then
         k = vectorfind(cal, zeros(1,7), "r")
         cal(k,:) = []
         t = matrix(msprintf("%d\n",cal(:)), -1, 7)
         t(t=="0") = ""
         t = strcat(justify(t, "r"), "   ", "c");
         Title = blanks((length(t(2))-length(Title))/2) + Title
-        t = strsubst(["" ; Title ; dayNames ; t], " ", ascii(160))  // non-breakable spaces
+        t = strsubst(["" ; Title ; dayNames ; t], " ", ascii([194 160]))  // non-breakable spaces
         mprintf(" %s\n", t)
-        listcal = [];
     else
-        listcal = list(Title, dayNames, cal);
+        varargout = list(list(Title, dayNames, cal));
     end
 endfunction
