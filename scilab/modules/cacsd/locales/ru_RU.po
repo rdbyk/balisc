@@ -530,9 +530,9 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d.\n"
 msgstr "%s: Неверный размер аргумента №%d.\n"
 
-#, c-format
-msgid "%s: Uncontrollable system.\n"
-msgstr "%s: Неуправляемая система.\n"
+#, fuzzy
+msgid "compatible dimensions"
+msgstr "%s: несовместимые временные области\n"
 
 #, fuzzy, c-format
 msgid "%s: An error occurred in '%s'.\n"
@@ -1047,7 +1047,8 @@ msgstr "Вещественная ось"
 msgid "Imaginary axis"
 msgstr "Мнимая ось"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "нули разомкнутой системы"
 
 msgid "open loop poles"
@@ -1103,6 +1104,14 @@ msgstr "Гц"
 msgid "dB"
 msgstr "дБ"
 
+#, fuzzy
+msgid "rad/s"
+msgstr "рад/с"
+
+#, fuzzy
+msgid " dB"
+msgstr "дБ"
+
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1132,6 +1141,11 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: бесконечное усиление на "
 "нулевой частоте.\n"
+
+#
+# File: modules/cacsd/macros/freson.sci, line: 78
+msgid "freson: Some maxima frequencies may be undetected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
@@ -1568,6 +1582,15 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался массив действительных "
 "чисел с плавающей точкой\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+"%s: Аргумент №%d: ожидалось десятичное или комплексное число (числа).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s: Аргумент №%d: ожидался %s.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось не более %d.\n"
@@ -1838,6 +1861,9 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось представление нулей, "
 "полюсов и коэффициентов усиления.\n"
+
+#~ msgid "%s: Uncontrollable system.\n"
+#~ msgstr "%s: Неуправляемая система.\n"
 
 #~ msgid "%s: The order should be at most %d.\n"
 #~ msgstr "%s: Порядок должен быть не более %d.\n"

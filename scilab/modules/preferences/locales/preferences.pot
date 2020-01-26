@@ -127,69 +127,50 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 17
-# File: modules/preferences/macros/setPreferencesValue.sci, line: 23
+#
+# File: modules/preferences/macros/setPreferencesValue.sci, line: 24
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 22
-# File: modules/preferences/macros/setPreferencesValue.sci, line: 27
+# File: modules/preferences/macros/setPreferencesValue.sci, line: 28
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 27
-# File: modules/preferences/macros/setPreferencesValue.sci, line: 31
+# File: modules/preferences/macros/setPreferencesValue.sci, line: 32
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 41
-#, c-format
-msgid "%s: Invalid %s file.\n"
-msgstr ""
-
-#
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 45
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr ""
-
-#
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 49
-# File: modules/preferences/macros/setPreferencesValue.sci, line: 45
+# File: modules/preferences/macros/setPreferencesValue.sci, line: 46
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
 msgstr ""
 
 #
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 59
-# File: modules/preferences/macros/setPreferencesValue.sci, line: 54
+# File: modules/preferences/macros/setPreferencesValue.sci, line: 55
 #, c-format
 msgid "%s: Invalid XPath request.\n"
 msgstr ""
 
 #
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 67
-# File: modules/preferences/macros/setPreferencesValue.sci, line: 61
+# File: modules/preferences/macros/setPreferencesValue.sci, line: 62
 #, c-format
 msgid "%s: Invalid XPath request."
 msgstr ""
 
 #
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 78
-# File: modules/preferences/macros/setPreferencesValue.sci, line: 69
+# File: modules/preferences/macros/setPreferencesValue.sci, line: 70
 #, c-format
 msgid "%s: Target node is not a XML_ELEMENT_NODE."
 msgstr ""
 
 #
-# File: modules/preferences/macros/getPreferencesValue.sci, line: 92
-# File: modules/preferences/macros/setPreferencesValue.sci, line: 81
+# File: modules/preferences/macros/setPreferencesValue.sci, line: 82
 #, c-format
 msgid "%s: Invalid attribute name: %s."
 msgstr ""

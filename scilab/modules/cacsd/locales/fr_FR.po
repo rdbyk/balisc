@@ -552,9 +552,9 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d.\n"
 msgstr "%s : Dimension erronée pour l'argument n°%d.\n"
 
-#, c-format
-msgid "%s: Uncontrollable system.\n"
-msgstr "%s : Système incontrôlable.\n"
+#, fuzzy
+msgid "compatible dimensions"
+msgstr "%s : Domaines temporels incompatibles.\n"
 
 #, fuzzy, c-format
 msgid "%s: An error occurred in '%s'.\n"
@@ -1081,7 +1081,8 @@ msgstr "Axe réel"
 msgid "Imaginary axis"
 msgstr "Axe des imaginaires"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "Zéro de la boucle ouverte"
 
 msgid "open loop poles"
@@ -1136,6 +1137,14 @@ msgstr "Hz"
 msgid "dB"
 msgstr "dB"
 
+#, fuzzy
+msgid "rad/s"
+msgstr "rad/sec"
+
+#, fuzzy
+msgid " dB"
+msgstr "dB"
+
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1165,6 +1174,11 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Gain infini à la fréquence "
 "zéro.\n"
+
+#
+# File: modules/cacsd/macros/freson.sci, line: 78
+msgid "freson: Some maxima frequencies may be undetected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
@@ -1618,6 +1632,14 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une liste de réels attendue\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr "%s : Argument #%d : nombre(s) réel(s) ou complexe(s) attendu(s).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s : Argument #%d : %s attendu.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : au plus %d attendu.\n"
@@ -1890,6 +1912,9 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée #%d : représentation \"pôle de gain "
 "nul\" attendue.\n"
+
+#~ msgid "%s: Uncontrollable system.\n"
+#~ msgstr "%s : Système incontrôlable.\n"
 
 #~ msgid "%s: The order should be at most %d.\n"
 #~ msgstr "%s : L'ordre doit être au plus %d.\n"

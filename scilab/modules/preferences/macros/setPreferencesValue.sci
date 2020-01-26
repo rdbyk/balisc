@@ -19,6 +19,8 @@
 
 function setPreferencesValue(xpath, kv, doc)
 
+    warnobsolete("xmlSetValues()", "6.1.x")
+
     if (nargin ~= 2 & nargin ~= 3) then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "setPreferencesValue", 2, 3));
     end

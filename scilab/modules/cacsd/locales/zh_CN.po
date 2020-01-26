@@ -465,8 +465,9 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Uncontrollable system.\n"
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 107
+msgid "compatible dimensions"
 msgstr ""
 
 #
@@ -910,7 +911,8 @@ msgstr "实轴"
 msgid "Imaginary axis"
 msgstr "虚轴"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "开环零"
 
 msgid "open loop poles"
@@ -962,6 +964,17 @@ msgstr ""
 msgid "dB"
 msgstr ""
 
+#
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 20
+# File: modules/cacsd/macros/formatBodePhaseTip.sci, line: 20
+msgid "rad/s"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 26
+msgid " dB"
+msgstr ""
+
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -984,6 +997,11 @@ msgstr "%s：输入参数#%d的大小错误：应该为单输入单输出系统�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/freson.sci, line: 78
+msgid "freson: Some maxima frequencies may be undetected."
 msgstr ""
 
 #, c-format
@@ -1372,6 +1390,16 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个多项式。\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为长度大于%d的一个行向量。\n"
+
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 86
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #, c-format

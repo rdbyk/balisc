@@ -12,6 +12,11 @@
 
 function [S, k] = %hm_gsort(A, optsort, directionsort)
 
+    AisBool = typeof(A)=="boolean"
+    if AisBool
+        A = iconvert(A,1) // int8
+    end
+
     // arguments by default in gsort
     select nargin
     case 1
@@ -90,6 +95,10 @@ function [S, k] = %hm_gsort(A, optsort, directionsort)
             S = matrix(S, sizes);
             k = matrix(k, sizesInd);
         end
+    end
+
+    if AisBool then
+        S = S==int8(1)
     end
 
 endfunction

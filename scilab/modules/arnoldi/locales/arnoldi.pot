@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-06-18 10:21+0100\n"
+"Revision-Date: 2020-01-24 16:13+0100\n"
 
 # File: modules/arnoldi/sci_gateway/c/sci_dnaupd.c, line: 99
 # File: modules/arnoldi/sci_gateway/c/sci_dnaupd.c, line: 117
@@ -327,14 +327,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 83
-# File: modules/arnoldi/macros/eigs.sci, line: 155
+# File: modules/arnoldi/macros/eigs.sci, line: 87
+# File: modules/arnoldi/macros/eigs.sci, line: 159
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A structure expected"
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 86
+# File: modules/arnoldi/macros/eigs.sci, line: 90
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
@@ -342,7 +342,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 158
+# File: modules/arnoldi/macros/eigs.sci, line: 162
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: If A is a function, use opts with tol, "
@@ -350,13 +350,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 276
+# File: modules/arnoldi/macros/eigs.sci, line: 280
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 282
+# File: modules/arnoldi/macros/eigs.sci, line: 286
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
@@ -364,23 +364,23 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 294
-# File: modules/arnoldi/macros/eigs.sci, line: 748
+# File: modules/arnoldi/macros/eigs.sci, line: 298
+# File: modules/arnoldi/macros/eigs.sci, line: 752
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 320
-# File: modules/arnoldi/macros/eigs.sci, line: 774
+# File: modules/arnoldi/macros/eigs.sci, line: 324
+# File: modules/arnoldi/macros/eigs.sci, line: 778
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 345
-# File: modules/arnoldi/macros/eigs.sci, line: 799
+# File: modules/arnoldi/macros/eigs.sci, line: 349
+# File: modules/arnoldi/macros/eigs.sci, line: 803
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
@@ -388,7 +388,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 391
+# File: modules/arnoldi/macros/eigs.sci, line: 395
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be complex for "
@@ -396,8 +396,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 417
-# File: modules/arnoldi/macros/eigs.sci, line: 873
+# File: modules/arnoldi/macros/eigs.sci, line: 421
+# File: modules/arnoldi/macros/eigs.sci, line: 877
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
@@ -405,8 +405,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 430
-# File: modules/arnoldi/macros/eigs.sci, line: 885
+# File: modules/arnoldi/macros/eigs.sci, line: 434
+# File: modules/arnoldi/macros/eigs.sci, line: 889
 #, c-format
 msgid ""
 "%s: Impossible to use the Cholesky factorization with complex sparse "
@@ -414,31 +414,31 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 501
-# File: modules/arnoldi/macros/eigs.sci, line: 506
-# File: modules/arnoldi/macros/eigs.sci, line: 512
-# File: modules/arnoldi/macros/eigs.sci, line: 583
-# File: modules/arnoldi/macros/eigs.sci, line: 600
-# File: modules/arnoldi/macros/eigs.sci, line: 636
-# File: modules/arnoldi/macros/eigs.sci, line: 943
-# File: modules/arnoldi/macros/eigs.sci, line: 948
-# File: modules/arnoldi/macros/eigs.sci, line: 954
-# File: modules/arnoldi/macros/eigs.sci, line: 1052
-# File: modules/arnoldi/macros/eigs.sci, line: 1069
-# File: modules/arnoldi/macros/eigs.sci, line: 1105
+# File: modules/arnoldi/macros/eigs.sci, line: 505
+# File: modules/arnoldi/macros/eigs.sci, line: 510
+# File: modules/arnoldi/macros/eigs.sci, line: 516
+# File: modules/arnoldi/macros/eigs.sci, line: 587
+# File: modules/arnoldi/macros/eigs.sci, line: 604
+# File: modules/arnoldi/macros/eigs.sci, line: 640
+# File: modules/arnoldi/macros/eigs.sci, line: 947
+# File: modules/arnoldi/macros/eigs.sci, line: 952
+# File: modules/arnoldi/macros/eigs.sci, line: 958
+# File: modules/arnoldi/macros/eigs.sci, line: 1056
+# File: modules/arnoldi/macros/eigs.sci, line: 1073
+# File: modules/arnoldi/macros/eigs.sci, line: 1109
 #, c-format
 msgid "%s: Error with %s: info = %d.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 670
 # File: modules/arnoldi/macros/eigs.sci, line: 674
+# File: modules/arnoldi/macros/eigs.sci, line: 678
 #, c-format
 msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 709
+# File: modules/arnoldi/macros/eigs.sci, line: 713
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
@@ -446,7 +446,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 713
+# File: modules/arnoldi/macros/eigs.sci, line: 717
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
@@ -454,19 +454,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 724
+# File: modules/arnoldi/macros/eigs.sci, line: 728
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 731
+# File: modules/arnoldi/macros/eigs.sci, line: 735
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 735
+# File: modules/arnoldi/macros/eigs.sci, line: 739
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
@@ -474,7 +474,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 737
+# File: modules/arnoldi/macros/eigs.sci, line: 741
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
@@ -482,14 +482,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 785
+# File: modules/arnoldi/macros/eigs.sci, line: 789
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 837
+# File: modules/arnoldi/macros/eigs.sci, line: 841
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
@@ -497,7 +497,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 843
+# File: modules/arnoldi/macros/eigs.sci, line: 847
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
@@ -505,7 +505,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 847
+# File: modules/arnoldi/macros/eigs.sci, line: 851
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be "
@@ -513,7 +513,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 1043
+# File: modules/arnoldi/macros/eigs.sci, line: 1047
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: n does not match rows number of "
@@ -521,7 +521,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/arnoldi/macros/eigs.sci, line: 1045
+# File: modules/arnoldi/macros/eigs.sci, line: 1049
 #, c-format
 msgid "%s: Wrong type or value for input arguments.\n"
 msgstr ""

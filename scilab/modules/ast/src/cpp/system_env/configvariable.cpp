@@ -1154,3 +1154,16 @@ void ConfigVariable::resetRecursionLevel()
 {
     recursionLevel = 0;
 }
+
+//webmode
+bool ConfigVariable::webMode = true;
+
+bool ConfigVariable::getWebMode()
+{
+    return webMode;
+}
+
+void ConfigVariable::setWebMode(bool _mode)
+{
+    webMode = _mode;
+}

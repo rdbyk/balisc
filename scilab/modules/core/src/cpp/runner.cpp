@@ -38,20 +38,19 @@ void StaticRunner::sendExecDoneSignal()
 {
     switch (getCurrentRunner()->getCommandOrigin())
     {
-        case CONSOLE :
-        {
-            ThreadManagement::SendConsoleExecDoneSignal();
-            break;
-        }
         case DEBUGGER :
         {
             ThreadManagement::SendDebuggerExecDoneSignal();
             break;
         }
+        case CONSOLE :
         case TCLSCI :
         case NONE :
         default :
-        {}
+        {
+            ThreadManagement::SendConsoleExecDoneSignal();
+            break;
+        }
     }
 }
 

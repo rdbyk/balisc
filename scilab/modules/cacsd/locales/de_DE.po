@@ -466,8 +466,9 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Uncontrollable system.\n"
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 107
+msgid "compatible dimensions"
 msgstr ""
 
 #
@@ -960,7 +961,8 @@ msgstr "Reelle Achse"
 msgid "Imaginary axis"
 msgstr "Imaginäre Achse"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "Nullstellen des offenen Kreises"
 
 msgid "open loop poles"
@@ -1013,6 +1015,14 @@ msgstr "Hz"
 msgid "dB"
 msgstr "dB"
 
+#, fuzzy
+msgid "rad/s"
+msgstr "rad/sec"
+
+#, fuzzy
+msgid " dB"
+msgstr "dB"
+
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1037,6 +1047,11 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/freson.sci, line: 78
+msgid "freson: Some maxima frequencies may be undetected."
 msgstr ""
 
 #, c-format
@@ -1452,6 +1467,18 @@ msgid ""
 msgstr ""
 "%s: Falscher Typ für das Eingabe-Argument #%d : Array aus reellen "
 "Gleitkommazahlen wird erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: ein Pfeilvektor mit Länge >%d "
+"erwartet.\n"
+
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 86
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"

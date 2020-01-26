@@ -17,34 +17,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18573)\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 77
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 164
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 79
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 166
+msgid "real scalar or a string"
+msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s：第%d个输入参数的大小错误。\n"
+#
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 108
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 115
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 110
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 117
+msgid "'r' or 'c'"
+msgstr ""
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s：第%d个输入参数的值错误。\n"
+#
+# File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 157
+# File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 159
+msgid "1 or 2"
+msgstr ""
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
+#
+# File: modules/boolean/sci_gateway/cpp/sci_find.cpp, line: 55
+# File: modules/boolean/sci_gateway/cpp/sci_find.cpp, line: 62
+msgid "positive integer value"
+msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：第%d个输入参数的类型错误。\n"
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d个。\n"
+#~ msgid "%s: Wrong size for input argument #%d.\n"
+#~ msgstr "%s：第%d个输入参数的大小错误。\n"
 
-#, c-format
-msgid ""
-"%s:  Wrong type for input argument #%d: Scalar positive integer expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为正整数标量。\n"
+#~ msgid "%s: Wrong value for input argument #%d.\n"
+#~ msgstr "%s：第%d个输入参数的值错误。\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+#~ msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
+
+#~ msgid "%s: Wrong type for input argument #%d.\n"
+#~ msgstr "%s：第%d个输入参数的类型错误。\n"
+
+#, fuzzy
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d个。\n"
+
+#~ msgid ""
+#~ "%s:  Wrong type for input argument #%d: Scalar positive integer "
+#~ "expected.\n"
+#~ msgstr "%s：第%d个输入参数的类型错误：应该为正整数标量。\n"
 
 #~ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 #~ msgstr "%s：输出参数的数目错误：应该为%d与%d个。\n"

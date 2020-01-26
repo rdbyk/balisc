@@ -15,7 +15,8 @@ if (isdef("genlib") == %f) then
     exec(SCI + "/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-genlib("m2scilib", SCI + "/modules/m2sci/macros", %f,%t);
-genlib("m2scikernellib", SCI + "/modules/m2sci/macros/kernel",%f,%t);
-genlib("m2scipercentlib", SCI + "/modules/m2sci/macros/percent",%f,%t);
-genlib("m2scisci_fileslib", SCI + "/modules/m2sci/macros/sci_files",%f,%t);
+genlib("m2scilib","SCI/modules/m2sci/macros", %f,%t);
+genlib("m2scikernellib","SCI/modules/m2sci/macros/kernel",%f,%t);
+genlib("m2scipercentlib","SCI/modules/m2sci/macros/percent",%f,%t);
+genlib("m2scisci_fileslib","SCI/modules/m2sci/macros/sci_files",%f,%t);
+genlib("compatibility_functilib","SCI/modules/m2sci/macros/compat_functions",%f,%t);

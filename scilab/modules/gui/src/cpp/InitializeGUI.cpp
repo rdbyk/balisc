@@ -26,7 +26,7 @@ extern "C"
 #endif
 }
 /*--------------------------------------------------------------------------*/
-BOOL InitializeGUI(BOOL swingView)
+BOOL InitializeGUI()
 {
     if (ConfigVariable::getScilabMode() == SCILAB_STD)
     {
@@ -37,10 +37,11 @@ BOOL InitializeGUI(BOOL swingView)
     }
     else
     {
-        if (swingView)
+        if (getWebMode() == 0)
         {
             org_scilab_modules_gui_bridge::CallScilabBridge::registerSwingView(getScilabJavaVM());
         }
+
         return TRUE;
     }
 

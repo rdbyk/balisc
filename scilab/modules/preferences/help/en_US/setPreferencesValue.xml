@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setPreferencesValue" xml:lang="en">
     <refnamediv>
         <refname>setPreferencesValue</refname>
-        <refpurpose>Set preferences value</refpurpose>
+        <refpurpose>Set preferences value <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -52,6 +52,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            <literal>setPreferencesValue()</literal> is obsolete and will be removed in Scilab 6.1.x.
+            Please use <code>xmlSetValues()</code> instead.
+        </warning>
         <para>
             Set the values of the attributes in preferences file (<literal>SCIHOME+'/XConfiguration.xml'</literal>).
         </para>
@@ -84,7 +88,7 @@
     </web>
     ...
 </interface>
-	      ]]></programlisting>
+          ]]></programlisting>
                 <para>
                     The path will be <literal>"/interface/web/body/proxy"</literal> (or to simplify <literal>"//web/body/proxy"</literal>).
                 </para>
@@ -113,5 +117,16 @@ xmlGetValues("//web/body/proxy", ["enabled", "host", "port"])
                 <link linkend="xmlGetValues">xmlGetValues</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    setPreferencesValue() declared obsolete, replaced with xmlSetValues().
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

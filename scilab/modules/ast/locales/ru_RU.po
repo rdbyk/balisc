@@ -27,8 +27,13 @@ msgstr "матрица близка к сингулярной или плохо 
 msgid "computing least squares solution. (see lsq).\n"
 msgstr "вычисление решения по методу наименьших квадратов. (См. lsq).\n"
 
-#, c-format
-msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in function %s at line %d\n"
+msgstr ""
+"отладчик остановился на на точке останова (%d) в функции %ls на строке %d\n"
+
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in file %s at line %d\n"
 msgstr ""
 "отладчик остановился на на точке останова (%d) в функции %ls на строке %d\n"
 
@@ -46,123 +51,6 @@ msgstr "отладчик остановился на ошибке в функц�
 msgid "Leave debugger.\n"
 msgstr "Выход из отладчика.\n"
 
-#, c-format
-msgid "Undefined variable: %s\n"
-msgstr "Неопределённая переменная: %s\n"
-
-msgid "inconsistent row/column dimensions\n"
-msgstr "несовпадающие размеры строки/столбца\n"
-
-msgid "/!\\ Unmanaged FieldExp.\n"
-msgstr "/!\\ Неуправляемое FieldExp.\n"
-
-msgid "Attempt to reference field of non-structure array.\n"
-msgstr "Попытка обратиться к полю неструктурного массива.\n"
-
-msgid "Not yet implemented in Scilab.\n"
-msgstr "Ещё не реализовано в Scilab.\n"
-
-msgid "Invalid index.\n"
-msgstr "Недопустимый индекс.\n"
-
-msgid "Redefining permanent variable.\n"
-msgstr "Переопределение неизменной переменной.\n"
-
-msgid "for expression can only manage 1 or 2 dimensions variables\n"
-msgstr "для выражения: можно управлять 1- или 2-мерными переменными\n"
-
-msgid "for expression : Wrong type for loop iterator.\n"
-msgstr "для выражения: неверный тип итератора цикла.\n"
-
-#, c-format
-msgid "%s: function is disabled in debug mode.\n"
-msgstr "%s: функция отключена в режиме отладки.\n"
-
-msgid "With input arguments, return / resume expects output arguments.\n"
-msgstr "С входными аргументами, return / resume ожидает выходные аргументы.\n"
-
-#, c-format
-msgid "%ls: Can not transpose multiple elements.\n"
-msgstr "%ls: Нельзя транспонировать множество элементов.\n"
-
-#, c-format
-msgid ""
-"It is not possible to redefine the %s primitive this way (see clearfun).\n"
-msgstr "Нельзя переопределить примитив %s таким образом (см. clearfun).\n"
-
-#, c-format
-msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
-msgstr "%ls: Неверный тип аргумента %d: ожидался вещественный скаляр.\n"
-
-#
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1519
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1582
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1647
-#, c-format
-msgid "%ls: Evaluation of argument %d yields no result.\n"
-msgstr ""
-
-#, c-format
-msgid "Recursion limit reached (%d).\n"
-msgstr "Достигнут предел рекурсии (%d).\n"
-
-msgid "Unknown expression"
-msgstr "Неизвестное выражение"
-
-msgid "Error in overload function: "
-msgstr "Ошибка в перегрузке функции: "
-
-msgid "Wrong insertion : use extraction with {} only on a Cell."
-msgstr "Неверная вставка : используйте вставку с {} только для Cell-массива."
-
-msgid "Unable to insert multiple item in a Struct."
-msgstr "Нельзя вставить множество элементов в структуру"
-
-msgid "Unable to insert multiple item in a List."
-msgstr "Нельзя вставить множество элементов в список"
-
-msgid "Wrong insertion."
-msgstr "Неверная вставка."
-
-msgid "Wrong insertion in a Cell."
-msgstr "Неверная вставка в Cell-массив."
-
-#, c-format
-msgid "Wrong insertion: insertion in output of '%s' is not allowed.\n"
-msgstr "Неверная вставка: вставка на выход '%s' не разрешена.\n"
-
-msgid "Wrong insertion : Cannot insert without arguments."
-msgstr "Неверная вставка : нельзя вставлять без аргументов."
-
-msgid "Unexpected redefinition of Scilab function."
-msgstr "Неожиданное переопределение функции Scilab."
-
-msgid "Submatrix incorrectly defined.\n"
-msgstr "Подматрица некорректно определена.\n"
-
-msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
-msgstr ""
-"Неверная вставка:  ожидался Cell-массив: используйте {...} вместо (...).\n"
-
-msgid "Inconsistent row/column dimensions.\n"
-msgstr "Несогласованные размеры по строкам/столбцам.\n"
-
-msgid "variables don't have the same formal variable"
-msgstr "переменные не имеют одной и той же формальной переменной"
-
-#, c-format
-msgid ""
-"Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
-msgstr ""
-"Ошибка: оператор %ls: размеры матрицы должны соответствовать (op1 = %ls, op2 "
-"= %ls).\n"
-
-msgid "With NaN or Inf a division by scalar expected.\n"
-msgstr "С NaN или Inf ожидалось деление на скаляр.\n"
-
-msgid "Division by zero...\n"
-msgstr "Деление на нуль...\n"
-
 msgid "Warning : Division by zero...\n"
 msgstr "Предупреждение : деление на нуль...\n"
 
@@ -173,33 +61,12 @@ msgstr "Оператор / : ошибка %d ещё не контролируе�
 msgid "Warning : division by zero...\n"
 msgstr "Предупреждение: деление на нуль...\n"
 
-msgid "Bad value in the left or right operand.\n"
-msgstr "Плохое значение в левом или правом операнде.\n"
-
-msgid "Bad size for left or right operand.\n"
-msgstr "Плохой размер левого или правого операнде.\n"
-
-msgid "Bad value in the left operand.\n"
-msgstr "Плохое значение в левом операнде.\n"
-
-msgid "With NaN or Inf a left division by scalar expected.\n"
-msgstr "С NaN или Inf ожидалось левое деление на скаляр.\n"
-
-msgid "Left division by zero...\n"
-msgstr "Левое деление на нуль...\n"
-
 msgid "Warning : Left division by zero...\n"
 msgstr "Предупреждение : левое деление на нуль...\n"
 
 #, c-format
 msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr "Оператор \\ : ошибка %d ещё не контролируется\n"
-
-msgid "Invalid exponent: expected real exponents.\n"
-msgstr "Недопустимая экспонента: ожидались вещественные экспоненты.\n"
-
-msgid "Invalid exponent.\n"
-msgstr "Недопустимая экспонента.\n"
 
 #, c-format
 msgid "%ls: Cannot open file %ls.\n"
@@ -221,13 +88,6 @@ msgstr " и   %10d переменных из %10d.\n"
 
 msgid "Your global variables are:"
 msgstr "Ваши глобальные переменные:"
-
-#, c-format
-msgid ""
-"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
-msgstr ""
-"Предупреждение : переопределение функции: %s. Чтобы это сообщение не "
-"появлялось, используйте funcprot(0)"
 
 msgid "in builtin "
 msgstr "во встроенных "
@@ -269,29 +129,9 @@ msgstr "Ошибка: Не удалось найти %s\n"
 msgid "Error: Could not create %s: %s\n"
 msgstr "Ошибка: не удалось создать %s: %s\n"
 
-#, c-format
-msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
-msgstr "Функция Scilab '%s' отключена в режиме -nogui или -nwni.\n"
-
-#, c-format
-msgid ""
-"%s: Library name must not be empty\n"
-"."
-msgstr ""
-"%s: Имя библиотеки не должна быть пустой\n"
-"."
-
-#, c-format
-msgid "An error has been detected while loading %s: %s\n"
-msgstr "При загрузке %s обнаружена ошибка: %s\n"
-
-#, c-format
-msgid "Impossible to load %s library\n"
-msgstr "Невозможно загрузить библиотеку %s\n"
-
-#, c-format
-msgid "Impossible to load %s function in %s library: %s\n"
-msgstr "Невозможно загрузить функцию %s в библиотеке %s: %s\n"
+#, fuzzy
+msgid "An error occurred in overload function "
+msgstr "Ошибка в перегрузке функции: "
 
 #, fuzzy
 msgid "Functions files location : "
@@ -301,31 +141,15 @@ msgstr "Расположение файлов функций : %s.\n"
 msgid "Unknown field : %ls.\n"
 msgstr "Неизвестное поле: %ls.\n"
 
-msgid "Unable to insert multiple item in a list.\n"
-msgstr "Невозможно вводить множество элементов в список.\n"
-
-msgid "Index out of bounds.\n"
-msgstr "Индекс за пределами.\n"
-
 #, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "Неверное число аргументов.\n"
-
-#, fuzzy, c-format
-msgid "%s: Undefined variable '%s'.\n"
-msgstr "Неопределённая переменная: %s\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for '%s': A list expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
-
-#, fuzzy, c-format
-msgid "%s: Element number #%d in '%s' is undefined.\n"
-msgstr "Элемент списка номер %d не определён.\n"
-
-#, c-format
-msgid "Unable to open : %s.\n"
+msgid "Unable to open: %s\n"
 msgstr "Невозможно открыть : %s.\n"
+
+#
+# File: modules/ast/src/cpp/types/macrofile.cpp, line: 110
+#, c-format
+msgid "Unexpected read size: %s\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -342,8 +166,8 @@ msgstr "проверьте или определите функцию %s для 
 msgid "Undefined operation for the given operands.\n"
 msgstr "Неопределённая операция для указанных операндов.\n"
 
-#, c-format
-msgid "  check arguments or define function %s for overloading.\n"
+#, fuzzy, c-format
+msgid "check arguments or define function %s for overloading.\n"
 msgstr "  проверьте аргументы или определите функцию %s для перегрузки.\n"
 
 msgid "Function not defined for given argument type(s),\n"
@@ -352,84 +176,235 @@ msgstr "Функция не определена для указанных ти�
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Входные аргументы должны иметь то же имя формальной переменной.\n"
 
-#, c-format
-msgid "Can not allocate negative size (%d).\n"
-msgstr "Нельзя распределить отрицательный размер (%d).\n"
+#~ msgid "Undefined variable: %s\n"
+#~ msgstr "Неопределённая переменная: %s\n"
 
-#, c-format
-msgid "Can not allocate %.2f MB memory.\n"
-msgstr "Нельзя распределить %.2f MB памяти.\n"
+#~ msgid "inconsistent row/column dimensions\n"
+#~ msgstr "несовпадающие размеры строки/столбца\n"
 
-msgid "Unable to insert multiple item in a struct.\n"
-msgstr "Невозможно внести множество пунктов в структуру.\n"
+#~ msgid "/!\\ Unmanaged FieldExp.\n"
+#~ msgstr "/!\\ Неуправляемое FieldExp.\n"
 
-msgid "Assignment between unlike types is not allowed.\n"
-msgstr "Назначение между разными типами не допускается.\n"
+#~ msgid "Attempt to reference field of non-structure array.\n"
+#~ msgstr "Попытка обратиться к полю неструктурного массива.\n"
 
-msgid "Can not allocate data.\n"
-msgstr "Нельзя распределить данные.\n"
+#~ msgid "Not yet implemented in Scilab.\n"
+#~ msgstr "Ещё не реализовано в Scilab.\n"
 
-#, c-format
-msgid "Field \"%ls\" does not exists\n"
-msgstr "Поле \"%ls\" не существует\n"
+#~ msgid "Invalid index.\n"
+#~ msgstr "Недопустимый индекс.\n"
 
-#, c-format
-msgid "variable size exceeded : less than %d expected.\n"
-msgstr "размер переменной превышен : ожидалось менее %d.\n"
+#~ msgid "Redefining permanent variable.\n"
+#~ msgstr "Переопределение неизменной переменной.\n"
 
-#, c-format
-msgid "%s: Could not find '%s': Please check that macros have been built.\n"
-msgstr "%s: Не удалось найти '%s': проверьте, что макрос был собран.\n"
+#~ msgid "for expression can only manage 1 or 2 dimensions variables\n"
+#~ msgstr "для выражения: можно управлять 1- или 2-мерными переменными\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась матрица целочисленных "
-"значений.\n"
+#~ msgid "for expression : Wrong type for loop iterator.\n"
+#~ msgstr "для выражения: неверный тип итератора цикла.\n"
 
-#, c-format
-msgid "%s: Division by zero..."
-msgstr ""
+#~ msgid "%s: function is disabled in debug mode.\n"
+#~ msgstr "%s: функция отключена в режиме отладки.\n"
 
-#, c-format
-msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr "%s: Аргумент №%d: ожидалась квадратная матрица.\n"
+#~ msgid "With input arguments, return / resume expects output arguments.\n"
+#~ msgstr ""
+#~ "С входными аргументами, return / resume ожидает выходные аргументы.\n"
 
-#, c-format
-msgid "%s: Non implemented feature.\n"
-msgstr ""
+#~ msgid "%ls: Can not transpose multiple elements.\n"
+#~ msgstr "%ls: Нельзя транспонировать множество элементов.\n"
 
-msgid "Invalid exponent: expected real exponents."
-msgstr "Недопустимая экспонента: ожидались вещественные экспоненты."
+#~ msgid ""
+#~ "It is not possible to redefine the %s primitive this way (see clearfun).\n"
+#~ msgstr "Нельзя переопределить примитив %s таким образом (см. clearfun).\n"
 
-msgid "Division by zero"
-msgstr "Деление на ноль"
+#~ msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
+#~ msgstr "%ls: Неверный тип аргумента %d: ожидался вещественный скаляр.\n"
 
-msgid "Not implemented"
-msgstr "Не реализовано"
+#~ msgid "Recursion limit reached (%d).\n"
+#~ msgstr "Достигнут предел рекурсии (%d).\n"
 
-msgid "Invalid exponent"
-msgstr "Недопустимая экспонента"
+#~ msgid "Unknown expression"
+#~ msgstr "Неизвестное выражение"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась квадратная матрица.\n"
+#~ msgid "Wrong insertion : use extraction with {} only on a Cell."
+#~ msgstr ""
+#~ "Неверная вставка : используйте вставку с {} только для Cell-массива."
 
-#, c-format
-msgid "%s: Unable to diagonalize.\n"
-msgstr "%s: Невозможно привести к диагональному виду.\n"
+#~ msgid "Unable to insert multiple item in a Struct."
+#~ msgstr "Нельзя вставить множество элементов в структуру"
 
-msgid "Not implemented in scilab...\n"
-msgstr "Не реализовано в scilab...\n"
+#~ msgid "Unable to insert multiple item in a List."
+#~ msgstr "Нельзя вставить множество элементов в список"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+#~ msgid "Wrong insertion."
+#~ msgstr "Неверная вставка."
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
+#~ msgid "Wrong insertion in a Cell."
+#~ msgstr "Неверная вставка в Cell-массив."
+
+#~ msgid "Wrong insertion: insertion in output of '%s' is not allowed.\n"
+#~ msgstr "Неверная вставка: вставка на выход '%s' не разрешена.\n"
+
+#~ msgid "Wrong insertion : Cannot insert without arguments."
+#~ msgstr "Неверная вставка : нельзя вставлять без аргументов."
+
+#~ msgid "Unexpected redefinition of Scilab function."
+#~ msgstr "Неожиданное переопределение функции Scilab."
+
+#~ msgid "Submatrix incorrectly defined.\n"
+#~ msgstr "Подматрица некорректно определена.\n"
+
+#~ msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
+#~ msgstr ""
+#~ "Неверная вставка:  ожидался Cell-массив: используйте {...} вместо (...).\n"
+
+#~ msgid "Inconsistent row/column dimensions.\n"
+#~ msgstr "Несогласованные размеры по строкам/столбцам.\n"
+
+#~ msgid "variables don't have the same formal variable"
+#~ msgstr "переменные не имеют одной и той же формальной переменной"
+
+#~ msgid ""
+#~ "Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is "
+#~ "%ls).\n"
+#~ msgstr ""
+#~ "Ошибка: оператор %ls: размеры матрицы должны соответствовать (op1 = %ls, "
+#~ "op2 = %ls).\n"
+
+#~ msgid "With NaN or Inf a division by scalar expected.\n"
+#~ msgstr "С NaN или Inf ожидалось деление на скаляр.\n"
+
+#~ msgid "Division by zero...\n"
+#~ msgstr "Деление на нуль...\n"
+
+#~ msgid "Bad value in the left or right operand.\n"
+#~ msgstr "Плохое значение в левом или правом операнде.\n"
+
+#~ msgid "Bad size for left or right operand.\n"
+#~ msgstr "Плохой размер левого или правого операнде.\n"
+
+#~ msgid "Bad value in the left operand.\n"
+#~ msgstr "Плохое значение в левом операнде.\n"
+
+#~ msgid "With NaN or Inf a left division by scalar expected.\n"
+#~ msgstr "С NaN или Inf ожидалось левое деление на скаляр.\n"
+
+#~ msgid "Left division by zero...\n"
+#~ msgstr "Левое деление на нуль...\n"
+
+#~ msgid "Invalid exponent: expected real exponents.\n"
+#~ msgstr "Недопустимая экспонента: ожидались вещественные экспоненты.\n"
+
+#~ msgid "Invalid exponent.\n"
+#~ msgstr "Недопустимая экспонента.\n"
+
+#~ msgid ""
+#~ "Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+#~ msgstr ""
+#~ "Предупреждение : переопределение функции: %s. Чтобы это сообщение не "
+#~ "появлялось, используйте funcprot(0)"
+
+#~ msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
+#~ msgstr "Функция Scilab '%s' отключена в режиме -nogui или -nwni.\n"
+
+#~ msgid ""
+#~ "%s: Library name must not be empty\n"
+#~ "."
+#~ msgstr ""
+#~ "%s: Имя библиотеки не должна быть пустой\n"
+#~ "."
+
+#~ msgid "An error has been detected while loading %s: %s\n"
+#~ msgstr "При загрузке %s обнаружена ошибка: %s\n"
+
+#~ msgid "Impossible to load %s library\n"
+#~ msgstr "Невозможно загрузить библиотеку %s\n"
+
+#~ msgid "Impossible to load %s function in %s library: %s\n"
+#~ msgstr "Невозможно загрузить функцию %s в библиотеке %s: %s\n"
+
+#~ msgid "Unable to insert multiple item in a list.\n"
+#~ msgstr "Невозможно вводить множество элементов в список.\n"
+
+#~ msgid "Index out of bounds.\n"
+#~ msgstr "Индекс за пределами.\n"
+
+#, fuzzy
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "Неверное число аргументов.\n"
+
+#, fuzzy
+#~ msgid "%s: Undefined variable '%s'.\n"
+#~ msgstr "Неопределённая переменная: %s\n"
+
+#, fuzzy
+#~ msgid "%s: Wrong type for '%s': A list expected.\n"
+#~ msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
+
+#, fuzzy
+#~ msgid "%s: Element number #%d in '%s' is undefined.\n"
+#~ msgstr "Элемент списка номер %d не определён.\n"
+
+#~ msgid "Can not allocate negative size (%d).\n"
+#~ msgstr "Нельзя распределить отрицательный размер (%d).\n"
+
+#~ msgid "Can not allocate %.2f MB memory.\n"
+#~ msgstr "Нельзя распределить %.2f MB памяти.\n"
+
+#~ msgid "Unable to insert multiple item in a struct.\n"
+#~ msgstr "Невозможно внести множество пунктов в структуру.\n"
+
+#~ msgid "Assignment between unlike types is not allowed.\n"
+#~ msgstr "Назначение между разными типами не допускается.\n"
+
+#~ msgid "Can not allocate data.\n"
+#~ msgstr "Нельзя распределить данные.\n"
+
+#~ msgid "Field \"%ls\" does not exists\n"
+#~ msgstr "Поле \"%ls\" не существует\n"
+
+#~ msgid "variable size exceeded : less than %d expected.\n"
+#~ msgstr "размер переменной превышен : ожидалось менее %d.\n"
+
+#~ msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+#~ msgstr "%s: Не удалось найти '%s': проверьте, что макрос был собран.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного аргумента №%d: ожидалась матрица целочисленных "
+#~ "значений.\n"
+
+#~ msgid "%s: Argument #%d: Square matrix expected.\n"
+#~ msgstr "%s: Аргумент №%d: ожидалась квадратная матрица.\n"
+
+#~ msgid "Invalid exponent: expected real exponents."
+#~ msgstr "Недопустимая экспонента: ожидались вещественные экспоненты."
+
+#~ msgid "Division by zero"
+#~ msgstr "Деление на ноль"
+
+#~ msgid "Not implemented"
+#~ msgstr "Не реализовано"
+
+#~ msgid "Invalid exponent"
+#~ msgstr "Недопустимая экспонента"
+
+#~ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного параметра №%d: ожидалась квадратная "
+#~ "матрица.\n"
+
+#~ msgid "%s: Unable to diagonalize.\n"
+#~ msgstr "%s: Невозможно привести к диагональному виду.\n"
+
+#~ msgid "Not implemented in scilab...\n"
+#~ msgstr "Не реализовано в scilab...\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+#~ msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+#~ msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
 
 #~ msgid ""
 #~ "operation +: Warning adding a matrix with the empty matrix old "

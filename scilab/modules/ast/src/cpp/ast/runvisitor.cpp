@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -123,7 +123,14 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
             ostr += std::to_wstring(pI->getRef());
             ostr += L")";
 #endif
-            ostr += L"\n\n";
+            if (ConfigVariable::isPrintCompact() == false)
+            {
+                ostr += L"\n\n";
+            }
+            else
+            {
+                ostr += L"\n";
+            }
             scilabWriteW(ostr.c_str());
 
             VariableToString(pI, e.getSymbol().getName().c_str());
@@ -1665,7 +1672,19 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             (piEnd->isPoly() || piEnd->isDouble()))
     {
         // No need to kill piStart, ... because Implicit list ctor will incref them
-        setResult(new types::ImplicitList(piStart, piStep, piEnd));
+        types::ImplicitList* pIL = new types::ImplicitList(piStart, piStep, piEnd);
+        try
+        {
+            pIL->compute();
+        }
+        catch (const InternalError& ie)
+        {
+            // happends when compute() of ImplicitList cannot allocate memory
+            pIL->killMe();
+            throw ie;
+        }
+
+        setResult(pIL);
         CoverageInstance::stopChrono((void*)&e);
         return;
     }
@@ -1681,7 +1700,19 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                  piStep->isDouble()))
         {
             // No need to kill piStart, ... because Implicit list ctor will incref them
-            setResult(new types::ImplicitList(piStart, piStep, piEnd));
+            types::ImplicitList* pIL = new types::ImplicitList(piStart, piStep, piEnd);
+            try
+            {
+                pIL->compute();
+            }
+            catch (const InternalError& ie)
+            {
+                // happends when compute() of ImplicitList cannot allocate memory
+                pIL->killMe();
+                throw ie;
+            }
+
+            setResult(pIL);
             CoverageInstance::stopChrono((void*)&e);
             return;
         }
