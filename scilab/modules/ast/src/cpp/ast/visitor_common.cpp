@@ -799,27 +799,41 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
         iterFields++;
 
-        if (pFirstField->getArgs() && (pFirstField->isCellExp() || fields.size() > 1))
+        // FIXME: this is a hack to avoid crashes on expressions like
+        //    "a().b=1", "a{}.b=1", "a(-1).b=1", "a{-1}.b=1", ...
+        if (pITMain && pITMain->isCallable() == false)
         {
-            if (pFirstField->getArgs()->size() == 0  && fields.size() > 1)
+            if (pFirstField->getArgs() && (pFirstField->isCellExp() || fields.size() > 1))
             {
-                // a{} or a() is equivalent to a{1} or a(1)
-                types::typed_list* args = new types::typed_list();
-                args->push_back(new types::Double(1.0));
-                pFirstField->setArgs(args);
-            }
-            else
-            {
-                // a{x} or a(x)
-                int* piUselessArgsDimsArray  = new int[pFirstField->getArgs()->size()];
-                types::typed_list* pUselessNewArgs = new types::typed_list();
-                int iSeqCount = types::checkIndexesArguments(NULL, pFirstField->getArgs(), pUselessNewArgs, piUselessArgsDimsArray, NULL);
-                delete[] piUselessArgsDimsArray;
-                delete pUselessNewArgs;
-                if (iSeqCount <= 0)
+                if (pFirstField->getArgs()->size() == 0  && fields.size() > 1)
                 {
-                    // a{[]} or a([])
-                    throw ast::InternalError(12, _pExp->getLocation());
+                    types::typed_list* args = new types::typed_list();
+
+                    if (pITMain->isList())
+                    {
+                        // a() is equivalent to a(:)
+                        args->push_back(new types::Colon());
+                    }
+                    else
+                    {
+                        // a{} or a() is equivalent to a{1} or a(1)
+                        args->push_back(new types::Double(1.0));
+                    }
+                    pFirstField->setArgs(args);
+                }
+                else
+                {
+                    // a{x} or a(x)
+                    int* piUselessArgsDimsArray  = new int[pFirstField->getArgs()->size()];
+                    types::typed_list* pUselessNewArgs = new types::typed_list();
+                    int iSeqCount = types::checkIndexesArguments(NULL, pFirstField->getArgs(), pUselessNewArgs, piUselessArgsDimsArray, NULL);
+                    delete[] piUselessArgsDimsArray;
+                    delete pUselessNewArgs;
+                    if (iSeqCount <= 0)
+                    {
+                        // a{[]} or a([])
+                        throw ast::InternalError(12, _pExp->getLocation());
+                    }
                 }
             }
         }
