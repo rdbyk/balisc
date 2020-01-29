@@ -105,3 +105,13 @@ clear st;
 fields = getfield(1,struct());
 assert_checkequal(fields(1), "st");
 assert_checkequal(fields(2), "dims");
+
+// struct concatenation
+clear st;
+st.a = [];
+st.a = [st.a;struct("field1", 1, "field2", 2)];
+st.a = [st.a;struct("field1", 1, "field2", 2)];
+st.a(1).field1 = 12;
+st.a(1).field2 = 42;
+assert_checkequal(st.a(1).field1, 12);
+assert_checkequal(st.a(1).field2, 42);
