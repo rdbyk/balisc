@@ -1,11 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge STEER
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-<<<<<<< HEAD
 // Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
-=======
 // Copyright (C) 2020 - Samuel GOUGEON
->>>>>>> 49bd019... * Bug 16292 fixed: hallchart() debugged & improved
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,18 +11,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-<<<<<<< HEAD
-function hallchart(modules,args,colors)
-    defaultmodules=[-20 -10 -6 -4 -2 2 4 6 10 20];//in dB
-    defaultargs=[-90 -60 -45 -30 -15 15 30 45 60 90]; //in degree
-    defaultbounds=[-3.5 -2;3 2];
-
-    if isdef("modules","local") then
-        if type(modules) <> 1 || ~isreal(modules) then
-            error(94, 1);
-        end
-        modules=matrix(modules,1,-1)
-=======
 function hstruct = hallchart(modules,args,colors)
 
     // Data bounds
@@ -64,7 +49,6 @@ function hstruct = hallchart(modules,args,colors)
     // ----------------
     if ~isdef("args","l") then
         args = [-90 -60 -40 -30 -25 -20 -15 -12 12 15 20 25 30 40 60 90]; //in degree
->>>>>>> 49bd019... * Bug 16292 fixed: hallchart() debugged & improved
     else
         modules=defaultmodules
     end
@@ -73,22 +57,6 @@ function hstruct = hallchart(modules,args,colors)
         if type(args) <> 1 || ~isreal(args) then
             error(94, 2);
         end
-<<<<<<< HEAD
-        args=matrix(args,1,-1)
-    else
-        args=defaultargs
-    end
-
-    if isdef("colors","local") then
-        if type(colors) <> 1 || ~isreal(colors) then
-            error(94, 3);
-        end
-        if size(colors,"*") == 1 then
-            colors=colors*ones(1,2)
-        end
-    else
-        colors=[4 12];
-=======
         args = matrix(args,1,-1)
     end
 
@@ -120,7 +88,6 @@ function hstruct = hallchart(modules,args,colors)
         colors = addcolor(c);
     else
         colors = c
->>>>>>> 49bd019... * Bug 16292 fixed: hallchart() debugged & improved
     end
 
     // =======
