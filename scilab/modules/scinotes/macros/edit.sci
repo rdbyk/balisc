@@ -4,7 +4,7 @@
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2018 - Samuel GOUGEON
-// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2019 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,18 +15,22 @@
 
 function edit(macroname, linenumber)
     // macroname : character string giving a macroname
-    // linenumber : line number
+    // linenumber : line number (as decimal number or literal one)
 
     if (nargin > 2) then
         error(sprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "edit", 1));
     end
 
-    if (nargin >= 1 & type(macroname) ~= 10) then
+    if (nargin >= 1 & type(macroname) <> 10) then
         error(sprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"edit",1));
     end
 
-    if (nargin == 2 & type(linenumber) ~= 1) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Double expected.\n"),"edit",2));
+    if (nargin == 2) then
+       if and(type(linenumber)<>[1 10]) | (type(linenumber)==10 & isnan(strtod(linenumber(1)))) then
+            msg = _("%s: Wrong type for input argument #%d: Number expected.\n")
+            error(msprintf(msg, "edit", 2));
+        end
+        linenumber = strtod(linenumber(1))
     end
 
     found = %f;

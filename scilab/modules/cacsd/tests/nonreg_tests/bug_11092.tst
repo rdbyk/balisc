@@ -8,9 +8,7 @@
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-// <-- ENGLISH IMPOSED -->
 
-// <-- Non-regression test for bug 11092 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=11092 

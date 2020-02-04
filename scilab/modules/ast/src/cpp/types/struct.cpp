@@ -40,35 +40,42 @@ Struct::Struct()
 #endif
 }
 
-Struct::Struct(int _iRows, int _iCols)
+Struct::Struct(int _iRows, int _iCols, bool _bInit)
 {
     m_bDisableCloneInCopyValue = false;
     SingleStruct** pIT  = NULL;
-    SingleStruct *p = new SingleStruct();
     int piDims[2] = {_iRows, _iCols};
     create(piDims, 2, &pIT, NULL);
-    for (int i = 0 ; i < getSize() ; i++)
-    {
-        set(i, p);
-    }
 
-    p->killMe();
+    if(_bInit)
+    {
+        SingleStruct *p = new SingleStruct();
+        for (int i = 0 ; i < getSize() ; i++)
+        {
+            set(i, p);
+        }
+
+        p->killMe();
+    }
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
 }
 
-Struct::Struct(int _iDims, const int* _piDims)
+Struct::Struct(int _iDims, const int* _piDims, bool _bInit)
 {
     m_bDisableCloneInCopyValue = false;
-    SingleStruct** pIT  = NULL;
-    SingleStruct *p = new SingleStruct();
+    SingleStruct** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
-    for (int i = 0 ; i < getSize() ; i++)
+    if(_bInit)
     {
-        set(i, p);
+        SingleStruct *p = new SingleStruct();
+        for (int i = 0 ; i < getSize() ; i++)
+        {
+            set(i, p);
+        }
+        p->killMe();
     }
-    p->killMe();
 
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -142,17 +149,16 @@ bool Struct::transpose(InternalType *& out)
 
     if (m_iDims == 2)
     {
-        int piDims[2] = {getCols(), getRows()};
-        Struct * pSt = new Struct(2, piDims);
-        out = pSt;
+        // dont fill the Struct, transpose will do it.
+        Struct * pSt = new Struct(getCols(), getRows(), false);
+        Transposition::transpose(getRows(), getCols(), m_pRealData, pSt->get());
         for (int i = 0; i < m_iSize; ++i)
         {
-            pSt->m_pRealData[i]->DecreaseRef();
-            pSt->m_pRealData[i]->killMe();
+            // Transposition::transpose doesn't increase the ref.
+            pSt->get(i)->IncreaseRef();
         }
 
-        Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->m_pRealData);
-
+        out = pSt;
         return true;
     }
 

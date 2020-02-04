@@ -1,9 +1,8 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
+ *  Copyright (C) 2012 - 2016 - Scilab Enterprises
  *  Copyright (C) 2017, 2018 - Samuel GOUGEON
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -98,18 +97,22 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
 
     // Scilab 6.0.x => 6.1.0
     map.emplace(L"champ1", L"champ.colored");
+    map.emplace(L"%sn", L"ellipj");
     map.emplace(L"dirname", L"fileparts");
     map.emplace(L"_d", L"_");
     map.emplace(L"dgettext", L"gettext");
     map.emplace(L"datatipToggle", L"datatipManagerMode");
     map.emplace(L"denom", L".den");
+    map.emplace(L"eval", L"evstr");
     map.emplace(L"getPreferencesValue", L"xmlGetValues");
     map.emplace(L"hypermat", L"zeros|matrix");
     map.emplace(L"lstsize", L"size");
     map.emplace(L"nanmin", L"min");
     map.emplace(L"nanmax", L"max");
     map.emplace(L"numer", L".num");
+    map.emplace(L"ric_desc", L"riccati");
     map.emplace(L"square", L"replot");
+    map.emplace(L"sysdiag", L"blockdiag");
     map.emplace(L"with_tk", L"with_module('tclsci')");
     map.emplace(L"xgetech", L"gca");
     map.emplace(L"xinfo", L"gcf().info_message");
