@@ -829,7 +829,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     int iSeqCount = types::checkIndexesArguments(NULL, pFirstField->getArgs(), pUselessNewArgs, piUselessArgsDimsArray, NULL);
                     delete[] piUselessArgsDimsArray;
                     delete pUselessNewArgs;
-                    if (iSeqCount <= 0)
+                    if (iSeqCount == 0)
                     {
                         // a{[]} or a([])
                         throw ast::InternalError(12, _pExp->getLocation());
