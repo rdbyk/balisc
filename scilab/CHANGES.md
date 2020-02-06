@@ -173,8 +173,11 @@ Obsolete functions or features
 Removed Functions
 -----------------
 
+<<<<<<< HEAD
 * `getPreferencesValue` was obsolete and has been removed. Please use `xmlGetValues` instead.
+=======
 * `eval` was obsolete and has been removed. Please use `evstr` instead.
+>>>>>>> 1ec71c6c514... * Bug 15309 fixed: eval() actual removal
 * `hypermat` was obsolete and has been removed. Please use `matrix` instead.
 * `square` was obsolete and has been removed.
 * `xgetech` was obsolete and has been removed. Please use `gca` instead.
@@ -291,7 +294,6 @@ Bug Fixes
 * [#16174](http://bugzilla.scilab.org/show_bug.cgi?id=16174): `libraryinfo` yielded 0x0 matrix of strings for libs without macro
 * [#16177](http://bugzilla.scilab.org/show_bug.cgi?id=16177): In the uicontrol help page, the first example was bugged.
 * [#16178](http://bugzilla.scilab.org/show_bug.cgi?id=16178): `sci2exp` yielded an error for any input macro without output argument.
-* [#16190](http://bugzilla.scilab.org/show_bug.cgi?id=16190): console width was fixed at 75 in nw and nwni mode regardless of terminal width.
 * [#16199](http://bugzilla.scilab.org/show_bug.cgi?id=16199): In the documentation, `zpk2tf` and `zpk2ss` examples yielded an error.
 * [#16200](http://bugzilla.scilab.org/show_bug.cgi?id=16200): Concatenation of transposed cells crashed Scilab.
 * [#16208](http://bugzilla.scilab.org/show_bug.cgi?id=16208): Using 3D string matrix with old C-api gateways may crash Scilab.
