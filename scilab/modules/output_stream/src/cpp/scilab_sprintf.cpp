@@ -38,7 +38,7 @@ static wchar_t* addl(TokenDef* token);
 static void updatel(TokenDef* token);
 static void replace_lu_llu(TokenDef* token);
 static void replace_ld_lld(TokenDef* token);
-static void print_infinite(FILE *str, double v);
+static void print_infinite(FILE *str, wchar_t* t, int w, int p, double v);
 
 #define NanString L"Nan"
 #define InfString L"Inf"
@@ -441,7 +441,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     }
                     else
                     {
-                        print_infinite(fwstTemp, dblVal);
+                        print_infinite(fwstTemp, token, tok->width, tok->typePos, dblVal);
                     }
 
                     fclose(fwstTemp);
@@ -485,7 +485,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     }
                     else
                     {
-                        print_infinite(fwstTemp, dblVal);
+                        print_infinite(fwstTemp, token, tok->width, tok->typePos, dblVal);
                     }
 
                     fclose(fwstTemp);
@@ -529,7 +529,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     }
                     else
                     {
-                        print_infinite(fwstTemp, dblVal);
+                        print_infinite(fwstTemp, token, tok->width, tok->typePos, dblVal);
                     }
 
                     fclose(fwstTemp);
@@ -808,18 +808,37 @@ static void replace_ld_lld(TokenDef* token)
 #endif
 }
 
-static void print_infinite(FILE *str, double v)
+static void print_infinite(FILE *str, wchar_t* t, int w, int p, double v)
 {
+    wchar_t fmt[wcslen(t) + 3];
+
+    int i  = 0;
+
+    fmt[i++] = L'%';
+    if (t[i] == L'-') fmt[i++] = L'-';
+    fmt[i++] = L'*';
+    fmt[i++] = L'l';
+    fmt[i++] = L's';
+
+    int j = p + 1;
+
+    while (t[j])
+    {
+        fmt[i++] = t[j++];
+    }
+
+    fmt[i] = L'\0';
+
     if (std::isnan(v))
     {
-        fwprintf(str, NanString);
+        fwprintf(str, fmt, w, NanString);
     }
     else if (std::signbit(v))
     {
-        fwprintf(str, NegInfString);
+        fwprintf(str, fmt, w, NegInfString);
     }
     else
     {
-        fwprintf(str, InfString);
+        fwprintf(str, fmt, w, InfString);
     }
 }
