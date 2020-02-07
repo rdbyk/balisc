@@ -2,7 +2,7 @@
 // Copyright (C) Bruno Pincon
 // Copyright (C) Serge Steer (adaptation to new graphic system)
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2017 - 2018 - Samuel GOUGEON
+// Copyright (C) 2017 - 2019 - Samuel GOUGEON
 // Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -14,39 +14,6 @@
 
 function colorbar(umin, umax, colminmax, fmt)
 
-    //  PURPOSE
-    //     Draw a colorbar for a plot3d, fec, Sgrayplot, etc...
-    //
-    //  PARAMETERS
-    //     umin : min value of the plot
-    //     umax : max value of the plot
-    //     colminmax : (optional) a vector with 2 integer components
-    //                 the first is the color number (of the current
-    //                 colormap) associated with umin
-    //                 the second the max color number ....
-    //                 default : [1 nb_colors] where nb_colors is
-    //                 the number of colors of the current colormap.
-    //                 May be useful to deal with a part of the colormap
-    //                 (for instance using fec or plot3d)
-    //     fmt : optional, a C format to display colorbar graduations
-    //
-    //  CAUTION
-    //     this function may be used BEFORE a plot3d, fec, Sgrayplot, ...
-    //     It is important because this function set and change the
-    //     frame for the plot. This way the colorbar is not part of
-    //     the "associated" plot and so is not modified by a zoom or
-    //     a rotation of the plot.
-    //
-    //  EXAMPLES
-    //     see the help page
-    //
-    //  HISTORY
-    // 2017 : http://bugzilla.scilab.org/14711 : in uicontrol frame
-    // 2018 : http://bugzilla.scilab.org/15638 : unequal color spans
-    //        http://bugzilla.scilab.org/15805 : poor ticking
-    //        http://bugzilla.scilab.org/15806 : syntaxes with default umin, umax..
-
-    // Check number of input argument
     if nargin > 4 then
         error(72, 0, 4);
     end
@@ -81,9 +48,14 @@ function colorbar(umin, umax, colminmax, fmt)
     // PARSING INPUT ARGUMENTS
     // =======================
     // colminmax
+    if isdef("colminmax","l") & type(colminmax)==2
+        colminmax = horner(colminmax, nColorsCM)
+        colminmax(colminmax < 1) = 1
+        colminmax(colminmax > nColorsCM) = nColorsCM
+    end
     if isdef("colminmax","l") & type(colminmax)~=0 & colminmax~=[] & colminmax(1)~=-1
         msg = _("%s: Argument #%d: Decimal number(s) expected.\n")
-        if type(colminmax)~=1 | ~isreal(colminmax)
+        if and(type(colminmax)~=[1 2])| ~isreal(colminmax)
             error(msprintf(msg, "colorbar", 3))
         end
         if length(colminmax)~=2
@@ -315,4 +287,7 @@ function colorbar(umin, umax, colminmax, fmt)
 
     // Restoring input drawing mode
     f.immediate_drawing = idMem;
+
+    // setting gce()
+    set("current_entity", a_cb)
 endfunction

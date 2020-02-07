@@ -3,7 +3,7 @@
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2014-2015 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -158,11 +158,12 @@ int StaticRunner::launch()
             pCtx->scope_end();
         }
 
+        // debugger leave with abort state
+        manager->setAborted();
+
         // send the good signal about the end of execution
         sendExecDoneSignal();
 
-        // debugger leave with abort state
-        manager->setAborted();
         throw;
     }
 
@@ -240,6 +241,16 @@ command_origin_t StaticRunner::getCommandOrigin()
     return m_RunMe.load()->getCommandOrigin();
 }
 
+command_origin_t StaticRunner::getCurrentCommandOrigin()
+{
+    return m_CurrentRunner.load()->getCommandOrigin();
+}
+
+void StaticRunner::setCurrentCommandOrigin(command_origin_t origin)
+{
+    m_CurrentRunner.load()->setCommandOrigin(origin);
+}
+
 void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
                                bool /*_isPrioritaryThread*/, bool _isInterruptible, command_origin_t _iCommandOrigin)
 {
@@ -300,4 +311,14 @@ void StaticRunner_setInterruptibleCommand(int val)
 command_origin_t StaticRunner_getCommandOrigin(void)
 {
     return StaticRunner::getCommandOrigin();
+}
+
+command_origin_t StaticRunner_getCurrentCommandOrigin(void)
+{
+    return StaticRunner::getCurrentCommandOrigin();
+}
+
+void StaticRunner_setCurrentCommandOrigin(command_origin_t _origin)
+{
+    StaticRunner::setCurrentCommandOrigin(_origin);
 }

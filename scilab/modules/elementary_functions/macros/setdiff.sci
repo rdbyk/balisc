@@ -2,8 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Samuel GOUGEON
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2019 - Samuel GOUGEON
+// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,12 @@
 // along with this program.
 
 function [a, ka] = setdiff(a, b, orien)
-    // returns a values which are not in b
 
-    // CHECKING INPUT ARGUMENTS
-    // ========================
     if nargin < 2 | nargin > 3 then
         error(73, 2, 3);
     end
     // Trivial case _whatever is b_
-    if a==[]
+    if isempty(a)
         ka = []
         return
     end
@@ -36,41 +33,36 @@ function [a, ka] = setdiff(a, b, orien)
     elseif orien=="r"
         orien = 1
     end
-    if orien==1 & size(a,2)~=size(b,2) then
+    if orien==1 & ~isempty(b) & size(a,2)~=size(b,2) then
         msg = _("%s: Arguments #%d and #%d: Same numbers of columns expected.\n")
         error(msprintf(msg, "setdiff", 1, 2))
     end
-    if orien==2 & size(a,1)~=size(b,1) then
+    if orien==2 & ~isempty(b) & size(a,1)~=size(b,1) then
         msg = _("%s: Arguments #%d and #%d: Same numbers of rows expected.\n")
         error(msprintf(msg, "setdiff", 1, 2))
     end
-    
+
     // PROCESSING
     // ==========
     // "r" or "c"
     // ----------
     if orien then
-        it = inttype(a)
-        if ndims(a)>2 then
+        if ndims(a) > 2 then
             a = serialize_hypermat(a, orien)
-        elseif orien==2
-            a = a.'
         end
-        // Trivial case
-        if b == [] then
-            ka = 1:size(a,orien);
-            if orien==1
-                ka = ka'
-            end
+        if ndims(b) > 2 then
+            b = serialize_hypermat(b, orien)
+        end
+        [a, ka] = unique(a, orien)
+        if isempty(b)
             return
         end
-        if ndims(b)>2 then
-            b = serialize_hypermat(b, orien)
-        elseif orien==2
+        it = inttype(a)
+        b = unique(b, orien)
+        if orien==2
+            a = a.'
             b = b.'
         end
-        [a, ka] = unique(a, "r")
-        b = unique(b, "r")
         [c, kc] = gsort([[a iconvert(ones(a(:,1)),it)] ;
                          [b iconvert(ones(b(:,1))*2,it)]], "lr","i")
         k = find(or(c(1:$-1,1:$-1)~=c(2:$,1:$-1),"c") & c(1:$-1,$)==1)
@@ -81,7 +73,7 @@ function [a, ka] = setdiff(a, b, orien)
         // a = a(ka,:) // in initial order
         a = c(k,1:$-1)
         if orien==2
-            ka = ka'
+            ka = matrix(ka, 1, -1)
             a = a.'
         end
     else
@@ -89,26 +81,31 @@ function [a, ka] = setdiff(a, b, orien)
         // ----------
         [a,ka] = unique(a);
         na = size(a,"*");
-    
+        if isempty(b)
+            return
+        end
+
         b = unique(b(:));
-    
+
         [x,k] = gsort([a(:); b], "g", "i");
         d = find(x(2:$)==x(1:$-1));  //index of common entries in sorted table
         if d <> [] then
             k([d;d+1]) = [];
         end
-    
+
         keep = find(k <= na);
         a = a(k(keep));
         ka = ka(k(keep));
     end
 endfunction
-// ----------------------------------------------------------------------------
+
 function h = serialize_hypermat(h, orien)
     if orien==1 then
         dims = 1:ndims(h)
         dims([1 2]) = [2 1]
         h = permute(h, dims)
+        h = matrix(h, size(h,1), -1).'
+    else
+        h = matrix(h, size(h,1), -1)
     end
-    h = matrix(h, size(h,1), -1).'
 endfunction

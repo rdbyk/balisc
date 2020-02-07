@@ -1,8 +1,9 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - INRIA - Antoine ELIAS <antoine.elias@scilab.org>
+ * Copyright (C) 2019 - Stéphane MOTTELET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,6 +18,8 @@
 #include "matrix_division.h"
 #include <string.h>
 #include <complex.h>
+
+static void matrixIsTriangular(double *_pdblReal, double *_pdblImg, int _iRows, int _iCols, int *bUpper, int *bLower);
 
 int iRightDivisionComplexMatrixByComplex(double* A, double* B, double c, double d,
                                          double* X,   double* Y, int n)
@@ -458,6 +461,8 @@ int iLeftDivisionOfRealMatrix(
     int iIndex  = 0;
     char cNorm  = 0;
     int iExit   = 0;
+    int iLower = 0;
+    int iUpper = 0;
 
     /*temporary variables*/
     int iWorkMin    = 0;
@@ -468,6 +473,7 @@ int iLeftDivisionOfRealMatrix(
     double dblEps       = 0;
     double RCONDthresh  = 0;
     double dblAnorm     = 0;
+    double dblOne       = 1;
 
     double *pAf     = NULL;
     double *pXb     = NULL;
@@ -493,35 +499,56 @@ int iLeftDivisionOfRealMatrix(
     pJpvt       = (int*)malloc(sizeof(int) * _iCols1);
     pIwork      = (int*)malloc(sizeof(int) * _iCols1);
 
-    cNorm       = '1';
     pDwork      = (double*)malloc(sizeof(double) * iWorkMin);
     dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
-    dblAnorm    = C2F(dlange)(&cNorm, &_iRows1, &_iCols1, _pdblReal1, &_iRows1, pDwork);
 
     if (_iRows1 == _iCols1)
     {
-        cNorm = 'F';
-        C2F(dlacpy)(&cNorm, &_iCols1, &_iCols1, _pdblReal1, &_iCols1, pAf, &_iCols1);
-        C2F(dgetrf)(&_iCols1, &_iCols1, pAf, &_iCols1, pIpiv, &iInfo);
-        if (iInfo == 0)
+        matrixIsTriangular(_pdblReal1, NULL, _iRows1, _iCols1, &iUpper, &iLower);
+        if (iUpper || iLower)
         {
-            cNorm = '1';
-            C2F(dgecon)(&cNorm, &_iCols1, pAf, &_iCols1, &dblAnorm, &dblRcond, pDwork, pIwork, &iInfo);
+            //if matrix is triangular
+            char cUpLoType[4] = {'N','U','L','U'};
+            char cUpLo = cUpLoType[iUpper + 2*iLower];
+            C2F(dtrcon)("1", &cUpLo, "N", &_iRows1, _pdblReal1, &_iRows1, &dblRcond, pDwork, pIwork, &iInfo);
             if (dblRcond > RCONDthresh)
             {
-                // _pdblReal2 will be overwrite by dgetrs
+                // _pdblReal2 will be overwritten by dtrsm
                 iSize = _iRows2 * _iCols2;
                 dblTemp = (double*)malloc(iSize * sizeof(double));
                 memmove(dblTemp, _pdblReal2, iSize * sizeof(double));
 
-                cNorm = 'N';
-                C2F(dgetrs)(&cNorm, &_iCols1, &_iCols2, pAf, &_iCols1, pIpiv, dblTemp, &_iCols1, &iInfo);
-                cNorm = 'F';
-                C2F(dlacpy)(&cNorm, &_iCols1, &_iCols2, dblTemp, &_iCols1, _pdblRealOut, &_iCols1);
+                //solve triangular system
+                C2F(dtrsm)("L", &cUpLo,"N", "N", &_iRows2, &_iCols2, &dblOne, _pdblReal1, &_iRows1, dblTemp, &_iRows2);
+                memmove(_pdblRealOut, dblTemp, iSize * sizeof(double));
+
                 iExit = 1;
 
                 free(dblTemp);
+            }
+        }
+        else
+        {
+            iSize = _iRows1 * _iCols1;
+            memmove(pAf, _pdblReal1, iSize * sizeof(double));
+            C2F(dgetrf)(&_iCols1, &_iCols1, pAf, &_iCols1, pIpiv, &iInfo);
+            if (iInfo == 0)
+            {
+                dblAnorm = C2F(dlange)("1", &_iRows1, &_iCols1, _pdblReal1, &_iRows1, pDwork);
+                C2F(dgecon)("1", &_iCols1, pAf, &_iCols1, &dblAnorm, &dblRcond, pDwork, pIwork, &iInfo);
+                if (dblRcond > RCONDthresh)
+                {
+                    // _pdblReal2 will be overwritten by dgetrs
+                    iSize = _iRows2 * _iCols2;
+                    dblTemp = (double*)malloc(iSize * sizeof(double));
+                    memmove(dblTemp, _pdblReal2, iSize * sizeof(double));
+                    C2F(dgetrs)("N", &_iCols1, &_iCols2, pAf, &_iCols1, pIpiv, dblTemp, &_iCols1, &iInfo);
+                    memmove(_pdblRealOut, dblTemp, iSize * sizeof(double));
+                    iExit = 1;
+
+                    free(dblTemp);
+                }
             }
         }
 
@@ -539,7 +566,7 @@ int iLeftDivisionOfRealMatrix(
         iMax = Max(_iRows1, _iCols1);
         C2F(dlacpy)(&cNorm, &_iRows1, &_iCols2, _pdblReal2, &_iRows1, pXb, &iMax);
         memset(pJpvt, 0x00, sizeof(int) * _iCols1);
-        // _pdblReal1 will be overwrite by dgelsy1
+        // _pdblReal1 will be overwritten by dgelsy1
         iSize = _iRows1 * _iCols1;
         dblTemp = (double*)malloc(iSize * sizeof(double));
         memmove(dblTemp, _pdblReal1, iSize * sizeof(double));
@@ -580,6 +607,8 @@ int iLeftDivisionOfComplexMatrix(
     int iIndex  = 0;
     char cNorm  = 0;
     int iExit   = 0;
+    int iLower = 0;
+    int iUpper = 0;
 
     /*temporary variables*/
     int iWorkMin    = 0;
@@ -590,6 +619,7 @@ int iLeftDivisionOfComplexMatrix(
     double dblEps       = 0;
     double RCONDthresh  = 0;
     double dblAnorm     = 0;
+    doublecomplex dblCplxOne = {1,0};
 
     doublecomplex *pAf      = NULL;
     doublecomplex *pXb      = NULL;
@@ -618,18 +648,20 @@ int iLeftDivisionOfComplexMatrix(
     pDwork      = (doublecomplex*)malloc(sizeof(doublecomplex) * iWorkMin);
     dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
-    dblAnorm    = C2F(zlange)(&cNorm, &_iRows1, &_iCols1, (double*)poVar1, &_iRows1, (double*)pDwork);
 
     if (_iRows1 == _iCols1)
     {
-        C2F(zgetrf)(&_iCols1, &_iCols1, poVar1, &_iCols1, pIpiv, &iInfo);
-        if (iInfo == 0)
+        matrixIsTriangular(_pdblReal1, _pdblImg1, _iRows1, _iCols1, &iUpper, &iLower);
+        if (iUpper || iLower)
         {
-            C2F(zgecon)(&cNorm, &_iCols1, poVar1, &_iCols1, &dblAnorm, &dblRcond, pDwork, pRwork, &iInfo);
+            //if matrix is triangular
+            char cUpLoType[4] = {'N','U','L','U'};
+            char cUpLo = cUpLoType[iUpper + 2*iLower];
+            C2F(ztrcon)("1", &cUpLo, "N", &_iRows1, poVar1, &_iRows1, &dblRcond, pDwork, pRwork, &iInfo);
             if (dblRcond > RCONDthresh)
             {
-                cNorm    = 'N';
-                C2F(zgetrs)(&cNorm, &_iCols1, &_iCols2, poVar1, &_iCols1, pIpiv, poVar2, &_iCols1, &iInfo);
+                //solve triangular system
+                C2F(ztrsm)("L", &cUpLo,"N", "N", &_iRows2, &_iCols2, &dblCplxOne, poVar1, &_iRows1, poVar2, &_iRows2);
                 vGetPointerFromDoubleComplex(poVar2, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
                 iExit = 1;
             }
@@ -638,6 +670,27 @@ int iLeftDivisionOfComplexMatrix(
                 //how to extract that ? Oo
                 iReturn = -1;
                 *_pdblRcond = dblRcond;
+            }
+        }
+        else
+        {
+            C2F(zgetrf)(&_iCols1, &_iCols1, poVar1, &_iCols1, pIpiv, &iInfo);
+            if (iInfo == 0)
+            {
+                dblAnorm = C2F(zlange)(&cNorm, &_iRows1, &_iCols1, (double*)poVar1, &_iRows1, (double*)pDwork);
+                C2F(zgecon)(&cNorm, &_iCols1, poVar1, &_iCols1, &dblAnorm, &dblRcond, pDwork, pRwork, &iInfo);
+                if (dblRcond > RCONDthresh)
+                {
+                    C2F(zgetrs)("N", &_iCols1, &_iCols2, poVar1, &_iCols1, pIpiv, poVar2, &_iCols1, &iInfo);
+                    vGetPointerFromDoubleComplex(poVar2, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
+                    iExit = 1;
+                }
+                else
+                {
+                    //how to extract that ? Oo
+                    iReturn = -1;
+                    *_pdblRcond = dblRcond;
+                }
             }
         }
     }
@@ -687,4 +740,46 @@ int iLeftDivisionOfComplexMatrix(
     free(pRwork);
     free(pDwork);
     return 0;
+}
+
+void matrixIsTriangular(double *_pdblReal, double *_pdblImg, int _iRows, int _iCols, int *bUpper, int *bLower)
+{
+    double *pdblArray[2] = {_pdblReal, _pdblImg};
+    double *pdbl;
+
+    *bUpper = 1;
+    *bLower = 1;
+
+    int i = 0;
+    for ( ; i<2 && pdblArray[i] != NULL; i++)
+    {
+        int j;
+        int iDim;
+        int iOne = 1;
+        //upper triangular ?
+        if (*bUpper)
+        {
+            pdbl = pdblArray[i] + 1;
+            iDim = _iRows-1;
+            for (j = 0; j < _iCols; j++, iDim--)
+            {
+                // compute L1 norm with BLAS appears to be faster than testing
+                // successive nullity of individual terms
+                if (C2F(dasum)(&iDim, pdbl, &iOne) > 0.0) break;
+                pdbl += _iRows+1;
+            }
+            *bUpper = (j==_iCols);
+        }
+        //lower triangular ?
+        if (*bLower)
+        {
+            pdbl = pdblArray[i] + _iRows;
+            for (j = 1; j < _iCols; j++)
+            {
+                if (C2F(dasum)(&j, pdbl, &iOne) > 0.0) break;
+                pdbl += _iRows;
+            }
+            *bLower = (j==_iCols);
+        }
+    }
 }

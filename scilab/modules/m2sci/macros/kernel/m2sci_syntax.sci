@@ -24,6 +24,7 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
     //  - isacomment
     //  - isinstring
     //  - replace_brackets
+    //  - replace_end_dollar
 
     sciparam();
     quote="''"
@@ -208,7 +209,9 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
                 first_ncl=k
             end
             com = part(tk,kc+1:length(tk))
-            endofhelp = stripblanks(part(tk,1:kc-1))<>"" & ~protoline
+            if stripblanks(part(tk,1:kc-1))<>"" & ~protoline
+                endofhelp = %t
+            end
             if ~endofhelp & part(tk,1:9) ~= "function " then
                 helppart = [helppart;com];
             end // Get help part placed at the beginning of the file
@@ -410,6 +413,9 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
 
     // Replace {..} by (..) or [..] : useful for cells translation
     txt=replace_brackets(txt)
+
+    // Replace end with $ where it is relevant
+    txt = replace_end_dollar(txt)
 
     // Place function definition line at first line
     kc=strindex(txt(first_ncl),"function")

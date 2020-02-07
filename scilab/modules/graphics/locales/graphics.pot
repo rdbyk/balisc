@@ -3174,8 +3174,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/Sfgrayplot.sci, line: 32
-# File: modules/graphics/macros/Sfgrayplot.sci, line: 35
+# File: modules/graphics/macros/Sfgrayplot.sci, line: 40
+# File: modules/graphics/macros/colorbar.sci, line: 51
+# File: modules/graphics/macros/colordef.sci, line: 18
+# File: modules/graphics/macros/comet.sci, line: 53
+# File: modules/graphics/macros/getcolor.sci, line: 49
+# File: modules/graphics/macros/iscolor.sci, line: 38
+# File: modules/graphics/macros/replot.sci, line: 37
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/Sfgrayplot.sci, line: 45
+# File: modules/graphics/macros/Sfgrayplot.sci, line: 48
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr ""
