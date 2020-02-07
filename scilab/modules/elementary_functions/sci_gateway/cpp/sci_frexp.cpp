@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  * 
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,18 +24,16 @@ extern "C"
 #include "localization.h"
 }
 
-types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using types::Double;
+using types::Function;
+using types::typed_list;
+
+Function::ReturnValue sci_frexp(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(71, 1);
-        return types::Function::Error;
-    }
-
-    if (_iRetCount != 2)
-    {
-        Scierror(81, 2);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     if (in[0]->isDouble() == false)
@@ -44,22 +42,16 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    types::Double* pDblIn = in[0]->getAs<types::Double>();
-
-    if (pDblIn->getDims() > 2)
-    {
-        std::wstring wstFuncName = L"%hm_frexp";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
-    }
+    Double* pDblIn = in[0]->getAs<Double>();
 
     if (pDblIn->isComplex())
     {
         Scierror(94, 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
-    types::Double* pDblCoef = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
-    types::Double* pDblExp  = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+    Double* pDblCoef = new Double(pDblIn->getDims(), pDblIn->getDimsArray());
+    Double* pDblExp  = new Double(pDblIn->getDims(), pDblIn->getDimsArray());
 
     double* pIn = pDblIn->get();
     double* pCoef = pDblCoef->get();
@@ -76,5 +68,5 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
     out.push_back(pDblCoef);
     out.push_back(pDblExp);
 
-    return types::Function::OK;
+    return Function::OK;
 }
