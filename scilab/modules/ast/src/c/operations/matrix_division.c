@@ -19,6 +19,8 @@
 #include <string.h>
 #include <complex.h>
 
+static void matrixIsTriangular(double *_pdblReal, double *_pdblImg, int _iRows, int _iCols, int *bUpper, int *bLower);
+
 int iRightDivisionComplexMatrixByComplex(double* A, double* B, double c, double d,
                                          double* X,   double* Y, int n)
 {
