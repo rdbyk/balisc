@@ -2,7 +2,7 @@
 // Copyright (C) ???? - INRIA - Farid BELAHCENE
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,12 +14,10 @@
 function y = bitcmp(x,n)
 
     if nargin == 0 then
-        error(_("%s: Wrong number of input arguments: At least %d expected."), "bitcmp", 1);
+        error(74, 1);
     elseif (type(x) == 1) & (nargin == 1) then
-        error(72, 2);
+        error(72, 1, 2);
     end
-
-    // check type
 
     if    (type(x)==1  & (x-floor(x)<>0 | x<0)) ..
         | (type(x)==8  & (inttype(x)<10)) ..
