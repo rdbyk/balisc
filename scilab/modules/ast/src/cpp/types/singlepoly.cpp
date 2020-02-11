@@ -370,6 +370,8 @@ void SinglePoly::toStringInternal(double *_pdblR, double *_pdblI, const std::wst
         else if (dblR != 0 || dblI != 0)
         {
             DoubleFormat dfR, dfI;
+            getDoubleFormat(dblR, &dfR);
+            getDoubleFormat(dblI, &dfI);
             dfR.bPrintPoint = dfR.bExp;
             dfR.bPrintBlank = false;
             dfR.bPrintPlusSign = false;
@@ -380,7 +382,6 @@ void SinglePoly::toStringInternal(double *_pdblR, double *_pdblI, const std::wst
             dfI.bPrintOne = false;
             if (dblR != 0)
              {
-                 getDoubleFormat(dblR, &dfR);
                  dfR.bPaddSign = false;
                  dfI.bPrintPlusSign = true;
                  iLen += (i!= 0 ? iParenthLen : 0);
@@ -390,7 +391,6 @@ void SinglePoly::toStringInternal(double *_pdblR, double *_pdblI, const std::wst
                  dfI.bPrintPlusSign = ! bFirst;
                  dfI.bPaddSign = ! bFirst;
              }
-             getDoubleFormat(dblI, &dfI);
 
              if (iLen + dfR.iWidth + dfR.iSignLen + dfI.iWidth + dfI.iSignLen + _szVar.length() + iExponentsDigits.size() >= iLineLen - 1)
              {
