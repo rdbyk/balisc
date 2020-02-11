@@ -41,13 +41,6 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 setExpectedSize(1);
                 e.getRightExp().accept(*this);
 
-                if (getResultSize() != 1)
-                {
-                    // avoid double deletion when rhs is deleted from exp and cleanResult
-                    setResult(NULL);
-                    throw ast::InternalError(29, e.getRightExp().getLocation());
-                }
-
                 pIT = getResult();
                 //reset result
                 setResult(NULL);

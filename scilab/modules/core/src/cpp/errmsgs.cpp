@@ -59,7 +59,6 @@ static const std::map<int, const char*> errmsgs =
     { 26, _("function is disabled in -nogui or -nwni mode.\n") },
     { 27, _("Evaluation of element in cell expression failed.\n") },
     { 28, _("Indexing not allowed for output arguments of return.\n") },
-    { 29, _("Can not assign multiple value in a single variable.\n") },
     { 30, _("Unknown script form.\n") },
     { 31, _("Instruction left hand side: waiting for a name.\n") },
     { 32, _("Left side of optional parameter must be a variable.\n") },
