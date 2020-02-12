@@ -1,10 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-//interactive mode
 clear a b
 try
     a=1;
@@ -94,7 +87,6 @@ clear a b xxxx
 try, if %t then  a=xxxx;end;catch, b=2;end
 if exists("a")==1|exists("b")==0 then bugmes();quit;end
 if b<>2 then bugmes();quit;end
-//nested try catch
 clear a b xxxx
 try
     a=xxxx;
@@ -120,7 +112,6 @@ clear a b xxxx
 try a=2;try a=xxxx; catch a=a+1; end;b=2;end
 if exists("a")==0|exists("b")==0 then bugmes();quit;end
 if a<>3|b<>2 then bugmes();quit;end
-//catch in  functions
 funcprot(0);
 clear a b
 deff("r=test()",[
@@ -250,7 +241,6 @@ deff("r=test()",[
 "r=exists(''a'')==1|exists(''b'')==0"
 "r=r|b<>2"])
 if test() then bugmes();quit;end
-//nested try catch
 deff("r=test()",[
 "try   "
 "  a=xxxx;"
@@ -273,29 +263,18 @@ if test() then bugmes();quit;end
 deff("test()",["try a=2; try a=xxxx; catch a=a+1,end; catch;b=2;end"])
 tree2code(macr2tree(test))
  ans  =
-!function test()  !
-!                 !
-!try              !
-!                 !
-!  a = 2;  try    !
-!                 !
-!    a = xxxx;    !
-!                 !
-!  catch          !
-!                 !
-!    a = a+1      !
-!                 !
-!  end;           !
-!                 !
-!catch            !
-!                 !
-!  b = 2;         !
-!                 !
-!end;             !
-!                 !
-!endfunction      !
-!                 !
-!                 !
+  "function [] = test()"
+  "try "                
+  "  a = 2;  try "      
+  "    a = xxxx;"       
+  "  catch "            
+  "    a = a+1"         
+  "  end;"              
+  "catch "              
+  "  b = 2;"            
+  "end;"                
+  "endfunction"         
+  ""                    
 deff("r=test()",[
 "try a=2;try a=xxxx+33; catch a=a+1,end;catch;b=2;end"
 "r=exists(''a'')==0|exists(''b'')==1"

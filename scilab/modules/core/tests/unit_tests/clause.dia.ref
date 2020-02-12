@@ -1,11 +1,3 @@
-//<-- CLI SHELL MODE -->
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- ENGLISH IMPOSED -->
 funcprot(0);
 deff('[y]=t(x)',[
 'y=0'
@@ -31,20 +23,13 @@ deff('[y]=t(x)',[
 '    end'
 '  end'
 'end'])
-//
 if t(0)<>0 then bugmes();quit;end
 if t(1)<>0 then bugmes();quit;end
 if t(-1)<>1 then bugmes();quit;end
-//
 t1=t;
 if t(0)-t1(0)<>0 then bugmes();quit;end
 if t(1)-t1(1)<>0 then bugmes();quit;end
 if t(-1)-t1(-1)<>0 then bugmes();quit;end
-//==========================================================================
-//test of break
-//==========================================================================
-// for in macro
-//--------------------------------------
 deff('[k]=tt1()','k=0,for i=1:5 ,k=k+1;if k==3 then break,end,end,k=k+1')
 if tt1()<>4 then bugmes();quit;end
 if tt1()<>4 then bugmes();quit;end
@@ -69,8 +54,6 @@ deff('[k]=tt1()',[
 'k=k+1'])
 if tt1()<>4 then bugmes();quit;end
 if tt1()<>4 then bugmes();quit;end
-// while
-//----------------------------------------
 deff('[k]=tt1()','k=0,while k<10 ,k=k+1;if k==3 then break,end,end,k=k+1')
 if tt1()<>4 then bugmes();quit;end
 if tt1()<>4 then bugmes();quit;end
@@ -95,9 +78,6 @@ deff('[k]=tt1()',[
 'k=k+1'])
 if tt1()<>4 then bugmes();quit;end
 if tt1()<>4 then bugmes();quit;end
-//
-// keyboard mode
-//------------------------
 k=0;while k<10 ,k=k+1;if k==3 then break,end,end,k=k+1;
 if k<>4 then bugmes();quit;end
 k=0;while k<10 ,k=k+1;if k==3 then break,end,end,
@@ -108,7 +88,6 @@ if k<>4 then bugmes();quit;end
 k=0;for  i=1:5 ,k=k+1;if k==3 then break,end,end,
 k=k+1;
 if k<>4 then bugmes();quit;end
-//
 k=0;while k<10,if k==0 then break,end,k=k+1;end,k=k+1;
 if k<>1 then bugmes();quit;end
 k=0;while k<10,if k==0 then break,end,k=k+1;end,
@@ -119,11 +98,6 @@ if k<>1 then bugmes();quit;end
 k=0;for i=1:5,if k==0 then break,end,k=k+1;end,
 k=k+1;
 if k<>1 then bugmes();quit;end
-//==========================================================================
-//test of continue
-//==========================================================================
-//in a for
-//----------
 n=3;
 c=[];for k=1:5,if k==n then continue,end,c=[c,k];end
 if or(c<>[1 2 4 5]) then bugmes();quit;end
@@ -142,9 +116,6 @@ if or(c<> [1,2,3,4, 1,2,3, 1,2,3,4]) then bugmes();quit;end
 deff('c=foo(n)','c=[];for i=1:3,for k=1:4,if k==n&i==2 then continue,end,c=[c,k];end;end')
 if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then bugmes();quit;end
 if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then bugmes();quit;end
-//in a while
-//----------
-//
 n=3;
 c=[];k=0;while k<5,k=k+1;if k==n then continue,end,c=[c,k];end
 if or(c<>[1 2 4 5]) then bugmes();quit;end

@@ -1,21 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Allan CORNET
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-//
-// <-- Non-regression test for bug 8531 -->
-//
-// <-- CLI SHELL MODE -->
-// 
-// <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=8531
-//
-// <-- Short Description -->
-// 
-//  "edit" function failed to open a defined macro loaded on stack
-// a Trick to overload call to editor in edit function
 global resultPathfname
 resultPath = "";
 clearfun("editor");

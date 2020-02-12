@@ -76,7 +76,6 @@ macros_error_type_2 = ["base2dec"; ..
 "binomial"; ..
 "bitand"; ..
 "ind2sub"; ..
-"intersect"; ..
 "modulo"; ..
 "permute"; ..
 "pmodulo"; ..
