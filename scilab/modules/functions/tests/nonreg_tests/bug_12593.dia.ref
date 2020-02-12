@@ -1,20 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-//
-// <-- Non-regression test for bug 12593 -->
-//
-// <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=12593
-//
-// <-- Short Description -->
-// Unrelated error message when running genlib on a sci file containing a scilab function
-// with a missing parenthesis
-// Error: "mprintf: wrong number of input arguments: data do not fit with format"
-// <-- CLI SHELL MODE -->
 my_function = ["function test()";"foo(";"endfunction"];
 my_dir      = pathconvert(TMPDIR+"/bug12593_dir");
 my_file     = my_dir+"test.sci";
