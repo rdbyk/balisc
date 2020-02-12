@@ -379,4 +379,4 @@ Bug Fixes
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot`, `colorbar` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
 * [#16307](http://bugzilla.scilab.org/show_bug.cgi?id=16307): `dockable="off"` and `closerequestfcn` on figures crached Scilab.
-
+* [#16323](http://bugzilla.scilab.org/show_bug.cgi?id=16323): `conj(sparse(x))` was complex when x is real. 
