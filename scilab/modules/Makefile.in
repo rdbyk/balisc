@@ -284,8 +284,6 @@ DIST_SUBDIRS = prebuildjava threads output_stream arnoldi \
 	parallel modules_manager ui_data history_browser preferences \
 	xml external_objects slint coverage webtools \
 	external_objects_java scicos_blocks scicos xcos mpi . javasci
-am__DIST_COMMON = $(srcdir)/Makefile.in \
-	$(top_srcdir)/config/mkinstalldirs
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
