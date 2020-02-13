@@ -7,13 +7,13 @@ refASCIICODE2 = [84  114  97  110  115  105  115  115  105  111  110];
 refSTRING2 = "Trans" + ascii(0) + "ission";
 res = ascii(refASCIICODE2)
  res  = 
- Transission
+  "Transission"
 if length(res) <> length(refSTRING2) then bugmes();quit;end
 if refSTRING2 <> res then bugmes();quit;end
 refASCIICODE3 = [84  114  97  110  115  0  105  115  115  105  111  110];
 refSTRING3 = "Trans" + ascii(0);
 res = ascii(refASCIICODE3)
  res  = 
- Trans
+  "Trans"
 if length(res) <> length(refSTRING3) then bugmes();quit;end
 if refSTRING3 <> res then bugmes();quit;end
