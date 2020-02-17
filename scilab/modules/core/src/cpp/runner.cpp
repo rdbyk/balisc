@@ -217,7 +217,7 @@ Runner* StaticRunner::getRunner(void)
 
 Runner* StaticRunner::getCurrentRunner(void)
 {
-    return m_CurrentRunner;
+    return m_CurrentRunner.load();
 }
 
 // return true if a Runner is already set in m_RunMe.
