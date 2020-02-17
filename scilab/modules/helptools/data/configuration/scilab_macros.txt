@@ -1648,7 +1648,6 @@ createLayoutOptions
 dragrect
 edit_curv
 errbar
-eval3d
 eval3dp
 fchamp
 fgrayplot
