@@ -36,11 +36,11 @@ function plotimplicit(fun, x_grid, y_grid, varargin)
     if ~isdef("x_grid","l") then
         x_grid = linspace(-1, 1, 201);
     else
-        if type(x_grid) <> 1 & ..
-            (typeof(x_grid)<> "implicitlist" | x_grid <> :) then
+        if type(x_grid) <> 1 && ..
+            (typeof(x_grid) <> "implicitlist" || x_grid <> 1:$) then
             error(msprintf(gettext("%s: Argument #%d: Real vector or colon : expected.\n"), fname, 2));
         end
-        if typeof(x_grid)=="implicitlist" & x_grid == :
+        if typeof(x_grid) == "implicitlist" && x_grid == 1:$
             //if ~isdef("y_grid","l")
             //    y_grid = :
             //end
@@ -62,11 +62,11 @@ function plotimplicit(fun, x_grid, y_grid, varargin)
     if ~isdef("y_grid","l") then
         y_grid = x_grid;
     else
-        if type(y_grid) <> 1 & ..
-            (typeof(y_grid)<> "implicitlist" | y_grid <> :)then
+        if type(y_grid) <> 1 && ..
+            (typeof(y_grid)<> "implicitlist" || y_grid <> 1:$)then
             error(msprintf(gettext("%s: Argument #%d: Real vector or colon : expected.\n"), fname, 3));
         end
-        if typeof(y_grid)=="implicitlist" & y_grid == :
+        if typeof(y_grid) == "implicitlist" && y_grid == 1:$
             y_grid = db(3:4)
         end
         if ~isvector(y_grid) then
