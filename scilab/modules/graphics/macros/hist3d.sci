@@ -2,9 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2012, 2018 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,14 +22,8 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
     if ~isdef("leg","local") then leg = "X@Y@Z"; end;
     if ~isdef("flags","local") then flags = [2 1 4]; end;
 
-<<<<<<< HEAD
     def=list(theta,alpha,leg,flags);
     if nargin<=0 then  //demo
-=======
-    def = list(theta,alpha,leg,flags);
-    [lhs,rhs]=argn(0)
-    if rhs<=0 then  //demo
->>>>>>> d89ceaa... * Bug 14738 fixed: hist3d() should be renamed bar3d()
         towns = ["Agen" "Bastia" "Chamonix" "Cognac" "Hyères" "Le Mans" "Le Puy" ..
         "Lille" "Lorient" "Mende" ]
         months = [_("January") _("Febuary") _("March") _("April") _("May") _("June")..
