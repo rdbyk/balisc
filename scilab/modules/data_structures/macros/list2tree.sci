@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,9 +24,8 @@ function tree = list2tree(x, titleRoot, styles, arrayByFields)
 
     // CHECKING INPUT ARGUMENTS
     // ------------------------
-    if argn(2) < 1 then
-        msg = _("%s: Wrong number of input argument(s): %d to %d expected.\n")
-        error(msprintf(msg, "list2tree", 1, 4));
+    if nargin < 1 then
+        error(72, 1, 4);
     end
 
     if and(type(x)<>[15 16 17 128]) then
@@ -60,8 +60,6 @@ function tree = list2tree(x, titleRoot, styles, arrayByFields)
     tree = uiCreateNode(titleRoot);
     tree = list2tree_inc(x, "root", tree, styles, arrayByFields);
 endfunction
-
-// ===========================================================================
 
 function tree = list2tree_inc(x, Path, tree, styles, arrayByFields)
 
@@ -203,7 +201,7 @@ function tree = list2tree_inc(x, Path, tree, styles, arrayByFields)
             try // there may be more field names than data
                 o = getfield(i,x);
             catch
-                o = list(,2)(1)
+                o = list(void(),2)(1)
             end
         else
             o = x
