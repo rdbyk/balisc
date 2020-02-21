@@ -4,7 +4,7 @@
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
@@ -60,11 +60,15 @@ types::Function::ReturnValue sci_getshortpathname(types::typed_list &in, int _iR
     {
         BOOL flagtrail = FALSE;
         wchar_t* tmp = getshortpathnameW(p[i], (BOOL*)&pBool[i]);
-        if (p[i][wcslen(p[i]) - 1] == '\\' || p[i][wcslen(p[i]) - 1] == '/')
+        int ilast = wcslen(p[i]) - 1;
+        if (ilast)
         {
-            flagtrail = TRUE;
+            wchar_t last = p[i][ilast];
+            if (last == '\\' || last == '/')
+            {
+                flagtrail = TRUE;
+            }
         }
-
         wchar_t* pwstPath = pathconvertW(tmp, flagtrail, FALSE, AUTO_STYLE);
         pOut1->set(i, pwstPath);
         FREE(pwstPath);
