@@ -3349,13 +3349,6 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/barh.sci, line: 122
-# File: modules/graphics/macros/barh.sci, line: 146
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
-msgstr ""
-
-#
 # File: modules/graphics/macros/barh.sci, line: 133
 # File: modules/graphics/macros/setPlotProperty.sci, line: 104
 # File: modules/graphics/macros/setSurfProperty.sci, line: 291
