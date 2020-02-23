@@ -132,10 +132,14 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             wchar_t* pwstDollar = wcsstr(pwstStart + (token.size() == 0 ? 0 : 1), L"$");
             if (pwstDollar != nullptr && (pwstDollar - pwstFirstOutput) < end)
             {
-                argumentPos.push_back(static_cast<int>(wcstol(pwstStart + 1, NULL, 10)) - 1);
-                start = pwstDollar - pwstFirstOutput;
-                pwstFirstOutput[start] = L'%';
-                positioned = true;
+                int index = static_cast<int>(wcstol(pwstStart + 1, NULL, 10));
+                if (index > 0)
+                {
+                    argumentPos.push_back(index - 1);
+                    start = pwstDollar - pwstFirstOutput;
+                    pwstFirstOutput[start] = L'%';
+                    positioned = true;
+                }
             }
         }
 
