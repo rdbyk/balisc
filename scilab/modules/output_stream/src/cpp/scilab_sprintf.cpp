@@ -4,7 +4,7 @@
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -85,12 +85,14 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
     wchar_t* pwstStart = pwstFirstOutput;
     bool percentpercent = false;
+    std::vector<int> argumentPos;
 
     while (finish == false)
     {
         wchar_t* pwstEnd = wcsstr(pwstStart + (token.size() == 0 ? 0 : 1), L"%");
         start = pwstStart - pwstFirstOutput;
         percentpercent = false;
+        bool positioned = false;
         if (pwstEnd != nullptr)
         {
             if (token.size() && pwstStart[1] == L'%')
@@ -122,6 +124,19 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             //end of string
             end = wcslen(pwstFirstOutput);
             finish = true;
+        }
+
+        // parameter field placeholders; manage "%2$d" field
+        if (end > 0)
+        {
+            wchar_t* pwstDollar = wcsstr(pwstStart + (token.size() == 0 ? 0 : 1), L"$");
+            if (pwstDollar != nullptr && (pwstDollar - pwstFirstOutput) < end)
+            {
+                argumentPos.push_back(static_cast<int>(wcstol(pwstStart + 1, NULL, 10)) - 1);
+                start = pwstDollar - pwstFirstOutput;
+                pwstFirstOutput[start] = L'%';
+                positioned = true;
+            }
         }
 
         TokenDef* tok = new TokenDef;
@@ -233,6 +248,19 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             wchar_t wcType = *(pwstPercent + 1);
             tok->typePos = (pwstPercent + 1) - tok->pwstToken;
 
+            //check numer of input
+            //printf("%f") or printf("%$2", 1) for example
+            if (itPos == inPos.end() || (positioned ? argumentPos.back() + 1 : (*itPos).first) >= in.size())
+            {
+                FREE(pwstFirstOutput);
+                Scierror(150);
+                *_piOutputRows = 0;
+                return nullptr;
+            }
+
+            int p = positioned ? argumentPos.back() + 1 : (*itPos).first;
+            int c = (*itPos).second;
+
             switch (wcType)
             {
                 case L'i': //integer
@@ -246,8 +274,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    int p = (*itPos).first;
-                    int c = (*itPos).second;
                     if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
@@ -275,8 +301,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    int p = (*itPos).first;
-                    int c = (*itPos).second;
                     if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
@@ -305,8 +329,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    int p = (*itPos).first;
-                    int c = (*itPos).second;
                     if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
@@ -332,8 +354,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    int p = (*itPos).first;
-                    int c = (*itPos).second;
                     if (in[p]->getType() != types::InternalType::ScilabString)
                     {
                         FREE(pwstFirstOutput);
@@ -376,6 +396,36 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         for (int i = first + 1; i < in.size(); ++i)
         {
             iLoop = std::min(iLoop, in[i]->getAs<types::GenericType>()->getRows());
+        }
+    }
+
+    // parameter field placeholders MUST all be specified
+    if (!argumentPos.empty())
+    {
+        std::vector<int> sortedArgumentPos = argumentPos;
+        std::sort(sortedArgumentPos.begin(), sortedArgumentPos.end());
+        int previous = 0;
+        for (int i = 1; i < sortedArgumentPos.size() && 0 <= previous && previous < 2; ++i)
+        {
+            previous = sortedArgumentPos[i] - sortedArgumentPos[i - 1];
+        }
+        if (previous < 0 || 2 < previous)
+        {
+            Scierror(150);
+            *_piOutputRows = 0;
+            return nullptr;
+        }
+        if (sortedArgumentPos.back() + 1 != token.size() - 1)
+        {
+            Scierror(150);
+            *_piOutputRows = 0;
+            return nullptr;
+        }
+        if (argumentPos.size() != token.size() - 1)
+        {
+            Scierror(150);
+            *_piOutputRows = 0;
+            return nullptr;
         }
     }
 
