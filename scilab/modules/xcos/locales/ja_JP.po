@@ -494,9 +494,6 @@ msgstr "不連続"
 msgid "Lookup Tables"
 msgstr "ルックアップ・テーブル"
 
-msgid "Signal Processing"
-msgstr "信号処理"
-
 msgid "Zero crossing detection"
 msgstr "ゼロクロス検出"
 
@@ -517,9 +514,6 @@ msgstr "ポートとサブシステム"
 
 msgid "Annotations"
 msgstr "注釈"
-
-msgid "Discrete time systems"
-msgstr "離散時間システム"
 
 msgid "Event handling"
 msgstr "イベント・ハンドリング"
@@ -1476,14 +1470,3 @@ msgstr "%s: '%s'からファイルの内容を読み込む際にエラーが発�
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr "%s: コンテキストを設定中に構文エラーが発生しました"
-
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
-#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
