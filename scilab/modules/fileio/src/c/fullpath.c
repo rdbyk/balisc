@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,12 +31,12 @@
 #include "os_string.h"
 #include "strlen.h"
 #include "strcmp.h"
-/*--------------------------------------------------------------------------*/
+
 #ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c);
 static int normalizePath(char *path);
 #endif
-/*--------------------------------------------------------------------------*/
+
 char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 {
 #if defined(_MSC_VER)
@@ -68,12 +68,14 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
     return _FullPath;
 #else
     char *rp = NULL;
-    int lenPath = (int)balisc_strlen(_Path);
+    char *ep = expandPathVariable(_Path);
+    int lenPath = (int)balisc_strlen(ep);
     int lenFullPath = 0;
-    int haveFileSep = ((lenPath > 1) && isDirSeparator(_Path[lenPath - 1]));
+    int haveFileSep = ((lenPath > 1) && isDirSeparator(ep[lenPath - 1]));
     int addFileSep = 0;
 
-    rp = realpath(_Path, _FullPath);
+    rp = realpath(ep, _FullPath);
+    FREE(ep);
     lenFullPath = (int)balisc_strlen(_FullPath);
 
     if (rp == NULL)
@@ -86,19 +88,19 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
         char* pstWorkingPath = NULL;
 
         //if argument is a relative path, add currentdir at start
-        if (_Path[0] != '/')
+        if (ep[0] != '/')
         {
             int ierr = 0;
             char* pstCurrentPath = scigetcwd(&ierr);
             //alloc buffer + 2, 1 for '/' and 1 for null termination
             pstWorkingPath = (char*)CALLOC(sizeof(char), (lenPath + balisc_strlen(pstCurrentPath) + 2));
-            sprintf(pstWorkingPath, "%s/%s", pstCurrentPath, _Path);
+            sprintf(pstWorkingPath, "%s/%s", pstCurrentPath, ep);
             lenPath = balisc_strlen(pstWorkingPath);
             FREE(pstCurrentPath);
         }
         else
         {
-            pstWorkingPath = os_strdup(_Path);
+            pstWorkingPath = os_strdup(ep);
         }
 
         //First case(1): fullpath(TMPDIR+"/a/b/c"), second case(2): fullpath("a/b/c") or third case(3): fullpath("../a/b")
@@ -112,7 +114,7 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
             strcpy(_FullPath, pstWorkingPath);
             normalizePath(_FullPath);
         }
-        else if (balisc_strcmp(_Path, _FullPath) != 0) // For case: fullpath("a/b/c") (2) or fullpath("../a/b/c") (3)
+        else if (balisc_strcmp(ep, _FullPath) != 0) // For case: fullpath("a/b/c") (2) or fullpath("../a/b/c") (3)
         {
             _Path_tmp = os_strdup(pstWorkingPath); //_Path_tmp="a/b/c" (2) or _Path_tmp="../a/b/c" (3)
             strtok(_Path_tmp, "./"); // _Path_tmp becomes a (2) or ../a (3)
@@ -160,7 +162,9 @@ wchar_t *get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _
 #else
     if (_wcPath)
     {
-        char *_Path = wide_string_to_UTF8(_wcPath);
+        wchar_t* ep = expandPathVariableW(_wcPath);
+        char *_Path = wide_string_to_UTF8(ep);
+        FREE(ep);
         if (_Path)
         {
             char *_FullPath = (char *)MALLOC(sizeof(char) * (_SizeInBytes));

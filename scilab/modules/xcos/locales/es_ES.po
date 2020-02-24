@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-01-09 17:52+0000\n"
+"PO-Revision-Date: 2020-02-15 22:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
@@ -434,8 +434,8 @@ msgstr "Nombre de la tipografía"
 msgid "Font style"
 msgstr "Estilo de la tipografía"
 
-msgid "Text settings"
-msgstr "Configuración de texto"
+msgid "Block legend"
+msgstr ""
 
 msgid "Image path"
 msgstr "Directorio de imágenes"
@@ -662,14 +662,14 @@ msgstr "Inferior"
 msgid "Middle"
 msgstr "Medio"
 
-msgid "Border Color"
-msgstr "Color de Borde"
+msgid "Block edge"
+msgstr ""
 
-msgid "Fill Color"
-msgstr "Color de relleno"
+msgid "Block background"
+msgstr ""
 
-msgid "Text Color"
-msgstr "Color de Texto"
+msgid "Legend color"
+msgstr ""
 
 msgid "Link Style"
 msgstr "Estilo del enlace"
@@ -1231,6 +1231,10 @@ msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
 msgstr ""
 "%s: Imposible cargar el bloque desde %s: no se encontró la variable "
 "`scs_m' .\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: Missing file.\n"
+msgstr "%s: Imposible cargar el bloque desde %s: Falta el archivo hdf5.\n"
 
 #, c-format
 msgid ""

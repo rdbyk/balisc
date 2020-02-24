@@ -103,6 +103,7 @@ int ConfigVariable::m_iFormatMode = 0;
 ** \{
 */
 int ConfigVariable::m_iConsoleWidth = 0;
+
 /*
 ** \}
 */

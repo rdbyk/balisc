@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-01-09 17:53+0000\n"
+"PO-Revision-Date: 2012-02-15 22:04+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
@@ -431,8 +431,8 @@ msgstr "Nom del tipus de lletra"
 msgid "Font style"
 msgstr "Estil de lletra"
 
-msgid "Text settings"
-msgstr "Configuració del text"
+msgid "Block legend"
+msgstr ""
 
 msgid "Image path"
 msgstr ""
@@ -661,14 +661,14 @@ msgstr "Inferior"
 msgid "Middle"
 msgstr "Centre"
 
-msgid "Border Color"
-msgstr "Color de les vores"
+msgid "Block edge"
+msgstr ""
 
-msgid "Fill Color"
-msgstr "Color d'emplenat"
+msgid "Block background"
+msgstr ""
 
-msgid "Text Color"
-msgstr "Color del text"
+msgid "Legend color"
+msgstr ""
 
 msgid "Link Style"
 msgstr "Estil dels enllaços"
@@ -1229,6 +1229,10 @@ msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
 msgstr ""
 "%s: No s'ha pogut carregar el bloc de %s: No s'ha trobat la variable "
 "`scs_m'.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: Missing file.\n"
+msgstr "%s: No s'ha pogut carregar el bloc de %s: Ha de ser un fitxer hdf5.\n"
 
 #, c-format
 msgid ""

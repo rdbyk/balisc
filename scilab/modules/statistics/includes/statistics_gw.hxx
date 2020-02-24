@@ -16,10 +16,9 @@
 #ifndef __STATISTICS_GW_HXX__
 #define __STATISTICS_GW_HXX__
 
-extern "C"
-{
-#include "dynlib_statistics_gw.h"
-}
+#include "cpp_gateway_prototype.hxx"
+
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_percent_cov);
 
 class StatisticsModule
 {
@@ -27,8 +26,8 @@ private :
     StatisticsModule() {};
     ~StatisticsModule() {};
 public :
-    EXTERN_STATISTICS_GW static int Load();
-    EXTERN_STATISTICS_GW static int Unload()
+    static int Load();
+    static int Unload()
     {
         return 1;
     }

@@ -166,6 +166,9 @@ eps = number_properties("eps")
             <member>
                 <link linkend="frexp">frexp</link>
             </member>
+            <member>
+                <link linkend="signed_zero">-0</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

@@ -20,6 +20,12 @@ function bode(varargin)
         den = 22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4;
         h2 = syslin("c", num/den);
 
+        // Clears and resets the current axes where to draw the example
+        ab = gca().axes_bounds
+        delete(gca())
+        xsetech(ab)
+
+        // Drawing
         bode([h1; h2], 0.01, 100, ["h1"; "h2"]);
         return;
     end
@@ -93,7 +99,7 @@ function bode(varargin)
             error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 2, 4))
         end
     else
-        ierr=execstr("%"+overloadname(varargin(1))+"_bode(varargin(:))","errcatch")
+        ierr=execstr("%"+typeof(varargin(1),"overload")+"_bode(varargin(:))","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
         end

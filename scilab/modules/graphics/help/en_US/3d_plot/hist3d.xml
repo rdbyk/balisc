@@ -20,11 +20,13 @@
           xmlns:scilab="http://www.scilab.org"  xml:id="hist3d" xml:lang="en">
     <refnamediv>
         <refname>hist3d</refname>
-        <refpurpose>3D representation of a histogram</refpurpose>
+      <refpurpose>3D representation of a histogram  (<emphasis role="bold">obsolete</emphasis>)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>hist3d(mtx,[theta,alpha,leg,flag,ebox])
+        <synopsis>
+            hist3d(mtx,[theta,alpha,leg,flag,ebox])
             hist3d(mtx,&lt;opt_args&gt;)
             hist3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
             hist3d(list(mtx,x,y),&lt;opt_args&gt;)
@@ -76,6 +78,14 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+           Up to Scilab 6.0, <literal>hist3d()</literal> features are actually some
+           <literal>bar3d()</literal> ones. In Scilab 6.1.0, <literal>bar3d()</literal> is
+           introduced as a clone of <literal>hist3d()</literal>. From now on, please use
+           <literal>bar3d()</literal> in replacement of the former <literal>hist3d()</literal>.
+           <literal>hist3d()</literal> will be redefined in Scilab 6.2.0 to actually support 3D
+            histogram features.
+        </warning>
         <para>
             <literal>hist3d</literal> represents a 2d histogram as a 3D plot.
             The values are associated to the intervals <literal>[x(i) x(i+1)[ X [y(i)
@@ -166,5 +176,18 @@ isoview off
                 <link linkend="plot3d">plot3d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                   <para>
+                     The current implementation of hist3d() is declared obsolete. Use bar3d() instead.
+                  </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

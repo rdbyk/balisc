@@ -39,12 +39,12 @@ ans==1
     []
 "xxxxx"
  ans  =
- xxxxx
+  "xxxxx"
 "xx=xxx"
  ans  =
- xx=xxx
+  "xx=xxx"
 disp xxx
- xxx
+  "xxx"
 a=1
  a  = 
    1.
@@ -82,12 +82,12 @@ clear c;c(5)=9
  d4f  = 
    4.
 if 10<>3 then disp("abcd"),end
- abcd
+  "abcd"
 if 10<>3  disp("abcd"),end
- abcd
+  "abcd"
 if (1==1) then "ok",end
  ans  =
- ok
+  "ok"
 for k=1:2,disp(k),end
    1.
    2.

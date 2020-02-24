@@ -1,7 +1,8 @@
-//  Scicos
+// Scicos
 //
 // Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,61 +19,56 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // See the file ../license.txt
-//
 
-function tree_show(x,titletop)
+function tree_show(x, titleRoot, styles, arrayByFields)
+    // x : list, cells or structs array, tlist, mlist, Xcos block
+    // titleRoot: single string: label of the tree root, for instance
+    //     the name of x in the calling environment
+    // styles: single string = HTML 4 tag styling either the address of
+    //   each data (fields names, lists indices..), or their content, or both.
+    //   In the string, "$" is replaced with the address.
+    //   Example: "<b>$</b>"  where $ will be replaced with the address.
+    // arrayByFields: single boolean (when x is an array of structs).
+    //   %T => For each field: the array of its values is displayed.
+    //   %F => For each array component, all its fields are displayed.
 
+    // CHECKING INPUT ARGUMENTS
+    // ------------------------
     if nargin < 1 then
-        error(sprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "tree_show", 1, 2));
+        error(72, 1, 4);
     end
 
-    if type(x)<>16 & type(x)<>17 & type(x)<>15 & type(x)<>128 then
-        error("Wrong type; input must be a list or an Xcos object.")
+    if and(type(x)<>[15 16 17 128]) then
+        msg = _("%s: Argument #%d: Container or Xcos object expected.\n")
+        error(msprintf(msg, "tree_show", 1))
     end
 
-endfunction
+    if ~isdef("titleRoot","l") then
+        titleRoot = ""
+    end
 
-
-function java = crlist3(x,Path, java)
-    if type(x)==15 then
-        II=1:size(x);v=string(II);
+    if ~isdef("arrayByFields","l") then
+        arrayByFields = %f
+    elseif type(arrayByFields) <> 4
+        msg = _("%s: Argument #%d: Boolean(s) expected.\n")
+        error(msprintf(msg, "tree_show", 3))
     else
-        v=getfield(1,x);
-        if type(x)==17 & v(1)=="st" then
-            II=3:size(v,"*");
-        else
-            II=2:size(v,"*");
-        end
-    end
-    for i=II
-        path=Path+","+string(i)
-        titre=v(i);
-        o=getfield(i,x);
-        if type(o)==16 | type(o)==17 | type(o)==128 then
-            w=getfield(1,o);
-            titre2=titre+" ("+w(1)+")";
-            currentNode = uiCreateNode(titre2);
-            currentNode = crlist3(o,path,currentNode); //* recursive
-            java = uiConcatTree(java, currentNode);
-
-        elseif type(o)==15 then
-            titre2=titre;
-            currentNode = uiCreateNode(titre2);
-            currentNode = crlist3(o,path,currentNode); //* recursive
-            java = uiConcatTree(java, currentNode);
-        else
-            try
-                if size(o, "*") > 40 then
-                    tts = typeof(o) + " of size " + sci2exp(size(o))
-                else
-                    tts = sprintf("%s", sci2exp(o))
-                end,
-            catch
-                tts = typeof(o);
-            end
-            titre2=titre+": "+tts  ;
-            java = uiConcatTree(java, uiCreateNode(titre2));
-        end
+        arrayByFields = arrayByFields(1)
     end
 
+    if ~isdef("styles","l") then
+        styles = "<font color=""blue"">$</font>"
+    elseif type(styles) <> 10
+        msg = _("%s: Argument #%d: Text(s) expected.\n")
+        error(msprintf(msg, "tree_show", 4))
+    else
+        styles = styles(1)
+    end
+
+    // BUILDING THE TREE
+    // -----------------
+    tree = list2tree(x, titleRoot, styles, arrayByFields)
+
+    // Displaying it:
+    uiDisplayTree(tree);
 endfunction

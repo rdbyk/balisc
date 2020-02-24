@@ -15,6 +15,11 @@ function nyquist(varargin)
     rhs=size(varargin);
 
     if rhs == 0 then
+        // Clears and resets the current axes where to draw the example
+        ab = gca().axes_bounds
+        delete(gca())
+        xsetech(ab)
+
         //Hall chart as a grid for nyquist
         s=poly(0,"s");
         Plant=syslin("c",16000/((s+1)*(s+10)*(s+100)));
@@ -89,7 +94,7 @@ function nyquist(varargin)
             error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,2,4))
         end
     else
-        ierr=execstr("%"+overloadname(varargin(1))+"_nyquist(varargin(:))","errcatch")
+        ierr=execstr("%"+typeof(varargin(1),"overload")+"_nyquist(varargin(:))","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
         end

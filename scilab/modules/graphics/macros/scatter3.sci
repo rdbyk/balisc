@@ -12,6 +12,8 @@
 
 function polyLine = scatter3(varargin)
 
+    warnobsolete("scatter3d()", "6.1.x")
+
     polyLine = 0;
 
     if ~nargin
@@ -19,7 +21,7 @@ function polyLine = scatter3(varargin)
         z = linspace(0,25,200);
         x = z.*cos(z);
         y = z.*sin(z);
-        polyLine = scatter3(x,y,z,z,z,"fill","markerEdgeColor","darkblue");
+        polyLine = scatter3d(x,y,z,z,z,"fill","markerEdgeColor","darkblue");
         set(gca(),"rotation_angles",[60,45])
         return;
     end

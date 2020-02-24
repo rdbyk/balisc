@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 09:35+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"PO-Revision-Date: 2019-11-02 09:35+0000\n"
+"Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -428,7 +428,7 @@ msgstr ""
 msgid "Font style"
 msgstr ""
 
-msgid "Text settings"
+msgid "Block legend"
 msgstr ""
 
 msgid "Image path"
@@ -646,13 +646,13 @@ msgstr "底对齐"
 msgid "Middle"
 msgstr "垂直居中"
 
-msgid "Border Color"
+msgid "Block edge"
 msgstr ""
 
-msgid "Fill Color"
+msgid "Block background"
 msgstr ""
 
-msgid "Text Color"
+msgid "Legend color"
 msgstr ""
 
 msgid "Link Style"
@@ -1184,6 +1184,8 @@ msgstr ""
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
 msgstr ""
 
+#
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 102
 #, c-format
 msgid ""
 "%s: Wrong type for input argument %s: function as string or Block type or "

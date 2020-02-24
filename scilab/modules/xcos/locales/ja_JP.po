@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-01 16:13+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2020-02-15 22:10+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,21 @@ msgstr ""
 "X-Generator: Launchpad (build 18573)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
+
+msgid "Signal Processing"
+msgstr "信号処理"
+
+msgid "Discrete time systems"
+msgstr "離散時間システム"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
@@ -434,8 +449,8 @@ msgstr "フォント名"
 msgid "Font style"
 msgstr "フォントの種類"
 
-msgid "Text settings"
-msgstr "テキスト設定"
+msgid "Block legend"
+msgstr ""
 
 msgid "Image path"
 msgstr "イメージのパス"
@@ -479,9 +494,6 @@ msgstr "不連続"
 msgid "Lookup Tables"
 msgstr "ルックアップ・テーブル"
 
-msgid "Signal Processing"
-msgstr "信号処理"
-
 msgid "Zero crossing detection"
 msgstr "ゼロクロス検出"
 
@@ -502,9 +514,6 @@ msgstr "ポートとサブシステム"
 
 msgid "Annotations"
 msgstr "注釈"
-
-msgid "Discrete time systems"
-msgstr "離散時間システム"
 
 msgid "Event handling"
 msgstr "イベント・ハンドリング"
@@ -662,14 +671,14 @@ msgstr "下揃え"
 msgid "Middle"
 msgstr "中間"
 
-msgid "Border Color"
-msgstr "境界色"
+msgid "Block edge"
+msgstr ""
 
-msgid "Fill Color"
-msgstr "色を塗る"
+msgid "Block background"
+msgstr ""
 
-msgid "Text Color"
-msgstr "テキストの色"
+msgid "Legend color"
+msgstr ""
 
 msgid "Link Style"
 msgstr "結合方法"
@@ -1101,6 +1110,11 @@ msgid "%s: Unable to export %s to %s.\n"
 msgstr "%s: %s を %s にエクスポートできません.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr "%s: 入力引数 %s の型が間違っています: ブロック型を指定してください.\n"
 
@@ -1221,6 +1235,11 @@ msgstr ""
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
 msgstr ""
 "%s:  %s からブロックをロードできませんでした: `scs_m' 変数が見つかりません.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: Missing file.\n"
+msgstr ""
+"%s: ブロックを %s から読み込めません: hdf5 ファイルを指定してください.\n"
 
 #, c-format
 msgid ""
@@ -1451,14 +1470,3 @@ msgstr "%s: '%s'からファイルの内容を読み込む際にエラーが発�
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr "%s: コンテキストを設定中に構文エラーが発生しました"
-
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
-#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"

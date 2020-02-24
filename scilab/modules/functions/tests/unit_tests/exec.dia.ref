@@ -15,12 +15,22 @@ for i = 1 : size(tab_ref,"*")
     mdelete(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + ".sce");
     rmdir(TMPDIR + filesep() + tab_ref(i));
 end
+<<<<<<< HEAD
  OK
  OK
  OK
  OK
  OK
  OK
+=======
+  "OK"
+  "OK"
+  "OK"
+  "OK"
+  "OK"
+  "OK"
+// create a script file
+>>>>>>> cde5fee... [functions] fix tests
 mputl("a=1;b=2",TMPDIR+"/myscript");
 exec(TMPDIR+"/myscript")
 a=1;b=2

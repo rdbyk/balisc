@@ -13,6 +13,7 @@
 
 CORE_C_SOURCES = \
     src/c/csignal.c \
+    src/c/resizesignal.c \
     src/c/md5.c \
     src/c/getmemory.c \
     src/c/isanan.c \

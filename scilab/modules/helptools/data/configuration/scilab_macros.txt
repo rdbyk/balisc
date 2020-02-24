@@ -1100,7 +1100,6 @@ systmat
 %st_i_sp
 %st_i_spb
 %st_i_st
-%st_matrix
 %st_n_c
 %st_n_l
 %st_n_mc
@@ -1112,9 +1111,7 @@ systmat
 %st_o_p
 %st_o_s
 %st_p
-%st_size
 %st_string
-%st_t
 %ticks_i_h
 %xls_e
 %xls_p
@@ -1626,6 +1623,7 @@ Sfgrayplot
 Sgrayplot
 TitleLabel
 autumncolormap
+bar3d
 bar
 barh
 barhomogenize
@@ -1648,7 +1646,6 @@ createLayoutOptions
 dragrect
 edit_curv
 errbar
-eval3d
 eval3dp
 fchamp
 fgrayplot
@@ -1694,6 +1691,7 @@ plot
 plot3d2
 plot3d3
 plotframe
+plotimplicit
 polarplot
 projaff
 rainbowcolormap
@@ -1719,7 +1717,6 @@ titlepage
 twinkle
 whitecolormap
 wintercolormap
-xinfo
 xlabel
 xload
 xnumb
@@ -1732,22 +1729,13 @@ zlabel
 %datatips_p
 datatipCreatePopupMenu
 datatipDefaultDisplay
-datatipDeleteSelected
 datatipGUIEventHandler
 datatipGetEntities
-datatipGetSelected
-datatipGetStruct
 datatipHilite
-datatipRadioCallback
 datatipRemoveAll
-datatipRemoveNearest
-datatipSetGUI
 datatipSetOrientation
-datatipSetSelected
-datatipSetStruct
 datatipSetTipPosition
 datatipSetTipStyle
-datatipsGUI
 orthProj
 pixDist
 setStringPosition
@@ -1902,7 +1890,6 @@ who_user
 whos
 with_javasci
 with_macros_source
-with_tk
 createBorderFont
 createWindow
 linsolve
@@ -1913,7 +1900,7 @@ parulacolormap
 powershell
 qpsolve
 scatter
-scatter3
+scatter3d
 ss2zp
 tbx_make
 tf2zp

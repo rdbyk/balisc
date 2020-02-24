@@ -2,9 +2,8 @@
 // Copyright (C) INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2012, 2018 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,7 +15,7 @@
 
 function hist3d(f,theta,alpha,leg,flags,ebox)
     //!
-    nep=8   // bars half widths = 1/nep
+    nep = 8   // bars half widths = 1/nep
 
     if ~isdef("theta","local") then theta = 35; end;
     if ~isdef("alpha","local") then alpha = 45; end;
@@ -58,6 +57,9 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
         gcf().immediate_drawing = initDrawingMode;
         return
     end
+
+    warnobsolete("bar3d()","6.2.0")
+
     if typeof(f)=="list" then
         [f,x,y]=f(1:3);
         sx=prod(size(x));
