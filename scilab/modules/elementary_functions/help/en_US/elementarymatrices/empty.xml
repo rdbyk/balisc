@@ -555,9 +555,6 @@ A([],:)
                 <link linkend="matrices">matrices</link>
             </member>
             <member>
-                <link linkend="oldEmptyBehaviour">oldEmptyBehaviour</link>
-            </member>
-            <member>
                 <link linkend="insertion">insertion</link>
             </member>
         </simplelist>

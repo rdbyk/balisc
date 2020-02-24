@@ -122,14 +122,6 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
 
                 </para>
 
-                <para>
-
-                    呼び出し時の引数の実際の数は,
-
-                    <link linkend="argn">argn</link> により取得することができます.
-
-                </para>
-
             </listitem>
 
             <listitem>

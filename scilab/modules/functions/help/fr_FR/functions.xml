@@ -60,9 +60,7 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                     <literal>[y1,...,yn]=foo(x1,...,xm)</literal>. On peut
                     utiliser éventuellement un sous-ensemble de ces variables
                     d'entrée et de sortie. Dans ce cas, seules les premières
-                    variables à partir de la gauche sont utilisées. La fonction
-                    <link linkend="argn">argn</link>peut être utilisée pour connaître le
-                    nombre effectif d'arguments d'appel.
+                    variables à partir de la gauche sont utilisées.
                 </para>
             </listitem>
             <listitem>

@@ -153,7 +153,7 @@
 
     // 右下隅にキャプションを移動
     gca().children(1).legend_location="in_lower_right";
-    h = nicholschart(,,'wheat');
+    h = nicholschart([],[],'wheat');
     h.gainLabels.font_foreground = color("orange");
     ]]></programlisting>
         <para>
@@ -169,7 +169,7 @@
                 black([Plant;Plant*PID ],0.01,100,["Plant"; "Plant and PID corrector"]);
                 //move the caption in the lower right corner
                 gca().children(1).legend_location="in_lower_right";
-                h = nicholschart(,,'wheat');
+                h = nicholschart([],[],'wheat');
                 h.gainLabels.font_foreground = color("orange");
             </scilab:image>
         </para>

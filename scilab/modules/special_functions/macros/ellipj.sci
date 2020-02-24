@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 //
 // Copyright (C) 2019 - Samuel GOUGEON - Le Mans Université
+// Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +24,7 @@ function varargout = ellipj(varargin)
     //               //  and "sd" Jacobi functions.
 
     fname = "ellipj"
-    lhs = argn(1)
+
     funs = []   // names of Jacobi functions to be returned
     shift = 0   // input argument shift, for error messages about x or m
 
@@ -39,7 +40,7 @@ function varargout = ellipj(varargin)
         [funs, k]= unique(in(1))
         funs = in(1)(gsort(k,"g","i"))
         in(1) = null()
-        if lhs > 1
+        if nargout > 1
             msg = _("%s: Wrong number of output arguments: %d expected.\n")
             error(msprintf(msg, fname, 1))
         end
@@ -53,7 +54,7 @@ function varargout = ellipj(varargin)
             error(msprintf(msg, fname, 1, "''cn'' ''dn'' ''sn'' ''nc'' ''nd'' ''ns''"))
         end
     else
-        if lhs > 3
+        if nargout > 3
             msg = _("%s: Wrong number of output arguments: %d to %d expected.\n")
             error(msprintf(msg, fname, 1, 3))
         end
@@ -112,7 +113,7 @@ function varargout = ellipj(varargin)
     end
     // cn
     // --
-    if lhs > 1 | grep(funs,["cn" "nc"]) <> [] then
+    if nargout > 1 | grep(funs,["cn" "nc"]) <> [] then
         if xReal
             cn = c
         else
@@ -126,7 +127,7 @@ function varargout = ellipj(varargin)
     end
     // dn
     // --
-    if lhs > 2 | grep(funs,["dn" "nd"]) <> [] then
+    if nargout > 2 | grep(funs,["dn" "nd"]) <> [] then
         dn = sqrt(1 - m*sn.*sn);
         if ~isreal(dn) & isreal(dn,0) then
             dn = real(dn)
@@ -151,7 +152,7 @@ function varargout = ellipj(varargin)
     else
         varargout = list()
         varargout(1) = sn
-        if lhs > 1, varargout(2) = cn, end
-        if lhs > 2, varargout(3) = dn, end
+        if nargout > 1, varargout(2) = cn, end
+        if nargout > 2, varargout(3) = dn, end
     end
 endfunction
