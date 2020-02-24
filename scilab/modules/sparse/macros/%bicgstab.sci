@@ -192,7 +192,7 @@ function [x, resNorm, iter, resVec] = %bicgstab(%A, %b, tol, maxIter, %M, %M2, x
             printf(gettext("Algorithm fails\n"));
         end
         flag = 1;
-        if (lhs < 2) then
+        if (nargout < 2) then
             warning(msprintf(gettext("%s: Convergence error.\n"),"bicgstab"));
         end
     else

@@ -61,10 +61,6 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                     tais casos, apenas as primeiras variáveis da esquerda para direita são
                     usadas ou definidas.
                 </para>
-                <para>
-                    A função <link linkend="argn">argn</link> pode ser utilizada
-                    para se o número total real de argumentos de chamada.
-                </para>
             </listitem>
             <listitem>
                 <para>É possível definir funções com número máximo indeterminado de

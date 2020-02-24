@@ -2,6 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -174,7 +175,7 @@ function [p, dmin, status] = datafit(iprint, G, varargin)
             DGG = [
             "g  = 0*p"
             "pa = sqrt(%eps)*(1+1d-3*abs(p))"
-            "i = : "
+            "i = 1:$ "
             "g1 = " + GP
             "f = sum(sum((g1''*Wg) .* g1'',""c"").*Wd'');"
             "for j = 1:" + msprintf("%d\n",np)
@@ -215,7 +216,7 @@ function [p, dmin, status] = datafit(iprint, G, varargin)
     // Defining the costf() function for optim:
     if isGvec then
         tmp = [
-            "    i = : "
+            "    i = 1:$ "
             "    g1 = " + GP
             "    f = sum(sum((g1''*Wg) .* g1'',""c"") .* Wd'');"
             ]

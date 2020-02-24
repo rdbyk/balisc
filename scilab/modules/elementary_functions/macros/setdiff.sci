@@ -54,7 +54,7 @@ function [a, ka] = setdiff(a, b, orien)
         if ndims(b) > 2 then
             b = serialize_hypermat(b, orien)
         end
-        if lhs > 1
+        if nargout > 1
             [a, ka] = unique(a, orien)
             if isempty(b)
                 return
@@ -117,7 +117,7 @@ function [a, ka] = setdiff(a, b, orien)
     else
         // by element
         // ----------
-        if lhs > 1
+        if nargout > 1
             [a,ka] = unique(a);
         else
             a = unique(a);
@@ -139,7 +139,7 @@ function [a, ka] = setdiff(a, b, orien)
 
         keep = find(k <= na);
         a = a(k(keep));
-        if lhs > 1
+        if nargout > 1
             ka = ka(k(keep))
         end
     end
