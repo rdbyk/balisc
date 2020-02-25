@@ -25,7 +25,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[p, fmin, status] = datafit([iprint,] G [,DG], Data [,Wd] [,Wg][,'b',p_inf,p_sup], p0 [,algo][,stop])
+        <synopsis>
+        [p, fmin, status] = datafit(G, Data, p0)
+        [p, fmin, status] = datafit(G, Data, Wd, p0)
+        [p, fmin, status] = datafit(G, Data, Wd, 'b', p_inf, p_sup, p0)
+        [p, fmin, status] = datafit(G, Data, 'b', p_inf, p_sup, p0)
+        [p, fmin, status] = datafit(G, Data [,Wd] [,Wg][,'b',p_inf,p_sup], p0 [,algo][,stop])
+        [p, fmin, status] = datafit(G, DG, Data, ..)
+        [p, fmin, status] = datafit(iprint, ..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -388,13 +395,10 @@ f = G(p, Data(:,1))^2 * Wd(1) + ..
     </refsection>
     <refsection>
         <title>Examples</title>
-        <table>
-            <tr>
-                <td>
-                    <para>
-                        <emphasis role="bold">Simple example: Polynomial fitting (parabola = 3 parameters)</emphasis>.
-                    </para>
-                    <programlisting role="example"><![CDATA[
+        <para>
+            <emphasis role="bold">Simple example: Polynomial fitting (parabola = 3 parameters)</emphasis>.
+        </para>
+        <programlisting role="example"><![CDATA[
 // Model (parabola)
 function y = FF(x,p)
     y = (p(1)*x + p(2)).*x + p(3)
@@ -404,7 +408,7 @@ endfunction
 pa = [2;-4;14] // parameters of the actual law, to generate data
 X = 0:0.1:3.5;
 Y0 = FF(X, pa);
-noise = 10*(rand(Y0)-.5);   // We add some noise
+noise = 5*(rand(Y0)-.5);   // We add some noise
 Y = Y0 + noise
 Data = [X ; Y];
 
@@ -441,24 +445,29 @@ ax = gca(); ax.x_location = "top";
 tmp = ax.x_ticks.labels;
 gca().x_ticks.labels = emptystr(size(tmp,"*"),1);
 xgrid(color("grey70"))
-         ]]></programlisting>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <para/>
-                    <para>
-                        <emphasis role="bold">Fitting a gaussian curve + sloping base (5 parameters)</emphasis>:
-                    </para>
-                    <programlisting role="example"><![CDATA[
+     ]]></programlisting>
+        <!-- Due to random input data, it is preferable to have a fixed image instead of automated.
+        <scilab:image>
+            // ===============
+            gcf().axes_size = [520 550];
+        </scilab:image>
+        -->
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../images/datafit_A.png"/>
+            </imageobject>
+        </inlinemediaobject>
+        <para/>
+        <para>
+            <emphasis role="bold">Fitting a gaussian curve + sloping base (5 parameters)</emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
 function Y = model(P, X)
     Y = P(3) * exp(-(X-P(1)).^2 / (2*P(2)*P(2))) + P(4)*X + P(5);
 endfunction
 // -------------------------------
 // Gap function
-function r = gap(P,XY)
+function r = gap(P, XY)
     r = XY(2,:) - model(P,XY(1,:))
 endfunction
 // -------------------------------
@@ -500,9 +509,9 @@ plot2d(X, fYw,18)  // best weighted fit
 // Legends: Average vertical Model-Data distance:
 // True one v/s according to the residual cost
 L_1 = "Unweighted fit (%5.2f /%5.2f)";
-L_1 = msprintf(L1, mean(abs(fY-Y0)), sqrt(dmin/Np));
+L_1 = msprintf(L_1, mean(abs(fY-Y0)), sqrt(dmin/Np));
 L_2 = "Weighted fit (%5.2f /%5.2f)";
-L_2 = msprintf(L1, mean(abs(fYw-Y0)), sqrt(dminw/sum(Wd)));
+L_2 = msprintf(L_2, mean(abs(fYw-Y0)), sqrt(dminw/sum(Wd)));
 legend(["True law", "Noisy Data", L_1, L_2],1)
 
 // Params: row#1: true params row#2:
@@ -520,22 +529,26 @@ plot2d(X, model(Pw,X)-Y0, 18) // remaining gap best weighted fit
 ylabel("Data fit - True law")
 ax = gca();
 ax.x_location = "top";
-tmp = ax.x_ticks.labels;
-gca().x_ticks.labels = emptystr(size(tmp,"*"),1);
+gca().x_ticks.labels = emptystr(size(ax.x_ticks.labels, "*"),1);
 xgrid(color("grey70"))
-         ]]></programlisting>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <para/>
-                    <para>
-                        <emphasis role="bold">Extraction of 3 overlapping gaussian curves (9 parameters)</emphasis>:
-                        example with constrained bounds and a matrix of parameters.
-                    </para>
-                    <programlisting role="example"><![CDATA[
+     ]]></programlisting>
+        <!-- Due to random input data, it is preferable to have a fixed image instead of automated.
+        <scilab:image>
+            // ===============
+            gcf().axes_size = [520 550];
+        </scilab:image>
+        -->
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../images/datafit_B.png"/>
+            </imageobject>
+        </inlinemediaobject>
+        <para/>
+        <para>
+            <emphasis role="bold">Extraction of 3 overlapping gaussian curves (9 parameters)</emphasis>:
+            example with constrained bounds and a matrix of parameters.
+        </para>
+        <programlisting role="example"><![CDATA[
 // Basic gaussian component:
 function Y = gauss(X, average, stDev, ymax)
     Y = ymax * exp(-(X-average).^2 / (2*stDev*stDev))
@@ -552,14 +565,14 @@ endfunction
 
 // Gap function:
 function r = gap(P,XY)
-    r = XY(2,:) - model(P,XY(1,:))
+    r = XY(2,:) - model(P, XY(1,:))
 endfunction
 
-// Actual parameters :
+// True parameters :
 Pa = [ 1.1  4    7    // averages
         1  0.8  1.5   // standard deviations
         3   2   5.5   // ymax
-      ];
+     ];
 Nc = size(Pa,2);      // Number of summed curves
 Np = 200;             // Number of data points
 
@@ -568,19 +581,16 @@ xmin = 0;
 xmax = 10;
 X = linspace(xmin-2, xmax+2, Np);
 Y = model(Pa, X);
-Data = [X ; Y];          // Curve to analyze / fit
+Data = [X ; Y];      // Curve to analyze / fit
 
 // FITTING
 // -------
-// Fitting parameters:
-// Initial values & bounds (amplitudes must be > 0)
-Po = [ linspace(xmin,xmax,Nc)
-       ones(1,Nc)*0.5
-       ones(1,Nc)*max(Y)/2 ];
+// Fitting parameters: initial values and bounds (amplitudes must be > 0)
+Po = [ linspace(xmin,xmax,Nc) ; ones(1,Nc)*0.5 ; ones(1,Nc)*max(Y)/2];
 Pinf = [ones(1,Nc)*-2 ; ones(1,Nc)*0.1 ; ones(1,Nc)*1];
 Psup = [ones(1,Nc)*12 ; ones(1,Nc)*3   ; ones(1,Nc)*max(Y)*1.2];
 // Fitting
-[P, dmin] = datafit(gap,Data,'b',Pinf,Psup,Po,'qn','ar',200,200);
+[P, dmin] = datafit(gap, Data, 'b',Pinf,Psup, Po, 'qn','ar',200,200);
 
 // Display
 // -------
@@ -589,13 +599,10 @@ xsetech([0 0 1 0.8]);
 plot(X, Y, "-b", X, model(P,X), "-r");
 gca().children.children(1:2).thickness = 2;
 for i = 1:Nc
-    // True gaussian components
-    plot(X, gauss(X, Pa(1,i), Pa(2,i), Pa(3,i)), "-c");
-    // Extracted gaussian components
-    plot(X, gauss(X, P(1,i), P(2,i), P(3,i)), "-g");
+plot(X, gauss(X, Pa(1,i), Pa(2,i), Pa(3,i)), "-c"); // True gaussian components
+plot(X, gauss(X, P(1,i), P(2,i), P(3,i)), "-g");    // Extracted gaussian components
 end
-legend("Data", "Parametric Model", ..
-       "True components", "Extracted components",  2);
+legend("Data", "Parametric Model","True components", "Extracted components",  2);
 
 xsetech([0 0.75 1 0.25])
 plot(X, model(P,X)-Y);
@@ -603,17 +610,77 @@ gca().x_location = "top";
 gca().x_ticks.labels = emptystr(size(gca().x_ticks.labels,"*"),1);
 ylabel("Model - Data")
 xgrid(color("grey70"))
-         ]]></programlisting>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <para>
-                        <emphasis role="bold">With a parametric curve: Fitting a off-centered tilted 2D elliptical arc (5 parameters)</emphasis>.
-                    </para>
-                    <programlisting role="example"><![CDATA[
+     ]]></programlisting>
+        <scilab:image>
+            // Basic gaussian component:
+            function Y = gauss(X, average, stDev, ymax)
+            Y = ymax * exp(-(X-average).^2 / (2*stDev*stDev))
+            endfunction
+
+            // Model: cumulated gaussian laws
+            function r = model(P, X)
+            // P(1,:): averages  P(2,:): standard deviation  P(3,:): ymax
+            r = 0;
+            for i = 1:size(P,2)
+            r = r + gauss(X, P(1,i), P(2,i), P(3,i));
+            end
+            endfunction
+
+            // Gap function:
+            function r = gap(P,XY)
+            r = XY(2,:) - model(P,XY(1,:))
+            endfunction
+
+            // True parameters :
+            Pa = [ 1.1  4    7    // averages
+            1  0.8  1.5   // standard deviations
+            3   2   5.5   // ymax
+            ];
+            Nc = size(Pa,2);       // Number of summed curves
+            Np = 200;             // Number of data points
+
+            // Data generation (without noise)
+            xmin = 0;
+            xmax = 10;
+            X = linspace(xmin-2, xmax+2, Np);
+            Y = model(Pa, X);
+            Data = [X ; Y];          // Curve to analyze / fit
+
+            // FITTING
+            // -------
+            // Fitting parameters: initial values and bounds (amplitudes must be > 0)
+            Po = [ linspace(xmin,xmax,Nc) ; ones(1,Nc)*0.5 ; ones(1,Nc)*max(Y)/2];
+            Pinf = [ones(1,Nc)*-2 ; ones(1,Nc)*0.1 ; ones(1,Nc)*1];
+            Psup = [ones(1,Nc)*12 ; ones(1,Nc)*3   ; ones(1,Nc)*max(Y)*1.2];
+            // Fitting
+            [P, dmin] = datafit(gap, Data, 'b',Pinf,Psup, Po, 'qn','ar',200,200);
+
+            // Display
+            // -------
+            clf()
+            xsetech([0 0 1 0.8]);
+            plot(X, Y, "-b", X, model(P,X), "-r");
+            gca().children.children(1:2).thickness = 2;
+            for i = 1:Nc
+            plot(X, gauss(X, Pa(1,i), Pa(2,i), Pa(3,i)), "-c"); // True gaussian components
+            plot(X, gauss(X, P(1,i), P(2,i), P(3,i)), "-g");    // Extracted gaussian components
+            end
+            legend("Data", "Parametric Model","True components", "Extracted components",  2);
+
+            xsetech([0 0.75 1 0.25])
+            plot(X, model(P,X)-Y);
+            gca().x_location = "top";
+            gca().x_ticks.labels = emptystr(size(gca().x_ticks.labels,"*"),1);
+            ylabel("Model - Data")
+            xgrid(color("grey70"))
+            // ===============
+            gcf().axes_size = [520 400];
+        </scilab:image>
+        <para/>
+        <para>
+            <emphasis role="bold">With a parametric curve: Fitting a off-centered tilted 2D elliptical arc (5 parameters)</emphasis>.
+        </para>
+        <programlisting role="example"><![CDATA[
 function g = Gap(p, Data)
     // p: a, b, center xc, yc, alpha tilt °
     C = cosd(p(5)); S = -sind(p(5));
@@ -681,12 +748,18 @@ xstring(-3.7, 1.2, ["" "    a           b        xc       yc     A°"
                     "Actual:" Patxt
                     "Fit:" Ptxt ])
 xstring(-2.5, 0.9, "dmin = " + msprintf("%5.3f", dmin))
-         ]]></programlisting>
-                </td>
-                <td>
-                </td>
-            </tr>
-        </table>
+     ]]></programlisting>
+        <!-- Due to random input data, it is preferable to have a fixed image instead of automated.
+        <scilab:image>
+            // ===============
+            gcf().axes_size = [520 550];
+        </scilab:image>
+        -->
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../images/datafit_C.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -708,23 +781,28 @@ xstring(-2.5, 0.9, "dmin = " + msprintf("%5.3f", dmin))
             <revision>
                 <revnumber>6.1</revnumber>
                 <revdescription>
-                    <para>
-                        New option <varname>Wd</varname> to weight measured data <varname>Data</varname>.
-                    </para>
-                    <para>
-                        The gap function G() may now be vectorized over <literal>Data</literal> points.
-                    </para>
-                    <para>
-                        Initial parameters <varname>p0</varname> and their bounds may now be
-                        provided as a matrix instead of a mandatory column.
-                    </para>
-                    <para>
-                        The <literal>err</literal> output argument is replaced with
-                        <literal>dmin</literal> = average Model-to-data distance.
-                    </para>
-                    <para>
-                        New output argument <literal>status</literal> added (for the "qn" algorithm).
-                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            New option <varname>Wd</varname> to weight measured data
+                            <varname>Data</varname>.
+                        </listitem>
+                        <listitem>
+                            The gap function G() may now be vectorized over <literal>Data</literal>
+                            points.
+                        </listitem>
+                        <listitem>
+                            Initial parameters <varname>p0</varname> and their bounds may now be
+                            provided as a matrix instead of a mandatory column.
+                        </listitem>
+                        <listitem>
+                            The <literal>err</literal> output argument is replaced with
+                            <literal>dmin</literal> = average Model-to-data distance.
+                        </listitem>
+                        <listitem>
+                            New output argument <literal>status</literal> added
+                            (for the "qn" algorithm).
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>
