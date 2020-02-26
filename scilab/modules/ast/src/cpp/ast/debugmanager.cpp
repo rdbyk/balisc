@@ -477,6 +477,9 @@ void DebuggerManager::internal_stop()
 {
     interrupted = true;
     generateCallStack();
+    // release the debugger thread
+    ThreadManagement::SendDebuggerExecDoneSignal();
+    // wait inside pause
     pause();
     //clean current seqexp
     interrupted = false;
