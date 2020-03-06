@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
- * Copyright Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -308,6 +308,15 @@ struct Sparse : GenericType
     */
     Sparse* dotDivide(Sparse SPARSE_CONST& o) const;
 
+    bool isTrue()
+    {
+        if (nonZeros() > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
     bool neg(InternalType *& out);
 
     bool transpose(InternalType *& out);
@@ -595,7 +604,7 @@ struct SparseBool : GenericType
 
     bool isTrue()
     {
-        if (static_cast<int>(nbTrue()) == m_iSize)
+        if (nbTrue() > 0)
         {
             return true;
         }
