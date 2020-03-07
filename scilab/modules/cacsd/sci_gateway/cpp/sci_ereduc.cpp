@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-/*--------------------------------------------------------------------------*/
+
 #include "cacsd_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
@@ -26,7 +26,6 @@ extern "C"
     extern void C2F(ereduc)(double*, int*, int*, double*, double*, int*, int*, double*);
 }
 
-/*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     double* pdblX   = NULL;
@@ -36,22 +35,43 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
 
     if (in.size() != 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "ereduc", 2);
+        Scierror(71, 2);
         return types::Function::Error;
     }
 
     if (_iRetCount > 5)
     {
-        Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "ereduc", 1, 5);
+        Scierror(82, 1, 5);
         return types::Function::Error;
     }
 
-    /*** get inputs arguments ***/
-    // get X
     if (in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_ereduc";
         return Overload::call(wstFuncName, in, _iRetCount, out);
+    }
+
+    if (in[0]->getAs<types::Double>()->isIdentity())
+    {
+        switch (_iRetCount)
+        {
+            case 0:
+            case 1:
+                out.push_back(in[0]);
+                return types::Function::OK;
+            case 2:
+                out.push_back(in[0]);
+                out.push_back(types::Double::Identity(1.0));
+                return types::Function::OK;
+            case 3:
+                out.push_back(in[0]);
+                out.push_back(types::Double::Identity(1.0));
+                out.push_back(out[1]);
+                return types::Function::OK;
+            default:
+                Scierror(100, 1 , _("fixed size array"));
+                return types::Function::Error;
+        }
     }
 
     types::Double* pDblX = in[0]->clone()->getAs<types::Double>();
@@ -59,10 +79,9 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
     iColsX  = pDblX->getCols();
     iRowsX  = pDblX->getRows();
 
-    // get Tol
     if (in[1]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "ereduc", 2);
+        Scierror(95, 2);
         return types::Function::Error;
     }
 
@@ -70,13 +89,12 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
 
     if (pDblTol->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "ereduc", 2);
+        Scierror(93, 2);
         return types::Function::Error;
     }
 
     dTol = pDblTol->getFirst();
 
-    /*** perform operations ***/
     types::Double* pDblQ = new types::Double(iRowsX, iRowsX);
     double* pdblQ = pDblQ->get();
     types::Double* pDblZ = new types::Double(iColsX, iColsX);
@@ -87,7 +105,7 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
 
     C2F(ereduc)(pdblX, &iRowsX, &iColsX, pdblQ, pdblZ, piStair, &iRk, &dTol);
 
-    /*** retrun output arguments ***/
+
     // return E
     out.push_back(pDblX);
 
@@ -134,4 +152,3 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
