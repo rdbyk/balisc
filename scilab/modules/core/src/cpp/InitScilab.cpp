@@ -3,7 +3,7 @@
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -22,6 +22,7 @@
 #include "polynom.hxx"
 #include "string.hxx"
 #include "bool.hxx"
+#include "listundefined.hxx"
 
 #include "scilabWrite.hxx"
 #include "tasks.hxx"
@@ -111,12 +112,14 @@ static void Add_Nan(void);
 static void Add_Inf(void);
 static void Add_io(void);
 static void Add_balisc(void);
+static void Add_dash(void);
 static void Add_All_Variables(void);
 static void Add_Double_Constant(const std::wstring& _szName, double _dblReal);
 static void Add_Double_Constant(const std::wstring& _szName, double _dblReal, double _dblImg);
 static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdblReal);
 static void Add_Boolean_Constant(const std::wstring& _szName, bool _bBool);
 static void Add_String_Constant(const std::wstring& _szName, const char *_pstString);
+static void Add_Undefined_Constant(const std::wstring& _szName);
 static void checkForLinkerErrors(void);
 
 static int batchMain(ScilabEngineInfo* _pSEI);
@@ -1062,6 +1065,7 @@ static void Add_All_Variables(void)
     Add_Inf();
     Add_io();
     Add_balisc();
+    Add_dash();
 }
 
 static void Add_Nan(void)
@@ -1144,6 +1148,11 @@ static void Add_balisc(void)
     Add_Double_Constant(L"%balisc", 1);
 }
 
+static void Add_dash(void)
+{
+    Add_Undefined_Constant(L"–");
+}
+
 static void Add_Poly_Constant(const std::wstring& _szName, const std::wstring& _szPolyVar, int _iRank, types::Double * _pdbl)
 {
     types::Polynom * pVar = new types::Polynom(_szPolyVar, 1, 1, &_iRank);
@@ -1178,6 +1187,12 @@ static void Add_String_Constant(const std::wstring& _szName, const char *_pstStr
 {
     types::String * ps = new types::String(_pstString);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), ps);
+}
+
+static void Add_Undefined_Constant(const std::wstring& _szName)
+{
+    types::ListUndefined* v = new types::ListUndefined();
+    symbol::Context::getInstance()->put(symbol::Symbol(_szName), v);
 }
 
 // manage debugger commands
