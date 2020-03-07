@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,8 +27,6 @@ extern "C"
 #include "localization.h"
 }
 
-static const char fname[] = "cumprod";
-
 types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDblIn       = NULL;
@@ -45,6 +43,11 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
+    if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->isIdentity())
+    {
+        Scierror(100, 1 , _("fixed size array"));
+        return types::Function::Error;
+    }
 
     bool isCloned = true;
     /***** get data *****/
@@ -109,7 +112,7 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
                     pDblIn->killMe();
                 }
 
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), fname, 2);
+                Scierror(110, 2, _("positive real value"));
                 return types::Function::Error;
             }
 
@@ -122,7 +125,7 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
                     pDblIn->killMe();
                 }
 
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), fname, 2);
+                Scierror(110, 2, _("positive real value"));
                 return types::Function::Error;
             }
         }
@@ -194,11 +197,11 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
                 const char* pstrExpected = NULL;
                 if (in.size() == 2)
                 {
-                    pstrExpected = "\"*\",\"r\",\"c\",\"m\",\"native\",\"double\"";
+                    pstrExpected = "'*', 'r', 'c', 'm', 'native', or 'double'";
                 }
                 else
                 {
-                    pstrExpected = "\"*\",\"r\",\"c\",\"m\"";
+                    pstrExpected = "'*', 'r', 'c', or 'm'";
                 }
 
                 if (isCloned)
@@ -206,7 +209,7 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
                     pDblIn->killMe();
                 }
 
-                Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, 2, pstrExpected);
+                Scierror(110, 2, pstrExpected);
                 return types::Function::Error;
             }
         }
@@ -264,8 +267,7 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
             {
                 pDblIn->killMe();
             }
-
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), fname, 3, "\"native\"", "\"double\"");
+            Scierror(110, 3, _("'native' or 'double'"));
             return types::Function::Error;
         }
     }
