@@ -173,6 +173,13 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
             Scierror(100, 2, _("'r', 'c', 'm', or '*'"));
             return types::Function::Error;
         }
+
+        if(iOrientation > 0 && inputs[0]->getAs<types::GenericType>()->isIdentity())
+        {
+            Scierror(100, 1 , _("fixed size array"));
+            return types::Function::Error;
+        }
+
         iCountElem = 1;
     }
 
