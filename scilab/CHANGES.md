@@ -258,6 +258,7 @@ Bug Fixes
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
 * [#16365](https://bugzilla.scilab.org/16365): `median(m,"r")` and `median(m,"c")` yielded wrong results (6.1.0 regression)
+* [#16366](https://bugzilla.scilab.org/16366): `plot([0 1], ":")` plotted a dash-dotted curve instead of a dotted one.
 * [#16397](https://bugzilla.scilab.org/16397): display of long (real) column vectors was slow (regression).
 * [#16399](https://bugzilla.scilab.org/16399): `mtlb_zeros([])` was crashing Scilab.
 * [#16401](https://bugzilla.scilab.org/16401): global `external_object_java` class was crashing Scilab.
