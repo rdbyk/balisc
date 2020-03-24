@@ -4,7 +4,7 @@
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2018 - Stéphane MOTTELET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyrigth (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyrigth (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -45,6 +45,8 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"acos", &sci_acos, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"asin", &sci_asin, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"atan", &sci_atan, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"bitpack", &sci_bitpack, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"bitunpack", &sci_bitunpack, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ceil", &sci_ceil, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"clean", &sci_clean, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"conj", &sci_conj, MODULE_NAME));
