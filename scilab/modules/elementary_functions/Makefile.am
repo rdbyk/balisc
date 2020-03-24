@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyrigth (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -230,6 +230,8 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_asinh.cpp \
     sci_gateway/cpp/sci_atan.cpp \
     sci_gateway/cpp/sci_atanh.cpp \
+    sci_gateway/cpp/sci_bitpack.cpp \
+    sci_gateway/cpp/sci_bitunpack.cpp \
     sci_gateway/cpp/sci_ceil.cpp \
     sci_gateway/cpp/sci_clean.cpp \
     sci_gateway/cpp/sci_conj.cpp \
