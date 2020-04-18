@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -210,6 +210,7 @@ bool ConfigVariable::m_iSilentError = false;
 
 /* Prompt Mode */
 int ConfigVariable::m_iPromptMode = 0;
+int ConfigVariable::m_iPreviousPromptMode = 0;
 
 // Prompt  Print Mode
 // mode    (bits: input,output,compact,interactive)
@@ -264,6 +265,7 @@ void ConfigVariable::setPromptMode(int _iPromptMode)
 {
     int i = _iPromptMode;
 
+    m_iPreviousPromptMode = m_iPromptMode;
     m_iPromptMode = i;
     // map prompt mode (-1 .. 7) to index of print mode array (0 .. 8)
     // if index is out of range (0 .. 8), then we use 0 as default
