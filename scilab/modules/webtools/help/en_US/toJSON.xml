@@ -22,7 +22,10 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            result = toJSON(var [,filename, indent])
+            result = toJSON(var)
+            result = toJSON(var, indent)
+            result = toJSON(var, filename)
+            result = toJSON(var, indent, filename)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
