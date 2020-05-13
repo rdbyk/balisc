@@ -160,13 +160,12 @@ function importgui()
         "enable", "off", ...
         "tag", "importgui_btnfunction", ...
         "position", [550 5 200 30]);
-        
-    sw = getsystemmetrics("SM_CXSCREEN");
-    sh = getsystemmetrics("SM_CYSCREEN");
+
+    sz = get(0, "screensize_px")(3:4);
 
     s = fig.figure_size;
-    w = (sw - s(1)) / 2
-    h = (sh - s(2)) / 2
+    w = (sz(1) - s(1)) / 2
+    h = (sz(2) - s(2)) / 2
     fig.figure_position = [w h];
 
     fig.visible = "on";
