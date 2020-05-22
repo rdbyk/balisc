@@ -3,7 +3,7 @@
  * Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -47,6 +47,12 @@ Function::ReturnValue exists(typed_list &in, int _iRetCount, typed_list &out)
     {
         Scierror(72, 1, 2);
         return Function::Error;
+    }
+
+    if (in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
+    {
+        out.push_back(Double::Empty());
+        return Function::OK;
     }
 
     if (!in[0]->isString())
