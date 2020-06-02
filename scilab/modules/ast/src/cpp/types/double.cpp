@@ -379,7 +379,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             ostr << L"\n";
         }
     }
-    else if (getCols() == 1 && isComplex() == false)
+    else if (isVector() && getCols() == 1 && isComplex() == false)
     {
         // real column vector
 
