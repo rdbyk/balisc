@@ -60,14 +60,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            Performs silently if computed and expected are equal.
+            Performs silently if <varname>computed</varname> and <varname>expected</varname> are equal.
         </para>
         <para>
-            If the type of both input arguments is 1 (i.e. a real matrix),
-            we check that non-nan values are equal.
+            For complex numbers: We compare first the real parts. In case of equality, we compare
+            the imaginary parts.
         </para>
         <para>
-            We compare first the real parts. In case of equality, we compare the imaginary parts.
+            Matching Nan values are always considered equal.
+        </para>
+        <para>
+            <literal>1/%z</literal> and <literal>2/(2*%z)</literal> are not equal: For the time
+            being, Scilab does not normalize equivalent rationals.
+        </para>
+        <para>
+            In containers, matching <literal>void</literal> elements are considered equal.
         </para>
         <para>
             If the comparison shows that computed is equal to expected,
@@ -102,6 +109,10 @@ assert_checkequal ( 1 , "b" )
    ]]></programlisting>
     </refsection>
     <refsection>
+        <title>Bibliography</title>
+        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
+    </refsection>
+    <refsection>
         <title>History</title>
         <revhistory>
             <revision>
@@ -109,10 +120,35 @@ assert_checkequal ( 1 , "b" )
                 <revdescription>Function introduced
                 </revdescription>
             </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                      <listitem>
+                          The comparison of two implicit lists, Scilab functions, Scilab libraries,
+                          built-in functions or graphic handles is now always possible and properly
+                          done.
+                      </listitem>
+                      <listitem>
+                          In two lists, void and Nan elements are now supported, and matching ones
+                          are considered as equal.
+                      </listitem>
+                      <listitem>
+                          Nan are now supported in input sparse matrices and are considered as equal.
+                      </listitem>
+                      <listitem>
+                          When the test fails while inputs are arrays, the message now indicates
+                          the index of the first mismatching element.
+                      </listitem>
+                  </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Matching NaN or void elements in simple or nested containers are now considered equal.
+                </revdescription>
+            </revision>
         </revhistory>
-    </refsection>
-    <refsection>
-        <title>Bibliography</title>
-        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
     </refsection>
 </refentry>
