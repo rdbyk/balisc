@@ -2,8 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
  * Copyright (C) 2018 - 2019 - Stéphane MOTTELET
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -277,7 +277,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         }
         else if (std::atof(str.data()) != fabs(_dblVal) && _pDF->bPrintTrailingZeros == true)
         {
-            str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');
+            str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()) - 1), '0');
         }
 
         wchar_t* pwstData = to_wide_string(str.data());
