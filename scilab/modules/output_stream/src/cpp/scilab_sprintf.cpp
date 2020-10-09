@@ -130,10 +130,11 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         if (end > 0)
         {
             wchar_t* pwstDollar = wcsstr(pwstStart + (token.size() == 0 ? 0 : 1), L"$");
-            if (pwstDollar != nullptr && (pwstDollar - pwstFirstOutput) < end)
+            if (pwstDollar != nullptr && (pwstDollar - pwstFirstOutput + 1) < end)
             {
-                int index = static_cast<int>(wcstol(pwstStart + 1, NULL, 10));
-                if (index > 0)
+                wchar_t* pwstAfterInt;
+                int index = static_cast<int>(wcstol(pwstStart + 1, &pwstAfterInt, 10));
+                if (index > 0 && pwstAfterInt == pwstDollar)
                 {
                     argumentPos.push_back(index - 1);
                     start = pwstDollar - pwstFirstOutput;
