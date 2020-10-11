@@ -1,6 +1,7 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - DIGITEO - Cedric Delamarre
+// Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime Agnel
 // Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
@@ -356,8 +357,8 @@ a = [[2 3]  >= ... // a comment
  -3];
 assert_checkequal(a, expected);
 
-// bug_14361
-
+// http://bugzilla.scilab.org/14361 :
+// --------------------------------
 a=[1; .../* a comment */
 -2];
 assert_checkequal(a,  colvect);
@@ -730,6 +731,8 @@ assert_checkequal(a, expected);
 str_cmd = ["a = [1 -... /* the start of a";
           "multiline comment */ 2 3]"]; // this currently generates an error
 assert_checktrue(execstr(str_cmd, "errcatch") <> 0);
+
+// --------------------------------------------
 
 // bug_14374 comments in SHELLMODE
 // Testing if shellmode execution with command

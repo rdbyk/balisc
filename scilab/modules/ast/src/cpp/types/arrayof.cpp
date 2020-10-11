@@ -974,15 +974,16 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             return NULL;
         }
 
-        if (getRows() == 1 && !isForceColVector)
+        if (isForceColVector || (isVector() && m_iCols == 1))
         {
-            // row vector
-            int dims[2] = {1, size};
+            // col vector
+            int dims[2] = {size, 1};
             pOut = createEmpty(2, dims, isComplex());
         }
         else
         {
-            int dims[2] = {size, 1};
+            // row vector
+            int dims[2] = {1, size};
             pOut = createEmpty(2, dims, isComplex());
         }
 

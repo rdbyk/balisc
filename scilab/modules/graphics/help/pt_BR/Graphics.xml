@@ -549,12 +549,6 @@
                     <para>retorna a lista de janelas de gráficos</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>xname</term>
-                <listitem>
-                    <para>muda o nome da janela de gráficos corrente</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

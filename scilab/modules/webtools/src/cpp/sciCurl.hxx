@@ -28,6 +28,7 @@ public:
     void getResultAsObject(CURL* curl);
     void getResultAsFile(CURL* curl, FILE* fd);
     int setProxy(CURL* curl);
+    void setCommonHeaders(CURL* curl);
 
     types::InternalType* getResult(void);
     void clear(void);

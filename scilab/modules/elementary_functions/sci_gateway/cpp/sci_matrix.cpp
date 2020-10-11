@@ -3,7 +3,7 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -52,8 +52,8 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
     }
 
     if (in[0]->isArrayOf()      == false &&
-            in[0]->isSparse()       == false &&
-            in[0]->isSparseBool()   == false)
+        in[0]->isSparse()       == false &&
+        in[0]->isSparseBool()   == false)
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_matrix";
         return Overload::call(wstFuncName, in, _iRetCount, out);
@@ -69,19 +69,7 @@ Function::ReturnValue sci_matrix(typed_list &in, int _iRetCount, typed_list &out
 
     if (pGTIn->getSize() == 0)
     {
-        if (pGTIn->isStruct())
-        {
-            out.push_back(new Struct());
-        }
-        else if (pGTIn->isCell())
-        {
-            out.push_back(new Cell());
-        }
-        else
-        {
-            out.push_back(Double::Empty());
-        }
-
+        out.push_back(pGTIn->clone());
         return Function::OK;
     }
 
