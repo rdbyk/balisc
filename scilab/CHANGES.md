@@ -180,13 +180,11 @@ Feature changes and additions
   - Improved layout: detailled indices for 2D arrays, simplified symbols, etc.
   - The content of implicitlist objects, and information for Scilab functions and libraries of functions are now displayed.
 * `nchoosek` is introduced, to compute the binomial coefficients.
-* The left .\. and right ./. Kronecker divisions are now implemented, for arrays of decimal or complex numbers.
 * `perms` can now build and return only unique permutations, without duplicates.
 * Most of graphic objects can be moved interactively in opened figures.
 * `circshift` is introduced.
 * `atomsGetInstalledPath` is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.
 * `function` replaces `mc` as the new overloading code for functions in Scilab language.
-
 
 6.1.1
 * `gsort` is fully enabled for sparse vectors and 2D matrices, in all `g, r, c, lr, lc` methods. It was formerly limited to real or complex vectors and only to the `g` mode. All boolean, real or complex vector or 2D matrices can now be sorted with any method. Multi-level sorting is enabled for all types of sparse input.
@@ -320,7 +318,6 @@ Bug Fixes
 * [#9673](https://bugzilla.scilab.org/9673): Priority of colon `:` operator was too low
 * [#10014](https://bugzilla.scilab.org/10014): `DominationRank` could be made private in `optim_nsga2`.
 * [#10078](https://bugzilla.scilab.org/10078): `isinf` was not reliable for polynomials.
-* [#10092](https://bugzilla.scilab.org/10092): The left and right Kronecker divisions were not actually implemented nor documented.
 * [#10353](https://bugzilla.scilab.org/10353): Documentation: The referential for the uicontrol.position property was not provided. Moreover, `gca().axes_bounds` refered to `fig.figure_size` instead of `fig.axes_size`.
 * [#10553](https://bugzilla.scilab.org/10553): After calling `colorbar`, retrieving the handle of the new color bar was not trivial.
 * [#10702](https://bugzilla.scilab.org/10702): The icon of the FROMWSB xcos block did not show the name of the source variable.
