@@ -9,7 +9,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>X = A \ B</synopsis>
+        <synopsis>X=A\B</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
@@ -128,19 +128,19 @@ mprintf('\ntime with backslash: %.3f\n',toc());
                 <link linkend="pinv">pinv</link>
             </member>
             <member>
-                <link linkend="linsolve">linsolve</link>
+                <link linkend="percent">percent</link>
             </member>
             <member>
-                <link linkend="umfpack">umfpack</link>
+                <link linkend="ieee">ieee</link>
             </member>
             <member>
                 <link linkend="datafit">datafit</link>
             </member>
             <member>
-                <link linkend="krondivide">kron .\.</link>
+                <link linkend="linsolve">linsolve</link>
             </member>
             <member>
-                <link linkend="overloading">overloading</link>
+                <link linkend="umfpack">umfpack</link>
             </member>
         </simplelist>
     </refsection>

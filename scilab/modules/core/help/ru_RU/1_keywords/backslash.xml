@@ -9,7 +9,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>X = A \ B</synopsis>
+        <synopsis>X=A\B</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Описание</title>
@@ -122,7 +122,7 @@ mprintf('\nвремя, необходимое для решения систем
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="slash">slash</link>
+                <link linkend="slash">слэш</link>
             </member>
             <member>
                 <link linkend="lsq">lsq</link>
@@ -134,10 +134,10 @@ mprintf('\nвремя, необходимое для решения систем
                 <link linkend="pinv">pinv</link>
             </member>
             <member>
-                <link linkend="linsolve">linsolve</link>
+                <link linkend="percent">процент</link>
             </member>
             <member>
-                <link linkend="umfpack">umfpack</link>
+                <link linkend="ieee">ieee</link>
             </member>
             <member>
                 <link linkend="datafit">datafit</link>
@@ -146,7 +146,10 @@ mprintf('\nвремя, необходимое для решения систем
                 <link linkend="krondivide">kron .\.</link>
             </member>
             <member>
-                <link linkend="overloading">перегрузка</link>
+                <link linkend="linsolve">linsolve</link>
+            </member>
+            <member>
+                <link linkend="umfpack">umfpack</link>
             </member>
         </simplelist>
     </refsection>
