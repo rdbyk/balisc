@@ -3,7 +3,7 @@
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -53,7 +53,7 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.empty())
     {
-        Scierror(74, 2);
+        Scierror(74, 1);
         return Function::Error;
     }
 
@@ -79,7 +79,7 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
             return Function::Error;
         }
 
-        if (pDbl->getFirst() <= 0)
+        if (pDbl->getFirst() < 0)
         {
             Scierror(110, 1, _("real value greater than 0"));
             return Function::Error;
