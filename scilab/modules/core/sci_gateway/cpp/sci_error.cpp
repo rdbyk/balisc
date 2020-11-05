@@ -39,6 +39,7 @@ using types::Function;
 using types::String;
 using types::typed_list;
 
+#define UNKNOWN_ERROR_CODE 0
 #define DEFAULT_ERROR_CODE 10000
 
 Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
@@ -53,8 +54,7 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.empty())
     {
-        Scierror(74, 1);
-        return Function::Error;
+        iErrorCode = UNKNOWN_ERROR_CODE;
     }
 
     if (in.size() >= 1 && in[0]->isString() == false && in[0]->isDouble() == false)
