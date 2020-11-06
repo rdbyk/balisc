@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -92,6 +92,8 @@ static const std::map<int, const char*> errmsgs =
 
     { 60, _("Unexpected keyword argument '%s'.\n") },
     { 61, _("Not defined outside of a function.\n") },
+    { 62, _("Arguments do not match message format '%s'.\n") },
+    { 63, _("Provide custom message for undefined error #%d.\n") },
 
     { 70, _("Wrong number of input arguments.\n") },
     { 71, _("Wrong number of input arguments: %d expected.\n") },

@@ -39,6 +39,7 @@ using types::Function;
 using types::String;
 using types::typed_list;
 
+#define UNKNOWN_ERROR_CODE 0
 #define DEFAULT_ERROR_CODE 10000
 
 Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
@@ -53,8 +54,7 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.empty())
     {
-        Scierror(74, 1);
-        return Function::Error;
+        iErrorCode = UNKNOWN_ERROR_CODE;
     }
 
     if (in.size() >= 1 && in[0]->isString() == false && in[0]->isDouble() == false)
@@ -81,7 +81,7 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
 
         if (pDbl->getFirst() < 0)
         {
-            Scierror(110, 1, _("real value greater than 0"));
+            Scierror(110, 1, _("non-negative real value"));
             return Function::Error;
         }
 
@@ -124,11 +124,21 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
         {
             delete msprintf_in[1];
         }
+
+        if (ret != Callable::OK)
+        {
+            char* f = os_strdup(predefErrorMsg);
+            int n = strlen(f);
+            if (n && f[n-1] == '\n') f[n-1] = '\0'; // strip trailing \n
+            Scierror(62, f);
+            FREE(f);
+            return Function::Error;
+        }
     }
     else
     {
         // user defined error
-        if (in[0]->isString() && in[0]->getAs<String>()->getSize() > 1)
+        if (in[0]->isString() && in[0]->getAs<String>()->getSize() >= 1)
         {
             typed_list msprintf_in = in;
             String* pFormatArg = msprintf_in[0]->getAs<String>();
@@ -144,17 +154,20 @@ Function::ReturnValue sci_error(typed_list &in, int _iRetCount, typed_list &out)
             msprintf_in[0] = new String(fmt.c_str());
             ret = Overload::call(L"msprintf", msprintf_in, 1, msprintf_out);
             delete msprintf_in[0];
+
+            if (ret != Callable::OK)
+            {
+                char *f = wide_string_to_UTF8(fmt.c_str());
+                Scierror(62, f);
+                FREE(f);
+                return Function::Error;
+            }
         }
         else
         {
-            ret = Overload::call(L"msprintf", in, 1, msprintf_out);
+            Scierror(63, iErrorCode);
+            return Function::Error;
         }
-    }
-
-    if (ret != Callable::OK)
-    {
-        ConfigVariable::setLastErrorMessage(L"error: " + ConfigVariable::getLastErrorMessage());
-        return ret;
     }
 
     String* pStrError = msprintf_out[0]->getAs<String>();
