@@ -381,26 +381,38 @@ public :
 
     ArrayOf<T>* getColumnValues(int _iPos) override
     {
-        ArrayOf<T>* pOut = NULL;
-        if (_iPos < getCols())
+        ArrayOf<T>* pOut;
+        bool bComplex = m_pImgData != NULL;
+        int iDims = getDims();
+
+        if (iDims == 2)
         {
             int piDims[2] = {getRows(), 1};
-            pOut = createEmpty(2, piDims, m_pImgData != NULL);
-            T* pReal    = pOut->get();
-            T* pImg     = pOut->getImg();
-            for (int i = 0 ; i < getRows() ; i++)
-            {
-                pReal[i] = copyValue(get(i, _iPos));
-            }
+            pOut = createEmpty(2, piDims, bComplex);
+        }
+        else
+        {
+            pOut = createEmpty(iDims - 1, getDimsArray(), bComplex);
+        }
 
-            if (m_pImgData != NULL)
+        int iOutSize = pOut->getSize();
+        int iOffset = iOutSize * _iPos;
+        T* pReal    = pOut->get();
+        T* pImg     = pOut->getImg();
+
+        for (int i = 0 ; i < iOutSize ; i++)
+        {
+            pReal[i] = copyValue(get(iOffset + i));
+        }
+
+        if (bComplex)
+        {
+            for (int i = 0 ; i < iOutSize ; i++)
             {
-                for (int i = 0 ; i < getRows() ; i++)
-                {
-                    pImg[i] = copyValue(getImg(i, _iPos));
-                }
+                pImg[i] = copyValue(getImg(iOffset + i));
             }
         }
+
         return pOut;
     }
 

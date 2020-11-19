@@ -812,17 +812,10 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     {
         //Matrix i = [1,3,2,6] or other type
         types::GenericType* pVar = pIT->getAs<types::GenericType>();
-        if (pVar->getDims() > 2)
-        {
-            pIT->DecreaseRef();
-            pIT->killMe();
-            CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(15, e.getVardec().getLocation());
-        }
-
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
-        int cols = pVar->getCols();
-        for (int i = 0; i < cols; i++)
+
+        int slices = (pVar->getDimsArray())[pVar->getDims() - 1]; // last dim
+        for (int i = 0; i < slices; i++)
         {
             types::GenericType* pNew = pVar->getColumnValues(i);
             if (pNew == NULL)
