@@ -261,12 +261,13 @@ am__libscicore_la_SOURCES_DIST = sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/cpp/sci_lasterror.cpp \
 	sci_gateway/cpp/sci_getversion.cpp \
 	sci_gateway/cpp/sci_warning.cpp sci_gateway/cpp/sci_getmd5.cpp \
-	sci_gateway/cpp/sci_error.cpp sci_gateway/cpp/sci_pause.cpp \
-	sci_gateway/cpp/sci_abort.cpp sci_gateway/cpp/sci_who.cpp \
-	sci_gateway/cpp/sci_format.cpp sci_gateway/cpp/sci_sciargs.cpp \
-	sci_gateway/cpp/sci_ieee.cpp sci_gateway/cpp/sci_funcprot.cpp \
-	sci_gateway/cpp/sci_mode.cpp sci_gateway/cpp/sci_typename.cpp \
-	sci_gateway/cpp/sci_what.cpp sci_gateway/cpp/sci_where.cpp \
+	sci_gateway/cpp/sci_errmsgs.cpp sci_gateway/cpp/sci_error.cpp \
+	sci_gateway/cpp/sci_pause.cpp sci_gateway/cpp/sci_abort.cpp \
+	sci_gateway/cpp/sci_who.cpp sci_gateway/cpp/sci_format.cpp \
+	sci_gateway/cpp/sci_sciargs.cpp sci_gateway/cpp/sci_ieee.cpp \
+	sci_gateway/cpp/sci_funcprot.cpp sci_gateway/cpp/sci_mode.cpp \
+	sci_gateway/cpp/sci_typename.cpp sci_gateway/cpp/sci_what.cpp \
+	sci_gateway/cpp/sci_where.cpp \
 	sci_gateway/cpp/sci_getmemory.cpp \
 	sci_gateway/cpp/sci_errclear.cpp \
 	sci_gateway/cpp/sci_intppty.cpp \
@@ -321,6 +322,7 @@ am__objects_6 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_getversion.lo \
 	sci_gateway/cpp/libscicore_la-sci_warning.lo \
 	sci_gateway/cpp/libscicore_la-sci_getmd5.lo \
+	sci_gateway/cpp/libscicore_la-sci_errmsgs.lo \
 	sci_gateway/cpp/libscicore_la-sci_error.lo \
 	sci_gateway/cpp/libscicore_la-sci_pause.lo \
 	sci_gateway/cpp/libscicore_la-sci_abort.lo \
@@ -831,12 +833,13 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_lasterror.cpp \
 	sci_gateway/cpp/sci_getversion.cpp \
 	sci_gateway/cpp/sci_warning.cpp sci_gateway/cpp/sci_getmd5.cpp \
-	sci_gateway/cpp/sci_error.cpp sci_gateway/cpp/sci_pause.cpp \
-	sci_gateway/cpp/sci_abort.cpp sci_gateway/cpp/sci_who.cpp \
-	sci_gateway/cpp/sci_format.cpp sci_gateway/cpp/sci_sciargs.cpp \
-	sci_gateway/cpp/sci_ieee.cpp sci_gateway/cpp/sci_funcprot.cpp \
-	sci_gateway/cpp/sci_mode.cpp sci_gateway/cpp/sci_typename.cpp \
-	sci_gateway/cpp/sci_what.cpp sci_gateway/cpp/sci_where.cpp \
+	sci_gateway/cpp/sci_errmsgs.cpp sci_gateway/cpp/sci_error.cpp \
+	sci_gateway/cpp/sci_pause.cpp sci_gateway/cpp/sci_abort.cpp \
+	sci_gateway/cpp/sci_who.cpp sci_gateway/cpp/sci_format.cpp \
+	sci_gateway/cpp/sci_sciargs.cpp sci_gateway/cpp/sci_ieee.cpp \
+	sci_gateway/cpp/sci_funcprot.cpp sci_gateway/cpp/sci_mode.cpp \
+	sci_gateway/cpp/sci_typename.cpp sci_gateway/cpp/sci_what.cpp \
+	sci_gateway/cpp/sci_where.cpp \
 	sci_gateway/cpp/sci_getmemory.cpp \
 	sci_gateway/cpp/sci_errclear.cpp \
 	sci_gateway/cpp/sci_intppty.cpp \
@@ -1287,6 +1290,9 @@ sci_gateway/cpp/libscicore_la-sci_warning.lo:  \
 sci_gateway/cpp/libscicore_la-sci_getmd5.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicore_la-sci_errmsgs.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicore_la-sci_error.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1459,6 +1465,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_clearglobal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_debug.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_errclear.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_errmsgs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_exists.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_exit.Plo@am__quote@
@@ -1999,6 +2006,13 @@ sci_gateway/cpp/libscicore_la-sci_getmd5.lo: sci_gateway/cpp/sci_getmd5.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_getmd5.cpp' object='sci_gateway/cpp/libscicore_la-sci_getmd5.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_getmd5.lo `test -f 'sci_gateway/cpp/sci_getmd5.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getmd5.cpp
+
+sci_gateway/cpp/libscicore_la-sci_errmsgs.lo: sci_gateway/cpp/sci_errmsgs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_errmsgs.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_errmsgs.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_errmsgs.lo `test -f 'sci_gateway/cpp/sci_errmsgs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_errmsgs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_errmsgs.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_errmsgs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_errmsgs.cpp' object='sci_gateway/cpp/libscicore_la-sci_errmsgs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_errmsgs.lo `test -f 'sci_gateway/cpp/sci_errmsgs.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_errmsgs.cpp
 
 sci_gateway/cpp/libscicore_la-sci_error.lo: sci_gateway/cpp/sci_error.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_error.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_error.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_error.lo `test -f 'sci_gateway/cpp/sci_error.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_error.cpp

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -83,6 +83,7 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"swapbytes", &sci_swapbytes, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"outer", &sci_outer, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inner", &sci_inner, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"errmsgs", &sci_errmsgs, MODULE_NAME));
 
 #ifndef NDEBUG
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetItemCount", &sci_inspectorGetItemCount, MODULE_NAME));

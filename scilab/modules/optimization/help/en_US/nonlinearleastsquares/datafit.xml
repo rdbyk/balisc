@@ -611,6 +611,7 @@ gca().x_ticks.labels = emptystr(size(gca().x_ticks.labels,"*"),1);
 ylabel("Model - Data")
 xgrid(color("grey70"))
      ]]></programlisting>
+<!-- FIXME: The following code breaks building of help pages
         <scilab:image>
             // Basic gaussian component:
             function Y = gauss(X, average, stDev, ymax)
@@ -647,7 +648,7 @@ xgrid(color("grey70"))
             Data = [X ; Y];          // Curve to analyze / fit
 
             // FITTING
-            // -------
+            //
             // Fitting parameters: initial values and bounds (amplitudes must be > 0)
             Po = [ linspace(xmin,xmax,Nc) ; ones(1,Nc)*0.5 ; ones(1,Nc)*max(Y)/2];
             Pinf = [ones(1,Nc)*-2 ; ones(1,Nc)*0.1 ; ones(1,Nc)*1];
@@ -656,7 +657,7 @@ xgrid(color("grey70"))
             [P, dmin] = datafit(gap, Data, 'b',Pinf,Psup, Po, 'qn','ar',200,200);
 
             // Display
-            // -------
+            //
             clf()
             xsetech([0 0 1 0.8]);
             plot(X, Y, "-b", X, model(P,X), "-r");
@@ -676,6 +677,7 @@ xgrid(color("grey70"))
             // ===============
             gcf().axes_size = [520 400];
         </scilab:image>
+-->
         <para/>
         <para>
             <emphasis role="bold">With a parametric curve: Fitting a off-centered tilted 2D elliptical arc (5 parameters)</emphasis>.

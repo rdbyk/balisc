@@ -17,7 +17,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 // 02110-1301, USA.
 
-#include <map>
 #include "errmsgs.h"
 
 extern "C"
@@ -28,7 +27,7 @@ extern "C"
 #undef _
 #define _(String) String
 
-static const std::map<int, const char*> errmsgs = 
+std::map<int, const char*> ErrorMessages = 
 {
     { 0, _("Unknown error.\n") },
     { 1, _("No more memory.\n") },
@@ -153,9 +152,9 @@ static const std::map<int, const char*> errmsgs =
 
 char* ErrorMessageByNumber(int n)
 {
-    auto it = errmsgs.find(n);
+    auto it = ErrorMessages.find(n);
 
-    if (it != errmsgs.end())
+    if (it != ErrorMessages.end())
     {
         return gettext(it->second);
     }
