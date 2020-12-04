@@ -22,6 +22,8 @@
 #define __ERRMSGS_H
 
 #ifdef __cplusplus
+#include <map>
+extern std::map<int, const char*> ErrorMessages;
 extern "C" {
 #endif
 

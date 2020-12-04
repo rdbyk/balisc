@@ -85,6 +85,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_getversion.cpp \
 	sci_gateway/cpp/sci_warning.cpp \
 	sci_gateway/cpp/sci_getmd5.cpp \
+	sci_gateway/cpp/sci_errmsgs.cpp \
 	sci_gateway/cpp/sci_error.cpp \
 	sci_gateway/cpp/sci_pause.cpp \
 	sci_gateway/cpp/sci_abort.cpp \
