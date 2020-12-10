@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2000 - 2016 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,20 +24,20 @@ function plzr(a,b,c,d)
     select typeof(a)
     case "rational" then
         if nargin<>1 then
-            error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
+            error(71,1);
         end
         dt=a.dt;
         [a,b,c,d]=abcd(tf2ss(a)),
 
     case "state-space" then
         if nargin<>1 then
-            error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
+            error(71,1);
         end
         dt=a.dt
         [a,b,c,d]=abcd(a)
     case "constant" then
         if nargin<>4 then
-            error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"plzr",4)),
+            error(71,4);
         end
 
         dt=[];
@@ -46,15 +46,14 @@ function plzr(a,b,c,d)
         [a,b,c,d]=abcd(zpk2ss(a));
     else
         if nargin==1 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"plzr",1))
+            error(90, 1, gettext("Linear dynamical system"));
         else
-            error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"plzr",1))
+            error(90, 1, gettext("Array of floating point numbers"));
         end
     end
 
     if type(d)<>1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
-        "plzr",4));
+        error(90, 4, gettext("Array of floating point numbers"));
     end
 
     dr=spec(a)
@@ -87,12 +86,13 @@ function plzr(a,b,c,d)
     ax=gca();
     ax.data_bounds=[mnx, -my; mxx, my];
     ax.axes_visible="on";
+    ax.clip_state="on";
 
     legs=[],lhandle=[]
     if size(nr,"*")<>0 then
         xpoly(nr,ni)
         e=gce();e.line_mode="off";e.mark_mode="on";
-        e.mark_size_unit="point";e.mark_size=7;e.mark_style=5;
+        e.mark_size_unit="point";e.mark_size=7;e.mark_style=9;
         legs=gettext("Zeros")
         lhandle=[e;lhandle]
     end;
@@ -103,23 +103,27 @@ function plzr(a,b,c,d)
         legs=[gettext("Poles");legs]
         lhandle=[e;lhandle]
     end
+
+    ax.grid=ones(1,3)*color("gray")
+    ax.box = "on";
+    ax.auto_scale="off";
+
+    ax.title.text=gettext("Transmission Zeros and Poles");
+    ax.x_label.text=gettext("Real Axis");
+    ax.y_label.text=gettext("Imaginary Axis");
+    ax.title.font_size=4;
+    ax.x_label.font_size=2;
+    ax.y_label.font_size=2;
+
     if dt == "d" | type(dt) == 1 then
-        ax.grid=ones(1,3)*color("gray")
-        ax.box = "on";
         xarc(-1,1,2,2,0,360*64)
-        xtitle(gettext("Transmission zeros and poles"),gettext("Real axis"), ...
-        gettext("Imaginary axis"));
+        e=gce(); e.foreground=5; e.line_style=8;
     else
-        ax.grid=ones(1,3)*color("gray")
-        ax.box = "on";
-        ymin=ax.data_bounds(1,2);
-        ymax=ax.data_bounds(2,2);
-        xsegs([0,0],[ymin,ymax])
-        xtitle(gettext("Transmission zeros and poles"),gettext("Real axis"), ...
-        gettext("Imaginary axis"));
+        xsegs([0,0], ax.y_ticks.locations([1 $])')
+        e=gce(); e.segs_color=5; e.line_style=8;
     end
 
-    if legs<>[] then legend(lhandle,legs,1),end
+    if legs<>[] then legend(lhandle,legs,1).marks_count=1,end
     fig.immediate_drawing=immediate_drawing;
     show_window();
 endfunction
