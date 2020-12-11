@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -1656,6 +1656,7 @@ returnControl :
 RETURN                                { $$ = new ast::ReturnExp(@$); print_rules("returnControl", "RETURN");}
 | RETURN LPAREN variable RPAREN       { $$ = new ast::ReturnExp(@$, $3); print_rules("returnControl", "RETURN LPAREN variable RPAREN");}
 | RETURN LPAREN variableFields RPAREN { $$ = new ast::ReturnExp(@$, new ast::ArrayListExp(@$, *$3)); print_rules("returnControl", "RETURN LPAREN variableFiels RPAREN");}
+| RETURN LPAREN functionCall RPAREN   { $$ = new ast::ReturnExp(@$, $3); print_rules("returnControl", "RETURN LPAREN functionCall RPAREN");}
 ;
 
 /*
