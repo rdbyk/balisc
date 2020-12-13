@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -113,7 +113,12 @@ public :
         return true;
     }
 
-    virtual GenericType*        getColumnValues(int /*_iPos*/)
+    virtual int getSliceCount()
+    {
+        return -1;
+    }
+
+    virtual GenericType* getSlice(int /* idx */)
     {
         return NULL;
     }
