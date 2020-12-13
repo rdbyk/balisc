@@ -808,23 +808,23 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             }
         }
     }
-    else if (pIT->isGenericType())
+    else if (pIT->isGenericType() || pIT->isUserType())
     {
-        //Matrix i = [1,3,2,6] or other type
         types::GenericType* pVar = pIT->getAs<types::GenericType>();
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
+        int slices = pVar->getSliceCount();
 
-        int slices = (pVar->getDimsArray())[pVar->getDims() - 1]; // last dim
+        if (slices < 0)
+        {
+            pIT->DecreaseRef();
+            pIT->killMe();
+            CoverageInstance::stopChrono((void*)&e);
+            throw InternalError(14, e.getVardec().getLocation());
+        }
+
         for (int i = 0; i < slices; i++)
         {
-            types::GenericType* pNew = pVar->getColumnValues(i);
-            if (pNew == NULL)
-            {
-                pIT->DecreaseRef();
-                pIT->killMe();
-                CoverageInstance::stopChrono((void*)&e);
-                throw InternalError(14, e.getVardec().getLocation());
-            }
+            types::GenericType* pNew = pVar->getSlice(i);
 
             if (ctx->isprotected(var))
             {
@@ -839,7 +839,6 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             }
             catch (const InternalError&)
             {
-                //implicit list
                 pIT->DecreaseRef();
                 pIT->killMe();
                 setResult(NULL);
