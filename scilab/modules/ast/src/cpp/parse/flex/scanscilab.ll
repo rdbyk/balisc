@@ -4,7 +4,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2012 - Scilab Enterprises - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -106,7 +106,7 @@ utf4            ({utf41}|{utf42}|{utf43})
 utf             ({utf2}|{utf3}|{utf4})
 id              ((([a-zA-Z_%!#?]|{utf})([a-zA-Z_0-9!#?$]|{utf})*)|([$]([a-zA-Z_0-9!#?$]|{utf})+))
 
-incorrect_number     ({integer}|{number}|{floating_D}|{floating_E}){id}
+incorrect_number     ({integer}|{number}|{floating_D}|{floating_E})({dot}|{id})
 
 newline			("\r"|"\n"|"\r\n")
 blankline		{spaces}+{newline}
@@ -623,7 +623,7 @@ assign			"="
 }
 
 <INITIAL,MATRIX>{incorrect_number}		{
-    yyerror("syntax error, unexpected identifier, expecting end of file");
+    yyerror("syntax error, unexpected dot or identifier, expecting end of file");
     return scan_throw(FLEX_ERROR);
 }
 
