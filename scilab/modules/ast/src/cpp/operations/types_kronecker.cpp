@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,6 +13,7 @@
  *
  */
 
+#include "types_multiplication.hxx"
 #include "types_kronecker.hxx"
 
 extern "C" {
@@ -56,6 +57,13 @@ void KroneckerMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _p
 
     int iRowResult = _pDouble1->getRows() * _pDouble2->getRows();
     int iColResult = _pDouble1->getCols() * _pDouble2->getCols();
+
+    // handle eye() arguments
+    if (_pDouble1->getRows() < 0 || _pDouble2->getRows() < 0) // _pDouble1->isIdentity() || _pDouble2->isIdentity()
+    {
+        MultiplyDoubleByDouble(_pDouble1, _pDouble2, _pDoubleOut);
+        return;
+    }
 
     //Output variables
     bool bComplexOut = bComplex1 || bComplex2;
@@ -130,6 +138,7 @@ types::InternalType *GenericKronrdivide(types::InternalType *_pLeftOperand, type
 
 int KroneckerRDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut)
 {
+
     int iErr = 0;
     types::Double* clone = _pDouble2->clone()->getAs<types::Double>();
 
@@ -142,7 +151,10 @@ int KroneckerRDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDo
         iErr = conv_real_input(clone->get(), clone->getSize());
     }
 
+    clone->IncreaseRef();
     KroneckerMultiplyDoubleByDouble(_pDouble1, clone, _pDoubleOut);
+    clone->DecreaseRef();
+
     delete clone;
     return iErr;
 }
@@ -193,7 +205,10 @@ int KroneckerLDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDo
         iErr = conv_real_input(clone->get(), clone->getSize());
     }
 
+    clone->IncreaseRef();
     KroneckerMultiplyDoubleByDouble(clone, _pDouble2, _pDoubleOut);
+    clone->DecreaseRef();
+
     delete clone;
     return iErr;
 }
