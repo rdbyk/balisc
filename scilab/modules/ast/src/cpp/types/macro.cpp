@@ -19,6 +19,7 @@
 
 #include "macro.hxx"
 #include "list.hxx"
+#include "listundefined.hxx"
 #include "namedarg.hxx"
 #include "string.hxx"
 #include "context.hxx"
@@ -238,15 +239,24 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else
     {
-        //assign value to variable in the new context
+        // create formal input arguments as variables in macro context
         std::list<symbol::Variable*>::iterator i;
         typed_list::const_iterator j;
 
-        for (i = m_inputArgs->begin(), j = in.begin(); j != in.end(); ++j, ++i)
+        for (i = m_inputArgs->begin(), j = in.begin(); i != m_inputArgs->end(); ++i)
         {
-            if ((*j)->isNamedArg() == false)
+            if (j != in.end() && (*j)->isNamedArg() == false)
             {
                 pContext->put(*i, *j);
+                ++j;
+            }
+            else
+            {
+                // unspecified formal input argument
+                // FIXME: is there a better solution?
+                InternalType* pUndefined = new ListUndefined();
+                pUndefined->IncreaseRef();
+                pContext->put(*i, pUndefined);
             }
         }
 
