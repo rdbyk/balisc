@@ -2,8 +2,8 @@
 // Copyright (C) ENPC
 // Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU (rewrite to use autotools)
 // Copyright (C) 2009-2010 - DIGITEO - Sylvestre LEDRU
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -39,7 +39,7 @@ function ilib_gen_Make_unix(names,   ..
         clear l;
     end
 
-    if isdef("tables") then
+    if nargin == 9 then
 
         /// Check tables ... the second element should be the file name
         if typeof(tables)<>"list" then
@@ -61,7 +61,7 @@ function ilib_gen_Make_unix(names,   ..
             end
         end
 
-    end // isdef('tables')
+    end
 
 
     originPath  = pwd();
