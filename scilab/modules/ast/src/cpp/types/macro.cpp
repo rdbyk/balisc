@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,6 +19,7 @@
 
 #include "macro.hxx"
 #include "list.hxx"
+#include "listundefined.hxx"
 #include "namedarg.hxx"
 #include "string.hxx"
 #include "context.hxx"
@@ -238,15 +239,24 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else
     {
-        //assign value to variable in the new context
+        // create formal input arguments as variables in macro context
         std::list<symbol::Variable*>::iterator i;
         typed_list::const_iterator j;
 
-        for (i = m_inputArgs->begin(), j = in.begin(); j != in.end(); ++j, ++i)
+        for (i = m_inputArgs->begin(), j = in.begin(); i != m_inputArgs->end(); ++i)
         {
-            if ((*j)->isNamedArg() == false)
+            if (j != in.end() && (*j)->isNamedArg() == false)
             {
                 pContext->put(*i, *j);
+                ++j;
+            }
+            else
+            {
+                // unspecified formal input argument
+                // FIXME: is there a better solution?
+                InternalType* pUndefined = new ListUndefined();
+                pUndefined->IncreaseRef();
+                pContext->put(*i, pUndefined);
             }
         }
 
@@ -337,7 +347,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             break;
         }
 
-        InternalType * pIT = pContext->get(arg);
+        InternalType * pIT = pContext->getCurrentLevel(arg);
         if (pIT)
         {
             out.push_back(pIT);
