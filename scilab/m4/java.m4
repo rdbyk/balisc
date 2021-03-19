@@ -772,7 +772,6 @@ AC_DEFUN([AC_JAVA_WITH_JDK], [
 #    JAVA
 #    JAVA_G
 #    JAVAC
-#    JAVAH
 #    JAR
 #    JDB
 #    JAVADOC
@@ -795,9 +794,6 @@ AC_DEFUN([AC_JAVA_TOOLS], [
     if test "x$JAVA_G" = "x" ; then
         JAVA_G=$JAVA
     fi
-
-    TOOL=javah
-    AC_JAVA_TOOLS_CHECK(JAVAH, $TOOL, $ac_java_jvm_bin_dir)
 
     AC_JAVA_TOOLS_CHECK(JAR, jar, $ac_java_jvm_bin_dir)
 
