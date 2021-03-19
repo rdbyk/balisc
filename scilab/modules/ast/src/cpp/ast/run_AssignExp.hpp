@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -64,37 +64,40 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 return;
             }
 
-            if (e.getRightExp().isReturnExp())
+            if (ctx->isprotected(pVar->getStack()) == false)
             {
-                // ReturnExp so, put the value in the
-                if (ctx->getScopeLevel() > SCOPE_CONSOLE)
+                if (e.getRightExp().isReturnExp())
                 {
-                    // previous scope
-                    ctx->putInPreviousScope(pVar->getStack(), pIT);
-                }
-                else
-                {
-                    // or console scope
-                    ctx->put(pVar->getStack(), pIT);
+                    // ReturnExp so, which puts the value in the
+                    if (ctx->getScopeLevel() > SCOPE_CONSOLE)
+                    {
+                        // previous scope
+                        if (ctx->putInPreviousScope(pVar->getStack(), pIT) == false)
+                        {
+                            goto PROTECTED;
+                        }
+                    }
+                    else
+                    {
+                        // or console scope
+                        ctx->put(pVar->getStack(), pIT);
+                    }
+
+                    ((AssignExp*)&e)->setReturn();
                 }
 
-                ((AssignExp*)&e)->setReturn();
+                ctx->put(pVar->getStack(), pIT);
             }
             else
             {
-                if (ctx->isprotected(pVar->getStack()) == false)
+PROTECTED:
+                // ignore assignment to protected dash "–" variable
+                if (pVar->getSymbol().getName() == L"–")
                 {
-                    ctx->put(pVar->getStack(), pIT);
+                    CoverageInstance::stopChrono((void*)&e);
+                    return;
                 }
-                else
-                {
-                    if (pVar->getSymbol().getName() == L"–")
-                    {
-                        CoverageInstance::stopChrono((void*)&e);
-                        return;
-                    }
-                    throw ast::InternalError(4, e.getLeftExp().getLocation());
-                }
+                throw ast::InternalError(4, e.getLeftExp().getLocation());
             }
 
             if (e.isVerbose() && ConfigVariable::isPrintOutput())
