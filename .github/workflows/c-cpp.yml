@@ -16,6 +16,11 @@ jobs:
         sudo apt -y install libxml2-dev;
         sudo apt -y install libhdf5-dev;
         sudo apt -y install ocaml-nox;
+        sudo apt -y install libjgraphx-java;
+        sudo apt -y install libflexdock-java;
+        sudo apt -y install libjgoodies-looks-java;
+        sudo apt -y install libskinlf-java;
+        sudo apt -y install libjogl2-java;
     - uses: actions/checkout@v2
     - name: configure
       run: |
