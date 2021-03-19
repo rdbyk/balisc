@@ -12,11 +12,11 @@ jobs:
         sudo apt update;
         sudo apt -y install libsleef-dev;
         sudo apt -y install libeigen3-dev;
-
-#    steps:
-#    - uses: actions/checkout@v2
-#    - name: configure
-#      run: ./configure
+        sudo apt -y install libopenblase-dev;
+        sudo apt -y install libxml2-dev;
+    - uses: actions/checkout@v2
+    - name: configure
+      run: ./configure --enable-build-parser
 #    - name: make
 #      run: make
 #    - name: make check
