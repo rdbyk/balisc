@@ -10,6 +10,8 @@ jobs:
     - name: install dependencies
       run: |
         sudo apt update;
+        sudo apt -y install libsleef-dev;
+        sudo apt -y install libeigen3-dev;
 
 #    steps:
 #    - uses: actions/checkout@v2
