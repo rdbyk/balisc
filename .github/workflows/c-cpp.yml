@@ -6,6 +6,10 @@ jobs:
   build:
     name: Ubuntu-20.04 Focal
     runs-on: ubuntu-latest
+    steps:
+    - name: install dependencies
+      run: |
+        sudo apt update;
 
 #    steps:
 #    - uses: actions/checkout@v2
