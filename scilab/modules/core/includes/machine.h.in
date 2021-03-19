@@ -52,6 +52,15 @@
 /* Define to 1 if you have the `atexit' function. */
 #undef HAVE_ATEXIT
 
+/* Define if avx2 instructions are supported */
+#undef HAVE_AVX2_INSTRUCTIONS
+
+/* Define if avx512f instructions are supported */
+#undef HAVE_AVX512F_INSTRUCTIONS
+
+/* Define if avx instructions are supported */
+#undef HAVE_AVX_INSTRUCTIONS
+
 /* Define to 1 if you have the `bind_textdomain_codeset' function. */
 #undef HAVE_BIND_TEXTDOMAIN_CODESET
 
@@ -118,6 +127,12 @@
 
 /* Define to 1 if you have the `floor' function. */
 #undef HAVE_FLOOR
+
+/* Define if fma4 instructions are supported */
+#undef HAVE_FMA4_INSTRUCTIONS
+
+/* Define if fma instructions are supported */
+#undef HAVE_FMA_INSTRUCTIONS
 
 /* Define to 1 if you have the `getcwd' function. */
 #undef HAVE_GETCWD
@@ -278,6 +293,9 @@
 /* Define to 1 if you have the <sgtty.h> header file. */
 #undef HAVE_SGTTY_H
 
+/* Define to 1 if SLEEF is found */
+#undef HAVE_SLEEF
+
 /* Define to 1 if you have the `sleep' function. */
 #undef HAVE_SLEEP
 
@@ -289,6 +307,18 @@
 
 /* Define if sse2 instructions are supported */
 #undef HAVE_SSE2_INSTRUCTIONS
+
+/* Define if sse3 instructions are supported */
+#undef HAVE_SSE3_INSTRUCTIONS
+
+/* Define if sse4a instructions are supported */
+#undef HAVE_SSE4A_INSTRUCTIONS
+
+/* Define if sse4.1 instructions are supported */
+#undef HAVE_SSE4_1_INSTRUCTIONS
+
+/* Define if sse4.2 instructions are supported */
+#undef HAVE_SSE4_2_INSTRUCTIONS
 
 /* Define to 1 if `stat' has the bug that it succeeds when given the
    zero-length file name argument. */
