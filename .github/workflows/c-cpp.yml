@@ -21,11 +21,13 @@ jobs:
         sudo apt -y install libjgoodies-looks-java;
         sudo apt -y install libskinlf-java;
         sudo apt -y install libjogl2-java;
+        sudo apt -y install libfftw3-dev;
+        sudo apt -y install libpcre3-dev;
     - uses: actions/checkout@v2
     - name: configure
       run: |
         cd scilab
-        ./configure --enable-build-parser --without-gui
+        ./configure --enable-build-parser --without-gui --without-tk
 #    - name: make
 #      run: make
 #    - name: make check
