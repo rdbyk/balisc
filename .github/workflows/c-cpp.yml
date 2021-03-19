@@ -14,6 +14,7 @@ jobs:
         sudo apt -y install libeigen3-dev;
         sudo apt -y install libopenblas-dev;
         sudo apt -y install libxml2-dev;
+        sudo apt -y install libhdf5-dev;
     - uses: actions/checkout@v2
     - name: configure
       run: |
