@@ -16,7 +16,9 @@ jobs:
         sudo apt -y install libxml2-dev;
     - uses: actions/checkout@v2
     - name: configure
-      run: ./configure --enable-build-parser
+      run: |
+        pwd
+#        ./configure --enable-build-parser
 #    - name: make
 #      run: make
 #    - name: make check
