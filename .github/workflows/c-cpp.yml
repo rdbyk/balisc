@@ -10,6 +10,7 @@ jobs:
     - name: install dependencies
       run: |
         sudo apt update;
+        sudo apt -y install docbook;
         sudo apt -y install gettext;
         sudo apt -y install libarpack2-dev;
         sudo apt -y install libcurl4-openssl-dev;
@@ -23,6 +24,7 @@ jobs:
         sudo apt -y install libmatio-dev;
         sudo apt -y install libopenblas-dev;
         sudo apt -y install libpcre3-dev;
+        sudo apt -y install libsaxon-java;
         sudo apt -y install libskinlf-java;
         sudo apt -y install libsleef-dev;
         sudo apt -y install libsuitesparse-dev;
