@@ -11,6 +11,10 @@ jobs:
       run: |
         sudo apt update;
         sudo apt -y install docbook;
+        sudo apt -y install docbook-dsssl;
+        sudo apt -y install docbook-utils;
+        sudo apt -y install docbook-xml;
+        sudo apt -y install docbook-xsl;
         sudo apt -y install gettext;
         sudo apt -y install libarpack2-dev;
         sudo apt -y install libcurl4-openssl-dev;
