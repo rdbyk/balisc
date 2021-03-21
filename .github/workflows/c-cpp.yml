@@ -40,8 +40,8 @@ jobs:
       run: |
         cd scilab
         ./configure --enable-build-parser --without-gui
-#    - name: make
-#      run: make
+    - name: make
+      run: make
 #    - name: make check
 #      run: make check
 #    - name: make distcheck
