@@ -39,7 +39,7 @@ jobs:
     - name: configure
       run: |
         cd scilab
-        ./configure --enable-build-parser --without-gui
+        ./configure --enable-build-parser --without-javasci --without-gui
     - name: make
       run: |
         cd scilab
