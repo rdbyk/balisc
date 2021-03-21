@@ -10,36 +10,13 @@ jobs:
     - name: install dependencies
       run: |
         sudo apt update;
-        sudo apt -y install docbook;
-        sudo apt -y install docbook-dsssl;
-        sudo apt -y install docbook-utils;
-        sudo apt -y install docbook-xml;
-        sudo apt -y install docbook-xsl;
-        sudo apt -y install gettext;
-        sudo apt -y install libarpack2-dev;
-        sudo apt -y install libcurl4-openssl-dev;
-        sudo apt -y install libeigen3-dev;
-        sudo apt -y install libfftw3-dev;
-        sudo apt -y install libflexdock-java;
-        sudo apt -y install libhdf5-dev;
-        sudo apt -y install libjgoodies-looks-java;
-        sudo apt -y install libjgraphx-java;
-        sudo apt -y install libjogl2-java;
-        sudo apt -y install libmatio-dev;
-        sudo apt -y install libopenblas-dev;
-        sudo apt -y install libpcre3-dev;
-        sudo apt -y install libsaxon-java;
-        sudo apt -y install libskinlf-java;
+        sudo apt-get build-dep scilab;
         sudo apt -y install libsleef-dev;
-        sudo apt -y install libsuitesparse-dev;
-        sudo apt -y install libxml2-dev;
-        sudo apt -y install ocaml-nox;
-        sudo apt -y install tk-dev;
     - uses: actions/checkout@v2
     - name: configure
       run: |
         cd scilab
-        ./configure --enable-build-parser --without-javasci --without-gui
+        ./configure --enable-build-parser --without-javasci --without-gui --without-xcos
     - name: make
       run: |
         cd scilab
