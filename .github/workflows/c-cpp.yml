@@ -9,6 +9,7 @@ jobs:
     steps:
     - name: install dependencies
       run: |
+        sed -i '/deb-src/s/^# //' /etc/apt/sources.list
         sudo apt update;
         sudo apt-get build-dep scilab;
         sudo apt -y install libsleef-dev;
