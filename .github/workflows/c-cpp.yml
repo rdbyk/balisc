@@ -56,7 +56,7 @@ jobs:
     - name: configure
       run: |
         cd scilab
-        ./configure --enable-build-parser --without-javasci --without-gui --without-xcos
+        ./configure --enable-build-parser --disable-build-help --with-external-scirenderer--without-javasci --without-gui --without-xcos
     - name: make
       run: |
         cd scilab
