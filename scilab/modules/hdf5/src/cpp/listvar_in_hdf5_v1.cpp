@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -558,7 +558,7 @@ static bool read_list_v1(int* pvCtx, hid_t _iDatasetId, int _iVarType, int _iIte
     return true;
 }
 
-static bool read_delete_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_delete_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     _pInfo->iSize = 1;
     return true;

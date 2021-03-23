@@ -162,10 +162,10 @@ let num_of_float f =
   let num_of_positive_float f =
     let m, e = frexp f in
     let sm = string_of_float m in
-    let s = String.make 16 '0' in
+    let s = Bytes.make 16 '0' in
     String.blit sm 2 s 0 (String.length sm - 2);
     let e' = Num.power_num (Num.Int 2) (Num.num_of_int e) in
-    Num.div_num (Num.mult_num (Num.num_of_string s) e') scaling_factor
+    Num.div_num (Num.mult_num (Num.num_of_string (Bytes.to_string s)) e') scaling_factor
   in
   if f = 0.0 then Num.Int 0
   else if f < 0.0 then

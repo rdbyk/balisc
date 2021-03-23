@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -655,12 +655,12 @@ static hid_t export_delete(hid_t parent, const std::string& name, hid_t xfer_pli
     return writeDelete(parent, name.data(), xfer_plist_id);
 }
 
-static int export_undefined(hid_t parent, const std::string& name, hid_t xfer_plist_id)
+static hid_t export_undefined(hid_t parent, const std::string& name, hid_t xfer_plist_id)
 {
     return writeUndefined6(parent, name.data(), xfer_plist_id);
 }
 
-static int export_insert(hid_t parent, const std::string& name, ListInsert* data, hid_t xfer_plist_id)
+static hid_t export_insert(hid_t parent, const std::string& name, ListInsert* data, hid_t xfer_plist_id)
 {
     int dset = openList6(parent, name.data(), g_SCILAB_CLASS_INSERT);
 

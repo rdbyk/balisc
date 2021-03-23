@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2016-2016 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2017 - ESI Group - Clement DAVID
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,10 +20,8 @@
 #include "Controller.hxx"
 #include "model/BaseObject.hxx"
 
-extern "C" {
 #include <libxml/xmlwriter.h>
 #include <libxml/xmlreader.h>
-}
 
 namespace org_scilab_modules_scicos
 {
