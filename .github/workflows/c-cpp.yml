@@ -42,6 +42,7 @@ jobs:
         sudo apt -y install libjrosetta-java;
         sudo apt -y install liblucene4.10-java;
         sudo apt -y install libmatio-dev;
+        sudo apt -y install libnum-ocaml-dev;
         sudo apt -y install libopenblas-dev;
         sudo apt -y install libpcre3-dev;
         sudo apt -y install libreadline-dev;
