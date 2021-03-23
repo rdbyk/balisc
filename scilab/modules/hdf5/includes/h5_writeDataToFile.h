@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,9 +27,9 @@ int writeDoubleMatrix6(hid_t parent, const char* name, int dims, int* pdims, dou
 int writeDoubleComplexMatrix6(hid_t parent, const char* name, int dims, int* pdims, double* real, double* img, hid_t xfer_plist);
 int writeStringMatrix6(hid_t parent, const char* name, int dims, int* pdims, char** data, hid_t xfer_plist);
 int writeBooleanMatrix6(hid_t parent, const char* name, int dims, int* pdims, int* data, hid_t xfer_plist);
-int writeIntegerMatrix6(hid_t parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data, hid_t xfer_plist);
+int writeIntegerMatrix6(hid_t parent, const char* name, hid_t type, const char* prec, int dims, int* pdims, void* data, hid_t xfer_plist);
 
-int openList6(hid_t parent, const char* name, const char* type);
+hid_t openList6(hid_t parent, const char* name, const char* type);
 int closeList6(hid_t lst);
 
 int addItemStruct6(hid_t dataset, hobj_ref_t* refs, int pos, const char* name);
