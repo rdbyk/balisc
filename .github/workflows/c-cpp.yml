@@ -57,6 +57,7 @@ jobs:
       run: |
         cd scilab
         ./configure --enable-build-parser --without-jdk
+    - name: make
       run: |
         cd scilab
         make
