@@ -956,7 +956,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_SUBST(SKINLF)
 
                 # JOGL 2
-                AC_JAVA_CHECK_JAR([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 2.0], [], [], [2.2])
+                AC_JAVA_CHECK_JAR([jogl2],[jogamp.opengl.x11.glx.GLX],[Scilab 3D rendering - Version 2.3], [], [], 2.3)
                 JOGL2=$PACKAGE_JAR_FILE
                 AC_SUBST(JOGL2)
 
@@ -985,7 +985,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 fi
 
                 # JoGL Native <=> Java connector
-                AC_JAVA_CHECK_JAR([gluegen2-rt],[jogamp.common.os.MachineDescriptionRuntime],[Scilab 3D rendering])
+                AC_JAVA_CHECK_JAR([gluegen2-rt],[com.jogamp.common.os.Platform],[Scilab 3D rendering])
                 GLUEGEN2_RT=$PACKAGE_JAR_FILE
                 AC_SUBST(GLUEGEN2_RT)
 
