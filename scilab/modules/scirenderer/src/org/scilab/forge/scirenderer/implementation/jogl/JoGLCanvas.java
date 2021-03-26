@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
- * Copyright (C) 2019 - Stéphane MOTTELET
+ * Copyright (C) 2019 - Stephane MOTTELET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
