@@ -10,7 +10,6 @@ import java.io.IOException;
 
 import org.scilab.modules.helptools.c.AbstractCCodeHandler;
 
-@javax.annotation.Generated("JFlex")
 @SuppressWarnings("fallthrough")
 
 /**

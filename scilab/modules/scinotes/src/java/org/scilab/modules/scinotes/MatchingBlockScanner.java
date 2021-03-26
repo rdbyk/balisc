@@ -7,7 +7,6 @@ package org.scilab.modules.scinotes;
 import java.io.IOException;
 import javax.swing.text.Element;
 
-@javax.annotation.Generated("JFlex")
 @SuppressWarnings("fallthrough")
 
 /**
