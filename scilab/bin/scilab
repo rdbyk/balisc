@@ -461,7 +461,7 @@ detect_java_vm() {
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
             if test -z "$JAVA_HOME"; then
-                JAVA_DEFAULT_DIR="/usr/java/jdk1.8.*/ /usr/lib/jvm/java-1.8.0-*/ /usr/lib/jvm/java-8-*/ /etc/alternatives/java_sdk /etc/alternatives/jre /usr/java/jdk*/ /usr/lib/jvm/java-*/"
+                JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/java/jdk1.8.*/ /usr/lib/jvm/java-1.8.0-*/ /usr/lib/jvm/java-8-*/ /etc/alternatives/java_sdk /etc/alternatives/jre /usr/java/jdk*/ /usr/lib/jvm/java-*/"
                 for DIR in $JAVA_DEFAULT_DIR ; do
                     if test $SCIVERBOSE -ne 0; then
                         echo "Trying to find Java in $DIR "
@@ -626,7 +626,7 @@ detect_java_vm() {
     fi # IS_SCILAB_BINARY
 
     # Check if the lib exists
-    LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
+    LIBJAVA="$JRE_HOME/lib/$JAVA_SHLIB"
     if test ! -f "$LIBJAVA"; then
         if test $SCIVERBOSE -ne 0; then
             echo "Cannot find $LIBJAVA"
@@ -635,7 +635,7 @@ detect_java_vm() {
         CLASSPATH="${CLASSPATH:+:$CLASSPATH}$SCI/modules/core/jar/org.scilab.modules.core.jar"
         # @TODO This is the default path of the official sun JVM.
         # It is different for other implementation of the JVM....
-        LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="$JRE_HOME/lib:$JRE_HOME/lib/$proc/:$JRE_HOME/lib/server/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
     fi
 
     # Bug http://bugzilla.scilab.org/show_bug.cgi?id=14290 -
