@@ -14,7 +14,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 
-@javax.annotation.Generated("JFlex")
 @SuppressWarnings("fallthrough")
 
 

@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.swing.text.Element;
 import javax.swing.text.BadLocationException;
 
-@javax.annotation.Generated("JFlex")
 @SuppressWarnings("fallthrough")
 %% 
 

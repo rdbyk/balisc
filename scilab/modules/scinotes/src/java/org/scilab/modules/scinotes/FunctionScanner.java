@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 
-@javax.annotation.Generated("JFlex")
 @SuppressWarnings("fallthrough")
 
 /**

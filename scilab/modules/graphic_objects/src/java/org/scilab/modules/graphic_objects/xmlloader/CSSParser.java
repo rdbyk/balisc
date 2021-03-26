@@ -14,7 +14,6 @@ import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
-@javax.annotation.Generated("JFlex")
 @SuppressWarnings("fallthrough")
 
 /**
