@@ -895,8 +895,7 @@ check_macosx_version()
     esac
 }
 
-# . is used by the dynamic link. The build lib are copied into the PWD
-SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
+SCILIB=/usr/lib/scilab
 if test -d "$SCI/lib/thirdparty"; then
     SCILIB=$SCI/lib/thirdparty:$SCILIB;
 fi
