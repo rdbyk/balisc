@@ -62,7 +62,7 @@ public class ClassPath {
      */
     public static void addURL(final URL u, int i) {
 
-        final URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        /*final URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
         Class sysclass = URLClassLoader.class;
 
         try {
@@ -70,10 +70,10 @@ public class ClassPath {
             final Method method = sysclass.getDeclaredMethod("addURL", parameters);
             method.setAccessible(true);
             switch (i) {
-                case 0: /* Load now */
+                case 0: /* Load now
                     method.invoke(sysloader , new Object[] { u });
                     break;
-                case 1: /* Load later (background) */
+                case 1: /* Load later (background)
                     queued.add(u);
                     break;
             }
@@ -84,7 +84,7 @@ public class ClassPath {
             System.err.println("Error: Illegal access: " + e.getLocalizedMessage());
         } catch (InvocationTargetException e) {
             System.err.println("Error: Could not invocate target: " + e.getLocalizedMessage());
-        }
+        } */
 
     }
     /*-----------------------------------------------------------------------*/
@@ -94,13 +94,14 @@ public class ClassPath {
      */
     public static String[] getClassPath() {
 
-        URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+	return new String[0];
+        /* URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
         URL[] path = sysloader.getURLs();
         String[] paths = new String[path.length];
         for (int i = 0; i < path.length; i++) {
             paths[i] = path[i].getFile();
         }
-        return paths;
+        return paths;*/
     }
 
 

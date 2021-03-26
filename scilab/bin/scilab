@@ -665,6 +665,48 @@ if test $DISABLE_JAVA_DETECTION -ne 1; then
     detect_java_vm
 fi
 
+# Try to set the classpath as the classpath loader doesn't work anymore
+# bad way to detect if we're during the compilation
+SYSJARS=/usr/share/java/flexdock.jar
+SYSJARS=$SYSJARS:/usr/share/java/skinlf.jar
+SYSJARS=$SYSJARS:/usr/share/java/looks.jar
+SYSJARS=$SYSJARS:/usr/share/java/commons-logging.jar
+SYSJARS=$SYSJARS:/usr/share/java/jhall.jar
+SYSJARS=$SYSJARS:/usr/share/java/lucene-core-4.10.4.jar
+SYSJARS=$SYSJARS:/usr/share/java/lucene-analyzers-common-4.10.4.jar
+SYSJARS=$SYSJARS:/usr/share/java/lucene-queryparser-4.10.4.jar
+SYSJARS=$SYSJARS:/usr/share/maven-repo/org/freehep/freehep-util/debian/freehep-util-debian.jar
+SYSJARS=$SYSJARS:/usr/share/maven-repo/org/freehep/freehep-io/debian/freehep-io-debian.jar
+SYSJARS=$SYSJARS:/usr/share/maven-repo/org/freehep/freehep-graphicsio/debian/freehep-graphicsio-debian.jar
+SYSJARS=$SYSJARS:/usr/share/java/freehep-graphicsio-emf-2.1.jar
+SYSJARS=$SYSJARS:/usr/share/java/freehep-graphics2d-2.1.1.jar
+SYSJARS=$SYSJARS:/usr/share/java/jrosetta-API.jar
+SYSJARS=$SYSJARS:/usr/share/java/jrosetta-engine-1.0.4.jar
+SYSJARS=$SYSJARS:/usr/share/java/jgraphx.jar
+SYSJARS=$SYSJARS:/usr/share/java/jogl2.jar
+SYSJARS=$SYSJARS:/usr/share/java/gluegen2-rt.jar
+SYSJARS=$SYSJARS:/usr/share/java/jeuclid-core.jar
+SYSJARS=$SYSJARS:/usr/share/java/jlatexmath-fop-1.0.7.jar
+SYSJARS=$SYSJARS:/usr/share/java/fop.jar
+SYSJARS=$SYSJARS:/usr/share/java/saxon.jar
+SYSJARS=$SYSJARS:/usr/share/java/batik.jar
+SYSJARS=$SYSJARS:/usr/share/java/xml-apis-ext.jar
+SYSJARS=$SYSJARS:/usr/share/java/commons-io.jar
+SYSJARS=$SYSJARS:/usr/share/java/xmlgraphics-commons.jar
+SYSJARS=$SYSJARS:/usr/share/java/avalon-framework.jar
+SYSJARS=$SYSJARS:/usr/share/java/jlatexmath-1.0.7.jar
+SYSJARS=$SYSJARS:/usr/share/java/ecj.jar
+SYSJARS=$SYSJARS:/usr/share/java/javax.activation.jar
+SYSJARS=$SYSJARS:/usr/share/java/jaxb-runtime.jar
+if test -r "./etc/classpath.xml"; then
+    SCIJARS=`find modules -name "*.jar" -type f | tr "\n" ":"`
+else
+    SCIJARS=`find /usr/share/scilab/modules -name "*.jar" -type f | tr "\n" ":"`
+fi
+_JAVA_OPTIONS=-Djava.class.path=$SYSJARS:$SCIJARS${_JAVA_OPTIONS+ $_JAVA_OPTIONS}
+
+export _JAVA_OPTIONS
+
 if test $IS_SCILAB_BINARY -eq 1; then
 
     if test ! -d "$SCIBINARYBASE/thirdparty/tcl8.5"; then
