@@ -257,7 +257,7 @@ public class BrowserView extends View {
         final DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 
         DefaultMutableTreeNode node;
-        for (Enumeration<DefaultMutableTreeNode> e = root.depthFirstEnumeration(); e.hasMoreElements();) {
+        for (Enumeration<DefaultMutableTreeNode> e = (Enumeration) root.depthFirstEnumeration(); e.hasMoreElements();) {
             node = e.nextElement();
             BrowserTreeNodeData data = (BrowserTreeNodeData) node.getUserObject();
             if (data.getId() == uid) {

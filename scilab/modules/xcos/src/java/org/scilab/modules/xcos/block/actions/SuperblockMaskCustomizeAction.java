@@ -755,7 +755,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                  * it
                  */
                 @SuppressWarnings("unchecked")
-                final List < List<? >> data = model.getDataVector();
+                final List < List<? >> data = (List) model.getDataVector();
 
                 /* Inverting data */
                 List<?> tmp = data.get(row2);
