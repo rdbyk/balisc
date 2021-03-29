@@ -1052,7 +1052,9 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
 
                 ################ Mandatory for graphic_export features #####
                 # XML to PDF/other Translator
-                AC_JAVA_CHECK_JAR([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
+                #AC_JAVA_CHECK_JAR([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
+                PACKAGE_JAR_FILE=/usr/share/java/fop.jar
+                ac_java_classpath=$ac_java_classpath:$PACKAGE_JAR_FILE
                 FOP=$PACKAGE_JAR_FILE
                 AC_SUBST(FOP)
 
