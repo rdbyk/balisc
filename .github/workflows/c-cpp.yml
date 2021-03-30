@@ -31,6 +31,7 @@ jobs:
         sudo apt -y install libflexdock-java;
         sudo apt -y install libfreehep-graphics2d-java;
         sudo apt -y install libfreehep-graphicsio-emf-java;
+        sudo apt -y install libgl1-mesa-dev;
         sudo apt -y install libhdf5-dev;
         sudo apt -y install libjaxb-java;
         sudo apt -y install libjeuclid-core-java;
