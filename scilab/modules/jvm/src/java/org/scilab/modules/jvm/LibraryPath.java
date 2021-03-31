@@ -19,7 +19,9 @@ package org.scilab.modules.jvm;
 /*--------------------------------------------------------------------------*/
 import java.io.IOException;
 import java.io.File;
+import java.lang.reflect.Method;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 /*--------------------------------------------------------------------------*/
 /*http://forum.java.sun.com/thread.jspa?threadID=135560&start=15&tstart=0 */
 /*--------------------------------------------------------------------------*/
@@ -64,14 +66,25 @@ public class LibraryPath {
             /* The order matter here... see bug #4022 */
             String newLibPath = System.getProperty(JAVALIBRARYPATH) + File.pathSeparator + p;
             System.setProperty(JAVALIBRARYPATH, newLibPath);
+            // First try the new initLibraryPaths method
             try {
-                Field fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
-                fieldSysPath.setAccessible(true);
-                if (fieldSysPath != null) {
+                final Method initLibraryPaths = ClassLoader.class.getDeclaredMethod("initLibraryPaths");
+                initLibraryPaths.setAccessible(true);
+                initLibraryPaths.invoke(null);
+            } catch (NoSuchMethodException e) {
+                // The initLibraryPaths method doesn't exist
+                // Fallback setting sys_paths to null
+                try {
+                    Field fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
+                    fieldSysPath.setAccessible(true);
                     fieldSysPath.set(System.class.getClassLoader(), null);
+                } catch (NoSuchFieldException e1) {
+                    throw new IOException("Error NoSuchFieldException, could not add path to " + JAVALIBRARYPATH);
+                } catch (IllegalAccessException e1) {
+                    throw new IOException("Error IllegalAccessException, could not add path to " + JAVALIBRARYPATH);
                 }
-            } catch (NoSuchFieldException e) {
-                throw new IOException("Error NoSuchFieldException, could not add path to " + JAVALIBRARYPATH);
+            } catch (InvocationTargetException e) {
+                throw new IOException("Error InvocationTargetException, could not add path to " + JAVALIBRARYPATH);
             } catch (IllegalAccessException e) {
                 throw new IOException("Error IllegalAccessException, could not add path to " + JAVALIBRARYPATH);
             }
