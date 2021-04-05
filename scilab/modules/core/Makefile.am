@@ -1,7 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
-# Copyrigth (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+# Copyrigth (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 #
 # This file is hereby licensed under the terms of the GNU GPL v2.0,
 # pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -125,7 +125,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_typecast.cpp \
 	sci_gateway/cpp/sci_swapbytes.cpp \
 	sci_gateway/cpp/sci_outer.cpp \
-	sci_gateway/cpp/sci_inner.cpp
+	sci_gateway/cpp/sci_inner.cpp \
+	sci_gateway/cpp/sci_isvoid.cpp
 
 if ENABLE_DEBUG
 GATEWAY_CPP_SOURCES += \
