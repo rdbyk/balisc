@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 // Copyright (C) 2018, 2019 - Samuel GOUGEON
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -59,7 +59,9 @@ function colors = iscolor(C, acceptedFormats)
             C = real(C)
         end
     end
-    if isdef("acceptedFormats", "l") then
+    if isvoid(acceptedFormats) then
+		acceptedFormats = "1.#a";
+    else
         if type(acceptedFormats)~= 10
             msg = _("%s: Argument #%d: Text(s) expected.\n")
             error(msprintf(msg, fname, 2))
@@ -69,8 +71,6 @@ function colors = iscolor(C, acceptedFormats)
             msg = _("%s: Argument #%d: Characters in {a.#1} expected.\n")
             error(msprintf(msg, fname, 2))
         end
-    else
-        acceptedFormats = "1.#a";
     end
 
     // PROCESSING

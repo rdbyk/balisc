@@ -2,7 +2,7 @@
 // Copyright (C) 2010 - INRIA - Serge STEER
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2018 - Samuel GOUGEON
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,7 +48,7 @@ function handles = nicholschart(modules, args, colors)
     defaultModules=[-30:-10:mod_min -25 -20 -15 -12 -9 -6 -3 -2 -1 -0.5 -0.2 -0.1 0 0.1 0.2 0.5  1  2 3 6 12];
 
 
-    if exists("modules","local") == 0 | modules == [] then
+    if isvoid(modules) | modules == [] then
         modules=defaultModules
     else
         if type(modules)<>1|~isreal(modules) then
@@ -57,7 +57,7 @@ function handles = nicholschart(modules, args, colors)
         end
         modules=matrix(modules,1,-1)
     end
-    if exists("args","local")==0 | args == [] then
+    if isvoid(args) | args == [] then
         args=defaultArgs
     else
         if type(args)<>1|~isreal(args) then
@@ -68,7 +68,7 @@ function handles = nicholschart(modules, args, colors)
     end
 
     // colors
-    if exists("colors","local")==0 | colors == [] then
+    if isvoid(colors) | colors == [] then
         colors = "grey85";
     end
     c = iscolor(colors);
