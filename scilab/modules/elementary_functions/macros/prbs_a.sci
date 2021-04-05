@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - Samuel GOUGEON
-// Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2020 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,7 +33,7 @@ function u = prbs_a(n, nc, ic)
     end
     // Default ic and nc
     // -----------------
-    if ~isdef("ic","l") | ic==[] then
+    if nargin == 2 | ic==[] then
         u = grand(1,n-1,"unf",0,1);
         [?, ic] = gsort(u);
         ic = gsort(ic(1:nc));
@@ -72,4 +72,4 @@ function u = prbs_a(n, nc, ic)
         u = [1 1+2*u];
     end
     u = u*sign(grand(1,1,"unf",-1,1));    // randomize the initial state
-endfunction
+end
