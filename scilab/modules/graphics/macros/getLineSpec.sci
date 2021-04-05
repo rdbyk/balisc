@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +12,6 @@
 
 function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(str,current_figure,cur_draw_mode)
 
-    LineStyle=1;
     Color=[];
     MarkerStyle=[];
     MarkerSize=1;
@@ -40,6 +40,8 @@ function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(s
         str=strsubst(str,"-","");
         LineStyle=1;
         Line = %T;
+    else
+        Line = %F;
     end
 
     //
@@ -108,7 +110,6 @@ function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(s
 
 
     // LineSpec is parsed now
-    //Marker = %F;
     //Line   = %T;
 
     for i=1:size(opt1,"*")
@@ -121,6 +122,7 @@ function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(s
             //    disp("MarkerSize =");
             //    disp(MarkerSize);
         else
+			Marker = %F;
             Color = color(ColorVal(opt1(i)-12));
         end
 
