@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -232,7 +232,7 @@ function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
     [xxopt,fopt,exitflag,iter,yyopt] = karmarkar_findStandardLP ( AAeq , bbeq , cc , xx0 , rtolf , gam , maxiter , outfun )
     //
     // Extract the solution from the initial problem
-    [xopt,fopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb , ub , pinit , xxopt , yyopt , exitflag )
+    [xopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb , ub , pinit , xxopt , yyopt , exitflag )
 
     if nargout < 3 & exitflag~= 1 then
         warning(msprintf(gettext("%s: The algorithm did not converge (exitflag= %d).\n"),"karmarkar",exitflag));
@@ -388,7 +388,7 @@ function [AAeq,bbeq,cc,xx0,pinit,newposvars] = karmarkar_preprocess ( Aeq , beq 
     end
 endfunction
 
-function [xopt,fopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb , ub , pinit , xxopt , yyopt , exitflag )
+function [xopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb , ub , pinit , xxopt , yyopt , exitflag )
     // Transform the solution of the standard LP into the solution of the original general LP.
     //
     // Extract the solution from the initial problem
