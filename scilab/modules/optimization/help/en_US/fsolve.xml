@@ -197,6 +197,7 @@ plot(x,feuler(x))
 a=gca();
 a.grid=[5 5];
  ]]></programlisting>
+ <!-- FIXME
         <scilab:image>
             function F=feuler(x,r)
             F=x-r-dt*(x.^2-x.^3);
@@ -215,6 +216,7 @@ a.grid=[5 5];
             a=gca();
             a.grid=[5 5];
         </scilab:image>
+-->
         <para>So, each time you use fsolve, be sure to check the termination indicator and the residual value to see if fsolve has converged.</para>
     </refsection>
     <refsection role="see also">

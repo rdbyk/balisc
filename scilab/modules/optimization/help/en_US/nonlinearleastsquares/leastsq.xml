@@ -441,6 +441,7 @@ xsup = [%inf, %inf];
 //    (allows only 40 function calls, 8 iterations and set epsg=0.01, epsf=0.1)
 [f,xopt, gopt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0,"ar",40,8,0.01,0.1)
  ]]></programlisting>
+ <!-- FIXME
         <scilab:image>
 
             function y = yth(t, x)
@@ -476,6 +477,7 @@ xsup = [%inf, %inf];
             xtitle("a simple fit with leastsq")
 
         </scilab:image>
+-->
     </refsection>
     <refsection>
         <title>Examples with compiled functions</title>
