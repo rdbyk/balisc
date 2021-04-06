@@ -3,7 +3,7 @@
 // Copyright (C) Serge Steer (adaptation to new graphic system)
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2017 - 2020 - Samuel GOUGEON
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,12 +48,12 @@ function colorbar(umin, umax, colminmax, fmt)
     // PARSING INPUT ARGUMENTS
     // =======================
     // colminmax
-    if isdef("colminmax","l") & type(colminmax)==2
+    if ~isvoid(colminmax) & type(colminmax)==2
         colminmax = horner(colminmax, nColorsCM)
         colminmax(colminmax < 1) = 1
         colminmax(colminmax > nColorsCM) = nColorsCM
     end
-    if isdef("colminmax","l") & type(colminmax)~=0 & colminmax~=[] & colminmax(1)~=-1
+    if ~isvoid(colminmax) & type(colminmax)~=0 & colminmax~=[] & colminmax(1)~=-1
         msg = _("%s: Argument #%d: Decimal number(s) expected.\n")
         if and(type(colminmax)~=[1 2])| ~isreal(colminmax)
             error(msprintf(msg, "colorbar", 3))
@@ -67,8 +67,8 @@ function colorbar(umin, umax, colminmax, fmt)
             colminmax = round(1 + colminmax*(nColorsCM-1))
         end
         colminmax = [max(colminmax(1),1) min(colminmax(2), nColorsCM)];
-    elseif ~isdef("colminmax","l") | type(colminmax)==0 | colminmax==[]
-        if ~isdef("umin","l") | type(umin)==0 | umin==[] then
+    elseif isvoid(colminmax) | type(colminmax)==0 | colminmax==[]
+        if isvoid(umin) | type(umin)==0 | umin==[] then
             colminmax = -1
         else
             colminmax = [1, nColorsCM]
@@ -140,7 +140,7 @@ function colorbar(umin, umax, colminmax, fmt)
     clear k
 
     // umin
-    if ~isdef("umin","l") | type(umin)==0 | umin==[] then
+    if isvoid(umin) | type(umin)==0 | umin==[] then
         if u~=[]
             if colminmax~=[] & (length(colminmax)>1 | colminmax~=-1)
                 if Type=="Matplot" | Type=="Champ" | ..
@@ -180,7 +180,7 @@ function colorbar(umin, umax, colminmax, fmt)
     end
 
     // umax
-    if ~isdef("umax","l") | type(umax)==0 | umax==[] then
+    if isvoid(umax) | type(umax)==0 | umax==[] then
         if u~=[]
             if colminmax~=[] & colminmax~=-1
                 if Type=="Matplot" | Type=="Champ" | ..
@@ -233,12 +233,12 @@ function colorbar(umin, umax, colminmax, fmt)
     end
 
     // fmt
-    if isdef("fmt","l") then
+    if isvoid(fmt) then
+        fmt = ""
+    else
         if type(fmt)<>10 | size(fmt,"*")<>1 then
             error(90, nargin, _("string (containing a C format)"));
         end
-    else
-        fmt = ""
     end
 
     // DRAWING
