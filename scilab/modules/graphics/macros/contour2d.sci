@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,8 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
+// FIXME: is the "dummy" input arg needed?
+function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, dummy)
 
     if nargin == 0 then
         scf();
@@ -50,7 +51,7 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
     opts = [];
     levels = [];
 
-    if ~exists("style", "local") then
+    if isvoid(style) then
         if size(nz, "*") == 1 then
             style = 1:nz;
         else
@@ -58,7 +59,7 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
         end
     end
 
-    if exists("strf", "local") then
+    if ~isvoid(strf) then
         yflag = part(strf, 2);
         if or(yflag == ["2" "4" "6" "8"]) then
             rect = [min(x), min(y), max(x), max(y)];
@@ -68,15 +69,15 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
         opts = [opts,"strf=strf"];
     end
 
-    if exists("leg", "local") then
+    if ~isvoid(leg) then
         opts = [opts, "leg=leg"];
     end
     rectSpecified = %f;
-    if exists("rect","local") then
+    if ~isvoid(rect) then
         opts = [opts, "rect=rect"];
         rectSpecified = %t;
     end
-    if exists("nax","local") then
+    if ~isvoid(nax) then
         opts = [opts, "nax=nax"];
     end
     if exists("logflag","local") then

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,7 +31,7 @@ function legends(leg, style, opt, with_box, font_size )
         msg = _("%s: Wrong type for input argument #%d: Real array or graphic handle array expected.\n")
         error(msprintf(msg, "legends", 2));
     end
-    if ~exists("opt","local") then
+    if isvoid(opt) then
         opt = 5
     elseif typeof(opt)=="string" then
         select opt
@@ -46,8 +46,10 @@ function legends(leg, style, opt, with_box, font_size )
             error(msprintf(msg,"legends", 3, "ur", "ul", "ll", "lr", "?", "below"));
         end
     end
-    if ~exists("with_box","local") then, with_box=%t, end
-    if ~exists("font_size","local") then
+    if isvoid(with_box) then
+		with_box=%t
+	end
+    if isvoid(font_size) then
         font_size = 1 ; // default size
     end
 

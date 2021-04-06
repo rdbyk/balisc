@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012-2012 - Scilab Enterprises - Bruno JOFRET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,7 @@ function []=xsetech(wrect, frect, logflag, arect)
         error(77, sprintf(_("%s: Wrong number of input arguments: %d to %d expected."), "xsetech", 1, 3));
     end
 
-    if ~exists("wrect", "local")
+    if isvoid(wrect)
         wrect = [];
     else
         // Check wrect
@@ -26,7 +26,7 @@ function []=xsetech(wrect, frect, logflag, arect)
         end
     end
 
-    if ~exists("frect", "local")
+    if isvoid(frect)
         frect = [];
     else
         // Check frect
@@ -36,7 +36,7 @@ function []=xsetech(wrect, frect, logflag, arect)
         frect = [frect(1), frect(2); frect(3), frect(4)]
     end
 
-    if ~exists("logflag", "local")
+    if isvoid(logflag)
         logflag = [];
     else
         // check logflag
@@ -45,7 +45,7 @@ function []=xsetech(wrect, frect, logflag, arect)
         end
     end
 
-    if ~exists("arect", "local")
+    if isvoid(arect)
         arect = [];
     else
         if (type(arect) <> 1 | isreal(arect) == %f | size(arect) <> [1 4]) then
