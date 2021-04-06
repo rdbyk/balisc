@@ -3,7 +3,7 @@
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2018 - 2019 - Samuel GOUGEON
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +23,7 @@ function [a, ka] = setdiff(a, b, orien)
         return
     end
     // orien
-    if ~isdef("orien","l") then
+    if isvoid(orien) then
         orien = 0
     elseif orien~="r" & orien~="c" & orien~=1 & orien~=2
         msg = gettext("%s: Argument #%d: Must be in the set {%s}.\n");
