@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge STEER
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
 // Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2019 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,7 +31,7 @@ function hstruct = hallchart(modules,args,colors)
 
     // Check/set modules
     // -----------------
-    if ~isdef("modules","l") then
+    if isvoid(modules) then
         // Default modules
         // ---------------
         yo = Yextrem
@@ -47,13 +47,13 @@ function hstruct = hallchart(modules,args,colors)
 
     // Check/set Phases
     // ----------------
-    if ~isdef("args","l") then
+    if isvoid(args) then
         args = [-90 -60 -40 -30 -25 -20 -15 -12 12 15 20 25 30 40 60 90]; //in degree
     else
         modules=defaultmodules
     end
 
-    if isdef("args","local") then
+    if ~isvoid(args) then
         if type(args) <> 1 || ~isreal(args) then
             error(94, 2);
         end
@@ -63,7 +63,7 @@ function hstruct = hallchart(modules,args,colors)
     // Check/set colors
     // ----------------
     defaultCol = ["pink" "skyblue1"]
-    if ~isdef("colors","l") then
+    if isvoid(colors) then
         colors = defaultCol
     end
     // Manage "" or 0 input values as default color
