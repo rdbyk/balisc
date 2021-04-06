@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -8,7 +9,7 @@
 // For more information, see the COPYING file which you should have
 // received along with this program.
 
-function [sorted, K] = %gsort_multilevel(array, sortype, sortdir, criteria)
+function [sorted, K] = %gsort_multilevel(array, sorttype, sortdir, criteria)
     // This internal overload sorts only dense matrices.
     // For hypermatrices, %hm_gsort() is called upstream
     //   - to reformat the input as a matrix
@@ -19,7 +20,7 @@ function [sorted, K] = %gsort_multilevel(array, sortype, sortdir, criteria)
     //
     // array   : vector or matrix to be sorted.
     //           Hypermatrices are pre- and post-processed by %hm_gsort()
-    // sortype : "g" "r" "c" "lr" "lc". Default "g"
+    // sorttype : "g" "r" "c" "lr" "lc". Default "g"
     // sortdir: [], or vector of "i" or "d". Default = "d"
     // criteria: list of Scilab functions or primitives handles, or :.
     //           When a function fun requires some additional parameters
@@ -33,22 +34,22 @@ function [sorted, K] = %gsort_multilevel(array, sortype, sortdir, criteria)
     // array:
     // This overload is called only when array is defined and are complex numbers
 
-    // sortype:
-    if ~isdef("sortype", "l") || sortype==[] || (type(sortype)==10 && sortype(1)=="")
-        sortype = "g"
-    elseif type(sortype)~=10
+    // sorttype:
+    if isvoid(sorttype) || sorttype==[] || (type(sorttype)==10 && sorttype(1)=="")
+        sorttype = "g"
+    elseif type(sorttype)~=10
         msg = _("%s: Argument #%d: Text(s) expected.\n")
         error(msprintf(msg, "gsort", 2))
     else
-        sortype = convstr(sortype(1))
-        if ~or(sortype==["g" "r" "c" "lr" "lc"])
+        sorttype = convstr(sorttype(1))
+        if ~or(sorttype==["g" "r" "c" "lr" "lc"])
             msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
             error(msprintf(msg, "gsort", 2, "''g'',''r'',''c'',''lc'',''lr''"))
         end
     end
 
     // sortdir:
-    if ~isdef("sortdir", "l") || sortdir==[]
+    if isvoid(sortdir) || sortdir==[]
         sortdir = "d"           // for back-compatibility
     elseif type(sortdir)~=10
         msg = _("%s: Argument #%d: Text(s) expected.\n")
@@ -91,11 +92,11 @@ function [sorted, K] = %gsort_multilevel(array, sortype, sortdir, criteria)
     if size(criteria)==1 then
         fun = criteria(1)
         if typeof(fun)=="implicitlist" & fun==(1:1:$)
-            [sorted, K] = gsort(array, sortype, sortdir)
+            [sorted, K] = gsort(array, sorttype, sortdir)
         else
             v = %gsort_eval(array, fun)
-            [sorted, K] = gsort(v, sortype, sortdir)
-            select sortype
+            [sorted, K] = gsort(v, sorttype, sortdir)
+            select sorttype
             case "g"
                 sorted = matrix(array(K), size(array))
             case "r"
@@ -133,18 +134,18 @@ function [sorted, K] = %gsort_multilevel(array, sortype, sortdir, criteria)
 
     // SORTING
     // -------
-    if sortype=="g" then
+    if sorttype=="g" then
         [?, K] = gsort(kk, "lr", "i");
         K = matrix(K, sa)
         sorted = matrix(array(K), sa)
 
-    elseif or(sortype==["c" "r"]) then
+    elseif or(sorttype==["c" "r"]) then
         [?, K] = gsort(kk, "lr", "i");
         K = matrix(K, sa)
         z = zeros(sa(1),sa(2))
         z(K) = 1:prod(sa)
-        [?, K] = gsort(z, sortype, "i")
-        if sortype=="c" then
+        [?, K] = gsort(z, sorttype, "i")
+        if sorttype=="c" then
             R = (1:sa(1))' * ones(1,sa(2))
             sorted = matrix(array(R+(K-1)*sa(1)), sa)
         else // "r"
@@ -152,13 +153,13 @@ function [sorted, K] = %gsort_multilevel(array, sortype, sortdir, criteria)
             sorted = matrix(array(K+(C-1)*sa(1)), sa)
         end
 
-    elseif sortype=="lr" then
+    elseif sorttype=="lr" then
         tmp = ones(nbcrit,1)*(1:sa(2))+(0:nbcrit-1)'*ones(1,sa(2))*sa(2)
         tmp = matrix(kk, sa(1), -1)(:,tmp)
         [?, K] = gsort(tmp, "lr", "i");
         sorted = array(K, :)
 
-    else // sortype=="lc"
+    else // sorttype=="lc"
         tmp = matrix(kk',nbcrit*sa(1), -1)'
         [?, K] = gsort(tmp, "lr", "i");
         K = K'

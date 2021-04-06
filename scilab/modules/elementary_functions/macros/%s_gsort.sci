@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,7 +21,7 @@ function [sorted, indin] = %s_gsort(array, method, sortdir, criteria)
 
     // DEMO
     // ----
-    if argn(2)==0
+    if nargin==0
         i = grand(10,3,"uin",-1,1);
         r = grand(10,3,"uin",-1,1);
         c = r+i*%i
@@ -39,16 +40,16 @@ function [sorted, indin] = %s_gsort(array, method, sortdir, criteria)
 
     // DEFAULT VALUES
     // method: checked in the gateway (and initialized when default)
-    if ~isdef("method", "l") | method==[] | (type(method)==10 & method(1)=="")
+    if isvoid(method) | method==[] | (type(method)==10 & method(1)=="")
         method = "g"
     end
 
     // sortdir: checked in %gsort_multilevel. Only setting the default:
-    if ~isdef("sortdir", "l") | sortdir==[] | (type(sortdir)==10 & sortdir(1)=="")
+    if isvoid(sortdir) | sortdir==[] | (type(sortdir)==10 & sortdir(1)=="")
         sortdir = "d"           // for back-compatibility
     end
     //criteria:  checked in %gsort_multilevel. Only setting the default:
-    if ~isdef("criteria", "l") | (type(criteria)==1 & criteria==[])
+    if isvoid(criteria) | (type(criteria)==1 & criteria==[])
         if size(sortdir,"*")==2
             criteria = list(abs, atan)
         else
