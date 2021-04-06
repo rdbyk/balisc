@@ -3,7 +3,7 @@
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -73,22 +73,22 @@ function contour(x, y, z, nz, theta, alpha, leg, flag, ebox, zlev)
     levels = [];
 
     opts = [];
-    if exists("theta", "local") == 1 then
+    if ~isvoid(theta) then
         opts = [opts, "theta=theta"];
     end
-    if exists("alpha", "local") == 1 then
+    if ~isvoid(alpha) then
         opts = [opts, "alpha=alpha"];
     end
-    if exists("leg"  , "local") == 1 then
+    if ~isvoid(leg) then
         opts = [opts, "leg=leg"];
     end
-    if exists("ebox" , "local") == 1 then
+    if ~isvoid(ebox) then
         opts = [opts, "ebox=ebox"];
     end
-    if exists("flag" , "local") == 0 then
+    if isvoid(flag) then
         flag = [2 2 3];
     end
-    if exists("zlev" , "local") == 0 then
+    if isvoid(zlev) then
         zlev = 0;
     end
 
