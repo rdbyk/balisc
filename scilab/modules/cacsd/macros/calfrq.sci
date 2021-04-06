@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1985 - 2016 - INRIA - Serge Steer
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,7 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function [frq, bnds, splitf] = calfrq(h, fmin, fmax)
     //!
@@ -130,7 +129,7 @@ function [frq, bnds, splitf] = calfrq(h, fmin, fmax)
     else
         c = 2*%pi*dom
         // selection function for singularities in the frequency range
-        deff("[f] = %sel(r, fmin, fmax, dom, tol)",["f = [],";
+        deff("[f] = %sel(r, fmin, fmax, tol)",["f = [],";
         "if prod(size(r)) == 0 then return, end";
         "f = r(find( ((abs(abs(r)-ones(r)))<=tol)&(imag(r)>=0)))";
         "if f <> [] then ";
