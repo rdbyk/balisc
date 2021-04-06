@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,7 +23,7 @@
 //     center computation.
 //
 function cen = optimsimplex_xbar ( this , iexcl )
-    if (~isdef("iexcl","local")) then
+    if isvoid(iexcl) then
         iexcl = this.nbve;
     end
     if ( size(iexcl,1)<>1 ) then
