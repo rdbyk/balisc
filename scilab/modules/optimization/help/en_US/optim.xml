@@ -897,7 +897,7 @@ plot(xopt(1), xopt(2), "r*")
             contour (xdata, ydata, rosenbrockC, [1 10 100 500 1000])
             plot(x0(1), x0(2), "b.")
             plot(xopt(1), xopt(2), "r*")
-            [fopt, xopt] = optim (rosenbrockPlot, x0, iprint = -1)
+            // FIXME [fopt, xopt] = optim (rosenbrockPlot, x0, iprint = -1)
         </scilab:image>
 
     </refsection>
