@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,7 +27,10 @@ function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "plot3d2", 3))
     end
     isvect=1
-    if exists("vect","local")==0 then isvect=1 ;vect=-1,end
+    if isvoid(vect) then
+        isvect=1;
+        vect=-1;
+    end
     if vect<>-1 then
         nobjs=prod(size(vect))+1;
         [rx,cx]=size(x);
@@ -44,19 +47,19 @@ function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
     end
 
     opts=[]
-    if exists("theta","local")==1 then
+    if ~isvoid(theta) then
         opts=[opts,"theta=theta"]
     end
-    if exists("alpha","local")==1 then
+    if ~isvoid(alpha) then
         opts=[opts,"alpha=alpha"]
     end
-    if exists("leg"  ,"local")==1 then
+    if ~isvoid(leg) then
         opts=[opts,"leg=leg"]
     end
-    if exists("flag" ,"local")==1 then
+    if ~isvoid(flag) then
         opts=[opts,"flag=flag"]
     end
-    if exists("ebox" ,"local")==1 then
+    if ~isvoid(ebox) then
         opts=[opts,"ebox=ebox"]
     end
 
