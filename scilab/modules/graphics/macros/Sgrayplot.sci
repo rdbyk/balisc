@@ -3,7 +3,7 @@
 // Copyright (C) Bruno Pincon
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2018 - Samuel GOUGEON
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -61,23 +61,38 @@ function Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     end
 
     // http://bugzilla.scilab.org/15638 :
-    if ~isdef("colminmax","l")
+    if isvoid(colminmax)
         colminmax = [1, size(gcf().color_map,1)]
     end
     nbc = colminmax(2)-colminmax(1)+1
-    if ~isdef("zminmax","l") then
+    if isvoid(zminmax) then
         zminmax = [min(z), max(z)]
     end
     dz = (zminmax(2) - zminmax(1))/nbc/2
     zminmax = zminmax + [dz -dz]
 
     // parsing the optional args
-    opt_arg_list = ["strf", "rect","nax","zminmax", "colminmax", "mesh", "colout"]
-    opt_arg_seq = ""
-    for opt_arg = opt_arg_list
-        if exists(opt_arg,"local") then
-            opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
-        end
+    opt_arg_seq = "";
+    if ~isvoid(strf)
+        opt_arg_seq = opt_arg_seq +",strf=strf";
+    end
+    if ~isvoid(rect)
+        opt_arg_seq = opt_arg_seq +",rect=rect";
+    end
+    if ~isvoid(nax)
+        opt_arg_seq = opt_arg_seq +",nax=nax";
+    end
+    if ~isvoid(zminmax)
+        opt_arg_seq = opt_arg_seq +",zminmax=zminmax";
+    end
+    if ~isvoid(colminmax)
+        opt_arg_seq = opt_arg_seq +",colminmax=colminmax";
+    end
+    if ~isvoid(mesh)
+        opt_arg_seq = opt_arg_seq +",mesh=mesh";
+    end
+    if ~isvoid(colout)
+        opt_arg_seq = opt_arg_seq +",colout=colout";
     end
 
     // build the data for fec
