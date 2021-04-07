@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2016 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -53,9 +53,9 @@ function [] = fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
     if nargin <= 3,fch_yr=-1:0.1:1;end
 
     opts=[]
-    if exists("arfact","local")==1 then opts=[opts,"arfact=arfact"],end
-    if exists("rect","local")==1 then opts=[opts,"rect=rect"],end
-    if exists("strf","local")==1 then opts=[opts,"strf=strf"],end
+    if ~isvoid(arfact) then opts=[opts,"arfact=arfact"],end
+    if ~isvoid(rect) then opts=[opts,"rect=rect"],end
+    if ~isvoid(strf) then opts=[opts,"strf=strf"],end
 
     if type(macr_f) <> 15,
         deff("[yy]=mmm(x1,x2)",["xx=macr_f(fch_t,[x1;x2])";"yy=xx(1)+%i*xx(2);"]);

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function []=fgrayplot(x,y,f,strf,rect,nax,void)
+function []=fgrayplot(x,y,f,strf,rect,nax,dummy)
     //[]=fgrayplot(x,y,f)
     // Trace en niveau de gris une surface
     // z=f(x,y) d\'efinie par un external f ( ex macro [y]=f(x))
@@ -39,12 +39,12 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
 
 
     opts=[];
-    if exists("style","local")==1 then opts=[opts,"style=style"],end
-    if exists("strf","local")==1 then opts=[opts,"strf=strf"],end
-    if exists("rect","local")==1 then opts=[opts,"rect=rect"],end
-    if exists("nax","local")==1 then opts=[opts,"nax=nax"],end
-    if exists("frameflag","local")==1 then opts=[opts,"frameflag=frameflag"],end
-    if exists("axesflag","local")==1 then opts=[opts,"axesflag=axesflag"],end
+    if ~isvoid(strf) then opts=[opts,"strf=strf"],end
+    if ~isvoid(rect) then opts=[opts,"rect=rect"],end
+    if ~isvoid(nax) then opts=[opts,"nax=nax"],end
+    if exists("style","local") then opts=[opts,"style=style"],end
+    if exists("frameflag","local") then opts=[opts,"frameflag=frameflag"],end
+    if exists("axesflag","local") then opts=[opts,"axesflag=axesflag"],end
 
     if opts == []
         execstr("grayplot(x,y,feval(x,y,f))")
