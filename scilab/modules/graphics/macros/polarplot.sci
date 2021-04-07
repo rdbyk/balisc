@@ -3,7 +3,7 @@
 // Copyright (C) 2010 - DIGITEO - Manuel Juliachs
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2010, 2018, 2019 - Samuel GOUGEON
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,17 +38,17 @@ function polarplot(theta,rho,style,strf,leg,rect)
     isstrf=%f;
     isframeflag=%f;
     isrect=%f;
-    if exists("style","local")==1 then
+    if ~isvoid(style) then
         opts=[opts,"style=style"]
     end
-    if exists("strf","local")==1 then
+    if ~isvoid(strf) then
         opts=[opts,"strf=strf"]
         isstrf=%t
     end
-    if exists("leg","local")==1 then
+    if ~isvoid(leg) then
         opts=[opts,"leg=leg"]
     end
-    if exists("rect","local")==1 then
+    if ~isvoid(rect) then
         opts=[opts,"rect=rect"]
         isrect=%t
     end
