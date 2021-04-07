@@ -267,8 +267,8 @@ gca().rotation_angles = [40 -60];
  ]]></programlisting>
         <scilab:image>
             function z = mySurf(x,y,a,b)
-                if ~isdef("a","l"), a = 1, end
-                if ~isdef("b","l"), b = 1, end
+                if isvoid(a), a = 1, end
+                if isvoid(b), b = 1, end
                 z = a*x.*sin(y) + b*y.*cos(x);
             endfunction
             clf
