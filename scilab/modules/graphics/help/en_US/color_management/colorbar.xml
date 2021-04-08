@@ -26,7 +26,7 @@
             colorbar(umin, umax)
             colorbar(umin, umax, colminmax)
             colorbar(umin, umax, -1)
-            colorbar( , , [fmin fmax])
+            colorbar( –, –, [fmin fmax])
             colorbar(.., Cformat)
         </synopsis>
     </refsynopsisdiv>
@@ -171,7 +171,7 @@
             such that "[colmin,colmax]/[1,Nc]" maps the "[umin,umax]/[minU,maxU]"
             "ratio".
         </para>
-        <para><emphasis role="bold">colorbar(,, [colmin colmax])</emphasis></para>
+        <para><emphasis role="bold">colorbar(–,–, [colmin colmax])</emphasis></para>
         <para>
             with integers such that <literal>1 ≤ colmin &lt; colmax ≤ Nc</literal> or using
             <literal>$</literal> standing for <literal>Nc</literal>.
@@ -179,7 +179,7 @@
             <literal>umin</literal> and <literal>umax</literal>
             such that "[umin,umax]/[minU,maxU]" maps "[colmin,colmax]/[1,Nc]".
         </para>
-        <para><emphasis role="bold">colorbar(,, [fmin fmax])</emphasis></para>
+        <para><emphasis role="bold">colorbar(–,–, [fmin fmax])</emphasis></para>
         <para>
             with <literal>0 ≤ fmin &lt; fmax ≤ 1</literal>, uses actual colors bounds
             <literal>1+[fmin fmax]*(Nc-1)</literal>, and uses proportional
@@ -531,12 +531,12 @@ colorbar(0.0, 0.15, -1);// graduations on [0, 0.15]
 // 3.2) Selection of a colormap interval. umin & umax set accordingly
 subplot(2,2,3)
 plotSphere();
-colorbar(,,[60 120]);  // graduations on [0, 0.3]
+colorbar(–,–,[60 120]);  // graduations on [0, 0.3]
 
 // 3.3) Selection of the first half of the colormap. umin & umax set accordingly
 subplot(2,2,4)
 plotSphere();
-colorbar(,,[1 $/2]);  // graduations on [-0.3, 0]
+colorbar(–,–,[1 $/2]);  // graduations on [-0.3, 0]
             ]]></programlisting>
             <scilab:image><![CDATA[
 function [zz, zz1] = plotSphere()
@@ -572,12 +572,12 @@ colorbar(0.0, 0.15, -1);// graduations on [0, 0.15]
 // 3.2) Selection of a colormap interval. umin & umax set accordingly
 subplot(2,2,3)
 plotSphere();
-colorbar(,,[50 100]);  // graduations on [0, 0.3]
+colorbar(–,–,[50 100]);  // graduations on [0, 0.3]
 
 // 3.3) Selection of the first half of the colormap. umin & umax set accordingly
 subplot(2,2,4)
 plotSphere();
-colorbar(,,[1 $/2]);  // graduations on [-0.3, 0]
+colorbar(–,–,[1 $/2]);  // graduations on [-0.3, 0]
             ]]></scilab:image>
             </para>
         </refsect3>
@@ -606,7 +606,7 @@ colorbar;
 // 5.2) Consistent U/colors fractional selection (top 40%)
 subplot(1,2,2)
 plotSample();
-colorbar(,,[0.6 1]);
+colorbar(–,–,[0.6 1]);
 
 gcf().children([2 4]).rotation_angles = [55 45];
                 ]]></programlisting>
@@ -631,7 +631,7 @@ colorbar;
 // 5.2) Consistent U/colors fractional selection
 subplot(1,2,2)
 plotSample();
-colorbar(,,[0.6 1]);
+colorbar(–,–,[0.6 1]);
 
 gcf().children([2 4]).rotation_angles = [55 45];
             ]]></scilab:image>
