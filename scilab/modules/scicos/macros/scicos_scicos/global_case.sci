@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -20,6 +21,10 @@
 //
 
 function [links_table,sco_mat,ok]=global_case(links_table,sco_mat)
+
+    // pass "ok" from outer scope to output argument "ok"
+    ok = ok;
+
     [s,k]=gsort(sco_mat(:,2))
     sco_mat=sco_mat(k,:);
     index=find((sco_mat(:,2)=="1")&(sco_mat(:,4)=="3"))

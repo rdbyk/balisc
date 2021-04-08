@@ -1,6 +1,8 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2007 - 2008 INRIA Fady NASSIF
+//  Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -18,10 +20,12 @@
 //
 // See the file ../license.txt
 //
+
 function [m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk(frequ,offset)
-    // copyright: INRIA
-    // Anthor: Fady NASSIF
-    // Date: 2007-2008
+
+    // pass-through "ok" from outer scope
+    ok = ok;
+
     m=[];den=[];off=[];count=[];m1=[];fir=[];
     v=[frequ;offset];
     v=v(find(v<>0));

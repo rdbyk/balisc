@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,7 +34,7 @@ function  [%cpr,ok] = do_compile(scs_m)
 
     if alreadyran then
         // terminate current simulation
-        do_terminate();
+        do_terminate(scs_m,%cpr);
     end
 
     timer() ; //** profiling timer

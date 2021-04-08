@@ -1,7 +1,7 @@
 // Scicos
 //
 // Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -587,7 +587,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
                     lp_backw=lp($:-1:1)
                     for i=lp_backw
                         for J=primary(i+1:$)'
-                            if intersect(get_allchilds(primary(i)),get_allchilds(J))<>[] then
+                            if intersect(get_allchilds(primary(i),fblks,fblksptr,typ_l),get_allchilds(J,fblks,fblksptr,typ_l))<>[] then
                                 bouclalg=%t
                                 break
                             end

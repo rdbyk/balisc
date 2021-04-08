@@ -2,7 +2,7 @@
 // Copyright (C) Scilab Enterprises - 2013 - Bruno JOFRET
 // Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -162,7 +162,7 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
     //** finish the simulation via do_terminate()
     if ~issequal then
         %state0 = %state0_n
-        [alreadyran,%cpr] = do_terminate()
+        [alreadyran,%cpr] = do_terminate(scs_m,%cpr)
         choix = []
     end
 
@@ -251,7 +251,7 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
         //** if the simulation has already run
         //** and is not finished then call do_terminate
         if alreadyran then
-            [alreadyran,%cpr] = do_terminate()
+            [alreadyran,%cpr] = do_terminate(scs_m,%cpr)
             alreadyran = %f ;
         end
         //** set initial values for a new simulation

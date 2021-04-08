@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -20,6 +21,10 @@
 //
 
 function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
+
+    // pass-through "ok" from outer scope
+    ok = ok;
+
     //
     [dirF,nameF,extF]=fileparts(funam);
 

@@ -1,7 +1,7 @@
 // Scicos
 //
 // Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -20,6 +20,10 @@
 // See the file ../license.txt
 
 function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with_gui, init)
+
+    // pass-through "ok" from outer scope
+    ok = ok;
+
     //Scilab interface with external tool modelicac
 
     MODELICAC_FILENAME = "modelicac";

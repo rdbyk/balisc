@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,7 +31,7 @@ function [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcom
             cor=%cpr.cor
             [%state0,state,sim,ok]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
             if ~ok then
-                alreadyran=do_terminate();
+                [alreadyran,%cpr]=do_terminate(scs_m,%cpr)
                 disp("Partial compilation failed. Attempting a full compilation.");
                 needcompile=4
                 [%cpr,ok]=do_compile(scs_m)
@@ -48,7 +49,7 @@ function [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcom
             cor=%cpr.cor
             [%state0,state,sim,ok]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
             if (~ok| findinlistcmd(%cpr.corinv,size(cor),">")<>list() ) then
-                alreadyran=do_terminate()
+                [alreadyran,%cpr]=do_terminate(scs_m,%cpr)
                 disp("Partial compilation failed. Attempting a full compilation.");
                 needcompile=4
                 [%cpr,ok]=do_compile(scs_m)
@@ -99,7 +100,7 @@ function [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcom
         end
 
     case 2 then // partial recompilation
-        alreadyran=do_terminate()
+        [alreadyran,%cpr]=do_terminate(scs_m,%cpr)
         [%cpr,ok]=c_pass3(scs_m,%cpr)
         if ok then
             %state0=%cpr.state
@@ -113,7 +114,7 @@ function [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcom
             needcompile=0
         end
     case 4 then  // full compilation
-        alreadyran=do_terminate()
+        [alreadyran,%cpr]=do_terminate(scs_m,%cpr)
         [%cpr,ok]=do_compile(scs_m)
         if ok then
             %state0=%cpr.state

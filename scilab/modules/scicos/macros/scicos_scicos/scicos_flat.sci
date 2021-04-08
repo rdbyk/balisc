@@ -4,7 +4,7 @@
 //                     - Ramine Nikoukhah <ramine.nikoukhah@inria.fr> - 2003
 //                     - Serge Steer <serge.steer@inria.fr>           - 2003
 //                     - Fady Nassif <fady.nassif@inria.fr>           - 2007
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -71,6 +71,8 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
         cur_fictitious=MaxBlock
         path=[];       // for delete_unconnected
         scs_m_s=scs_m ;// for delete_unconnected
+    else
+        cur_fictitious=ksup
     end
     //-------------- suppress blocks with an unconnected regular port --------------
     scs_m=delete_unconnected(scs_m);

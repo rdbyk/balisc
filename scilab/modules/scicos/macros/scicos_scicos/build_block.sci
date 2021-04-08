@@ -2,6 +2,7 @@
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //  Copyright (C) DIGITEO - 2010 - Jérôme PICARD
+//  Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,6 +22,9 @@
 //
 
 function [model, ok] = build_block(o)
+
+	// pass "ok" from outer scope to output argument "ok"
+	ok = ok;
 
     // build the simulation function associated with the block if necessary
 
@@ -83,4 +87,3 @@ function [model, ok] = build_block(o)
         end
     end
 endfunction
-
