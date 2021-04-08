@@ -70,7 +70,7 @@
                         By default, <literal>x_grid = [-1,1]</literal> and
                         <literal>y_grid = x_grid</literal> are used. To use default values,
                         just specify nothing. Example skipping <varname>y_grid</varname>:
-                        <literal>plotimplicit(fun, x_grid, , plotOptions)</literal>.
+                        <literal>plotimplicit(fun, x_grid, –, plotOptions)</literal>.
                     </para>
                     <para>
                         Explicit <varname>x_grid</varname> and <varname>y_grid</varname> values
@@ -224,7 +224,7 @@
         </para>
         <programlisting role="example"><![CDATA[
             equation = "3*x^2*exp(x) - x*y^2 +  exp(y)/(y^2 + 1) = 1"
-            plotimplicit(equation, , -10:0.1:10, "r--")
+            plotimplicit(equation, –, -10:0.1:10, "r--")
 
             // Increase the contours thickness afterwards:
             gce().children.thickness = 2;
@@ -235,7 +235,7 @@
      ]]></programlisting>
         <scilab:image>
             expression = "3*x^2*exp(x) - x*y^2 +  exp(y)/(y^2 + 1) = 1"
-            plotimplicit(expression, , -10:0.1:10, "r--")
+            plotimplicit(expression, –, -10:0.1:10, "r--")
 
             // Get the contours identifiers, and use them to increase contours thickness:
             gce().children.thickness = 2;
@@ -259,7 +259,7 @@ t1 = gca().title.text;
 c1 = gce().children(1);
 title("")
 
-plotimplicit("y*sin(y) = x^2*cos(x)", [-2,2], ,"r")
+plotimplicit("y*sin(y) = x^2*cos(x)", [-2,2], –,"r")
 t2 = gca().title.text;
 c2 = gce().children(1);
 title("$plotimplicit()$")
@@ -276,7 +276,7 @@ xgrid(color("grey"),1,7)
         c1 = gce().children(1);
         title("")
 
-        plotimplicit("y*sin(y) = x^2*cos(x)", [-2,2], ,"r")
+        plotimplicit("y*sin(y) = x^2*cos(x)", [-2,2], –,"r")
         t2 = gca().title.text;
         c2 = gce().children(1);
         title("$plotimplicit()$")

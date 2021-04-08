@@ -4,7 +4,7 @@
 // Copyright (C) 2012 - SCILAB ENTERPRISES - Claude Gomez
 // Copyright (C) Scilab Enterprises - 2014 - Pierre-Aime Agnel
 // Copyright (C) 2019-2020 - Samuel GOUGEON
-// Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2020 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -33,7 +33,7 @@ function plotimplicit(fun, x_grid, y_grid, varargin)
     end
     // x_grid
     // --------
-    if ~isdef("x_grid","l") then
+    if isvoid(x_grid) then
         x_grid = linspace(-1, 1, 201);
     else
         if type(x_grid) <> 1 && ..
@@ -59,7 +59,7 @@ function plotimplicit(fun, x_grid, y_grid, varargin)
 
     // y_grid
     // --------
-    if ~isdef("y_grid","l") then
+    if isvoid(y_grid) then
         y_grid = x_grid;
     else
         if type(y_grid) <> 1 && ..
