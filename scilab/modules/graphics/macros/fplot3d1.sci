@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -35,11 +35,11 @@ function []=fplot3d1(xr,yr,f,theta,alpha,leg,flag,ebox)
     end;
 
     opts=[]
-    if exists("theta","local")==1 then opts=[opts,"theta=theta"],end
-    if exists("alpha","local")==1 then opts=[opts,"alpha=alpha"],end
-    if exists("leg"  ,"local")==1 then opts=[opts,"leg=leg"]    ,end
-    if exists("flag" ,"local")==1 then opts=[opts,"flag=flag"]  ,end
-    if exists("ebox" ,"local")==1 then opts=[opts,"ebox=ebox"]  ,end
+    if ~isvoid(theta) then opts=[opts,"theta=theta"],end
+    if ~isvoid(alpha) then opts=[opts,"alpha=alpha"],end
+    if ~isvoid(leg) then opts=[opts,"leg=leg"]    ,end
+    if ~isvoid(flag) then opts=[opts,"flag=flag"]  ,end
+    if ~isvoid(ebox) then opts=[opts,"ebox=ebox"]  ,end
     if opts==[], opts = ""; end
 
     execstr("plot3d1(xr,yr,feval(xr,yr,f),"+strcat(opts,",")+")")

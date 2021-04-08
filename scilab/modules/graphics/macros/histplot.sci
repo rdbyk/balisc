@@ -7,7 +7,7 @@
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added output
 // Copyright (C) 2016 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -77,16 +77,38 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
     end
 
     // This is the only specific optional argument for histplot
-    if exists("normalization","l")==0, normalization=%t,end
-    if exists("polygon","l")==0, polygon=%f,end
+    if isvoid(normalization)
+        normalization=%t
+    end
+    if isvoid(polygon)
+        polygon=%f
+    end
 
     // Now parse optional arguments to be sent to plot2d
     opt_arg_seq = "";
-    opt_arg_list = ["style","strf","leg","rect","nax","logflag","frameflag","axesflag"]
-    for opt_arg = opt_arg_list
-        if exists(opt_arg,"local") then
-            opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
-        end
+    if ~isvoid(style) then
+        opt_arg_seq = opt_arg_seq +",style=style"
+    end
+    if ~isvoid(strf) then
+        opt_arg_seq = opt_arg_seq +",strf=strf"
+    end
+    if ~isvoid(leg) then
+        opt_arg_seq = opt_arg_seq +",leg=leg"
+    end
+    if ~isvoid(rect) then
+        opt_arg_seq = opt_arg_seq +",rect=rect"
+    end
+    if ~isvoid(nax) then
+        opt_arg_seq = opt_arg_seq +",nax=nax"
+    end
+    if ~isvoid(logflag) then
+        opt_arg_seq = opt_arg_seq +",logflag=logflag"
+    end
+    if ~isvoid(frameflag) then
+        opt_arg_seq = opt_arg_seq +",frameflag=frameflag"
+    end
+    if ~isvoid(axesflag) then
+        opt_arg_seq = opt_arg_seq +",axesflag=axesflag"
     end
 
     if normalization then
