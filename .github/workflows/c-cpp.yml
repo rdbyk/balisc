@@ -63,6 +63,10 @@ jobs:
       run: |
         cd scilab
         make
+    - name: make doc-en_US
+      run: |
+        cd scilab
+        make doc-en_US
 #    - name: make check
 #      run: make check
 #    - name: make distcheck
