@@ -195,8 +195,20 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 //named
                 if (i < iVarPos)
                 {
+                    // create keyword input argument as variable
                     std::wstring var(in[i]->getAs<NamedArg>()->getName());
                     pContext->put(symbol::Symbol(var), opt[var]);
+
+                    // if the corresponding i-th formal input argument
+                    // not exist, then create it ...
+                    if (pContext->getCurrentLevel(*itName) == NULL)
+                    {
+                        // FIXME: is there a better solution?
+                        InternalType* pUndefined = new ListUndefined();
+                        pUndefined->IncreaseRef();
+                        pContext->put(*itName, pUndefined);
+                    }
+
                     ++itName;
                 }
                 else
@@ -224,6 +236,16 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                     pL->append(in[i]);
                 }
             }
+        }
+
+        // create remaining unspecified formal input args as variables
+        for (int i = iVarPos; i < iInputArgsExpected - 1; ++i)
+        {
+            // FIXME: is there a better solution?
+            InternalType* pUndefined = new ListUndefined();
+            pUndefined->IncreaseRef();
+            pContext->put(*itName, pUndefined);
+            ++itName;
         }
 
         //add varargin to macro scope
