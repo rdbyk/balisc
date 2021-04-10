@@ -79,6 +79,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
     deff("result         = dialog(labels,valueini)","result=valueini")
     deff("[result,Quit]  = scstxtedit(valueini,v2)","result=valueini,Quit=0")
     deff("[ok,tt]        = MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)",..
+    "ok=ok;"+..
     "[dirF, nameF, extF] = fileparts(funam);"+..
     "[modelica_path, modelica_directory] = getModelicaPath();"+..
     "funam1 = []; "+..
