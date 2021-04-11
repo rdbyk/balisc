@@ -1,7 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2012 - Allan CORNET
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -24,36 +24,24 @@ d = 5;
 
 // and
 
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "and", 2);
-assert_checkerror("and(a == b, c == d)", msgerr);
+assert_checkerror("and(a == b, c == d)", [], 90);
 
 msgerr = [msprintf(gettext("Function not defined for given argument type(s),\n"));
 msprintf(gettext("check arguments or define function %s for overloading.\n"),"%c_and")];
 assert_checkerror("and(""a"")", msgerr);
 
-msgerr = msprintf(gettext("%s: Wrong size for input argument #%d.\n"), "and", 2);
-assert_checkerror("and(%T, [1 2])", msgerr);
-
-msgerr = msprintf(gettext("%s: Wrong value for input argument #%d.\n"), "and", 2);
-assert_checkerror("and(%T, ''t'')", msgerr);
-
-msgerr = msprintf(gettext("%s: Wrong value for input argument #%d.\n"), "and", 2);
-assert_checkerror("and(%T, %i)", msgerr);
+assert_checkerror("and(%T, [1 2])", [], 100);
+assert_checkerror("and(%T, ''t'')", [], 110);
+assert_checkerror("and(%T, %i)", [], 111);
 
 // or
 
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "or", 2);
-assert_checkerror("or(a == b, c == d)", msgerr);
+assert_checkerror("or(a == b, c == d)", [], 90);
 
 msgerr = [msprintf(gettext("Function not defined for given argument type(s),\n"));
 msprintf(gettext("check arguments or define function %s for overloading.\n"),"%c_or")];
 assert_checkerror("or(""a"")", msgerr);
 
-msgerr = msprintf(gettext("%s: Wrong size for input argument #%d.\n"), "or", 2);
-assert_checkerror("or(%T, [1 2])", msgerr);
-
-msgerr = msprintf(gettext("%s: Wrong value for input argument #%d.\n"), "or", 2);
-assert_checkerror("or(%T, ''t'')", msgerr);
-
-msgerr = msprintf(gettext("%s: Wrong value for input argument #%d.\n"), "or", 2);
-assert_checkerror("or(%T, %i)", msgerr);
+assert_checkerror("or(%T, [1 2])", [], 100);
+assert_checkerror("or(%T, ''t'')", [], 110);
+assert_checkerror("or(%T, %i)", [], 111);

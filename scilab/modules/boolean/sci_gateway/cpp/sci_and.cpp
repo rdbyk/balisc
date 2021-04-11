@@ -4,7 +4,7 @@
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
  * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -161,7 +161,7 @@ Function::ReturnValue sci_and(typed_list &in, int _iRetCount, typed_list &out)
         }
         else
         {
-            Scierror(90, _("real scalar or a string"));
+            Scierror(90, 2, _("real scalar or a string"));
             return Function::Error;
         }
     }
