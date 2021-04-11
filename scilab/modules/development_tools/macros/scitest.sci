@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,10 +18,10 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
     // if keep_prompt is %t the prompt is kept in the dia file
     // this can be useful for producing demos
 
-    if exists("force","local")              ==0 then force               = %f ; end
-    if exists("error_check","local")        ==0 then error_check         = %f ; end
-    if exists("keep_prompt","local")        ==0 then keep_prompt         = %f ; end
-    if exists("postscript_graphics","local")==0 then postscript_graphics = %f ; end
+    if isvoid(force)               then force               = %f ; end
+    if isvoid(error_check)         then error_check         = %f ; end
+    if isvoid(keep_prompt)         then keep_prompt         = %f ; end
+    if isvoid(postscript_graphics) then postscript_graphics = %f ; end
 
     ind = strindex(tstfile,".");
 
