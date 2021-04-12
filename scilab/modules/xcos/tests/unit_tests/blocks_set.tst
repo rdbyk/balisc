@@ -1,6 +1,7 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Clément DAVID
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
@@ -26,13 +27,21 @@ defaultlibs = ["Branching",
 "Threshold"];
 
 defaultlibs  = defaultlibs + "lib";
-notTested = ["DSUPER" "SUPER_f" "TEXT_f" "PAL_f" ,..   // Specific blocks
-, ..                                       // native blocks
-"CBLOCK" "CBLOCK4" "c_block" "fortran_block",..
-,..                                        // not interface function
-"WFILE_f", "func_block", ..                // Deprecated blocks
-"tkscaleblk", "m_sin", "bplatform2", "anim_pen" ,..
-"expr2LaTeX",..
+notTested = ["DSUPER",
+"SUPER_f",
+"TEXT_f",
+"PAL_f",
+"CBLOCK",
+"CBLOCK4",
+"c_block",
+"fortran_block",
+"WFILE_f",
+"func_block",
+"tkscaleblk",
+"m_sin",
+"bplatform2",
+"anim_pen",
+"expr2LaTeX",
 "BARXY_sim" ];
 
 funcprot(0);
@@ -62,4 +71,3 @@ for i = 1:size(defaultlibs,"*")
         assert_checktrue(status);
     end
 end
-
