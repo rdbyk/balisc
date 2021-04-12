@@ -1,7 +1,7 @@
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,7 +20,7 @@ function [flag,errmsg] = assert_checkfalse ( condition )
     // Check types of variables
     if and(typeof(condition) <> ["boolean" "boolean sparse"]) then
         errmsg = gettext("%s: Wrong type for input argument #%d: Boolean matrix expected.\n")
-        errmsg = sprintf(errmsg, "assert_checkfalse", 1)
+        errmsg = msprintf(errmsg, "assert_checkfalse", 1)
         error(errmsg)
     end
     //
@@ -31,7 +31,7 @@ function [flag,errmsg] = assert_checkfalse ( condition )
         flag = %f
         k = find(condition, 1);
         errmsg = gettext("%s: Assertion failed: Entry %%T found in condition(%d).\n")
-        errmsg = msprintf(errmsg, "assert_checkfalse", k)
+        errmsg = strsubst(msprintf(errmsg, "assert_checkfalse", k), "%T", "%%T")
         if ( nargout < 2 ) then
             // If no output variable is given, generate an error
             assert_generror ( errmsg )
