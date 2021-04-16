@@ -3,7 +3,7 @@
  * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2017 - ESI Group - Clement DAVID
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -378,7 +378,8 @@ public:
         {
             types::InternalType* ith_prop1 = p.get(*static_cast<Adaptor*>(this), controller);
             types::InternalType* ith_prop2 = p.get(*static_cast<Adaptor*>(ut), controller);
-            ret->set(p.original_index, *ith_prop1 == *ith_prop2);
+
+            ret->set(p.original_index + 1, *ith_prop1 == *ith_prop2);
 
             // Getting a property allocates data, so free them
             ith_prop1->killMe();
