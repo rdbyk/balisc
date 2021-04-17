@@ -3,7 +3,7 @@
 // Copyright (C) Scilab Enterprises - 2013 - Bruno JOFRET
 // Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 // Copyright (C) 2011 - INRIA - Serge Steer
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -339,6 +339,9 @@ endfunction
 
 function [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m, %cpr)
     // Copyright INRIA
+
+    // pass-through "alreadyran" from outer scope
+    alreadyran = alreadyran;
 
     // Default return values
     Resume_line = "";
