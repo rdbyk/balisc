@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -210,7 +211,7 @@ cpr229 = [ ...
 -0.00000010072892435;
 -0.0000000093251865; ...
 -0.00000100269157242; ...
-12.7317556249699955; ];
+12.7317556249699955 ];
 
 // Check the sensitive value of the continuous state
 assert_checkalmostequal(list2vec(cpr(2)(2)(9)), cpr229, [], 1e9);
