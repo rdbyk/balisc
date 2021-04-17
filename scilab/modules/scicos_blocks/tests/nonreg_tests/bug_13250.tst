@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- XCOS TEST -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for bug 13250 -->
 //
@@ -15,6 +17,8 @@
 // <-- Short Description -->
 // When D was a scalar, it was set to ones(C*B),
 // whereas it should be set to D*ones(C*B) to keep its information.
+
+loadXcosLibs();
 
 assert_checktrue(importXcosDiagram("SCI/modules/scicos_blocks/tests/nonreg_tests/VEress9-2D4.zcos"));
 
