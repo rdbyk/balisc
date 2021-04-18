@@ -1,12 +1,13 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 s = %s;
 empty = [];
@@ -156,7 +157,7 @@ assert_checkequal(ec .\ empty, []);
 assert_checkalmostequal(ec .\ r, (10/26-%i* 1/13)*eye());
 assert_checkalmostequal(ec .\ c, (7/26+%i* 9/26)*eye());
 assert_checkalmostequal(ec .\ e, (5/26-%i* 1/26)*eye());
-assert_checkequal(ec .\ ec, (1+%i*0)*eye());
+assert_checkalmostequal(clean(ec .\ ec), (1+%i*0)*eye());
 
 assert_checkequal(p .\ empty, []);
 test = p .\ r;
@@ -626,7 +627,7 @@ assert_checkequal(ec ./ empty, []);
 assert_checkequal(ec ./ r, (2.5+%i* 0.5)*eye());
 assert_checkequal(ec ./ c, (1.4-%i* 1.8)*eye());
 assert_checkequal(ec ./ e, (5+%i)*eye());
-assert_checkequal(ec ./ ec, (1+%i*0)*eye());
+assert_checkequal(clean(ec ./ ec), (1+%i*0)*eye());
 
 assert_checkequal(p ./ empty, []);
 assert_checkequal(p ./ r, 0.5+(0.5)*s+(- 0.5)*s^ 2);
@@ -720,7 +721,7 @@ assert_checkequal(SP1 ./ empty, []);
 assert_checkequal(SP1 ./ r, sparse([1, 1], 5,[1, 1]));
 assert_checkequal(SP1 ./ c, sparse([1, 1], 2-%i* 4,[1, 1]));
 assert_checkequal(SP1 ./ R, [10, 5; (3+1/3), 2.5]);
-assert_checkequal(SP1 ./ C, [2-%i* 4, 1-%i* 2; (2/3)-%i* (1+1/3), 0.5-%i]);
+assert_checkalmostequal(SP1 ./ C, [2-%i* 4, 1-%i* 2; (2/3)-%i* (1+1/3), 0.5-%i], %eps);
 assert_checkequal(SP1 ./ SP, sparse([1, 2; 3, 10; 4, 5],[10; (3+1/3); 5],[4, 10]));
 assert_checkequal(SP1 ./ SPC, sparse([1, 2; 3, 10; 4, 5],[10/17-%i* 40/17; 10/51-%i* 40/51; 10/34-%i* 20/17],[4, 10]));
 assert_checkequal(SP1 ./ SP1, sparse([1, 1], 1,[1, 1]));
