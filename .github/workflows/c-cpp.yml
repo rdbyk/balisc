@@ -54,7 +54,6 @@ jobs:
         sudo apt -y install libxml2-dev;
         sudo apt -y install ocaml-nox;
         sudo apt -y install tk-dev;
-        sudo apt -y install xfvb;
     - uses: actions/checkout@v2
     - name: configure
       run: |
@@ -67,7 +66,7 @@ jobs:
     - name: test_run
       run: |
         cd scilab
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"ast\"),exit(0),else,exit(1),end"
+        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"ast\",[],\"mode_nwni\"),exit(0),else,exit(1),end"
 #    - name: make doc-en_US
 #      run: |
 #        cd scilab
