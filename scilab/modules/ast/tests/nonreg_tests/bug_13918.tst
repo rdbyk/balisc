@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enteprises - Antoine ELIAS
 // Copyright (C) 2016 - Scilab Enteprises - Piere-Aime AGNEL
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -15,6 +16,7 @@
 // invalid operation on hypermatrix must call overload functions
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //error msg
 msg1 = _("Undefined operation for the given operands.\n");

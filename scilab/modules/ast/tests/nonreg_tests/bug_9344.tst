@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -20,5 +21,5 @@
 errmsg = ["mclose(1";"^";"Error: syntax error, unexpected end of line, expecting "","" or )"];
 assert_checkerror("execstr(""mclose(1"")", errmsg);
 
-errmsg = ["mclose(1°";"       ^~~^";"Error: syntax error, unexpected identifier, expecting end of file"];
+errmsg = ["mclose(1°";"       ^~~^";"Error: syntax error, unexpected dot or identifier, expecting end of file"];
 assert_checkerror("execstr(""mclose(1°"")", errmsg);

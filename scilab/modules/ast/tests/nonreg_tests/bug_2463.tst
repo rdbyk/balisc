@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -22,5 +23,5 @@ msg = "type: Wrong number of input arguments: 1 expected.";
 assert_checkerror("type(a=%t)", msg);
 
 a = 2;
-msg = "sin: Wrong number of input argument(s): 1 expected.";
+msg = "sin: Wrong number of input arguments: 1 expected.";
 assert_checkerror("sin(a=0)", msg);

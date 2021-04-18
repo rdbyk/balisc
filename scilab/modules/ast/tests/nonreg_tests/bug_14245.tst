@@ -1,10 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 14245 -->
 //
@@ -22,4 +25,4 @@ s=list();
 s(1)=struct("a",a,"b",b,"c",c);
 s(2)=2;
 
-assert_checkequal(s(1).b(2)(1:3), [1 ; 3 ; 2]);
+assert_checkequal(s(1).b(2)(1:3), [1 3 2]);
