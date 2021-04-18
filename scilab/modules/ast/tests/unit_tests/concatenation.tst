@@ -1,6 +1,7 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
@@ -51,8 +52,8 @@ checkCallOverload("[ldouble ; lsta]");
 // Bool
 assert_checkequal([lbool ldouble], [double(lbool) ldouble]);
 assert_checkequal([lbool lbool], [%t %f %t %t %f %t]);
-checkCallOverload("[lbool lint]");
-checkCallOverload("[lbool lint16]");
+assert_checkequal([lbool lint], int32([1 0 1 1 2 3]));
+assert_checkequal([lbool lint16], int16([1 0 1 1 2 3]));
 checkCallOverload("[lbool lpoly]");
 checkCallOverload("[lbool lsparse]");
 assert_checkequal([lbool lspb], [sparse(lbool) lspb]);
@@ -61,8 +62,8 @@ checkCallOverload("[lbool lsta]");
 
 assert_checkequal([lbool ; ldouble], [double(lbool) ; ldouble]);
 assert_checkequal([lbool ; lbool], matrix([%t %t %f %f %t %t], 2, 3));
-checkCallOverload("[lbool ; lint]");
-checkCallOverload("[lbool ; lint16]");
+assert_checkequal([lbool ; lint], int32([1 0 1; 1 2 3]));
+assert_checkequal([lbool ; lint16], int16([1 0 1; 1 2 3]));
 checkCallOverload("[lbool ; lpoly]");
 checkCallOverload("[lbool ; lsparse]");
 assert_checkequal([lbool ; lspb], [sparse(lbool) ; lspb]);
