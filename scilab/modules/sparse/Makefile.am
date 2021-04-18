@@ -19,8 +19,11 @@ SPARSE_FORTRAN_SOURCES = \
 	src/fortran/blkfct.f \
 	src/fortran/blkslv.f \
 	src/fortran/inpnv.f \
-	src/fortran/symfct.f
-	
+	src/fortran/iset.f \
+	src/fortran/spt.f \
+	src/fortran/symfct.f \
+	src/fortran/sz2ptr.f
+
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sparse_gw.cpp \
     sci_gateway/cpp/sci_adj2sp.cpp \

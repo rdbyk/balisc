@@ -192,7 +192,8 @@ am__objects_1 = src/c/libscisparse_algo_la-spUtils.lo \
 	src/c/libscisparse_algo_la-spSolve.lo
 am__objects_2 = src/fortran/ordmmd.lo src/fortran/blkfc1.lo \
 	src/fortran/blkfct.lo src/fortran/blkslv.lo \
-	src/fortran/inpnv.lo src/fortran/symfct.lo
+	src/fortran/inpnv.lo src/fortran/iset.lo src/fortran/spt.lo \
+	src/fortran/symfct.lo src/fortran/sz2ptr.lo
 am_libscisparse_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscisparse_algo_la_OBJECTS = $(am_libscisparse_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -668,7 +669,10 @@ SPARSE_FORTRAN_SOURCES = \
 	src/fortran/blkfct.f \
 	src/fortran/blkslv.f \
 	src/fortran/inpnv.f \
-	src/fortran/symfct.f
+	src/fortran/iset.f \
+	src/fortran/spt.f \
+	src/fortran/symfct.f \
+	src/fortran/sz2ptr.f
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sparse_gw.cpp \
@@ -935,7 +939,13 @@ src/fortran/blkslv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/inpnv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/iset.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/spt.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/symfct.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/sz2ptr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscisparse-algo.la: $(libscisparse_algo_la_OBJECTS) $(libscisparse_algo_la_DEPENDENCIES) $(EXTRA_libscisparse_algo_la_DEPENDENCIES) 
