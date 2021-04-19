@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 l = list(1, "string", %s);
 l = setfield(2, "newString", l);
@@ -21,10 +23,10 @@ assert_checkequal(a, list(15));
 assert_checkequal(b, list(2));
 
 // error
-assert_checkfalse(execstr("setfield()"   ,"errcatch") == 0);
+assert_checkfalse(execstr("c=setfield()"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "setfield", 3);
 assert_checkerror("setfield()", refMsg);
 
 assert_checkfalse(execstr("[c,d] = setfield(1,10,a)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "setfield", 1);
+refMsg = msprintf(_("Wrong number of output arguments: %d expected.\n"), 1);
 assert_checkerror("[c,d] = setfield(1,10,a)", refMsg);

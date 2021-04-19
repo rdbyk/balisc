@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -16,8 +17,8 @@
 // <-- Short Description -->
 // definedfields() reported void fields in mlist or tlist, as defined
 
-T = tlist(["test" "txt" "real" "bool"],"Hi",,%T);
+T = tlist(["test" "txt" "real" "bool"],"Hi",–,%T);
 assert_checkequal(definedfields(T), [1 2 4]);
 
-M = mlist(["test" "txt" "real" "bool"],"Hi",,%T);
+M = mlist(["test" "txt" "real" "bool"],"Hi",–,%T);
 assert_checkequal(definedfields(M), [1 2 4]);

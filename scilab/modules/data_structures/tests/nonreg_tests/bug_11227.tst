@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Vincent COUVERT
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 11227 -->
 //
@@ -23,6 +25,6 @@ assert_checkequal(a("toto%"), 2);
 clear a
 
 // Non-existing field name
-refMsg = msprintf(gettext("Field \""%ls\"" does not exists\n"),"toto");
+refMsg = gettext("Unknown field: toto.");
 a = struct();
 assert_checkerror("a(""toto"")", refMsg);

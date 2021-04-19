@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -15,12 +16,12 @@
 // <-- Short Description -->
 // definedfields() reported void fields as existing
 
-L = list(%pi,,%z,);
+L = list(%pi,–,%z,–);
 assert_checkequal(definedfields(L), [1 3])
 v = L(2);
-assert_checkfalse(isdef("v","local"));
+assert_checktrue(isvoid(v));
 v = L(4);
-assert_checkfalse(isdef("v","local"));
+assert_checktrue(isvoid(v));
 clear L
 L = list();
 L(10) = 4;

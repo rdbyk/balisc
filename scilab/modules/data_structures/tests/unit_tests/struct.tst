@@ -1,13 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // unit tests for structs
 // =============================================================================
@@ -96,10 +96,7 @@ if ~isfield(z,"b") then pause, end
 if ~isfield(z.b,"c") then pause, end
 
 z(1).x.x = 1;
-<<<<<<< HEAD
 if execstr('z(42).x','errcatch')<>2 then pause,end
-=======
-if execstr('z(42).x','errcatch')<>999 then pause,end
 
 // -----------------------------------------------------------------
 
@@ -228,4 +225,3 @@ st.a(1).field1 = 12;
 st.a(1).field2 = 42;
 assert_checkequal(st.a(1).field1, 12);
 assert_checkequal(st.a(1).field2, 42);
->>>>>>> 2e6c48d... Struct concatenation fixed
