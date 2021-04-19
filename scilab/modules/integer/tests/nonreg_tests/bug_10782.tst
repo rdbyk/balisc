@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
@@ -53,14 +54,7 @@ y = iconvert(B, 14); // uint32
 assert_checkequal(type(y), 8);
 assert_checkequal(typeof(y), "uint32");
 
-msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "iconvert", 2,"0, 1, 2, 4, 8, 11, 12, 14, 18");
-assert_checkerror ("y = iconvert(B, 20);", msgerr);
-
-msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "iconvert", 1);
-assert_checkerror ("y = iconvert(%i, 0);", msgerr);
-
-msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"), "iconvert", 2);
-assert_checkerror ("y = iconvert(B, 0.1);", msgerr);
-
-msgerr = msprintf(gettext("%s: Wrong size for argument #%d: Real scalar expected.\n"), "iconvert", 2);
-assert_checkerror ("y = iconvert(B, [0 1]);", msgerr);
+assert_checkerror ("y = iconvert(B, 20);", [], 110);
+assert_checkerror ("y = iconvert(%i, 0);", [], 94);
+assert_checkerror ("y = iconvert(B, 0.1);", [], 111);
+assert_checkerror ("y = iconvert(B, [0 1]);", [], 101);

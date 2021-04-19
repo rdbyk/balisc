@@ -4,8 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 //<-- CLI SHELL MODE -->
-//<-- ENGLISH IMPOSED -->
 //<-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 1977 -->
@@ -22,5 +22,4 @@
 //    ***th argument is incorrect
 //
 
-execstr('inttype(''hell'')','errcatch');
-if lasterror() <> msprintf(gettext("inttype: Wrong type for input argument #1 : int or double expected.\n")) then pause,end
+assert_checkerror ("inttype(''hell'');", [], 90);
