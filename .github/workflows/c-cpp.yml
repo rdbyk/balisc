@@ -66,6 +66,8 @@ jobs:
     - name: test_run
       run: |
         cd scilab
+        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"boolean\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
+        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"console\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"data_structures\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"ast\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
 #    - name: make doc-en_US
