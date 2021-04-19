@@ -1,14 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- CLI SHELL MODE -->
 
 // <-- CLI SHELL MODE -->
-
-// Run with test_run('core, 'clear')
+// <-- NO CHECK REF -->
 
 A = 2;
 B = 4;
@@ -74,23 +73,18 @@ assert_checkequal(isdef("A"), %t);
 assert_checkequal(A, 3);
 
 ierr = execstr("clear SCI", "errcatch");
-msg_err = lasterror();
-msg_ref = msprintf(gettext("Redefining permanent variable.\n"));
-assert_checkequal (msg_err, msg_ref);
+assert_checkequal (ierr, 4);
 
 assert_checktrue(isdef("SCI"));
 oldSCI = SCI;
 ierr = execstr("SCI = 14;", "errcatch");
-msg_err = lasterror();
-assert_checkequal (msg_err, msg_ref);
+assert_checkequal (ierr, 4);
 
 assert_checktrue(isdef("SCI"));
 assert_checkequal(oldSCI, SCI);
 
 ierr = execstr("clear(1)", "errcatch");
-assert_checkequal(ierr, 207);
-msg_ref = msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "clear", 1);
-assert_checkerror ("clear(1)", msg_ref);
+assert_checkequal (ierr, 90);
 
 ierr = execstr("clear toto", "errcatch");
 assert_checkequal(ierr, 0);

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,8 +25,6 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
-
-static const char fname[] = "newfun";
 
 static bool isValidName(wchar_t* _pwstName)
 {
@@ -66,7 +64,7 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
 
     if (pIT1->isString() == false)
     {
-        Scierror(91, fname, 1);
+        Scierror(91, 1);
         return types::Function::Error;
     }
 
@@ -135,7 +133,7 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
 
     if (pFunc == NULL)
     {
-        Scierror(999, _("%s: function-name is incorrect.\n"), fname);
+        Scierror(999, _("%s: function-name is incorrect.\n"), "newfun");
         return types::Function::Error;
     }
 

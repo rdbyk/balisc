@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017 - ESI - Antoine ELIAS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -46,5 +47,5 @@ endfunction
 foo_varargin_bad(c = 2);
 foo_varargin_bad(a = 1, c = 2);
 foo_varargin_bad(c = 1, b = 2);
-foo_varargin_bad(b = 2, c = 3, a = 3, 4);
-foo_varargin_bad(c = 3, a = 1, b = 2, 4);
+foo_varargin_bad(b = 2, c = 3, 4);
+foo_varargin_bad(c = 3, a = 1, 4);

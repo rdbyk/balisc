@@ -1,35 +1,30 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 ierr = execstr("a=zzzzzzz", "errcatch");
-
-if lasterror() <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then pause,end
-
-ierr = execstr("a=zzzzzzz", "errcatch");
+assert_checkequal(ierr, 40);
 
 [str, n] = lasterror();
-
-if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then pause,end
+assert_checkequal(ierr, 40);
 
 ierr = execstr("a=zzzzzzz", "errcatch");
-
 [str, n, l] = lasterror();
-
 if l <> 1 then pause,end
-if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then pause,end
+assert_checkequal(ierr, 40);
 
 ierr = execstr("a=zzzzzzz", "errcatch");
-
 [str, n, l, f] = lasterror();
-
 if l <> 1 then pause,end
 if f <> '' then pause,end
-if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then pause,end
+assert_checkequal(ierr, 40);
 
 ierr = execstr("a=zzzzzzz", "errcatch");
 [str2, n2, l2, f2] = lasterror(%f);
@@ -50,10 +45,8 @@ if l4 <> 0 then pause,end
 if f4 <> '' then pause,end
 if str4 <> [] then pause, end
 
-
 ierr = execstr('a = lasterror(2);','errcatch');
-if ierr <> 999 then pause,end
-
+assert_checkequal(ierr, 90);
 
 ierr = execstr('a = lasterror([%t, %f]);','errcatch');
-if ierr <> 999 then pause,end
+assert_checkequal(ierr, 90);

@@ -191,7 +191,7 @@ endfunction
 foo(%t)
  ans  =
    33.
-foo();disp([noeuds,triang])
+foo(%f);disp([noeuds,triang])
    45.   0.9092974
 deff("t1=foo()","t1(2)= 1");foo()
  ans  =
@@ -211,7 +211,7 @@ deff("[a,b,x]=foo()","[a(1),b(1,2),x]=(3,4,5);");[a,b,x]=foo()
 function [a,b,x]=foo(),u=5;[a(1),b(1,2),x]=(3,4,u),a(2)=44,endfunction
 [a,b,x]=foo()
  a  = 
-   3. 
+   3.
    44.
  b  = 
    0.   4.
