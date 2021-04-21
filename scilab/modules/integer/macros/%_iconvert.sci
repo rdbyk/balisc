@@ -12,18 +12,6 @@
 
 function x = %_iconvert(a,typeToConvert)
 
-    if type(a) == 1 & isreal(a) == %f then
-        error(94, 1);
-    end
-
-    if floor(typeToConvert) <> typeToConvert then
-        error(111, 2);
-    end
-
-    if type(typeToConvert) <> 1 | size(typeToConvert, "*") <> 1 then
-        error(101, 2);
-    end
-
     select typeToConvert
     case 0 then
         x = double(a);
