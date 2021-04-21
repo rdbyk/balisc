@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -9,12 +10,8 @@
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
-//===============================
-// Tests fileparts
-//===============================
-
 // Error messages
-
+// --------------
 errmsg1 = msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "fileparts", 1, 2);
 assert_checkerror("fileparts(SCI+''/etc/scilab.start'', ""extension"", ""extension"")", errmsg1);
 
@@ -24,8 +21,7 @@ assert_checkerror("[a,b] = fileparts(SCI+''/etc/scilab.start'',""extension"")", 
 errmsg3 = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "fileparts", 1);
 assert_checkerror("[path,fname,extension] = fileparts([]);", errmsg3);
 
-errmsg4 = msprintf(_("%s: Wrong value for input argument #%d.\n"), "fileparts", 2);
-assert_checkerror("extension = fileparts(SCI+''/etc/scilab.start'',''rpr'');", errmsg4);
+assert_checkerror("extension = fileparts(SCI+''/etc/scilab.start'',''rpr'');", [], 110);
 
 errmsg5 = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "fileparts", 2);
 assert_checkerror("extension = fileparts(SCI+''/etc/scilab.start'',10);", errmsg5);

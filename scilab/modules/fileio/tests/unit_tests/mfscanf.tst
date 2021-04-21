@@ -2,11 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) ????-2008 - ENPC
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 function [n,a,b,c,d,e]=Fscanf(str ,f)
      fd = mopen(TMPDIR + '/fscanf.rep', 'w');
@@ -247,7 +249,6 @@ if norm([evstr(a), evstr(b),c,d,e]-A) > %eps then pause, end
 
 // same example but returned values are compacted in L
 fd=mopen(tmpf,'r');L=mfscanf(-1,fd,Fs+' '+Fd);mclose(fd);
-if length(L)<>3 then pause, end
-if norm(getfield(3,L)-A(:,3:n)) > %eps then pause, end
-if getfield(2,L)<>string(A(:,1:2)) then pause, end
-
+if length(L)<>2 then pause, end
+if norm(L{2}-A(:,3:n)) > %eps then pause, end
+if L{1}<>string(A(:,1:2)) then pause, end

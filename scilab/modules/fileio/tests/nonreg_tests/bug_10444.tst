@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 10444 -->
 //
@@ -16,8 +18,7 @@
 // Bug #10444 fixed - fullfile did not manage string matrix as last input argument.
 //
 
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", 2);
-assert_checkerror ("r = fullfile(SCI, 3, ''scilab.start'')", msgerr);
+assert_checkerror ("r = fullfile(SCI, 3, ''scilab.start'')", [], 91);
 
 if getos() <> "Windows" then
   REF = ['/home/scilab/macros/util/fullfile.sci';

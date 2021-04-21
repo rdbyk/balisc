@@ -1,17 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-// <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
-
-// =============================================================================
-// Unitary tests for mkdir function
-// =============================================================================
 
 // TEST 1 : absolute path with one input argument
 
@@ -86,18 +82,6 @@ assert_checkfalse(removedir(test_6_dir));
 removedir(test_7_dir);
 
 // TEST : error messages
-try
-  mkdir([])
-catch
-  [str,n]=lasterror();
-  if n <> 10000 then pause, end
-  if str <> msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"), "mkdir", 1) then pause, end
-end
 
-try
-  mkdir(["a", "b"])
-catch
-  [str,n]=lasterror();
-  if n <> 10000 then pause, end
-  if str <> msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "mkdir", 1) then pause, end
-end
+assert_checkerror("mkdir([])", [], 91);
+assert_checkerror("mkdir([''a'', ''b''])", [], 102);

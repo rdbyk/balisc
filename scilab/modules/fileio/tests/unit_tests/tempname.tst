@@ -1,14 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
-//
-// some unit tests about tempname
-//
+// <-- NO CHECK REF -->
 
 F = tempname();
 assert_checkequal(isfile(F), %t);
@@ -16,8 +15,7 @@ assert_checkequal(isfile(F), %t);
 F = tempname('PRE');
 assert_checkequal(isfile(F), %t);
 
-msgerror = "%s: Wrong type for input argument #%d: string expected.\n";
-assert_checkerror ( "F = tempname(1)" , msgerror, 999, "tempname" , 1);
+assert_checkerror ( "F = tempname(1)" , [], 91);
 
 msgerror = "%s: Wrong size for input argument #%d: A scalar expected.\n";
 assert_checkerror ( "F = tempname([''A'',''B''])" , msgerror, 999, "tempname" , 1);

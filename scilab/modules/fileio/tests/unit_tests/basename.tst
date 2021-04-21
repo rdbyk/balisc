@@ -1,11 +1,13 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // ============================================================================
 // Unitary tests for basename function
@@ -32,10 +34,10 @@ if files <> '.sci' then pause,end
 if basename([]) <> [] then pause,end
 
 ierr = execstr('basename(3)','errcatch');
-if ierr <> 999 then pause,end
+if ierr <> 90 then pause,end
 
 ierr = execstr('basename(SCI,1)','errcatch');
-if ierr <> 999 then pause,end
+if ierr <> 110 then pause,end
 
 ierr = execstr('basename(SCI,%t,1)','errcatch');
-if ierr <> 999 then pause,end
+if ierr <> 110 then pause,end

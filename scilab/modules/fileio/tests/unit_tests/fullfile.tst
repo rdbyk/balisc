@@ -1,22 +1,19 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
-// =============================================================================
-// Tests fullfile
-// =============================================================================
-//
+// <-- NO CHECK REF -->
+
 assert_checkequal(fullfile([]), []);
 assert_checkequal(fullfile([],[]), []);
 assert_checkequal(fullfile([],[],[]), []);
 
-msgerr = msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"), "fullfile", 1);
-assert_checkerror ("fullfile()" , msgerr);
+assert_checkerror ("fullfile()" , [], 74);
 
 REF = SCI + '/etc/scilab.start';
 r = fullfile(SCI, '/etc/', 'scilab.start');
@@ -34,8 +31,7 @@ r2 = fullfile("C:", "\scilab", "macros", "\util", "fullfile.sci");
 assert_checkequal(r1, REF1);
 assert_checkequal(r2, REF2);
 
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", 2);
-assert_checkerror ("r = fullfile(SCI, 3, ''scilab.start'')", msgerr);
+assert_checkerror ("r = fullfile(SCI, 3, ''scilab.start'')", [], 91);
 
 if getos() <> "Windows" then
   REF = ['/home/scilab/macros/util/fullfile.sci';
@@ -47,5 +43,3 @@ end
 
 r = fullfile("/home/","\scilab","macros","\util", ["fullfile.sci"; "toto.sci"]);
 assert_checkequal(r, REF);
-
-// =============================================================================

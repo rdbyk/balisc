@@ -1,7 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -22,20 +22,11 @@ cd(TMPDIR);
 
 fd = mopen("test", "w"); // Open a file
 
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), "mget", 1);
-assert_checkerror("mget(-1, ""d"", fd)", refMsg);
-
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), "mget", 1);
-assert_checkerror("mget(1.5, ""d"", fd)", refMsg);
-
-refMsg2 = msprintf(_("%s: Wrong type for input argument #%d: A positive integer value expected.\n"), "mget", 1);
-assert_checkerror("mget(int8(1), ""d"", fd)", refMsg2);
-
-refMsg3 = msprintf(_("%s: Wrong value for input argument #%d: An integer value expected.\n"), "mgetl", 2);
-assert_checkerror("mgetl(""test"", 1.5)", refMsg3);
-
-refMsg4 = msprintf(_("%s: Wrong type for input argument #%d: An integer value expected.\n"), "mgetl", 2);
-assert_checkerror("mgetl(""test"", int8(1))", refMsg4);
+assert_checkerror("mget(-1, ""d"", fd)", [], 110);
+assert_checkerror("mget(1.5, ""d"", fd)", [], 110);
+assert_checkerror("mget(int8(1), ""d"", fd)", [], 93);
+assert_checkerror("mgetl(""test"", 1.5)", [], 111);
+assert_checkerror("mgetl(""test"", int8(1))", [], 93);
 
 mclose(fd);
 deletefile("test");

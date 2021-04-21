@@ -34,7 +34,7 @@ function x = mgeti(varargin)
         partPos = 1;
 
         if len == 0 | len > 3 then
-            error(100, 2, _("string of size 1 to 3"), "mgeti", 2, 1, 3);
+            error(100, 2, _("string of size 1 to 3"));
         end
 
         // unsigne

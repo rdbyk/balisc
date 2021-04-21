@@ -2,12 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) ????-2008 - ENPC
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //--------------test format %i
 [n,a]=msscanf('123','%i');
@@ -235,6 +236,6 @@ if norm([evstr(a),evstr(b),c,d,e]-A) > %eps then pause;end
 
 // same example but returned values are compacted in L
 L=msscanf(-1,A1,Fs+' '+Fd);
-if length(L)<>3 then pause;end 
-if norm(getfield(3,L)-A(:,3:n)) > %eps then pause;end 
-if getfield(2,L)<>string(A(:,1:2)) then pause;end 
+if length(L)<>2 then pause;end 
+if norm(L{2}-A(:,3:n)) > %eps then pause;end 
+if L{1}<>string(A(:,1:2)) then pause;end 

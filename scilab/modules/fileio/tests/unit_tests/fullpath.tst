@@ -1,17 +1,16 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
-ierr = execstr("fullpath();","errcatch");
-assert_checkequal(ierr, 77);
-
-ierr = execstr("fullpath(''test.sce'',''test.sce'');","errcatch");
-assert_checkequal(ierr, 77);
+assert_checkerror("fullpath()", [], 71);
+assert_checkerror("fullpath(''test.sce'',''test.sce'')", [], 71);
 
 assert_checkequal(fullpath("."), pwd());
 
@@ -50,4 +49,3 @@ assert_checkequal(r3, REF3);
 REF_M = [REF1, REF2, REF3];
 M = ["../../test1.txt", "../test2.txt", "test3.txt"];
 assert_checkequal(REF_M, fullpath(M));
-

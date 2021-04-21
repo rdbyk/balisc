@@ -1,10 +1,14 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 a=dir('SCI\bin');
 f1=a(2);
 r1=newest(f1);
@@ -65,4 +69,4 @@ if newest([TMPDIR+"/no_file" ; TMPDIR+"/newest_3" ; TMPDIR+"/newest_4" ; TMPDIR+
 if newest([TMPDIR+"/newest_3" ; TMPDIR+"/newest_4" ; TMPDIR+"/newest_1" ; TMPDIR+"/no_file"] ) <> 2 then pause,end
 if newest([TMPDIR+"/newest_4" ; TMPDIR+"/newest_1" ; TMPDIR+"/no_file" ; TMPDIR+"/newest_3"] ) <> 1 then pause,end
 
-if execstr('newest(''rrr'',''SCI\bin\libscilab.dll'',3)','errcatch') <> 999 then pause,end
+if execstr('newest(''rrr'',''SCI\bin\libscilab.dll'',3)','errcatch') <> 91 then pause,end

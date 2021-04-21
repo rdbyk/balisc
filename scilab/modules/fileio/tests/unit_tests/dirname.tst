@@ -1,14 +1,14 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
+
 // <-- CLI SHELL MODE -->
-// ============================================================================
-// Unitary tests for dirname function
-// ============================================================================
-//
+// <-- NO CHECK REF -->
+
 REF = pathconvert(getlongpathname(SCI + '/modules/fileio/macros'), %F);
 pathRes = dirname('SCI/modules/fileio/macros/.myfile');
 assert_checkequal(pathRes, REF);
@@ -45,11 +45,7 @@ M_REF = [REF;
          REF];
 
 assert_checkequal(dirname(M), M_REF);
-
 assert_checkequal(dirname([]), []);
 
-ierr = execstr('dirname(3)','errcatch');
-assert_checkequal(ierr, 999);
-
-ierr = execstr('dirname(SCI,%t,1)','errcatch');
-assert_checkequal(ierr, 999);
+assert_checkerror('dirname(3)', [], 90);
+assert_checkerror('dirname(SCI,%t,1)', [], 90);

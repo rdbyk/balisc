@@ -2,12 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Bruno JOFRET
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-// Unit test for getrelativefilename
+// <-- NO CHECK REF -->
 
 __dir1  = TMPDIR+"/dir1";
 __dir11 = TMPDIR+"/dir1/dir1.1";
@@ -51,11 +52,8 @@ assert_checkequal(getrelativefilename([__dir12,__dir12], [__file11,__file11]), [
 assert_checkequal(getrelativefilename([__dir12,__dir12], [__file12,__file12]), ["file12.txt","file12.txt"]);
 
 // Error messages
-errmsg1 = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "getrelativefilename", 2);
-assert_checkerror("getrelativefilename()", errmsg1);
-
-errmsg2 = msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "getrelativefilename", 1);
-assert_checkerror("getrelativefilename([],[])", errmsg2);
+assert_checkerror("getrelativefilename()", [], 71);
+assert_checkerror("getrelativefilename([],[])", [], 90);
 
 errmsg3 = msprintf(_("%s: Incompatible input arguments #%d and #%d: Same size expected.\n"), "getrelativefilename", 1, 2);
 assert_checkerror("getrelativefilename([__dir1,__dir1], __file1)", errmsg3);

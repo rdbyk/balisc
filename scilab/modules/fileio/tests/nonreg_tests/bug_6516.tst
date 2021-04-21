@@ -1,10 +1,13 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 6516 -->
 //
@@ -27,15 +30,13 @@ r = fullfile([],[]);
 if r <> ref then pause,end
 
 ierr = execstr("fullfile()","errcatch");
-if ierr <> 10000 then pause,end
+if ierr <> 74 then pause,end
 
 ierr = execstr("fullfile(3)","errcatch");
-if ierr <> 10000 then pause,end
+if ierr <> 91 then pause,end
 
 ierr = execstr("fullfile(''a'',3)","errcatch");
-if ierr <> 10000 then pause,end
+if ierr <> 91 then pause,end
 
 ierr = execstr("fullfile(''a'',''b'',3)","errcatch");
-if ierr <> 10000 then pause,end
-
-
+if ierr <> 91 then pause,end

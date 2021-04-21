@@ -1,13 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
-// =============================================================================
-// Unitary tests for mgetl function
-//==============================================================================
+// <-- NO CHECK REF -->
 
 function [filename, txt] = create_file(arg)
     if isempty(arg) then
@@ -117,9 +117,6 @@ check_mgetl(filename, ref2);
 
 // test error management
 ierr = execstr("mgetl(1000, 1)", "errcatch");
-assert_checkequal(ierr, 999);
+assert_checkequal(ierr, 50);
 ierr = execstr("mgetl(TMPDIR + ""notfound.txt"",1)", "errcatch");
-assert_checkequal(ierr, 999);
-
-
-
+assert_checkequal(ierr, 52);

@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 11398 -->
 //
@@ -16,5 +17,4 @@
 // newest() produces an incomprehensible error message when called with a string vector as second input argument.
 //
 
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "newest", 2);
-assert_checkerror("newest(""SCI/modules/fileio/macros/lib"", ls(""SCI/modules/fileio/macros/*.*""))", refMsg);
+assert_checkerror("newest(""SCI/modules/fileio/macros/lib"", ls(""SCI/modules/fileio/macros/*.*""))", [], 91);

@@ -2,9 +2,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 mclearerr();
 [a,b] = merror();
@@ -15,10 +19,7 @@ warning('off');
 ierr = execstr('mclose(999);','errcatch');
 ierr = execstr('[a,b] = merror(999);','errcatch');
 warning(wm);
-if ierr <> 999 then pause,end
+if ierr <> 51 then pause,end
 
 ierr = execstr('merror([1 1])','errcatch');
-if ierr <> 999 then pause,end
-
-ierr = execstr('merror([1 1])','errcatch');
-if ierr <> 999 then pause,end
+if ierr <> 93 then pause,end
