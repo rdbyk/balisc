@@ -7,7 +7,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//<-- CLI SHELL MODE -->
+// <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 3427 -->
