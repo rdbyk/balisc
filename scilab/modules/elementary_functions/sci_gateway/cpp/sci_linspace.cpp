@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2018- Stéphane MOTTELET
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2018- Stéphane MOTTELET
+ * Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * For more information, see the COPYING file which you should have received
@@ -45,13 +46,13 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
 
     if (in.size() != 2 && in.size() != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "linspace", 2, 3);
+        Scierror(72, 2, 3);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "linspace", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
@@ -258,4 +259,3 @@ int convertToSize(types::InternalType *pIT)
         }
     }
 }
-

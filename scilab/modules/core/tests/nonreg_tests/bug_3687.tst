@@ -2,9 +2,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+//<-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 3687 -->
 //
@@ -23,14 +27,10 @@ format(2);
 b = format();
 if and(b <> [1 2]) then pause,end
 
-ierr = execstr('format(300000000000000000000000000)','errcatch');
-if ierr <> 999 then pause,end
+assert_checkerror('format(300000000000000000000000000)', [], 111);
+assert_checkerror('format(-1)', [], 999);
+assert_checkerror('format(1)', [], 999);
 
-ierr = execstr('format(-1)','errcatch');
-if ierr <> 999 then pause,end
-
-ierr = execstr('format(1)','errcatch');
-if ierr <> 999 then pause,end
 
 format('v',12)
 b = format();

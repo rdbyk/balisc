@@ -1,12 +1,16 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 funcprot(0);
+
 // simple
 //
 deff("[x,y]=t1(a,b)","x=a+b,y=a-b")
@@ -14,27 +18,25 @@ deff("[x,y]=t1(a,b)","x=a+b,y=a-b")
 if u<> 3 then pause,end
 if v<>-1 then pause,end
 //
-//with arguments
-b=2;
-if t1(1)<>t1(1,2) then pause,end
+//with keyword argument
+if t1(1,b=2)<>t1(1,2) then pause,end
 t2=t1;
 //
 [u,v]=t1(1,2);
 if u<> 3 then pause,end
 if v<>-1 then pause,end
 b=2;
-if t1(1)<>t1(1,2) then pause,end
+if t1(1,b=2)<>t1(1,2) then pause,end
 //
-//resume
+//return
 //
 deff("[x,y]=t3(a,b)","x=a+b,y=a-b,z=return(a*a)")
 [u,v]=t3(1,2);
 if u<> 3 then pause,end
 if v<>-1 then pause,end
 if z<>1 then pause,end
-b=2;
 clear z
-if t3(1)<>t3(1,2) then pause,end
+if t3(1,b=2)<>t3(1,2) then pause,end
 if z<>1 then pause,end
 t4=t3;
 [u,v]=t3(1,2);
@@ -42,8 +44,7 @@ if u<> 3 then pause,end
 if v<>-1 then pause,end
 if z<>1 then pause,end
 clear z
-b=2;
-if t3(1)<>t3(1,2) then pause,end
+if t3(1,b=2)<>t3(1,2) then pause,end
 if z<>1 then pause,end
 //
 // macro + clauses
@@ -277,7 +278,7 @@ if x<>15 then pause,end
 //
 //
 //
-deff("[ydot]=simul(t,y,a)","ydot=a")
+deff("[ydot]=simul(t,y)","ydot=a")
 a=2;
 //appel le plus imple
 y=ode(0,0,1:2,simul)
@@ -299,7 +300,7 @@ text=["for k=1:n,"
 "end"];
 //
 deff("[x]=calcul(n)",text)
-deff("[ydot]=simul(t,y,a)","ydot=a")
+deff("[ydot]=simul(t,y)","ydot=a")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
@@ -309,7 +310,7 @@ if norm(x-a*[1 2 3])>1000*%eps then pause,end
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
-deff("[ydot]=simul(t,y,a)","ydot=a")
+deff("[ydot]=simul(t,y)","ydot=a")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
@@ -358,7 +359,7 @@ text=["for k=1:n,"
 "end"];
 //
 deff("[x]=calcul(n)",text)
-deff("[ydot]=simul(t,y,a)","ydot=b(a)")
+deff("[ydot]=simul(t,y)","ydot=b(a)")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
@@ -368,7 +369,7 @@ if norm(x-a*[1 2 3])>1000*%eps then pause,end
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
-deff("[ydot]=simul(t,y,a)","ydot=b(a)")
+deff("[ydot]=simul(t,y)","ydot=b(a)")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
@@ -413,7 +414,7 @@ text=["for k=1:n,"
 "end"];
 //
 deff("[x]=calcul(n)",text)
-deff("[ydot]=simul(t,y,a)","ydot=b(a)")
+deff("[ydot]=simul(t,y)","ydot=b(a)")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
@@ -423,7 +424,7 @@ if norm(x-a*[1 2 3])>1000*%eps then pause,end
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
-deff("[ydot]=simul(t,y,a)","ydot=b(a)")
+deff("[ydot]=simul(t,y)","ydot=b(a)")
 x=[];
 x=calcul(3);
 if norm(x-a*[1 2 3])>1000*%eps then pause,end
@@ -466,7 +467,6 @@ if norm(x-a*[1 2 3])>1000*%eps then pause,end
 //macro defining ,compiling and executing a macro
 //
 text=["deff(''[x]=b(a)'',''if a==1 then x=1,else x=a,prod([1 1]),end''),"
-"b,"
 "x=b(n),"]
 deff("[x]=t8(n)",text')
 y=t8(10);
@@ -527,11 +527,7 @@ deff("[x]=b(a)","x=a,prod([1 1])")
 deff("[x]=t9(a)","exec(TMPDIR+''/test_macro_exec''),x=aa")
 y=t9(2)
 if y<>2 then pause,end
-ierr = execstr("file(""rewind"",fic);","errcatch");
-assert_checkequal(ierr, 999);
-errMsg = lasterror();
-refMsg = msprintf(gettext("%s: Unknown file format.\n"), "file");
-assert_checkequal(errMsg, refMsg);
+assert_checkerror("file(""rewind"",fic);", [], 56);
 y=t9(2)
 if y<>2 then pause,end
 //
@@ -540,4 +536,3 @@ y=t9(2)
 if y<>2 then pause,end
 y=t9(2)
 if y<>2 then pause,end
-

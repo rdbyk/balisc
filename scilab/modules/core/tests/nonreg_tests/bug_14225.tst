@@ -1,13 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-//
+// <-- NO CHECK ERROR OUTPUT -->
+
 // <-- Non-regression test for bug 14225 -->
 //
 // <-- Bugzilla URL -->
@@ -48,4 +50,3 @@ err = unix(scilabBin + "-e ""1+1; exit(12)""");
 assert_checkequal(err, 12);
 err = unix(scilabBin + "-e ""try, error(\""error_test\""); catch,disp(lasterror());exit(12), end""");
 assert_checkequal(err, 12);
-
