@@ -54,7 +54,10 @@ y = iconvert(B, 14); // uint32
 assert_checkequal(type(y), 8);
 assert_checkequal(typeof(y), "uint32");
 
+y = iconvert(%i, 0); // only real part is converted to double
+assert_checkequal(type(y), 1);
+assert_checkequal(typeof(y), "constant");
+
 assert_checkerror ("y = iconvert(B, 20);", [], 110);
-assert_checkerror ("y = iconvert(%i, 0);", [], 94);
-assert_checkerror ("y = iconvert(B, 0.1);", [], 111);
-assert_checkerror ("y = iconvert(B, [0 1]);", [], 101);
+assert_checkerror ("y = iconvert(B, 0.1);", [], 110);
+assert_checkerror ("y = iconvert(B, [0 1]);", [], 110);
