@@ -1,16 +1,8 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2012 - SE - Sylvestre Ledru
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
 nx    = 10;
 nev   = 3;
 ncv   = 6;
 bmat  = 'I';
 which = 'LM';
-// Local Arrays
 iparam  = zeros(11, 1);
 ipntr   = zeros(14, 1);
 _select = zeros(ncv, 1);
@@ -22,7 +14,6 @@ v       = zeros(nx, ncv);
 workd   = zeros(3 * nx, 1);
 workev  = zeros(3 * ncv, 1);
 workl   = zeros(3 * ncv * ncv + 6 * ncv, 1);
-// Build the test matrix
 A            = diag(10 * ones(nx, 1));
 A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6 * ones(nx-1,1));
 A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6 * ones(nx-1,1));
@@ -34,10 +25,9 @@ mode1  = 1;
 iparam(1) = ishfts;
 iparam(3) = maxitr;
 iparam(7) = mode1;
-sigmar = 0; // the real part of the shift
-sigmai = 0; // the imaginary part of the shift
+sigmar = 0;
+sigmai = 0;
 info_dnaupd = 0;
-// M A I N   L O O P (Reverse communication)
 while(ido <> 99)
     // Repeatedly call the routine DNAUPD and take actions indicated by parameter IDO until
     // either convergence is indicated or maxitr has been exceeded.
@@ -51,7 +41,6 @@ while(ido <> 99)
         workd(ipntr(2):ipntr(2) + nx -1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
     end
 end
-// Post-Process using DNEUPD.
 rvec    = 1;
 howmany = 'A';
 info_dneupd = 0;

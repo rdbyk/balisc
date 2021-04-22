@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -118,14 +118,13 @@ function [d, v] = eigs(varargin)
             end
         end
 
-        select nargout
-        case 1
+        if nargout < 2
             if issparse(A) | issparse(B)
                 d = speigs(A, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info);
             else
                 d = %_eigs(A, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info);
             end
-        case 2
+        else
             if issparse(A) | issparse(B)
                 [d, v] = speigs(A, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info);
             else
@@ -190,10 +189,9 @@ function [d, v] = eigs(varargin)
                 end
             end
         end
-        select nargout
-        case 1
+        if nargout < 2
             d = feigs(Af, Asize, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
-        case 2
+        else
             [d, v] = feigs(Af, Asize, B, nev, sigma, maxiter, tol, ncv, cholB, resid, info, a_real, a_sym);
         end
     end
