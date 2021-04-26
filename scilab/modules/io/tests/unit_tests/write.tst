@@ -1,11 +1,13 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 path_double = TMPDIR + "/save_double";
 path_int = TMPDIR + "/save_int";
@@ -54,8 +56,7 @@ assert_checkerror("write(path_double,rand(5,7));", refMsg);
 
 mdelete(path_double);
 
-refMsg = msprintf(_("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
-assert_checkerror("write(path_logic,[%t, %f; %f, %f]);", refMsg);
+assert_checkerror("write(path_logic,[%t, %f; %f, %f]);", [], 91);
 
 mdelete(path_logic);
 

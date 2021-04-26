@@ -1,16 +1,14 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Allan CORNET
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 [a,b,c,d,e] = file(500);
 if a <> [] then pause,end;
 if b <> [] then pause,end;
@@ -43,7 +41,5 @@ clear a
 // =============================================================================
 file(500);
 // =============================================================================
-ierr = execstr("file(''toto'')","errcatch");
-if (ierr <> 201) then pause,end
+assert_checkerror("file(''toto'')", [], 93);
 // =============================================================================
-
