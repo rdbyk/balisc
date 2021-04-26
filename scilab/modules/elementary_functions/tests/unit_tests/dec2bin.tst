@@ -1,15 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
-// unit tests for dec2bin function
-// =============================================================================
+// <-- NO CHECK REF -->
 
 // Test 0
 // =============================================================================
@@ -310,7 +308,7 @@ B = [ ..
 	"01110010111001011100011111111"
 ];
 
-if or(dec2bin(A)<>B) then pause,end
+if or(dec2bin(A, 29)<>B) then pause,end
 
 // Test 11
 // =============================================================================
@@ -519,4 +517,4 @@ B = [
 	"00111111111100111110001010111" "01011000101000010010001110011" "00100010100010011000101011010" "10010011001011101101110101001" 
 	"00100111110101011001011111101" "01000011111111001010001110101" "10000000000111000100000110011" "01110110000100001000111000011"];
 
-if or(dec2bin(A)<>B) then pause,end
+if or(dec2bin(A, 29)<>B) then pause,end

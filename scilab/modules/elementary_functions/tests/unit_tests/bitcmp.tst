@@ -1,7 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -31,10 +31,8 @@ assert_checktrue(bitcmp([13,99],16)==uint16([65522,65436]));
 assert_checktrue(bitcmp([13,99],32)==uint32([4294967282,4294967196]));
 
 // Error messages
-errmsg = msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"),"bitcmp",1);
-assert_checkerror("bitcmp()",errmsg); //no input argument
-errmsg3 = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"),"bitcmp",2);
-assert_checkerror("bitcmp(99)",errmsg3); //First (and only) argument is not an unsigned integer
+assert_checkerror("bitcmp()", [], 74); //no input argument
+assert_checkerror("bitcmp(99)", [], 72); //First (and only) argument is not an unsigned integer
 errmsg4 = msprintf(_("%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitcmp",1);
 assert_checkerror("bitcmp(""s"")",errmsg4); //input argument is a char
 errmsg5 = msprintf(_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"bitcmp",2,1,8);

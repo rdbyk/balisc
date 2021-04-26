@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,11 +10,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-//
-// <-- Unit test of vectorfind() -->
 
 m = [
   1  0  0  0  1  0  1  0  1  0  0  1  1  1  1
@@ -83,7 +82,7 @@ assert_checkequal(vectorfind(H, [0 1 2], 4), []);   // size = 2
 // Without joker, the matching array is empty 
 [i,ma] = vectorfind(m, [0 0 1 0], "c");
 assert_checkequal(ma, []);
-[i,ma] = vectorfind(m, [0 0 1 0], "c",,"headIJK");
+[i,ma] = vectorfind(m, [0 0 1 0], "c", –,"headIJK");
 assert_checkequal(ma, []);
 
 // ================
@@ -118,10 +117,10 @@ assert_checkequal(vectorfind(m,[1 1 0 0],"r"), [11 43]);
 
 // Option indType
 assert_checkequal(vectorfind(m, [1 0 0 0], "c"), [1 13 14]);
-assert_checkequal(vectorfind(m, [1 0 0 0], "c",,"headN"), [1 49 53]);
-assert_checkequal(vectorfind(m, [1 0 0 0], "c",,"headIJK"), [1 1 ; 1 13 ; 1 14]);
-assert_checkequal(vectorfind(m, [0 1 1 1 0 0 1 1 1 0 1 1 0 0 1],"r",,"headN"), 3);
-assert_checkequal(vectorfind(m, [0 1 1 1 0 0 1 1 1 0 1 1 0 0 1],"r",,"headIJK"), [3 1]);
+assert_checkequal(vectorfind(m, [1 0 0 0], "c", –,"headN"), [1 49 53]);
+assert_checkequal(vectorfind(m, [1 0 0 0], "c", –,"headIJK"), [1 1 ; 1 13 ; 1 14]);
+assert_checkequal(vectorfind(m, [0 1 1 1 0 0 1 1 1 0 1 1 0 0 1],"r", –,"headN"), 3);
+assert_checkequal(vectorfind(m, [0 1 1 1 0 0 1 1 1 0 1 1 0 0 1],"r", –,"headIJK"), [3 1]);
 
 // With jokers in the needle
 [ind, ma] = vectorfind(m, [1 -1 -1 0],"c",-1);
@@ -145,32 +144,32 @@ assert_checkequal(vectorfind(m,[0 %nan 1],"c",%nan), [5 9 13 18 26 29 34 41 58])
 // Option indType
     //              dir = "r" = 1
 assert_checkequal(vectorfind(H, [1 0 0]), [1 10 12]);
-assert_checkequal(vectorfind(H, [1 0 0], "r",,"headN"), [1 26 32]);
+assert_checkequal(vectorfind(H, [1 0 0], "r", –,"headN"), [1 26 32]);
 res =  [1  1  1  1
         2  1  2  2
         2  1  3  2];
-assert_checkequal(vectorfind(H, [1 0 0], "r",,"headIJK"), res);
+assert_checkequal(vectorfind(H, [1 0 0], "r", –,"headIJK"), res);
     //              dir = "c" = 2
 assert_checkequal(vectorfind(H, [0 1], "c"), [3 7 16]);
-assert_checkequal(vectorfind(H, [0 1], "c",,"headN"), [5 13 31]);
+assert_checkequal(vectorfind(H, [0 1], "c", –,"headN"), [5 13 31]);
 res =  [1  3  1  1
         1  1  3  1
         1  1  3  2];
-assert_checkequal(vectorfind(H, [0 1], "c",,"headIJK"), res);
+assert_checkequal(vectorfind(H, [0 1], "c", –,"headIJK"), res);
     //              dir = 3
 assert_checkequal(vectorfind(H, [0 2 0], 3), [3 7]);
-assert_checkequal(vectorfind(H, [0 2 0], 3,,"headN"), [3 19]);
+assert_checkequal(vectorfind(H, [0 2 0], 3, –,"headN"), [3 19]);
 res =  [1  2  1  1
         1  1  1  2];
-assert_checkequal(vectorfind(H, [0 2 0], 3,,"headIJK"), res);
+assert_checkequal(vectorfind(H, [0 2 0], 3, –,"headIJK"), res);
     //              dir = 4
 assert_checkequal(vectorfind(H, [0 1], 4), [5 8 11 15]);
-assert_checkequal(vectorfind(H, [0 1], 4,,"headN"), [5 8 11 15]);
+assert_checkequal(vectorfind(H, [0 1], 4, –,"headN"), [5 8 11 15]);
 res =  [1  3  1  1
         2  1  2  1
         1  3  2  1
         1  2  3  1];
-assert_checkequal(vectorfind(H, [0 1], 4,,"headIJK"), res);
+assert_checkequal(vectorfind(H, [0 1], 4, –,"headIJK"), res);
 
 // With short v
 // ------------
@@ -199,7 +198,7 @@ assert_checkequal(vectorfind(H, [0 1], 1  ), [15 20 31]);
 res = [1  2  3  1
        2  1  1  2
        1  1  3  2];
-assert_checkequal(vectorfind(H, [0 1], "r",,"headIJK"), res);
+assert_checkequal(vectorfind(H, [0 1], "r", –,"headIJK"), res);
 assert_checkequal(vectorfind(H, 2, "c"), [2 4 9 12 18 21 24 25 27 35]);
 
 assert_checkequal(vectorfind(H, [0 0], 3), [5 10 28 30]);
@@ -208,7 +207,7 @@ res = [
   2  2  2  1
   2  2  2  2
   2  3  2  2];
-assert_checkequal(vectorfind(H, [0 0], 3,, "headIJK"), res);
+assert_checkequal(vectorfind(H, [0 0], 3, –, "headIJK"), res);
 H2 = matrix(H,1,3,3,4);
 assert_checkequal(vectorfind(H2, [0 1], 4), [5 8 13 20]);
 res = [
@@ -216,7 +215,7 @@ res = [
   1  2  3  1
   1  1  2  2
   1  2  1  3];
-assert_checkequal(vectorfind(H2, [0 1], 4,, "headIJK"), res);
+assert_checkequal(vectorfind(H2, [0 1], 4, –, "headIJK"), res);
 
 // Additional tests with an hypermatrix haystack
 // ---------------------------------------------
@@ -247,12 +246,12 @@ assert_checkequal(vectorfind(m, [1 1 0], "c"), 30);
 assert_checkequal(vectorfind(m, [1 1 1], "r"), [7 27 45 49]);
 assert_checkequal(vectorfind(m, [1 1], 3), [7 10 11 15 25 27 33]);
     // indType = headIJK
-assert_checkequal(vectorfind(m, [1 1 0], "c",,"headIJK"), [2 3 2]);
+assert_checkequal(vectorfind(m, [1 1 0], "c", –,"headIJK"), [2 3 2]);
 res = [3  2  1
        3  2  2
        1  2  3
        1  3  3];
-assert_checkequal(vectorfind(m, [1 1 1], "r",,"headIJK"), res);
+assert_checkequal(vectorfind(m, [1 1 1], "r", –,"headIJK"), res);
 res = [
   3  2  1
   2  3  1
@@ -261,7 +260,7 @@ res = [
   1  2  2
   3  2  2
   1  4  2];
-assert_checkequal(vectorfind(m, [1 1], 3,,"headIJK"), res);
+assert_checkequal(vectorfind(m, [1 1], 3, –,"headIJK"), res);
 
 // With jokers in the needle:
 // -------------------------
@@ -374,7 +373,7 @@ res = [
   1  2  1
   2  2  1
   2  5  4];
-assert_checkequal(vectorfind(m, ["C" "C"], "c",,"headIJK"), res);
+assert_checkequal(vectorfind(m, ["C" "C"], "c", –,"headIJK"), res);
 // Short needle with joker
 res = [
   1  3  1
@@ -404,7 +403,7 @@ assert_checkequal(vectorfind(m, [%T %T %T],"r"), [22 38]);
 res = [
   1  3  2
   2  3  3];
-assert_checkequal(vectorfind(m, [%T %T %T],"r",,"headIJK"), res);
+assert_checkequal(vectorfind(m, [%T %T %T],"r", –,"headIJK"), res);
 // Joker: Note that v and joker are numerical
 [ind, ma] = vectorfind(m, [0 2 1],"c",2);
 assert_checkequal(ind, [1 4 7 11 15]);

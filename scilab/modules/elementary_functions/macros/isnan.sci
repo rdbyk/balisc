@@ -12,12 +12,15 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r = isnan(x)
+function x = isnan(x)
 
     if nargin <> 1 then
         error(71, 1);
     end
 
-    r = x <> x
+	if x <> []
+		m = abs(x)
+		x = m <> m
+	end
 
 endfunction

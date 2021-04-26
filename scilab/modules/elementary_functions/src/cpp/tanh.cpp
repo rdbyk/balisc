@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 // 
-// Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -32,10 +32,8 @@ namespace balisc
 
 static inline std::complex<double> __tanh__(double re, double im)
 {
-    const std::complex<double> one(1, 0);
-    std::complex<double> z(2*re, 2*im);
-    std::complex<double> e2 = std::exp(z);
-    return (e2 - one) / (e2 + one);
+    std::complex<double> z(re, im);
+    return tanh(z);
 }
 
 Double* tanh(Double* x)
@@ -62,8 +60,7 @@ Double* tanh(Double* x)
     {
         Map<ArrayXd> xr(x->get(), n);
         Map<ArrayXd> yr(y->get(), n);
-        ArrayXd e2((2*xr).exp());
-        yr = (e2 - 1)/(e2 + 1);
+        yr = xr.tanh();
         
         return y;
     }

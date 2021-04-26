@@ -7,10 +7,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
-// unit tests for cosh() function (element wise cosine inverse)
-// =============================================================================
-
+// <-- NO CHECK REF -->
 
 // 1. Interface
 // ============
@@ -52,7 +49,7 @@ A = rand(100,100);
 // cosh(i * x) = cos(x)
 y1 = cosh( %i * A );
 y2 = complex(cos(A));
-assert_checkalmostequal(y1,y2,%eps,[],"element");
+assert_checkalmostequal(y1,y2,2*%eps,[],"element");
 
 // cosh^2(x/2) = (1 + cosh(x)) / 2
 y1 = (cosh(A/2)).^2;

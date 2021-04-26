@@ -2,6 +2,7 @@
 // Scilab ( http://wwwscilaborg/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
 // Copyright (C) 2018 - 2019 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package
 // =============================================================================
@@ -9,6 +10,8 @@
 // <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
 // =============================================================================
+
+funcprot(0);
 
 a = [223;111;2;4;2;2];
 b = [2;3;21;223;123;22];
@@ -134,5 +137,4 @@ end
 
 // =============================================================================
 // Error messages
-msg = "%s: Wrong number of input argument(s): %d or %d expected.\n";
-assert_checkerror("setdiff()", msg , [], "setdiff", 2, 3);
+assert_checkerror("setdiff()", [], 73);

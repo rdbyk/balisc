@@ -1,15 +1,17 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // Basic use
 computed=logspace(0,10,11);
-expected=10.0.^(0:10)  ;
+expected=10 .^ (0:10);
 assert_checkalmostequal(computed,expected);
 
 assert_checkequal(logspace(1,2,-1),[]);

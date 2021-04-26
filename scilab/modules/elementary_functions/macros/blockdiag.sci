@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -27,7 +27,7 @@ function r = blockdiag(varargin)
                 return
             else
                 msg = _("Function not defined for given argument type(s),\n  Check arguments or define the overloading function %s().\n")
-                error(msprintf(msg, oname))
+                error(msg, oname)
             end
         end
     end

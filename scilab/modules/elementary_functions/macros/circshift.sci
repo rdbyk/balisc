@@ -12,7 +12,7 @@ function R = circshift(M, sh, d)
 
     // SPECIAL SIMPLE CASES
     // --------------------
-    if argn(2) == 0 then
+    if nargin == 0 then
         R = []
         return
     end
@@ -37,7 +37,7 @@ function R = circshift(M, sh, d)
 
     // CHECKING INPUT ARGUMENTS. DEFAULTS
     // ----------------------------------
-    if ~isdef("sh", "l") then
+    if isvoid(sh) then
         msg = _("%s: Wrong number of input arguments: %d to %d expected.\n");
         error(msprintf(msg, Fname, 2, 3));
     end
@@ -51,7 +51,7 @@ function R = circshift(M, sh, d)
     end
     sh = double(sh);
     //
-    if ~isdef("d", "l") then
+    if isvoid(d) then
         if length(sh) == 1 then
             d = find(s > 1, 1)
             if d == [] then

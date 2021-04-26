@@ -2,14 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
 // Copyright (C) 2016 - Samuel GOUGEON
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
-// Unit test for conj
+// <-- NO CHECK REF -->
 
 c=2*%i;
 d=1;
@@ -43,8 +42,6 @@ c.den = c.den*f;
 assert_checkequal(clean(tc-c), 0/%s);
 
 // Error messages
-errmsg1=msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "conj", 1);
-assert_checkerror("conj()", errmsg1, 77);
-assert_checkerror("conj(A,2)", errmsg1, 77);
-errmsg2=msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "conj", 1);
-assert_checkerror("[res1, res2]=conj(A)", errmsg2, 999);
+assert_checkerror("conj()", [], 71);
+assert_checkerror("conj(A,2)", [], 71);
+assert_checkerror("[res1, res2]=conj(A)", [], 81);

@@ -2,30 +2,26 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer
 // Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
+
 // Check error
 d=[1 10;254 9];
 
-assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
-assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 2);
-assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
+assert_checkerror("sum(d, [""r"", ""c""])", [], 102);
 
-assert_checkfalse(execstr("sum(d, ""e"", ""double"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d, ""e"", ""double"")", refMsg);
 
-assert_checkfalse(execstr("sum(d, -1.5, ""double"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
-assert_checkerror("sum(d, -1.5, ""double"")", refMsg);
+assert_checkerror("sum(d, -1.5, ""double"")", [], 110);
 
 //==============================================================================
 // matrices of integer
@@ -35,25 +31,15 @@ assert_checkfalse(execstr("sum(i, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("sum(i, ""orient"")", refMsg);
 
-assert_checkfalse(execstr("sum(i, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 2);
-assert_checkerror("sum(i, [""r"", ""c""])", refMsg);
-
-assert_checkfalse(execstr("sum(i,""r"", ""nat"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"sum", 3, """native""", """double""");
-assert_checkerror("sum(i,""r"", ""nat"")", refMsg);
-
-assert_checkfalse(execstr("sum(i,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 3);
-assert_checkerror("sum(i,""r"", [""nat"" ""dble""])", refMsg);
+assert_checkerror("sum(i, [""r"", ""c""])", [], 102);
+assert_checkerror("sum(i,""r"", ""nat"")", [], 110);
+assert_checkerror("sum(i,""r"", [""nat"" ""dble""])", [], 102);
 
 assert_checkfalse(execstr("sum(i,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(i,""orient"", ""t"")", refMsg);
 
-assert_checkfalse(execstr("sum(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "sum", 3);
-assert_checkerror("sum(i,1,1)", refMsg);
+assert_checkerror("sum(i,1,1)", [], 91);
 
 //==============================================================================
 // sparse matrices
@@ -73,17 +59,9 @@ assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
-assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"sum",2);
-assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
-
-assert_checkfalse(execstr("sum(d,""r"", ""nat"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"sum", 3, """native""", """double""");
-assert_checkerror("sum(d,""r"", ""nat"")", refMsg);
-
-assert_checkfalse(execstr("sum(d,""r"", [""nat"" ""dble""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"sum",3);
-assert_checkerror("sum(d,""r"", [""nat"" ""dble""])", refMsg);
+assert_checkerror("sum(d, [""r"", ""c""])", [], 102);
+assert_checkerror("sum(d,""r"", ""nat"")", [], 110);
+assert_checkerror("sum(d,""r"", [""nat"" ""dble""])", [], 102);
 
 assert_checkfalse(execstr("sum(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
@@ -130,21 +108,17 @@ assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
-assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"sum",2);
-assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
+assert_checkerror("sum(d, [""r"", ""c""])", [], 102);
 
 //==============================================================================
-// polynome
+// polynomial
 s = poly(0, "s");
 d = [s s^2;s*%i 1];
 assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"sum",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
-assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"sum",2);
-assert_checkerror("sum(d, [""r"", ""c""])", refMsg);
+assert_checkerror("sum(d, [""r"", ""c""])", [], 102);
 
 //==============================================================================
 // rational matrices
@@ -343,4 +317,3 @@ d=[1 10 254 9];
 assert_checkequal(sum(d, "m"), sum(d, "c"));
 d=d';
 assert_checkequal(sum(d, "m"), sum(d, "r"));
-

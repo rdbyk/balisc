@@ -397,4 +397,3 @@ if ~isnan(cosd(NaN)) then pause,end
 assert_checkequal(1./cosd([-90 90]), [%inf %inf]);
 
 if cosd([])<>[] then pause,end
-

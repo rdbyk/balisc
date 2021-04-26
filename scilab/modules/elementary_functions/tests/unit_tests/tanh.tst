@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -57,6 +58,6 @@ r = [
    0.99999999999999978
    1.
    ];
-assert_checkalmostequal(tanh(x), r, %eps);
-assert_checkalmostequal(tanh(-x), -r, %eps);
+assert_checkalmostequal(tanh(x), r, 2*%eps);
+assert_checkalmostequal(tanh(-x), -r, 2*%eps);
 assert_checkequal(1/tanh(-0), -%inf);

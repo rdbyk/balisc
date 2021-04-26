@@ -1,6 +1,7 @@
 // ===================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===================================================================
@@ -157,10 +158,9 @@ end
 // ===============
 // Errors handling
 // ===============
-msg = "bitset: Wrong number of input arguments: 2 or 3 expected.";
-assert_checkerror("bitset()", msg);
-assert_checkerror("bitset(1)", msg);
-assert_checkerror("bitset(1,1,1,1)", "Wrong number of input arguments.");
+assert_checkerror("bitset()", [], 73);
+assert_checkerror("bitset(1)", [], 73);
+assert_checkerror("bitset(1,1,1,1)", [], 71);
 
 msg = "bitset: Argument #1: Non-negative real integers expected.";
 assert_checkerror("bitset(%z, 1)", msg);

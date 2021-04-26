@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - Samuel GOUGEON
-// Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2020 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -31,7 +31,7 @@ function y = bitset(x, pos, v)
 
     // Check pos
     // ---------
-    if ~isdef("pos","l") | pos==[] then     // do nothing, keep it as is
+    if isvoid(pos) || pos==[] then     // do nothing, keep it as is
         y = x
         return
     end
@@ -68,7 +68,7 @@ function y = bitset(x, pos, v)
             msg = gettext("%s: Arguments #%d and #%d: Incompatible sizes.\n")
             error(msprintf(msg, fname, 1, 2))
         end
-        if ~isdef("v","l") | size(v,"*")==1
+        if isvoid(v) || size(v,"*")==1
             pos = unique(pos)
             // we can't do that if an array v is provided, because then
             // its length must match the pos one.
@@ -88,7 +88,7 @@ function y = bitset(x, pos, v)
     // -------
     // At the end, v must be either a vector with the pos's length (sameBits case)
     // or an array with same sizes as pos (element-wise case)
-    if ~isdef("v","l") || v==[] then
+    if isvoid(v) || v==[] then
         v = ones(pos)
     else
         if  (type(v)<>1  & type(v)<>8) || or(v~=0 & v~=1)
