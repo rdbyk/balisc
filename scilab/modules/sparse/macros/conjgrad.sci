@@ -6,7 +6,7 @@
 // Copyright (C) 2006 - INRIA - Serge Steer
 // Copyright (C) 2005 - IRISA - Sage Group
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -96,25 +96,25 @@ function [x, flag, resNorm, iter, resVec] = conjgrad(%A, %b, method, tol, maxIte
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"conjgrad",2,9));
     end
 
-    if exists("method", "local") == 0 then
+    if isvoid(method) then
         method = "bicgstab";
     end
-    if exists("tol", "local") == 0 then
+    if isvoid(tol) then
         tol = 1e-8
     end
-    if exists("maxIter", "local") == 0 then
+    if isvoid(maxIter) then
         maxIter = size(%b, 1)
     end
-    if exists("%M", "local") == 0 then
+    if isvoid(%M) then
         %M = []
     end
-    if exists("%M2", "local") == 0 then
+    if isvoid(%M2) then
         %M2 = []
     end
-    if exists("x0", "local") == 0 then
+    if isvoid(x0) then
         x0 = zeros(%b);
     end
-    if exists("verbose", "local") == 0 then
+    if isvoid(verbose) then
         verbose = 0;
     end
     if verbose == 1 then

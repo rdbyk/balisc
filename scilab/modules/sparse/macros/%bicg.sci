@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -160,8 +160,8 @@ function [x, resNorm, iter, resVec] = %bicg(%A, %b, tol, maxIter, %M, %M2, x0, v
             q  = %A*p;
             q2 = %A'*p2;
         else
-            q  = %A(p);
-            q2 = %A(p2);
+            q  = %A(p,Aargs(:));
+            q2 = %A(p2,Aargs(:));
         end
         alp = rho / (p2'*q);
         x   = x + alp*p;

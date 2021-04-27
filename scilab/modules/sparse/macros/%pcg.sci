@@ -3,8 +3,8 @@
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2006 - INRIA - Serge Steer
 // Copyright (C) 2005 - IRISA - Sage Group
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -138,7 +138,7 @@ function [x, resNorm, iter, resVec] = %pcg(%A, %b, tol, maxIter, %M, %M2, x0, ve
         if (matrixType ==1),
             q = %A*p;
         else
-            q = %A(p);
+            q = %A(p,Aargs(:));
         end
         alp = rho / (p'*q );
         x = x + alp*p;

@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -133,7 +133,7 @@ function [x, resNorm, iter, resVec] = %bicgstab(%A, %b, tol, maxIter, %M, %M2, x
         if (matrixType == 1),
             v = %A*P;
         else
-            v = %A(P);
+            v = %A(P,Aargs(:));
         end
         alp = rho / (r2'*v);
         s   = r - alp*v;
@@ -175,7 +175,7 @@ function [x, resNorm, iter, resVec] = %bicgstab(%A, %b, tol, maxIter, %M, %M2, x
         if (matrixType == 1),
             t = %A*S;
         else
-            t = %A(S);
+            t = %A(S,Aargs(:));
         end
         ome = (t'*s)/(t'*t);
         x   = x + alp*P+ome*S;

@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 lines(0)
 ij=[1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6];
@@ -40,7 +42,7 @@ if or(full(sparse([1 1;3 1],[1 5]))<>v) then pause,end
 v= zeros(300,1);v(300)=5;v(1)=1;
 if or(full(sparse([1 1;300 1],[1 5]))<>v) then pause,end
 sp=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[6 6]);
-a=[0,0,3,0,2,1;;5,0,0,4,0,0;0,0,0,0,0,0;0,0,7,6,0,0;8,0,0,0,0,0;0,0,0,0,0,9];
+a=[0,0,3,0,2,1;5,0,0,4,0,0;0,0,0,0,0,0;0,0,7,6,0,0;8,0,0,0,0,0;0,0,0,0,0,9];
 if or(full(sp)<>a) then pause,end
 sp=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[8 6]);a(8,6)=0;
 if or(full(sp)<>a) then pause,end

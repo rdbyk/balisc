@@ -2,7 +2,7 @@
 // Copyright (C) 2000 - INRIA - Carlos Klimann
 // Copyright (C) 2013 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -43,7 +43,7 @@ function [s, m] = variance(x, orien, m)
         return
     end
 
-    if ~isdef("orien","local") then
+    if isvoid(orien) then
         orien = "*"
     end
 
@@ -84,7 +84,11 @@ function [s, m] = variance(x, orien, m)
     // Calculations
     // ------------
 
-    d = size(x, orien) - 1 + exists("m","local") // Denominator. If m is given, then the a priori mean is known and we divide by size(n,orien)
+    if isvoid(m)
+        d = size(x, orien) - 1
+    else
+        d = size(x, orien) // Denominator. If m is given, then the a priori mean is known and we divide by size(n,orien)
+    end
 
     if nargin == 3 & isnan(m) then
         // This will compute the "biased variance": the denominator is size(x,orien) but the a priori mean is not considered as provided.

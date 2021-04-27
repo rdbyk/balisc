@@ -1,13 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-
 
 // <-- Non-regression test for bug 14330 -->
 //
@@ -20,5 +20,5 @@
 [A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 [hand,rk] = lufact(A);
 [P,L,U,Q] = luget(hand);
-assert_checktrue(norm(P*L*U*Q-A)<1d-2);
+assert_checktrue(norm(P*L*U*Q-A)<2d-2);
 ludel(hand);

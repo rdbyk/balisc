@@ -1,13 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Stéphane Mottelet
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-// <-- ENGLISH IMPOSED -->
-//
+
 // <-- Non-regression test for bug 15648 -->
 //
 // <-- Bugzilla URL -->
@@ -16,5 +17,5 @@
 // <-- Short Description -->
 // sparse([1 1],1,[-1 -1])  crashes scilab
 
-errMsg = _("%s: Wrong values for input argument #%d: Positive integers expected.\n")
+errMsg = _("%s: Wrong value(s) for input argument #%d: greater or equal to [1,1] expected.\n")
 assert_checkerror("sparse([1 1],1,[-1 -1])",msprintf(errMsg, "sparse", 3));

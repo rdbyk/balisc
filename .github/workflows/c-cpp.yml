@@ -71,6 +71,7 @@ jobs:
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"core\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"data_structures\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"io\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
+        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"sparse\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
     - name: test_run (not yet fixed)
       run: |
         cd scilab

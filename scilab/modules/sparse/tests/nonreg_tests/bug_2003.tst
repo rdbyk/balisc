@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 2003 -->
 //
@@ -29,7 +31,7 @@ if norm(a*x-b)>1d-10 then pause,end
 if norm(P*L*U*Q-A)>1d-10 then pause,end
 ludel(h)
 if execstr("x=lusolve(h,b);","errcatch")<>999 then pause,end
-if execstr("ludel(h);","errcatch")<>999 then pause,end
+assert_checkerror("ludel(h);", [], 110);
 if execstr("[P,L,U,Q]=luget(h);","errcatch")<>999 then pause,end
 
 //try to allocate a lot of handles

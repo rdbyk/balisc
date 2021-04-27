@@ -2,11 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added cgs, bicg and bicgstab
 // Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //------------------------------------------------------------------
 // PCG
@@ -40,7 +42,7 @@ endfunction
 Alist = list(Atimesx,mymatrix);
 [xcomputed, fail, err, iter, res]=conjgrad(Alist,b,"pcg");
 xexpected=ones(10,1);
-if norm(xcomputed-xexpected)>11**3*%eps then pause,end
+if norm(xcomputed-xexpected)>13**3*%eps then pause,end
 if fail<>0 then pause,end
 if iter<>10 then pause,end
 if err > 10**3*%eps then pause,end
@@ -60,7 +62,7 @@ if err > 100**3*%eps then pause,end
 
 // With the default 10 iterations, the algorithm performs well
 [xcomputed, fail, err, iter, res]=conjgrad(Alist,b,"bicg");
-if norm(xcomputed-xexpected)>11**3*%eps then pause,end
+if norm(xcomputed-xexpected)>13**3*%eps then pause,end
 if fail<>0 then pause,end
 if iter<>10 then pause,end
 if err > 10**3*%eps then pause,end
