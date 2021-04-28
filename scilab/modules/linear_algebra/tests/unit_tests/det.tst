@@ -1,16 +1,14 @@
-// <-- CLI SHELL MODE -->
-// <-- NO CHECK REF -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA Michael Baudin
 // Copyright (C) 2015 - Scilab Enterprises - John Gliksberg
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//==========================================================================
-//==============================   det        ==============================
-//==========================================================================
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //Small dimension
 //Real
@@ -95,10 +93,8 @@ assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
 
 //Error messages
 A=[1 1; 1 2];
-errmsg1 = msprintf(_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "det", 1);
-assert_checkerror("det([1,2;3,4;5,6])", errmsg1, 20);
-errmsg2 = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "det", 1);
-assert_checkerror("det(A,1)", errmsg2, 77);
+assert_checkerror("det([1,2;3,4;5,6])", [], 103);
+assert_checkerror("det(A,1)", [], 71);
 
 // Check det == 0 for simple cases
 A = 0;
@@ -117,4 +113,3 @@ b
 b
 b];
 assert_checkalmostequal(det(A), 0);
-

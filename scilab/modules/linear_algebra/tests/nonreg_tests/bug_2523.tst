@@ -1,10 +1,13 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA Serge Steer
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 2523 -->
 //
@@ -16,19 +19,18 @@
 // hang scilab
 
 
-if execstr("[1 %inf]\1 ","errcatch")<>999 then pause,end
-if execstr("[1 2]\%inf ","errcatch")<>999 then pause,end
+assert_checkerror("[1 %inf]\1", [], 39);
+assert_checkerror("[1 2]\%inf", [], 39);
 
-if execstr("[1+%i %inf]\1 ","errcatch")<>999 then pause,end
-if execstr("[1+%i %inf]\%i ","errcatch")<>999 then pause,end
+assert_checkerror("[1+%i %inf]\1", [], 39);
+assert_checkerror("[1+%i %inf]\%i", [], 39);
 
-if execstr("[1 %i]\%inf ","errcatch")<>999 then pause,end
+assert_checkerror("[1 %i]\%inf", [], 39);
 
-if execstr("1/[1 %inf] ","errcatch")<>999 then pause,end
-if execstr("%inf/[1 2] ","errcatch")<>999 then pause,end
+assert_checkerror("1/[1 %inf]", [], 39);
+assert_checkerror("%inf/[1 2]", [], 39);
 
-if execstr("1/[1+%i %inf] ","errcatch")<>999 then pause,end
-if execstr("%i/[1+%i %inf] ","errcatch")<>999 then pause,end
+assert_checkerror("1/[1+%i %inf]", [], 39);
+assert_checkerror("%i/[1+%i %inf]", [], 39);
 
-if execstr("%inf/[1 %i] ","errcatch")<>999 then pause,end
-
+assert_checkerror("%inf/[1 %i]", [], 39);

@@ -3,11 +3,13 @@
 // Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
 // Copyright (C) 2013 - Michaël Baudin
 // Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 9196 -->
 //
@@ -31,7 +33,7 @@ xexpected=[7129/2520
            113567/144144
            1768477/2450448];
 x=A\b;
-assert_checkalmostequal(x, xexpected, [], 1e-6);
+assert_checkalmostequal(x, xexpected, [], 1e-5);
 
 
 Ac=complex(A,zeros(A));
@@ -69,7 +71,7 @@ xexpected=[1879/2520;
            69659/720720;
            1068047/12252240];
 x=A\b;
-assert_checkalmostequal(x, xexpected, [], 1e-7);
+assert_checkalmostequal(x, xexpected, [], 1e-6);
 Ac=complex(A,zeros(A));
 bc=complex(b,zeros(b));
 xc = Ac\bc;
@@ -91,4 +93,4 @@ xexpected=[
 7.87871850371850480e-001
 7.21695379783615090e-001
 ];
-assert_checkalmostequal(x, xexpected, [], 1e-6);
+assert_checkalmostequal(x, xexpected, [], 1e-5);
