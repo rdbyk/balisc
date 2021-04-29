@@ -2,7 +2,7 @@
 // Copyright (C) 2009-2010 - Calixte Denizet
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2019 - Samuel GOUGEON
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -76,10 +76,10 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
         error(72, 1, 4);
     end
 
-    if ~isdef("exportFormat","l")    , exportFormat = "latex", end
-    if ~isdef("delimiter","l")       , delimiter = "("       , end
-    if ~isdef("processByElement","l"), processByElement = %F,  end
-    if ~isdef("isWrapped","l")       , isWrapped = %T,         end
+    if isvoid(exportFormat)    , exportFormat = "latex", end
+    if isvoid(delimiter)       , delimiter = "("       , end
+    if isvoid(processByElement), processByElement = %F,  end
+    if isvoid(isWrapped)       , isWrapped = %T,         end
 
     if type(exportFormat) <> 10 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"prettyprint",2));

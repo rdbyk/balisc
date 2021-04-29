@@ -1,5 +1,0 @@
-myLongString=["azea";"bc";"fdgdf"];
-function f(myLongString);
-    error(myLongString);
-endfunction
-assert_checkerror("f()", myLongString);

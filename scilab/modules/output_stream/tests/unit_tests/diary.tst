@@ -1,11 +1,14 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 cd(TMPDIR);
 [a1,b1] = diary('log1.txt');
 if (a1 == 0) then pause,end
@@ -109,11 +112,8 @@ mdelete(TMPDIR + '/diarydate2');
 ierr = execstr("diary('''','''','''')","errcatch");
 if ierr <> 999 then pause,end
 // =============================================================================
-ierr = execstr("diary([],[],[])","errcatch");
-if ierr <> 999 then pause,end
-// =============================================================================
-ierr = execstr("diary([],''list'',[])","errcatch");
-if ierr <> 999 then pause,end
+assert_checkerror("diary([],[],[])", [], 91);
+assert_checkerror("diary([],''list'',[])", [], 91);
 // =============================================================================
 names = [];
 ids = [];

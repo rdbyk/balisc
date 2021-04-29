@@ -2,14 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
-// unit tests for msprintf function
-// =============================================================================
+// <-- NO CHECK REF -->
 
 // format '%f'
 // =============================================================================
@@ -181,7 +180,7 @@ B = 100*rand(nb_row,1);
 
 assert_checkfalse(execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B);","errcatch")     == 0);
 refMsg = msprintf(_("%s: Wrong number of input arguments: data doesn''t fit with format.\n"), "msprintf");
-assert_checkerror("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B);", refMsg);
+assert_checkerror("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B);", [], 150);
 
 // No arg
 assert_checkfalse(execstr("msprintf();","errcatch")     == 0);
@@ -193,8 +192,4 @@ s=poly(0,"s");
 p=1+s+2*s^2;
 
 assert_checkfalse(execstr("msprintf(""plop"",p);","errcatch") <> 999);
-
-assert_checkfalse(execstr("msprintf(""%s %s"",""plop"");","errcatch")     <> 999);
-refMsg = msprintf(_("%s: Wrong number of input arguments: data doesn''t fit with format.\n"), "msprintf");
-assert_checkerror("msprintf(""%s %s"",""plop"");", refMsg);
-
+assert_checkerror("msprintf(""%s %s"",""plop"");", [], 150);
