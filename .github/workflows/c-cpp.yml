@@ -66,6 +66,7 @@ jobs:
     - name: test_run (fixed)
       run: |
         cd scilab
+        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"arnoldi\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"boolean\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"console\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"core\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"

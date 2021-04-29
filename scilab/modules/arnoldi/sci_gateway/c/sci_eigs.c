@@ -1,8 +1,8 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,8 +10,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 
 #include <math.h>
 #include <string.h>
@@ -527,7 +527,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
 
         if (iCHOLB != 1 && iCHOLB != 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
+            Scierror(110, 8, _("opts.cholB must be %f or %t"));
             FREE_AB;
             FREE_PSTDATA;
             return 1;
@@ -548,7 +548,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
 
         if (dblCHOLB != 1 && dblCHOLB != 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
+            Scierror(110, 8, _("opts.cholB must be %f or %t"));
             FREE_AB;
             FREE_PSTDATA;
             return 1;

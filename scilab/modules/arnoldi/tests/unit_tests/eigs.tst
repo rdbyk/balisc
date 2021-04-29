@@ -1,14 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
-// unit tests for eigs function
-// =============================================================================
+// <-- NO CHECK REF -->
 
 // Interface
 // =========
@@ -382,13 +381,8 @@ assert_checkerror("eigs(sparse(A), [], 4, which, opts)", refMsg);
 
 clear opts
 opts.cholB  = %nan;
-assert_checkfalse(execstr("eigs(A, [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
-assert_checkerror("eigs(A, [], 4, which, opts)", refMsg);
-
-assert_checkfalse(execstr("eigs(sparse(A), [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
-assert_checkerror("eigs(sparse(A), [], 4, which, opts)", refMsg);
+assert_checkerror("eigs(A, [], 4, which, opts)", [], 110);
+assert_checkerror("eigs(sparse(A), [], 4, which, opts)", [], 110);
 
 opts.cholB  = "ahh";
 assert_checkfalse(execstr("eigs(A, [], 4, which ,opts)", "errcatch") == 0);
@@ -400,33 +394,16 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: %s must be an intege
 assert_checkerror("eigs(sparse(A), [], 4, which, opts)", refMsg);
 
 opts.cholB  = %eps;
-assert_checkfalse(execstr("eigs(A, [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
-assert_checkerror("eigs(A, [], 4, which, opts)", refMsg);
-
-assert_checkfalse(execstr("eigs(sparse(A), [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
-assert_checkerror("eigs(sparse(A), [], 4, which, opts)", refMsg);
+assert_checkerror("eigs(A, [], 4, which, opts)", [], 110);
+assert_checkerror("eigs(sparse(A), [], 4, which, opts)", [], 110);
 
 opts.cholB  = -5.1;
-assert_checkfalse(execstr("eigs(A, [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
-assert_checkerror("eigs(A, [], 4, which, opts)", refMsg);
-
-assert_checkfalse(execstr("eigs(sparse(A), [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
-assert_checkerror("eigs(sparse(A), [], 4, which, opts)", refMsg);
+assert_checkerror("eigs(A, [], 4, which, opts)", [], 110);
+assert_checkerror("eigs(sparse(A), [], 4, which, opts)", [], 110);
 
 opts.cholB  = 5.1;
-assert_checkfalse(execstr("eigs(A, [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
-assert_checkerror("eigs(A, [], 4, which, opts)", refMsg);
-
-assert_checkfalse(execstr("eigs(sparse(A), [], 4, which ,opts)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB", "%f", "%t");
-assert_checkerror("eigs(sparse(A), [], 4, which, opts)", refMsg);
-
-
+assert_checkerror("eigs(A, [], 4, which, opts)", [], 110);
+assert_checkerror("eigs(sparse(A), [], 4, which, opts)", [], 110);
 
 opts.cholB = [];
 assert_checkfalse(execstr("eigs(A, [], 4, which ,opts)", "errcatch") == 0);

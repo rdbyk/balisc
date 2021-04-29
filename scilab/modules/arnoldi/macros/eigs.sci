@@ -357,7 +357,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     select typeof(cholB)
     case "boolean"
         if and(opts.cholB <> [%f %t]) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f", "%t"));
+            error(110, 8, _("opts.cholB must be %f or %t"));
         end
     case "constant"
         //check if chol is complex?
@@ -366,7 +366,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
         end
 
         if(and(cholB <> [0 1]))
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: %s must be %s or %s.\n"), "eigs", 8, "opts.cholB","%f", "%t"));
+            error(110, 8, _("opts.cholB must be %f or %t"));
         end
     else
         error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB"));
