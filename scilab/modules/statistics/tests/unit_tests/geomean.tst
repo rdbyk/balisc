@@ -1,6 +1,7 @@
 // =======================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =======================================================================
@@ -20,9 +21,9 @@ x = grand(50,40,"uin", 1, 1000);
 y = geomean(x);
 yi = geomean(1 ./ x);
 assert_checkequal(y*yi, 1);
-yc = geomean([x, 1../x], "c");
+yc = geomean([x, ones(x)./x], "c");
 assert_checkalmostequal(yc, ones(x(:,1)), 10*%eps);
-yr = geomean([x ; 1../x], "r");
+yr = geomean([x ; ones(x)./x], "r");
 assert_checkalmostequal(yr, ones(x(1,:)), 10*%eps);
 
 // With a special spreading value somewhere
@@ -56,14 +57,14 @@ end
 // Hypermatrices
 x = grand(30,20,10, "uin", 1, 1000);
 y = geomean(x);
-yi = geomean(1 ./ x);
+yi = geomean(ones(x) ./ x);
 assert_checkequal(y*yi, 1);
-yc = geomean([x, 1../x], "c");
+yc = geomean([x, ones(x)./x], "c");
 assert_checkalmostequal(yc, ones(x(:,1,:)), 10*%eps);
-yr = geomean([x ; 1../x], "r");
+yr = geomean([x ; ones(x)./x], "r");
 assert_checkalmostequal(yr, ones(x(1,:,:)), 10*%eps);
 xe = x;
-xe(:,:,11:20) = 1../x;
+xe(:,:,11:20) = ones(x)./x;
 y3 = geomean(xe, 3);
 assert_checkalmostequal(y3, ones(x(:,:,1)), 10*%eps);
 

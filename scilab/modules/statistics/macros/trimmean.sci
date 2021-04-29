@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002 - INRIA - Carlos Klimann
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -77,17 +77,17 @@ function t=trimmean(x,discard,orien, verbose)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"trimmean",1,4))
     end
 
-    if exists("discard","local")==0 then
+    if isvoid(discard) then
         discard = 50.
     else
         if type(discard)~=1 | ~isreal(discard) | length(discard) ~=1 | discard > 100 | discard < 0 then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: Real number between %d to %d expected.\n"),"trimmean",2,0,100))
         end
     end
-    if exists("orien","local")==0 then
+    if isvoid(orien) then
         orien = "all"
     end
-    if exists("verbose","local")==0 then
+    if isvoid(verbose) then
         verbose=0;
     end
     // Compute sizx

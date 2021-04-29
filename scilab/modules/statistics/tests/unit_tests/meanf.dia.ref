@@ -1,19 +1,9 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
-// unit tests for meanf function
-// =============================================================================
 assert_checkfalse(execstr("meanf()"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong number of input argument: %d to %d expected.\n"), "meanf", 2, 3);
 assert_checkerror("meanf()", refMsg);
 assert_checkequal(meanf([], 1), %nan);
 assert_checkequal(meanf(%nan, 1), %nan);
 assert_checkequal(meanf(%nan, %nan), %nan);
-// Vector
 x = 1:10;
 assert_checkequal(meanf(x, 5), 55);
 assert_checkequal(meanf(x', 5), 55);
@@ -36,7 +26,6 @@ assert_checkerror("meanf(x, x, ''t'')", refMsg);
 assert_checkfalse(execstr("meanf(x, x, 4)"   ,"errcatch") == 0);
 refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"meanf",3,"r","c",1,2);
 assert_checkerror("meanf(x, x, 4)", refMsg);
-// Matrix
 A=[1,2,10;7,7.1,7.01];
 assert_checkfalse(execstr("meanf(A, A'')"   ,"errcatch") == 0);
 refMsg = msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"),"meanf",1,2);

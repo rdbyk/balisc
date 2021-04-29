@@ -1,6 +1,7 @@
 // Copyright (C) 2012-2013 - Michael Baudin
 // Copyright (C) 2010 - INRIA - Michael Baudin
 // Copyright (C) 2019 - Stéphane MOTTELET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file must be used under the terms of the GNU Lesser General Public License license :
 // http://www.gnu.org/copyleft/lesser.html
@@ -11,33 +12,13 @@
 // <-- NO CHECK REF -->
 
 // Check error
-assert_checkfalse(execstr("cov()"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of input arguments: %d, %d or %d expected.\n"),"cov", 1, 2, 3);
-assert_checkerror("cov()", refMsg);
-
-assert_checkfalse(execstr("cov(""r"")", "errcatch") =  = 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: a real matrix expected.\n"), "cov", 1);
-assert_checkerror("cov(""r"")", refMsg);
-
-assert_checkfalse(execstr("cov([1;2], ""r"")", "errcatch") =  = 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: an integer or a real matrix expected.\n"), "cov", 2);
-assert_checkerror("cov([1;2], ""r"")", refMsg);
-
-assert_checkfalse(execstr("cov(""r"", [1;2])", "errcatch") =  = 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: a real matrix expected.\n"), "cov", 1);
-assert_checkerror("cov(""r"", [1;2])", refMsg);
-
-assert_checkfalse(execstr("cov(""r"", [1;2], 1)", "errcatch") =  = 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: a real matrix expected.\n"), "cov", 1);
-assert_checkerror("cov(""r"", [1;2], 1)", refMsg);
-
-assert_checkfalse(execstr("cov([1;2], ""r"", 1)", "errcatch") =  = 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: a real matrix expected.\n"), "cov", 2);
-assert_checkerror("cov([1;2], ""r"", 1)", refMsg);
-
-assert_checkfalse(execstr("cov([1;2], [3;4], ""r"")", "errcatch") =  = 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: an integer expected.\n"), "cov", 3);
-assert_checkerror("cov([1;2], [3;4], ""r"")", refMsg);
+assert_checkerror("cov()", [], 72);
+assert_checkerror("cov(""r"")", [], 94);
+assert_checkerror("cov([1;2], ""r"")", [], 90);
+assert_checkerror("cov(""r"", [1;2])", [], 94);
+assert_checkerror("cov(""r"", [1;2], 1)", [], 94);
+assert_checkerror("cov([1;2], ""r"", 1)", [], 94);
+assert_checkerror("cov([1;2], [3;4], ""r"")", [], 92);
 
 x = [1;2];
 y = [3;4];

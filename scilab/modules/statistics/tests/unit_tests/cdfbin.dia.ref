@@ -1,16 +1,3 @@
-//<-- CLI SHELL MODE -->
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// =============================================================================
-// Tests for cdfbin() function
-//
-// CN^k pr^k(1-pr)^(Xb-k)
-//
-// =============================================================================
 function k=fact(n)
     if n<=1;k=1;else k=n*fact(n-1);end
 endfunction
@@ -39,5 +26,4 @@ XN1         = XN*ones(1,XN+1);
 [PR1,OMPR1] = cdfbin("PrOmpr",P,Q,S,XN1);
 if norm(S1-S)                  > prec  then bugmes();quit;end
 if norm(XN1(1:$-1)-XN2(1:$-1)) > 10*prec  then bugmes();quit;end
-// not good when pr is near 1 or zero
 if norm(PR1(1:$-1)-PR(1:$-1)) > 0.1  then bugmes();quit;end

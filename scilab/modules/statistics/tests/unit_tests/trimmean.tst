@@ -1,10 +1,13 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // With x as a vector and 1 argument
 data = [10, 20, 30, 40, 50, 60, 70, 80, 4000];
@@ -132,4 +135,3 @@ data = [10, 20, 30, 40, 50, 60, 70, 80, 4000];
 computed = trimmean(data,discard=100);
 expected = 50;
 if abs(computed-expected)>%eps then pause,end
-

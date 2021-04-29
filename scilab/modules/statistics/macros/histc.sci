@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017 - 2020 - Samuel GOUGEON
-// Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2020 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -64,13 +64,13 @@ function [heights, jokers, binsOut, ind] = histc(data, bins, options)
     // -------------------------
     mode55 = %f
     // Check for Scilab 5.5 back-compatibility
-    if (isdef("data","l") & isdef("bins", "l") & type(bins)>0) & ..
+    if (~isvoid(data) & ~isvoid(bins) & type(bins)>0) & ..
         size(data,"*")< size(bins,"*") & or(type(data)==[1 8]) & type(bins)~=10
         msg = _("%s: data are now expected in argument #1 => arguments #1 and #2 switched\n")
         warning(msprintf(msg, fname))
         mode55 = %t
         [data, bins] = (bins, data)
-        tmp = isdef("options","l") && type(options)==4
+        tmp = ~isvoid(options) && type(options)==4
         normarg = %f
         norma = %f
         if isdef("normalization","l")
@@ -82,7 +82,7 @@ function [heights, jokers, binsOut, ind] = histc(data, bins, options)
             if nargin<3 then
                 norma = %t
             else
-                if isdef("options","l") & type(options)==4
+                if ~isvoid(options) & type(options)==4
                     normarg = %t
                     norma = options(1)
                 end
@@ -99,14 +99,14 @@ function [heights, jokers, binsOut, ind] = histc(data, bins, options)
         end
     end
     // -----------------------
-    if ~isdef("data","l") | type(data)==0 then
+    if isvoid(data) | type(data)==0 then
         msg = _("%s: Argument #%d: %s\n")
         error(msprintf(msg, fname, 1, "data array missing"))
     end
-    if ~isdef("bins","l") | type(bins)==0 then
+    if isvoid(bins) | type(bins)==0 then
         bins = []
     end
-    if ~isdef("options","l") then
+    if isvoid(options) then
         options = "counts"
     end
     // Now, bins, data and options are defined. Let's check their types and sizes

@@ -3,7 +3,7 @@
 // Copyright (C) 2012-2013 - Michael Baudin
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2019 - Stéphane MOTTELET
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -95,20 +95,20 @@ function C = cov(x,y,nrmlztn)
     // [3] NIST/SEMATECH e-Handbook of Statistical Methods, 6.5.4.1. Mean Vector and Covariance Matrix, http://www.itl.nist.gov/div898/handbook/pmc/section5/pmc541.htm
 
     if nargin == 0
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d, %d or %d expected.\n"),"cov", 1, 2, 3));
+        error(72, 1, 3);
     elseif nargin == 1
         y = 0
     end
     //
     // Check type
     if (typeof(x) <> "constant")
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: a real matrix expected.\n"),"cov", 1));
+        error(94, 1);
     end
 
     if (nargin <= 2) then
         //
         if (typeof(y) <> "constant")
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: an integer or a real matrix expected.\n"),"cov", 2));
+			error(90, 2, _("integer or real matrix"));
         end
         //
         // Check size
@@ -121,7 +121,7 @@ function C = cov(x,y,nrmlztn)
             return
         elseif isscalar(y)
             if y <> 0 & y <> 1
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: %d or %d expected.\n"),"cov", 2, 0, 1));
+            error(110, 2, _("0 or 1"));
             end
             //
             if isvector(x)
@@ -140,20 +140,20 @@ function C = cov(x,y,nrmlztn)
 
     if (nargin == 3)
         if (typeof(y) <> "constant")
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: a real matrix expected.\n"),"cov", 2));
+            error(94, 2);
         end
         if (typeof(nrmlztn) <> "constant")
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: an integer expected.\n"),"cov", 3));
+            error(92, 3);
         end
         if ( ~isscalar(nrmlztn) || (nrmlztn <> 0 & nrmlztn <> 1))
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: %d or %d expected.\n"),"cov", 3, 0, 1));
+            error(110, 3, _("0 or 1"));
         end
     end
 
     if isvector(x) & isvector(y)
         nobs = length(x)
         if nobs <> length(y)
-            error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected"),"cov", 1, 2));
+            error(_("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"), "cov", 1, 2);
         end
         r = 1 / (nobs - 1 + nrmlztn);
         mx = mean(x);
@@ -162,7 +162,7 @@ function C = cov(x,y,nrmlztn)
                                    0, norm(y)^2 - nobs*my^2];
         C(2,1)=C(1,2);
     elseif size(x,"r") <> size(y,"r")
-        error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"),"cov", 1, 2));
+        error(_("%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"), "cov", 1, 2);
     else
         nobs = size(x,"r")
         r = 1 / (nobs - 1 + nrmlztn);

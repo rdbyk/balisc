@@ -3,7 +3,7 @@
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2013 - Scilab Enteprises - Paul Bignier: added given mean
 // Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/15144
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -46,10 +46,10 @@ function sd = stdev(x, o, m)
         ovname = "%" + typeof(x,"overload")+"_stdev";
         if isdef(ovname)
             tmp = "sd = " + ovname + "(x";
-            if isdef("o","l")
+            if ~isvoid(o)
                 tmp = tmp + ", o";
             end
-            if isdef("m","l")
+            if ~isvoid(m)
                 tmp = tmp + ", m";
             end
             execstr(tmp + ");")
@@ -165,7 +165,7 @@ function sd = stdev(x, o, m)
     if mn == 1 then
         sd = 0*y;
     else
-        if nargin <= 2 & exists("m", "local") == 0 then // If m is provided but nargin=2, that means we want the biased deviation
+        if nargin <= 2 && isvoid(m) then // If m is provided but nargin=2, that means we want the biased deviation
             sd = sqrt(sum(y.^2,o)/(mn-1));
         else
             sd = sqrt(sum(y.^2,o)/mn);

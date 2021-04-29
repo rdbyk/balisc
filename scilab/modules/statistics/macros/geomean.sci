@@ -3,7 +3,7 @@
 // Copyright (C) 2010, 2016 - Samuel GOUGEON
 // Copyright (C) 2016 - Michael Baudin
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,7 +26,7 @@ function gm = geomean(x, orien)
         msg = _("%s: Argument #%d: Decimal or complex number(s) expected.\n")
         error(msprintf(msg, "geomean", 1))
     end
-    if isdef("orien", "l") then
+    if ~isvoid(orien) then
         if type(orien)==1
             orien = int(orien)
         end
