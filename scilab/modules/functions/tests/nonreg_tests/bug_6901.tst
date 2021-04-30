@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 6901 -->
 //
@@ -16,5 +18,4 @@
 // This script with 'exec' produced a weird warning
 
 mputl("exec("""", -1);", TMPDIR + "/bug.sce");
-ierr = execstr("exec(TMPDIR + ''/bug.sce'');", "errcatch");
-if ierr <> 999 then pause,end
+assert_checkerror("exec(TMPDIR + ''/bug.sce'');", [], 52);
