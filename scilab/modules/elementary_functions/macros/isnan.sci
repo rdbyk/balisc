@@ -1,16 +1,21 @@
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-// Copyright (C) DIGITEO - 2011 - Allan CORNET
-// Copyright (C) 2016 - Samuel GOUGEON
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Balisc (https://github.com/rdbyk/balisc/)
 //
-// This file is hereby licensed under the terms of the GNU GPL v2.0,
-// pursuant to article 5.3.4 of the CeCILL v.2.1.
-// This file was originally licensed under the terms of the CeCILL v2.1,
-// and continues to be available under such terms.
-// For more information, see the COPYING file which you should have received
-// along with this program.
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+// 02110-1301, USA.
 
 function x = isnan(x)
 
@@ -18,9 +23,19 @@ function x = isnan(x)
         error(71, 1);
     end
 
-	if x <> []
-		m = abs(x)
-		x = m <> m
+	t = type(x)
+
+	if t == 1 || t == 5 || t == 2
+		x = abs(x)
+		if x <> []
+			if isreal(x)
+				x = x <> x
+			else
+				x = x <> x & ~isinf(x)
+			end
+		end
+	else
+		error(90, 1, _("real, complex or polynomial matrix"));
 	end
 
-endfunction
+end

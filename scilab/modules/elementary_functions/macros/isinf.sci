@@ -1,41 +1,39 @@
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2016, 2019 - Samuel GOUGEON
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Balisc (https://github.com/rdbyk/balisc/)
 //
-// This file is hereby licensed under the terms of the GNU GPL v2.0,
-// pursuant to article 5.3.4 of the CeCILL v.2.1.
-// This file was originally licensed under the terms of the CeCILL v2.1,
-// and continues to be available under such terms.
-// For more information, see the COPYING file which you should have received
-// along with this program.
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+// 02110-1301, USA.
 
-function r = isinf(x)
+function x = isinf(x)
 
     if nargin <> 1 then
         error(71, 1)
     end
 
-    if x==[] then
-        r = []
-    else
-        select typeof(x)
-        case "polynomial"
-            // polynomials : http://bugzilla.scilab.org/10078
-            r = matrix(or(isinf(coeff(x(:))),"c"), size(x))
-        case "rational"
-            msg = _("%s: Argument #%d: %s not supported.\n")
-            error(msprintf(msg, "isinf", 1, "rationals"))
-            // Possible implementation: a rational is inf if at least
-            // one coefficient of its numerator is infinite
-        else
-            if isreal(x)
-                r = abs(x)==%inf;
-            else
-                // workaround of http://bugzilla.scilab.org/14062
-                r = abs(real(x))==%inf | abs(imag(x))==%inf
-            end
-        end
-    end
-endfunction
+	t = type(x)
+
+	if t == 1 || t == 5
+		x = abs(x)
+		if x <> []
+			x = x == %inf
+		end
+	elseif t == 2
+		x = matrix(or(isinf(coeff(x(:))),"c"), size(x))
+	else
+		error(90, 1, _("real, complex or polynomial matrix"));
+	end
+
+end
