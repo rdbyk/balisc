@@ -1,11 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 14796 -->
 //
 // <-- Bugzilla URL -->
@@ -21,6 +24,4 @@ assert_checkequal(res, expected);
 res = ind2sub([4 2 5], []);
 assert_checkequal(res, expected);
 
-assert_checkfalse(execstr("[resi, resj] = ind2sub([4 2], [])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output arguments: %d expected.\n"), "ind2sub", 1);
-assert_checkerror("[resi, resj] = ind2sub([4 2], [])", refMsg);
+assert_checkerror("[resi, resj] = ind2sub([4 2], [])", [], 81);

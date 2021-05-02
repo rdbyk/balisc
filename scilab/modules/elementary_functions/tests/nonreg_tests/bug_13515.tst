@@ -4,6 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 13515 -->
 //
 // <-- Bugzilla URL -->
@@ -11,8 +15,6 @@
 //
 // <-- Short Description -->
 // there were wrong results for matrix/hypermatrix with bitset function
-//
-// <-- CLI SHELL MODE -->
 
 clear "checkBitset"
 function checkBitset(x, pos, v, isOne, typeOfx)
@@ -84,56 +86,49 @@ function [dbRefOne, dbRefZero, ...
 endfunction
 
 // check input arguments
-lstr = gettext("%s: Wrong number of input arguments: At least %d expected.\n");
-errmsg = msprintf (lstr, "bitset", 2);
-assert_checkerror("bitset(1)", errmsg);
-assert_checkerror("bitset()", errmsg);
-lstr = gettext("%s: Wrong size for input arguments: Same sizes expected.\n");
-errmsg = msprintf (lstr, "bitset");
-assert_checkerror("bitset([], [1, 2])", errmsg);
-lstr = gettext("%s: Wrong value for input argument #%d: 0 or 1 expected.\n");
-errmsg = msprintf (lstr, "bitset", 3);
+assert_checkerror("bitset(1)", [], 73);
+assert_checkerror("bitset()", [], 73);
+
+errmsg = gettext("bitset: Argument #3: Must be in the set {0,1}.");
 assert_checkerror("bitset(1, 1, 3)", errmsg);
 assert_checkerror("bitset(1, 1, %t)", errmsg);
 assert_checkerror("bitset([1, 2], [1, 1], [2, 0])", errmsg);
 assert_checkerror("bitset([1; 2; 3], [1; 1; 1], [0; 0; 4])", errmsg);
-lstr = gettext("%s: Wrong size for input arguments: Same sizes expected.\n");
-errmsg = msprintf (lstr, "bitset");
-assert_checkerror("bitset(1, [1, 2], 1)", errmsg);
-assert_checkerror("bitset([1, 2], [1, 2, 3], 1)", errmsg);
-assert_checkerror("bitset([1, 2, 3], [1, 2, 3], 1)", errmsg);
-lstr = gettext("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n");
+
+lstr = gettext("%s: Argument #%d: Non-negative real integers expected.\n");
 errmsg = msprintf (lstr, "bitset", 1);
 assert_checkerror("bitset(""1"", 1, 1)", errmsg);
 assert_checkerror("bitset(poly(0,""s""), 1, 1)", errmsg);
 assert_checkerror("bitset([1, -1], [1, 0], [1, 0])", errmsg);
 assert_checkerror("bitset([0.5, 0.2], [1, 0], [1, 0])", errmsg);
 assert_checkerror("bitset([%t, %t], [1, 0], [1, 0])", errmsg);
+
+lstr = gettext("%s: Argument #%d: integers > 0 expected.\n");
+errmsg = msprintf (lstr, "bitset", 2);
 assert_checkerror("bitset(int32([1, 1]), [1, 0], [1, 0])", errmsg);
 assert_checkerror("bitset(int16([1, 1]), [1, 0], [1, 0])", errmsg);
 assert_checkerror("bitset(int8([1, 1]), [1, 0], [1, 0])", errmsg);
-errmsg = msprintf (lstr, "bitset", 2);
 assert_checkerror("bitset(1,""1"", 1)", errmsg);
 assert_checkerror("bitset(1, poly(0,""s""), 1)", errmsg);
 assert_checkerror("bitset([1, 0], [1, -1], [1, 0])", errmsg);
 assert_checkerror("bitset([1, 0], [0.5, 0.2], [1, 0])", errmsg);
 assert_checkerror("bitset([1; 0], [%t; %t], [1; 0])", errmsg);
-assert_checkerror("bitset([1, 0], int32([1, 1]), [1, 0])", errmsg);
-assert_checkerror("bitset([1, 0], int16([1, 1]), [1, 0])", errmsg);
-assert_checkerror("bitset([1, 0], int8([1, 1]), [1, 0])", errmsg);
-lstr = gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n");
-errmsg = msprintf (lstr, "bitset", 2, 1, 52);
-assert_checkerror("bitset([1, 0], [1, 53], [1, 0])", errmsg);
 assert_checkerror("bitset([1, 0], [0, 5], [1, 0])", errmsg);
-errmsg = msprintf (lstr, "bitset", 2, 1, 8);
-assert_checkerror("bitset(uint8([1, 0; 1, 0]), [1, 2; 1, 9], [1, 0; 1, 1])", errmsg);
 assert_checkerror("bitset(uint8([1, 0; 1, 0]), [1, 0; 0, 1], [1, 0; 1, 1])", errmsg);
-errmsg = msprintf (lstr, "bitset", 2, 1, 16);
-assert_checkerror("bitset(uint16([1, 0; 1, 0]), [1, 17; 1, 9], [1, 0; 1, 1])", errmsg);
 assert_checkerror("bitset(uint16([1, 0; 1, 0]), [1, 0; 0, 1], [1, 0; 1, 1])", errmsg);
-errmsg = msprintf (lstr, "bitset", 2, 1, 32);
-assert_checkerror("bitset(uint32([1, 0; 1, 0]), [1, 17; 33, 1], [1, 0; 1, 1])", errmsg);
 assert_checkerror("bitset(uint32([1, 0; 1, 0]), [1, 1; 0, 1], [1, 0; 1, 1])", errmsg);
+
+lstr = gettext("%s: Argument #%d: Integers <= 8 expected.\n");
+errmsg = msprintf (lstr, "bitset", 2);
+assert_checkerror("bitset(uint8([1, 0; 1, 0]), [1, 2; 1, 9], [1, 0; 1, 1])", errmsg);
+
+lstr = gettext("%s: Argument #%d: Integers <= 16 expected.\n");
+errmsg = msprintf (lstr, "bitset", 2);
+assert_checkerror("bitset(uint16([1, 0; 1, 0]), [1, 17; 1, 9], [1, 0; 1, 1])", errmsg);
+
+lstr = gettext("%s: Argument #%d: Integers <= 32 expected.\n");
+errmsg = msprintf (lstr, "bitset", 2);
+assert_checkerror("bitset(uint32([1, 0; 1, 0]), [1, 17; 33, 1], [1, 0; 1, 1])", errmsg);
 
 // check results
 // create value to check
@@ -295,4 +290,3 @@ checkBitset(uint16Value, uint16Pos, uint16BitValue, %f, 16);
 // uint32
 checkBitset(uint32Value, uint32Pos, uint32BitValue + 1, %t, 32);
 checkBitset(uint32Value, uint32Pos, uint32BitValue, %f, 32);
-

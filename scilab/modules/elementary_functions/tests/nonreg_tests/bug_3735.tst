@@ -10,10 +10,10 @@
 // Date : November 2008
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 A = ["First Row";"Second Row"];
 B = ["Third Row";"Fourth Row"];
 result = cat(1,A,B)
 
 if result <> ["First Row";"Second Row";"Third Row";"Fourth Row"] then pause,end
-

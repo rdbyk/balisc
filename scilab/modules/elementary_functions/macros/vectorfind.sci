@@ -3,7 +3,7 @@
 // Copyright (C) 2010 - DIGITEO - Vincent COUVERT
 // Copyright (C) 2017 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,7 +21,7 @@ function [ind, matching] = vectorfind(m, v, way, joker, indType)
         error(72, 2, 5)
     end
 
-    if ~isdef("joker", "l") | type(joker) == 0 then
+    if isvoid(joker) | type(joker) == 0 then
         joker = []
     end
 
@@ -49,7 +49,7 @@ function [ind, matching] = vectorfind(m, v, way, joker, indType)
 
     Ndim = ndims(m);
     // Checking the direction:
-    if ~isdef("way", "l") | type(way) == 0 then
+    if isvoid(way) | type(way) == 0 then
         way = 1         // Default direction
     elseif size(way, "*") > 1 then
         msg = _("%s: Argument #%d: Scalar (1 element) expected.\n");
@@ -84,8 +84,8 @@ function [ind, matching] = vectorfind(m, v, way, joker, indType)
         msg = _("%s: Argument #%d: non-zero number expected.\n")
         error(msprintf(msg, "vectorfind", 4))
     end
-    // Checkinh indType
-    if ~isdef("indType", "l") | type(indType) == 0 then
+    // Checking indType
+    if isvoid(indType) | type(indType) == 0 then
         indType = ""
     elseif type(indType) ~= 10 then
         msg = _("%s: Argument #%d: Text expected.\n");

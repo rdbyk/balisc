@@ -78,6 +78,7 @@ jobs:
       run: |
         cd scilab
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"ast\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
+        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"elementary_functions\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"functions\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"integer\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"linear_algebra\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"

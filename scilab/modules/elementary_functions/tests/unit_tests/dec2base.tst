@@ -1,16 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-
-// unit tests for oct2dec function
-// =============================================================================
 
 base_10 = [
   247719156
@@ -1055,3 +1052,7 @@ assert_checkequal(dec2base(base_10, 16), base_16);
 assert_checkequal(dec2base(base_10, 23), base_23);
 assert_checkequal(dec2base(base_10, 28), base_28);
 assert_checkequal(dec2base(base_10, 35), base_35);
+
+// ignore imaginary part
+assert_checkequal(dec2base(%i, 2), "0");
+assert_checkequal(dec2base(3+%i, 2), "11");

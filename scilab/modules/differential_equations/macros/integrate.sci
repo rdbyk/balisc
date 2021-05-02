@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,34 +24,34 @@ function %x = integrate(%expr, %var, %x0, %x1, %ea, %er)
     //           'else sin(x)/x,end'],'x',0,%pi)
 
     if nargin < 4 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"integrate",4));
+        error(74, 4);
     end
 
-    if ~isdef("%ea","l") | %ea==[]
+    if isvoid(%ea) || %ea==[]
         %ea = 1e-13
     end
-    if ~isdef("%er","l")
+    if isvoid(%er)
         %er = 1e-8
     end
 
     if size(%x0,"*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"),"integrate",3));
+        error(101, 3);
     end
 
     if size(%ea,"*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"),"integrate",5));
+        error(101, 5);
     end
 
     if size(%er,"*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"),"integrate",6));
+        error(101, 6);
     end
 
     if imag(%x0)<>0 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"),"integrate",3));
+        error(93, 3);
     end
 
     if norm(imag(%x1),1)<>0 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"),"integrate",4));
+        error(93, 4);
     else
         %x1 = real(%x1)
     end
@@ -64,11 +64,11 @@ function %x = integrate(%expr, %var, %x0, %x1, %ea, %er)
             deff("ans=%func("+%var+")",%expr)
         end
     catch
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: syntax error in given expression\n"),"integrate",1));
+        error(101, 1, _("expression without syntax error"))
     end
 
     if strstr(%expr,"%i") <> "" then
-        error(msprintf(_("%s: Wrong value for input argument #%d: A real expected.\n"),"integrate",1));
+        error(110, 1, _("real expression"));
     end
 
     [%x1,%ks]=gsort(%x1,"g","i")

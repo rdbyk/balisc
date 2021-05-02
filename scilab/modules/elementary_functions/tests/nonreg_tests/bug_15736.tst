@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -16,4 +17,4 @@
 // <-- Short Description -->
 // unique failed with complex numbers.
 
-assert_checkequal(unique([1 %i]),[%i 1]);
+assert_checkequal(setdiff(unique([1 %i]),[%i 1]), []);

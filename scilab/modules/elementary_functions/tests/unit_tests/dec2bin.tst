@@ -26,6 +26,7 @@ if dec2bin(255)            <> "11111111"                                      th
 if dec2bin(26556445876512) <> "110000010011100100111100001011110000100100000" then pause,end
 if dec2bin((2^32)-1)       <> "11111111111111111111111111111111"              then pause,end
 if dec2bin(2^32)           <> "100000000000000000000000000000000"             then pause,end
+if dec2bin(uint64(2^53))   <> "100000000000000000000000000000000000000000000000000000" then pause, end
 
 if dec2bin(0,4)  <> "0000" then pause,end
 if dec2bin(1,4)  <> "0001" then pause,end

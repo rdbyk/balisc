@@ -2,15 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-
-// unit tests for oct2dec function
 
 base_10 = [
 	247719156
@@ -1051,3 +1049,10 @@ assert_checkequal(base2dec(base_16, 16), base_10);
 assert_checkequal(base2dec(base_23, 23), base_10);
 assert_checkequal(base2dec(base_28, 28), base_10);
 assert_checkequal(base2dec(base_35, 35), base_10);
+
+assert_checkequal(base2dec("G",16), %nan);
+assert_checkequal(base2dec("g",16), %nan);
+assert_checkequal(base2dec("FFFF",13), %nan);
+assert_checkequal(base2dec("FFFF",14), %nan);
+
+assert_checkerror ("base2dec([''ABC'', ''0'', ''A''], 16.123456)" , [], 110);

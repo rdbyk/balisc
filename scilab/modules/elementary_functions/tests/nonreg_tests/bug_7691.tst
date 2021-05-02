@@ -1,12 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-// <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 7691 -->
 //
@@ -29,9 +30,5 @@ funmat = [
   "tand"
 ];
 for fname = funmat'
-  instr = fname + "(%i)";
-  execstr(instr,"errcatch");
-  errmsg = lasterror();
-  expected = fname + ": Wrong type for input argument #1: Real matrix expected.";
-  if ( errmsg <> expected) then pause, end
+  assert_checkerror("execstr("+fname+"(%i)"+",""errcatch"")", [], 94);
 end

@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 8296 -->
 //
 // <-- Bugzilla URL -->
@@ -46,4 +48,4 @@ assert_checktrue((n1 == 3) & (n2 == 2) & (n3 == 3) & (n4 == 1));
 
 A = ones(3,2);
 msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"),"size",2);
-assert_checkerror ( "size(A, 1.2)" , msgerr);
+assert_checkerror ( "size(A, 1.2)" , [], 110);

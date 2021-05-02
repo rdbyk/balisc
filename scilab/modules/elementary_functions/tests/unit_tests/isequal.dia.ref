@@ -85,7 +85,7 @@ ints(0) = 'ints';
 string_scalars = list("", " ", "a", "A", "à", ascii(13), "aaaa", "aaab", "aaaa" + ascii(13));
 string_matrices = list(["", ""], [" ", " "], ["a", "a"], ["a", "A"], ["a", "à"], ..
     ["a" "b"; "c" "d"], ["a" "b"; "c" "d"; "e" "f"], ["a" "b" "c"; "d" "e" "f"]);
-strings = lstcat(string_scalars, string_matrices);
+strings = list(string_scalars(:), string_matrices(:));
 strings(0) = 'strings';
 function funcNoParamNoBodyNoReturn(); end;
 function funcWithParamNoBodyNoReturn(x); end;

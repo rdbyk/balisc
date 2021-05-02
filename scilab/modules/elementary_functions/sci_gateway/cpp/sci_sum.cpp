@@ -4,7 +4,7 @@
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -150,7 +150,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(90, 2, _("real matrix or a string"), fname, 2);
+            Scierror(90, 2, _("real matrix or a string"));
             return types::Function::Error;
         }
     }
@@ -159,7 +159,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     {
         if (in[2]->isString() == false)
         {
-            Scierror(91, fname, 3);
+            Scierror(91, 3);
             return types::Function::Error;
         }
 

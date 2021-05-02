@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Stéphane Mottelet
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -21,5 +22,4 @@ xs = nearfloat("succ", x);
 xp = nearfloat("pred", x);
 assert_checkequal(nearfloat("succ", matrix(x, 2, 2, 2)), matrix(xs, 2, 2, 2));
 assert_checkequal(nearfloat("pred", matrix(x, 2, 2, 2)), matrix(xp, 2, 2, 2));
-msg = sprintf(_("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "nearfloat", 2); 
-assert_checkerror("nearfloat(""succ"", %i)", msg);
+assert_checkerror("nearfloat(""succ"", %i)", [], 94);
