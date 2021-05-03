@@ -4,7 +4,7 @@
 // Copyright (C) 2009 - 2010 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - Michael Baudin
 // Copyright (C) 2019 - Samuel GOUGEON - Le Mans Université
-// Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2020 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -68,7 +68,7 @@ function varargout = nchoosek(n, k, logFormat)
         n = ones(k) * n
     end
     // logFormat
-    if isdef("logFormat","l") then
+    if ~isvoid(logFormat) then
         if type(logFormat) <> 10
             msg = _("%s: Argument #%d: Text expected.\n")
             error(msprintf(msg, fname, 3))
@@ -98,7 +98,7 @@ function varargout = nchoosek(n, k, logFormat)
         if or(p)
             logb(p) = (gammaln(n(p)+1) - gammaln(k(p)+1) - gammaln(n(p)-k(p))  - log(n(p)-k(p)))/log(10)
         end
-        if isdef("logFormat","l") & logFormat=="10.mant" then
+        if ~isvoid(logFormat) & logFormat=="10.mant" then
             logb = int(logb) + 10^(logb-int(logb)-1)
         end
         logb(logb<0) = %nan // Too big n. Example: [c, l] = nchoosek(1e110,2)
@@ -111,10 +111,10 @@ function varargout = nchoosek(n, k, logFormat)
     //   [logb, b] = nchoosek(n, k, logFormat)
     //   logb = nchoosek(n, k, logFormat)
     varargout = list()
-    if nargout==2 | isdef("logFormat","l") then
+    if nargout==2 | ~isvoid(logFormat) then
         varargout(1) = logb
     end
-    if nargout==1 & ~isdef("logFormat","l") | nargout==2 then
+    if nargout==1 & isvoid(logFormat) | nargout==2 then
         varargout($+1) = b
     end
 endfunction

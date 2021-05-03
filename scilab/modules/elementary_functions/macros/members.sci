@@ -2,7 +2,7 @@
 // Copyright (C) 2013 - Samuel GOUGEON
 // Copyright (C) 2009 - Université du Maine - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -159,7 +159,7 @@ function [nb, loc] = members(A, S, varargin)
     if and(type_S ~= [1 2 4 8 10]) then
         error(_("%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, booleans, polynomials or strings expected."), "members", 2);
     end
-    if or(isnan(S)) then
+    if or(type_S == [1 2 5]) & or(isnan(S)) then
         error(_("%s: Wrong value for argument #%d: Must not contain NaN."), "members", 2);
     end
 

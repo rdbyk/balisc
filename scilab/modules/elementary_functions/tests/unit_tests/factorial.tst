@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2018 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,6 +11,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 // ===========================================================================
+
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
@@ -131,7 +132,7 @@ p_exp = [5565708  65657059  756570556  8565705522  95657055186 ..
         ];
 //r_err = [3e-9 3e-8 3e-7 2e-6 5e-6 4e-4 5e-3 7e-2 2e-1]; // with 1st implementation
 //r_err = [3e-9 4e-8 2e-7 2e-6 3e-5 2e-4 2e-3 5e-2 8e-2]; // with gammaln(n+1)
-r_err  = [1e-10 6e-8 2e-8 2e-7 2e-6 7e-6 2e-4 5e-4 8e-3];
+r_err  = [2e-9 6e-8 2e-8 2e-7 2e-6 5e-5 2e-4 2e-3 2e-2];
 for i = 1:length(m_exp)
     assert_checkequal(p(i), p_exp(i));
     assert_checkalmostequal(m(i), m_exp(i), r_err(i));

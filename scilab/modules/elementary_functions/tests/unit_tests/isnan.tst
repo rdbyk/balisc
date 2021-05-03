@@ -1,14 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
-// unit tests for isnan() function
-// ===============================
+// <-- NO CHECK REF -->
 
 assert_checkequal(isnan([]), []);
 
@@ -47,16 +46,15 @@ G = [ -%inf -10 0 %nan 10 %inf];
 [R,I] = meshgrid(G,G);
 C = complex(R,I);
 res = [
-   1.   0.   0.   1.   0.   1.
+   0.   0.   0.   0.   0.   0.
    0.   0.   0.   1.   0.   0.
    0.   0.   0.   1.   0.   0.
-   1.   1.   1.   1.   1.   1.
+   0.   1.   1.   1.   1.   0.
    0.   0.   0.   1.   0.   0.
-   1.   0.   0.   1.   0.   1.
+   0.   0.   0.   0.   0.   0.
    ]==1;
 assert_checkequal(isnan(C), res);
 
 C = sparse(C);
 res = sparse(res);
 assert_checkequal(isnan(C), res);
-

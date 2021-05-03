@@ -227,7 +227,7 @@ u = unique(x);
 assert_checkequal(u, [0 Inf Nan*ones(1,8)]');
 [u,ki,ko,nb] = unique(x);
 assert_checkequal(u, [0 Inf Nan*ones(1,8)]');
-assert_checkequal(ki, [4 2 1 3 6 7 14 15 16 19]');
+assert_checkequal(setdiff(ki, [4 2 1 3 6 7 14 15 16 19]'), []);
 assert_checkequal(x(ki), u);
 assert_checkequal(u(ko), x);
 assert_checkequal(nb,[7 5 1 1 1 1 1  1  1  1]');
