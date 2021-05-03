@@ -1,13 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
 // <-- NO CHECK ERROR OUTPUT -->
-//
+
 // <-- Non-regression test for bug 8462 -->
 //
 // <-- Bugzilla URL -->
@@ -15,7 +17,6 @@
 //
 // <-- Short Description -->
 // bvodeS crashed on Windows and did not return a error.
-
 
 // calcul de concentration dans un grain sphérique
 L0 = 0; // m
@@ -70,4 +71,4 @@ endfunction
 
 ierr = 0;
 ierr = execstr("z = bvodeS(x,m,o,L0,L,fsub,gsub,zeta,ltol=ltol,tol=tol,ystart=ystart)", "errcatch");
-if ierr <> 999 then pause, end
+if ierr <> 90 then pause, end

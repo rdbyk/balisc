@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,10 +18,10 @@ function r = intl(a, b, z0, r, f, ea, er)
     //(part of the circle with center z0 and radius r with phase between a and b)
     //!
 
-    if ~isdef("ea","l") | ea==[] then
+    if isvoid(ea) | ea==[] then
         ea = %eps;  // could be 1d-13 as with intg, integrate and intc
     end
-    if ~isdef("er","l") | er==[] then
+    if isvoid(er) | er==[] then
         er = 1d-12;  // could be 1d-8 as with intg, integrate and intc
     end
 

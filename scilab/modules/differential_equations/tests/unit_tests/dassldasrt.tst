@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //DASSL
 // PROBLEM 1..   LINEAR DIFFERENTIAL/ALGEBRAIC SYSTEM
@@ -173,7 +175,7 @@ res22=[...
 '      YDOT(1) = Y(2)';
 '      YDOT(2) = 100.0D0*(1.0D0 - Y(1)*Y(1))*Y(2) - Y(1)';
 '      RETURN';
-'      END';]
+'      END']
 
 jac22=[...
 '      SUBROUTINE JAC22 (T, Y, ydot, PD, CJ, RPAR, IPAR)';
@@ -192,7 +194,7 @@ jac22=[...
 '      PD(2,1) =    - PD(2,1)';
 '      PD(2,2) = CJ - PD(2,2)';
 '      RETURN';
-'      END';]
+'      END']
 
 
 gr22=[...
@@ -203,7 +205,7 @@ gr22=[...
 '      DIMENSION Y(*), GROOT(*)';
 '      GROOT(1) = Y(1)';
 '      RETURN';
-'      END';]
+'      END']
 
 //Uncomment lines below: link may be machine dependent if some f77 libs are 
 //needed for linking

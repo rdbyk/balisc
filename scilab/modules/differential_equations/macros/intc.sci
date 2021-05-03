@@ -2,7 +2,7 @@
 // Copyright (C) INRIA - Farid BELAHCENE
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added argument checking and error control
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,7 +25,7 @@ function [r, err] = intc(a, b, f, abserr, relerr)
         error(msprintf(_("%s: Wrong number of input argument(s): at least %d expected.\n"), "intc", 3));
     end
     // relerr
-    if ~isdef("relerr","l") | relerr==[] then
+    if isvoid(relerr) | relerr==[] then
         relerr = 1d-8
     end
     if type(relerr) <> 1 then
@@ -37,7 +37,7 @@ function [r, err] = intc(a, b, f, abserr, relerr)
         error(msprintf(msg, "intc", 5));
     end
     // abserr
-    if ~isdef("abserr","l") then
+    if isvoid(abserr) then
         abserr = 1d-13
     end
     if type(abserr) <> 1 then

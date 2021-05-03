@@ -4,9 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 13121 -->
 //
 // <-- Bugzilla URL -->
@@ -76,4 +77,4 @@ t=0:0.01:40;
 
 refMsg = [msprintf(_("Invalid index.\n"));
 msprintf(_("%ls: An error occurred in ''%s'' subroutine.\n"), "ode", "lsrgk")];
-assert_checkerror("res=ode(""rk"",[x0;y0;v0;teta0;],t0,t,right)", refMsg);
+assert_checkerror("res=ode(""rk"",[x0;y0;v0;teta0],t0,t,right)", refMsg);

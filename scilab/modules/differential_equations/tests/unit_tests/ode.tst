@@ -29,7 +29,7 @@ clear t;
 // to check that error in rhs is reported without crashing Scilab
 function ydot=f(t,y),ydot=z,endfunction
 y0=0;t0=0;t=0:0.1:%pi;
-message = [msprintf(_("Undefined variable: %s\n"),"z");
+message = [msprintf(_("Undefined variable: ''%s''.\n"),"z");
            msprintf(_("%s: An error occurred in ''%s'' subroutine.\n"), "ode", "lsoda")];
 assert_checkerror("y=ode(y0,t0,t,f)",message);
 
@@ -147,7 +147,7 @@ tout3 = 0.4*exp((0:12)*log(10));
 yout1 = ode(y, t, tout2, rtol, atol, f, w, iw);
 yout2 = ode(y, t, tout3, rtol, atol, f);
 
-assert_checkalmostequal(yout2(3*12+1:3*13), yout1, %eps, [], "matrix");
+assert_checkalmostequal(yout2(3*12+1:3*13)', yout1, %eps, [], "matrix");
 
 //*************************** Polynom ********************************/
 //y(1) = 1;

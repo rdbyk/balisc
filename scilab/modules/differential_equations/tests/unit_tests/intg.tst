@@ -1,13 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
-// <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
 ilib_verbose(0);
 // Function written in the Scilab language
@@ -36,7 +36,7 @@ mputl(F, fullfile(TMPDIR, "ffun.f"));
 l = ilib_for_link("ffun", "ffun.f", [], "f");
 
 // add the function to the working environment
-link(l, "ffun", "f");
+link(TMPDIR + filesep() + l, "ffun", "f");
 
 // integrate the function
 I = intg(0, 2*%pi, "ffun");
@@ -58,7 +58,7 @@ mputl(C, fullfile(TMPDIR, "cfun.c"));
 l = ilib_for_link("cfun", "cfun.c", [], "c");
 
 // add the function to the working environment
-link(l, "cfun", "c");
+link(TMPDIR + filesep() + l, "cfun", "c");
 
 // integrate the function
 I = intg(0, 2*%pi, "cfun");
