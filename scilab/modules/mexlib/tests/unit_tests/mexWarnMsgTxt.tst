@@ -7,6 +7,7 @@
 //
 // <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // ============================================================================
 // Unitary tests for mexWarnMsgTxt mex function
