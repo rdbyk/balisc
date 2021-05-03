@@ -88,7 +88,7 @@ function [R,n,sval,rcnd]=findR(s,y,u,meth,alg,jobd,tol,printw)
         printw = 0;
     end
     if nin<7 then
-        tol(1:2) = [0,-1]
+        tol = [0,-1]
     end
     if nin<6 then jobd = 2; end
     if jobd==[] then jobd = 2,end

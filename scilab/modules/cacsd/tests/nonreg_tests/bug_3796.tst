@@ -1,7 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - INRIA - Serge Steer
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -51,4 +51,4 @@ uno = syslin('c',1,1);
 Wds =Lds/.uno;
 
 Wds_ss = tf2ss(Wds);
-assert_checkequal(size(Wds_ss.A), 5)
+assert_checkequal(size(Wds_ss.A), [5,5])

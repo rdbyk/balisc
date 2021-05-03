@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C)  2016 - INRIA - Serge Steer
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2016 - INRIA - Serge Steer
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,7 +17,7 @@ function s=zp2ss(Z,P,K,dt)
     if siso then Z=Z(:);end
 
     for k=1:size(Z,2)
-        if ~isreal(poly(Z(:,k),'x')) then
+        if ~isreal(poly(Z(:,k),'x'), 0) then
             error(msprintf(_("%s: Wrong value for input argument #%d: complex zeros  must appear in complex conjugate pairs.\n"),"zp2ss",1))
         end
     end
@@ -25,7 +25,7 @@ function s=zp2ss(Z,P,K,dt)
     if type(P)<>1 then
         error(msprintf(_("%s: Wrong type for input argument #%d: Real or complex vector expected.\n"),"zp2ss",2))
     end
-    if ~isreal(poly(P,'x')) then
+    if ~isreal(poly(P,'x'), 0) then
         error(msprintf(_("%s: Wrong value for input argument #%d: complex poles  must appear in complex conjugate pairs.\n"),"zp2ss",2))
     end
 

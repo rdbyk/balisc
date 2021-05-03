@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C)  2016 - INRIA - Serge Steer
+// Copyright (C) 2016 - INRIA - Serge Steer
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.

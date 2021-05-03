@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
 // Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -36,7 +36,7 @@ function [x1, x2, residual] = riccati(a, b, c, dom, method)
     msg = gettext("%s: No solution found. Dimension(stable subspace)=%d. %d expected.\n")
 
     if nargin > 2 then
-        if ~isdef("method","l") then
+        if isvoid(method) then
             method = "eigen"
         end
         ham = [a, -b ; -c, -a']
