@@ -1,13 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
-//
+
 // <-- Non-regression test for bug 12080 -->
 //
 // <-- Bugzilla URL -->
@@ -25,6 +27,7 @@ d=1;
 x=linspace(-2,4,N)';
 noise=0.1*grand(N,1,"nor",0,1);
 data=a./(b+c.*(x-d).^2)+noise;
+
 function y=model(p,m,x)
     a=p(1);
     b=p(2);
@@ -33,14 +36,16 @@ function y=model(p,m,x)
     y=a./(b+c.*(x-d).^2);
 endfunction
 
-function y=modelDiff(p,m,x,data)
+function y=modelDiff(p,m,x)
     y=model(p,m,x)-data;
 endfunction
+
 m = size(data,"*");
 p=[1,1,1,1];
 y=model(p,m,x);
-y=modelDiff(p,m,x,data);
+y=modelDiff(p,m,x);
 p0=[1 1 1 1];
+
 lsqrsolve(p0,list(modelDiff,x),m); // No warning must be displayed
 
 clear;
@@ -61,12 +66,14 @@ function y=model(p,m,x)
     y=a./(b+c.*(x-d).^-10);
 endfunction
 
-function y=modelDiff(p,m,x,data)
+function y=modelDiff(p,m,x)
     y=model(p,m,x)-data;
 endfunction
+
 m = size(data,"*");
 p=[1,1,1,1];
 y=model(p,m,x);
-y=modelDiff(p,m,x,data);
+y=modelDiff(p,m,x);
 p0=[1 1 1 1];
+
 [popt,diffopt]=lsqrsolve(p0,list(modelDiff,x),m,[1d-8,1d-8,1d-5,2,0,100]); // A warning must be displayed

@@ -2,11 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 3348 -->
 //
@@ -16,6 +18,7 @@
 // <-- Short Description -->
 //    Missing tests in lsqrsolve
 
+funcprot(0);
 
 a=[1,2,4;
    7,8,3];

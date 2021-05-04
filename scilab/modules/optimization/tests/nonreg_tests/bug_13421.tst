@@ -1,10 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime Agnel
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+// <-- ENGLISH IMPOSED -->
+
 // <-- Non-regression test for bug  -->
 //
 // <-- Bugzilla URL -->
@@ -13,8 +18,6 @@
 // <-- Short Description -->
 // Callback functions for genetic algorithms were missing
 //
-// <-- CLI SHELL MODE -->
-// <-- ENGLISH IMPOSED -->
 
 // Objective function
 function y=f(x)

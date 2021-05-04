@@ -1,11 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 8777 -->
 //
 // <-- Bugzilla URL -->
@@ -68,7 +71,3 @@ fstar = 3;
 assert_checkalmostequal(fopt,fstar,1.e-4);
 //
 nm = neldermead_destroy(nm);
-
-
-
-

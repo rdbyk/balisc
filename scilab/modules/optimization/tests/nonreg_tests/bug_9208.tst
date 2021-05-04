@@ -18,6 +18,8 @@
 // #evaluations and a termination flag.
 //
 
+funcprot(0);
+
 // Example 1
 a  = 1.0;
 b  = 2.0;
@@ -48,7 +50,7 @@ function f = rosenbrock(x)
 endfunction
 function [f, g, ind] = rosenbrockCost2FixedStep(x, ind)
     f = rosenbrock ( x );
-    g = numderivative ( rosenbrock , x.' , %eps^(1/4) , order = 4 );
+    g = numderivative ( rosenbrock , x.' , %eps^(1/4) , 4 );
 endfunction
 
 [fopt, xopt, w, g, iters, evals, err] = optim ( rosenbrockCost2FixedStep , x0 );

@@ -38,4 +38,3 @@ function value = neldermead_get ( this , key )
         value = optimbase_get ( this.optbase , key );
     end
 endfunction
-

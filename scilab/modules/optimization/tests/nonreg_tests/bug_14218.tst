@@ -1,13 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - ESI Group - Cedric Delamarre
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-//
+
 // <-- Non-regression test for bug 14218 -->
 //
 // <-- Bugzilla URL -->
@@ -21,4 +22,4 @@ c     = [0;1];
 
 xopt  = karmarkar([],[],c,[],[],[],[],[],A,b,lb,ub)
 
-assert_checkequal(xopt, [0.75000162298698814; 0.7500048689416393]);
+assert_checkalmostequal(xopt, [0.75000162298698814; 0.7500048689416393], 1e-10);
