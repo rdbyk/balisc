@@ -1,13 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017, 2019 - Samuel GOUGEON
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 15260 -->
 //
 // <-- Bugzilla URL -->
@@ -56,13 +57,13 @@ assert_checkequal(rc,c);
 // Structures:
 // ----------
 // Scalar:
-s = struct("r",1.234-5.6*%i,"b",%f,"t","Hello","i",int8([123 -76]),"l",list(4,,%i));
+s = struct("r",1.234-5.6*%i,"b",%f,"t","Hello","i",int8([123 -76]),"l",list(4,–,%i));
 ss = sci2exp(s);
-ssref = "struct(""r"",1.234-%i*5.6, ""b"",%f, ""t"",""Hello"", ""i"",int8([123,-76]), ""l"",list(4,%i))";
+ssref = "struct(""r"",1.234-%i*5.6, ""b"",%f, ""t"",""Hello"", ""i"",int8([123,-76]), ""l"",list(4,void(),%i))";
 assert_checkequal(ss, ssref);
 assert_checkequal(evstr(ss), s);
 // Array:
-s = struct("à", {3.1415,%t,"abc";%z,1-1/%s,%i}, "é",{2.7183,3,"test"; %z^2,list(,7),-%i});
-ssref = "matrix(struct(""à"",{3.1415,%z,%t,rlist(-1+%s,%s),""abc"",%i}, ""é"",{2.7183,%z^2,3,list(,7),""test"",-%i}),[2 3])";
+s = struct("à", {3.1415,%t,"abc";%z,1-1/%s,%i}, "é",{2.7183,3,"test"; %z^2,list(–,7),-%i});
+ssref = "matrix(struct(""à"",{3.1415,%z,%t,rlist(-1+%s,%s),""abc"",%i}, ""é"",{2.7183,%z^2,3,list(void(),7),""test"",-%i}),[2 3])";
 assert_checkequal(sci2exp(s), ssref);
 assert_checkequal(evstr(ssref), s);

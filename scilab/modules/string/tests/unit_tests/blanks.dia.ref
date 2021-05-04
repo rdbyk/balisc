@@ -1,28 +1,13 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
-//==============================================================================
-// blank unit tests
-//==============================================================================
 disp(["xxx" blanks(20) "yyy"]);
-!xxx                        yyy  !
-// Test 1
-//LEN_MAX = 20000000; too slow
+  "xxx"  "                    "  "yyy"
 LEN_MAX = 2000;
 r = blanks(LEN_MAX);
 l = length(r);
 if ( l <> LEN_MAX) then bugmes();quit;end
-// Test 2
-// check first and last characters
 FIRST_CHAR = part(r,1);
 LAST_CHAR = part(r,LEN_MAX);
 if (FIRST_CHAR <> " ") then bugmes();quit;end
 if (LAST_CHAR <> " ") then bugmes();quit;end
-// Test 3
 A = floor(abs(2^8  * rand()));
 B = floor(abs(2^16 * rand()));
 C = floor(abs(2^16 * rand()));

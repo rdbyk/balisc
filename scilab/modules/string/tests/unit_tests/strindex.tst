@@ -1,15 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
-//===============================
-// unit tests strindex
-//===============================
 if or(strindex('abc,abd,aa,bxe',',')<>[4 8 11]) then pause,end
 if or(strindex('abc',',')<>[]) then pause,end
 if or(strindex('abc,abd,aa,bxe',',a')<>[4 8]) then pause,end
@@ -84,8 +83,7 @@ ref1  = [2.    3.    9.    19.    22.    32.    39];
 if (ref2 <> r2) then pause,end;
 if (ref1 <> r1) then pause,end;
 //===============================
-ierr = execstr("strindex(''2'' ,''/2(]*)?$\1/'' ,''dummy'');","errcatch");
-if ierr <> 999 then pause,end 
+assert_checkerror("strindex(''2'' ,''/2(]*)?$\1/'' ,''dummy'');", [], 110);
 //===============================
 lf = ascii(10);
 

@@ -9,10 +9,6 @@
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
-//===============================
-// unit tests part
-//===============================
-
 assert_checkequal(part("",[]), "");
 
 // compatibility 4.x
@@ -72,3 +68,5 @@ a = part("Hello world", $:-1:1);
 assert_checkequal(a,"dlrow olleH");
 a = part("Hello world", [ $ 5:6 ]);
 assert_checkequal(a,"do ");
+
+assert_checkerror("part(""abcd"", [0 2])", [], 110);

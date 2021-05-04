@@ -1,15 +1,16 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //===============================
-ierr = execstr('r = stripblanks(1);','errcatch');
-if ierr <> 999 then pause,end
+assert_checkerror('r = stripblanks(1);', [], 90);
 //===============================
 a = '  123   ';
 r = stripblanks(a);

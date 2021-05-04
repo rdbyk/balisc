@@ -1,28 +1,19 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-// <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
 
-//===============================
-// unit tests strcat
-//===============================
-msg = sprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"), "strcat", 1, 3);
-assert_checkerror("strcat()", msg);
-
-msg = sprintf(_("%s: Wrong type for input argument #%d: String expected.\n"), "strcat", 1);
-assert_checkerror("strcat(%f)", msg);
-
-msg = sprintf(_("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"), "strcat", 3, "c", "r");
-assert_checkerror("strcat(""test"", """", ""f"")", msg);
-
-msg = sprintf(_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "strcat", 2);
-assert_checkerror("strcat([],3)", msg);
+assert_checkerror("strcat()", [], 71);
+assert_checkerror("strcat(%f)", [], 91);
+assert_checkerror("strcat(""test"", """", ""f"")", [], 110);
+assert_checkerror("strcat([],3)", [], 90);
+assert_checkerror("strcat(1,""x"",1)", [], 90);
 
 assert_checkequal(strcat(["abc" "abd","aa" "bxe"]), "abcabdaabxe");
 assert_checkequal(strcat(["abc";"abd";"aa";"bxe"]), "abcabdaabxe");

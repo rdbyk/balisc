@@ -1,17 +1,19 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
-//===================================================================
-// unit tests regexp
-//===================================================================
+// <-- NO CHECK REF -->
+
 lf = ascii(10);
 if regexp('abc','/abc/','o') <>  1 then pause,end
-ierr = execstr("regexp(''abc'',''/abc/'',''r'');","errcatch");
-if ierr <> 999 then pause,end
+
+assert_checkerror("regexp(''abc'',''/abc/'',''r'');", [], 110);
+
 t = 'aaa aab aac aad aae';
 pattern = '/aa/';
 [start_pos, end_pos, match_str] = regexp(t,pattern,'o');

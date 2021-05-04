@@ -1,11 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 10124 -->
 //
 // <-- Bugzilla URL -->
@@ -14,7 +17,6 @@
 // <-- Short Description -->
 // strsplit crashed with wrong input arguments
 //
-
 
 A = ["BCUCCGACUGCAUCU";
 "CUCCGACUGCACCGACUGCAUCU";
@@ -31,8 +33,7 @@ A = ["BCUCCGACUGCAUCU";
 
 B = A.';
 
-msgerr = msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"strsplit", 1);
-assert_checkerror("C = strsplit(A,3:3:sum(length(B))-1)", msgerr);
+assert_checkerror("C = strsplit(A,3:3:sum(length(B))-1)", [], 102);
 
 for i=1:50
   [a, b] = strsplit([]);

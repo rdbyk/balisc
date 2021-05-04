@@ -3,14 +3,14 @@
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
 // Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
+//
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
-//===============================
-// unit tests strsplit
-//===============================
 funcprot(0);
 STR_SPLITED = ["strsplit splits";"a string";"into";"a vector of strings"];
 STR = "strsplit splits a string into a vector of strings";
@@ -25,12 +25,7 @@ assert_checkequal(strsplit([],[1 1 1]), []);
 // Scilab 5.x
 assert_checkequal(strsplit([],[3 2 1]), []);
 //===============================
-assert_checkequal(execstr("strsplit('''',[0 1])","errcatch"), 999);
-// Scilab 4.x
-//if execstr('strsplit([])','errcatch') <> 39  then pause,end
-// Scilab 5.1
-//if execstr('strsplit([])','errcatch') <> 77  then pause,end
-// Scilab 5.2
+assert_checkerror("strsplit('''',[0 1])", [], 110);
 assert_checkequal(execstr("strsplit([])","errcatch"), 0);
 assert_checkequal(strsplit([]), []);
 //===============================
@@ -108,8 +103,7 @@ assert_checkequal(ref_1, r_1);
 assert_checkequal(ref_2, r_2);
 assert_checkequal(strcat(r_1,r_2), "server.name       = scilab.org");
 //===============================
-ierr = execstr("strsplit(''root:x:0:0:root:/root:/bin/bash'','':'',0)","errcatch");
-assert_checkequal(ierr, 999);
+assert_checkerror("strsplit(''root:x:0:0:root:/root:/bin/bash'','':'',0)", [], 110);
 //===============================
 ref_1 = ["root";"x:0:0:root:/root:/bin/bash"];
 ref_2 = ":";

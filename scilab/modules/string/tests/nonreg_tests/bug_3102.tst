@@ -1,12 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 3102 -->
 //
@@ -16,7 +17,6 @@
 // <-- Short Description -->
 // regexp returns a "Unknown error"
 
-
 r="/^b.*b.*b.*b.*b$/";
 b = "b"; 
 for i = 1:123
@@ -25,4 +25,3 @@ end;
 b = b + "r";
 ierr=execstr("regexp(b, r)","errcatch");
 if ierr <> 999 then pause,end
-

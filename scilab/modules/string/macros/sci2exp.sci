@@ -2,7 +2,7 @@
 // Copyright (C) INRIA -
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2016, 2017 , 2019 - Samuel GOUGEON
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -384,9 +384,9 @@ function t = tlist2exp(l, lmax)
     t = glist2exp("tlist", l, lmax)
 endfunction
 function t = rlist2exp(l, lmax)
-    t = sci2expAdd("rlist(", sci2exp(l.num, lmax))
+    t = sci2expAdd("rlist(", sci2exp(l.num, lmax), lmax)
     t($) = t($)+","
-    t = sci2expAdd(t, sci2exp(l.den, lmax))
+    t = sci2expAdd(t, sci2exp(l.den, lmax), lmax)
     t($) = t($)+")"
 endfunction
 
@@ -445,7 +445,7 @@ function t = glist2exp(listType, l, lmax)
             lk = getfield(k,l)
         end
         if ~isdef("lk","local") | type(lk)==0
-            t1 = ""  // undefined element as in list(2,,5)
+            t1 = "void()"  // undefined element as in list(2,–,5)
         else
             t1 = sci2exp(lk, lmax)
         end
@@ -460,7 +460,7 @@ function t = glist2exp(listType, l, lmax)
 endfunction
 
 function t = struct2exp(l, lmax)
-    if argn(2)<2 then lmax = 0, end
+    if nargin<2 then lmax = 0, end
     dots = "."+".";
     stSize = size(l);
     stIsScalar = isscalar(l);
