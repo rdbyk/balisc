@@ -7,9 +7,9 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
-ierr = execstr('c = c_link()','errcatch');
-if ierr <> 77 then pause,end
+assert_checkerror('c = c_link()', [], 72);
 
 c = c_link('a_name_lib');
 if c <> %F then pause,end

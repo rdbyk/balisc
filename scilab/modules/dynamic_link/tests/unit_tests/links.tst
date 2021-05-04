@@ -2,12 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 ilib_verbose(0);
 
@@ -65,7 +66,7 @@ if norm(y-yref) > 10000*%eps then pause,end
 //sharing common data
 a=1:10;
 n=10;a=1:10;
-call("ext11f",n,1,"i",a,2,"r","out",2);  //loads b with a
+call("ext11f",n,1,"i",a,2,"r");  //loads b with a
 c=call("ext12f",n,1,"i","out",[1,10],2,"r");  //loads c with b
 if norm(c-a) > %eps then pause,end
 

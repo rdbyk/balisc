@@ -2,13 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2009 - DIGITEO
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //============================================
 // external with schur 
@@ -27,7 +27,7 @@ mputl(C,TMPDIR+'/schur_test/mytest.c');
 
 //build and link
 lp=ilib_for_link('mytest','mytest.c',[],'c');
-link(lp,'mytest','c');
+link(TMPDIR+'/schur_test/'+lp,'mytest','c');
 
 //run it
 [U,dim,T]=schur(A,'mytest');

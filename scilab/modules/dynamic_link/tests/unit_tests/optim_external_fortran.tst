@@ -2,12 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2009-2011 - DIGITEO
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // =============================================================================
 ilib_verbose(0);
 // =============================================================================
@@ -48,7 +50,7 @@ mputl(F,  TMPDIR + '/' + TEST_NAME + '/rosenf.f');
 l = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
 assert_checkequal(isfile(l), %t);
 // incremental linking
-assert_checkequal(link(l, 'rosenf', 'f'), 0);
+assert_checkequal(link(TMPDIR+'/'+TEST_NAME+'/'+l, 'rosenf', 'f'), 0);
 // solve the problem
 x0 = [40; 10; 50];
 p = 100;
