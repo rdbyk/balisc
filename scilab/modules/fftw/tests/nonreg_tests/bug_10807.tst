@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 10807 -->
 //
 // <-- Bugzilla URL -->
@@ -19,13 +21,12 @@
 M = mlist(['V', 'name', 'value'], ['a', 'b';'c' 'd'], [1 2; 3 4]);
 
 if %fftw then
+
   fname = "fftw";
   msgerr = [msprintf(gettext("Function not defined for given argument type(s),\n"));
-            msprintf(gettext("  check arguments or define function %s for overloading.\n"), "%V_" + fname)];
+            msprintf(gettext("check arguments or define function %s for overloading.\n"), "%V_" + fname)];
+
   assert_checkerror ("fft(M)", msgerr);
-  
-  msgerr = [msprintf(gettext("Function not defined for given argument type(s),\n"));
-            msprintf(gettext("  check arguments or define function %s for overloading.\n"), "%V_" + fname)];
   assert_checkerror ("fftw(M)", msgerr);
   
   function bOK = %V_fftw(X)
@@ -34,14 +35,19 @@ if %fftw then
   
   assert_checktrue(fft(M));
   assert_checktrue(fftw(M));
+
 else
+
   fname = "fft";
   msgerr = [msprintf(gettext("Function not defined for given argument type(s),\n"));
-            msprintf(gettext("  check arguments or define function %s for overloading.\n"), "%V_" + fname)];
+            msprintf(gettext("check arguments or define function %s for overloading.\n"), "%V_" + fname)];
+
   assert_checkerror ("fft(M)", msgerr);
   
   function bOK = %V_fft(X)
     bOK = %T;
   endfunction
+
   assert_checktrue(fft(M));
+
 end
