@@ -90,6 +90,7 @@ jobs:
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"mexlib\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"optimization\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"output_stream\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
+        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"polynomials\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"statistics\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"string\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"time\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"

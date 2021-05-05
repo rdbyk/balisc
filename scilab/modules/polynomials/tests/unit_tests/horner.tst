@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - CNES - Alain Lamy
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // --------------------------------
 // p = polynomial
@@ -103,3 +105,7 @@ assert_checkalmostequal(r1, [0.0010405,0.0003560], 10^-4);
 r1 = horner(p,[1,2;3,4]);
 assert_checkalmostequal(r1, [0.0394737,0.0044420;0.0010405,0.0003560], 10^-4);
 
+// misc stuff
+assert_checkequal(horner(1:$,4), 1:1:4);
+assert_checkequal(horner(1:-1:$,4), 1:-1:4);
+assert_checkequal(horner($:-1:$-1,4), 4:-1:3);

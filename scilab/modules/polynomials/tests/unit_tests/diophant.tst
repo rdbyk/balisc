@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -9,9 +10,6 @@
 // <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
 
-// -------------------------
-// Unit tests for diophant()
-// -------------------------
 // No solution
 // -----------
 s = %s;
@@ -60,7 +58,8 @@ assert_checkequal(list(X, e), list(int8([10 -5]), 0));
 assert_checkequal(list(X, e), list(int16([30533 -2339]), 0));
 
 [X, e] = diophant([1+s ; 1-s^2], 1-s+s^2);
-assert_checkequal(list(X, e), list([], 1.7320508075688774));
+assert_checkequal(X, []);
+assert_checkalmostequal(e, 1.7320508075688774, %eps);
 
 p = (1+s)*(s-1) + (1-s^2)*s;
 [X, e] = diophant([1+s ; 1-s^2], -1+s+s^2-s^3);
