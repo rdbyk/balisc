@@ -101,4 +101,3 @@ assert_checkequal(t, t0);
 assert_checkequal(t, ["Sunday" "Monday" ; "Tuesday" "Monday"]);
 [n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"long","ru_RU");
 assert_checkequal(t, ["Воскресенье" "Понедельник" ; "Вторник" "Понедельник"]);
-

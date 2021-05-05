@@ -1,14 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
-// unit tests for getdate function
-// =============================================================================
+// <-- NO CHECK REF -->
 
 dt = getdate(0);
 if dt(1) <> 1970 then pause,end
@@ -55,3 +54,6 @@ t3 = (datenum(t3_ref(1),t3_ref(2),t3_ref(6),t3_ref(7),t3_ref(8),t3_ref(9)) - dat
 if ((abs(t2-t1) > 1) & (abs(t2-t1)-3600 > 1))  then pause,end
 if ((abs(t3-t1) > 1) & (abs(t3-t1)-3600 > 1))  then pause,end
 if ((abs(t3-t2) > 1) & (abs(t3-t2)-3600 > 1))  then pause,end
+
+assert_checkerror("getdate(-1)", [], 110);
+assert_checkerror("getdate(%i)", [], 94);

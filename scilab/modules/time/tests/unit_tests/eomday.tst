@@ -1,32 +1,26 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
-// unit tests for eomday function
-// =============================================================================
+// <-- NO CHECK REF -->
 
 // Error messages
-errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"eomday", 2);
-assert_checkerror("eomday()", errmsg);
-assert_checkerror("eomday()", errmsg);
-errmsg = msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"), "eomday", 1);
-assert_checkerror("eomday(""toto"", 1)", errmsg);
-assert_checkerror("eomday(12.5, 1)", errmsg);
-assert_checkerror("eomday(%i, 1)", errmsg);
-errmsg = msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"), "eomday", 2);
-assert_checkerror("eomday(2000, ""toto"")", errmsg);
-assert_checkerror("eomday(2000, 5.5)", errmsg);
-assert_checkerror("eomday(2000, %i)", errmsg);
+assert_checkerror("eomday()", [], 71);
+assert_checkerror("eomday(""toto"", 1)", [], 111);
+assert_checkerror("eomday(12.5, 1)", [], 111);
+assert_checkerror("eomday(%i, 1)", [], 111);
+assert_checkerror("eomday(2000, ""toto"")", [], 111);
+assert_checkerror("eomday(2000, 5.5)", [], 111);
+assert_checkerror("eomday(2000, %i)", [], 111);
 errmsg = msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"),"eomday", 1, 2);
 assert_checkerror("eomday(1, [1 2])", errmsg);
-errmsg = msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"eomday",2,1,12);
-assert_checkerror("eomday(2000, 0)", errmsg);
-assert_checkerror("eomday(2000, 13)", errmsg);
+assert_checkerror("eomday(2000, 0)", [], 110);
+assert_checkerror("eomday(2000, 13)", [], 110);
 
 years    = 1900:1999;
 
