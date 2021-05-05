@@ -2,12 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Sabine Gaüzere
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- TEST WITH GRAPHIC -->
 
-//
+// <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK ERROR OUTPUT -->
+
 // These tests makes comparisons between the empirical cumulated
 // distribution function and the theoretical distribution function.
 // They do not make use of the Chi-square distribution function,
@@ -116,5 +118,3 @@ y = exp(-mu).*(mu.^x)./factorial(x);
 plot2d(x,y,2);
 f=gcf();
 delete(f);
-
-

@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // Set the seed to always get the same random numbers
 grand("setsd", 0);
 
@@ -150,8 +152,8 @@ Xb = Xb<5;
 Pb = grand(2,"prm",Xb);
 refPb = gsort(Pb+0,"g","i");
 assert_checkequal ( size(Pb) , [size(Xb) 2] );
-assert_checkequal ( refPb(1:36), zeros(36, 1) );
-assert_checkequal ( refPb(37:72), ones(36, 1) );
+assert_checkequal ( refPb(1:36), zeros(1, 36) );
+assert_checkequal ( refPb(37:72), ones(1, 36) );
 //
 // Of Ploynomials.
 //
