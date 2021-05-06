@@ -2,11 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - Bruno PINCON
 // Copyrigth (C) 2013 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 assert_checkfalse(execstr("umf_lufact()"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong number of input arguments: %d expected.\n"), "umf_lufact", 1);
@@ -43,14 +45,14 @@ umf_ludel(Lup)
 Lup = umf_lufact(A);
 b = rand(size(A,1),1); // a random rhs
 // use umf_lusolve for solving Ax=b
-x = umf_lusolve(Lup,b);
-firstNorm=norm(A*x - b);
+x1 = umf_lusolve(Lup,b);
+firstNorm=norm(A*x1 - b);
 
 // now the same thing with iterative refiment
-x = umf_lusolve(Lup,b,"Ax=b",A);
-secondNorm=norm(A*x - b);
+x2 = umf_lusolve(Lup,b,"Ax=b",A);
+secondNorm=norm(A*x2 - b);
 
-assert_checkfalse(firstNorm <> secondNorm);
+assert_checkalmostequal(firstNorm,secondNorm,1e-8,1e-8);
 
 // don't forget to clear memory
 umf_ludel(Lup)

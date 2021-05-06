@@ -1,11 +1,13 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - Sylvestre LEDRU
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // Check value provided here:
 // http://math.nist.gov/MatrixMarket/data/SPARSKIT/tokamak/utm300.html
@@ -62,8 +64,8 @@ if indshortest <> 3 then pause, end
 m=ceil(mean(rowlength));
 if m <> 11 then pause, end
 
-d=round(stdev(rowlength)*10)/10;
-if d <> 7.7 then pause, end
+d=round(stdev(rowlength)*10);
+if d <> 77 then pause, end
 
 // Column Data
 ji=gsort(ij(:,[2 1]),"lr","i");
@@ -81,8 +83,8 @@ if indshortest <> 16 then pause, end
 m=ceil(mean(collength));
 if m <> 11 then pause, end
 
-d=round(stdev(collength)*10)/10;
-if d <> 7.1 then pause, end
+d=round(stdev(collength)*10);
+if d <> 71 then pause, end
 
 // Profile Storage
 lastinrow=[find(diff(ij(:,1))>0) size(ij,1)];
@@ -109,4 +111,3 @@ if maxupp <> 66 then pause, end
 // upper bandwidth => min
 minupp=min(uppband);
 if minupp <> 0 then pause, end
-
