@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Stéphane Mottelet
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -23,6 +24,6 @@ a = coeff(h.den)($:-1:1);
 si=zeros(max(length(a),length(b))-1,1);
 pulse=zeros(1000,1);
 pulse(5)=1;
-[impulse_response so]=filter(b,a,pulse,si);
+[impulse_response so]=filter(real(b),real(a),pulse,si);
    
 assert_checkequal(si,zeros(max(length(a),length(b))-1,1));
