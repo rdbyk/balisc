@@ -10,7 +10,6 @@ jobs:
     - name: install dependencies
       run: |
         sudo apt update;
-        sudo apt -y install alsa-utils;
         sudo apt -y install docbook;
         sudo apt -y install docbook-dsssl;
         sudo apt -y install docbook-utils;
