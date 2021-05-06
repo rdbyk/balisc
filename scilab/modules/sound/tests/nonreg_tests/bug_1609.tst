@@ -19,7 +19,7 @@
 
 // in a CI environment we redefine "sound" function as a nop dummy
 funcprot(0);
-if getenv("CI","FALSE") == "FALSE" then
+if getenv("CI","FALSE") <> "FALSE" then
 	function sound(y,z),end
 end
 

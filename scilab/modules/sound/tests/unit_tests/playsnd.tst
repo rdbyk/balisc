@@ -11,7 +11,7 @@
 
 // in a CI environment we redefine "playsnd" function as a nop dummy
 funcprot(0);
-if getenv("CI","FALSE") == "FALSE" then
+if getenv("CI","FALSE") <> "FALSE" then
 	function playsnd(y),end
 end
 
