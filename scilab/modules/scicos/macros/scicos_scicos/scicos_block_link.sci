@@ -1,7 +1,8 @@
-//  Scicos
+// Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-//  Copyright (C) DIGITEO - Clément DAVID <clement.david@scilab.org>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) DIGITEO - Clément DAVID <clement.david@scilab.org>
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,7 +41,7 @@ function ok = scicos_block_link(funam, txt, flag, libs)
         messagebox(gettext("Sorry file name not defined in "+flag+" block","modal"));
         return;
     end
-    if ~exists("libs", "l") then
+    if isvoid(libs) then
         libs = "";
     end
 
@@ -56,4 +57,3 @@ function ok = scicos_block_link(funam, txt, flag, libs)
     chdir(cur_wd);
     ok = %t;
 endfunction
-
