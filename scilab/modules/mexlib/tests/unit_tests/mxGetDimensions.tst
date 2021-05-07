@@ -1,14 +1,13 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011-2011 - Gsoc 2011 - Iuri SILVIO
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
-// ============================================================================
-// Unitary tests for mxGetDimensions mex function
-// ============================================================================
+// <-- NO CHECK REF -->
 
 cd(TMPDIR);
 ilib_verbose(0);
@@ -18,7 +17,7 @@ mputl(["#include ""mex.h""";
 "    int ndim = mxGetNumberOfDimensions(prhs[0]);";
 "    int *dims = mxGetDimensions(prhs[0]);";
 "    mxArray *ptr = mxCreateNumericMatrix(1, ndim, mxINT32_CLASS, mxREAL);";
-"    mxSetPr(ptr, dims);";
+"    mxSetData(ptr, dims);";
 "    plhs[0] = ptr;";
 "}"],"mexgetDimensions.c");
 ilib_mex_build("libmextest",["getDimensions","mexgetDimensions","cmex"], "mexgetDimensions.c",[]);
