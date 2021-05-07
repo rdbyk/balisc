@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,26 +33,20 @@ types::Function::ReturnValue sci_setlanguage(types::typed_list &in, int _piRetCo
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "setlanguage", 1);
-        return types::Function::Error;
-    }
-
-    if (_piRetCount > 1)
-    {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "setlanguage", 1);
+        Scierror(71, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "setlanguage", 1);
+        Scierror(91);
         return types::Function::Error;
     }
 
     wchar_t *param = in[0]->getAs<types::String>()->getFirst();
     const wchar_t *newlanguage = convertlanguagealias(param);
 
-    if (!LanguageIsOK(param) && (newlanguage == NULL))
+    if (!LanguageIsOK(param) && newlanguage == NULL)
     {
         if (ConfigVariable::getWarningMode())
         {

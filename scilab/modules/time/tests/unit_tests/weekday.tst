@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2017 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,14 +13,20 @@
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 // Current date
 assert_checkequal(execstr("weekday()", "errcatch"),0);
 assert_checkequal(execstr("weekday(""long"")", "errcatch"),0);
 assert_checkequal(execstr("weekday(""short"")", "errcatch"),0);
-assert_checkequal(execstr("weekday(""long"",""ru_RU"")", "errcatch"),0);
-assert_checkequal(execstr("weekday(""ru_RU"")", "errcatch"),0);
-assert_checkequal(execstr("weekday(""ru_RU"", ""long"")", "errcatch"),0);
+
+lang = getlanguage();
+if setlanguage("ru_RU") then
+    assert_checkequal(execstr("weekday(""long"",""ru_RU"")", "errcatch"),0);
+    assert_checkequal(execstr("weekday(""ru_RU"")", "errcatch"),0);
+    assert_checkequal(execstr("weekday(""ru_RU"", ""long"")", "errcatch"),0);
+end
+setlanguage(lang);
 
 // Checking output sizes
 [n, t] = weekday();
@@ -37,15 +44,20 @@ assert_checkequal(size(t), [1 2]);
 [n, t] = weekday([740000 ; 740008], "long");
 assert_checkequal(size(n), [2 1]);
 assert_checkequal(size(t), [2 1]);
-[n, t] = weekday([740000  740008], "long");
-assert_checkequal(size(n), [1 2]);
-assert_checkequal(size(t), [1 2]);
-[n, t] = weekday([740000  740008], "ru_RU");
-assert_checkequal(size(n), [1 2]);
-assert_checkequal(size(t), [1 2]);
-[n, t] = weekday([740000  740008], "ru_RU", "long");
-assert_checkequal(size(n), [1 2]);
-assert_checkequal(size(t), [1 2]);
+
+lang = getlanguage();
+if setlanguage("ru_RU") then
+    [n, t] = weekday([740000  740008], "long");
+    assert_checkequal(size(n), [1 2]);
+    assert_checkequal(size(t), [1 2]);
+    [n, t] = weekday([740000  740008], "ru_RU");
+    assert_checkequal(size(n), [1 2]);
+    assert_checkequal(size(t), [1 2]);
+    [n, t] = weekday([740000  740008], "ru_RU", "long");
+    assert_checkequal(size(n), [1 2]);
+    assert_checkequal(size(t), [1 2]);
+end
+setlanguage(lang);
 
 assert_checkequal(size(weekday([2015 6 11])), [1 1]);
 assert_checkequal(size(weekday([2015 2015]', [2 10]', [21 3]')), [2 1]);
@@ -83,21 +95,31 @@ assert_checkequal(t, t0);
 
 // Options
 // -------
-[n0, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"fr_FR");
-assert_checkequal(n0, [1 2 ; 3 2]);
-assert_checkequal(t, ["Dim." "Lun." ; "Mar." "Lun."]);
-[n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"fr_FR","long");
-assert_checkequal(n, n0);
-assert_checkequal(t, ["Dimanche" "Lundi" ; "Mardi" "Lundi"]);
-[n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"long","fr_FR");
-assert_checkequal(n, n0);
-assert_checkequal(t, ["Dimanche" "Lundi" ; "Mardi" "Lundi"]);
 lang = getlanguage();
+
 [n0, t0] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"]);
 [n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"], lang);
 assert_checkequal(n, n0);
 assert_checkequal(t, t0);
-[n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"en_US","long");
-assert_checkequal(t, ["Sunday" "Monday" ; "Tuesday" "Monday"]);
-[n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"long","ru_RU");
-assert_checkequal(t, ["Воскресенье" "Понедельник" ; "Вторник" "Понедельник"]);
+
+if setlanguage("fr_FR") then
+    [n0, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"fr_FR");
+    assert_checkequal(n0, [1 2 ; 3 2]);
+    assert_checkequal(t, ["Dim." "Lun." ; "Mar." "Lun."]);
+    [n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"fr_FR","long");
+    assert_checkequal(n, n0);
+    assert_checkequal(t, ["Dimanche" "Lundi" ; "Mardi" "Lundi"]);
+    [n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"long","fr_FR");
+    assert_checkequal(n, n0);
+    assert_checkequal(t, ["Dimanche" "Lundi" ; "Mardi" "Lundi"]);
+end
+
+if setlanguage("en_US") then
+    [n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"en_US","long");
+    assert_checkequal(t, ["Sunday" "Monday" ; "Tuesday" "Monday"]);
+end
+
+if setlanguage("ru_RU") then
+    [n, t] = weekday(["9/7/2017" "17/7/2017" ; "25/7/2017" "31/07/2017"],"long","ru_RU");
+    assert_checkequal(t, ["Воскресенье" "Понедельник" ; "Вторник" "Понедельник"]);
+end

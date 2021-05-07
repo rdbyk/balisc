@@ -8,6 +8,7 @@
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 dt = getdate(0);
 if dt(1) <> 1970 then pause,end
