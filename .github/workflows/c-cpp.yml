@@ -64,7 +64,11 @@ jobs:
       run: |
         cd scilab
         make
-    - name: test_run (fixed)
+    - name: test_run (fixed, using xvfb)
+      run: |
+        cd scilab
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"graphic_objects\"),exit(0),else,exit(1),end"
+    - name: test_run (fixed, only mode_nwni)
       run: |
         cd scilab
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"arnoldi\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
