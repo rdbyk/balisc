@@ -54,6 +54,7 @@ jobs:
         sudo apt -y install libxml2-dev;
         sudo apt -y install ocaml-nox;
         sudo apt -y install tk-dev;
+        sudo apt -y install xvfb;
     - uses: actions/checkout@v2
     - name: configure
       run: |
@@ -78,6 +79,7 @@ jobs:
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"mexlib\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"overloading\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"randlib\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
+        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"scicos\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"sound\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"sparse\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"umfpack\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
