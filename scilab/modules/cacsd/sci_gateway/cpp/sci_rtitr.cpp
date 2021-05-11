@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2019 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -341,7 +341,7 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
         }
         else if (iErr == 2)
         {
-            Scierror(19, _("Problem is singular.\n"), "rtitr");
+            Scierror(201);
         }
     }
 

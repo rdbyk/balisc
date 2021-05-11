@@ -147,6 +147,7 @@ std::map<int, const char*> ErrorMessages =
 
     // cacsd
     { 200, _("System is not controllable.\n") },
+    { 201, _("Problem is singular.\n") },
 
 };
 

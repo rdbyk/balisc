@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Stéphane MOTTELET
+// Copyright (C) 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -21,7 +22,7 @@ sys = cont_frm(1,0*%s)
 assert_checktrue(isnan(sys.D))
 assert_checkequal(dtsi(syslin('c',0*%s,0*%s)),syslin('c',0,1))
 assert_checkerror("evans(0*%s,1)","evans: The given system has no poles and no zeros.")
-assert_checkerror("flts(1,syslin(''d'',1,0*%s))","Problem is singular.");
+assert_checkerror("flts(1,syslin(''d'',1,0*%s))", [], 201);
 assert_checkequal(gtild(0*%s,'d'),0*%s)
 assert_checkequal(tf2ss(syslin('c',1,0*%s)),syslin('c',[],[],[],%inf))
 assert_checktrue(isempty(tf2zp(syslin('c',1,0*%s))))
@@ -35,6 +36,5 @@ assert_checkerror("[0*%s/(1+0*%s)]^-2","Division by zero")
 assert_checkerror("[0*%s/(1+0*%s)].^-2","Division by zero")
 assert_checkequal(diophant(%s*[0 0],0*%s),%s*[0 0]+1)
 assert_checkequal(horner([0 0]*%s,[0 0]),zeros(1,4))
-assert_checkerror("sylm(0*%s,0*%s)","Invalid index.")
 assert_checkequal(trans(%z*0/(1+%z),'lp',[.1 .2]),rlist(0,1,'d'))
 assert_checkequal(mtlb_filter(0,1,1),0)
