@@ -1,11 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-//
-// <-- CLI SHELL MODE -->
 loadXcosLibs();
 scicos_log("TRACE");
 scs_m = scicos_diagram( objs=list(scicos_block()) );
@@ -14,10 +6,6 @@ Xcos trace:   objectReferenced( 1 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
@@ -72,10 +60,6 @@ Xcos trace:   objectReferenced( 3 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 3 , BLOCK ) : 0
@@ -141,10 +125,6 @@ Xcos trace:   propertyUpdated( 4 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 4 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 4 , BLOCK , PARENT_BLOCK ) : SUCCESS
-<<<<<<< HEAD
-Xcos trace:   objectUnreferenced( 4 , BLOCK ) : 1
-=======
->>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 3 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 4 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
@@ -165,7 +145,6 @@ Xcos trace:   propertyUpdated( 3 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , UID ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 3 , BLOCK ) : 0
-// Check that the simple diagram's context is equal to the superblock's diagram's context (it has been preserved)
 assert_checkequal(super.model.rpar.props.context, scs_m.props.context);
 Xcos trace:   objectReferenced( 3 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 3 , BLOCK ) : 2
@@ -175,7 +154,6 @@ Xcos trace:   objectUnreferenced( 3 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 3 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 2 , DIAGRAM ) : 1
 Xcos trace:   objectUnreferenced( 2 , DIAGRAM ) : 0
-// Check that all the model items are freed
 clear
 Xcos debug:   propertyUpdated( 1 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos info:    objectDeleted( 1 , BLOCK )

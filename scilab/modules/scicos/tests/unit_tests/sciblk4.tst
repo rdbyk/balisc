@@ -9,6 +9,7 @@
 //
 // <-- XCOS TEST -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 // Load and run a diagram that calls a Scilab macro (tkscaleblk.sci)
 exec("SCI/modules/scicos/tests/unit_tests/bug_8348.cosf", -1);

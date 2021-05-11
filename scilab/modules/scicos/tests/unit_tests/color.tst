@@ -20,6 +20,7 @@
 //
 // <-- TEST WITH GRAPHICS -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 loadXcosLibs();
 

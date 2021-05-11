@@ -1,15 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
-// <-- ENGLISH IMPOSED -->
-// <-- NO CHECK REF -->
-//
+
 // <-- XCOS TEST -->
-//
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/ODE/Kalman.zcos"));
 

@@ -1,23 +1,11 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- CLI SHELL MODE -->
 loadXcosLibs();
 scicos_log("TRACE");
-// Test #1: the temporary block is deleted with the diagram
 scs_m = scicos_diagram( objs=list(scicos_block()) );
 Xcos info:    objectCreated( 1 , BLOCK )
 Xcos trace:   objectReferenced( 1 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
@@ -57,17 +45,12 @@ clear scs_m
 Xcos debug:   propertyUpdated( 1 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos info:    objectDeleted( 1 , BLOCK )
 Xcos info:    objectDeleted( 2 , DIAGRAM )
-// Test #2: the block is deleted after the diagram
 blk = scicos_block();
 Xcos info:    objectCreated( 3 , BLOCK )
 Xcos trace:   objectReferenced( 3 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 3 , BLOCK ) : 0
@@ -131,10 +114,6 @@ Xcos trace:   propertyUpdated( 5 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 5 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 5 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-<<<<<<< HEAD
-Xcos trace:   objectUnreferenced( 5 , BLOCK ) : 1
-=======
->>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
 Xcos debug:   propertyUpdated( 4 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 5 , BLOCK ) : 0
 Xcos debug:   propertyUpdated( 4 , DIAGRAM , VERSION_NUMBER ) : SUCCESS
