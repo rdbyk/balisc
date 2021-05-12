@@ -10,6 +10,7 @@ jobs:
     - name: install dependencies
       run: |
         sudo apt update;
+        sudo apt -y install bwidget;
         sudo apt -y install docbook;
         sudo apt -y install docbook-dsssl;
         sudo apt -y install docbook-utils;

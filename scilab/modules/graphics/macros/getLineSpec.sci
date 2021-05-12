@@ -13,6 +13,7 @@
 function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(str,current_figure,cur_draw_mode)
 
     Color=[];
+    Marker=%f;
     MarkerStyle=[];
     MarkerSize=1;
     LineStyle=1;

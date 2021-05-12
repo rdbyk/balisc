@@ -28,7 +28,8 @@ function str=mydisplay(datatip_handle)
     str=msprintf('sinc(%-0.2g)=%-0.2g', 20*pt(1),pt(2))
 endfunction
 
-assert_checktrue(execstr("datatipSetDisplay(e(2),mydisplay)","errcatch")==0); // Function
-assert_checktrue(execstr("datatipSetDisplay(e(2),""mydisplay"")","errcatch")==0); // Function name
+datatipSetDisplay(e(2),mydisplay);
+datatipSetDisplay(e(2),"mydisplay");
+
 assert_checkequal(d21.text, "sinc(4)=-0.19");
 assert_checkequal(d22.text, "sinc(-12)=-0.042");

@@ -1,11 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Vincent COUVERT
+// Copyright (C) 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
-//
+
+// <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
+
 // <-- Non-regression test for bug 2479 -->
 //
 // <-- Bugzilla URL -->

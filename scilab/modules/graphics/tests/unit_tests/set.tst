@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- TEST WITH GRAPHIC -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // Unitary tests for set(h), h.prop = and h("prop") =
 //
@@ -88,7 +90,7 @@ L = list(e(1:3) , [2 3 4]', [2 3 4]', ..
          e(1:3)', [1 2 3],  [1 2 3]', ..
          matrix(e(1:6),2,3), [2 4 6; 3 5 7], (2:7)', ..
          matrix(e(1:6),2,3), 1:6, (1:6)', ..
-         matrix(e(1:6),2,3), (1:6)', (1:6)', ..
+         matrix(e(1:6),2,3), (1:6)', (1:6)' ..
          );
 for i = 0:(size(L)/3-1)
     h = L(1+3*i);
@@ -105,7 +107,7 @@ end
 // Row property value (axes.grid): repeated assignments
 a = gcf().children;
 L = list(a , [1 2], [1 2 ; 1 2], ..
-         a', [2 3], [2 3 ; 2 3], ..
+         a', [2 3], [2 3 ; 2 3] ..
         );
 for i = 0:(size(L)/3-1)
     h = L(1+3*i);
@@ -121,7 +123,7 @@ end
 
 // Row property value (axes.grid): row-wise assignments
 L = list(a , [1 5 ; 3 5], [1 5 ; 3 5], ..
-         a' , [1 5 ; 3 5], [1 5 ; 3 5], ..
+         a' , [1 5 ; 3 5], [1 5 ; 3 5] ..
         );
 for i = 0:(size(L)/3-1)
     h = L(1+3*i);
@@ -137,8 +139,7 @@ end
 
 // Matrix property value (axes.data_bounds): repeated rowed assignments
 L = list(a , [1 1.5 0 0.5], [1 0 ; 1.5 0.5 ; 1 0 ; 1.5 0.5], ..
-         a', [1 1.5 0 0.5], [1 0 ; 1.5 0.5 ; 1 0 ; 1.5 0.5], ..
-        );
+         a', [1 1.5 0 0.5], [1 0 ; 1.5 0.5 ; 1 0 ; 1.5 0.5]);
 for i = 0:(size(L)/3-1)
     h = L(1+3*i);
     v = L(2+3*i);
@@ -153,7 +154,7 @@ end
 
 // Matrix property value (axes.data_bounds): rowed-wise assignments
 L = list(a , [1 1.5 0 0.5 ; 1.5 2.2 -0.5 1], [1 0 ; 1.5 0.5 ; 1.5 -0.5 ; 2.2 1], ..
-         a', [1 1.5 0 0.5 ; 1.5 2.2 -0.5 1], [1 0 ; 1.5 0.5 ; 1.5 -0.5 ; 2.2 1], ..
+         a', [1 1.5 0 0.5 ; 1.5 2.2 -0.5 1], [1 0 ; 1.5 0.5 ; 1.5 -0.5 ; 2.2 1] ..
         );  // beware about http://bugzilla.scilab.org/15079 for vref
 for i = 0:(size(L)/3-1)
     h = L(1+3*i);

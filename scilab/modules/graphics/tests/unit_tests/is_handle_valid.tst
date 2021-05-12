@@ -1,11 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY <jean-baptiste.silvy@inria.fr>
+// Copyright (C) 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 // test is_handle_valid function
 
@@ -28,3 +31,4 @@ delete(polylines(3:7));
 test = is_handle_valid(polylines)
 assert_checkequal(test, [%t; %t; %f; %f; %f; %f; %f; %t; %t; %t; %t]);
 
+assert_checkerror("is_handle_valid(1.23);", [], 90);

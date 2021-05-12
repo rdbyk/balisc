@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- TEST WITH GRAPHIC -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for bug 7080 -->
 //
@@ -25,7 +27,7 @@ f14="title";
 
 //bar
 msgerr11=msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),f1,1,6);
-assert_checkerror("bar(gca(),[1 2],[1 2],0.8,""blue"",""grouped"",[])", msgerr11);
+assert_checkerror("bar(gca(),[1 2],[1 2],0.8,""blue"",""grouped"",[])", [], 72);
 msgerr12=msprintf(gettext("%s: Argument #%d: Decimal number(s) expected.\n"), f1, 2);
 assert_checkerror("bar(gca(),[""s"" ""d""],[1 2 3])", msgerr12);
 msgerr13=msprintf(_("%s: Arguments #%d and #%d: Incompatible sizes.\n"), f1, 1, 2);
@@ -53,7 +55,7 @@ assert_checkerror("getColorIndex(1)", msgerr41);
 
 //Sgrayplot
 msgerr131=msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"Sgrayplot",3);
-assert_checkerror("Sgrayplot(1)", msgerr131);
+assert_checkerror("Sgrayplot(1)", [], 74);
 msgerr132=msprintf(gettext("%s: Wrong type for input argument(s): Arguments #%d, #%d and #%d must be real.\n"), "Sgrayplot",1,2,3);
 assert_checkerror("Sgrayplot(%i,%i,[%i,%i])", msgerr132);
 

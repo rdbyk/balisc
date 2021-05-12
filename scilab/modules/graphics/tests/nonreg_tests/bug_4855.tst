@@ -1,11 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - pierre.lando@scilab.org
+// Copyright (C) 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //// This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
+
 //
 // <-- Non-regression test for bug 4855 -->
 //
@@ -60,21 +64,19 @@ function test(varargin); endfunction;
 
 function [svalue, value]=TestedParameter(i);
     if i == 0 then svalue = "on"; value = "on"; end;
-    if i == 1 then svalue = "off"; value = %f; end;
-    if i == 2 then svalue = "on"; value = 1; end;
-    if i == 3 then svalue = "off"; value = 0; end;
-    if i == 4 then svalue = "on"; value = %t; end;
-    if i == 5 then svalue = "off"; value = "0"; end;
-    if i == 6 then svalue = "on"; value = "1"; end;
-    if i == 5 then svalue = "off"; value = "F"; end;
-    if i == 6 then svalue = "on"; value = "T"; end;
-    if i == 9 then svalue = "off"; value = "off"; end;
+    if i == 1 then svalue = "on"; value = 1; end;
+    if i == 2 then svalue = "on"; value = %t; end;
+    if i == 3 then svalue = "on"; value = "T"; end;
+    if i == 4 then svalue = "off"; value = "off"; end;
+    if i == 5 then svalue = "off"; value = 0; end;
+    if i == 6 then svalue = "off"; value = %f; end;
+    if i == 7 then svalue = "off"; value = "F"; end;
 endfunction;
 
 
 f=gcf();
 f.event_handler="test";
-for i = [0:9] do
+for i = [0:7] do
     [svalue, value]=TestedParameter(i);
     f.auto_resize = value;
     f.immediate_drawing = value;
@@ -89,7 +91,7 @@ end;
 
 // Test 'on/off' property over an "Axes"
 a=gca();
-for i = [0:9] do
+for i = [0:7] do
     [svalue, value]=TestedParameter(i);
     a.visible = value;
     a.filled = value;
@@ -117,7 +119,7 @@ end;
 // Test 'on/off' property over an 'Plot3d'
 plot3d();
 e=gce();
-for i = [0:9] do
+for i = [0:7] do
     [svalue, value]=TestedParameter(i);
     e.surface_mode = value;
     e.mark_mode = value;
@@ -130,7 +132,7 @@ end;
 plot2d(1:4,cos(1:4));
 e=gce(); e=e.children(1);
 e.interp_color_vector=[1:4];
-for i = [0:9] do
+for i = [0:7] do
     [svalue, value]=TestedParameter(i);
     e.visible = value;
     e.closed = value;
@@ -151,7 +153,7 @@ end;
 // Test 'on/off' property over an 'Text'
 xstring(0,0,"test");
 e=gce();
-for i = [0:9] do
+for i = [0:7] do
     [svalue, value]=TestedParameter(i);
     e.visible = value;
     e.line_mode = value;
@@ -169,7 +171,7 @@ end;
 // Test 'on/off' property over an 'Label'
 a=gca();
 e=a.title;
-for i = [0:9] do
+for i = [0:7] do
     [svalue, value]=TestedParameter(i);
     e.visible = value;
     e.fill_mode = value;
@@ -187,7 +189,7 @@ end;
 // Test 'on/off' property over an 'Champ'
 champ(-5:5,-5:5,rand(11,11),rand(11,11));
 e=gce();
-for i = [0:9] do
+for i = [0:7] do
     [svalue, value]=TestedParameter(i);
     e.visible = value;
     e.colored = value;
