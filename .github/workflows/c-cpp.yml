@@ -68,14 +68,12 @@ jobs:
     - name: test_run (fixed, using xvfb)
       run: |
         cd scilab
-        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"graphics\"),exit(0),else,exit(1),end"
-        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"graphic_objects\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"arnoldi\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"boolean\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"console\"),exit(0),else,exit(1),end"
     - name: test_run (fixed, only mode_nwni)
       run: |
         cd scilab
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"arnoldi\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"boolean\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"console\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"core\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"data_structures\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"dynamic_link\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
@@ -91,7 +89,7 @@ jobs:
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"sparse\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"umfpack\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"xml\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
-    - name: test_run (not yet fixed)
+    - name: test_run (not yet fixed, only mode_nwni)
       run: |
         cd scilab
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"ast\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
@@ -109,6 +107,11 @@ jobs:
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"statistics\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"string\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"time\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
+    - name: test_run (not yet fixed, using xvfb)
+      run: |
+        cd scilab
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphic_objects\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphics\"),exit(0)"
 #    - name: make doc-en_US
 #      run: |
 #        cd scilab
