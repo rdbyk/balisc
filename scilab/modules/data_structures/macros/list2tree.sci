@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - 2020 - Samuel GOUGEON
-// Copyright (C) 2020 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2020 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -33,11 +33,11 @@ function tree = list2tree(x, titleRoot, styles, arrayByFields)
         error(msprintf(msg, "list2tree", 1))
     end
 
-    if ~isdef("titleRoot","l")
+    if isvoid(titleRoot)
         titleRoot = "";
     end
 
-    if ~isdef("arrayByFields","l") then
+    if isvoid(arrayByFields) then
         arrayByFields = %f
     elseif type(arrayByFields) <> 4
         msg = _("%s: Argument #%d: Boolean(s) expected.\n")
@@ -46,7 +46,7 @@ function tree = list2tree(x, titleRoot, styles, arrayByFields)
         arrayByFields = arrayByFields(1)
     end
 
-    if ~isdef("styles","l") then
+    if isvoid(styles) then
         styles = ""
     elseif type(styles) <> 10
         msg = _("%s: Argument #%d: Text(s) expected.\n")

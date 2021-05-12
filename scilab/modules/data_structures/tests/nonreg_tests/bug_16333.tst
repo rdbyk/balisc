@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2020 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- NO CHECK REF -->
-//
+// <-- NO CHECK ERROR OUTPUT -->
+
 // <-- Non-regression test for bug 16333 -->
 //
 // <-- Bugzilla URL -->
@@ -14,7 +16,6 @@
 //
 // <-- Short Description -->
 // tree_show() was broken for Xcos blocks and diagrams
-
 
 loadXcosLibs();
 

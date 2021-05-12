@@ -2,7 +2,7 @@
 //
 // Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 // Copyright (C) 2019 - Samuel GOUGEON
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -43,11 +43,11 @@ function tree_show(x, titleRoot, styles, arrayByFields)
         error(msprintf(msg, "tree_show", 1))
     end
 
-    if ~isdef("titleRoot","l") then
+    if isvoid(titleRoot) then
         titleRoot = ""
     end
 
-    if ~isdef("arrayByFields","l") then
+    if isvoid(arrayByFields) then
         arrayByFields = %f
     elseif type(arrayByFields) <> 4
         msg = _("%s: Argument #%d: Boolean(s) expected.\n")
@@ -56,7 +56,7 @@ function tree_show(x, titleRoot, styles, arrayByFields)
         arrayByFields = arrayByFields(1)
     end
 
-    if ~isdef("styles","l") then
+    if isvoid(styles) then
         styles = "<font color=""blue"">$</font>"
     elseif type(styles) <> 10
         msg = _("%s: Argument #%d: Text(s) expected.\n")

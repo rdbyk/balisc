@@ -1,12 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH GRAPHIC -->
-// <-- ENGLISH IMPOSED -->
+// <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 15263 -->
@@ -24,4 +24,3 @@ s(1,2).r = %i;
 assert_checkequal(s(2,2).r, []);
 s(2,2).r = 1-%i;
 assert_checkequal(s(1,2).r, %i);
-
