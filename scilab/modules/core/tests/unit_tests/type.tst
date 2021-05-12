@@ -2,18 +2,17 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- ENGLISH IMPOSED -->
-
-//type
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 // Special cases
 if type(%nan) <> 1 then pause,end
 if type(%inf) <> 1 then pause,end
-
 
 // double <-> 1
 if type(1) <> 1 then pause,end
@@ -83,4 +82,3 @@ clear h;
 
 // GW function
 if type(type) <> 130 then pause,end
-

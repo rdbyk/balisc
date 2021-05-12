@@ -1,13 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Stéphane Mottelet
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- TEST WITH GRAPHIC -->
-// <-- ENGLISH IMPOSED -->
-//
+// <-- NO CHECK ERROR OUTPUT -->
+
 // <-- Non-regression test for bug 14606 -->
 //
 // <-- Bugzilla URL -->
@@ -56,4 +57,3 @@ global bug_14606_var
 whos -name bug_14606_var
 clear bug_14606_var
 whos -name bug_14606_var
-

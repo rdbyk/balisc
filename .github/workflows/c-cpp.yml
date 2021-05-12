@@ -71,10 +71,10 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"arnoldi\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"boolean\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"console\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"core\"),exit(0),else,exit(1),end"
     - name: test_run (fixed, only mode_nwni)
       run: |
         cd scilab
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"core\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"data_structures\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"dynamic_link\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"interpolation\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"

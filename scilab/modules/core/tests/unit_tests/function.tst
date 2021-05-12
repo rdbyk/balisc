@@ -7,6 +7,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 //Checks syntactical aspects  related to functions
 funcprot(0);
 //
@@ -160,7 +163,7 @@ for k=1:2
     function y=foo(k)//qsdsdf
         y=k^2
     endfunction
-    z=z+foo();
+    z=z+foo(k);
 end
 if z<>5 then pause,end
 
@@ -169,14 +172,14 @@ for k=1:2
     function y=foo(k)//qsdsdf
         y=k^2 //a comment
     endfunction
-    z=z+foo();
+    z=z+foo(k);
 end
 if z<>5 then pause,end
 
 z=0;
 for k=1:2
     function y=foo(k), y=k^2, endfunction
-    z=z+foo();
+    z=z+foo(k);
 end
 if z<>5 then pause,end
 
@@ -184,7 +187,7 @@ if z<>5 then pause,end
 z=0;
 for k=1:2
     function y=foo(k), y=k^2, endfunction// a comment
-    z=z+foo();
+    z=z+foo(k);
 end
 if z<>5 then pause,end
 
@@ -243,7 +246,7 @@ function a=foo()
     a=...
     sin...
     (...
-    1...
+    1 ...
     ),
 endfunction
 //continuation lines are replaced by a sequence of empty lines followed by the logical line
@@ -276,6 +279,3 @@ endfunction
 L=macr2tree(foo);
 if L(6)<>6  then pause,end
 if foo<>foo1 then pause,end
-
-
-

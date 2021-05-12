@@ -1,10 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA - Serge Steer
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 1384 -->
 //
@@ -13,31 +16,31 @@
 //
 // <-- Short Description -->
 // Missing test and error for resume called with indexed output arguments
-clear foo;deff('foo()','a(2)=return(1)');
-if execstr('foo()','errcatch')<>79 then pause,end
 
-clear foo;deff('foo()','a=return(1)');
-if execstr('foo()','errcatch')<>0 then pause,end
+funcprot(0);
 
+errnum=28;
 
-clear foo;deff('foo()','[a(3),b]=return(1,2)');
-if execstr('foo()','errcatch')  <>79 then pause,end
+deff('foo()','a(2)=return(1)');
+assert_checkerror('foo()', [], errnum);
 
-clear foo;deff('foo()','[a,b]=return(1,2)');
-if execstr('foo()','errcatch')<>0 then pause,end
+deff('foo()','a=return(1)');
+foo();
 
+deff('foo()','[a(3),b]=return(1,2)');
+assert_checkerror('foo()', [], errnum);
 
-clear foo;deff('foo()','a(2)=return(1)');
-if execstr('foo()','errcatch')<>79 then pause,end
+deff('foo()','[a,b]=return(1,2)');
+foo();
 
-clear foo;deff('foo()','a=return(1)');
-if execstr('foo()','errcatch')<>0 then pause,end
+deff('foo()','a(2)=return(1)');
+assert_checkerror('foo()', [], errnum);
 
-clear foo;deff('foo()','[a(3),b]=return(1,2)');
-if execstr('foo()','errcatch')<>79 then pause,end
+deff('foo()','a=return(1)');
+foo();
 
+deff('foo()','[a(3),b]=return(1,2)');
+assert_checkerror('foo()', [], errnum);
 
-clear foo;deff('foo()','[a,b]=return(1,2)');
-if execstr('foo()','errcatch')<>0 then pause,end
-
-
+deff('foo()','[a,b]=return(1,2)');
+foo();

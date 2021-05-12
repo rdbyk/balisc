@@ -1,10 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 // <-- Non-regression test for bug 3160 -->
 //
@@ -13,8 +17,6 @@
 //
 // <-- Short Description -->
 // Missing variable in called function
-
-// <-- TEST WITH GRAPHIC -->
 
 function vt()
   ap(1,2,3,4)
@@ -29,4 +31,4 @@ function ap(v1,v2,v3,v4)
   end
 endfunction
 
-if execstr("vt();","errcatch")<>0 then pause;end
+vt();

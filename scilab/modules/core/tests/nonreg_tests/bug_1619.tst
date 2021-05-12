@@ -6,6 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 1619 -->
@@ -18,6 +19,8 @@
 //    so much,
 //    that causes spectacular crashes of scilab.
 
+funcprot(0);
+
 deff("x=foo(n)",["if n==0 then"
 "  x=[]"
 "else"
@@ -27,9 +30,9 @@ deff("x=foo(n)",["if n==0 then"
 "    x=x+s(1)"
 "  end"
 "end"])
-assert_checkequal(execstr("macr2tree(foo)","errcatch"), 0);
-clear foo;
+
+macr2tree(foo);
 
 function y=foo(),y=sin(33)+1;endfunction
 foo(); //execution creates a deleted op in the pseudo code of foo
-assert_checkequal(execstr("macr2tree(foo)","errcatch"), 0);
+macr2tree(foo);
