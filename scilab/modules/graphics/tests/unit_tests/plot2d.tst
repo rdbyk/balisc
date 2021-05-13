@@ -1,11 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 // Unit test for plot2d()
 x=(0.1:0.1:2*%pi)';
@@ -16,7 +19,7 @@ assert_checkerror("plot2d( logflag=""nn"", style=[-1,-2,3], rect=[0,-2,2*%pi,2],
 errmsg=msprintf(_("%s: Wrong size for input arguments: Incompatible sizes.\n"),"plot2d");
 assert_checkerror("plot2d(1, sin(x), logflag=""nn"", style=[-1,-2,3], rect=[0,-2,2*%pi,2], axesflag=1)",errmsg);
 
-errmsg=[msprintf(_("Function not defined for given argument type(s),\n"));msprintf(_("  check arguments or define function %s for overloading.\n"), "%c_plot2d")];
+errmsg=[msprintf(_("Function not defined for given argument type(s),\n"));msprintf(_("check arguments or define function %s for overloading.\n"), "%c_plot2d")];
 assert_checkerror("plot2d(x, ""s"", logflag=""nn"", style=[-1,-2,3], rect=[0,-2,2*%pi,2], axesflag=1)",errmsg);
 
 // Error messages with log mode

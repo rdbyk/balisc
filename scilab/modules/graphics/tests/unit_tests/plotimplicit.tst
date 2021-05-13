@@ -2,14 +2,15 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime Agnel
 // Copyright (C) 2020 - Scilab Enterprises - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
-// <-- Unit test for function plotimplicit -->
-//
+
 // <-- TEST WITH GRAPHIC -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 // Error checking
 // --------------
@@ -35,11 +36,11 @@ assert_checkerror("plotimplicit(""x^2+y^2=1"", rand(2,3))", msg);
 
 // y_grid:
 msg = msprintf("%s: Argument #%d: Real vector or colon : expected.\n", fname, 3);
-assert_checkerror("plotimplicit(""x^2+y^2=1"", , ""not_a_real_vector"")", msg);
+assert_checkerror("plotimplicit(""x^2+y^2=1"", –, ""not_a_real_vector"")", msg);
 msg = msprintf("%s: Argument #%d: Real value expected.\n", fname, 3);
-assert_checkerror("plotimplicit(""x^2+y^2=1"", , [1 %i])", msg);
+assert_checkerror("plotimplicit(""x^2+y^2=1"", –, [1 %i])", msg);
 msg = msprintf("%s: Argument #%d: Vector expected.\n", fname, 3);
-assert_checkerror("plotimplicit(""x^2+y^2=1"", , rand(2,3))", msg);
+assert_checkerror("plotimplicit(""x^2+y^2=1"", –, rand(2,3))", msg);
 
 
 // Nominal behaviour
@@ -89,14 +90,14 @@ endfunction
 assert_checkequal(execstr("plotimplicit(list(fun,3,1,1))", "errcatch"), 0);
 
 // x_grid
-assert_checkequal(execstr("plotimplicit(""x^2+y^2=6"",[-2,3])", "errcatch"), 0);
+plotimplicit("x^2+y^2=6", [-2,3]);
 assert_checkequal(execstr("plotimplicit(""x^2+y^2=6"",[3,-2])", "errcatch"), 0);
 assert_checkequal(execstr("plotimplicit(""x^2+y^2=6"",-2:0.1:4)", "errcatch"), 0);
 assert_checkequal(execstr("plotimplicit(""x^2+y^2=7"",:)", "errcatch"), 0);
 
 // y_grid
 assert_checkequal(execstr("plotimplicit(""x^2+y^2=6"",[-2,3],[-1 2])", "errcatch"), 0);
-assert_checkequal(execstr("plotimplicit(""x^2+y^2=6"",      ,[-1 2])", "errcatch"), 0);
+assert_checkequal(execstr("plotimplicit(""x^2+y^2=6"",     –,[-1 2])", "errcatch"), 0);
 assert_checkequal(execstr("plotimplicit(""x^2+y^2=6"",[-2,3], :)", "errcatch"), 0);
 assert_checkequal(execstr("plotimplicit(""x^2+y^2=6"",[-2,3],-1:0.1:2)", "errcatch"), 0);
-assert_checkequal(execstr("plotimplicit(""x^2+y^2=0.5"",[-2,3],,""r"")", "errcatch"), 0);
+assert_checkequal(execstr("plotimplicit(""x^2+y^2=0.5"",[-2,3], –,""r"")", "errcatch"), 0);

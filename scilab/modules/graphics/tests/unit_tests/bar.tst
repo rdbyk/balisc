@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -8,6 +9,7 @@
 // <-- TEST WITH GRAPHIC -->
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
 // Unitary tests of bar()
 // ----------------------
@@ -46,9 +48,8 @@ end
 
 // Expected Errors
 // ---------------
-msg = "bar: Wrong number of input argument(s): 1 to 6 expected."
-assert_checkerror("clf, bar()", msg);
-assert_checkerror("clf, bar(1,2,3,4,5,6,7)", msg);
+assert_checkerror("clf, bar()", [], 72);
+assert_checkerror("clf, bar(1,2,3,4,5,6,7)", [], 72);
 
 // Bad handle type
 msg = "bar: Argument #1: Graphic handle of type ''Axes'' expected."
@@ -108,4 +109,3 @@ msg = "bar: Argument #3: Scalar (1 element) expected.";
 assert_checkerror("clf, bar(7, [3 -2 1],[""abc"" ""stacked""])", msg);
 msg = "bar: Argument #4: Scalar (1 element) expected.";
 assert_checkerror("clf, bar(gca(), 7, [3 -2 1],[""abc"" ""stacked""])", msg);
-
