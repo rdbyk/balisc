@@ -5,6 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
+
 // <-- Non-regression test for bug 461 -->
 //
 // <-- Bugzilla URL -->
