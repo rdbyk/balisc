@@ -78,7 +78,6 @@ jobs:
       run: |
         cd scilab
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"dynamic_link\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"interpolation\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"io\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"jvm\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"mexlib\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"

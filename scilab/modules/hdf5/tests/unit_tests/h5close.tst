@@ -1,15 +1,16 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - SCILAB ENTERPRISES - Simon GARESTE
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
-// <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A H5Object expected.\n"), "h5close", 1);
-assert_checkerror("h5close(42)",msgerr,999);
-assert_checkerror("h5close(""42"")",msgerr,999);
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
+assert_checkerror("h5close(42)", [], 90);
+assert_checkerror("h5close(""42"")", [], 90);
 
 w = [1 2;3 4];
 
@@ -35,6 +36,5 @@ h5close(a);
 assert_checkerror("disp(a)",msgerr,999);
 assert_checkerror("disp(dataset)",msgerr,999);
 assert_checkerror("disp(attr)",msgerr,999);
-
 
 assert_checkequal(deletefile(TMPDIR+"/w.sod"),%T);

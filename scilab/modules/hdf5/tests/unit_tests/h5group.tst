@@ -1,22 +1,20 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - SCILAB ENTERPRISES - Simon GARESTE
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
-// <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "h5group", 2);
-assert_checkerror("h5group()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "h5group", 2);
-assert_checkerror("h5group(42)",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5group", 1);
-assert_checkerror("h5group(42,42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5group", 2);
-assert_checkerror("h5group(""42"",42)",msgerr,999);
-msgerr = msprintf(gettext("%s: %s\n"), "h5group", msprintf(gettext("Invalid hdf5 file: %s."), "42"));
-assert_checkerror("h5group(""42"",""42"")",msgerr,999);
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
+
+assert_checkerror("h5group()", [], 77);
+assert_checkerror("h5group(42)", [], 77);
+assert_checkerror("h5group(42,42)", [], 91);
+assert_checkerror("h5group(""42"",42)", [], 91);
+assert_checkerror("h5group(""42"",""42"")", [], 132);
 
 a = h5open(TMPDIR + "/test_group.h5", "a");
 gnames = "Group_" + string(1:10);

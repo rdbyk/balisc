@@ -1,28 +1,26 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - SCILAB ENTERPRISES - Simon GARESTE
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "h5ln", 3, 5);
-assert_checkerror("h5ln()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5ln", 1);
-assert_checkerror("h5ln(42,42,42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5ln", 2);
-assert_checkerror("h5ln(""42"",42,42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5ln", 3);
-assert_checkerror("h5ln(""42"",""42"",42)",msgerr,999);
-msgerr = msprintf(gettext("%s: %s\n"), "h5ln", msprintf(gettext("Invalid hdf5 file: %s."), "42"));
-assert_checkerror("h5ln(""42"",""42"",""42"")",msgerr,999);
+assert_checkerror("h5ln()", [], 77);
+assert_checkerror("h5ln(42,42,42)", [], 91);
+assert_checkerror("h5ln(""42"",42,42)", [], 91);
+assert_checkerror("h5ln(""42"",""42"",42)", [], 91);
+assert_checkerror("h5ln(""42"",""42"",""42"")", [], 132);
 
 a = h5open(TMPDIR + "/test.h5");
 h5ln(a,"42","42");
 msgerr = msprintf(gettext("%s: Error in retrieving field content:\n%s\n"), "%H5Object_e", msprintf(gettext("Invalid name: %s."), "/42"));
 msgerr($+1) = gettext("HDF5 description") + ": " + "too many links.";
-assert_checkerror("a(""/42"")",msgerr,999);
+assert_checkerror("a(""/42"")", msgerr, 999);
 h5rm(a,"/42");
 
 b = h5open(TMPDIR + "/test1.h5");

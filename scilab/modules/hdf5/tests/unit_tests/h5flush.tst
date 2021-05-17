@@ -1,16 +1,17 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - SCILAB ENTERPRISES - Simon GARESTE
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
-// <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "h5flush", 1, 2);
-assert_checkerror("h5flush()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A HDF5 object expected.\n"), "h5flush", 1);
-assert_checkerror("h5flush(42)",msgerr,999);
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
+
+assert_checkerror("h5flush()", [], 77);
+assert_checkerror("h5flush(42)", [], 90);
 
 deletefile(TMPDIR + "/test.h5");
 deletefile(TMPDIR + "/test1.h5");

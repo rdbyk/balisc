@@ -662,7 +662,7 @@ static hid_t export_undefined(hid_t parent, const std::string& name, hid_t xfer_
 
 static hid_t export_insert(hid_t parent, const std::string& name, ListInsert* data, hid_t xfer_plist_id)
 {
-    int dset = openList6(parent, name.data(), g_SCILAB_CLASS_INSERT);
+    hid_t dset = openList6(parent, name.data(), g_SCILAB_CLASS_INSERT);
 
     if (export_data(dset, std::to_string(0).data(), data->getInsert(), xfer_plist_id) == -1)
     {

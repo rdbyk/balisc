@@ -1,27 +1,22 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - SCILAB ENTERPRISES - Simon GARESTE
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
-// <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "h5cp", 2, 4);
-assert_checkerror("h5cp()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "h5cp", 2, 4);
-assert_checkerror("h5cp(42)",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5cp", 1);
-assert_checkerror("h5cp(12.0,14.0)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5cp", 2);
-assert_checkerror("h5cp(""12.0"",14.0)",msgerr,999);
-msgerr = msprintf(gettext("%s: %s\n"), "h5cp", msprintf(gettext("Invalid hdf5 file: %s."), "12.0"));
-assert_checkerror("h5cp(""12.0"",""14.0"")",msgerr,999);
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
+assert_checkerror("h5cp()", [], 77);
+assert_checkerror("h5cp(42)", [], 77);
+assert_checkerror("h5cp(12.0,14.0)", [], 91);
+assert_checkerror("h5cp(""12.0"",14.0)", [], 91);
+assert_checkerror("h5cp(""12.0"",""14.0"")", [], 132);
 
 a = h5open(TMPDIR + "/test.h5");
-
-msgerr = msprintf(gettext("%s: %s\n"), "h5cp", gettext("Invalid hdf5 file: empty filename."));
-assert_checkerror("h5cp(a,""14.0"")",msgerr,999);
+assert_checkerror("h5cp(a,""14.0"")", [], 132);
 
 b = h5open(TMPDIR + "/test1.h5");
 c = h5open(TMPDIR + "/test2.h5");
