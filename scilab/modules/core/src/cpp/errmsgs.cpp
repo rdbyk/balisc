@@ -144,6 +144,8 @@ std::map<int, const char*> ErrorMessages =
 
     // linear_algebra
     { 180, _("LAPACK error #%d.\n") },
+    { 181, _("LAPACK problem: %s.\n") },
+    { 182, _("QR algorithm failed to compute the largest %d eigenvalue(s).\n") },
 
     // cacsd
     { 200, _("System is not controllable.\n") },
