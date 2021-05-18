@@ -98,8 +98,9 @@ static int zheevWorkSizes(int iCols, int* optWorkSize, int* minWorkSize)
 static int zgeevWorkSizes(int iCols,  int lhs, int* optWorkSize, int* minWorkSize)
 {
     int info = 0, query = -1;
+    double rwork;
     doublecomplex opt;
-    C2F(zgeev)("N", (lhs == 1 ? "N" : "V"), &iCols, NULL, &iCols, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, NULL, &info );
+    C2F(zgeev)("N", (lhs == 1 ? "N" : "V"), &iCols, NULL, &iCols, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, &rwork, &info );
     *optWorkSize = (int)opt.r;
     *minWorkSize = Max(1, 2 * iCols);
     return info;
@@ -238,12 +239,7 @@ int iEigen1ComplexM(doublecomplex* pData, int iCols, doublecomplex* pEigenValues
     int ws[2];
     int worksize;
     int lhs = (pEigenVectors == NULL ? 1 : 2);
-
-    //zgeevWorkSizes(iCols, lhs, ws, ws + 1);
-    // cf. https://codereview.scilab.org/#/c/21763/
-    ws[0] = 33 * iCols;
-    ws[1] = 2 * iCols;
-
+    zgeevWorkSizes(iCols, lhs, ws, ws + 1);
     {
         doublecomplex* pWork;
         double* pRWork;

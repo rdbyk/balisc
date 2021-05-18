@@ -162,12 +162,12 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 if (_iRetCount == 2)
                 {
                     vGetPointerFromDoubleComplex((doublecomplex*)pDataA, pDblA->getSize(), pDblEigenVectors->getReal(), pDblEigenVectors->getImg());
-                    vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
                     expandToDiagonalOfMatrix(pDblEigenValues->getReal(), pDblA->getCols());
                     out.push_back(pDblEigenVectors);
                 }
                 out.push_back(pDblEigenValues);
                 pDblA->killMe();
+                vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
             }
             else // not symmetric
             {
@@ -228,6 +228,10 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
                 if (_iRetCount == 2)
                 {
+                    if (pDblEigenVectors)
+                    {
+                        pDblEigenVectors->killMe();
+                    }
                     expandToDiagonalOfMatrix(pDblEigenValues->getReal(), pDblA->getCols());
                     out.push_back(pDblA);
                 }
@@ -245,6 +249,10 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 if (iRet < 0)
                 {
                     pDblA->killMe();
+                    if (pDblEigenVectors)
+                    {
+                        pDblEigenVectors->killMe();
+                    }
                     Scierror(181, _("illegal value of ZGEEV parameter #3"));
                     return types::Function::Error;
                 }
@@ -252,6 +260,10 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 if (iRet > 0)
                 {
                     pDblA->killMe();
+                    if (pDblEigenVectors)
+                    {
+                        pDblEigenVectors->killMe();
+                    }
                     Scierror(182, iRet);
                     //Scierror(24, _("%s: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of WR and WI contain eigenvalues which have converged.\n"), "spec", iRet);
                     return types::Function::Error;
