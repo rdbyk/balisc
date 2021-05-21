@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2019 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,10 +48,13 @@ types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, 
             switch (pIT->getType())
             {
                 case types::InternalType::ScilabFunction:
-                case types::InternalType::ScilabMacro:
-                case types::InternalType::ScilabMacroFile:
                     out.push_back(new types::String(pIT->getAs<types::Callable>()->getModule().c_str()));
                     return types::Function::OK;
+                case types::InternalType::ScilabMacro:
+                    out.push_back(new types::String(pIT->getAs<types::Callable>()->getModule().c_str()));
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -59,7 +62,10 @@ types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, 
         int size = symbol::Context::getInstance()->getWhereIs(lst, pS->get()[0]);
         if (lst.empty())
         {
-            out.push_back(types::Double::Empty());
+            if (out.empty())
+            {
+                out.push_back(types::Double::Empty());
+            }
             return types::Function::OK;
         }
 
