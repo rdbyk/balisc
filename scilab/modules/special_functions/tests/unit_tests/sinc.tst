@@ -1,16 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Charlotte Hecquet
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-
-// unit tests for sinc() function
-// =============================================================================
 
 // Singular values
 assert_checkequal(sinc(0),1);
@@ -29,15 +26,13 @@ x2=sparse(x);
 assert_checkalmostequal(sinc(x2),full(sin(x2)./x2), [], 1e-12);
 
 // Error messages
-error_msg = msprintf(gettext("sinc: Wrong number of input arguments: 1 expected.\n"));
-assert_checkerror("sinc(1,2,3)",error_msg);
-assert_checkerror("sinc()",error_msg);
-error_msg = msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n"),"sinc",1);
-assert_checkerror("sinc(""test"")",error_msg);
-assert_checkerror("sinc(list(1,2,3))",error_msg);
-assert_checkerror("sinc(abs)",error_msg);
-assert_checkerror("sinc(poly(0,''s''))",error_msg);
+assert_checkerror("sinc(1,2,3)", [], 71);
+assert_checkerror("sinc()", [], 71);
+assert_checkerror("sinc(""test"")", [], 90);
+assert_checkerror("sinc(list(1,2,3))", [], 90);
+assert_checkerror("sinc(abs)", [], 90);
+assert_checkerror("sinc(poly(0,''s''))", [], 90);
 A=[0,1;0,0];B=[1;1];C=[1,1];
 S1=syslin("c",A,B,C);
-assert_checkerror("sinc(S1)",error_msg);
-assert_checkerror("sinc(ss2tf(S1))",error_msg);
+assert_checkerror("sinc(S1)", [], 90);
+assert_checkerror("sinc(ss2tf(S1))", [], 90);

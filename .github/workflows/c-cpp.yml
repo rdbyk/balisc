@@ -83,6 +83,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"signal_processing\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"sound\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"sparse\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"special_functions\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"spreadsheet\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"umfpack\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"xml\"),exit(0),else,exit(1),end"
@@ -113,7 +114,6 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphic_objects\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphics\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"output_stream\"),exit(0)"
-        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"special_functions\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"hdf5\"),exit(0)"
 #    - name: make doc-en_US[
 #      run: |

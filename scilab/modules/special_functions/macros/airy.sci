@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - Samuel GOUGEON - Le Mans Université
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,8 +15,7 @@ function y = airy(k, z, scaled)
 
     // CHECKING INPUT ARGUMENTS
     // ------------------------
-    rhs = argn(2)
-    select rhs
+    select nargin
     case 1
         z = k
         k = 0
@@ -23,7 +23,7 @@ function y = airy(k, z, scaled)
     case 2
         scaled = %f
     case 3
-        if ~isdef("scaled","l")
+        if isvoid(scaled)
             scaled = %f
         else
             scaled = ~(~scaled)
@@ -54,7 +54,7 @@ function y = airy(k, z, scaled)
     // z
     if type(z) <> 1 then
         msg = _("%s: Argument #%d: Decimal or complex number expected.\n")
-        error(msprintf(msg, fname, min(rhs,2)))
+        error(msprintf(msg, fname, min(nargin,2)))
     end
     // Hypermatrices: reshape for bessel*()
     s = size(z)

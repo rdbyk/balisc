@@ -1,15 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - Samuel GOUGEON - Le Mans Université
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
-// ------------------------------
-// unit tests of airy() functions
-// ------------------------------
 
 // Check the result's size:
 for o = list([], -3, rand(1,10), rand(10,1), rand(10,12), rand(3,4,2))
@@ -89,7 +88,7 @@ end
 // Check error messages
 // --------------------
 assert_checkerror("airy()", "airy: Wrong number of input arguments: 1 to 3 expected.");
-assert_checkerror("airy(1,2,1,4)", "Wrong number of input arguments.");
+assert_checkerror("airy(1,2,1,4)", [], 71);
 assert_checkerror("airy(%z)", "airy: Argument #1: Decimal or complex number expected.");
 assert_checkerror("airy(sparse(1:4))", "airy: Argument #1: Decimal or complex number expected.");
 assert_checkerror("airy(%z,3)", "airy: Argument #1: Integer number or string expected.");
