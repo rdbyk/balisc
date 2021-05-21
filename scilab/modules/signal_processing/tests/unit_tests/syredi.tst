@@ -10,6 +10,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
+
 test_path = SCI + "/modules/signal_processing/tests/unit_tests/";
 
 [fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(1,4,[2*%pi/10,4*%pi/10,0,0],0.02,0.001);
@@ -45,4 +48,3 @@ assert_checkalmostequal(c12, c12_ref);
 assert_checkalmostequal(c02, c02_ref);
 assert_checkalmostequal(zzeros2, zzeros2_ref);
 assert_checkalmostequal(zpoles2, zpoles2_ref);
-

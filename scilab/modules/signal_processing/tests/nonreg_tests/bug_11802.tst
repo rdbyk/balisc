@@ -1,12 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- TEST WITH GRAPHIC -->
-//
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
+
 // <-- Non-regression test for bug 11802 -->
 //
 // <-- Bugzilla URL -->
@@ -19,4 +22,4 @@ a = [10 20 30 40 50];
 b = [1 2 3 4 5];
 tt = mrfit(a,b,2);
 
-assert_checktrue(execstr("nyquist(tt)", "errcatch")==0);
+nyquist(tt);
