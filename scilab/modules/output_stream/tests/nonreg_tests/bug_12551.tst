@@ -1,14 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- ENGLISH IMPOSED -->
-//
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 12551 -->
 //
 // <-- Bugzilla URL -->
@@ -27,14 +28,15 @@ a=1;
 diary([],"pause");
 a=2;
 txt = mgetl(FILENAME_DIARY); 
-assert_checkequal(txt($),'--> diary([],""pause"");');
+txt($)
+assert_checkequal(txt($), prompt() + "diary([],""pause"");");
 txt2 = mgetl(FILENAME_DIARY2);
-assert_checkequal(txt2($),'--> diary([],""pause"");');
+assert_checkequal(txt2($), prompt() + "diary([],""pause"");");
 
 diary([],"resume");
 a=3;
 diary([],"close");
 txt=mgetl(FILENAME_DIARY);
-assert_checkequal(txt($-2),'--> a=3;');
+assert_checkequal(txt($-2), prompt() + "a=3;");
 txt2=mgetl(FILENAME_DIARY2);
-assert_checkequal(txt($-2),'--> a=3;');
+assert_checkequal(txt($-2), prompt() + "a=3;");
