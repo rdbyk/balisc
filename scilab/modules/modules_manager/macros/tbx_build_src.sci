@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Simon LIPP <simon.lipp@scilab.org>
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -28,18 +28,18 @@ function tbx_build_src(names,       ..
 
     oldpath = pwd();
 
-    if exists("src_path","local") then
+    if ~isvoid(src_path) then
         chdir(src_path);
     end
 
-    if ~exists("libs", "local")       then libs       = []; end
-    if ~exists("ldflags", "local")    then ldflags    = ""; end
-    if ~exists("cflags", "local")     then cflags     = ""; end
-    if ~exists("fflags", "local")     then fflags     = ""; end
-    if ~exists("cc", "local")         then cc         = ""; end
-    if ~exists("libname", "local")    then libname    = ""; end
-    if ~exists("loadername", "local") then loadername = "loader.sce"; end
-    if ~exists("makename", "local")   then makename   = ""; end
+    if isvoid(libs)       then libs       = []; end
+    if isvoid(ldflags)    then ldflags    = ""; end
+    if isvoid(cflags)     then cflags     = ""; end
+    if isvoid(fflags)     then fflags     = ""; end
+    if isvoid(cc)         then cc         = ""; end
+    if isvoid(libname)    then libname    = ""; end
+    if isvoid(loadername) then loadername = "loader.sce"; end
+    if isvoid(makename)   then makename   = ""; end
 
     ilib_for_link(names,      ..
     files,      ..
