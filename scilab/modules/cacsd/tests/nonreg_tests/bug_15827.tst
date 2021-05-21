@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- TEST WITH GRAPHIC -->
 // <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for bug 15827 -->
 //
@@ -23,15 +25,18 @@ G = (10*(s+3))/(s*(s+2)*(s^2+s+2));
 sys = syslin('c', G);
 f_min = .0001; f_max = 16; // Frequencies in Hz
 
-setlanguage("fr")
 clf
 bode(sys, f_min, f_max, "rad");
 c = gcf().children(1).children.children;
 d = datatipCreate(c, 100);
-assert_checktrue(grep(d.text(1), "rad/s")~=[]);
-assert_checktrue(grep(gcf().children(1).x_label.text, "Pulsation")~=[]);
+assert_checktrue(grep(d.text(1), "rad/s") <> []);
+if setlanguage("fr")
+    assert_checktrue(grep(gcf().children(1).x_label.text, "Pulsation") <> []);
+end
 
 c = gcf().children(2).children.children;
 d = datatipCreate(c, 100);
-assert_checktrue(grep(d.text(1), "rad/s")~=[]);
-assert_checktrue(grep(gcf().children(2).x_label.text, "Pulsation")~=[]);
+assert_checktrue(grep(d.text(1), "rad/s") <> []);
+if setlanguage("fr")
+    assert_checktrue(grep(gcf().children(2).x_label.text, "Pulsation") <> []);
+end

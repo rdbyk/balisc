@@ -1,12 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- TEST WITH GRAPHIC -->
-//
+// <-- NO CHECK REF -->
+// <-- NO CHECK ERROR OUTPUT -->
+
 // <-- Non-regression test for bug 8162 -->
 //
 // <-- Bugzilla URL -->
@@ -22,6 +25,6 @@ h=syslin('c',n./d);
 assert_checktrue(execstr("plzr(h)","errcatch")==0);
 fig=gcf();
 ax=fig.children;
-assert_checktrue(ax.children(2).type=='Segs');
-assert_checktrue(ax.children(2).data-[0,-1.6289709;0,1.6289709]<1d-5);
+assert_checkequal(ax.children(2).type, 'Segs');
+assert_checkequal(ax.children(2).data, [0,-2;0,2]);
 close
