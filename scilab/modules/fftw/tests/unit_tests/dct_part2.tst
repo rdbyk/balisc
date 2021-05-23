@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - INRIA - Serge STEER
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //============================================================================================
 //=================================dct(A ,isn, sel) ============================================
@@ -16,7 +18,7 @@ function x=DCT(y,flag,sel)
   ind=1:ndims(y)
   ind(sel)=[];
   I=list();
-  for k=1:ndims(y),I(k)=:;end
+  for k=1:ndims(y),I(k)=1:$;end
   select size(ind,'*')
   case 1 then
     for i1=1:Dims(ind)
