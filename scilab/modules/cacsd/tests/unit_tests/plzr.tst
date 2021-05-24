@@ -1,13 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-//
-// Unit tests for plzr()
+// <-- NO CHECK REF -->
 
 function checkplzr(h,zrs,pls)
 
@@ -40,8 +40,8 @@ function checkplzr(h,zrs,pls)
     assert_checkequal(ax.type, "Axes");
 
     // Check axis name
-    assert_checkequal(ax.x_label.text, _("Real axis"));
-    assert_checkequal(ax.y_label.text, _("Imaginary axis"));
+    assert_checkequal(ax.x_label.text, _("Real Axis"));
+    assert_checkequal(ax.y_label.text, _("Imaginary Axis"));
 
     // Check legend
     assert_checkequal(ax.children(1).type,"Legend");
@@ -125,13 +125,8 @@ ss=tf2ss(h);
 checkplzr(ss,[],[1.7099759,0;-0.8549880,1.4808826;-0.8549880,-1.4808826;-1/3 0]);
 
 // error messages
-errmsg1=msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"plzr",4);
-assert_checkerror("plzr(1)",errmsg1);
-errmsg2=msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1);
-assert_checkerror("plzr(h,1)",errmsg2);
-errmsg3=msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1);
-assert_checkerror("plzr(ss,1)",errmsg3);
-errmsg4=msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"plzr",1);
-assert_checkerror("plzr(n)",errmsg4);
-errmsg5=msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"plzr",1);
-assert_checkerror("plzr(""s"",""d"")",errmsg5);
+assert_checkerror("plzr(1)", [], 71);
+assert_checkerror("plzr(h,1)", [], 71);
+assert_checkerror("plzr(ss,1)", [], 71);
+assert_checkerror("plzr(n)", [], 90);
+assert_checkerror("plzr(""s"",""d"")", [], 90);
