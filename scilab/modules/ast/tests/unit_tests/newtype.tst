@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/newtype"));
 cd(pathconvert(TMPDIR+"/newtype"));
@@ -37,5 +38,3 @@ end
 b
 disp(b)
 l=list(2, b, "test")
-
-//

@@ -76,6 +76,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"fftw\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"functions\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"interpolation\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"io\",[],\"no_check_error_output\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"linear_algebra\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"mexlib\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"overloading\"),exit(0),else,exit(1),end"
@@ -92,13 +93,11 @@ jobs:
       run: |
         cd scilab
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"dynamic_link\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"io\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"jvm\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"randlib\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
     - name: test_run (not yet fixed, only mode_nwni)
       run: |
         cd scilab
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"ast\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"elementary_functions\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"differential_equations\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
         ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"integer\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
@@ -110,6 +109,7 @@ jobs:
     - name: test_run (not yet fixed, using xvfb)
       run: |
         cd scilab
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"ast\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"cacsd\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphic_objects\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphics\"),exit(0)"
