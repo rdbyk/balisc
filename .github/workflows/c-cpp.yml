@@ -65,7 +65,7 @@ jobs:
       run: |
         cd scilab
         make
-    - name: test_run (fixed, using xvfb)
+    - name: test_run (FIXED)
       run: |
         cd scilab
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"arnoldi\"),exit(0),else,exit(1),end"
@@ -76,6 +76,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"fftw\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"functions\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"interpolation\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"integer\",[],\"no_check_error_output\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"io\",[],\"no_check_error_output\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"linear_algebra\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"mexlib\"),exit(0),else,exit(1),end"
@@ -90,31 +91,24 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"spreadsheet\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"umfpack\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"xml\"),exit(0),else,exit(1),end"
-    - name: test_run (fixed, only mode_nwni)
-      run: |
-        cd scilab
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"dynamic_link\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"jvm\",[],[\"mode_nwni\",\"show_error\"]),exit(0),else,exit(1),end"
-    - name: test_run (not yet fixed, only mode_nwni)
-      run: |
-        cd scilab
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"elementary_functions\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"differential_equations\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"integer\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"optimization\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"polynomials\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"statistics\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"string\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
-        ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"time\",[],[\"mode_nwni\",\"show_error\"]),exit(0)"
-    - name: test_run (not yet fixed, using xvfb)
+    - name: test_run (TO BE FIXED)
       run: |
         cd scilab
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"ast\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"cacsd\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"differential_equations\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"dynamic_link\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"elementary_functions\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphic_objects\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphics\"),exit(0)"
-        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"output_stream\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"hdf5\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"jvm\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"optimization\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"output_stream\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"polynomials\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"statistics\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"string\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"time\"),exit(0)"
 #    - name: make doc-en_US[
 #      run: |
 #        cd scilab
