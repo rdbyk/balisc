@@ -5,9 +5,9 @@ Name                     Type           Size           Bytes
 whos -name corel
 Name                     Type           Size           Bytes        
  
-corelib                  library                       964          
+corelib                  library                       1324         
 whos -type polynomial
 Name                     Type           Size           Bytes        
  
-%s                       polynomial     1x1            224          
-%z                       polynomial     1x1            224          
+%s                       polynomial     1x1            248          
+%z                       polynomial     1x1            248          
