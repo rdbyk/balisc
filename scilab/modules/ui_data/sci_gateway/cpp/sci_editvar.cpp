@@ -5,7 +5,7 @@
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -194,37 +194,6 @@ int sci_editvar(char * fname, void* pvApiCtx)
     if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pStVarOne))
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    /* Workaround to check for permanent variable.*/
-
-    if (strcmp(pStVarOne, "$")              == 0 ||
-            strcmp(pStVarOne, "%e")         == 0 ||
-            strcmp(pStVarOne, "%eps")       == 0 ||
-            strcmp(pStVarOne, "%fftw")      == 0 ||
-            strcmp(pStVarOne, "%f")         == 0 ||
-            strcmp(pStVarOne, "%F")         == 0 ||
-            strcmp(pStVarOne, "%gui")       == 0 ||
-            strcmp(pStVarOne, "%i")         == 0 ||
-            strcmp(pStVarOne, "%io")        == 0 ||
-            strcmp(pStVarOne, "%inf")       == 0 ||
-            strcmp(pStVarOne, "%nan")       == 0 ||
-            strcmp(pStVarOne, "%pi")        == 0 ||
-            strcmp(pStVarOne, "%s")         == 0 ||
-            strcmp(pStVarOne, "%tk")        == 0 ||
-            strcmp(pStVarOne, "%t")         == 0 ||
-            strcmp(pStVarOne, "%T")         == 0 ||
-            strcmp(pStVarOne, "%z")         == 0 ||
-            strcmp(pStVarOne, "evoid")      == 0 ||
-            strcmp(pStVarOne, "home")       == 0 ||
-            strcmp(pStVarOne, "PWD")        == 0 ||
-            strcmp(pStVarOne, "SCI")        == 0 ||
-            strcmp(pStVarOne, "SCIHOME")    == 0 ||
-            strcmp(pStVarOne, "TMPDIR")     == 0 )
-    {
-        Scierror(4);
-        freeAllocatedSingleString(pStVarOne);
         return 0;
     }
 
