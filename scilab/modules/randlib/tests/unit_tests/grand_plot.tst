@@ -7,7 +7,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- INTERACTIVE TEST -->
+
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 // <-- NO CHECK ERROR OUTPUT -->
 
 // These tests makes comparisons between the empirical cumulated
