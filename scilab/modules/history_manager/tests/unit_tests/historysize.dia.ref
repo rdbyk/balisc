@@ -1,11 +1,4 @@
-//<-- CLI SHELL MODE -->
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2011 - DIGITEO - Allan CORNET
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-savehistory(TMPDIR + "/historysize_backup"); // backup
+savehistory(TMPDIR + "/historysize_backup");
 resethistory();
 assert_checkequal(historysize(), 0);
 fmterr = msprintf(gettext("%s: Wrong value for input argument #%d: ""%s"" expected.\n"),"historysize", 1, "max");
@@ -23,4 +16,4 @@ warning("off");
 loadhistory(TMPDIR + "/historysize_tmp");
 assert_checkequal(historysize(), 100 + 1);
 resethistory();
-loadhistory(TMPDIR + "/historysize_backup"); // restore
+loadhistory(TMPDIR + "/historysize_backup");

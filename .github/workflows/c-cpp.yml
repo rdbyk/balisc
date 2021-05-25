@@ -76,6 +76,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"fftw\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"functions\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"graphic_export\",[],\"no_check_error_output\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"history_manager\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"interpolation\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"io\",[],\"no_check_error_output\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"linear_algebra\"),exit(0),else,exit(1),end"
@@ -92,20 +93,25 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"spreadsheet\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"ui_data\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"umfpack\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"webtools\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"xml\"),exit(0),else,exit(1),end"
     - name: test_run (TO BE FIXED)
       run: |
         cd scilab
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"ast\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"cacsd\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"completion\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"differential_equations\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"dynamic_link\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"elementary_functions\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"external_objects_java\",[],\"no_check_error_output\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphic_objects\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphics\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"gui\",[],\"no_check_error_output\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"hdf5\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"integer\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"jvm\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"localization\",[],\"no_check_error_output\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"modules_manager\",[],\"no_check_error_output\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"optimization\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"output_stream\"),exit(0)"
@@ -113,6 +119,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"statistics\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"string\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"time\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"xcos\",[],\"no_check_error_output\"),exit(0)"
 #    - name: make doc-en_US[
 #      run: |
 #        cd scilab
