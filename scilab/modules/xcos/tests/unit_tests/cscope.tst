@@ -2,15 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Clément DAVID
 // Copyright (C) 2011 - DIGITEO - Clément DAVID
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- XCOS TEST -->
 // <-- TEST WITH GRAPHIC -->
-
-// test scope values 
-
+// <-- NO CHECK REF -->
 
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cscope.zcos"));
 xcos_simulate(scs_m, 4);
@@ -32,10 +31,10 @@ function assert_checkcscope()
     assert_checkequal(a.x_label.text, "t");
     assert_checkequal(a.y_label.text, "y");
 
-    assert_checkequal(size(p1.data), [301 2]);
-    assert_checkequal(size(p2.data), [301 2]);
-    assert_checkequal(size(p3.data), [301 2]);
-    assert_checkequal(size(p4.data), [301 2]);
+    assert_checkequal(size(p1.data), [300 2]);
+    assert_checkequal(size(p2.data), [300 2]);
+    assert_checkequal(size(p3.data), [300 2]);
+    assert_checkequal(size(p4.data), [300 2]);
 
     assert_checkequal(p1.polyline_style, 1);
     assert_checkequal(p2.polyline_style, 1);
@@ -57,4 +56,3 @@ assert_checkcscope();
 // Simulate again to check multi-simulations cases
 xcos_simulate(scs_m, 4);
 assert_checkcscope();
-

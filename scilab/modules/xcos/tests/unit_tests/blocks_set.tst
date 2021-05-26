@@ -8,6 +8,7 @@
 //
 // <-- ENGLISH IMPOSED -->
 // <-- XCOS TEST -->
+// <-- NO CHECK REF -->
 //
 // <-- Short Description -->
 // Blocks must have valid dimensions for their settings.

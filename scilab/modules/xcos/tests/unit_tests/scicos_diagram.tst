@@ -1,13 +1,11 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Scilab Enterprises - 2011 - Clément DAVID
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
 
 // <-- XCOS TEST -->
-//
-// <-- Short Description -->
-// Check scicos_diagram
-
+// <-- NO CHECK REF -->
 
 function assert_check_diagram(scs_m, version)
 
@@ -22,7 +20,7 @@ function assert_check_diagram(scs_m, version)
     assert_checkequal(scs_m.objs, list());
 
     // check version
-    if exists("version") then
+    if ~isvoid(version) then
         assert_checkequal(scs_m.version, version);
     else
         assert_checkequal(scs_m.version, "");
@@ -49,7 +47,7 @@ function assert_check_props(props)
     assert_checkequal(props.tol(:)', [0.000001,0.000001,1.000D-10,100001,0,1,0]);
 
     // check tf
-    assert_checkequal(props.tf, 100000);
+    assert_checkequal(props.tf, 30);
 
     // check context
     assert_checkequal(props.context, []);

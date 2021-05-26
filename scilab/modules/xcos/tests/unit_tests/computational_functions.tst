@@ -1,10 +1,12 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is distributed under the same license as the Scilab package.
 
 // <-- XCOS TEST -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Short Description -->
 // Check that all computational function are available.
 
@@ -326,7 +328,7 @@ BLOCKS_C = [
 "whileiterator",
 "writeau",
 "writec",
-"zcross2",
+"zcross2"
 ];
 
 BLOCKS_FORTRAN = [
@@ -386,11 +388,11 @@ BLOCKS_FORTRAN = [
 "timblk",
 "trash",
 "writef",
-"zcross",
+"zcross"
 ];
 
 BLOCKS_CPP = [
-"affich2",
+"affich2"
 ];
 
 //

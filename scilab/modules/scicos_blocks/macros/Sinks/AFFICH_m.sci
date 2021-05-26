@@ -40,7 +40,7 @@ function [x,y,typ] = AFFICH_m(job,arg1,arg2)
         while %t do
             [ok,in,font,fontsize,colr,nt,nd,herit,exprs]=scicos_getvalue(..
             "Set  parameters",..
-            ["Input Size",
+            ["Input Size";
             "Font number";
             "Font size";
             "Color";

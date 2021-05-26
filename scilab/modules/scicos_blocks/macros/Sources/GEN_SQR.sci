@@ -54,7 +54,7 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
             sblock=x.model.rpar
             [%scicos_context,ierr]=script2var(sblock.props.context,%scicos_context)
             if ierr==0 then
-                [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
+                [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),%scicos_context)
                 if ok then
                     y=max(2,needcompile,needcompile2)
                     x.graphics.exprs=exprs
@@ -446,5 +446,3 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         x=standard_define([3,2],model,exprs,gr_i)
     end
 endfunction
-
-
