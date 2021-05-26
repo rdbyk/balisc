@@ -90,6 +90,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"sparse\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"special_functions\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"spreadsheet\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"time\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"ui_data\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"umfpack\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"webtools\"),exit(0),else,exit(1),end"
@@ -119,7 +120,6 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"polynomials\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"statistics\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"string\"),exit(0)"
-        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"time\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"xcos\",[],\"no_check_error_output\"),exit(0)"
 #    - name: make doc-en_US[
 #      run: |
