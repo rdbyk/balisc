@@ -4,7 +4,7 @@
 // Copyright (C) ???? - INRIA - Serge STEER
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2018 - Samuel GOUGEON
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -123,7 +123,7 @@ function savematfile(varargin)
         mtlb_names = ?vars?;
 
         // Part to delete Scilab variables from mtlb_names (should be improved)
-        predef_names = [isprotected();"savematfile";"varargin"];
+        predef_names = [isprotected();"ans";"savematfile";"varargin"];
         for k=1:size(predef_names, "*")
             mtlb_names(mtlb_names==predef_names(k))=[];
         end

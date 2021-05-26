@@ -14,5 +14,6 @@
 //
 // <-- Short Description -->
 // Load a fig file with loadmatfile makes Scilab crash
+
 fig_file = fullfile(SCI,"modules","matio", "tests", "nonreg_tests", "bug_14095.fig");
-assert_checktrue(execstr("loadmatfile(""-mat"", fig_file)", "errcatch") == 0); 
+loadmatfile("-mat", fig_file);
