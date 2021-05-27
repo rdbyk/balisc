@@ -17,7 +17,7 @@ function [f, e] = log2(x)
         error(71, 1)
     end
 
-    if nargout == 1 then
+    if nargout <= 1 then
         // 1/log(2) = 1.4426950408889633870047
         f = log(x) * 1.4426950408889633870047
     else
