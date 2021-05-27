@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -41,7 +41,7 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
     end
 
     // generate a default graphic or clear the existing one
-    if exists("imageType", "l") == 0 then
+    if isvoid(imageType) then
         imageType = "gif";
     else
         if typeof(imageType) <> "string" | and(imageType <> ["svg", "gif", "jpg"]) then
@@ -49,12 +49,12 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
         end
     end
 
-    if exists("withPort", "l") == 0 then
+    if isvoid(withPort) then
         withPort = %t;
     end
 
     // set the default outFile
-    if exists("filename", "l") == 0 then
+    if isvoid(filename) then
         outFile = path + "/" + block.gui + "." + imageType;
     else
         if typeof(filename) <> "string" | size(filename, "*") <> 1 then

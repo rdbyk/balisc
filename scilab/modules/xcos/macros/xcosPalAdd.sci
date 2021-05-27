@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -67,7 +67,7 @@ function [status, msg] = xcosPalAdd(pal, category)
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": File not found.\n"), "xcosPalAdd", "pal"));
     end
 
-    if exists("category", "l") == 0 then category="", end
+    if isvoid(category) then category="", end
 
     if typeof(category) <> "string" & or(size(category) == [1 1]) then
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": string vector expected.\n"), "xcosPalAdd", "pal"));
@@ -88,4 +88,3 @@ function [status, msg] = xcosPalAdd(pal, category)
     xcosPalLoad("pal", category);
     status = %T;
 endfunction
-

@@ -2,6 +2,7 @@
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+//  Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -41,10 +42,9 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
                 break,
             end
             nout=size(mat,2)
-            nin=(log(size(mat,1))/log(2))
-            u1=floor(nin)
+            nin=round(log(size(mat,1))/log(2))
             //if (herit<>0) then herit=1;end; The test below verify the value of parameter
-            if (u1 <> nin) then
+            if (2^nin <> size(mat,1)) then
                 block_parameter_error(msprintf(gettext("Wrong size for ''%s'' parameter: %d."), gettext("Truth Table"), size(mat,1)), ..
                 gettext("Number of rows must be a power of two."));
                 ok=%f;
@@ -52,7 +52,7 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter."), gettext("Truth Table")), ..
                 msprintf(gettext( "Elements must be in the interval %s."),"[0, 1]"));
                 ok=%f;
-            elseif herit <0 | herit > 1 then
+            elseif herit < 0 | herit > 1 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Accepts Inherited Events"), herit), ..
                 msprintf(gettext( "Must be in the interval %s."),"[0, 1]"));
                 ok=%f;
@@ -93,4 +93,3 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction
-

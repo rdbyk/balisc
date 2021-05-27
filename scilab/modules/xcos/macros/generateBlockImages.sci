@@ -2,7 +2,7 @@
 // Copyright (C) DIGITEO - 2009-2009 - Vincent COUVERT
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,7 +34,7 @@ function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable)
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": directory path string expected.\n"), "generateBlockImages", "imagesOutPath"));
     end
 
-    if exists("traceEnable", "l") == 0 then
+    if isvoid(traceEnable) then
         traceEnable = %f;
     else
         if typeof(traceEnable) <> "boolean" then

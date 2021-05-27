@@ -2,7 +2,7 @@
 // Copyright (C) 2010 - DIGITEO - Clément DAVID
 // Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -63,7 +63,7 @@ function [status, msg] = xcosValidateBlockSet(interfFunctionName)
     // Stubbing the edit_curv method
     function [xx, yy, ok, gc] = edit_curv(xx, yy,  axis, args, gc)
         ok = %T;
-        if ~exists("gc", "l") then
+        if isvoid(gc) then
             rect=[0 0 1 1];
             axisdata=[2 10 2 10];
             gc = list(rect, axisdata);

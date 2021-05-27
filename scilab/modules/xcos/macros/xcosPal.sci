@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -55,7 +55,7 @@ function pal = xcosPal(name, scs_m)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "xcosPal", 0, 2));
     end
 
-    if ~isdef("name", "l") then
+    if isvoid(name) then
         name = "New palette";
     elseif typeof(name) == "diagram" then
         scs_m = name;
@@ -64,7 +64,7 @@ function pal = xcosPal(name, scs_m)
         name = "New palette";
     end
     // loading the scicos_diagram macro
-    if exists("scs_m", "l") == 0 then scs_m = scicos_diagram(), end
+    if isvoid(scs_m) then scs_m = scicos_diagram(), end
 
     if typeof(name) <> "string" then
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": string type expected.\n"), "xcosPal","name"));

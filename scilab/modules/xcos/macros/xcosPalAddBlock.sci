@@ -2,7 +2,7 @@
 // Copyright (C) DIGITEO - 2010 - Clément DAVID
 // Copyright (C) - 2011 - Scilab Enterprises - Clément DAVID
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -109,7 +109,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     // block reference instance.
 
     // now handle pal_block_img argument
-    if ~exists("pal_block_img", "l") | isempty(pal_block_img) then
+    if isvoid(pal_block_img) || isempty(pal_block_img) then
         // block icon by default
         pal_block_img = TMPDIR + "/" + scs_m.gui + ".gif";
         if isfile(pal_block_img) then
@@ -137,7 +137,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 
 
     // now handle style argument
-    if ~exists("style", "l") | isempty(style) then
+    if isvoid(style) || isempty(style) then
         // style by default
         block_img = TMPDIR + "/" + scs_m.gui + ".svg";
         // protect drive letter

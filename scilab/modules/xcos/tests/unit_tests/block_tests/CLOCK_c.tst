@@ -1,13 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Scilab Enterprises - Clement DAVID
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
+
 // <-- ENGLISH IMPOSED -->
 // <-- XCOS TEST -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Unit test for CLOCK_c -->
 //
 // <-- Short Description -->
@@ -34,4 +36,3 @@ assert_checkequal(d.objs(5).to,   [1 1 1]);
 
 assert_checkequal(d.objs(6).from, [4 2 0]);
 assert_checkequal(d.objs(6).to,   [2 1 1]);
-
