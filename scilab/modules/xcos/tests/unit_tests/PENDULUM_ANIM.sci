@@ -19,7 +19,7 @@ function [x,y,typ]=PENDULUM_ANIM(job,arg1,arg2)
             [ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue(..
             "Set Scope parameters",..
             ["pendulum length";"cart size (square side)";"slope";
-            "Xmin";"Xmax";  "Ymin"; "Ymax"; ],..
+            "Xmin";"Xmax";  "Ymin"; "Ymax"],..
             list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then break,end
             mess=[]
@@ -72,4 +72,3 @@ function [x,y,typ]=PENDULUM_ANIM(job,arg1,arg2)
         x=standard_define([3 3],model,exprs,gr_i)
     end
 endfunction
-
