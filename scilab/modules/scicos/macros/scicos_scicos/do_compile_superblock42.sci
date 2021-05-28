@@ -8,7 +8,7 @@
 //
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
 // Copyright (C) Scilab Enterprises - 2012 - Bruno JOFRET
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -693,6 +693,13 @@ endfunction
 //12/07/07 Alan Layec
 function ok=gen_ccode42();
 
+    // pass-through "ok"
+    if exists("ok") then
+        ok = ok;
+    else
+        ok = %t;
+    end
+
     //** Generate code for scicos block
 
     ierr=execstr("make_computational42(rpat+''/''+rdnom+''.c'')","errcatch")
@@ -1081,6 +1088,13 @@ endfunction
 //27/06/07, A.Layec : update opar,oz
 //
 function ok=gen_gui42();
+    // pass-through "ok"
+    if exists("ok") then
+        ok = ok;
+    else
+        ok = %t;
+    end
+
     clkinput=ones(clkIN)';
     clkoutput=ones(clkOUT)';
     for i=1:length(bllst)
@@ -1158,6 +1172,13 @@ endfunction
 
 function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock42(XX,all_scs_m,numk,alreadyran)
     // Transforms a given Scicos discrete and continuous SuperBlock into a C defined Block
+
+    // pass-through "ok"
+    if exists("ok") then
+        ok = ok;
+    else
+        ok = %t;
+    end
 
     scs_m=XX.model.rpar
     par=scs_m.props;

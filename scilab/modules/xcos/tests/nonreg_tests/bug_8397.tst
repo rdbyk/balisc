@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Clément DAVID
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- XCOS TEST -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 8397 -->
 //
 // <-- Bugzilla URL -->
@@ -15,8 +17,6 @@
 // <-- Short Description -->
 // After detection of variable/equation difference, the error message should be
 // printed on the scilab console but must not deactivate xcos simulation.
-//
-
 
 src_file = TMPDIR + "/sample_imf.mo";
 function_file = TMPDIR + "/sample_imf_functions.mo";

@@ -21,8 +21,12 @@
 
 function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with_gui, init)
 
-    // pass-through "ok" from outer scope
-    ok = ok;
+    // pass-through "ok"
+    if exists("ok") then
+        ok = ok;
+    else
+        ok = %t;
+    end
 
     //Scilab interface with external tool modelicac
 
@@ -80,4 +84,3 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
     end
 
 endfunction
-
