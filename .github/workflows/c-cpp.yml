@@ -105,6 +105,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"dynamic_link\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"elementary_functions\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"external_objects_java\",[],\"no_check_error_output\"),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"fileio\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphic_export\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphic_objects\"),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"graphics\"),exit(0)"

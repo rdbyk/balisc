@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -2003,7 +2003,7 @@ GenericType* Sparse::extract(typed_list* _pArgs)
             int iNewCols = 1;
             types::GenericType* pGT = (*_pArgs)[0]->getAs<GenericType>();
 
-            if ((*_pArgs)[0]->isColon())
+            if ((*_pArgs)[0]->isColon() || (*_pArgs)[0]->isBool() || (*_pArgs)[0]->isSparseBool())
             {
                 iNewRows = piCountDim[0];
             }
