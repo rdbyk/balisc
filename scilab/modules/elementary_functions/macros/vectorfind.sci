@@ -170,8 +170,9 @@ function [ind, matching] = vectorfind(m, v, way, joker, indType)
         end
 
         ind = 1:size(m, 2);
+        maybe_nan = or(type(v) == [1 2 5]);
         for k = c   // Loop over needle components not being jokers
-            if isnan(v(k)) then
+            if maybe_nan && isnan(v(k)) then
                 i = find(isnan(m(k, ind)));
             else
                 i = find(m(k, ind) == v(k));
