@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -24,14 +24,14 @@ function [ g , data ] = optimsimplex_gradientfv ( this , fun , method , data )
         errmsg = msprintf(gettext("%s: The gradient can be applied only with a simplex made of n+1 points, but the dimension is %d and the number of vertices is %d"), "optimsimplex_gradientfv" , this.n , this.nbve)
         error(errmsg)
     end
-    if (~isdef("method","local")) then
+    if isvoid(method) then
         method = "forward";
     end
     select method
     case "forward" then
         g = optimsimplex_gradforward ( this )
     case "centered" then
-        if (~isdef("data","local")) then
+        if isvoid(data) then
             g = optimsimplex_gradcenter ( this , fun )
         else
             [ g , data ] = optimsimplex_gradcenter ( this , fun , data )
@@ -61,7 +61,7 @@ endfunction
 //
 function [ g , data ] = optimsimplex_gradcenter ( this , fun , data )
     g1 = optimsimplex_gradforward ( this )
-    if (~isdef("data","local")) then
+    if isvoid(data) then
         r = optimsimplex_reflect ( this , fun )
     else
         [ r , data ] = optimsimplex_reflect ( this , fun , data )
@@ -70,4 +70,3 @@ function [ g , data ] = optimsimplex_gradcenter ( this , fun , data )
     g = (g1 + g2)/2
     r = optimsimplex_destroy ( r )
 endfunction
-
