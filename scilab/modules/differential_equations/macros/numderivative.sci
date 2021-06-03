@@ -4,7 +4,7 @@
 // Copyright (C) 2009 - INRIA - Michael Baudin
 // Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,17 +13,17 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [J, H] = numderivative(varargin)
+function [J, H] = numderivative(f, x, h, order, H_form, Q)
 
-    if (nargin < 2 | nargin > 6) then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "numderivative", 2, 6));
+    if nargin < 2 || nargin > 6 then
+        error(72, 2, 6);
     end
-    if (nargout < 1 | nargout > 2) then
-        error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"), "numderivative", 1, 2));
+    if nargout < 1 || nargout > 2 then
+        error(82, 1, 2);
     end
     //
     // Get input arguments
-    __numderivative_f__ = varargin(1)
+    __numderivative_f__ = f
     if and(type(__numderivative_f__) <> [13 15 130]) then
         // Must be a function (uncompiled or compiled) or a list
         error(msprintf(gettext("%s: Wrong type for argument #%d: Function or list expected.\n"), "numderivative", 1));
@@ -41,7 +41,6 @@ function [J, H] = numderivative(varargin)
 
     //
     // Manage x, to get the size n.
-    x = varargin(2);
     if type(x) ~= 1 then
         error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 2));
     end
@@ -56,73 +55,70 @@ function [J, H] = numderivative(varargin)
     end
     //
     // Manage h: make it a column vector, if required.
-    h = [];
-    if nargin >= 3 then
-        h = varargin(3);
-        if type(h) ~= 1 then
-            error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 3));
-        end
-        if h <> [] then
-            if size(h, "*") <> 1 then
-                [nrows, ncols] = size(h);
-                if (nrows <> 1 & ncols <> 1) then
-                    error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"), "numderivative", 3));
-                end
-                if ncols <> 1 then
-                    h = h(:);
-                end
-                if or(size(h) <> [n 1]) then
-                    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"), "numderivative", 3, 1));
-                end
+    if isvoid(h) then
+        h = [];
+    end
+    if type(h) ~= 1 then
+        error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 3));
+    end
+    if h <> [] then
+        if size(h, "*") <> 1 then
+            [nrows, ncols] = size(h);
+            if (nrows <> 1 & ncols <> 1) then
+                error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"), "numderivative", 3));
             end
-            if or(h < 0) then
-                error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"), "numderivative", 3, 0));
+            if ncols <> 1 then
+                h = h(:);
+            end
+            if or(size(h) <> [n 1]) then
+                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"), "numderivative", 3, 1));
             end
         end
-    end
-
-    order = 2;
-    if (nargin >= 4 & varargin(4) <> []) then
-        order = varargin(4);
-        if type(order) ~= 1 then
-            error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 4));
-        end
-        if or(size(order) <> [1 1]) then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 4, 1, 1));
-        end
-        if and(order <> [1 2 4]) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"), "numderivative", 4, "1, 2, 4"));
+        if or(h < 0) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"), "numderivative", 3, 0));
         end
     end
 
-    H_form = "default";
-    if (nargin >= 5 & varargin(5) <> []) then
-        H_form = varargin(5);
-        if type(H_form) ~= 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "numderivative", 5));
-        end
-        if or(size(H_form) <> [1 1]) then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 5, 1, 1));
-        end
-        if and(H_form <> ["default" "blockmat" "hypermat"]) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"), "numderivative", 5, "default, blockmat, hypermat"));
-        end
+    if isvoid(order) || order == [] then
+        order = 2;
+    end
+    if type(order) ~= 1 then
+        error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 4));
+    end
+    if or(size(order) <> [1 1]) then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 4, 1, 1));
+    end
+    if and(order <> [1 2 4]) then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"), "numderivative", 4, "1, 2, 4"));
     end
 
-    Q = eye(n, n);
-    Q_not_given = %t;
-    if (nargin >= 6 & varargin(6) <> []) then
-        Q = varargin(6);
+    if isvoid(H_form) || H_form == [] then
+        H_form = "default";
+    end
+    if type(H_form) ~= 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "numderivative", 5));
+    end
+    if or(size(H_form) <> [1 1]) then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 5, 1, 1));
+    end
+    if and(H_form <> ["default" "blockmat" "hypermat"]) then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"), "numderivative", 5, "default, blockmat, hypermat"));
+    end
+
+    if isvoid(Q) || Q == [] then
+        Q = eye(n, n);
+        Q_not_given = %t;
+    else
         Q_not_given = %f;
-        if type(Q) ~= 1 then
-            error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 6));
-        end
-        if or(size(Q) <> [n n]) then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 6, n ,n));
-        end
-        if norm(clean(Q*Q'-eye(n, n))) > 0 then
-            error(msprintf(gettext("%s: Q must be orthogonal.\n"), "numderivative"));
-        end
+    end
+    if type(Q) ~= 1 then
+        error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 6));
+    end
+    if or(size(Q) <> [n n]) then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 6, n ,n));
+    end
+    if norm(clean(Q*Q'-eye(n, n))) > 0 then
+        error(msprintf(gettext("%s: Q must be orthogonal.\n"), "numderivative"));
     end
 
     //
