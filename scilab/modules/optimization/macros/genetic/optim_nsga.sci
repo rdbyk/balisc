@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +12,7 @@
 
 function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(ga_f, pop_size, nb_generation, p_mut, p_cross, Log, param, sigma, pow)
 
-    if ~isdef("param", "local") then
+    if isvoid(param) then
         param = [];
     end
 
@@ -25,7 +25,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(ga_f, pop
     [pressure, err]       = get_param(param, "pressure", 0.05);
     [output_func, err] = get_param(param, "output_func", output_nsga_default);
 
-    if ~isdef("ga_f", "local") then
+    if isvoid(ga_f) then
         error(gettext("optim_moga: ga_f is mandatory"));
     else
         if typeof(ga_f)=="list" then
@@ -35,25 +35,25 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(ga_f, pop
         end
     end
 
-    if ~isdef("pop_size", "local") then
+    if isvoid(pop_size) then
         pop_size = 100;
     end
-    if ~isdef("nb_generation", "local") then
+    if isvoid(nb_generation) then
         nb_generation = 10;
     end
-    if ~isdef("p_mut", "local") then
+    if isvoid(p_mut) then
         p_mut = 0.1;
     end
-    if ~isdef("p_cross", "local") then
+    if isvoid(p_cross) then
         p_cross = 0.1;
     end
-    if ~isdef("Log", "local") then
+    if isvoid(Log) then
         Log = %F;
     end
-    if ~isdef("sigma", "local") then
+    if isvoid(sigma) then
         sigma = 0.01;
     end
-    if ~isdef("pow", "local") then
+    if isvoid(pow) then
         pow = 2;
     end
 
