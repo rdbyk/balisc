@@ -24,6 +24,7 @@ jobs:
         sudo apt -y install libarpack2-dev;
         sudo apt -y install libavalon-framework-java;
         sudo apt -y install libbatik-java;
+        sudo apt -y install libblas-dev;
         sudo apt -y install libcobertura-java;
         sudo apt -y install libcurl4-openssl-dev;
         sudo apt -y install libecj-java;
@@ -45,7 +46,6 @@ jobs:
         sudo apt -y install liblucene4.10-java;
         sudo apt -y install libmatio-dev;
         sudo apt -y install libnum-ocaml-dev;
-        sudo apt -y install libopenblas-dev;
         sudo apt -y install libpcre3-dev;
         sudo apt -y install libreadline-dev;
         sudo apt -y install libsaxon-java;
