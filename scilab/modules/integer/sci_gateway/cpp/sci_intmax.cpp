@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 //
-// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2019 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -49,11 +49,11 @@ static std::map<std::wstring, std::pair<InternalType::ScilabType, unsigned long 
     { L"int8", { InternalType::ScilabInt8, SCHAR_MAX } },
     { L"int16", { InternalType::ScilabInt16, SHRT_MAX } },
     { L"int32", { InternalType::ScilabInt32,  INT_MAX} },
-    { L"int64", { InternalType::ScilabInt64,  LONG_MAX} },
+    { L"int64", { InternalType::ScilabInt64,  LLONG_MAX} },
     { L"uint8", { InternalType::ScilabUInt8, UCHAR_MAX } },
     { L"uint16", { InternalType::ScilabUInt16, USHRT_MAX } },
     { L"uint32", { InternalType::ScilabUInt32, UINT_MAX } },
-    { L"uint64", { InternalType::ScilabUInt64, ULONG_MAX } }
+    { L"uint64", { InternalType::ScilabUInt64, ULLONG_MAX } }
 };
 
 Function::ReturnValue sci_intmax(typed_list &in, int _iRetCount, typed_list &out)

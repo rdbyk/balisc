@@ -111,7 +111,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"gui\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"hdf5\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"integer\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
-        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"linear_algebra\",[\"no_check_error_output\" \"show_error\"]),exit(0)"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"linear_algebra\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"localization\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"matio\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"modules_manager\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"

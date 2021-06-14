@@ -1,9 +1,0 @@
-warning("off");
-if []+int32(2)==int32(2) then bugmes();quit;end
-if int32(2)+[]==int32(2) then bugmes();quit;end
-if []-int32(2)==-int32(2) then bugmes();quit;end
-if int32(2)-[]==int32(2) then bugmes();quit;end
-if []+int32(2)<>[] then bugmes();quit;end
-if int32(2)+[]<>[] then bugmes();quit;end
-if []-int32(2)<>[] then bugmes();quit;end
-if int32(2)-[]<>[] then bugmes();quit;end

@@ -1,6 +1,6 @@
 // Balisc (https://github.com/rdbyk/balisc/)
 //
-// Copyright (C) 2019 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2019 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -49,11 +49,11 @@ static std::map<std::wstring, std::pair<InternalType::ScilabType, signed long lo
     { L"int8", { InternalType::ScilabInt8, SCHAR_MIN } },
     { L"int16", { InternalType::ScilabInt16, SHRT_MIN } },
     { L"int32", { InternalType::ScilabInt32,  INT_MIN} },
-    { L"int64", { InternalType::ScilabInt64,  LONG_MIN} },
-    { L"uint8", { InternalType::ScilabUInt8, 0LL } },
-    { L"uint16", { InternalType::ScilabUInt16, 0LL } },
-    { L"uint32", { InternalType::ScilabUInt32, 0LL } },
-    { L"uint64", { InternalType::ScilabUInt64, 0LL } }
+    { L"int64", { InternalType::ScilabInt64,  LLONG_MIN} },
+    { L"uint8", { InternalType::ScilabUInt8, 0 } },
+    { L"uint16", { InternalType::ScilabUInt16, 0 } },
+    { L"uint32", { InternalType::ScilabUInt32, 0UL } },
+    { L"uint64", { InternalType::ScilabUInt64, 0ULL } }
 };
 
 Function::ReturnValue sci_intmin(typed_list &in, int _iRetCount, typed_list &out)
