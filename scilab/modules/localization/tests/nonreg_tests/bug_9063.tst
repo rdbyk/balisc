@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -16,5 +17,6 @@
 // <-- Short Description -->
 // "pt" was the alias of "pt_PT" instead of "pt_BR"
 
-setlanguage("pt")
-assert_checkequal(getlanguage(), "pt_BR");
+if setlanguage("pt") then
+    assert_checkequal(getlanguage(), "pt_BR");
+end

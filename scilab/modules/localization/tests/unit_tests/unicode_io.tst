@@ -2,9 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yung-Jang Lee <yjlee123@gmail.com>
 // Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 lines(0);
 

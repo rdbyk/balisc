@@ -1,14 +1,5 @@
-//<-- CLI SHELL MODE -->
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Bruno JOFRET
-//
-//  This file is distributed under the same license as the Scilab package.
-// ============================================================================
-// UTF-8 test
-// ASCII
 a = 42;
 txt = "a";
-// UTF-8 2 bytes
 é = 1
  é  = 
    1.
@@ -23,17 +14,16 @@ dé = 1
    1.
 txt = "é"
  txt  = 
- é
+  "é"
 txt = "définie"
  txt  = 
- définie
+  "définie"
 txt = "dé"
  txt  = 
- dé
+  "dé"
 txt = "éd"
  txt  = 
- éd
-// UTF-8 3 bytes
+  "éd"
 € = 1
  €  = 
    1.
@@ -48,16 +38,16 @@ d€ = 1
    1.
 txt = "€"
  txt  = 
- €
+  "€"
 txt = "d€finie"
  txt  = 
- d€finie
+  "d€finie"
 txt = "d€"
  txt  = 
- d€
+  "d€"
 txt = "€d"
  txt  = 
- €d
+  "€d"
 豈 = 42
  豈  = 
    42.
@@ -72,17 +62,16 @@ bla豈 = 42
    42.
 txt = "豈"
  txt  = 
- 豈
+  "豈"
 txt = "豈bla"
  txt  = 
- 豈bla
+  "豈bla"
 txt = "bla豈"
  txt  = 
- bla豈
+  "bla豈"
 txt = "豈bla"
  txt  = 
- 豈bla
-// UTF-8 4 bytes
+  "豈bla"
 𯿽 = 51
  𯿽  = 
    51.
@@ -97,13 +86,13 @@ bla𯿽 = 51
    51.
 txt = "𯿽"
  txt  = 
- 𯿽
+  "𯿽"
 txt = "bla𯿽bla"
  txt  = 
- bla𯿽bla
+  "bla𯿽bla"
 txt = "bla𯿽"
  txt  = 
- bla𯿽
+  "bla𯿽"
 txt = "𯿽bla"
  txt  = 
- 𯿽bla
+  "𯿽bla"
