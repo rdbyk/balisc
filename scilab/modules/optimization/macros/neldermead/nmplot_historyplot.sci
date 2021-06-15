@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -20,16 +20,16 @@
 //  mytitle , myxlabel , myylabel : the parameters of the plot
 //
 function nmplot_historyplot ( this , datafile  , mytitle , myxlabel , myylabel )
-    if (~isdef("datafile","local")) then
+    if isvoid(datafile) then
         datafile = this.foptfn;
     end
-    if (~isdef("mytitle","local")) then
+    if isvoid(mytitle) then
         mytitle = "";
     end
-    if (~isdef("myxlabel","local")) then
+    if isvoid(myxlabel) then
         myxlabel = "";
     end
-    if (~isdef("myylabel","local")) then
+    if isvoid(myylabel) then
         myylabel = "";
     end
     exec(datafile,-1);
@@ -37,4 +37,3 @@ function nmplot_historyplot ( this , datafile  , mytitle , myxlabel , myylabel )
     plot2d ( history(1:nbiter,1) , history(1:nbiter,2) )
     xtitle(mytitle,myxlabel,myylabel)
 endfunction
-

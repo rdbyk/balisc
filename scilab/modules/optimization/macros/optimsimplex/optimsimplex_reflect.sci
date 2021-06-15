@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,10 +32,9 @@ function [ r , data ] = optimsimplex_reflect ( this , fun , data )
     r.fv(1) = this.fv(1);
     twox1 = 2*this.x(1,1:n) .*. ones(nv-1,1);
     r.x(2:nv,1:r.n) = twox1 - this.x(2:nv,1:n)  ;
-    if (~isdef("data","local")) then
+    if isvoid(data) then
         r = optimsimplex_compsomefv ( r , fun , 2:nv )
     else
         [ r , data ] = optimsimplex_compsomefv ( r , fun , 2:nv , data )
     end
 endfunction
-

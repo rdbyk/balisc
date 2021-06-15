@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,17 +23,16 @@
 //   data : user-defined data
 //
 function [ this , data ] = optimsimplex_shrink ( this , fun , sigma , data )
-    if (~isdef("sigma","local")) then
+    if isvoid(sigma) then
         sigma = 0.5;
     end
     nv = this.nbve;
     mv1 = this.x(1,:) .*. ones ( nv - 1 , 1 );
     newx = ( 1.0 - sigma ) * mv1(1:nv-1,:) + sigma * this.x ( 2 : nv , : ) ;
     this.x(2:nv,:) = newx(1:nv-1,:);
-    if (~isdef("data","local")) then
+    if isvoid(data) then
         this = optimsimplex_compsomefv ( this , fun , 2 : nv )
     else
         [ this , data ] = optimsimplex_compsomefv ( this , fun , 2 : nv , data )
     end
 endfunction
-
