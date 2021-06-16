@@ -1,12 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Scilab Enterprises - Adeline CARNIS
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//<-- CLI SHELL MODE -->
+// <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 7958 -->
@@ -24,8 +24,8 @@ fresp=repfreq(G,w);
 mag=abs(fresp);
 Gid=mrfit(w,mag,4);
 Gidd = mrfit(w, mag, 4, ones(length(w), 1));
-assert_checkalmostequal(coeff(Gidd.num), coeff(Gid.num), 1e-14);
-assert_checkalmostequal(coeff(Gidd.den), coeff(Gid.den), 1e-14);
+assert_checkalmostequal(coeff(Gidd.num), coeff(Gid.num));
+assert_checkalmostequal(coeff(Gidd.den), coeff(Gid.den));
 
 // error
 assert_checkfalse(execstr("mrfit(w, mag, 4, 1)"   ,"errcatch") == 0);
