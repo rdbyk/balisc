@@ -6,9 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//===============================
-// unit tests completion
-//===============================
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 function [] = check_completion(actual, expected)
     for i = 1 : size(actual, "r")
@@ -66,7 +65,7 @@ r = completion("Tmp");
 check_completion(r, "TMPDIR");
 
 r = completion("%", "variables");
-rexpected = ["%e"; "%eps"; "%fftw"; "%gui"; "%i";"%inf"; "%io"; "%nan"; "%pi"; "%s"; "%tk"; "%z"];
+rexpected = ["%balisc" "%e"; "%eps"; "%fftw"; "%gui"; "%i";"%inf"; "%io"; "%nan"; "%pi"; "%s"; "%tk"; "%z"];
 assert_checkequal(r, rexpected);
 
 
