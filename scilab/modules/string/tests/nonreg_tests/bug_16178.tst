@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -20,8 +21,8 @@
 function Q1()
     a.b
 endfunction
-assert_checkequal(sci2exp(Q1), "createfun([""%fun()"";""a.b""])");
-assert_checkequal(sci2exp(Q1,"Q"), "createfun([""Q()"";""a.b""])");
+assert_checkequal(sci2exp(Q1), "createfun([""[] = %fun()"";""a.b""])");
+assert_checkequal(sci2exp(Q1,"Q"), "createfun([""[] = Q()"";""a.b""])");
 
 
 // The used internal createfun() failed for a function returning nothing:
