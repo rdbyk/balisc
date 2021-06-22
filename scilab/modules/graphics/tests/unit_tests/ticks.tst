@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Bruno JOFRET
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // test ticks
 
@@ -50,7 +52,7 @@ a.view = "3d";
 assert_checkequal(a.auto_ticks, ["on" "on" "on"])
 assert_checkequal(a.view, "3d")
 // z_ticks now have default values
-assert_checkalmostequal(a.z_ticks.locations, [-1:0.2:1]')
+assert_checkalmostequal(a.z_ticks.locations, [-1:0.2:1]', [], %eps)
 assert_checkequal(a.z_ticks.labels, ["-1.0", string(-0.8:0.2:-0.2),"0.0", string(0.2:0.2:0.8)  "1.0"]')
 
 // Try to change z_ticks

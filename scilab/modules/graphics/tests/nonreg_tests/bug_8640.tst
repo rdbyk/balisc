@@ -22,5 +22,5 @@ clf();
 histplot(2, [2 2 2 2 2]);
 a = gca();
 x = a.children(1).children.data;
-y = [2*%eps; 1; 1; 0; 0; 0; %eps];
-assert_checkalmostequal(y, x(:,2), [], 200 * %eps);
+y = [0; 1; 1; 0; 0; 0; 0];
+assert_checkalmostequal(y, x(:,2), [], sqrt(%eps));
