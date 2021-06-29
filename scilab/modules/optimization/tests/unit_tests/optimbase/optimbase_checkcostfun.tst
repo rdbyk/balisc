@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,7 +38,7 @@ opt = optimbase_configure(opt,"-x0",[1.1 1.1]');
 opt = optimbase_configure(opt,"-function",rosenbrock2);
 cmd = "opt = optimbase_checkcostfun(opt);";
 lclmsg = "%s: Cannot evaluate cost function with ""%s"": %s";
-scimsg = msprintf(_("Undefined variable: %s\n"), "fdsmklqfjdsf");
+scimsg = msprintf(_("Undefined variable: ''%s''.\n"), "fdsmklqfjdsf");
 assert_checkerror(cmd,lclmsg,[],"optimbase_checkcostfun","[f,index]=costf(x0,1)", scimsg);
 opt = optimbase_destroy(opt);
 
@@ -246,4 +246,3 @@ opt = optimbase_configure(opt,"-withderivatives",%t);
 opt = optimbase_configure(opt,"-x0",[-1.2 1.0].');
 opt = optimbase_checkcostfun(opt);
 opt = optimbase_destroy(opt);
-
