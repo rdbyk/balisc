@@ -3,13 +3,15 @@
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2018 - Samuel GOUGEON
-// Copyright (C) 2018 - 2019 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
+
+funcprot(0);
 
 Ntest = 1;
 // test max(A) : A matrix
@@ -141,6 +143,8 @@ assert_checkerror("m = max(L)", refMsg);
 assert_checkfalse(execstr("m = max(A,sparse(B),C)", "errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong size of input argument #%d: Same size as input argument #%d expected.\n"), "%sp_max", 3, 1);
 assert_checkerror("m = max(A,sparse(B),C)", refMsg);
+
+assert_checkerror("[a,b,c]=max([1 2])", [], 82);
 
 // --- checks min() and max() with sparse, with %nan and second output [r,k] = ...
 // -------------------------------------------------------------------

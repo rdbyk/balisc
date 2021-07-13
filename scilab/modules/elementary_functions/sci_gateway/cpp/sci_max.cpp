@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2018 Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2017 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -194,7 +194,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
     }
     else if (iPosFirstEmpty)
     {
-        Scierror(45, _("%s: null matrix (argument # %d).\n"), fname, iPosFirstEmpty);
+        Scierror(110, iPosFirstEmpty, _("non-empty matrix"));
         return types::Function::Error;
     }
 

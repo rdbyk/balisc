@@ -134,7 +134,7 @@ function [m, k] = %sp_max(varargin)
             // Check if An is a sparse
             if and(type(An) <> [1 5])  | (type(An)==1 & or(size(An)~=[1 1])) then
                 msg = _("%s: Wrong type for input argument #%d%s: A sparse matrix or a scalar expected.\n")
-                error(msprintf(msg, "%sp_max", i, error_list))
+                error(msprintf(msg, "%%sp_max", i, error_list))
             end
             // Check if An is real
             if ~isreal(An) then
@@ -144,7 +144,7 @@ function [m, k] = %sp_max(varargin)
             [m2, n2] = size(An)
             // Check size
             if (m1 <> m2 | n1 <> n2) & or([m2 n2]~=[1 1]) then
-                error(_("%s: Wrong size of input argument #%d (List element: %d): Same size as input argument #%d expected."), "%sp_max", 1, i, 1)
+                error(_("%s: Wrong size of input argument #%d%s: Same size as input argument #%d expected."), "%sp_max", i, error_list, 1)
             end
 
             // Processing:
