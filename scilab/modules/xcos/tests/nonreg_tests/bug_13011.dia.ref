@@ -1,18 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- XCOS TEST -->
-// <-- ENGLISH IMPOSED -->
-// <-- Non-regression test for bug 13011 -->
-//
-// <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=13011
-//
-// <-- Short Description -->
-// Fails under Mac OS X 10.9
 ilib_verbose(0);
 importXcosDiagram(SCI+"/modules/xcos/tests/nonreg_tests/bug_12384.zcos");
 xcos_simulate(scs_m, 4);
@@ -20,35 +5,18 @@ xcos_simulate(scs_m, 4);
  Main Modelica : TMPDIR/Loop_im.mo
  Flat Modelica : TMPDIR/Loop_imf.mo
  Simulation C code :TMPDIR/Loop_im.c
-!messagebox: Modelica blocks are reduced to a block with:             !
-!                                                                     !
-!messagebox: Number of differential states: 0                         !
-!                                                                     !
-!messagebox: Number of algebraic states: 1                            !
-!                                                                     !
-!messagebox: Number of discrete time states  : 0                      !
-!                                                                     !
-!messagebox: Number of zero-crossing surfaces: 0                      !
-!                                                                     !
-!messagebox: Number of modes  : 0                                     !
-!                                                                     !
-!messagebox: Number of inputs : 0                                     !
-!                                                                     !
-!messagebox: Number of outputs: 1                                     !
-!                                                                     !
-!messagebox: Input/output dependency:[T]                              !
-!                                                                     !
-!messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)             !
-!                                                                     !
-!messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)  !
-!                                                                     !
-!messagebox:                                                          !
-!                                                                     !
-<<<<<<< HEAD
-!messagebox: Generated files path: TMPDIR/          !
-=======
-!messagebox: Generated files path: TMPDIR/         !
->>>>>>> 5283da6... Xcos: fix memleak on MVC objects after 238f0650
-!                                                                     !
-!messagebox:                                                          !
+  "messagebox: Modelica blocks are reduced to a block with:"           
+  "messagebox: Number of differential states: 0"                       
+  "messagebox: Number of algebraic states: 1"                          
+  "messagebox: Number of discrete time states  : 0"                    
+  "messagebox: Number of zero-crossing surfaces: 0"                    
+  "messagebox: Number of modes  : 0"                                   
+  "messagebox: Number of inputs : 0"                                   
+  "messagebox: Number of outputs: 1"                                   
+  "messagebox: Input/output dependency:[T]"                            
+  "messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)"           
+  "messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)"
+  "messagebox: "                                                       
+  "messagebox: Generated files path: TMPDIR/"       
+  "messagebox: "                                                       
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.

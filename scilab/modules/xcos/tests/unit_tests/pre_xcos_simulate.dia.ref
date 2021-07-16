@@ -1,27 +1,20 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - Scilab Enterprises - Bruno JOFRET
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- XCOS TEST -->
-// pre_xcos_simulate test
 loadXcosLibs();
+WARNING: Redefining function 'AFFICH_f'. Use 'funcprot(0)' to avoid this message.
+WARNING: Redefining function 'RFILE'. Use 'funcprot(0)' to avoid this message.
+WARNING: Redefining function 'WFILE'. Use 'funcprot(0)' to avoid this message.
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cumsum.zcos"));
 function continueSimulation = fail_pre_simulate(scs_m, needcompile)
     disp("Calling fail_pre_simulate");
     continueSimulation = %f;
 endfunction
-// Register function
 pre_xcos_simulate = list("fail_pre_simulate");
 xcos_simulate(scs_m, 4);
- Calling fail_pre_simulate
+  "Calling fail_pre_simulate"
 assert_checkfalse(isdef('cumsum_r'));
-// Register function
 clear pre_xcos_simulate
 pre_xcos_simulate = fail_pre_simulate;
 xcos_simulate(scs_m, 4);
- Calling fail_pre_simulate
+  "Calling fail_pre_simulate"
 assert_checkfalse(isdef('cumsum_r'));
 function continueSimulation = analyze_pre_simulate(scs_m, needcompile)
 // Retrieve all objects
@@ -49,22 +42,20 @@ function continueSimulation = analyze_pre_simulate(scs_m, needcompile)
 // Continue Simulation
     continueSimulation = %T;
 endfunction
-// Register function
 clear pre_xcos_simulate
 pre_xcos_simulate = list("analyze_pre_simulate");
 xcos_simulate(scs_m, 4);
- Diagram Analysis:
- Found 24 Blocks.
- Found 22 Links.
- Found 0 Other component.
+  "Diagram Analysis:"
+  "Found 24 Blocks."
+  "Found 22 Links."
+  "Found 0 Other component."
 assert_checktrue(isdef('cumsum_r'));
 clear('cumsum_r');
-// Register function
 clear pre_xcos_simulate
 pre_xcos_simulate = analyze_pre_simulate;
 xcos_simulate(scs_m, 4);
- Diagram Analysis:
- Found 24 Blocks.
- Found 22 Links.
- Found 0 Other component.
+  "Diagram Analysis:"
+  "Found 24 Blocks."
+  "Found 22 Links."
+  "Found 0 Other component."
 assert_checktrue(isdef('cumsum_r'));
