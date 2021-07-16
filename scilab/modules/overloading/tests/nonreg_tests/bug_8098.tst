@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 8098 -->
 //
@@ -42,10 +44,7 @@ assert_checkequal(cumsum(r, "c", "double"), [1 2;1 1+s^2]./[s s;s^2 s^2]);
 assert_checkequal(cumsum(r, "m", "double"), [1 1;1+s 1+s]./[s s;s^2 s]);
 
 // Check error
-assert_checkfalse(execstr("cumsum(r, ""toto"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "cumsum",2,"""*"",""r"",""c"",""m""");
-assert_checkerror("cumsum(r, ""toto"")", refMsg);
+assert_checkerror("cumsum(r, ""toto"")", [], 110);
 
 a = cumsum([1/%z %z/(1+2*%z)]);
 assert_checkequal(a, [1/%z (1+2*%z+%z^2)/(%z+2*%z^2)]);
