@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -543,8 +543,12 @@ static SciErr createCommonListInList(void* _pvCtx, const char* _pstName, int* _p
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), funcName);
         return sciErr;
     }
+
     // create a list in the list with a user number of items
-    pChild->set(_iNbItem - 1, new types::ListUndefined());
+    if (_iNbItem > 0)
+    {
+        pChild->set(_iNbItem - 1, new types::ListUndefined());
+    }
 
     types::List* pParent = (types::List*)_piParent;
     pParent->set(_iItemPos - 1, pChild);
