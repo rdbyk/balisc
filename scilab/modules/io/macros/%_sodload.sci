@@ -65,7 +65,11 @@ function varargout = %_sodload(%__varnameList__)
 
                 if typeof(varValue)=="st" then
                     // s = size(varValue, "*");
-                    s = prod(matrix(double(varValue.dims),1,-1));
+                    if find(fieldnames(varValue) == "dims") <> [] then
+                        s = prod(matrix(double(varValue.dims),1,-1));
+                    else
+                        s = size(varValue, "*");
+                    end
                     if s > 1 then
                         if typeof(fieldValue) <> "list" then //houston !
                         end
