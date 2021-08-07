@@ -1,12 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Clément DAVID
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- XCOS TEST -->
-//
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 4898 -->
 //
 // <-- Bugzilla URL -->
@@ -29,7 +31,9 @@ if status <> %t then pause,end;
 scicos_simulate(scs_m);
 
 block = [];
+idx_block=0;
 for o = scs_m.objs
+    idx_block = idx_block + 1;
     if typeof(o) == "Block" & o.gui == "scifunc_block_m" then
         block = o;
         break;
@@ -41,10 +45,9 @@ if isempty(block.model.opar) <> %t then pause,end;
 
 block.model.opar = block.model.ipar;
 block.model.ipar = 0;
-scs_m.objs(5) = block;
+scs_m.objs(idx_block) = block;
 
 scicos_simulate(scs_m);
 
 if block.gui <> "scifunc_block_m" then pause,end;
 if block.model.ipar <> 0 then pause,end;
-

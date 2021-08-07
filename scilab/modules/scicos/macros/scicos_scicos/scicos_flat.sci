@@ -72,7 +72,8 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
         path=[];       // for delete_unconnected
         scs_m_s=scs_m ;// for delete_unconnected
     else
-        cur_fictitious=ksup
+        //cur_fictitious=ksup;
+        cur_fictitious=cur_fictitious;
     end
     //-------------- suppress blocks with an unconnected regular port --------------
     scs_m=delete_unconnected(scs_m);
