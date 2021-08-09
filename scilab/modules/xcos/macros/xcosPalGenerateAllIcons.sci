@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Clément DAVID
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,10 +13,10 @@
 function blocks = xcosPalGenerateAllIcons(path)
     // 0. Check number of arguments
     if nargin<>1 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"xcosPalGenerateAllIcons",1));
+        error(71, 1);
     end
-    if nargout<>1 then
-        error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"),"xcosPalGenerateAllIcons",1));
+    if nargout>1 then
+        error(81, 1);
     end
     // 1. Check type
     if typeof(path)<>"string" then
