@@ -14,4 +14,4 @@ clear
 a    = issparse(1);
 %expo = 2;              // starting like the predefined %e
 v = who_user(%f);
-assert_checkequal(v,["%expo" "a" "ans" "issparse"]');
+assert_checkequal(v,["%expo" "a" "issparse"]');

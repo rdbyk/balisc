@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Bernard HUGUENEY
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Dirk Reusch, Kybernetik Dr. Reusch
+ * Copyright (C) 2018 - 2021 Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -182,7 +182,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
 
             if (out_rows <= 0 || out_cols <= 0)
             {
-                out.push_back(types::Double::Empty());
+                out.push_back(new types::Sparse(0,0,false));
                 return types::Function::OK;
             }
 
@@ -203,7 +203,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             }
             else
             {
-                out.push_back(types::Double::Empty());
+                out.push_back(new types::Sparse(0,0,false));
                 return types::Function::OK;
             }
         }
