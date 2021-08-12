@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -94,7 +94,10 @@ public class ClassPath {
      */
     public static String[] getClassPath() {
 
-	return new String[0];
+        String classpath = System.getProperty("java.class.path");
+        String[] classpathEntries = classpath.split(File.pathSeparator);
+        return classpathEntries;
+
         /* URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
         URL[] path = sysloader.getURLs();
         String[] paths = new String[path.length];
