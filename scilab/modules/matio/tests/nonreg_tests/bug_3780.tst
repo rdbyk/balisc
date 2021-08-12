@@ -1,9 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 3780 -->
 //
@@ -15,8 +19,6 @@
 // Moreover, for Matlab compatibility, when this function is called with one input argument load(filename), it must look for filename (as a binary file), filename.mat (as a binary file) or as an ASCII file otherwise.
 
 // Check that comment are ignored
-
-// <-- CLI SHELL MODE -->
 
 loadmatfile("SCI/modules/matio/tests/nonreg_tests/bug_3780.txt", "-ascii");
 
