@@ -19,11 +19,11 @@ function res = mfile2sci(fil, results_path, Recmode, only_double, verbose_mode, 
     // - Recmode: recursive mode (default value is false)
 
     // Get default arguments
-    if ~isdef("prettyprintoutput","l"), prettyprintoutput = %F, end
-    if ~isdef("verbose_mode","l"),      verbose_mode = 3,       end
-    if ~isdef("only_double","l"),       only_double = %F,       end
-    if ~isdef("Recmode","l"),           Recmode = %F,           end
-    if ~isdef("results_path","l"),      results_path = ".",     end
+    if isvoid(prettyprintoutput), prettyprintoutput = %F, end
+    if isvoid(verbose_mode),      verbose_mode = 3,       end
+    if isvoid(only_double),       only_double = %F,       end
+    if isvoid(Recmode),           Recmode = %F,           end
+    if isvoid(results_path),      results_path = ".",     end
     if nargin<1 then
         m2sci_gui();
         res = [];

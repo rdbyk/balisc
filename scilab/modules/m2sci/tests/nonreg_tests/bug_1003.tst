@@ -2,11 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004      - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
 // Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
 
 // <-- Non-regression test for bug 1003 -->
@@ -54,7 +56,7 @@ MFILE=TMPDIR+"/bug1003.m";
 SCIFILE=TMPDIR+"/bug1003.sci";
 
 mputl(MFILECONTENTS,MFILE);
-mfile2sci(MFILE,TMPDIR,,%T);
+mfile2sci(MFILE,TMPDIR,–,%T);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
@@ -64,17 +66,16 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"// Test with fgets result stored in a variable";
 "fp = mtlb_fopen(""testfile.txt"",""r"");";
 "tempstr = "" "";";
 "while tempstr<>-1";
-"  tempstr = mgetl(fp,1);  if isempty(tempstr) then tempstr = -1;end;  // -1 if eof";
+"  tempstr = mgetl(fp,1);  if isempty(tempstr) then tempstr = -1;end;";
 "  disp(tempstr);";
 "end;";
 "mclose(fp);";
-"// Test with fgets result not-stored in a variable";
+"";
 "fp = mtlb_fopen(""testfile.txt"",""r"");";
-"%v0 = mgetl(fp,1);if isempty(%v0) then %v0 = -1;end;disp(%v0);// -1 if eof";
+"%v0 = mgetl(fp,1);if isempty(%v0) then %v0 = -1;end;disp(%v0);";
 "mclose(fp);"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
