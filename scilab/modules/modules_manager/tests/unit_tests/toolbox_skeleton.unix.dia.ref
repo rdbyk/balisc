@@ -1,16 +1,3 @@
-// =============================================================================
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2011 - DIGITEO - Vincent COUVERT
-//
-//  This file is distributed under the same license as the Scilab package.
-// =============================================================================
-// <-- NO CHECK ERROR OUTPUT -->
-// <-- ENGLISH IMPOSED -->
-// Test the toolbox skeleton in SCI/contrib/
-//  - Building/Compilation
-//  - Loading
-//  - Tests
-// Scilab external module skeleton
 status = copyfile(SCI + "/contrib/toolbox_skeleton/", TMPDIR + "/toolbox_skeleton/");
 assert_checkequal(status, 1);
 exec("TMPDIR/toolbox_skeleton/builder.sce");
@@ -120,10 +107,13 @@ Start Toolbox Skeleton
 	Load demos
 test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
  Module  001/001 - [TMPDIR/toolbox_skeleton/] : 
-   001/004 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
-   002/004 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
-   003/004 - [TMPDIR/toolbox_skeleton/] java_sum................passed
-   004/004 - [TMPDIR/toolbox_skeleton/] scilab_sum..............passed
+   001/004 - [TMPDIR/toolbox_skeleton/] c_sum...................failed: error_output not empty 
+                                                                 Use 'no_check_error_output' option to disable this check. 
+   002/004 - [TMPDIR/toolbox_skeleton/] fortran_sum.............failed: error_output not empty 
+                                                                 Use 'no_check_error_output' option to disable this check. 
+   003/004 - [TMPDIR/toolbox_skeleton/] java_sum................failed: Slave Scilab exited with error code 1 
+   004/004 - [TMPDIR/toolbox_skeleton/] scilab_sum..............failed: error_output not empty 
+                                                                 Use 'no_check_error_output' option to disable this check. 
    --------------------------------------------------------------------------
-   Tests:    4,    Passed:    4,    Failed:    0,    Skipped:    0
+   Tests:    4,    Passed:    0,    Failed:    4,    Skipped:    0
    --------------------------------------------------------------------------
