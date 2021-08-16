@@ -19,7 +19,7 @@ c = jcompile("Test", ["public class Test {";
 "public Test(int n) {";
 "field = n;";
 "}";
-"}";]);
+"}"]);
 assert_checkequal(jgetclassname(c),"Test");
 
 t = c.new(128);
@@ -66,4 +66,3 @@ newDoor = Door.new(Color.RED);
 house.replaceDoor(newDoor);
 
 assert_checkequal(house.toString(), "This is a house painted in white, has a red door, and 2 windows");
-

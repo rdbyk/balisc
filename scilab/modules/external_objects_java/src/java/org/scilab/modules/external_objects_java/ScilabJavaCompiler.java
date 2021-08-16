@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2021 - Dirk Reusch, Kybernetik Dr. Reusch
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -70,16 +70,17 @@ public class ScilabJavaCompiler {
 
     private static boolean isECJ;
 
-
     static {
         new File(System.getProperty("java.io.tmpdir") + File.separator + "JIMS").mkdir();
         new File(BINPATH).mkdir();
+        /* FIXME
         try {
             URL binURL = new File(BINPATH).toURI().toURL();
             addURLToClassPath(binURL);
         } catch (MalformedURLException e) {
             System.err.println(e);
         }
+        */
     }
 
     /**
@@ -282,6 +283,12 @@ public class ScilabJavaCompiler {
      * @return the classpath
      */
     public static String getClasspath() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(System.getProperty("java.class.path"));
+        buffer.append(File.pathSeparatorChar);
+        buffer.append(".");
+        return buffer.toString();
+        /*
         URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
         URL[] urls = loader.getURLs();
         StringBuffer buffer = new StringBuffer();
@@ -292,6 +299,7 @@ public class ScilabJavaCompiler {
         buffer.append(".");
 
         return buffer.toString();
+        */
     }
 
     /**
@@ -299,6 +307,19 @@ public class ScilabJavaCompiler {
      * @return the files
      */
     public static List<File> getClasspathFiles() {
+        String classpath = System.getProperty("java.class.path");
+        String[] classpathEntries = classpath.split(File.pathSeparator);
+        List<File> files = new ArrayList<File>(classpathEntries.length);
+
+        for (String c : classpathEntries) {
+            try {
+                files.add(new File(c));
+            } catch (Exception e) { }
+        }
+
+        return files;
+
+        /*
         URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
         URL[] urls = loader.getURLs();
         List<File> files = new ArrayList<File>(urls.length);
@@ -310,6 +331,7 @@ public class ScilabJavaCompiler {
         }
 
         return files;
+        */
     }
 
     /**
