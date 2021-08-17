@@ -27,7 +27,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URLClassLoader;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -53,6 +52,7 @@ import javax.tools.JavaCompiler.CompilationTask;
 import javax.tools.JavaFileObject.Kind;
 
 import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.jvm.DynamicClassLoader;
 
 /**
  * Class to provide a java compiler to JIMS.
@@ -73,14 +73,12 @@ public class ScilabJavaCompiler {
     static {
         new File(System.getProperty("java.io.tmpdir") + File.separator + "JIMS").mkdir();
         new File(BINPATH).mkdir();
-        /* FIXME
         try {
             URL binURL = new File(BINPATH).toURI().toURL();
             addURLToClassPath(binURL);
         } catch (MalformedURLException e) {
             System.err.println(e);
         }
-        */
     }
 
     /**
@@ -283,13 +281,14 @@ public class ScilabJavaCompiler {
      * @return the classpath
      */
     public static String getClasspath() {
+        /*
         StringBuffer buffer = new StringBuffer();
         buffer.append(System.getProperty("java.class.path"));
         buffer.append(File.pathSeparatorChar);
         buffer.append(".");
         return buffer.toString();
-        /*
-        URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        */
+        DynamicClassLoader loader = (DynamicClassLoader) ClassLoader.getSystemClassLoader();
         URL[] urls = loader.getURLs();
         StringBuffer buffer = new StringBuffer();
 
@@ -299,7 +298,6 @@ public class ScilabJavaCompiler {
         buffer.append(".");
 
         return buffer.toString();
-        */
     }
 
     /**
@@ -307,6 +305,7 @@ public class ScilabJavaCompiler {
      * @return the files
      */
     public static List<File> getClasspathFiles() {
+        /*
         String classpath = System.getProperty("java.class.path");
         String[] classpathEntries = classpath.split(File.pathSeparator);
         List<File> files = new ArrayList<File>(classpathEntries.length);
@@ -318,9 +317,9 @@ public class ScilabJavaCompiler {
         }
 
         return files;
+        */
 
-        /*
-        URLClassLoader loader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        DynamicClassLoader loader = (DynamicClassLoader) ClassLoader.getSystemClassLoader();
         URL[] urls = loader.getURLs();
         List<File> files = new ArrayList<File>(urls.length);
 
@@ -331,7 +330,6 @@ public class ScilabJavaCompiler {
         }
 
         return files;
-        */
     }
 
     /**
@@ -339,11 +337,11 @@ public class ScilabJavaCompiler {
      * @param url the class url
      */
     public static void addURLToClassPath(URL url) {
-        URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        DynamicClassLoader sysloader = (DynamicClassLoader) ClassLoader.getSystemClassLoader();
         try {
-            final Method method = URLClassLoader.class.getDeclaredMethod("addURL", new Class[] {URL.class});
-            method.setAccessible(true);
+            final Method method = DynamicClassLoader.class.getDeclaredMethod("add", new Class[] {URL.class});
             method.invoke(sysloader , new Object[] {url});
+            sysloader.add(url);
         } catch (NoSuchMethodException e) {
             System.err.println("Error: Cannot find the declared method: " + e.getLocalizedMessage());
         } catch (IllegalAccessException e) {
