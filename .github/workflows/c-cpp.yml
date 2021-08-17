@@ -102,6 +102,7 @@ jobs:
     - name: test_run (TO BE FIXED)
       run: |
         cd scilab
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"api_scilab\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"ast\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"cacsd\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"completion\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
