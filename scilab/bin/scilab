@@ -665,6 +665,9 @@ if test $DISABLE_JAVA_DETECTION -ne 1; then
     detect_java_vm
 fi
 
+# use custom system class loader
+_JAVA_OPTIONS="$_JAVA_OPTIONS -Djava.system.class.loader=org.scilab.modules.jvm.DynamicClassLoader"
+
 # Try to set the classpath as the classpath loader doesn't work anymore
 # bad way to detect if we're during the compilation
 SYSJARS=/usr/share/java/flexdock.jar
