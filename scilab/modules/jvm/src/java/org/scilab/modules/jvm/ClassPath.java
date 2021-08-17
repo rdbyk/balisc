@@ -26,6 +26,8 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Iterator;
 import java.util.Vector;
+
+import org.scilab.modules.jvm.DynamicClassLoader;
 /*--------------------------------------------------------------------------*/
 /**
  * ClassPath to overload java classpath.
@@ -62,18 +64,17 @@ public class ClassPath {
      */
     public static void addURL(final URL u, int i) {
 
-        /*final URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
-        Class sysclass = URLClassLoader.class;
+        final DynamicClassLoader sysloader = (DynamicClassLoader) ClassLoader.getSystemClassLoader();
+        Class sysclass = DynamicClassLoader.class;
 
         try {
 
-            final Method method = sysclass.getDeclaredMethod("addURL", parameters);
-            method.setAccessible(true);
+            final Method method = sysclass.getDeclaredMethod("add", parameters);
             switch (i) {
-                case 0: /* Load now
+                case 0: /* Load now */
                     method.invoke(sysloader , new Object[] { u });
                     break;
-                case 1: /* Load later (background)
+                case 1: /* Load later (background) */
                     queued.add(u);
                     break;
             }
@@ -84,8 +85,7 @@ public class ClassPath {
             System.err.println("Error: Illegal access: " + e.getLocalizedMessage());
         } catch (InvocationTargetException e) {
             System.err.println("Error: Could not invocate target: " + e.getLocalizedMessage());
-        } */
-
+        }
     }
     /*-----------------------------------------------------------------------*/
     /**
@@ -93,18 +93,19 @@ public class ClassPath {
      * @return classpath The list of the classpath
      */
     public static String[] getClassPath() {
-
+        /*
         String classpath = System.getProperty("java.class.path");
         String[] classpathEntries = classpath.split(File.pathSeparator);
         return classpathEntries;
+        */
 
-        /* URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+        DynamicClassLoader sysloader = (DynamicClassLoader) ClassLoader.getSystemClassLoader();
         URL[] path = sysloader.getURLs();
         String[] paths = new String[path.length];
         for (int i = 0; i < path.length; i++) {
             paths[i] = path[i].getFile();
         }
-        return paths;*/
+        return paths;
     }
 
 
@@ -131,4 +132,3 @@ public class ClassPath {
     }
 }
 /*--------------------------------------------------------------------------*/
-
