@@ -73,7 +73,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"console\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"core\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"data_structures\"),exit(0),else,exit(1),end"
-        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"dynamic_link\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"dynamic_link\",[],\"no_check_error_output\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"fftw\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"functions\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"history_manager\"),exit(0),else,exit(1),end"
