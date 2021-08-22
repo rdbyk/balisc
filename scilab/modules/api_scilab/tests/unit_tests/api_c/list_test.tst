@@ -6,6 +6,8 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
 ilib_verbose(0);
 
 function test_list(safe)

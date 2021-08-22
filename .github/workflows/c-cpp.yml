@@ -68,6 +68,7 @@ jobs:
     - name: test_run (FIXED)
       run: |
         cd scilab
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"api_scilab\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"arnoldi\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"boolean\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"console\"),exit(0),else,exit(1),end"
@@ -102,7 +103,6 @@ jobs:
     - name: test_run (TO BE FIXED)
       run: |
         cd scilab
-        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"api_scilab\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"ast\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"cacsd\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"completion\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
