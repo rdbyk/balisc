@@ -59,6 +59,7 @@
     <path value="$SCILAB/modules/ui_data/.libs"/>
     <path value="$SCILAB/modules/javasci/.libs"/>
     <path value="$SCILAB/modules/xcos/.libs"/>
+    <path value="$SCILAB/modules/types/.libs"/>
     <path value="$SCILAB/modules/.libs"/>
     <path value="$SCILAB/.libs"/>
     <!-- Make install with prefix -->

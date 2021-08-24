@@ -31,7 +31,7 @@ class GetScilabVariableJNI {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
            System.loadLibrary("typesjni");
         } else {
-           System.loadLibrary("scilab");
+           System.loadLibrary("scitypes-java");
         }
     } catch (SecurityException e) {
         System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
