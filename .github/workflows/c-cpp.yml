@@ -71,6 +71,7 @@ jobs:
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"api_scilab\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"arnoldi\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"boolean\"),exit(0),else,exit(1),end"
+        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"completion\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"console\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"core\"),exit(0),else,exit(1),end"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "if test_run(\"data_structures\"),exit(0),else,exit(1),end"
@@ -106,7 +107,6 @@ jobs:
         cd scilab
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"ast\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"cacsd\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
-        xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"completion\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"differential_equations\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"elementary_functions\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"
         xvfb-run -a ./bin/scilab-cli -noatomsautoload -nouserstartup -e "test_run(\"external_objects_java\",[],[\"no_check_error_output\" \"show_error\"]),exit(0)"

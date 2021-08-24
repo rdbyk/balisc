@@ -65,7 +65,7 @@ r = completion("Tmp");
 check_completion(r, "TMPDIR");
 
 r = completion("%", "variables");
-rexpected = ["%balisc" "%e"; "%eps"; "%fftw"; "%gui"; "%i";"%inf"; "%io"; "%nan"; "%pi"; "%s"; "%tk"; "%z"];
+rexpected = ["%balisc"; "%e"; "%eps"; "%fftw"; "%gui"; "%i";"%inf"; "%io"; "%nan"; "%pi"; "%s"; "%tk"; "%z"];
 assert_checkequal(r, rexpected);
 
 
