@@ -18,15 +18,13 @@
 // <-- Short Description -->
 // Missing patch in surface plot (regression)
 
-clf
-surf(0:1,0:1,[0 1;1 %eps])
-gcf().axes_size=[100 100]
-xs2gif(0,"TMPDIR/image1.gif")
+surf(0:1,0:1,[0 1;1 %eps]);
+f1=gcf();
 
-clf
-surf(0:1,0:1,[0 1;1 0])
-gcf().axes_size=[100 100]
-xs2gif(0,"TMPDIR/image2.gif")
+scf(1);
+surf(0:1,0:1,[0 1;1 0]);
+f2=gcf();
 
-// bitmap images should be bitwise equal (patch has to be filled)
-assert_checkequal(getmd5("TMPDIR/image1.gif"),getmd5("TMPDIR/image2.gif"))
+assert_checkalmostequal(f1.children.children.data.x,f2.children.children.data.x, [], 3*%eps);
+assert_checkalmostequal(f1.children.children.data.y,f2.children.children.data.y, [], 3*%eps);
+assert_checkalmostequal(f1.children.children.data.z,f2.children.children.data.z, [], 3*%eps);
