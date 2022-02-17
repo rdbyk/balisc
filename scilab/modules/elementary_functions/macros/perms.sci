@@ -3,7 +3,7 @@
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 // Copyright (C) 2019 - Samuel GOUGEON
-// Copyright (C) 2018 - 2020 Dirk Reusch, Kybernetik Dr. Reusch
+// Copyright (C) 2018 - 2022 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,7 +26,7 @@ function y = perms(x, unic, self, sortable)
 
     // Top level instructions
     // ----------------------
-    if ~isdef("self","l") || type(self)<>4 then
+    if isvoid(self) || type(self)<>4 then
         if nargin < 1 || nargin > 2 then
             error(72, 1, 2);
         end
@@ -36,7 +36,7 @@ function y = perms(x, unic, self, sortable)
             return
         end
         x = x(:).'
-        unic = isdef("unic","l")
+        unic = ~isvoid(unic)
         if unic
             tx = type(x)
             sortable = or(tx==[4 8 10]) | (or(tx==[1 5]) && isreal(x))

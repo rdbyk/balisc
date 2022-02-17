@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 //
 // Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2022 Dirk Reusch, Kybernetik Dr. Reusch
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -85,7 +86,7 @@ assert_checkequal(perms([0 0 1 1 2], "unique"), ref);
 // ==============
 // Error messages
 // ==============
-msg = "perms: Wrong number of input argument(s): 1 or 2 expected.";
+msg = "perms: Wrong number of input arguments: 1 to 2 expected.";
 assert_checkerror("perms()", msg);
 assert_checkerror("perms(3,%t,4)", msg);
 
